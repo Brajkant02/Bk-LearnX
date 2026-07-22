@@ -1,3 +1,57 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin Panel | BK LearnX</title><link rel="stylesheet" href="../../assets/shared/portal.css"></head><body style="background:var(--bk-bg)"><main class="portal-shell"><header class="portal-header"><div><h1>BK LearnX Admin Panel</h1><p class="muted">Students, sessions, page time aur course progress</p></div><button id="logout" class="portal-btn danger">Admin Logout</button></header><section class="stat-grid"><div class="portal-card stat"><span class="muted">Registered Students</span><strong id="total">—</strong></div><div class="portal-card stat"><span class="muted">Currently Online</span><strong id="online">—</strong></div><div class="portal-card stat"><span class="muted">Logins Today</span><strong id="today">—</strong></div><div class="portal-card stat"><span class="muted">Avg. Completion</span><strong id="completion">—</strong></div></section><section class="dashboard-grid"><div class="portal-card"><h2>Students</h2><div style="overflow:auto"><table class="data-table"><thead><tr><th>Student</th><th>Course/Sem</th><th>Status</th><th>Last activity</th><th>Progress</th></tr></thead><tbody id="students"></tbody></table></div></div><div class="portal-card"><h2>Live/Page Activity</h2><div id="activity" class="empty-state">Loading...</div></div></section></main><script>
-const API=(localStorage.getItem('bk_api_base')||'https://bk-learnx-api.onrender.com').replace(/\/$/,'');const token=localStorage.getItem('bk_admin_token');if(!token)location.href='login.html';async function load(){try{const r=await fetch(API+'/api/admin/dashboard',{headers:{'x-admin-token':token}});if(!r.ok)throw 0;const d=await r.json();total.textContent=d.stats.totalStudents;online.textContent=d.stats.onlineStudents;today.textContent=d.stats.loginsToday;completion.textContent=d.stats.averageCompletion+'%';students.innerHTML=d.students.map(s=>`<tr><td><strong>${s.name}</strong><br><span class="muted">${s.email}</span></td><td>${s.branch}<br>${s.semester}</td><td><span class="badge ${s.online?'online':'offline'}">${s.online?'Online':'Logged out'}</span></td><td>${s.currentPage||'—'}<br><span class="muted">${s.lastActivity?new Date(s.lastActivity).toLocaleString():'—'}</span></td><td>${s.completion}%</td></tr>`).join('');activity.innerHTML=(d.recentActivity||[]).map(a=>`<div style="padding:9px 0;border-bottom:1px solid #e5e7eb"><strong>${a.studentName||'Student'}</strong> — ${a.type}<br><span class="muted">${a.title||a.page||''} · ${a.durationSeconds||0}s</span></div>`).join('')||'<p class="empty-state">No activity yet.</p>'}catch{activity.innerHTML='<p class="empty-state">Backend server connect nahi hua.</p>'}}logout.onclick=()=>{localStorage.removeItem('bk_admin_token');location.href='login.html'};load();setInterval(load,15000);
-</script></body></html>
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Admin Panel | BK LearnX</title>
+    <link rel="stylesheet" href="../../assets/shared/portal.css">
+</head>
+
+<body style="background:var(--bk-bg)">
+    <main class="portal-shell">
+        <header class="portal-header">
+            <div>
+                <h1>BK LearnX Admin Panel</h1>
+                <p class="muted">Students, sessions, page time aur course progress</p>
+            </div><button id="logout" class="portal-btn danger">Admin Logout</button>
+        </header>
+        <section class="stat-grid">
+            <div class="portal-card stat"><span class="muted">Registered Students</span><strong id="total">—</strong>
+            </div>
+            <div class="portal-card stat"><span class="muted">Currently Online</span><strong id="online">—</strong>
+            </div>
+            <div class="portal-card stat"><span class="muted">Logins Today</span><strong id="today">—</strong></div>
+            <div class="portal-card stat"><span class="muted">Avg. Completion</span><strong id="completion">—</strong>
+            </div>
+        </section>
+        <section class="dashboard-grid">
+            <div class="portal-card">
+                <h2>Students</h2>
+                <div style="overflow:auto">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Student</th>
+                                <th>Course/Sem</th>
+                                <th>Status</th>
+                                <th>Last activity</th>
+                                <th>Progress</th>
+                            </tr>
+                        </thead>
+                        <tbody id="students"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="portal-card">
+                <h2>Live/Page Activity</h2>
+                <div id="activity" class="empty-state">Loading...</div>
+            </div>
+        </section>
+    </main>
+    <script>
+        const API = (localStorage.getItem('bk_api_base') || 'https://bk-learnx-api.onrender.com').replace(/\/$/, ''); const token = localStorage.getItem('bk_admin_token'); if (!token) location.href = 'login.html'; async function load() { try { const r = await fetch(API + '/api/admin/dashboard', { headers: { 'x-admin-token': token } }); if (!r.ok) throw 0; const d = await r.json(); total.textContent = d.stats.totalStudents; online.textContent = d.stats.onlineStudents; today.textContent = d.stats.loginsToday; completion.textContent = d.stats.averageCompletion + '%'; students.innerHTML = d.students.map(s => `<tr><td><strong>${s.name}</strong><br><span class="muted">${s.email}</span></td><td>${s.branch}<br>${s.semester}</td><td><span class="badge ${s.online ? 'online' : 'offline'}">${s.online ? 'Online' : 'Logged out'}</span></td><td>${s.currentPage || '—'}<br><span class="muted">${s.lastActivity ? new Date(s.lastActivity).toLocaleString() : '—'}</span></td><td>${s.completion}%</td></tr>`).join(''); activity.innerHTML = (d.recentActivity || []).map(a => `<div style="padding:9px 0;border-bottom:1px solid #e5e7eb"><strong>${a.studentName || 'Student'}</strong> — ${a.type}<br><span class="muted">${a.title || a.page || ''} · ${a.durationSeconds || 0}s</span></div>`).join('') || '<p class="empty-state">No activity yet.</p>' } catch { activity.innerHTML = '<p class="empty-state">Backend server connect nahi hua.</p>' } } logout.onclick = () => { localStorage.removeItem('bk_admin_token'); location.href = 'login.html' }; load(); setInterval(load, 15000);
+    </script>
+</body>
+
+</html>
