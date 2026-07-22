@@ -50,7 +50,32 @@
         </section>
     </main>
     <script>
-        const API = (localStorage.getItem('bk_api_base') || 'https://bk-learnx-api.onrender.com').replace(/\/$/, ''); const token = localStorage.getItem('bk_admin_token'); if (!token) location.href = 'login.html'; async function load() { try { const r = await fetch(API + '/api/admin/dashboard', { headers: { 'x-admin-token': token } }); if (!r.ok) throw 0; const d = await r.json(); total.textContent = d.stats.totalStudents; online.textContent = d.stats.onlineStudents; today.textContent = d.stats.loginsToday; completion.textContent = d.stats.averageCompletion + '%'; students.innerHTML = d.students.map(s => `<tr><td><strong>${s.name}</strong><br><span class="muted">${s.email}</span></td><td>${s.branch}<br>${s.semester}</td><td><span class="badge ${s.online ? 'online' : 'offline'}">${s.online ? 'Online' : 'Logged out'}</span></td><td>${s.currentPage || '—'}<br><span class="muted">${s.lastActivity ? new Date(s.lastActivity).toLocaleString() : '—'}</span></td><td>${s.completion}%</td></tr>`).join(''); activity.innerHTML = (d.recentActivity || []).map(a => `<div style="padding:9px 0;border-bottom:1px solid #e5e7eb"><strong>${a.studentName || 'Student'}</strong> — ${a.type}<br><span class="muted">${a.title || a.page || ''} · ${a.durationSeconds || 0}s</span></div>`).join('') || '<p class="empty-state">No activity yet.</p>' } catch { activity.innerHTML = '<p class="empty-state">Backend server connect nahi hua.</p>' } } logout.onclick = () => { localStorage.removeItem('bk_admin_token'); location.href = 'login.html' }; load(); setInterval(load, 15000);
+        const _defaultApi = (location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.protocol === 'file:')
+          ? 'http://localhost:3000'
+          : 'https://bk-learnx-api.onrender.com';
+        const API = (localStorage.getItem('bk_api_base') || _defaultApi).replace(/\/$/, '');
+        const token = localStorage.getItem('bk_admin_token');
+        if (!token) location.href = 'login.html';
+
+        async function load() {
+            try {
+                const r = await fetch(API + '/api/admin/dashboard', { headers: { 'x-admin-token': token } });
+                if (!r.ok) throw 0;
+                const d = await r.json();
+                total.textContent = d.stats.totalStudents;
+                online.textContent = d.stats.onlineStudents;
+                today.textContent = d.stats.loginsToday;
+                completion.textContent = d.stats.averageCompletion + '%';
+                students.innerHTML = d.students.map(s => `<tr><td><strong>${s.name}</strong><br><span class="muted">${s.email}</span></td><td>${s.branch}<br>${s.semester}</td><td><span class="badge ${s.online ? 'online' : 'offline'}">${s.online ? 'Online' : 'Logged out'}</span></td><td>${s.currentPage || '—'}<br><span class="muted">${s.lastActivity ? new Date(s.lastActivity).toLocaleString() : '—'}</span></td><td>${s.completion}%</td></tr>`).join('');
+                activity.innerHTML = (d.recentActivity || []).map(a => `<div style="padding:9px 0;border-bottom:1px solid #e5e7eb"><strong>${a.studentName || 'Student'}</strong> — ${a.type}<br><span class="muted">${a.title || a.page || ''} · ${a.durationSeconds || 0}s</span></div>`).join('') || '<p class="empty-state">No activity yet.</p>'
+            } catch {
+                activity.innerHTML = '<p class="empty-state">Backend server connect nahi hua.</p>'
+            }
+        }
+
+        logout.onclick = () => { localStorage.removeItem('bk_admin_token'); location.href = 'login.html' };
+        load();
+        setInterval(load, 15000);
     </script>
 </body>
 
