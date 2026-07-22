@@ -1,5 +1,5 @@
 (()=>{
- const API=(localStorage.getItem('bk_api_base')||'http://localhost:3000').replace(/\/$/,'');
+ const API=(localStorage.getItem('bk_api_base')||'https://bk-learnx-api.onrender.com').replace(/\/$/,'');
  const getUser=()=>{try{return JSON.parse(localStorage.getItem('bk_user')||'null')}catch{return null}};
  const getToken=()=>localStorage.getItem('bk_token')||'';
  const api=async(path,options={})=>{const headers={'Content-Type':'application/json',...(options.headers||{})};if(getToken())headers.Authorization=`Bearer ${getToken()}`;const r=await fetch(API+path,{...options,headers});let data={};try{data=await r.json()}catch{}if(!r.ok)throw new Error(data.message||'Request failed');return data};

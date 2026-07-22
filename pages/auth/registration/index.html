@@ -272,7 +272,7 @@
             }
 
             try {
-                const response = await fetch((localStorage.getItem('bk_api_base') || 'http://localhost:3000') + '/api/register', {
+                const response = await fetch((localStorage.getItem('bk_api_base') || 'https://bk-learnx-api.onrender.com') + '/api/register', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ name, email, branch, semester, password, confirmPassword })
