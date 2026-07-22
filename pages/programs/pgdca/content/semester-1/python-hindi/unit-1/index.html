@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introduction to Python</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+      line-height: 1.75
+    }
+
+    .page {
+      display: grid;
+      grid-template-columns: 285px 1fr;
+      gap: 20px;
+      max-width: 1500px;
+      margin: auto;
+      padding: 10px
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 10px;
+      height: calc(100vh - 20px);
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
+      align-self: start
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #111827
+    }
+
+    .sidebar a {
+      display: block;
+      text-decoration: none;
+      color: #374151;
+      padding: 8px 10px;
+      border-radius: 10px;
+      margin-bottom: 4px;
+      font-size: 14.7px
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+      color: #1d4ed8
+    }
+
+    .content {
+      background: #fff;
+      border-radius: 18px;
+      padding: 10px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08)
+    }
+
+    .hero {
+      padding: 28px 18px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #eef2ff, #f8fafc);
+      margin-bottom: 18px
+    }
+
+    .hero h1 {
+      font-size: 34px;
+      color: #111827;
+      margin-bottom: 10px
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #374151
+    }
+
+    section {
+      padding: 22px 10px;
+      border-bottom: 1px solid #e5e7eb
+    }
+
+    section:last-child {
+      border-bottom: none
+    }
+
+    h2 {
+      font-size: 27px;
+      color: #111827;
+      margin-bottom: 12px;
+      border-left: 5px solid #2563eb;
+      padding-left: 12px
+    }
+
+    h3 {
+      font-size: 22px;
+      color: #1f2937;
+      margin: 16px 0 8px
+    }
+
+    h4 {
+      font-size: 18px;
+      color: #111827;
+      margin: 14px 0 6px
+    }
+
+    p {
+      margin: 10px 0;
+      font-size: 17px
+    }
+
+    ul,
+    ol {
+      margin-left: 24px;
+      margin-top: 8px
+    }
+
+    li {
+      margin: 7px 0;
+      font-size: 16.5px
+    }
+
+    strong {
+      color: #111827
+    }
+
+    .image-icon {
+      min-height: 180px;
+      border: 2px dashed #94a3b8;
+      border-radius: 16px;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      margin: 18px 0;
+      color: #475569;
+      font-weight: 600
+    }
+
+    .image-icon img {
+      max-width: 100%;
+      height: auto
+    }
+
+    .note-box {
+      background: #f0fdf4;
+      border-left: 5px solid #22c55e;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .info-box {
+      background: #ecfeff;
+      border-left: 5px solid #06b6d4;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .remember-box {
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      font-size: 15.5px
+    }
+
+    th,
+    td {
+      border: 1px solid #d1d5db;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top
+    }
+
+    th {
+      background: #eef2ff;
+      color: #111827
+    }
+
+    code {
+      background: #111827;
+      color: #f9fafb;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-family: Consolas, monospace;
+      font-size: 15px
+    }
+
+    pre {
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 14px;
+      padding: 16px;
+      margin: 16px 0;
+      overflow-x: auto;
+      font-family: Consolas, monospace;
+      line-height: 1.6
+    }
+
+    .compiler {
+
+      width: 100%;
+      height: 2rem;
+      background-color: green;
+      text-align: center;
+    }
+
+    .compiler a {
+      text-decoration: none;
+      color: white;
+    }
+
+    @media(max-width:900px) {
+      .page {
+        grid-template-columns: 1fr
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto
+      }
+
+      .hero h1 {
+        font-size: 27px
+      }
+
+      h2 {
+        font-size: 24px
+      }
+    }
+  </style>
+
+<link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
+<script src="../../../../../../../assets/shared/portal.js" defer></script>
+<script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
+</head>
+
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <h2>Topics</h2>
+      <a href="#intro">Introduction</a><a href="#history">Brief History</a><a href="#versions">Python Versions</a><a
+        href="#install">Installing Python</a><a href="#env">Environment Variables</a><a href="#cmd">Command Line
+        Execution</a><a href="#idle">IDLE</a><a href="#editing">Editing Python Files</a><a href="#docs">Python
+        Documentation</a><a href="#help">Getting Help</a><a href="#dynamic">Dynamic Types</a><a
+        href="#reserved">Reserved Words</a><a href="#naming">Naming Conventions</a><a href="#summary">Quick Revision</a>
+    </aside>
+    <main class="content">
+      <div class="hero">
+        <h1>Introduction to Python</h1>
+      </div>
+
+      <section id="intro">
+        <h2>Introduction</h2>
+        <h3>Python Programming Language</h3>
+        <p><strong>Python</strong> एक high-level, interpreted, general-purpose और
+          beginner-friendly programming language है। इसका syntax simple और readable होता है, इसलिए नए students इसे आसानी
+          से सीख सकते हैं। Python का use web development, data analysis, artificial intelligence, machine learning,
+          automation, software development, scripting, cyber security, game development और scientific computing जैसे कई
+          areas में किया जाता है।</p>
+        <p>Python को ऐसा design किया गया है कि programmer complex logic को कम code में लिख सके। इसमें indentation का use
+          block define करने के लिए होता है, जिससे code clean और readable दिखता है। Python में large standard library और
+          बहुत सारे third-party packages available हैं।</p>
+        <div class="image-icon"><img src="" alt="Python Programming Language"></div>
+        <h4>Important Features of Python</h4>
+        <ul>
+          <li><strong>Simple Syntax:</strong> Python का code English-like और readable होता है।</li>
+          <li><strong>Interpreted Language:</strong> Python code line-by-line execute होता है।</li>
+          <li><strong>High-Level Language:</strong> Programmer को low-level memory details manage नहीं करनी पड़ती।</li>
+          <li><strong>Portable:</strong> Python programs Windows, Linux और macOS पर run हो सकते हैं।</li>
+          <li><strong>Large Library:</strong> Python में many built-in modules और external packages मिलते हैं।</li>
+          <li><strong>Dynamically Typed:</strong> Variable का type runtime पर decide होता है।</li>
+        </ul>
+        <div class="note-box"><b>Real Life Example:</b><br>अगर आपको Excel files को automatically process करना है,
+          website बनानी है या data analysis करना है, तो Python इन सभी कामों के लिए useful language है।</div>
+      </section>
+
+      <section id="history">
+        <h2>Brief History of Python</h2>
+
+        <p>Python को <strong>Guido van Rossum</strong> ने late 1980s में design करना
+          शुरू किया और इसका first public release 1991 में आया। Python का goal ऐसी programming language बनाना था जो
+          simple, readable और powerful हो। Python का name snake से नहीं, बल्कि British comedy group <strong>Monty
+            Python</strong> से inspired है।</p>
+        <p>Python ने शुरुआत से ही readability और simplicity पर focus किया। इसकी philosophy यह है कि code ऐसा होना चाहिए
+          जिसे दूसरे programmers आसानी से read और understand कर सकें। समय के साथ Python बहुत popular language बन गई
+          क्योंकि इसे beginners भी सीख सकते हैं और professionals भी बड़े projects में use कर सकते हैं।</p>
+        <div class="image-icon"><img src="" alt="History of Python"></div>
+        <h4>Python History Timeline</h4>
+        <table>
+          <tr>
+            <th>Year</th>
+            <th>Event</th>
+          </tr>
+          <tr>
+            <td>Late 1980s</td>
+            <td>Guido van Rossum ने Python पर काम शुरू किया।</td>
+          </tr>
+          <tr>
+            <td>1991</td>
+            <td>Python का first public version release हुआ।</td>
+          </tr>
+          <tr>
+            <td>2000</td>
+            <td>Python 2 release हुआ।</td>
+          </tr>
+          <tr>
+            <td>2008</td>
+            <td>Python 3 release हुआ।</td>
+          </tr>
+          <tr>
+            <td>Today</td>
+            <td>Python AI, Data Science, Web, Automation और Education में widely used है।</td>
+          </tr>
+        </table>
+        <div class="note-box"><b>Real Life Example:</b><br>Python आज school/college programming से लेकर Google, NASA,
+          Netflix और AI research तक अलग-अलग areas में use होता है।</div>
+      </section>
+
+      <section id="versions">
+        <h2>Python Versions</h2>
+        <p>Python के अलग-अलग versions समय के साथ release हुए हैं। Python के दो major
+          version families बहुत important हैं: <strong>Python 2</strong> और <strong>Python 3</strong>। Python 2 पुराने
+          projects में use होता था, लेकिन अब उसका official support खत्म हो चुका है। Python 3 current और recommended
+          version है। नए students और developers को Python 3 ही सीखना और use करना चाहिए।</p>
+        <p>Python 3 में कई improvements किए गए, जैसे better Unicode support, cleaner syntax, improved libraries और more
+          consistent behavior। Python 2 और Python 3 पूरी तरह compatible नहीं हैं।</p>
+        <div class="image-icon"><img src="" alt="Python Versions"></div>
+        <h4>Python 2 vs Python 3</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>Python 2</th>
+            <th>Python 3</th>
+          </tr>
+          <tr>
+            <td>Status</td>
+            <td>Old version, support ended</td>
+            <td>Current recommended version</td>
+          </tr>
+          <tr>
+            <td>Print</td>
+            <td><code>print "Hello"</code></td>
+            <td><code>print("Hello")</code></td>
+          </tr>
+          <tr>
+            <td>Unicode</td>
+            <td>Less consistent Unicode support</td>
+            <td>Better Unicode support</td>
+          </tr>
+          <tr>
+            <td>Use</td>
+            <td>Legacy projects</td>
+            <td>New projects and learning</td>
+          </tr>
+        </table>
+        <div class="remember-box"><b>Remember:</b><br>New learning और new projects के लिए हमेशा Python 3 use करना चाहिए।
+        </div>
+      </section>
+
+      <section id="install">
+        <h2>Installing Python</h2>
+        <p><strong>Installing Python</strong> का मतलब computer में Python interpreter और
+          related tools install करना है, ताकि user Python programs लिख और run कर सके। Python install करने के बाद system
+          में Python command available हो जाती है। Windows, Linux और macOS पर Python install किया जा सकता है।</p>
+        <h4>Installing Python on Windows</h4>
+        <ol>
+          <li>Official Python website से latest Python 3 installer download करें।</li>
+          <li>Installer open करें।</li>
+          <li><strong>Add Python to PATH</strong> option tick करें।</li>
+          <li><strong>Install Now</strong> पर click करें।</li>
+          <li>Installation complete होने के बाद Command Prompt open करें।</li>
+          <li><code>python --version</code> या <code>py --version</code> command run करके version check करें।</li>
+        </ol>
+        <h4>Installing Python on Linux</h4>
+        <p>Linux में कई distributions में Python पहले से installed होता है। Version check करने के लिए terminal में
+          command run कर सकते हैं:</p>
+        <pre>python3 --version</pre>
+        <h4>Installing Python on macOS</h4>
+        <p>macOS में Python installer official website से download किया जा सकता है या Homebrew जैसे package manager से
+          install किया जा सकता है।</p>
+        <div class="note-box"><b>Real Life Example:</b><br>अगर आप VS Code में Python program run करना चाहते हैं, तो पहले
+          system में Python install होना चाहिए।</div>
+      </section>
+
+      <section id="env">
+        <h2>Environment Variables</h2>
+        <h3>Environment Variables</h3>
+        <p><strong>Environment Variables</strong> operating system की ऐसी settings होती
+          हैं जो programs को system paths, configuration values और runtime information provide करती हैं। Python के
+          context में सबसे important environment variable <strong>PATH</strong> होता है। PATH system को बताता है कि
+          executable programs कहाँ search करने हैं।</p>
+        <p>अगर Python PATH में correctly add है, तो user किसी भी folder से Command Prompt या Terminal में
+          <code>python</code> command run कर सकता है। अगर Python PATH में add नहीं है, तो system error दे सकता है जैसे
+          “python is not recognized as an internal or external command”.
+        </p>
+        <h4>Why PATH is Important</h4>
+        <ul>
+          <li>Command line से Python run करने के लिए।</li>
+          <li>pip commands use करने के लिए।</li>
+          <li>VS Code और other tools को Python locate करवाने के लिए।</li>
+          <li>Python scripts को terminal से execute करने के लिए।</li>
+        </ul>
+        <div class="note-box"><b>Real Life Example:</b><br>अगर आप Command Prompt में <code>python --version</code> लिखते
+          हैं और version show होता है, तो इसका मतलब Python PATH में properly available है।</div>
+      </section>
+
+      <section id="cmd">
+        <h2>Executing Python from the Command Line</h2>
+        <h3>Command Line Execution</h3>
+
+        <p>Python programs को <strong>Command Line</strong> से execute करना बहुत common
+          method है। Command Line Windows में Command Prompt/PowerShell और Linux/macOS में Terminal कहलाता है। User
+          terminal में Python command type करके interactive mode open कर सकता है या saved Python file को run कर सकता है।
+        </p>
+        <h4>Interactive Mode</h4>
+        <pre>python
+print("Hello Python")</pre>
+        <pre>python hello.py</pre>
+        <div class="compiler">
+          <a href="../compiler/index.html" target="_blank">Compiler</a>
+        </div>
+        <h4>Steps to Run Python File</h4>
+        <ol>
+          <li>Notepad/VS Code में Python code लिखें।</li>
+          <li>File को <code>.py</code> extension से save करें।</li>
+          <li>Command Prompt open करें।</li>
+          <li>उस folder में जाएँ जहाँ file saved है।</li>
+          <li><code>python hello.py</code> command run करें।</li>
+        </ol>
+
+        <div class="note-box"><b>Real Life Example:</b><br>अगर आपने Desktop पर <code>student.py</code> file बनाई है,
+          तो
+          Command Prompt से Desktop folder में जाकर <code>python student.py</code> run कर सकते हैं।</div>
+      </section>
+
+      <section id="idle">
+        <h2>7. IDLE</h2>
+        <h3>Python IDLE</h3>
+        <div class="image-icon"><img src="" alt="Python IDLE">Image Placeholder: Python IDLE window screenshot यहाँ
+          लगाएँ</div>
+        <p><strong>Definition:</strong><br><strong>IDLE</strong> का full form <strong>Integrated Development and
+            Learning Environment</strong> है। यह Python के साथ आने वाला simple editor और interpreter environment है।
+          IDLE beginners के लिए useful होता है क्योंकि इसमें Python shell, code editor और run option available होते हैं।
+          Students IDLE में छोटे programs लिखकर quickly output देख सकते हैं।</p>
+        <h4>Parts of IDLE</h4>
+        <ul>
+          <li><strong>Python Shell:</strong> Direct commands type करके output देखा जा सकता है।</li>
+          <li><strong>File Editor:</strong> Python program लिखकर save और run किया जा सकता है।</li>
+          <li><strong>Run Module:</strong> Program file execute करने के लिए use होता है।</li>
+          <li><strong>Syntax Highlighting:</strong> Keywords और strings अलग colors में दिखते हैं।</li>
+        </ul>
+        <h4>Steps to Run Program in IDLE</h4>
+        <ol>
+          <li>IDLE open करें।</li>
+          <li>File menu से New File select करें।</li>
+          <li>Python code लिखें।</li>
+          <li>File को <code>.py</code> extension से save करें।</li>
+          <li>Run menu से Run Module या F5 press करें।</li>
+        </ol>
+        <div class="note-box"><b>Real Life Example:</b><br>Beginners IDLE में <code>print("Hello World")</code> लिखकर
+          तुरंत Python output देख सकते हैं।</div>
+      </section>
+
+      <section id="editing">
+        <h2>8. Editing Python Files</h2>
+        <h3>Editing Python Files</h3>
+        <div class="image-icon"><img src="" alt="Editing Python Files">Image Placeholder: VS Code editing Python file
+          screenshot यहाँ लगाएँ</div>
+        <p><strong>Definition:</strong><br><strong>Editing Python Files</strong> का मतलब Python source code को किसी
+          editor या IDE में लिखना, modify करना और save करना है। Python files का extension <code>.py</code> होता है।
+          Python file में statements, variables, functions, classes और comments लिखे जा सकते हैं। Beginners Notepad,
+          IDLE, VS Code या PyCharm जैसे tools में Python files edit कर सकते हैं।</p>
+        <h4>Popular Editors for Python</h4>
+        <table>
+          <tr>
+            <th>Editor / IDE</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><strong>IDLE</strong></td>
+            <td>Simple beginner-friendly Python editor।</td>
+          </tr>
+          <tr>
+            <td><strong>VS Code</strong></td>
+            <td>Popular lightweight code editor with extensions।</td>
+          </tr>
+          <tr>
+            <td><strong>PyCharm</strong></td>
+            <td>Professional Python IDE।</td>
+          </tr>
+          <tr>
+            <td><strong>Notepad</strong></td>
+            <td>Basic text editor, small practice के लिए।</td>
+          </tr>
+        </table>
+        <h4>Example Python File</h4>
+        <pre>name = "Brajkant"
+course = "PGDCA"
+
+print("Name:", name)
+print("Course:", course)</pre>
+        <div class="note-box"><b>Real Life Example:</b><br>अगर आप <code>marks.py</code> file में student marks
+          calculation code लिखते हैं, तो यह Python file editing का simple example है।</div>
+      </section>
+
+      <section id="docs">
+        <h2>9. Python Documentation</h2>
+        <h3>Python Documentation</h3>
+        <div class="image-icon"><img src="" alt="Python Documentation">Image Placeholder: Python documentation website
+          screenshot यहाँ लगाएँ</div>
+        <p><strong>Definition:</strong><br><strong>Python Documentation</strong> Python language, standard library,
+          modules, functions और syntax की official information का collection है। Documentation programmer को यह बताती है
+          कि Python का कोई feature कैसे काम करता है, कौन-सा function किस purpose के लिए है, उसके parameters क्या हैं और
+          उसे program में कैसे use करना है।</p>
+        <p>Python documentation learning और professional development दोनों के लिए बहुत important है। जब programmer को
+          किसी module जैसे <code>math</code>, <code>random</code>, <code>datetime</code> या <code>os</code> के functions
+          जानने हों, तो documentation सबसे reliable source होती है।</p>
+        <h4>What Documentation Contains</h4>
+        <ul>
+          <li>Python tutorial और beginner guide।</li>
+          <li>Language syntax और rules।</li>
+          <li>Standard library modules की details।</li>
+          <li>Built-in functions की explanation।</li>
+          <li>Examples और reference material।</li>
+        </ul>
+        <div class="note-box"><b>Real Life Example:</b><br>अगर आपको <code>random.randint()</code> function कैसे use होता
+          है यह जानना है, तो Python documentation में जाकर random module read कर सकते हैं।</div>
+      </section>
+
+      <section id="help">
+        <h2>10. Getting Help</h2>
+        <h3>Getting Help in Python</h3>
+        <div class="image-icon"><img src="" alt="Getting Help in Python">Image Placeholder: Python help function
+          screenshot यहाँ लगाएँ</div>
+        <p><strong>Definition:</strong><br>Python में <strong>Getting Help</strong> का मतलब किसी keyword, function,
+          module या object के बारे में information प्राप्त करना है। Python beginners और developers के लिए built-in help
+          system provide करता है। इसके अलावा documentation, online tutorials, community forums और editor suggestions भी
+          help के sources हैं।</p>
+        <h4>Built-in Help Methods</h4>
+        <table>
+          <tr>
+            <th>Method</th>
+            <th>Use</th>
+            <th>Example</th>
+          </tr>
+          <tr>
+            <td><code>help()</code></td>
+            <td>Interactive help system open करता है।</td>
+            <td><code>help()</code></td>
+          </tr>
+          <tr>
+            <td><code>help(function)</code></td>
+            <td>किसी function/object की help दिखाता है।</td>
+            <td><code>help(print)</code></td>
+          </tr>
+          <tr>
+            <td><code>dir()</code></td>
+            <td>Object/module के available names दिखाता है।</td>
+            <td><code>dir(str)</code></td>
+          </tr>
+          <tr>
+            <td><code>type()</code></td>
+            <td>Object का type बताता है।</td>
+            <td><code>type(10)</code></td>
+          </tr>
+        </table>
+        <pre>help(print)
+dir(list)
+type("Hello")</pre>
+        <div class="note-box"><b>Real Life Example:</b><br>अगर student को <code>list</code> के methods याद नहीं हैं, तो
+          वह Python shell में <code>dir(list)</code> run करके methods देख सकता है।</div>
+      </section>
+
+      <section id="dynamic">
+        <h2>11. Dynamic Types</h2>
+        <h3>Dynamic Typing in Python</h3>
+        <div class="image-icon"><img src="" alt="Dynamic Typing in Python">Image Placeholder: Variable changing type
+          diagram यहाँ लगाएँ</div>
+        <p><strong>Definition:</strong><br>Python एक <strong>Dynamically Typed Language</strong> है। इसका मतलब है कि
+          Python में variable declare करते समय उसका data type explicitly बताना जरूरी नहीं होता। Python runtime पर value
+          देखकर variable का type automatically decide कर लेता है। उदाहरण के लिए, अगर हम लिखते हैं <code>x = 10</code>,
+          तो Python समझ जाता है कि x integer है। अगर बाद में <code>x = "Hello"</code> लिखते हैं, तो x string बन जाता है।
+        </p>
+        <p>Dynamic typing Python को flexible बनाती है, लेकिन programmer को careful रहना चाहिए। अगर variable का type
+          unexpected change हो जाए, तो error आ सकता है।</p>
+        <h4>Example of Dynamic Typing</h4>
+        <pre>x = 10
+print(type(x))
+
+x = "Python"
+print(type(x))
+
+x = 25.5
+print(type(x))</pre>
+        <h4>Features</h4>
+        <ul>
+          <li>Variable type runtime पर decide होता है।</li>
+          <li>Variable का type value के अनुसार change हो सकता है।</li>
+          <li>Code writing fast और flexible हो जाती है।</li>
+          <li>Type mistakes से runtime error आ सकता है।</li>
+        </ul>
+        <div class="note-box"><b>Real Life Example:</b><br>Python में <code>marks = 80</code> लिखने पर marks integer
+          होता है, लेकिन <code>marks = "Eighty"</code> लिखने पर वही variable string बन सकता है।</div>
+      </section>
+
+      <section id="reserved">
+        <h2>12. Python Reserved Words</h2>
+        <h3>Reserved Words / Keywords</h3>
+        <div class="image-icon"><img src="" alt="Python Reserved Words">Image Placeholder: Python keywords chart यहाँ
+          लगाएँ</div>
+        <p><strong>Definition:</strong><br><strong>Reserved Words</strong> या <strong>Keywords</strong> Python language
+          के predefined special words होते हैं। इन words का Python में fixed meaning होता है और इन्हें variable name,
+          function name या class name के रूप में use नहीं किया जा सकता। Keywords Python syntax का part होते हैं और
+          control flow, loops, conditions, functions, classes, exception handling और logical operations में use होते
+          हैं।</p>
+        <h4>Common Python Keywords</h4>
+        <table>
+          <tr>
+            <th>Category</th>
+            <th>Keywords</th>
+          </tr>
+          <tr>
+            <td>Condition</td>
+            <td><code>if</code>, <code>elif</code>, <code>else</code></td>
+          </tr>
+          <tr>
+            <td>Loop</td>
+            <td><code>for</code>, <code>while</code>, <code>break</code>, <code>continue</code></td>
+          </tr>
+          <tr>
+            <td>Function</td>
+            <td><code>def</code>, <code>return</code>, <code>lambda</code></td>
+          </tr>
+          <tr>
+            <td>Exception</td>
+            <td><code>try</code>, <code>except</code>, <code>finally</code>, <code>raise</code></td>
+          </tr>
+          <tr>
+            <td>Logical</td>
+            <td><code>and</code>, <code>or</code>, <code>not</code>, <code>True</code>, <code>False</code>,
+              <code>None</code>
+            </td>
+          </tr>
+          <tr>
+            <td>Import</td>
+            <td><code>import</code>, <code>from</code>, <code>as</code></td>
+          </tr>
+        </table>
+        <h4>How to View Keywords</h4>
+        <pre>import keyword
+print(keyword.kwlist)</pre>
+        <div class="remember-box"><b>Remember:</b><br>Keywords को identifier के रूप में use नहीं किया जा सकता। जैसे
+          <code>if = 10</code> invalid है क्योंकि <code>if</code> reserved word है।
+        </div>
+      </section>
+
+      <section id="naming">
+        <h2>13. Naming Conventions</h2>
+        <h3>Python Naming Conventions</h3>
+        <div class="image-icon"><img src="" alt="Python Naming Conventions">Image Placeholder: Python naming conventions
+          examples chart यहाँ लगाएँ</div>
+        <p><strong>Definition:</strong><br><strong>Naming Conventions</strong> वे rules और best practices हैं जिनके
+          अनुसार variables, functions, classes, constants और files के names लिखे जाते हैं। Good naming convention code
+          को readable, professional और maintainable बनाती है। Python में official style guide PEP 8 के according naming
+          conventions follow करना अच्छा माना जाता है।</p>
+        <h4>Basic Identifier Rules</h4>
+        <ul>
+          <li>Name letters, digits और underscore से बन सकता है।</li>
+          <li>Name digit से start नहीं हो सकता।</li>
+          <li>Python case-sensitive है, इसलिए <code>Name</code> और <code>name</code> अलग हैं।</li>
+          <li>Reserved words को name के रूप में use नहीं कर सकते।</li>
+          <li>Special symbols जैसे @, #, %, - identifiers में use नहीं किए जाते।</li>
+        </ul>
+        <h4>Common Naming Conventions</h4>
+        <table>
+          <tr>
+            <th>Item</th>
+            <th>Convention</th>
+            <th>Example</th>
+          </tr>
+          <tr>
+            <td>Variable</td>
+            <td>snake_case</td>
+            <td><code>student_name</code></td>
+          </tr>
+          <tr>
+            <td>Function</td>
+            <td>snake_case</td>
+            <td><code>calculate_marks()</code></td>
+          </tr>
+          <tr>
+            <td>Class</td>
+            <td>PascalCase</td>
+            <td><code>StudentRecord</code></td>
+          </tr>
+          <tr>
+            <td>Constant</td>
+            <td>UPPER_CASE</td>
+            <td><code>MAX_MARKS</code></td>
+          </tr>
+          <tr>
+            <td>Module/File</td>
+            <td>lowercase_with_underscore</td>
+            <td><code>student_report.py</code></td>
+          </tr>
+        </table>
+        <h4>Good and Bad Examples</h4>
+        <table>
+          <tr>
+            <th>Good Name</th>
+            <th>Bad Name</th>
+            <th>Reason</th>
+          </tr>
+          <tr>
+            <td><code>student_name</code></td>
+            <td><code>sn</code></td>
+            <td>Good name meaningful है।</td>
+          </tr>
+          <tr>
+            <td><code>total_marks</code></td>
+            <td><code>tm</code></td>
+            <td>Readable और clear है।</td>
+          </tr>
+          <tr>
+            <td><code>calculate_average()</code></td>
+            <td><code>ca()</code></td>
+            <td>Function का purpose clear है।</td>
+          </tr>
+        </table>
+        <div class="note-box"><b>Real Life Example:</b><br>अगर variable का name <code>student_age</code> है तो तुरंत समझ
+          आ जाता है कि इसमें student की age store है। लेकिन <code>x</code> या <code>a1</code> देखकर meaning clear नहीं
+          होता।</div>
+      </section>
+
+      <section id="summary">
+        <h2>Quick Revision Summary</h2>
+        <p>Python एक high-level, interpreted और beginner-friendly programming language है। इसे Guido van Rossum ने
+          develop किया और इसका first public release 1991 में हुआ। Python 3 current recommended version है। Python
+          install करते समय Windows में “Add Python to PATH” option select करना important होता है। Python programs
+          Command Line, IDLE, VS Code और other IDEs से run किए जा सकते हैं।</p>
+        <p>Python documentation official और reliable learning source है। Python में help system के लिए
+          <code>help()</code>, <code>dir()</code> और <code>type()</code> functions useful हैं। Python dynamically typed
+          language है, इसलिए variables का type runtime पर decide होता है। Reserved words Python के special predefined
+          words हैं जिन्हें variable names के रूप में use नहीं किया जा सकता। Naming conventions code को readable और
+          professional बनाती हैं।
+        </p>
+        <div class="remember-box"><b>Remember Points:</b><br>Python = High-level, Interpreted, General-purpose
+          Language.<br>Creator = Guido van Rossum.<br>Current learning version = Python 3.<br>Python file extension =
+          .py.<br>IDLE = Integrated Development and Learning Environment.<br>Python is dynamically typed.<br>Use
+          snake_case for variables and functions.</div>
+      </section>
+    </main>
+  </div>
+</body>
+
+</html>

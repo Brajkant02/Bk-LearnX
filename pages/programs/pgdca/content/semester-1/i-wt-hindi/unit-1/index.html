@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Web Development Introduction</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+      line-height: 1.75
+    }
+
+    .page {
+      display: grid;
+      grid-template-columns: 285px 1fr;
+      gap: 20px;
+      max-width: 1500px;
+      margin: auto;
+      padding: 10px
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 10px;
+      height: calc(100vh - 20px);
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
+      align-self: start
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #111827
+    }
+
+    .sidebar a {
+      display: block;
+      text-decoration: none;
+      color: #374151;
+      padding: 8px 10px;
+      border-radius: 10px;
+      margin-bottom: 4px;
+      font-size: 14.7px
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+      color: #1d4ed8
+    }
+
+    .content {
+      background: #fff;
+      border-radius: 18px;
+      padding: 10px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08)
+    }
+
+    .hero {
+      padding: 28px 18px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #eef2ff, #f8fafc);
+      margin-bottom: 18px
+    }
+
+    .hero h1 {
+      font-size: 34px;
+      color: #111827;
+      margin-bottom: 10px
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #374151
+    }
+
+    section {
+      padding: 22px 10px;
+      border-bottom: 1px solid #e5e7eb
+    }
+
+    section:last-child {
+      border-bottom: none
+    }
+
+    h2 {
+      font-size: 27px;
+      color: #111827;
+      margin-bottom: 12px;
+      border-left: 5px solid #2563eb;
+      padding-left: 12px
+    }
+
+    h3 {
+      font-size: 22px;
+      color: #1f2937;
+      margin: 16px 0 8px
+    }
+
+    h4 {
+      font-size: 18px;
+      color: #111827;
+      margin: 14px 0 6px
+    }
+
+    p {
+      margin: 10px 0;
+      font-size: 17px
+    }
+
+    ul,
+    ol {
+      margin-left: 24px;
+      margin-top: 8px
+    }
+
+    li {
+      margin: 7px 0;
+      font-size: 16.5px
+    }
+
+    strong {
+      color: #111827
+    }
+
+    .image-icon {
+      min-height: 180px;
+      border: 2px dashed #94a3b8;
+      border-radius: 16px;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      margin: 18px 0;
+      color: #475569;
+      font-weight: 600
+    }
+
+    .image-icon img {
+      max-width: 100%;
+      height: auto
+    }
+
+    .note-box {
+      background: #f0fdf4;
+      border-left: 5px solid #22c55e;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .info-box {
+      background: #ecfeff;
+      border-left: 5px solid #06b6d4;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .remember-box {
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      font-size: 15.5px
+    }
+
+    th,
+    td {
+      border: 1px solid #d1d5db;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top
+    }
+
+    th {
+      background: #eef2ff;
+      color: #111827
+    }
+
+    code {
+      background: #111827;
+      color: #f9fafb;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-family: Consolas, monospace;
+      font-size: 15px
+    }
+
+    pre {
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 14px;
+      padding: 16px;
+      margin: 16px 0;
+      overflow-x: auto;
+      font-family: Consolas, monospace;
+      line-height: 1.6
+    }
+
+    .compiler {
+      width: 100%;
+      height: 2rem;
+      background-color: green;
+      text-align: center;
+    }
+
+    .compiler a {
+      text-decoration: none;
+      color: white;
+    }
+
+    @media(max-width:900px) {
+      .page {
+        grid-template-columns: 1fr
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto
+      }
+
+      .hero h1 {
+        font-size: 27px
+      }
+
+      h2 {
+        font-size: 24px
+      }
+    }
+  </style>
+
+<link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
+<script src="../../../../../../../assets/shared/portal.js" defer></script>
+<script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
+</head>
+
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <h2>Topics</h2>
+      <a href="#internet">Internet</a>
+      <a href="#www">WWW</a>
+      <a href="#browser">Browser</a>
+      <a href="#search-engine">Search Engine</a>
+      <a href="#client-server">Client Server Model</a>
+      <a href="#url">URL</a>
+      <a href="#web-pages">Web Pages</a>
+      <a href="#website-services">Website and Web Services</a>
+      <a href="#types">Types of Websites</a>
+      <a href="#developer-options">Developer Options of Browser</a>
+    </aside>
+
+    <main class="content">
+      <div class="hero">
+        <h1>Web Development Introduction</h1>
+      </div>
+
+      <section id="internet">
+        <h2>Internet</h2>
+
+        <p><strong>Internet</strong> दुनिया भर के computers, servers, mobile devices और networks का एक बहुत बड़ा global network है। Internet की help से एक device दूसरे device से data exchange कर सकता है। यह communication TCP/IP protocols के through होता है। Internet को “network of networks” भी कहा जाता है क्योंकि यह कई छोटे-बड़े networks को आपस में connect करता है।</p>
+
+        <p>Internet केवल websites देखने तक limited नहीं है। इसका use email, online classes, video calling, online banking, social media, cloud storage, online shopping, gaming, file sharing और many digital services के लिए किया जाता है। जब user browser में कोई website open करता है, तो उसका device internet के through server से data request करता है और server response के रूप में webpage भेजता है।</p>
+
+        <h4>Main Features</h4>
+        <ul>
+          <li>यह worldwide communication system provide करता है।</li>
+          <li>Data को fast transfer करने में help करता है।</li>
+          <li>Information sharing को easy बनाता है।</li>
+          <li>Online services जैसे email, banking, education और business को support करता है।</li>
+          <li>Different devices और networks को connect करता है।</li>
+        </ul>
+
+        <h4>Common Uses</h4>
+        <table>
+          <tr>
+            <th>Use</th>
+            <th>Example</th>
+          </tr>
+          <tr>
+            <td>Communication</td>
+            <td>Email, WhatsApp, video call</td>
+          </tr>
+          <tr>
+            <td>Education</td>
+            <td>Online classes, e-learning websites</td>
+          </tr>
+          <tr>
+            <td>Business</td>
+            <td>E-commerce, online payment</td>
+          </tr>
+          <tr>
+            <td>Entertainment</td>
+            <td>YouTube, OTT, online games</td>
+          </tr>
+          <tr>
+            <td>Information</td>
+            <td>Search engines, news websites</td>
+          </tr>
+        </table>
+
+        <div class="note-box"><b>Real Life Example:</b><br>जब आप Google पर कोई topic search करते हैं, तो आपका mobile internet के through Google server से connect होता है और result screen पर दिखता है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Internet एक global network है, जबकि website internet पर available एक service या collection of web pages हो सकती है।</div>
+      </section>
+
+      <section id="www">
+        <h2>WWW</h2>
+
+        <p><strong>WWW</strong> का full form <strong>World Wide Web</strong> है। यह internet पर available web pages और websites का interconnected system है। WWW की help से user web browser में URLs type करके web pages access कर सकता है। Web pages आपस में hyperlinks के through connected होते हैं।</p>
+
+        <p>WWW internet का एक service part है। Internet physical और logical network है, जबकि WWW उस network पर चलने वाली information system है। WWW में HTML documents, images, videos, CSS files, JavaScript files और other resources शामिल हो सकते हैं। User browser की help से इन resources को view करता है।</p>
+
+        <h4>WWW कैसे काम करता है</h4>
+        <ol>
+          <li>User browser में URL type करता है।</li>
+          <li>Browser server को request भेजता है।</li>
+          <li>Server requested webpage या resource browser को send करता है।</li>
+          <li>Browser HTML, CSS और JavaScript को process करके webpage display करता है।</li>
+        </ol>
+
+        <h4>WWW के Components</h4>
+        <table>
+          <tr>
+            <th>Component</th>
+            <th>Work</th>
+          </tr>
+          <tr>
+            <td>Web Browser</td>
+            <td>Web pages display करता है।</td>
+          </tr>
+          <tr>
+            <td>Web Server</td>
+            <td>Web pages store और deliver करता है।</td>
+          </tr>
+          <tr>
+            <td>URL</td>
+            <td>Web resource का address बताता है।</td>
+          </tr>
+          <tr>
+            <td>HTTP/HTTPS</td>
+            <td>Browser और server के बीच communication protocol है।</td>
+          </tr>
+          <tr>
+            <td>HTML</td>
+            <td>Web page structure बनाता है।</td>
+          </tr>
+        </table>
+
+        <h4>Internet vs WWW</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>Internet</th>
+            <th>WWW</th>
+          </tr>
+          <tr>
+            <td>Meaning</td>
+            <td>Global network of networks।</td>
+            <td>Internet पर web pages का system।</td>
+          </tr>
+          <tr>
+            <td>Scope</td>
+            <td>Broad concept।</td>
+            <td>Internet की एक service।</td>
+          </tr>
+          <tr>
+            <td>Use</td>
+            <td>Email, FTP, WWW, chat आदि।</td>
+            <td>Websites और web pages access करना।</td>
+          </tr>
+        </table>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Internet road की तरह है और WWW उस road पर चलने वाली web information service की तरह है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>WWW और Internet same नहीं हैं। WWW internet पर चलने वाली एक major service है।</div>
+      </section>
+
+      <section id="browser">
+        <h2>Browser</h2>
+
+        <p><strong>Browser</strong> एक software application है जिसकी help से user websites और web pages access कर सकता है। Browser URL के through server से webpage request करता है और received HTML, CSS, JavaScript, images और other resources को process करके user को visual form में दिखाता है।</p>
+
+        <p>Browser user और web server के बीच interface की तरह काम करता है। जब user कोई website open करता है, तो browser HTTP/HTTPS protocol के through server से communication करता है। फिर browser page का layout render करता है, CSS apply करता है और JavaScript execute करता है।</p>
+
+        <h4>Popular Browsers</h4>
+        <ul>
+          <li>Google Chrome</li>
+          <li>Mozilla Firefox</li>
+          <li>Microsoft Edge</li>
+          <li>Safari</li>
+          <li>Opera</li>
+        </ul>
+
+        <h4>Browser के Main Functions</h4>
+        <table>
+          <tr>
+            <th>Function</th>
+            <th>Work</th>
+          </tr>
+          <tr>
+            <td>URL Processing</td>
+            <td>User द्वारा entered web address को process करता है।</td>
+          </tr>
+          <tr>
+            <td>Rendering</td>
+            <td>HTML और CSS को visual webpage में convert करता है।</td>
+          </tr>
+          <tr>
+            <td>JavaScript Execution</td>
+            <td>Page की interactivity run करता है।</td>
+          </tr>
+          <tr>
+            <td>Security</td>
+            <td>HTTPS, certificates और privacy features handle करता है।</td>
+          </tr>
+          <tr>
+            <td>Developer Tools</td>
+            <td>Developers को debugging और inspection tools देता है।</td>
+          </tr>
+        </table>
+
+        <h4>Browser Rendering Process</h4>
+        <ol>
+          <li>Browser server से HTML receive करता है।</li>
+          <li>HTML structure को DOM में convert करता है।</li>
+          <li>CSS styles apply करता है।</li>
+          <li>JavaScript execute करता है।</li>
+          <li>Final webpage screen पर display करता है।</li>
+        </ol>
+
+        <div class="note-box"><b>Real Life Example:</b><br>जब आप <code>google.com</code> browser में type करते हैं, तो browser Google server से page मांगता है और search page screen पर दिखाता है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Browser web pages को download करके readable और visual form में show करता है।</div>
+      </section>
+
+      <section id="search-engine">
+        <h2>Search Engine</h2>
+
+        <p><strong>Search Engine</strong> एक web-based service है जो internet पर available information को search करने में help करती है। User search box में keyword type करता है और search engine related websites, images, videos, news और other results show करता है।</p>
+
+        <p>Search engine websites को crawl, index और rank करता है। Crawling में search engine bots web pages visit करते हैं। Indexing में pages की information database में store की जाती है। Ranking में user query के according सबसे relevant results ऊपर दिखाए जाते हैं।</p>
+
+        <h4>Popular Search Engines</h4>
+        <ul>
+          <li>Google</li>
+          <li>Bing</li>
+          <li>Yahoo</li>
+          <li>DuckDuckGo</li>
+          <li>Yandex</li>
+        </ul>
+
+        <h4>Working Process</h4>
+        <table>
+          <tr>
+            <th>Step</th>
+            <th>Meaning</th>
+          </tr>
+          <tr>
+            <td>Crawling</td>
+            <td>Bots web pages visit करते हैं।</td>
+          </tr>
+          <tr>
+            <td>Indexing</td>
+            <td>Web page data search engine database में store होता है।</td>
+          </tr>
+          <tr>
+            <td>Ranking</td>
+            <td>Relevant pages को order में show किया जाता है।</td>
+          </tr>
+          <tr>
+            <td>Result Display</td>
+            <td>User को search results दिखते हैं।</td>
+          </tr>
+        </table>
+
+        <h4>Browser vs Search Engine</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>Browser</th>
+            <th>Search Engine</th>
+          </tr>
+          <tr>
+            <td>Type</td>
+            <td>Software application।</td>
+            <td>Web-based service।</td>
+          </tr>
+          <tr>
+            <td>Use</td>
+            <td>Website open करने के लिए।</td>
+            <td>Websites/information search करने के लिए।</td>
+          </tr>
+          <tr>
+            <td>Example</td>
+            <td>Chrome, Firefox, Edge।</td>
+            <td>Google, Bing, Yahoo।</td>
+          </tr>
+        </table>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Chrome browser है, जबकि Google search engine है। Chrome में Google open करके information search की जाती है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Browser और search engine अलग चीजें हैं। Browser website खोलता है, search engine website खोजता है।</div>
+      </section>
+
+      <section id="client-server">
+        <h2>Client Server Model</h2>
+
+        <p><strong>Client Server Model</strong> एक network model है जिसमें client request भेजता है और server response देता है। Web development में browser usually client होता है और web server requested web pages या data provide करता है।</p>
+
+        <p>जब user browser में URL type करता है, तो browser server को HTTP/HTTPS request भेजता है। Server उस request को process करता है और response के रूप में HTML page, CSS, JavaScript, image या data भेजता है। यह पूरा process client-server communication कहलाता है।</p>
+
+        <h4>Client</h4>
+        <p>Client वह device या software है जो request send करता है। Web browsing में browser client की तरह काम करता है।</p>
+
+        <h4>Server</h4>
+        <p>Server वह computer या software system है जो resources store करता है और client की request पर response देता है।</p>
+
+        <h4>Working Example</h4>
+        <ol>
+          <li>User browser में <code>example.com</code> type करता है।</li>
+          <li>Browser server को request send करता है।</li>
+          <li>Server requested page find करता है।</li>
+          <li>Server response browser को send करता है।</li>
+          <li>Browser page display करता है।</li>
+        </ol>
+
+        <h4>Client vs Server</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>Client</th>
+            <th>Server</th>
+          </tr>
+          <tr>
+            <td>Role</td>
+            <td>Request send करता है।</td>
+            <td>Response send करता है।</td>
+          </tr>
+          <tr>
+            <td>Example</td>
+            <td>Browser, mobile app।</td>
+            <td>Web server, database server।</td>
+          </tr>
+          <tr>
+            <td>Data</td>
+            <td>Data मांगता है।</td>
+            <td>Data provide करता है।</td>
+          </tr>
+          <tr>
+            <td>User Side</td>
+            <td>User device पर होता है।</td>
+            <td>Remote machine पर हो सकता है।</td>
+          </tr>
+        </table>
+
+        <h4>Simple Diagram</h4>
+        <pre>Client Browser  ---- Request ---->  Web Server
+Client Browser  <--- Response ----  Web Server</pre>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Restaurant में customer order देता है और kitchen food provide करता है। इसी तरह client request करता है और server response देता है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Web browsing में browser client होता है और website host करने वाला computer server होता है।</div>
+      </section>
+
+      <section id="url">
+        <h2>URL</h2>
+
+        <p><strong>URL</strong> का full form <strong>Uniform Resource Locator</strong> है। URL internet पर किसी web resource का address होता है। Browser URL की help से यह पता लगाता है कि कौन-सा resource किस server से access करना है।</p>
+
+        <p>URL में protocol, domain name, path, query string और fragment जैसे parts हो सकते हैं। हर URL का purpose specific web page, image, file या service को locate करना होता है।</p>
+
+        <h4>Example URL</h4>
+        <pre>https://www.example.com/course/python.html?id=10#intro</pre>
+
+        <h4>Parts of URL</h4>
+        <table>
+          <tr>
+            <th>Part</th>
+            <th>Example</th>
+            <th>Meaning</th>
+          </tr>
+          <tr>
+            <td>Protocol</td>
+            <td><code>https</code></td>
+            <td>Communication method बताता है।</td>
+          </tr>
+          <tr>
+            <td>Domain</td>
+            <td><code>www.example.com</code></td>
+            <td>Website/server का name।</td>
+          </tr>
+          <tr>
+            <td>Path</td>
+            <td><code>/course/python.html</code></td>
+            <td>Server पर resource की location।</td>
+          </tr>
+          <tr>
+            <td>Query String</td>
+            <td><code>?id=10</code></td>
+            <td>Extra data send करने के लिए।</td>
+          </tr>
+          <tr>
+            <td>Fragment</td>
+            <td><code>#intro</code></td>
+            <td>Page के specific section पर जाने के लिए।</td>
+          </tr>
+        </table>
+
+        <h4>HTTP vs HTTPS</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>HTTP</th>
+            <th>HTTPS</th>
+          </tr>
+          <tr>
+            <td>Security</td>
+            <td>Less secure।</td>
+            <td>Secure, encrypted।</td>
+          </tr>
+          <tr>
+            <td>Use</td>
+            <td>Old/simple websites।</td>
+            <td>Banking, login, modern websites।</td>
+          </tr>
+          <tr>
+            <td>Full Form</td>
+            <td>HyperText Transfer Protocol</td>
+            <td>HyperText Transfer Protocol Secure</td>
+          </tr>
+        </table>
+
+        <h4>Absolute and Relative URL</h4>
+        <p>Absolute URL complete address होता है, जबकि relative URL current page के relation में resource location बताता है।</p>
+
+        <pre>Absolute URL:
+https://example.com/images/logo.png
+
+Relative URL:
+images/logo.png</pre>
+
+        <div class="note-box"><b>Real Life Example:</b><br>जैसे घर का complete address किसी व्यक्ति को location बताता है, वैसे ही URL browser को web resource की location बताता है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>URL web resource का address होता है। HTTPS secure communication के लिए use होता है।</div>
+      </section>
+
+      <section id="web-pages">
+        <h2>Web Pages</h2>
+
+        <p><strong>Web Page</strong> एक document होता है जो browser में display होता है। Web page usually HTML से बनाया जाता है और उसकी styling CSS से की जाती है। JavaScript का use web page को interactive बनाने के लिए किया जाता है।</p>
+
+        <p>Web page में text, images, videos, links, forms, tables, buttons और other elements हो सकते हैं। हर web page का अपना URL हो सकता है। Web pages static भी हो सकते हैं और dynamic भी।</p>
+
+        <h4>Basic Web Page Structure</h4>
+        <pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;My Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Welcome&lt;/h1&gt;
+  &lt;p&gt;This is my first web page.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+
+        <h4>Main Technologies</h4>
+        <table>
+          <tr>
+            <th>Technology</th>
+            <th>Work</th>
+          </tr>
+          <tr>
+            <td>HTML</td>
+            <td>Web page structure बनाता है।</td>
+          </tr>
+          <tr>
+            <td>CSS</td>
+            <td>Design और layout बनाता है।</td>
+          </tr>
+          <tr>
+            <td>JavaScript</td>
+            <td>Interactivity add करता है।</td>
+          </tr>
+        </table>
+
+        <h4>Types of Web Pages</h4>
+        <ul>
+          <li><strong>Static Web Page:</strong> Same content show करता है।</li>
+          <li><strong>Dynamic Web Page:</strong> User, database या server response के according content change कर सकता है।</li>
+        </ul>
+
+        <h4>Web Page Elements</h4>
+        <ul>
+          <li>Headings</li>
+          <li>Paragraphs</li>
+          <li>Images</li>
+          <li>Links</li>
+          <li>Forms</li>
+          <li>Tables</li>
+          <li>Buttons</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>BK LearnX website का एक chapter page एक web page है जिसमें heading, notes, examples और navigation links होते हैं।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Web page browser में display होने वाला single document होता है।</div>
+      </section>
+
+      <section id="website-services">
+        <h2>Website and Web Services</h2>
+
+        <p><strong>Website</strong> related web pages का collection होता है जो एक domain name के under available होता है। Website में home page, about page, contact page, course pages, login page आदि हो सकते हैं। Website का purpose information provide करना, service देना, product sell करना या user interaction कराना हो सकता है।</p>
+
+        <p><strong>Web Service</strong> ऐसी service होती है जो internet के through applications को data या functionality provide करती है। Web services usually APIs के रूप में काम करती हैं। वे user को direct visual page न भी दिखाएँ, लेकिन applications के बीच data exchange कराती हैं।</p>
+
+        <h4>Website Example</h4>
+        <ul>
+          <li>Educational website</li>
+          <li>E-commerce website</li>
+          <li>News website</li>
+          <li>Portfolio website</li>
+          <li>Government website</li>
+        </ul>
+
+        <h4>Web Service Example</h4>
+        <ul>
+          <li>Weather API</li>
+          <li>Payment gateway API</li>
+          <li>Login authentication service</li>
+          <li>Google Maps API</li>
+          <li>SMS sending API</li>
+        </ul>
+
+        <h4>Website vs Web Service</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>Website</th>
+            <th>Web Service</th>
+          </tr>
+          <tr>
+            <td>Purpose</td>
+            <td>User को web pages show करना।</td>
+            <td>Application को data/functionality देना।</td>
+          </tr>
+          <tr>
+            <td>Output</td>
+            <td>HTML page, visual interface।</td>
+            <td>Data like JSON/XML।</td>
+          </tr>
+          <tr>
+            <td>User</td>
+            <td>Human user browser से use करता है।</td>
+            <td>Software/app use करता है।</td>
+          </tr>
+          <tr>
+            <td>Example</td>
+            <td>Educational website।</td>
+            <td>Weather API।</td>
+          </tr>
+        </table>
+
+        <h4>Simple Web Service Response</h4>
+        <pre>{
+  "city": "Kanpur",
+  "temperature": "32°C",
+  "condition": "Sunny"
+}</pre>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Weather app खुद weather data create नहीं करता। वह weather web service/API से data लेता है और user को show करता है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Website human users के लिए pages दिखाती है, जबकि web service applications को data provide करती है।</div>
+      </section>
+
+      <section id="types">
+        <h2>Types of Websites</h2>
+
+        <p>Websites को उनके behavior और design के basis पर अलग-अलग types में divide किया जा सकता है। इस chapter में मुख्य रूप से static, dynamic और responsive websites important हैं।</p>
+
+        <h4>Static Website</h4>
+        <p>Static website में content fixed होता है। हर user को same content show होता है। Static websites mostly HTML, CSS और basic JavaScript से बनाई जाती हैं। इनमें server-side processing या database connection usually नहीं होता।</p>
+
+        <pre>Example:
+College notice page
+Portfolio page
+Simple company information page</pre>
+
+        <h4>Dynamic Website</h4>
+        <p>Dynamic website में content user, database, login status या server logic के according change हो सकता है। इसमें backend technologies और database का use होता है। Dynamic websites user interaction और real-time data handle कर सकती हैं।</p>
+
+        <pre>Example:
+Facebook
+Online banking website
+E-commerce website
+Student login portal</pre>
+
+        <h4>Responsive Website</h4>
+        <p>Responsive website ऐसी website होती है जो different screen sizes पर properly adjust हो जाती है। यानी mobile, tablet, laptop और desktop सभी devices पर layout readable और usable रहता है। Responsive design के लिए CSS media queries, flexible layout, percentage width, grid और flexbox का use किया जाता है।</p>
+
+        <h4>Comparison Table</h4>
+        <table>
+          <tr>
+            <th>Type</th>
+            <th>Meaning</th>
+            <th>Technology</th>
+            <th>Example</th>
+          </tr>
+          <tr>
+            <td>Static Website</td>
+            <td>Fixed content show करती है।</td>
+            <td>HTML, CSS</td>
+            <td>Portfolio, notice page</td>
+          </tr>
+          <tr>
+            <td>Dynamic Website</td>
+            <td>Content database/user के according change होता है।</td>
+            <td>Backend + Database</td>
+            <td>Login portal, e-commerce</td>
+          </tr>
+          <tr>
+            <td>Responsive Website</td>
+            <td>Different screen sizes पर adjust होती है।</td>
+            <td>CSS media queries, flexbox, grid</td>
+            <td>Modern websites</td>
+          </tr>
+        </table>
+
+        <h4>Responsive CSS Example</h4>
+        <pre>@media (max-width: 768px) {
+  .container {
+    width: 100%;
+    padding: 10px;
+  }
+}</pre>
+
+        <h4>Static vs Dynamic Website</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>Static</th>
+            <th>Dynamic</th>
+          </tr>
+          <tr>
+            <td>Content</td>
+            <td>Fixed रहता है।</td>
+            <td>Change हो सकता है।</td>
+          </tr>
+          <tr>
+            <td>Database</td>
+            <td>Usually नहीं होता।</td>
+            <td>Usually होता है।</td>
+          </tr>
+          <tr>
+            <td>Speed</td>
+            <td>Generally fast।</td>
+            <td>Processing के कारण थोड़ा complex।</td>
+          </tr>
+          <tr>
+            <td>Example</td>
+            <td>Simple info website।</td>
+            <td>Shopping website।</td>
+          </tr>
+        </table>
+
+        <div class="note-box"><b>Real Life Example:</b><br>आपका BK LearnX frontend notes page static हो सकता है, लेकिन login, progress tracking और dashboard add करने पर website dynamic बन जाएगी।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Responsive website device के हिसाब से layout adjust करती है। आजकल almost हर modern website responsive होनी चाहिए।</div>
+      </section>
+
+      <section id="developer-options">
+        <h2>Developer Options of Browser</h2>
+
+        <p>Browser developer options या developer tools web developers के लिए बहुत useful tools होते हैं। इनकी help से developer web page का HTML, CSS, JavaScript, network requests, console errors, responsive design और performance inspect कर सकता है।</p>
+
+        <p>Developer tools usually browser में right click करके <strong>Inspect</strong> option से open किए जाते हैं। Keyboard shortcut भी use किया जा सकता है, जैसे Chrome और Edge में <code>F12</code> या <code>Ctrl + Shift + I</code>.</p>
+
+        <h4>View Page Source</h4>
+        <p><strong>View Page Source</strong> option webpage का original HTML source code show करता है जो server से browser को मिला होता है। इससे user page का raw HTML देख सकता है।</p>
+
+        <pre>Shortcut:
+Ctrl + U</pre>
+
+        <h4>Inspect Element</h4>
+        <p><strong>Inspect Element</strong> से किसी specific element का HTML और CSS inspect किया जा सकता है। Developer live CSS changes test कर सकता है, element size देख सकता है और layout issue debug कर सकता है।</p>
+
+        <h4>Developer Tools Panels</h4>
+        <table>
+          <tr>
+            <th>Panel</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td>Elements</td>
+            <td>HTML और CSS inspect/edit करने के लिए।</td>
+          </tr>
+          <tr>
+            <td>Console</td>
+            <td>JavaScript errors और logs देखने के लिए।</td>
+          </tr>
+          <tr>
+            <td>Network</td>
+            <td>Requests, responses और loading files देखने के लिए।</td>
+          </tr>
+          <tr>
+            <td>Sources</td>
+            <td>JavaScript files debug करने के लिए।</td>
+          </tr>
+          <tr>
+            <td>Application</td>
+            <td>Storage, cookies, localStorage check करने के लिए।</td>
+          </tr>
+          <tr>
+            <td>Lighthouse</td>
+            <td>Performance, accessibility और SEO report के लिए।</td>
+          </tr>
+        </table>
+
+        <h4>Inspect Element Steps</h4>
+        <ol>
+          <li>Webpage open करें।</li>
+          <li>किसी element पर right click करें।</li>
+          <li>Inspect option select करें।</li>
+          <li>Elements panel में HTML और CSS देखें।</li>
+          <li>CSS temporarily edit करके design test करें।</li>
+        </ol>
+
+        <h4>Console Example</h4>
+        <p>Console में JavaScript code directly test किया जा सकता है।</p>
+
+        <pre>console.log("Hello Developer Tools");</pre>
+
+        <h4>Responsive Mode</h4>
+        <p>Developer tools में device toolbar से website को mobile, tablet और desktop screen sizes पर test किया जा सकता है। इससे responsive design check करने में help मिलती है।</p>
+
+        <pre>Shortcut:
+Ctrl + Shift + M</pre>
+
+        <h4>View Page Source vs Inspect Element</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>View Page Source</th>
+            <th>Inspect Element</th>
+          </tr>
+          <tr>
+            <td>Content</td>
+            <td>Original HTML source show करता है।</td>
+            <td>Current DOM और CSS show करता है।</td>
+          </tr>
+          <tr>
+            <td>Edit</td>
+            <td>Edit नहीं कर सकते।</td>
+            <td>Temporary edit कर सकते हैं।</td>
+          </tr>
+          <tr>
+            <td>Use</td>
+            <td>Raw HTML देखने के लिए।</td>
+            <td>Debugging और design testing के लिए।</td>
+          </tr>
+        </table>
+
+        <h4>Important Uses for Developers</h4>
+        <ul>
+          <li>HTML structure check करना।</li>
+          <li>CSS design problem debug करना।</li>
+          <li>JavaScript errors देखना।</li>
+          <li>Network request और file loading check करना।</li>
+          <li>Responsive design test करना।</li>
+          <li>Website performance और accessibility check करना।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>अगर किसी webpage में button सही position पर नहीं दिख रहा, तो Inspect Element से उसकी CSS properties check करके problem find की जा सकती है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Developer Tools browser के अंदर built-in debugging lab की तरह हैं। Web development सीखने वाले हर student को Inspect, Console और Network panel जरूर समझना चाहिए।</div>
+      </section>
+
+    </main>
+  </div>
+</body>
+
+</html>

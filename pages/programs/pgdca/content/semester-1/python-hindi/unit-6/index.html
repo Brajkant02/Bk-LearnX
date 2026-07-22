@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modules in Python</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+      line-height: 1.75
+    }
+
+    .page {
+      display: grid;
+      grid-template-columns: 285px 1fr;
+      gap: 20px;
+      max-width: 1500px;
+      margin: auto;
+      padding: 10px
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 10px;
+      height: calc(100vh - 20px);
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
+      align-self: start
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #111827
+    }
+
+    .sidebar a {
+      display: block;
+      text-decoration: none;
+      color: #374151;
+      padding: 8px 10px;
+      border-radius: 10px;
+      margin-bottom: 4px;
+      font-size: 14.7px
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+      color: #1d4ed8
+    }
+
+    .content {
+      background: #fff;
+      border-radius: 18px;
+      padding: 10px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08)
+    }
+
+    .hero {
+      padding: 28px 18px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #eef2ff, #f8fafc);
+      margin-bottom: 18px
+    }
+
+    .hero h1 {
+      font-size: 34px;
+      color: #111827;
+      margin-bottom: 10px
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #374151
+    }
+
+    section {
+      padding: 22px 10px;
+      border-bottom: 1px solid #e5e7eb
+    }
+
+    section:last-child {
+      border-bottom: none
+    }
+
+    h2 {
+      font-size: 27px;
+      color: #111827;
+      margin-bottom: 12px;
+      border-left: 5px solid #2563eb;
+      padding-left: 12px
+    }
+
+    h3 {
+      font-size: 22px;
+      color: #1f2937;
+      margin: 16px 0 8px
+    }
+
+    h4 {
+      font-size: 18px;
+      color: #111827;
+      margin: 14px 0 6px
+    }
+
+    p {
+      margin: 10px 0;
+      font-size: 17px
+    }
+
+    ul,
+    ol {
+      margin-left: 24px;
+      margin-top: 8px
+    }
+
+    li {
+      margin: 7px 0;
+      font-size: 16.5px
+    }
+
+    strong {
+      color: #111827
+    }
+
+    .image-icon {
+      min-height: 180px;
+      border: 2px dashed #94a3b8;
+      border-radius: 16px;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      margin: 18px 0;
+      color: #475569;
+      font-weight: 600
+    }
+
+    .image-icon img {
+      max-width: 100%;
+      height: auto
+    }
+
+    .note-box {
+      background: #f0fdf4;
+      border-left: 5px solid #22c55e;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .info-box {
+      background: #ecfeff;
+      border-left: 5px solid #06b6d4;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .remember-box {
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      font-size: 15.5px
+    }
+
+    th,
+    td {
+      border: 1px solid #d1d5db;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top
+    }
+
+    th {
+      background: #eef2ff;
+      color: #111827
+    }
+
+    code {
+      background: #111827;
+      color: #f9fafb;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-family: Consolas, monospace;
+      font-size: 15px
+    }
+
+    pre {
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 14px;
+      padding: 16px;
+      margin: 16px 0;
+      overflow-x: auto;
+      font-family: Consolas, monospace;
+      line-height: 1.6
+    }
+
+    .compiler {
+      width: 100%;
+      height: 2rem;
+      background-color: green;
+      text-align: center;
+    }
+
+    .compiler a {
+      text-decoration: none;
+      color: white;
+    }
+
+    @media(max-width:900px) {
+      .page {
+        grid-template-columns: 1fr
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto
+      }
+
+      .hero h1 {
+        font-size: 27px
+      }
+
+      h2 {
+        font-size: 24px
+      }
+    }
+  </style>
+
+<link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
+<script src="../../../../../../../assets/shared/portal.js" defer></script>
+<script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
+</head>
+
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <h2>Topics</h2>
+      <a href="#modules">Modules</a>
+      <a href="#sys">Standard Modules - sys</a>
+      <a href="#math">Standard Modules - math</a>
+      <a href="#time">Standard Modules - time</a>
+      <a href="#dir">The dir Function</a>
+    </aside>
+
+    <main class="content">
+      <div class="hero">
+        <h1>Modules in Python</h1>
+        <p>इस chapter में Python modules, import system, standard modules जैसे sys, math, time और dir() function को beginner-friendly examples और output के साथ समझाया गया है।</p>
+      </div>
+
+      <section id="modules">
+        <h2>Modules</h2>
+
+        <p>Python में module एक ऐसी file होती है जिसमें Python code लिखा होता है। यह code variables, functions, classes या statements के form में हो सकता है। Python module की file extension usually <code>.py</code> होती है। Module का main purpose code को organize करना और reuse करना होता है।</p>
+
+        <p>जब program बड़ा हो जाता है, तो पूरा code एक ही file में लिखना difficult हो जाता है। ऐसी situation में हम related code को अलग-अलग files में divide कर सकते हैं। इन files को modules कहा जाता है। बाद में जरूरत पड़ने पर किसी भी module को दूसरे Python program में import करके use किया जा सकता है।</p>
+
+        <p>Python में modules दो तरह के हो सकते हैं: user-defined modules और built-in/standard modules. User-defined modules programmer खुद बनाता है, जबकि standard modules Python के साथ पहले से available होते हैं। जैसे <code>math</code>, <code>sys</code>, <code>time</code>, <code>random</code>, <code>os</code> आदि।</p>
+
+        <h4>Need of Modules</h4>
+        <ul>
+          <li>Large program को small files में divide करने के लिए।</li>
+          <li>Same code को बार-बार reuse करने के लिए।</li>
+          <li>Code readability और maintenance improve करने के लिए।</li>
+          <li>Functions और classes को organized way में रखने के लिए।</li>
+          <li>Team project में अलग-अलग parts पर काम करने के लिए।</li>
+        </ul>
+
+        <h4>Creating Your Own Module</h4>
+        <p>मान लो हमने एक file बनाई जिसका नाम <code>mymodule.py</code> है। इसमें एक simple function लिखा गया है।</p>
+
+        <pre># mymodule.py
+
+def greet(name):
+    print("Hello", name)
+
+def add(a, b):
+    return a + b</pre>
+
+        <h4>Using Your Own Module</h4>
+        <p>अब दूसरी Python file में इस module को import करके इसके functions use किए जा सकते हैं।</p>
+
+        <pre>import mymodule
+
+mymodule.greet("Brajkant")
+
+result = mymodule.add(10, 20)
+print(result)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Hello Brajkant<br>30</div>
+
+        <h4>import Statement</h4>
+        <p><code>import</code> statement का use किसी module को current program में include करने के लिए किया जाता है। Module import करने के बाद उसके functions और variables को module name के साथ access किया जाता है।</p>
+
+        <pre>import math
+
+print(math.sqrt(25))</pre>
+
+        <div class="info-box"><b>Output:</b><br>5.0</div>
+
+        <h4>from-import Statement</h4>
+        <p>अगर किसी module से केवल selected function या variable import करना हो, तो <code>from module import name</code> का use किया जाता है। इसमें function को module name के बिना directly use किया जा सकता है।</p>
+
+        <pre>from math import sqrt
+
+print(sqrt(36))</pre>
+
+        <div class="info-box"><b>Output:</b><br>6.0</div>
+
+        <h4>Importing with Alias</h4>
+        <p>कभी-कभी module name लंबा होता है या हम छोटा नाम use करना चाहते हैं। ऐसी situation में <code>as</code> keyword से alias बनाया जाता है।</p>
+
+        <pre>import math as m
+
+print(m.factorial(5))</pre>
+
+        <div class="info-box"><b>Output:</b><br>120</div>
+
+        <h4>Different Ways to Import Module</h4>
+        <table>
+          <tr>
+            <th>Import Method</th>
+            <th>Example</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td>Normal import</td>
+            <td><code>import math</code></td>
+            <td>पूरे module को import करता है।</td>
+          </tr>
+          <tr>
+            <td>Specific import</td>
+            <td><code>from math import sqrt</code></td>
+            <td>Only selected function import करता है।</td>
+          </tr>
+          <tr>
+            <td>Alias import</td>
+            <td><code>import math as m</code></td>
+            <td>Module को short name देता है।</td>
+          </tr>
+          <tr>
+            <td>All import</td>
+            <td><code>from math import *</code></td>
+            <td>Module की सभी names import करता है।</td>
+          </tr>
+        </table>
+
+        <h4>Module Search Path</h4>
+        <p>जब Python किसी module को import करता है, तो वह module को कुछ specific locations में search करता है। सबसे पहले current folder में search करता है, फिर Python path और standard library locations में search करता है। अगर module नहीं मिलता, तो <code>ModuleNotFoundError</code> आता है।</p>
+
+        <pre>import unknownmodule</pre>
+
+        <div class="info-box"><b>Output:</b><br>ModuleNotFoundError: No module named 'unknownmodule'</div>
+
+        <h4>Common Mistakes</h4>
+        <ul>
+          <li>Module file और main file को अलग folder में रखना और path properly manage न करना।</li>
+          <li>Module name को Python keyword जैसा रख देना।</li>
+          <li>Module import करने के बाद module name लगाकर function call करना भूल जाना।</li>
+          <li>File का नाम standard module जैसा रख देना, जैसे <code>math.py</code> या <code>time.py</code>।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>School software में fees calculation, attendance, student record और result calculation को अलग-अलग modules में रख सकते हैं। इससे project clean और manageable बनता है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Module code reuse और code organization के लिए use होता है। Python module normally <code>.py</code> file होती है।</div>
+      </section>
+
+      <section id="sys">
+        <h2>Standard Modules - sys</h2>
+
+        <p><code>sys</code> Python का standard module है जो Python interpreter और runtime environment से related information और functions provide करता है। इसका use command line arguments read करने, Python path देखने, program exit करने, version information जानने और system-specific details access करने के लिए किया जाता है।</p>
+
+        <p><code>sys</code> module Python interpreter के साथ closely connected होता है। यह module programmer को program और Python runtime के बीच interaction करने की facility देता है। इसका use especially command line programs, debugging, environment checking और script execution में किया जाता है।</p>
+
+        <h4>Importing sys Module</h4>
+        <pre>import sys</pre>
+
+        <h4>sys.version</h4>
+        <p><code>sys.version</code> current Python version की detailed information return करता है। इसमें Python version, build information और compiler detail हो सकती है।</p>
+
+        <pre>import sys
+
+print(sys.version)</pre>
+
+        <div class="info-box"><b>Output:</b><br>3.12.0 (output system के according different हो सकता है)</div>
+
+        <h4>sys.platform</h4>
+        <p><code>sys.platform</code> current operating system platform की information देता है। इससे program को पता चल सकता है कि वह Windows, Linux या macOS पर run हो रहा है।</p>
+
+        <pre>import sys
+
+print(sys.platform)</pre>
+
+        <div class="info-box"><b>Output:</b><br>win32 / linux / darwin</div>
+
+        <h4>sys.argv</h4>
+        <p><code>sys.argv</code> command line arguments की list होती है। जब Python program command line से run किया जाता है और उसके साथ extra values दी जाती हैं, तो वे values <code>sys.argv</code> में store होती हैं।</p>
+
+        <pre># file name: demo.py
+
+import sys
+
+print(sys.argv)</pre>
+
+        <p>अगर command line में यह command run करें:</p>
+
+        <pre>python demo.py Brajkant PGDCA</pre>
+
+        <div class="info-box"><b>Output:</b><br>['demo.py', 'Brajkant', 'PGDCA']</div>
+
+        <p><code>sys.argv[0]</code> usually file name होता है और उसके बाद command line arguments आते हैं।</p>
+
+        <h4>Command Line Addition Example</h4>
+        <pre># file name: add.py
+
+import sys
+
+a = int(sys.argv[1])
+b = int(sys.argv[2])
+
+print("Sum =", a + b)</pre>
+
+        <p>Command:</p>
+        <pre>python add.py 10 20</pre>
+
+        <div class="info-box"><b>Output:</b><br>Sum = 30</div>
+
+        <h4>sys.path</h4>
+        <p><code>sys.path</code> एक list होती है जिसमें वे locations stored होती हैं जहाँ Python modules को search करता है। जब कोई module import किया जाता है, तो Python इन paths में module को search करता है।</p>
+
+        <pre>import sys
+
+for path in sys.path:
+    print(path)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Current folder और Python library paths show होंगे।</div>
+
+        <h4>sys.exit()</h4>
+        <p><code>sys.exit()</code> program को stop करने के लिए use होता है। अगर किसी condition पर program को तुरंत terminate करना हो, तो इसका use किया जा सकता है।</p>
+
+        <pre>import sys
+
+age = 15
+
+if age < 18:
+    print("Not eligible")
+    sys.exit()
+
+print("Eligible")</pre>
+
+        <div class="info-box"><b>Output:</b><br>Not eligible</div>
+
+        <h4>sys.modules</h4>
+        <p><code>sys.modules</code> एक dictionary होती है जिसमें currently loaded modules की information होती है। Python loaded modules को cache करता है ताकि same module बार-बार import करने पर फिर से load न करना पड़े।</p>
+
+        <pre>import sys
+import math
+
+print("math" in sys.modules)</pre>
+
+        <div class="info-box"><b>Output:</b><br>True</div>
+
+        <h4>Important sys Attributes and Functions</h4>
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>sys.version</code></td>
+            <td>Python version information देता है।</td>
+          </tr>
+          <tr>
+            <td><code>sys.platform</code></td>
+            <td>Current operating system platform बताता है।</td>
+          </tr>
+          <tr>
+            <td><code>sys.argv</code></td>
+            <td>Command line arguments की list देता है।</td>
+          </tr>
+          <tr>
+            <td><code>sys.path</code></td>
+            <td>Module search paths की list देता है।</td>
+          </tr>
+          <tr>
+            <td><code>sys.exit()</code></td>
+            <td>Program terminate करता है।</td>
+          </tr>
+          <tr>
+            <td><code>sys.modules</code></td>
+            <td>Loaded modules की dictionary देता है।</td>
+          </tr>
+        </table>
+
+        <h4>Common Mistakes</h4>
+        <ul>
+          <li><code>sys.argv</code> values को string समझे बिना directly calculation में use करना।</li>
+          <li>Command line arguments की length check किए बिना index access करना।</li>
+          <li><code>sys.exit()</code> को loop या condition में बिना reason use करना।</li>
+          <li><code>sys.path</code> में unnecessary changes करना।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>अगर कोई Python script command line से student name और marks लेकर result generate करती है, तो command line arguments read करने के लिए <code>sys.argv</code> useful होता है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br><code>sys</code> module Python interpreter और system environment से related information provide करता है।</div>
+      </section>
+
+      <section id="math">
+        <h2>Standard Modules - math</h2>
+
+        <p><code>math</code> Python का standard module है जो mathematical functions और constants provide करता है। Normal arithmetic operations जैसे addition, subtraction, multiplication और division Python operators से हो जाते हैं, लेकिन advanced mathematical operations जैसे square root, factorial, trigonometry, logarithm, power और constants के लिए <code>math</code> module useful होता है।</p>
+
+        <p><code>math</code> module mainly numeric calculations के लिए use किया जाता है। इसमें बहुत सारे ready-made functions होते हैं जिनसे complex mathematical calculations आसानी से की जा सकती हैं। यह module scientific computing, engineering calculations, statistics, data analysis और academic programming में useful है।</p>
+
+        <h4>Importing math Module</h4>
+        <pre>import math</pre>
+
+        <h4>math.sqrt()</h4>
+        <p><code>sqrt()</code> function किसी number का square root return करता है। इसका result usually float में आता है।</p>
+
+        <pre>import math
+
+print(math.sqrt(25))
+print(math.sqrt(10))</pre>
+
+        <div class="info-box"><b>Output:</b><br>5.0<br>3.1622776601683795</div>
+
+        <h4>math.pow()</h4>
+        <p><code>pow()</code> function किसी number की power calculate करता है। <code>math.pow(a, b)</code> का मतलब <code>a</code> की power <code>b</code> होता है।</p>
+
+        <pre>import math
+
+print(math.pow(2, 3))
+print(math.pow(5, 2))</pre>
+
+        <div class="info-box"><b>Output:</b><br>8.0<br>25.0</div>
+
+        <h4>math.factorial()</h4>
+        <p><code>factorial()</code> function किसी positive integer का factorial return करता है। Factorial में 1 से लेकर उस number तक सभी numbers multiply होते हैं।</p>
+
+        <pre>import math
+
+print(math.factorial(5))
+print(math.factorial(4))</pre>
+
+        <div class="info-box"><b>Output:</b><br>120<br>24</div>
+
+        <h4>math.ceil() and math.floor()</h4>
+        <p><code>ceil()</code> function number से greater या equal nearest integer देता है। <code>floor()</code> function number से smaller या equal nearest integer देता है।</p>
+
+        <pre>import math
+
+print(math.ceil(4.2))
+print(math.floor(4.8))</pre>
+
+        <div class="info-box"><b>Output:</b><br>5<br>4</div>
+
+        <h4>math.trunc()</h4>
+        <p><code>trunc()</code> function decimal part remove करके integer part return करता है। यह rounding नहीं करता, केवल decimal part काट देता है।</p>
+
+        <pre>import math
+
+print(math.trunc(4.9))
+print(math.trunc(7.2))</pre>
+
+        <div class="info-box"><b>Output:</b><br>4<br>7</div>
+
+        <h4>math.gcd()</h4>
+        <p><code>gcd()</code> function दो numbers का greatest common divisor return करता है।</p>
+
+        <pre>import math
+
+print(math.gcd(12, 18))
+print(math.gcd(20, 30))</pre>
+
+        <div class="info-box"><b>Output:</b><br>6<br>10</div>
+
+        <h4>math.pi and math.e</h4>
+        <p><code>math.pi</code> और <code>math.e</code> mathematical constants हैं। <code>pi</code> का use circle related calculations में होता है और <code>e</code> natural logarithm का base है।</p>
+
+        <pre>import math
+
+print(math.pi)
+print(math.e)</pre>
+
+        <div class="info-box"><b>Output:</b><br>3.141592653589793<br>2.718281828459045</div>
+
+        <h4>Area of Circle Example</h4>
+        <pre>import math
+
+radius = 7
+area = math.pi * radius * radius
+
+print("Area =", area)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Area = 153.93804002589985</div>
+
+        <h4>Trigonometric Functions</h4>
+        <p><code>math</code> module trigonometric functions भी provide करता है जैसे <code>sin()</code>, <code>cos()</code>, <code>tan()</code>. ये functions angle को radians में accept करते हैं। अगर degree value है, तो उसे radians में convert करने के लिए <code>math.radians()</code> use किया जाता है।</p>
+
+        <pre>import math
+
+angle = 90
+radian = math.radians(angle)
+
+print(math.sin(radian))
+print(math.cos(radian))</pre>
+
+        <div class="info-box"><b>Output:</b><br>1.0<br>6.123233995736766e-17</div>
+
+        <p><code>cos(90)</code> mathematically 0 होता है, लेकिन floating point calculation की वजह से बहुत छोटी value show हो सकती है।</p>
+
+        <h4>Logarithmic Functions</h4>
+        <pre>import math
+
+print(math.log(10))
+print(math.log10(100))
+print(math.log2(8))</pre>
+
+        <div class="info-box"><b>Output:</b><br>2.302585092994046<br>2.0<br>3.0</div>
+
+        <h4>Important math Functions</h4>
+        <table>
+          <tr>
+            <th>Function / Constant</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>math.sqrt(x)</code></td>
+            <td>Square root return करता है।</td>
+          </tr>
+          <tr>
+            <td><code>math.pow(x, y)</code></td>
+            <td>x की power y return करता है।</td>
+          </tr>
+          <tr>
+            <td><code>math.factorial(x)</code></td>
+            <td>Factorial return करता है।</td>
+          </tr>
+          <tr>
+            <td><code>math.ceil(x)</code></td>
+            <td>Upper nearest integer देता है।</td>
+          </tr>
+          <tr>
+            <td><code>math.floor(x)</code></td>
+            <td>Lower nearest integer देता है।</td>
+          </tr>
+          <tr>
+            <td><code>math.gcd(a, b)</code></td>
+            <td>Greatest common divisor देता है।</td>
+          </tr>
+          <tr>
+            <td><code>math.radians(x)</code></td>
+            <td>Degrees को radians में convert करता है।</td>
+          </tr>
+          <tr>
+            <td><code>math.sin(x)</code></td>
+            <td>Sine value return करता है।</td>
+          </tr>
+          <tr>
+            <td><code>math.log(x)</code></td>
+            <td>Natural logarithm return करता है।</td>
+          </tr>
+          <tr>
+            <td><code>math.pi</code></td>
+            <td>Pi constant देता है।</td>
+          </tr>
+        </table>
+
+        <h4>Common Mistakes</h4>
+        <ul>
+          <li><code>math</code> module import किए बिना <code>math.sqrt()</code> use करना।</li>
+          <li>Trigonometric functions में degree value directly pass कर देना।</li>
+          <li><code>math.pow()</code> और <code>**</code> operator में difference न समझना।</li>
+          <li>Negative number का factorial निकालने की कोशिश करना।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Circle का area, distance formula, trigonometry based calculation और scientific formulas में <code>math</code> module useful होता है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br><code>math</code> module advanced mathematical functions और constants provide करता है। Trigonometric functions radians में काम करते हैं।</div>
+      </section>
+
+      <section id="time">
+        <h2>Standard Modules - time</h2>
+
+        <p><code>time</code> Python का standard module है जो time-related operations perform करने के लिए use होता है। इसका use current time प्राप्त करने, program execution में delay देने, time formatting करने और timestamps handle करने के लिए किया जाता है।</p>
+
+        <p>Computer systems में time अक्सर timestamp के form में represent होता है। Timestamp usually seconds की count होती है जो एक fixed starting point, जिसे epoch कहा जाता है, से calculate की जाती है। Python में <code>time</code> module इस timestamp को read, convert और display करने की facility देता है।</p>
+
+        <h4>Importing time Module</h4>
+        <pre>import time</pre>
+
+        <h4>time.time()</h4>
+        <p><code>time.time()</code> current time को seconds में return करता है। यह seconds epoch से count होते हैं। इसका use execution time measure करने में भी किया जाता है।</p>
+
+        <pre>import time
+
+print(time.time())</pre>
+
+        <div class="info-box"><b>Output:</b><br>Output current timestamp के according अलग होगा।</div>
+
+        <h4>time.ctime()</h4>
+        <p><code>ctime()</code> function timestamp को readable date-time string में convert करता है। अगर कोई argument न दिया जाए, तो यह current time return करता है।</p>
+
+        <pre>import time
+
+print(time.ctime())</pre>
+
+        <div class="info-box"><b>Output:</b><br>Current date और time readable form में show होगा।</div>
+
+        <h4>time.sleep()</h4>
+        <p><code>sleep()</code> function program execution को कुछ seconds के लिए pause करता है। इसका use delay create करने के लिए किया जाता है।</p>
+
+        <pre>import time
+
+print("Start")
+time.sleep(3)
+print("End")</pre>
+
+        <div class="info-box"><b>Output:</b><br>Start<br>3 seconds बाद<br>End</div>
+
+        <h4>Measuring Execution Time</h4>
+        <p>किसी code को run होने में कितना time लगा, यह calculate करने के लिए <code>time.time()</code> का use किया जा सकता है।</p>
+
+        <pre>import time
+
+start = time.time()
+
+for i in range(1000000):
+    pass
+
+end = time.time()
+
+print("Execution Time:", end - start)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Execution Time system speed के according अलग होगा।</div>
+
+        <h4>time.localtime()</h4>
+        <p><code>localtime()</code> timestamp को local time structure में convert करता है। इसमें year, month, day, hour, minute, second जैसी information होती है।</p>
+
+        <pre>import time
+
+current = time.localtime()
+
+print(current.tm_year)
+print(current.tm_mon)
+print(current.tm_mday)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Current year<br>Current month<br>Current day</div>
+
+        <h4>time.strftime()</h4>
+        <p><code>strftime()</code> function time को custom format में display करने के लिए use होता है। इससे date और time को readable और required format में show किया जा सकता है।</p>
+
+        <pre>import time
+
+current = time.localtime()
+
+formatted = time.strftime("%d-%m-%Y %H:%M:%S", current)
+
+print(formatted)</pre>
+
+        <div class="info-box"><b>Output:</b><br>10-07-2026 14:30:25 जैसे format में output आएगा।</div>
+
+        <h4>Common strftime Codes</h4>
+        <table>
+          <tr>
+            <th>Code</th>
+            <th>Meaning</th>
+          </tr>
+          <tr>
+            <td><code>%d</code></td>
+            <td>Day of month</td>
+          </tr>
+          <tr>
+            <td><code>%m</code></td>
+            <td>Month number</td>
+          </tr>
+          <tr>
+            <td><code>%Y</code></td>
+            <td>Year with century</td>
+          </tr>
+          <tr>
+            <td><code>%H</code></td>
+            <td>Hour in 24-hour format</td>
+          </tr>
+          <tr>
+            <td><code>%M</code></td>
+            <td>Minutes</td>
+          </tr>
+          <tr>
+            <td><code>%S</code></td>
+            <td>Seconds</td>
+          </tr>
+          <tr>
+            <td><code>%A</code></td>
+            <td>Full weekday name</td>
+          </tr>
+          <tr>
+            <td><code>%B</code></td>
+            <td>Full month name</td>
+          </tr>
+        </table>
+
+        <h4>Display Day and Month Name</h4>
+        <pre>import time
+
+current = time.localtime()
+
+print(time.strftime("%A", current))
+print(time.strftime("%B", current))</pre>
+
+        <div class="info-box"><b>Output:</b><br>Current day name<br>Current month name</div>
+
+        <h4>Digital Clock Style Example</h4>
+        <pre>import time
+
+current = time.localtime()
+clock = time.strftime("%H:%M:%S", current)
+
+print("Current Time:", clock)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Current Time: 14:30:25</div>
+
+        <h4>Important time Functions</h4>
+        <table>
+          <tr>
+            <th>Function</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>time.time()</code></td>
+            <td>Current timestamp return करता है।</td>
+          </tr>
+          <tr>
+            <td><code>time.ctime()</code></td>
+            <td>Readable current time return करता है।</td>
+          </tr>
+          <tr>
+            <td><code>time.sleep(seconds)</code></td>
+            <td>Program को pause करता है।</td>
+          </tr>
+          <tr>
+            <td><code>time.localtime()</code></td>
+            <td>Local time structure return करता है।</td>
+          </tr>
+          <tr>
+            <td><code>time.strftime()</code></td>
+            <td>Time को formatted string में convert करता है।</td>
+          </tr>
+        </table>
+
+        <h4>Common Mistakes</h4>
+        <ul>
+          <li><code>sleep()</code> में बहुत ज्यादा delay value देना।</li>
+          <li><code>strftime()</code> format codes गलत लिखना।</li>
+          <li>Timestamp और readable time में difference न समझना।</li>
+          <li><code>time</code> module को date calculation के लिए use करना, जबकि complex date work के लिए <code>datetime</code> ज्यादा suitable होता है।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Exam timer, digital clock, program execution time measurement और automatic delay system में <code>time</code> module use किया जा सकता है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br><code>time</code> module current time, delay, timestamp और time formatting के लिए useful है।</div>
+      </section>
+
+      <section id="dir">
+        <h2>The dir Function</h2>
+
+        <p><code>dir()</code> Python का built-in function है। इसका use किसी object, module, class या data type के available names, methods और attributes देखने के लिए किया जाता है। जब हमें यह जानना हो कि किसी module या object के अंदर कौन-कौन से functions और variables available हैं, तब <code>dir()</code> function बहुत useful होता है।</p>
+
+        <p>Beginners के लिए <code>dir()</code> learning tool की तरह काम करता है। इससे student पता कर सकता है कि string में कौन-कौन से methods हैं, list में कौन-कौन से methods हैं या किसी module जैसे <code>math</code> में कौन-कौन से functions available हैं।</p>
+
+        <h4>Basic Syntax</h4>
+        <pre>dir(object)</pre>
+
+        <h4>Using dir() with Module</h4>
+        <pre>import math
+
+print(dir(math))</pre>
+
+        <div class="info-box"><b>Output:</b><br>math module के सभी available names की list show होगी।</div>
+
+        <h4>Using dir() with String</h4>
+        <pre>text = "Python"
+
+print(dir(text))</pre>
+
+        <div class="info-box"><b>Output:</b><br>String object के methods और attributes की list show होगी।</div>
+
+        <h4>Using dir() with List</h4>
+        <pre>numbers = [10, 20, 30]
+
+print(dir(numbers))</pre>
+
+        <div class="info-box"><b>Output:</b><br>List object के methods जैसे append, remove, pop, sort आदि list में show होंगे।</div>
+
+        <h4>Finding Useful Methods</h4>
+        <p><code>dir()</code> का output बहुत लंबा हो सकता है। उसमें double underscore वाले names भी होते हैं जिन्हें dunder methods कहा जाता है। Beginners normally normal methods पर focus कर सकते हैं जैसे <code>append</code>, <code>remove</code>, <code>upper</code>, <code>lower</code> आदि।</p>
+
+        <pre>text = "python"
+
+methods = dir(text)
+
+for method in methods:
+    if not method.startswith("__"):
+        print(method)</pre>
+
+        <div class="info-box"><b>Output:</b><br>String के normal methods show होंगे।</div>
+
+        <h4>dir() Without Argument</h4>
+        <p>अगर <code>dir()</code> function को बिना argument call किया जाए, तो यह current scope में available names की list return करता है।</p>
+
+        <pre>x = 10
+name = "Brajkant"
+
+print(dir())</pre>
+
+        <div class="info-box"><b>Output:</b><br>Current program में available names की list show होगी।</div>
+
+        <h4>dir() with User-defined Function</h4>
+        <pre>def greet():
+    print("Hello")
+
+print(dir(greet))</pre>
+
+        <div class="info-box"><b>Output:</b><br>Function object के attributes की list show होगी।</div>
+
+        <h4>dir() and help() Difference</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>dir()</th>
+            <th>help()</th>
+          </tr>
+          <tr>
+            <td>Work</td>
+            <td>Available names/methods की list देता है।</td>
+            <td>Detailed documentation show करता है।</td>
+          </tr>
+          <tr>
+            <td>Output</td>
+            <td>Mostly names की list।</td>
+            <td>Explanation, usage और details।</td>
+          </tr>
+          <tr>
+            <td>Use</td>
+            <td>Methods discover करने के लिए।</td>
+            <td>Method/function समझने के लिए।</td>
+          </tr>
+          <tr>
+            <td>Example</td>
+            <td><code>dir(str)</code></td>
+            <td><code>help(str.upper)</code></td>
+          </tr>
+        </table>
+
+        <h4>Using dir() and help() Together</h4>
+        <pre>print(dir(str))
+help(str.upper)</pre>
+
+        <div class="info-box"><b>Output:</b><br>पहले string methods की list show होगी, फिर <code>upper()</code> method की help show होगी।</div>
+
+        <h4>Important Points</h4>
+        <ul>
+          <li><code>dir()</code> built-in function है।</li>
+          <li>यह object/module के available methods और attributes show करता है।</li>
+          <li>यह beginners को methods discover करने में help करता है।</li>
+          <li>बिना argument के current scope के names show करता है।</li>
+          <li>Detailed explanation के लिए <code>help()</code> function use किया जा सकता है।</li>
+        </ul>
+
+        <h4>Common Mistakes</h4>
+        <ul>
+          <li><code>dir()</code> के output को documentation समझ लेना।</li>
+          <li>Double underscore methods को beginner level पर unnecessarily use करना।</li>
+          <li>Method name देखकर बिना syntax समझे use करना।</li>
+          <li><code>dir</code> को variable name बना देना।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>अगर student को याद नहीं है कि list में कौन-कौन से methods available हैं, तो वह <code>dir(list)</code> run करके methods देख सकता है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br><code>dir()</code> खोजने के लिए है, और <code>help()</code> समझने के लिए है।</div>
+      </section>
+
+    </main>
+  </div>
+</body>
+
+</html>

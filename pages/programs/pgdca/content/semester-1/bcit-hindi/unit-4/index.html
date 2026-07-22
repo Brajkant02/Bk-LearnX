@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unit 4 - Linux Operating System</title>
+        <link rel="stylesheet" href="./style.css">
+
+
+<link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
+<script src="../../../../../../../assets/shared/portal.js" defer></script>
+<script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
+</head>
+
+<body>
+    <div class="page">
+        <aside class="sidebar">
+            <h2>Topics</h2>
+            <a href="#intro">Linux Operating System</a>
+            <a href="#features">Features of Linux</a>
+            <a href="#structure">Architecture of Linux</a>
+            <a href="#kernel">Kernel</a>
+            <a href="#shell">Shell</a>
+            <a href="#commands">Basic Commands</a>
+            <a href="#filesystem">Linux File System</a>
+            <a href="#vi">VI Editor</a>
+            <a href="#installation">Linux Installation</a>
+            <a href="#summary">Exam Summary</a>
+        </aside>
+        <main class="content">
+            <div class="hero">
+                <h1>Linux Operating System</h1>
+                
+            </div>
+            <section id="intro">
+                <h2>Linux Operating System</h2>
+                <p><strong>Linux</strong> एक popular, open-source और powerful <strong>Operating System</strong> है।
+                    Operating System वह system software होता है जो <strong>Computer Hardware</strong> और
+                    <strong>User</strong> के बीच interface का काम करता है। Linux का use desktop computers, servers,
+                    smartphones, supercomputers, cloud computing और embedded devices में किया जाता है।
+                </p>
+                <p>Linux को 1991 में <strong>Linus Torvalds</strong> ने develop किया था। Linux का सबसे बड़ा advantage यह
+                    है कि इसका source code openly available होता है, इसलिए कोई भी developer इसे study, modify और
+                    distribute कर सकता है।</p>
+               
+              
+            </section>
+            <section id="features">
+                <h2>Features of Linux</h2>
+                <p>Linux बहुत reliable और secure Operating System माना जाता है। इसके important features इसे दूसरे
+                    Operating Systems से अलग बनाते हैं।</p>
+                <div class="grid">
+                    <div class="card">
+                        <h3>Open Source</h3>
+                        <p>Linux एक open-source Operating System है। इसका source code सभी के लिए उपलब्ध होता है, इसलिए
+                            कोई भी इसे अपनी आवश्यकता के अनुसार modify, customize तथा distribute कर सकता है।</p>
+                    </div>
+                    <div class="card">
+                        <h3>Multi-user</h3>
+                        <p>Linux एक multi-user Operating System है, जिसमें एक ही समय पर कई users अलग-अलग accounts से
+                            कार्य कर सकते हैं, बिना एक-दूसरे के कार्य में हस्तक्षेप किए।</p>
+                    </div>
+                    <div class="card">
+                        <h3>Multitasking</h3>
+                        <p>Linux multitasking को support करता है। इसमें एक ही समय पर कई applications और processes को
+                            आसानी से चलाया जा सकता है।</p>
+                    </div>
+                    <div class="card">
+                        <h3>Security</h3>
+                        <p>Linux में मजबूत security features उपलब्ध हैं, जैसे user permissions, file permissions,
+                            firewall तथा encryption, जो data को सुरक्षित रखते हैं।</p>
+                    </div>
+                    <div class="card">
+                        <h3>Portability</h3>
+                        <p>Linux कई प्रकार के hardware platforms पर आसानी से कार्य करता है, जैसे Desktop, Laptop,
+                            Server, Smartphone और Embedded Devices।</p>
+                    </div>
+                    <div class="card">
+                        <h3>Stability & Reliability</h3>
+                        <p>Linux लंबे समय तक बिना restart किए लगातार कार्य कर सकता है। इसी कारण इसका उपयोग servers और
+                            data centers में अधिक किया जाता है।</p>
+                    </div>
+                    <div class="card">
+                        <h3>Stability</h3>
+                        <p>Linux लंबे समय तक बिना restart किए लगातार कार्य कर सकता है। इसी कारण इसका उपयोग servers और
+                            data centers में अधिक किया जाता है।</p>
+                    </div>
+                </div>
+            </section>
+            <section id="structure">
+                <h2>Architecture of Linux Operating System</h2>
+                <p>Linux Architecture से तात्पर्य Linux Operating System की layered structure से है, जो यह बताती है कि
+                    Hardware, Kernel, Shell, System Libraries तथा User Applications आपस में कैसे कार्य करते हैं। Linux
+                    Architecture का मुख्य उद्देश्य system resources का सही प्रबंधन करना तथा programs को सुरक्षित और कुशल
+                    (efficient) तरीके से चलाना है। Linux Architecture कई layers से मिलकर बनी होती है, जहाँ प्रत्येक
+                    layer का अपना अलग कार्य होता है।</p>
+                <div class="image-box">
+                    <img src="./images.webp" alt="Architecture of Linux Operating System">
+                </div>
+
+
+            </section>
+            <section id="kernel">
+                <h2>1. Hardware </h2>
+                <p>Hardware Linux Architecture की सबसे निचली layer होती है। इसमें CPU, RAM, Hard Disk, Keyboard, Mouse,
+                    Monitor, Printer तथा अन्य input/output devices शामिल होते हैं। Linux का Kernel सीधे hardware के साथ
+                    संपर्क करके सभी devices को नियंत्रित करता है।</p>
+            </section>
+            <section id="kernel">
+                <h2>2. Kernel</h2>
+                <p>Kernel Linux Operating System का सबसे महत्वपूर्ण भाग होता है। यह Operating
+                    System और hardware के बीच bridge का कार्य करता है। Kernel memory management, process management,
+                    device
+                    management, file system management तथा security जैसे महत्वपूर्ण कार्यों को नियंत्रित करता है।</p>
+            </section>
+            <section id="shell">
+                <h2>3. Shell</h2>
+                <p><strong>Shell</strong> एक command interpreter है, जो user और Kernel के बीच interface का कार्य करता
+                    है। User द्वारा दिए गए commands को Shell समझता है और उन्हें Kernel तक पहुँचाता है। उदाहरण के लिए
+                    Bash (Bourne Again Shell) Linux का सबसे लोकप्रिय Shell है।</p>
+
+            </section>
+            <section id="shell">
+                <h2> 4. System Libraries</h2>
+
+                <p>System Libraries पहले से लिखे गए functions और programs का संग्रह होती हैं, जिनका उपयोग applications
+                    और system programs द्वारा किया जाता है। ये libraries Kernel की सेवाओं को सरल रूप में applications तक
+                    पहुँचाने का कार्य करती हैं।</p>
+
+            </section>
+            <section id="shell">
+                <h2> 5. User application</h2>
+
+                <p>यह Linux Architecture की सबसे ऊपरी layer होती है। इसमें Web Browser, Text Editor, Office Software,
+                    Media Player, Database Software तथा अन्य application programs शामिल होते हैं। Users इन्हीं
+                    applications के माध्यम से Linux Operating System का उपयोग करते हैं।</p>
+
+            </section>
+            <section id="commands">
+                <h2>Basic Linux Commands</h2>
+                <p>Linux में अधिकतर काम <strong>Terminal</strong> में commands की help से किए जा सकते हैं। नीचे
+                    important basic commands दिए गए हैं जो हर student को याद होने चाहिए।</p>
+                <table>
+                    <tr>
+                        <th>Command</th>
+                        <th>Use</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td><code>pwd</code></td>
+                        <td>Current working directory दिखाता है।</td>
+                        <td><code>pwd</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>ls</code></td>
+                        <td>Files और folders की list दिखाता है।</td>
+                        <td><code>ls</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>cd</code></td>
+                        <td>Directory change करने के लिए।</td>
+                        <td><code>cd Documents</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>mkdir</code></td>
+                        <td>New directory create करता है।</td>
+                        <td><code>mkdir notes</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>rmdir</code></td>
+                        <td>Empty directory remove करता है।</td>
+                        <td><code>rmdir notes</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>touch</code></td>
+                        <td>New empty file create करता है।</td>
+                        <td><code>touch file.txt</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>cat</code></td>
+                        <td>File content display करता है।</td>
+                        <td><code>cat file.txt</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>cp</code></td>
+                        <td>File copy करता है।</td>
+                        <td><code>cp a.txt b.txt</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>mv</code></td>
+                        <td>File move या rename करता है।</td>
+                        <td><code>mv old.txt new.txt</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>rm</code></td>
+                        <td>File delete करता है।</td>
+                        <td><code>rm file.txt</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>clear</code></td>
+                        <td>Terminal screen साफ करता है।</td>
+                        <td><code>clear</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>man</code></td>
+                        <td>Command की manual/help दिखाता है।</td>
+                        <td><code>man ls</code></td>
+                    </tr>
+                </table>
+            </section>
+            <section id="filesystem">
+                <h2>Linux File System</h2>
+                <p><strong>Linux File System</strong> files और directories को organized तरीके से store करता है। Linux
+                    में everything is treated as a file. इसका मतलब normal files, directories, devices और processes भी
+                    file की तरह represent हो सकते हैं।</p>
+                <p>Linux में root directory को <code>/</code> से represent किया जाता है। बाकी सभी directories इसी root
+                    directory के अंदर होती हैं।</p>
+                <div class="image-box">
+                    <img src="./file-system.webp" alt="file system">
+                </div>
+                <table>
+                    <tr>
+                        <th>Directory</th>
+                        <th>Use</th>
+                    </tr>
+                    <tr>
+                        <td><code>/</code></td>
+                        <td>Root directory, Linux file system की सबसे ऊपर वाली directory।</td>
+                    </tr>
+                    <tr>
+                        <td><code>/home</code></td>
+                        <td>Users की personal files और folders store होते हैं।</td>
+                    </tr>
+                    <tr>
+                        <td><code>/bin</code></td>
+                        <td>Basic binary commands जैसे ls, cp, mv आदि।</td>
+                    </tr>
+                    <tr>
+                        <td><code>/etc</code></td>
+                        <td>System configuration files store होती हैं।</td>
+                    </tr>
+                    <tr>
+                        <td><code>/var</code></td>
+                        <td>Variable data जैसे logs, cache आदि।</td>
+                    </tr>
+                    <tr>
+                        <td><code>/tmp</code></td>
+                        <td>Temporary files store होती हैं।</td>
+                    </tr>
+                    <tr>
+                        <td><code>/dev</code></td>
+                        <td>Device files जैसे disk, keyboard, terminal आदि।</td>
+                    </tr>
+                    <tr>
+                        <td><code>/usr</code></td>
+                        <td>User programs और libraries store होती हैं।</td>
+                    </tr>
+                </table>
+                <h3>File Permissions</h3>
+                <p>Linux में files पर permissions होती हैं: <strong>read (r)</strong>, <strong>write (w)</strong> और
+                    <strong>execute (x)</strong>। ये permissions बताती हैं कि user file को read, modify या run कर सकता
+                    है या नहीं।
+                </p>
+                <div class="cmd">-rwxr-xr--</div>
+                <ul>
+                    <li><strong>r</strong> = read permission</li>
+                    <li><strong>w</strong> = write permission</li>
+                    <li><strong>x</strong> = execute permission</li>
+                </ul>
+            </section>
+            <section id="vi">
+                <h2>VI Editor</h2>
+                <p><strong>VI Editor</strong> Linux/Unix का एक powerful text editor है। इसका use text files create और
+                    edit करने के लिए किया जाता है। VI editor terminal-based होता है, यानी इसे GUI के बिना command line
+                    से use किया जा सकता है।</p>
+               
+                <h3>Modes of VI Editor</h3>
+                <table>
+                    <tr>
+                        <th>Mode</th>
+                        <th>Explanation</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Command Mode</strong></td>
+                        <td>Default mode, इसमें commands दी जाती हैं जैसे delete, copy, save आदि।</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Insert Mode</strong></td>
+                        <td>इस mode में text type किया जाता है। Insert mode में जाने के लिए <code>i</code> press करते
+                            हैं।</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Last Line Mode</strong></td>
+                        <td>File save, quit और search जैसे operations के लिए use होता है। इसके लिए <code>:</code> press
+                            करते हैं।</td>
+                    </tr>
+                </table>
+                <h3>Important VI Commands</h3>
+                <table>
+                    <tr>
+                        <th>Command</th>
+                        <th>Use</th>
+                    </tr>
+                    <tr>
+                        <td><code>vi file.txt</code></td>
+                        <td>File को VI editor में open करता है।</td>
+                    </tr>
+                    <tr>
+                        <td><code>i</code></td>
+                        <td>Insert mode start करता है।</td>
+                    </tr>
+                    <tr>
+                        <td><code>Esc</code></td>
+                        <td>Insert mode से command mode में वापस आता है।</td>
+                    </tr>
+                    <tr>
+                        <td><code>:w</code></td>
+                        <td>File save करता है।</td>
+                    </tr>
+                    <tr>
+                        <td><code>:q</code></td>
+                        <td>Editor से quit करता है।</td>
+                    </tr>
+                    <tr>
+                        <td><code>:wq</code></td>
+                        <td>Save करके quit करता है।</td>
+                    </tr>
+                    <tr>
+                        <td><code>:q!</code></td>
+                        <td>बिना save किए quit करता है।</td>
+                    </tr>
+                    <tr>
+                        <td><code>dd</code></td>
+                        <td>Current line delete करता है।</td>
+                    </tr>
+                </table>
+                <div class="example"><strong>VI Editor Example:</strong>
+                    <div class="cmd">vi student.txt<br>Press i<br>Type: Linux is an open-source operating
+                        system.<br>Press Esc<br>Type :wq and press Enter</div>
+                </div>
+            </section>
+            <section id="installation">
+                <h2>Linux Installation</h2>
+                <p><strong>Linux Installation</strong> का मतलब computer में Linux Operating System install करना है।
+                    Linux को direct hard disk पर install किया जा सकता है, dual boot में Windows के साथ install किया जा
+                    सकता है, या Virtual Machine में भी install किया जा सकता है।</p>
+              
+                <h3>Requirements for Linux Installation</h3>
+                <ul>
+                    <li>Linux ISO file जैसे Ubuntu, Fedora, Linux Mint आदि।</li>
+                    <li>Bootable USB drive या DVD।</li>
+                    <li>Minimum RAM और storage space।</li>
+                    <li>Important data का backup।</li>
+                    <li>Internet connection, अगर updates install करने हों।</li>
+                </ul>
+                <h3>Steps of Linux Installation</h3>
+                <ol>
+                    <li>सबसे पहले Linux distribution की ISO file download करें।</li>
+                    <li>Rufus या किसी bootable USB tool से bootable USB बनाएं।</li>
+                    <li>Computer restart करके BIOS/Boot Menu open करें।</li>
+                    <li>USB drive को boot device select करें।</li>
+                    <li>Linux installer open होने पर language और keyboard layout select करें।</li>
+                    <li>Installation type choose करें: Normal installation, Minimal installation या Dual boot।</li>
+                    <li>Disk partition select करें। ध्यान रखें कि wrong partition select करने से data delete हो सकता है।
+                    </li>
+                    <li>Username और password create करें।</li>
+                    <li>Installation complete होने के बाद system restart करें।</li>
+                    <li>Restart के बाद Linux login screen open होगी।</li>
+                </ol>
+                <div class="note"><strong>Important:</strong> Practical में अगर original computer पर Linux install करना
+                    risky हो, तो <strong>VirtualBox</strong> या <strong>VMware</strong> में Linux install करके practice
+                    कर सकते हैं।</div>
+                <h3>Types of Linux Installation</h3>
+                <table>
+                    <tr>
+                        <th>Type</th>
+                        <th>Explanation</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Fresh Installation</strong></td>
+                        <td>पूरी hard disk पर Linux install किया जाता है।</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Dual Boot</strong></td>
+                        <td>Windows और Linux दोनों same computer में install होते हैं।</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Virtual Machine Installation</strong></td>
+                        <td>Linux को VirtualBox/VMware जैसे software में run किया जाता है।</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Live USB</strong></td>
+                        <td>Linux को install किए बिना USB से directly run किया जाता है।</td>
+                    </tr>
+                </table>
+            </section>
+            
+        </main>
+    </div>
+</body>
+
+</html>

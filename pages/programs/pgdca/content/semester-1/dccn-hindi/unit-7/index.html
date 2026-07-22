@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Network Connectivity</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+      line-height: 1.75
+    }
+
+    .page {
+      display: grid;
+      grid-template-columns: 285px 1fr;
+      gap: 20px;
+      max-width: 1500px;
+      margin: auto;
+      padding: 10px
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 10px;
+      height: calc(100vh - 20px);
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
+      align-self: start
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #111827
+    }
+
+    .sidebar a {
+      display: block;
+      text-decoration: none;
+      color: #374151;
+      padding: 8px 10px;
+      border-radius: 10px;
+      margin-bottom: 4px;
+      font-size: 14.7px
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+      color: #1d4ed8
+    }
+
+    .content {
+      background: #fff;
+      border-radius: 18px;
+      padding: 10px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08)
+    }
+
+    .hero {
+      padding: 28px 18px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #eef2ff, #f8fafc);
+      margin-bottom: 18px
+    }
+
+    .hero h1 {
+      font-size: 34px;
+      color: #111827;
+      margin-bottom: 10px
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #374151
+    }
+
+    section {
+      padding: 22px 10px;
+      border-bottom: 1px solid #e5e7eb
+    }
+
+    section:last-child {
+      border-bottom: none
+    }
+
+    h2 {
+      font-size: 27px;
+      color: #111827;
+      margin-bottom: 12px;
+      border-left: 5px solid #2563eb;
+      padding-left: 12px
+    }
+
+    h3 {
+      font-size: 22px;
+      color: #1f2937;
+      margin: 16px 0 8px
+    }
+
+    h4 {
+      font-size: 18px;
+      color: #111827;
+      margin: 14px 0 6px
+    }
+
+    p {
+      margin: 10px 0;
+      font-size: 17px
+    }
+
+    ul,
+    ol {
+      margin-left: 24px;
+      margin-top: 8px
+    }
+
+    li {
+      margin: 7px 0;
+      font-size: 16.5px
+    }
+
+    strong {
+      color: #111827
+    }
+
+    .image-icon {
+      min-height: 180px;
+      border: 2px dashed #94a3b8;
+      border-radius: 16px;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      margin: 18px 0;
+      color: #475569;
+      font-weight: 600
+    }
+
+    .image-icon img {
+      max-width: 100%;
+      height: auto
+    }
+
+    .note-box {
+      background: #f0fdf4;
+      border-left: 5px solid #22c55e;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .info-box {
+      background: #ecfeff;
+      border-left: 5px solid #06b6d4;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .remember-box {
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      font-size: 15.5px
+    }
+
+    th,
+    td {
+      border: 1px solid #d1d5db;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top
+    }
+
+    th {
+      background: #eef2ff;
+      color: #111827
+    }
+
+    code {
+      background: #111827;
+      color: #f9fafb;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-family: Consolas, monospace;
+      font-size: 15px
+    }
+
+    .flow {
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 14px;
+      padding: 16px;
+      margin: 16px 0;
+      font-family: Consolas, monospace;
+      overflow-x: auto;
+      line-height: 1.8
+    }
+
+    @media(max-width:900px) {
+      .page {
+        grid-template-columns: 1fr
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto
+      }
+
+      .hero h1 {
+        font-size: 27px
+      }
+
+      h2 {
+        font-size: 24px
+      }
+    }
+  </style>
+
+<link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
+<script src="../../../../../../../assets/shared/portal.js" defer></script>
+<script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
+</head>
+
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <h2>Topics</h2>
+      <a href="#intro">Introduction</a>
+      <a href="#devices">Connectivity Devices</a>
+      <a href="#nic">NICs</a>
+      <a href="#hub">Hub</a>
+      <a href="#switch">Switch</a>
+      <a href="#router">Router</a>
+      <a href="#repeater">Repeater</a>
+      <a href="#modem">Modem</a>
+      <a href="#gateway">Gateway</a>
+      <a href="#comparison">Device Comparison</a>
+      <a href="#router-config">Router Configuration</a>
+      <a href="#switch-config">Switch Configuration</a>
+      <a href="#summary">Quick Revision</a>
+    </aside>
+
+    <main class="content">
+      <div class="hero">
+        <h1>Network Connectivity</h1>
+
+      </div>
+
+      <section id="intro">
+
+        <h2>Network Connectivity</h2>
+
+        <p>
+
+          <strong>Network Connectivity</strong> का मतलब दो या दो से अधिक devices को इस तरह connect करना है कि वे data,
+          information,
+          resources और services share कर सकें। जब computers, printers, servers, mobile devices और internet devices एक
+          network में connect होते हैं,
+          तो उनके बीच communication possible होता है। इस connectivity को establish और manage करने के लिए कई networking
+          devices use होते हैं,
+          जैसे NIC, Hub, Switch, Router, Repeater, Modem और Gateway।
+        </p>
+        <p>
+          Network connectivity केवल cable लगाने का काम नहीं है। इसमें correct device selection, IP addressing,
+          switching, routing,
+          signal regeneration, internet access और network configuration जैसी चीजें शामिल होती हैं। एक अच्छा network वही
+          होता है जो reliable,
+          fast, secure और scalable हो। इसलिए network connectivity devices को समझना computer networking का बहुत important
+          part है।
+        </p>
+        <h4>Need of Network Connectivity</h4>
+        <ul>
+          <li>Devices के बीच data sharing करने के लिए।</li>
+          <li>Internet access सभी devices तक पहुँचाने के लिए।</li>
+          <li>Printer, scanner और server जैसे resources share करने के लिए।</li>
+          <li>Office, college और home network को व्यवस्थित बनाने के लिए।</li>
+          <li>Communication को fast, reliable और controlled बनाने के लिए।</li>
+        </ul>
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          College computer lab में सभी computers switch से connected होते हैं और switch router से connected होता है।
+          Router internet से connect होकर सभी computers को internet access देता है।
+        </div>
+      </section>
+
+      <section id="devices">
+        <h2>Network Connectivity Devices</h2>
+        <p>
+
+          <strong>Network Connectivity Devices</strong> वे hardware devices होते हैं जो network में devices को connect
+          करने,
+          data forward करने, signal improve करने, networks को join करने और internet access provide करने में help करते
+          हैं।
+          अलग-अलग devices का काम अलग होता है। कुछ devices local network के अंदर data forward करते हैं, कुछ devices
+          different networks को connect करते हैं,
+          कुछ weak signal को regenerate करते हैं और कुछ internet service provider से connection establish करते हैं।
+        </p>
+        <h4>Main Connectivity Devices</h4>
+        <table>
+          <tr>
+            <th>Device</th>
+            <th>Main Work</th>
+            <th>Layer Concept</th>
+          </tr>
+          <tr>
+            <td><strong>NIC</strong></td>
+            <td>Device को network से connect करना।</td>
+            <td>Physical + Data Link</td>
+          </tr>
+          <tr>
+            <td><strong>Hub</strong></td>
+            <td>Data को सभी ports पर broadcast करना।</td>
+            <td>Physical Layer</td>
+          </tr>
+          <tr>
+            <td><strong>Switch</strong></td>
+            <td>MAC address के basis पर data सही device तक भेजना।</td>
+            <td>Data Link Layer</td>
+          </tr>
+          <tr>
+            <td><strong>Router</strong></td>
+            <td>Different networks को connect करना और packets route करना।</td>
+            <td>Network Layer</td>
+          </tr>
+          <tr>
+            <td><strong>Repeater</strong></td>
+            <td>Weak signal को regenerate करना।</td>
+            <td>Physical Layer</td>
+          </tr>
+          <tr>
+            <td><strong>Modem</strong></td>
+            <td>ISP connection के लिए signal conversion करना।</td>
+            <td>Physical / Access level</td>
+          </tr>
+          <tr>
+            <td><strong>Gateway</strong></td>
+            <td>Different protocols/networks को connect करना।</td>
+            <td>Multiple Layers</td>
+          </tr>
+        </table>
+      </section>
+
+      <section id="nic">
+        <h2>Network Interface Card (NIC)</h2>
+        <p>
+          <strong>NIC</strong> का full form <strong>Network Interface Card</strong> है। यह computer या device को network
+          से connect करने वाला hardware component होता है।
+          NIC wired भी हो सकता है और wireless भी। Wired NIC में Ethernet port होता है, जिसमें LAN cable लगाई जाती है।
+          Wireless NIC Wi-Fi signals के through network से connect करता है। हर NIC का एक unique <strong>MAC
+            Address</strong> होता है,
+          जो Data Link Layer पर device की पहचान के लिए use होता है।
+        </p>
+        <div class="image-icon">
+          <img src="../images/nic.svg" alt="Network Interface Card">
+        </div>
+        <h4>Working of NIC</h4>
+        <p>
+          NIC computer के internal digital data को network signal में convert करता है और received network signal को वापस
+          computer-readable data में बदलता है।
+          जब computer data send करता है, तो NIC Ethernet frame create करने और transmit करने में help करता है।
+          जब data receive होता है, तो NIC destination MAC address check करके frame को operating system तक pass करता है।
+        </p>
+        <h4>Types of NIC</h4>
+        <table>
+          <tr>
+            <th>Type</th>
+            <th>Explanation</th>
+            <th>Example</th>
+          </tr>
+          <tr>
+            <td><strong>Wired NIC</strong></td>
+            <td>Ethernet cable से connect होता है।</td>
+            <td>LAN Card, RJ-45 Ethernet Port</td>
+          </tr>
+          <tr>
+            <td><strong>Wireless NIC</strong></td>
+            <td>Wi-Fi signals से connect होता है।</td>
+            <td>Wi-Fi Adapter</td>
+          </tr>
+          <tr>
+            <td><strong>External USB NIC</strong></td>
+            <td>USB port से attach किया जाता है।</td>
+            <td>USB Wi-Fi Adapter, USB LAN Adapter</td>
+          </tr>
+        </table>
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          Laptop में जो Wi-Fi adapter होता है, वह wireless NIC है। Desktop में LAN cable लगाने वाला Ethernet port wired
+          NIC का example है।
+        </div>
+      </section>
+
+      <section id="hub">
+        <h2>Hub</h2>
+        <p>
+
+          <strong>Hub</strong> एक basic network connectivity device है जो multiple devices को एक local network में
+          connect करता है।
+          Hub Physical Layer पर काम करता है। जब hub किसी port से data receive करता है, तो वह data को सभी other ports पर
+          forward कर देता है।
+          Hub intelligent device नहीं होता क्योंकि इसे destination device का पता नहीं होता। इसी कारण hub data को
+          broadcast करता है।
+        </p>
+        <div class="image-icon">
+          <img src="../images/hub.webp" alt="Network Hub">
+        </div>
+        <h4>Working of Hub</h4>
+        <p>
+          Suppose एक computer hub को data send करता है। Hub उस data को check नहीं करता कि destination कौन है।
+          वह data को connected सभी devices तक भेज देता है। जिस device के लिए data होता है, वही उसे accept करती है और
+          बाकी devices ignore कर देती हैं।
+          Hub-based network में collision की possibility ज्यादा होती है क्योंकि सभी devices same collision domain share
+          करती हैं।
+        </p>
+        <h4>Features</h4>
+        <ul>
+          <li>Physical Layer device है।</li>
+          <li>Data को सभी ports पर broadcast करता है।</li>
+          <li>MAC address table maintain नहीं करता।</li>
+          <li>Old LAN networks में use होता था।</li>
+          <li>Modern networks में switches ने hubs को replace कर दिया है।</li>
+        </ul>
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          Hub को ऐसे समझिए जैसे कोई व्यक्ति एक message पूरी class में बोल देता है।
+          Message केवल एक student के लिए है, लेकिन सभी students उसे सुन लेते हैं।
+        </div>
+      </section>
+
+      <section id="switch">
+        <h2>Switch</h2>
+        <p>
+          <strong>Switch</strong> एक intelligent network connectivity device है जो LAN में multiple devices को connect
+          करता है।
+          Switch Data Link Layer पर काम करता है और <strong>MAC Address</strong> के basis पर data frames को correct
+          destination device तक forward करता है।
+          Hub की तरह data सभी ports पर भेजने के बजाय switch destination MAC address देखकर frame को specific port पर
+          भेजता है।
+        </p>
+        <div class="image-icon">
+          <img src="../images/switch.webp" alt="Network Switch">
+        </div>
+        <h4>Working of Switch</h4>
+        <p>
+          Switch अपने अंदर MAC Address Table maintain करता है। जब कोई device frame send करता है, तो switch source MAC
+          address और port number को learn कर लेता है।
+          फिर destination MAC address देखकर frame को correct port पर forward करता है। अगर destination MAC address table
+          में नहीं है,
+          तो switch unknown frame को flood कर सकता है, लेकिन बाद में address learn करके direct forwarding करता है।
+        </p>
+        <h4>Features</h4>
+        <ul>
+          <li>Data Link Layer device है।</li>
+          <li>MAC address table maintain करता है।</li>
+          <li>Specific destination port पर frame forward करता है।</li>
+          <li>Hub की तुलना में ज्यादा efficient और secure होता है।</li>
+          <li>Modern LANs में सबसे common connectivity device है।</li>
+        </ul>
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          Computer lab में 30 computers एक switch से connected होते हैं। Switch data को केवल उसी computer तक भेजता है
+          जिसके लिए frame intended है।
+        </div>
+      </section>
+
+      <section id="router">
+        <h2>Router</h2>
+        <p>
+          <strong>Router</strong> एक network device है जो two or more different networks को connect करता है।
+          Router Network Layer पर काम करता है और IP address के basis पर packets को route करता है।
+          इसका main काम packets को source network से destination network तक best possible path से forward करना है।
+          Router local network को internet से connect करने में भी important role play करता है।
+        </p>
+        <div class="image-icon">
+          <img src="../images/router.webp" alt="router">
+        </div>
+        <h4>Working of Router</h4>
+        <p>
+          जब किसी device को अपने local network से बाहर data send करना होता है, तो packet default gateway यानी router को
+          भेजा जाता है।
+          Router packet के destination IP address को check करता है और routing table की help से decide करता है कि packet
+          को किस next-hop router या interface पर forward करना है।
+          Home routers NAT, DHCP और Wi-Fi जैसी services भी provide कर सकते हैं।
+        </p>
+        <h4>Features</h4>
+        <ul>
+          <li>Different networks को connect करता है।</li>
+          <li>IP address के basis पर routing करता है।</li>
+          <li>Routing table maintain करता है।</li>
+          <li>LAN को internet से connect करता है।</li>
+          <li>NAT, DHCP, firewall और Wi-Fi features भी support कर सकता है।</li>
+        </ul>
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          Home Wi-Fi router आपके घर के private network को ISP और internet से connect करता है।
+        </div>
+      </section>
+
+      <section id="repeater">
+        <h2>Repeater</h2>
+        <p>
+          <strong>Repeater</strong> एक Physical Layer device है जो weak या degraded signal को receive करके उसे
+          regenerate करता है
+          और फिर आगे transmit करता है। जब signal लंबी distance travel करता है, तो attenuation के कारण weak हो सकता है।
+          Repeater signal की strength और quality improve करके communication distance बढ़ाने में help करता है।
+        </p>
+        <div class="image-icon">
+          <img src="../images/repeater.svg" alt="repeater">
+        </div>
+        <h4>Working of Repeater</h4>
+        <p>
+          Repeater incoming weak signal को receive करता है, उसे clean/regenerate करता है और फिर original strength के
+          करीब signal को आगे भेजता है।
+          यह data का meaning नहीं समझता, केवल signal level पर काम करता है। Wired networks और wireless networks दोनों में
+          repeater concept use हो सकता है।
+        </p>
+        <h4>Features</h4>
+        <ul>
+          <li>Physical Layer पर काम करता है।</li>
+          <li>Weak signals को regenerate करता है।</li>
+          <li>Network distance extend करने में help करता है।</li>
+          <li>Data filtering या routing नहीं करता।</li>
+          <li>Signal attenuation problem को reduce करता है।</li>
+        </ul>
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          Wi-Fi range extender wireless repeater की तरह काम करता है। यह weak Wi-Fi signal को receive करके आगे stronger
+          signal broadcast करता है।
+        </div>
+      </section>
+
+      <section id="modem">
+        <h2>Modem</h2>
+        <p>
+          <strong>Modem</strong> का full form <strong>Modulator-Demodulator</strong> है।
+          Modem एक device है जो digital signals और analog/line signals के बीच conversion करता है ताकि computer network
+          ISP line के through internet access कर सके।
+          पुराने telephone line internet में modem digital data को analog signal में और analog signal को digital data
+          में convert करता था।
+          Modern broadband और fiber systems में modem या ONT ISP signal को home network usable form में convert करता है।
+        </p>
+        <div class="image-icon">
+          <img src="../images/" alt="modem">
+        </div>
+        <h4>Working of Modem</h4>
+        <p>
+          Computer या router digital data generate करता है। Modem उस data को ISP transmission medium के suitable signal
+          form में convert करता है।
+          Incoming ISP signal को modem फिर से digital form में convert करता है ताकि computer/router उसे process कर सके।
+        </p>
+        <h4>Types / Examples</h4>
+        <ul>
+          <li><strong>Dial-up Modem:</strong> Telephone line based old modem।</li>
+          <li><strong>DSL Modem:</strong> Telephone line पर broadband internet के लिए।</li>
+          <li><strong>Cable Modem:</strong> Cable TV network based internet के लिए।</li>
+          <li><strong>Fiber ONT:</strong> Fiber optic connection को usable Ethernet/Wi-Fi network में convert करता है।
+          </li>
+        </ul>
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          Jio Fiber या Airtel Fiber में जो device fiber line से connect होता है और Wi-Fi/Ethernet देता है,
+          वह modem/router या ONT की तरह काम करता है।
+        </div>
+      </section>
+
+      <section id="gateway">
+        <h2>Gateway</h2>
+        <p>
+          <strong>Gateway</strong> एक network device या software function है जो different networks या different
+          protocols वाले systems को connect करता है।
+          Gateway protocol conversion, data format conversion और network boundary communication में help कर सकता है।
+          Simple home network में router को default gateway कहा जाता है क्योंकि local devices internet पर जाने के लिए
+          router को gateway की तरह use करते हैं।
+        </p>
+        <div class="image-icon">
+          <img src="../images/gateway.webp" alt="Gateway">
+        </div>
+        <h4>Working of Gateway</h4>
+        <p>
+          जब एक network का device दूसरे network में data send करना चाहता है, तो data gateway के through जाता है।
+          Gateway source network और destination network के rules को समझकर data को आगे forward करता है।
+          अगर protocols different हैं, तो gateway conversion भी perform कर सकता है।
+        </p>
+        <h4>Types / Uses</h4>
+        <ul>
+          <li><strong>Default Gateway:</strong> Local network से बाहर packets भेजने के लिए।</li>
+          <li><strong>Protocol Gateway:</strong> Different protocols के बीच conversion के लिए।</li>
+          <li><strong>Email Gateway:</strong> Different mail systems connect करने के लिए।</li>
+          <li><strong>Application Gateway:</strong> Application-level traffic control के लिए।</li>
+        </ul>
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          आपके laptop का default gateway usually home router का IP address होता है, जैसे <code>192.168.1.1</code>।
+        </div>
+      </section>
+
+      <section id="comparison">
+        <h2>Device Comparison Table</h2>
+        <table>
+          <tr>
+            <th>Device</th>
+            <th>Works On</th>
+            <th>Address Used</th>
+            <th>Main Function</th>
+            <th>Example Use</th>
+          </tr>
+          <tr>
+            <td><strong>NIC</strong></td>
+            <td>Physical/Data Link</td>
+            <td>MAC Address</td>
+            <td>Device को network से connect करना।</td>
+            <td>LAN card, Wi-Fi adapter</td>
+          </tr>
+          <tr>
+            <td><strong>Hub</strong></td>
+            <td>Physical Layer</td>
+            <td>No address intelligence</td>
+            <td>Data को सभी ports पर broadcast करना।</td>
+            <td>Old LAN</td>
+          </tr>
+          <tr>
+            <td><strong>Switch</strong></td>
+            <td>Data Link Layer</td>
+            <td>MAC Address</td>
+            <td>Frame को correct device तक forward करना।</td>
+            <td>Computer lab LAN</td>
+          </tr>
+          <tr>
+            <td><strong>Router</strong></td>
+            <td>Network Layer</td>
+            <td>IP Address</td>
+            <td>Different networks को connect करना।</td>
+            <td>Home/office internet router</td>
+          </tr>
+          <tr>
+            <td><strong>Repeater</strong></td>
+            <td>Physical Layer</td>
+            <td>No address</td>
+            <td>Weak signal regenerate करना।</td>
+            <td>Wi-Fi extender</td>
+          </tr>
+          <tr>
+            <td><strong>Modem</strong></td>
+            <td>Access/Physical</td>
+            <td>Depends on setup</td>
+            <td>ISP signal conversion करना।</td>
+            <td>DSL/Cable/Fiber modem</td>
+          </tr>
+          <tr>
+            <td><strong>Gateway</strong></td>
+            <td>Multiple Layers</td>
+            <td>Depends on network</td>
+            <td>Different networks/protocols connect करना।</td>
+            <td>Default gateway/router</td>
+          </tr>
+        </table>
+      </section>
+
+      <section id="router-config">
+        <h2>Router Configuration</h2>
+
+        <p>
+          <strong>Router Configuration</strong> वह process है जिसमें router की network settings set की जाती हैं ताकि वह
+          local network और internet के बीच
+          proper communication provide कर सके। इसमें WAN settings, LAN IP, DHCP, Wi-Fi settings, NAT, firewall, routing
+          और admin password जैसी settings शामिल होती हैं।
+          Home routers usually web interface से configure होते हैं, जबकि enterprise routers CLI और management tools से
+          configure किए जा सकते हैं।
+        </p>
+        <h4>Common Router Configuration Steps</h4>
+        <ol>
+          <li>Router को power और ISP line से connect करें।</li>
+          <li>Computer/mobile को router से LAN cable या Wi-Fi के through connect करें।</li>
+          <li>Browser में router IP open करें, जैसे <code>192.168.1.1</code> या <code>192.168.0.1</code>।</li>
+          <li>Admin username और password से login करें।</li>
+          <li>WAN/Internet settings में ISP details set करें।</li>
+          <li>LAN IP और DHCP range configure करें।</li>
+          <li>Wi-Fi SSID और strong password set करें।</li>
+          <li>Admin password default से change करें।</li>
+          <li>Settings save करके router reboot करें, अगर required हो।</li>
+        </ol>
+        <h4>Important Router Settings</h4>
+        <table>
+          <tr>
+            <th>Setting</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><strong>WAN</strong></td>
+            <td>ISP/internet connection settings।</td>
+          </tr>
+          <tr>
+            <td><strong>LAN IP</strong></td>
+            <td>Router का local IP address।</td>
+          </tr>
+          <tr>
+            <td><strong>DHCP</strong></td>
+            <td>Devices को automatic IP address देना।</td>
+          </tr>
+          <tr>
+            <td><strong>NAT</strong></td>
+            <td>Private network को public internet access देना।</td>
+          </tr>
+          <tr>
+            <td><strong>Firewall</strong></td>
+            <td>Basic network protection provide करना।</td>
+          </tr>
+          <tr>
+            <td><strong>Wi-Fi SSID</strong></td>
+            <td>Wireless network का name।</td>
+          </tr>
+        </table>
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          जब आप नया broadband router लगाते हैं और उसका Wi-Fi name/password set करते हैं,
+          तो आप router configuration कर रहे होते हैं।
+        </div>
+        <div class="remember-box">
+          <b>Security Reminder:</b><br>
+          Router का default admin password जरूर change करें और Wi-Fi में strong WPA2/WPA3 password use करें।
+        </div>
+      </section>
+
+      <section id="switch-config">
+        <h2>Switch Configuration</h2>
+        <p>
+          <strong>Switch Configuration</strong> वह process है जिसमें switch की ports, VLANs, management IP, security और
+          other network settings configure की जाती हैं।
+          Simple unmanaged switches में configuration की जरूरत नहीं होती; उन्हें plug-and-play device की तरह use किया
+          जाता है।
+          Managed switches में administrator VLAN, port speed, duplex mode, trunk ports, port security और monitoring
+          जैसी settings configure कर सकता है।
+        </p>
+        <h4>Types of Switch Based on Configuration</h4>
+        <table>
+          <tr>
+            <th>Switch Type</th>
+            <th>Explanation</th>
+          </tr>
+          <tr>
+            <td><strong>Unmanaged Switch</strong></td>
+            <td>Plug-and-play switch; configuration options नहीं होते।</td>
+          </tr>
+          <tr>
+            <td><strong>Managed Switch</strong></td>
+            <td>Configuration support करता है, जैसे VLAN, port security, management IP।</td>
+          </tr>
+          <tr>
+            <td><strong>Smart Switch</strong></td>
+            <td>Limited management features provide करता है।</td>
+          </tr>
+        </table>
+        <h4>Common Managed Switch Configuration Steps</h4>
+        <ol>
+          <li>Switch को power और network devices से connect करें।</li>
+          <li>Console cable, web interface या management IP के through switch access करें।</li>
+          <li>Admin login credentials से login करें।</li>
+          <li>Switch का hostname set करें।</li>
+          <li>Management IP address configure करें।</li>
+          <li>Required VLANs create करें।</li>
+          <li>Ports को access या trunk mode में configure करें।</li>
+          <li>Port speed और duplex settings verify करें।</li>
+          <li>Port security enable करें, अगर required हो।</li>
+          <li>Configuration save करें।</li>
+        </ol>
+        <h4>Important Switch Settings</h4>
+        <table>
+          <tr>
+            <th>Setting</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><strong>Hostname</strong></td>
+            <td>Switch की पहचान के लिए name set करना।</td>
+          </tr>
+          <tr>
+            <td><strong>Management IP</strong></td>
+            <td>Switch को remotely manage करने के लिए IP address।</td>
+          </tr>
+          <tr>
+            <td><strong>VLAN</strong></td>
+            <td>एक physical switch को multiple logical networks में divide करना।</td>
+          </tr>
+          <tr>
+            <td><strong>Port Security</strong></td>
+            <td>Unknown devices को port से connect होने से restrict करना।</td>
+          </tr>
+          <tr>
+            <td><strong>Trunk Port</strong></td>
+            <td>Multiple VLAN traffic carry करने वाला port।</td>
+          </tr>
+        </table>
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          College में same switch पर Computer Lab, Office और Library के लिए अलग VLANs बनाकर traffic separate किया जा
+          सकता है।
+        </div>
+      </section>
+
+      <section id="summary">
+        <div class="remember-box">
+          <b>Remember Points:</b><br>
+          NIC = Device को network से connect करता है।<br>
+          Hub = Broadcast to all ports.<br>
+          Switch = MAC Address based forwarding.<br>
+          Router = IP Address based routing.<br>
+          Repeater = Signal regenerate करता है.<br>
+          Modem = ISP signal conversion.<br>
+          Gateway = Different networks/protocols connect करता है.
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PGDCA Study Material</title>
+    <link rel="icon" type="image/jpeg" href="../../../../assets/images/logo.jpeg">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="../../../../assets/shared/theme.css">
+    <style>
+        :root {
+            --bg: #f6f8ff;
+            --surface: #ffffff;
+            --text: #1f2937;
+            --muted: #6b7280;
+            --primary: #2563eb;
+            --primary-soft: #eef2ff;
+            --border: #dbe3f0;
+            --shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(180deg, #f6f8ff 0%, #eef4ff 100%);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .page-shell {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .site-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1.2rem;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .brand img {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .site-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        .site-nav a {
+            text-decoration: none;
+            color: var(--text);
+            padding: 0.55rem 0.8rem;
+            border-radius: 999px;
+        }
+
+        .site-nav a:hover {
+            background-color: #6d5bd1;
+            color: white;
+        }
+
+        .page-banner {
+            padding: 1.4rem 1.2rem;
+            background: var(--primary);
+            color: white;
+        }
+
+        .eyebrow {
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            flex: 1;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 1.25rem;
+        }
+
+        .toolbar {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .toolbar-item {
+            background: white;
+            padding: 0.9rem 1rem;
+            border-radius: 14px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .toolbar-item label,
+        .toolbar-item span {
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .toolbar-item select {
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            padding: 0.6rem 0.75rem;
+            font-size: 0.95rem;
+            background: #fff;
+        }
+
+        .toolbar-item.highlight {
+            background: var(--primary-soft);
+        }
+
+        .chapter-section {
+            background: white;
+            padding: 1.2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+        }
+
+        .chapter-section h2 {
+            font-size: 1.35rem;
+            color: #111827;
+            margin-bottom: 1rem;
+        }
+
+        .content {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .unit-card {
+            display: none;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 0.75rem;
+            background: #f9fbff;
+            overflow: hidden;
+        }
+
+        .unit-card.active {
+            display: block;
+        }
+
+        .unit-card iframe {
+            width: 100%;
+            min-height: 720px;
+            border: 0;
+            border-radius: 12px;
+            background: white;
+        }
+
+        .site-footer {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(180px, 1fr));
+            gap: 1rem;
+            padding: 1.2rem;
+            background: #111827;
+            color: white;
+        }
+
+        .site-footer div {
+            background: rgba(255, 255, 255, 0.06);
+            padding: 1rem;
+            border-radius: 12px;
+        }
+
+        .site-footer a,
+        .site-footer p {
+            display: block;
+            color: #d1d5db;
+            text-decoration: none;
+            margin-bottom: 0.35rem;
+        }
+
+        @media (max-width: 560px) {
+            .site-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .toolbar,
+            .site-footer {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="../../../../assets/shared/portal.css">
+</head>
+
+<body>
+    <div class="page-shell">
+        <!-- header start-->
+        <header class="site-header">
+
+            <a class="brand" href="../../../home/index.html">
+                <img src="../../../../assets/images/logo.jpeg" alt="Bk LearnX logo">
+                <span>Bk LearnX</span>
+            </a>
+            <nav class="site-nav">
+                <a href="../../../home/index.html">Home</a>
+                <a href="../../../auth/registration/index.html">Register</a>
+                <a data-guest-only href="../../../auth/login/index.html">Login</a>
+                <a data-auth-only hidden href="../../../student/profile/index.html">My Profile</a>
+                <button data-auth-only hidden data-logout class="portal-btn secondary">Logout</button>
+            </nav>
+
+        </header>
+        <!-- header end -->
+
+        <!--2nd header start-->
+        <section class="page-banner">
+            <div>
+                <p class="eyebrow">Study Material</p>
+                <h1>PGDCA Semester-1</h1>
+            </div>
+        </section>
+
+        <!--2nd header End-->
+
+
+        <main class="main-content">
+            <!-- information header start-->
+            <section class="toolbar">
+
+                <!--subject start-->
+                <div class="toolbar-item">
+                    <label for="subject">Subject</label>
+                    <select id="subject">
+                        <option value="">Select Subject</option>
+                        <option value="bcit">BCIT</option>
+                        <option value="python">Python</option>
+                        <option value="dccn">DCCN</option>
+                        <option value="wdt">WDT</option>
+                        <option value="oat">OAT</option>
+                    </select>
+                </div>
+                <!--subject end-->
+
+
+                <!--unit start-->
+
+                <div class="toolbar-item">
+                    <label for="unit">Semester</label>
+                    <select id="unit" name="semester">
+                        <option value="">Select Semester</option>
+                    </select>
+                </div>
+
+                <!--Unit end-->
+
+                <!--current start-->
+
+                <div class="toolbar-item highlight">
+                    <span>Current</span>
+                    <strong id="currentChapter">Select subject and semester</strong>
+                </div>
+                <!--current end-->
+
+            </section>
+
+            <!-- end information header -->
+
+
+            <!--contain secttion-->
+            <section class="chapter-section">
+                <h2 id="chapterName">Select a subject and semester</h2>
+
+                <div id="chapterContent" class="content">
+                    <!-- BCIT CONTENT -->
+                    <div class="unit-card" data-subject="bcit" data-unit="unit-1">
+                        <iframe src="./semester-1/bcit-hindi/unit-1/index.html" title="BCIT Unit 1"></iframe>
+                    </div>
+                    <div class="unit-card" data-subject="bcit" data-unit="unit-2">
+                        <iframe src="./semester-1/bcit-hindi/unit-2/index.html" title="BCIT Unit 2"></iframe>
+                    </div>
+                    <div class="unit-card" data-subject="bcit" data-unit="unit-3">
+                        <iframe src="./semester-1/bcit-hindi/unit-3/index.html" title="BCIT Unit 3"></iframe>
+                    </div>
+                    <div class="unit-card" data-subject="bcit" data-unit="unit-4">
+                        <iframe src="./semester-1/bcit-hindi/unit-4/index.html" title="BCIT Unit 4"></iframe>
+                    </div>
+                    <div class="unit-card" data-subject="bcit" data-unit="unit-5">
+                        <iframe src="./semester-1/bcit-hindi/unit-5/index.html" title="BCIT Unit 5"></iframe>
+                    </div>
+
+                    <!-- PYTHON CONTENT -->
+                    <div class="unit-card" data-subject="python" data-unit="unit-1">
+                        <iframe src="./semester-1/python-hindi/unit-1/index.html" title="Python Unit 1"></iframe>
+                    </div>
+
+                    <div class="unit-card" data-subject="python" data-unit="unit-2">
+                        <iframe src="./semester-1/python-hindi/unit-2/index.html" title="Python Unit 2"></iframe>
+                    </div>
+
+                    <div class="unit-card" data-subject="python" data-unit="unit-3">
+                        <iframe src="./semester-1/python-hindi/unit-3/index.html" title="Python Unit 3"></iframe>
+                    </div>
+
+                    <div class="unit-card" data-subject="python" data-unit="unit-4">
+                        <iframe src="./semester-1/python-hindi/unit-4/index.html" title="Python Unit 4"></iframe>
+                    </div>
+
+                    <div class="unit-card" data-subject="python" data-unit="unit-5">
+                        <iframe src="./semester-1/python-hindi/unit-5/index.html" title="Python Unit 5"></iframe>
+                    </div>
+
+                    <div class="unit-card" data-subject="python" data-unit="unit-6">
+                        <iframe src="./semester-1/python-hindi/unit-6/index.html" title="Python Unit 6"></iframe>
+                    </div>
+
+                    <div class="unit-card" data-subject="python" data-unit="unit-7">
+                        <iframe src="./semester-1/python-hindi/unit-7/index.html" title="Python Unit 7"></iframe>
+                    </div>
+
+                    <div class="unit-card" data-subject="python" data-unit="unit-8">
+                        <iframe src="./semester-1/python-hindi/unit-8/index.html" title="Python Unit 8"></iframe>
+                    </div>
+
+                    <div class="unit-card" data-subject="python" data-unit="unit-9">
+                        <iframe src="./semester-1/python-hindi/unit-9/index.html" title="Python Unit 9"></iframe>
+                    </div>
+
+                    <div class="unit-card" data-subject="python" data-unit="unit-10">
+                        <iframe src="./semester-1/python-hindi/unit-10/index.html" title="Python Unit 10"></iframe>
+                    </div>
+
+                    <!-- DCCN CONTENT -->
+                    <div class="unit-card" data-subject="dccn" data-unit="unit-1">
+                        <iframe src="./semester-1/dccn-hindi/unit-1/index.html" title="DCCN Unit 1"></iframe>
+                    </div>
+
+                    <div class="unit-card" data-subject="dccn" data-unit="unit-2">
+                        <iframe src="./semester-1/dccn-hindi/unit-2/index.html" title="DCCN Unit 2"></iframe>
+                    </div>
+                    <div class="unit-card" data-subject="dccn" data-unit="unit-3">
+                        <iframe src="./semester-1/dccn-hindi/unit-3/index.html" title="DCCN Unit 3"></iframe>
+                    </div>
+                    <div class="unit-card" data-subject="dccn" data-unit="unit-4">
+                        <iframe src="./semester-1/dccn-hindi/unit-4/index.html" title="DCCN Unit 4"></iframe>
+                    </div>
+                    <div class="unit-card" data-subject="dccn" data-unit="unit-5">
+                        <iframe src="./semester-1/dccn-hindi/unit-5/index.html" title="DCCN Unit 5"></iframe>
+                    </div>
+                    <div class="unit-card" data-subject="dccn" data-unit="unit-6">
+                        <iframe src="./semester-1/dccn-hindi/unit-6/index.html" title="DCCN Unit 6"></iframe>
+                    </div>
+                    <div class="unit-card" data-subject="dccn" data-unit="unit-7">
+                        <iframe src="./semester-1/dccn-hindi/unit-7/index.html" title="DCCN Unit 7"></iframe>
+                    </div>
+                    <div class="unit-card" data-subject="dccn" data-unit="unit-8">
+                        <iframe src="./semester-1/dccn-hindi/unit-8/index.html" title="DCCN Unit 8"></iframe>
+                    </div>
+                    <div class="unit-card" data-subject="dccn" data-unit="unit-9">
+                        <iframe src="./semester-1/dccn-hindi/unit-9/index.html" title="DCCN Unit 9"></iframe>
+                    </div>
+
+                    <!-- WDT CONTENT -->
+                    <div class="unit-card" data-subject="wdt" data-unit="unit-1">
+                        <iframe src="./semester-1/i-wt-hindi/unit-1/index.html" title="WDT Unit 1"></iframe>
+                    </div>
+
+                    <div class="unit-card" data-subject="wdt" data-unit="unit-2">
+                        <iframe src="./semester-1/i-wt-hindi/unit-2/index.html" title="WDT Unit 2"></iframe>
+                    </div>
+                    <div class="unit-card" data-subject="wdt" data-unit="unit-3">
+                        <iframe src="./semester-1/i-wt-hindi/unit-3/index.html" title="WDT Unit 3"></iframe>
+                    </div>
+                    <div class="unit-card" data-subject="wdt" data-unit="unit-4">
+                        <iframe src="./semester-1/i-wt-hindi/unit-4/index.html" title="WDT Unit 4"></iframe>
+                    </div>
+                    <div class="unit-card" data-subject="wdt" data-unit="unit-5">
+                        <iframe src="./semester-1/i-wt-hindi/unit-5/index.html" title="WDT Unit 5"></iframe>
+                    </div>
+                    <div class="unit-card" data-subject="wdt" data-unit="unit-6">
+                        <iframe src="./semester-1/i-wt-hindi/unit-6/index.html" title="WDT Unit 6"></iframe>
+                    </div>
+                    <div class="unit-card" data-subject="wdt" data-unit="unit-7">
+                        <iframe src="./semester-1/i-wt-hindi/unit-7/index.html" title="WDT Unit 7"></iframe>
+                    </div>
+
+                    <!-- OAT CONTENT -->
+                    <div class="unit-card" data-subject="oat" data-unit="unit-1">
+                        <h3>OAT Unit 1</h3>
+                        <p>Yeh OAT Unit 1 ka content hai.</p>
+                    </div>
+                    <div class="unit-card" data-subject="oat" data-unit="unit-2">
+                        <h3>OAT Unit 2</h3>
+                        <p>Yeh OAT Unit 2 ka content hai.</p>
+                    </div>
+                    <div class="unit-card" data-subject="oat" data-unit="unit-3">
+                        <h3>OAT Unit 3</h3>
+                        <p>Yeh OAT Unit 3 ka content hai.</p>
+                    </div>
+
+                    <div class="unit-card" data-subject="oat" data-unit="unit-4">
+                        <h3>OAT Unit 4</h3>
+                        <p>Yeh OAT Unit 4 ka content hai.</p>
+                    </div>
+                    <div class="unit-card" data-subject="oat" data-unit="unit-5">
+                        <p></p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="site-footer">
+        <div>
+            <h3>Quick Links</h3>
+            <a href="../../../home/index.html">Home</a>
+            <a href="../../../auth/registration/index.html">Register</a>
+            <a data-guest-only href="../../../auth/login/index.html">Login</a>
+                <a data-auth-only hidden href="../../../student/profile/index.html">My Profile</a>
+                <button data-auth-only hidden data-logout class="portal-btn secondary">Logout</button>
+        </div>
+        <div>
+            <h3>Support</h3>
+            <p>Study notes, previous papers and helpful resources.</p>
+        </div>
+        <div>
+            <h3>Contact</h3>
+            <p>brajkant02@gmail.com</p>
+        </div>
+    </footer>
+    </div>
+
+    <script src="./script.js"></script>
+    <script src="../../../../assets/shared/theme.js" defer></script>
+    <script src="../../../../assets/shared/portal.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TCP/IP Addressing</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+      line-height: 1.75
+    }
+
+    .page {
+      display: grid;
+      grid-template-columns: 285px 1fr;
+      gap: 20px;
+      max-width: 1500px;
+      margin: auto;
+      padding: 10px
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 10px;
+      height: calc(100vh - 20px);
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
+      align-self: start
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #111827
+    }
+
+    .sidebar a {
+      display: block;
+      text-decoration: none;
+      color: #374151;
+      padding: 8px 10px;
+      border-radius: 10px;
+      margin-bottom: 4px;
+      font-size: 14.5px
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+      color: #1d4ed8
+    }
+
+    .content {
+      background: #fff;
+      border-radius: 18px;
+      padding: 10px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08)
+    }
+
+    .hero {
+      padding: 28px 18px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #eef2ff, #f8fafc);
+      margin-bottom: 18px
+    }
+
+    .hero h1 {
+      font-size: 34px;
+      color: #111827;
+      margin-bottom: 10px
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #374151
+    }
+
+    section {
+      padding: 22px 10px;
+      border-bottom: 1px solid #e5e7eb
+    }
+
+    section:last-child {
+      border-bottom: none
+    }
+
+    h2 {
+      font-size: 27px;
+      color: #111827;
+      margin-bottom: 12px;
+      border-left: 5px solid #2563eb;
+      padding-left: 12px
+    }
+
+    h3 {
+      font-size: 22px;
+      color: #1f2937;
+      margin: 16px 0 8px
+    }
+
+    h4 {
+      font-size: 18px;
+      color: #111827;
+      margin: 14px 0 6px
+    }
+
+    p {
+      margin: 10px 0;
+      font-size: 17px
+    }
+
+    ul,
+    ol {
+      margin-left: 24px;
+      margin-top: 8px
+    }
+
+    li {
+      margin: 7px 0;
+      font-size: 16.5px
+    }
+
+    strong {
+      color: #111827
+    }
+
+    .image-icon {
+      min-height: 180px;
+      border: 2px dashed #94a3b8;
+      border-radius: 16px;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      margin: 18px 0;
+      color: #475569;
+      font-weight: 600
+    }
+
+    .image-icon img {
+      max-width: 100%;
+      height: auto
+    }
+
+    .note-box {
+      background: #f0fdf4;
+      border-left: 5px solid #22c55e;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .info-box {
+      background: #ecfeff;
+      border-left: 5px solid #06b6d4;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .remember-box {
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      font-size: 15.5px
+    }
+
+    th,
+    td {
+      border: 1px solid #d1d5db;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top
+    }
+
+    th {
+      background: #eef2ff;
+      color: #111827
+    }
+
+    code {
+      background: #111827;
+      color: #f9fafb;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-family: Consolas, monospace;
+      font-size: 15px
+    }
+
+    .flow {
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 14px;
+      padding: 16px;
+      margin: 16px 0;
+      font-family: Consolas, monospace;
+      overflow-x: auto;
+      line-height: 1.8
+    }
+
+    @media(max-width:900px) {
+      .page {
+        grid-template-columns: 1fr
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto
+      }
+
+      .hero h1 {
+        font-size: 27px
+      }
+
+      h2 {
+        font-size: 24px
+      }
+    }
+  </style>
+
+<link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
+<script src="../../../../../../../assets/shared/portal.js" defer></script>
+<script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
+</head>
+
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <h2>Topics</h2>
+      <a href="#intro">Introduction</a>
+      <a href="#physical-logical">Physical & Logical Address</a>
+      <a href="#ipv4">IPv4 Address</a>
+      <a href="#address-space">Address Space</a>
+      <a href="#notation">IPv4 Notations</a>
+      <a href="#classful">Classful Addressing</a>
+      <a href="#classes">IP Address Classes</a>
+      <a href="#net-host">Net-id & Host-id</a>
+      <a href="#masks">Masks</a>
+      <a href="#depletion">Address Depletion</a>
+      <a href="#classless">Classless Addressing</a>
+      <a href="#blocks">Address Blocks</a>
+      <a href="#special">Special IP Addresses</a>
+      <a href="#subnetting">Subnetting</a>
+      <a href="#supernetting">Supernetting</a>
+      <a href="#loopback">Loopback</a>
+      <a href="#nat">NAT</a>
+      <a href="#ipv4-header">IPv4 Header</a>
+      <a href="#ipv6-header">IPv6 Header</a>
+      <a href="#comparison">IPv4 vs IPv6</a>
+     
+    </aside>
+
+    <main class="content">
+      <div class="hero">
+        <h1>TCP/IP Addressing</h1>
+      </div>
+
+      <section id="intro">
+        <h2>TCP/IP Addressing</h2>
+            
+        <p>
+          <strong>TCP/IP Addressing</strong> वह addressing system है जिसके द्वारा network में connected devices को
+          uniquely identify किया जाता है।
+          जब कोई computer, mobile, server या router network में communicate करता है, तो data को सही destination तक
+          पहुँचाने के लिए address की जरूरत होती है।
+          TCP/IP network में mainly दो important addresses use होते हैं: <strong>Physical Address</strong> और
+          <strong>Logical Address</strong>।
+          Physical address local network में device को identify करता है, जबकि logical address different networks और
+          internet पर device की पहचान करता है।
+        </p>
+        <p>
+          Internet पर करोड़ों devices connected होते हैं। अगर addressing system न हो, तो sender द्वारा भेजा गया data सही
+          receiver तक नहीं पहुँच पाएगा।
+          IP addressing packets को route करने में help करता है। Router destination IP address देखकर decide करता है कि
+          packet को किस direction में forward करना है।
+          इसी कारण TCP/IP addressing computer networking का fundamental concept है।
+        </p>
+        <div class="note-box"><b>Real Life Example:</b><br>
+          जैसे courier deliver करने के लिए घर का address चाहिए होता है, वैसे ही network packet को destination device तक
+          पहुँचाने के लिए IP address चाहिए होता है।
+        </div>
+      </section>
+
+      <section id="physical-logical">
+        <h2>Concept of Physical and Logical Addressing</h2>
+       
+        <p>
+          <strong>Physical Address</strong> को commonly <strong>MAC Address</strong> कहा जाता है। यह Network Interface
+          Card यानी NIC का hardware address होता है।
+          MAC address manufacturer द्वारा assign किया जाता है और local network में device को identify करने के लिए use
+          होता है।
+          दूसरी तरफ <strong>Logical Address</strong> यानी <strong>IP Address</strong> software-based address होता है, जो
+          device को network या internet पर identify करता है।
+          IP address network configuration के अनुसार change हो सकता है, लेकिन MAC address normally fixed रहता है।
+        </p>
+        <h4>Working Concept</h4>
+        <p>
+          जब data same local network में travel करता है, तो Data Link Layer MAC address का use करती है।
+          जब data different network या internet पर travel करता है, तो Network Layer IP address का use करती है।
+          Router IP address देखकर packet को आगे forward करता है, जबकि switch MAC address देखकर local delivery करता है।
+        </p>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>Physical Address</th>
+            <th>Logical Address</th>
+          </tr>
+          <tr>
+            <td>Name</td>
+            <td>MAC Address</td>
+            <td>IP Address</td>
+          </tr>
+          <tr>
+            <td>Layer</td>
+            <td>Data Link Layer</td>
+            <td>Network Layer</td>
+          </tr>
+          <tr>
+            <td>Nature</td>
+            <td>Hardware address</td>
+            <td>Software/logical address</td>
+          </tr>
+          <tr>
+            <td>Change</td>
+            <td>Usually fixed</td>
+            <td>Can change according to network</td>
+          </tr>
+          <tr>
+            <td>Example</td>
+            <td><code>00:1A:2B:3C:4D:5E</code></td>
+            <td><code>192.168.1.10</code></td>
+          </tr>
+        </table>
+        <div class="note-box"><b>Real Life Example:</b><br>
+          IP address घर के current address जैसा है, जो बदल सकता है। MAC address व्यक्ति के permanent ID जैसा है, जो
+          device hardware से जुड़ा होता है।
+        </div>
+      </section>
+
+      <section id="ipv4">
+        <h2>IPv4 Addresses</h2>
+        <p><strong>Definition:</strong><br>
+          <strong>IPv4</strong> का full form <strong>Internet Protocol version 4</strong> है। यह 32-bit logical
+          addressing system है,
+          जिसका use devices को network पर uniquely identify करने के लिए किया जाता है। IPv4 address को normally dotted
+          decimal notation में लिखा जाता है,
+          जिसमें चार parts होते हैं और प्रत्येक part को octet कहा जाता है। हर octet 8 bits का होता है, इसलिए total 4 × 8
+          = 32 bits होते हैं।
+        </p>
+        <p>
+          IPv4 address का example है <code>192.168.1.1</code>। इसमें 192, 168, 1 और 1 चार octets हैं।
+          प्रत्येक octet की range 0 से 255 तक होती है। IPv4 internet की शुरुआत से लेकर आज तक बहुत widely use होता आया
+          है।
+          लेकिन IPv4 में address space limited है, इसलिए IPv6 को develop किया गया।
+        </p>
+        <h4>IPv4 Features</h4>
+        <ul>
+          <li>IPv4 address 32-bit का होता है।</li>
+          <li>यह dotted decimal notation में लिखा जाता है।</li>
+          <li>इसमें 4 octets होते हैं।</li>
+          <li>प्रत्येक octet की value 0 से 255 तक हो सकती है।</li>
+          <li>IPv4 routing और packet delivery के लिए use होता है।</li>
+        </ul>
+        <div class="flow">Example: 192.168.1.10<br>Binary concept: 11000000.10101000.00000001.00001010</div>
+      </section>
+
+      <section id="address-space">
+        <h2>IPv4 Address Space</h2>
+        <h3>Address Space</h3>
+       
+        <p>
+          <strong>Address Space</strong> किसी addressing system में possible total addresses की संख्या को कहा जाता है।
+          IPv4 32-bit address use करता है, इसलिए इसमें total possible addresses <strong>2<sup>32</sup></strong> होते
+          हैं।
+          इसका मतलब लगभग 4.3 billion addresses theoretically possible हैं। लेकिन इन सभी addresses को public use में
+          directly assign नहीं किया जा सकता,
+          क्योंकि कुछ addresses private networks, loopback, multicast, broadcast और special purposes के लिए reserved
+          होते हैं।
+        </p>
+        <h4>Important Points</h4>
+        <ul>
+          <li>IPv4 address length = 32 bits</li>
+          <li>Total address space = 2<sup>32</sup></li>
+          <li>Approx total addresses = 4.3 billion</li>
+          <li>कुछ addresses special purpose के लिए reserved होते हैं।</li>
+          <li>Limited address space के कारण IPv4 address depletion problem हुई।</li>
+        </ul>
+        <div class="note-box"><b>Real Life Example:</b><br>
+          जैसे किसी city में limited house numbers होते हैं, वैसे ही IPv4 में limited IP addresses होते हैं। Internet
+          devices बढ़ने से addresses कम पड़ने लगे।
+        </div>
+      </section>
+
+      <section id="notation">
+        <h2>IPv4 Notations</h2>
+        <p>
+          <strong>IPv4 Notation</strong> का मतलब IPv4 address को लिखने के तरीके से है। Computer internally IPv4 address
+          को binary form में understand करता है,
+          लेकिन humans के लिए binary address याद रखना कठिन होता है। इसलिए IPv4 address को dotted decimal notation में
+          लिखा जाता है।
+          Dotted decimal notation में address को चार decimal numbers में divide किया जाता है और प्रत्येक number dot से
+          separate होता है।
+        </p>
+        <table>
+          <tr>
+            <th>Notation</th>
+            <th>Example</th>
+            <th>Explanation</th>
+          </tr>
+          <tr>
+            <td><strong>Binary Notation</strong></td>
+            <td><code>11000000.10101000.00000001.00000001</code></td>
+            <td>Computer-friendly form, 32 bits.</td>
+          </tr>
+          <tr>
+            <td><strong>Dotted Decimal Notation</strong></td>
+            <td><code>192.168.1.1</code></td>
+            <td>Human-friendly form, four decimal octets.</td>
+          </tr>
+        </table>
+        <h4>Octet Concept</h4>
+        <p>
+          IPv4 address में प्रत्येक decimal part 8-bit binary octet को represent करता है। जैसे 192 का binary form
+          11000000 होता है।
+          इसी तरह चार octets मिलकर complete IPv4 address बनाते हैं।
+        </p>
+      </section>
+
+      <section id="classful">
+        <h2>Classful Addressing</h2>
+        
+        <p><strong>Definition:</strong><br>
+          <strong>Classful Addressing</strong> IPv4 addressing की पुरानी method है जिसमें IP addresses को fixed classes
+          में divide किया गया था।
+          इन classes को Class A, Class B, Class C, Class D और Class E कहा जाता है। Class A बड़े networks के लिए,
+          Class B medium-size networks के लिए और Class C small networks के लिए use होती थी। Class D multicast के लिए
+          reserved है
+          और Class E experimental purpose के लिए reserved है।
+        </p>
+        <p>
+          Classful addressing में network part और host part fixed होते थे। यह method शुरू में simple थी, लेकिन बाद में
+          inefficient साबित हुई
+          क्योंकि कई organizations को requirement से ज्यादा addresses मिल जाते थे और बहुत सारे addresses waste होते थे।
+          इसी address wastage के कारण classless addressing यानी CIDR introduce किया गया।
+        </p>
+        <h4>Classes Overview</h4>
+        <table>
+          <tr>
+            <th>Class</th>
+            <th>First Octet Range</th>
+            <th>Default Mask</th>
+            <th>Purpose</th>
+          </tr>
+          <tr>
+            <td>Class A</td>
+            <td>1 - 126</td>
+            <td>255.0.0.0 /8</td>
+            <td>Very large networks</td>
+          </tr>
+          <tr>
+            <td>Class B</td>
+            <td>128 - 191</td>
+            <td>255.255.0.0 /16</td>
+            <td>Medium networks</td>
+          </tr>
+          <tr>
+            <td>Class C</td>
+            <td>192 - 223</td>
+            <td>255.255.255.0 /24</td>
+            <td>Small networks</td>
+          </tr>
+          <tr>
+            <td>Class D</td>
+            <td>224 - 239</td>
+            <td>Not applicable</td>
+            <td>Multicast</td>
+          </tr>
+          <tr>
+            <td>Class E</td>
+            <td>240 - 255</td>
+            <td>Not applicable</td>
+            <td>Experimental</td>
+          </tr>
+        </table>
+      </section>
+
+      <section id="classes">
+        <h2>Different IP Address Classes, Classes & Blocks</h2>
+        
+      
+        <p><strong>Definition:</strong><br>
+          IP address classes address space को अलग-अलग blocks में divide करती हैं। Class A addresses में first bit 0 होता
+          है,
+          Class B में starting bits 10, Class C में 110, Class D में 1110 और Class E में 1111 होते हैं।
+          इन bit patterns की help से IP address की class identify की जाती थी। Class A सबसे बड़े host space के लिए,
+          Class B medium और Class C छोटे host networks के लिए use होती थी।
+        </p>
+        <table>
+          <tr>
+            <th>Class</th>
+            <th>Starting Bits</th>
+            <th>Network/Host Structure</th>
+            <th>Approx Hosts per Network</th>
+          </tr>
+          <tr>
+            <td>A</td>
+            <td>0</td>
+            <td>N.H.H.H</td>
+            <td>16 million+</td>
+          </tr>
+          <tr>
+            <td>B</td>
+            <td>10</td>
+            <td>N.N.H.H</td>
+            <td>65,000+</td>
+          </tr>
+          <tr>
+            <td>C</td>
+            <td>110</td>
+            <td>N.N.N.H</td>
+            <td>254</td>
+          </tr>
+          <tr>
+            <td>D</td>
+            <td>1110</td>
+            <td>Multicast</td>
+            <td>Not for normal hosts</td>
+          </tr>
+          <tr>
+            <td>E</td>
+            <td>1111</td>
+            <td>Experimental</td>
+            <td>Not for normal use</td>
+          </tr>
+        </table>
+        <div class="note-box"><b>Real Life Example:</b><br>
+          Small office network में Class C style private address जैसे <code>192.168.1.0/24</code> commonly use होता है।
+        </div>
+      </section>
+
+      <section id="net-host">
+        <h2>Net-id and Host-id</h2>
+      
+       
+        <p>
+          IPv4 address दो parts से मिलकर बनता है: <strong>Net-id</strong> और <strong>Host-id</strong>।
+          Net-id network को identify करता है और Host-id उस network के अंदर particular device को identify करता है।
+          Router mainly Net-id का use करके packet को correct network तक पहुँचाता है। जब packet destination network में
+          पहुँच जाता है,
+          तब host part की help से specific device तक delivery होती है।
+        </p>
+        <h4>Classful Net-id and Host-id</h4>
+        <table>
+          <tr>
+            <th>Class</th>
+            <th>Default Mask</th>
+            <th>Network Part</th>
+            <th>Host Part</th>
+          </tr>
+          <tr>
+            <td>A</td>
+            <td>/8</td>
+            <td>First octet</td>
+            <td>Last 3 octets</td>
+          </tr>
+          <tr>
+            <td>B</td>
+            <td>/16</td>
+            <td>First 2 octets</td>
+            <td>Last 2 octets</td>
+          </tr>
+          <tr>
+            <td>C</td>
+            <td>/24</td>
+            <td>First 3 octets</td>
+            <td>Last octet</td>
+          </tr>
+        </table>
+        <div class="flow">Example: 192.168.1.25 /24<br>Net-id = 192.168.1.0<br>Host-id = 25</div>
+      </section>
+
+      <section id="masks">
+        <h2>Masks</h2>
+        <h3>Subnet Mask</h3>
+      
+        <p>
+          <strong>Mask</strong> या <strong>Subnet Mask</strong> वह 32-bit value है जो IP address में network part और
+          host part को identify करती है।
+          Mask में binary 1s network portion को represent करते हैं और binary 0s host portion को represent करते हैं।
+          Subnet mask की help से device determine करता है कि destination same network में है या different network में।
+        </p>
+        <h4>Common Default Masks</h4>
+        <table>
+          <tr>
+            <th>Class</th>
+            <th>Default Mask</th>
+            <th>CIDR</th>
+          </tr>
+          <tr>
+            <td>Class A</td>
+            <td>255.0.0.0</td>
+            <td>/8</td>
+          </tr>
+          <tr>
+            <td>Class B</td>
+            <td>255.255.0.0</td>
+            <td>/16</td>
+          </tr>
+          <tr>
+            <td>Class C</td>
+            <td>255.255.255.0</td>
+            <td>/24</td>
+          </tr>
+        </table>
+        <h4>Working Concept</h4>
+        <p>
+          Device IP address और subnet mask को compare करके network address निकालता है।
+          अगर source और destination का network address same है, तो packet local network में भेजा जाता है।
+          अगर network address different है, तो packet default gateway/router को send किया जाता है।
+        </p>
+      </section>
+
+      <section id="depletion">
+        <h2>Address Depletion</h2>
+        <h3>IPv4 Address Depletion</h3>
+         
+        <p>
+          <strong>Address Depletion</strong> का मतलब available IP addresses का कम पड़ जाना है।
+          IPv4 में केवल 32-bit address space है, जिससे लगभग 4.3 billion addresses possible हैं।
+          शुरुआत में यह बहुत बड़ा लगा, लेकिन internet, smartphones, IoT devices, servers और networks के तेजी से बढ़ने के
+          कारण IPv4 addresses कम पड़ने लगे।
+        </p>
+        <h4>Causes</h4>
+        <ul>
+          <li>Internet users और devices की संख्या तेजी से बढ़ना।</li>
+          <li>Classful addressing में address wastage।</li>
+          <li>Large organizations को बहुत बड़े address blocks मिलना।</li>
+          <li>Mobile devices और IoT devices का expansion।</li>
+        </ul>
+        <h4>Solutions</h4>
+        <ul>
+          <li><strong>CIDR:</strong> Classless addressing से address allocation efficient हुआ।</li>
+          <li><strong>NAT:</strong> Private IPs को public IP के through internet access मिला।</li>
+          <li><strong>Private Addresses:</strong> Internal networks में reusable address ranges use हुईं।</li>
+          <li><strong>IPv6:</strong> बहुत बड़ा 128-bit address space provide किया गया।</li>
+        </ul>
+      </section>
+
+      <section id="classless">
+        <h2>Classless Addressing</h2>
+       
+        <p>
+          <strong>Classless Addressing</strong> IPv4 addressing की modern method है जिसमें fixed Class A, B और C
+          boundaries पर depend नहीं किया जाता।
+          इसे <strong>CIDR</strong> यानी <strong>Classless Inter-Domain Routing</strong> भी कहा जाता है।
+          CIDR में IP address के साथ prefix length लिखी जाती है, जैसे <code>192.168.1.0/24</code>।
+          यहाँ /24 बताता है कि first 24 bits network part हैं और remaining bits host part हैं।
+        </p>
+        <p>
+          Classless addressing address allocation को flexible और efficient बनाती है।
+          Organizations को exactly जरूरत के अनुसार address blocks दिए जा सकते हैं, जिससे IPv4 address wastage कम होता
+          है।
+        </p>
+        <h4>Features</h4>
+        <ul>
+          <li>Fixed class boundary पर depend नहीं करता।</li>
+          <li>Prefix notation जैसे /24, /27, /30 use करता है।</li>
+          <li>Address wastage कम करता है।</li>
+          <li>Route aggregation और supernetting support करता है।</li>
+        </ul>
+        <div class="note-box"><b>Real Life Example:</b><br>
+          अगर किसी office को केवल 30 usable IP addresses चाहिए, तो उसे पूरा Class C block देने के बजाय /27 block दिया जा
+          सकता है।
+        </div>
+      </section>
+
+      <section id="blocks">
+        <h2>Address Blocks and Masks in Classless Addressing</h2>
+      
+      
+        <p><strong>Definition:</strong><br>
+          <strong>Address Block</strong> continuous IP addresses का group होता है जिसे किसी organization या network को
+          assign किया जाता है।
+          CIDR notation में block को base address और prefix length से represent किया जाता है।
+          जैसे <code>192.168.10.0/26</code> एक address block है जिसमें first 26 bits network part हैं।
+        </p>
+        <h4>Common CIDR Blocks</h4>
+        <table>
+          <tr>
+            <th>CIDR</th>
+            <th>Subnet Mask</th>
+            <th>Total Addresses</th>
+            <th>Usable Hosts</th>
+          </tr>
+          <tr>
+            <td>/24</td>
+            <td>255.255.255.0</td>
+            <td>256</td>
+            <td>254</td>
+          </tr>
+          <tr>
+            <td>/25</td>
+            <td>255.255.255.128</td>
+            <td>128</td>
+            <td>126</td>
+          </tr>
+          <tr>
+            <td>/26</td>
+            <td>255.255.255.192</td>
+            <td>64</td>
+            <td>62</td>
+          </tr>
+          <tr>
+            <td>/27</td>
+            <td>255.255.255.224</td>
+            <td>32</td>
+            <td>30</td>
+          </tr>
+          <tr>
+            <td>/28</td>
+            <td>255.255.255.240</td>
+            <td>16</td>
+            <td>14</td>
+          </tr>
+          <tr>
+            <td>/30</td>
+            <td>255.255.255.252</td>
+            <td>4</td>
+            <td>2</td>
+          </tr>
+        </table>
+        <div class="flow">Usable Hosts = Total Addresses - 2<br>Network Address और Broadcast Address normally hosts को
+          assign नहीं किए जाते।</div>
+      </section>
+
+      <section id="special">
+        <h2>Special IP Addresses</h2>      
+  
+        <p>
+          <strong>Special IP Addresses</strong> वे IPv4 addresses हैं जिन्हें normal host assignment के लिए use नहीं
+          किया जाता,
+          बल्कि specific purposes के लिए reserved रखा जाता है। जैसे private IP addresses internal networks में use होते
+          हैं,
+          loopback address testing के लिए use होता है, broadcast address same network के सभी hosts तक message भेजने के
+          लिए use होता है।
+        </p>
+        <table>
+          <tr>
+            <th>Address / Range</th>
+            <th>Purpose</th>
+          </tr>
+          <tr>
+            <td><code>0.0.0.0</code></td>
+            <td>Unspecified address या default route context में use।</td>
+          </tr>
+          <tr>
+            <td><code>127.0.0.0/8</code></td>
+            <td>Loopback testing के लिए।</td>
+          </tr>
+          <tr>
+            <td><code>255.255.255.255</code></td>
+            <td>Limited broadcast address।</td>
+          </tr>
+          <tr>
+            <td><code>10.0.0.0/8</code></td>
+            <td>Private network range।</td>
+          </tr>
+          <tr>
+            <td><code>172.16.0.0/12</code></td>
+            <td>Private network range।</td>
+          </tr>
+          <tr>
+            <td><code>192.168.0.0/16</code></td>
+            <td>Private network range।</td>
+          </tr>
+          <tr>
+            <td><code>169.254.0.0/16</code></td>
+            <td>Automatic Private IP Addressing / link-local।</td>
+          </tr>
+          <tr>
+            <td><code>224.0.0.0/4</code></td>
+            <td>Multicast addresses।</td>
+          </tr>
+        </table>
+        <div class="note-box"><b>Real Life Example:</b><br>
+          Home Wi-Fi routers usually devices को <code>192.168.1.x</code> जैसे private IP addresses assign करते हैं।
+        </div>
+      </section>
+
+      <section id="subnetting">
+        <h2>Subnetting</h2>       
+        <p>
+          <strong>Subnetting</strong> वह process है जिसमें एक large network को कई छोटे logical networks यानी subnets में
+          divide किया जाता है।
+          Subnetting से network management आसान होता है, security improve होती है और broadcast traffic reduce होता है।
+          Subnetting में host bits में से कुछ bits borrow करके subnet bits बनाई जाती हैं।
+        </p>
+        <h4>Need of Subnetting</h4>
+        <ul>
+          <li>Large network को छोटे manageable parts में divide करने के लिए।</li>
+          <li>Broadcast traffic कम करने के लिए।</li>
+          <li>Different departments को separate network देने के लिए।</li>
+          <li>IP address utilization improve करने के लिए।</li>
+          <li>Security और control improve करने के लिए।</li>
+        </ul>
+        <h4>Simple Example</h4>
+        <p>
+          Suppose एक company के पास <code>192.168.1.0/24</code> network है।
+          Company इसे Admin, Accounts, Lab और Library जैसे departments में divide कर सकती है।
+          हर department को अलग subnet मिल सकता है।
+        </p>
+        <div class="flow">Original Network: 192.168.1.0/24<br>Possible Subnets: 192.168.1.0/26, 192.168.1.64/26,
+          192.168.1.128/26, 192.168.1.192/26</div>
+      </section>
+
+      <section id="supernetting">
+        <h2>Supernetting</h2>
+       
+        
+        <p><strong>Definition:</strong><br>
+          <strong>Supernetting</strong> वह process है जिसमें कई छोटे networks को combine करके एक बड़ा network block
+          बनाया जाता है।
+          इसे route aggregation या route summarization भी कहा जाता है। Supernetting का main purpose routing table को
+          छोटा और efficient बनाना है।
+          जब multiple continuous network blocks को एक single summarized route में represent किया जाता है, तो routers को
+          fewer routes maintain करने पड़ते हैं।
+        </p>
+        <h4>Need of Supernetting</h4>
+        <ul>
+          <li>Routing table size कम करने के लिए।</li>
+          <li>Route aggregation करने के लिए।</li>
+          <li>Internet routing को efficient बनाने के लिए।</li>
+          <li>Multiple continuous networks को एक route में summarize करने के लिए।</li>
+        </ul>
+        <div class="note-box"><b>Real Life Example:</b><br>
+          अगर ISP के पास कई continuous network blocks हैं, तो वह उन्हें एक large summarized route के रूप में advertise
+          कर सकता है।
+          इससे internet routers की routing table छोटी रहती है।
+        </div>
+      </section>
+
+      <section id="loopback">
+        <h2>Loopback Concept</h2>
+      
+      
+        <p>
+          <strong>Loopback</strong> concept में device खुद को ही network request send करता है।
+          IPv4 में loopback address commonly <code>127.0.0.1</code> होता है, जिसे <strong>localhost</strong> भी कहा जाता
+          है।
+          इसका use local machine की TCP/IP stack testing, server testing और development में किया जाता है।
+          Loopback request physical network card से बाहर नहीं जाती; यह same computer के अंदर ही process होती है।
+        </p>
+        <h4>Uses of Loopback</h4>
+        <ul>
+          <li>Local TCP/IP configuration test करने के लिए।</li>
+          <li>Local web server test करने के लिए।</li>
+          <li>Application development में localhost testing के लिए।</li>
+          <li>Network troubleshooting में basic connectivity verify करने के लिए।</li>
+        </ul>
+        <div class="flow">ping 127.0.0.1<br>या<br>http://localhost</div>
+        <div class="note-box"><b>Real Life Example:</b><br>
+          Web developer अपने computer पर local server run करके browser में <code>localhost</code> open करता है।
+          यह loopback concept का practical example है।
+        </div>
+      </section>
+
+      <section id="nat">
+        <h2>Network Address Translation (NAT)</h2>
+        
+        <p><strong>Definition:</strong><br>
+          <strong>NAT</strong> का full form <strong>Network Address Translation</strong> है।
+          NAT एक technique है जिसके द्वारा private IP addresses को public IP address में translate किया जाता है ताकि
+          private network के devices internet access कर सकें।
+          Home router NAT का common example है। घर के अंदर multiple devices private IP addresses use करते हैं,
+          लेकिन internet पर जाते समय router उन्हें एक public IP address के through represent करता है।
+        </p>
+        <h4>Working of NAT</h4>
+        <p>
+          जब private network का कोई device internet पर request भेजता है, तो router source private IP को public IP में
+          translate करता है।
+          Router translation table maintain करता है ताकि response वापस आने पर उसे सही internal device तक deliver किया जा
+          सके।
+        </p>
+        <h4>Types of NAT</h4>
+        <table>
+          <tr>
+            <th>Type</th>
+            <th>Explanation</th>
+          </tr>
+          <tr>
+            <td><strong>Static NAT</strong></td>
+            <td>One private IP को fixed public IP से map करता है।</td>
+          </tr>
+          <tr>
+            <td><strong>Dynamic NAT</strong></td>
+            <td>Private IPs को public IP pool से dynamically map करता है।</td>
+          </tr>
+          <tr>
+            <td><strong>PAT / NAT Overload</strong></td>
+            <td>Multiple private devices एक public IP share करते हैं, port numbers की help से।</td>
+          </tr>
+        </table>
+        <div class="note-box"><b>Real Life Example:</b><br>
+          घर में mobile, laptop और smart TV सभी internet चलाते हैं, लेकिन ISP से usually एक public IP मिलता है।
+          Router NAT की help से सभी devices को internet access देता है।
+        </div>
+      </section>
+
+      <section id="ipv4-header">
+        <h2>IPv4 Header</h2>
+        
+        
+        <p><strong>Definition:</strong><br>
+          <strong>IPv4 Header</strong> वह control information होती है जो IPv4 packet के beginning में add की जाती है।
+          Header में source IP, destination IP, version, header length, TTL, protocol, checksum और fragmentation
+          information जैसी details होती हैं।
+          Router इसी header information को read करके packet को correct destination की ओर forward करता है।
+        </p>
+        <h4>Important IPv4 Header Fields</h4>
+        <table>
+          <tr>
+            <th>Field</th>
+            <th>Function</th>
+          </tr>
+          <tr>
+            <td><strong>Version</strong></td>
+            <td>IP version बताता है; IPv4 के लिए value 4 होती है।</td>
+          </tr>
+          <tr>
+            <td><strong>IHL</strong></td>
+            <td>Header length बताता है।</td>
+          </tr>
+          <tr>
+            <td><strong>Total Length</strong></td>
+            <td>Complete packet की length बताता है।</td>
+          </tr>
+          <tr>
+            <td><strong>Identification</strong></td>
+            <td>Fragmented packets को identify करने में help करता है।</td>
+          </tr>
+          <tr>
+            <td><strong>Flags</strong></td>
+            <td>Fragmentation control करता है।</td>
+          </tr>
+          <tr>
+            <td><strong>Fragment Offset</strong></td>
+            <td>Fragment की position बताता है।</td>
+          </tr>
+          <tr>
+            <td><strong>TTL</strong></td>
+            <td>Packet की lifetime limit करता है।</td>
+          </tr>
+          <tr>
+            <td><strong>Protocol</strong></td>
+            <td>Upper layer protocol बताता है, जैसे TCP या UDP।</td>
+          </tr>
+          <tr>
+            <td><strong>Header Checksum</strong></td>
+            <td>Header error detection के लिए।</td>
+          </tr>
+          <tr>
+            <td><strong>Source Address</strong></td>
+            <td>Sender का IP address।</td>
+          </tr>
+          <tr>
+            <td><strong>Destination Address</strong></td>
+            <td>Receiver का IP address।</td>
+          </tr>
+        </table>
+        <div class="note-box"><b>Real Life Example:</b><br>
+          IP packet का header envelope पर लिखे address जैसा है। Router header पढ़कर packet को next route पर forward करता
+          है।
+        </div>
+      </section>
+
+      <section id="ipv6-header">
+        <h2>IPv6 Header</h2>
+        
+        
+        <p>
+          <strong>IPv6 Header</strong> IPv6 packet के beginning में present control information है।
+          IPv6 header IPv4 header की तुलना में simpler और fixed length का होता है। IPv6 address 128-bit का होता है,
+          इसलिए source और destination addresses बड़े होते हैं। IPv6 header में Version, Traffic Class, Flow Label,
+          Payload Length, Next Header, Hop Limit, Source Address और Destination Address जैसे fields होते हैं।
+        </p>
+        <h4>Important IPv6 Header Fields</h4>
+        <table>
+          <tr>
+            <th>Field</th>
+            <th>Function</th>
+          </tr>
+          <tr>
+            <td><strong>Version</strong></td>
+            <td>IP version बताता है; IPv6 के लिए value 6 होती है।</td>
+          </tr>
+          <tr>
+            <td><strong>Traffic Class</strong></td>
+            <td>Packet priority और traffic handling में help करता है।</td>
+          </tr>
+          <tr>
+            <td><strong>Flow Label</strong></td>
+            <td>Special flow identification के लिए।</td>
+          </tr>
+          <tr>
+            <td><strong>Payload Length</strong></td>
+            <td>Header के बाद data length बताता है।</td>
+          </tr>
+          <tr>
+            <td><strong>Next Header</strong></td>
+            <td>Next protocol या extension header बताता है।</td>
+          </tr>
+          <tr>
+            <td><strong>Hop Limit</strong></td>
+            <td>IPv4 TTL जैसा function करता है।</td>
+          </tr>
+          <tr>
+            <td><strong>Source Address</strong></td>
+            <td>Sender का 128-bit IPv6 address।</td>
+          </tr>
+          <tr>
+            <td><strong>Destination Address</strong></td>
+            <td>Receiver का 128-bit IPv6 address।</td>
+          </tr>
+        </table>
+        <div class="note-box"><b>Real Life Example:</b><br>
+          IPv6 header large address space और improved routing support करता है, इसलिए modern internet growth के लिए
+          important है।
+        </div>
+      </section>
+
+      <section id="comparison">
+        <h2>Comparison between IPv4 and IPv6</h2>
+        <h3>IPv4 vs IPv6</h3>
+       
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>IPv4</th>
+            <th>IPv6</th>
+          </tr>
+          <tr>
+            <td>Full Form</td>
+            <td>Internet Protocol version 4</td>
+            <td>Internet Protocol version 6</td>
+          </tr>
+          <tr>
+            <td>Address Size</td>
+            <td>32-bit</td>
+            <td>128-bit</td>
+          </tr>
+          <tr>
+            <td>Address Space</td>
+            <td>Approximately 4.3 billion addresses</td>
+            <td>Very large address space</td>
+          </tr>
+          <tr>
+            <td>Notation</td>
+            <td>Dotted decimal</td>
+            <td>Hexadecimal colon notation</td>
+          </tr>
+          <tr>
+            <td>Example</td>
+            <td><code>192.168.1.1</code></td>
+            <td><code>2001:db8::1</code></td>
+          </tr>
+          <tr>
+            <td>Header</td>
+            <td>Variable length, more complex</td>
+            <td>Fixed length, simpler</td>
+          </tr>
+          <tr>
+            <td>Checksum</td>
+            <td>Header checksum present</td>
+            <td>Header checksum removed</td>
+          </tr>
+          <tr>
+            <td>Fragmentation</td>
+            <td>Routers and sender can fragment</td>
+            <td>Fragmentation mainly sender side</td>
+          </tr>
+          <tr>
+            <td>Broadcast</td>
+            <td>Broadcast supported</td>
+            <td>Broadcast नहीं; multicast/anycast use</td>
+          </tr>
+          <tr>
+            <td>NAT Need</td>
+            <td>NAT commonly used due to address shortage</td>
+            <td>Large address space के कारण NAT की need कम</td>
+          </tr>
+          <tr>
+            <td>Security</td>
+            <td>IPSec optional</td>
+            <td>IPSec support designed as important feature</td>
+          </tr>
+        </table>
+       
+      </section>
+    </main>
+  </div>
+</body>
+
+</html>

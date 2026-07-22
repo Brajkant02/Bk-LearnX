@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+    <link rel="icon" type="image/jpeg" href="../../../assets/images/logo.jpeg">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 450px;
+            margin: auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: navy;
+            margin-bottom: 1rem;
+            font-size: clamp(1.25rem, 5vw, 1.75rem);
+        }
+
+        label {
+            font-weight: bold;
+            font-size: clamp(0.875rem, 3vw, 1rem);
+            display: block;
+            margin-top: 0.75rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: clamp(0.5rem, 2vw, 0.75rem);
+            margin-top: 0.25rem;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: clamp(0.875rem, 3vw, 1rem);
+            font-family: Arial, sans-serif;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: green;
+            box-shadow: 0 0 5px rgba(0, 128, 0, 0.3);
+        }
+
+        .required {
+            color: red;
+        }
+
+        .btn {
+            width: 100%;
+            padding: clamp(0.75rem, 2.5vw, 1rem);
+            background-color: green;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: clamp(0.875rem, 3vw, 1rem);
+            font-weight: bold;
+            margin-top: 1.5rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: darkgreen;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .login-text {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: clamp(0.75rem, 2.5vw, 0.875rem);
+        }
+
+        .login-text a {
+            text-decoration: none;
+            color: blue;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .login-text a:hover {
+            color: darkblue;
+            text-decoration: underline;
+        }
+
+        .note {
+            text-align: center;
+            color: red;
+            font-size: clamp(0.75rem, 2.5vw, 0.875rem);
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive for mobile */
+        @media (max-width: 480px) {
+            .container {
+                padding: 1.5rem;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            h2 {
+                margin-bottom: 0.75rem;
+                font-size: 1.25rem;
+            }
+
+            label {
+                font-size: 0.875rem;
+                margin-top: 0.5rem;
+            }
+
+            input,
+            select {
+                padding: 0.5rem;
+                font-size: 0.875rem;
+            }
+
+            .btn {
+                padding: 0.75rem;
+                font-size: 0.875rem;
+                margin-top: 1rem;
+            }
+
+            .login-text {
+                margin-top: 1rem;
+                font-size: 0.75rem;
+            }
+
+            .note {
+                font-size: 0.75rem;
+                margin-bottom: 0.75rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="../../../assets/shared/theme.css">
+</head>
+
+<body>
+    
+
+    <div class="container">
+
+        <h2>Student Registration Form</h2>
+
+        <p class="note">
+            * All fields are compulsory to fill in the form.
+        </p>
+
+        <form id="registerForm">
+
+            <label for="name">Name <span class="required">*</span></label>
+            <input id="registerName" type="text" required placeholder="Enter your Full Name">
+
+            <br><br>
+
+            <label for="registerEmail">Email <span class="required">*</span></label>
+            <input id="registerEmail" type="email" placeholder="abc23-gmail.com" required>
+
+            <br><br>
+
+            <label for="branch">Branch <span class="required">*</span></label>
+            <select id="branch" onchange="updateSemester()" required>
+                <option value="">Select Branch</option>
+                <option value="PGDCA">PGDCA</option>
+                <option value="DSML">DSML</option>
+                <option value="Cyber Security">Cyber Security</option>
+                <option value="Web Designing">Web Designing</option>
+                <option value="PGDA">PGDA</option>
+            </select>
+
+            <br><br>
+
+            <label for="semester">Semester <span class="required">*</span></label>
+            <select id="semester" required>
+                <option value="">Select Semester</option>
+            </select>
+
+            <br><br>
+
+            <label for="password">Password <span class="required">*</span></label>
+            <input id="password" type="password" required title="Password" placeholder="Enter password">
+
+            <br><br>
+
+            <label for="confirm_password">Confirm Password <span class="required">*</span></label>
+            <input id="confirm_password" type="password" required title="Confirm Password" placeholder="Re-enter password">
+
+            <br><br>
+
+            <input type="submit" value="Submit" class="btn">
+            <p id="registerMessage" style="margin-top-1rem-font-size-0.95rem;"></p>
+
+        </form>
+
+        <p class="login-text">
+            If you are already registered, then
+            <a href="../login/index.html">Login</a>
+        </p>
+
+    </div>
+
+    <script>
+        function updateSemester() {
+            let branch = document.getElementById("branch").value;
+            let semester = document.getElementById("semester");
+
+            semester.innerHTML = '<option value="">Select Semester</option>';
+
+            if (branch == "PGDCA") {
+                semester.innerHTML += '<option value="1st Semester">1st Semester</option>';
+                semester.innerHTML += '<option value="2nd Semester">2nd Semester</option>';
+                semester.innerHTML += '<option value="3rd Semester">3rd Semester</option>';
+                semester.innerHTML += '<option value="4th Semester">4th Semester</option>';
+            }
+            else if (branch != "") {
+                semester.innerHTML += '<option value="1st Semester">1st Semester</option>';
+                semester.innerHTML += '<option value="2nd Semester">2nd Semester</option>';
+            }
+        }
+    </script>
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+            const messageEl = document.getElementById('registerMessage');
+            const name = document.getElementById('registerName').value.trim();
+            const email = document.getElementById('registerEmail').value.trim();
+            const branch = document.getElementById('branch').value;
+            const semester = document.getElementById('semester').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm_password').value;
+
+            messageEl.textContent = '';
+            messageEl.style.color = 'red';
+
+            if (!name || !email || !branch || !semester || !password || !confirmPassword) {
+                messageEl.textContent = 'please-complete-all-fields.';
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                messageEl.textContent = 'passwords-do-not-match.';
+                return;
+            }
+
+            try {
+                const response = await fetch((localStorage.getItem('bk_api_base') || 'http://localhost:3000') + '/api/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, branch, semester, password, confirmPassword })
+                });
+                const result = await response.json();
+
+                if (!response.ok) {
+                    messageEl.textContent = result.message || 'registration-failed.';
+                    return;
+                }
+
+                messageEl.textContent = 'registration-successful-redirecting-to-login.';
+                messageEl.style.color = 'green';
+                setTimeout(() => {
+                    window.location.href = '../login/index.html';
+                }, 1200);
+            } catch (error) {
+                messageEl.textContent = 'unable-to-connect-to-the-server.';
+            }
+        });
+    </script>
+    <script src="../../../assets/shared/theme.js" defer></script>
+</body>
+
+</html>

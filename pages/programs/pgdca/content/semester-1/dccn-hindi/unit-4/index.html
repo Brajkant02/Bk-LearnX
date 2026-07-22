@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Networking Models - OSI and TCP/IP Model</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+      line-height: 1.75;
+    }
+
+    .page {
+      display: grid;
+      grid-template-columns: 285px 1fr;
+      gap: 20px;
+      max-width: 1500px;
+      margin: auto;
+      padding: 10px;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 10px;
+      height: calc(100vh - 20px);
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
+      align-self: start;
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #111827;
+    }
+
+    .sidebar a {
+      display: block;
+      text-decoration: none;
+      color: #374151;
+      padding: 8px 10px;
+      border-radius: 10px;
+      margin-bottom: 4px;
+      font-size: 14.7px;
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+      color: #1d4ed8;
+    }
+
+    .content {
+      background: #fff;
+      border-radius: 18px;
+      padding: 10px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
+    }
+
+    .hero {
+      padding: 28px 18px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #eef2ff, #f8fafc);
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: 34px;
+      color: #111827;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #374151;
+    }
+
+    section {
+      padding: 22px 10px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    section:last-child {
+      border-bottom: none
+    }
+
+    h2 {
+      font-size: 27px;
+      color: #111827;
+      margin-bottom: 12px;
+      border-left: 5px solid #2563eb;
+      padding-left: 12px;
+    }
+
+    h3 {
+      font-size: 22px;
+      color: #1f2937;
+      margin: 16px 0 8px;
+    }
+
+    h4 {
+      font-size: 18px;
+      color: #111827;
+      margin: 14px 0 6px;
+    }
+
+    p {
+      margin: 10px 0;
+      font-size: 17px;
+    }
+
+    ul,
+    ol {
+      margin-left: 24px;
+      margin-top: 8px;
+    }
+
+    li {
+      margin: 7px 0;
+      font-size: 16.5px;
+    }
+
+    strong {
+      color: #111827
+    }
+
+    .image-icon {
+      min-height: 180px;
+      border: 2px dashed #94a3b8;
+      border-radius: 16px;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      margin: 18px 0;
+      color: #475569;
+      font-weight: 600;
+    }
+
+    .image-icon img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .note-box {
+      background: #f0fdf4;
+      border-left: 5px solid #22c55e;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0;
+    }
+
+    .info-box {
+      background: #ecfeff;
+      border-left: 5px solid #06b6d4;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0;
+    }
+
+    .remember-box {
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      font-size: 15.5px;
+    }
+
+    th,
+    td {
+      border: 1px solid #d1d5db;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #eef2ff;
+      color: #111827;
+    }
+
+    code {
+      background: #111827;
+      color: #f9fafb;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-family: Consolas, monospace;
+      font-size: 15px;
+    }
+
+    .flow {
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 14px;
+      padding: 16px;
+      margin: 16px 0;
+      font-family: Consolas, monospace;
+      overflow-x: auto;
+      line-height: 1.8;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin: 16px 0;
+    }
+
+    .card {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 14px;
+    }
+
+    .card h3 {
+      margin-top: 0
+    }
+
+    @media(max-width:900px) {
+      .page {
+        grid-template-columns: 1fr
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto
+      }
+
+      .hero h1 {
+        font-size: 27px
+      }
+
+      h2 {
+        font-size: 24px
+      }
+
+      .grid {
+        grid-template-columns: 1fr
+      }
+    }
+  </style>
+
+<link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
+<script src="../../../../../../../assets/shared/portal.js" defer></script>
+<script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
+</head>
+
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <h2>Topics</h2>
+      <a href="#intro">Introduction</a>
+      <a href="#layering">Layered Architecture</a>
+      <a href="#osi">OSI Model</a>
+      <a href="#tcpip">TCP/IP Model</a>
+      <a href="#mapping">OSI TCP/IP Mapping</a>
+      <a href="#comparison">OSI vs TCP/IP</a>
+      <a href="#example">Communication Example</a>
+
+    </aside>
+
+    <main class="content">
+      <div class="hero">
+        <h1>Networking Models</h1>
+
+      </div>
+
+      <section id="intro">
+        <h2>Introduction to Networking Models</h2>
+
+        <h3>Networking Model</h3>
+
+
+
+        <p>
+
+          <strong>Networking Model</strong> एक conceptual framework होता है जो यह समझाता है कि network में data
+          sender से receiver तक किस process के through travel करता है। जब दो computers या devices आपस में communicate
+          करते हैं,
+          तो data directly एक जगह से दूसरी जगह नहीं चला जाता। उसके पीछे कई छोटे-छोटे काम होते हैं, जैसे data को packets
+          में divide करना,
+          address add करना, error check करना, signal में convert करना, medium से transmit करना और receiver side पर वापस
+          original form में convert करना।
+          Networking Model इन सभी tasks को अलग-अलग layers में organize करता है।
+        </p>
+
+        <p>
+          Networking models students और engineers को यह समझने में help करते हैं कि network communication के अलग-अलग
+          parts कैसे काम करते हैं।
+          अगर network में कोई problem आती है, तो layered model की help से यह पता लगाया जा सकता है कि problem physical
+          cable में है,
+          IP addressing में है, transport connection में है या application service में है। इसलिए networking models
+          communication को
+          systematic, modular और easy to troubleshoot बनाते हैं।
+        </p>
+
+        <h4>Why Networking Models are Needed</h4>
+        <ul>
+          <li>Network communication process को छोटे logical parts में divide करने के लिए।</li>
+          <li>Different manufacturers के devices को common standards पर communicate करवाने के लिए।</li>
+          <li>Network troubleshooting को easy बनाने के लिए।</li>
+          <li>Protocols और services को layer-wise organize करने के लिए।</li>
+          <li>Students को complex communication process easily समझाने के लिए।</li>
+        </ul>
+
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          जैसे postal system में letter लिखना, envelope में रखना, address लिखना, sorting, transport और final delivery
+          अलग-अलग stages में होता है, वैसे ही computer network में data communication layer-wise stages से होकर complete
+          होता है।
+        </div>
+      </section>
+
+      <section id="layering">
+        <h2>Layered Architecture</h2>
+
+        <p>
+
+          <strong>Layered Architecture</strong> का मतलब है किसी बड़े और complex communication process को कई small,
+          manageable और independent layers में divide करना। प्रत्येक layer का अपना specific काम होता है। एक layer अपनी
+          ऊपर वाली layer को service देती है
+          और अपनी नीचे वाली layer से service लेती है। इससे पूरे network system का design, development और maintenance
+          आसान हो जाता है।
+        </p>
+
+        <p>
+          Layered architecture में हर layer दूसरे layer के internal details को जाने बिना अपना काम कर सकती है।
+          इसे abstraction कहते हैं। उदाहरण के लिए, Application Layer को यह जानने की जरूरत नहीं होती कि data cable से जा
+          रहा है या Wi-Fi से।
+          उसी तरह Physical Layer को यह जानने की जरूरत नहीं होती कि user website open कर रहा है या email send कर रहा है।
+          इस separation के कारण network protocols को easily design और update किया जा सकता है।
+        </p>
+
+        <h4>Benefits of Layered Architecture</h4>
+        <ul>
+          <li><strong>Modularity:</strong> पूरे communication process को छोटे parts में divide किया जाता है।</li>
+          <li><strong>Easy Troubleshooting:</strong> Problem किस layer में है, यह identify करना आसान होता है।</li>
+          <li><strong>Interoperability:</strong> Different vendors के devices common protocols के through communicate कर
+            सकते हैं।</li>
+          <li><strong>Flexibility:</strong> एक layer में changes करने से बाकी layers पर कम effect पड़ता है।</li>
+          <li><strong>Learning Friendly:</strong> Complex networking concepts को step-by-step समझा जा सकता है।</li>
+        </ul>
+
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          Restaurant में order लेने वाला, kitchen staff, billing counter और delivery person अलग-अलग roles perform करते
+          हैं।
+          Customer को kitchen की internal working जानने की जरूरत नहीं होती। इसी तरह networking में हर layer अपना काम
+          करती है।
+        </div>
+      </section>
+
+      <section id="osi">
+        <h2>OSI Model</h2>
+
+        <p>
+
+          <strong>OSI Model</strong> का full form <strong>Open Systems Interconnection Model</strong> है।
+          यह एक reference model है जिसे ISO यानी International Organization for Standardization ने develop किया था।
+          इसका main purpose यह था कि different companies और manufacturers के computer systems आपस में standard way में
+          communicate कर सकें।
+          OSI Model network communication को सात layers में divide करता है। ये layers bottom से top तक हैं:
+          <strong>Physical</strong>, <strong>Data Link</strong>, <strong>Network</strong>, <strong>Transport</strong>,
+          <strong>Session</strong>, <strong>Presentation</strong> और <strong>Application</strong>।
+        </p>
+
+        <p>
+          OSI Model mostly conceptual और educational model है। Real internet communication directly OSI model पर
+          implement नहीं होता,
+          लेकिन OSI model networking concepts समझने के लिए बहुत powerful framework है। जब कोई data sender side से
+          receiver side तक जाता है,
+          तो sender side पर data top layer से bottom layer तक जाता है। हर layer data में अपना control information add
+          करती है।
+          Receiver side पर data bottom layer से top layer तक जाता है और हर layer अपना added information remove करके data
+          को आगे pass करती है।
+        </p>
+        <div class="image-icon">
+          <img src="" alt="OSI Model 7 Layers">
+        </div>
+
+        <h4>Purpose of OSI Model</h4>
+        <ul>
+          <li>Network communication को standard format में explain करना।</li>
+          <li>Different systems के बीच communication को possible बनाना।</li>
+          <li>Protocols और network functions को layer-wise organize करना।</li>
+          <li>Network troubleshooting और learning को आसान बनाना।</li>
+          <li>Complex communication को simple steps में divide करना।</li>
+        </ul>
+
+        <div class="remember-box">
+          <b>Remember:</b><br>
+          OSI Model एक reference model है, practical protocol suite नहीं। यह बताता है कि network communication को
+          logically कैसे organize किया जा सकता है।
+        </div>
+
+        <h3>OSI Layered Architecture</h3>
+        <p>
+          OSI Model की architecture 7 layers पर based होती है। Sender side पर data Application Layer से start होकर
+          Physical Layer तक जाता है।
+          इस process को <strong>Encapsulation</strong> कहा जाता है, क्योंकि हर layer data के साथ अपना header या control
+          information add करती है।
+          Receiver side पर data Physical Layer से start होकर Application Layer तक पहुँचता है। इस process को
+          <strong>Decapsulation</strong> कहा जाता है,
+          क्योंकि हर layer अपना header remove करती है और data को next upper layer को दे देती है।
+        </p>
+
+        <h4>OSI Layers from Top to Bottom</h4>
+        <ol>
+          <li>Application Layer</li>
+          <li>Presentation Layer</li>
+          <li>Session Layer</li>
+          <li>Transport Layer</li>
+          <li>Network Layer</li>
+          <li>Data Link Layer</li>
+          <li>Physical Layer</li>
+        </ol>
+
+        <h4>OSI Layers from Bottom to Top</h4>
+        <ol>
+          <li>Physical Layer</li>
+          <li>Data Link Layer</li>
+          <li>Network Layer</li>
+          <li>Transport Layer</li>
+          <li>Session Layer</li>
+          <li>Presentation Layer</li>
+          <li>Application Layer</li>
+        </ol>
+        <div class="image-icon">
+          <img src="" alt="OSI Layered Architecture">
+        </div>
+
+        <div class="flow">
+          Sender Side: Application → Presentation → Session → Transport → Network → Data Link → Physical<br>
+          Receiver Side: Physical → Data Link → Network → Transport → Session → Presentation → Application
+        </div>
+
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          जब आप browser में website open करते हैं, तो user request application level से start होती है,
+          फिर transport, network और physical level से होकर internet पर जाती है। Server से response वापस reverse order
+          में आता है।
+        </div>
+        <h2>OSI Layers</h2>
+        <h3>1.Physical Layer</h3>
+        <p>
+          
+          <strong>Physical Layer</strong> OSI Model की सबसे नीचे वाली layer है। इसका main काम raw bits को physical
+          medium के through transmit करना है।
+          यह data को 0 और 1 के form में electrical signals, optical signals या radio signals में convert करके sender से
+          receiver तक भेजती है।
+          Physical Layer यह define करती है कि cable कौन-सी होगी, connector कैसा होगा, signal voltage level क्या होगा,
+          transmission speed कितनी होगी,
+          और data किस physical path से travel करेगा।
+        </p>
+
+        <p>
+          यह layer actual data के meaning को नहीं समझती। इसका काम सिर्फ bits को signal के रूप में send और receive करना
+          है।
+          अगर communication wired है, तो copper cable या fiber optic cable use हो सकती है। अगर communication wireless
+          है,
+          तो radio waves या microwaves use हो सकती हैं। Physical Layer network की foundation है, क्योंकि बिना physical
+          transmission के
+          upper layers का data receiver तक पहुँच ही नहीं सकता।
+        </p>
+
+        <h4>Functions of Physical Layer</h4>
+        <ul>
+          <li>Bits को electrical, optical या radio signals में convert करना।</li>
+          <li>Transmission medium define करना, जैसे cable या wireless channel।</li>
+          <li>Data transmission rate यानी speed define करना।</li>
+          <li>Connectors, cables और physical devices का standard define करना।</li>
+          <li>Signal synchronization और bit timing handle करना।</li>
+        </ul>
+
+        <h4>Devices and Examples</h4>
+        <table>
+          <tr>
+            <th>Item</th>
+            <th>Examples</th>
+          </tr>
+          <tr>
+            <td><strong>Devices</strong></td>
+            <td>Hub, Repeater, Modem, Network Cable</td>
+          </tr>
+          <tr>
+            <td><strong>Media</strong></td>
+            <td>Twisted Pair Cable, Coaxial Cable, Optical Fiber, Radio Waves</td>
+          </tr>
+          <tr>
+            <td><strong>PDU</strong></td>
+            <td>Bits</td>
+          </tr>
+        </table>
+
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          जब LAN cable से दो computers connect होते हैं, तो data electrical signals के रूप में cable से travel करता है।
+          यह Physical Layer का काम है।
+        </div>
+     
+
+      
+        
+        <h3>2. Data Link Layer</h3>
+
+       
+
+        <p>
+         
+          <strong>Data Link Layer</strong> OSI Model की second layer है। इसका काम directly connected devices के बीच
+          reliable data transfer करवाना है।
+          यह raw bits को organized form यानी <strong>frames</strong> में arrange करती है। Data Link Layer physical
+          network में devices की पहचान करने के लिए
+          <strong>MAC Address</strong> का use करती है। यह layer error detection, flow control और media access control
+          जैसे functions perform करती है।
+        </p>
+
+        <p>
+          Data Link Layer local network communication में बहुत important होती है। जब एक computer उसी LAN में दूसरे
+          computer को data send करता है,
+          तो Data Link Layer destination device का MAC address use करती है। यह layer यह भी check कर सकती है कि received
+          frame में error है या नहीं।
+          Switches इसी layer पर काम करते हैं और MAC address table की help से data को correct port पर forward करते हैं।
+        </p>
+
+        <h4>Functions of Data Link Layer</h4>
+        <ul>
+          <li>Network layer से आए packets को frames में convert करना।</li>
+          <li>Source और destination MAC address add करना।</li>
+          <li>Error detection करना, जैसे corrupted frame identify करना।</li>
+          <li>Flow control maintain करना ताकि fast sender slow receiver को overload न करे।</li>
+          <li>Media access control करना कि shared medium पर कौन device कब data send करेगी।</li>
+        </ul>
+
+        <h4>Sub-layers of Data Link Layer</h4>
+        <table>
+          <tr>
+            <th>Sub-layer</th>
+            <th>Function</th>
+          </tr>
+          <tr>
+            <td><strong>LLC</strong></td>
+            <td>Logical Link Control, error और flow related control provide करता है।</td>
+          </tr>
+          <tr>
+            <td><strong>MAC</strong></td>
+            <td>Media Access Control, MAC addressing और medium access control handle करता है।</td>
+          </tr>
+        </table>
+
+        <h4>Devices and Examples</h4>
+        <table>
+          <tr>
+            <th>Item</th>
+            <th>Examples</th>
+          </tr>
+          <tr>
+            <td><strong>Device</strong></td>
+            <td>Switch, Bridge</td>
+          </tr>
+          <tr>
+            <td><strong>Address</strong></td>
+            <td>MAC Address</td>
+          </tr>
+          <tr>
+            <td><strong>PDU</strong></td>
+            <td>Frame</td>
+          </tr>
+        </table>
+
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          School computer lab में switch MAC address देखकर data को सही computer तक भेजता है।
+          यह Data Link Layer का practical example है।
+        </div>
+     
+        <h3>3. Network Layer</h3>
+
+       
+
+        <p>
+          
+          <strong>Network Layer</strong> OSI Model की third layer है। इसका main काम data packets को source network से
+          destination network तक पहुँचाना है।
+          यह logical addressing और routing handle करती है। Network Layer में <strong>IP Address</strong> use होता है,
+          जिससे different networks पर devices को identify किया जाता है। यह layer decide करती है कि packet किस route से
+          destination तक जाएगा।
+        </p>
+
+        <p>
+          जब data local network से बाहर internet या दूसरे network में जाता है, तो Network Layer important role निभाती
+          है।
+          Router इसी layer पर काम करता है। Router packet के destination IP address को देखकर best path choose करता है।
+          Network Layer packet forwarding, path selection, fragmentation और logical addressing जैसे tasks perform करती
+          है।
+        </p>
+
+        <h4>Functions of Network Layer</h4>
+        <ul>
+          <li>Logical addressing यानी IP address assign और use करना।</li>
+          <li>Packet routing करना।</li>
+          <li>Different networks के बीच data forwarding करना।</li>
+          <li>Large packets को छोटे fragments में divide करना, यदि required हो।</li>
+          <li>Best path selection करना।</li>
+        </ul>
+
+        <h4>Protocols and Devices</h4>
+        <table>
+          <tr>
+            <th>Item</th>
+            <th>Examples</th>
+          </tr>
+          <tr>
+            <td><strong>Protocols</strong></td>
+            <td>IP, ICMP, ARP, IPSec</td>
+          </tr>
+          <tr>
+            <td><strong>Device</strong></td>
+            <td>Router, Layer-3 Switch</td>
+          </tr>
+          <tr>
+            <td><strong>Address</strong></td>
+            <td>IP Address</td>
+          </tr>
+          <tr>
+            <td><strong>PDU</strong></td>
+            <td>Packet</td>
+          </tr>
+        </table>
+
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          जब आप India से किसी US-based website को open करते हैं, तो आपका request packet कई routers से होकर destination
+          server तक पहुँचता है।
+          यह Network Layer routing का example है।
+        </div>
+    
+      
+        <h3>4. Transport Layer</h3>
+        <p>
+         
+          <strong>Transport Layer</strong> OSI Model की fourth layer है। इसका main काम source और destination devices के
+          बीच
+          end-to-end communication provide करना है। यह data को smaller parts यानी <strong>segments</strong> में divide
+          करती है
+          और receiver side पर उन्हें फिर से सही order में combine करती है। Transport Layer reliability, flow control,
+          error recovery और port addressing जैसे functions perform करती है।
+        </p>
+
+        <p>
+          Transport Layer यह ensure करती है कि data सही application तक पहुँचे। इसके लिए port numbers use किए जाते हैं।
+          उदाहरण के लिए web traffic usually port 80 या 443 पर चलता है। Transport Layer के दो important protocols हैं:
+          <strong>TCP</strong> और <strong>UDP</strong>। TCP reliable, connection-oriented protocol है, जबकि UDP faster
+          but connectionless protocol है।
+        </p>
+
+        <h4>Functions of Transport Layer</h4>
+        <ul>
+          <li>Data को segments में divide करना।</li>
+          <li>End-to-end delivery provide करना।</li>
+          <li>Flow control और error recovery करना।</li>
+          <li>Lost segments को retransmit करवाना, अगर TCP use हो रहा है।</li>
+          <li>Port numbers के through correct application तक data पहुँचाना।</li>
+        </ul>
+
+        <h4>Protocols</h4>
+        <table>
+          <tr>
+            <th>Protocol</th>
+            <th>Explanation</th>
+          </tr>
+          <tr>
+            <td><strong>TCP</strong></td>
+            <td>Reliable, connection-oriented protocol; data delivery confirm करता है।</td>
+          </tr>
+          <tr>
+            <td><strong>UDP</strong></td>
+            <td>Fast, connectionless protocol; video streaming और gaming में useful।</td>
+          </tr>
+        </table>
+
+        <h4>PDU and Examples</h4>
+        <table>
+          <tr>
+            <th>Item</th>
+            <th>Examples</th>
+          </tr>
+          <tr>
+            <td><strong>PDU</strong></td>
+            <td>Segment</td>
+          </tr>
+          <tr>
+            <td><strong>Addressing</strong></td>
+            <td>Port Number</td>
+          </tr>
+          <tr>
+            <td><strong>Example Ports</strong></td>
+            <td>HTTP 80, HTTPS 443, DNS 53</td>
+          </tr>
+        </table>
+
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          जब आप file download करते हैं, तो TCP ensure करता है कि file के सारे parts सही order में और बिना missing data
+          के receive हों।
+        </div>
+  
+        <h3>5. Session Layer</h3>
+        <p>
+          <strong>Session Layer</strong> OSI Model की fifth layer है। इसका main काम दो devices या applications के बीच
+          communication session को establish, maintain और terminate करना है। Session का मतलब communication relationship
+          या connection state से है।
+          यह layer ensure करती है कि दो systems के बीच conversation properly start हो, बीच में manage हो और काम पूरा
+          होने के बाद close हो जाए।
+        </p>
+
+        <p>
+          Session Layer dialog control भी provide करती है। इसका मतलब यह decide करना कि communication एक समय पर one-way
+          होगा या both-way।
+          कुछ systems में यह checkpoints भी maintain कर सकती है, ताकि communication interrupt होने पर पूरा data फिर से
+          start करने की जरूरत न पड़े।
+          हालांकि practical TCP/IP model में Session Layer का काम mostly Application Layer protocols में include हो जाता
+          है।
+        </p>
+
+        <h4>Functions of Session Layer</h4>
+        <ul>
+          <li>Session establish करना।</li>
+          <li>Session maintain करना।</li>
+          <li>Session terminate करना।</li>
+          <li>Dialog control manage करना।</li>
+          <li>Synchronization points या checkpoints provide करना।</li>
+        </ul>
+
+        <h4>Examples</h4>
+        <table>
+          <tr>
+            <th>Item</th>
+            <th>Examples</th>
+          </tr>
+          <tr>
+            <td><strong>Functions</strong></td>
+            <td>Login session, remote session, communication session management</td>
+          </tr>
+          <tr>
+            <td><strong>Example Technologies</strong></td>
+            <td>RPC, NetBIOS Session Service</td>
+          </tr>
+        </table>
+
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          जब आप किसी website में login करते हैं और कुछ समय तक logged-in रहते हैं,
+          तो session management की concept काम कर रही होती है।
+        </div>
+     
+        <h3>6. Presentation Layer</h3>
+
+        <p>
+          
+          <strong>Presentation Layer</strong> OSI Model की sixth layer है। इसे data translator layer भी कहा जाता है।
+          इसका main काम data को ऐसे format में convert करना है जिसे receiver system समझ सके। Different systems अलग data
+          formats use कर सकते हैं,
+          इसलिए Presentation Layer data translation, encryption, decryption, compression और decompression जैसे functions
+          perform करती है।
+        </p>
+
+        <p>
+          Presentation Layer ensure करती है कि sender side का data receiver side पर readable और usable form में मिले।
+          अगर data encrypted है, तो receiver side पर decrypt किया जाता है। अगर data compressed है, तो उसे decompress
+          किया जाता है।
+          Images, videos, text encoding और secure communication में Presentation Layer की concept important होती है।
+        </p>
+
+        <h4>Functions of Presentation Layer</h4>
+        <ul>
+          <li>Data translation करना, जैसे different character encoding formats handle करना।</li>
+          <li>Data encryption और decryption करना।</li>
+          <li>Data compression और decompression करना।</li>
+          <li>Data को application-readable format में present करना।</li>
+        </ul>
+
+        <h4>Examples</h4>
+        <table>
+          <tr>
+            <th>Function</th>
+            <th>Examples</th>
+          </tr>
+          <tr>
+            <td><strong>Translation</strong></td>
+            <td>ASCII, Unicode</td>
+          </tr>
+          <tr>
+            <td><strong>Encryption</strong></td>
+            <td>SSL/TLS concepts</td>
+          </tr>
+          <tr>
+            <td><strong>Compression</strong></td>
+            <td>JPEG, MP3, ZIP</td>
+          </tr>
+        </table>
+
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          जब आप HTTPS website open करते हैं, तो data encrypted form में travel करता है।
+          Encryption और decryption Presentation Layer concept से related हैं।
+        </div>
+     
+        <h3>7. Application Layer</h3>
+
+       
+
+        <p>
+        
+          <strong>Application Layer</strong> OSI Model की topmost यानी seventh layer है। यह user applications को network
+          services provide करती है।
+          इसका मतलब यह नहीं है कि Chrome, WhatsApp या MS Outlook खुद Application Layer हैं; बल्कि वे applications
+          Application Layer protocols
+          का use करती हैं। Application Layer user के सबसे पास होती है और web browsing, email, file transfer, remote
+          login और domain name resolution जैसी services provide करती है।
+        </p>
+
+        <p>
+          जब user browser में URL type करता है, तो Application Layer protocol HTTP या HTTPS request create करता है।
+          जब user email send करता है, तो SMTP जैसे protocols use होते हैं। जब website name को IP address में convert
+          करना होता है,
+          तो DNS use होता है। इसलिए Application Layer network services को directly user-level applications तक पहुँचाती
+          है।
+        </p>
+
+        <h4>Functions of Application Layer</h4>
+        <ul>
+          <li>User applications को network services provide करना।</li>
+          <li>Web browsing, email, file transfer और remote access support करना।</li>
+          <li>Application protocols के through data exchange करना।</li>
+          <li>Resource sharing और network services access करवाना।</li>
+        </ul>
+
+        <h4>Common Protocols</h4>
+        <table>
+          <tr>
+            <th>Protocol</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><strong>HTTP/HTTPS</strong></td>
+            <td>Web browsing के लिए।</td>
+          </tr>
+          <tr>
+            <td><strong>FTP</strong></td>
+            <td>File transfer के लिए।</td>
+          </tr>
+          <tr>
+            <td><strong>SMTP</strong></td>
+            <td>Email send करने के लिए।</td>
+          </tr>
+          <tr>
+            <td><strong>DNS</strong></td>
+            <td>Domain name को IP address में convert करने के लिए।</td>
+          </tr>
+          <tr>
+            <td><strong>Telnet/SSH</strong></td>
+            <td>Remote login/access के लिए।</td>
+          </tr>
+        </table>
+
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          जब आप browser में <code>google.com</code> open करते हैं, तो HTTP/HTTPS और DNS जैसे Application Layer protocols
+          काम करते हैं।
+        </div>
+      </section>
+      <section id="tcpip">
+        <h2>TCP/IP Model</h2>
+
+        <h3>TCP/IP Model</h3>
+
+        
+        <p>
+          <strong>TCP/IP Model</strong> का full form <strong>Transmission Control Protocol / Internet Protocol
+            Model</strong> है।
+            यह practical networking model है जिस पर modern Internet based है। TCP/IP model communication को 4 layers में
+            divide करता है:
+            <strong>Application Layer</strong>, <strong>Transport Layer</strong>, <strong>Internet Layer</strong> और
+            <strong>Network Access Layer</strong>। यह model OSI की तुलना में ज्यादा practical है क्योंकि actual internet
+            protocols TCP/IP suite पर काम करते हैं।
+          </p>
+          
+          <p>
+            TCP/IP Model originally ARPANET और Department of Defense network से related development में use हुआ।
+            आज web browsing, email, file transfer, video streaming, online gaming और cloud computing जैसे लगभग सभी
+            internet services TCP/IP protocols पर depend करती हैं।
+            TCP reliable data delivery provide करता है और IP data packets को correct destination network तक पहुँचाने में
+            help करता है।
+          </p>
+          <div class="image-icon">
+            <img src="" alt="TCP IP Model">
+            Image Placeholder: TCP/IP 4 layers diagram यहाँ लगाएँ
+          </div>
+          
+        <h4>Purpose of TCP/IP Model</h4>
+        <ul>
+          <li>Real-world internet communication को support करना।</li>
+          <li>Different networks को interconnect करना।</li>
+          <li>Data को packets में divide करके route करना।</li>
+          <li>Reliable और unreliable दोनों types की communication support करना।</li>
+          <li>Application services को practical protocol suite provide करना।</li>
+        </ul>
+
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          जब आप YouTube video देखते हैं, तो application protocols, TCP/UDP, IP और network access technologies मिलकर
+          TCP/IP model के according data deliver करते हैं।
+        </div>
+     
+        <h3>TCP/IP Model Layers</h3>
+
+        <table>
+          <tr>
+            <th>TCP/IP Layer</th>
+            <th>Related OSI Layers</th>
+            <th>Main Function</th>
+            <th>Examples</th>
+          </tr>
+          <tr>
+            <td><strong>Application Layer</strong></td>
+            <td>Application + Presentation + Session</td>
+            <td>User-level network services provide करना।</td>
+            <td>HTTP, FTP, DNS, SMTP</td>
+          </tr>
+          <tr>
+            <td><strong>Transport Layer</strong></td>
+            <td>Transport</td>
+            <td>End-to-end communication और port addressing।</td>
+            <td>TCP, UDP</td>
+          </tr>
+          <tr>
+            <td><strong>Internet Layer</strong></td>
+            <td>Network</td>
+            <td>IP addressing और routing।</td>
+            <td>IP, ICMP, ARP</td>
+          </tr>
+          <tr>
+            <td><strong>Network Access Layer</strong></td>
+            <td>Data Link + Physical</td>
+            <td>Local network transmission और physical communication।</td>
+            <td>Ethernet, Wi-Fi</td>
+          </tr>
+        </table>
+        
+        <div class="image-icon">
+          <img src="" alt="TCP IP Layers">
+        </div>
+
+        <h3>1. Network Access Layer</h3>
+
+       
+        <p>
+         
+          <strong>Network Access Layer</strong> TCP/IP Model की lowest layer है। यह OSI Model की Physical Layer और Data
+          Link Layer के functions को combine करती है।
+          इसका काम data को local network medium पर transmit करना है। यह layer physical transmission, MAC addressing,
+          framing और local network access handle करती है।
+          Ethernet, Wi-Fi और other LAN technologies इसी layer से related हैं।
+        </p>
+
+        <h4>Functions</h4>
+        <ul>
+          <li>Data को frames में organize करना।</li>
+          <li>MAC address के through local delivery करना।</li>
+          <li>Physical medium पर bits transmit करना।</li>
+          <li>Ethernet और Wi-Fi जैसे network technologies support करना।</li>
+        </ul>
+
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          आपके laptop का Wi-Fi adapter router से connect होकर data frames transmit और receive करता है।
+          यह Network Access Layer का काम है।
+        </div>
+     
+        <h3>2. Internet Layer</h3>
+        <p>
+          <strong>Definition:</strong><br>
+          <strong>Internet Layer</strong> TCP/IP Model की वह layer है जो packets को source से destination network तक
+          पहुँचाने का काम करती है।
+          इसका main protocol <strong>IP</strong> है। यह layer logical addressing, packet forwarding और routing perform
+          करती है।
+          Internet Layer packets को अलग-अलग networks के through destination तक भेजती है।
+        </p>
+
+        <h4>Functions</h4>
+        <ul>
+          <li>IP addressing provide करना।</li>
+          <li>Packets को route करना।</li>
+          <li>Different networks को interconnect करना।</li>
+          <li>Packet forwarding और fragmentation handle करना।</li>
+        </ul>
+
+        <h4>Protocols</h4>
+        <table>
+          <tr>
+            <th>Protocol</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><strong>IP</strong></td>
+            <td>Packets को address और route करना।</td>
+          </tr>
+          <tr>
+            <td><strong>ICMP</strong></td>
+            <td>Error reporting और diagnostics, जैसे ping।</td>
+          </tr>
+          <tr>
+            <td><strong>ARP</strong></td>
+            <td>IP address से MAC address find करना।</td>
+          </tr>
+        </table>
+
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          जब आप किसी website को open करते हैं, तो IP packets कई routers से होकर destination server तक पहुँचते हैं।
+        </div>
+      
+        <h3>3. Transport Layer in TCP/IP</h3>
+
+       
+
+        
+
+        <p>
+          
+          <strong>Transport Layer</strong> TCP/IP Model में application processes के बीच end-to-end communication
+          provide करती है।
+          यह source और destination devices पर running applications को port numbers के through identify करती है।
+          इस layer के main protocols <strong>TCP</strong> और <strong>UDP</strong> हैं।
+        </p>
+
+        <h4>TCP and UDP</h4>
+        <table>
+          <tr>
+            <th>Protocol</th>
+            <th>Explanation</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><strong>TCP</strong></td>
+            <td>Reliable, connection-oriented protocol। Data delivery confirm करता है।</td>
+            <td>Web browsing, file download, email</td>
+          </tr>
+          <tr>
+            <td><strong>UDP</strong></td>
+            <td>Fast, connectionless protocol। Delivery guarantee नहीं देता लेकिन speed ज्यादा होती है।</td>
+            <td>Video streaming, online gaming, DNS</td>
+          </tr>
+        </table>
+
+        <h4>Functions</h4>
+        <ul>
+          <li>Application-to-application communication provide करना।</li>
+          <li>Port numbers use करना।</li>
+          <li>Segmentation और reassembly करना।</li>
+          <li>Reliability और flow control provide करना, यदि TCP use हो।</li>
+        </ul>
+
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          File download में TCP use होता है क्योंकि missing data फिर से भेजा जा सकता है।
+          Live video call में UDP use हो सकता है क्योंकि speed ज्यादा important होती है।
+        </div>
+     
+        <h3>4. Application Layer in TCP/IP</h3>
+
+        <p>
+          <strong>Application Layer</strong> TCP/IP Model की top layer है। यह user applications को network services
+          provide करती है।
+          OSI Model की Application, Presentation और Session layers के functions TCP/IP में mostly इसी layer में combine
+          हो जाते हैं।
+          Web browsing, email, file transfer, domain name resolution और remote login जैसी services इसी layer से related
+          हैं।
+        </p>
+
+        <h4>Common Application Layer Protocols</h4>
+        <table>
+          <tr>
+            <th>Protocol</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><strong>HTTP/HTTPS</strong></td>
+            <td>Web pages access करने के लिए।</td>
+          </tr>
+          <tr>
+            <td><strong>FTP</strong></td>
+            <td>Files transfer करने के लिए।</td>
+          </tr>
+          <tr>
+            <td><strong>DNS</strong></td>
+            <td>Domain name को IP address में convert करने के लिए।</td>
+          </tr>
+          <tr>
+            <td><strong>SMTP</strong></td>
+            <td>Email send करने के लिए।</td>
+          </tr>
+          <tr>
+            <td><strong>SSH</strong></td>
+            <td>Secure remote login के लिए।</td>
+          </tr>
+        </table>
+
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          Browser में website open करने पर HTTP/HTTPS protocol use होता है,
+          जबकि domain name को IP address में बदलने के लिए DNS use होता है।
+        </div>
+      </section>
+
+      <section id="mapping">
+        <h2>OSI Model and TCP/IP Model Mapping</h2>
+
+        <div class="image-icon">
+          <img src="" alt="OSI TCP IP Mapping">
+          Image Placeholder: OSI 7 layers mapped with TCP/IP 4 layers diagram यहाँ लगाएँ
+        </div>
+
+        <table>
+          <tr>
+            <th>OSI Layers</th>
+            <th>TCP/IP Layer</th>
+            <th>Explanation</th>
+          </tr>
+          <tr>
+            <td>Application, Presentation, Session</td>
+            <td><strong>Application Layer</strong></td>
+            <td>TCP/IP में user services, formatting और session-related work mostly Application Layer में combine हो
+              जाते हैं।</td>
+          </tr>
+          <tr>
+            <td>Transport</td>
+            <td><strong>Transport Layer</strong></td>
+            <td>दोनों models में transport layer end-to-end communication और port addressing handle करती है।</td>
+          </tr>
+          <tr>
+            <td>Network</td>
+            <td><strong>Internet Layer</strong></td>
+            <td>TCP/IP Internet Layer routing और IP addressing का काम करती है।</td>
+          </tr>
+          <tr>
+            <td>Data Link, Physical</td>
+            <td><strong>Network Access Layer</strong></td>
+            <td>TCP/IP में local network delivery और physical transmission same lower layer group में आते हैं।</td>
+          </tr>
+        </table>
+      </section>
+
+      <section id="comparison">
+        <h2>Comparison between OSI and TCP/IP Model</h2>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>OSI Model</th>
+            <th>TCP/IP Model</th>
+          </tr>
+          <tr>
+            <td><strong>Full Form</strong></td>
+            <td>Open Systems Interconnection</td>
+            <td>Transmission Control Protocol / Internet Protocol</td>
+          </tr>
+          <tr>
+            <td><strong>Developed By</strong></td>
+            <td>ISO</td>
+            <td>DoD / ARPANET development</td>
+          </tr>
+          <tr>
+            <td><strong>Number of Layers</strong></td>
+            <td>7 layers</td>
+            <td>4 layers</td>
+          </tr>
+          <tr>
+            <td><strong>Nature</strong></td>
+            <td>Reference model</td>
+            <td>Practical protocol model</td>
+          </tr>
+          <tr>
+            <td><strong>Usage</strong></td>
+            <td>Learning, designing और troubleshooting में useful</td>
+            <td>Actual Internet communication में use होता है</td>
+          </tr>
+          <tr>
+            <td><strong>Protocol Dependency</strong></td>
+            <td>Protocol independent model</td>
+            <td>TCP/IP protocol suite पर based</td>
+          </tr>
+          <tr>
+            <td><strong>Session/Presentation</strong></td>
+            <td>Separate Session और Presentation layers होती हैं</td>
+            <td>इनका काम Application Layer में include होता है</td>
+          </tr>
+          <tr>
+            <td><strong>Lower Layers</strong></td>
+            <td>Physical और Data Link अलग layers हैं</td>
+            <td>Network Access Layer में combine होते हैं</td>
+          </tr>
+          <tr>
+            <td><strong>Reliability</strong></td>
+            <td>Conceptual reliability functions Transport Layer में explain होते हैं</td>
+            <td>TCP reliable communication provide करता है; UDP fast connectionless communication देता है</td>
+          </tr>
+          <tr>
+            <td><strong>Real World</strong></td>
+            <td>Directly internet का base नहीं है</td>
+            <td>Modern internet का actual base है</td>
+          </tr>
+        </table>
+      </section>
+
+      <section id="example">
+        <h2>Complete Communication Example</h2>
+
+        <h3>Website Open करने पर Layers कैसे काम करती हैं?</h3>
+
+        <p>
+          जब user browser में किसी website का URL type करता है, तो कई layers मिलकर communication complete करती हैं।
+          यह process user को simple दिखती है, लेकिन background में protocols और layers step-by-step काम करते हैं।
+        </p>
+
+        <div class="flow">
+          User types URL in Browser<br>
+          ↓<br>
+          Application Layer: HTTP/HTTPS request create होती है<br>
+          ↓<br>
+          DNS domain name को IP address में convert करता है<br>
+          ↓<br>
+          Transport Layer: TCP connection establish करता है और data segments बनाता है<br>
+          ↓<br>
+          Internet/Network Layer: IP address add होता है और routing होती है<br>
+          ↓<br>
+          Data Link/Network Access Layer: MAC address और frames बनते हैं<br>
+          ↓<br>
+          Physical Layer: Bits signals बनकर cable/Wi-Fi से travel करते हैं<br>
+          ↓<br>
+          Router → Internet → Destination Server<br>
+          ↓<br>
+          Server response वापस same process के reverse order में browser तक आता है
+        </div>
+
+        <h4>Step-by-Step Explanation</h4>
+        <ol>
+          <li>User browser में URL enter करता है।</li>
+          <li>DNS domain name को IP address में convert करता है।</li>
+          <li>HTTP/HTTPS request create होती है।</li>
+          <li>Transport Layer request को segments में divide करती है।</li>
+          <li>Network/Internet Layer IP packet बनाकर destination address add करती है।</li>
+          <li>Data Link Layer frame बनाकर MAC address add करती है।</li>
+          <li>Physical Layer bits को signals में convert करके transmit करती है।</li>
+          <li>Server request receive करके response generate करता है।</li>
+          <li>Response वापस user browser तक पहुँचता है और webpage display हो जाता है।</li>
+        </ol>
+
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          आपको सिर्फ website open होती दिखती है, लेकिन वास्तव में HTTP, DNS, TCP, IP, Ethernet/Wi-Fi और Physical signals
+          मिलकर पूरी communication complete करते हैं।
+        </div>
+      </section>
+
+    </main>
+  </div>
+</body>
+
+</html>

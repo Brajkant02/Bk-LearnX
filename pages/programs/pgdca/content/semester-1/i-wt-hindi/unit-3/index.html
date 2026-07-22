@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cascading Style Sheets Premium Notes</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+      line-height: 1.75
+    }
+
+    .page {
+      display: grid;
+      grid-template-columns: 285px 1fr;
+      gap: 20px;
+      max-width: 1500px;
+      margin: auto;
+      padding: 10px
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 10px;
+      height: calc(100vh - 20px);
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
+      align-self: start
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #111827
+    }
+
+    .sidebar a {
+      display: block;
+      text-decoration: none;
+      color: #374151;
+      padding: 8px 10px;
+      border-radius: 10px;
+      margin-bottom: 4px;
+      font-size: 14.7px
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+      color: #1d4ed8
+    }
+
+    .content {
+      background: #fff;
+      border-radius: 18px;
+      padding: 10px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08)
+    }
+
+    .hero {
+      padding: 28px 18px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #eef2ff, #f8fafc);
+      margin-bottom: 18px
+    }
+
+    .hero h1 {
+      font-size: 34px;
+      color: #111827;
+      margin-bottom: 10px
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #374151
+    }
+
+    section {
+      padding: 22px 10px;
+      border-bottom: 1px solid #e5e7eb
+    }
+
+    section:last-child {
+      border-bottom: none
+    }
+
+    h2 {
+      font-size: 27px;
+      color: #111827;
+      margin-bottom: 12px;
+      border-left: 5px solid #2563eb;
+      padding-left: 12px
+    }
+
+    h3 {
+      font-size: 22px;
+      color: #1f2937;
+      margin: 16px 0 8px
+    }
+
+    h4 {
+      font-size: 18px;
+      color: #111827;
+      margin: 14px 0 6px
+    }
+
+    p {
+      margin: 10px 0;
+      font-size: 17px
+    }
+
+    ul,
+    ol {
+      margin-left: 24px;
+      margin-top: 8px
+    }
+
+    li {
+      margin: 7px 0;
+      font-size: 16.5px
+    }
+
+    strong {
+      color: #111827
+    }
+
+    .image-icon {
+      min-height: 180px;
+      border: 2px dashed #94a3b8;
+      border-radius: 16px;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      margin: 18px 0;
+      color: #475569;
+      font-weight: 600
+    }
+
+    .image-icon img {
+      max-width: 100%;
+      height: auto
+    }
+
+    .note-box {
+      background: #f0fdf4;
+      border-left: 5px solid #22c55e;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .info-box {
+      background: #ecfeff;
+      border-left: 5px solid #06b6d4;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .remember-box {
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      font-size: 15.5px
+    }
+
+    th,
+    td {
+      border: 1px solid #d1d5db;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top
+    }
+
+    th {
+      background: #eef2ff;
+      color: #111827
+    }
+
+    code {
+      background: #111827;
+      color: #f9fafb;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-family: Consolas, monospace;
+      font-size: 15px
+    }
+
+    pre {
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 14px;
+      padding: 16px;
+      margin: 16px 0;
+      overflow-x: auto;
+      font-family: Consolas, monospace;
+      line-height: 1.6
+    }
+
+    .compiler {
+      width: 100%;
+      height: 2rem;
+      background-color: green;
+      text-align: center;
+    }
+
+    .compiler a {
+      text-decoration: none;
+      color: white;
+    }
+
+    @media(max-width:900px) {
+      .page {
+        grid-template-columns: 1fr
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto
+      }
+
+      .hero h1 {
+        font-size: 27px
+      }
+
+      h2 {
+        font-size: 24px
+      }
+    }
+  </style>
+
+<link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
+<script src="../../../../../../../assets/shared/portal.js" defer></script>
+<script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
+</head>
+
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <h2>Topics</h2>
+      <a href="#introduction">Introduction</a>
+      <a href="#benefits">Benefits of CSS</a>
+      <a href="#syntax">CSS Syntax</a>
+      <a href="#implementation">CSS Implementation</a>
+      <a href="#selectors">CSS Selectors</a>
+      <a href="#id-selector">ID Selectors</a>
+      <a href="#class-selector">Class Selectors</a>
+      <a href="#grouping-selector">Grouping Selectors</a>
+      <a href="#universal-selector">Universal Selectors</a>
+      <a href="#pseudo-classes">CSS Pseudo-classes</a>
+      <a href="#properties">CSS Properties</a>
+      <a href="#background">Background Properties</a>
+      <a href="#border-size">Border, Height and Width</a>
+      <a href="#text-font">Text and Font Properties</a>
+      <a href="#box-model">Box Model in CSS</a>
+    </aside>
+
+    <main class="content">
+      <div class="hero">
+        <h1>Cascading Style Sheets</h1>
+      </div>
+
+      <section id="introduction">
+        <h2>Introduction</h2>
+
+        <p><strong>CSS</strong> का full form <strong>Cascading Style Sheets</strong> है। CSS का use HTML web pages को design और style करने के लिए किया जाता है। HTML webpage का structure बनाता है, जबकि CSS उस structure को attractive look देता है। CSS से हम color, font, size, spacing, border, layout, background, alignment और responsive design control कर सकते हैं।</p>
+
+        <p>Web development में HTML और CSS दोनों बहुत important हैं। HTML बिना CSS के simple और plain दिखता है, लेकिन CSS apply करने के बाद वही page professional, colorful और user-friendly बन जाता है। CSS website के presentation layer को control करता है। इसका मतलब है कि webpage browser में कैसा दिखाई देगा, यह CSS decide करता है।</p>
+
+        <p>CSS को “Cascading” इसलिए कहा जाता है क्योंकि इसमें styles priority के according apply होते हैं। अगर एक ही element पर multiple styles apply किए गए हैं, तो browser cascade rules, specificity और order के according final style decide करता है।</p>
+
+        <h4>HTML Without CSS</h4>
+        <pre>&lt;h1&gt;Welcome to My Website&lt;/h1&gt;
+&lt;p&gt;This is a simple paragraph.&lt;/p&gt;</pre>
+
+        <h4>HTML With CSS</h4>
+        <pre>&lt;h1 style="color: blue; text-align: center;"&gt;Welcome to My Website&lt;/h1&gt;
+&lt;p style="font-size: 18px;"&gt;This is a styled paragraph.&lt;/p&gt;</pre>
+
+        <div class="info-box"><b>Output Feel:</b><br>Heading blue color में center align होगी और paragraph बड़ा दिखाई देगा।</div>
+
+        <h4>CSS का Main Work</h4>
+        <ul>
+          <li>Text और font styling करना।</li>
+          <li>Colors और backgrounds apply करना।</li>
+          <li>Margins, padding और borders control करना।</li>
+          <li>Page layout बनाना।</li>
+          <li>Website को responsive बनाना।</li>
+          <li>HTML content को attractive और readable बनाना।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>HTML घर का structure है और CSS उसकी paint, decoration, furniture arrangement और lighting की तरह है। बिना CSS के page simple दिखेगा, लेकिन CSS से वही page premium और professional दिख सकता है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>HTML structure देता है, CSS design देता है और JavaScript behavior/interactivity देता है।</div>
+      </section>
+
+      <section id="benefits">
+        <h2>Benefits of CSS</h2>
+
+        <p>CSS web development में बहुत important role play करता है क्योंकि यह design को HTML structure से separate करता है। इससे webpage maintain करना आसान हो जाता है। अगर website के multiple pages हैं और सभी pages का design same रखना है, तो external CSS file use करके पूरे website का design एक जगह से control किया जा सकता है।</p>
+
+        <p>CSS code reusability provide करता है। एक ही CSS class को कई HTML elements पर apply किया जा सकता है। इससे बार-बार same styling लिखने की जरूरत नहीं पड़ती। CSS page loading, consistency, responsive design और user experience improve करने में help करता है।</p>
+
+        <h4>Main Benefits</h4>
+        <table>
+          <tr>
+            <th>Benefit</th>
+            <th>Explanation</th>
+          </tr>
+          <tr>
+            <td>Separation of Content and Design</td>
+            <td>HTML content संभालता है और CSS design संभालता है। इससे code clean रहता है।</td>
+          </tr>
+          <tr>
+            <td>Time Saving</td>
+            <td>एक CSS file से multiple pages style किए जा सकते हैं।</td>
+          </tr>
+          <tr>
+            <td>Consistency</td>
+            <td>पूरे website में same design maintain किया जा सकता है।</td>
+          </tr>
+          <tr>
+            <td>Easy Maintenance</td>
+            <td>Design change करने के लिए केवल CSS file update करनी होती है।</td>
+          </tr>
+          <tr>
+            <td>Responsive Design</td>
+            <td>CSS से website mobile, tablet और desktop पर adjust हो सकती है।</td>
+          </tr>
+          <tr>
+            <td>Better User Experience</td>
+            <td>Colors, spacing और layout page को readable और attractive बनाते हैं।</td>
+          </tr>
+        </table>
+
+        <h4>Example of Reusability</h4>
+        <pre>.highlight {
+  color: white;
+  background-color: blue;
+  padding: 10px;
+}</pre>
+
+        <pre>&lt;p class="highlight"&gt;First paragraph&lt;/p&gt;
+&lt;h2 class="highlight"&gt;Important heading&lt;/h2&gt;</pre>
+
+        <p>ऊपर एक ही class अलग-अलग elements पर apply की गई है। इससे CSS reusable बनती है।</p>
+
+        <h4>Why CSS is Important for Large Websites</h4>
+        <ul>
+          <li>Large website में hundreds of pages हो सकते हैं।</li>
+          <li>External CSS से सभी pages का design एक जैसा रखा जा सकता है।</li>
+          <li>Design update करने पर सभी pages automatically updated दिखते हैं।</li>
+          <li>Developer और designer का काम आसान हो जाता है।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>अगर BK LearnX website में 100 chapter pages हैं और सभी headings का color change करना है, तो external CSS file में एक line change करने से सारे pages update हो सकते हैं।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>CSS website को attractive, consistent, maintainable और responsive बनाता है।</div>
+      </section>
+
+      <section id="syntax">
+        <h2>CSS Syntax</h2>
+
+        <p>CSS syntax selector और declaration block से मिलकर बनता है। Selector बताता है कि किस HTML element पर style apply करनी है। Declaration block curly braces <code>{ }</code> के अंदर लिखा जाता है। इसमें property और value होती है। Property बताती है कि कौन-सी style change करनी है और value बताती है कि वह style कैसी होनी चाहिए।</p>
+
+        <h4>Basic Syntax</h4>
+        <pre>selector {
+  property: value;
+}</pre>
+
+        <h4>Example</h4>
+        <pre>p {
+  color: blue;
+  font-size: 18px;
+}</pre>
+
+        <p>ऊपर code में <code>p</code> selector है, <code>color</code> और <code>font-size</code> properties हैं, और <code>blue</code> तथा <code>18px</code> values हैं। यह CSS सभी paragraph elements पर apply होगी।</p>
+
+        <h4>CSS Syntax Parts</h4>
+        <table>
+          <tr>
+            <th>Part</th>
+            <th>Meaning</th>
+          </tr>
+          <tr>
+            <td>Selector</td>
+            <td>HTML element select करता है।</td>
+          </tr>
+          <tr>
+            <td>Property</td>
+            <td>Style का नाम बताती है।</td>
+          </tr>
+          <tr>
+            <td>Value</td>
+            <td>Property की setting बताती है।</td>
+          </tr>
+          <tr>
+            <td>Declaration</td>
+            <td>Property और value का pair।</td>
+          </tr>
+          <tr>
+            <td>Declaration Block</td>
+            <td>Curly braces में multiple declarations।</td>
+          </tr>
+        </table>
+
+        <h4>Multiple Declarations</h4>
+        <pre>h1 {
+  color: red;
+  text-align: center;
+  font-family: Arial;
+  font-size: 32px;
+}</pre>
+
+        <h4>CSS Comments</h4>
+        <p>CSS comments code explain करने के लिए use होते हैं। Browser comments को ignore करता है।</p>
+
+        <pre>/* This is a CSS comment */
+
+h1 {
+  color: green;
+}</pre>
+
+        <h4>Common Syntax Mistakes</h4>
+        <ul>
+          <li>Property और value के बीच colon <code>:</code> लगाना भूल जाना।</li>
+          <li>Declaration के end में semicolon <code>;</code> न लगाना।</li>
+          <li>Curly braces close करना भूल जाना।</li>
+          <li>Property name गलत लिखना।</li>
+          <li>Selector name गलत लिखना।</li>
+        </ul>
+
+        <div class="remember-box"><b>Remember:</b><br>CSS syntax में selector element select करता है और declaration block उसकी styling define करता है।</div>
+      </section>
+
+      <section id="implementation">
+        <h2>CSS Implementation</h2>
+
+        <p>CSS को HTML document में तीन ways से apply किया जा सकता है: inline CSS, internal CSS और external CSS. हर method का अपना use case होता है। Small testing के लिए inline CSS use हो सकती है, single page styling के लिए internal CSS और complete website design के लिए external CSS सबसे अच्छा method माना जाता है।</p>
+
+        <h4>Inline CSS</h4>
+        <p>Inline CSS directly HTML element के <code>style</code> attribute में लिखी जाती है। यह सिर्फ उसी element पर apply होती है।</p>
+
+        <pre>&lt;p style="color: blue; font-size: 18px;"&gt;
+  This is inline styled paragraph.
+&lt;/p&gt;</pre>
+
+        <h4>Internal CSS</h4>
+        <p>Internal CSS HTML document के <code>&lt;head&gt;</code> section में <code>&lt;style&gt;</code> tag के अंदर लिखी जाती है। यह same page के elements पर apply होती है।</p>
+
+        <pre>&lt;head&gt;
+  &lt;style&gt;
+    p {
+      color: green;
+      font-size: 18px;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;</pre>
+
+        <h4>External CSS</h4>
+        <p>External CSS अलग <code>.css</code> file में लिखी जाती है और HTML page में <code>&lt;link&gt;</code> tag से connect की जाती है। यह large websites के लिए best method है।</p>
+
+        <pre>/* style.css */
+h1 {
+  color: purple;
+  text-align: center;
+}</pre>
+
+        <pre>&lt;head&gt;
+  &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;</pre>
+
+        <h4>Comparison Table</h4>
+        <table>
+          <tr>
+            <th>Type</th>
+            <th>Location</th>
+            <th>Best Use</th>
+            <th>Limitation</th>
+          </tr>
+          <tr>
+            <td>Inline CSS</td>
+            <td>Element के style attribute में।</td>
+            <td>Quick testing या one element styling।</td>
+            <td>Code repeated और messy हो सकता है।</td>
+          </tr>
+          <tr>
+            <td>Internal CSS</td>
+            <td>HTML head में style tag के अंदर।</td>
+            <td>Single page design।</td>
+            <td>Multiple pages में reuse difficult।</td>
+          </tr>
+          <tr>
+            <td>External CSS</td>
+            <td>Separate .css file में।</td>
+            <td>Complete website design।</td>
+            <td>CSS file properly link करनी पड़ती है।</td>
+          </tr>
+        </table>
+
+        <h4>Priority Order</h4>
+        <p>अगर same element पर multiple CSS methods apply हों, तो generally inline CSS की priority internal/external CSS से ज्यादा होती है। Specificity और order भी final result decide करते हैं।</p>
+
+        <pre>Inline CSS  >  Internal CSS / External CSS  >  Browser Default</pre>
+
+        <div class="note-box"><b>Real Life Example:</b><br>BK LearnX जैसे multi-page project में external CSS best रहेगी क्योंकि एक ही CSS file सभी chapter pages पर apply की जा सकती है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Professional websites में external CSS सबसे ज्यादा use होती है।</div>
+      </section>
+
+      <section id="selectors">
+        <h2>CSS Selectors</h2>
+
+        <p>CSS selectors का use HTML elements को select करने के लिए किया जाता है। जब किसी element पर style apply करनी होती है, तो सबसे पहले CSS selector से उस element को target किया जाता है। CSS में कई types के selectors होते हैं जैसे element selector, id selector, class selector, grouping selector, universal selector और pseudo-class selector।</p>
+
+        <h4>Element Selector</h4>
+        <p>Element selector HTML tag name के basis पर elements को select करता है।</p>
+
+        <pre>p {
+  color: blue;
+}</pre>
+
+        <p>यह CSS सभी <code>&lt;p&gt;</code> paragraphs पर apply होगी।</p>
+
+        <h4>Selector Types Overview</h4>
+        <table>
+          <tr>
+            <th>Selector Type</th>
+            <th>Symbol / Syntax</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td>Element Selector</td>
+            <td><code>p</code>, <code>h1</code></td>
+            <td>Tag name से select करता है।</td>
+          </tr>
+          <tr>
+            <td>ID Selector</td>
+            <td><code>#idname</code></td>
+            <td>Unique element select करता है।</td>
+          </tr>
+          <tr>
+            <td>Class Selector</td>
+            <td><code>.classname</code></td>
+            <td>Multiple elements को group style करता है।</td>
+          </tr>
+          <tr>
+            <td>Grouping Selector</td>
+            <td><code>h1, p, div</code></td>
+            <td>Multiple selectors पर same style apply करता है।</td>
+          </tr>
+          <tr>
+            <td>Universal Selector</td>
+            <td><code>*</code></td>
+            <td>All elements select करता है।</td>
+          </tr>
+          <tr>
+            <td>Pseudo-class</td>
+            <td><code>a:hover</code></td>
+            <td>Element की special state select करता है।</td>
+          </tr>
+        </table>
+
+        <div class="remember-box"><b>Remember:</b><br>Selector यह decide करता है कि CSS किस HTML element पर apply होगी।</div>
+      </section>
+
+      <section id="id-selector">
+        <h2>ID Selectors</h2>
+
+        <p>ID selector किसी unique HTML element को select करने के लिए use होता है। HTML में <code>id</code> attribute का value एक page में unique होना चाहिए। CSS में ID selector लिखने के लिए hash symbol <code>#</code> का use किया जाता है।</p>
+
+        <h4>HTML Code</h4>
+        <pre>&lt;h1 id="main-heading"&gt;Welcome to CSS&lt;/h1&gt;</pre>
+
+        <h4>CSS Code</h4>
+        <pre>#main-heading {
+  color: blue;
+  text-align: center;
+}</pre>
+
+        <h4>Use of ID Selector</h4>
+        <ul>
+          <li>Unique section को style करने के लिए।</li>
+          <li>JavaScript में element access करने के लिए।</li>
+          <li>Same page linking के लिए।</li>
+          <li>Specific element पर special styling देने के लिए।</li>
+        </ul>
+
+        <h4>ID Selector Example</h4>
+        <pre>&lt;p id="intro"&gt;This is introduction paragraph.&lt;/p&gt;
+
+&lt;style&gt;
+  #intro {
+    color: green;
+    font-size: 20px;
+  }
+&lt;/style&gt;</pre>
+
+        <div class="info-box"><b>Output Feel:</b><br>Introduction paragraph green color और 20px font-size में show होगा।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>ID unique होता है और CSS में ID selector <code>#</code> से start होता है।</div>
+      </section>
+
+      <section id="class-selector">
+        <h2>Class Selectors</h2>
+
+        <p>Class selector multiple HTML elements को same style देने के लिए use होता है। HTML में <code>class</code> attribute दिया जाता है और CSS में class selector dot <code>.</code> से लिखा जाता है। Class selector CSS में सबसे ज्यादा useful और common selectors में से एक है।</p>
+
+        <h4>HTML Code</h4>
+        <pre>&lt;p class="highlight"&gt;Important paragraph&lt;/p&gt;
+&lt;h2 class="highlight"&gt;Important heading&lt;/h2&gt;</pre>
+
+        <h4>CSS Code</h4>
+        <pre>.highlight {
+  background-color: yellow;
+  color: black;
+  padding: 10px;
+}</pre>
+
+        <h4>Multiple Classes</h4>
+        <p>एक element पर multiple classes भी apply की जा सकती हैं।</p>
+
+        <pre>&lt;p class="box warning"&gt;This is warning message&lt;/p&gt;</pre>
+
+        <pre>.box {
+  padding: 15px;
+  border: 1px solid black;
+}
+
+.warning {
+  background-color: orange;
+}</pre>
+
+        <h4>ID vs Class</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>ID</th>
+            <th>Class</th>
+          </tr>
+          <tr>
+            <td>Symbol</td>
+            <td><code>#</code></td>
+            <td><code>.</code></td>
+          </tr>
+          <tr>
+            <td>Uniqueness</td>
+            <td>Page में unique होना चाहिए।</td>
+            <td>Multiple elements पर use हो सकती है।</td>
+          </tr>
+          <tr>
+            <td>Use</td>
+            <td>Specific unique element।</td>
+            <td>Reusable styling।</td>
+          </tr>
+          <tr>
+            <td>Example</td>
+            <td><code>#header</code></td>
+            <td><code>.card</code></td>
+          </tr>
+        </table>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Website में सभी cards को same design देना हो तो <code>.card</code> class बनाकर हर card पर apply किया जा सकता है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Class reusable होती है और CSS में dot <code>.</code> से लिखी जाती है।</div>
+      </section>
+
+      <section id="grouping-selector">
+        <h2>Grouping Selectors</h2>
+
+        <p>Grouping selector का use multiple selectors पर same CSS properties apply करने के लिए किया जाता है। अगर कई elements को same styling देनी हो, तो हर selector के लिए अलग CSS लिखने की जरूरत नहीं होती। Selectors को comma <code>,</code> से separate करके group किया जाता है।</p>
+
+        <h4>Without Grouping</h4>
+        <pre>h1 {
+  color: blue;
+}
+
+h2 {
+  color: blue;
+}
+
+p {
+  color: blue;
+}</pre>
+
+        <h4>With Grouping</h4>
+        <pre>h1, h2, p {
+  color: blue;
+}</pre>
+
+        <p>ऊपर grouping selector से code short और clean हो गया।</p>
+
+        <h4>Grouping Example</h4>
+        <pre>h1, h2, h3 {
+  font-family: Arial;
+  color: darkblue;
+}</pre>
+
+        <h4>Benefits</h4>
+        <ul>
+          <li>CSS code छोटा हो जाता है।</li>
+          <li>Repeated code कम होता है।</li>
+          <li>Maintenance आसान होती है।</li>
+          <li>Same design multiple elements पर apply हो जाता है।</li>
+        </ul>
+
+        <div class="remember-box"><b>Remember:</b><br>Grouping selector में selectors को comma से separate किया जाता है।</div>
+      </section>
+
+      <section id="universal-selector">
+        <h2>Universal Selectors</h2>
+
+        <p>Universal selector CSS में सभी HTML elements को select करने के लिए use होता है। इसे star symbol <code>*</code> से लिखा जाता है। इसका use commonly default margin, padding remove करने या global box-sizing set करने के लिए किया जाता है।</p>
+
+        <h4>Universal Selector Example</h4>
+        <pre>* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}</pre>
+
+        <p>यह CSS सभी elements पर apply होगी। Web development में page reset करने के लिए यह बहुत common है।</p>
+
+        <h4>Use Cases</h4>
+        <ul>
+          <li>Default margin और padding reset करने के लिए।</li>
+          <li>Global font family set करने के लिए।</li>
+          <li>Box sizing globally apply करने के लिए।</li>
+          <li>Basic layout consistency maintain करने के लिए।</li>
+        </ul>
+
+        <h4>Example with Font</h4>
+        <pre>* {
+  font-family: Arial, sans-serif;
+}</pre>
+
+        <h4>Careful Use</h4>
+        <p>Universal selector powerful होता है क्योंकि यह पूरे page के सभी elements पर apply होता है। इसलिए इसे carefully use करना चाहिए। बहुत heavy properties universal selector में देने से performance पर effect पड़ सकता है।</p>
+
+        <div class="remember-box"><b>Remember:</b><br>Universal selector <code>*</code> सभी elements को select करता है।</div>
+      </section>
+
+      <section id="pseudo-classes">
+        <h2>CSS Pseudo-classes</h2>
+
+        <p>CSS pseudo-classes का use किसी element की special state को style करने के लिए किया जाता है। Pseudo-class selector में colon <code>:</code> का use होता है। For example, जब user किसी link पर mouse ले जाता है, तो <code>:hover</code> state apply होती है।</p>
+
+        <h4>Common Pseudo-classes</h4>
+        <table>
+          <tr>
+            <th>Pseudo-class</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>:hover</code></td>
+            <td>Mouse element पर आने पर style apply करता है।</td>
+          </tr>
+          <tr>
+            <td><code>:active</code></td>
+            <td>Element click होते समय style apply करता है।</td>
+          </tr>
+          <tr>
+            <td><code>:visited</code></td>
+            <td>Visited link को style करता है।</td>
+          </tr>
+          <tr>
+            <td><code>:focus</code></td>
+            <td>Input field focus होने पर style apply करता है।</td>
+          </tr>
+          <tr>
+            <td><code>:first-child</code></td>
+            <td>Parent का first child select करता है।</td>
+          </tr>
+          <tr>
+            <td><code>:nth-child()</code></td>
+            <td>Specific child number select करता है।</td>
+          </tr>
+        </table>
+
+        <h4>Hover Example</h4>
+        <pre>a {
+  color: blue;
+}
+
+a:hover {
+  color: red;
+}</pre>
+
+        <h4>Button Hover Example</h4>
+        <pre>button {
+  background-color: blue;
+  color: white;
+}
+
+button:hover {
+  background-color: darkblue;
+}</pre>
+
+        <h4>Focus Example</h4>
+        <pre>input:focus {
+  border: 2px solid blue;
+  outline: none;
+}</pre>
+
+        <h4>nth-child Example</h4>
+        <pre>li:nth-child(2) {
+  color: red;
+}</pre>
+
+        <p>यह CSS list के second item को red color देगी।</p>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Navbar link पर mouse ले जाने पर उसका color change होना <code>:hover</code> pseudo-class का practical use है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Pseudo-classes element की state या position के basis पर styling apply करती हैं।</div>
+      </section>
+
+      <section id="properties">
+        <h2>CSS Properties</h2>
+
+        <p>CSS properties styling के actual rules होते हैं। हर property किसी specific style को control करती है। जैसे <code>color</code> text color set करता है, <code>background-color</code> background color set करता है, <code>font-size</code> text size control करता है और <code>text-align</code> text alignment control करता है।</p>
+
+        <h4>Common CSS Properties</h4>
+        <table>
+          <tr>
+            <th>Property</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>background-color</code></td>
+            <td>Element का background color set करता है।</td>
+          </tr>
+          <tr>
+            <td><code>background-image</code></td>
+            <td>Background image set करता है।</td>
+          </tr>
+          <tr>
+            <td><code>border-style</code></td>
+            <td>Border का style set करता है।</td>
+          </tr>
+          <tr>
+            <td><code>height</code></td>
+            <td>Element की height set करता है।</td>
+          </tr>
+          <tr>
+            <td><code>width</code></td>
+            <td>Element की width set करता है।</td>
+          </tr>
+          <tr>
+            <td><code>color</code></td>
+            <td>Text color set करता है।</td>
+          </tr>
+          <tr>
+            <td><code>text-align</code></td>
+            <td>Text alignment set करता है।</td>
+          </tr>
+          <tr>
+            <td><code>font-family</code></td>
+            <td>Font type set करता है।</td>
+          </tr>
+          <tr>
+            <td><code>font-style</code></td>
+            <td>Italic या normal font style set करता है।</td>
+          </tr>
+          <tr>
+            <td><code>font-size</code></td>
+            <td>Text size set करता है।</td>
+          </tr>
+          <tr>
+            <td><code>font-weight</code></td>
+            <td>Text thickness/boldness set करता है।</td>
+          </tr>
+        </table>
+
+        <h4>Combined Example</h4>
+        <pre>.card {
+  background-color: lightblue;
+  color: darkblue;
+  width: 300px;
+  height: 150px;
+  border-style: solid;
+  text-align: center;
+  font-family: Arial;
+  font-size: 18px;
+  font-weight: bold;
+}</pre>
+
+        <div class="info-box"><b>Output Feel:</b><br>एक 300px wide और 150px high card बनेगा, lightblue background, darkblue bold center text और solid border के साथ।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>CSS properties element की visual appearance control करती हैं।</div>
+      </section>
+
+      <section id="background">
+        <h2>Background Properties</h2>
+
+        <p>Background properties का use element के background को style करने के लिए किया जाता है। सबसे common properties <code>background-color</code> और <code>background-image</code> हैं। Background page या element को attractive बनाने में important role play करता है।</p>
+
+        <h4>background-color</h4>
+        <pre>body {
+  background-color: lightgray;
+}
+
+h1 {
+  background-color: yellow;
+}</pre>
+
+        <h4>background-image</h4>
+        <pre>body {
+  background-image: url("background.jpg");
+}</pre>
+
+        <h4>Background Image Related Properties</h4>
+        <table>
+          <tr>
+            <th>Property</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>background-repeat</code></td>
+            <td>Image repeat होगी या नहीं, यह decide करता है।</td>
+          </tr>
+          <tr>
+            <td><code>background-size</code></td>
+            <td>Background image का size set करता है।</td>
+          </tr>
+          <tr>
+            <td><code>background-position</code></td>
+            <td>Image की position set करता है।</td>
+          </tr>
+          <tr>
+            <td><code>background-attachment</code></td>
+            <td>Background scroll होगा या fixed रहेगा।</td>
+          </tr>
+        </table>
+
+        <h4>Full Background Example</h4>
+        <pre>.hero {
+  background-image: url("banner.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}</pre>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Website के hero section में background image लगाने के लिए <code>background-image</code> और <code>background-size: cover</code> बहुत useful होते हैं।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Background image लगाने के बाद repeat, size और position properties भी ध्यान में रखनी चाहिए।</div>
+      </section>
+
+      <section id="border-size">
+        <h2>Border, Height and Width</h2>
+
+        <p>CSS में border, height और width properties element के size और boundary को control करती हैं। Border से element के चारों तरफ line बनती है। Height element की vertical size और width horizontal size set करती है।</p>
+
+        <h4>border-style</h4>
+        <p><code>border-style</code> property border का style define करती है।</p>
+
+        <pre>.box {
+  border-style: solid;
+}</pre>
+
+        <h4>Common Border Styles</h4>
+        <table>
+          <tr>
+            <th>Style</th>
+            <th>Meaning</th>
+          </tr>
+          <tr>
+            <td><code>solid</code></td>
+            <td>Single solid line।</td>
+          </tr>
+          <tr>
+            <td><code>dotted</code></td>
+            <td>Dotted line।</td>
+          </tr>
+          <tr>
+            <td><code>dashed</code></td>
+            <td>Dashed line।</td>
+          </tr>
+          <tr>
+            <td><code>double</code></td>
+            <td>Double line।</td>
+          </tr>
+          <tr>
+            <td><code>none</code></td>
+            <td>No border।</td>
+          </tr>
+        </table>
+
+        <h4>Border Full Example</h4>
+        <pre>.box {
+  border-style: solid;
+  border-width: 2px;
+  border-color: blue;
+}</pre>
+
+        <h4>height and width</h4>
+        <pre>.box {
+  width: 300px;
+  height: 150px;
+  background-color: lightblue;
+}</pre>
+
+        <h4>Units Used in Width and Height</h4>
+        <table>
+          <tr>
+            <th>Unit</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>px</code></td>
+            <td>Fixed pixel size।</td>
+          </tr>
+          <tr>
+            <td><code>%</code></td>
+            <td>Parent के percentage के according size।</td>
+          </tr>
+          <tr>
+            <td><code>vh</code></td>
+            <td>Viewport height के according।</td>
+          </tr>
+          <tr>
+            <td><code>vw</code></td>
+            <td>Viewport width के according।</td>
+          </tr>
+        </table>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Card design में width, height, border और background color मिलकर एक साफ box layout बनाते हैं।</div>
+      </section>
+
+      <section id="text-font">
+        <h2>Text and Font Properties</h2>
+
+        <p>CSS text और font properties webpage के text को readable, attractive और professional बनाती हैं। Text color, alignment, font family, size, style और weight इन properties से control किए जाते हैं।</p>
+
+        <h4>color</h4>
+        <p><code>color</code> property text color set करती है।</p>
+
+        <pre>p {
+  color: blue;
+}</pre>
+
+        <h4>text-align</h4>
+        <p><code>text-align</code> property text को left, right, center या justify align करती है।</p>
+
+        <pre>h1 {
+  text-align: center;
+}</pre>
+
+        <h4>font-family</h4>
+        <p><code>font-family</code> property text का font type set करती है।</p>
+
+        <pre>body {
+  font-family: Arial, sans-serif;
+}</pre>
+
+        <h4>font-style</h4>
+        <p><code>font-style</code> normal, italic या oblique text style set करता है।</p>
+
+        <pre>p {
+  font-style: italic;
+}</pre>
+
+        <h4>font-size</h4>
+        <p><code>font-size</code> text का size set करता है।</p>
+
+        <pre>p {
+  font-size: 18px;
+}</pre>
+
+        <h4>font-weight</h4>
+        <p><code>font-weight</code> text की thickness set करता है।</p>
+
+        <pre>h1 {
+  font-weight: bold;
+}</pre>
+
+        <h4>Text and Font Properties Table</h4>
+        <table>
+          <tr>
+            <th>Property</th>
+            <th>Example</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>color</code></td>
+            <td><code>color: red;</code></td>
+            <td>Text color।</td>
+          </tr>
+          <tr>
+            <td><code>text-align</code></td>
+            <td><code>text-align: center;</code></td>
+            <td>Text alignment।</td>
+          </tr>
+          <tr>
+            <td><code>font-family</code></td>
+            <td><code>font-family: Arial;</code></td>
+            <td>Font type।</td>
+          </tr>
+          <tr>
+            <td><code>font-style</code></td>
+            <td><code>font-style: italic;</code></td>
+            <td>Font style।</td>
+          </tr>
+          <tr>
+            <td><code>font-size</code></td>
+            <td><code>font-size: 20px;</code></td>
+            <td>Font size।</td>
+          </tr>
+          <tr>
+            <td><code>font-weight</code></td>
+            <td><code>font-weight: 700;</code></td>
+            <td>Font boldness।</td>
+          </tr>
+        </table>
+
+        <h4>Complete Text Styling Example</h4>
+        <pre>.heading {
+  color: darkblue;
+  text-align: center;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-style: normal;
+  font-size: 32px;
+  font-weight: 700;
+}</pre>
+
+        <div class="remember-box"><b>Remember:</b><br>Readable font size, proper color contrast और clean alignment good website design के basic rules हैं।</div>
+      </section>
+
+      <section id="box-model">
+        <h2>Box Model in CSS</h2>
+
+        <p>CSS box model web design का बहुत important concept है। Browser हर HTML element को एक rectangular box की तरह treat करता है। इस box में content, padding, border और margin शामिल होते हैं। Box model समझना layout, spacing और element size control करने के लिए जरूरी है।</p>
+
+        <h4>Box Model Parts</h4>
+        <table>
+          <tr>
+            <th>Part</th>
+            <th>Meaning</th>
+          </tr>
+          <tr>
+            <td>Content</td>
+            <td>Actual text, image या content area।</td>
+          </tr>
+          <tr>
+            <td>Padding</td>
+            <td>Content और border के बीच की space।</td>
+          </tr>
+          <tr>
+            <td>Border</td>
+            <td>Padding/content के बाहर की boundary line।</td>
+          </tr>
+          <tr>
+            <td>Margin</td>
+            <td>Element के बाहर की space, दूसरे elements से distance।</td>
+          </tr>
+        </table>
+
+        <h4>Box Model Diagram</h4>
+        <pre>+-----------------------------+
+|          Margin             |
+|  +-----------------------+  |
+|  |        Border         |  |
+|  |  +-----------------+  |  |
+|  |  |     Padding     |  |  |
+|  |  |  +-----------+  |  |  |
+|  |  |  | Content   |  |  |  |
+|  |  |  +-----------+  |  |  |
+|  |  +-----------------+  |  |
+|  +-----------------------+  |
++-----------------------------+</pre>
+
+        <h4>Box Model Example</h4>
+        <pre>.box {
+  width: 300px;
+  padding: 20px;
+  border: 5px solid blue;
+  margin: 30px;
+}</pre>
+
+        <p>इस example में content width 300px है। Padding content के अंदर space देगा, border boundary बनाएगा और margin element के बाहर space देगा।</p>
+
+        <h4>Margin</h4>
+        <p>Margin element के बाहर की space होती है। यह दो elements के बीच distance create करती है।</p>
+
+        <pre>.box {
+  margin: 20px;
+}</pre>
+
+        <h4>Padding</h4>
+        <p>Padding content और border के बीच की internal space होती है।</p>
+
+        <pre>.box {
+  padding: 20px;
+}</pre>
+
+        <h4>Border</h4>
+        <p>Border element की boundary होती है।</p>
+
+        <pre>.box {
+  border: 2px solid black;
+}</pre>
+
+        <h4>Margin vs Padding</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>Margin</th>
+            <th>Padding</th>
+          </tr>
+          <tr>
+            <td>Location</td>
+            <td>Border के बाहर होती है।</td>
+            <td>Content और border के बीच होती है।</td>
+          </tr>
+          <tr>
+            <td>Purpose</td>
+            <td>Elements के बीच gap बनाती है।</td>
+            <td>Content के अंदर space देती है।</td>
+          </tr>
+          <tr>
+            <td>Background Effect</td>
+            <td>Background color margin area पर apply नहीं होता।</td>
+            <td>Background color padding area पर apply होता है।</td>
+          </tr>
+        </table>
+
+        <h4>box-sizing</h4>
+        <p>By default CSS में width केवल content area पर apply होती है। Padding और border add होने पर actual element size बढ़ सकता है। इस problem को avoid करने के लिए <code>box-sizing: border-box;</code> use किया जाता है।</p>
+
+        <pre>* {
+  box-sizing: border-box;
+}</pre>
+
+        <h4>Without border-box</h4>
+        <pre>.box {
+  width: 300px;
+  padding: 20px;
+  border: 5px solid black;
+}</pre>
+
+        <p>Actual width = 300 + 40 padding + 10 border = 350px</p>
+
+        <h4>With border-box</h4>
+        <pre>.box {
+  box-sizing: border-box;
+  width: 300px;
+  padding: 20px;
+  border: 5px solid black;
+}</pre>
+
+        <p>Actual width 300px के अंदर ही padding और border include हो जाएंगे।</p>
+
+        <div class="note-box"><b>Real Life Example:</b><br>एक gift box में gift content है, अंदर की thermocol padding है, बाहर की box boundary border है और दूसरे boxes से दूरी margin है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Box model = Content + Padding + Border + Margin. CSS layout समझने के लिए box model सबसे important concept है।</div>
+      </section>
+
+    </main>
+  </div>
+</body>
+
+</html>

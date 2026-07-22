@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Introduction to Data Communication</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f5f7fb;
+            color: #1f2937;
+            line-height: 1.75
+        }
+
+        .page {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 20px;
+            max-width: 1450px;
+            margin: auto;
+            padding: 10px
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 10px;
+            height: calc(100vh - 20px);
+            overflow-y: auto;
+            background: #fff;
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
+            align-self: start
+        }
+
+        .sidebar h2 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #111827
+        }
+
+        .sidebar a {
+            display: block;
+            text-decoration: none;
+            color: #374151;
+            padding: 8px 10px;
+            border-radius: 10px;
+            margin-bottom: 4px;
+            font-size: 14.8px
+        }
+
+        .sidebar a:hover {
+            background: #eef2ff;
+            color: #1d4ed8
+        }
+
+        .content {
+            background: #fff;
+            border-radius: 18px;
+            padding: 10px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, .08)
+        }
+
+        .hero {
+            padding: 28px 18px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #eef2ff, #f8fafc);
+            margin-bottom: 18px
+        }
+
+        .hero h1 {
+            font-size: 34px;
+            color: #111827;
+            margin-bottom: 10px
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #374151
+        }
+
+        section {
+            padding: 22px 10px;
+            border-bottom: 1px solid #e5e7eb
+        }
+
+        section:last-child {
+            border-bottom: none
+        }
+
+        h2 {
+            font-size: 27px;
+            color: #111827;
+            margin-bottom: 12px;
+            border-left: 5px solid #2563eb;
+            padding-left: 12px
+        }
+
+        h3 {
+            font-size: 22px;
+            color: #1f2937;
+            margin: 16px 0 8px
+        }
+
+        h4 {
+            font-size: 18px;
+            color: #111827;
+            margin: 14px 0 6px
+        }
+
+        p {
+            margin: 10px 0;
+            font-size: 17px
+        }
+
+        ul,
+        ol {
+            margin-left: 24px;
+            margin-top: 8px
+        }
+
+        li {
+            margin: 7px 0;
+            font-size: 16.5px
+        }
+
+        strong {
+            color: #111827
+        }
+
+        .image-icon {
+            min-height: 175px;
+            border: 2px dashed #94a3b8;
+            border-radius: 16px;
+            background: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            margin: 18px 0;
+            color: #475569;
+            font-weight: 600
+        }
+
+        .image-icon img {
+            max-width: 100%;
+            height: auto
+        }
+
+        .note-box {
+            background: #f0fdf4;
+            border-left: 5px solid #22c55e;
+            border-radius: 14px;
+            padding: 14px 16px;
+            margin: 16px 0
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            font-size: 15.5px
+        }
+
+        th,
+        td {
+            border: 1px solid #d1d5db;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top
+        }
+
+        th {
+            background: #eef2ff;
+            color: #111827
+        }
+
+        code {
+            background: #111827;
+            color: #f9fafb;
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-family: Consolas, monospace;
+            font-size: 15px
+        }
+
+        .formula {
+            background: #111827;
+            color: #f9fafb;
+            padding: 12px 14px;
+            border-radius: 12px;
+            margin: 12px 0;
+            font-family: Consolas, monospace;
+            overflow-x: auto
+        }
+
+        @media(max-width:900px) {
+            .page {
+                grid-template-columns: 1fr
+            }
+
+            .sidebar {
+                position: relative;
+                height: auto
+            }
+
+            .hero h1 {
+                font-size: 27px
+            }
+
+            h2 {
+                font-size: 24px
+            }
+        }
+    </style>
+
+<link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
+<script src="../../../../../../../assets/shared/portal.js" defer></script>
+<script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
+</head>
+
+<body>
+    <div class="page">
+        <aside class="sidebar">
+            <h2>Topics</h2>
+            <a href="#intro">Introduction</a>
+            <a href="#basics">Basics</a><a href="#flow">Data Flow</a>
+            <a href="#topology">Topologies</a>
+            <a href="#signals">Signals</a>
+            <a href="#media">Transmission Media</a>
+            <a href="#bitrate">Bit</a>
+            <a href="#impairment">Impairment</a>
+            <a href="#snr">SNR</a>
+        </aside>
+        <main class="content">
+            <div class="hero">
+                <h1>Introduction to Data Communication</h1>
+            </div>
+
+            <section id="intro">
+                <h2>Introduction to Data Communication</h2>
+               
+                <p><strong>Data Communication</strong> वह process है जिसके द्वारा दो या
+                    दो से अधिक devices के बीच data या information का exchange किया जाता है। यह exchange wired medium
+                    जैसे twisted pair cable, coaxial cable, optical fiber या wireless medium जैसे radio waves, microwave
+                    और satellite के द्वारा हो सकता है। इसका main purpose sender से receiver तक data को सही, सुरक्षित और
+                    समय पर पहुँचाना है। Computer Network में data communication बहुत important concept है क्योंकि इसी के
+                    कारण computers, mobile phones, servers, printers और other digital devices आपस में communicate कर
+                    पाते हैं। जब हम email send करते हैं, website open करते हैं, WhatsApp message भेजते हैं या online
+                    class attend करते हैं, तब background में data communication ही काम कर रहा होता है।</p>
+                <h4>Need of Data Communication</h4>
+                <ul>
+                    <li>Different devices के बीच data share करने के लिए।</li>
+                    <li>Internet, email, video calling और file transfer जैसी services के लिए।</li>
+                    <li>Office, school और organizations में resources share करने के लिए।</li>
+                    <li>Fast, accurate और reliable information exchange के लिए।</li>
+                </ul>
+                <div class="note-box"><b>Real Life Example:</b><br>जब आप mobile से किसी friend को message भेजते हैं, तो
+                    आपका mobile sender होता है, internet medium की तरह काम करता है और friend का mobile receiver होता है।
+                </div>
+            </section>
+
+            <section id="basics">
+                <h2>Basics of the Communications</h2>
+                <p><strong>Communication</strong> का मतलब information को एक place से
+                    दूसरे place तक transfer करना है। Computer communication में information digital form में transfer
+                    होती है। इसमें sender, receiver, message, transmission medium और protocol जैसे elements शामिल होते
+                    हैं। Sender वह device है जो data भेजता है, receiver वह device है जो data receive करता है, message
+                    actual data होता है, medium वह path होता है जिससे data travel करता है, और protocol rules का set होता
+                    है जो communication को control करता है।</p>
+                <table>
+                    <tr>
+                        <th>Element</th>
+                        <th>Explanation</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Sender</strong></td>
+                        <td>जो device data send करता है।</td>
+                        <td>Computer, Mobile</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Receiver</strong></td>
+                        <td>जो device data receive करता है।</td>
+                        <td>Server, Friend का phone</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Message</strong></td>
+                        <td>Actual data या information।</td>
+                        <td>Text, Image, Video</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Medium</strong></td>
+                        <td>Data travel करने का path।</td>
+                        <td>Cable, Wi-Fi, Fiber</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Protocol</strong></td>
+                        <td>Communication rules का set।</td>
+                        <td>TCP/IP, HTTP, FTP</td>
+                    </tr>
+                </table>
+                <h4>Characteristics</h4>
+                <ul>
+                    <li><strong>Delivery:</strong> Data सही receiver तक पहुँचना चाहिए।</li>
+                    <li><strong>Accuracy:</strong> Data बिना error के पहुँचना चाहिए।</li>
+                    <li><strong>Timeliness:</strong> Data सही समय पर receive होना चाहिए।</li>
+                    <li><strong>Reliability:</strong> Communication stable और dependable होना चाहिए।</li>
+                </ul>
+            </section>
+
+            <section id="flow">
+                <h2>Direction of the Data Flow</h2>
+
+                <p><strong>Direction of Data Flow</strong> यह बताता है कि communication
+                    में data किस direction में travel करेगा। Data केवल एक direction में जा सकता है, दोनों directions में
+                    जा सकता है लेकिन एक समय पर एक ही direction में, या दोनों directions में एक साथ travel कर सकता है।
+                <h3>1. Simplex Transmission Mode</h3>
+
+                <p>
+                    <strong>Simplex Transmission Mode</strong> वह Communication Mode है जिसमें
+                    <strong>Data केवल एक ही दिशा (One-Way Communication)</strong> में भेजा जाता है।
+                    इस Mode में एक Device केवल Data Send करती है तथा दूसरी Device केवल Data Receive करती है।
+                    Receiver किसी भी प्रकार का Response या Data वापस नहीं भेज सकता।
+                    इसलिए यह Mode केवल उन Applications में उपयोग किया जाता है जहाँ Feedback की आवश्यकता नहीं होती।
+                </p>
+                <div class="image-icon">
+                    <img src="../images/simplex.webp" alt="Simplex Transmission Mode Diagram">
+                </div>
+                <div class="note-box">
+                    <b>Real Life Example:</b><br>
+                    <strong>Keyboard → Computer</strong>, <strong>Television Broadcast</strong> तथा
+                    <strong>Radio Broadcasting</strong> Simplex Transmission Mode के सबसे सामान्य उदाहरण हैं।
+                </div>
+
+                <h3>2. Half Duplex Transmission Mode</h3>
+                <p>
+                    <strong>Half Duplex Transmission Mode</strong> वह Communication Mode है जिसमें
+                    दोनों Devices Data Send और Receive कर सकती हैं,
+                    लेकिन <strong>एक समय पर केवल एक ही दिशा</strong> में Communication होता है।
+                    अर्थात जब एक Device Data भेज रही होती है, तब दूसरी Device केवल Data Receive कर सकती है।
+                    Data का आदान-प्रदान दोनों दिशाओं में होता है, लेकिन एक साथ नहीं होता।
+                </p>
+                <div class="image-icon">
+                    <img src="../images/half-duplex.webp" alt="Half Duplex Transmission Mode Diagram">
+                </div>
+                <div class="note-box">
+                    <b>Real Life Example:</b><br>
+                    <strong>Walkie-Talkie</strong> इसका सबसे अच्छा उदाहरण है।
+                    एक व्यक्ति पहले बोलता है, फिर दूसरा व्यक्ति उत्तर देता है।
+                    दोनों व्यक्ति एक साथ बात नहीं कर सकते।
+                </div>
+                <h3>3. Full Duplex Transmission Mode</h3>
+                <p>
+                    <strong>Full Duplex Transmission Mode</strong> वह Communication Mode है जिसमें
+                    दोनों Devices <strong>एक ही समय (Simultaneously)</strong> पर Data Send और Receive कर सकती हैं।
+                    इस Mode में Communication दोनों दिशाओं में एक साथ होता है,
+                    जिससे Data Transfer की गति अधिक होती है और Communication अधिक Efficient बनता है।
+                    आधुनिक Computer Networks तथा Internet Communication में इसी Mode का सबसे अधिक उपयोग किया जाता है।
+                </p>
+                <div class="image-icon">
+                    <img src="../images/full-duplex.webp" alt="Full Duplex Transmission Mode Diagram">
+                </div>
+
+                <div class="note-box">
+                    <b>Real Life Example:</b><br>
+                    <strong>Mobile Phone Call</strong>, <strong>Video Calling</strong> तथा
+                    <strong>Modern Ethernet Network</strong> Full Duplex Transmission Mode के प्रमुख उदाहरण हैं,
+                    जहाँ दोनों Users एक ही समय पर बोल और सुन सकते हैं।
+                </div>
+
+            </section>
+
+            <section id="topology">
+                <h2>Network Topology</h2>
+                <p>Topology का अर्थ किसी network में devices और communication links की व्यवस्था (arrangement) या संरचना
+                    (structure) से है। यह बताती है कि computers और अन्य network devices आपस में किस प्रकार जुड़े हुए हैं
+                    तथा उनके बीच data का आदान-प्रदान कैसे होता है।</p>
+
+                <h3>1. Bus Topology</h3>
+                <p>
+                    <strong>Bus Topology</strong> एक ऐसी <strong>Network Topology</strong> है जिसमें सभी Computers,
+                    Servers और Networking Devices
+                    एक ही मुख्य Cable (Backbone Cable) से जुड़े होते हैं। इस मुख्य Cable के माध्यम से सभी Devices Data
+                    का आदान-प्रदान करते हैं।
+                    जब कोई Computer Data भेजता है, तो वह Data पूरी Backbone Cable में Travel करता है और केवल वही Device
+                    उसे Accept करती है
+                    जिसका Address उस Data से Match करता है। Bus Topology छोटे Networks के लिए उपयुक्त मानी जाती है
+                    क्योंकि इसमें Cable कम लगती है,
+                    Installation आसान होता है तथा Cost भी कम आती है।
+                </p>
+                <div class="image-icon">
+                    <img src="../images/bus-topology.webp" alt="Bus Topology Diagram">
+                </div>
+
+                <p><b>Advantages of Bus Topology</b></p>
+
+                <ol>
+
+                    <li>
+                        <strong>Low Installation Cost:</strong><br>
+                        Bus Topology में केवल एक मुख्य Backbone Cable का उपयोग किया जाता है, इसलिए अन्य Topologies की
+                        तुलना में Cable और Networking Hardware
+                        कम लगता है। इसी कारण इसका Installation Cost काफी कम होता है और यह छोटे Offices, Schools तथा
+                        Computer Labs के लिए उपयुक्त विकल्प है।
+                    </li>
+
+                    <li>
+                        <strong>Easy to Install and Configure:</strong><br>
+                        इस Topology को Install करना तथा Configure करना बहुत आसान होता है। नए Users भी कम समय में इसका
+                        Network तैयार कर सकते हैं क्योंकि इसमें
+                        Complex Wiring या अतिरिक्त Networking Devices की आवश्यकता नहीं होती।
+                    </li>
+
+                    <li>
+                        <strong>Less Cable Requirement:</strong><br>
+                        Bus Topology में सभी Devices एक ही Backbone Cable से जुड़े होते हैं, इसलिए अन्य Topologies की
+                        तुलना में Cable बहुत कम उपयोग होती है।
+                        इससे Network व्यवस्थित रहता है तथा Maintenance Cost भी कम हो जाती है।
+                    </li>
+
+                    <li>
+                        <strong>Suitable for Small Networks:</strong><br>
+                        यह Topology छोटे Offices, Computer Labs, Libraries और Training Centers जैसे स्थानों के लिए बहुत
+                        उपयोगी होती है क्योंकि कम Devices होने पर
+                        यह अच्छी Performance प्रदान करती है और Network को Manage करना आसान रहता है।
+                    </li>
+
+                    <li>
+                        <strong>Easy to Extend:</strong><br>
+                        यदि Network में नया Computer जोड़ना हो तो उसे आसानी से Backbone Cable से Connect किया जा सकता
+                        है। इसके लिए पूरे Network को दोबारा
+                        Design करने की आवश्यकता नहीं पड़ती, जिससे Expansion आसान हो जाता है।
+                    </li>
+
+                </ol>
+
+                <p><b>Disadvantages of Bus Topology</b></p>
+
+                <ol>
+
+                    <li>
+                        <strong>Backbone Cable Failure:</strong><br>
+                        यदि मुख्य Backbone Cable किसी कारण से खराब हो जाती है या टूट जाती है, तो पूरा Network काम करना
+                        बंद कर देता है।
+                        इस स्थिति में सभी Connected Computers एक-दूसरे से Communication नहीं कर पाते।
+                    </li>
+
+                    <li>
+                        <strong>Difficult Fault Detection:</strong><br>
+                        यदि Network में किसी स्थान पर Fault आ जाए, तो उसे ढूँढना कठिन होता है क्योंकि सभी Devices एक ही
+                        Cable से जुड़े होते हैं।
+                        Fault खोजने में अधिक समय और मेहनत लग सकती है।
+                    </li>
+
+                    <li>
+                        <strong>Performance Decreases with More Devices:</strong><br>
+                        जैसे-जैसे Network में Computers की संख्या बढ़ती जाती है, वैसे-वैसे Data Traffic भी बढ़ जाता है।
+                        इस कारण Data Collision होने की संभावना बढ़ती है और पूरे Network की Speed कम हो जाती है।
+                    </li>
+
+                    <li>
+                        <strong>Limited Cable Length:</strong><br>
+                        Bus Topology में Backbone Cable की लंबाई सीमित होती है। यदि Cable बहुत लंबी हो जाए, तो Signal
+                        Weak होने लगते हैं,
+                        जिससे Communication की Quality प्रभावित होती है।
+                    </li>
+
+                    <li>
+                        <strong>Low Security:</strong><br>
+                        क्योंकि Data पूरी Backbone Cable में Broadcast होता है, इसलिए अन्य Connected Devices भी उस Data
+                        को Receive कर सकते हैं।
+                        यदि उचित Security लागू न हो, तो Unauthorized Users Data को Access कर सकते हैं।
+                    </li>
+
+                </ol>
+                <h3>2. Star Topology</h3>
+
+
+                <p>
+                    <strong>Star Topology</strong> एक ऐसी <strong>Network Topology</strong> है जिसमें सभी Computers,
+                    Servers तथा अन्य
+                    Networking Devices एक Central Device जैसे <strong>Switch</strong> या <strong>Hub</strong> से अलग-अलग
+                    Cable के माध्यम से जुड़े होते हैं।
+                    इस Topology में किसी भी दो Computers के बीच Data का आदान-प्रदान सीधे नहीं होता, बल्कि पहले Central
+                    Device तक पहुँचता है,
+                    फिर वहाँ से Destination Device तक भेजा जाता है। वर्तमान समय में Offices, Schools, Banks तथा
+                    Companies में सबसे अधिक
+                    इसी Topology का उपयोग किया जाता है क्योंकि इसे Manage करना आसान होता है और इसकी Performance भी अच्छी
+                    होती है।
+                </p>
+                <div class="image-icon">
+                    <img src="../images/star-topology.webp" alt="Star Topology Diagram">
+                </div>
+
+                <p><b>Advantages of Star Topology</b></p>
+
+                <ol>
+
+                    <li>
+                        <strong>Easy Installation and Management:</strong><br>
+                        Star Topology को Install करना, Configure करना तथा Manage करना बहुत आसान होता है। प्रत्येक
+                        Computer अलग Cable द्वारा Central Device
+                        से जुड़ा होता है, इसलिए Network में किसी भी प्रकार का बदलाव या Maintenance आसानी से किया जा सकता
+                        है।
+                    </li>
+
+                    <li>
+                        <strong>Easy Fault Detection:</strong><br>
+                        यदि किसी एक Computer या उसकी Cable में कोई Fault आ जाता है, तो उसे आसानी से पहचानकर ठीक किया जा
+                        सकता है।
+                        इससे पूरे Network को Check करने की आवश्यकता नहीं पड़ती और Troubleshooting तेज़ी से हो जाती है।
+                    </li>
+
+                    <li>
+                        <strong>Failure of One Device Does Not Affect Others:</strong><br>
+                        यदि किसी एक Computer या उसकी Connecting Cable में समस्या आ जाए, तो केवल वही Device प्रभावित होती
+                        है।
+                        बाकी सभी Computers सामान्य रूप से कार्य करते रहते हैं, जिससे Network की Reliability बढ़ जाती है।
+                    </li>
+
+                    <li>
+                        <strong>Better Performance:</strong><br>
+                        Star Topology में प्रत्येक Computer का अपना Dedicated Connection होता है, जिससे Data Collision
+                        की संभावना बहुत कम हो जाती है।
+                        इस कारण Network की Speed और Performance अन्य कई Topologies की तुलना में अधिक अच्छी रहती है।
+                    </li>
+
+                    <li>
+                        <strong>Easy Network Expansion:</strong><br>
+                        यदि भविष्य में नए Computers या अन्य Devices जोड़ने की आवश्यकता हो, तो उन्हें आसानी से Central
+                        Switch या Hub से Connect किया जा सकता है।
+                        इससे पूरे Network की Structure को बदलने की आवश्यकता नहीं पड़ती।
+                    </li>
+
+                </ol>
+
+                <p><b>Disadvantages of Star Topology</b></p>
+
+                <ol>
+
+                    <li>
+                        <strong>Central Device Failure:</strong><br>
+                        यदि Central Hub या Switch किसी कारण से खराब हो जाए, तो पूरा Network कार्य करना बंद कर देता है।
+                        क्योंकि सभी Devices उसी Central Device पर निर्भर होती हैं।
+                    </li>
+
+                    <li>
+                        <strong>Higher Installation Cost:</strong><br>
+                        इस Topology में प्रत्येक Computer को अलग-अलग Cable द्वारा Central Device से जोड़ना पड़ता है।
+                        अधिक Cable और Central Switch की आवश्यकता होने के कारण इसकी Installation Cost अधिक होती है।
+                    </li>
+
+                    <li>
+                        <strong>More Cable Requirement:</strong><br>
+                        Star Topology में प्रत्येक Device के लिए अलग Cable का उपयोग किया जाता है।
+                        इसी कारण Cable की मात्रा अधिक लगती है और Wiring भी अन्य Topologies की तुलना में अधिक होती है।
+                    </li>
+
+                    <li>
+                        <strong>Dependency on Central Device:</strong><br>
+                        पूरे Network की कार्यक्षमता Central Hub या Switch पर निर्भर करती है।
+                        यदि Central Device में Performance की समस्या आती है, तो पूरे Network की Speed और Communication
+                        प्रभावित हो सकते हैं।
+                    </li>
+
+                    <li>
+                        <strong>Expensive for Large Networks:</strong><br>
+                        बहुत बड़े Networks में अधिक Ports वाले Switches, अतिरिक्त Cabling तथा Network Devices की
+                        आवश्यकता होती है,
+                        जिससे Setup और Maintenance की कुल लागत काफी बढ़ जाती है।
+                    </li>
+
+                </ol>
+                <h3>3. Ring Topology</h3>
+                <p>
+                    <strong>Ring Topology</strong> एक ऐसी <strong>Network Topology</strong> है जिसमें सभी Computers और
+                    Networking Devices
+                    एक गोलाकार (Circular) रूप में जुड़े होते हैं। प्रत्येक Device अपने दोनों पड़ोसी Devices से Connected
+                    रहती है,
+                    जिससे एक Closed Ring बन जाती है। इस Topology में Data एक निश्चित दिशा (Clockwise या Anti-clockwise)
+                    में Travel करता है।
+                    प्रत्येक Device Data को Receive करके अगले Device तक Forward करती है, जब तक कि Data अपने Destination
+                    तक न पहुँच जाए।
+                    Ring Topology का उपयोग उन Networks में किया जाता है जहाँ Data Flow को नियंत्रित रखना आवश्यक होता है
+                    तथा Data Collision
+                    की संभावना कम करनी होती है।
+                </p>
+                <div class="image-icon">
+                    <img src="../images/ring-topology.webp" alt="Ring Topology Diagram">
+                </div>
+
+                <p><b>Advantages of Ring Topology</b></p>
+
+                <ol>
+
+                    <li>
+                        <strong>No Data Collision:</strong><br>
+                        Ring Topology में Data एक निश्चित दिशा में Travel करता है और सामान्यतः Token Passing तकनीक का
+                        उपयोग किया जाता है।
+                        इस कारण दो Devices एक साथ Data नहीं भेजतीं, जिससे Data Collision की संभावना बहुत कम हो जाती है।
+                    </li>
+
+                    <li>
+                        <strong>Equal Network Access:</strong><br>
+                        इस Topology में प्रत्येक Computer को समान अवसर मिलता है क्योंकि सभी Devices एक ही नियम के अनुसार
+                        Data भेजती और प्राप्त करती हैं।
+                        इससे किसी एक Device को अतिरिक्त Priority नहीं मिलती।
+                    </li>
+
+                    <li>
+                        <strong>Better Performance Under Heavy Load:</strong><br>
+                        यदि Network में Data Traffic अधिक हो, तब भी Ring Topology अच्छी Performance प्रदान कर सकती है
+                        क्योंकि Data का Flow
+                        नियंत्रित रहता है और अनावश्यक Broadcast नहीं होता।
+                    </li>
+
+                    <li>
+                        <strong>Easy Data Transmission:</strong><br>
+                        Data एक निर्धारित Path से गुजरता है, जिससे प्रत्येक Device को पता रहता है कि Data किस दिशा में
+                        भेजना है।
+                        इससे Communication व्यवस्थित और Reliable बनी रहती है।
+                    </li>
+
+                    <li>
+                        <strong>Predictable Network Performance:</strong><br>
+                        Ring Topology में Data का Flow पहले से निर्धारित होता है, इसलिए Network की Performance आसानी से
+                        अनुमानित की जा सकती है।
+                        यह Feature Industrial Networks और Specialized Systems में उपयोगी होता है।
+                    </li>
+
+                </ol>
+
+                <p><b>Disadvantages of Ring Topology</b></p>
+
+                <ol>
+
+                    <li>
+                        <strong>Failure of One Node Affects Entire Network:</strong><br>
+                        यदि किसी एक Computer या Connecting Cable में Fault आ जाए, तो पूरी Ring टूट सकती है और पूरा
+                        Network प्रभावित हो सकता है।
+                    </li>
+
+                    <li>
+                        <strong>Difficult Troubleshooting:</strong><br>
+                        Network में Fault आने पर यह पता लगाना कठिन हो सकता है कि समस्या किस Device या Cable में है।
+                        इससे Maintenance में अधिक समय लग सकता है।
+                    </li>
+
+                    <li>
+                        <strong>Difficult Network Expansion:</strong><br>
+                        यदि नया Computer जोड़ना या किसी Computer को हटाना हो, तो पूरी Ring को अस्थायी रूप से बंद करना
+                        पड़ सकता है।
+                        इससे Network का कार्य प्रभावित होता है।
+                    </li>
+
+                    <li>
+                        <strong>Slower Data Transfer in Large Networks:</strong><br>
+                        जैसे-जैसे Network में Devices की संख्या बढ़ती है, Data को अधिक Nodes से होकर गुजरना पड़ता है,
+                        जिससे Communication में Delay हो सकता है।
+                    </li>
+
+                    <li>
+                        <strong>Higher Maintenance Cost:</strong><br>
+                        Ring Topology की Maintenance अन्य सरल Topologies की तुलना में अधिक कठिन होती है क्योंकि
+                        पूरे Ring Structure को सही स्थिति में बनाए रखना आवश्यक होता है।
+                    </li>
+
+                </ol>
+
+                <div class="note-box">
+                    <b>Real Life Example:</b><br>
+                    Token Ring Network इसका एक प्रसिद्ध उदाहरण है, जिसमें Token Passing तकनीक का उपयोग करके
+                    Data को सुरक्षित और व्यवस्थित तरीके से भेजा जाता था।
+                </div>
+                <h3>4. Mesh Topology</h3>
+
+                <p>
+                    <strong>Mesh Topology</strong> एक ऐसी <strong>Network Topology</strong> है जिसमें प्रत्येक Computer
+                    या Networking Device
+                    एक या एक से अधिक अन्य Devices से सीधे Connected होती है। Full Mesh Network में प्रत्येक Device सभी
+                    अन्य Devices से
+                    Direct Connection रखती है, जबकि Partial Mesh में केवल आवश्यक Devices Directly Connected होती हैं।
+                    Mesh Topology सबसे अधिक Reliable मानी जाती है क्योंकि यदि किसी एक Connection में Fault आ जाए,
+                    तब भी Data दूसरे उपलब्ध Path से अपने Destination तक पहुँच सकता है।
+                    यही कारण है कि इसका उपयोग Military Networks, Banking Systems, Data Centers और Critical Communication
+                    Networks में किया जाता है।
+                </p>
+                <div class="image-icon">
+                    <img src="../images/mesh-topology.webp" alt="Mesh Topology Diagram">
+                </div>
+
+                <p><b>Advantages of Mesh Topology</b></p>
+
+                <ol>
+
+                    <li>
+                        <strong>High Reliability:</strong><br>
+                        यदि किसी एक Cable या Connection में समस्या आ जाए, तो Data दूसरे उपलब्ध Path से भेजा जा सकता है।
+                        इस कारण Network लगातार कार्य करता रहता है और Communication बंद नहीं होता।
+                    </li>
+
+                    <li>
+                        <strong>Excellent Fault Tolerance:</strong><br>
+                        Mesh Topology में Multiple Paths उपलब्ध होने के कारण किसी एक Link के Failure से पूरा Network
+                        प्रभावित नहीं होता।
+                        यह विशेषता इसे Mission Critical Systems के लिए उपयुक्त बनाती है।
+                    </li>
+
+                    <li>
+                        <strong>Better Security:</strong><br>
+                        Direct Point-to-Point Connections होने के कारण Data केवल संबंधित Devices के बीच Travel करता है।
+                        इससे Unauthorized Access और Data Interception की संभावना कम हो जाती है।
+                    </li>
+
+                    <li>
+                        <strong>High Network Performance:</strong><br>
+                        Dedicated Connections होने के कारण Data Traffic आसानी से Manage होता है तथा Congestion कम होता
+                        है।
+                        इससे Data Transfer Speed और Overall Performance बेहतर रहती है।
+                    </li>
+
+                    <li>
+                        <strong>Easy Fault Isolation:</strong><br>
+                        यदि किसी Connection में Fault आता है, तो उसे आसानी से पहचानकर ठीक किया जा सकता है क्योंकि
+                        प्रत्येक Connection अलग-अलग उपलब्ध होता है।
+                    </li>
+
+                </ol>
+
+                <p><b>Disadvantages of Mesh Topology</b></p>
+
+                <ol>
+
+                    <li>
+                        <strong>Very High Installation Cost:</strong><br>
+                        प्रत्येक Device को कई अन्य Devices से Connect करना पड़ता है, इसलिए अधिक Cable,
+                        Ports तथा Networking Hardware की आवश्यकता होती है, जिससे Cost बहुत बढ़ जाती है।
+                    </li>
+
+                    <li>
+                        <strong>Complex Installation:</strong><br>
+                        इतने अधिक Connections होने के कारण Mesh Network को Install करना काफी कठिन होता है।
+                        Network Planning और Configuration के लिए Experienced Professionals की आवश्यकता होती है।
+                    </li>
+
+                    <li>
+                        <strong>Difficult Maintenance:</strong><br>
+                        Large Mesh Network में अनेक Cables और Connections होने के कारण Maintenance और Troubleshooting
+                        में अधिक समय तथा मेहनत लगती है।
+                    </li>
+
+                    <li>
+                        <strong>More Space Requirement:</strong><br>
+                        अधिक संख्या में Cables और Networking Devices होने के कारण Physical Space की आवश्यकता भी अधिक
+                        होती है,
+                        जिससे Cable Management कठिन हो सकता है।
+                    </li>
+
+                    <li>
+                        <strong>Not Suitable for Small Networks:</strong><br>
+                        छोटे Offices, Homes या Computer Labs में Mesh Topology का उपयोग करना आर्थिक रूप से उचित नहीं
+                        होता,
+                        क्योंकि इसकी लागत आवश्यकता से अधिक होती है।
+                    </li>
+
+                </ol>
+
+                <div class="note-box">
+                    <b>Real Life Example:</b><br>
+                    Internet Backbone, Military Communication Networks तथा बड़े Data Centers में
+                    Mesh Topology का उपयोग किया जाता है क्योंकि यहाँ Reliability और Continuous Connectivity
+                    सबसे अधिक महत्वपूर्ण होती है।
+                </div>
+                <h3>5. Tree Topology</h3>
+                <p>
+                    <strong>Tree Topology</strong> एक ऐसी <strong>Network Topology</strong> है जो
+                    <strong>Star Topology</strong> और <strong>Bus Topology</strong> का Combination होती है।
+                    इसमें एक मुख्य <strong>Backbone Cable</strong> होती है, जिससे कई <strong>Switches</strong> या
+                    <strong>Hubs</strong> जुड़े रहते हैं और प्रत्येक Switch से कई Computers Connected होते हैं।
+                    इसका Structure बिल्कुल एक पेड़ (Tree) की तरह दिखाई देता है, जिसमें Root, Branches और Leaf Nodes होती
+                    हैं।
+                    Tree Topology का उपयोग बड़े Organizations, Schools, Universities, Banks तथा Corporate Offices में
+                    किया जाता है,
+                    जहाँ Network को कई Departments या Sections में Divide करना आवश्यक होता है।
+                </p>
+                <div class="image-icon">
+                    <img src="../images/tree-topology.webp" alt="Tree Topology Diagram">
+                </div>
+
+                <p><b>Advantages of Tree Topology</b></p>
+
+                <ol>
+
+                    <li>
+                        <strong>Easy Network Expansion:</strong><br>
+                        Tree Topology में नए Computers, Departments या Network Segments को आसानी से जोड़ा जा सकता है।
+                        पूरे Network को दोबारा Design करने की आवश्यकता नहीं पड़ती, जिससे Expansion सरल और व्यवस्थित रहता
+                        है।
+                    </li>
+
+                    <li>
+                        <strong>Easy Network Management:</strong><br>
+                        Network अलग-अलग Branches में Divide होने के कारण प्रत्येक Department को अलग से Manage किया जा
+                        सकता है।
+                        इससे Administration आसान हो जाती है और Network को Control करना सरल रहता है।
+                    </li>
+
+                    <li>
+                        <strong>Suitable for Large Organizations:</strong><br>
+                        Tree Topology बड़े Networks के लिए सबसे उपयुक्त मानी जाती है क्योंकि इसमें हजारों Devices को
+                        Systematic तरीके से Connect किया जा सकता है और Performance भी अच्छी बनी रहती है।
+                    </li>
+
+                    <li>
+                        <strong>Easy Fault Isolation:</strong><br>
+                        यदि किसी एक Branch में Fault आता है, तो केवल वही Branch प्रभावित होती है।
+                        बाकी पूरा Network सामान्य रूप से कार्य करता रहता है, जिससे Maintenance आसान हो जाती है।
+                    </li>
+
+                    <li>
+                        <strong>Better Scalability:</strong><br>
+                        इस Topology में भविष्य में Network को बढ़ाना बहुत आसान होता है।
+                        नई Branches और Switches जोड़कर बिना पुराने Network को प्रभावित किए आसानी से विस्तार किया जा सकता
+                        है।
+                    </li>
+
+                </ol>
+
+                <p><b>Disadvantages of Tree Topology</b></p>
+
+                <ol>
+
+                    <li>
+                        <strong>Backbone Cable Failure:</strong><br>
+                        यदि मुख्य Backbone Cable खराब हो जाए, तो उससे Connected कई Branches एक साथ काम करना बंद कर सकती
+                        हैं,
+                        जिससे पूरे Network का बड़ा भाग प्रभावित हो जाता है।
+                    </li>
+
+                    <li>
+                        <strong>High Installation Cost:</strong><br>
+                        इस Topology में Backbone Cable, Multiple Switches तथा अधिक Cabling की आवश्यकता होती है,
+                        जिससे Installation Cost अन्य Topologies की तुलना में अधिक होती है।
+                    </li>
+
+                    <li>
+                        <strong>Complex Configuration:</strong><br>
+                        Tree Topology को Design और Configure करना आसान नहीं होता।
+                        Large Networks में Proper Planning तथा Experienced Network Administrator की आवश्यकता होती है।
+                    </li>
+
+                    <li>
+                        <strong>Difficult Maintenance:</strong><br>
+                        Network बड़ा होने पर सभी Branches, Switches और Cables की नियमित Maintenance करनी पड़ती है,
+                        जिसमें अधिक समय और संसाधनों की आवश्यकता होती है।
+                    </li>
+
+                    <li>
+                        <strong>More Cable Requirement:</strong><br>
+                        Star और Bus दोनों Topologies के Combination होने के कारण इसमें काफी अधिक Cable उपयोग होती है,
+                        जिससे Wiring तथा Installation दोनों महंगे हो जाते हैं।
+                    </li>
+
+                </ol>
+
+                <div class="note-box">
+                    <b>Real Life Example:</b><br>
+                    University Campus, Large Office Buildings तथा Corporate Companies में Tree Topology का उपयोग किया
+                    जाता है,
+                    जहाँ प्रत्येक Department का अलग Network होता है लेकिन सभी एक Central Backbone से जुड़े रहते हैं।
+                </div>
+                <h3>6. Hybrid Topology</h3>
+
+
+                <p>
+
+                    <strong>Hybrid Topology</strong> एक ऐसी <strong>Network Topology</strong> है जिसमें
+                    दो या दो से अधिक अलग-अलग Topologies जैसे
+                    <strong>Star</strong>, <strong>Bus</strong>, <strong>Ring</strong> और
+                    <strong>Mesh</strong> को मिलाकर एक नया Network तैयार किया जाता है।
+                    इसका उद्देश्य विभिन्न Topologies के Advantages प्राप्त करना और उनकी Limitations को कम करना होता है।
+                    Hybrid Topology बड़े Organizations, Government Departments, Banks, Data Centers और
+                    Multi-National Companies में सबसे अधिक उपयोग की जाती है क्योंकि यह Highly Flexible,
+                    Reliable और Scalable होती है।
+                </p>
+                <div class="image-icon">
+                    <img src="../images/hybrid-topology.webp" alt="Hybrid Topology Diagram">
+                </div>
+
+
+                <p><b>Advantages of Hybrid Topology</b></p>
+
+                <ol>
+
+                    <li>
+                        <strong>High Flexibility:</strong><br>
+                        Hybrid Topology में आवश्यकता के अनुसार विभिन्न Topologies को Combine किया जा सकता है।
+                        इससे Organization अपनी जरूरत के अनुसार सबसे उपयुक्त Network Design तैयार कर सकता है।
+                    </li>
+
+                    <li>
+                        <strong>Better Scalability:</strong><br>
+                        यदि भविष्य में Network का आकार बढ़ाना हो, तो नई Topology या नया Segment आसानी से जोड़ा जा सकता
+                        है।
+                        इससे Existing Network को बदलने की आवश्यकता नहीं पड़ती।
+                    </li>
+
+                    <li>
+                        <strong>High Reliability:</strong><br>
+                        एक Network Segment में समस्या आने पर पूरा Network बंद नहीं होता।
+                        अन्य Segments सामान्य रूप से कार्य करते रहते हैं, जिससे Network की Reliability बढ़ जाती है।
+                    </li>
+
+                    <li>
+                        <strong>Better Performance:</strong><br>
+                        Hybrid Topology विभिन्न Topologies की विशेषताओं का लाभ उठाती है।
+                        इससे Network Traffic बेहतर तरीके से Manage होता है और Data Transfer की Speed अच्छी बनी रहती है।
+                    </li>
+
+                    <li>
+                        <strong>Suitable for Large Networks:</strong><br>
+                        बड़े Organizations, Universities और Data Centers में Hybrid Topology सबसे अधिक उपयोगी होती है,
+                        क्योंकि यह Complex Networks को Efficient तरीके से Manage कर सकती है।
+                    </li>
+
+                </ol>
+
+                <p><b>Disadvantages of Hybrid Topology</b></p>
+
+                <ol>
+
+                    <li>
+                        <strong>Very High Cost:</strong><br>
+                        Hybrid Topology में विभिन्न प्रकार के Networking Devices, Switches, Routers तथा अधिक Cabling की
+                        आवश्यकता होती है,
+                        जिससे इसकी कुल लागत काफी अधिक हो जाती है।
+                    </li>
+
+                    <li>
+                        <strong>Complex Design:</strong><br>
+                        इस Topology को Design करना आसान नहीं होता।
+                        Network Planning, Configuration तथा Proper Documentation की आवश्यकता होती है।
+                    </li>
+
+                    <li>
+                        <strong>Difficult Maintenance:</strong><br>
+                        कई प्रकार की Topologies होने के कारण Maintenance तथा Troubleshooting अपेक्षाकृत कठिन हो जाती है,
+                        विशेषकर बड़े Networks में।
+                    </li>
+
+                    <li>
+                        <strong>Skilled Administrator Required:</strong><br>
+                        Hybrid Network को सही तरीके से Install, Configure तथा Maintain करने के लिए
+                        Experienced Network Engineers और Skilled Administrators की आवश्यकता होती है।
+                    </li>
+
+                    <li>
+                        <strong>More Hardware Requirement:</strong><br>
+                        इस Topology में विभिन्न प्रकार के Switches, Routers, Bridges तथा अन्य Networking Devices का
+                        उपयोग होता है,
+                        जिससे Hardware Requirement और Overall Complexity दोनों बढ़ जाते हैं।
+                    </li>
+
+                </ol>
+
+                <div class="note-box">
+                    <b>Real Life Example:</b><br>
+                    Google, Microsoft, Amazon, Banks, Airports, Universities तथा बड़े Corporate Offices में
+                    Hybrid Topology का उपयोग किया जाता है क्योंकि यहाँ अलग-अलग Departments के लिए अलग-अलग Network
+                    Structures की आवश्यकता होती है।
+                </div>
+
+
+            </section>
+
+            <section id="signals">
+                <h2>Signals</h2>
+                <p><strong>Signal</strong> data का electrical, electromagnetic या
+                    optical representation होता है। जब data communication medium से travel करता है, तो वह signal के रूप
+                    में travel करता है। Signal analog भी हो सकता है और digital भी। Transmission का मतलब signal को sender
+                    से receiver तक medium के through transfer करना है। Communication system में signal की quality बहुत
+                    important होती है क्योंकि weak या distorted signal से data errors हो सकते हैं।</p>
+                <h3>Type of Signals</h3>
+                <h4>1. Analog Signal</h4>
+                <p><strong>Analog Signal</strong> continuous signal होता है जिसकी amplitude, frequency या phase time के
+                    साथ continuously change होती रहती है। Human voice, radio waves और sound waves analog signal के
+                    examples हैं।</p>
+                <h4>2. Digital Signals</h4>
+                <p><strong>Digital Signal</strong> ऐसा signal होता है जो discrete form
+                    में represent होता है। Computer systems में digital signal binary digits 0 और 1 के form में data
+                    represent करता है। Digital signals modern data communication में बहुत important हैं क्योंकि इन्हें
+                    store, process, compress, encrypt और transmit करना आसान होता है। Digital communication में data bits
+                    के रूप में travel करता है और receiver उन bits को decode करके original information बनाता है।</p>
+                <div class="image-icon"><img src="" alt="Digital Signal Concept"></div>
+                <h4>Features</h4>
+                <ul>
+                    <li>Digital signal discrete values में होता है।</li>
+                    <li>Computer data को binary bits में represent करता है।</li>
+                    <li>Noise immunity analog की तुलना में better होती है।</li>
+                    <li>Data processing, storage और security आसान होती है।</li>
+                </ul>
+                <table>
+                    <tr>
+                        <th>Basis</th>
+                        <th>Analog Signal</th>
+                        <th>Digital Signal</th>
+                    </tr>
+                    <tr>
+                        <td>Nature</td>
+                        <td>Continuous</td>
+                        <td>Discrete</td>
+                    </tr>
+                    <tr>
+                        <td>Values</td>
+                        <td>Infinite possible values</td>
+                        <td>Limited values, usually 0 and 1</td>
+                    </tr>
+                    <tr>
+                        <td>Noise Effect</td>
+                        <td>Noise से जल्दी affect होता है</td>
+                        <td>Noise immunity comparatively better</td>
+                    </tr>
+                    <tr>
+                        <td>Example</td>
+                        <td>Voice signal, radio signal</td>
+                        <td>Computer data, digital audio</td>
+                    </tr>
+                </table>
+            </section>
+
+            <section id="media">
+                <h2>Transmission Media</h2>
+
+                <p><strong>Transmission Media</strong> वह physical path या wireless
+                    channel होता है जिसके through data signal sender से receiver तक travel करता है। Data communication
+                    में medium की choice बहुत important होती है क्योंकि speed, distance, cost, security और reliability
+                    medium पर depend करती है। Transmission media को mainly दो categories में divide किया जाता है: Guided
+                    Media और Unguided Media।</p>
+                <div class="image-icon"><img src="./images/transmission-mode-00001.svg" alt="Transmission Media"></div>
+                <h4>Guided Media</h4>
+                <p><strong>Guided Media</strong> या Guided Transmission Media वह communication media है, जिसमें data
+                    signals किसी भौतिक (physical) माध्यम जैसे cable या wire के माध्यम से एक स्थान से दूसरे स्थान तक भेजे
+                    जाते हैं। इसमें signals एक निश्चित (guided) मार्ग का पालन करते हैं, इसलिए इसे Bounded Media या Wired
+                    Media भी कहा जाता है। यह high-speed, secure तथा reliable data transmission प्रदान करता है।</p>
+                <strong>Types of Guided Media</strong>
+                <ol>
+                    <li>Twisted Pair Cable</li>
+                    <li>Coaxial Cable</li>
+                    <li>Optical Fiber Cable</li>
+                </ol>
+                <ol>
+                    <li><b>Twisted Pair Cable</b></li>
+                    <P>Twisted Pair Cable एक प्रकार की Guided Transmission Media है, जिसमें दो ताँबे (copper) की
+                        insulated wires को आपस में घुमाकर (twist) बनाया जाता है। इन twisted wires का मुख्य उद्देश्य
+                        electromagnetic interference (EMI) तथा signal noise को कम करना होता है, जिससे data transmission
+                        अधिक सुरक्षित और विश्वसनीय (reliable) बनता है। यह सबसे अधिक उपयोग की जाने वाली network cable है
+                        और LAN (Local Area Network) तथा telephone networks में व्यापक रूप से उपयोग की जाती है।</P>
+                    <strong>Types of Twisted Pair Cable</strong>
+                    <ul>
+                        <li><b>UTP (Unshielded Twisted Pair)</b><br> UTP (Unshielded Twisted Pair) एक प्रकार की Twisted
+                            Pair Cable है, जिसमें दो insulated copper wires को आपस में twist किया जाता है, लेकिन इनके
+                            ऊपर कोई अतिरिक्त shielding नहीं होती। इन twisted wires की सहायता से electromagnetic
+                            interference (EMI) और signal noise को कम किया जाता है। UTP Cable सबसे अधिक उपयोग की जाने
+                            वाली network cable है क्योंकि यह कम लागत (low cost), हल्की (lightweight) तथा install करने
+                            में आसान होती है।
+                        </li>
+
+                        <div class="image-icon"><img src="" alt="UTP">
+                        </div>
+                        <li><b>STP (Shielded Twisted Pair)</b><br> STP (Shielded Twisted Pair) एक प्रकार की
+                            Twisted
+                            Pair Cable है, जिसमें twisted copper wires के चारों ओर अतिरिक्त metal shielding या
+                            foil
+                            covering होती है। यह shielding electromagnetic interference (EMI) तथा signal noise
+                            को कम
+                            करती है, जिससे data transmission अधिक सुरक्षित (secure) और विश्वसनीय (reliable) बनता
+                            है।
+                            STP Cable का उपयोग उन स्थानों पर किया जाता है, जहाँ electrical interference अधिक
+                            होती
+                            है।</li>
+                        <div class="image-icon"><img src="" alt="STP"></div>
+                    </ul>
+
+                    <li><b>Coaxial Cable</b></li>
+                    <p>Coaxial Cable एक प्रकार की Guided Transmission Media है, जिसमें बीच में एक copper conductor होता
+                        है, जिसके चारों ओर insulating layer, metal shield तथा बाहरी plastic cover होता है। इसकी विशेष
+                        संरचना (structure) के कारण signal loss और electromagnetic interference (EMI) कम होती है। Coaxial
+                        Cable का उपयोग high-speed data transmission, Cable TV तथा Internet connections में किया जाता है।
+                    </p>
+                    <div class="image-icon"><img src="" alt="Coxial Cable"></div>
+                    <li><b>Optical Fiber Cable</b></li>
+                    <p>Optical Fiber Cable एक प्रकार की Guided Transmission Media है, जिसमें data को electrical
+                        signals की बजाय light signals (light pulses) के रूप में भेजा जाता है। यह बहुत पतले glass या
+                        plastic fibers से बनी होती है। Optical Fiber Cable बहुत high-speed, high bandwidth तथा
+                        long-distance communication के लिए उपयोग की जाती है। इसमें signal loss बहुत कम होता है और यह
+                        electromagnetic interference (EMI) से प्रभावित नहीं होती।</p>
+                    <div class="image-icon"><img src="" alt="fiber"></div>
+                </ol>
+
+                <h4>Unguided Media</h4>
+                <p><strong>Unguided Media</strong> Unguided Media या Unguided Transmission Media वह communication media
+                    है, जिसमें data signals किसी physical cable के बिना wireless signals के माध्यम से एक स्थान से दूसरे
+                    स्थान तक भेजे जाते हैं। इसमें data हवा (air), vacuum या space के माध्यम से radio waves, microwaves
+                    तथा infrared waves द्वारा transmit होता है। इसे Wireless Media या Unbounded Media भी कहा जाता है।
+                </p>
+                <strong>Type of Unguided Media</strong>
+                <ol>
+                    <li><b>Radio Waves</b><br> Radio Waves एक प्रकार की Unguided Transmission Media हैं, जिनका उपयोग
+                        wireless communication के लिए किया जाता है। इनमें data को radio frequency (RF) signals के माध्यम
+                        से हवा (air) में एक स्थान से दूसरे स्थान तक भेजा जाता है। Radio Waves लंबी दूरी तक signals भेज
+                        सकती हैं तथा इन्हें antenna की सहायता से transmit और receive किया जाता है। ये walls और अन्य
+                        बाधाओं (obstacles) को भी कुछ हद तक पार कर सकती हैं।</li>
+                    <div class="image-icon"><img src="" alt="Radio Waves"></div>
+                    <li><b>Microwaves</b><br> Microwaves एक प्रकार की Unguided Transmission Media हैं, जिनका उपयोग
+                        high-frequency radio waves के माध्यम से wireless data transmission के लिए किया जाता है।
+                        Microwaves सीधी रेखा (Line of Sight - LOS) में यात्रा करती हैं, इसलिए transmitter और
+                        receiver के बीच सीधा मार्ग होना आवश्यक होता है। इनका उपयोग long-distance communication,
+                        satellite communication तथा mobile communication में किया जाता है क्योंकि ये high-speed data
+                        transmission प्रदान करती हैं।</li>
+                    <div class="image-icon"><img src="" alt="Microwaves"></div>
+                    <li><b>Infrared (IR)</b><br> Infrared (IR) एक प्रकार की Unguided Transmission Media है,
+                        जिसमें data को infrared light waves के माध्यम से कम दूरी (short distance) तक wireless
+                        रूप से भेजा जाता है। Infrared में transmitter और receiver के बीच सामान्यतः Line of Sight
+                        (LOS) होना आवश्यक होता है, क्योंकि IR signals दीवारों (walls) या अन्य ठोस वस्तुओं
+                        (obstacles) को पार नहीं कर सकतीं। इसका उपयोग मुख्य रूप से short-range communication के
+                        लिए किया जाता है।</li>
+                    <div class="image-icon"><img src="" alt="Infrared (IR)"></div>
+                </ol>
+
+                <div class="note-box"><b>Real Life Example:</b><br>Ethernet cable guided media है, जबकि Wi-Fi unguided
+                    media है क्योंकि उसमें data air के through radio waves में travel करता है।</div>
+            </section>
+
+            <section id="bitrate">
+                <h2>Bit</h2>
+                <h3>Bit Rate
+                    <p><br><strong>Bit Rate</strong> वह rate है जिस पर digital data
+                        communication channel में transmit होता है। इसे bits per second यानी <strong>bps</strong> में
+                        measure किया जाता है। Bit Rate बताता है कि एक second में कितने bits sender से receiver तक send
+                        किए
+                        जा सकते हैं। Higher bit rate का मतलब generally faster data transmission होता है।</p>
+                    <div class="formula">Bit Rate = Number of bits transmitted / Time taken in seconds</div>
+                    <table>
+                        <tr>
+                            <th>Unit</th>
+                            <th>Meaning</th>
+                        </tr>
+                        <tr>
+                            <td>bps</td>
+                            <td>Bits per second</td>
+                        </tr>
+                        <tr>
+                            <td>Kbps</td>
+                            <td>Kilobits per second</td>
+                        </tr>
+                        <tr>
+                            <td>Mbps</td>
+                            <td>Megabits per second</td>
+                        </tr>
+                        <tr>
+                            <td>Gbps</td>
+                            <td>Gigabits per second</td>
+                        </tr>
+                    </table>
+                    <div class="note-box"><b>Real Life Example:</b><br>अगर internet speed 100 Mbps है, तो इसका मतलब
+                        network
+                        theoretically एक second में 100 megabits data transfer कर सकता है।</div>
+
+
+
+
+                    <h3>Bit Length</h3>
+                    <p><strong>Definition:</strong><br><strong>Bit Length</strong> वह distance है जो एक bit transmission
+                        medium में occupy करता है। दूसरे शब्दों में, जब digital signal medium में travel करता है, तो एक
+                        single bit physical medium में जितनी length cover करता है, उसे bit length कहा जाता है। Bit
+                        length
+                        propagation speed और bit rate पर depend करती है।</p>
+                    <div class="formula">Bit Length = Propagation Speed / Bit Rate</div>
+                    <p>अगर signal बहुत fast travel करता है और bit rate कम है, तो एक bit medium में ज्यादा distance
+                        occupy कर
+                        सकता है। अगर bit rate ज्यादा है, तो same time में ज्यादा bits transmit होंगे और each bit की
+                        length
+                        medium में comparatively कम होगी।</p>
+            </section>
+
+            <section id="impairment">
+                <h2>Transmission Impairment</h2>
+                <p><br><strong>Transmission Impairment</strong> का मतलब signal की quality
+                    में आने वाली कमी या disturbance से है। जब signal sender से receiver तक travel करता है, तो medium,
+                    distance, interference और electronic limitations के कारण signal weak, changed या noisy हो सकता है।
+                    इससे receiver को original data सही तरीके से decode करने में problem हो सकती है।</p>
+
+                <h4>1. Attenuation</h4>
+                <p><strong>Attenuation</strong> में signal strength distance के साथ कम होती जाती है। Long distance
+                    communication में repeaters या amplifiers का use करके signal strength improve की जाती है। Wi-Fi
+                    router से दूर जाने पर signal weak होना attenuation का example है।</p>
+                <h4>2. Distortion</h4>
+                <p><strong>Distortion</strong> में signal का shape या form change हो जाता है। यह तब होता है जब signal के
+                    different frequency components medium में अलग-अलग speed से travel करते हैं। Phone call में आवाज बदली
+                    हुई सुनाई देना distortion का example हो सकता है।</p>
+                <h4>3. Noise</h4>
+                <p><strong>Noise</strong> unwanted signal होता है जो original signal में mix होकर communication quality
+                    खराब करता है। Electrical devices, weather, wireless interference और poor cable noise के कारण हो सकते
+                    हैं। Radio में खर-खर आवाज noise का example है।</p>
+                <table>
+                    <tr>
+                        <th>Impairment</th>
+                        <th>Meaning</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td>Attenuation</td>
+                        <td>Signal weak होना</td>
+                        <td>Wi-Fi signal distance से weak होना</td>
+                    </tr>
+                    <tr>
+                        <td>Distortion</td>
+                        <td>Signal shape change होना</td>
+                        <td>Phone call में voice change होना</td>
+                    </tr>
+                    <tr>
+                        <td>Noise</td>
+                        <td>Unwanted signal mix होना</td>
+                        <td>Radio में disturbance</td>
+                    </tr>
+                </table>
+            </section>
+
+            <section id="snr">
+                <h2>Signal to Noise Ratio</h2>
+                <p><strong>Signal to Noise Ratio (SNR)</strong> signal power और noise
+                    power के बीच ratio होता है। यह बताता है कि useful signal noise की तुलना में कितना strong है। अगर SNR
+                    high है, तो signal clear और reliable होता है। अगर SNR low है, तो noise ज्यादा होता है और
+                    communication में errors बढ़ सकते हैं।</p>
+                <div class="formula">SNR = Signal Power / Noise Power</div>
+                <h4>Importance of SNR</h4>
+                <ul>
+                    <li>High SNR better communication quality indicate करता है।</li>
+                    <li>Low SNR noisy और unreliable communication को indicate करता है।</li>
+                    <li>Wireless networks, audio systems और data communication में SNR important parameter है।</li>
+                    <li>SNR improve करने के लिए better cables, shielding, filtering और signal boosting use किए जा सकते
+                        हैं।</li>
+                </ul>
+                <div class="note-box"><b>Real Life Example:</b><br>अगर Wi-Fi signal strong है और आसपास interference कम
+                    है, तो SNR high होगा और internet stable चलेगा। अगर signal weak और noise ज्यादा है, तो connection
+                    slow या unstable हो सकता है।</div>
+            </section>
+
+        </main>
+    </div>
+</body>
+
+</html>

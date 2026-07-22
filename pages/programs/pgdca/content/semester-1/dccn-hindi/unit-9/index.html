@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introduction to Wireless Networks</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+      line-height: 1.75
+    }
+
+    .page {
+      display: grid;
+      grid-template-columns: 285px 1fr;
+      gap: 20px;
+      max-width: 1500px;
+      margin: auto;
+      padding: 10px
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 10px;
+      height: calc(100vh - 20px);
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
+      align-self: start
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #111827
+    }
+
+    .sidebar a {
+      display: block;
+      text-decoration: none;
+      color: #374151;
+      padding: 8px 10px;
+      border-radius: 10px;
+      margin-bottom: 4px;
+      font-size: 14.7px
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+      color: #1d4ed8
+    }
+
+    .content {
+      background: #fff;
+      border-radius: 18px;
+      padding: 10px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08)
+    }
+
+    .hero {
+      padding: 28px 18px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #eef2ff, #f8fafc);
+      margin-bottom: 18px
+    }
+
+    .hero h1 {
+      font-size: 34px;
+      color: #111827;
+      margin-bottom: 10px
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #374151
+    }
+
+    section {
+      padding: 22px 10px;
+      border-bottom: 1px solid #e5e7eb
+    }
+
+    section:last-child {
+      border-bottom: none
+    }
+
+    h2 {
+      font-size: 27px;
+      color: #111827;
+      margin-bottom: 12px;
+      border-left: 5px solid #2563eb;
+      padding-left: 12px
+    }
+
+    h3 {
+      font-size: 22px;
+      color: #1f2937;
+      margin: 16px 0 8px
+    }
+
+    h4 {
+      font-size: 18px;
+      color: #111827;
+      margin: 14px 0 6px
+    }
+
+    p {
+      margin: 10px 0;
+      font-size: 17px
+    }
+
+    ul,
+    ol {
+      margin-left: 24px;
+      margin-top: 8px
+    }
+
+    li {
+      margin: 7px 0;
+      font-size: 16.5px
+    }
+
+    strong {
+      color: #111827
+    }
+
+    .image-icon {
+      min-height: 180px;
+      border: 2px dashed #94a3b8;
+      border-radius: 16px;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      margin: 18px 0;
+      color: #475569;
+      font-weight: 600
+    }
+
+    .image-icon img {
+      max-width: 100%;
+      height: auto
+    }
+
+    .note-box {
+      background: #f0fdf4;
+      border-left: 5px solid #22c55e;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .info-box {
+      background: #ecfeff;
+      border-left: 5px solid #06b6d4;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .remember-box {
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      font-size: 15.5px
+    }
+
+    th,
+    td {
+      border: 1px solid #d1d5db;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top
+    }
+
+    th {
+      background: #eef2ff;
+      color: #111827
+    }
+
+    code {
+      background: #111827;
+      color: #f9fafb;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-family: Consolas, monospace;
+      font-size: 15px
+    }
+
+    .flow {
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 14px;
+      padding: 16px;
+      margin: 16px 0;
+      font-family: Consolas, monospace;
+      overflow-x: auto;
+      line-height: 1.8
+    }
+
+    @media(max-width:900px) {
+      .page {
+        grid-template-columns: 1fr
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto
+      }
+
+      .hero h1 {
+        font-size: 27px
+      }
+
+      h2 {
+        font-size: 24px
+      }
+    }
+  </style>
+
+<link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
+<script src="../../../../../../../assets/shared/portal.js" defer></script>
+<script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
+</head>
+
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <h2>Topics</h2>
+      <a href="#intro">Introduction</a>
+      <a href="#wireless-lan">Wireless LAN</a>
+      <a href="#ieee80211">IEEE 802.11</a>
+      <a href="#wimax">WiMax</a>
+      <a href="#lifi">Li-Fi</a>
+      <a href="#wireless-security">Wireless Security</a>
+      <a href="#bluetooth">Bluetooth</a>
+      <a href="#summary">Remeber Points</a>
+    </aside>
+
+    <main class="content">
+      <div class="hero">
+        <h1>Introduction to Wireless Networks</h1>
+      </div>
+
+      <section id="intro">
+        <h2>Wireless Networks</h2>
+       
+        <p>
+         
+          <strong>Wireless Network</strong> ऐसा computer network होता है जिसमें devices को connect करने के लिए physical
+          cables की जगह
+          <strong>radio waves, infrared light, microwave signals या visible light</strong> जैसी wireless communication
+          technologies use की जाती हैं।
+          इसमें laptop, mobile, tablet, printer, smart TV, IoT devices और access point बिना LAN cable के आपस में
+          communicate कर सकते हैं।
+        </p>
+        <p>
+          Wireless network का main purpose users को mobility और flexibility देना है। Wired network में device को cable
+          के पास रहना पड़ता है,
+          लेकिन wireless network में user एक fixed coverage area के अंदर move करते हुए भी internet और network resources
+          access कर सकता है।
+          आज के time में home Wi-Fi, college campus network, airport Wi-Fi, Bluetooth headphone, smart watch और wireless
+          mouse जैसे examples
+          wireless networking के common use हैं।
+        </p>
+        <h4>Need of Wireless Networks</h4>
+        <ul>
+          <li>Devices को बिना cable के connect करने के लिए।</li>
+          <li>Users को mobility provide करने के लिए।</li>
+          <li>Home, office और college में easy internet sharing के लिए।</li>
+          <li>Temporary network setup जल्दी बनाने के लिए।</li>
+          <li>Mobile devices और IoT devices को network से जोड़ने के लिए।</li>
+        </ul>
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          घर में Wi-Fi router से mobile, laptop और smart TV internet use करते हैं। यह wireless network का simple example
+          है।
+        </div>
+      </section>
+
+      <section id="wireless-lan">
+        <h2>Wireless LAN (WLAN)</h2>
+        <p>
+
+          <strong>Wireless LAN</strong> या <strong>WLAN</strong> एक local area network है जिसमें devices को connect करने
+          के लिए cables की जगह
+          wireless signals use होते हैं। यह LAN का wireless form है। WLAN mostly <strong>Wi-Fi technology</strong> पर
+          based होता है और
+          IEEE 802.11 standards follow करता है। WLAN का coverage area usually घर, classroom, office, computer lab,
+          library या campus area तक होता है।
+        </p>
+        <p>
+          WLAN में generally एक <strong>Access Point</strong> या Wi-Fi router होता है। यह access point wireless devices
+          और wired network के बीच bridge की तरह काम करता है।
+          जब कोई mobile या laptop Wi-Fi से connect होता है, तो वह access point के through network और internet access
+          करता है।
+        </p>
+        <div class="image-icon">
+          <img src="../images/wlan.webp" alt="Wireless LAN Diagram">
+        </div>
+        <h4>Components of WLAN</h4>
+        <table>
+          <tr>
+            <th>Component</th>
+            <th>Explanation</th>
+          </tr>
+          <tr>
+            <td><strong>Wireless Client</strong></td>
+            <td>Laptop, mobile, tablet या कोई भी Wi-Fi enabled device।</td>
+          </tr>
+          <tr>
+            <td><strong>Access Point</strong></td>
+            <td>Wireless devices को LAN या internet से connect करने वाला device।</td>
+          </tr>
+          <tr>
+            <td><strong>Wireless Adapter</strong></td>
+            <td>Device को Wi-Fi signal send/receive करने में help करता है।</td>
+          </tr>
+          <tr>
+            <td><strong>SSID</strong></td>
+            <td>Wireless network का name, जैसे Home_WiFi या College_Lab।</td>
+          </tr>
+          <tr>
+            <td><strong>Security Key</strong></td>
+            <td>Wi-Fi password जो unauthorized access रोकता है।</td>
+          </tr>
+        </table>
+        <h4>Advantages of WLAN</h4>
+        <ul>
+          <li>Installation easy होती है क्योंकि बहुत ज्यादा cabling की जरूरत नहीं पड़ती।</li>
+          <li>Users coverage area के अंदर move करते हुए network use कर सकते हैं।</li>
+          <li>Mobile devices को easily connect किया जा सकता है।</li>
+          <li>Temporary classrooms, seminars और events में जल्दी network setup हो सकता है।</li>
+        </ul>
+        <h4>Disadvantages of WLAN</h4>
+        <ul>
+          <li>Signal interference के कारण speed और stability affect हो सकती है।</li>
+          <li>Wired LAN की तुलना में security risk ज्यादा हो सकता है।</li>
+          <li>Distance बढ़ने पर signal weak हो सकता है।</li>
+          <li>Walls, metal objects और other electronic devices signal को block या disturb कर सकते हैं।</li>
+        </ul>
+      </section>
+
+      <section id="ieee80211">
+        <h2>IEEE 802.11</h2>
+        <p>
+          <strong>IEEE 802.11</strong> wireless LAN के लिए standards का एक family/group है। यह standard define करता है
+          कि Wi-Fi devices radio waves के through
+          data कैसे send और receive करेंगे। IEEE 802.11 standards wireless communication के rules, frequency bands,
+          speed, channel usage और security support को define करते हैं।
+        </p>
+        <p>
+          Wi-Fi actually IEEE 802.11 standard पर based technology है। Different versions जैसे 802.11a, 802.11b, 802.11g,
+          802.11n, 802.11ac और 802.11ax
+          speed, frequency और performance में अलग-अलग होते हैं। Modern routers ज्यादातर 2.4 GHz और 5 GHz bands use करते
+          हैं। New systems में 6 GHz band भी use हो सकता है।
+        </p>
+        <h4>Common IEEE 802.11 Standards</h4>
+        <table>
+          <tr>
+            <th>Standard</th>
+            <th>Common Name</th>
+            <th>Frequency</th>
+            <th>Important Point</th>
+          </tr>
+          <tr>
+            <td><strong>802.11b</strong></td>
+            <td>Wi-Fi 1/Old Wi-Fi</td>
+            <td>2.4 GHz</td>
+            <td>Old standard, low speed।</td>
+          </tr>
+          <tr>
+            <td><strong>802.11g</strong></td>
+            <td>Wi-Fi 3</td>
+            <td>2.4 GHz</td>
+            <td>Better speed than 802.11b।</td>
+          </tr>
+          <tr>
+            <td><strong>802.11n</strong></td>
+            <td>Wi-Fi 4</td>
+            <td>2.4/5 GHz</td>
+            <td>MIMO support और good coverage।</td>
+          </tr>
+          <tr>
+            <td><strong>802.11ac</strong></td>
+            <td>Wi-Fi 5</td>
+            <td>5 GHz</td>
+            <td>High speed, modern routers में common।</td>
+          </tr>
+          <tr>
+            <td><strong>802.11ax</strong></td>
+            <td>Wi-Fi 6</td>
+            <td>2.4/5/6 GHz</td>
+            <td>More efficient and faster in crowded networks।</td>
+          </tr>
+        </table>
+        <div class="info-box">
+          <b>Exam Point:</b><br>
+          IEEE 802.11 को Wireless LAN/Wi-Fi standard के रूप में याद रखें। यह WLAN communication rules define करता है।
+        </div>
+      </section>
+
+      <section id="wimax">
+        <h2>WiMax(Worldwide Interoperability for Microwave Access)</h2>
+        <p>
+          <strong>Definition:</strong><br>
+          <strong>WiMax</strong> का full form <strong>Worldwide Interoperability for Microwave Access</strong> है। यह एक
+          wireless broadband technology है
+          जो microwave signals के through long distance internet access provide करने के लिए use होती है। WiMax IEEE
+          802.16 standard पर based है।
+        </p>
+        <p>
+          WiMax को इस purpose से develop किया गया था कि large area में broadband internet बिना traditional wired cable
+          के provide किया जा सके।
+          यह city level या rural areas में internet connectivity देने के लिए useful हो सकता है, जहाँ wired broadband
+          लगाना difficult या costly होता है।
+        </p>
+        <div class="image-icon">
+          <img src="../images/wimax.webp" alt="WiMax Network">
+
+        </div>
+        <h4>Features of WiMax</h4>
+        <ul>
+          <li>Long range wireless broadband technology है।</li>
+          <li>IEEE 802.16 standard पर based है।</li>
+          <li>Point-to-point और point-to-multipoint communication support कर सकता है।</li>
+          <li>Rural और remote areas में internet connectivity provide करने में useful हो सकता है।</li>
+          <li>Microwave radio signals के through data transmission करता है।</li>
+        </ul>
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          किसी rural area में जहाँ fiber cable available नहीं है, वहाँ WiMax tower से nearby users को wireless broadband
+          service दी जा सकती है।
+        </div>
+      </section>
+
+      <section id="lifi">
+        <h2>Li-Fi(Light Fidelity)</h2>
+        <p>
+          <strong>Li-Fi</strong> का full form <strong>Light Fidelity</strong> है। यह एक wireless communication
+          technology है जो data transmission के लिए
+          radio waves की जगह <strong>visible light</strong> use करती है। इसमें LED light बहुत fast speed से blink/change
+          होती है, जिसे human eye normally notice नहीं कर पाती,
+          लेकिन receiver उस light variation को data के रूप में read कर सकता है।
+        </p>
+        <p>
+          Li-Fi technology में LED bulb transmitter की तरह काम कर सकता है और photodetector receiver की तरह। इसका use उन
+          places में useful हो सकता है
+          जहाँ radio frequency signals allowed नहीं होते, जैसे aircraft, hospitals या high-security areas। लेकिन Li-Fi
+          में limitation यह है कि light walls के through pass नहीं होती,
+          इसलिए इसका coverage room-based हो सकता है।
+        </p>
+        <div class="image-icon">
+          <img src="../images/lifi.webp" alt="Li-Fi Working Diagram">
+          Image Placeholder: LED bulb transmitting data to laptop/mobile diagram यहाँ लगाएँ
+        </div>
+        <h4>Advantages of Li-Fi</h4>
+        <ul>
+          <li>High speed data transmission possible हो सकता है।</li>
+          <li>Radio frequency interference नहीं होता।</li>
+          <li>Light walls के through नहीं जाती, इसलिए security better हो सकती है।</li>
+          <li>LED lighting infrastructure के साथ integrate किया जा सकता है।</li>
+        </ul>
+        <h4>Limitations of Li-Fi</h4>
+        <ul>
+          <li>Line of sight या light coverage required हो सकती है।</li>
+          <li>Walls और obstacles light signal को block कर सकते हैं।</li>
+          <li>Sunlight या external light conditions performance affect कर सकती हैं।</li>
+          <li>Wi-Fi जितना common और widely available अभी नहीं है।</li>
+        </ul>
+      </section>
+
+      <section id="wireless-security">
+        <h2>Wireless Security</h2>
+        <p>
+          <strong>Wireless Security</strong> उन techniques, protocols और settings का group है जिनके द्वारा wireless
+          network को unauthorized access,
+          data theft, eavesdropping, hacking और misuse से protect किया जाता है। Wireless network में data air medium में
+          travel करता है,
+          इसलिए कोई भी attacker signal range में आकर network traffic capture या unauthorized access की कोशिश कर सकता है।
+        </p>
+        <p>
+          Wireless security का main aim यह है कि केवल authorized users ही Wi-Fi network से connect हों और transmitted
+          data encrypted form में रहे।
+          इसके लिए strong password, encryption, authentication, MAC filtering, firewall, network hiding और regular
+          firmware update जैसी practices use की जाती हैं।
+        </p>
+        <h4>Common Wireless Security Protocols</h4>
+        <table>
+          <tr>
+            <th>Protocol</th>
+            <th>Explanation</th>
+            <th>Security Level</th>
+          </tr>
+          <tr>
+            <td><strong>WEP</strong></td>
+            <td>Old wireless security protocol, अब insecure माना जाता है।</td>
+            <td>Low</td>
+          </tr>
+          <tr>
+            <td><strong>WPA</strong></td>
+            <td>WEP से better security provide करता है, लेकिन अब old है।</td>
+            <td>Medium</td>
+          </tr>
+          <tr>
+            <td><strong>WPA2</strong></td>
+            <td>Strong encryption के साथ widely used Wi-Fi security protocol।</td>
+            <td>Good</td>
+          </tr>
+          <tr>
+            <td><strong>WPA3</strong></td>
+            <td>Modern और stronger wireless security protocol।</td>
+            <td>Very Good</td>
+          </tr>
+        </table>
+        <h4>Wireless Security Threats</h4>
+        <ul>
+          <li><strong>Unauthorized Access:</strong> बिना permission Wi-Fi network से connect होना।</li>
+          <li><strong>Eavesdropping:</strong> Wireless traffic को secretly capture/read करने की कोशिश।</li>
+          <li><strong>Weak Password Attack:</strong> Simple password guess या crack करना।</li>
+          <li><strong>Rogue Access Point:</strong> Fake access point बनाकर users को trap करना।</li>
+          <li><strong>Man-in-the-Middle Attack:</strong> User और network के बीच attacker का traffic intercept करना।</li>
+        </ul>
+        <h4>Best Practices for Wireless Security</h4>
+        <ol>
+          <li>Wi-Fi में strong WPA2 या WPA3 encryption use करें।</li>
+          <li>Default router admin password जरूर change करें।</li>
+          <li>Strong Wi-Fi password रखें जिसमें letters, numbers और symbols हों।</li>
+          <li>Guest network अलग रखें ताकि main network safe रहे।</li>
+          <li>Router firmware regular update करें।</li>
+          <li>Unknown devices को router connected device list से check करें।</li>
+          <li>Public Wi-Fi पर sensitive login/transaction avoid करें या VPN use करें।</li>
+        </ol>
+        <div class="remember-box">
+          <b>Remember:</b><br>
+          Wireless network में security बहुत important है क्योंकि signal हवा में travel करता है और range में आने वाला
+          attacker उसे target कर सकता है।
+        </div>
+      </section>
+
+      <section id="bluetooth">
+        <h2>Bluetooth</h2>
+
+        <p>
+
+          <strong>Bluetooth</strong> एक short-range wireless communication technology है जो devices के बीच data और voice
+          communication के लिए use होती है।
+          यह mainly low power और short distance communication के लिए designed है। Bluetooth mobile phones, headphones,
+          speakers, keyboards, mouse,
+          smart watches, printers और IoT devices में बहुत common है।
+        </p>
+        <p>
+          Bluetooth 2.4 GHz ISM band में operate करता है। इसका main purpose cable replacement था, जैसे wired headphone
+          की जगह Bluetooth headphone,
+          wired keyboard की जगह wireless keyboard और mobile-to-speaker connection। Bluetooth network में devices pairing
+          process के through connect होते हैं।
+        </p>
+
+        <div class="image-icon">
+          <img src="../images/bluetooth.webp" alt="Bluetooth">
+        </div>
+        <h4>Features of Bluetooth</h4>
+        <ul>
+          <li>Short range wireless technology है।</li>
+          <li>Low power consumption के लिए suitable है।</li>
+          <li>Device pairing के through secure connection बनता है।</li>
+          <li>Voice और data दोनों communication support कर सकता है।</li>
+          <li>Personal Area Network यानी PAN create करने में help करता है।</li>
+        </ul>
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          जब आप mobile phone को Bluetooth headphones से connect करते हैं, तो दोनों devices Bluetooth communication use
+          करते हैं।
+        </div>
+      
+
+    
+        <h3>Bluetooth Architecture</h3>
+
+        <p>
+          <strong>Bluetooth Architecture</strong> में devices small wireless network बनाते हैं जिसे
+          <strong>Piconet</strong> कहा जाता है।
+          एक piconet में एक device master/central role में होता है और other devices slave/peripheral role में connect हो
+          सकते हैं। Modern Bluetooth में terms central और peripheral ज्यादा use होते हैं।
+        </p>
+        <h4>Main Concepts</h4>
+        <table>
+          <tr>
+            <th>Term</th>
+            <th>Explanation</th>
+          </tr>
+          <tr>
+            <td><strong>Piconet</strong></td>
+            <td>Bluetooth devices का छोटा wireless network।</td>
+          </tr>
+          <tr>
+            <td><strong>Master/Central</strong></td>
+            <td>Connection को control करने वाला main device।</td>
+          </tr>
+          <tr>
+            <td><strong>Slave/Peripheral</strong></td>
+            <td>Master/central device से connected device।</td>
+          </tr>
+          <tr>
+            <td><strong>Scatternet</strong></td>
+            <td>Multiple piconets का interconnected group।</td>
+          </tr>
+          <tr>
+            <td><strong>Pairing</strong></td>
+            <td>दो Bluetooth devices को securely connect करने की process।</td>
+          </tr>
+        </table>
+        <h4>Bluetooth Working Flow</h4>
+        <div class="flow">
+          Device Discovery → Pairing Request → Authentication → Connection Establish → Data/Voice Transfer
+        </div>
+        <p>
+          जब Bluetooth device connect करना होता है, तो पहले device discovery होती है। इसके बाद pairing request accept की
+          जाती है।
+          Pairing complete होने के बाद devices एक secure link establish करते हैं और फिर data या audio transfer start
+          होता है।
+        </p>
+      
+        <h3>Bluetooth Applications</h3>
+        <p>
+          Bluetooth का use short-range communication में बहुत ज्यादा होता है। यह small devices को easily connect करने के
+          लिए useful है।
+          Bluetooth का advantage यह है कि इसमें cable की जरूरत नहीं पड़ती और low power consumption के कारण battery
+          operated devices में इसे easily use किया जा सकता है।
+        </p>
+        <h4>Main Applications</h4>
+        <ul>
+          <li><strong>Wireless Headphones:</strong> Mobile या laptop से audio सुनने के लिए।</li>
+          <li><strong>Bluetooth Speakers:</strong> Phone से music play करने के लिए।</li>
+          <li><strong>Wireless Keyboard and Mouse:</strong> Computer या tablet input के लिए।</li>
+          <li><strong>File Transfer:</strong> Small files एक device से दूसरे device तक भेजने के लिए।</li>
+          <li><strong>Smart Watches:</strong> Phone notifications और health data sync करने के लिए।</li>
+          <li><strong>Car Audio System:</strong> Hands-free calling और music playback के लिए।</li>
+          <li><strong>IoT Devices:</strong> Sensors और smart devices को connect करने के लिए।</li>
+          <li><strong>Medical Devices:</strong> Blood pressure monitor, glucose meter जैसे devices में data sync के लिए।
+          </li>
+        </ul>
+      </section>
+
+      <section id="bt-wifi-comparison">
+        <h2>Comparison between Bluetooth and Wi-Fi</h2>
+
+
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>Bluetooth</th>
+            <th>Wi-Fi</th>
+          </tr>
+          <tr>
+            <td><strong>Full Purpose</strong></td>
+            <td>Short-range device-to-device communication के लिए use होता है।</td>
+            <td>High-speed network और internet access provide करने के लिए use होता है।</td>
+          </tr>
+          <tr>
+            <td><strong>Range</strong></td>
+            <td>Usually short range, जैसे room level communication।</td>
+            <td>Bluetooth से ज्यादा range provide करता है, जैसे home/office coverage।</td>
+          </tr>
+          <tr>
+            <td><strong>Speed</strong></td>
+            <td>Wi-Fi की तुलना में speed कम होती है।</td>
+            <td>High data speed provide करता है।</td>
+          </tr>
+          <tr>
+            <td><strong>Power Consumption</strong></td>
+            <td>Low power consume करता है, especially Bluetooth Low Energy।</td>
+            <td>Bluetooth से ज्यादा power consume कर सकता है।</td>
+          </tr>
+          <tr>
+            <td><strong>Network Type</strong></td>
+            <td>Personal Area Network (PAN) के लिए suitable है।</td>
+            <td>Local Area Network (LAN/WLAN) के लिए suitable है।</td>
+          </tr>
+          <tr>
+            <td><strong>Common Uses</strong></td>
+            <td>Headphones, speakers, keyboard, mouse, smart watch।</td>
+            <td>Internet access, file sharing, online classes, office network।</td>
+          </tr>
+          <tr>
+            <td><strong>Connection Method</strong></td>
+            <td>Pairing process के through devices connect होते हैं।</td>
+            <td>SSID और password के through Wi-Fi network से connect होते हैं।</td>
+          </tr>
+          <tr>
+            <td><strong>Frequency</strong></td>
+            <td>Mostly 2.4 GHz band use करता है।</td>
+            <td>2.4 GHz, 5 GHz और modern systems में 6 GHz bands use हो सकते हैं।</td>
+          </tr>
+          <tr>
+            <td><strong>Example</strong></td>
+            <td>Phone से Bluetooth earphones connect करना।</td>
+            <td>Phone को home Wi-Fi router से connect करके internet चलाना।</td>
+          </tr>
+        </table>
+        <div class="info-box">
+          <b>Simple Difference:</b><br>
+          Bluetooth छोटे distance पर accessories connect करने के लिए best है, जबकि Wi-Fi high-speed internet और local
+          network access के लिए best है।
+        </div>
+      </section>
+
+      <section id="summary">
+        <h2>Remember Points</h2>
+        <div class="remember-box">
+          <b>Remember Points:</b><br>
+          WLAN = Wireless Local Area Network.<br>
+          IEEE 802.11 = Wi-Fi/WLAN standard.<br>
+          WiMax = Long range wireless broadband, IEEE 802.16.<br>
+          Li-Fi = Light Fidelity, visible light based communication.<br>
+          Wireless Security = WPA2/WPA3, strong password, encryption.<br>
+          Bluetooth = Short-range, low-power wireless technology.<br>
+          Bluetooth = PAN, Wi-Fi = WLAN.
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cyber Security Sem-1</title>
+
+<link rel="icon" type="image/jpeg" href="../../../../assets/images/logo.jpeg">
+<link rel="stylesheet" href="../../../../assets/shared/theme.css">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(180deg, #f6f8ff 0%, #eef4ff 100%);
+    color: #1f2937;
+    line-height: 1.6;
+}
+
+.page-shell {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.2rem;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    color: #1f2937;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.brand img {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.site-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.site-nav a {
+    text-decoration: none;
+    color: #1f2937;
+    padding: 0.55rem 0.8rem;
+    border-radius: 999px;
+}
+
+.site-nav a:hover {
+    background-color: #6d5bd1;
+    color: white;
+}
+
+.page-banner {
+    padding: 1.4rem 1.2rem;
+    background: #2563eb;
+    color: white;
+}
+
+.eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 0.8rem;
+    opacity: 0.9;
+}
+
+.main-content {
+    flex: 1;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1.25rem;
+}
+
+.toolbar {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.toolbar-item {
+    background: white;
+    padding: 0.9rem 1rem;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.toolbar-item label,
+.toolbar-item span {
+    font-size: 0.9rem;
+    color: #6b7280;
+}
+
+.toolbar-item select {
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 0.6rem 0.75rem;
+    font-size: 0.95rem;
+    background: #fff;
+}
+
+.toolbar-item.highlight {
+    background: #eef2ff;
+}
+
+.chapter-section {
+    background: white;
+    padding: 1.2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+}
+
+.unit-card {
+    display: none;
+}
+
+.unit-card.active {
+    display: block;
+}
+
+.unit-card h3 {
+    color: #1d4ed8;
+    margin-bottom: 0.5rem;
+}
+
+.site-footer {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(180px, 1fr));
+    gap: 1rem;
+    padding: 1.2rem;
+    background: #111827;
+    color: white;
+}
+
+.site-footer div {
+    background: rgba(255,255,255,0.06);
+    padding: 1rem;
+    border-radius: 12px;
+}
+
+.site-footer a,
+.site-footer p {
+    display: block;
+    color: #d1d5db;
+    text-decoration: none;
+    margin-bottom: 0.35rem;
+}
+
+@media (max-width: 560px) {
+    .site-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .toolbar,
+    .site-footer {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+    <link rel="stylesheet" href="../../../../assets/shared/portal.css">
+</head>
+
+<body>
+
+<div class="page-shell">
+
+<header class="site-header">
+    <a class="brand" href="../../../home/index.html">
+        <img src="../../../../assets/images/logo.jpeg" alt="Bk LearnX logo">
+        <span>Bk LearnX</span>
+    </a>
+
+    <nav class="site-nav">
+        <a href="../../../home/index.html">Home</a>
+        <a href="../../../auth/registration/index.html">Register</a>
+        <a data-guest-only href="../../../auth/login/index.html">Login</a>
+                <a data-auth-only hidden href="../../../student/profile/index.html">My Profile</a>
+                <button data-auth-only hidden data-logout class="portal-btn secondary">Logout</button>
+    </nav>
+     
+</header>
+
+<section class="page-banner">
+    <p class="eyebrow">Study Material</p>
+    <h1 id="courseTitle">Course Name</h1>
+</section>
+
+<main class="main-content">
+
+<section class="toolbar">
+    <div class="toolbar-item">
+        <label for="subject">Subject</label>
+        <select id="subject">
+            <option value="">Select Subject</option>
+        </select>
+    </div>
+
+    <div class="toolbar-item">
+        <label for="unit">Unit</label>
+        <select id="unit">
+            <option value="">Select Unit</option>
+        </select>
+    </div>
+
+    <div class="toolbar-item highlight">
+        <span>Current</span>
+        <strong id="currentChapter">Select subject and unit</strong>
+    </div>
+</section>
+
+<section class="chapter-section">
+    <h2 id="chapterName">Select a subject and unit</h2>
+
+    <div id="chapterContent">
+
+        <!-- Yahan apna content add karna hai -->
+
+        <div class="unit-card" data-subject="FS" data-unit="unit-1">
+            <h3>Fundamentals of DSML - Unit 1</h3>
+            <p>Yahan Unit 1 ka content add karo.</p>
+        </div>
+
+        <div class="unit-card" data-subject="NCS" data-unit="unit-1">
+            <h3>Python for Data Science - Unit 1</h3>
+            <p>Yahan Python Unit 1 ka content add karo.</p>
+        </div>
+
+        <div class="unit-card" data-subject="OSSF" data-unit="unit-1">
+            <h3>Essential Mathematics - Unit 1</h3>
+            <p>Yahan Maths Unit 1 ka content add karo.</p>
+        </div>
+        <div class="unit-card" data-subject="FWAS" data-unit="unit-1">
+            <h3>Essential Mathematics - Unit 1</h3>
+            <p>Yahan Maths Unit 1 ka content add karo.</p>
+        </div>
+
+    </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+    <div>
+        <h3>Quick Links</h3>
+        <a href="../../../home/index.html">Home</a>
+        <a href="../../../auth/registration/index.html">Register</a>
+        <a data-guest-only href="../../../auth/login/index.html">Login</a>
+                <a data-auth-only hidden href="../../../student/profile/index.html">My Profile</a>
+                <button data-auth-only hidden data-logout class="portal-btn secondary">Logout</button>
+    </div>
+
+    <div>
+        <h3>Support</h3>
+        <p>Study notes, previous papers and helpful resources.</p>
+    </div>
+
+    <div>
+        <h3>Contact</h3>
+        <p>support@example.com</p>
+    </div>
+</footer>
+
+</div>
+
+<script>
+const courseConfig = {
+    courseName: "Cyber Security Semester-1",
+
+    subjects: {
+        FS: {
+            name: "Fundamentals Security",
+            units: ["Unit-1", "Unit-2", "Unit-3", "Unit-4", "Unit-5"]
+        },
+
+        NCS: {
+            name: "Networking Concepts & Security",
+            units: ["Unit-1", "Unit-2", "Unit-3", "Unit-4", "Unit-5"]
+        },
+
+        OSSF: {
+            name: "operating-system-secuirty-foren.",
+            units: ["Unit-1", "Unit-2", "Unit-3", "Unit-4", "Unit-5"]
+        },
+
+        FWAS: {
+            name: "Fundamental of Web Application and Security",
+            units: ["Unit-1", "Unit-2", "Unit-3", "Unit-4", "Unit-5"]
+        },
+    }
+};
+
+const subjectSelect = document.getElementById("subject");
+const unitSelect = document.getElementById("unit");
+const chapterHeading = document.getElementById("chapterName");
+const currentChapter = document.getElementById("currentChapter");
+const courseTitle = document.getElementById("courseTitle");
+const unitCards = Array.from(document.querySelectorAll("unit-card"));
+
+courseTitle.textContent = courseConfig.courseName;
+
+function loadSubjects() {
+    Object.keys(courseConfig.subjects).forEach(subjectKey => {
+        const option = document.createElement("option");
+        option.value = subjectKey;
+        option.textContent = courseConfig.subjects[subjectKey].name;
+        subjectSelect.appendChild(option);
+    });
+}
+
+function updateUnit() {
+    const subject = subjectSelect.value;
+
+    unitSelect.innerHTML = '<option value="">Select Unit</option>';
+    hideAllCards();
+
+    if (!subject) {
+        chapterHeading.textContent = "Select a subject";
+        currentChapter.textContent = "Select subject and unit";
+        return;
+    }
+
+    courseConfig.subjects[subject].units.forEach(unit => {
+        const option = document.createElement("option");
+        option.value = unit;
+        option.textContent = unit;
+        unitSelect.appendChild(option);
+    });
+
+    chapterHeading.textContent = courseConfig.subjects[subject].name;
+    currentChapter.textContent = "Select a unit";
+}
+
+function getUnitKey(unitValue) {
+    if (!unitValue) return "";
+
+    const match = unitValue.toLowerCase().match(/unit-\d+/);
+    return match ? match[0] : "";
+}
+
+function hideAllCards() {
+    unitCards.forEach(card => {
+        card.classList.remove("active");
+    });
+}
+
+function updateChapter() {
+    const subject = subjectSelect.value;
+    const unit = unitSelect.value;
+    const selectedUnitKey = getUnitKey(unit);
+
+    hideAllCards();
+
+    if (!subject) {
+        chapterHeading.textContent = "Select a subject";
+        currentChapter.textContent = "Select subject and unit";
+        return;
+    }
+
+    if (!unit) {
+        chapterHeading.textContent = courseConfig.subjects[subject].name;
+        currentChapter.textContent = "Select a unit";
+        return;
+    }
+
+    let contentFound = false;
+
+    unitCards.forEach(card => {
+        const cardSubject = card.getAttribute("data-subject");
+        const cardUnit = card.getAttribute("data-unit");
+
+        if (cardSubject === subject && cardUnit === selectedUnitKey) {
+            card.classList.add("active");
+            contentFound = true;
+        }
+    });
+
+    const subjectName = courseConfig.subjects[subject].name;
+
+    chapterHeading.textContent = `${subjectName} - ${unit}`;
+    currentChapter.textContent = `${subjectName} • ${unit}`;
+
+    if (!contentFound) {
+        currentChapter.textContent = "Content not added yet";
+    }
+}
+
+subjectSelect.addEventListener("change", updateUnit);
+unitSelect.addEventListener("change", updateChapter);
+
+document.addEventListener("DOMContentLoaded", () => {
+    loadSubjects();
+});
+</script>
+<script src="../../../../assets/shared/theme.js" defer></script>
+    <script src="../../../../assets/shared/portal.js"></script>
+</body>
+</html>

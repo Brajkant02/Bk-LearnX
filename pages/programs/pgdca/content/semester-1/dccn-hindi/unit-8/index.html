@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Network Administration</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+      line-height: 1.75
+    }
+
+    .page {
+      display: grid;
+      grid-template-columns: 285px 1fr;
+      gap: 20px;
+      max-width: 1500px;
+      margin: auto;
+      padding: 10px
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 10px;
+      height: calc(100vh - 20px);
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
+      align-self: start
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #111827
+    }
+
+    .sidebar a {
+      display: block;
+      text-decoration: none;
+      color: #374151;
+      padding: 8px 10px;
+      border-radius: 10px;
+      margin-bottom: 4px;
+      font-size: 14.7px
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+      color: #1d4ed8
+    }
+
+    .content {
+      background: #fff;
+      border-radius: 18px;
+      padding: 10px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08)
+    }
+
+    .hero {
+      padding: 28px 18px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #eef2ff, #f8fafc);
+      margin-bottom: 18px
+    }
+
+    .hero h1 {
+      font-size: 34px;
+      color: #111827;
+      margin-bottom: 10px
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #374151
+    }
+
+    section {
+      padding: 22px 10px;
+      border-bottom: 1px solid #e5e7eb
+    }
+
+    section:last-child {
+      border-bottom: none
+    }
+
+    h2 {
+      font-size: 27px;
+      color: #111827;
+      margin-bottom: 12px;
+      border-left: 5px solid #2563eb;
+      padding-left: 12px
+    }
+
+    h3 {
+      font-size: 22px;
+      color: #1f2937;
+      margin: 16px 0 8px
+    }
+
+    h4 {
+      font-size: 18px;
+      color: #111827;
+      margin: 14px 0 6px
+    }
+
+    p {
+      margin: 10px 0;
+      font-size: 17px
+    }
+
+    ul,
+    ol {
+      margin-left: 24px;
+      margin-top: 8px
+    }
+
+    li {
+      margin: 7px 0;
+      font-size: 16.5px
+    }
+
+    strong {
+      color: #111827
+    }
+
+    .image-icon {
+      min-height: 180px;
+      border: 2px dashed #94a3b8;
+      border-radius: 16px;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      margin: 18px 0;
+      color: #475569;
+      font-weight: 600;
+      flex-direction: column
+    }
+
+    .image-icon img {
+      max-width: 100%;
+      height: auto
+    }
+
+    .note-box {
+      background: #f0fdf4;
+      border-left: 5px solid #22c55e;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .info-box {
+      background: #ecfeff;
+      border-left: 5px solid #06b6d4;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .remember-box {
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .warning-box {
+      background: #fef2f2;
+      border-left: 5px solid #ef4444;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      font-size: 15.5px
+    }
+
+    th,
+    td {
+      border: 1px solid #d1d5db;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top
+    }
+
+    th {
+      background: #eef2ff;
+      color: #111827
+    }
+
+    code {
+      background: #111827;
+      color: #f9fafb;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-family: Consolas, monospace;
+      font-size: 15px
+    }
+
+    .flow {
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 14px;
+      padding: 16px;
+      margin: 16px 0;
+      font-family: Consolas, monospace;
+      overflow-x: auto;
+      line-height: 1.8
+    }
+
+    @media(max-width:900px) {
+      .page {
+        grid-template-columns: 1fr
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto
+      }
+
+      .hero h1 {
+        font-size: 27px
+      }
+
+      h2 {
+        font-size: 24px
+      }
+    }
+  </style>
+
+<link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
+<script src="../../../../../../../assets/shared/portal.js" defer></script>
+<script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
+</head>
+
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <h2>Topics</h2>
+      <a href="#intro">Introduction</a>
+      <a href="#security">Security Principles</a>
+      <a href="#crypto">Cryptography</a>
+      <a href="#secure-protocols">Secure Protocols</a>
+      <a href="#tools">Troubleshooting Tools</a>
+      <a href="#ping">PING</a>
+      <a href="#ipconfig">IPCONFIG</a>
+      <a href="#ifconfig">IFCONFIG</a>
+      <a href="#netstat">NETSTAT</a>
+      <a href="#tracert">TRACERT / TRACEROOT</a>
+      <a href="#wireshark">Wireshark</a>
+      <a href="#nmap">Nmap</a>
+      <a href="#tcpdump">TCPDUMP</a>
+      <a href="#routeprint">ROUTE PRINT</a>
+      <a href="#dhcp">DHCP Server</a>
+      <a href="#workgroup-domain">Workgroup / Domain</a>
+      <a href="#comparison">Comparison Tables</a>
+    
+    </aside>
+
+    <main class="content">
+      <div class="hero">
+        <h1>Network Administration</h1>
+        
+      </div>
+
+      <section id="intro">
+      
+        <h2>Network Administration</h2>
+      
+        <p>
+         
+          <strong>Network Administration</strong> वह process है जिसमें किसी computer network को plan, configure,
+          monitor, secure और troubleshoot किया जाता है।
+          Network administrator का काम यह ensure करना होता है कि network properly काम करे, users को सही access मिले,
+          devices को IP address मिले,
+          internet और local resources available रहें और unauthorized access से network secure रहे।
+        </p>
+        <p>
+          एक organization, college, office या computer lab में कई computers, servers, printers, routers और switches
+          connected होते हैं।
+          इन सभी devices को manage करने के लिए network administration की जरूरत होती है। इसमें security policies बनाना,
+          DHCP server configure करना,
+          network problems find करना, secure protocols use करना और users को workgroup या domain environment में manage
+          करना शामिल है।
+        </p>
+        <h4>Need of Network Administration</h4>
+        <ul>
+          <li>Network को secure, reliable और fast बनाए रखने के लिए।</li>
+          <li>Users और computers को proper IP address और access देने के लिए।</li>
+          <li>Network problems को जल्दी troubleshoot करने के लिए।</li>
+          <li>Servers, routers, switches और clients को centrally manage करने के लिए।</li>
+          <li>Data protection, authentication और resource sharing को control करने के लिए।</li>
+        </ul>
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          College computer lab में network administrator सभी computers को network से connect रखता है, internet access
+          manage करता है,
+          DHCP से IP assign करवाता है और network slow होने पर PING, IPCONFIG, NETSTAT जैसे tools से problem check करता
+          है।
+        </div>
+      </section>
+
+      <section id="security">
+        <h2>Network Security </h2>
+       
+      
+        <p>
+          
+          <strong>Network Security</strong> का मतलब network, data, devices और services को unauthorized access, misuse,
+          modification,
+          attack और damage से protect करना है। Network security में hardware, software, policies और procedures use किए
+          जाते हैं ताकि network safe रहे।
+          इसमें firewall, antivirus, encryption, authentication, access control, secure protocols और monitoring tools
+          important role play करते हैं।
+        </p>
+        <p>
+          Network security का main goal यह होता है कि सही user को सही resource मिले और गलत user या attacker network में
+          enter न कर सके।
+          अगर network secure नहीं है, तो data चोरी हो सकता है, password leak हो सकते हैं, system hack हो सकता है और
+          organization का important work रुक सकता है।
+        </p>
+
+        <h3>CIA Principle</h3>
+        <table>
+          <tr>
+            <th>Principle</th>
+            <th>Meaning</th>
+            <th>Example</th>
+          </tr>
+          <tr>
+            <td><strong>Confidentiality</strong></td>
+            <td>Data केवल authorized users को ही visible होना चाहिए।</td>
+            <td>Password, encryption और access control.</td>
+          </tr>
+          <tr>
+            <td><strong>Integrity</strong></td>
+            <td>Data unauthorized तरीके से change नहीं होना चाहिए।</td>
+            <td>Hashing, checksum और digital signature.</td>
+          </tr>
+          <tr>
+            <td><strong>Availability</strong></td>
+            <td>Network services जरूरत के समय available होनी चाहिए।</td>
+            <td>Backup server, UPS और DDoS protection.</td>
+          </tr>
+        </table>
+
+        <h4>Main Network Security Principles</h4>
+        <ul>
+          <li><strong>Authentication:</strong> User की identity verify करना, जैसे username-password, OTP, biometric.
+          </li>
+          <li><strong>Authorization:</strong> Verified user को कौन-कौन से resources access करने हैं, यह decide करना।
+          </li>
+          <li><strong>Access Control:</strong> Users और devices के access को rules के according control करना।</li>
+          <li><strong>Encryption:</strong> Data को unreadable form में convert करना ताकि चोरी होने पर भी data समझ न आए।
+          </li>
+          <li><strong>Firewall Protection:</strong> Incoming और outgoing traffic को filter करना।</li>
+          <li><strong>Auditing and Logging:</strong> Network activities का record रखना ताकि suspicious activity पता चल
+            सके।</li>
+          <li><strong>Backup and Recovery:</strong> Data loss होने पर data वापस प्राप्त करने के लिए backup रखना।</li>
+        </ul>
+
+        <div class="remember-box">
+          <b>Remember:</b><br>
+          Network Security का base concept <strong>CIA</strong> है: Confidentiality, Integrity और Availability.
+        </div>
+      </section>
+
+      <section id="crypto">
+        <h2>Cryptography</h2>
+      
+        
+        <p>
+         
+          <strong>Cryptography</strong> वह technique है जिसके द्वारा data को secure form में convert किया जाता है ताकि
+          unauthorized person उसे read न कर सके।
+          इसमें original message को <strong>Plain Text</strong> कहा जाता है और encrypted message को <strong>Cipher
+            Text</strong> कहा जाता है।
+          Cipher text को वापस plain text में convert करने की process <strong>Decryption</strong> कहलाती है।
+        </p>
+        <div class="flow">
+          Plain Text → Encryption Algorithm + Key → Cipher Text<br>
+          Cipher Text → Decryption Algorithm + Key → Plain Text
+        </div>
+        <h4>Important Terms</h4>
+        <table>
+          <tr>
+            <th>Term</th>
+            <th>Explanation</th>
+          </tr>
+          <tr>
+            <td><strong>Plain Text</strong></td>
+            <td>Original readable message.</td>
+          </tr>
+          <tr>
+            <td><strong>Cipher Text</strong></td>
+            <td>Encrypted unreadable message.</td>
+          </tr>
+          <tr>
+            <td><strong>Encryption</strong></td>
+            <td>Plain text को cipher text में बदलना।</td>
+          </tr>
+          <tr>
+            <td><strong>Decryption</strong></td>
+            <td>Cipher text को वापस plain text में बदलना।</td>
+          </tr>
+          <tr>
+            <td><strong>Key</strong></td>
+            <td>Secret value जिसके द्वारा encryption/decryption होती है।</td>
+          </tr>
+        </table>
+
+        <h3>Types of Cryptography</h3>
+        <h4>1. Symmetric Key Cryptography</h4>
+        <p>
+          Symmetric cryptography में encryption और decryption दोनों के लिए same key use होती है। Sender और receiver
+          दोनों के पास वही secret key होनी चाहिए।
+          यह method fast होती है, लेकिन key को safely share करना difficult हो सकता है।
+        </p>
+        <div class="note-box">
+          <b>Example:</b> AES, DES. Real life में file encryption और VPN में symmetric encryption use हो सकती है।
+        </div>
+
+        <h4>2. Asymmetric Key Cryptography</h4>
+        <p>
+          Asymmetric cryptography में दो keys use होती हैं: <strong>Public Key</strong> और <strong>Private Key</strong>।
+          Public key सबके साथ share की जा सकती है,
+          लेकिन private key secret रखी जाती है। जो data public key से encrypt होता है, उसे private key से decrypt किया
+          जा सकता है।
+        </p>
+        <div class="note-box">
+          <b>Example:</b> RSA. HTTPS और digital certificates में asymmetric cryptography important role play करती है।
+        </div>
+
+        <h4>3. Hashing</h4>
+        <p>
+          Hashing में data को fixed length hash value में convert किया जाता है। Hashing one-way process है, यानी hash से
+          original data वापस प्राप्त नहीं किया जा सकता।
+          यह password storage, data integrity check और digital signature में use होती है।
+        </p>
+        <div class="info-box">
+          <b>Example:</b> अगर file download के बाद उसका hash match करता है, तो file सही और unchanged मानी जाती है।
+        </div>
+      </section>
+
+      <section id="secure-protocols">
+       
+        <h2>Secure Protocols</h2>
+    
+        <p>
+          
+          <strong>Secure Protocols</strong> वे communication rules होते हैं जो network पर data transfer करते समय
+          security provide करते हैं।
+          Secure protocols data को encrypt करते हैं, user/server authentication provide करते हैं और data integrity
+          maintain करते हैं।
+          पुराने insecure protocols जैसे HTTP, FTP और Telnet में data plain text में जा सकता है, इसलिए attacker password
+          या data read कर सकता है।
+        </p>
+        <table>
+          <tr>
+            <th>Secure Protocol</th>
+            <th>Full Form / Meaning</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><strong>HTTPS</strong></td>
+            <td>Hyper Text Transfer Protocol Secure</td>
+            <td>Secure website browsing.</td>
+          </tr>
+          <tr>
+            <td><strong>SSL/TLS</strong></td>
+            <td>Secure Sockets Layer / Transport Layer Security</td>
+            <td>Encrypted communication provide करना।</td>
+          </tr>
+          <tr>
+            <td><strong>SSH</strong></td>
+            <td>Secure Shell</td>
+            <td>Remote server login securely.</td>
+          </tr>
+          <tr>
+            <td><strong>SFTP</strong></td>
+            <td>Secure File Transfer Protocol</td>
+            <td>Secure file transfer.</td>
+          </tr>
+          <tr>
+            <td><strong>FTPS</strong></td>
+            <td>FTP Secure</td>
+            <td>FTP को SSL/TLS के साथ secure करना।</td>
+          </tr>
+          <tr>
+            <td><strong>VPN</strong></td>
+            <td>Virtual Private Network</td>
+            <td>Public internet पर secure private tunnel बनाना।</td>
+          </tr>
+          <tr>
+            <td><strong>IPsec</strong></td>
+            <td>Internet Protocol Security</td>
+            <td>IP packets को secure करना।</td>
+          </tr>
+        </table>
+        <div class="warning-box">
+          <b>Exam Tip:</b><br>
+          Telnet की जगह SSH, HTTP की जगह HTTPS और FTP की जगह SFTP/FTPS use करना ज्यादा secure माना जाता है।
+        </div>
+      </section>
+
+      <section id="tools">
+        <h2>Troubleshooting Tools</h2>
+        <h3>Network Troubleshooting Tools</h3>
+       
+        <p>
+         
+          <strong>Network Troubleshooting Tools</strong> वे commands और software tools होते हैं जिनकी help से network
+          problems को find और solve किया जाता है।
+          जैसे internet नहीं चल रहा, IP address गलत है, server reachable नहीं है, packet loss हो रहा है, route problem
+          है या suspicious traffic आ रहा है,
+          तो administrator troubleshooting tools का use करता है।
+        </p>
+        <table>
+          <tr>
+            <th>Tool</th>
+            <th>Main Use</th>
+            <th>Platform</th>
+          </tr>
+          <tr>
+            <td><strong>PING</strong></td>
+            <td>Connectivity test</td>
+            <td>Windows/Linux</td>
+          </tr>
+          <tr>
+            <td><strong>IPCONFIG</strong></td>
+            <td>IP configuration check</td>
+            <td>Windows</td>
+          </tr>
+          <tr>
+            <td><strong>IFCONFIG</strong></td>
+            <td>Interface configuration check</td>
+            <td>Linux/Unix</td>
+          </tr>
+          <tr>
+            <td><strong>NETSTAT</strong></td>
+            <td>Connections and ports check</td>
+            <td>Windows/Linux</td>
+          </tr>
+          <tr>
+            <td><strong>TRACERT/TRACEROOT</strong></td>
+            <td>Packet route check</td>
+            <td>Windows/Linux</td>
+          </tr>
+          <tr>
+            <td><strong>Wireshark</strong></td>
+            <td>Packet analysis</td>
+            <td>GUI Tool</td>
+          </tr>
+          <tr>
+            <td><strong>Nmap</strong></td>
+            <td>Network scanning</td>
+            <td>Windows/Linux</td>
+          </tr>
+          <tr>
+            <td><strong>TCPDUMP</strong></td>
+            <td>Packet capture</td>
+            <td>Linux/Unix</td>
+          </tr>
+          <tr>
+            <td><strong>ROUTE PRINT</strong></td>
+            <td>Routing table check</td>
+            <td>Windows</td>
+          </tr>
+        </table>
+      </section>
+
+      <section id="ping">
+        <h2>PING</h2>
+      
+        <p>
+          
+          <strong>PING</strong> एक basic network troubleshooting command है जिसका use यह check करने के लिए किया जाता है
+          कि कोई device या server reachable है या नहीं।
+          PING ICMP Echo Request भेजता है और destination से ICMP Echo Reply receive करता है। इससे पता चलता है कि network
+          connectivity working है या नहीं।
+        </p>
+        <h4>Syntax</h4>
+        <div class="flow">ping destination_address</div>
+        <h4>Example</h4>
+        <div class="flow">ping google.com<br>ping 192.168.1.1</div>
+        <h4>Output Meaning</h4>
+        <ul>
+          <li><strong>Reply from:</strong> Destination reachable है।</li>
+          <li><strong>Request timed out:</strong> Reply नहीं मिला, connection या firewall problem हो सकती है।</li>
+          <li><strong>TTL:</strong> Time To Live value packet की lifetime indicate करती है।</li>
+          <li><strong>Time:</strong> Response आने में कितना समय लगा।</li>
+        </ul>
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          अगर internet नहीं चल रहा, तो पहले <code>ping 192.168.1.1</code> से router check करें और फिर
+          <code>ping google.com</code> से internet/DNS check करें।
+        </div>
+      </section>
+
+      <section id="ipconfig">
+        <h2>IPCONFIG</h2>
+       
+        <p>
+         
+          <strong>IPCONFIG</strong> Windows command है जिसके द्वारा computer का IP address, subnet mask, default gateway
+          और DNS information check की जाती है।
+          यह command DHCP related problems solve करने में भी useful है।
+        </p>
+        <h4>Common Commands</h4>
+        <div class="flow">ipconfig<br>ipconfig /all<br>ipconfig /release<br>ipconfig /renew<br>ipconfig /flushdns</div>
+        <table>
+          <tr>
+            <th>Command</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>ipconfig</code></td>
+            <td>Basic IP configuration show करता है।</td>
+          </tr>
+          <tr>
+            <td><code>ipconfig /all</code></td>
+            <td>Detailed IP, MAC, DNS और DHCP information show करता है।</td>
+          </tr>
+          <tr>
+            <td><code>ipconfig /release</code></td>
+            <td>Current DHCP IP release करता है।</td>
+          </tr>
+          <tr>
+            <td><code>ipconfig /renew</code></td>
+            <td>DHCP server से नया IP प्राप्त करता है।</td>
+          </tr>
+          <tr>
+            <td><code>ipconfig /flushdns</code></td>
+            <td>DNS cache clear करता है।</td>
+          </tr>
+        </table>
+      </section>
+
+      <section id="ifconfig">
+        <h2>IFCONFIG</h2>
+       
+        <p>
+         
+          <strong>IFCONFIG</strong> Linux/Unix based systems में network interfaces की configuration देखने और manage
+          करने के लिए use होता है।
+          इससे IP address, MAC address, subnet mask और interface status check किया जा सकता है। Modern Linux systems में
+          <code>ip addr</code> command भी use होती है।
+        </p>
+        <h4>Examples</h4>
+        <div class="flow">ifconfig<br>ifconfig eth0<br>ifconfig wlan0<br>ip addr show</div>
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          Linux server में कौन सा IP assign है, यह check करने के लिए administrator <code>ifconfig</code> या
+          <code>ip addr</code> command use करता है।
+        </div>
+      </section>
+
+      <section id="netstat">
+        <h2>NETSTAT</h2>
+      
+        <p>
+         
+          <strong>NETSTAT</strong> का full form <strong>Network Statistics</strong> है। यह command active network
+          connections, listening ports,
+          routing table और protocol statistics show करती है। इससे पता चलता है कि computer किन IP addresses से connected
+          है और कौन से ports open हैं।
+        </p>
+        <h4>Common Commands</h4>
+        <div class="flow">netstat<br>netstat -a<br>netstat -n<br>netstat -ano</div>
+        <table>
+          <tr>
+            <th>Command</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>netstat -a</code></td>
+            <td>All connections and listening ports show करता है।</td>
+          </tr>
+          <tr>
+            <td><code>netstat -n</code></td>
+            <td>Addresses और ports को numeric form में show करता है।</td>
+          </tr>
+          <tr>
+            <td><code>netstat -ano</code></td>
+            <td>PID के साथ active connections show करता है।</td>
+          </tr>
+        </table>
+      </section>
+
+      <section id="tracert">
+        <h2>TRACERT / TRACEROOT</h2>
+     
+        <p>
+         
+          <strong>TRACERT</strong> Windows command है और <strong>TRACEROUTE</strong> Linux/Unix command है। यह command
+          यह बताती है कि packet source से destination तक
+          किन-किन routers या hops से होकर जा रहा है। Syllabus में TRACEROOT लिखा है, लेकिन commonly command का name
+          <strong>traceroute</strong> होता है।
+        </p>
+        <h4>Syntax</h4>
+        <div class="flow">tracert google.com (Windows)<br>traceroute google.com (Linux)</div>
+        <h4>Use</h4>
+        <ul>
+          <li>Internet route path check करने के लिए।</li>
+          <li>किस hop पर delay या packet loss है, यह identify करने के लिए।</li>
+          <li>Routing problem troubleshoot करने के लिए।</li>
+        </ul>
+      </section>
+
+      <section id="wireshark">
+        <h2>Wireshark</h2>
+      
+        <p>
+         
+          <strong>Wireshark</strong> एक graphical packet analyzer tool है जिसका use network packets को capture और
+          analyze करने के लिए किया जाता है।
+          इससे administrator यह देख सकता है कि network में कौन सा data packet जा रहा है, कौन सा protocol use हो रहा है,
+          source/destination IP क्या है और packet में error या delay कहाँ है।
+        </p>
+        <h4>Uses</h4>
+        <ul>
+          <li>Packet capture और analysis.</li>
+          <li>Protocol level troubleshooting.</li>
+          <li>Suspicious traffic detect करना।</li>
+          <li>DNS, TCP, HTTP, ICMP traffic check करना।</li>
+        </ul>
+        <div class="warning-box">
+          <b>Important:</b><br>
+          Wireshark को केवल अपने authorized network पर learning और troubleshooting purpose के लिए use करना चाहिए।
+        </div>
+      </section>
+
+      <section id="nmap">
+        <h2>Nmap Network Scanner</h2>
+        <p>
+          
+          <strong>Nmap</strong> का full form <strong>Network Mapper</strong> है। यह एक network scanning tool है जो
+          network में active hosts,
+          open ports, running services और operating system information identify करने में help करता है। Network
+          administrator इसका use security auditing और inventory के लिए करता है।
+        </p>
+        <h4>Examples</h4>
+        <div class="flow">nmap 192.168.1.1<br>nmap 192.168.1.0/24</div>
+        <h4>Uses</h4>
+        <ul>
+          <li>Network में active devices check करना।</li>
+          <li>Open ports और running services identify करना।</li>
+          <li>Security audit और vulnerability checking में help करना।</li>
+        </ul>
+        <div class="warning-box">
+          <b>Legal Reminder:</b><br>
+          Nmap scanning केवल अपने network या authorized system पर करें। किसी दूसरे network को बिना permission scan करना
+          गलत हो सकता है।
+        </div>
+      </section>
+
+      <section id="tcpdump">
+        <h2>TCPDUMP</h2>
+   
+        <p>
+         
+          <strong>TCPDUMP</strong> Linux/Unix command-line packet capture tool है। यह network interface पर आने-जाने वाले
+          packets को capture और display करता है।
+          Wireshark GUI based है, जबकि TCPDUMP command line based है। Server environment में TCPDUMP बहुत useful होता है
+          क्योंकि वहाँ GUI available नहीं होता।
+        </p>
+        <h4>Examples</h4>
+        <div class="flow">tcpdump<br>tcpdump -i eth0<br>tcpdump host 192.168.1.10<br>tcpdump port 80</div>
+        <h4>Uses</h4>
+        <ul>
+          <li>Server traffic capture करना।</li>
+          <li>Specific host या port traffic analyze करना।</li>
+          <li>Network delay, packet loss और suspicious packets identify करना।</li>
+        </ul>
+      </section>
+
+      <section id="routeprint">
+        <h2>ROUTE PRINT</h2>
+        <h3>ROUTE PRINT Command</h3>
+        <p>
+          <strong>Definition:</strong><br>
+          <strong>ROUTE PRINT</strong> Windows command है जो computer की routing table show करती है। Routing table बताती
+          है कि किस destination network के लिए packet किस gateway या interface से भेजा जाएगा।
+          अगर computer wrong gateway use कर रहा है, तो route print command से problem identify की जा सकती है।
+        </p>
+        <h4>Command</h4>
+        <div class="flow">route print</div>
+        <h4>Routing Table में Common Terms</h4>
+        <table>
+          <tr>
+            <th>Term</th>
+            <th>Meaning</th>
+          </tr>
+          <tr>
+            <td><strong>Network Destination</strong></td>
+            <td>Destination network address.</td>
+          </tr>
+          <tr>
+            <td><strong>Netmask</strong></td>
+            <td>Network mask.</td>
+          </tr>
+          <tr>
+            <td><strong>Gateway</strong></td>
+            <td>Next-hop router address.</td>
+          </tr>
+          <tr>
+            <td><strong>Interface</strong></td>
+            <td>Local interface जिससे packet भेजा जाएगा।</td>
+          </tr>
+          <tr>
+            <td><strong>Metric</strong></td>
+            <td>Route priority/cost.</td>
+          </tr>
+        </table>
+      </section>
+
+      <section id="dhcp">
+        <h2>DHCP Server</h2>
+      
+        <p>
+          <strong>DHCP</strong> का full form <strong>Dynamic Host Configuration Protocol</strong> है। DHCP Server
+          network devices को automatically IP address,
+          subnet mask, default gateway और DNS server information assign करता है। अगर DHCP नहीं हो, तो administrator को
+          हर computer में manually IP address set करना पड़ेगा।
+        </p>
+        <p>
+          DHCP server network administration को आसान बनाता है क्योंकि यह IP address management automatically करता है।
+          Home router में भी DHCP server होता है,
+          जो mobile, laptop और computer को automatic IP देता है।
+        </p>
+        <h4>DORA Process</h4>
+        <div class="flow">
+          D - Discover : Client network में DHCP server खोजता है।<br>
+          O - Offer : DHCP server IP address offer करता है।<br>
+          R - Request : Client offered IP address request करता है।<br>
+          A - Acknowledge : Server IP address confirm करके lease देता है।
+        </div>
+        <h4>Important DHCP Terms</h4>
+        <table>
+          <tr>
+            <th>Term</th>
+            <th>Explanation</th>
+          </tr>
+          <tr>
+            <td><strong>Scope</strong></td>
+            <td>IP addresses की range जो DHCP server assign कर सकता है।</td>
+          </tr>
+          <tr>
+            <td><strong>Lease Time</strong></td>
+            <td>IP address कितने time के लिए client को दिया गया है।</td>
+          </tr>
+          <tr>
+            <td><strong>Reservation</strong></td>
+            <td>किसी specific device को हमेशा same IP देना।</td>
+          </tr>
+          <tr>
+            <td><strong>DHCP Relay</strong></td>
+            <td>Different network में DHCP request forward करना।</td>
+          </tr>
+          <tr>
+            <td><strong>Default Gateway</strong></td>
+            <td>Network से बाहर जाने के लिए router IP.</td>
+          </tr>
+        </table>
+        <h4>Advantages of DHCP</h4>
+        <ul>
+          <li>IP address automatic assign होता है।</li>
+          <li>Manual configuration की जरूरत कम होती है।</li>
+          <li>IP conflict की possibility कम होती है।</li>
+          <li>Large network में IP management easy होता है।</li>
+          <li>DNS और gateway information भी automatically मिल जाती है।</li>
+        </ul>
+        <h4>Disadvantages of DHCP</h4>
+        <ul>
+          <li>DHCP server down होने पर new devices को IP नहीं मिलेगा।</li>
+          <li>Security के लिए rogue DHCP server problem create कर सकता है।</li>
+          <li>कुछ servers/printers को static IP या reservation की जरूरत होती है।</li>
+        </ul>
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          जब आप mobile को Wi-Fi से connect करते हैं, तो router का DHCP server mobile को automatic IP देता है, जैसे
+          <code>192.168.1.5</code>।
+        </div>
+      </section>
+
+      <section id="workgroup-domain">
+        <h2>Workgroup / Domain Networking</h2>
+        <p>
+          <strong>Workgroup</strong> एक peer-to-peer network model है जिसमें सभी computers लगभग equal होते हैं। इसमें
+          कोई central server या central user management नहीं होता।
+          हर computer अपने local users, files और permissions को खुद manage करता है। छोटे home network या small office
+          में workgroup use किया जा सकता है।
+        </p>
+        <h4>Features of Workgroup</h4>
+        <ul>
+          <li>Small network के लिए suitable है।</li>
+          <li>Central server की जरूरत नहीं होती।</li>
+          <li>हर computer अपने users और resources खुद manage करता है।</li>
+          <li>Setup simple होता है।</li>
+          <li>Security और centralized control limited होता है।</li>
+        </ul>
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          घर में 2 laptop और 1 printer connected हैं और वे files/printer share कर रहे हैं, तो यह simple workgroup
+          network हो सकता है।
+        </div>
+
+        <h3>Domain Networking</h3>
+        <p>
+          <strong>Domain</strong> एक client-server based network model है जिसमें users, computers और resources को
+          centrally manage किया जाता है।
+          Domain में एक special server होता है जिसे <strong>Domain Controller</strong> कहा जाता है। Domain controller
+          user authentication, policies,
+          permissions और security settings को manage करता है।
+        </p>
+        <h4>Important Domain Terms</h4>
+        <table>
+          <tr>
+            <th>Term</th>
+            <th>Explanation</th>
+          </tr>
+          <tr>
+            <td><strong>Domain Controller</strong></td>
+            <td>Central server जो users, computers और authentication manage करता है।</td>
+          </tr>
+          <tr>
+            <td><strong>Active Directory</strong></td>
+            <td>Microsoft directory service जिसमें users, groups, computers और policies store होते हैं।</td>
+          </tr>
+          <tr>
+            <td><strong>Client</strong></td>
+            <td>Domain से joined computer.</td>
+          </tr>
+          <tr>
+            <td><strong>Group Policy</strong></td>
+            <td>Central rules जिनसे user/computer settings control होती हैं।</td>
+          </tr>
+          <tr>
+            <td><strong>Authentication</strong></td>
+            <td>User identity verify करने की process.</td>
+          </tr>
+        </table>
+        <h4>Features of Domain</h4>
+        <ul>
+          <li>Centralized user management.</li>
+          <li>Better security and access control.</li>
+          <li>Group Policy से settings centrally apply होती हैं।</li>
+          <li>Large organization और college network के लिए suitable है।</li>
+          <li>Administrator एक जगह से users और computers manage कर सकता है।</li>
+        </ul>
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          किसी college में सभी lab computers domain से joined हैं। Student अपने username-password से किसी भी lab
+          computer में login कर सकता है।
+          Administrator password policy, desktop restrictions और software access centrally control कर सकता है।
+        </div>
+      </section>
+
+      <section id="comparison">
+        <h2>Comparison Tables</h2>
+        <h3>Workgroup vs Domain</h3>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>Workgroup</th>
+            <th>Domain</th>
+          </tr>
+          <tr>
+            <td><strong>Network Model</strong></td>
+            <td>Peer-to-peer</td>
+            <td>Client-server</td>
+          </tr>
+          <tr>
+            <td><strong>Management</strong></td>
+            <td>Local management</td>
+            <td>Centralized management</td>
+          </tr>
+          <tr>
+            <td><strong>Server Requirement</strong></td>
+            <td>Required नहीं</td>
+            <td>Domain Controller required</td>
+          </tr>
+          <tr>
+            <td><strong>Security</strong></td>
+            <td>Limited</td>
+            <td>High</td>
+          </tr>
+          <tr>
+            <td><strong>Suitable For</strong></td>
+            <td>Home/small office</td>
+            <td>College/company/large organization</td>
+          </tr>
+          <tr>
+            <td><strong>User Account</strong></td>
+            <td>हर computer पर अलग account</td>
+            <td>Central account से login</td>
+          </tr>
+          <tr>
+            <td><strong>Policy Control</strong></td>
+            <td>Limited</td>
+            <td>Group Policy available</td>
+          </tr>
+        </table>
+
+        <h3>Static IP vs DHCP</h3>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>Static IP</th>
+            <th>DHCP</th>
+          </tr>
+          <tr>
+            <td><strong>Assignment</strong></td>
+            <td>Manual</td>
+            <td>Automatic</td>
+          </tr>
+          <tr>
+            <td><strong>Management</strong></td>
+            <td>Time consuming</td>
+            <td>Easy</td>
+          </tr>
+          <tr>
+            <td><strong>Best For</strong></td>
+            <td>Servers, printers, routers</td>
+            <td>Clients, mobiles, laptops</td>
+          </tr>
+          <tr>
+            <td><strong>IP Conflict</strong></td>
+            <td>गलत setting से हो सकता है</td>
+            <td>कम chance</td>
+          </tr>
+          <tr>
+            <td><strong>Flexibility</strong></td>
+            <td>Less flexible</td>
+            <td>More flexible</td>
+          </tr>
+        </table>
+      </section>
+
+        </main>
+  </div>
+</body>
+
+</html>

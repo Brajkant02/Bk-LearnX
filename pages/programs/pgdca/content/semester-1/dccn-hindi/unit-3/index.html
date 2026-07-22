@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Concept of Network</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f5f7fb;
+            color: #1f2937;
+            line-height: 1.75
+        }
+
+        .page {
+            display: grid;
+            grid-template-columns: 285px 1fr;
+            gap: 20px;
+            max-width: 1500px;
+            margin: auto;
+            padding: 10px
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 10px;
+            height: calc(100vh - 20px);
+            overflow-y: auto;
+            background: #fff;
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
+            align-self: start
+        }
+
+        .sidebar h2 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #111827
+        }
+
+        .sidebar a {
+            display: block;
+            text-decoration: none;
+            color: #374151;
+            padding: 8px 10px;
+            border-radius: 10px;
+            margin-bottom: 4px;
+            font-size: 14.7px
+        }
+
+        .sidebar a:hover {
+            background: #eef2ff;
+            color: #1d4ed8
+        }
+
+        .content {
+            background: #fff;
+            border-radius: 18px;
+            padding: 10px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, .08)
+        }
+
+        .hero {
+            padding: 28px 18px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #eef2ff, #f8fafc);
+            margin-bottom: 18px
+        }
+
+        .hero h1 {
+            font-size: 34px;
+            color: #111827;
+            margin-bottom: 10px
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #374151
+        }
+
+        section {
+            padding: 22px 10px;
+            border-bottom: 1px solid #e5e7eb
+        }
+
+        section:last-child {
+            border-bottom: none
+        }
+
+        h2 {
+            font-size: 27px;
+            color: #111827;
+            margin-bottom: 12px;
+            border-left: 5px solid #2563eb;
+            padding-left: 12px
+        }
+
+        h3 {
+            font-size: 22px;
+            color: #1f2937;
+            margin: 16px 0 8px
+        }
+
+        h4 {
+            font-size: 18px;
+            color: #111827;
+            margin: 14px 0 6px
+        }
+
+        p {
+            margin: 10px 0;
+            font-size: 17px
+        }
+
+        ul,
+        ol {
+            margin-left: 24px;
+            margin-top: 8px
+        }
+
+        li {
+            margin: 7px 0;
+            font-size: 16.5px
+        }
+
+        strong {
+            color: #111827
+        }
+
+        .image-icon {
+            min-height: 180px;
+            border: 2px dashed #94a3b8;
+            border-radius: 16px;
+            background: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            margin: 18px 0;
+            color: #475569;
+            font-weight: 600
+        }
+
+        .image-icon img {
+            max-width: 100%;
+            height: auto
+        }
+
+        .note-box {
+            background: #f0fdf4;
+            border-left: 5px solid #22c55e;
+            border-radius: 14px;
+            padding: 14px 16px;
+            margin: 16px 0
+        }
+
+        .info-box {
+            background: #ecfeff;
+            border-left: 5px solid #06b6d4;
+            border-radius: 14px;
+            padding: 14px 16px;
+            margin: 16px 0
+        }
+
+        .remember-box {
+            background: #fff7ed;
+            border-left: 5px solid #f97316;
+            border-radius: 14px;
+            padding: 14px 16px;
+            margin: 16px 0
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            font-size: 15.5px
+        }
+
+        th,
+        td {
+            border: 1px solid #d1d5db;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top
+        }
+
+        th {
+            background: #eef2ff;
+            color: #111827
+        }
+
+        code {
+            background: #111827;
+            color: #f9fafb;
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-family: Consolas, monospace;
+            font-size: 15px
+        }
+
+        .flow {
+            background: #0f172a;
+            color: #e5e7eb;
+            border-radius: 14px;
+            padding: 16px;
+            margin: 16px 0;
+            font-family: Consolas, monospace;
+            overflow-x: auto;
+            line-height: 1.8
+        }
+
+        @media(max-width:900px) {
+            .page {
+                grid-template-columns: 1fr
+            }
+
+            .sidebar {
+                position: relative;
+                height: auto
+            }
+
+            .hero h1 {
+                font-size: 27px
+            }
+
+            h2 {
+                font-size: 24px
+            }
+        }
+    </style>
+
+<link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
+<script src="../../../../../../../assets/shared/portal.js" defer></script>
+<script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
+</head>
+
+<body>
+    <div class="page">
+        <aside class="sidebar">
+            <h2>Topics</h2>
+            <a href="#intro">Introduction</a>
+            <a href="#concept">Concept of Network</a>
+            <a href="#computing-models">Models of Network Computing</a>
+            <a href="#networking-models">Networking Models</a>
+            <a href="#p2p">Peer-to-Peer Network</a>
+            <a href="#client-server">Client-Server Network</a>
+            <a href="#lan-man-wan">LAN, MAN and WAN</a>
+            <a href="#services">Network Services</a>
+            <a href="#switching">Switching Techniques</a>
+        </aside>
+
+        <main class="content">
+            <div class="hero">
+                <h1>Concept of Network</h1>
+
+            </div>
+
+            <section id="intro">
+                <h2>Introduction</h2>
+                <h3>Computer Network का Basic Idea</h3>
+                <p>
+                    आज के समय में computer अकेले काम करने के बजाय network में connect होकर ज्यादा useful बन जाता है।
+                    जब दो या दो से अधिक computers, laptops, mobiles, printers, servers या other devices किसी
+                    communication medium
+                    के through आपस में connect होते हैं, तो वे एक <strong>Computer Network</strong> बनाते हैं। Network
+                    का main purpose
+                    data sharing, resource sharing, communication और centralized management को आसान बनाना होता है।
+                </p>
+                <p>
+                    Example के लिए college lab में कई computers एक switch से connected होते हैं। सभी computers एक
+                    printer share कर सकते हैं,
+                    internet use कर सकते हैं और server से files access कर सकते हैं। इसी तरह office में employees email,
+                    file server,
+                    database server और internet को network के through use करते हैं। इसलिए computer network modern
+                    computing का बहुत important part है।
+                </p>
+                <div class="note-box">
+                    <b>Real Life Example:</b><br>
+                    Cyber cafe, school computer lab, bank branch, railway reservation system और office LAN computer
+                    network के practical examples हैं।
+                </div>
+            </section>
+
+            <section id="concept">
+                <h2>Concept of Network</h2>
+                <h3>Network की Definition</h3>
+                <p>
+                    <strong>Network</strong> दो या दो से अधिक devices का ऐसा group होता है जो communication medium के
+                    through connected होते हैं
+                    और data, information, hardware resources तथा software services को share कर सकते हैं। Network में
+                    connected हर device को
+                    <strong>node</strong> कहा जाता है। Node computer, printer, server, router, switch या mobile device
+                    हो सकता है।
+                </p>
+                <p>
+                    Network में communication wired medium जैसे twisted pair cable, coaxial cable, fiber optic cable या
+                    wireless medium जैसे
+                    Wi-Fi, Bluetooth, radio waves और infrared के through हो सकता है। Network का size छोटा भी हो सकता है,
+                    जैसे home network,
+                    और बहुत बड़ा भी हो सकता है, जैसे internet। Internet दुनिया का सबसे बड़ा computer network माना जाता
+                    है।
+                </p>
+                <h4>Need of Network</h4>
+                <ul>
+                    <li><strong>Data Sharing:</strong> एक computer से दूसरे computer तक files और information transfer
+                        करने के लिए।</li>
+                    <li><strong>Resource Sharing:</strong> Printer, scanner, storage और internet connection को multiple
+                        users में share करने के लिए।</li>
+                    <li><strong>Communication:</strong> Email, chat, video call और online meeting के लिए।</li>
+                    <li><strong>Centralized Control:</strong> Users, data और security को एक central place से manage करने
+                        के लिए।</li>
+                    <li><strong>Cost Saving:</strong> हर computer के लिए अलग printer या storage लेने की जरूरत कम हो जाती
+                        है।</li>
+                </ul>
+                <h4>Basic Components of Network</h4>
+                <table>
+                    <tr>
+                        <th>Component</th>
+                        <th>Explanation</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Node</strong></td>
+                        <td>Network से connected कोई भी device।</td>
+                        <td>Computer, Printer, Server</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Communication Medium</strong></td>
+                        <td>Data transfer करने का path।</td>
+                        <td>LAN Cable, Wi-Fi, Fiber</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Network Device</strong></td>
+                        <td>Network को connect और manage करने वाले devices।</td>
+                        <td>Switch, Router, Hub</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Protocol</strong></td>
+                        <td>Communication rules का set।</td>
+                        <td>TCP/IP, HTTP, FTP</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Network Software</strong></td>
+                        <td>Network services और communication manage करता है।</td>
+                        <td>Network OS, Drivers</td>
+                    </tr>
+                </table>
+                <div class="remember-box">
+                    <b>Remember:</b> Network का main goal communication और sharing को fast, reliable और systematic बनाना
+                    है।
+                </div>
+            </section>
+
+            <section id="computing-models">
+                <h2>Models of Network Computing</h2>
+                <h3>Network Computing Models</h3>
+                <p>
+                    <strong>Network Computing Model</strong> यह बताता है कि network में processing, storage,
+                    applications और services
+                    किस तरह organize और use की जाती हैं। अलग-अलग organizations अपनी need के according different
+                    computing models use करती हैं।
+                    इन models से यह decide होता है कि data कहाँ store होगा, processing कहाँ होगी और users services को
+                    कैसे access करेंगे।
+                </p>
+                <h4>1. Centralized Computing</h4>
+                <p>
+                    Centralized computing में main processing और data storage एक central computer या server पर होता है।
+                    Users terminals या clients
+                    के through central system को access करते हैं। इस model में data control और security manage करना आसान
+                    होता है क्योंकि resources एक जगह होते हैं।
+                    लेकिन अगर central system fail हो जाए, तो entire network affected हो सकता है।
+                </p>
+                <h4>2. Distributed Computing</h4>
+                <p>
+                    Distributed computing में processing और data multiple computers में distribute होते हैं। सभी
+                    computers network के through connected रहते हैं
+                    और मिलकर एक बड़ा task complete कर सकते हैं। इसमें performance और reliability better हो सकती है
+                    क्योंकि work एक ही machine पर dependent नहीं होता।
+                </p>
+                <h4>3. Client-Server Computing</h4>
+                <p>
+                    Client-server computing में server services provide करता है और client उन services को request करता
+                    है। Server पर data, application,
+                    authentication या database हो सकता है। Client server से request भेजता है और server response देता है।
+                    यह model offices, websites,
+                    banking और online applications में बहुत common है।
+                </p>
+                <h4>4. Peer-to-Peer Computing</h4>
+                <p>
+                    Peer-to-peer computing में सभी computers लगभग equal role रखते हैं। कोई dedicated central server
+                    जरूरी नहीं होता। हर computer अपनी files
+                    या resources directly दूसरे computers के साथ share कर सकता है। छोटे home networks में यह model
+                    useful हो सकता है।
+                </p>
+                <h4>5. Cloud Computing</h4>
+                <p>
+                    Cloud computing में storage, applications और computing power internet के through access की जाती है।
+                    User को local machine पर heavy setup
+                    रखने की जरूरत नहीं होती। Google Drive, Gmail, Microsoft OneDrive और online learning platforms cloud
+                    computing के common examples हैं।
+                </p>
+                <table>
+                    <tr>
+                        <th>Model</th>
+                        <th>Main Idea</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Centralized</strong></td>
+                        <td>Processing और storage central system पर।</td>
+                        <td>Mainframe system</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Distributed</strong></td>
+                        <td>Work multiple systems में divide होता है।</td>
+                        <td>Distributed database</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Client-Server</strong></td>
+                        <td>Client request करता है, server service देता है।</td>
+                        <td>Website, Bank server</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Peer-to-Peer</strong></td>
+                        <td>All computers equal role में resource share करते हैं।</td>
+                        <td>Small file sharing network</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cloud</strong></td>
+                        <td>Internet based computing services।</td>
+                        <td>Google Drive, Gmail</td>
+                    </tr>
+                </table>
+            </section>
+
+            <section id="networking-models">
+                <h2>Networking Models</h2>
+                <p>
+                    <strong>Networking Model</strong> एक conceptual framework होता है जो बताता है कि network
+                    communication किस तरह step-by-step perform होती है।
+                    जब एक computer दूसरे computer को data send करता है, तो data directly simple form में नहीं जाता। Data
+                    को कई layers से pass किया जाता है,
+                    जहाँ हर layer अपना specific काम करती है। Networking models इस layered communication process को समझने
+                    में help करते हैं।
+                </p>
+                <p>
+                    Networking models का सबसे important benefit यह है कि वे complex communication process को छोटे-छोटे
+                    logical parts में divide कर देते हैं।
+                    इससे designing, troubleshooting, protocol development और learning आसान हो जाती है। सबसे common
+                    networking models हैं
+                    <strong>OSI Model</strong> और <strong>TCP/IP Model</strong>।
+                </p>
+                <h4>OSI Model</h4>
+                <p>
+                    <strong>OSI</strong> का full form <strong>Open Systems Interconnection</strong> है। यह एक reference
+                    model है जिसमें 7 layers होती हैं।
+                    यह model बताता है कि data sender से receiver तक पहुँचने के लिए किन layers से होकर जाता है। OSI model
+                    practical implementation से ज्यादा
+                    learning और understanding के लिए important माना जाता है।
+                </p>
+                <table>
+                    <tr>
+                        <th>Layer No.</th>
+                        <th>Layer Name</th>
+                        <th>Main Work</th>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td><strong>Application</strong></td>
+                        <td>User applications को network services provide करना।</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td><strong>Presentation</strong></td>
+                        <td>Data format, encryption और compression manage करना।</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td><strong>Session</strong></td>
+                        <td>Communication session establish, maintain और terminate करना।</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td><strong>Transport</strong></td>
+                        <td>End-to-end delivery, reliability और flow control।</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><strong>Network</strong></td>
+                        <td>IP addressing और routing।</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><strong>Data Link</strong></td>
+                        <td>MAC addressing और frame delivery।</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td><strong>Physical</strong></td>
+                        <td>Bits को physical medium पर transmit करना।</td>
+                    </tr>
+                </table>
+                <h4>TCP/IP Model</h4>
+                <p>
+                    <strong>TCP/IP Model</strong> internet communication का practical model है। यह model actual internet
+                    और modern networks में use होता है।
+                    TCP/IP model में usually 4 layers मानी जाती हैं: Application Layer, Transport Layer, Internet Layer
+                    और Network Access Layer।
+                </p>
+                <table>
+                    <tr>
+                        <th>TCP/IP Layer</th>
+                        <th>Main Work</th>
+                        <th>Protocols</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Application Layer</strong></td>
+                        <td>User-level network services।</td>
+                        <td>HTTP, FTP, SMTP, DNS</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Transport Layer</strong></td>
+                        <td>Data delivery और reliability।</td>
+                        <td>TCP, UDP</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Internet Layer</strong></td>
+                        <td>IP addressing और routing।</td>
+                        <td>IP, ICMP</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Network Access Layer</strong></td>
+                        <td>Physical network access और frame transmission।</td>
+                        <td>Ethernet, Wi-Fi</td>
+                    </tr>
+                </table>
+                <div class="info-box">
+                    <b>Exam Point:</b> OSI model theoretical/reference model है, जबकि TCP/IP model practical internet
+                    communication में use होता है।
+                </div>
+            </section>
+
+            <section id="p2p">
+                <h2>Peer-to-Peer Network</h2>
+                <p><strong>Peer to Peer Model</strong> एक network architecture है, जिसमें नेटवर्क का प्रत्येक node
+                    (computer) एक साथ Client और Server दोनों की भूमिका निभाता है। इस मॉडल में किसी central server की
+                    आवश्यकता नहीं होती। सभी computers आपस में सीधे (directly) data, files, resources तथा services को
+                    साझा (share) कर सकते हैं।</p>
+                <p>P2P Model में प्रत्येक node के अधिकार और कार्य समान होते हैं। कोई भी computer दूसरे computer से data
+                    प्राप्त भी कर सकता है और उसे data उपलब्ध भी करा सकता है। इस कारण network load सभी nodes में समान रूप
+                    से विभाजित हो जाता है और प्रत्येक computer स्वतंत्र रूप से कार्य करता है।</p>
+                <div class="image-icon">
+                    <img src="../images/p2p.webp" alt="p2p">
+                </div>
+                <div class="example"><strong>Example:</strong> छोटे office में 4 computers हैं। एक computer
+                    में printer connected है और बाकी computers उस printer का use network से करते हैं। यह simple P2P
+                    network हो सकता है।</div>
+                <h3>Advantages</h3>
+                <ul>
+                    <li><strong>Low Cost:</strong><br> इस मॉडल में किसी dedicated server की आवश्यकता नहीं होती, इसलिए
+                        installation और maintenance cost कम होती है।</li>
+                    <li><strong>Easy Setup:</strong><br> P2P Network को install और configure करना बहुत आसान होता है।
+                        छोटे network को बिना किसी जटिल प्रक्रिया के बनाया जा सकता है।</li>
+                    <li><strong>Resource Sharing:</strong><br> सभी computers आपस में सीधे files, folders, printers तथा
+                        अन्य resources को share कर सकते हैं। इसके लिए central server की आवश्यकता नहीं होती।</li>
+                    <li><strong>No Single Point of Failure:</strong><br> यदि कोई एक computer (node) बंद हो जाए, तो बाकी
+                        computers सामान्य रूप से कार्य करते रहते हैं। इससे पूरा network बंद नहीं होता।</li>
+                    <li><strong>Equal Role for Every Node: </strong><br> इस मॉडल में प्रत्येक node एक साथ Client और
+                        Server दोनों की भूमिका निभाता है। इसलिए सभी computers समान अधिकारों के साथ data और resources का
+                        आदान-प्रदान कर सकते हैं.</li>
+                </ul>
+                <h3>Disadvantages</h3>
+                <ul>
+                    <li><strong>Less Security:</strong> इस मॉडल में कोई central server नहीं होता, इसलिए data security और
+                        access control कमज़ोर होते हैं। अनधिकृत (unauthorized) users के लिए data तक पहुँचने का खतरा अधिक
+                        रहता है।</li>
+                    <li><strong>Difficult Backup:</strong> सभी computers अपना-अपना data अलग-अलग store करते हैं, इसलिए
+                        data management और backup करना कठिन हो जाता है।</li>
+                    <li><strong>Not Suitable for Large Network:</strong> यह मॉडल छोटे network के लिए उपयुक्त होता है।
+                        Users की संख्या बढ़ने पर network performance प्रभावित हो सकती है।</li>
+                    <li><strong>Performance Issue:</strong> यदि किसी computer (node) को बंद कर दिया जाए या उसमें समस्या
+                        आ जाए, तो उस computer पर उपलब्ध files और resources अन्य users के लिए उपलब्ध नहीं रहेंगे। इससे
+                        resource sharing प्रभावित हो सकती है।</li>
+                </ul>
+            </section>
+
+            <section id="client-server">
+                <h2>Client-Server Network</h2>
+                <p><strong>Client Server Model</strong> एक network architecture है, जिसमें Client और Server के बीच
+                    communication के माध्यम से data तथा services का आदान-प्रदान होता है। इस मॉडल में Client किसी
+                    resource या service की request भेजता है, जबकि Server उस request को process करके आवश्यक response वापस
+                    भेजता है।</p>
+                <p><strong>Client</strong><br>Client वह computer, device या application होता है, जो Server से किसी
+                    service, resource या data की request करता है और Server से प्राप्त response का उपयोग करता है।</p>
+                <p><strong>Server</strong><br>Server एक शक्तिशाली computer या software होता है, जो Client द्वारा भेजी गई
+                    request को process करता है और आवश्यक data, resources या services को response के रूप में वापस भेजता
+                    है।</p>
+                <h3>Working Example</h3>
+                <p>जब user browser में <code>www.example.com</code> open करता है, तो browser client की तरह web server को
+                    request भेजता है। Server requested webpage send करता है और browser उसे user को display करता है।</p>
+                <div class="image-icon">
+                    <img src="../images/client-server-model.webp" alt="Client-server-model">
+                </div>
+                <h3>Advantages</h3>
+                <ul>
+                    <li><strong>Centralized Management:</strong><br> इस मॉडल में सभी data और services एक central server
+                        पर store होती हैं। इससे data management, updates और backup करना आसान हो जाता है।</li>
+                    <li><strong>Better Security:</strong><br> Server पर authentication और access control लागू किए जा
+                        सकते हैं, जिससे केवल अधिकृत (authorized) users ही data और resources का उपयोग कर सकते हैं। इससे
+                        network security बेहतर होती है।
+                    </li>
+                    <li><strong>Supports Multiple Clients:</strong><br> एक Server एक ही समय में कई clients की requests
+                        को process कर सकता है। इसलिए अनेक users एक साथ एक ही service का उपयोग कर सकते हैं।</li>
+                    <li><strong>Easy Data Sharing:</strong><br> सभी clients को data एक ही central server से प्राप्त होता
+                        है, जिससे सभी users को समान (consistent) और updated information मिलती है।</li>
+                    <li><strong>Easy Maintenance:</strong><br> इस मॉडल में यदि किसी software या service में बदलाव करना
+                        हो, तो केवल Server पर update करना पड़ता है। सभी clients को अलग-अलग update करने की आवश्यकता नहीं
+                        होती, जिससे maintenance आसान और समय की बचत होती है।</li>
+                </ul>
+                <h3>Disadvantages</h3>
+                <ul>
+                    <li><strong>Server Failure:</strong><br> यदि Server खराब हो जाए या बंद हो जाए, तो सभी clients उसकी
+                        services और resources का उपयोग नहीं कर पाएँगे। इससे पूरा network प्रभावित हो सकता है।</li>
+                    <li><strong>High cost:</strong><br> एक शक्तिशाली Server, network devices तथा maintenance की आवश्यकता
+                        होने के कारण इस मॉडल की installation और maintenance cost अधिक होती है।</li>
+                    <li><strong>Network Dependency:</strong><br> यह मॉडल पूरी तरह network connection पर निर्भर करता है।
+                        यदि network या Internet connection में समस्या आ जाए, तो clients Server की services और data तक
+                        पहुँच नहीं सकते।</li>
+                    <li><strong>Server Overload:</strong><br> जब बहुत अधिक clients एक साथ requests भेजते हैं, तो Server
+                        पर अधिक load पड़ता है। इससे performance धीमी हो सकती है।</li>
+                </ul>
+            </section>
+
+            <section id="lan-man-wan">
+                <h2>LAN, MAN and WAN</h2>
+                <p><strong>LAN(Local Area Network)</strong><br>एक network है, जो सीमित क्षेत्र जैसे room, office,
+                    school, college या building के अंदर कई computers और devices को आपस में जोड़ता है, ताकि वे data और
+                    resources को साझा (share) कर सकें।</p>
+                <div class="image-icon">
+                    <img src="../images/lan.webp" alt="LAN">
+                </div>
+                <div class="example"><strong>Example:</strong> किसी school computer lab में 30 computers एक Switch के
+                    माध्यम से आपस में जुड़े होते हैं, ताकि सभी students एक ही printer, Internet connection और files का
+                    उपयोग कर सकें। यह LAN का सबसे सामान्य उदाहरण है। इसी प्रकार किसी office के सभी computers का एक-दूसरे
+                    से जुड़ा होना भी LAN कहलाता है।</div>
+                <p><strong>MAN(Metropolitan Area Network)</strong><br>एक ऐसा computer network है, जो किसी city या बड़े
+                    metropolitan area में स्थित कई LANs (Local Area Networks) को आपस में जोड़ता है। इसका क्षेत्रफल LAN
+                    से बड़ा और WAN से छोटा होता है। MAN का उपयोग किसी शहर के विभिन्न offices, colleges, universities,
+                    government departments तथा business organizations को जोड़ने के लिए किया जाता है।</p>
+                <div class="image-icon">
+                    <img src="../images/man.webp" alt="MAN">
+                </div>
+                <div class="example"><strong>Example:</strong> मान लीजिए किसी university के अलग-अलग campuses पूरे शहर
+                    में स्थित हैं। यदि इन सभी campuses के computer networks को आपस में जोड़ दिया जाए, तो वह MAN कहलाता
+                    है। इसी प्रकार किसी bank की शहरभर में स्थित सभी branches का एक network से जुड़ा होना भी MAN का
+                    उदाहरण है।</div>
+                <p><strong>WAN(Wide Area Network)</strong><br>एक ऐसा computer network है, जो बहुत बड़े geographical area
+                    जैसे country, continent या पूरी world में स्थित कई LANs और MANs को आपस में जोड़ता है। WAN का उपयोग
+                    लंबी दूरी तक data communication तथा resource sharing के लिए किया जाता है। इसमें leased lines, fiber
+                    optic cables, satellites तथा Internet जैसी communication technologies का उपयोग किया जाता है।</p>
+
+                <div class="image-icon">
+                    <img src="../images/wan.webp" alt="WAN">
+                </div>
+                <div class="example"><strong>Example:</strong> किसी bank की अलग-अलग cities में स्थित सभी branches यदि एक
+                    ही network से जुड़ी हों, तो वह WAN का उदाहरण है। इसी प्रकार Internet दुनिया का सबसे बड़ा WAN है, जो
+                    लाखों networks और करोड़ों devices को आपस में जोड़ता है।</div>
+                <table>
+                    <tr>
+                        <th>Network Type</th>
+                        <th>Full Form</th>
+                        <th>Coverage Area</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td><strong>LAN</strong></td>
+                        <td>Local Area Network</td>
+                        <td>Room, building, lab, office</td>
+                        <td>Computer Lab</td>
+                    </tr>
+                    <tr>
+                        <td><strong>MAN</strong></td>
+                        <td>Metropolitan Area Network</td>
+                        <td>City or large campus</td>
+                        <td>City cable network</td>
+                    </tr>
+                    <tr>
+                        <td><strong>WAN</strong></td>
+                        <td>Wide Area Network</td>
+                        <td>Country, continent, world</td>
+                        <td>Internet</td>
+                    </tr>
+                </table>
+            </section>
+
+            <section id="services">
+                <h2>Network Services</h2>
+                <p>
+                    <strong>Network Services</strong> वे services होती हैं जो network users और devices को communication,
+                    resource sharing,
+                    data access और management facilities provide करती हैं। ये services servers, network operating
+                    systems और protocols के through provide की जाती हैं।
+                    Network services के कारण users files share कर सकते हैं, printer use कर सकते हैं, email send कर सकते
+                    हैं, website access कर सकते हैं
+                    और internet use कर सकते हैं।
+                </p>
+                <h4>Important Network Services</h4>
+                <table>
+                    <tr>
+                        <th>Service</th>
+                        <th>Explanation</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td><strong>File Service</strong></td>
+                        <td>Network पर files store और share करने की facility।</td>
+                        <td>File Server, Shared Folder</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Print Service</strong></td>
+                        <td>Multiple users को same printer use करने की facility।</td>
+                        <td>Network Printer</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Email Service</strong></td>
+                        <td>Email send और receive करने की service।</td>
+                        <td>Gmail, Outlook Server</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Web Service</strong></td>
+                        <td>Web pages और websites access करने की service।</td>
+                        <td>HTTP/HTTPS</td>
+                    </tr>
+                    <tr>
+                        <td><strong>DNS Service</strong></td>
+                        <td>Domain name को IP address में convert करना।</td>
+                        <td>google.com to IP</td>
+                    </tr>
+                    <tr>
+                        <td><strong>DHCP Service</strong></td>
+                        <td>Devices को automatic IP address provide करना।</td>
+                        <td>Router DHCP</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Authentication Service</strong></td>
+                        <td>User login और identity verify करना।</td>
+                        <td>Active Directory Login</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Remote Access Service</strong></td>
+                        <td>Remote location से system/network access करना।</td>
+                        <td>VPN, Remote Desktop</td>
+                    </tr>
+                </table>
+                <h4>Importance of Network Services</h4>
+                <ul>
+                    <li>Users को shared resources easily available कराती हैं।</li>
+                    <li>Network communication को organized बनाती हैं।</li>
+                    <li>Data और users को centralized तरीके से manage करने में help करती हैं।</li>
+                    <li>Office, school, bank और online platforms में smooth working provide करती हैं।</li>
+                    <li>Security, authentication और access control को improve करती हैं।</li>
+                </ul>
+                <div class="note-box">
+                    <b>Real Life Example:</b><br>
+                    जब आप browser में website name type करते हैं, तो DNS service उस name को IP address में convert करती
+                    है और web service page display करती है।
+                </div>
+            </section>
+
+            <section id="switching">
+                <h2>Switching Techniques</h2>
+                <p>
+                    <strong>Switching Technique</strong> वह method है जिसके द्वारा data को source से destination तक
+                    network के through forward किया जाता है।
+                    बड़े networks में sender और receiver directly connected नहीं होते। Data कई intermediate devices से
+                    होकर destination तक पहुँचता है।
+                    Switching technique यह decide करती है कि data किस path से और किस form में travel करेगा।
+                </p>
+                <p>
+                    Main switching techniques तीन प्रकार की होती हैं: <strong>Circuit Switching</strong>,
+                    <strong>Message Switching</strong> और
+                    <strong>Packet Switching</strong>। इन techniques का use different communication systems में किया
+                    जाता है।
+                </p>
+                <h4>1. Circuit Switching</h4>
+                <p>
+                    Circuit switching में communication start होने से पहले sender और receiver के बीच एक dedicated path
+                    establish किया जाता है।
+                    जब तक communication complete नहीं होता, तब तक वही path reserved रहता है। Traditional telephone
+                    system circuit switching का common example है।
+                    इसमें delay कम होता है लेकिन resource utilization कम efficient हो सकता है क्योंकि path reserved रहता
+                    है।
+                </p>
+                <div class="image-icon">
+                    <img src="" alt="Switching Techniques">
+                </div>
+                <h4>Advantages of Circuit Switching</h4>
+                <ul>
+                    <li>Dedicated path available होता है।</li>
+                    <li>Continuous communication के लिए suitable है।</li>
+                    <li>Voice call जैसी real-time communication में useful है।</li>
+                </ul>
+                <h4>Disadvantages of Circuit Switching</h4>
+                <ul>
+                    <li>Path reserved रहने के कारण resources waste हो सकते हैं।</li>
+                    <li>Connection establish करने में initial time लग सकता है।</li>
+                    <li>Data communication के लिए हमेशा efficient नहीं है।</li>
+                </ul>
+                <h4>2. Message Switching</h4>
+                <p>
+                    Message switching में पूरा message एक unit के रूप में send किया जाता है। Intermediate nodes message
+                    को store करते हैं और फिर आगे forward करते हैं।
+                    इसे store-and-forward technique भी कहा जाता है। इसमें dedicated path की जरूरत नहीं होती, लेकिन large
+                    message होने पर delay ज्यादा हो सकता है।
+                </p>
+                <div class="image-icon">
+                    <img src="" alt="Switching Techniques">
+                </div>
+                <h4>3. Packet Switching</h4>
+                <p>
+                    Packet switching में data को छोटे-छोटे parts में divide किया जाता है जिन्हें packets कहा जाता है। हर
+                    packet में source address,
+                    destination address और sequence information हो सकती है। Packets अलग-अलग paths से destination तक जा
+                    सकते हैं और destination पर फिर से original data में arrange किए जाते हैं।
+                    Internet में packet switching technique use होती है।
+                </p>
+                <div class="image-icon">
+                    <img src="" alt="Switching Techniques">
+                </div>
+                <h4>Advantages of Packet Switching</h4>
+                <ul>
+                    <li>Network resources का efficient use होता है।</li>
+                    <li>Different packets different paths से travel कर सकते हैं।</li>
+                    <li>Internet communication के लिए suitable है।</li>
+                    <li>Failure होने पर alternate path possible हो सकता है।</li>
+                </ul>
+                <h4>Disadvantages of Packet Switching</h4>
+                <ul>
+                    <li>Packets out of order arrive हो सकते हैं।</li>
+                    <li>Congestion होने पर delay हो सकता है।</li>
+                    <li>Real-time traffic के लिए proper quality control चाहिए।</li>
+                </ul>
+                <table>
+                    <tr>
+                        <th>Technique</th>
+                        <th>Main Idea</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Circuit Switching</strong></td>
+                        <td>Dedicated path पहले establish होता है।</td>
+                        <td>Traditional telephone call</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Message Switching</strong></td>
+                        <td>Complete message store-and-forward होता है।</td>
+                        <td>Old telegraph/email-like systems</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Packet Switching</strong></td>
+                        <td>Data छोटे packets में divide होकर travel करता है।</td>
+                        <td>Internet</td>
+                    </tr>
+                </table>
+            </section>
+
+
+        </main>
+    </div>
+</body>
+
+</html>

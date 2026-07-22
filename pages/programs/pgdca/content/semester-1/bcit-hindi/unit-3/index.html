@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOS & Windows Operating Systems</title>
+        <link rel="stylesheet" href="./style.css">
+
+
+<link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
+<script src="../../../../../../../assets/shared/portal.js" defer></script>
+<script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
+</head>
+
+<body>
+    <div class="page">
+        <aside class="sidebar">
+            <h2>DOS & Windows OS</h2>
+            <a href="#hardware">Hardware and Software</a>
+            <a href="#types-software">Types of Software</a>
+            <a href="#os-intro">Operating System</a>
+            <a href="#need-os">Need of OS</a>
+            <a href="#types-os">Types of OS</a>
+            <a href="#dos">DOS</a>
+            <a href="#dos-commands">DOS Commands</a>
+            <a href="#resource">OS as Resource Manager</a>
+            <a href="#bios">BIOS</a>
+            <a href="#utilities">System Utilities</a>
+            <a href="#gui-cui">GUI and CUI</a>
+            <a href="#files-directories">Files and Directories</a>
+            <a href="#wildcards">Wild Cards</a>
+            <a href="#bat-config">AUTOEXEC.BAT and CONFIG.SYS</a>
+            <a href="#desktop">Windows Desktop</a>
+            <a href="#components">Components of Windows</a>
+            <a href="#start">Start Button</a>
+            <a href="#window-buttons">Window Buttons</a>
+            <a href="#file-folder">File and Folder Uses</a>
+            <a href="#explorer">View Hard Disk Contents</a>
+            <a href="#control-panel">Control Panel</a>
+            <a href="#defrag">Disk Defragmentation</a>
+            <a href="#install">Install/Uninstall Software</a>
+            <a href="#booting">Booting Process</a>
+            <a href="#boot-loader">Boot Loader</a>
+            <a href="#device-driver">Device Driver</a>
+            <a href="#shell">Shell</a>
+            <a href="#cmd">Command Prompt</a>
+            <a href="#extensions">DOS File Extensions</a>
+            <a href="#explorer-features">Windows Explorer Features</a>
+            <a href="#recycle-bin">Recycle Bin</a>
+            <a href="#taskbar">Taskbar</a>
+            <a href="#windows-search">Windows Search</a>
+            <a href="#shortcut-keys">Shortcut Keys</a>
+            <a href="#file-properties">File Properties</a>
+            <a href="#file-operations">File Operations</a>
+            <a href="#folder-operations">Folder Operations</a>
+            <a href="#run-command">Windows Run Command</a>
+            <a href="#disk-cleanup">Disk Cleanup</a>
+            <a href="#task-manager">Task Manager</a>
+        </aside>
+
+        <main class="content">
+            <div class="hero">
+                <h1>DOS & Windows Operating Systems</h1>
+            </div>
+
+            <section id="hardware">
+                <h2>Hardware and Software</h2>
+                <h3>Hardware</h3>
+                <p><strong>Hardware</strong> computer के physical parts को कहा जाता है
+                    जिन्हें हम देख और छू सकते हैं। जैसे CPU, Monitor, Keyboard, Mouse, Hard Disk, RAM, Printer, Scanner
+                    आदि। Hardware अपने आप काम नहीं करता; उसे instructions की जरूरत होती है। ये instructions software
+                    द्वारा दिए जाते हैं। Computer system में hardware body की तरह होता है और software mind की तरह काम
+                    करता है।</p>
+                <div class="image-icon"><img src="./images/hardware.webp" alt="Hardware Diagram"></div>
+
+
+                <h3>Software</h3>
+                <p><strong>Software</strong> programs और instructions का collection होता
+                    है जो computer hardware को बताता है कि कौन-सा काम कैसे करना है। Software को छुआ नहीं जा सकता, लेकिन
+                    उसके result को screen पर देखा जा सकता है। Operating System, MS Word, Browser, Antivirus, Compiler और
+                    Games software के examples हैं।</p>
+                <div class="image-icon"><img src="./images/software.webp" alt="Software Diagram"></div>
+
+            </section>
+
+            <section id="types-software">
+                <h2>Types of Software</h2>
+                <ol>
+                    <li><strong>System Software</strong></li>
+                    <p>System Software वह software होता है, जो सीधे computer hardware को नियंत्रित (control) करता है और
+                        Computer के सभी hardware components को सही प्रकार से कार्य करने योग्य बनाता है। यह users तथा
+                        अन्य application software को आवश्यक services प्रदान करता है, जिससे पूरा Computer System सुचारु
+                        (smoothly) रूप से कार्य कर सके।</p>
+                    <p>System Software Computer के आंतरिक (internal) कार्यों को नियंत्रित करता है तथा CPU, Memory,
+                        Monitor, Printer, Keyboard, Mouse, Hard Disk और अन्य hardware devices का प्रबंधन (manage) करता
+                        है। यह hardware और application software के बीच एक interface का कार्य करता है। Hardware केवल
+                        machine language (0 और 1) को समझता है, जबकि users और application software human-readable
+                        languages जैसे English, Hindi आदि का उपयोग करते हैं। System Software इन दोनों के बीच
+                        communication स्थापित करता है, जिससे Computer उपयोगकर्ता के commands को समझकर सही output प्रदान
+                        कर सके।</p>
+                    <div class="example-box">मान लीजिए Operating System (Windows, Linux) आपके Computer में System
+                        Software के रूप में कार्य कर रहा है। जब आप MS Word खोलते हैं, तो Operating System CPU, Memory और
+                        Hard Disk का उपयोग करके उस application को चलाता है। यदि System Software न हो, तो Computer
+                        Hardware और Application Software एक-दूसरे से communicate नहीं कर पाएँगे।</div><br>
+                    <strong>Types of System Software</strong>
+                    <ol>
+                        <strong>Operating System</strong>
+                        <p>Operating System (OS) एक महत्वपूर्ण System Software है, जो Computer Hardware और User के बीच
+                            interface का कार्य करता है। यह Computer के सभी hardware resources जैसे CPU, Memory, Input
+                            Devices, Output Devices तथा Storage Devices का प्रबंधन (manage) करता है और Application
+                            Software को चलाने के लिए आवश्यक environment प्रदान करता है। <br>
+                            <strong>Example: </strong>Linux, MacOS, Android, iOS, UNIX, MicroSoft Windows
+                        </p>
+                        <hr>
+                        <strong>Langauage Processor</strong>
+                        <p>Language Processor एक System Software है, जो high-level language या assembly language में
+                            लिखे गए source program को machine language (0 और 1) में परिवर्तित करता है, ताकि Computer उस
+                            program को समझकर execute कर सके। क्योंकि Computer केवल machine language को समझता है, इसलिए
+                            किसी भी program को चलाने के लिए Language Processor की आवश्यकता होती है।
+                            <br><strong>Example:</strong> Compiler, Assembler, Interpreter
+                        </p>
+                        <hr>
+                        <strong>Device Driver</strong>
+                        <p>Device Driver एक System Software है, जो Operating System और hardware device के बीच interface
+                            का कार्य करता है। यह Operating System को किसी विशेष hardware device जैसे Printer, Scanner,
+                            Keyboard, Mouse, Monitor या Graphics Card से communication करने में सहायता करता है। प्रत्येक
+                            hardware device के सही तरीके से कार्य करने के लिए उसका Device Driver Computer में install
+                            होना आवश्यक होता है।<br>
+                            <strong>Example:</strong> Printer Driver, Scanner Driver, Mouse Driver, Keyboard Driver etc
+                        </p>
+                    </ol>
+                    <li><strong>Application Software</strong></li>
+                    <p>Application Software वह software होता है, जिसे user के विशेष (specific) कार्यों को पूरा करने के
+                        लिए बनाया जाता है। यह System Software के ऊपर कार्य करता है और users को document writing,
+                        calculations, presentations, web browsing, gaming तथा अन्य दैनिक कार्य करने की सुविधा प्रदान
+                        करता है। Application Software सीधे user की आवश्यकताओं को पूरा करता है और Operating System की
+                        सहायता से कार्य करता है।</p>
+                    <div class="example-box">मान लीजिए किसी student को project report बनानी है। वह Microsoft Word का
+                        उपयोग करेगा। यदि उसे presentation तैयार करनी है, तो वह Microsoft PowerPoint का उपयोग करेगा। इसी
+                        प्रकार Google Chrome की सहायता से वह Internet पर information खोज सकता है। ये सभी Application
+                        Software के उदाहरण हैं।</div>
+                    <strong>Type of Application software</strong>
+                    <ul>
+                        <strong>General Purpose Software</strong>
+                        <p>General Purpose Software वह Application Software होता है, जिसे सामान्य (general) कार्यों को
+                            करने के लिए बनाया जाता है। इसका उपयोग विभिन्न प्रकार के users अपनी दैनिक (day-to-day)
+                            आवश्यकताओं जैसे document writing, calculations, presentations, database management तथा
+                            Internet browsing के लिए करते हैं। यह किसी एक विशेष कार्य के लिए नहीं, बल्कि अनेक सामान्य
+                            कार्यों के लिए उपयोग किया जाता है।<br>
+                            <b>Example:</b> MS Excel, MS Word, MOzilla Firebox, Chrome
+                        </p>
+                        <strong>Customized Software</strong>
+                        <p>Customized Software वह Application Software होता है, जिसे किसी विशेष organization, company,
+                            business या user की आवश्यकताओं (requirements) के अनुसार design और develop किया जाता है। यह
+                            केवल एक विशेष कार्य (specific task) या किसी विशेष organization की जरूरतों को पूरा करने के
+                            लिए बनाया जाता है। इसलिए इसे Tailor-Made Software या Custom Software भी कहा जाता
+                            है।<br><b>Example:</b> Hospital Management System, School Management System, Banking
+                            Software, Bk Learnx</p>
+                        <strong>Utility Software</strong>
+                        <p>Utility Software एक प्रकार का System Software है, जिसे Computer System की performance,
+                            security तथा maintenance को बेहतर बनाने के लिए बनाया जाता है। यह Operating System की सहायता
+                            करता है और Computer को तेज़, सुरक्षित तथा सुचारु (efficiently) रूप से कार्य करने योग्य बनाता
+                            है। Utility Software files, disks, memory तथा अन्य system resources का प्रबंधन (manage) करके
+                            Computer की कार्यक्षमता को बढ़ाता है।<br><b>Example:</b> Antivirus Software, Backup
+                            Software, File Compression Software</p>
+                    </ul>
+
+                </ol>
+                <h3></h3>
+            </section>
+
+            <section id="os-intro">
+                <h2>Operating System</h2>
+                <p>Operating System (OS) एक महत्वपूर्ण System Software है, जो Computer Hardware और User के बीच interface
+                    का कार्य करता है। यह Computer के सभी hardware resources जैसे CPU, Memory, Input Devices, Output
+                    Devices तथा Storage Devices का प्रबंधन (manage) करता है और Application Software को चलाने के लिए
+                    आवश्यक environment प्रदान करता है।</p>
+                <p>Operating System Computer के सभी आंतरिक (internal) कार्यों को नियंत्रित करता है। जब user कोई command
+                    देता है, तो Operating System उस command को hardware तक पहुँचाता है और प्राप्त result को user तक वापस
+                    पहुँचाता है। यह process management, memory management, file management, device management तथा
+                    security जैसे महत्वपूर्ण कार्यों को भी नियंत्रित करता है। यदि Operating System न हो, तो Computer
+                    Hardware और Application Software एक-दूसरे से communication नहीं कर पाएँगे और Computer सही प्रकार से
+                    कार्य नहीं करेगा।</p>
+                <p><b>Example:</b> Microsoft Windows, Linux, macOS, Android, iO</p>
+                <strong>Uses of Operating System</strong>
+                <ol>
+                    <li>Computer Hardware को manage और control करना।</li>
+                    <li>User और Hardware के बीच interface प्रदान करना।</li>
+                    <li>Application Software को चलाने के लिए platform उपलब्ध कराना।</li>
+                    <li>Memory, CPU, Files तथा Input/Output Devices का प्रबंधन करना।</li>
+                    <li>Computer System की security, stability और overall performance को बनाए रखना।</li>
+                </ol>
+
+            </section>
+
+            <section id="need-os">
+                <h2>Need of Operating System</h2>
+                <p><strong>Operating System की जरूरत</strong> इसलिए होती है क्योंकि computer hardware बहुत complex होता
+                    है। Normal user directly CPU, RAM, Disk या Printer को control नहीं कर सकता। OS user को easy
+                    interface देता है और सभी resources को automatically manage करता है।</p>
+                <ul>
+                    <li><strong>User Interface:</strong> OS user को GUI या CUI interface देता है, जिससे computer use
+                        करना आसान होता है।</li>
+                    <li><strong>Program Execution:</strong> OS programs को load, run और close करने में help करता है।
+                    </li>
+                    <li><strong>Resource Management:</strong> CPU, Memory, I/O devices और Storage को efficiently
+                        allocate करता है।</li>
+                    <li><strong>File Management:</strong> Files और folders को create, delete, rename, copy और organize
+                        करने की सुविधा देता है।</li>
+                    <li><strong>Security:</strong> User accounts, passwords और permissions के through system को protect
+                        करता है।</li>
+                </ul>
+
+            </section>
+
+            <section id="types-os">
+                <h2>Types of Operating System</h2>
+                <h3>Batch Operating System</h3>
+                <p>
+                    <b>Batch Operating System</b> एक ऐसा <b>Operating System</b> है, जिसमें एक जैसे <b>jobs</b> को पहले
+                    एक <b>batch</b> में एकत्र किया जाता है और फिर उन्हें <b>queue</b> में रखकर एक-एक करके <b>execute</b>
+                    किया जाता है। इसमें <b>user</b> का <b>Computer</b> से सीधा संपर्क नहीं होता। <b>Operating System</b>
+                    सभी <b>jobs</b> को स्वतः <b>process</b> करता है और प्रत्येक <b>job</b> के पूरा होने के बाद अगली
+                    <b>job</b> को <b>execute</b> करता है।
+                </p>
+
+                <div class="image-icon">
+                    <img src="./images/batch-os.webp" alt="Batch Operating System">
+                </div>
+
+                <p><b>Example:</b>
+                <ul>
+                    <li>Insurance Claim Processing</li>
+                    <li>Library Book Records</li>
+                    <li>Stock Market Reports</li>
+                </ul>
+                </p>
+
+                <div class="exam-box">
+                    किसी <b>Bank</b> में दिनभर के सभी <b>transactions</b> का रात में एक साथ <b>processing</b> करना तथा
+                    किसी <b>College</b> में हजारों छात्रों की <b>marksheets</b> एक साथ तैयार करना <b>Batch Operating
+                        System</b> का उदाहरण है।
+                </div>
+
+
+                <h3>Multi-Programming Operating System</h3>
+                <p>
+                    <b>Multi-Programming Operating System</b> एक ऐसा <b>Operating System</b> है, जिसमें एक ही समय पर कई
+                    <b>programs</b> <b>memory (RAM)</b> में <b>load</b> रहते हैं। जब कोई एक <b>program</b>
+                    <b>Input/Output (I/O)</b> कार्य के कारण प्रतीक्षा करता है, तब <b>CPU</b> दूसरे <b>program</b> को
+                    <b>execute</b> करना शुरू कर देता है। इससे <b>CPU utilization</b> बढ़ता है और <b>system
+                        performance</b> बेहतर होती है।
+                </p>
+
+                <div class="image-icon">
+                    <img src="./images/multiprogrammig.webp" alt="Multi Programming Operating System">
+                </div>
+
+                <p><b>Example:</b>
+                <ul>
+                    <li>Billing Machines</li>
+                    <li>Railway Server</li>
+                    <li>Banking Stystem</li>
+                </ul>
+                </p>
+
+                <div class="exam-box">
+                    <b>Computer</b> पर <b>Google Chrome</b> में browsing करते समय <b>MS Word</b> में typing करना और साथ
+                    में <b>Music Player</b> चलाना <b>Multi-Programming Operating System</b> का उदाहरण है।
+                </div>
+
+
+                <h3>Multi-Processing Operating System</h3>
+                <p>
+                    <b>Multi-Processing Operating System</b> एक ऐसा <b>Operating System</b> है, जिसमें एक से अधिक
+                    <b>CPU</b> या <b>Processor</b> का उपयोग <b>processes</b> को <b>execute</b> करने के लिए किया जाता है।
+                    सभी <b>processors</b> मिलकर एक साथ अलग-अलग <b>processes</b> पर कार्य करते हैं, जिससे <b>system
+                        performance</b>, <b>processing speed</b> तथा <b>throughput</b> में वृद्धि होती है।
+                </p>
+
+                <div class="image-icon">
+                    <img src="./images/multi-procesing.webp" alt="Multi Processing Operating System">
+                </div>
+
+                <p><b>Example:</b>
+                <ul>
+                    <li>UNIX</li>
+                    <li>Linux(Ubuntu, Red Hat, Debian)</li>
+                    <li>MacOS</li>
+                </ul>
+                </p>
+
+                <div class="exam-box">
+                    बड़े <b>Database Servers</b>, <b>Cloud Servers</b> तथा <b>Scientific Research Computers</b> में कई
+                    <b>processors</b> का उपयोग करके एक साथ अनेक <b>tasks</b> पूरे किए जाते हैं।
+                </div>
+
+
+                <h3>Multitasking/Time Sharing Operating System</h3>
+                <p>
+                    <b>Multitasking Operating System</b> एक ऐसा <b>Operating System</b> है, जो एक ही समय पर कई
+                    <b>tasks</b> या <b>applications</b> को चलाने की सुविधा देता है। इसमें प्रत्येक <b>task</b> को
+                    <b>CPU</b> का निश्चित <b>time slice (Quantum)</b> दिया जाता है। समय समाप्त होने पर <b>Operating
+                        System</b> अगले <b>task</b> को <b>CPU</b> प्रदान करता है, जिससे सभी <b>tasks</b> एक साथ चलते हुए
+                    दिखाई देते हैं।
+                </p>
+
+                <div class="image-icon">
+                    <img src="./images/multi-tasking-os.webp" alt="Multitasking Operating System">
+                </div>
+
+                <p><b>Example:</b>
+                <ul>
+                    <li> IBM VM/CMS</li>
+                    <li>TSO (Time Sharing Option)</li>
+                    <li>Windows Terminal Services</li>
+                </ul>
+                </p>
+
+
+                <div class="exam-box">
+                    <b>Laptop</b> पर <b>MS Word</b> में typing करना, <b>Google Chrome</b> में Internet चलाना तथा साथ में
+                    <b>Music Player</b> में गाने सुनना <b>Multitasking Operating System</b> का उदाहरण है।
+                </div>
+
+
+                <h3>Network Operating System (NOS)</h3>
+                <p>
+                    <b>Network Operating System (NOS)</b> एक ऐसा <b>Operating System</b> है, जो <b>server</b> पर
+                    <b>install</b> किया जाता है और पूरे <b>network</b> के <b>users</b>, <b>data</b>, <b>security</b>,
+                    <b>applications</b> तथा <b>shared resources</b> का प्रबंधन करता है। यह सभी <b>users</b> को
+                    <b>files</b>, <b>printers</b> तथा अन्य <b>network resources</b> तक सुरक्षित पहुँच प्रदान करता है।
+                </p>
+
+                <div class="image-icon">
+                    <img src="./images/network-os.webp" alt="Network Operating System">
+                </div>
+
+                <p><b>Example:</b>
+                <ul>
+                    <li>Microsoft Windows Server 2003</li>
+                    <li>UNIX, Linux</li>
+                    <li>Mac OS X</li>
+                </ul>
+                </p>
+
+
+                <div class="exam-box">
+                    किसी <b>School</b>, <b>College</b> या <b>Office</b> में सभी <b>Computers</b> यदि एक <b>Server</b> से
+                    जुड़े हों और सभी <b>users</b> उसी <b>printer</b>, <b>files</b> तथा <b>Internet</b> का उपयोग करें, तो
+                    यह <b>Network Operating System</b> का उदाहरण है।
+                </div>
+
+
+                <h3>Distributed Operating System</h3>
+                <p>
+                    <b>Distributed Operating System</b> एक ऐसा <b>Operating System</b> है, जो कई स्वतंत्र
+                    <b>Computers</b> को <b>communication network</b> के माध्यम से जोड़ता है। प्रत्येक <b>Computer</b> का
+                    अपना <b>CPU</b> और <b>Memory</b> होता है, लेकिन सभी <b>Computers</b> मिलकर एक ही <b>system</b> की
+                    तरह कार्य करते हैं। इसमें <b>users</b> दूसरे <b>Computers</b> पर उपलब्ध <b>files</b>,
+                    <b>software</b> तथा <b>resources</b> का भी उपयोग कर सकते हैं।
+                </p>
+
+                <div class="image-icon">
+                    <img src="./images/distrubuted-os.webp" alt="Distributed Operating System">
+                </div>
+
+                <p><b>Example:</b>
+                <ul>
+                    <li>LOCUS</li>
+                    <li>MICROS</li>
+                    <li>Amoeba</li>
+                </ul>
+                </p>
+
+                <div class="exam-box">
+                    किसी <b>University</b> के अलग-अलग <b>Computer Labs</b> यदि एक <b>network</b> से जुड़े हों और सभी
+                    <b>students</b> किसी भी <b>Computer</b> से साझा <b>files</b> तथा <b>software</b> का उपयोग कर सकें,
+                    तो यह <b>Distributed Operating System</b> का उदाहरण है।
+                </div>
+
+
+                <h3>Real-Time Operating System (RTOS)</h3>
+                <p>
+                    <b>Real-Time Operating System (RTOS)</b> एक ऐसा <b>Operating System</b> है, जो <b>input</b> प्राप्त
+                    होते ही बहुत कम समय में <b>response</b> प्रदान करता है। <b>Input</b> मिलने और <b>response</b> देने
+                    के बीच का समय <b>Response Time</b> कहलाता है। इसका उपयोग उन <b>systems</b> में किया जाता है, जहाँ
+                    समय पर <b>response</b> देना अत्यंत आवश्यक होता है।
+                </p>
+
+                <div class="image-icon">
+                    <img src="./images/rtos.webp" alt="Real Time Operating System">
+                </div>
+
+                <p><b>Example:</b>
+                <ul>
+                    <li>Scientific experiments</li>
+                    <li>Medical imaging systems</li>
+                    <li>Robots</li>
+                </ul>
+                </p>
+
+                <div class="exam-box">
+                    <b>Airbag System</b>, <b>Missile Control System</b>, <b>Air Traffic Control System</b>,
+                    <b>Industrial Robots</b> तथा <b>Medical Equipment</b> में <b>Real-Time Operating System</b> का उपयोग
+                    किया जाता है।
+                </div>
+
+            </section>
+
+            <section id="dos">
+                <h2>DOS (Disk Operating System)</h2>
+                <p><strong>DOS</strong> का full form <strong>Disk Operating
+                        System</strong> है। यह command-line based operating system है जो disk files, directories और
+                    basic hardware resources को manage करता है। MS-DOS Microsoft द्वारा personal computers के लिए
+                    develop किया गया था। DOS में user commands type करके काम करता है, इसलिए इसे CUI based operating
+                    system कहा जाता है।</p>
+                <p>DOS single-user और mostly single-tasking operating system था। इसमें mouse-based GUI नहीं होता था;
+                    user को commands जैसे <code>DIR</code>, <code>COPY</code>, <code>DEL</code>, <code>MD</code>,
+                    <code>CD</code> आदि याद रखने पड़ते थे।
+                </p>
+                <div class="image-icon"><img src="./images/dos.webp" alt="MS DOS Screen"></div>
+                <p><b>Note: </b><br> window Screen पर window + R click → cmd type करें → enter दबाएँ</p>
+            </section>
+
+            <section id="dos-commands">
+                <h2>Types of DOS Commands</h2>
+                <p><strong>DOS Commands</strong> वे instructions हैं जिन्हें user command prompt में type करके DOS से
+                    काम करवाता है। DOS commands दो types की होती हैं: <strong>Internal Commands</strong> और
+                    <strong>External Commands</strong>।
+                </p>
+                <h3>Internal Commands</h3>
+                <p>Internal commands DOS command interpreter <code>COMMAND.COM</code> के
+                    अंदर stored होती हैं। इन्हें execute करने के लिए अलग program file की जरूरत नहीं होती। ये memory में
+                    available रहती हैं।</p>
+                <table>
+                    <tr>
+                        <th>Command</th>
+                        <th>Full Form</th>
+                        <th>Use</th>
+                    </tr>
+                    <tr>
+                        <td><code>DIR</code></td>
+                        <td>Directory</td>
+                        <td>Files और directories की list दिखाता है।</td>
+                    </tr>
+                    <tr>
+                        <td><code>CD</code></td>
+                        <td>Change Directory</td>
+                        <td>Directory change करने के लिए।</td>
+                    </tr>
+                    <tr>
+                        <td><code>mkdir</code></td>
+                        <td>Make Directory</td>
+                        <td>New directory create करने के लिए।</td>
+                    </tr>
+                    <tr>
+                        <td><code>RD</code></td>
+                        <td>Remove Directory</td>
+                        <td>Empty directory remove करने के लिए।</td>
+                    </tr>
+                    <tr>
+                        <td><code>COPY</code></td>
+                        <td>Copy</td>
+                        <td>File copy करने के लिए।</td>
+                    </tr>
+                    <tr>
+                        <td><code>DEL</code></td>
+                        <td>Delete</td>
+                        <td>File delete करने के लिए।</td>
+                    </tr>
+                    <tr>
+                        <td><code>CLS</code></td>
+                        <td>Clear Screen</td>
+                        <td>Screen clear करने के लिए।</td>
+                    </tr>
+                </table>
+                <video controls muted>
+                    <source src="myvideo.mp4" type="video/mp4">
+                </video>
+                <h3>External Commands</h3>
+                <p>External commands अलग executable files के रूप में disk पर stored होती
+                    हैं। इन्हें run करने के लिए उनकी program file available होनी चाहिए।</p>
+                <table>
+                    <tr>
+                        <th>Command</th>
+                        <th>Use</th>
+                    </tr>
+                    <tr>
+                        <td><code>FORMAT</code></td>
+                        <td>--</td>
+                        <td>Disk को format करने के लिए।</td>
+                    </tr>
+                    <tr>
+                        <td><code>CHKDSK</code></td>
+                        <td>check Disk</td>
+                        <td>Disk errors check करने के लिए।</td>
+                    </tr>
+                    <tr>
+                        <td><code>XCOPY</code></td>
+                        <td>--</td>
+                        <td>Files और directories को advanced तरीके से copy करने के लिए।</td>
+                    </tr>
+                    <tr>
+                        <td><code>TREE</code></td>
+                        <td>--</td>
+                        <td>Directory structure tree format में दिखाने के लिए।</td>
+                    </tr>
+                    <tr>
+                        <td><code>DISKCOPY</code></td>
+                        <td>Disk Copy</td>
+                        <td>Disk की copy बनाने के लिए।</td>
+                    </tr>
+                </table>
+                <video controls muted>
+                    <source src="myvideo.mp4" type="video/mp4">
+                </video>
+            </section>
+
+            <section id="resource">
+                <h2>Operating System as a Resource Manager</h2>
+                <p>Operating System को <strong>Resource Manager</strong> इसलिए कहा जाता
+                    है क्योंकि यह computer के सभी important resources जैसे CPU, Memory, Storage, Files और I/O Devices को
+                    manage करता है। जब multiple programs run होते हैं, तो OS decide करता है कि किस program को CPU कब
+                    मिलेगा, कितनी memory मिलेगी और कौन-सा device कैसे use होगा।</p>
+                <ul>
+                    <li><strong>CPU Management:</strong> Processes को CPU time allocate करता है।</li>
+                    <li><strong>Memory Management:</strong> Programs को RAM allocate और free करता है।</li>
+                    <li><strong>Device Management:</strong> Keyboard, mouse, printer, disk जैसे devices को control करता
+                        है।</li>
+                    <li><strong>File Management:</strong> Files को store, access और protect करता है।</li>
+                    <li><strong>Security Management:</strong> User permissions और access control maintain करता है।</li>
+                </ul>
+            </section>
+
+            <section id="bios">
+                <h2>BIOS</h2>
+                <p>strong>BIOS</strong> का full form <strong>Basic Input Output
+                        System</strong> है। यह firmware होता है जो motherboard की ROM/Flash memory में stored रहता है।
+                    जब computer start होता है, तो BIOS सबसे पहले run होता है। यह hardware components को check करता है,
+                    POST perform करता है और bootable device से operating system को load करने की process start करता है।
+                </p>
+                <h3>Functions of BIOS</h3>
+                <ul>
+                    <li>Computer start होते ही hardware checking करता है।</li>
+                    <li>POST यानी Power On Self Test perform करता है।</li>
+                    <li>Boot device जैसे hard disk, SSD या USB को identify करता है।</li>
+                    <li>Operating System boot loader को load करने में help करता है।</li>
+                    <li>Basic hardware settings जैसे date, time, boot order manage करता है।</li>
+                </ul>
+                <div class="example-box"><b>Example:</b><br>जब आप laptop on करते हैं और company logo दिखता है, उस time
+                    BIOS/UEFI hardware check और boot process start कर रहा होता है।</div>
+            </section>
+
+            <section id="utilities">
+                <h2>System Utilities – Editor, Loader, Linker, File Manager</h2>
+                <p><strong>System Utilities</strong> ऐसे system programs होते हैं जो users को files manage करने,
+                    programs prepare/run करने और system resources को control करने में help करते हैं।</p>
+                <table>
+                    <tr>
+                        <th>Utility</th>
+                        <th>Definition</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Editor</strong></td>
+                        <td>Editor एक program है जिसके द्वारा text या program source code लिखा और edit किया जाता है।
+                        </td>
+                        <td>Notepad, VI Editor</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Loader</strong></td>
+                        <td>Loader executable program को storage से main memory में load करता है ताकि CPU उसे execute कर
+                            सके।</td>
+                        <td>Program loader in OS</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Linker</strong></td>
+                        <td>Linker अलग-अलग object files और libraries को combine करके final executable file बनाता है।
+                        </td>
+                        <td>C/C++ linker</td>
+                    </tr>
+                    <tr>
+                        <td><strong>File Manager</strong></td>
+                        <td>File Manager files और folders को create, copy, move, rename, delete और organize करने में
+                            help करता है।</td>
+                        <td>Windows File Explorer</td>
+                    </tr>
+                </table>
+                <div class="note-box"><b>Exam Note:</b><br>GFG में system programs को ऐसे tools माना गया है जो files
+                    manage करने, programs run करने और system resources control करने में help करते हैं।</div>
+            </section>
+
+            <section id="gui-cui">
+                <h2>GUI and CUI Standards</h2>
+                <h3>GUI</h3>
+
+                <p>strong>GUI</strong> का full form <strong>Graphical User
+                        Interface</strong> है। इसमें user icons, windows, menus, buttons और mouse pointer की help से
+                    computer operate करता है। GUI user-friendly होता है और beginners के लिए आसान माना जाता है।</p>
+
+                <h3>CUI</h3>
+
+                <p>strong>CUI</strong> का full form <strong>Character User
+                        Interface</strong> या <strong>Command User Interface</strong> है। इसमें user commands type करके
+                    computer से काम करवाता है। DOS इसका common example है। CUI fast और powerful हो सकता है, लेकिन
+                    commands याद रखनी पड़ती हैं।</p>
+
+                <table>
+                    <tr>
+                        <th>GUI</th>
+                        <th>CUI</th>
+                    </tr>
+                    <tr>
+                        <td>Graphical icons और menus use होते हैं।</td>
+                        <td>Text commands use होती हैं।</td>
+                    </tr>
+                    <tr>
+                        <td>Mouse और keyboard दोनों से operate होता है।</td>
+                        <td>Mainly keyboard commands से operate होता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Beginners के लिए easy होता है।</td>
+                        <td>Commands याद होना जरूरी है।</td>
+                    </tr>
+                    <tr>
+                        <td>Example: Windows</td>
+                        <td>Example: DOS</td>
+                    </tr>
+                </table>
+            </section>
+
+            <section id="files-directories">
+                <h2>Directories and Files</h2>
+                <h3>File</h3>
+                <p><strong>File</strong> data या information का named collection होता है
+                    जो storage device में save रहता है। File text, image, audio, video, program या document हो सकती है।
+                    हर file का एक name और extension होता है, जैसे <code>notes.txt</code>, <code>photo.jpg</code>,
+                    <code>index.html</code>।
+                </p>
+
+                <h3>Directory</h3>
+                <p><strong>Directory</strong> या folder files और sub-directories को
+                    organize करने के लिए use होता है। Directory की help से data को category-wise store किया जाता है,
+                    जिससे files ढूँढना और manage करना आसान होता है।</p>
+
+            </section>
+
+            <section id="wildcards">
+                <h2>Wild Cards</h2>
+                <p><strong>Definition:</strong><br><strong>Wild Cards</strong> special characters होते हैं जिनका use
+                    multiple files को एक साथ search या select करने के लिए किया जाता है। DOS और Windows में commonly
+                    <code>*</code> और <code>?</code> wildcards use होते हैं।
+                </p>
+                <table>
+                    <tr>
+                        <th>Wildcard</th>
+                        <th>Meaning</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td><code>*</code></td>
+                        <td>किसी भी number of characters को represent करता है।</td>
+                        <td><code>*.txt</code> सभी text files select करेगा।</td>
+                    </tr>
+                    <tr>
+                        <td><code>?</code></td>
+                        <td>किसी single character को represent करता है।</td>
+                        <td><code>file?.txt</code> file1.txt, file2.txt जैसे names match करेगा।</td>
+                    </tr>
+                </table>
+                <div class="example-box"><b>Example:</b><br><code>DIR *.DOC</code> command current directory में सभी DOC
+                    files show करेगी।</div>
+            </section>
+
+            <section id="bat-config">
+                <h2>AUTOEXEC.BAT and CONFIG.SYS</h2>
+                <h3>AUTOEXEC.BAT</h3>
+                <p><strong>AUTOEXEC.BAT</strong> DOS की batch file होती है जो system
+                    boot होने के समय automatically execute होती थी। इसमें ऐसी commands लिखी जाती थीं जिन्हें user हर
+                    startup पर automatically run कराना चाहता था, जैसे path set करना, prompt change करना या किसी program
+                    को start करना।</p>
+                <div class="example-box"><b>Example:</b><br><code>PATH=C:\DOS;C:\WINDOWS</code> जैसी command
+                    AUTOEXEC.BAT में लिखी जा सकती थी।</div>
+
+                <h3>CONFIG.SYS</h3>
+                <p><strong>CONFIG.SYS</strong> DOS की configuration file होती थी जिसका
+                    use device drivers और system settings load करने के लिए किया जाता था। यह file boot process के दौरान
+                    read होती थी और memory, device, buffers आदि settings configure कर सकती थी।</p>
+                <div class="example-box"><b>Example:</b><br><code>DEVICE=C:\DOS\HIMEM.SYS</code> जैसी line CONFIG.SYS
+                    में device driver load करने के लिए use हो सकती थी।</div>
+            </section>
+
+            <section id="desktop">
+                <h2>Features of Windows Desktop</h2>
+               
+                <p><strong>Windows Desktop</strong> वह main screen है जो Windows start
+                    होने के बाद user को दिखाई देती है। Desktop पर icons, taskbar, start button, shortcuts और background
+                    wallpaper दिखाई देते हैं। यह user को programs start करने, files access करने और system को manage करने
+                    के लिए graphical environment देता है।</p>
+                <ul>
+                    <li><strong>Icons:</strong> Programs, files और folders के graphical symbols होते हैं।</li>
+                    <li><strong>Taskbar:</strong> Open programs और pinned apps दिखाता है।</li>
+                    <li><strong>Start Button:</strong> Programs, settings और power options access करने के लिए।</li>
+                    <li><strong>Wallpaper:</strong> Desktop का background image होता है।</li>
+                    <li><strong>Shortcut:</strong> किसी file/program को जल्दी open करने का link होता है।</li>
+                </ul>
+            </section>
+
+            <section id="components">
+                <h2>Components of Windows and Their Functions</h2>
+                <table>
+                    <tr>
+                        <th>Component</th>
+                        <th>Function</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Desktop</strong></td>
+                        <td>Main working area जहाँ icons और shortcuts दिखाई देते हैं।</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Start Menu</strong></td>
+                        <td>Programs, settings, search और shutdown options access करने के लिए।</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Taskbar</strong></td>
+                        <td>Running applications, pinned apps और system tray दिखाता है।</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Icons</strong></td>
+                        <td>Files, folders और programs को graphical form में represent करते हैं।</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Window</strong></td>
+                        <td>Application या folder का rectangular working area।</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Title Bar</strong></td>
+                        <td>Window का name और control buttons दिखाता है।</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Menu Bar</strong></td>
+                        <td>Commands और options की list provide करता है।</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Scroll Bar</strong></td>
+                        <td>Content को ऊपर-नीचे या left-right move करने के लिए।</td>
+                    </tr>
+                    <tr>
+                        <td><strong>System Tray</strong></td>
+                        <td>Clock, network, volume और background apps दिखाता है।</td>
+                    </tr>
+                </table>
+            </section>
+
+            <section id="start">
+                <h2>Method of Starting a Program Using Start Button</h2>
+                <p><strong>Definition:</strong><br><strong>Start Button</strong> Windows का important component है जिसके
+                    द्वारा user installed programs, settings, documents और power options access कर सकता है। किसी program
+                    को start करने के लिए Start Button का use सबसे common method है।</p>
+                <ol>
+                    <li>सबसे पहले screen के नीचे left side में <strong>Start Button</strong> पर click करें।</li>
+                    <li>Start Menu open होने के बाद search box में program का name type करें।</li>
+                    <li>Search result में required program दिखाई देगा।</li>
+                    <li>Program name या icon पर click करें।</li>
+                    <li>Selected program open हो जाएगा और user उसमें काम कर सकेगा।</li>
+                </ol>
+                <div class="example-box"><b>Example:</b><br>MS Paint open करने के लिए Start Button पर click करें, search
+                    में <code>Paint</code> type करें और Paint app पर click करें।</div>
+            </section>
+
+            <section id="window-buttons">
+                <h2>Maximize, Minimize, Restore Down and Close Button</h2>
+                
+                <table>
+                    <tr>
+                        <th>Button</th>
+                        <th>Function</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Minimize</strong></td>
+                        <td>Window को screen से hide करके taskbar में भेज देता है। Program close नहीं होता।</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Maximize</strong></td>
+                        <td>Window को पूरी screen पर expand कर देता है।</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Restore Down</strong></td>
+                        <td>Maximized window को वापस normal size में ला देता है।</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Close</strong></td>
+                        <td>Window या program को बंद कर देता है। Unsaved work होने पर save prompt आ सकता है।</td>
+                    </tr>
+                </table>
+            </section>
+
+            <section id="file-folder">
+                <h2>Uses of File and Folder</h2>
+                <h3>Uses of File</h3>
+                <ul>
+                    <li>Data और information को permanently store करने के लिए।</li>
+                    <li>Documents, images, videos, programs और records save करने के लिए।</li>
+                    <li>Information को edit, copy, move और share करने के लिए।</li>
+                    <li>Different file extensions से file type identify करने के लिए।</li>
+                </ul>
+                <h3>Uses of Folder</h3>
+                <ul>
+                    <li>Related files को एक जगह organize करने के लिए।</li>
+                    <li>Study material, photos, projects आदि को category-wise रखने के लिए।</li>
+                    <li>Data searching और management को easy बनाने के लिए।</li>
+                    <li>Subfolders बनाकर hierarchical structure maintain करने के लिए।</li>
+                </ul>
+            </section>
+
+            <section id="explorer">
+                <h2>Method of Viewing the Contents of Hard Disk Drive Using Explore Option</h2>
+                <p><strong>Windows Explorer</strong> या <strong>File Explorer</strong> Windows का file manager है जिसकी
+                    help से hard disk, folders और files को view/manage किया जाता है।</p>
+                <ol>
+                    <li>Desktop या taskbar से <strong>File Explorer</strong> open करें।</li>
+                    <li>Left side navigation pane में <strong>This PC</strong> पर click करें।</li>
+                    <li>Available drives जैसे <strong>Local Disk (C:)</strong>, <strong>D:</strong> आदि दिखाई देंगे।
+                    </li>
+                    <li>जिस drive की contents देखनी हो, उस पर double click करें।</li>
+                    <li>Drive के अंदर मौजूद folders और files screen पर दिखाई देंगे।</li>
+                    <li>किसी folder को open करने के लिए उस पर double click करें।</li>
+                </ol>
+                
+            </section>
+
+            <section id="control-panel">
+                <h2>Control Panel</h2>
+               
+                <p><strong>Definition:</strong><br><strong>Control Panel</strong> Windows का system management area है
+                    जहाँ से user hardware, software, network, user accounts, display, keyboard, mouse, sound और other
+                    settings को configure कर सकता है। पुराने Windows versions में Control Panel बहुत important था, जबकि
+                    modern Windows में कई settings Settings app में shift हो गई हैं।</p>
+                <div class="image-icon"><img src="./images/control-panel.webp" alt="Control Panel"></div>
+
+                <h3>Uses of Control Panel</h3>
+                <ul>
+                    <li>Programs install/uninstall करना।</li>
+                    <li>Network और Internet settings manage करना।</li>
+                    <li>User accounts create या modify करना।</li>
+                    <li>Printer, mouse, keyboard और sound settings change करना।</li>
+                    <li>Date, time, language और region settings manage करना।</li>
+                </ul>
+            </section>
+
+            <section id="defrag">
+                <h2>Disk Defragmentation</h2>
+
+                <p><strong>Disk Defragmentation</strong> एक system utility process है
+                    जिसमें hard disk पर scattered file fragments को rearrange करके continuous blocks में रखा जाता है।
+                    इससे hard disk को files read करने में कम समय लगता है और system performance improve हो सकती है। यह
+                    process mainly HDD के लिए useful है; SSD में defragmentation की जरूरत generally नहीं होती।</p>
+                <h3>Steps for Disk Defragmentation</h3>
+                <ol>
+                    <li>Start Menu open करें और <strong>Defragment and Optimize Drives</strong> search करें।</li>
+                    <li>Required drive select करें।</li>
+                    <li><strong>Analyze</strong> option से fragmentation check करें।</li>
+                    <li><strong>Optimize</strong> या Defragment पर click करें।</li>
+                    <li>Process complete होने तक wait करें।</li>
+                </ol>
+                <div class="note-box"><b>Important:</b><br>Modern Windows SSD को defrag नहीं करता, बल्कि optimize/TRIM
+                    operation perform करता है।</div>
+            </section>
+
+            <section id="install">
+                <h2>Installation and Uninstallation of Application Software</h2>
+                <h3>Installation of Application Software</h3>
+                <p><strong>Software Installation</strong> वह process है जिसमें
+                    application software को computer में setup करके use करने योग्य बनाया जाता है। Installation के दौरान
+                    required files copy होती हैं, shortcuts create होते हैं और system settings configure होती हैं।</p>
+                <ol>
+                    <li>Software setup file या installer download/insert करें।</li>
+                    <li>Setup file पर double click करें।</li>
+                    <li>License agreement accept करें।</li>
+                    <li>Installation location select करें।</li>
+                    <li>Install button पर click करें।</li>
+                    <li>Installation complete होने के बाद Finish पर click करें।</li>
+                </ol>
+
+                <h3>Uninstallation of Application Software</h3>
+                <p><strong>Definition:</strong><br><strong>Uninstallation</strong> वह process है जिसमें installed
+                    software को computer से remove किया जाता है। इससे software की files, shortcuts और related settings
+                    delete हो सकती हैं।</p>
+                <ol>
+                    <li>Control Panel open करें।</li>
+                    <li><strong>Programs and Features</strong> या <strong>Uninstall a Program</strong> option select
+                        करें।</li>
+                    <li>जिस software को remove करना है, उसे list से select करें।</li>
+                    <li><strong>Uninstall</strong> button पर click करें।</li>
+                    <li>Instructions follow करें और process complete करें।</li>
+                </ol>
+                <div class="example-box"><b>Example:</b><br>VLC Media Player install करने के लिए setup file run करते
+                    हैं, और remove करने के लिए Control Panel से Uninstall option use करते हैं।</div>
+            </section>
+            <section id="booting">
+                <h2>Booting Process</h2>
+                <p>
+
+                    <strong>Booting Process</strong> वह process है जिसके द्वारा computer power on होने के बाद hardware
+                    को check करता है
+                    और Operating System को main memory में load करता है। जब computer बंद अवस्था से start होता है, तो
+                    सबसे पहले
+                    BIOS/UEFI execute होता है। BIOS hardware components जैसे RAM, keyboard, storage device और display को
+                    check करता है।
+                    इसके बाद bootable device को identify किया जाता है और वहाँ से boot loader load होता है। Boot loader
+                    Operating System
+                    kernel को memory में load करता है, जिसके बाद OS user interface और system services start करता है।
+                </p>
+
+                <h4>Working of Booting Process</h4>
+                <ol>
+                    <li>Computer power on होता है।</li>
+                    <li>BIOS/UEFI सबसे पहले execute होता है।</li>
+                    <li>POST यानी Power On Self Test perform होता है।</li>
+                    <li>Bootable device जैसे HDD, SSD या USB identify किया जाता है।</li>
+                    <li>Boot Loader load होता है।</li>
+                    <li>Operating System kernel memory में load होता है।</li>
+                    <li>Login screen या desktop show होता है।</li>
+                </ol>
+
+                <h4>Types of Booting</h4>
+                <table>
+                    <tr>
+                        <th>Type</th>
+                        <th>Explanation</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Cold Booting</strong></td>
+                        <td>जब computer completely off state से power button दबाकर start किया जाता है।</td>
+                        <td>Morning में laptop को shutdown state से start करना।</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Warm Booting</strong></td>
+                        <td>जब computer पहले से on हो और उसे restart किया जाए।</td>
+                        <td>Windows में Restart option click करना।</td>
+                    </tr>
+                </table>
+
+                <div class="note-box">
+                    <b>Real Life Example:</b><br>
+                    जब आप laptop का power button दबाते हैं और कुछ seconds बाद Windows login screen आती है,
+                    तो इस पूरे background process को Booting Process कहा जाता है।
+                </div>
+            </section>
+
+            <section id="boot-loader">
+                <h2>2. Boot Loader</h2>
+                <p>
+                    <strong>Definition:</strong><br>
+                    <strong>Boot Loader</strong> एक छोटा system program होता है जो booting process के दौरान Operating
+                    System को
+                    storage device से main memory में load करने में help करता है। BIOS/UEFI bootable device को locate
+                    करने के बाद
+                    boot loader को control देता है। Boot loader यह decide करता है कि कौन-सा Operating System load करना
+                    है।
+                    Dual boot system में boot loader user को Windows या Linux जैसे OS options दिखा सकता है।
+                </p>
+
+                <h4>Working of Boot Loader</h4>
+                <p>
+                    Boot Loader storage device के boot sector या EFI partition से load होता है। यह Operating System
+                    kernel की location
+                    find करता है और उसे RAM में load करता है। Kernel load होने के बाद system services start होती हैं और
+                    फिर user
+                    login screen या desktop तक पहुँचता है।
+                </p>
+
+                <h4>Common Boot Loader Examples</h4>
+                <ul>
+                    <li><strong>Windows Boot Manager:</strong> Windows Operating System को load करने के लिए use होता है।
+                    </li>
+                    <li><strong>GRUB:</strong> Linux systems में commonly use होने वाला boot loader है।</li>
+                    <li><strong>LILO:</strong> Linux का पुराना boot loader था।</li>
+                </ul>
+
+                <div class="note-box">
+                    <b>Real Life Example:</b><br>
+                    अगर किसी computer में Windows और Linux दोनों installed हैं, तो GRUB boot loader start में option
+                    देता है
+                    कि user कौन-सा OS open करना चाहता है।
+                </div>
+            </section>
+
+
+
+
+            <section id="cmd">
+                <h2>Command Prompt</h2>
+
+                <p>
+
+                    <strong>Command Prompt</strong> Windows का command-line interface है जहाँ user text commands type
+                    करके system से
+                    अलग-अलग काम करवा सकता है। CMD में user files list कर सकता है, directories change कर सकता है, network
+                    information देख सकता है,
+                    disk commands run कर सकता है और system utilities open कर सकता है। यह DOS जैसी command environment
+                    provide करता है,
+                    लेकिन modern Windows के अंदर run होता है।
+                </p>
+
+                <h4>Methods to Open Command Prompt</h4>
+                <ul>
+                    <li>Start Menu में <strong>cmd</strong> search करके open करें।</li>
+                    <li><strong>Win + R</strong> press करें, <code>cmd</code> type करें और Enter दबाएँ।</li>
+                    <li>File Explorer address bar में <code>cmd</code> type करके Enter करें।</li>
+                </ul>
+
+                <h4>Common CMD Uses</h4>
+                <ul>
+                    <li>Files और folders manage करना।</li>
+                    <li>Network details check करना।</li>
+                    <li>System troubleshooting करना।</li>
+                    <li>Disk और path related commands run करना।</li>
+                </ul>
+
+
+            </section>
+
+            <section id="extensions">
+                <h2>OS File Extensions</h2>
+
+                <p>
+
+                    <strong>File Extension</strong> file name के end में dot के बाद आने वाला part होता है, जो बताता है
+                    कि file किस type की है।
+                    DOS और Windows में file extension की help से system पहचानता है कि file executable है, batch file है,
+                    system file है
+                    या normal data file है। DOS में कई important extensions use होती थीं, जैसे <code>.EXE</code>,
+                    <code>.COM</code>,
+                    <code>.BAT</code> और <code>.SYS</code>।
+                </p>
+
+                <table>
+                    <tr>
+                        <th>Extension</th>
+                        <th>Meaning</th>
+                        <th>Use</th>
+                    </tr>
+                    <tr>
+                        <td><code>.EXE</code></td>
+                        <td>Executable File</td>
+                        <td>Program run करने के लिए use होती है।</td>
+                    </tr>
+                    <tr>
+                        <td><code>.COM</code></td>
+                        <td>Command File</td>
+                        <td>Small executable command programs के लिए use होती थी।</td>
+                    </tr>
+                    <tr>
+                        <td><code>.BAT</code></td>
+                        <td>Batch File</td>
+                        <td>Multiple commands को sequence में automatically run करने के लिए।</td>
+                    </tr>
+                    <tr>
+                        <td><code>.SYS</code></td>
+                        <td>System File</td>
+                        <td>Device drivers और system configuration files के लिए।</td>
+                    </tr>
+                </table>
+
+            </section>
+
+            <section id="explorer-features">
+                <h2>Windows Explorer Features</h2>
+
+
+
+                <p>
+
+                    <strong>Windows Explorer</strong> या <strong>File Explorer</strong> Windows का file management tool
+                    है जिसकी help से user
+                    files, folders, drives और storage locations को view और manage कर सकता है। यह graphical interface
+                    provide करता है,
+                    इसलिए user commands याद किए बिना copy, paste, rename, delete और search जैसे operations आसानी से कर
+                    सकता है।
+                </p>
+
+                <h4>Features of Windows Explorer</h4>
+                <ul>
+                    <li><strong>Copy:</strong> File या folder की duplicate copy दूसरी location पर बनाने के लिए।</li>
+                    <li><strong>Cut/Move:</strong> File या folder को एक location से दूसरी location में move करने के लिए।
+                    </li>
+                    <li><strong>Paste:</strong> Copied या cut item को selected location में रखने के लिए।</li>
+                    <li><strong>Rename:</strong> File या folder का नाम change करने के लिए।</li>
+                    <li><strong>Delete:</strong> Unwanted files/folders remove करने के लिए।</li>
+                    <li><strong>Search:</strong> किसी file/folder को quickly find करने के लिए।</li>
+                    <li><strong>Properties:</strong> File size, type, location और dates देखने के लिए।</li>
+                    <li><strong>View Options:</strong> Icons, list, details और thumbnails में content देखने के लिए।</li>
+                </ul>
+
+
+            </section>
+
+            <section id="recycle-bin">
+                <h2>Recycle Bin</h2>
+
+                <p>
+
+                    <strong>Recycle Bin</strong> Windows का special storage area है जहाँ deleted files और folders
+                    temporarily store होते हैं।
+                    जब user किसी file को delete करता है, तो वह तुरंत permanent delete नहीं होती, बल्कि Recycle Bin में
+                    चली जाती है।
+                    इससे user गलती से delete हुई file को वापस restore कर सकता है। Recycle Bin system safety feature की
+                    तरह काम करता है।
+                </p>
+
+                <h4>Uses of Recycle Bin</h4>
+                <ul>
+                    <li>Deleted files को temporary store करना।</li>
+                    <li>गलती से delete हुई files को restore करना।</li>
+                    <li>Unwanted files को permanently delete करना।</li>
+                    <li>Storage free करने के लिए Recycle Bin empty करना।</li>
+                </ul>
+
+                <h4>Restore Process</h4>
+                <ol>
+                    <li>Recycle Bin open करें।</li>
+                    <li>Required file या folder select करें।</li>
+                    <li>Right-click करके <strong>Restore</strong> option choose करें।</li>
+                    <li>File अपनी original location पर वापस चली जाएगी।</li>
+                </ol>
+
+
+            </section>
+
+            <section id="taskbar">
+                <h2>Taskbar</h2>
+
+
+
+
+
+                <p>
+
+                    <strong>Taskbar</strong> Windows Desktop का वह horizontal bar होता है जो usually screen के bottom
+                    में दिखाई देता है।
+                    यह user को open programs, pinned applications, Start Button, search, notification area, clock और
+                    system icons तक quick access देता है।
+                    Taskbar multitasking को आसान बनाता है क्योंकि user open applications के बीच आसानी से switch कर सकता
+                    है।
+                </p>
+
+                <h4>Components of Taskbar</h4>
+                <ul>
+                    <li><strong>Start Button:</strong> Programs, settings और power options access करने के लिए।</li>
+                    <li><strong>Search Box:</strong> Files, apps और settings search करने के लिए।</li>
+                    <li><strong>Pinned Apps:</strong> Frequently used apps को जल्दी open करने के लिए।</li>
+                    <li><strong>Running Apps Area:</strong> Current open programs show करता है।</li>
+                    <li><strong>System Tray:</strong> Network, sound, battery और background apps show करता है।</li>
+                    <li><strong>Clock:</strong> Current date और time show करता है।</li>
+                </ul>
+
+            </section>
+
+            <section id="windows-search">
+                <h2>10. Windows Search</h2>
+
+
+                <p>
+                    <strong>Definition:</strong><br>
+                    <strong>Windows Search</strong> Windows का built-in feature है जिसकी help से user computer में
+                    stored apps, files,
+                    folders, settings और documents को जल्दी search कर सकता है। Search feature user का time बचाता है
+                    क्योंकि उसे manually
+                    हर folder open करके file खोजने की जरूरत नहीं पड़ती। Modern Windows में search box taskbar या Start
+                    Menu में available होता है।
+                </p>
+
+                <h4>Uses of Windows Search</h4>
+                <ul>
+                    <li>Installed apps quickly open करना।</li>
+                    <li>Files और folders locate करना।</li>
+                    <li>Control Panel या Settings options search करना।</li>
+                    <li>Documents, images और downloads find करना।</li>
+                </ul>
+
+                <h4>Search Filters</h4>
+                <ul>
+                    <li><strong>Apps:</strong> Applications search करने के लिए।</li>
+                    <li><strong>Documents:</strong> Word, PDF और text files search करने के लिए।</li>
+                    <li><strong>Folders:</strong> Folder names search करने के लिए।</li>
+                    <li><strong>Settings:</strong> Windows settings search करने के लिए।</li>
+                </ul>
+
+            </section>
+
+            <section id="file-properties">
+                <h2>File Properties</h2>
+
+
+
+
+                <p>
+
+                    <strong>File Properties</strong> किसी file से related detailed information को show करती हैं।
+                    इसमें file का name, type, size, location, created date, modified date, accessed date और
+                    attributes
+                    जैसी information होती है।
+                    File properties user को यह समझने में help करती हैं कि file कहाँ stored है, कितनी space ले रही है
+                    और
+                    किस type की है।
+                </p>
+
+                <h4>Common File Properties</h4>
+                <ul>
+                    <li><strong>Name:</strong> File का नाम।</li>
+                    <li><strong>Type:</strong> File का format या extension।</li>
+                    <li><strong>Size:</strong> File द्वारा use की गई storage space।</li>
+                    <li><strong>Location:</strong> File किस folder/drive में stored है।</li>
+                    <li><strong>Created Date:</strong> File कब बनाई गई।</li>
+                    <li><strong>Modified Date:</strong> File में last change कब हुआ।</li>
+                    <li><strong>Attributes:</strong> Read-only, hidden आदि settings।</li>
+                </ul>
+
+
+            </section>
+
+            <section id="file-operations">
+                <h2>File Operations</h2>
+
+
+
+
+                <p>
+
+                    <strong>File Operations</strong> वे basic actions हैं जो user किसी file पर perform करता है।
+                    Operating System user को files create, open, edit, copy, move, rename, delete, restore और share करने
+                    की सुविधा देता है।
+                    File operations data management का important part हैं क्योंकि इन्हीं operations से user अपनी
+                    information को organize और control करता है।
+                </p>
+
+                <h4>Common File Operations</h4>
+                <ul>
+                    <li><strong>Create:</strong> नई file बनाना।</li>
+                    <li><strong>Open:</strong> Existing file को view या edit करना।</li>
+                    <li><strong>Save:</strong> File में किए गए changes store करना।</li>
+                    <li><strong>Copy:</strong> File की duplicate copy बनाना।</li>
+                    <li><strong>Move:</strong> File को एक location से दूसरी location में transfer करना।</li>
+                    <li><strong>Rename:</strong> File का नाम बदलना।</li>
+                    <li><strong>Delete:</strong> Unwanted file remove करना।</li>
+                    <li><strong>Restore:</strong> Deleted file को Recycle Bin से वापस लाना।</li>
+                </ul>
+
+
+            </section>
+
+            <section id="folder-operations">
+                <h2>Folder Operations</h2>
+
+                <p>
+                    <strong>Definition:</strong><br>
+                    <strong>Folder Operations</strong> वे actions हैं जिनसे user folders को create, organize और manage
+                    करता है।
+                    Folder files को category-wise store करने में help करता है। जैसे एक student अपने notes, images, PDFs
+                    और projects को
+                    अलग-अलग folders में रख सकता है। Folder operations से data व्यवस्थित रहता है और जरूरत पड़ने पर
+                    quickly मिल जाता है।
+                </p>
+
+                <h4>Common Folder Operations</h4>
+                <ul>
+                    <li><strong>Create Folder:</strong> New folder बनाना।</li>
+                    <li><strong>Rename Folder:</strong> Folder का नाम बदलना।</li>
+                    <li><strong>Copy Folder:</strong> Folder की duplicate copy बनाना।</li>
+                    <li><strong>Move Folder:</strong> Folder को दूसरी location पर transfer करना।</li>
+                    <li><strong>Delete Folder:</strong> Unwanted folder remove करना।</li>
+                    <li><strong>Open Folder:</strong> Folder के अंदर files और subfolders देखना।</li>
+                    <li><strong>Folder Properties:</strong> Folder size, location और contents की detail देखना।</li>
+                </ul>
+
+            </section>
+
+            <section id="run-command">
+                <h2>Windows Run Command</h2>
+
+                <p>
+                    <strong>Definition:</strong><br>
+                    <strong>Windows Run Command</strong> एक quick access feature है जिसके द्वारा user programs, folders,
+                    system tools
+                    और settings को command type करके quickly open कर सकता है। Run dialog box open करने के लिए usually
+                    <code>Win + R</code> shortcut key use की जाती है। यह power users और students के लिए बहुत useful tool
+                    है क्योंकि
+                    इससे कई utilities जल्दी open हो जाती हैं।
+                </p>
+
+                <h4>Common Run Commands</h4>
+                <table>
+                    <tr>
+                        <th>Run Command</th>
+                        <th>Use</th>
+                    </tr>
+                    <tr>
+                        <td><code>cmd</code></td>
+                        <td>Command Prompt open करता है।</td>
+                    </tr>
+                    <tr>
+                        <td><code>control</code></td>
+                        <td>Control Panel open करता है।</td>
+                    </tr>
+                    <tr>
+                        <td><code>calc</code></td>
+                        <td>Calculator open करता है।</td>
+                    </tr>
+                    <tr>
+                        <td><code>notepad</code></td>
+                        <td>Notepad open करता है।</td>
+                    </tr>
+                    <tr>
+                        <td><code>mspaint</code></td>
+                        <td>Paint application open करता है।</td>
+                    </tr>
+                    <tr>
+                        <td><code>explorer</code></td>
+                        <td>File Explorer open करता है।</td>
+                    </tr>
+                    <tr>
+                        <td><code>msconfig</code></td>
+                        <td>System Configuration tool open करता है।</td>
+                    </tr>
+                    <tr>
+                        <td><code>services.msc</code></td>
+                        <td>Windows Services manager open करता है।</td>
+                    </tr>
+                </table>
+
+            </section>
+
+            <section id="disk-cleanup">
+                <h2>Disk Cleanup</h2>
+
+
+
+
+                <p>
+
+                    <strong>Disk Cleanup</strong> Windows की एक system utility है जिसका use unnecessary files को remove
+                    करके disk space free करने के लिए किया जाता है।
+                    यह temporary files, recycle bin files, thumbnails, downloaded program files और other unwanted system
+                    files को identify करके delete करने में help करता है।
+                    Disk Cleanup system को organized रखने और storage space बचाने में useful होता है।
+                </p>
+
+                <h4>Working of Disk Cleanup</h4>
+                <p>
+                    Disk Cleanup selected drive को scan करता है और ऐसी files की list दिखाता है जिन्हें safely delete
+                    किया जा सकता है।
+                    User required categories select करता है और cleanup process start करता है। इसके बाद selected unwanted
+                    files remove हो जाती हैं।
+                </p>
+
+                <h4>Steps to Use Disk Cleanup</h4>
+                <ol>
+                    <li>Start Menu में <strong>Disk Cleanup</strong> search करें।</li>
+                    <li>Drive select करें, जैसे C: drive।</li>
+                    <li>System scan complete होने दें।</li>
+                    <li>Delete करने वाली file categories select करें।</li>
+                    <li>OK पर click करें और confirmation दें।</li>
+                </ol>
+
+
+            </section>
+
+            <section id="task-manager">
+                <h2>Task Manager</h2>
+
+
+
+
+
+                <p>
+                    <strong>Definition:</strong><br>
+                    <strong>Task Manager</strong> Windows का system monitoring tool है जिसकी help से user running
+                    applications, background processes,
+                    CPU usage, memory usage, disk activity, network usage और startup programs को देख और manage कर सकता
+                    है।
+                    अगर कोई application hang हो जाए या system slow हो रहा हो, तो Task Manager troubleshooting में बहुत
+                    useful होता है।
+                </p>
+
+                <h4>Working of Task Manager</h4>
+                <p>
+                    Task Manager system में चल रहे processes और resources की real-time information show करता है।
+                    User किसी unresponsive program को select करके <strong>End Task</strong> कर सकता है। इसके अलावा
+                    startup apps disable करके
+                    boot speed improve की जा सकती है।
+                </p>
+
+                <h4>Main Tabs of Task Manager</h4>
+                <ul>
+                    <li><strong>Processes:</strong> Running apps और background processes show करता है।</li>
+                    <li><strong>Performance:</strong> CPU, Memory, Disk, Wi-Fi और GPU usage दिखाता है।</li>
+                    <li><strong>Startup:</strong> Startup apps enable/disable करने के लिए।</li>
+                    <li><strong>Users:</strong> Current users और उनके resource usage को show करता है।</li>
+                    <li><strong>Details:</strong> Processes की detailed technical information दिखाता है।</li>
+                    <li><strong>Services:</strong> Windows services status show करता है।</li>
+                </ul>
+            </section>
+
+
+
+
+        </main>
+    </div>
+</body>
+
+</html>

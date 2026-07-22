@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Network Architecture - Ethernet Specification and Standardization</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+      line-height: 1.75;
+    }
+
+    .page {
+      display: grid;
+      grid-template-columns: 285px 1fr;
+      gap: 20px;
+      max-width: 1500px;
+      margin: auto;
+      padding: 10px;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 10px;
+      height: calc(100vh - 20px);
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
+      align-self: start;
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #111827;
+    }
+
+    .sidebar a {
+      display: block;
+      text-decoration: none;
+      color: #374151;
+      padding: 8px 10px;
+      border-radius: 10px;
+      margin-bottom: 4px;
+      font-size: 14.7px;
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+      color: #1d4ed8;
+    }
+
+    .content {
+      background: #fff;
+      border-radius: 18px;
+      padding: 10px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
+    }
+
+    .hero {
+      padding: 28px 18px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #eef2ff, #f8fafc);
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: 34px;
+      color: #111827;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #374151;
+    }
+
+    section {
+      padding: 22px 10px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    section:last-child {
+      border-bottom: none
+    }
+
+    h2 {
+      font-size: 27px;
+      color: #111827;
+      margin-bottom: 12px;
+      border-left: 5px solid #2563eb;
+      padding-left: 12px;
+    }
+
+    h3 {
+      font-size: 22px;
+      color: #1f2937;
+      margin: 16px 0 8px;
+    }
+
+    h4 {
+      font-size: 18px;
+      color: #111827;
+      margin: 14px 0 6px;
+    }
+
+    p {
+      margin: 10px 0;
+      font-size: 17px;
+    }
+
+    ul,
+    ol {
+      margin-left: 24px;
+      margin-top: 8px;
+    }
+
+    li {
+      margin: 7px 0;
+      font-size: 16.5px;
+    }
+
+    strong {
+      color: #111827
+    }
+
+    .image-icon {
+      min-height: 180px;
+      border: 2px dashed #94a3b8;
+      border-radius: 16px;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      margin: 18px 0;
+      color: #475569;
+      font-weight: 600;
+    }
+
+    .image-icon img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .note-box {
+      background: #f0fdf4;
+      border-left: 5px solid #22c55e;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0;
+    }
+
+    .info-box {
+      background: #ecfeff;
+      border-left: 5px solid #06b6d4;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0;
+    }
+
+    .remember-box {
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      font-size: 15.5px;
+    }
+
+    th,
+    td {
+      border: 1px solid #d1d5db;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #eef2ff;
+      color: #111827;
+    }
+
+    code {
+      background: #111827;
+      color: #f9fafb;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-family: Consolas, monospace;
+      font-size: 15px;
+    }
+
+    .flow {
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 14px;
+      padding: 16px;
+      margin: 16px 0;
+      font-family: Consolas, monospace;
+      overflow-x: auto;
+      line-height: 1.8;
+    }
+
+    @media(max-width:900px) {
+      .page {
+        grid-template-columns: 1fr
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto
+      }
+
+      .hero h1 {
+        font-size: 27px
+      }
+
+      h2 {
+        font-size: 24px
+      }
+    }
+  </style>
+
+<link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
+<script src="../../../../../../../assets/shared/portal.js" defer></script>
+<script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
+</head>
+
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <h2>Topics</h2>
+      <a href="#intro">Introduction</a>
+      <a href="#architecture">Network Architecture</a>
+      <a href="#ethernet">Ethernet</a>
+      <a href="#standardization">Standardization</a>
+      <a href="#ieee">IEEE 802.3</a>
+      <a href="#frame">Ethernet Frame</a>
+      <a href="#working">Working of Ethernet</a>
+      <a href="#traditional">Traditional Ethernet</a>
+      <a href="#fast">Fast Ethernet</a>
+      <a href="#gigabit">Gigabit Ethernet</a>
+      <a href="#media">Ethernet Media</a>
+      <a href="#comparison">Comparison Table</a>
+    </aside>
+
+    <main class="content">
+      <div class="hero">
+        <h1>Network Architecture: Ethernet Specification and Standardization</h1>
+      </div>
+      <section id="intro">
+        <h2>Network Architecture</h2>
+        <p>
+          <strong>Network Architecture</strong> का मतलब किसी computer network की complete design, structure और working
+          arrangement से होता है।
+          इसमें यह define किया जाता है कि devices किस तरह connected होंगी, data किस path से travel करेगा, कौन-से
+          protocols use होंगे,
+          कौन-से networking devices जैसे switch, router, hub या access point लगाए जाएंगे और communication किस standard
+          के अनुसार होगा।
+          Network Architecture किसी building के blueprint की तरह होती है, जिसमें पहले से plan किया जाता है कि network
+          reliable, scalable,
+          secure और efficient कैसे बनेगा।
+        </p>
+
+        <p>
+          Ethernet network architecture का बहुत important part है क्योंकि local area networks यानी LAN में सबसे ज्यादा
+          use होने वाली technology
+          Ethernet ही है। School lab, office network, computer center, data center और home broadband connection में
+          Ethernet का use बहुत common है।
+          Ethernet devices को cable और switch की help से connect करता है और data को frames के रूप में transmit करता है।
+        </p>
+
+        <h4>Need of Network Architecture</h4>
+        <ul>
+          <li>Network को proper design और structure देने के लिए।</li>
+          <li>Devices के बीच reliable data communication provide करने के लिए।</li>
+          <li>Future expansion यानी scalability को support करने के लिए।</li>
+          <li>Network troubleshooting और maintenance को आसान बनाने के लिए।</li>
+          <li>Standard protocols और technologies के through interoperability provide करने के लिए।</li>
+        </ul>
+
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          College computer lab में 40 computers एक switch से connected होते हैं। Switch router से connect होता है और
+          router internet से।
+          यह पूरा arrangement network architecture का example है।
+        </div>
+      </section>
+
+      <section id="architecture">
+        <h2>Network Architecture Concept</h2>
+
+        <p>
+
+          Network Architecture यह describe करती है कि network के different components कैसे arranged होंगे और data
+          communication कैसे perform होगा।
+          इसमें physical architecture और logical architecture दोनों शामिल हो सकते हैं। Physical architecture बताती है कि
+          cables, switches, routers,
+          servers और computers physically कैसे connected हैं। Logical architecture बताती है कि data flow, addressing,
+          protocols और services किस तरह work करेंगे।
+        </p>
+
+        <h4>Main Components of Network Architecture</h4>
+        <table>
+          <tr>
+            <th>Component</th>
+            <th>Explanation</th>
+            <th>Example</th>
+          </tr>
+          <tr>
+            <td><strong>End Devices</strong></td>
+            <td>वे devices जो data send या receive करते हैं।</td>
+            <td>Computer, Laptop, Mobile, Printer</td>
+          </tr>
+          <tr>
+            <td><strong>Networking Devices</strong></td>
+            <td>वे devices जो data forwarding और connectivity provide करते हैं।</td>
+            <td>Switch, Router, Hub, Access Point</td>
+          </tr>
+          <tr>
+            <td><strong>Transmission Media</strong></td>
+            <td>Data travel करने का path।</td>
+            <td>Ethernet Cable, Fiber, Wi-Fi</td>
+          </tr>
+          <tr>
+            <td><strong>Protocols</strong></td>
+            <td>Communication rules का set।</td>
+            <td>Ethernet, TCP/IP, HTTP</td>
+          </tr>
+          <tr>
+            <td><strong>Services</strong></td>
+            <td>Network द्वारा provide की जाने वाली facilities।</td>
+            <td>File Sharing, Internet, Printing</td>
+          </tr>
+        </table>
+
+        <div class="info-box">
+          <b>Important:</b><br>
+          Ethernet mainly LAN architecture में use होता है। यह Data Link Layer और Physical Layer से related technology
+          है।
+        </div>
+      </section>
+
+      <section id="ethernet">
+        <h2>Ethernet</h2>
+
+        <p>
+          <strong>Ethernet</strong> एक widely used Local Area Network technology है जिसका use computers और other network
+          devices को wired LAN में connect करने के लिए किया जाता है।
+          Ethernet data को <strong>frames</strong> के रूप में transmit करता है और devices की पहचान के लिए <strong>MAC
+            Address</strong> का use करता है।
+          Ethernet technology IEEE 802.3 standard के under standardized है। यह आज offices, schools, homes, data centers
+          और enterprise networks में सबसे common wired networking technology है।
+        </p>
+
+        <p>
+          Ethernet पहले shared medium और hub-based networks में use होता था जहाँ CSMA/CD method collisions handle करने
+          के लिए use होता था।
+          Modern Ethernet networks में switches use होते हैं, जहाँ हर device का separate collision domain होता है और
+          full-duplex communication possible होता है।
+          Ethernet की speed समय के साथ 10 Mbps से 100 Mbps, 1000 Mbps और उससे भी आगे 10 Gbps, 40 Gbps और 100 Gbps तक
+          develop हो चुकी है।
+        </p>
+
+        <h4>Features of Ethernet</h4>
+        <ul>
+          <li>LAN में सबसे commonly used wired networking technology है।</li>
+          <li>Data को frames के रूप में transmit करता है।</li>
+          <li>MAC Address का use device identification के लिए करता है।</li>
+          <li>IEEE 802.3 standard के under defined है।</li>
+          <li>Twisted pair cable, coaxial cable और fiber optic cable पर काम कर सकता है।</li>
+          <li>Switch-based Ethernet में better performance और full-duplex communication possible होता है।</li>
+        </ul>
+
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          जब आप laptop को LAN cable से Wi-Fi router या switch में connect करते हैं, तो आपका device Ethernet technology
+          के through network से communicate करता है।
+        </div>
+      </section>
+
+      <section id="standardization">
+        <h2>Ethernet Specification and Standardization</h2>
+
+        <p>
+
+          <strong>Ethernet Standardization</strong> का मतलब Ethernet technology के rules, frame format, speed, cable
+          type,
+          signaling method और working mechanism को common standard के रूप में define करना है। Standardization की वजह से
+          अलग-अलग companies के network cards,
+          switches, routers और cables एक-दूसरे के साथ properly work कर पाते हैं। अगर standardization न हो, तो हर company
+          अपनी अलग technology बनाती,
+          जिससे devices compatible नहीं होते।
+        </p>
+
+        <p>
+          Ethernet को initially Xerox PARC में develop किया गया था, बाद में DEC, Intel और Xerox ने मिलकर Ethernet
+          specification को आगे बढ़ाया।
+          इसके बाद IEEE ने Ethernet को <strong>IEEE 802.3</strong> standard के रूप में standardized किया। आज Ethernet की
+          कई versions available हैं,
+          जैसे Traditional Ethernet, Fast Ethernet, Gigabit Ethernet और higher-speed Ethernet standards।
+        </p>
+
+        <h4>Why Standardization is Needed</h4>
+        <ul>
+          <li>Different vendors के devices को compatible बनाने के लिए।</li>
+          <li>Frame format और signaling rules common रखने के लिए।</li>
+          <li>Speed, cable length और media type define करने के लिए।</li>
+          <li>Network design और troubleshooting को आसान बनाने के लिए।</li>
+          <li>Technology evolution को organized तरीके से आगे बढ़ाने के लिए।</li>
+        </ul>
+
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          अगर आपके laptop का network adapter Intel का है और switch Cisco या TP-Link का है, फिर भी दोनों Ethernet
+          standard follow करते हैं,
+          इसलिए वे आपस में communicate कर पाते हैं।
+        </div>
+      </section>
+
+      <section id="ieee">
+        <h2>IEEE 802.3 Standard</h2>
+        <p>
+          <strong>IEEE 802.3</strong> Ethernet networks के लिए standard है। यह define करता है कि Ethernet frame कैसा
+          होगा,
+          MAC addressing कैसे work करेगी, data transmission किस speed पर होगा, कौन-सा cable/media use होगा और
+          physical/data link layer पर communication कैसे perform होगा।
+          IEEE 802.3 primarily wired LAN technology को standardize करता है।
+        </p>
+
+        <h4>Important Ethernet Standards</h4>
+        <table>
+          <tr>
+            <th>Standard / Name</th>
+            <th>Speed</th>
+            <th>Common Media</th>
+            <th>Common Use</th>
+          </tr>
+          <tr>
+            <td><strong>10BASE-T</strong></td>
+            <td>10 Mbps</td>
+            <td>Twisted Pair Cable</td>
+            <td>Traditional Ethernet LAN</td>
+          </tr>
+          <tr>
+            <td><strong>100BASE-TX</strong></td>
+            <td>100 Mbps</td>
+            <td>Twisted Pair Cable</td>
+            <td>Fast Ethernet LAN</td>
+          </tr>
+          <tr>
+            <td><strong>1000BASE-T</strong></td>
+            <td>1000 Mbps / 1 Gbps</td>
+            <td>Twisted Pair Cable</td>
+            <td>Gigabit Ethernet LAN</td>
+          </tr>
+          <tr>
+            <td><strong>1000BASE-SX/LX</strong></td>
+            <td>1000 Mbps / 1 Gbps</td>
+            <td>Fiber Optic Cable</td>
+            <td>Backbone and long-distance LAN links</td>
+          </tr>
+        </table>
+
+        <div class="info-box">
+          <b>Note:</b><br>
+          आपके syllabus में 10 Mbps Traditional Ethernet, Fast Ethernet और 1000 Mbps Gigabit Ethernet mention है।
+          Normally Fast Ethernet की speed 100 Mbps होती है। इसलिए file में उसे 100 Mbps के रूप में explain किया गया है।
+        </div>
+      </section>
+
+      <section id="frame">
+        <h2>Ethernet Frame</h2>
+
+        <p>
+
+          <strong>Ethernet Frame</strong> वह data unit है जिसे Ethernet network में transmit किया जाता है।
+          जब Network Layer से packet आता है, तो Data Link Layer उसे Ethernet frame में encapsulate करती है।
+          Frame में destination MAC address, source MAC address, type/length field, data और error checking के लिए FCS
+          जैसे fields होते हैं।
+          Switch destination MAC address को read करके frame को correct port पर forward करता है।
+        </p>
+
+        <h4>Main Fields of Ethernet Frame</h4>
+        <table>
+          <tr>
+            <th>Field</th>
+            <th>Function</th>
+          </tr>
+          <tr>
+            <td><strong>Preamble</strong></td>
+            <td>Receiver को synchronization में help करता है।</td>
+          </tr>
+          <tr>
+            <td><strong>Destination MAC Address</strong></td>
+            <td>Frame किस device को जाना है, यह बताता है।</td>
+          </tr>
+          <tr>
+            <td><strong>Source MAC Address</strong></td>
+            <td>Frame भेजने वाले device का MAC address बताता है।</td>
+          </tr>
+          <tr>
+            <td><strong>Type / Length</strong></td>
+            <td>Upper layer protocol या data length indicate करता है।</td>
+          </tr>
+          <tr>
+            <td><strong>Data / Payload</strong></td>
+            <td>Actual data होता है जो transmit किया जा रहा है।</td>
+          </tr>
+          <tr>
+            <td><strong>FCS</strong></td>
+            <td>Frame Check Sequence, error detection के लिए use होता है।</td>
+          </tr>
+        </table>
+
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          Ethernet frame को courier packet की तरह समझिए। Destination MAC address receiver का address है और source MAC
+          address sender का address है।
+        </div>
+      </section>
+
+      <section id="working">
+        <h2>Working of Ethernet</h2>
+
+        <h3>How Ethernet Works</h3>
+
+
+        <p>
+          <strong>Working:</strong><br>
+          Ethernet network में devices network interface card यानी NIC के through connect होती हैं।
+          हर NIC का unique MAC address होता है। जब एक device दूसरे device को data send करता है,
+          तो data Ethernet frame में convert होता है। Frame में source और destination MAC address add होते हैं।
+          अगर network switch-based है, तो switch अपने MAC address table की help से यह decide करता है कि frame को किस
+          port पर forward करना है।
+        </p>
+
+        <p>
+          पुराने hub-based Ethernet में सभी devices same collision domain share करती थीं और CSMA/CD method use होता था।
+          इसमें device पहले medium को listen करती थी और फिर data send करती थी। अगर collision होती थी, तो devices थोड़ी
+          देर wait करके data फिर से send करती थीं।
+          Modern switched Ethernet में collision बहुत कम या practically eliminate हो जाती है क्योंकि each device का
+          switch से dedicated link होता है।
+        </p>
+
+        <h4>Simple Ethernet Communication Steps</h4>
+        <ol>
+          <li>Sender device data create करता है।</li>
+          <li>Data Ethernet frame में encapsulate होता है।</li>
+          <li>Frame में source और destination MAC address add होते हैं।</li>
+          <li>Frame cable के through switch तक जाता है।</li>
+          <li>Switch MAC table देखकर frame को correct port पर forward करता है।</li>
+          <li>Destination device frame receive करके data extract करता है।</li>
+        </ol>
+
+        <div class="flow">
+          Computer A → Ethernet Frame → Switch → Correct Port → Computer B<br>
+          Frame forwarding mainly MAC Address के basis पर होती है।
+        </div>
+      </section>
+
+      <section id="traditional">
+        <h2>Traditional Ethernet - 10 Mbps</h2>
+
+
+
+        <p>
+
+          <strong>Traditional Ethernet</strong> Ethernet की early generation है जिसकी speed normally <strong>10
+            Mbps</strong> होती थी।
+          इसमें data 10 megabits per second की rate से transmit होता था। Traditional Ethernet initially coaxial cable और
+          bus topology के साथ use होता था,
+          बाद में twisted pair cable और star topology के साथ भी use हुआ। यह LAN communication की foundation technology
+          मानी जाती है।
+        </p>
+
+        <p>
+          10 Mbps Ethernet में old networks में hub-based architecture common थी। Hub incoming data को सभी ports पर
+          broadcast करता था,
+          जिससे collision की possibility रहती थी। इसलिए CSMA/CD method collision handling के लिए use किया जाता था।
+          आज 10 Mbps Ethernet mostly outdated माना जाता है, लेकिन networking history और basic Ethernet concepts समझने के
+          लिए यह बहुत important है।
+        </p>
+
+        <h4>Features of Traditional Ethernet</h4>
+        <ul>
+          <li>Speed 10 Mbps होती है।</li>
+          <li>Early LANs में widely use होता था।</li>
+          <li>Coaxial cable और twisted pair दोनों versions available थे।</li>
+          <li>Hub-based networks में CSMA/CD use होता था।</li>
+          <li>Modern networks में इसे mostly Fast/Gigabit Ethernet ने replace कर दिया है।</li>
+        </ul>
+
+        <h4>Common 10 Mbps Standards</h4>
+        <table>
+          <tr>
+            <th>Standard</th>
+            <th>Media</th>
+            <th>Meaning</th>
+          </tr>
+          <tr>
+            <td><strong>10BASE5</strong></td>
+            <td>Thick Coaxial Cable</td>
+            <td>Thick Ethernet, older bus network</td>
+          </tr>
+          <tr>
+            <td><strong>10BASE2</strong></td>
+            <td>Thin Coaxial Cable</td>
+            <td>Thin Ethernet, cheaper coaxial version</td>
+          </tr>
+          <tr>
+            <td><strong>10BASE-T</strong></td>
+            <td>Twisted Pair Cable</td>
+            <td>Star topology with hub/switch</td>
+          </tr>
+        </table>
+
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          पुराने computer labs में 10 Mbps hub-based Ethernet networks use होते थे, जहाँ सभी computers एक hub से
+          connected होते थे।
+        </div>
+      </section>
+
+      <section id="fast">
+        <h2>Fast Ethernet - 100 Mbps</h2>
+
+        <p>
+          <strong>Fast Ethernet</strong> Ethernet का improved version है जिसकी speed <strong>100 Mbps</strong> होती है।
+          यह Traditional Ethernet से 10 times faster है। Fast Ethernet को IEEE 802.3u standard के under define किया गया।
+          इसका purpose existing Ethernet networks को ज्यादा speed provide करना था, ताकि users file sharing, internet
+          access और client-server applications को better performance के साथ use कर सकें।
+        </p>
+
+        <p>
+          Fast Ethernet mainly twisted pair cable और fiber optic cable पर work कर सकता है।
+          इसमें common standard <strong>100BASE-TX</strong> है जो Cat5 या better twisted pair cable पर use होता है।
+          Fast Ethernet ने old 10 Mbps networks को बहुत तेजी से replace किया क्योंकि यह existing Ethernet frame format
+          और network concepts के साथ compatible था।
+        </p>
+
+        <h4>Features of Fast Ethernet</h4>
+        <ul>
+          <li>Speed 100 Mbps होती है।</li>
+          <li>Traditional Ethernet से 10 times faster है।</li>
+          <li>IEEE 802.3u standard से related है।</li>
+          <li>Twisted pair और fiber optic media support करता है।</li>
+          <li>Star topology और switch-based LAN में commonly use होता है।</li>
+          <li>Half-duplex और full-duplex दोनों modes support कर सकता है।</li>
+        </ul>
+
+        <h4>Common Fast Ethernet Standards</h4>
+        <table>
+          <tr>
+            <th>Standard</th>
+            <th>Media</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><strong>100BASE-TX</strong></td>
+            <td>Twisted Pair Cable</td>
+            <td>Most common Fast Ethernet LAN</td>
+          </tr>
+          <tr>
+            <td><strong>100BASE-FX</strong></td>
+            <td>Fiber Optic Cable</td>
+            <td>Longer distance links</td>
+          </tr>
+        </table>
+
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          अगर किसी small office में 100 Mbps switch लगा है और computers LAN cable से connected हैं,
+          तो वह Fast Ethernet network का example हो सकता है।
+        </div>
+      </section>
+
+      <section id="gigabit">
+        <h2>Gigabit Ethernet - 1000 Mbps</h2>
+        <p>
+          <strong>Gigabit Ethernet</strong> Ethernet का high-speed version है जिसकी speed <strong>1000 Mbps</strong>
+          यानी
+          <strong>1 Gbps</strong> होती है। यह Fast Ethernet से 10 times faster और Traditional Ethernet से 100 times
+          faster है।
+          Gigabit Ethernet को high-performance LANs, servers, backbone links, data centers और modern home/office
+          networks में use किया जाता है।
+        </p>
+
+        <p>
+          Gigabit Ethernet twisted pair cable और fiber optic cable दोनों पर work कर सकता है।
+          <strong>1000BASE-T</strong> standard copper twisted pair cable पर 1 Gbps speed provide करता है,
+          जबकि <strong>1000BASE-SX</strong> और <strong>1000BASE-LX</strong> fiber optic cable पर use होते हैं।
+          Modern switches और network interface cards usually Gigabit Ethernet support करते हैं।
+        </p>
+
+        <h4>Features of Gigabit Ethernet</h4>
+        <ul>
+          <li>Speed 1000 Mbps यानी 1 Gbps होती है।</li>
+          <li>Fast Ethernet से 10 times faster है।</li>
+          <li>Large file transfer, server access और high-speed LAN के लिए suitable है।</li>
+          <li>Copper और fiber दोनों media support करता है।</li>
+          <li>Modern LANs में common standard बन चुका है।</li>
+          <li>Full-duplex switch-based networks में बहुत efficient performance देता है।</li>
+        </ul>
+
+        <h4>Common Gigabit Ethernet Standards</h4>
+        <table>
+          <tr>
+            <th>Standard</th>
+            <th>Media</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><strong>1000BASE-T</strong></td>
+            <td>Cat5e / Cat6 Twisted Pair Cable</td>
+            <td>Common office/home gigabit LAN</td>
+          </tr>
+          <tr>
+            <td><strong>1000BASE-SX</strong></td>
+            <td>Multimode Fiber</td>
+            <td>Short-distance fiber links</td>
+          </tr>
+          <tr>
+            <td><strong>1000BASE-LX</strong></td>
+            <td>Single-mode / Multimode Fiber</td>
+            <td>Longer-distance fiber links</td>
+          </tr>
+        </table>
+
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          Modern Wi-Fi routers में अक्सर 1 Gbps LAN ports होते हैं। जब laptop Cat6 cable से ऐसे router से connect होता
+          है,
+          तो Gigabit Ethernet speed support हो सकती है।
+        </div>
+      </section>
+
+      <section id="media">
+        <h2>Ethernet Transmission Media</h2>
+        <p>
+          Ethernet different transmission media पर काम कर सकता है। पुराने Ethernet networks में coaxial cable use होती
+          थी।
+          बाद में twisted pair cable जैसे Cat5, Cat5e और Cat6 widely use होने लगे। High-speed और long-distance links के
+          लिए fiber optic cable use होती है।
+          Media selection network speed, distance, cost और environment पर depend करता है।
+        </p>
+
+        <table>
+          <tr>
+            <th>Media</th>
+            <th>Explanation</th>
+            <th>Used In</th>
+          </tr>
+          <tr>
+            <td><strong>Coaxial Cable</strong></td>
+            <td>पुराने bus topology Ethernet networks में use होती थी।</td>
+            <td>10BASE5, 10BASE2</td>
+          </tr>
+          <tr>
+            <td><strong>Twisted Pair Cable</strong></td>
+            <td>आज LAN में सबसे common cable type है। RJ-45 connector use होता है।</td>
+            <td>10BASE-T, 100BASE-TX, 1000BASE-T</td>
+          </tr>
+          <tr>
+            <td><strong>Fiber Optic Cable</strong></td>
+            <td>Light signals के through high speed और long distance communication provide करती है।</td>
+            <td>100BASE-FX, 1000BASE-SX/LX</td>
+          </tr>
+        </table>
+
+        <div class="note-box">
+          <b>Real Life Example:</b><br>
+          Office के अंदर computers को connect करने के लिए twisted pair LAN cable use होती है,
+          जबकि building-to-building link के लिए fiber optic cable use की जा सकती है।
+        </div>
+      </section>
+
+      <section id="comparison">
+        <h2>12. Comparison of Traditional, Fast and Gigabit Ethernet</h2>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>Traditional Ethernet</th>
+            <th>Fast Ethernet</th>
+            <th>Gigabit Ethernet</th>
+          </tr>
+          <tr>
+            <td><strong>Speed</strong></td>
+            <td>10 Mbps</td>
+            <td>100 Mbps</td>
+            <td>1000 Mbps / 1 Gbps</td>
+          </tr>
+          <tr>
+            <td><strong>Common Standard</strong></td>
+            <td>10BASE-T / 10BASE2 / 10BASE5</td>
+            <td>100BASE-TX / 100BASE-FX</td>
+            <td>1000BASE-T / 1000BASE-SX / 1000BASE-LX</td>
+          </tr>
+          <tr>
+            <td><strong>IEEE Standard</strong></td>
+            <td>IEEE 802.3</td>
+            <td>IEEE 802.3u</td>
+            <td>IEEE 802.3ab / 802.3z</td>
+          </tr>
+          <tr>
+            <td><strong>Media</strong></td>
+            <td>Coaxial / Twisted Pair</td>
+            <td>Twisted Pair / Fiber</td>
+            <td>Twisted Pair / Fiber</td>
+          </tr>
+          <tr>
+            <td><strong>Topology</strong></td>
+            <td>Bus or Star</td>
+            <td>Mostly Star</td>
+            <td>Mostly Star / Switched</td>
+          </tr>
+          <tr>
+            <td><strong>Common Device</strong></td>
+            <td>Hub, old switch</td>
+            <td>Switch</td>
+            <td>Gigabit Switch</td>
+          </tr>
+          <tr>
+            <td><strong>Use</strong></td>
+            <td>Old LANs</td>
+            <td>Small and medium LANs</td>
+            <td>Modern LANs, servers, backbone links</td>
+          </tr>
+          <tr>
+            <td><strong>Performance</strong></td>
+            <td>Low speed</td>
+            <td>Medium speed</td>
+            <td>High speed</td>
+          </tr>
+        </table>
+      </section>
+    </main>
+  </div>
+</body>
+
+</html>

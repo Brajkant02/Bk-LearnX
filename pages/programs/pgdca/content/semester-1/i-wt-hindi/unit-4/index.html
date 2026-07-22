@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JavaScript Premium Notes</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+      line-height: 1.75
+    }
+
+    .page {
+      display: grid;
+      grid-template-columns: 285px 1fr;
+      gap: 20px;
+      max-width: 1500px;
+      margin: auto;
+      padding: 10px
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 10px;
+      height: calc(100vh - 20px);
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
+      align-self: start
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #111827
+    }
+
+    .sidebar a {
+      display: block;
+      text-decoration: none;
+      color: #374151;
+      padding: 8px 10px;
+      border-radius: 10px;
+      margin-bottom: 4px;
+      font-size: 14.7px
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+      color: #1d4ed8
+    }
+
+    .content {
+      background: #fff;
+      border-radius: 18px;
+      padding: 10px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08)
+    }
+
+    .hero {
+      padding: 28px 18px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #eef2ff, #f8fafc);
+      margin-bottom: 18px
+    }
+
+    .hero h1 {
+      font-size: 34px;
+      color: #111827;
+      margin-bottom: 10px
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #374151
+    }
+
+    section {
+      padding: 22px 10px;
+      border-bottom: 1px solid #e5e7eb
+    }
+
+    section:last-child {
+      border-bottom: none
+    }
+
+    h2 {
+      font-size: 27px;
+      color: #111827;
+      margin-bottom: 12px;
+      border-left: 5px solid #2563eb;
+      padding-left: 12px
+    }
+
+    h3 {
+      font-size: 22px;
+      color: #1f2937;
+      margin: 16px 0 8px
+    }
+
+    h4 {
+      font-size: 18px;
+      color: #111827;
+      margin: 14px 0 6px
+    }
+
+    p {
+      margin: 10px 0;
+      font-size: 17px
+    }
+
+    ul,
+    ol {
+      margin-left: 24px;
+      margin-top: 8px
+    }
+
+    li {
+      margin: 7px 0;
+      font-size: 16.5px
+    }
+
+    strong {
+      color: #111827
+    }
+
+    .image-icon {
+      min-height: 180px;
+      border: 2px dashed #94a3b8;
+      border-radius: 16px;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      margin: 18px 0;
+      color: #475569;
+      font-weight: 600
+    }
+
+    .image-icon img {
+      max-width: 100%;
+      height: auto
+    }
+
+    .note-box {
+      background: #f0fdf4;
+      border-left: 5px solid #22c55e;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .info-box {
+      background: #ecfeff;
+      border-left: 5px solid #06b6d4;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .remember-box {
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      font-size: 15.5px
+    }
+
+    th,
+    td {
+      border: 1px solid #d1d5db;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top
+    }
+
+    th {
+      background: #eef2ff;
+      color: #111827
+    }
+
+    code {
+      background: #111827;
+      color: #f9fafb;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-family: Consolas, monospace;
+      font-size: 15px
+    }
+
+    pre {
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 14px;
+      padding: 16px;
+      margin: 16px 0;
+      overflow-x: auto;
+      font-family: Consolas, monospace;
+      line-height: 1.6
+    }
+
+    .compiler {
+      width: 100%;
+      height: 2rem;
+      background-color: green;
+      text-align: center;
+    }
+
+    .compiler a {
+      text-decoration: none;
+      color: white;
+    }
+
+    @media(max-width:900px) {
+      .page {
+        grid-template-columns: 1fr
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto
+      }
+
+      .hero h1 {
+        font-size: 27px
+      }
+
+      h2 {
+        font-size: 24px
+      }
+    }
+  </style>
+
+<link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
+<script src="../../../../../../../assets/shared/portal.js" defer></script>
+<script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
+</head>
+
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <h2>Topics</h2>
+      <a href="#intro">JavaScript Introduction</a>
+      <a href="#variables">Variables</a>
+      <a href="#data-types">Data Types</a>
+      <a href="#operators">Operators</a>
+      <a href="#if-else">Control Flow: if-else</a>
+      <a href="#for-loop">for Loop</a>
+      <a href="#while-loop">while Loop</a>
+      <a href="#do-while">do-while Loop</a>
+      <a href="#functions">Declaring Functions</a>
+      <a href="#parameters">Calling Functions with Parameters</a>
+      <a href="#add-js">Adding JavaScript to Web Documents</a>
+      <a href="#objects">JavaScript Objects</a>
+      <a href="#dom">Document Object Model</a>
+      <a href="#events">HTML Events</a>
+      <a href="#event-functions">Calling JavaScript Functions on Events</a>
+    </aside>
+
+    <main class="content">
+      <div class="hero">
+        <h1>JavaScript</h1>
+      </div>
+
+      <section id="intro">
+        <h2>JavaScript Introduction</h2>
+
+        <p><strong>JavaScript</strong> एक high-level scripting language है जिसका use web pages को interactive और dynamic बनाने के लिए किया जाता है। HTML webpage का structure बनाता है, CSS design देता है और JavaScript webpage में behavior तथा interactivity add करता है। JavaScript की help से button click पर action perform किया जा सकता है, form validation की जा सकती है, content change किया जा सकता है, animations create की जा सकती हैं और server से data fetch किया जा सकता है।</p>
+
+        <p>JavaScript browser में run होने वाली client-side language के रूप में famous है, लेकिन आजकल Node.js की help से JavaScript server-side programming में भी use होती है। JavaScript modern web development की core technology है। HTML, CSS और JavaScript को मिलाकर complete frontend development किया जाता है।</p>
+
+        <h4>Need of JavaScript</h4>
+        <ul>
+          <li>Webpage को interactive बनाने के लिए।</li>
+          <li>Button click, mouse move, keyboard input जैसे events handle करने के लिए।</li>
+          <li>Form validation करने के लिए।</li>
+          <li>HTML content और CSS style को dynamically change करने के लिए।</li>
+          <li>Dynamic web applications बनाने के लिए।</li>
+        </ul>
+
+        <h4>Simple JavaScript Example</h4>
+        <pre>&lt;button onclick="alert('Welcome to JavaScript')"gt-click-me-lt/button-gt/pre-div-class"info-box"b-output/b-br-button-click-alert-box-show-welcome-to-javascript/div-h4-html-css-and-javascript-role/h4-table-tr-th-technology/th-th-work/th/tr-tr-td-html/td-td-webpage-structure/td/tr-tr-td-css/td-td-webpage-design-layout/td/tr-tr-td-javascript/td-td-webpage-logic-interactivity-add/td/tr/table-div-class"note-box"b-real-life-example/b-br-login-form-user-password-blank-page-message-password-required-javascript/div-div-class"remember-box"b-remember/b-br-javascript-web-page-live-interactive-dynamic/div/section-section-id"variables"h2-variables/h2-p-variable-memory-location-data-store-javascript-variables-use-values-store-program-use-student-name-age-marks-course-values-variables-store/p-p-javascript-variables-declare-code-var/code-code-let/code-code-const/code-keywords-use-modern-javascript-mostly-code-let/code-code-const/code-use-code-let/code-changeable-value-code-const/code-fixed-value-use/p-h4-variable-declaration/h4-pre-let-name"Brajkant";
+let age = 23;
+const course = "PGDCA"console-log-name-console-log-age-console.log(course);</pre-div-class"info-box"b-output/b-br-brajkant-br-23-br-pgdca/div-h4-var-let-and-const/h4-table-tr-th-keyword/th-th-use/th-th-value-change/th/tr-tr-td-code-var/code/td-td-old-javascript-variable-declare/td-td-change/td/tr-tr-td-code-let/code/td-td-modern-javascript-changeable-variable/td-td-change/td/tr-tr-td-code-const/code/td-td-fixed-value-store/td-td-change/td/tr/table-h4-let-example/h4-pre-let-marks-80-marks-90-console.log(marks);</pre-div-class"info-box"b-output/b-br-90/div-h4-const-example/h4-pre-const-pi-3-14-console.log(pi);</pre-div-class"info-box"b-output/b-br-3.14</div-h4-variable-naming-rules/h4-ul-li-variable-name-letter-underscore-code/code-dollar-sign-code/code-start/li-li-variable-name-number-start/li-li-variable-names-case-sensitive/li-li-reserved-keywords-variable-name/li-li-meaningful-variable-names-use-best-practice/li/ul-div-class"remember-box"b-remember/b-br-code-let/code-changeable-values-code-const/code-fixed-values-use/div/section-section-id"data-types"h2-data-types/h2-p-data-type-variable-data-stored-javascript-dynamically-typed-language-variable-data-type-value-according-automatically-decide-programmer-variable-declare-data-type-explicitly/p-h4-common-data-types/h4-table-tr-th-data-type/th-th-meaning/th-th-example/th/tr-tr-td-string/td-td-text-data-store/td-td-code"Brajkant"item/code/td/tr-tr-td-number/td-td-integer-decimal-numbers-store/td-td-code-23/code-code-85.5</code/td/tr-tr-td-boolean/td-td-true-false-value-store/td-td-code-true/code-code-false/code/td/tr-tr-td-undefined/td-td-variable-declared-value-assigned/td-td-code-let-x/code/td/tr-tr-td-null/td-td-empty-intentionally-no-value/td-td-code-null/code/td/tr-tr-td-object/td-td-key-value-pair-data-store/td-td-code-name"Amit"item/code/td/tr-tr-td-array/td-td-multiple-values-list-form-store/td-td-code-10-20-30/code/td/tr/table-h4-example/h4-pre-let-name"Brajkant"let-age-23-let-isstudent-true-let-city-let-data-null-console-log-typeof-name-console-log-typeof-age-console-log-typeof-isstudent-console-log-typeof-city-console.log(data);</pre-div-class"info-box"b-output/b-br-string-br-number-br-boolean-br-undefined-br-null/div-h4-array-example/h4-pre-let-subjects"HTML", "CSS", "JavaScript"console-log-subjects-0-console.log(subjects[1]);</pre-div-class"info-box"b-output/b-br-html-br-css/div-h4-object-example/h4-pre-let-student-name"Brajkant",
+  course: "PGDCA"age-23-console-log-student-name-console-log-student.course);</pre-div-class"info-box"b-output/b-br-brajkant-br-pgdca/div-div-class"note-box"b-real-life-example/b-br-student-name-string-marks-number-pass-status-boolean-complete-student-record-object-store/div-div-class"remember-box"b-remember/b-br-javascript-dynamically-typed-data-type-value-according-decide/div/section-section-id"operators"h2-operators/h2-p-operators-special-symbols-keywords-use-values-variables-operations-perform-javascript-arithmetic-assignment-comparison-logical-string-operators-commonly-use/p-h4-arithmetic-operators/h4-table-tr-th-operator/th-th-use/th-th-example/th/tr-tr-td-code/code/td-td-addition/td-td-code-10-5/code/td/tr-tr-td-code/code/td-td-subtraction/td-td-code-10-5/code/td/tr-tr-td-code/code/td-td-multiplication/td-td-code-10-5/code/td/tr-tr-td-code/item/code/td-td-division/td-td-code-10/5/code/td/tr-tr-td-code/code/td-td-remainder/td-td-code-10-3/code/td/tr/table-h4-arithmetic-example/h4-pre-let-a-10-let-b-3-console-log-a-b-console-log-a-b-console-log-a-b-console.log(a /b-console.log(a % b);</pre-div-class"info-box"b-output/b-br-13-br-7-br-30-br-3.3333333333333335<br>1</div-h4-assignment-operators/h4-pre-let-x-10-x-5-console-log-x-x-3-console.log(x);</pre-div-class"info-box"b-output/b-br-15-br-12/div-h4-comparison-operators/h4-table-tr-th-operator/th-th-meaning/th/tr-tr-td-code/code/td-td-equal-value/td/tr-tr-td-code/code/td-td-equal-value-and-type/td/tr-tr-td-code/code/td-td-not-equal-value/td/tr-tr-td-code/code/td-td-not-equal-value-or-type/td/tr-tr-td-code-gt/code/td-td-greater-than/td/tr-tr-td-code-lt/code/td-td-less-than/td/tr/table-h4-comparison-example/h4-pre-console.log(10 == "10"console.log(10 === "10"console.log(20 > 10);</pre-div-class"info-box"b-output/b-br-true-br-false-br-true/div-h4-logical-operators/h4-table-tr-th-operator/th-th-meaning/th/tr-tr-td-code/code/td-td-logical-and/td/tr-tr-td-code/code/td-td-logical-or/td/tr-tr-td-code/code/td-td-logical-not/td/tr/table-pre-let-age-20-let-marks-75-console-log-age-18-marks-60-console-log-age-18-marks-90-console.log(!(age < 18));</pre-div-class"info-box"b-output/b-br-true-br-true-br-true/div-div-class"remember-box"b-remember/b-br-code/code-value-data-type-compare-javascript-safe/div/section-section-id"if-else"h2-control-flow-if-else/h2-p-control-flow-program-execution-direction-javascript-code-if/code-code-else/code-code-else-if/code-statements-decision-making-use-program-condition-code-blocks-execute/p-h4-if-statement/h4-pre-let-age-18-if-age-18-console.log("You are eligible to vote"item/pre-div-class"info-box"b-output/b-br-you-are-eligible-to-vote/div-h4-if-else-statement/h4-pre-let-marks-30-if-marks-33-console.log("Pass"else-console.log("Fail"item/pre-div-class"info-box"b-output/b-br-fail/div-h4-else-if-statement/h4-pre-let-marks-75-if-marks-90-console.log("Grade A+"else-if-marks-75-console.log("Grade A"else-if-marks-60-console.log("Grade B"else-console.log("Grade C"item/pre-div-class"info-box"b-output/b-br-grade-a/div-h4-nested-if/h4-pre-let-username"admin";
+let password = "1234";
+
+if (username === "admin") {
+  if (password === "1234"console.log("Login successful"else-console.log("Wrong password"else-console.log("Wrong username"item/pre-div-class"info-box"b-output/b-br-login-successful/div-div-class"note-box"b-real-life-example/b-br-login-form-username-password-dashboard-open-if-else-practical-example/div-div-class"remember-box"b-remember/b-br-if-else-condition-basis-program-decision-ability/div/section-section-id"for-loop"h2-for-loop/h2-p-code-for/code-loop-use-code-block-fixed-number-of-times-repeat-loop-for-loop-useful/p-h4-basic-syntax/h4-pre-for-initialization-condition-update-statements/pre-h4-simple-example/h4-pre-for-let-i-1-i-5-i-console.log(i);
+}</pre-div-class"info-box"b-output/b-br-1-br-2-br-3-br-4-br-5/div-h4-working-process/h4-ol-li-initialization-variable-starting-value-set/li-li-condition-check/li-li-condition-true-loop-body-execute/li-li-update-statement-run/li-li-condition-false-process-repeat/li/ol-h4-table-printing-example/h4-pre-let-num-5-for-let-i-1-i-10-i-console.log(num + " x " + i + " = "num-i/pre-div-class"info-box"b-output/b-br-5-x-1-5-br-5-x-2-10-br.<br>5 x 10 = 50</div-h4-loop-through-array/h4-pre-let-subjects"HTML", "CSS", "JavaScript"for-let-i-0-i-subjects-length-i-console.log(subjects[i]);
+}</pre-div-class"info-box"b-output/b-br-html-br-css-br-javascript/div-div-class"remember-box"b-remember/b-br-for-loop-fixed-repetition-arrays-items-access-useful/div/section-section-id"while-loop"h2-while-loop/h2-p-code-while/code-loop-condition-based-loop-condition-true-condition-false-loop-stop-while-loop-useful-iterations-fixed/p-h4-basic-syntax/h4-pre-while-condition-statements/pre-h4-simple-example/h4-pre-let-i-1-while-i-5-console.log(i);
+  i++;
+}</pre-div-class"info-box"b-output/b-br-1-br-2-br-3-br-4-br-5/div-h4-sum-example/h4-pre-let-i-1-let-sum-0-while-i-5-sum-sum-i-i-console.log("Sum ="sum/pre-div-class"info-box"b-output/b-br-sum-15/div-h4-infinite-loop-warning/h4-pre-let-i-1-while-i-5-console.log(i);
+}</pre-div-class"info-box"b-output/b-br-infinite-loop-code-i/code-value-update/div-div-class"note-box"b-real-life-example/b-br-user-password-enter-input-while-loop-example/div-div-class"remember-box"b-remember/b-br-while-loop-update-statement-infinite-loop/div/section-section-id"do-while"h2-do-while-loop/h2-p-code-do-while/code-loop-javascript-loop-condition-check-loop-body-execute-condition-false-do-while-loop/p-h4-basic-syntax/h4-pre-do-statements-while-condition/pre-h4-simple-example/h4-pre-let-i-1-do-console.log(i);
+  i++;
+} while (i <= 5);</pre-div-class"info-box"b-output/b-br-1-br-2-br-3-br-4-br-5/div-h4-condition-false-example/h4-pre-let-i-10-do-console.log(i);
+  i++;
+} while (i <= 5);</pre-div-class"info-box"b-output/b-br-10/div-p-condition-false-loop-body-execute-do-while-loop-special-property/p-h4-while-vs-do-while/h4-table-tr-th-basis/th-th-while-loop/th-th-do-while-loop/th/tr-tr-td-condition-check/td-td-condition-check/td-td-body-execute-condition-check/td/tr-tr-td-minimum-execution/td-td-zero-time/td-td/td/tr-tr-td-use/td-td-condition-check/td-td-action/td/tr/table-div-class"remember-box"b-remember/b-br-do-while-loop-condition-false-execute/div/section-section-id"functions"h2-declaring-functions/h2-p-function-code-reusable-block-specific-task-perform-javascript-function-use-code-reuse-readability-modular-programming-function-declare-program-call/p-h4-function-declaration/h4-pre-function-greet-console.log("Welcome to JavaScript"greet/pre-div-class"info-box"b-output/b-br-welcome-to-javascript/div-h4-function-with-return-value/h4-pre-function-add-let-a-10-let-b-20-return-a-b-let-result-add-console.log(result);</pre-div-class"info-box"b-output/b-br-30/div-h4-why-functions-are-used/h4-ul-li-same-code/li-li-program-small-parts-divide/li-li-code-readability-improve/li-li-testing-debugging/li/ul-h4-function-expression/h4-pre-let-message-function-console.log("Hello from function expression"message/pre-div-class"info-box"b-output/b-br-hello-from-function-expression/div-div-class"remember-box"b-remember/b-br-function-declare-function-call-steps-function-call-code-execute/div/section-section-id"parameters"h2-calling-functions-with-parameters/h2-p-parameters-function-input-function-declare-parentheses-variables-parameters-function-call-actual-values-pass-arguments/p-h4-function-with-parameter/h4-pre-function-greet-name-console.log("Hello " + name);
+}
+
+greet("Brajkant");
+greet("Amit"item/pre-div-class"info-box"b-output/b-br-hello-brajkant-br-hello-amit/div-h4-function-with-multiple-parameters/h4-pre-function-add-a-b-console.log(a + b);
+}
+
+add(10, 20);
+add(50, 30);</pre-div-class"info-box"b-output/b-br-30-br-80/div-h4-return-with-parameters/h4-pre-function-multiply-a-b-return-a-b-let-result-multiply-5-4-console.log(result);</pre-div-class"info-box"b-output/b-br-20/div-h4-default-parameters/h4-pre-function-welcome-name"Student"console.log("Welcome " + name);
+}
+
+welcome();
+welcome("Brajkant"item/pre-div-class"info-box"b-output/b-br-welcome-student-br-welcome-brajkant/div-h4-parameter-vs-argument/h4-table-tr-th-term/th-th-meaning/th-th-example/th/tr-tr-td-parameter/td-td-function-definition-variable/td-td-code-function-add-a-b/code/td/tr-tr-td-argument/td-td-function-call-actual-value/td-td-code-add-10-20/code/td/tr/table-div-class"note-box"b-real-life-example/b-br-result-calculation-function-marks-parameters-pass-percentage-calculate/div/section-section-id"add-js"h2-adding-javascript-to-web-documents/h2-p-javascript-html-document-three-main-ways-add-inline-javascript-internal-javascript-external-javascript. small action के लिए inline use हो सकता है, single page script के लिए internal और large project के लिए external javascript best approach होती है।</p-h4-inline-javascript/h4-pre-lt-button-onclick"alert('Hello')"gt-click-me-lt/button-gt/pre-h4-internal-javascript/h4-pre-lt-script-gt-function-showmessage-alert"Welcome to JavaScript"lt/script-gt-lt-button-onclick"showMessage()"gt-click-lt/button-gt/pre-h4-external-javascript/h4-p-external-javascript-code.js</code-file-html-document-code-lt-script-src""gt/code-connect/p-pre//script.js
+function showmessage() {
+  alert("External JavaScript file"item/pre-pre-lt-script-src"script.js"gt-lt/script-gt/pre-h4-where-to-place-script/h4-p-javascript-usually-body-end-html-elements-load-script-execute/p-pre-lt-body-gt-lt-h1-id"heading"gt-hello-lt/h1-gt-lt-script-src"script.js"gt-lt/script-gt-lt/body-gt/pre-h4-comparison/h4-table-tr-th-method/th-th-use/th-th-best-for/th/tr-tr-td-inline-js/td-td-html-attribute-js/td-td-small-quick-action/td/tr-tr-td-internal-js/td-td-same-html-file-script-tag/td-td-single-page-script/td/tr-tr-td-external-js/td-td-separate.js file।</td-td-large-projects/td/tr/table-div-class"remember-box"b-remember/b-br-professional-projects-external-javascript-file-use-better/div/section-section-id"objects"h2-javascript-objects/h2-p-javascript-object-key-value-pairs-collection-object-real-world-entity-represent-use-student-object-name-age-course-marks-properties-object-functions-methods/p-h4-creating-object/h4-pre-let-student-name"Brajkant",
+  age: 23,
+  course: "PGDCA"console-log-student-name-console-log-student.course);</pre-div-class"info-box"b-output/b-br-brajkant-br-pgdca/div-h4-accessing-object-properties/h4-pre-console-log-student-name-console.log(student["age"item/pre-h4-changing-property-value/h4-pre-student-age-24-console-log-student.age);</pre-div-class"info-box"b-output/b-br-24/div-h4-adding-new-property/h4-pre-student.city = "Kanpur"console-log-student.city);</pre-div-class"info-box"b-output/b-br-kanpur/div-h4-object-method/h4-pre-let-student-name"Brajkant",
+  course: "PGDCA"showdetails-function-console-log-this.name + " - "this-course-student.showdetails();</pre-div-class"info-box"b-output/b-br-brajkant-pgdca/div-h4-object-uses/h4-ul-li-related-data-group/li-li-real-world-entities-represent/li-li-api-data-handle/li-li-complex-data-structure/li/ul-div-class"note-box"b-real-life-example/b-br-student-record-object-store-natural-student-properties-name-roll-course-marks/div-div-class"remember-box"b-remember/b-br-object-key-value-pairs-data-store-object-function-method/div/section-section-id"dom"h2-document-object-model/h2-p-strong-dom/strong-full-form-strong-document-object-model/strong-dom-browser-html-document-object-based-representation-browser-html-page-load-page-dom-tree-convert-javascript-dom-help-html-elements-access-change-add-remove/p-p-dom-javascript-webpage-content-style-structure-dynamically-change-for-example-button-click-heading-change-paragraph-hide/show-input-value-read-dom-manipulation-examples/p-h4-dom-tree-concept/h4-pre-document-html-head-title-body-h1-p-button/pre-h4-selecting-elements/h4-table-tr-th-method/th-th-use/th/tr-tr-td-code-getelementbyid/code/td-td-id-element-select/td/tr-tr-td-code-getelementsbyclassname/code/td-td-class-name-elements-select/td/tr-tr-td-code-getelementsbytagname/code/td-td-tag-name-elements-select/td/tr-tr-td-code-queryselector/code/td-td-css-selector-first-matching-element-select/td/tr-tr-td-code-queryselectorall/code/td-td-css-selector-all-matching-elements-select/td/tr/table-h4-changing-content/h4-pre-lt-h1-id"title"gt-old-heading-lt/h1-gt-lt-script-gt-document.getelementbyid("title"item.innerhtml = "New Heading"lt/script-gt/pre-div-class"info-box"b-output/b-br-heading-text-new-heading/div-h4-changing-style/h4-pre-lt-p-id"para"gt-this-is-paragraph-lt/p-gt-lt-script-gt-document.getelementbyid("para"style.color = "blue"lt/script-gt/pre-h4-reading-input-value/h4-pre-lt-input-type"text" id="username" value="Brajkant"gt-lt-script-gt-let-name-document.getelementbyid("username"value-console.log(name);
+&lt;/script-gt/pre-div-class"info-box"b-output/b-br-brajkant/div-div-class"note-box"b-real-life-example/b-br-language-toggle-button-click-hindi/english-content-show-hide-dom-manipulation/div-div-class"remember-box"b-remember/b-br-dom-javascript-html-page-control-power/div/section-section-id"events"h2-html-events/h2-p-event-webpage-action-activity-user-button-click-mouse-move-keyboard-type-form-submit-page-load-events-javascript-events-handle-required-action-perform/p-h4-common-html-events/h4-table-tr-th-event/th-th-use/th/tr-tr-td-code-onclick/code/td-td-element-click-run/td/tr-tr-td-code-onmouseover/code/td-td-mouse-element-run/td/tr-tr-td-code-onmouseout/code/td-td-mouse-element-run/td/tr-tr-td-code-onchange/code/td-td-input-value-change-run/td/tr-tr-td-code-onsubmit/code/td-td-form-submit-run/td/tr-tr-td-code-onload/code/td-td-page-load-run/td/tr-tr-td-code-onkeyup/code/td-td-keyboard-key-release-run/td/tr/table-h4-onclick-example/h4-pre-lt-button-onclick"alert('Button clicked')"gt-click-me-lt/button-gt/pre-h4-onmouseover-example/h4-pre-lt-p-onmouseover"this.style.color='red'"gt-move-mouse-here-lt/p-gt/pre-h4-onchange-example/h4-pre-lt-select-onchange"alert('Selection changed')"gt-lt-option-gt-html-lt/option-gt-lt-option-gt-css-lt/option-gt-lt/select-gt/pre-div-class"note-box"b-real-life-example/b-br-submit-button-click-form-validation-javascript-event-handling-example/div-div-class"remember-box"b-remember/b-br-events-user-actions-detect-javascript-actions-response/div/section-section-id"event-functions"h2-calling-javascript-functions-on-events/h2-p-html-events-javascript-functions-call-web-interactivity-common-function-javascript-define-html-element-event-attribute-function-call/p-h4-button-click-function/h4-pre-lt-button-onclick"showMessage()"gt-click-me-lt/button-gt-lt-script-gt-function-showmessage-alert"Welcome to JavaScript"lt/script-gt/pre-div-class"info-box"b-output/b-br-button-click-alert-show/div-h4-changing-heading-on-click/h4-pre-lt-h1-id"heading"gt-old-heading-lt/h1-gt-lt-button-onclick"changeHeading()"gt-change-lt/button-gt-lt-script-gt-function-changeheading-document.getelementbyid("heading"item.innerhtml = "New Heading"lt/script-gt/pre-div-class"info-box"b-output/b-br-button-click-heading-new-heading/div-h4-function-with-event-and-parameter/h4-pre-lt-button-onclick"greet('Brajkant')"gt-greet-lt/button-gt-lt-script-gt-function-greet-name-alert"Hello "name-lt/script-gt/pre-h4-form-validation-example/h4-pre-lt-input-type"text" id="name"&gt;
+&lt;button onclick="checkName()"gt-submit-lt/button-gt-lt-p-id"message"gt-lt/p-gt-lt-script-gt-function-checkname-let-name-document.getelementbyid("name"item.value;
+
+    if (name === ""document.getelementbyid("message"item.innerhtml = "Name is required"else-document.getelementbyid("message"item.innerhtml = "Hello "name-lt/script-gt/pre-h4-using-addeventlistener/h4-p-modern-javascript-events-handle-code-addeventlistener/code-method-use-html-javascript-separate-help/p-pre-lt-button-id"btn"gt-click-me-lt/button-gt-lt-script-gt-document.getelementbyid("btn"item.addeventlistener("click", function() {
+    alert("Button clicked"lt/script-gt/pre-h4-inline-event-vs-addeventlistener/h4-table-tr-th-basis/th-th-inline-event/th-th-addeventlistener/th/tr-tr-td-location/td-td-html-attribute/td-td-javascript-code/td/tr-tr-td-code-separation/td-td-html-js-mix/td-td-html-js/td/tr-tr-td-best-use/td-td-small-examples-beginners/td-td-professional-projects/td/tr/table-div-class"note-box"b-real-life-example/b-br-bk-learnx-page-hindi-button-click-hindi-content-show-english-content-hide-event-function/div-div-class"remember-box"><b>Remember:</b><br>Event पर function call करने से webpage user action के according response देता है।</div>
+      </section>
+
+    </main>
+  </div>
+</body>
+
+</html>

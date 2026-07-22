@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login Form</title>
+    <link rel="icon" type="image/jpeg" href="../../../assets/images/logo.jpeg">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            margin: auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: navy;
+            margin-bottom: 1.5rem;
+            font-size: clamp(1.25rem, 5vw, 1.75rem);
+        }
+
+        label {
+            font-weight: bold;
+            font-size: clamp(0.875rem, 3vw, 1rem);
+            display: block;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: clamp(0.5rem, 2vw, 0.75rem);
+            margin-top: 0.25rem;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: clamp(0.875rem, 3vw, 1rem);
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: green;
+            box-shadow: 0 0 5px rgba(0, 128, 0, 0.3);
+        }
+
+        .btn {
+            width: 100%;
+            padding: clamp(0.75rem, 2.5vw, 1rem);
+            background-color: green;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: clamp(0.875rem, 3vw, 1rem);
+            font-weight: bold;
+            margin-top: 1.5rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: darkgreen;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .register-text {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: clamp(0.75rem, 2.5vw, 0.875rem);
+        }
+
+        .register-text a {
+            text-decoration: none;
+            color: blue;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .register-text a:hover {
+            color: darkblue;
+            text-decoration: underline;
+        }
+
+        /* Responsive for tablets and smaller */
+        @media (max-width: 480px) {
+            .container {
+                padding: 1.5rem;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            h2 {
+                margin-bottom: 1rem;
+                font-size: 1.25rem;
+            }
+
+            label {
+                font-size: 0.875rem;
+                margin-top: 0.75rem;
+            }
+
+            input {
+                padding: 0.5rem;
+                font-size: 0.875rem;
+            }
+
+            .btn {
+                padding: 0.75rem;
+                font-size: 0.875rem;
+                margin-top: 1rem;
+            }
+
+            .register-text {
+                margin-top: 1rem;
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="../../../assets/shared/theme.css">
+</head>
+
+<body>
+    
+    <div class="container">
+
+        <h2>Student Login Form</h2>
+
+        <form id="loginForm">
+
+            <label for="loginEmail">Email</label>
+            <input id="loginEmail" type="email" placeholder="Enter your email" required>
+
+            <br><br>
+
+            <label for="loginPassword">Password</label>
+            <input id="loginPassword" type="password" placeholder="Enter your password" required>
+
+            <br><br>
+
+            <input type="submit" value="Login" class="btn">
+
+            <p id="loginMessage" style="margin-top-1rem-font-size-0.95rem;"></p>
+        </form>
+
+        <p class="register-text">
+            Don't have an account?
+            <a href="../registration/index.html">Register Here</a>
+        </p>
+
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+            const messageEl = document.getElementById('loginMessage');
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value;
+
+            messageEl.textContent = '';
+            messageEl.style.color = 'red';
+
+            if (!email || !password) {
+                messageEl.textContent = 'please-enter-email-and-password.';
+                return;
+            }
+
+            try {
+                const response = await fetch((localStorage.getItem('bk_api_base') || 'http://localhost:3000') + '/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                const result = await response.json();
+
+                if (!response.ok) {
+                    messageEl.textContent = result.message || 'login-failed.';
+                    return;
+                }
+
+                localStorage.setItem('bk_token', result.token); localStorage.setItem('bk_user', JSON.stringify(result.user));
+                messageEl.textContent = 'Login successful. Redirecting...';
+                messageEl.style.color = 'green';
+                setTimeout(() => {
+                    window.location.href = '../../student/profile/index.html';
+                }, 1000);
+            } catch (error) {
+                messageEl.textContent = 'unable-to-connect-to-the-server.';
+            }
+        });
+    </script>
+    <script src="../../../assets/shared/theme.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bootstrap Premium Notes</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+      line-height: 1.75;
+      overflow-x: hidden
+    }
+
+    .page {
+      display: grid;
+      grid-template-columns: 285px minmax(0, 1fr);
+      gap: 20px;
+      width: 100%;
+      max-width: 1500px;
+      min-height: 100vh;
+      margin: auto;
+      padding: 10px;
+      align-items: start
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 10px;
+      height: calc(100vh - 20px);
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
+      align-self: start
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #111827
+    }
+
+    .sidebar a {
+      display: block;
+      text-decoration: none;
+      color: #374151;
+      padding: 8px 10px;
+      border-radius: 10px;
+      margin-bottom: 4px;
+      font-size: 14.7px
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+      color: #1d4ed8
+    }
+
+    .content {
+      background: #fff;
+      border-radius: 18px;
+      padding: 10px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
+      min-height: calc(100vh - 20px);
+      max-height: calc(100vh - 20px);
+      overflow-y: auto;
+      overflow-x: hidden
+    }
+
+    .hero {
+      padding: 28px 18px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #eef2ff, #f8fafc);
+      margin-bottom: 18px
+    }
+
+    .hero h1 {
+      font-size: 34px;
+      color: #111827;
+      margin-bottom: 10px
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #374151
+    }
+
+    section {
+      padding: 22px 10px;
+      border-bottom: 1px solid #e5e7eb
+    }
+
+    section:last-child {
+      border-bottom: none
+    }
+
+    h2 {
+      font-size: 27px;
+      color: #111827;
+      margin-bottom: 12px;
+      border-left: 5px solid #2563eb;
+      padding-left: 12px
+    }
+
+    h3 {
+      font-size: 22px;
+      color: #1f2937;
+      margin: 16px 0 8px
+    }
+
+    h4 {
+      font-size: 18px;
+      color: #111827;
+      margin: 14px 0 6px
+    }
+
+    p {
+      margin: 10px 0;
+      font-size: 17px
+    }
+
+    ul,
+    ol {
+      margin-left: 24px;
+      margin-top: 8px
+    }
+
+    li {
+      margin: 7px 0;
+      font-size: 16.5px
+    }
+
+    strong {
+      color: #111827
+    }
+
+    .image-icon {
+      min-height: 180px;
+      border: 2px dashed #94a3b8;
+      border-radius: 16px;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      margin: 18px 0;
+      color: #475569;
+      font-weight: 600
+    }
+
+    .image-icon img {
+      max-width: 100%;
+      height: auto
+    }
+
+    .note-box {
+      background: #f0fdf4;
+      border-left: 5px solid #22c55e;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .info-box {
+      background: #ecfeff;
+      border-left: 5px solid #06b6d4;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .remember-box {
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      font-size: 15.5px
+    }
+
+    th,
+    td {
+      border: 1px solid #d1d5db;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top
+    }
+
+    th {
+      background: #eef2ff;
+      color: #111827
+    }
+
+    code {
+      background: #111827;
+      color: #f9fafb;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-family: Consolas, monospace;
+      font-size: 15px
+    }
+
+    pre {
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 14px;
+      padding: 16px;
+      margin: 16px 0;
+      overflow-x: auto;
+      font-family: Consolas, monospace;
+      line-height: 1.6
+    }
+
+    .compiler {
+      width: 100%;
+      height: 2rem;
+      background-color: green;
+      text-align: center;
+    }
+
+    .compiler a {
+      text-decoration: none;
+      color: white;
+    }
+
+    @media(max-width:900px) {
+      .page {
+        grid-template-columns: 1fr
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto
+      }
+
+      .hero h1 {
+        font-size: 27px
+      }
+
+      h2 {
+        font-size: 24px
+      }
+    }
+  </style>
+
+
+<link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
+<script src="../../../../../../../assets/shared/portal.js" defer></script>
+<script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
+</head>
+
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <h2>Topics</h2>
+      <a href="#intro">Bootstrap Introduction</a>
+      <a href="#adding">Adding Bootstrap</a>
+      <a href="#color">Color Management</a>
+      <a href="#buttons">Buttons</a>
+      <a href="#table">Table</a>
+      <a href="#dropdown">Drop-down</a>
+      <a href="#navbar">Navigation-bar</a>
+      <a href="#images">Images</a>
+      <a href="#pagination">Pagination</a>
+      <a href="#jumbotron">Jumbotron</a>
+      <a href="#alerts">Alerts</a>
+      <a href="#forms">Forms</a>
+      <a href="#progress">Progress Bar</a>
+      <a href="#grid">Grid</a>
+      <a href="#utilities">Utilities & Filters</a>
+    </aside>
+
+    <main class="content">
+      <div class="hero">
+        <h1>Bootstrap</h1>
+      </div>
+
+      <section id="intro">
+        <h2>Bootstrap Introduction</h2>
+
+        <p><strong>Bootstrap</strong> एक popular front-end framework है जिसका use responsive और mobile-first websites
+          बनाने के लिए किया जाता है। Bootstrap में ready-made CSS classes और JavaScript components available होते हैं,
+          जिनकी help से developer जल्दी और professional design बना सकता है। Bootstrap HTML, CSS और JavaScript पर based
+          है।</p>
+
+        <p>Bootstrap का main purpose web development को fast, consistent और responsive बनाना है। अगर developer को
+          button, navbar, form, table, alert, card, modal, dropdown या grid layout बनाना है, तो उसे scratch से पूरा CSS
+          लिखने की जरूरत नहीं होती। Bootstrap की predefined classes use करके design जल्दी बन जाता है।</p>
+
+        <p>Responsive design Bootstrap की सबसे important feature है। Bootstrap grid system screen size के according
+          layout adjust कर देता है। इसी कारण एक ही website mobile, tablet, laptop और desktop पर properly दिखाई दे सकती
+          है।</p>
+
+        <h4>Why Bootstrap is Used</h4>
+        <ul>
+          <li>Responsive websites जल्दी बनाने के लिए।</li>
+          <li>Ready-made components use करने के लिए।</li>
+          <li>Consistent design maintain करने के लिए।</li>
+          <li>Less custom CSS लिखने के लिए।</li>
+          <li>Mobile-first layout बनाने के लिए।</li>
+          <li>Forms, buttons, navbar और tables को professional look देने के लिए।</li>
+        </ul>
+
+        <h4>Bootstrap Features</h4>
+        <table>
+          <tr>
+            <th>Feature</th>
+            <th>Explanation</th>
+          </tr>
+          <tr>
+            <td>Responsive Grid</td>
+            <td>12-column grid system से layout responsive बनता है।</td>
+          </tr>
+          <tr>
+            <td>Predefined Classes</td>
+            <td>Design के लिए ready CSS classes मिलती हैं।</td>
+          </tr>
+          <tr>
+            <td>Components</td>
+            <td>Navbar, dropdown, alert, buttons, forms आदि ready components।</td>
+          </tr>
+          <tr>
+            <td>Utilities</td>
+            <td>Spacing, color, display, text alignment जैसी utility classes।</td>
+          </tr>
+          <tr>
+            <td>Cross Browser Support</td>
+            <td>Modern browsers में consistent behavior देता है।</td>
+          </tr>
+        </table>
+
+        <div class="note-box"><b>Real Life Example:</b><br>अगर आपको BK LearnX website का responsive navbar, subject
+          cards और forms जल्दी बनाने हैं, तो Bootstrap classes use करके design fast तैयार किया जा सकता है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Bootstrap ready-made CSS और JavaScript components का framework है,
+          जिससे responsive website जल्दी बनती है।</div>
+      </section>
+
+      <section id="adding">
+        <h2>Adding Bootstrap</h2>
+
+        <p>Bootstrap use करने के लिए उसे HTML page में add करना जरूरी है। Bootstrap को CDN link से या local downloaded
+          files से add किया जा सकता है। CDN method quick और easy है, जबकि local files offline use के लिए helpful होती
+          हैं।</p>
+
+        <h4>Bootstrap CDN</h4>
+        <pre>&lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"&gt;
+
+&lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"&gt;&lt;/script&gt;</pre>
+
+        <h4>Complete Basic Template</h4>
+        <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Bootstrap Page&lt;/title&gt;
+
+  &lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;div class="container"&gt;
+    &lt;h1 class="text-primary"&gt;Hello Bootstrap&lt;/h1&gt;
+    &lt;button class="btn btn-success"&gt;Click Me&lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+
+        <div class="info-box"><b>Output:</b><br>Page में primary color heading और green success button दिखाई देगा।</div>
+
+        <h4>Why meta viewport is Important</h4>
+        <p>Bootstrap responsive design के लिए <code>viewport</code> meta tag important है। यह mobile devices पर page
+          width को device width के according set करता है।</p>
+
+        <pre>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</pre>
+
+        <h4>CDN vs Local Files</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>CDN</th>
+            <th>Local File</th>
+          </tr>
+          <tr>
+            <td>Source</td>
+            <td>Internet server से load होता है।</td>
+            <td>Project folder से load होता है।</td>
+          </tr>
+          <tr>
+            <td>Setup</td>
+            <td>Easy और fast।</td>
+            <td>Files download करनी पड़ती हैं।</td>
+          </tr>
+          <tr>
+            <td>Internet</td>
+            <td>Required हो सकता है।</td>
+            <td>Offline work कर सकता है।</td>
+          </tr>
+          <tr>
+            <td>Use</td>
+            <td>Quick projects/testing।</td>
+            <td>Offline lab/practical।</td>
+          </tr>
+        </table>
+
+        <div class="remember-box"><b>Remember:</b><br>Bootstrap CSS को head में और Bootstrap JS bundle को body के end
+          में add करना अच्छा रहता है।</div>
+      </section>
+
+      <section id="color">
+        <h2>Color Management</h2>
+
+        <p>Bootstrap में color management के लिए predefined color classes available होती हैं। इन classes की help से text
+          color, background color, button color, border color और alert color easily set किया जा सकता है। Bootstrap
+          colors semantic names पर based होते हैं जैसे primary, secondary, success, danger, warning, info, light और
+          dark।</p>
+
+        <h4>Common Bootstrap Colors</h4>
+        <table>
+          <tr>
+            <th>Color Name</th>
+            <th>Meaning</th>
+            <th>Common Use</th>
+          </tr>
+          <tr>
+            <td><code>primary</code></td>
+            <td>Main blue theme color।</td>
+            <td>Main button, links, headings।</td>
+          </tr>
+          <tr>
+            <td><code>secondary</code></td>
+            <td>Gray supporting color।</td>
+            <td>Secondary buttons।</td>
+          </tr>
+          <tr>
+            <td><code>success</code></td>
+            <td>Green success color।</td>
+            <td>Success messages।</td>
+          </tr>
+          <tr>
+            <td><code>danger</code></td>
+            <td>Red danger/error color।</td>
+            <td>Error messages।</td>
+          </tr>
+          <tr>
+            <td><code>warning</code></td>
+            <td>Yellow/orange warning color।</td>
+            <td>Warning alerts।</td>
+          </tr>
+          <tr>
+            <td><code>info</code></td>
+            <td>Cyan information color।</td>
+            <td>Info messages।</td>
+          </tr>
+          <tr>
+            <td><code>light</code></td>
+            <td>Light background color।</td>
+            <td>Light sections।</td>
+          </tr>
+          <tr>
+            <td><code>dark</code></td>
+            <td>Dark color।</td>
+            <td>Dark navbar/footer।</td>
+          </tr>
+        </table>
+
+        <h4>Text Color Classes</h4>
+        <pre>&lt;p class="text-primary"&gt;Primary text&lt;/p&gt;
+&lt;p class="text-success"&gt;Success text&lt;/p&gt;
+&lt;p class="text-danger"&gt;Danger text&lt;/p&gt;
+&lt;p class="text-warning"&gt;Warning text&lt;/p&gt;</pre>
+
+        <h4>Background Color Classes</h4>
+        <pre>&lt;div class="bg-primary text-white p-3"&gt;Primary Background&lt;/div&gt;
+&lt;div class="bg-success text-white p-3"&gt;Success Background&lt;/div&gt;
+&lt;div class="bg-danger text-white p-3"&gt;Danger Background&lt;/div&gt;</pre>
+
+        <h4>Border Color Classes</h4>
+        <pre>&lt;div class="border border-primary p-3"&gt;Primary Border&lt;/div&gt;
+&lt;div class="border border-danger p-3"&gt;Danger Border&lt;/div&gt;</pre>
+
+        <h4>Important Points</h4>
+        <ul>
+          <li><code>text-*</code> classes text color के लिए use होती हैं।</li>
+          <li><code>bg-*</code> classes background color के लिए use होती हैं।</li>
+          <li><code>border-*</code> classes border color के लिए use होती हैं।</li>
+          <li>Dark background पर readable text के लिए <code>text-white</code> use किया जा सकता है।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Success message green color में, error message red color में
+          और warning message yellow/orange color में दिखाने के लिए Bootstrap color classes बहुत useful हैं।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Bootstrap में semantic color classes design को fast और meaningful
+          बनाती हैं।</div>
+      </section>
+
+      <section id="buttons">
+        <h2>Buttons</h2>
+
+        <p>Bootstrap में buttons बनाने के लिए <code>btn</code> class का use किया जाता है। Button का color और style
+          define करने के लिए <code>btn-primary</code>, <code>btn-success</code>, <code>btn-danger</code> जैसी classes
+          use होती हैं। Bootstrap buttons responsive, clean और professional look देते हैं।</p>
+
+        <h4>Basic Button</h4>
+        <pre>&lt;button class="btn btn-primary"&gt;Primary Button&lt;/button&gt;</pre>
+
+        <h4>Button Color Variants</h4>
+        <pre>&lt;button class="btn btn-primary"&gt;Primary&lt;/button&gt;
+&lt;button class="btn btn-secondary"&gt;Secondary&lt;/button&gt;
+&lt;button class="btn btn-success"&gt;Success&lt;/button&gt;
+&lt;button class="btn btn-danger"&gt;Danger&lt;/button&gt;
+&lt;button class="btn btn-warning"&gt;Warning&lt;/button&gt;
+&lt;button class="btn btn-info"&gt;Info&lt;/button&gt;
+&lt;button class="btn btn-dark"&gt;Dark&lt;/button&gt;</pre>
+
+        <h4>Outline Buttons</h4>
+        <pre>&lt;button class="btn btn-outline-primary"&gt;Outline Primary&lt;/button&gt;
+&lt;button class="btn btn-outline-success"&gt;Outline Success&lt;/button&gt;
+&lt;button class="btn btn-outline-danger"&gt;Outline Danger&lt;/button&gt;</pre>
+
+        <h4>Button Sizes</h4>
+        <pre>&lt;button class="btn btn-primary btn-lg"&gt;Large Button&lt;/button&gt;
+&lt;button class="btn btn-primary"&gt;Normal Button&lt;/button&gt;
+&lt;button class="btn btn-primary btn-sm"&gt;Small Button&lt;/button&gt;</pre>
+
+        <h4>Disabled Button</h4>
+        <pre>&lt;button class="btn btn-primary" disabled&gt;Disabled Button&lt;/button&gt;</pre>
+
+        <h4>Button Classes Table</h4>
+        <table>
+          <tr>
+            <th>Class</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>btn</code></td>
+            <td>Basic button style apply करता है।</td>
+          </tr>
+          <tr>
+            <td><code>btn-primary</code></td>
+            <td>Primary blue button।</td>
+          </tr>
+          <tr>
+            <td><code>btn-success</code></td>
+            <td>Green success button।</td>
+          </tr>
+          <tr>
+            <td><code>btn-danger</code></td>
+            <td>Red danger button।</td>
+          </tr>
+          <tr>
+            <td><code>btn-outline-*</code></td>
+            <td>Outline style button।</td>
+          </tr>
+          <tr>
+            <td><code>btn-lg</code></td>
+            <td>Large button।</td>
+          </tr>
+          <tr>
+            <td><code>btn-sm</code></td>
+            <td>Small button।</td>
+          </tr>
+        </table>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Login button के लिए <code>btn-primary</code>, successful
+          submit के लिए <code>btn-success</code> और delete action के लिए <code>btn-danger</code> use किया जा सकता है।
+        </div>
+
+        <div class="remember-box"><b>Remember:</b><br>Bootstrap button बनाने के लिए <code>btn</code> class के साथ color
+          variant class use करनी होती है।</div>
+      </section>
+
+      <section id="table">
+        <h2>Table</h2>
+
+        <p>Bootstrap tables HTML tables को clean और professional look देते हैं। Bootstrap में table styling के लिए
+          <code>table</code> class use होती है। इसके साथ striped rows, bordered table, hover effect, dark table और
+          responsive table classes भी use की जा सकती हैं।</p>
+
+        <h4>Basic Bootstrap Table</h4>
+        <pre>&lt;table class="table"&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Name&lt;/th&gt;
+      &lt;th&gt;Course&lt;/th&gt;
+      &lt;th&gt;Marks&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Brajkant&lt;/td&gt;
+      &lt;td&gt;PGDCA&lt;/td&gt;
+      &lt;td&gt;85&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</pre>
+
+        <h4>Striped Table</h4>
+        <pre>&lt;table class="table table-striped"&gt;
+  ...
+&lt;/table&gt;</pre>
+
+        <h4>Bordered Table</h4>
+        <pre>&lt;table class="table table-bordered"&gt;
+  ...
+&lt;/table&gt;</pre>
+
+        <h4>Hover Table</h4>
+        <pre>&lt;table class="table table-hover"&gt;
+  ...
+&lt;/table&gt;</pre>
+
+        <h4>Dark Table</h4>
+        <pre>&lt;table class="table table-dark"&gt;
+  ...
+&lt;/table&gt;</pre>
+
+        <h4>Responsive Table</h4>
+        <p>Small screens पर table overflow problem से बचाने के लिए table को <code>table-responsive</code> div में रखा
+          जाता है।</p>
+
+        <pre>&lt;div class="table-responsive"&gt;
+  &lt;table class="table table-bordered"&gt;
+    ...
+  &lt;/table&gt;
+&lt;/div&gt;</pre>
+
+        <h4>Table Classes</h4>
+        <table>
+          <tr>
+            <th>Class</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>table</code></td>
+            <td>Basic Bootstrap table style।</td>
+          </tr>
+          <tr>
+            <td><code>table-striped</code></td>
+            <td>Alternate rows को striped style देता है।</td>
+          </tr>
+          <tr>
+            <td><code>table-bordered</code></td>
+            <td>Table cells में border add करता है।</td>
+          </tr>
+          <tr>
+            <td><code>table-hover</code></td>
+            <td>Row hover effect देता है।</td>
+          </tr>
+          <tr>
+            <td><code>table-dark</code></td>
+            <td>Dark table style देता है।</td>
+          </tr>
+          <tr>
+            <td><code>table-responsive</code></td>
+            <td>Small screen पर horizontal scroll देता है।</td>
+          </tr>
+        </table>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Student marksheet, timetable और fees record को Bootstrap
+          table से professional design में show किया जा सकता है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Bootstrap table styling के लिए base class <code>table</code> जरूरी
+          है।</div>
+      </section>
+
+      <section id="dropdown">
+        <h2>Drop-down</h2>
+
+        <p>Bootstrap dropdown एक toggleable menu component है। यह user को multiple options show करने के लिए use होता है।
+          Dropdown navigation menu, user profile menu, filter options और action menu में common है। Bootstrap dropdown
+          के लिए CSS और JavaScript दोनों की जरूरत होती है, इसलिए Bootstrap JS bundle include होना चाहिए।</p>
+
+        <h4>Basic Dropdown</h4>
+        <pre>&lt;div class="dropdown"&gt;
+  &lt;button class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"&gt;
+    Select Course
+  &lt;/button&gt;
+
+  &lt;ul class="dropdown-menu"&gt;
+    &lt;li&gt;&lt;a class="dropdown-item" href="#"&gt;HTML&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a class="dropdown-item" href="#"&gt;CSS&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a class="dropdown-item" href="#"&gt;JavaScript&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;</pre>
+
+        <h4>Dropdown Classes</h4>
+        <table>
+          <tr>
+            <th>Class / Attribute</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>dropdown</code></td>
+            <td>Dropdown container।</td>
+          </tr>
+          <tr>
+            <td><code>dropdown-toggle</code></td>
+            <td>Button को dropdown toggle बनाता है।</td>
+          </tr>
+          <tr>
+            <td><code>data-bs-toggle="dropdown"</code></td>
+            <td>Dropdown behavior enable करता है।</td>
+          </tr>
+          <tr>
+            <td><code>dropdown-menu</code></td>
+            <td>Dropdown menu list।</td>
+          </tr>
+          <tr>
+            <td><code>dropdown-item</code></td>
+            <td>Dropdown item style।</td>
+          </tr>
+        </table>
+
+        <h4>Dropdown Divider</h4>
+        <pre>&lt;li&gt;&lt;hr class="dropdown-divider"&gt;&lt;/li&gt;</pre>
+
+        <h4>Dropdown Header</h4>
+        <pre>&lt;li&gt;&lt;h6 class="dropdown-header"&gt;Subjects&lt;/h6&gt;&lt;/li&gt;</pre>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Website navbar में “Courses” menu click करने पर HTML, CSS,
+          JavaScript options dropdown में show हो सकते हैं।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Bootstrap dropdown work करने के लिए Bootstrap JavaScript bundle
+          include होना जरूरी है।</div>
+      </section>
+
+      <section id="navbar">
+        <h2>Navigation-bar</h2>
+
+        <p>Navigation-bar यानी navbar website के important links को display करने वाला section होता है। Navbar usually
+          website के top पर होता है और इसमें logo, home link, about link, services, contact और dropdown menu हो सकते
+          हैं। Bootstrap navbar responsive और mobile-friendly होती है।</p>
+
+        <h4>Basic Navbar</h4>
+        <pre>&lt;nav class="navbar navbar-expand-lg navbar-dark bg-dark"&gt;
+  &lt;div class="container-fluid"&gt;
+    &lt;a class="navbar-brand" href="#"&gt;BK LearnX&lt;/a&gt;
+
+    &lt;button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"&gt;
+      &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+    &lt;/button&gt;
+
+    &lt;div class="collapse navbar-collapse" id="navbarNav"&gt;
+      &lt;ul class="navbar-nav"&gt;
+        &lt;li class="nav-item"&gt;
+          &lt;a class="nav-link active" href="#"&gt;Home&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li class="nav-item"&gt;
+          &lt;a class="nav-link" href="#"&gt;About&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li class="nav-item"&gt;
+          &lt;a class="nav-link" href="#"&gt;Contact&lt;/a&gt;
+        &lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</pre>
+
+        <h4>Navbar Classes</h4>
+        <table>
+          <tr>
+            <th>Class</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>navbar</code></td>
+            <td>Basic navbar component।</td>
+          </tr>
+          <tr>
+            <td><code>navbar-expand-lg</code></td>
+            <td>Large screen से navbar expand रहती है।</td>
+          </tr>
+          <tr>
+            <td><code>navbar-dark</code></td>
+            <td>Dark background के लिए light text।</td>
+          </tr>
+          <tr>
+            <td><code>bg-dark</code></td>
+            <td>Dark background color।</td>
+          </tr>
+          <tr>
+            <td><code>navbar-brand</code></td>
+            <td>Logo या brand name।</td>
+          </tr>
+          <tr>
+            <td><code>navbar-nav</code></td>
+            <td>Navigation links list।</td>
+          </tr>
+          <tr>
+            <td><code>nav-item</code></td>
+            <td>Each navigation item।</td>
+          </tr>
+          <tr>
+            <td><code>nav-link</code></td>
+            <td>Navigation link style।</td>
+          </tr>
+        </table>
+
+        <h4>Light Navbar</h4>
+        <pre>&lt;nav class="navbar navbar-expand-lg navbar-light bg-light"&gt;
+  ...
+&lt;/nav&gt;</pre>
+
+        <h4>Navbar with Dropdown</h4>
+        <pre>&lt;li class="nav-item dropdown"&gt;
+  &lt;a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"&gt;Courses&lt;/a&gt;
+  &lt;ul class="dropdown-menu"&gt;
+    &lt;li&gt;&lt;a class="dropdown-item" href="#"&gt;HTML&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a class="dropdown-item" href="#"&gt;CSS&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/li&gt;</pre>
+
+        <div class="note-box"><b>Real Life Example:</b><br>BK LearnX website में logo left side और Home, Courses, About,
+          Contact links navbar में रखे जा सकते हैं।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Responsive navbar के लिए collapse, navbar-toggler और Bootstrap JS
+          bundle important हैं।</div>
+      </section>
+
+      <section id="images">
+        <h2>Images</h2>
+
+        <p>Bootstrap images को responsive और styled बनाने के लिए several classes provide करता है। Image को screen size
+          के according resize करने के लिए <code>img-fluid</code> class use होती है। Rounded corners, thumbnail style और
+          circle image के लिए भी Bootstrap classes available हैं।</p>
+
+        <h4>Responsive Image</h4>
+        <pre>&lt;img src="student.jpg" class="img-fluid" alt="Student Image"&gt;</pre>
+
+        <p><code>img-fluid</code> image को parent container के according responsive बनाता है। इसमें image की max-width
+          100% और height auto हो जाती है।</p>
+
+        <h4>Rounded Image</h4>
+        <pre>&lt;img src="photo.jpg" class="rounded" alt="Rounded Image"&gt;</pre>
+
+        <h4>Circle Image</h4>
+        <pre>&lt;img src="profile.jpg" class="rounded-circle" alt="Profile Image"&gt;</pre>
+
+        <h4>Thumbnail Image</h4>
+        <pre>&lt;img src="photo.jpg" class="img-thumbnail" alt="Thumbnail Image"&gt;</pre>
+
+        <h4>Image Classes</h4>
+        <table>
+          <tr>
+            <th>Class</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>img-fluid</code></td>
+            <td>Image को responsive बनाता है।</td>
+          </tr>
+          <tr>
+            <td><code>rounded</code></td>
+            <td>Image corners rounded करता है।</td>
+          </tr>
+          <tr>
+            <td><code>rounded-circle</code></td>
+            <td>Image को circular बनाता है।</td>
+          </tr>
+          <tr>
+            <td><code>img-thumbnail</code></td>
+            <td>Image को thumbnail border style देता है।</td>
+          </tr>
+          <tr>
+            <td><code>float-start</code></td>
+            <td>Image को left float करता है।</td>
+          </tr>
+          <tr>
+            <td><code>float-end</code></td>
+            <td>Image को right float करता है।</td>
+          </tr>
+          <tr>
+            <td><code>mx-auto d-block</code></td>
+            <td>Image को center align करता है।</td>
+          </tr>
+        </table>
+
+        <h4>Centered Image</h4>
+        <pre>&lt;img src="logo.png" class="mx-auto d-block" alt="Logo"&gt;</pre>
+
+        <div class="image-icon">Bootstrap Image Placeholder</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Responsive image के लिए Bootstrap में <code>img-fluid</code> class
+          सबसे important है।</div>
+      </section>
+
+      <section id="pagination">
+        <h2>Pagination</h2>
+
+        <p>Pagination का use large content को multiple pages में divide करने के लिए किया जाता है। Bootstrap pagination
+          component page navigation links को clean और professional style देता है। यह blogs, product lists, search
+          results और notes pages में useful है।</p>
+
+        <h4>Basic Pagination</h4>
+        <pre>&lt;nav&gt;
+  &lt;ul class="pagination"&gt;
+    &lt;li class="page-item"&gt;&lt;a class="page-link" href="#"&gt;Previous&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="page-item"&gt;&lt;a class="page-link" href="#"&gt;1&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="page-item"&gt;&lt;a class="page-link" href="#"&gt;2&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="page-item"&gt;&lt;a class="page-link" href="#"&gt;3&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="page-item"&gt;&lt;a class="page-link" href="#"&gt;Next&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</pre>
+
+        <h4>Active Page</h4>
+        <pre>&lt;li class="page-item active"&gt;
+  &lt;a class="page-link" href="#"&gt;2&lt;/a&gt;
+&lt;/li&gt;</pre>
+
+        <h4>Disabled Page</h4>
+        <pre>&lt;li class="page-item disabled"&gt;
+  &lt;a class="page-link" href="#"&gt;Previous&lt;/a&gt;
+&lt;/li&gt;</pre>
+
+        <h4>Pagination Sizes</h4>
+        <pre>&lt;ul class="pagination pagination-lg"&gt;...&lt;/ul&gt;
+&lt;ul class="pagination pagination-sm"&gt;...&lt;/ul&gt;</pre>
+
+        <h4>Pagination Classes</h4>
+        <table>
+          <tr>
+            <th>Class</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>pagination</code></td>
+            <td>Pagination container।</td>
+          </tr>
+          <tr>
+            <td><code>page-item</code></td>
+            <td>Each pagination item।</td>
+          </tr>
+          <tr>
+            <td><code>page-link</code></td>
+            <td>Pagination link style।</td>
+          </tr>
+          <tr>
+            <td><code>active</code></td>
+            <td>Current page highlight करता है।</td>
+          </tr>
+          <tr>
+            <td><code>disabled</code></td>
+            <td>Link disabled दिखाता है।</td>
+          </tr>
+        </table>
+
+        <div class="note-box"><b>Real Life Example:</b><br>अगर website पर 100 articles हैं, तो उन्हें 10-10 articles के
+          pages में show करने के लिए pagination use किया जा सकता है।</div>
+      </section>
+
+      <section id="jumbotron">
+        <h2>Jumbotron</h2>
+
+        <p>Jumbotron Bootstrap का एक large highlighted section होता था जिसका use important content, welcome message,
+          hero section या main announcement show करने के लिए किया जाता था। Bootstrap 4 में <code>jumbotron</code> class
+          available थी, लेकिन Bootstrap 5 में इसे remove कर दिया गया। Bootstrap 5 में same effect utilities जैसे
+          padding, background और rounded classes से बनाया जाता है।</p>
+
+        <h4>Bootstrap 4 Jumbotron Example</h4>
+        <pre>&lt;div class="jumbotron"&gt;
+  &lt;h1&gt;Welcome to BK LearnX&lt;/h1&gt;
+  &lt;p&gt;Learn web development in easy language.&lt;/p&gt;
+&lt;/div&gt;</pre>
+
+        <h4>Bootstrap 5 Jumbotron Style</h4>
+        <pre>&lt;div class="p-5 mb-4 bg-light rounded-3"&gt;
+  &lt;div class="container-fluid py-5"&gt;
+    &lt;h1 class="display-5 fw-bold"&gt;Welcome to BK LearnX&lt;/h1&gt;
+    &lt;p class="col-md-8 fs-4"&gt;Learn HTML, CSS, JavaScript and Bootstrap easily.&lt;/p&gt;
+    &lt;button class="btn btn-primary btn-lg"&gt;Start Learning&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+        <h4>Uses of Jumbotron</h4>
+        <ul>
+          <li>Hero section बनाने के लिए।</li>
+          <li>Welcome message show करने के लिए।</li>
+          <li>Important announcement highlight करने के लिए।</li>
+          <li>Call-to-action section बनाने के लिए।</li>
+        </ul>
+
+        <h4>Important Classes Used in Bootstrap 5</h4>
+        <table>
+          <tr>
+            <th>Class</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>p-5</code></td>
+            <td>Padding देता है।</td>
+          </tr>
+          <tr>
+            <td><code>mb-4</code></td>
+            <td>Bottom margin देता है।</td>
+          </tr>
+          <tr>
+            <td><code>bg-light</code></td>
+            <td>Light background देता है।</td>
+          </tr>
+          <tr>
+            <td><code>rounded-3</code></td>
+            <td>Rounded corners देता है।</td>
+          </tr>
+          <tr>
+            <td><code>display-5</code></td>
+            <td>Large heading style देता है।</td>
+          </tr>
+        </table>
+
+        <div class="remember-box"><b>Remember:</b><br>Bootstrap 5 में jumbotron class नहीं है, लेकिन utilities से
+          jumbotron जैसा hero section बनाया जा सकता है।</div>
+      </section>
+
+      <section id="alerts">
+        <h2>Alerts</h2>
+
+        <p>Bootstrap alerts का use user को messages show करने के लिए किया जाता है। Alerts success, error, warning,
+          information और notification messages के लिए useful होते हैं। Bootstrap alert classes semantic colors के साथ
+          आती हैं।</p>
+
+        <h4>Basic Alert</h4>
+        <pre>&lt;div class="alert alert-primary"&gt;
+  This is a primary alert.
+&lt;/div&gt;</pre>
+
+        <h4>Alert Variants</h4>
+        <pre>&lt;div class="alert alert-success"&gt;Success! Data saved successfully.&lt;/div&gt;
+&lt;div class="alert alert-danger"&gt;Error! Something went wrong.&lt;/div&gt;
+&lt;div class="alert alert-warning"&gt;Warning! Check your input.&lt;/div&gt;
+&lt;div class="alert alert-info"&gt;Info! New update available.&lt;/div&gt;</pre>
+
+        <h4>Dismissible Alert</h4>
+        <pre>&lt;div class="alert alert-warning alert-dismissible fade show"&gt;
+  This is a dismissible alert.
+  &lt;button type="button" class="btn-close" data-bs-dismiss="alert"&gt;&lt;/button&gt;
+&lt;/div&gt;</pre>
+
+        <h4>Alert with Link</h4>
+        <pre>&lt;div class="alert alert-info"&gt;
+  Read more &lt;a href="#" class="alert-link"&gt;click here&lt;/a&gt;.
+&lt;/div&gt;</pre>
+
+        <h4>Alert Classes</h4>
+        <table>
+          <tr>
+            <th>Class</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>alert</code></td>
+            <td>Basic alert style।</td>
+          </tr>
+          <tr>
+            <td><code>alert-success</code></td>
+            <td>Success message।</td>
+          </tr>
+          <tr>
+            <td><code>alert-danger</code></td>
+            <td>Error/danger message।</td>
+          </tr>
+          <tr>
+            <td><code>alert-warning</code></td>
+            <td>Warning message।</td>
+          </tr>
+          <tr>
+            <td><code>alert-info</code></td>
+            <td>Information message।</td>
+          </tr>
+          <tr>
+            <td><code>alert-dismissible</code></td>
+            <td>Close button वाला alert।</td>
+          </tr>
+        </table>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Form submit होने के बाद “Data saved successfully” message
+          green alert में और error आने पर red alert में show किया जा सकता है।</div>
+      </section>
+
+      <section id="forms">
+        <h2>Forms</h2>
+
+        <p>Bootstrap forms HTML forms को clean, aligned और responsive बनाते हैं। Bootstrap में inputs, labels, textarea,
+          select box, checkboxes, radio buttons और validation messages के लिए ready classes available हैं।</p>
+
+        <h4>Basic Form</h4>
+        <pre>&lt;form&gt;
+  &lt;div class="mb-3"&gt;
+    &lt;label class="form-label"&gt;Email address&lt;/label&gt;
+    &lt;input type="email" class="form-control" placeholder="Enter email"&gt;
+  &lt;/div&gt;
+
+  &lt;div class="mb-3"&gt;
+    &lt;label class="form-label"&gt;Password&lt;/label&gt;
+    &lt;input type="password" class="form-control" placeholder="Password"&gt;
+  &lt;/div&gt;
+
+  &lt;button type="submit" class="btn btn-primary"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</pre>
+
+        <h4>Textarea</h4>
+        <pre>&lt;textarea class="form-control" rows="4"&gt;&lt;/textarea&gt;</pre>
+
+        <h4>Select Box</h4>
+        <pre>&lt;select class="form-select"&gt;
+  &lt;option&gt;HTML&lt;/option&gt;
+  &lt;option&gt;CSS&lt;/option&gt;
+  &lt;option&gt;Bootstrap&lt;/option&gt;
+&lt;/select&gt;</pre>
+
+        <h4>Checkbox</h4>
+        <pre>&lt;div class="form-check"&gt;
+  &lt;input class="form-check-input" type="checkbox" id="agree"&gt;
+  &lt;label class="form-check-label" for="agree"&gt;I agree&lt;/label&gt;
+&lt;/div&gt;</pre>
+
+        <h4>Radio Button</h4>
+        <pre>&lt;div class="form-check"&gt;
+  &lt;input class="form-check-input" type="radio" name="gender" id="male"&gt;
+  &lt;label class="form-check-label" for="male"&gt;Male&lt;/label&gt;
+&lt;/div&gt;</pre>
+
+        <h4>Form Classes</h4>
+        <table>
+          <tr>
+            <th>Class</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>form-label</code></td>
+            <td>Label styling।</td>
+          </tr>
+          <tr>
+            <td><code>form-control</code></td>
+            <td>Input और textarea styling।</td>
+          </tr>
+          <tr>
+            <td><code>form-select</code></td>
+            <td>Select dropdown styling।</td>
+          </tr>
+          <tr>
+            <td><code>form-check</code></td>
+            <td>Checkbox/radio container।</td>
+          </tr>
+          <tr>
+            <td><code>form-check-input</code></td>
+            <td>Checkbox/radio input।</td>
+          </tr>
+          <tr>
+            <td><code>form-check-label</code></td>
+            <td>Checkbox/radio label।</td>
+          </tr>
+        </table>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Student registration form में name, email, course dropdown और
+          submit button को Bootstrap forms से जल्दी design किया जा सकता है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Text inputs और textarea के लिए <code>form-control</code> class
+          सबसे common है।</div>
+      </section>
+
+      <section id="progress">
+        <h2>Progress Bar</h2>
+
+        <p>Progress bar किसी task की progress show करने के लिए use होता है। Bootstrap progress bar upload progress,
+          course completion, skill level, loading status और percentage display में useful है।</p>
+
+        <h4>Basic Progress Bar</h4>
+        <pre>&lt;div class="progress"&gt;
+  &lt;div class="progress-bar" style="width: 60%;"&gt;60%&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+        <h4>Colored Progress Bar</h4>
+        <pre>&lt;div class="progress"&gt;
+  &lt;div class="progress-bar bg-success" style="width: 75%;"&gt;75%&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+        <h4>Striped Progress Bar</h4>
+        <pre>&lt;div class="progress"&gt;
+  &lt;div class="progress-bar progress-bar-striped" style="width: 50%;"&gt;50%&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+        <h4>Animated Progress Bar</h4>
+        <pre>&lt;div class="progress"&gt;
+  &lt;div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 80%;"&gt;80%&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+        <h4>Progress Bar Classes</h4>
+        <table>
+          <tr>
+            <th>Class</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>progress</code></td>
+            <td>Progress bar container।</td>
+          </tr>
+          <tr>
+            <td><code>progress-bar</code></td>
+            <td>Actual progress indicator।</td>
+          </tr>
+          <tr>
+            <td><code>bg-success</code></td>
+            <td>Progress bar color set करता है।</td>
+          </tr>
+          <tr>
+            <td><code>progress-bar-striped</code></td>
+            <td>Striped design देता है।</td>
+          </tr>
+          <tr>
+            <td><code>progress-bar-animated</code></td>
+            <td>Animated striped bar बनाता है।</td>
+          </tr>
+        </table>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Course progress 60% complete दिखाने के लिए progress bar use
+          किया जा सकता है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Progress bar की percentage width style attribute से set की जाती
+          है।</div>
+      </section>
+
+      <section id="grid">
+        <h2>Grid</h2>
+
+        <p>Bootstrap grid system responsive layout बनाने के लिए use होता है। Bootstrap grid 12 columns पर based होता है।
+          Page को rows और columns में divide करके content arrange किया जाता है। Grid system की help से same design
+          different screen sizes पर automatically adjust हो सकता है।</p>
+
+        <p>Grid में <code>container</code>, <code>row</code> और <code>col</code> classes important होती हैं। Content
+          हमेशा columns के अंदर रखा जाता है, columns rows के अंदर और rows container के अंदर रखी जाती हैं।</p>
+
+        <h4>Basic Grid Structure</h4>
+        <pre>&lt;div class="container"&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="col"&gt;Column 1&lt;/div&gt;
+    &lt;div class="col"&gt;Column 2&lt;/div&gt;
+    &lt;div class="col"&gt;Column 3&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+        <h4>12 Column System</h4>
+        <pre>&lt;div class="container"&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="col-4"&gt;4 Columns&lt;/div&gt;
+    &lt;div class="col-4"&gt;4 Columns&lt;/div&gt;
+    &lt;div class="col-4"&gt;4 Columns&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+        <p>तीनों columns 4+4+4 = 12 columns cover करेंगे।</p>
+
+        <h4>Responsive Grid</h4>
+        <pre>&lt;div class="container"&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="col-12 col-md-6 col-lg-4"&gt;Card 1&lt;/div&gt;
+    &lt;div class="col-12 col-md-6 col-lg-4"&gt;Card 2&lt;/div&gt;
+    &lt;div class="col-12 col-md-6 col-lg-4"&gt;Card 3&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+        <p>इस example में mobile पर column full width, medium screen पर half width और large screen पर one-third width
+          होगा।</p>
+
+        <h4>Grid Breakpoints</h4>
+        <table>
+          <tr>
+            <th>Class Prefix</th>
+            <th>Screen Type</th>
+          </tr>
+          <tr>
+            <td><code>col-</code></td>
+            <td>Extra small devices।</td>
+          </tr>
+          <tr>
+            <td><code>col-sm-</code></td>
+            <td>Small devices।</td>
+          </tr>
+          <tr>
+            <td><code>col-md-</code></td>
+            <td>Medium devices।</td>
+          </tr>
+          <tr>
+            <td><code>col-lg-</code></td>
+            <td>Large devices।</td>
+          </tr>
+          <tr>
+            <td><code>col-xl-</code></td>
+            <td>Extra large devices।</td>
+          </tr>
+          <tr>
+            <td><code>col-xxl-</code></td>
+            <td>Extra extra large devices।</td>
+          </tr>
+        </table>
+
+        <h4>Container Types</h4>
+        <table>
+          <tr>
+            <th>Class</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>container</code></td>
+            <td>Responsive fixed-width container।</td>
+          </tr>
+          <tr>
+            <td><code>container-fluid</code></td>
+            <td>Full-width container।</td>
+          </tr>
+        </table>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Course cards को mobile पर एक column, tablet पर दो columns और
+          desktop पर तीन columns में show करने के लिए Bootstrap grid use किया जा सकता है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Bootstrap grid 12 columns पर based है। Row के अंदर columns और
+          columns के अंदर content रखा जाता है।</div>
+      </section>
+
+      <section id="utilities">
+        <h2>Utilities & Filters</h2>
+
+        <p>Bootstrap utilities small helper classes होती हैं जिनसे जल्दी styling apply की जा सकती है। Utilities से
+          margin, padding, display, flex, text alignment, colors, border, shadow, width, height और visibility जैसी
+          styling बिना custom CSS लिखे apply की जा सकती है।</p>
+
+        <p>Filters Bootstrap में direct core component की तरह नहीं होते, लेकिन utility classes और CSS filter properties
+          की help से images या elements पर visual effects apply किए जा सकते हैं। Bootstrap utilities design को fast और
+          consistent बनाती हैं।</p>
+
+        <h4>Spacing Utilities</h4>
+        <p>Bootstrap में margin और padding के लिए short classes use होती हैं।</p>
+
+        <pre>m-3   = margin
+p-3   = padding
+mt-2  = margin-top
+mb-4  = margin-bottom
+ms-3  = margin-start
+me-3  = margin-end
+px-4  = padding-left and right
+py-4  = padding-top and bottom</pre>
+
+        <h4>Spacing Example</h4>
+        <pre>&lt;div class="p-4 m-3 bg-light"&gt;
+  This box has padding and margin.
+&lt;/div&gt;</pre>
+
+        <h4>Text Utilities</h4>
+        <pre>&lt;p class="text-center"&gt;Center aligned text&lt;/p&gt;
+&lt;p class="text-start"&gt;Left aligned text&lt;/p&gt;
+&lt;p class="text-end"&gt;Right aligned text&lt;/p&gt;
+&lt;p class="fw-bold"&gt;Bold text&lt;/p&gt;
+&lt;p class="fst-italic"&gt;Italic text&lt;/p&gt;</pre>
+
+        <h4>Display Utilities</h4>
+        <pre>&lt;div class="d-none"&gt;Hidden element&lt;/div&gt;
+&lt;div class="d-block"&gt;Block element&lt;/div&gt;
+&lt;div class="d-flex"&gt;Flex container&lt;/div&gt;</pre>
+
+        <h4>Flex Utilities</h4>
+        <pre>&lt;div class="d-flex justify-content-center align-items-center"&gt;
+  Center Content
+&lt;/div&gt;</pre>
+
+        <h4>Border and Shadow Utilities</h4>
+        <pre>&lt;div class="border rounded shadow p-3"&gt;
+  Beautiful box
+&lt;/div&gt;</pre>
+
+        <h4>Width and Height Utilities</h4>
+        <pre>&lt;div class="w-50"&gt;50% width&lt;/div&gt;
+&lt;div class="w-100"&gt;100% width&lt;/div&gt;
+&lt;div class="h-100"&gt;100% height&lt;/div&gt;</pre>
+
+        <h4>Filter Example with CSS</h4>
+        <p>Image पर filter effects apply करने के लिए CSS filter property use की जा सकती है। Bootstrap classes के साथ
+          custom CSS combine किया जा सकता है।</p>
+
+        <pre>&lt;img src="photo.jpg" class="img-fluid custom-filter"&gt;
+
+&lt;style&gt;
+.custom-filter {
+  filter: grayscale(100%);
+}
+&lt;/style&gt;</pre>
+
+        <h4>Common CSS Filters</h4>
+        <table>
+          <tr>
+            <th>Filter</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>grayscale()</code></td>
+            <td>Image को black and white बनाता है।</td>
+          </tr>
+          <tr>
+            <td><code>blur()</code></td>
+            <td>Image blur करता है।</td>
+          </tr>
+          <tr>
+            <td><code>brightness()</code></td>
+            <td>Brightness control करता है।</td>
+          </tr>
+          <tr>
+            <td><code>contrast()</code></td>
+            <td>Contrast control करता है।</td>
+          </tr>
+          <tr>
+            <td><code>opacity()</code></td>
+            <td>Transparency control करता है।</td>
+          </tr>
+        </table>
+
+        <h4>Utility Classes Table</h4>
+        <table>
+          <tr>
+            <th>Utility Type</th>
+            <th>Example Classes</th>
+          </tr>
+          <tr>
+            <td>Spacing</td>
+            <td><code>m-3</code>, <code>p-4</code>, <code>mt-2</code></td>
+          </tr>
+          <tr>
+            <td>Text</td>
+            <td><code>text-center</code>, <code>fw-bold</code>, <code>fst-italic</code></td>
+          </tr>
+          <tr>
+            <td>Display</td>
+            <td><code>d-none</code>, <code>d-block</code>, <code>d-flex</code></td>
+          </tr>
+          <tr>
+            <td>Flex</td>
+            <td><code>justify-content-center</code>, <code>align-items-center</code></td>
+          </tr>
+          <tr>
+            <td>Border</td>
+            <td><code>border</code>, <code>rounded</code>, <code>border-primary</code></td>
+          </tr>
+          <tr>
+            <td>Shadow</td>
+            <td><code>shadow</code>, <code>shadow-sm</code>, <code>shadow-lg</code></td>
+          </tr>
+        </table>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Custom CSS लिखे बिना card को padding, shadow, rounded border
+          और center text देने के लिए Bootstrap utilities बहुत fast काम करती हैं।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Bootstrap utilities small helper classes हैं जो quick styling के
+          लिए use होती हैं। Filters के लिए Bootstrap के साथ CSS filter property use की जा सकती है।</div>
+      </section>
+
+    </main>
+  </div>
+</body>
+
+</html>

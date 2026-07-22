@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Even Semester Notice</title>
+    <link rel="icon" type="image/jpeg" href="../../../assets/images/logo.jpeg">
+    <style>
+        :root {
+            --bg: #f4f7ff;
+            --card: #ffffff;
+            --accent: #2f6fed;
+            --accent-soft: #eaf2ff;
+            --text: #1f2937;
+            --muted: #64748b;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, var(--bg), #eef4ff);
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--text);
+            padding: 1rem;
+        }
+
+        .notice-card {
+            width: min(1100px, 100%);
+            background: var(--card);
+            border-radius: 20px;
+            box-shadow: 0 20px 45px rgba(47, 111, 237, 0.14);
+            overflow: hidden;
+        }
+
+        .banner {
+            background: linear-gradient(90deg, var(--accent), #4f8cff);
+            color: white;
+            padding: 1.2rem 1.4rem;
+        }
+
+        .banner h1 {
+            margin: 0 0 0.4rem;
+            font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+        }
+
+        .banner p {
+            margin: 0;
+            opacity: 0.95;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            padding: 1.2rem;
+        }
+
+        .box {
+            background: var(--accent-soft);
+            border: 1px solid #d8e6ff;
+            border-radius: 16px;
+            padding: 1rem 1.1rem;
+        }
+
+        .box h2 {
+            margin-top: 0;
+            font-size: 1.15rem;
+            color: var(--accent);
+        }
+
+        .box h3 {
+            margin-bottom: 0.4rem;
+            color: var(--text);
+        }
+
+        .box p {
+            line-height: 1.7;
+            color: var(--muted);
+        }
+
+        .highlight {
+            background: #fff3b0;
+            padding: 0.15rem 0.35rem;
+            border-radius: 6px;
+            color: #8a6500;
+            font-weight: 700;
+        }
+
+        .footer-note {
+            padding: 0 1.2rem 1.2rem;
+            color: var(--muted);
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 760px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .banner {
+                padding: 1rem 1rem 1.1rem;
+            }
+
+            .box {
+                padding: 0.95rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="../../../assets/shared/theme.css">
+</head>
+
+<body>
+   
+    <div class="notice-card">
+        <div class="banner">
+            <h1>Even Semester Study Material</h1>
+            <p>Upcoming content will be shared soon for the next phase of learning.</p>
+        </div>
+
+        <div class="content-grid">
+            <div class="box">
+                <h2>English Notice</h2>
+                <h3>Current Status</h3>
+                <p>We are working as per priority, and the study material for the ongoing odd semesters is currently being prepared and shared first.</p>
+                <p>The even-semester study notes will be made available about <span class="highlight">15 days</span> before the classes begin for those semesters.</p>
+                <p>Thank you for your patience and support. ❤️</p>
+            </div>
+
+            <div class="box">
+                <h2>हिंदी सूचना</h2>
+                <h3>वर्तमान स्थिति</h3>
+                <p>हम priority के अनुसार काम कर रहे हैं, इसलिए अभी सबसे पहले चल रहे विषम सेमेस्टर का study material उपलब्ध कराया जा रहा है।</p>
+                <p>सम सेमेस्टर का study material उन classes के शुरू होने से लगभग <span class="highlight">15 दिन</span> पहले उपलब्ध कराया जाएगा।</p>
+                <p>आपके धैर्य और सहयोग के लिए धन्यवाद। ❤️</p>
+            </div>
+        </div>
+
+        <div class="footer-note">
+            Please check back regularly for updates and new materials.
+        </div>
+    </div>
+    <script src="../../../assets/shared/theme.js" defer></script>
+</body>
+</html>
