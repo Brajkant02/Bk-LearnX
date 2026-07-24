@@ -15,6 +15,15 @@ body {
     line-height: 1.75;
 }
 
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
 .page,
 .layout {
     display: grid;
@@ -95,6 +104,36 @@ section {
 
 section:last-child {
     border-bottom: none;
+}
+
+
+
+.container,
+.content,
+.chapter,
+.topic-card,
+.main-content {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+}
+
+p,
+h1,
+h2,
+h3,
+h4 {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: normal;
+}
+
+img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
 }
 
 h2 {
@@ -186,7 +225,7 @@ strong {
     object-fit: contain;
 }
 
-img{
+img {
     width: 100%;
     height: auto;
 }
@@ -277,13 +316,30 @@ video {
     height: auto;
 }
 
-@media(max-width:900px)  {
+
+
+@media (max-width: 600px) {
+
+    .content,
+    .topic-card {
+        width: 100%;
+        max-width: 100%;
+        padding: 16px;
+        margin: 0;
+    }
+
+    p {
+        font-size: 17px;
+        line-height: 1.7;
+    }
+
 
     .page,
     .layout {
         grid-template-columns: 1fr;
     }
-    .layout{
+
+    .layout {
         width: 100%;
     }
 
