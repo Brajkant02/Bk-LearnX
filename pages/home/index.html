@@ -24,7 +24,7 @@
                 <li><a href="#branch">Branch</a></li>
                 <li><a href="../contact/index.html">Contact Us</a></li>
             </ul>
-            <a href="../auth/registration/index.html" title="Register" id="log-in">Register / Login</a>
+            <a href="../auth/login/index.html" title="Student account" id="log-in" data-account-link>Register / Login</a>
 
         </nav>
 
@@ -32,7 +32,7 @@
             <section class="start">
                 <h1>Welcome to <span>Our website!</span></h1>
                 <p>I wish your future is bright.</p>
-                <a href="../auth/registration/index.html">Get Started</a>
+                <a href="../auth/registration/index.html" data-get-started>Get Started</a>
             </section>
 
             <section class="branchs" id="branch">
@@ -87,7 +87,40 @@
     <script src="../../assets/shared/theme.js" defer></script>
     <script src="../../assets/shared/config.js"></script>
     <script src="../../assets/shared/portal.js"></script>
-    <script>document.addEventListener('DOMContentLoaded', () => { const u = BK.getUser(); if (!u) return; const map = { 'PGDCA': 'dca', 'DSML': 'dsml', 'Cyber Security': 'cs', 'Web Designing': 'wd', 'IOT': 'iot', 'Drone Technology': 'dt', 'CHM': 'chm', 'PGDA': 'da' }; document.querySelectorAll('#dca,#dsml,#cs,#wd,#iot,#dt,#chm,#da').forEach(x => x.style.display = x.id === map[u.branch] ? '' : 'none'); const note = document.createElement('div'); note.className = 'portal-card'; note.style.margin = '12px'; note.innerHTML = `Logged in as <strong>${u.name}</strong>. Aapko sirf <strong>${u.branch} — ${u.semester}</strong> content dikh raha hai. <a href="../student/profile/index.html">Profile & progress</a>`; document.body.prepend(note) });</script>
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+    const u = BK.getUser();
+    const accountLink = document.querySelector('[data-account-link]');
+    const getStarted = document.querySelector('[data-get-started]');
+
+    if (!u) {
+        if (accountLink) {
+            accountLink.textContent = 'Register / Login';
+            accountLink.href = '../auth/login/index.html';
+        }
+        return;
+    }
+
+    if (accountLink) {
+        accountLink.textContent = 'My Profile';
+        accountLink.href = '../student/profile/index.html';
+        accountLink.title = `${u.name} profile`;
+    }
+    if (getStarted) {
+        getStarted.textContent = 'Continue Learning';
+        getStarted.href = '#branch';
+    }
+
+    const map = { 'PGDCA': 'dca', 'DSML': 'dsml', 'Cyber Security': 'cs', 'Web Designing': 'wd', 'IOT': 'iot', 'Drone Technology': 'dt', 'CHM': 'chm', 'PGDA': 'da' };
+    document.querySelectorAll('#dca,#dsml,#cs,#wd,#iot,#dt,#chm,#da').forEach(x => x.style.display = x.id === map[u.branch] ? '' : 'none');
+
+    const note = document.createElement('div');
+    note.className = 'portal-card';
+    note.style.margin = '12px';
+    note.innerHTML = `Welcome <strong>${u.name}</strong>! Aapko <strong>${u.branch} — ${u.semester}</strong> ka content dikh raha hai. <a href="../student/profile/index.html">Profile & progress</a>`;
+    document.body.prepend(note);
+});
+</script>
 </body>
 
 </html>
