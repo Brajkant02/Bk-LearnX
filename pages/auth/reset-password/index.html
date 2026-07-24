@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Reset Password | BK LearnX</title>
+  <link rel="icon" type="image/jpeg" href="../../../assets/images/logo.jpeg">
+  <link rel="stylesheet" href="../../../assets/shared/portal.css">
+</head>
+<body>
+  <main class="portal-shell login-shell">
+    <form id="resetForm" class="portal-card login-card">
+      <div class="login-illustration">🛡️</div>
+      <h1>Create New Password</h1>
+      <p class="muted">Password kam se kam 8 characters ka rakhein.</p>
+      <div class="field" style="margin-top:18px">
+        <label for="password">New Password</label>
+        <input id="password" type="password" minlength="8" required>
+      </div>
+      <div class="field" style="margin-top:12px">
+        <label for="confirmPassword">Confirm Password</label>
+        <input id="confirmPassword" type="password" minlength="8" required>
+      </div>
+      <button id="submitBtn" class="portal-btn" style="width:100%;margin-top:18px">Reset Password</button>
+      <p id="msg" class="muted" style="margin-top:12px;min-height:1.2em"></p>
+      <p style="margin-top:18px"><a href="../login/index.html">← Back to Login</a></p>
+    </form>
+  </main>
+  <script src="../../../assets/shared/config.js"></script>
+  <script>
+    const resetToken = new URLSearchParams(location.search).get('token');
+    if (!resetToken) msg.textContent = 'Reset token missing. Forgot Password page se naya link banayein.';
+
+    resetForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!resetToken) return;
+      if (password.value !== confirmPassword.value) {
+        msg.textContent = 'Passwords do not match.';
+        return;
+      }
+      submitBtn.disabled = true;
+      msg.textContent = 'Updating password...';
+      try {
+        const response = await fetch(BK_CONFIG.API_BASE_URL + '/api/reset-password', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token: resetToken, password: password.value })
+        });
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.message || 'Reset failed');
+        msg.textContent = data.message + ' Redirecting to login...';
+        setTimeout(() => location.href = '../login/index.html', 1500);
+      } catch (error) {
+        msg.textContent = error.message || 'Backend server connect nahi hua.';
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

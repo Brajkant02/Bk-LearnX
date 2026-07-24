@@ -145,7 +145,7 @@
 </head>
 
 <body>
-    
+
     <div class="container">
 
         <h2>Student Login Form</h2>
@@ -164,16 +164,20 @@
 
             <input type="submit" value="Login" class="btn">
 
-            <p id="loginMessage" style="margin-top-1rem-font-size-0.95rem;"></p>
+            <p id="loginMessage" style="margin-top-1rem-font-size-.95rem;"></p>
         </form>
 
         <p class="register-text">
             Don't have an account?
-            <a href="../registration/index.html">Register Here</a>
+            <a href="../registration/index.html">Register Here</a><br><br>
+            <a href="../forgot-password/index.html">Forgot Password?</a><br><br>
+            Admin Login here!
+            <a href="../../admin/login.html">Admin Login</a>
         </p>
 
     </div>
 
+    <script src="../../../assets/shared/config.js"></script>
     <script>
         document.getElementById('loginForm').addEventListener('submit', async function (event) {
             event.preventDefault();
@@ -190,7 +194,7 @@
             }
 
             try {
-                const response = await fetch((localStorage.getItem('bk_api_base') || 'https://bk-learnx-api.onrender.com') + '/api/login', {
+                const response = await fetch(BK_CONFIG.API_BASE_URL + '/api/login', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, password })

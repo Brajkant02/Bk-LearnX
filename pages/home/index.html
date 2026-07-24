@@ -85,6 +85,7 @@
         </footer>
     </div>
     <script src="../../assets/shared/theme.js" defer></script>
+    <script src="../../assets/shared/config.js"></script>
     <script src="../../assets/shared/portal.js"></script>
     <script>document.addEventListener('DOMContentLoaded', () => { const u = BK.getUser(); if (!u) return; const map = { 'PGDCA': 'dca', 'DSML': 'dsml', 'Cyber Security': 'cs', 'Web Designing': 'wd', 'IOT': 'iot', 'Drone Technology': 'dt', 'CHM': 'chm', 'PGDA': 'da' }; document.querySelectorAll('#dca,#dsml,#cs,#wd,#iot,#dt,#chm,#da').forEach(x => x.style.display = x.id === map[u.branch] ? '' : 'none'); const note = document.createElement('div'); note.className = 'portal-card'; note.style.margin = '12px'; note.innerHTML = `Logged in as <strong>${u.name}</strong>. Aapko sirf <strong>${u.branch} — ${u.semester}</strong> content dikh raha hai. <a href="../student/profile/index.html">Profile & progress</a>`; document.body.prepend(note) });</script>
 </body>

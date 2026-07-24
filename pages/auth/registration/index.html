@@ -247,6 +247,7 @@
             }
         }
     </script>
+    <script src="../../../assets/shared/config.js"></script>
     <script>
         document.getElementById('registerForm').addEventListener('submit', async function (event) {
             event.preventDefault();
@@ -272,7 +273,7 @@
             }
 
             try {
-                const response = await fetch((localStorage.getItem('bk_api_base') || 'https://bk-learnx-api.onrender.com') + '/api/register', {
+                const response = await fetch(BK_CONFIG.API_BASE_URL + '/api/register', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ name, email, branch, semester, password, confirmPassword })

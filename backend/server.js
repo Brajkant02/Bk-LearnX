@@ -7,6 +7,35 @@ function admin(req, res, next) { const t = req.header('x-admin-token'); if (!adm
 app.get('/api/health', (q, r) => r.json({ status: 'ok' }));
 app.post('/api/register', async (req, res) => { const { name, email, branch, semester, password, confirmPassword } = req.body; if (!name || !email || !branch || !semester || !password) return res.status(400).json({ message: 'All fields required.' }); if (password !== confirmPassword) return res.status(400).json({ message: 'Passwords do not match.' }); const users = await read('users'); if (users.some(x => x.email.toLowerCase() === email.toLowerCase())) return res.status(409).json({ message: 'Email already registered.' }); const u = { id: crypto.randomUUID(), name, email, branch, semester, passwordHash: await bcrypt.hash(password, 10), registeredAt: new Date().toISOString(), lastLoginAt: null, lastLogoutAt: null, phone: '', college: '', photo: '' }; users.push(u); await write('users', users); res.status(201).json({ message: 'Registration successful.' }) });
 app.post('/api/login', async (req, res) => { const users = await read('users'), u = users.find(x => x.email.toLowerCase() === (req.body.email || '').toLowerCase()); if (!u || !await bcrypt.compare(req.body.password || '', u.passwordHash)) return res.status(401).json({ message: 'Invalid email or password.' }); u.lastLoginAt = new Date().toISOString(); await write('users', users); const t = token(); sessions.set(t, { userId: u.id, loginAt: Date.now(), lastSeen: Date.now(), currentPage: '' }); res.json({ token: t, user: safe(u) }) });
+
+app.post('/api/forgot-password', async (req, res) => {
+  const email = (req.body.email || '').trim().toLowerCase();
+  if (!email) return res.status(400).json({ message: 'Email is required.' });
+  const users = await read('users');
+  const u = users.find(x => (x.email || '').toLowerCase() === email);
+  if (!u) return res.status(404).json({ message: 'Email registered nahi hai.' });
+  u.resetToken = token();
+  u.resetExpiresAt = new Date(Date.now() + 15 * 60 * 1000).toISOString();
+  await write('users', users);
+  const frontend = (process.env.FRONTEND_URL || req.headers.origin || 'http://127.0.0.1:5500').replace(/\/$/, '');
+  const resetUrl = `${frontend}/pages/auth/reset-password/index.html?token=${u.resetToken}`;
+  res.json({ message: 'Reset link 15 minutes ke liye ready hai.', resetUrl });
+});
+app.post('/api/reset-password', async (req, res) => {
+  const { token: resetToken, password } = req.body;
+  if (!resetToken || !password) return res.status(400).json({ message: 'Token and password required.' });
+  if (password.length < 8) return res.status(400).json({ message: 'Password must be at least 8 characters.' });
+  const users = await read('users');
+  const u = users.find(x => x.resetToken === resetToken);
+  if (!u) return res.status(400).json({ message: 'Invalid reset link.' });
+  if (!u.resetExpiresAt || Date.now() > new Date(u.resetExpiresAt).getTime()) return res.status(400).json({ message: 'Reset link expired.' });
+  u.passwordHash = await bcrypt.hash(password, 10);
+  delete u.resetToken;
+  delete u.resetExpiresAt;
+  await write('users', users);
+  res.json({ message: 'Password updated successfully.' });
+});
+
 app.post('/api/logout', auth, async (req, res) => { const users = await read('users'), u = users.find(x => x.id === req.userId); if (u) { u.lastLogoutAt = new Date().toISOString(); await write('users', users) } sessions.delete(req.sessionToken); res.json({ message: 'Logged out' }) });
 const safe = u => { const { passwordHash, ...x } = u; return x };
 app.get('/api/me', auth, async (req, res) => { const u = (await read('users')).find(x => x.id === req.userId); res.json({ user: safe(u) }) });

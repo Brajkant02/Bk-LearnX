@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Forgot Password | BK LearnX</title>
+  <link rel="icon" type="image/jpeg" href="../../../assets/images/logo.jpeg">
+  <link rel="stylesheet" href="../../../assets/shared/portal.css">
+</head>
+<body>
+  <main class="portal-shell login-shell">
+    <form id="forgotForm" class="portal-card login-card">
+      <div class="login-illustration">🔑</div>
+      <h1>Forgot Password</h1>
+      <p class="muted">Registered email enter karein. V1.2 testing mode me reset link screen par milega.</p>
+      <div class="field" style="margin-top:18px">
+        <label for="email">Email</label>
+        <input id="email" type="email" autocomplete="email" required placeholder="student@example.com">
+      </div>
+      <button id="submitBtn" class="portal-btn" style="width:100%;margin-top:18px">Create Reset Link</button>
+      <p id="msg" class="muted" style="margin-top:12px;min-height:1.2em"></p>
+      <p id="resetBox" style="display:none;margin-top:12px;word-break:break-all"></p>
+      <p style="margin-top:18px"><a href="../login/index.html">← Back to Login</a></p>
+    </form>
+  </main>
+  <script src="../../../assets/shared/config.js"></script>
+  <script>
+    forgotForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      submitBtn.disabled = true;
+      msg.textContent = 'Please wait...';
+      resetBox.style.display = 'none';
+      try {
+        const response = await fetch(BK_CONFIG.API_BASE_URL + '/api/forgot-password', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email.value.trim() })
+        });
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.message || 'Request failed');
+        msg.textContent = data.message;
+        if (data.resetUrl) {
+          resetBox.style.display = 'block';
+          resetBox.innerHTML = `<a class="portal-btn" href="${data.resetUrl}">Open Reset Password Page</a>`;
+        }
+      } catch (error) {
+        msg.textContent = error.message || 'Backend server connect nahi hua.';
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

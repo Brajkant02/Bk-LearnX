@@ -50,11 +50,9 @@
             </div>
         </section>
     </main>
+    <script src="../../assets/shared/config.js"></script>
     <script>
-        const _defaultApi = (location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.protocol === 'file:')
-            ? 'http://localhost:3000'
-            : 'https://bk-learnx-api.onrender.com';
-        const API = (localStorage.getItem('bk_api_base') || _defaultApi).replace(/\/$/, '');
+        const API = BK_CONFIG.API_BASE_URL;
         const token = localStorage.getItem('bk_admin_token');
         if (!token) location.href = 'login.html';
 
@@ -78,6 +76,7 @@
         load();
         setInterval(load, 15000);
     </script>
+  <script src="../../assets/shared/config.js"></script>
 </body>
 
 </html>
