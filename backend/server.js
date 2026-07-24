@@ -124,3 +124,13 @@ const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin@bklearnx.local', ADMIN_PAS
 app.post('/api/admin/login', async (req, res) => { if ((req.body.email || '').toLowerCase() !== ADMIN_EMAIL.toLowerCase() || req.body.password !== ADMIN_PASSWORD) return res.status(401).json({ message: 'Invalid admin credentials.' }); const t = token(); adminSessions.set(t, { at: Date.now() }); res.json({ token: t }) });
 app.get('/api/admin/dashboard', admin, async (req, res) => { const [users, activity, progress] = await Promise.all([read('users'), read('activity'), read('progress')]); const now = Date.now(), day = new Date().toISOString().slice(0, 10); const rows = users.map(u => { const sess = [...sessions.values()].find(s => s.userId === u.id); const ps = progress.filter(p => p.userId === u.id); return { ...safe(u), online: !!sess && now - sess.lastSeen < 120000, currentPage: sess?.currentPage || '', lastActivity: sess ? new Date(sess.lastSeen).toISOString() : u.lastLogoutAt || u.lastLoginAt, completion: ps.length ? Math.round(ps.filter(x => x.completed).length / ps.length * 100) : 0 } }); res.json({ stats: { totalStudents: users.length, onlineStudents: rows.filter(x => x.online).length, loginsToday: users.filter(x => (x.lastLoginAt || '').startsWith(day)).length, averageCompletion: rows.length ? Math.round(rows.reduce((a, b) => a + b.completion, 0) / rows.length) : 0 }, students: rows, recentActivity: activity.slice(-30).reverse().map(a => ({ ...a, studentName: users.find(u => u.id === a.userId)?.name })) }) });
 app.listen(PORT, () => console.log(`BK LearnX backend: http://localhost:${PORT}`));
+
+const nodemailer = require("nodemailer");
+
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_APP_PASSWORD
+  }
+});
