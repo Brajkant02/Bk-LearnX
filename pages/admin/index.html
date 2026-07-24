@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Admin Panel | BK LearnX</title>
+    <link rel="icon" type="image/jpeg" href="../../assets/images/logo.jpeg">
     <link rel="stylesheet" href="../../assets/shared/portal.css">
 </head>
 
@@ -51,8 +52,8 @@
     </main>
     <script>
         const _defaultApi = (location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.protocol === 'file:')
-          ? 'http://localhost:3000'
-          : 'https://bk-learnx-api.onrender.com';
+            ? 'http://localhost:3000'
+            : 'https://bk-learnx-api.onrender.com';
         const API = (localStorage.getItem('bk_api_base') || _defaultApi).replace(/\/$/, '');
         const token = localStorage.getItem('bk_admin_token');
         if (!token) location.href = 'login.html';
