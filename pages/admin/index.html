@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -8,26 +8,42 @@
     <link rel="stylesheet" href="../../assets/shared/portal.css">
 </head>
 
-<body style="background:var(--bk-bg)">
+<body>
     <main class="portal-shell">
         <header class="portal-header">
             <div>
+                <span class="badge online">Admin Control Center</span>
                 <h1>BK LearnX Admin Panel</h1>
-                <p class="muted">Students, sessions, page time aur course progress</p>
-            </div><button id="logout" class="portal-btn danger">Admin Logout</button>
+                <p class="muted">Monitor students, sessions, and course progress in one polished dashboard.</p>
+            </div>
+            <button id="logout" class="portal-btn danger">Admin Logout</button>
         </header>
+
         <section class="stat-grid">
-            <div class="portal-card stat"><span class="muted">Registered Students</span><strong id="total">—</strong>
+            <div class="portal-card stat">
+                <span class="muted">Registered Students</span>
+                <strong id="total">—</strong>
             </div>
-            <div class="portal-card stat"><span class="muted">Currently Online</span><strong id="online">—</strong>
+            <div class="portal-card stat">
+                <span class="muted">Currently Online</span>
+                <strong id="online">—</strong>
             </div>
-            <div class="portal-card stat"><span class="muted">Logins Today</span><strong id="today">—</strong></div>
-            <div class="portal-card stat"><span class="muted">Avg. Completion</span><strong id="completion">—</strong>
+            <div class="portal-card stat">
+                <span class="muted">Logins Today</span>
+                <strong id="today">—</strong>
+            </div>
+            <div class="portal-card stat">
+                <span class="muted">Avg. Completion</span>
+                <strong id="completion">—</strong>
             </div>
         </section>
+
         <section class="dashboard-grid">
             <div class="portal-card">
-                <h2>Students</h2>
+                <div class="section-title">
+                    <h2>Students</h2>
+                    <span class="badge">Live roster</span>
+                </div>
                 <div style="overflow:auto">
                     <table class="data-table">
                         <thead>
@@ -43,16 +59,21 @@
                     </table>
                 </div>
             </div>
+
             <div class="portal-card">
-                <h2>Live/Page Activity</h2>
+                <div class="section-title">
+                    <h2>Live/Page Activity</h2>
+                    <span class="badge secondary">Recent events</span>
+                </div>
                 <div id="activity" class="empty-state">Loading...</div>
             </div>
         </section>
     </main>
+
     <script>
         const _defaultApi = (location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.protocol === 'file:')
-          ? 'http://localhost:3000'
-          : 'https://bk-learnx-api.onrender.com';
+            ? 'http://localhost:3000'
+            : 'https://bk-learnx-api.onrender.com';
         const API = (localStorage.getItem('bk_api_base') || _defaultApi).replace(/\/$/, '');
         const token = localStorage.getItem('bk_admin_token');
         if (!token) location.href = 'login.html';
@@ -66,10 +87,32 @@
                 online.textContent = d.stats.onlineStudents;
                 today.textContent = d.stats.loginsToday;
                 completion.textContent = d.stats.averageCompletion + '%';
-                students.innerHTML = d.students.map(s => `<tr><td><strong>${s.name}</strong><br><span class="muted">${s.email}</span></td><td>${s.branch}<br>${s.semester}</td><td><span class="badge ${s.online ? 'online' : 'offline'}">${s.online ? 'Online' : 'Logged out'}</span></td><td>${s.currentPage || '—'}<br><span class="muted">${s.lastActivity ? new Date(s.lastActivity).toLocaleString() : '—'}</span></td><td>${s.completion}%</td></tr>`).join('');
-                activity.innerHTML = (d.recentActivity || []).map(a => `<div style="padding:9px 0;border-bottom:1px solid #e5e7eb"><strong>${a.studentName || 'Student'}</strong> — ${a.type}<br><span class="muted">${a.title || a.page || ''} · ${a.durationSeconds || 0}s</span></div>`).join('') || '<p class="empty-state">No activity yet.</p>'
+                students.innerHTML = d.students.map(s => `
+                    <tr>
+                        <td><strong>${s.name}</strong><br><span class="muted">${s.email}</span></td>
+                        <td>${s.branch}<br><span class="muted">${s.semester}</span></td>
+                        <td><span class="badge ${s.online ? 'online' : 'offline'}">${s.online ? 'Online' : 'Logged out'}</span></td>
+                        <td>${s.currentPage || '—'}<br><span class="muted">${s.lastActivity ? new Date(s.lastActivity).toLocaleString() : '—'}</span></td>
+                        <td>
+                            <div class="progress-row">
+                                <div class="progress-track"><div class="progress-fill" style="width:${Math.max(0, Math.min(100, Number(s.completion) || 0))}%"></div></div>
+                                <div class="progress-meta"><span class="muted">${Number(s.completion) || 0}%</span></div>
+                            </div>
+                        </td>
+                    </tr>
+                `).join('');
+                activity.innerHTML = (d.recentActivity || []).map(a => `
+                    <div class="activity-item">
+                        <strong>${a.studentName || 'Student'}</strong>
+                        <div class="meta">
+                            <span class="muted">${a.type}</span>
+                            <span class="badge secondary">${a.durationSeconds || 0}s</span>
+                        </div>
+                        <div class="muted">${a.title || a.page || 'Activity recorded'}</div>
+                    </div>
+                `).join('') || '<p class="empty-state">No activity yet.</p>';
             } catch {
-                activity.innerHTML = '<p class="empty-state">Backend server connect nahi hua.</p>'
+                activity.innerHTML = '<p class="empty-state">Backend server connect nahi hua.</p>';
             }
         }
 
