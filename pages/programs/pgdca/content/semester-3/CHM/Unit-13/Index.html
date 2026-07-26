@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang='hi'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width,initial-scale=1'>
+    <title>Power Supply</title>
+    <link rel="icon" href="../../../.././../../../assets/images/logo.jpeg">
+    <style>
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            margin: 0;
+            font-family: Segoe UI, Arial, sans-serif;
+            background: #f5f7fb;
+            color: #1f2937;
+            line-height: 1.75
+        }
+
+        .page {
+            display: grid;
+            grid-template-columns: 285px 1fr;
+            gap: 20px;
+            max-width: 1500px;
+            margin: auto;
+            padding: 10px
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 10px;
+            height: calc(100vh - 20px);
+            overflow: auto;
+            background: #fff;
+            padding: 18px;
+            border-radius: 16px;
+            box-shadow: 0 4px 18px #0002
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 8px;
+            text-decoration: none;
+            color: #374151;
+            border-radius: 8px
+        }
+
+        .sidebar a:hover {
+            background: #eef2ff
+        }
+
+        .content {
+            background: #fff;
+            padding: 10px;
+            border-radius: 18px;
+            box-shadow: 0 4px 18px #0002
+        }
+
+        .hero {
+            padding: 28px 18px;
+            background: linear-gradient(135deg, #eef2ff, #f8fafc);
+            border-radius: 16px
+        }
+
+        section {
+            padding: 22px 10px;
+            border-bottom: 1px solid #e5e7eb
+        }
+
+        h2 {
+            border-left: 5px solid #2563eb;
+            padding-left: 12px
+        }
+
+        h3 {
+            margin-top: 18px
+        }
+
+        p,
+        li {
+            font-size: 17px
+        }
+
+        .image-icon {
+            min-height: 180px;
+            border: 2px dashed #94a3b8;
+            border-radius: 16px;
+            background: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin: 18px 0;
+            text-align: center
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0
+        }
+
+        th,
+        td {
+            border: 1px solid #d1d5db;
+            padding: 10px;
+            vertical-align: top
+        }
+
+        th {
+            background: #eef2ff
+        }
+
+        .note-box {
+            background: #f0fdf4;
+            border-left: 5px solid #22c55e;
+            padding: 14px;
+            border-radius: 12px;
+            margin: 16px 0
+        }
+
+        .remember-box {
+            background: #fff7ed;
+            border-left: 5px solid #f97316;
+            padding: 14px;
+            border-radius: 12px;
+            margin: 16px 0
+        }
+
+        pre {
+            background: #0f172a;
+            color: white;
+            padding: 14px;
+            border-radius: 12px;
+            overflow: auto
+        }
+
+        @media(max-width:900px) {
+            .page {
+                grid-template-columns: 1fr
+            }
+
+            .sidebar {
+                position: relative;
+                height: auto
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class='page'>
+        <aside class='sidebar'>
+            <h2>Topics</h2><a href='#intro'>Introduction to Power Supply</a>
+            <a href='#characteristics'>Operating Characteristics</a>
+            <a href='#protection'>Protection Features</a>
+            <a href='#components'>Internal Components of SMPS</a>
+            <a href='#working'>Working of SMPS</a>
+            <a href='#types'>Types of Power Supply</a>
+            <a href='#connectors'>SMPS Connectors</a>
+            <a href='#advantages'>Advantages and Limitations</a>
+            <a href='#applications'>Applications</a>
+            <a href='#maintenance'>Maintenance</a>
+            <a href='#troubleshooting'>Power Supply Troubleshooting</a>
+            <a href='#faults'>Common Fault Symptoms</a>
+            <a href='#testing'>Basic Testing Methods</a>
+            <a href='#industry'>Industry Knowledge</a>
+        </aside>
+        <main class='content'>
+            <div class='hero'>
+                <h1>Power Supply</h1>
+
+            </div>
+            <section id='intro'>
+                <h2>Introduction to Power Supply</h2>
+                <p><strong>Power Supply</strong> computer को आवश्यक regulated DC power देने वाला unit है। Desktop
+                    computer में सामान्यतः <strong>SMPS (Switched Mode Power Supply)</strong> उपयोग होती है। यह AC mains
+                    supply को +12V, +5V और +3.3V जैसी DC rails में convert करती है।</p>
+                <div class='image-icon'><img src='' alt='Computer SMPS'>
+                    <p>Image Placeholder: Computer SMPS</p>
+                </div>
+                <ul>
+                    <li>AC को DC में convert करना</li>
+                    <li>Voltage regulate करना</li>
+                    <li>Motherboard, CPU, GPU और drives को power देना</li>
+                    <li>Overload तथा short circuit protection देना</li>
+                </ul>
+                <div class='remember-box'><b>Remember:</b> SMPS पूरे computer की stability की foundation है।</div>
+            </section>
+            <section id='characteristics'>
+                <h2>Operating Characteristics</h2>
+                <p>Power supply की quality केवल wattage से नहीं, बल्कि उसकी voltage stability, efficiency, ripple
+                    control और protection features से तय होती है।</p>
+                <table>
+                    <tr>
+                        <th>Characteristic</th>
+                        <th>Meaning</th>
+                    </tr>
+                    <tr>
+                        <td>Input Voltage</td>
+                        <td>AC supply range जिसे PSU स्वीकार करती है।</td>
+                    </tr>
+                    <tr>
+                        <td>Output Voltage</td>
+                        <td>+12V, +5V, +3.3V जैसी DC rails।</td>
+                    </tr>
+                    <tr>
+                        <td>Output Current</td>
+                        <td>प्रत्येक rail की current capacity।</td>
+                    </tr>
+                    <tr>
+                        <td>Power Rating</td>
+                        <td>Total watt capacity, जैसे 450W या 650W।</td>
+                    </tr>
+                    <tr>
+                        <td>Efficiency</td>
+                        <td>Input power का useful output में conversion।</td>
+                    </tr>
+                    <tr>
+                        <td>Ripple & Noise</td>
+                        <td>DC output में unwanted fluctuations।</td>
+                    </tr>
+                    <tr>
+                        <td>Voltage Regulation</td>
+                        <td>Load बदलने पर output voltage stable रखना।</td>
+                    </tr>
+                    <tr>
+                        <td>Power Factor</td>
+                        <td>AC input power का effective utilization।</td>
+                    </tr>
+                    <tr>
+                        <td>Hold-up Time</td>
+                        <td>Input loss के बाद output कुछ समय stable रहना।</td>
+                    </tr>
+                </table>
+                <div class='image-icon'><img src='' alt='PSU Operating Characteristics'>
+                    <p>Image Placeholder: PSU Input and Output Characteristics</p>
+                </div>
+            </section>
+            <section id='protection'>
+                <h2>Protection Features</h2>
+                <table>
+                    <tr>
+                        <th>Protection</th>
+                        <th>Purpose</th>
+                    </tr>
+                    <tr>
+                        <td>OVP</td>
+                        <td>Over Voltage Protection</td>
+                    </tr>
+                    <tr>
+                        <td>UVP</td>
+                        <td>Under Voltage Protection</td>
+                    </tr>
+                    <tr>
+                        <td>OCP</td>
+                        <td>Over Current Protection</td>
+                    </tr>
+                    <tr>
+                        <td>OPP</td>
+                        <td>Over Power Protection</td>
+                    </tr>
+                    <tr>
+                        <td>SCP</td>
+                        <td>Short Circuit Protection</td>
+                    </tr>
+                    <tr>
+                        <td>OTP</td>
+                        <td>Over Temperature Protection</td>
+                    </tr>
+                </table>
+                <div class='note-box'><b>Practical Point:</b> अच्छी PSU में wattage के साथ proper protection circuits भी
+                    होने चाहिए।</div>
+            </section>
+            <section id='components'>
+                <h2>Internal Components of SMPS</h2>
+                <div class='image-icon'><img src='' alt='SMPS Components'>
+                    <p>Image Placeholder: Internal Components of SMPS</p>
+                </div>
+                <table>
+                    <tr>
+                        <th>Component</th>
+                        <th>Work</th>
+                    </tr>
+                    <tr>
+                        <td>Fuse</td>
+                        <td>Excess current पर circuit break करता है।</td>
+                    </tr>
+                    <tr>
+                        <td>EMI Filter</td>
+                        <td>Electrical noise reduce करता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Bridge Rectifier</td>
+                        <td>AC को DC में convert करता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Capacitors</td>
+                        <td>Voltage smooth और energy store करते हैं।</td>
+                    </tr>
+                    <tr>
+                        <td>MOSFET</td>
+                        <td>High-frequency switching करता है।</td>
+                    </tr>
+                    <tr>
+                        <td>PWM Controller</td>
+                        <td>Switching और regulation control करता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Transformer</td>
+                        <td>Voltage change और isolation देता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Output Filter</td>
+                        <td>Stable DC output बनाता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Heat Sink/Fan</td>
+                        <td>Heat remove करते हैं।</td>
+                    </tr>
+                </table>
+            </section>
+            <section id='working'>
+                <h2>Working of SMPS</h2>
+                <ol>
+                    <li>AC input PSU में आती है।</li>
+                    <li>EMI filter noise remove करता है।</li>
+                    <li>Rectifier AC को DC में बदलता है।</li>
+                    <li>MOSFET high-frequency switching करता है।</li>
+                    <li>Transformer voltage reduce और isolation करता है।</li>
+                    <li>Secondary rectifier output को DC बनाता है।</li>
+                    <li>Filter output smooth करता है।</li>
+                    <li>Feedback circuit voltage regulate करता है।</li>
+                </ol>
+                <pre>AC Input → EMI Filter → Rectifier → Switching Stage
+→ Transformer → Output Rectifier → Filter → DC Output</pre>
+                <div class='image-icon'><img src='' alt='SMPS Working'>
+                    <p>Image Placeholder: SMPS Working Flow</p>
+                </div>
+            </section>
+            <section id='types'>
+                <h2>Types of Power Supply</h2>
+                <table>
+                    <tr>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>Linear Power Supply</td>
+                        <td>Simple और low-noise, लेकिन less efficient।</td>
+                    </tr>
+                    <tr>
+                        <td>SMPS</td>
+                        <td>High efficiency और compact design।</td>
+                    </tr>
+                    <tr>
+                        <td>AT Power Supply</td>
+                        <td>पुरानी manual-switch design।</td>
+                    </tr>
+                    <tr>
+                        <td>ATX Power Supply</td>
+                        <td>Modern soft-power control।</td>
+                    </tr>
+                    <tr>
+                        <td>Non-Modular PSU</td>
+                        <td>सभी cables fixed।</td>
+                    </tr>
+                    <tr>
+                        <td>Semi-Modular PSU</td>
+                        <td>कुछ cables fixed, कुछ detachable।</td>
+                    </tr>
+                    <tr>
+                        <td>Fully Modular PSU</td>
+                        <td>सभी cables detachable।</td>
+                    </tr>
+                    <tr>
+                        <td>Redundant PSU</td>
+                        <td>Servers के लिए backup power modules।</td>
+                    </tr>
+                </table>
+                <div class='image-icon'><img src='' alt='Power Supply Types'>
+                    <p>Image Placeholder: ATX, Modular and Redundant PSU</p>
+                </div>
+            </section>
+            <section id='connectors'>
+                <h2>SMPS Connectors</h2>
+                <table>
+                    <tr>
+                        <th>Connector</th>
+                        <th>Purpose</th>
+                    </tr>
+                    <tr>
+                        <td>24-pin ATX</td>
+                        <td>Main motherboard power</td>
+                    </tr>
+                    <tr>
+                        <td>4/8-pin EPS</td>
+                        <td>CPU power</td>
+                    </tr>
+                    <tr>
+                        <td>PCIe 6/8-pin</td>
+                        <td>Graphics card power</td>
+                    </tr>
+                    <tr>
+                        <td>SATA Power</td>
+                        <td>HDD, SSD, optical drive</td>
+                    </tr>
+                    <tr>
+                        <td>Molex</td>
+                        <td>Old drives, fans and accessories</td>
+                    </tr>
+                    <tr>
+                        <td>Berg</td>
+                        <td>Old floppy drive</td>
+                    </tr>
+                </table>
+                <div class='image-icon'><img src='' alt='SMPS Connectors'>
+                    <p>Image Placeholder: Power Connectors</p>
+                </div>
+                <div class='remember-box'><b>Remember:</b> CPU और PCIe connectors दिखने में similar हो सकते हैं, लेकिन
+                    interchangeable नहीं हैं।</div>
+            </section>
+            <section id='advantages'>
+                <h2>Advantages and Limitations</h2>
+                <h3>Advantages</h3>
+                <ul>
+                    <li>High efficiency</li>
+                    <li>Compact size</li>
+                    <li>Less heat</li>
+                    <li>Stable regulated outputs</li>
+                    <li>Multiple voltage rails</li>
+                    <li>Protection features</li>
+                </ul>
+                <h3>Limitations</h3>
+                <ul>
+                    <li>Complex circuit</li>
+                    <li>Repair difficult</li>
+                    <li>Switching noise possible</li>
+                    <li>Low-quality PSU hardware damage कर सकती है</li>
+                    <li>Internal capacitors dangerous voltage hold कर सकते हैं</li>
+                </ul>
+            </section>
+            <section id='applications'>
+                <h2>Applications</h2>
+                <table>
+                    <tr>
+                        <th>Area</th>
+                        <th>Use</th>
+                    </tr>
+                    <tr>
+                        <td>Desktop Computer</td>
+                        <td>Motherboard, CPU, GPU और drives</td>
+                    </tr>
+                    <tr>
+                        <td>Server</td>
+                        <td>Redundant reliable power</td>
+                    </tr>
+                    <tr>
+                        <td>CCTV</td>
+                        <td>Cameras और DVR/NVR</td>
+                    </tr>
+                    <tr>
+                        <td>Network Devices</td>
+                        <td>Router, switch और access point</td>
+                    </tr>
+                    <tr>
+                        <td>Industrial Systems</td>
+                        <td>Automation and controls</td>
+                    </tr>
+                    <tr>
+                        <td>Medical Devices</td>
+                        <td>Regulated reliable power</td>
+                    </tr>
+                    <tr>
+                        <td>Gaming PC</td>
+                        <td>High-power CPU/GPU</td>
+                    </tr>
+                </table>
+                <div class='image-icon'><img src='' alt='SMPS Applications'>
+                    <p>Image Placeholder: Applications of Power Supply</p>
+                </div>
+            </section>
+            <section id='maintenance'>
+                <h2>Maintenance</h2>
+                <ul>
+                    <li>Power off और unplug करके बाहरी dust clean करें।</li>
+                    <li>Fan vents blocked न रखें।</li>
+                    <li>Cable management maintain करें।</li>
+                    <li>Loose या melted connectors inspect करें।</li>
+                    <li>UPS या surge protector use करें।</li>
+                    <li>PSU capacity से अधिक load न दें।</li>
+                    <li>Burning smell या unusual noise को ignore न करें।</li>
+                </ul>
+                <div class='image-icon'><img src='' alt='SMPS Maintenance'>
+                    <p>Image Placeholder: SMPS Cleaning and Maintenance</p>
+                </div>
+                <div class='note-box'><b>Safety Warning:</b> SMPS unplug होने के बाद भी capacitors high voltage store कर
+                    सकते हैं। इसे बिना training के open न करें।</div>
+            </section>
+            <section id='troubleshooting'>
+                <h2>Power Supply Troubleshooting</h2>
+                <div class='image-icon'><img src='' alt='PSU Troubleshooting'>
+                    <p>Image Placeholder: PSU Troubleshooting Flowchart</p>
+                </div>
+                <h3>PC Not Turning On</h3>
+                <ul>
+                    <li>Wall socket और cable check करें।</li>
+                    <li>Rear PSU switch check करें।</li>
+                    <li>24-pin तथा CPU power connector verify करें।</li>
+                    <li>Front panel power switch connection देखें।</li>
+                    <li>Known-good PSU से test करें।</li>
+                </ul>
+                <h3>Random Restart</h3>
+                <ul>
+                    <li>Insufficient wattage</li>
+                    <li>Overheating</li>
+                    <li>Loose power connectors</li>
+                    <li>Failing capacitors</li>
+                    <li>GPU power cable issue</li>
+                </ul>
+                <h3>Burning Smell or Smoke</h3>
+                <p>Immediately power disconnect करें और PSU दोबारा start न करें।</p>
+            </section>
+            <section id='faults'>
+                <h2>Common Fault Symptoms</h2>
+                <table>
+                    <tr>
+                        <th>Symptom</th>
+                        <th>Possible Cause</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr>
+                        <td>No Power</td>
+                        <td>Dead PSU, cable, switch</td>
+                        <td>External checks and replacement test</td>
+                    </tr>
+                    <tr>
+                        <td>Fan Not Rotating</td>
+                        <td>Fan failure or zero-RPM mode</td>
+                        <td>Model behavior verify करें</td>
+                    </tr>
+                    <tr>
+                        <td>Clicking Noise</td>
+                        <td>Protection cycling/fan obstruction</td>
+                        <td>Power off and inspect</td>
+                    </tr>
+                    <tr>
+                        <td>Random Reboot</td>
+                        <td>Overload or unstable output</td>
+                        <td>Load and PSU health check</td>
+                    </tr>
+                    <tr>
+                        <td>Freeze Under Load</td>
+                        <td>Insufficient PSU</td>
+                        <td>Wattage and connectors check</td>
+                    </tr>
+                </table>
+            </section>
+            <section id='testing'>
+                <h2>Basic Testing Methods</h2>
+                <ul>
+                    <li>Visual inspection</li>
+                    <li>BIOS voltage readings</li>
+                    <li>PSU tester</li>
+                    <li>Multimeter by trained person</li>
+                    <li>Known-good PSU replacement test</li>
+                </ul>
+                <div class='remember-box'><b>Remember:</b> Paperclip test केवल start signal check करता है; full-load
+                    health prove नहीं करता।</div>
+            </section>
+            <section id='industry'>
+                <h2>Industry Knowledge</h2>
+                <h3>80 PLUS Certification</h3>
+                <table>
+                    <tr>
+                        <th>Level</th>
+                        <th>Meaning</th>
+                    </tr>
+                    <tr>
+                        <td>80 PLUS</td>
+                        <td>Basic efficiency certification</td>
+                    </tr>
+                    <tr>
+                        <td>Bronze</td>
+                        <td>Improved efficiency</td>
+                    </tr>
+                    <tr>
+                        <td>Silver</td>
+                        <td>Higher efficiency</td>
+                    </tr>
+                    <tr>
+                        <td>Gold</td>
+                        <td>Popular high-quality tier</td>
+                    </tr>
+                    <tr>
+                        <td>Platinum</td>
+                        <td>Very high efficiency</td>
+                    </tr>
+                    <tr>
+                        <td>Titanium</td>
+                        <td>Top certification tier</td>
+                    </tr>
+                </table>
+                <h3>Active PFC</h3>
+                <p>Power factor improve करता है और input current waveform को better बनाता है।</p>
+                <h3>Wattage Selection</h3>
+                <p>CPU, GPU, drives, fans और future upgrades देखकर PSU choose करें। High wattage alone quality guarantee
+                    नहीं है।</p>
+                <div class='note-box'><b>Professional Tip:</b> Quality, protections, efficiency, connectors और warranty
+                    भी wattage जितने important हैं।</div>
+            </section>
+
+        </main>
+    </div>
+</body>
+
+</html>

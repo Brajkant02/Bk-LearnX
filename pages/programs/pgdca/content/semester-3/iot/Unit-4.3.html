@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arduino Part 3 Premium Notes</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f7fb;color:#1f2937;line-height:1.75}
+.page{display:grid;grid-template-columns:285px 1fr;gap:20px;max-width:1500px;margin:auto;padding:10px}
+.sidebar{position:sticky;top:10px;height:calc(100vh - 20px);overflow-y:auto;background:#fff;border-radius:16px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.08);align-self:start}
+.sidebar h2{font-size:20px;margin-bottom:12px;color:#111827}
+.sidebar a{display:block;text-decoration:none;color:#374151;padding:8px 10px;border-radius:10px;margin-bottom:4px;font-size:14.7px}
+.sidebar a:hover{background:#eef2ff;color:#1d4ed8}
+.content{background:#fff;border-radius:18px;padding:10px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.hero{padding:28px 18px;border-radius:16px;background:linear-gradient(135deg,#eef2ff,#f8fafc);margin-bottom:18px}
+.hero h1{font-size:34px;color:#111827;margin-bottom:10px}
+.hero p{font-size:18px;color:#374151}
+section{padding:22px 10px;border-bottom:1px solid #e5e7eb}
+section:last-child{border-bottom:none}
+h2{font-size:27px;color:#111827;margin-bottom:12px;border-left:5px solid #2563eb;padding-left:12px}
+h3{font-size:22px;color:#1f2937;margin:16px 0 8px}
+h4{font-size:18px;color:#111827;margin:14px 0 6px}
+p{margin:10px 0;font-size:17px}
+ul,ol{margin-left:24px;margin-top:8px}
+li{margin:7px 0;font-size:16.5px}
+strong{color:#111827}
+.image-icon{min-height:180px;border:2px dashed #94a3b8;border-radius:16px;background:#f8fafc;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;margin:18px 0;color:#475569;font-weight:600;flex-direction:column;gap:8px}
+.image-icon img{max-width:100%;height:auto}
+.note-box{background:#f0fdf4;border-left:5px solid #22c55e;border-radius:14px;padding:14px 16px;margin:16px 0}
+.info-box{background:#ecfeff;border-left:5px solid #06b6d4;border-radius:14px;padding:14px 16px;margin:16px 0}
+.remember-box{background:#fff7ed;border-left:5px solid #f97316;border-radius:14px;padding:14px 16px;margin:16px 0}
+table{width:100%;border-collapse:collapse;margin:16px 0;border-radius:12px;overflow:hidden;font-size:15.5px}
+th,td{border:1px solid #d1d5db;padding:10px;text-align:left;vertical-align:top}
+th{background:#eef2ff;color:#111827}
+code{background:#111827;color:#f9fafb;padding:2px 6px;border-radius:6px;font-family:Consolas,monospace;font-size:15px}
+pre{background:#0f172a;color:#e5e7eb;border-radius:14px;padding:16px;margin:16px 0;overflow-x:auto;font-family:Consolas,monospace;line-height:1.6}
+@media(max-width:900px){.page{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.hero h1{font-size:27px}h2{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="page">
+<aside class="sidebar">
+<h2>Topics</h2>
+<a href="#core-functions">Core Arduino Functions</a>
+<a href="#pinmode">pinMode()</a>
+<a href="#digital-io">digitalRead() and digitalWrite()</a>
+<a href="#analog-io">analogRead() and analogWrite()</a>
+<a href="#delay-millis">delay() and millis()</a>
+<a href="#serial-functions">Serial Communication Functions</a>
+<a href="#led-program">LED Blinking Program</a>
+<a href="#button-program">Push Button Program</a>
+<a href="#ldr-program">LDR Sensor Program</a>
+<a href="#temperature-program">Temperature Sensor Program</a>
+<a href="#buzzer-program">Buzzer Program</a>
+<a href="#relay-program">Relay Module Program</a>
+<a href="#servo-program">Servo Motor Program</a>
+<a href="#flowchart">Arduino Programming Flow</a>
+<a href="#common-errors">Common Arduino Errors</a>
+<a href="#best-practices">Arduino Best Practices</a>
+<a href="#industry-knowledge">Beyond Syllabus: Industry Knowledge</a>
+</aside>
+
+<main class="content">
+<div class="hero">
+<h1>Arduino - Part 3</h1>
+<p>इस final part में Arduino core functions, digital/analog input-output, delay/millis, serial communication, LED, button, LDR, temperature sensor, buzzer, relay, servo, programming flow, common errors और best practices को deep premium format में समझाया गया है।</p>
+</div>
+<section id="core-functions"><h2>Core Arduino Functions</h2>
+<p>Arduino programming में कुछ built-in functions बार-बार use होते हैं। ये functions pins configure करने, input read करने, output देने, timing control करने और serial communication handle करने के लिए use किए जाते हैं।</p>
+
+<div class="image-icon">
+  <img src="" alt="Core Arduino Functions">
+  <p>Image Placeholder: Core Arduino Functions Diagram</p>
+</div>
+
+<h4>Main Functions</h4>
+<table>
+<tr><th>Function</th><th>Use</th></tr>
+<tr><td><code>pinMode()</code></td><td>Pin को INPUT, OUTPUT या INPUT_PULLUP mode में set करता है।</td></tr>
+<tr><td><code>digitalRead()</code></td><td>Digital pin से HIGH/LOW read करता है।</td></tr>
+<tr><td><code>digitalWrite()</code></td><td>Digital pin पर HIGH/LOW output देता है।</td></tr>
+<tr><td><code>analogRead()</code></td><td>Analog pin की value read करता है।</td></tr>
+<tr><td><code>analogWrite()</code></td><td>PWM output देता है।</td></tr>
+<tr><td><code>delay()</code></td><td>Program को given milliseconds तक रोकता है।</td></tr>
+<tr><td><code>millis()</code></td><td>Board start होने के बाद elapsed milliseconds देता है।</td></tr>
+<tr><td><code>Serial.begin()</code></td><td>Serial communication start करता है।</td></tr>
+<tr><td><code>Serial.print()</code></td><td>Text/value same line पर print करता है।</td></tr>
+<tr><td><code>Serial.println()</code></td><td>Text/value print करके new line देता है।</td></tr>
+</table>
+
+<div class="remember-box"><b>Remember:</b><br>Arduino programming का बड़ा हिस्सा input read करने, logic apply करने और output control करने पर आधारित होता है।</div>
+</section>
+<section id="pinmode"><h2>pinMode()</h2>
+<p><code>pinMode()</code> function pin का working mode define करता है। Arduino को यह बताना जरूरी होता है कि कोई pin input लेगी या output देगी। यह function सामान्यतः <code>setup()</code> के अंदर use किया जाता है।</p>
+
+<h4>Syntax</h4>
+<pre>pinMode(pinNumber, mode);</pre>
+
+<h4>Modes</h4>
+<table>
+<tr><th>Mode</th><th>Meaning</th></tr>
+<tr><td><code>INPUT</code></td><td>External signal read करने के लिए।</td></tr>
+<tr><td><code>OUTPUT</code></td><td>LED, relay, buzzer आदि control करने के लिए।</td></tr>
+<tr><td><code>INPUT_PULLUP</code></td><td>Internal pull-up resistor के साथ input read करने के लिए।</td></tr>
+</table>
+
+<h4>Example</h4>
+<pre>void setup() {
+  pinMode(13, OUTPUT);
+  pinMode(2, INPUT);
+}</pre>
+
+<div class="note-box"><b>Practical Point:</b><br>Pin mode define न करने पर circuit unpredictable behave कर सकता है।</div>
+</section>
+<section id="digital-io"><h2>digitalRead() and digitalWrite()</h2>
+<p><code>digitalRead()</code> digital pin की state read करता है और <code>digitalWrite()</code> digital pin पर HIGH या LOW output देता है। ये functions buttons, switches, LEDs, relays और digital sensors में बहुत common हैं।</p>
+
+<div class="image-icon">
+  <img src="" alt="Digital Read Write">
+  <p>Image Placeholder: digitalRead and digitalWrite Flow</p>
+</div>
+
+<h4>digitalRead()</h4>
+<pre>int state = digitalRead(2);</pre>
+
+<h4>digitalWrite()</h4>
+<pre>digitalWrite(13, HIGH);
+digitalWrite(13, LOW);</pre>
+
+<h4>Button Controls LED</h4>
+<pre>int buttonPin = 2;
+int ledPin = 13;
+
+void setup() {
+  pinMode(buttonPin, INPUT_PULLUP);
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  int state = digitalRead(buttonPin);
+
+  if (state == LOW) {
+    digitalWrite(ledPin, HIGH);
+  } else {
+    digitalWrite(ledPin, LOW);
+  }
+}</pre>
+
+<div class="info-box"><b>Working:</b><br>Button press होने पर LED ON होगी, button release होने पर OFF।</div>
+</section>
+<section id="analog-io"><h2>analogRead() and analogWrite()</h2>
+<p><code>analogRead()</code> analog sensor value read करता है, जबकि <code>analogWrite()</code> PWM output देता है। Arduino Uno में analogRead value 0 से 1023 और analogWrite value 0 से 255 तक होती है।</p>
+
+<div class="image-icon">
+  <img src="" alt="Analog Read Write">
+  <p>Image Placeholder: analogRead and analogWrite Diagram</p>
+</div>
+
+<h4>analogRead()</h4>
+<pre>int value = analogRead(A0);</pre>
+
+<h4>analogWrite()</h4>
+<pre>analogWrite(9, 128);</pre>
+
+<h4>Potentiometer Controls LED Brightness</h4>
+<pre>int potPin = A0;
+int ledPin = 9;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  int sensorValue = analogRead(potPin);
+
+  int brightness = map(sensorValue, 0, 1023, 0, 255);
+
+  analogWrite(ledPin, brightness);
+}</pre>
+
+<div class="remember-box"><b>Remember:</b><br>analogWrite true analog voltage नहीं देता; यह PWM signal देता है।</div>
+</section>
+<section id="delay-millis"><h2>delay() and millis()</h2>
+<p><code>delay()</code> program को fixed time के लिए रोक देता है, जबकि <code>millis()</code> non-blocking timing के लिए use होता है। Real projects में millis अधिक useful है क्योंकि इससे program के बाकी tasks चलते रहते हैं।</p>
+
+<div class="image-icon">
+  <img src="" alt="Delay vs Millis">
+  <p>Image Placeholder: delay() vs millis()</p>
+</div>
+
+<h4>delay() Example</h4>
+<pre>digitalWrite(13, HIGH);
+delay(1000);
+digitalWrite(13, LOW);
+delay(1000);</pre>
+
+<h4>millis() Example</h4>
+<pre>unsigned long previousTime = 0;
+const long interval = 1000;
+bool ledState = false;
+
+void setup() {
+  pinMode(13, OUTPUT);
+}
+
+void loop() {
+  unsigned long currentTime = millis();
+
+  if (currentTime - previousTime >= interval) {
+    previousTime = currentTime;
+
+    ledState = !ledState;
+    digitalWrite(13, ledState);
+  }
+}</pre>
+
+<h4>Difference Table</h4>
+<table>
+<tr><th>Basis</th><th>delay()</th><th>millis()</th></tr>
+<tr><td>Working</td><td>Program रोकता है।</td><td>Elapsed time check करता है।</td></tr>
+<tr><td>Other Tasks</td><td>रुक जाते हैं।</td><td>चलते रहते हैं।</td></tr>
+<tr><td>Use</td><td>Simple beginner projects</td><td>Multiple-task projects</td></tr>
+</table>
+
+<div class="note-box"><b>Real Life Example:</b><br>Smart home में sensor reading और Wi-Fi communication साथ चलानी हो तो millis better है।</div>
+</section>
+<section id="serial-functions"><h2>Serial Communication Functions</h2>
+<p>Serial communication Arduino debugging और data exchange के लिए बहुत useful है। Arduino IDE का Serial Monitor board से values receive और commands send कर सकता है।</p>
+
+<h4>Serial.begin()</h4>
+<pre>Serial.begin(9600);</pre>
+
+<h4>Serial.print()</h4>
+<pre>Serial.print("Temperature: ");
+Serial.print(28);</pre>
+
+<h4>Serial.println()</h4>
+<pre>Serial.println("Data received");</pre>
+
+<h4>Serial.available() and Serial.read()</h4>
+<pre>if (Serial.available() > 0) {
+  char data = Serial.read();
+  Serial.println(data);
+}</pre>
+
+<h4>Serial Functions Table</h4>
+<table>
+<tr><th>Function</th><th>Use</th></tr>
+<tr><td><code>Serial.begin()</code></td><td>Communication start करता है।</td></tr>
+<tr><td><code>Serial.print()</code></td><td>Same line पर data print करता है।</td></tr>
+<tr><td><code>Serial.println()</code></td><td>New line के साथ print करता है।</td></tr>
+<tr><td><code>Serial.available()</code></td><td>Check करता है कि data available है या नहीं।</td></tr>
+<tr><td><code>Serial.read()</code></td><td>Received data read करता है।</td></tr>
+</table>
+</section>
+<section id="led-program"><h2>LED Blinking Program</h2>
+<p>LED blinking Arduino का basic output program है। इससे digital output, delay और program structure समझ में आता है।</p>
+
+<div class="image-icon">
+  <img src="" alt="LED Blinking Circuit">
+  <p>Image Placeholder: Arduino LED Blinking Circuit</p>
+</div>
+
+<h4>Connection</h4>
+<pre>Arduino Pin 13 → Resistor → LED Anode
+LED Cathode → GND</pre>
+
+<h4>Program</h4>
+<pre>int ledPin = 13;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(ledPin, HIGH);
+  delay(1000);
+
+  digitalWrite(ledPin, LOW);
+  delay(1000);
+}</pre>
+
+<div class="info-box"><b>Output:</b><br>LED एक second ON और एक second OFF होती रहेगी।</div>
+</section>
+<section id="button-program"><h2>Push Button Program</h2>
+<p>Push button digital input device है। Button की state read करके LED, buzzer या relay control किया जा सकता है।</p>
+
+<div class="image-icon">
+  <img src="" alt="Push Button Arduino Circuit">
+  <p>Image Placeholder: Push Button with Arduino</p>
+</div>
+
+<h4>Program using INPUT_PULLUP</h4>
+<pre>int buttonPin = 2;
+int ledPin = 13;
+
+void setup() {
+  pinMode(buttonPin, INPUT_PULLUP);
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  int buttonState = digitalRead(buttonPin);
+
+  if (buttonState == LOW) {
+    digitalWrite(ledPin, HIGH);
+  } else {
+    digitalWrite(ledPin, LOW);
+  }
+}</pre>
+
+<div class="remember-box"><b>Remember:</b><br>INPUT_PULLUP mode में button press होने पर reading LOW आ सकती है।</div>
+</section>
+<section id="ldr-program"><h2>LDR Sensor Program</h2>
+<p><strong>LDR</strong> यानी Light Dependent Resistor light intensity के according resistance change करता है। इसे voltage divider circuit में use करके Arduino analog pin से light level read किया जाता है।</p>
+
+<div class="image-icon">
+  <img src="" alt="LDR Arduino Circuit">
+  <p>Image Placeholder: LDR with Arduino Circuit</p>
+</div>
+
+<h4>Program</h4>
+<pre>int ldrPin = A0;
+int ledPin = 13;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int lightValue = analogRead(ldrPin);
+
+  Serial.println(lightValue);
+
+  if (lightValue < 400) {
+    digitalWrite(ledPin, HIGH);
+  } else {
+    digitalWrite(ledPin, LOW);
+  }
+
+  delay(500);
+}</pre>
+
+<h4>Application</h4>
+<p>यह circuit automatic street light system में use हो सकता है। Darkness में light ON और brightness में OFF हो सकती है।</p>
+</section>
+<section id="temperature-program"><h2>Temperature Sensor Program</h2>
+<p>Temperature sensor environment का temperature measure करता है। Analog sensor जैसे LM35 analog voltage output देता है, जिसे Arduino analog pin read करता है।</p>
+
+<div class="image-icon">
+  <img src="" alt="Temperature Sensor Arduino">
+  <p>Image Placeholder: LM35 Temperature Sensor Circuit</p>
+</div>
+
+<h4>LM35 Example</h4>
+<pre>int sensorPin = A0;
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  int sensorValue = analogRead(sensorPin);
+
+  float voltage = sensorValue * (5.0 / 1023.0);
+
+  float temperature = voltage * 100.0;
+
+  Serial.print("Temperature: ");
+  Serial.println(temperature);
+
+  delay(1000);
+}</pre>
+
+<div class="note-box"><b>Application:</b><br>Room monitoring, weather station और smart fan control।</div>
+</section>
+<section id="buzzer-program"><h2>Buzzer Program</h2>
+<p>Buzzer sound output device है। इसका use alarm, warning और notification के लिए होता है। Active buzzer simple HIGH/LOW signal से चल सकता है।</p>
+
+<div class="image-icon">
+  <img src="" alt="Buzzer Arduino Circuit">
+  <p>Image Placeholder: Buzzer with Arduino</p>
+</div>
+
+<h4>Basic Program</h4>
+<pre>int buzzerPin = 8;
+
+void setup() {
+  pinMode(buzzerPin, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(buzzerPin, HIGH);
+  delay(500);
+
+  digitalWrite(buzzerPin, LOW);
+  delay(500);
+}</pre>
+
+<h4>tone() Example</h4>
+<pre>tone(8, 1000);
+delay(1000);
+noTone(8);</pre>
+
+<div class="remember-box"><b>Remember:</b><br>Active buzzer direct HIGH/LOW से और passive buzzer tone frequency से control हो सकता है।</div>
+</section>
+<section id="relay-program"><h2>Relay Module Program</h2>
+<p><strong>Relay</strong> low-voltage Arduino signal से high-voltage/high-current device switch करने के लिए use होता है। Relay module light, fan, pump और AC appliances control कर सकता है।</p>
+
+<div class="image-icon">
+  <img src="" alt="Relay Arduino Circuit">
+  <p>Image Placeholder: Relay Module with Arduino</p>
+</div>
+
+<h4>Program</h4>
+<pre>int relayPin = 7;
+
+void setup() {
+  pinMode(relayPin, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(relayPin, HIGH);
+  delay(2000);
+
+  digitalWrite(relayPin, LOW);
+  delay(2000);
+}</pre>
+
+<h4>Safety</h4>
+<ul>
+<li>High-voltage wiring trained supervision में करें।</li>
+<li>Relay module current requirement check करें।</li>
+<li>Arduino pin से appliance direct connect न करें।</li>
+<li>Isolation और proper enclosure use करें।</li>
+</ul>
+
+<div class="note-box"><b>Real Life Example:</b><br>Smart irrigation में relay water pump ON/OFF कर सकता है।</div>
+</section>
+<section id="servo-program"><h2>Servo Motor Program</h2>
+<p>Servo motor angular position control करता है। इसका use robotic arm, smart lock, automatic gate और camera movement में होता है।</p>
+
+<div class="image-icon">
+  <img src="" alt="Servo Motor Arduino Circuit">
+  <p>Image Placeholder: Servo Motor with Arduino</p>
+</div>
+
+<h4>Program</h4>
+<pre>#include &lt;Servo.h&gt;
+
+Servo myServo;
+
+void setup() {
+  myServo.attach(9);
+}
+
+void loop() {
+  myServo.write(0);
+  delay(1000);
+
+  myServo.write(90);
+  delay(1000);
+
+  myServo.write(180);
+  delay(1000);
+}</pre>
+
+<h4>Servo Positions</h4>
+<table>
+<tr><th>Angle</th><th>Meaning</th></tr>
+<tr><td>0°</td><td>Starting position</td></tr>
+<tr><td>90°</td><td>Middle position</td></tr>
+<tr><td>180°</td><td>Maximum position</td></tr>
+</table>
+
+<div class="remember-box"><b>Remember:</b><br>Servo motor speed नहीं, angular position control करने के लिए famous है।</div>
+</section>
+<section id="flowchart"><h2>Arduino Programming Flow</h2>
+<p>Arduino program का execution fixed flow follow करता है। Board reset या power ON होने पर setup() एक बार run होता है और उसके बाद loop() repeatedly run होता है।</p>
+
+<div class="image-icon">
+  <img src="" alt="Arduino Programming Flowchart">
+  <p>Image Placeholder: Arduino Program Flowchart</p>
+</div>
+
+<h4>Flow</h4>
+<pre>Power ON / Reset
+       ↓
+Bootloader
+       ↓
+setup() runs once
+       ↓
+loop() starts
+       ↓
+Read Input
+       ↓
+Apply Condition / Logic
+       ↓
+Control Output
+       ↓
+Repeat loop()</pre>
+
+<h4>Example Logic</h4>
+<p>Sensor value read करें → condition check करें → relay/LED control करें → process repeat करें।</p>
+</section>
+<section id="common-errors"><h2>Common Arduino Errors</h2>
+<p>Arduino programming में syntax errors, upload errors और circuit errors common हैं। इन errors को categories में समझने से troubleshooting आसान होती है।</p>
+
+<div class="image-icon">
+  <img src="" alt="Arduino Common Errors">
+  <p>Image Placeholder: Arduino Error Types</p>
+</div>
+
+<h4>Programming Errors</h4>
+<table>
+<tr><th>Error</th><th>Reason</th></tr>
+<tr><td>Missing semicolon</td><td>Statement के बाद <code>;</code> नहीं लगाया।</td></tr>
+<tr><td>Variable not declared</td><td>Variable define करने से पहले use किया।</td></tr>
+<tr><td>Bracket mismatch</td><td>{ }, ( ) या [ ] properly close नहीं हुए।</td></tr>
+<tr><td>Wrong function name</td><td>Capitalization या spelling error।</td></tr>
+</table>
+
+<h4>Upload Errors</h4>
+<ul>
+<li>Wrong board selected।</li>
+<li>Wrong COM port selected।</li>
+<li>Faulty USB cable।</li>
+<li>Driver missing।</li>
+<li>Pin 0/1 पर connected module conflict।</li>
+</ul>
+
+<h4>Circuit Errors</h4>
+<ul>
+<li>GND common नहीं।</li>
+<li>LED polarity wrong।</li>
+<li>Wrong voltage level।</li>
+<li>Loose jumper wire।</li>
+<li>Wrong breadboard row।</li>
+</ul>
+
+<div class="remember-box"><b>Remember:</b><br>Arduino troubleshooting में code, board selection, port और wiring चारों check करें।</div>
+</section>
+<section id="best-practices"><h2>Arduino Best Practices</h2>
+<p>Arduino projects reliable और maintainable बनाने के लिए coding और circuit best practices follow करनी चाहिए।</p>
+
+<h4>Coding Best Practices</h4>
+<ul>
+<li>Meaningful variable names use करें।</li>
+<li>Repeated code को function में रखें।</li>
+<li>Comments लिखें।</li>
+<li>Pin numbers constants में define करें।</li>
+<li>delay() का unnecessary use avoid करें।</li>
+<li>Serial Monitor से debugging करें।</li>
+<li>Large global variables कम रखें।</li>
+</ul>
+
+<h4>Circuit Best Practices</h4>
+<ul>
+<li>Power OFF करके wiring change करें।</li>
+<li>LED के साथ resistor use करें।</li>
+<li>Voltage compatibility check करें।</li>
+<li>High-current load के लिए driver/relay use करें।</li>
+<li>Connections को labels या color-coded wires से organize करें।</li>
+</ul>
+
+<h4>Clean Code Example</h4>
+<pre>const int LED_PIN = 13;
+
+void turnLedOn() {
+  digitalWrite(LED_PIN, HIGH);
+}
+
+void turnLedOff() {
+  digitalWrite(LED_PIN, LOW);
+}</pre>
+
+<div class="note-box"><b>Professional Tip:</b><br>Project को छोटे modules में test करें—पहले sensor, फिर output, फिर complete automation।</div>
+</section>
+<section id="industry-knowledge"><h2>Beyond Syllabus: Industry Knowledge</h2>
+<p>Real IoT development में Arduino basics के साथ network communication, cloud platforms और stronger microcontrollers की knowledge useful होती है।</p>
+
+<div class="image-icon">
+  <img src="" alt="Arduino Industry Knowledge">
+  <p>Image Placeholder: Arduino to IoT Industry Flow</p>
+</div>
+
+<h4>Useful Next Technologies</h4>
+<table>
+<tr><th>Technology</th><th>Why Useful</th></tr>
+<tr><td>ESP8266</td><td>Built-in Wi-Fi IoT projects के लिए।</td></tr>
+<tr><td>ESP32</td><td>Wi-Fi, Bluetooth और more processing power।</td></tr>
+<tr><td>MQTT</td><td>Lightweight IoT messaging।</td></tr>
+<tr><td>HTTP APIs</td><td>Cloud/server communication।</td></tr>
+<tr><td>Node-RED</td><td>Visual IoT workflow creation।</td></tr>
+<tr><td>Cloud Dashboard</td><td>Remote sensor monitoring।</td></tr>
+</table>
+
+<h4>Project Development Path</h4>
+<pre>Arduino Basics
+     ↓
+Sensors and Actuators
+     ↓
+Serial Communication
+     ↓
+ESP32 / Wi-Fi
+     ↓
+MQTT or HTTP
+     ↓
+Cloud Dashboard
+     ↓
+Complete IoT Project</pre>
+
+<div class="remember-box"><b>Remember:</b><br>Arduino electronics और embedded programming की foundation है; IoT के लिए networking और cloud skills next step हैं।</div>
+</section>
+</main>
+</div>
+</body>
+</html>

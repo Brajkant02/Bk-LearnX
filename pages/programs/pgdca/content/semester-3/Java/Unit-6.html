@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Polymorphism in Java</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f5f7fb;
+            color: #1f2937;
+            line-height: 1.75
+        }
+
+        .page {
+            display: grid;
+            grid-template-columns: 285px 1fr;
+            gap: 20px;
+            max-width: 1500px;
+            margin: auto;
+            padding: 10px
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 10px;
+            height: calc(100vh - 20px);
+            overflow-y: auto;
+            background: #fff;
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
+            align-self: start
+        }
+
+        .sidebar h2 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #111827
+        }
+
+        .sidebar a {
+            display: block;
+            text-decoration: none;
+            color: #374151;
+            padding: 8px 10px;
+            border-radius: 10px;
+            margin-bottom: 4px;
+            font-size: 14.7px
+        }
+
+        .sidebar a:hover {
+            background: #eef2ff;
+            color: #1d4ed8
+        }
+
+        .content {
+            background: #fff;
+            border-radius: 18px;
+            padding: 10px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, .08)
+        }
+
+        .hero {
+            padding: 28px 18px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #eef2ff, #f8fafc);
+            margin-bottom: 18px
+        }
+
+        .hero h1 {
+            font-size: 34px;
+            color: #111827;
+            margin-bottom: 10px
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #374151
+        }
+
+        section {
+            padding: 22px 10px;
+            border-bottom: 1px solid #e5e7eb
+        }
+
+        section:last-child {
+            border-bottom: none
+        }
+
+        h2 {
+            font-size: 27px;
+            color: #111827;
+            margin-bottom: 12px;
+            border-left: 5px solid #2563eb;
+            padding-left: 12px
+        }
+
+        h3 {
+            font-size: 22px;
+            color: #1f2937;
+            margin: 16px 0 8px
+        }
+
+        h4 {
+            font-size: 18px;
+            color: #111827;
+            margin: 14px 0 6px
+        }
+
+        p {
+            margin: 10px 0;
+            font-size: 17px
+        }
+
+        ul,
+        ol {
+            margin-left: 24px;
+            margin-top: 8px
+        }
+
+        li {
+            margin: 7px 0;
+            font-size: 16.5px
+        }
+
+        strong {
+            color: #111827
+        }
+
+        .image-icon {
+            min-height: 180px;
+            border: 2px dashed #94a3b8;
+            border-radius: 16px;
+            background: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            margin: 18px 0;
+            color: #475569;
+            font-weight: 600;
+            flex-direction: column;
+            gap: 8px
+        }
+
+        .image-icon img {
+            max-width: 100%;
+            height: auto
+        }
+
+        .note-box {
+            background: #f0fdf4;
+            border-left: 5px solid #22c55e;
+            border-radius: 14px;
+            padding: 14px 16px;
+            margin: 16px 0
+        }
+
+        .info-box {
+            background: #ecfeff;
+            border-left: 5px solid #06b6d4;
+            border-radius: 14px;
+            padding: 14px 16px;
+            margin: 16px 0
+        }
+
+        .remember-box {
+            background: #fff7ed;
+            border-left: 5px solid #f97316;
+            border-radius: 14px;
+            padding: 14px 16px;
+            margin: 16px 0
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            font-size: 15.5px
+        }
+
+        th,
+        td {
+            border: 1px solid #d1d5db;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top
+        }
+
+        th {
+            background: #eef2ff;
+            color: #111827
+        }
+
+        code {
+            background: #111827;
+            color: #f9fafb;
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-family: Consolas, monospace;
+            font-size: 15px
+        }
+
+        pre {
+            background: #0f172a;
+            color: #e5e7eb;
+            border-radius: 14px;
+            padding: 16px;
+            margin: 16px 0;
+            overflow-x: auto;
+            font-family: Consolas, monospace;
+            line-height: 1.6
+        }
+
+        .compiler {
+            width: 100%;
+            height: 2rem;
+            background-color: green;
+            text-align: center
+        }
+
+        .compiler a {
+            text-decoration: none;
+            color: white
+        }
+
+        @media(max-width:900px) {
+            .page {
+                grid-template-columns: 1fr
+            }
+
+            .sidebar {
+                position: relative;
+                height: auto
+            }
+
+            .hero h1 {
+                font-size: 27px
+            }
+
+            h2 {
+                font-size: 24px
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <aside class="sidebar">
+            <h2>Topics</h2>
+            <a href="#intro">Polymorphism</a>
+            <a href="#method-overloading">Method Overloading</a>
+            <a href="#constructor-overloading">Constructor Overloading</a>
+            <a href="#method-overriding">Method Overriding</a>
+            <a href="#overloading-vs-overriding">Method Overloading vs Method Overriding</a>
+            <a href="#runtime-polymorphism">Runtime Polymorphism and Dynamic Method Dispatch</a>
+            <a href="#upcasting">Up-casting</a>
+            <a href="#downcasting">Down-casting</a>
+            <a href="#final-static-private">Overriding Restrictions</a>
+        </aside>
+        <main class="content">
+            <div class="hero">
+                <h1>Polymorphism</h1>
+            </div>
+            <section id="intro">
+                <h2>Polymorphism</h2>
+
+                <p><strong>Polymorphism</strong> object-oriented programming का एक important concept है। Polymorphism का
+                    meaning है <strong>many forms</strong>. Java में polymorphism का मतलब है कि same method name, same
+                    object reference या same operation different situations में different behavior show कर सकता है। इससे
+                    program flexible, reusable और maintainable बनता है।</p>
+                <p>Java में polymorphism mainly two types का होता है: compile-time polymorphism और runtime polymorphism.
+                    Compile-time polymorphism method overloading और constructor overloading से achieve होता है। Runtime
+                    polymorphism method overriding और dynamic method dispatch से achieve होता है।</p>
+                <div class="image-icon"><img src="" alt="Polymorphism Diagram">
+                    <p>Image Placeholder: Polymorphism Types Diagram</p>
+                </div>
+                <h4>Types of Polymorphism</h4>
+                <table>
+                    <tr>
+                        <th>Type</th>
+                        <th>Achieved By</th>
+                        <th>Decision Time</th>
+                    </tr>
+                    <tr>
+                        <td>Compile-time Polymorphism</td>
+                        <td>Method Overloading, Constructor Overloading</td>
+                        <td>Compile time</td>
+                    </tr>
+                    <tr>
+                        <td>Runtime Polymorphism</td>
+                        <td>Method Overriding</td>
+                        <td>Runtime</td>
+                    </tr>
+                </table>
+                <h4>Simple Real Life Idea</h4>
+                <p>एक word “draw” अलग-अलग objects के लिए different behavior show कर सकता है। Circle draw करे तो circle
+                    बनेगा, Rectangle draw करे तो rectangle बनेगा और Triangle draw करे तो triangle बनेगा। Same action
+                    name है, लेकिन behavior object के according change हो रहा है। यही polymorphism का basic idea है।</p>
+                <h4>Benefits of Polymorphism</h4>
+                <ul>
+                    <li>Code flexibility बढ़ती है।</li>
+                    <li>Same method name से multiple tasks perform किए जा सकते हैं।</li>
+                    <li>Runtime पर correct method call हो सकता है।</li>
+                    <li>Parent reference से child objects handle किए जा सकते हैं।</li>
+                    <li>Large applications में code maintain करना easier होता है।</li>
+                </ul>
+                <div class="remember-box"><b>Remember:</b><br>Polymorphism same name या same reference को different
+                    forms में behavior देने की ability है।</div>
+
+            </section>
+            <section id="method-overloading">
+                <h2>Method Overloading</h2>
+
+                <p><strong>Method overloading</strong> Java में compile-time polymorphism का example है। जब एक ही class
+                    में same method name के multiple methods हों, लेकिन उनके parameters अलग हों, तो उसे method
+                    overloading कहते हैं। Parameters की संख्या, type या order different हो सकता है।</p>
+                <p>Method overloading से same task के related methods को same name दिया जा सकता है। इससे code readable
+                    बनता है। For example, calculator में add method two integers, three integers या decimal values को
+                    add कर सकता है।</p>
+                <div class="image-icon"><img src="" alt="Method Overloading Diagram">
+                    <p>Image Placeholder: Method Overloading Diagram</p>
+                </div>
+                <h4>Rules of Method Overloading</h4>
+                <ul>
+                    <li>Method name same होना चाहिए।</li>
+                    <li>Parameter list different होनी चाहिए।</li>
+                    <li>Parameter number, type या order change हो सकता है।</li>
+                    <li>Only return type change करने से overloading नहीं होती।</li>
+                    <li>Method overloading same class में या inherited class में हो सकती है।</li>
+                </ul>
+                <h4>Overloading by Number of Parameters</h4>
+                <pre>class Calculator {
+    int add(int a, int b) {
+        return a + b;
+    }
+
+    int add(int a, int b, int c) {
+        return a + b + c;
+    }
+
+    public static void main(String[] args) {
+        Calculator c = new Calculator();
+
+        System.out.println(c.add(10, 20));
+        System.out.println(c.add(10, 20, 30));
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>30<br>60</div>
+                <h4>Overloading by Type of Parameters</h4>
+                <pre>class Calculator {
+    int add(int a, int b) {
+        return a + b;
+    }
+
+    double add(double a, double b) {
+        return a + b;
+    }
+
+    public static void main(String[] args) {
+        Calculator c = new Calculator();
+
+        System.out.println(c.add(5, 7));
+        System.out.println(c.add(5.5, 7.2));
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>12<br>12.7</div>
+                <h4>Overloading by Order of Parameters</h4>
+                <pre>class Display {
+    void show(String name, int age) {
+        System.out.println(name + " " + age);
+    }
+
+    void show(int age, String name) {
+        System.out.println(age + " " + name);
+    }
+
+    public static void main(String[] args) {
+        Display d = new Display();
+
+        d.show("Brajkant", 23);
+        d.show(23, "Brajkant");
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Brajkant 23<br>23 Brajkant</div>
+                <h4>Return Type Alone is Not Enough</h4>
+                <pre>class Test {
+    int show(int a) {
+        return a;
+    }
+
+    // Error: only return type changed
+    // double show(int a) {
+    //     return a;
+    // }
+}</pre>
+                <h4>Advantages</h4>
+                <ul>
+                    <li>Same logical task के लिए same method name use होता है।</li>
+                    <li>Program readability improve होती है।</li>
+                    <li>Compile-time polymorphism achieve होता है।</li>
+                    <li>Code clean और organized लगता है।</li>
+                </ul>
+                <div class="note-box"><b>Real Life Example:</b><br>Print command text, image या document को print कर
+                    सकती है। Method name same हो सकता है, लेकिन input type के according काम different हो सकता है।</div>
+                <div class="remember-box"><b>Remember:</b><br>Method overloading में method name same और parameter list
+                    different होती है।</div>
+
+            </section>
+            <section id="constructor-overloading">
+                <h2>Constructor Overloading</h2>
+
+                <p><strong>Constructor overloading</strong> तब होती है जब एक class में multiple constructors हों और उनके
+                    parameter lists different हों। Constructor overloading का use objects को different ways से
+                    initialize करने के लिए किया जाता है।</p>
+                <p>Constructor का name class name के same होता है और इसका return type नहीं होता। Constructor overloading
+                    compile-time polymorphism का example है क्योंकि compiler parameter list देखकर decide करता है कि
+                    कौन-सा constructor call होगा।</p>
+                <div class="image-icon"><img src="" alt="Constructor Overloading Diagram">
+                    <p>Image Placeholder: Constructor Overloading Diagram</p>
+                </div>
+                <h4>Example</h4>
+                <pre>class Student {
+    String name;
+    int roll;
+
+    Student() {
+        name = "Unknown";
+        roll = 0;
+    }
+
+    Student(String n) {
+        name = n;
+        roll = 0;
+    }
+
+    Student(String n, int r) {
+        name = n;
+        roll = r;
+    }
+
+    void display() {
+        System.out.println(name + " " + roll);
+    }
+
+    public static void main(String[] args) {
+        Student s1 = new Student();
+        Student s2 = new Student("Brajkant");
+        Student s3 = new Student("Amit", 102);
+
+        s1.display();
+        s2.display();
+        s3.display();
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Unknown 0<br>Brajkant 0<br>Amit 102</div>
+                <h4>Why Constructor Overloading is Used</h4>
+                <ul>
+                    <li>Object को different initial values के साथ create करने के लिए।</li>
+                    <li>Default values और custom values दोनों support करने के लिए।</li>
+                    <li>Flexible object creation के लिए।</li>
+                    <li>Code readability improve करने के लिए।</li>
+                </ul>
+                <h4>Constructor Chaining with this()</h4>
+                <pre>class Student {
+    String name;
+    int roll;
+
+    Student() {
+        this("Unknown", 0);
+    }
+
+    Student(String name, int roll) {
+        this.name = name;
+        this.roll = roll;
+    }
+
+    void display() {
+        System.out.println(name + " " + roll);
+    }
+
+    public static void main(String[] args) {
+        Student s = new Student();
+        s.display();
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Unknown 0</div>
+                <h4>Constructor Overloading vs Method Overloading</h4>
+                <table>
+                    <tr>
+                        <th>Basis</th>
+                        <th>Constructor Overloading</th>
+                        <th>Method Overloading</th>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>Constructor name class name जैसा होता है।</td>
+                        <td>Method name programmer define करता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Return Type</td>
+                        <td>No return type</td>
+                        <td>Return type required</td>
+                    </tr>
+                    <tr>
+                        <td>Calling</td>
+                        <td>Object creation पर call होता है।</td>
+                        <td>Manually call किया जाता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Purpose</td>
+                        <td>Object initialization</td>
+                        <td>Task perform करना</td>
+                    </tr>
+                </table>
+                <div class="remember-box"><b>Remember:</b><br>Constructor overloading object को multiple ways से
+                    initialize करने की facility देता है।</div>
+
+            </section>
+            <section id="method-overriding">
+                <h2>Method Overriding</h2>
+
+                <p><strong>Method overriding</strong> Java में runtime polymorphism का important concept है। जब child
+                    class parent class के method को same name, same return type और same parameters के साथ फिर से define
+                    करती है, तो इसे method overriding कहते हैं।</p>
+                <p>Overriding का use तब होता है जब parent class का method child class के लिए suitable नहीं है और child
+                    class अपना specific implementation देना चाहती है। Runtime पर object के actual type के according
+                    method call होता है।</p>
+                <div class="image-icon"><img src="" alt="Method Overriding Diagram">
+                    <p>Image Placeholder: Method Overriding Diagram</p>
+                </div>
+                <h4>Example</h4>
+                <pre>class Animal {
+    void sound() {
+        System.out.println("Animal makes sound");
+    }
+}
+
+class Dog extends Animal {
+    void sound() {
+        System.out.println("Dog barks");
+    }
+
+    public static void main(String[] args) {
+        Dog d = new Dog();
+        d.sound();
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Dog barks</div>
+                <h4>Rules of Method Overriding</h4>
+                <ul>
+                    <li>Inheritance relationship होना चाहिए।</li>
+                    <li>Method name same होना चाहिए।</li>
+                    <li>Parameter list same होनी चाहिए।</li>
+                    <li>Return type same या covariant हो सकता है।</li>
+                    <li>Access modifier parent method से more restrictive नहीं हो सकता।</li>
+                    <li>Static methods override नहीं होते, वे hide होते हैं।</li>
+                    <li>Final method override नहीं किया जा सकता।</li>
+                    <li>Private method override नहीं होता क्योंकि वह child class में accessible नहीं है।</li>
+                </ul>
+                <h4>Using @Override Annotation</h4>
+                <pre>class Animal {
+    void sound() {
+        System.out.println("Animal sound");
+    }
+}
+
+class Cat extends Animal {
+    @Override
+    void sound() {
+        System.out.println("Cat meows");
+    }
+}</pre>
+                <p><code>@Override</code> annotation compiler को बताता है कि यह method parent method को override कर रहा
+                    है। अगर method signature गलत हो, तो compiler error देता है।</p>
+                <h4>Overriding with Parent Reference</h4>
+                <pre>class Animal {
+    void sound() {
+        System.out.println("Animal sound");
+    }
+}
+
+class Dog extends Animal {
+    void sound() {
+        System.out.println("Dog barks");
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Animal a = new Dog();
+        a.sound();
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Dog barks</div>
+                <h4>super Keyword in Overriding</h4>
+                <p><code>super</code> keyword से child class parent class के overridden method को call कर सकती है।</p>
+                <pre>class Animal {
+    void sound() {
+        System.out.println("Animal sound");
+    }
+}
+
+class Dog extends Animal {
+    void sound() {
+        super.sound();
+        System.out.println("Dog barks");
+    }
+
+    public static void main(String[] args) {
+        Dog d = new Dog();
+        d.sound();
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Animal sound<br>Dog barks</div>
+                <div class="note-box"><b>Real Life Example:</b><br>Vehicle class में start() method हो सकता है। Bike और
+                    Car classes उसी method को अपने तरीके से override कर सकती हैं।</div>
+                <div class="remember-box"><b>Remember:</b><br>Method overriding में parent और child class में same
+                    method signature होता है।</div>
+
+            </section>
+            <section id="overloading-vs-overriding">
+                <h2>Method Overloading vs Method Overriding</h2>
+
+                <p>Method overloading और method overriding दोनों polymorphism से related हैं, लेकिन दोनों का purpose और
+                    working different है। Overloading same class में same method name के multiple forms देता है, जबकि
+                    overriding child class को parent method का new implementation देने की facility देता है।</p>
+                <div class="image-icon"><img src="" alt="Overloading vs Overriding Diagram">
+                    <p>Image Placeholder: Overloading vs Overriding Comparison</p>
+                </div>
+                <table>
+                    <tr>
+                        <th>Basis</th>
+                        <th>Method Overloading</th>
+                        <th>Method Overriding</th>
+                    </tr>
+                    <tr>
+                        <td>Polymorphism Type</td>
+                        <td>Compile-time polymorphism</td>
+                        <td>Runtime polymorphism</td>
+                    </tr>
+                    <tr>
+                        <td>Class Requirement</td>
+                        <td>Same class में हो सकता है।</td>
+                        <td>Inheritance जरूरी है।</td>
+                    </tr>
+                    <tr>
+                        <td>Method Name</td>
+                        <td>Same</td>
+                        <td>Same</td>
+                    </tr>
+                    <tr>
+                        <td>Parameter List</td>
+                        <td>Different</td>
+                        <td>Same</td>
+                    </tr>
+                    <tr>
+                        <td>Return Type</td>
+                        <td>Alone change enough नहीं।</td>
+                        <td>Same या covariant return type।</td>
+                    </tr>
+                    <tr>
+                        <td>Decision Time</td>
+                        <td>Compile time</td>
+                        <td>Runtime</td>
+                    </tr>
+                    <tr>
+                        <td>Purpose</td>
+                        <td>Same task को different inputs के साथ perform करना।</td>
+                        <td>Parent method को child-specific behavior देना।</td>
+                    </tr>
+                    <tr>
+                        <td>Keyword</td>
+                        <td>No special keyword</td>
+                        <td><code>@Override</code> annotation useful है।</td>
+                    </tr>
+                </table>
+                <h4>Overloading Example</h4>
+                <pre>class Test {
+    void show(int a) {
+        System.out.println(a);
+    }
+
+    void show(String s) {
+        System.out.println(s);
+    }
+}</pre>
+                <h4>Overriding Example</h4>
+                <pre>class Parent {
+    void show() {
+        System.out.println("Parent");
+    }
+}
+
+class Child extends Parent {
+    void show() {
+        System.out.println("Child");
+    }
+}</pre>
+                <div class="remember-box"><b>Remember:</b><br>Overloading parameters बदलता है, overriding behavior बदलता
+                    है।</div>
+
+            </section>
+            <section id="runtime-polymorphism">
+                <h2>Runtime Polymorphism and Dynamic Method Dispatch</h2>
+
+                <p><strong>Runtime polymorphism</strong> वह process है जिसमें method call runtime पर object के actual
+                    type के according decide होता है। Java में यह method overriding और parent class reference के through
+                    achieve होता है। इसे dynamic method dispatch भी कहा जाता है।</p>
+                <p>जब parent class reference child class object को refer करता है और overridden method call होता है, तो
+                    Java runtime पर decide करती है कि child class वाला method execute होगा।</p>
+                <div class="image-icon"><img src="" alt="Dynamic Method Dispatch Diagram">
+                    <p>Image Placeholder: Dynamic Method Dispatch Diagram</p>
+                </div>
+                <h4>Example</h4>
+                <pre>class Shape {
+    void draw() {
+        System.out.println("Drawing shape");
+    }
+}
+
+class Circle extends Shape {
+    void draw() {
+        System.out.println("Drawing circle");
+    }
+}
+
+class Rectangle extends Shape {
+    void draw() {
+        System.out.println("Drawing rectangle");
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Shape s;
+
+        s = new Circle();
+        s.draw();
+
+        s = new Rectangle();
+        s.draw();
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Drawing circle<br>Drawing rectangle</div>
+                <h4>Explanation</h4>
+                <p>यहाँ reference variable <code>s</code> का type <code>Shape</code> है, लेकिन runtime पर यह पहले
+                    <code>Circle</code> object और फिर <code>Rectangle</code> object को refer कर रहा है। इसलिए
+                    <code>draw()</code> method का behavior object के according change हो रहा है।</p>
+                <h4>Benefits</h4>
+                <ul>
+                    <li>Flexible code design possible होता है।</li>
+                    <li>Parent reference से multiple child objects handle किए जा सकते हैं।</li>
+                    <li>Runtime पर correct method execute होता है।</li>
+                    <li>Extensible applications बनाना आसान होता है।</li>
+                </ul>
+                <div class="note-box"><b>Real Life Example:</b><br>Payment reference UPI, Card या NetBanking object को
+                    refer कर सकता है और pay() method हर object के according अलग behavior show कर सकता है।</div>
+                <div class="remember-box"><b>Remember:</b><br>Runtime polymorphism में method call object के actual type
+                    पर depend करता है, reference type पर नहीं।</div>
+
+            </section>
+            <section id="upcasting">
+                <h2>Up-casting</h2>
+
+                <p><strong>Up-casting</strong> वह process है जिसमें child class object को parent class reference में
+                    store किया जाता है। Java में up-casting automatically हो सकती है क्योंकि child object parent type का
+                    भी होता है। इसे safe casting माना जाता है।</p>
+                <p>Up-casting runtime polymorphism में बहुत important है। Parent reference child object को refer कर सकता
+                    है और overridden methods runtime पर child class के according execute हो सकते हैं।</p>
+                <div class="image-icon"><img src="" alt="Upcasting Diagram">
+                    <p>Image Placeholder: Up-casting Diagram</p>
+                </div>
+                <h4>Syntax</h4>
+                <pre>Parent reference = new Child();</pre>
+                <h4>Example</h4>
+                <pre>class Animal {
+    void eat() {
+        System.out.println("Animal eats");
+    }
+}
+
+class Dog extends Animal {
+    void bark() {
+        System.out.println("Dog barks");
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Animal a = new Dog();   // Up-casting
+
+        a.eat();
+        // a.bark(); // Error
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Animal eats</div>
+                <h4>Important Point</h4>
+                <p>Up-casted reference parent class के members को access कर सकता है। Child class के special methods
+                    direct access नहीं हो सकते, unless वे parent में declared/overridden हों।</p>
+                <h4>Up-casting with Overriding</h4>
+                <pre>class Animal {
+    void sound() {
+        System.out.println("Animal sound");
+    }
+}
+
+class Dog extends Animal {
+    void sound() {
+        System.out.println("Dog barks");
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Animal a = new Dog();
+
+        a.sound();
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Dog barks</div>
+                <h4>Why Up-casting is Used</h4>
+                <ul>
+                    <li>Runtime polymorphism achieve करने के लिए।</li>
+                    <li>Parent reference से multiple child objects handle करने के लिए।</li>
+                    <li>Flexible और generalized code लिखने के लिए।</li>
+                    <li>Collections और method arguments में parent type use करने के लिए।</li>
+                </ul>
+                <h4>Example with Method Argument</h4>
+                <pre>class Animal {
+    void sound() {
+        System.out.println("Animal sound");
+    }
+}
+
+class Dog extends Animal {
+    void sound() {
+        System.out.println("Dog barks");
+    }
+}
+
+class Cat extends Animal {
+    void sound() {
+        System.out.println("Cat meows");
+    }
+}
+
+class Main {
+    static void makeSound(Animal a) {
+        a.sound();
+    }
+
+    public static void main(String[] args) {
+        makeSound(new Dog());
+        makeSound(new Cat());
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Dog barks<br>Cat meows</div>
+                <div class="remember-box"><b>Remember:</b><br>Up-casting child object को parent reference में store करना
+                    है और यह automatically safe होता है।</div>
+
+            </section>
+            <section id="downcasting">
+                <h2>Down-casting</h2>
+
+                <p><strong>Down-casting</strong> वह process है जिसमें parent class reference को child class reference
+                    में convert किया जाता है। Down-casting manually करनी पड़ती है और यह तभी safe होती है जब parent
+                    reference actually child object को refer कर रहा हो। गलत down-casting से
+                    <code>ClassCastException</code> आ सकता है।</p>
+                <p>Down-casting का use तब किया जाता है जब up-casted reference से child class के special methods access
+                    करने हों। Parent reference normally child-specific methods access नहीं कर सकता।</p>
+                <div class="image-icon"><img src="" alt="Downcasting Diagram">
+                    <p>Image Placeholder: Down-casting Diagram</p>
+                </div>
+                <h4>Syntax</h4>
+                <pre>Child childRef = (Child) parentRef;</pre>
+                <h4>Example</h4>
+                <pre>class Animal {
+    void eat() {
+        System.out.println("Animal eats");
+    }
+}
+
+class Dog extends Animal {
+    void bark() {
+        System.out.println("Dog barks");
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Animal a = new Dog();   // Up-casting
+
+        Dog d = (Dog) a;        // Down-casting
+
+        d.eat();
+        d.bark();
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Animal eats<br>Dog barks</div>
+                <h4>Wrong Down-casting</h4>
+                <pre>class Animal { }
+
+class Dog extends Animal { }
+
+class Cat extends Animal { }
+
+class Main {
+    public static void main(String[] args) {
+        Animal a = new Cat();
+
+        // Dog d = (Dog) a; // Runtime error: ClassCastException
+    }
+}</pre>
+                <h4>Using instanceof Before Down-casting</h4>
+                <p><code>instanceof</code> operator check करता है कि object किसी particular class का instance है या
+                    नहीं। Down-casting से पहले इसका use safe practice है।</p>
+                <pre>class Animal { }
+
+class Dog extends Animal {
+    void bark() {
+        System.out.println("Dog barks");
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Animal a = new Dog();
+
+        if (a instanceof Dog) {
+            Dog d = (Dog) a;
+            d.bark();
+        }
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Dog barks</div>
+                <h4>Up-casting vs Down-casting</h4>
+                <table>
+                    <tr>
+                        <th>Basis</th>
+                        <th>Up-casting</th>
+                        <th>Down-casting</th>
+                    </tr>
+                    <tr>
+                        <td>Direction</td>
+                        <td>Child to Parent</td>
+                        <td>Parent to Child</td>
+                    </tr>
+                    <tr>
+                        <td>Type</td>
+                        <td>Automatic</td>
+                        <td>Manual</td>
+                    </tr>
+                    <tr>
+                        <td>Safety</td>
+                        <td>Generally safe</td>
+                        <td>Risky if object type wrong</td>
+                    </tr>
+                    <tr>
+                        <td>Use</td>
+                        <td>Runtime polymorphism</td>
+                        <td>Child-specific members access</td>
+                    </tr>
+                    <tr>
+                        <td>Example</td>
+                        <td><code>Animal a = new Dog();</code></td>
+                        <td><code>Dog d = (Dog) a;</code></td>
+                    </tr>
+                </table>
+                <div class="note-box"><b>Real Life Example:</b><br>Animal reference से general animal behavior access
+                    होगा, लेकिन अगर actual object Dog है और bark() call करना है, तो Dog में down-cast करना पड़ेगा।</div>
+                <div class="remember-box"><b>Remember:</b><br>Down-casting से पहले <code>instanceof</code> use करना safe
+                    practice है।</div>
+
+            </section>
+            <section id="final-static-private">
+                <h2>Overriding Restrictions</h2>
+
+                <p>Java में हर method override नहीं किया जा सकता। कुछ methods जैसे final, static और private methods
+                    overriding के normal rules follow नहीं करते। इन restrictions को समझना important है क्योंकि exam में
+                    अक्सर पूछा जाता है कि कौन-से methods override हो सकते हैं और कौन-से नहीं।</p>
+                <h4>Final Method Cannot Be Overridden</h4>
+                <pre>class Parent {
+    final void show() {
+        System.out.println("Final method");
+    }
+}
+
+class Child extends Parent {
+    // void show() { } // Error
+}</pre>
+                <p><code>final</code> method को child class override नहीं कर सकती।</p>
+                <h4>Static Method is Hidden, Not Overridden</h4>
+                <pre>class Parent {
+    static void show() {
+        System.out.println("Parent static method");
+    }
+}
+
+class Child extends Parent {
+    static void show() {
+        System.out.println("Child static method");
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Parent p = new Child();
+        p.show();
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Parent static method</div>
+                <p>Static methods class से belong करते हैं, object से नहीं। इसलिए इन्हें override नहीं माना जाता; इसे
+                    method hiding कहा जाता है।</p>
+                <h4>Private Method is Not Overridden</h4>
+                <pre>class Parent {
+    private void show() {
+        System.out.println("Parent private method");
+    }
+}
+
+class Child extends Parent {
+    void show() {
+        System.out.println("Child method");
+    }
+}</pre>
+                <p>Private method parent class के बाहर accessible नहीं होता, इसलिए child class वाला method new method
+                    माना जाएगा, overriding नहीं।</p>
+                <h4>Restriction Table</h4>
+                <table>
+                    <tr>
+                        <th>Method Type</th>
+                        <th>Override Possible?</th>
+                        <th>Reason</th>
+                    </tr>
+                    <tr>
+                        <td>Final Method</td>
+                        <td>No</td>
+                        <td>Final method change नहीं किया जा सकता।</td>
+                    </tr>
+                    <tr>
+                        <td>Static Method</td>
+                        <td>No</td>
+                        <td>Method hiding होती है, overriding नहीं।</td>
+                    </tr>
+                    <tr>
+                        <td>Private Method</td>
+                        <td>No</td>
+                        <td>Child class में accessible नहीं होता।</td>
+                    </tr>
+                    <tr>
+                        <td>Public/Protected Method</td>
+                        <td>Yes</td>
+                        <td>Inherited और accessible होते हैं।</td>
+                    </tr>
+                </table>
+                <div class="remember-box"><b>Remember:</b><br>Final method override नहीं होता, static method hide होता
+                    है और private method inherit होकर direct override नहीं होता।</div>
+
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>

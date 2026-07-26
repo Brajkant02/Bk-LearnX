@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introduction and Features of Java</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+      line-height: 1.75
+    }
+
+    .page {
+      display: grid;
+      grid-template-columns: 285px 1fr;
+      gap: 20px;
+      max-width: 1500px;
+      margin: auto;
+      padding: 10px
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 10px;
+      height: calc(100vh - 20px);
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
+      align-self: start
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #111827
+    }
+
+    .sidebar a {
+      display: block;
+      text-decoration: none;
+      color: #374151;
+      padding: 8px 10px;
+      border-radius: 10px;
+      margin-bottom: 4px;
+      font-size: 14.7px
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+      color: #1d4ed8
+    }
+
+    .content {
+      background: #fff;
+      border-radius: 18px;
+      padding: 10px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08)
+    }
+
+    .hero {
+      padding: 28px 18px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #eef2ff, #f8fafc);
+      margin-bottom: 18px
+    }
+
+    .hero h1 {
+      font-size: 34px;
+      color: #111827;
+      margin-bottom: 10px
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #374151
+    }
+
+    section {
+      padding: 22px 10px;
+      border-bottom: 1px solid #e5e7eb
+    }
+
+    section:last-child {
+      border-bottom: none
+    }
+
+    h2 {
+      font-size: 27px;
+      color: #111827;
+      margin-bottom: 12px;
+      border-left: 5px solid #2563eb;
+      padding-left: 12px
+    }
+
+    h3 {
+      font-size: 22px;
+      color: #1f2937;
+      margin: 16px 0 8px
+    }
+
+    h4 {
+      font-size: 18px;
+      color: #111827;
+      margin: 14px 0 6px
+    }
+
+    p {
+      margin: 10px 0;
+      font-size: 17px
+    }
+
+    ul,
+    ol {
+      margin-left: 24px;
+      margin-top: 8px
+    }
+
+    li {
+      margin: 7px 0;
+      font-size: 16.5px
+    }
+
+    strong {
+      color: #111827
+    }
+
+    .image-icon {
+      min-height: 180px;
+      border: 2px dashed #94a3b8;
+      border-radius: 16px;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      margin: 18px 0;
+      color: #475569;
+      font-weight: 600;
+      flex-direction: column;
+      gap: 8px
+    }
+
+    .image-icon img {
+      max-width: 100%;
+      height: auto
+    }
+
+    .note-box {
+      background: #f0fdf4;
+      border-left: 5px solid #22c55e;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .info-box {
+      background: #ecfeff;
+      border-left: 5px solid #06b6d4;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .remember-box {
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      font-size: 15.5px
+    }
+
+    th,
+    td {
+      border: 1px solid #d1d5db;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top
+    }
+
+    th {
+      background: #eef2ff;
+      color: #111827
+    }
+
+    code {
+      background: #111827;
+      color: #f9fafb;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-family: Consolas, monospace;
+      font-size: 15px
+    }
+
+    pre {
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 14px;
+      padding: 16px;
+      margin: 16px 0;
+      overflow-x: auto;
+      font-family: Consolas, monospace;
+      line-height: 1.6
+    }
+
+    .compiler {
+      width: 100%;
+      height: 2rem;
+      background-color: green;
+      text-align: center
+    }
+
+    .compiler a {
+      text-decoration: none;
+      color: white
+    }
+
+    @media(max-width:900px) {
+      .page {
+        grid-template-columns: 1fr
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto
+      }
+
+      .hero h1 {
+        font-size: 27px
+      }
+
+      h2 {
+        font-size: 24px
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <h2>Topics</h2>
+      <a href="#java-introduction">Introduction to Java</a>
+      <a href="#history">Brief History of Java</a>
+      <a href="#uses">Uses of Java</a>
+      <a href="#platform">Java Platform</a>
+      <a href="#features">Features of Java</a>
+      <a href="#pop">Procedure-Oriented Programming</a>
+      <a href="#oop">Object-Oriented Programming</a>
+      <a href="#pop-vs-oop">POP vs OOP</a>
+      <a href="#oop-concepts">OOP Concepts</a>
+      <a href="#class">Class</a>
+      <a href="#object">Object</a>
+      <a href="#reference">Object Reference</a>
+      <a href="#abstraction">Abstraction</a>
+      <a href="#encapsulation">Encapsulation</a>
+      <a href="#inheritance">Inheritance</a>
+      <a href="#polymorphism">Polymorphism</a>
+      <a href="#eclipse">Introduction of Eclipse IDE</a>
+    </aside>
+
+    <main class="content">
+      <div class="hero">
+        <h1>Introduction and Features</h1>
+      </div>
+
+      <section id="java-introduction">
+        <h2>Introduction to Java</h2>
+        <p><strong>Java</strong> एक high-level, object-oriented, secure और platform independent programming language है।
+          इसका use desktop applications, web applications, mobile applications, enterprise applications, banking
+          systems, Android apps और server-side software development में किया जाता है। Java का design इस तरह किया गया है
+          कि एक बार लिखा गया program अलग-अलग operating systems पर run हो सके। इसी idea को commonly <strong>Write Once,
+            Run Anywhere</strong> कहा जाता है।</p>
+        <p>Java में programs classes और objects के concept पर based होते हैं। इसका मतलब है कि Java real-world entities
+          को program के अंदर represent करने की facility देती है। For example, Student, Book, Account, Employee और
+          Product जैसे real-world objects को Java में class और object की help से represent किया जा सकता है।</p>
+        <p>Java की सबसे बड़ी strength इसकी platform independence है। Java source code पहले bytecode में convert होता है
+          और फिर JVM यानी Java Virtual Machine उस bytecode को run करती है। इसी वजह से Java program Windows, Linux, Mac
+          जैसे अलग-अलग platforms पर run हो सकता है, अगर वहाँ JVM available है।</p>
+        <div class="image-icon"><img src="" alt="Java Introduction Diagram">
+          <p>Image Placeholder: Java Introduction / Java Logo</p>
+        </div>
+        <h4>Basic Java Program</h4>
+        <pre>class Main {
+    public static void main(String[] args) {
+        System.out.println("Welcome to Java");
+    }
+}</pre>
+        <div class="info-box"><b>Output:</b><br>Welcome to Java</div>
+        <h4>Important Points</h4>
+        <ul>
+          <li>Java एक object-oriented programming language है।</li>
+          <li>Java platform independent language मानी जाती है।</li>
+          <li>Java program पहले bytecode में convert होता है।</li>
+          <li>Bytecode को JVM execute करती है।</li>
+          <li>Java का use small programs से लेकर large enterprise applications तक में होता है।</li>
+        </ul>
+        <div class="note-box"><b>Real Life Example:</b><br>Banking software में accounts, customers, transactions और
+          loans जैसे entities होते हैं। Java में इन्हें classes और objects के form में represent करके secure और reliable
+          application बनाया जा सकता है।</div>
+        <div class="remember-box"><b>Remember:</b><br>Java का main idea है कि program को एक बार लिखो और JVM की help से
+          अलग-अलग platforms पर run करो।</div>
+      </section>
+
+      <section id="history">
+        <h2>Brief History of Java</h2>
+        <p>Java का development 1990s में Sun Microsystems में हुआ था। Java को James Gosling और उनकी team ने develop
+          किया। शुरुआत में इसका नाम <strong>Oak</strong> रखा गया था, लेकिन बाद में इसका नाम Java कर दिया गया। Java को
+          originally embedded systems और electronic devices के लिए design किया गया था, लेकिन internet और web
+          applications के growth के साथ Java बहुत popular हो गई।</p>
+        <p>Java का first official version 1995 में release हुआ। उस time Java का platform independent nature बहुत
+          important था क्योंकि internet पर अलग-अलग types के computers और operating systems connected थे। Java ने
+          developers को ऐसा software बनाने की facility दी जो अलग-अलग machines पर run हो सके।</p>
+        <div class="image-icon"><img src="" alt="Java History Timeline">
+          <p>Image Placeholder: Java History Timeline</p>
+        </div>
+        <h4>History Points</h4>
+        <table>
+          <tr>
+            <th>Point</th>
+            <th>Detail</th>
+          </tr>
+          <tr>
+            <td>Developer</td>
+            <td>James Gosling and team</td>
+          </tr>
+          <tr>
+            <td>Company</td>
+            <td>Sun Microsystems</td>
+          </tr>
+          <tr>
+            <td>Old Name</td>
+            <td>Oak</td>
+          </tr>
+          <tr>
+            <td>Official Release</td>
+            <td>1995</td>
+          </tr>
+          <tr>
+            <td>Main Idea</td>
+            <td>Platform independent programming</td>
+          </tr>
+        </table>
+        <div class="remember-box"><b>Remember:</b><br>Java को James Gosling ने Sun Microsystems में develop किया था और
+          इसका old name Oak था।</div>
+      </section>
+
+      <section id="uses">
+        <h2>Uses of Java</h2>
+        <p>Java एक general-purpose programming language है, इसलिए इसका use कई areas में किया जाता है। Java की security,
+          reliability, object-oriented nature और platform independence के कारण यह large applications के लिए बहुत
+          suitable है। Banking, insurance, education, e-commerce, Android development और enterprise software में Java
+          लंबे समय से use होती रही है।</p>
+        <table>
+          <tr>
+            <th>Area</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td>Desktop Applications</td>
+            <td>GUI based software बनाने के लिए।</td>
+          </tr>
+          <tr>
+            <td>Web Applications</td>
+            <td>Server-side web applications develop करने के लिए।</td>
+          </tr>
+          <tr>
+            <td>Android Applications</td>
+            <td>Android apps development में Java का use होता है।</td>
+          </tr>
+          <tr>
+            <td>Enterprise Applications</td>
+            <td>Banking, insurance और business software बनाने के लिए।</td>
+          </tr>
+          <tr>
+            <td>Scientific Applications</td>
+            <td>Calculation और data processing based systems में।</td>
+          </tr>
+          <tr>
+            <td>Web Services</td>
+            <td>APIs और backend services बनाने के लिए।</td>
+          </tr>
+        </table>
+        <div class="note-box"><b>Real Life Example:</b><br>किसी college management system में student admission, fees,
+          attendance, result और login system जैसे modules Java से बनाए जा सकते हैं।</div>
+      </section>
+
+      <section id="platform">
+        <h2>Java Platform</h2>
+        <p>Java platform उन tools और technologies का collection है जिनकी help से Java programs develop और run किए जाते
+          हैं। Java platform में mainly <strong>JDK</strong>, <strong>JRE</strong> और <strong>JVM</strong> आते हैं। इस
+          introduction chapter में इन्हें सिर्फ overview level पर समझना sufficient है। आगे Java installation और
+          programming chapters में इन्हें ज्यादा clearly समझा जा सकता है।</p>
+        <div class="image-icon"><img src="" alt="JDK JRE JVM Diagram">
+          <p>Image Placeholder: JDK, JRE and JVM Diagram</p>
+        </div>
+        <h4>JDK</h4>
+        <p><strong>JDK</strong> का full form <strong>Java Development Kit</strong> है। यह Java programs develop करने के
+          लिए required tools provide करता है। इसमें compiler, debugger और other development tools होते हैं।</p>
+        <h4>JRE</h4>
+        <p><strong>JRE</strong> का full form <strong>Java Runtime Environment</strong> है। यह Java program run करने के
+          लिए environment provide करता है। JRE में JVM और required libraries included होती हैं।</p>
+        <h4>JVM</h4>
+        <p><strong>JVM</strong> का full form <strong>Java Virtual Machine</strong> है। JVM Java bytecode को machine
+          understandable instructions में convert करके execute करती है।</p>
+        <h4>Java Program Execution Overview</h4>
+        <pre>Java Source Code (.java)
+          ↓
+Java Compiler
+          ↓
+Bytecode (.class)
+          ↓
+JVM
+          ↓
+Program Output</pre>
+        <table>
+          <tr>
+            <th>Term</th>
+            <th>Full Form</th>
+            <th>Work</th>
+          </tr>
+          <tr>
+            <td>JDK</td>
+            <td>Java Development Kit</td>
+            <td>Java program develop और compile करने के लिए।</td>
+          </tr>
+          <tr>
+            <td>JRE</td>
+            <td>Java Runtime Environment</td>
+            <td>Java program run करने के लिए environment देता है।</td>
+          </tr>
+          <tr>
+            <td>JVM</td>
+            <td>Java Virtual Machine</td>
+            <td>Bytecode को execute करती है।</td>
+          </tr>
+        </table>
+        <div class="remember-box"><b>Remember:</b><br>JDK development के लिए, JRE running के लिए और JVM bytecode
+          execution के लिए होता है।</div>
+      </section>
+
+      <section id="features">
+        <h2>Features of Java</h2>
+        <p>Java की popularity का main reason इसकी powerful features हैं। Java को simple, secure, robust, portable और
+          object-oriented बनाया गया है। नीचे Java के important features को introduction level पर explain किया गया है।
+        </p>
+        <div class="image-icon"><img src="" alt="Features of Java Diagram">
+          <p>Image Placeholder: Features of Java Diagram</p>
+        </div>
+        <h4>Simple</h4>
+        <p>Java को simple language माना जाता है क्योंकि इसकी syntax C और C++ से inspired है, लेकिन इसमें complex
+          features जैसे pointer और multiple inheritance through classes को avoid किया गया है। Java में memory management
+          भी mostly automatic garbage collection से होता है।</p>
+        <h4>Object-Oriented</h4>
+        <p>Java object-oriented language है। इसमें program classes और objects के around design किया जाता है। OOP
+          approach से code को modular, reusable और maintainable बनाया जा सकता है।</p>
+        <h4>Platform Independent</h4>
+        <p>Java platform independent है क्योंकि Java source code compile होकर bytecode में convert होता है। यह bytecode
+          किसी भी platform पर JVM की help से run हो सकता है।</p>
+        <h4>Secure</h4>
+        <p>Java security features provide करती है। Java में explicit pointer support नहीं होता, जिससे direct memory
+          access की risk कम हो जाती है। JVM bytecode verification करती है।</p>
+        <h4>Robust</h4>
+        <p>Robust का मतलब strong और reliable होता है। Java strong memory management, exception handling और type checking
+          provide करती है। Garbage collector unused objects को memory से remove करता है।</p>
+        <h4>Portable</h4>
+        <p>Java portable language है क्योंकि Java bytecode different platforms पर move किया जा सकता है। Java में data
+          types का size fixed होता है, जिससे behavior consistent रहता है।</p>
+        <h4>Architecture Neutral</h4>
+        <p>Java compiler architecture-independent bytecode generate करता है। यह bytecode किसी specific processor या
+          machine architecture पर dependent नहीं होता।</p>
+        <h4>High Performance</h4>
+        <p>Java में Just-In-Time compiler की help से performance improve होती है। JIT compiler frequently used bytecode
+          को native machine code में convert कर सकता है।</p>
+        <h4>Multithreaded</h4>
+        <p>Java multithreading support करती है। Multithreading की help से program में multiple tasks एक साथ run हो सकते
+          हैं।</p>
+        <h4>Distributed</h4>
+        <p>Java distributed applications बनाने में support करती है। Distributed application में program के parts अलग-अलग
+          systems पर run कर सकते हैं।</p>
+        <h4>Dynamic</h4>
+        <p>Java runtime पर classes load कर सकती है और changing environment में adapt कर सकती है।</p>
+        <h4>Interpreted</h4>
+        <p>Java source code पहले bytecode में compile होता है और फिर JVM उस bytecode को interpret या execute करती है।
+        </p>
+        <table>
+          <tr>
+            <th>Feature</th>
+            <th>Short Meaning</th>
+          </tr>
+          <tr>
+            <td>Simple</td>
+            <td>Easy syntax और reduced complexity।</td>
+          </tr>
+          <tr>
+            <td>Object-Oriented</td>
+            <td>Classes और objects पर based programming।</td>
+          </tr>
+          <tr>
+            <td>Platform Independent</td>
+            <td>Bytecode JVM पर different platforms में run हो सकता है।</td>
+          </tr>
+          <tr>
+            <td>Secure</td>
+            <td>Controlled execution और memory safety।</td>
+          </tr>
+          <tr>
+            <td>Robust</td>
+            <td>Strong error handling और memory management।</td>
+          </tr>
+          <tr>
+            <td>Portable</td>
+            <td>Program different systems पर move हो सकता है।</td>
+          </tr>
+          <tr>
+            <td>Multithreaded</td>
+            <td>Multiple tasks simultaneously run कर सकता है।</td>
+          </tr>
+        </table>
+      </section>
+
+      <section id="pop">
+        <h2>Procedure-Oriented Programming</h2>
+        <p><strong>Procedure-Oriented Programming</strong> या <strong>POP</strong> एक programming approach है जिसमें
+          program को procedures या functions के group के रूप में design किया जाता है। इसमें main focus functions पर होता
+          है। Data और functions अलग-अलग हो सकते हैं। Program का execution step-by-step होता है और functions को required
+          order में call किया जाता है।</p>
+        <p>POP approach छोटे और simple programs के लिए useful हो सकती है। C language procedure-oriented programming का
+          common example मानी जाती है। लेकिन large projects में data security और maintenance की problems आ सकती हैं।</p>
+        <div class="image-icon"><img src="" alt="Procedure Oriented Programming Diagram">
+          <p>Image Placeholder: POP Working Diagram</p>
+        </div>
+        <h4>Characteristics of POP</h4>
+        <ul>
+          <li>Program functions या procedures में divide होता है।</li>
+          <li>Main focus functions पर होता है।</li>
+          <li>Data और functions अलग-अलग रखे जा सकते हैं।</li>
+          <li>Top-down approach follow करता है।</li>
+          <li>Small programs के लिए suitable हो सकता है।</li>
+        </ul>
+        <div class="remember-box"><b>Remember:</b><br>POP में focus functions/procedures पर होता है, objects पर नहीं।
+        </div>
+      </section>
+
+      <section id="oop">
+        <h2>Object-Oriented Programming</h2>
+        <p><strong>Object-Oriented Programming</strong> या <strong>OOP</strong> एक programming approach है जिसमें
+          program को objects के रूप में design किया जाता है। Object real-world entity को represent करता है। Object में
+          data और behavior दोनों हो सकते हैं। Data को attributes या fields कहा जाता है और behavior को methods कहा जाता
+          है।</p>
+        <p>OOP large software development के लिए बहुत useful है क्योंकि इसमें program को modular और reusable बनाया जा
+          सकता है। OOP में data और methods को class के अंदर combine किया जाता है।</p>
+        <div class="image-icon"><img src="" alt="Object Oriented Programming Diagram">
+          <p>Image Placeholder: OOP Working Diagram</p>
+        </div>
+        <h4>Characteristics of OOP</h4>
+        <ul>
+          <li>Program objects के around design होता है।</li>
+          <li>Data और methods class में bind होते हैं।</li>
+          <li>Code reuse possible होता है।</li>
+          <li>Large applications के लिए suitable होता है।</li>
+        </ul>
+        <div class="remember-box"><b>Remember:</b><br>OOP में focus objects पर होता है, जो data और behavior दोनों को
+          represent करते हैं।</div>
+      </section>
+
+      <section id="pop-vs-oop">
+        <h2>Procedure-Oriented Programming Vs. Object-Oriented Programming</h2>
+        <p>POP और OOP दोनों programming approaches हैं, लेकिन इनका design style अलग होता है। POP functions पर focus करता
+          है, जबकि OOP objects पर focus करता है।</p>
+        <div class="image-icon"><img src="" alt="POP vs OOP Comparison Diagram">
+          <p>Image Placeholder: POP vs OOP Comparison Diagram</p>
+        </div>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>Procedure-Oriented Programming</th>
+            <th>Object-Oriented Programming</th>
+          </tr>
+          <tr>
+            <td>Main Focus</td>
+            <td>Functions और procedures पर focus होता है।</td>
+            <td>Objects और classes पर focus होता है।</td>
+          </tr>
+          <tr>
+            <td>Approach</td>
+            <td>Top-down approach follow करता है।</td>
+            <td>Bottom-up approach follow कर सकता है।</td>
+          </tr>
+          <tr>
+            <td>Data Security</td>
+            <td>Data security comparatively कम होती है।</td>
+            <td>Encapsulation से data security improve होती है।</td>
+          </tr>
+          <tr>
+            <td>Data and Function</td>
+            <td>Data और functions अलग-अलग हो सकते हैं।</td>
+            <td>Data और methods class के अंदर bind होते हैं।</td>
+          </tr>
+          <tr>
+            <td>Code Reusability</td>
+            <td>Limited reusability होती है।</td>
+            <td>Inheritance और objects से reusability बढ़ती है।</td>
+          </tr>
+          <tr>
+            <td>Real World Modeling</td>
+            <td>Real-world entities represent करना कठिन हो सकता है।</td>
+            <td>Real-world entities को objects से represent करना आसान है।</td>
+          </tr>
+          <tr>
+            <td>Suitable For</td>
+            <td>Small और simple programs।</td>
+            <td>Large और complex applications।</td>
+          </tr>
+          <tr>
+            <td>Examples</td>
+            <td>C</td>
+            <td>Java, C++, Python</td>
+          </tr>
+        </table>
+      </section>
+
+      <section id="oop-concepts">
+        <h2>Object Oriented Programming Concepts</h2>
+        <p>OOP concepts object-oriented programming की foundation हैं। Java में class, object, object reference,
+          abstraction, encapsulation, inheritance और polymorphism जैसे concepts important होते हैं। इस chapter में इन
+          concepts का केवल basic introduction दिया जा रहा है। आगे chapters में इन्हें detail में examples और programs के
+          साथ पढ़ा जाएगा।</p>
+        <div class="image-icon"><img src="" alt="OOP Concepts Diagram">
+          <p>Image Placeholder: OOP Concepts Overview Diagram</p>
+        </div>
+        <div class="remember-box"><b>Remember:</b><br>यहाँ OOP concepts का केवल introduction है। Detailed programming
+          आगे के chapters में की जाएगी।</div>
+      </section>
+
+      <section id="class">
+        <h2>Classes</h2>
+        <p><strong>Class</strong> object बनाने का blueprint या template होती है। Class में object के data और behavior का
+          structure define किया जाता है। For example, Student class में name, roll number और course जैसे data members और
+          display details जैसे methods हो सकते हैं।</p>
+        <p>Class खुद real object नहीं होती, बल्कि object create करने की plan होती है।</p>
+        <div class="image-icon"><img src="" alt="Class Diagram">
+          <p>Image Placeholder: Class Diagram</p>
+        </div>
+        <h4>Simple Class Structure</h4>
+        <pre>class Student {
+    // data and methods
+}</pre>
+      </section>
+
+      <section id="object">
+        <h2>Object</h2>
+        <p><strong>Object</strong> class का real instance होता है। Object के पास अपना data और behavior होता है। अगर
+          Student एक class है, तो Brajkant, Amit और Neha अलग-अलग student objects हो सकते हैं।</p>
+        <p>Object real-world entity को represent करता है। Object state और behavior दोनों रख सकता है।</p>
+        <div class="image-icon"><img src="" alt="Object Diagram">
+          <p>Image Placeholder: Object Diagram</p>
+        </div>
+        <h4>Object Creation Overview</h4>
+        <pre>Student s1 = new Student();</pre>
+      </section>
+
+      <section id="reference">
+        <h2>Object Reference</h2>
+        <p><strong>Object Reference</strong> वह variable होता है जो object की memory location को refer करता है। Java में
+          object directly variable में store नहीं होता, बल्कि reference variable object को point करता है।</p>
+        <p>Reference object तक पहुँचने का रास्ता देता है। यह concept memory management समझने में important है, लेकिन इस
+          introduction chapter में इसका basic idea sufficient है।</p>
+        <div class="image-icon"><img src="" alt="Object Reference Memory Diagram">
+          <p>Image Placeholder: Object Reference Memory Diagram</p>
+        </div>
+        <h4>Reference Example</h4>
+        <pre>Student s1 = new Student();</pre>
+        <div class="remember-box"><b>Remember:</b><br>Reference variable object को access करने के लिए use होता है।</div>
+      </section>
+
+      <section id="abstraction">
+        <h2>Abstraction</h2>
+        <p><strong>Abstraction</strong> का मतलब unnecessary internal details को hide करके केवल essential features show
+          करना है। OOP में abstraction user को simple interface देता है और complex internal working को hide करता है।</p>
+        <p>For example, जब हम ATM machine से money withdraw करते हैं, तो हमें internal banking process नहीं दिखती। हमें
+          केवल options दिखते हैं।</p>
+        <div class="image-icon"><img src="" alt="Abstraction Diagram">
+          <p>Image Placeholder: Abstraction Diagram</p>
+        </div>
+        <div class="note-box"><b>Real Life Example:</b><br>Car चलाते समय driver steering, brake और accelerator use करता
+          है। Engine अंदर कैसे काम कर रहा है, यह detail driver को जानना जरूरी नहीं होता।</div>
+      </section>
+
+      <section id="encapsulation">
+        <h2>Encapsulation</h2>
+        <p><strong>Encapsulation</strong> का मतलब data और methods को एक single unit में bind करना है। Java में class
+          encapsulation का basic example है क्योंकि class के अंदर data members और methods दोनों रखे जाते हैं।</p>
+        <p>Encapsulation से object का data direct access से protect किया जा सकता है। Proper methods के through data
+          access और modify किया जाता है।</p>
+        <div class="image-icon"><img src="" alt="Encapsulation Diagram">
+          <p>Image Placeholder: Encapsulation / Data Hiding Diagram</p>
+        </div>
+        <div class="remember-box"><b>Remember:</b><br>Encapsulation data और methods को एक class के अंदर combine करता है।
+        </div>
+      </section>
+
+      <section id="inheritance">
+        <h2>Inheritance</h2>
+        <p><strong>Inheritance</strong> OOP का concept है जिसमें एक class दूसरी class की properties और methods को
+          acquire कर सकती है। जिस class से features लिए जाते हैं उसे parent class या superclass कहा जाता है और जो class
+          features receive करती है उसे child class या subclass कहा जाता है।</p>
+        <p>Inheritance का main purpose code reuse है। अगर कुछ features common हैं, तो उन्हें parent class में define
+          करके child classes में reuse किया जा सकता है।</p>
+        <div class="image-icon"><img src="" alt="Inheritance Tree Diagram">
+          <p>Image Placeholder: Inheritance Tree Diagram</p>
+        </div>
+        <div class="remember-box"><b>Remember:</b><br>Inheritance code reuse और class relationship represent करने के लिए
+          use होता है।</div>
+      </section>
+
+      <section id="polymorphism">
+        <h2>Polymorphism</h2>
+        <p><strong>Polymorphism</strong> का मतलब है many forms. OOP में polymorphism का मतलब है कि same method name या
+          same operation अलग-अलग objects के साथ different behavior दिखा सकता है। यह program को flexible बनाता है।</p>
+        <p>Java में polymorphism method overloading और method overriding जैसे concepts से related होता है। इस
+          introduction chapter में केवल basic idea दिया गया है।</p>
+        <div class="image-icon"><img src="" alt="Polymorphism Diagram">
+          <p>Image Placeholder: Polymorphism Diagram</p>
+        </div>
+        <div class="remember-box"><b>Remember:</b><br>Polymorphism same name या same interface को multiple forms में
+          behavior देने की ability है।</div>
+      </section>
+
+      <section id="eclipse">
+        <h2>Introduction of Eclipse IDE</h2>
+        <p><strong>Eclipse</strong> एक popular IDE यानी Integrated Development Environment है जिसका use Java programs
+          develop करने के लिए किया जाता है। IDE ऐसा software environment होता है जिसमें code लिखने, compile करने, run
+          करने और debug करने की facilities एक ही जगह मिलती हैं।</p>
+        <p>Eclipse में code editor, project explorer, console, debugger, syntax highlighting, auto-completion और error
+          detection जैसी facilities available होती हैं। Beginner students के लिए Eclipse helpful है क्योंकि इसमें Java
+          project create करना, class बनाना और program run करना easier हो जाता है।</p>
+        <div class="image-icon"><img src="" alt="Eclipse IDE Interface">
+          <p>Image Placeholder: Eclipse IDE Interface Screenshot</p>
+        </div>
+        <h4>Why Eclipse is Used</h4>
+        <ul>
+          <li>Java programs लिखने और run करने के लिए।</li>
+          <li>Projects को properly organize करने के लिए।</li>
+          <li>Syntax errors जल्दी identify करने के लिए।</li>
+          <li>Code suggestions और auto-completion पाने के लिए।</li>
+          <li>Debugging और testing के लिए।</li>
+        </ul>
+        <h4>Important Parts of Eclipse IDE</h4>
+        <table>
+          <tr>
+            <th>Part</th>
+            <th>Work</th>
+          </tr>
+          <tr>
+            <td>Workspace</td>
+            <td>Projects store करने की location।</td>
+          </tr>
+          <tr>
+            <td>Package Explorer</td>
+            <td>Projects, packages और files show करता है।</td>
+          </tr>
+          <tr>
+            <td>Editor Area</td>
+            <td>Code लिखने की जगह।</td>
+          </tr>
+          <tr>
+            <td>Console</td>
+            <td>Program output show करता है।</td>
+          </tr>
+          <tr>
+            <td>Toolbar</td>
+            <td>Run, debug और other shortcuts provide करता है।</td>
+          </tr>
+        </table>
+        <div class="image-icon"><img src="" alt="Eclipse Workspace and Project Structure">
+          <p>Image Placeholder: Eclipse Workspace / Java Project Structure</p>
+        </div>
+        <h4>Creating Java Program in Eclipse Overview</h4>
+        <ol>
+          <li>Eclipse open करें।</li>
+          <li>Workspace select करें।</li>
+          <li>New Java Project create करें।</li>
+          <li>Project के अंदर package create करें।</li>
+          <li>Java class create करें।</li>
+          <li>Main method में code लिखें।</li>
+          <li>Run button से program execute करें।</li>
+          <li>Output console में देखें।</li>
+        </ol>
+        <h4>Simple Java Program in Eclipse</h4>
+        <pre>public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello Eclipse");
+    }
+}</pre>
+        <div class="info-box"><b>Output:</b><br>Hello Eclipse</div>
+        <div class="remember-box"><b>Remember:</b><br>Eclipse Java programs develop, run और debug करने के लिए useful IDE
+          है।</div>
+      </section>
+
+    </main>
+  </div>
+</body>
+
+</html>

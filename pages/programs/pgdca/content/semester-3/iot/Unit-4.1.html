@@ -1,0 +1,130 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Arduino</title><style>
+*{box-sizing:border-box}body{font-family:Segoe UI,Arial,sans-serif;background:#f5f7fb;color:#222;line-height:1.75;margin:0}
+.page{max-width:1200px;margin:auto;padding:20px}.hero{background:linear-gradient(135deg,#eef2ff,#fff);padding:24px;border-radius:16px}
+section{background:#fff;margin:18px 0;padding:18px;border-radius:16px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+h2{border-left:5px solid #2563eb;padding-left:10px}
+.image-icon{min-height:180px;border:2px dashed #94a3b8;border-radius:12px;display:flex;align-items:center;justify-content:center;margin:16px 0;background:#f8fafc}
+table{width:100%;border-collapse:collapse}th,td{border:1px solid #ccc;padding:8px}th{background:#eef2ff}
+pre{background:#0f172a;color:#fff;padding:12px;border-radius:10px;overflow:auto}
+.note{background:#f0fdf4;border-left:5px solid #22c55e;padding:12px;border-radius:8px}
+</style></head>
+<body><div class='page'>
+<div class='hero'><h1>Arduino (Premium Notes)</h1><p>BTEUP Exam Oriented Notes</p></div>
+
+<section><h2>Arduino Device Introduction</h2>
+<p><strong>Arduino</strong> एक open-source electronics platform है जिसका उपयोग embedded systems, robotics और Internet of Things (IoT) projects बनाने के लिए किया जाता है। इसमें programmable microcontroller board और Arduino IDE software शामिल होता है। Arduino sensors से data पढ़ सकता है और LEDs, motors, relay तथा अन्य actuators को control कर सकता है। Beginners के लिए यह सबसे लोकप्रिय development platform माना जाता है।</p>
+<div class='image-icon'><img src='' alt='Arduino Board'></div>
+<div class='note'><b>Real Life Example:</b> Smart Home, Smart Irrigation, Weather Monitoring, Line Follower Robot.</div>
+</section>
+
+<section><h2>Features of Arduino Device</h2>
+<ul>
+<li>Open Source Hardware and Software</li>
+<li>Easy Programming using Arduino IDE</li>
+<li>Low Cost Development Board</li>
+<li>Large Community Support</li>
+<li>Cross Platform (Windows, Linux, macOS)</li>
+<li>Digital & Analog Input/Output Pins</li>
+<li>PWM, UART, SPI, I²C Support</li>
+<li>USB Programming</li>
+</ul>
+<div class='image-icon'><img src='' alt='Arduino Features'></div>
+</section>
+
+<section><h2>Components of Arduino Board</h2>
+<div class='image-icon'><img src='' alt='Arduino Components'></div>
+<table>
+<tr><th>Component</th><th>Purpose</th></tr>
+<tr><td>ATmega328P</td><td>Main Microcontroller</td></tr>
+<tr><td>USB Port</td><td>Programming & Power</td></tr>
+<tr><td>Power Jack</td><td>External Supply</td></tr>
+<tr><td>Digital Pins</td><td>Digital Input/Output</td></tr>
+<tr><td>Analog Pins</td><td>Analog Sensor Input</td></tr>
+<tr><td>Reset Button</td><td>Restart Program</td></tr>
+<tr><td>Crystal Oscillator</td><td>Clock Signal</td></tr>
+<tr><td>TX/RX LEDs</td><td>Serial Communication Status</td></tr>
+</table>
+</section>
+
+<section><h2>Understanding the Arduino IDE</h2>
+<p>Arduino IDE वह software है जिसमें program लिखा, compile और board पर upload किया जाता है।</p>
+<div class='image-icon'><img src='' alt='Arduino IDE'></div>
+<ul>
+<li>Menu Bar</li>
+<li>Toolbar</li>
+<li>Code Editor</li>
+<li>Verify Button</li>
+<li>Upload Button</li>
+<li>Serial Monitor</li>
+<li>Board & Port Selection</li>
+</ul>
+<pre>Steps:
+1. Board Select
+2. COM Port Select
+3. Write Code
+4. Verify
+5. Upload
+6. Open Serial Monitor</pre>
+</section>
+
+<section><h2>Arduino Programming Language (C Language)</h2>
+<p>Arduino Programming C/C++ आधारित language का simplified version है। प्रत्येक Arduino program में दो मुख्य functions होते हैं:</p>
+<pre>
+void setup() {
+   // Runs only once
+}
+
+void loop() {
+   // Runs repeatedly
+}
+</pre>
+
+<h3>Variables</h3>
+<pre>int led = 13;
+float temp = 28.5;
+char grade = 'A';
+bool status = true;</pre>
+
+<h3>Data Types</h3>
+<table>
+<tr><th>Data Type</th><th>Example</th></tr>
+<tr><td>int</td><td>100</td></tr>
+<tr><td>float</td><td>12.75</td></tr>
+<tr><td>char</td><td>'A'</td></tr>
+<tr><td>bool</td><td>true / false</td></tr>
+<tr><td>long</td><td>100000</td></tr>
+<tr><td>byte</td><td>0-255</td></tr>
+</table>
+
+<h3>Control Statements</h3>
+<pre>
+if(sensorValue > 500){
+   digitalWrite(13,HIGH);
+} else {
+   digitalWrite(13,LOW);
+}
+</pre>
+
+<h3>Loops</h3>
+<pre>
+// for loop
+for(int i=0;i<5;i++){}
+
+// while loop
+while(true){break;}
+
+// do while
+do{}while(false);
+</pre>
+
+<h3>Functions</h3>
+<pre>
+void blinkLED(){
+  digitalWrite(13,HIGH);
+  delay(500);
+  digitalWrite(13,LOW);
+}
+</pre>
+<div class='note'><b>Remember:</b> Arduino program हमेशा <code>setup()</code> और <code>loop()</code> से शुरू होता है।</div>
+</section>
+</div></body></html>

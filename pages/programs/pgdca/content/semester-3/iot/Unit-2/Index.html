@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoT Device</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f5f7fb;
+            color: #1f2937;
+            line-height: 1.75
+        }
+
+        .page {
+            display: grid;
+            grid-template-columns: 285px 1fr;
+            gap: 20px;
+            max-width: 1500px;
+            margin: auto;
+            padding: 10px
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 10px;
+            height: calc(100vh - 20px);
+            overflow-y: auto;
+            background: #fff;
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
+            align-self: start
+        }
+
+        .sidebar h2 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #111827
+        }
+
+        .sidebar a {
+            display: block;
+            text-decoration: none;
+            color: #374151;
+            padding: 8px 10px;
+            border-radius: 10px;
+            margin-bottom: 4px;
+            font-size: 14.7px
+        }
+
+        .sidebar a:hover {
+            background: #eef2ff;
+            color: #1d4ed8
+        }
+
+        .content {
+            background: #fff;
+            border-radius: 18px;
+            padding: 10px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, .08)
+        }
+
+        .hero {
+            padding: 28px 18px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #eef2ff, #f8fafc);
+            margin-bottom: 18px
+        }
+
+        .hero h1 {
+            font-size: 34px;
+            color: #111827;
+            margin-bottom: 10px
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #374151
+        }
+
+        section {
+            padding: 22px 10px;
+            border-bottom: 1px solid #e5e7eb
+        }
+
+        section:last-child {
+            border-bottom: none
+        }
+
+        h2 {
+            font-size: 27px;
+            color: #111827;
+            margin-bottom: 12px;
+            border-left: 5px solid #2563eb;
+            padding-left: 12px
+        }
+
+        h3 {
+            font-size: 22px;
+            color: #1f2937;
+            margin: 16px 0 8px
+        }
+
+        h4 {
+            font-size: 18px;
+            color: #111827;
+            margin: 14px 0 6px
+        }
+
+        p {
+            margin: 10px 0;
+            font-size: 17px
+        }
+
+        ul,
+        ol {
+            margin-left: 24px;
+            margin-top: 8px
+        }
+
+        li {
+            margin: 7px 0;
+            font-size: 16.5px
+        }
+
+        strong {
+            color: #111827
+        }
+
+        .image-icon {
+            min-height: 180px;
+            border: 2px dashed #94a3b8;
+            border-radius: 16px;
+            background: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            margin: 18px 0;
+            color: #475569;
+            font-weight: 600;
+            flex-direction: column;
+            gap: 8px
+        }
+
+        .image-icon img {
+            max-width: 100%;
+            height: auto
+        }
+
+        .note-box {
+            background: #f0fdf4;
+            border-left: 5px solid #22c55e;
+            border-radius: 14px;
+            padding: 14px 16px;
+            margin: 16px 0
+        }
+
+        .info-box {
+            background: #ecfeff;
+            border-left: 5px solid #06b6d4;
+            border-radius: 14px;
+            padding: 14px 16px;
+            margin: 16px 0
+        }
+
+        .remember-box {
+            background: #fff7ed;
+            border-left: 5px solid #f97316;
+            border-radius: 14px;
+            padding: 14px 16px;
+            margin: 16px 0
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            font-size: 15.5px
+        }
+
+        th,
+        td {
+            border: 1px solid #d1d5db;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top
+        }
+
+        th {
+            background: #eef2ff;
+            color: #111827
+        }
+
+        code {
+            background: #111827;
+            color: #f9fafb;
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-family: Consolas, monospace;
+            font-size: 15px
+        }
+
+        pre {
+            background: #0f172a;
+            color: #e5e7eb;
+            border-radius: 14px;
+            padding: 16px;
+            margin: 16px 0;
+            overflow-x: auto;
+            font-family: Consolas, monospace;
+            line-height: 1.6
+        }
+
+        @media(max-width:900px) {
+            .page {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: relative;
+                height: auto;
+            }
+
+            .hero h1 {
+                font-size: 27px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+
+        <aside class="sidebar">
+            <h2>Topics</h2>
+            <a href="#iot-devices">IoT Devices का परिचय</a>
+            <a href="#importance">IoT में Electronic Devices का महत्व</a>
+            <a href="#breadboard">Breadboard</a>
+            <a href="#seven-segment">Seven Segment Display</a>
+            <a href="#led">LED और Connection</a>
+            <a href="#rgb-led">Tri-color LED</a>
+            <a href="#resistor">Resistor</a>
+            <a href="#end-devices">End Devices</a>
+            <a href="#sensors-actuators">Sensors और Actuators</a>
+            <a href="#sensor-types">Sensor के प्रकार</a>
+            <a href="#comparison">Sensor vs Actuator</a>
+            <a href="#sensor-types">Different Sensor Types</a>
+            <a href="#analog-digital">Analog and Digital Sensors</a>
+            <a href="#active-passive">Active and Passive Sensors</a>
+            <a href="#actuators">Actuators in IoT</a>
+            <a href="#sensor-actuator-diff">Sensor vs Actuator</a>
+            <a href="#signal-conditioning">Signal Conditioning</a>
+            <a href="#calibration">Sensor Calibration</a>
+            <a href="#end-devices">End Devices in IoT</a>
+            <a href="#breadboard-deep">Breadboard Internal Connections</a>
+            <a href="#resistor-deep">Resistor and Current Limiting</a>
+            <a href="#led-connection">LED and its Connections</a>
+            <a href="#rgb-led">Tri-color LED / RGB LED</a>
+            <a href="#seven-segment">Seven Segment Display on Breadboard</a>
+            <a href="#pullup-pulldown">Pull-up and Pull-down Resistors</a>
+            <a href="#power-safety">Power Supply and Circuit Safety</a>
+            <a href="#troubleshooting">Common IoT Circuit Troubleshooting</a>
+        </aside>
+
+        <main class="content">
+
+            <div class="hero">
+                <h1>IoT Devices</h1>
+            </div>
+
+            <section id="iot-devices">
+                <h2>IoT Devices का परिचय</h2>
+                <p><strong>IoT Device</strong> एक physical electronic device होता है जो आसपास के environment से data
+                    collect करता है, उसे process करता है और Internet या किसी network के माध्यम से दूसरे devices अथवा
+                    cloud server तक भेजता है।</p>
+                <p>एक सामान्य IoT device में <strong>Sensor, Microcontroller, Communication Module, Power
+                        Supply</strong> और आवश्यकता के अनुसार <strong>Actuator</strong> लगा होता है।</p>
+
+                <div class="flow">
+                    Sensor → Microcontroller → Communication Module → Cloud / Mobile App → Actuator
+                </div>
+
+                <div class="image-icon">
+                    <img src="" alt="IoT Device Architecture">
+                </div>
+
+                <div class="remember">
+                    <strong>याद रखें:</strong> Sensor data collect करता है, Microcontroller decision लेता है और Actuator
+                    physical action perform करता है।
+                </div>
+            </section>
+
+            <section id="importance">
+                <h2>IoT में Electronic Devices का महत्व</h2>
+                <p>Electronic devices IoT system का practical और physical part होते हैं। इन्हीं devices की सहायता से
+                    real-world conditions को sense किया जाता है और automatic actions perform किए जाते हैं।</p>
+
+                <h3>Electronic Devices के मुख्य कार्य</h3>
+                <ul>
+                    <li>Temperature, humidity, light, gas और motion जैसी conditions को sense करना।</li>
+                    <li>Collected data को microcontroller तक भेजना।</li>
+                    <li>Wi-Fi, Bluetooth या अन्य protocol के माध्यम से data transmit करना।</li>
+                    <li>Cloud या mobile application से प्राप्त command के आधार पर action perform करना।</li>
+                    <li>Manual work को automatic और intelligent बनाना।</li>
+                </ul>
+
+                <div class="note">
+                    <strong>Real-life Example:</strong> Smart Irrigation System में Soil Moisture Sensor मिट्टी की नमी
+                    check करता है, ESP32 data process करता है और Relay के माध्यम से Water Pump ON या OFF होती है।
+                </div>
+            </section>
+
+            <section id="breadboard">
+                <h2>Breadboard और उसके Internal Connections</h2>
+                <p><strong>Breadboard</strong> एक solderless prototyping board है, जिसका उपयोग electronic circuit को
+                    temporary रूप से बनाने और test करने के लिए किया जाता है। इसमें components को solder करने की आवश्यकता
+                    नहीं होती।</p>
+
+                <div class="image-icon">
+                    <img src="" alt="Breadboard Internal Connections">
+                </div>
+
+                <h3>Breadboard के मुख्य भाग</h3>
+                <ul>
+                    <li><strong>Power Rails:</strong> VCC और GND supply distribute करने के लिए।</li>
+                    <li><strong>Terminal Strips:</strong> Components और jumper wires connect करने के लिए।</li>
+                    <li><strong>Center Gap:</strong> IC को दोनों sides में safely place करने के लिए।</li>
+                    <li><strong>Connection Rows:</strong> एक ही row के holes internally connected होते हैं।</li>
+                </ul>
+
+                <table>
+                    <tr>
+                        <th>लाभ</th>
+                        <th>विवरण</th>
+                    </tr>
+                    <tr>
+                        <td>Reusable</td>
+                        <td>Components को remove करके दोबारा use किया जा सकता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Fast Prototyping</td>
+                        <td>Circuit को जल्दी build और test किया जा सकता है।</td>
+                    </tr>
+                    <tr>
+                        <td>No Soldering</td>
+                        <td>Permanent soldering की आवश्यकता नहीं होती।</td>
+                    </tr>
+                    <tr>
+                        <td>Learning Friendly</td>
+                        <td>Students के लिए circuit understanding आसान बनती है।</td>
+                    </tr>
+                </table>
+            </section>
+
+            <section id="seven-segment">
+                <h2>Seven Segment Display on Breadboard</h2>
+                <p><strong>Seven Segment Display</strong> सात LED segments से मिलकर बना display होता है, जिनका नाम
+                    सामान्यतः a, b, c, d, e, f और g होता है। इन segments को अलग-अलग combination में ON करके 0 से 9 तक
+                    digits display किए जाते हैं।</p>
+
+                <div class="image-icon">
+                    <img src="" alt="Seven Segment Display">
+                </div>
+
+                <h3>Seven Segment Display के प्रकार</h3>
+                <table>
+                    <tr>
+                        <th>Type</th>
+                        <th>Working</th>
+                    </tr>
+                    <tr>
+                        <td>Common Anode</td>
+                        <td>सभी LEDs के anode आपस में connected होते हैं।</td>
+                    </tr>
+                    <tr>
+                        <td>Common Cathode</td>
+                        <td>सभी LEDs के cathode आपस में connected होते हैं।</td>
+                    </tr>
+                </table>
+
+                <div class="tip">
+                    <strong>Important:</strong> प्रत्येक segment के साथ current-limiting resistor लगाना चाहिए, अन्यथा
+                    LED segment damage हो सकता है।
+                </div>
+            </section>
+
+            <section id="led">
+                <h2>LED और उसका Connection</h2>
+                <p><strong>LED (Light Emitting Diode)</strong> एक semiconductor component है जो current flow होने पर
+                    light emit करता है। इसका उपयोग indication, display और lighting के लिए किया जाता है।</p>
+
+                <div class="image-icon">
+                    <img src="" alt="LED Connection">
+                </div>
+
+                <ul>
+                    <li><strong>Long Leg:</strong> Anode (+)</li>
+                    <li><strong>Short Leg:</strong> Cathode (−)</li>
+                    <li><strong>Flat Side:</strong> सामान्यतः Cathode को indicate करती है।</li>
+                    <li>LED के साथ series में resistor लगाना आवश्यक होता है।</li>
+                </ul>
+
+                <div class="note">
+                    <strong>Example:</strong> Arduino की digital pin से LED ON/OFF करके output control का basic
+                    practical किया जाता है।
+                </div>
+            </section>
+
+            <section id="rgb-led">
+                <h2>Tri-color LED (RGB LED)</h2>
+                <p><strong>Tri-color LED</strong> के अंदर Red, Green और Blue तीन LEDs होती हैं। इन तीनों की brightness
+                    बदलकर अनेक colors produce किए जा सकते हैं।</p>
+
+                <div class="image-icon">
+                    <img src="" alt="RGB LED">
+                </div>
+
+                <h3>RGB LED के प्रकार</h3>
+                <ul>
+                    <li>Common Anode RGB LED</li>
+                    <li>Common Cathode RGB LED</li>
+                </ul>
+
+                <p>RGB LED का उपयोग status indication, decorative lighting, smart devices और display systems में किया
+                    जाता है।</p>
+            </section>
+
+            <section id="resistor">
+                <h2>Resistor</h2>
+                <p><strong>Resistor</strong> एक passive electronic component है जो electric current को limit करता है।
+                    इसका unit <strong>Ohm (Ω)</strong> होता है।</p>
+
+                <div class="image-icon">
+                    <img src="" alt="Resistor">
+                </div>
+
+                <table>
+                    <tr>
+                        <th>उपयोग</th>
+                        <th>उदाहरण</th>
+                    </tr>
+                    <tr>
+                        <td>Current Limiting</td>
+                        <td>LED को excess current से बचाना।</td>
+                    </tr>
+                    <tr>
+                        <td>Voltage Division</td>
+                        <td>Sensor circuit में required voltage प्राप्त करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Pull-up / Pull-down</td>
+                        <td>Digital input को stable state देना।</td>
+                    </tr>
+                    <tr>
+                        <td>Biasing</td>
+                        <td>Transistor और electronic circuits में operating condition set करना।</td>
+                    </tr>
+                </table>
+
+                <div class="remember">
+                    <strong>याद रखें:</strong> LED को direct power supply से connect नहीं करना चाहिए; series resistor
+                    लगाना जरूरी है।
+                </div>
+            </section>
+
+            <section id="end-devices">
+                <h2>End Devices</h2>
+                <p><strong>End Devices</strong> वे field devices होते हैं जो directly physical environment के साथ
+                    interact करते हैं। ये data generate भी कर सकते हैं और received command के अनुसार action भी perform
+                    कर सकते हैं।</p>
+
+                <h3>Examples</h3>
+                <ul>
+                    <li>Smart Bulb</li>
+                    <li>Smart Watch</li>
+                    <li>Temperature Monitoring Device</li>
+                    <li>Smart Meter</li>
+                    <li>Security Camera</li>
+                    <li>Smart Door Lock</li>
+                </ul>
+            </section>
+
+            <section id="sensors-actuators">
+                <h2>Sensors और Actuators</h2>
+                <p><strong>Sensor</strong> physical quantity को detect करके electrical signal में convert करता है।
+                    <strong>Actuator</strong> controller से command प्राप्त करके physical action perform करता है।
+                </p>
+
+                <div class="image-icon">
+                    <img src="" alt="Sensors and Actuators">
+                </div>
+
+                <table>
+                    <tr>
+                        <th>Sensor</th>
+                        <th>क्या मापता है</th>
+                        <th>Application</th>
+                    </tr>
+                    <tr>
+                        <td>Temperature Sensor</td>
+                        <td>Temperature</td>
+                        <td>Weather Station</td>
+                    </tr>
+                    <tr>
+                        <td>Humidity Sensor</td>
+                        <td>Air Moisture</td>
+                        <td>Smart Farming</td>
+                    </tr>
+                    <tr>
+                        <td>LDR</td>
+                        <td>Light Intensity</td>
+                        <td>Automatic Street Light</td>
+                    </tr>
+                    <tr>
+                        <td>Ultrasonic Sensor</td>
+                        <td>Distance</td>
+                        <td>Parking System</td>
+                    </tr>
+                    <tr>
+                        <td>PIR Sensor</td>
+                        <td>Human Motion</td>
+                        <td>Security System</td>
+                    </tr>
+                    <tr>
+                        <td>Gas Sensor</td>
+                        <td>Gas Concentration</td>
+                        <td>Leak Detection</td>
+                    </tr>
+                </table>
+
+                <p><strong>Actuator Examples:</strong> Motor, Relay, Solenoid Valve, Buzzer, Servo Motor और LED.</p>
+            </section>
+
+            <section id="sensor-types">
+                <h2>Different Types of Sensors</h2>
+                <table>
+                    <tr>
+                        <th>Sensor Type</th>
+                        <th>Purpose</th>
+                        <th>Real-life Application</th>
+                    </tr>
+                    <tr>
+                        <td>Temperature Sensor</td>
+                        <td>Temperature measure करना</td>
+                        <td>Air Conditioner और Weather System</td>
+                    </tr>
+                    <tr>
+                        <td>Humidity Sensor</td>
+                        <td>Humidity measure करना</td>
+                        <td>Smart Greenhouse</td>
+                    </tr>
+                    <tr>
+                        <td>Pressure Sensor</td>
+                        <td>Pressure detect करना</td>
+                        <td>Industrial Automation</td>
+                    </tr>
+                    <tr>
+                        <td>Proximity Sensor</td>
+                        <td>Nearby object detect करना</td>
+                        <td>Automatic Door</td>
+                    </tr>
+                    <tr>
+                        <td>Motion Sensor</td>
+                        <td>Human movement detect करना</td>
+                        <td>Home Security</td>
+                    </tr>
+                    <tr>
+                        <td>Gas Sensor</td>
+                        <td>Gas leakage detect करना</td>
+                        <td>Kitchen Safety</td>
+                    </tr>
+                    <tr>
+                        <td>Soil Moisture Sensor</td>
+                        <td>Soil moisture measure करना</td>
+                        <td>Smart Irrigation</td>
+                    </tr>
+                    <tr>
+                        <td>Sound Sensor</td>
+                        <td>Sound level detect करना</td>
+                        <td>Noise Monitoring</td>
+                    </tr>
+                </table>
+            </section>
+
+            <section id="comparison">
+                <h2>Sensor और Actuator में अंतर</h2>
+                <table>
+                    <tr>
+                        <th>Basis</th>
+                        <th>Sensor</th>
+                        <th>Actuator</th>
+                    </tr>
+                    <tr>
+                        <td>कार्य</td>
+                        <td>Physical data collect करता है।</td>
+                        <td>Physical action perform करता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Input / Output</td>
+                        <td>Environment से input लेता है।</td>
+                        <td>Controller से command लेकर output देता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Examples</td>
+                        <td>LDR, PIR, Temperature Sensor</td>
+                        <td>Motor, Relay, Buzzer</td>
+                    </tr>
+                    <tr>
+                        <td>IoT Role</td>
+                        <td>Sensing</td>
+                        <td>Action / Control</td>
+                    </tr>
+                </table>
+
+                <div class="note">
+                    <strong>Exam Point:</strong> Sensor information collect करता है, जबकि Actuator controller की command
+                    के अनुसार action perform करता है।
+                </div>
+            </section>
+            <section id="sensor-types">
+                <h2>Different Sensor Types</h2>
+
+                <p><strong>Sensor</strong> IoT device का input component होता है। Sensor physical
+                    environment से information collect करता है और उसे electrical signal या digital
+                    data में convert करता है। IoT systems में sensors का role बहुत important है
+                    क्योंकि बिना sensor के device real-world condition को समझ नहीं सकता।</p>
+                <p>Sensors को कई bases पर classify किया जा सकता है, जैसे active/passive, analog/digital,
+                    contact/non-contact और measured quantity के according।</p>
+                <div class="image-icon"><img src="" alt="Different Sensor Types">
+                    <p>Image Placeholder: Different Types of Sensors</p>
+                </div>
+                <h4>Sensor Classification</h4>
+                <table>
+                    <tr>
+                        <th>Basis</th>
+                        <th>Types</th>
+                        <th>Meaning</th>
+                    </tr>
+                    <tr>
+                        <td>Output Signal</td>
+                        <td>Analog, Digital</td>
+                        <td>Output continuous या discrete form में होता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Power Requirement</td>
+                        <td>Active, Passive</td>
+                        <td>कुछ sensors external power use करते हैं, कुछ natural signal से work
+                            करते हैं।</td>
+                    </tr>
+                    <tr>
+                        <td>Contact</td>
+                        <td>Contact, Non-contact</td>
+                        <td>Object को touch करके या बिना touch detect करते हैं।</td>
+                    </tr>
+                    <tr>
+                        <td>Measurement</td>
+                        <td>Temperature, Pressure, Motion, Gas</td>
+                        <td>किस quantity को measure करते हैं।</td>
+                    </tr>
+                </table>
+                <h4>Common IoT Sensors</h4>
+                <table>
+                    <tr>
+                        <th>Sensor</th>
+                        <th>Measures</th>
+                        <th>Application</th>
+                    </tr>
+                    <tr>
+                        <td>Temperature Sensor</td>
+                        <td>Heat/temperature</td>
+                        <td>Weather station, smart AC</td>
+                    </tr>
+                    <tr>
+                        <td>Humidity Sensor</td>
+                        <td>Air moisture</td>
+                        <td>Smart agriculture</td>
+                    </tr>
+                    <tr>
+                        <td>PIR Sensor</td>
+                        <td>Human motion</td>
+                        <td>Security system</td>
+                    </tr>
+                    <tr>
+                        <td>Ultrasonic Sensor</td>
+                        <td>Distance</td>
+                        <td>Parking system, smart dustbin</td>
+                    </tr>
+                    <tr>
+                        <td>LDR</td>
+                        <td>Light intensity</td>
+                        <td>Automatic street light</td>
+                    </tr>
+                    <tr>
+                        <td>Gas Sensor</td>
+                        <td>Gas leakage/concentration</td>
+                        <td>Safety monitoring</td>
+                    </tr>
+                    <tr>
+                        <td>Soil Moisture Sensor</td>
+                        <td>Soil water level</td>
+                        <td>Smart irrigation</td>
+                    </tr>
+                </table>
+                <div class="note-box"><b>Real Life Example:</b><br>Smart farming में soil moisture
+                    sensor, temperature sensor और humidity sensor मिलकर crop condition monitor कर
+                    सकते हैं।</div>
+                <div class="remember-box"><b>Remember:</b><br>Sensors IoT system को real-world data
+                    provide करते हैं।</div>
+
+            </section>
+            <section id="analog-digital">
+                <h2>Analog and Digital Sensors</h2>
+
+                <p>IoT में sensors की output दो major forms में मिल सकती है: <strong>analog</strong> और
+                    <strong>digital</strong>. Analog sensors continuous signal provide करते हैं,
+                    जबकि digital sensors discrete values या binary signals provide करते हैं।
+                    Microcontroller sensor output को read करके program logic के according decision
+                    लेता है।
+                </p>
+                <div class="image-icon"><img src="" alt="Analog and Digital Sensor Output">
+                    <p>Image Placeholder: Analog vs Digital Sensor Output</p>
+                </div>
+                <h4>Analog Sensor</h4>
+                <p>Analog sensor continuous value देता है। For example, temperature gradually 25°C से
+                    26°C और फिर 27°C हो सकता है। Analog output usually voltage variation के form में
+                    होता है। Arduino जैसे controllers analog pin से इसे read करते हैं।</p>
+                <h4>Digital Sensor</h4>
+                <p>Digital sensor output fixed discrete form में देता है, जैसे HIGH/LOW, 0/1 या digital
+                    data packets। PIR motion sensor motion detect होने पर HIGH signal दे सकता है।
+                </p>
+                <h4>Difference Table</h4>
+                <table>
+                    <tr>
+                        <th>Basis</th>
+                        <th>Analog Sensor</th>
+                        <th>Digital Sensor</th>
+                    </tr>
+                    <tr>
+                        <td>Output</td>
+                        <td>Continuous signal</td>
+                        <td>Discrete/digital signal</td>
+                    </tr>
+                    <tr>
+                        <td>Example</td>
+                        <td>LDR, analog temperature sensor</td>
+                        <td>PIR, DHT11, ultrasonic module</td>
+                    </tr>
+                    <tr>
+                        <td>Reading</td>
+                        <td>Analog input pin</td>
+                        <td>Digital pin या communication protocol</td>
+                    </tr>
+                    <tr>
+                        <td>Accuracy</td>
+                        <td>ADC resolution पर depend करती है।</td>
+                        <td>Sensor internal processing पर depend करती है।</td>
+                    </tr>
+                </table>
+                <h4>Arduino-style Example</h4>
+                <pre>// Analog sensor reading idea
+int sensorValue = analogRead(A0);
+
+// Digital sensor reading idea
+int motion = digitalRead(2);</pre>
+                <div class="info-box"><b>Meaning:</b><br>Analog sensor variable value देता है, digital
+                    sensor fixed state/value देता है।</div>
+                <div class="remember-box"><b>Remember:</b><br>Analog sensors continuous output देते हैं
+                    और digital sensors discrete output देते हैं।</div>
+
+            </section>
+            <section id="active-passive">
+                <h2>Active and Passive Sensors</h2>
+
+                <p>Sensors को power requirement के basis पर <strong>active</strong> और
+                    <strong>passive</strong> sensors में divide किया जा सकता है। Active sensors को
+                    काम करने के लिए external power या excitation signal की जरूरत होती है। Passive
+                    sensors environment से received energy के basis पर signal generate करते हैं।
+                </p>
+                <div class="image-icon"><img src="" alt="Active Passive Sensors">
+                    <p>Image Placeholder: Active and Passive Sensors</p>
+                </div>
+                <h4>Active Sensors</h4>
+                <p>Active sensor अपना signal send करता है और reflected/changed signal को measure करता
+                    है। For example, ultrasonic sensor sound wave भेजता है और reflected wave receive
+                    करके distance calculate करता है।</p>
+                <h4>Passive Sensors</h4>
+                <p>Passive sensor environment से naturally available energy detect करता है। For example,
+                    LDR light intensity के according resistance change करता है।</p>
+                <table>
+                    <tr>
+                        <th>Basis</th>
+                        <th>Active Sensor</th>
+                        <th>Passive Sensor</th>
+                    </tr>
+                    <tr>
+                        <td>Power/Signal</td>
+                        <td>External signal/energy use करता है।</td>
+                        <td>Environment energy detect करता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Example</td>
+                        <td>Ultrasonic sensor, radar sensor</td>
+                        <td>LDR, thermocouple</td>
+                    </tr>
+                    <tr>
+                        <td>Use</td>
+                        <td>Distance/object detection</td>
+                        <td>Light/temperature sensing</td>
+                    </tr>
+                </table>
+                <div class="note-box"><b>Real Life Example:</b><br>Car parking sensor ultrasonic waves
+                    send करके distance check करता है, इसलिए active sensing का example है।</div>
+
+            </section>
+            <section id="actuators">
+                <h2>Actuators in IoT</h2>
+
+                <p><strong>Actuator</strong> IoT system का output/action component होता है। Sensor data
+                    collect करता है, controller decision लेता है और actuator उस decision को physical
+                    action में convert करता है। Actuator electrical signal को motion, sound, light,
+                    switching या mechanical action में convert कर सकता है।</p>
+                <div class="image-icon"><img src="" alt="Actuators in IoT">
+                    <p>Image Placeholder: Actuators in IoT</p>
+                </div>
+                <h4>Common Actuators</h4>
+                <table>
+                    <tr>
+                        <th>Actuator</th>
+                        <th>Action</th>
+                        <th>Example Use</th>
+                    </tr>
+                    <tr>
+                        <td>Relay</td>
+                        <td>High power device ON/OFF</td>
+                        <td>Light, fan, pump control</td>
+                    </tr>
+                    <tr>
+                        <td>DC Motor</td>
+                        <td>Rotational movement</td>
+                        <td>Robot wheels</td>
+                    </tr>
+                    <tr>
+                        <td>Servo Motor</td>
+                        <td>Controlled angular movement</td>
+                        <td>Smart lock, robotic arm</td>
+                    </tr>
+                    <tr>
+                        <td>Buzzer</td>
+                        <td>Sound alert</td>
+                        <td>Alarm system</td>
+                    </tr>
+                    <tr>
+                        <td>Solenoid Valve</td>
+                        <td>Water/air flow control</td>
+                        <td>Smart irrigation</td>
+                    </tr>
+                    <tr>
+                        <td>LED</td>
+                        <td>Light indication</td>
+                        <td>Status indicator</td>
+                    </tr>
+                </table>
+                <h4>Sensor-Actuator Working</h4>
+                <pre>Sensor reads environment
+        ↓
+Controller processes data
+        ↓
+Decision is made
+        ↓
+Actuator performs action</pre>
+                <h4>Example</h4>
+                <p>Smart irrigation system में soil moisture sensor soil dry detect करता है। Controller
+                    water pump relay को ON करता है। यहाँ pump actuator की तरह action perform कर रहा
+                    है।</p>
+                <div class="remember-box"><b>Remember:</b><br>Sensor data collect करता है और actuator
+                    action perform करता है।</div>
+
+            </section>
+            <section id="sensor-actuator-diff">
+                <h2>Sensor vs Actuator</h2>
+
+                <p>Sensor और actuator दोनों IoT devices के important parts हैं, लेकिन दोनों का काम
+                    opposite direction में होता है। Sensor physical world से data system में लाता
+                    है, जबकि actuator system के command को physical world में action में convert
+                    करता है।</p>
+                <div class="image-icon"><img src="" alt="Sensor vs Actuator">
+                    <p>Image Placeholder: Sensor vs Actuator Flow Diagram</p>
+                </div>
+                <table>
+                    <tr>
+                        <th>Basis</th>
+                        <th>Sensor</th>
+                        <th>Actuator</th>
+                    </tr>
+                    <tr>
+                        <td>Role</td>
+                        <td>Input device</td>
+                        <td>Output/action device</td>
+                    </tr>
+                    <tr>
+                        <td>Work</td>
+                        <td>Environment से data collect करता है।</td>
+                        <td>Command के according action करता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Signal Direction</td>
+                        <td>Physical world → System</td>
+                        <td>System → Physical world</td>
+                    </tr>
+                    <tr>
+                        <td>Examples</td>
+                        <td>Temperature sensor, PIR, LDR</td>
+                        <td>Motor, relay, buzzer, valve</td>
+                    </tr>
+                    <tr>
+                        <td>IoT Use</td>
+                        <td>Monitoring</td>
+                        <td>Control/automation</td>
+                    </tr>
+                </table>
+                <h4>Combined Example</h4>
+                <p>Smart street light में LDR sensor darkness detect करता है और relay/LED actuator light
+                    ON करता है।</p>
+                <div class="note-box"><b>Real Life Example:</b><br>Human body में eyes sensor की तरह
+                    information collect करती हैं और hands actuator की तरह action perform करते हैं।
+                </div>
+
+            </section>
+            <section id="signal-conditioning">
+                <h2>Signal Conditioning</h2>
+
+                <p><strong>Signal conditioning</strong> sensor output को controller के लिए suitable form
+                    में convert करने की process है। कई sensors का raw signal weak, noisy या
+                    incompatible होता है। इसलिए उसे amplify, filter, convert या scale करना पड़ सकता
+                    है।</p>
+                <div class="image-icon"><img src="" alt="Signal Conditioning">
+                    <p>Image Placeholder: Signal Conditioning Process</p>
+                </div>
+                <h4>Why Signal Conditioning is Needed</h4>
+                <ul>
+                    <li>Weak sensor signal को amplify करने के लिए।</li>
+                    <li>Noise remove करने के लिए।</li>
+                    <li>Signal को microcontroller input range में लाने के लिए।</li>
+                    <li>Analog signal को digital में convert करने के लिए।</li>
+                    <li>Accurate measurement improve करने के लिए।</li>
+                </ul>
+                <h4>Common Signal Conditioning Operations</h4>
+                <table>
+                    <tr>
+                        <th>Operation</th>
+                        <th>Meaning</th>
+                    </tr>
+                    <tr>
+                        <td>Amplification</td>
+                        <td>Weak signal को strong बनाना।</td>
+                    </tr>
+                    <tr>
+                        <td>Filtering</td>
+                        <td>Unwanted noise remove करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Level Shifting</td>
+                        <td>Voltage range adjust करना।</td>
+                    </tr>
+                    <tr>
+                        <td>ADC</td>
+                        <td>Analog signal को digital value में convert करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Isolation</td>
+                        <td>Safety के लिए circuits को electrically separate करना।</td>
+                    </tr>
+                </table>
+                <h4>Example</h4>
+                <p>Temperature sensor का voltage output microcontroller के ADC द्वारा digital value में
+                    convert किया जाता है। फिर program उस digital value को temperature में convert कर
+                    सकता है।</p>
+                <div class="remember-box"><b>Remember:</b><br>Signal conditioning sensor data को useful
+                    और readable form में convert करती है।</div>
+
+            </section>
+            <section id="calibration">
+                <h2>Sensor Calibration</h2>
+
+                <p><strong>Calibration</strong> sensor reading को accurate बनाने की process है। Sensor
+                    ideal reading हमेशा नहीं देता; environment, manufacturing difference, aging और
+                    noise की वजह से reading में error हो सकता है। Calibration के द्वारा sensor
+                    output को known standard value से compare करके correction apply की जाती है।</p>
+                <div class="image-icon"><img src="" alt="Sensor Calibration">
+                    <p>Image Placeholder: Sensor Calibration Diagram</p>
+                </div>
+                <h4>Need of Calibration</h4>
+                <ul>
+                    <li>Sensor accuracy improve करने के लिए।</li>
+                    <li>Measurement error reduce करने के लिए।</li>
+                    <li>Reliable IoT data प्राप्त करने के लिए।</li>
+                    <li>Industrial और medical systems में correct monitoring के लिए।</li>
+                </ul>
+                <h4>Example</h4>
+                <p>अगर temperature sensor actual 30°C की जगह 32°C show कर रहा है, तो calibration offset
+                    -2°C apply करके corrected reading 30°C दिखाई जा सकती है।</p>
+                <h4>Calibration Types</h4>
+                <table>
+                    <tr>
+                        <th>Type</th>
+                        <th>Meaning</th>
+                    </tr>
+                    <tr>
+                        <td>Zero Calibration</td>
+                        <td>Zero point reading adjust करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Span Calibration</td>
+                        <td>Full scale reading adjust करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Software Calibration</td>
+                        <td>Program में correction formula apply करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Hardware Calibration</td>
+                        <td>Circuit component adjustment से correction करना।</td>
+                    </tr>
+                </table>
+                <div class="note-box"><b>Real Life Example:</b><br>Weighing machine को zero पर set करना
+                    calibration का simple example है।</div>
+
+            </section>
+            <section id="end-devices">
+                <h2>End Devices in IoT</h2>
+
+                <p><strong>End devices</strong> IoT network के वे devices होते हैं जो physical world के
+                    सबसे पास होते हैं और actual sensing या action perform करते हैं। ये devices data
+                    collect करके gateway/cloud को send कर सकते हैं या command receive करके actuator
+                    control कर सकते हैं।</p>
+                <div class="image-icon"><img src="" alt="End Devices in IoT">
+                    <p>Image Placeholder: IoT End Devices Diagram</p>
+                </div>
+                <h4>Examples of End Devices</h4>
+                <table>
+                    <tr>
+                        <th>End Device</th>
+                        <th>Function</th>
+                    </tr>
+                    <tr>
+                        <td>Smart Bulb</td>
+                        <td>Remote ON/OFF और brightness control।</td>
+                    </tr>
+                    <tr>
+                        <td>Smart Meter</td>
+                        <td>Electricity/water usage monitoring।</td>
+                    </tr>
+                    <tr>
+                        <td>Wearable Band</td>
+                        <td>Health data tracking।</td>
+                    </tr>
+                    <tr>
+                        <td>Soil Sensor Node</td>
+                        <td>Agriculture field data collection।</td>
+                    </tr>
+                    <tr>
+                        <td>Smart Lock</td>
+                        <td>Door access control।</td>
+                    </tr>
+                    <tr>
+                        <td>GPS Tracker</td>
+                        <td>Location tracking।</td>
+                    </tr>
+                </table>
+                <h4>End Device Features</h4>
+                <ul>
+                    <li>Limited power और memory हो सकती है।</li>
+                    <li>Battery operated हो सकता है।</li>
+                    <li>Wireless communication use कर सकता है।</li>
+                    <li>Sensor/actuator से connected हो सकता है।</li>
+                    <li>Gateway या cloud से communicate कर सकता है।</li>
+                </ul>
+                <div class="remember-box"><b>Remember:</b><br>End devices IoT system में physical world
+                    से directly interact करते हैं।</div>
+
+            </section>
+            <section id="iot-device-examples">
+                <h2>Practical IoT Device Examples</h2>
+
+                <p>IoT devices को समझने का best तरीका practical examples से है। हर IoT device में
+                    sensing, processing, communication और action/control का कुछ combination होता है।
+                </p>
+                <div class="image-icon"><img src="" alt="Practical IoT Device Examples">
+                    <p>Image Placeholder: Practical IoT Device Examples</p>
+                </div>
+                <h4>Smart Dustbin</h4>
+                <p>Smart dustbin ultrasonic sensor से garbage level measure करता है। जब dustbin भर जाता
+                    है, तो system municipal dashboard को alert send कर सकता है।</p>
+                <h4>Smart Irrigation System</h4>
+                <p>Soil moisture sensor field की moisture reading लेता है। अगर soil dry है, तो
+                    controller relay के through water pump ON कर सकता है।</p>
+                <h4>Home Automation</h4>
+                <p>Smart home system में lights, fans, AC और security devices mobile app या voice
+                    command से control किए जा सकते हैं।</p>
+                <h4>Health Monitoring Device</h4>
+                <p>Wearable device heart rate, oxygen level और steps data collect करके mobile app/cloud
+                    को send कर सकता है।</p>
+                <table>
+                    <tr>
+                        <th>Device</th>
+                        <th>Sensors</th>
+                        <th>Actuators/Output</th>
+                    </tr>
+                    <tr>
+                        <td>Smart Dustbin</td>
+                        <td>Ultrasonic sensor</td>
+                        <td>Alert notification</td>
+                    </tr>
+                    <tr>
+                        <td>Smart Irrigation</td>
+                        <td>Soil moisture sensor</td>
+                        <td>Water pump</td>
+                    </tr>
+                    <tr>
+                        <td>Smart Home</td>
+                        <td>PIR, temperature, light sensor</td>
+                        <td>Relay, bulb, fan</td>
+                    </tr>
+                    <tr>
+                        <td>Health Band</td>
+                        <td>Heart rate sensor, accelerometer</td>
+                        <td>App notification</td>
+                    </tr>
+                </table>
+                <div class="note-box"><b>Real Life Example:</b><br>IoT based classroom में attendance
+                    RFID से, temperature sensor से room monitoring और smart lights automation से
+                    energy saving हो सकती है।</div>
+            </section>
+            <section id="breadboard-deep">
+                <h2>Breadboard Internal Connections</h2>
+
+                <p><strong>Breadboard</strong> electronics prototyping के लिए solderless board होता है। इसका use
+                    components को
+                    temporary connect करके circuit test करने में किया जाता है। IoT practicals में breadboard बहुत
+                    important है
+                    क्योंकि sensors, LEDs, resistors और microcontroller pins को जल्दी connect करके testing की जा सकती
+                    है।</p>
+                <p>Breadboard के holes randomly connected नहीं होते। इसके अंदर metal strips होती हैं जो specific holes
+                    को आपस
+                    में connect करती हैं। अगर internal connection समझ में नहीं आया, तो circuit correct दिखने के बाद भी
+                    work नहीं
+                    करेगा।</p>
+                <div class="image-icon"><img src="" alt="Breadboard Internal Connections">
+                    <p>Image Placeholder: Breadboard Internal Connections Diagram</p>
+                </div>
+                <h4>Power Rails</h4>
+                <p>Breadboard के side में red और blue lines वाली long rows power rails कहलाती हैं। Red rail generally
+                    VCC/positive supply के लिए और blue/black rail GND/negative supply के लिए use होती है। कई breadboards
+                    में power
+                    rails बीच में break हो सकती हैं, इसलिए continuity check करना जरूरी होता है।</p>
+                <h4>Terminal Strips</h4>
+                <p>Breadboard के middle area में small groups of five holes internally connected होते हैं। Usually एक
+                    row के 5
+                    holes left side में connected होते हैं और center gap के बाद right side के 5 holes separately
+                    connected होते
+                    हैं। Center gap IC लगाने के लिए होता है।</p>
+                <h4>Important Connection Rules</h4>
+                <ul>
+                    <li>Same connected row में लगे components electrically same point पर होते हैं।</li>
+                    <li>Center gap के दोनों side directly connected नहीं होते।</li>
+                    <li>Power rails long connected lines होती हैं, लेकिन कुछ boards में rails split हो सकती हैं।</li>
+                    <li>Positive और negative rails को accidentally short नहीं करना चाहिए।</li>
+                    <li>IC को center gap के ऊपर लगाना चाहिए ताकि उसके pins अलग-अलग rows में जाएँ।</li>
+                </ul>
+                <h4>Breadboard Parts Table</h4>
+                <table>
+                    <tr>
+                        <th>Part</th>
+                        <th>Purpose</th>
+                    </tr>
+                    <tr>
+                        <td>Power Rail</td>
+                        <td>VCC और GND distribute करने के लिए।</td>
+                    </tr>
+                    <tr>
+                        <td>Terminal Area</td>
+                        <td>Components और jumper wires connect करने के लिए।</td>
+                    </tr>
+                    <tr>
+                        <td>Center Gap</td>
+                        <td>IC या module को अलग pin groups में fit करने के लिए।</td>
+                    </tr>
+                    <tr>
+                        <td>Metal Clips</td>
+                        <td>Internal electrical connection provide करते हैं।</td>
+                    </tr>
+                </table>
+                <div class="note-box"><b>Real Life Example:</b><br>Breadboard को temporary wiring board समझो। जैसे
+                    notebook
+                    rough work के लिए होती है, वैसे ही breadboard circuit rough testing के लिए होती है।</div>
+                <div class="remember-box"><b>Remember:</b><br>Breadboard में holes दिखने में separate होते हैं, लेकिन
+                    अंदर
+                    specific pattern में connected होते हैं।</div>
+
+            </section>
+            <section id="resistor-deep">
+                <h2>Resistor and Current Limiting</h2>
+
+                <p><strong>Resistor</strong> electronic circuit में current flow को limit करने वाला component है। IoT
+                    circuits
+                    में resistor का use LED protection, voltage divider, pull-up/pull-down connection और sensor circuits
+                    में किया
+                    जाता है। Resistor की value ohm में measure होती है और symbol Ω होता है।</p>
+                <div class="image-icon"><img src="" alt="Resistor Current Limiting">
+                    <p>Image Placeholder: Resistor Current Limiting Diagram</p>
+                </div>
+                <h4>Why Resistor is Important with LED</h4>
+                <p>LED को direct battery या microcontroller pin से connect करना dangerous हो सकता है क्योंकि LED ज्यादा
+                    current
+                    खींच सकती है और damage हो सकती है। इसलिए LED के साथ series में resistor लगाया जाता है। Resistor
+                    current को
+                    safe limit में रखता है।</p>
+                <h4>Ohm's Law</h4>
+                <pre>V = I × R
+
+R = V / I</pre>
+                <p>जहाँ V voltage है, I current है और R resistance है।</p>
+                <h4>Simple LED Resistor Calculation</h4>
+                <p>अगर supply 5V है, LED forward voltage 2V है और required current 20mA है:</p>
+                <pre>R = (5V - 2V) / 0.02A
+R = 3 / 0.02
+R = 150 ohm</pre>
+                <p>Practical circuits में 220Ω या 330Ω resistor commonly use किया जाता है ताकि LED safe रहे।</p>
+                <h4>Resistor Uses</h4>
+                <table>
+                    <tr>
+                        <th>Use</th>
+                        <th>Explanation</th>
+                    </tr>
+                    <tr>
+                        <td>Current Limiting</td>
+                        <td>LED और components को extra current से बचाता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Voltage Divider</td>
+                        <td>Voltage को required level में divide करता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Pull-up/Pull-down</td>
+                        <td>Digital input pin को stable HIGH या LOW state देता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Sensor Circuit</td>
+                        <td>LDR और other sensors के साथ reading circuit बनाता है।</td>
+                    </tr>
+                </table>
+                <h4>Common Resistor Values</h4>
+                <ul>
+                    <li>220Ω: LED current limiting के लिए common।</li>
+                    <li>330Ω: LED को और safe dim current देने के लिए।</li>
+                    <li>1kΩ: General signal circuits में।</li>
+                    <li>10kΩ: Pull-up/pull-down और sensor divider circuits में।</li>
+                </ul>
+                <div class="remember-box"><b>Remember:</b><br>LED के साथ resistor लगाना जरूरी है, otherwise LED damage
+                    हो सकती
+                    है।</div>
+
+            </section>
+            <section id="led-connection">
+                <h2>LED and its Connections</h2>
+
+                <p><strong>LED</strong> का full form Light Emitting Diode है। LED एक semiconductor device है जो forward
+                    bias में
+                    current flow होने पर light emit करता है। IoT circuits में LED status indication, alert, output
+                    testing और
+                    visual feedback के लिए use होती है।</p>
+                <div class="image-icon"><img src="" alt="LED Connection on Breadboard">
+                    <p>Image Placeholder: LED Connection on Breadboard</p>
+                </div>
+                <h4>LED Polarity</h4>
+                <table>
+                    <tr>
+                        <th>LED Part</th>
+                        <th>Meaning</th>
+                    </tr>
+                    <tr>
+                        <td>Long Leg</td>
+                        <td>Anode यानी positive terminal।</td>
+                    </tr>
+                    <tr>
+                        <td>Short Leg</td>
+                        <td>Cathode यानी negative terminal।</td>
+                    </tr>
+                    <tr>
+                        <td>Flat Side</td>
+                        <td>Usually cathode side indicate करती है।</td>
+                    </tr>
+                </table>
+                <h4>Basic LED Connection</h4>
+                <pre>Microcontroller Pin → Resistor → LED Anode
+LED Cathode → GND</pre>
+                <p>जब pin HIGH होगा, current resistor और LED से होकर GND तक जाएगा और LED glow करेगी।</p>
+                <h4>Arduino Style Code</h4>
+                <pre>int ledPin = 13;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(ledPin, HIGH);
+  delay(1000);
+
+  digitalWrite(ledPin, LOW);
+  delay(1000);
+}</pre>
+                <h4>Common Mistakes</h4>
+                <ul>
+                    <li>LED की polarity उलटी लगाना।</li>
+                    <li>Resistor न लगाना।</li>
+                    <li>Wrong breadboard row में component लगाना।</li>
+                    <li>GND common न करना।</li>
+                    <li>Microcontroller pin को directly high current load से connect करना।</li>
+                </ul>
+                <div class="note-box"><b>Real Life Example:</b><br>Router में blinking LEDs network status दिखाती हैं।
+                    यह LED
+                    indication का common example है।</div>
+                <div class="remember-box"><b>Remember:</b><br>LED diode है, इसलिए polarity सही होना जरूरी है।</div>
+
+            </section>
+            <section id="rgb-led">
+                <h2>Tri-color LED / RGB LED</h2>
+
+                <p><strong>Tri-color LED</strong> या <strong>RGB LED</strong> में Red, Green और Blue तीन LEDs एक ही
+                    package के
+                    अंदर होती हैं। इन तीन colors की brightness को control करके अलग-अलग colors create किए जा सकते हैं।
+                    IoT devices
+                    में RGB LED status indication के लिए बहुत useful होती है।</p>
+                <div class="image-icon"><img src="" alt="RGB LED Connection">
+                    <p>Image Placeholder: RGB LED Connection Diagram</p>
+                </div>
+                <h4>Types of RGB LED</h4>
+                <table>
+                    <tr>
+                        <th>Type</th>
+                        <th>Meaning</th>
+                    </tr>
+                    <tr>
+                        <td>Common Cathode</td>
+                        <td>तीनों LEDs का negative terminal common होता है। Common pin GND से connect होती है।</td>
+                    </tr>
+                    <tr>
+                        <td>Common Anode</td>
+                        <td>तीनों LEDs का positive terminal common होता है। Common pin VCC से connect होती है।</td>
+                    </tr>
+                </table>
+                <h4>RGB LED Pins</h4>
+                <ul>
+                    <li>Red pin</li>
+                    <li>Common pin</li>
+                    <li>Green pin</li>
+                    <li>Blue pin</li>
+                </ul>
+                <p>Exact pin order LED model के according change हो सकता है, इसलिए datasheet check करना best practice
+                    है।</p>
+                <h4>Common Cathode Connection</h4>
+                <pre>Common pin → GND
+Red pin → Resistor → Digital/PWM pin
+Green pin → Resistor → Digital/PWM pin
+Blue pin → Resistor → Digital/PWM pin</pre>
+                <h4>Arduino Style Code</h4>
+                <pre>int redPin = 9;
+int greenPin = 10;
+int bluePin = 11;
+
+void setup() {
+  pinMode(redPin, OUTPUT);
+  pinMode(greenPin, OUTPUT);
+  pinMode(bluePin, OUTPUT);
+}
+
+void loop() {
+  analogWrite(redPin, 255);
+  analogWrite(greenPin, 0);
+  analogWrite(bluePin, 0);
+}</pre>
+                <h4>Uses</h4>
+                <table>
+                    <tr>
+                        <th>Color</th>
+                        <th>Status Meaning Example</th>
+                    </tr>
+                    <tr>
+                        <td>Green</td>
+                        <td>System normal / connected</td>
+                    </tr>
+                    <tr>
+                        <td>Red</td>
+                        <td>Error / danger / alert</td>
+                    </tr>
+                    <tr>
+                        <td>Blue</td>
+                        <td>Wi-Fi connecting / processing</td>
+                    </tr>
+                    <tr>
+                        <td>Yellow</td>
+                        <td>Warning</td>
+                    </tr>
+                </table>
+                <div class="remember-box"><b>Remember:</b><br>RGB LED में हर color pin के साथ separate resistor लगाना
+                    चाहिए।
+                </div>
+
+            </section>
+            <section id="seven-segment">
+                <h2>Seven Segment Display on Breadboard</h2>
+
+                <p><strong>Seven segment display</strong> एक electronic display device है जिसका use numbers show करने के
+                    लिए
+                    किया जाता है। इसमें seven LED segments होते हैं जिन्हें a, b, c, d, e, f और g नाम दिया जाता है। इन
+                    segments को
+                    different combinations में ON करके digits 0 से 9 display किए जाते हैं।</p>
+                <div class="image-icon"><img src="" alt="Seven Segment Display Breadboard">
+                    <p>Image Placeholder: Seven Segment Display on Breadboard</p>
+                </div>
+                <h4>Segments</h4>
+                <pre>
+ a
+f b
+ g
+e c
+ d
+</pre>
+                <h4>Types</h4>
+                <table>
+                    <tr>
+                        <th>Type</th>
+                        <th>Meaning</th>
+                    </tr>
+                    <tr>
+                        <td>Common Anode</td>
+                        <td>All LED anodes common VCC से connected होते हैं। Segment ON करने के लिए LOW signal दिया जाता
+                            है।</td>
+                    </tr>
+                    <tr>
+                        <td>Common Cathode</td>
+                        <td>All LED cathodes common GND से connected होते हैं। Segment ON करने के लिए HIGH signal दिया
+                            जाता है।</td>
+                    </tr>
+                </table>
+                <h4>Displaying Digit 0</h4>
+                <p>Digit 0 display करने के लिए segments a, b, c, d, e और f ON होते हैं, g OFF रहता है।</p>
+                <h4>Displaying Digit 1</h4>
+                <p>Digit 1 display करने के लिए segments b और c ON होते हैं।</p>
+                <h4>Connection Rules</h4>
+                <ul>
+                    <li>हर segment LED के साथ current limiting resistor लगाना चाहिए।</li>
+                    <li>Common pin को display type के according VCC या GND से connect करें।</li>
+                    <li>Segment pins को microcontroller digital pins से connect करें।</li>
+                    <li>Display type common anode है या cathode, पहले identify करें।</li>
+                </ul>
+                <h4>Segment Table</h4>
+                <table>
+                    <tr>
+                        <th>Digit</th>
+                        <th>Segments ON</th>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>a, b, c, d, e, f</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>b, c</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>a, b, d, e, g</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>a, b, c, d, g</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>b, c, f, g</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>a, c, d, f, g</td>
+                    </tr>
+                </table>
+                <div class="note-box"><b>Real Life Example:</b><br>Digital clock, lift floor display और counter machines
+                    में
+                    seven-segment display use हो सकता है।</div>
+                <div class="remember-box"><b>Remember:</b><br>Seven segment display basically 7 LEDs का arranged group
+                    है।</div>
+
+            </section>
+            <section id="pullup-pulldown">
+                <h2>Pull-up and Pull-down Resistors</h2>
+
+                <p>Digital input pins कभी-कभी floating state में रह सकते हैं। Floating state का मतलब है कि pin clearly
+                    HIGH या
+                    LOW नहीं है, जिससे random reading मिल सकती है। इस problem को solve करने के लिए pull-up और pull-down
+                    resistors
+                    use होते हैं।</p>
+                <div class="image-icon"><img src="" alt="Pull Up Pull Down Resistor">
+                    <p>Image Placeholder: Pull-up and Pull-down Resistor Diagram</p>
+                </div>
+                <h4>Pull-up Resistor</h4>
+                <p>Pull-up resistor input pin को default HIGH state में रखता है। Button press होने पर pin LOW हो सकती
+                    है।
+                    Arduino में internal pull-up resistor भी available होता है।</p>
+                <pre>pinMode(buttonPin, INPUT_PULLUP);</pre>
+                <h4>Pull-down Resistor</h4>
+                <p>Pull-down resistor input pin को default LOW state में रखता है। Button press होने पर pin HIGH हो सकती
+                    है।</p>
+                <h4>Difference</h4>
+                <table>
+                    <tr>
+                        <th>Basis</th>
+                        <th>Pull-up</th>
+                        <th>Pull-down</th>
+                    </tr>
+                    <tr>
+                        <td>Default State</td>
+                        <td>HIGH</td>
+                        <td>LOW</td>
+                    </tr>
+                    <tr>
+                        <td>Connection</td>
+                        <td>Resistor VCC से connect</td>
+                        <td>Resistor GND से connect</td>
+                    </tr>
+                    <tr>
+                        <td>Use</td>
+                        <td>Button input stable रखने के लिए</td>
+                        <td>Button input stable रखने के लिए</td>
+                    </tr>
+                </table>
+                <h4>Why Important in IoT</h4>
+                <p>IoT devices में buttons, switches, reed sensors और digital inputs stable होने चाहिए। Floating input
+                    false
+                    trigger generate कर सकता है, जिससे automation गलत action ले सकता है।</p>
+                <div class="remember-box"><b>Remember:</b><br>Pull-up/pull-down resistor digital input को stable HIGH या
+                    LOW
+                    state देता है।</div>
+
+            </section>
+            <section id="power-safety">
+                <h2>Power Supply and Circuit Safety</h2>
+
+                <p>IoT circuits में power supply और safety बहुत important है। Wrong voltage, reverse polarity, short
+                    circuit या
+                    high current से sensor, microcontroller और components damage हो सकते हैं। इसलिए practical circuit
+                    बनाते समय
+                    voltage level और current requirement समझना जरूरी है।</p>
+                <div class="image-icon"><img src="" alt="IoT Circuit Power Safety">
+                    <p>Image Placeholder: Power Supply and Circuit Safety</p>
+                </div>
+                <h4>Common Voltage Levels</h4>
+                <table>
+                    <tr>
+                        <th>Device/Board</th>
+                        <th>Common Voltage</th>
+                    </tr>
+                    <tr>
+                        <td>Arduino Uno</td>
+                        <td>5V logic</td>
+                    </tr>
+                    <tr>
+                        <td>ESP8266/NodeMCU</td>
+                        <td>3.3V logic</td>
+                    </tr>
+                    <tr>
+                        <td>ESP32</td>
+                        <td>3.3V logic</td>
+                    </tr>
+                    <tr>
+                        <td>Many Sensors</td>
+                        <td>3.3V या 5V</td>
+                    </tr>
+                    <tr>
+                        <td>Relay Module</td>
+                        <td>5V commonly</td>
+                    </tr>
+                </table>
+                <h4>Safety Rules</h4>
+                <ul>
+                    <li>Component का operating voltage check करें।</li>
+                    <li>GND common रखें जब two modules communicate कर रहे हों।</li>
+                    <li>LED के साथ resistor जरूर लगाएँ।</li>
+                    <li>Microcontroller pin से high current load direct न चलाएँ।</li>
+                    <li>Motor, pump, relay जैसे loads के लिए driver circuit use करें।</li>
+                    <li>Reverse polarity avoid करें।</li>
+                    <li>Power ON करने से पहले short circuit check करें।</li>
+                </ul>
+                <h4>3.3V and 5V Compatibility</h4>
+                <p>ESP boards generally 3.3V logic use करते हैं। 5V signal directly ESP input pin पर देना unsafe हो सकता
+                    है। ऐसे
+                    case में level shifter या voltage divider use किया जा सकता है।</p>
+                <div class="note-box"><b>Real Life Example:</b><br>5V sensor output को direct 3.3V ESP pin पर देने से
+                    board
+                    damage हो सकता है। इसलिए voltage compatibility check करना जरूरी है।</div>
+                <div class="remember-box"><b>Remember:</b><br>IoT practical में wiring से पहले voltage, current और
+                    polarity
+                    check करें।</div>
+
+            </section>
+            <section id="troubleshooting">
+                <h2>Common IoT Circuit Troubleshooting</h2>
+
+                <p>IoT practical circuits में कई बार code सही होने के बाद भी circuit work नहीं करता। इसका reason loose
+                    wire,
+                    wrong breadboard row, missing GND, wrong polarity, damaged component या wrong voltage हो सकता है।
+                    इसलिए
+                    troubleshooting skill बहुत important है।</p>
+                <div class="image-icon"><img src="" alt="IoT Circuit Troubleshooting">
+                    <p>Image Placeholder: IoT Circuit Troubleshooting Checklist</p>
+                </div>
+                <h4>Common Problems and Solutions</h4>
+                <table>
+                    <tr>
+                        <th>Problem</th>
+                        <th>Possible Reason</th>
+                        <th>Solution</th>
+                    </tr>
+                    <tr>
+                        <td>LED not glowing</td>
+                        <td>Wrong polarity, missing resistor, wrong pin</td>
+                        <td>LED legs, resistor and pin number check करें।</td>
+                    </tr>
+                    <tr>
+                        <td>Sensor no reading</td>
+                        <td>VCC/GND wrong, loose jumper</td>
+                        <td>Power and wiring check करें।</td>
+                    </tr>
+                    <tr>
+                        <td>Random button reading</td>
+                        <td>Floating input</td>
+                        <td>Pull-up/pull-down resistor use करें।</td>
+                    </tr>
+                    <tr>
+                        <td>Board restarting</td>
+                        <td>Power supply weak</td>
+                        <td>Stable power source use करें।</td>
+                    </tr>
+                    <tr>
+                        <td>Wi-Fi not connecting</td>
+                        <td>Wrong SSID/password, weak signal</td>
+                        <td>Credentials और network range check करें।</td>
+                    </tr>
+                    <tr>
+                        <td>Sensor value wrong</td>
+                        <td>Calibration issue</td>
+                        <td>Sensor calibrate करें।</td>
+                    </tr>
+                </table>
+                <h4>Basic Troubleshooting Steps</h4>
+                <ol>
+                    <li>Power supply check करें।</li>
+                    <li>GND common है या नहीं check करें।</li>
+                    <li>Pin numbers code और circuit में match करें।</li>
+                    <li>Component polarity check करें।</li>
+                    <li>Serial Monitor से values debug करें।</li>
+                    <li>एक-एक module अलग test करें।</li>
+                </ol>
+                <h4>Debug Example</h4>
+                <pre>Serial.begin(9600);
+Serial.println(sensorValue);</pre>
+                <p>Serial Monitor में sensor value print करके पता चलता है कि sensor data सही आ रहा है या नहीं।</p>
+                <div class="remember-box"><b>Remember:</b><br>IoT circuit troubleshooting में power, GND, pin number और
+                    polarity
+                    सबसे पहले check करें।</div>
+
+            </section>
+
+
+        </main>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IoT Networks - Part 1</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f7fb;color:#1f2937;line-height:1.75}
+.page{display:grid;grid-template-columns:285px 1fr;gap:20px;max-width:1500px;margin:auto;padding:10px}
+.sidebar{position:sticky;top:10px;height:calc(100vh - 20px);overflow-y:auto;background:#fff;border-radius:16px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.08);align-self:start}
+.sidebar h2{font-size:20px;margin-bottom:12px;color:#111827}
+.sidebar a{display:block;text-decoration:none;color:#374151;padding:8px 10px;border-radius:10px;margin-bottom:4px;font-size:14.7px}
+.sidebar a:hover{background:#eef2ff;color:#1d4ed8}
+.content{background:#fff;border-radius:18px;padding:10px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.hero{padding:28px 18px;border-radius:16px;background:linear-gradient(135deg,#eef2ff,#f8fafc);margin-bottom:18px}
+.hero h1{font-size:34px;color:#111827;margin-bottom:10px}
+.hero p{font-size:18px;color:#374151}
+section{padding:22px 10px;border-bottom:1px solid #e5e7eb}
+section:last-child{border-bottom:none}
+h2{font-size:27px;color:#111827;margin-bottom:12px;border-left:5px solid #2563eb;padding-left:12px}
+h3{font-size:22px;color:#1f2937;margin:16px 0 8px}
+h4{font-size:18px;color:#111827;margin:14px 0 6px}
+p{margin:10px 0;font-size:17px}
+ul,ol{margin-left:24px;margin-top:8px}
+li{margin:7px 0;font-size:16.5px}
+strong{color:#111827}
+.image-icon{min-height:180px;border:2px dashed #94a3b8;border-radius:16px;background:#f8fafc;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;margin:18px 0;color:#475569;font-weight:600;flex-direction:column;gap:8px}
+.image-icon img{max-width:100%;height:auto}
+.note-box{background:#f0fdf4;border-left:5px solid #22c55e;border-radius:14px;padding:14px 16px;margin:16px 0}
+.info-box{background:#ecfeff;border-left:5px solid #06b6d4;border-radius:14px;padding:14px 16px;margin:16px 0}
+.remember-box{background:#fff7ed;border-left:5px solid #f97316;border-radius:14px;padding:14px 16px;margin:16px 0}
+table{width:100%;border-collapse:collapse;margin:16px 0;border-radius:12px;overflow:hidden;font-size:15.5px}
+th,td{border:1px solid #d1d5db;padding:10px;text-align:left;vertical-align:top}
+th{background:#eef2ff;color:#111827}
+code{background:#111827;color:#f9fafb;padding:2px 6px;border-radius:6px;font-family:Consolas,monospace;font-size:15px}
+pre{background:#0f172a;color:#e5e7eb;border-radius:14px;padding:16px;margin:16px 0;overflow-x:auto;font-family:Consolas,monospace;line-height:1.6}
+@media(max-width:900px){.page{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.hero h1{font-size:27px}h2{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="page">
+<aside class="sidebar">
+<h2>Topics</h2>
+      <a href="#intro">Introduction to IoT Networks</a>
+      <a href="#components">Components of Basic IoT Networks</a>
+      <a href="#gateway">IoT Gateway and Router</a>
+      <a href="#data-travel">How Data Travels in IoT Network</a>
+      <a href="#layers">IoT Network Layers</a>
+      <a href="#real-examples">Real-life IoT Network Examples</a>
+</aside>
+<main class="content">
+<div class="hero">
+<h1>IoT Networks - Part 1</h1>
+<p>इस part में IoT networks introduction, components, gateway/router, data travel flow, layers और real-life examples को premium notes format में समझाया गया है।</p>
+</div>
+<section id="intro">
+<h2>Introduction to IoT Networks</h2>
+
+<p><strong>IoT Network</strong> वह communication system है जिसके द्वारा IoT devices, sensors, actuators, gateways, cloud servers और applications आपस में data exchange करते हैं। IoT device अकेला smart नहीं बनता; उसे useful बनाने के लिए network की जरूरत होती है, ताकि वह collected data को दूसरे systems तक भेज सके और remote command receive कर सके।</p>
+<p>IoT network का main purpose physical world से data collect करके digital world तक पहुँचाना और digital decision को physical action में convert करना है। For example, soil moisture sensor field से data collect करता है, microcontroller उसे process करता है, Wi-Fi के through cloud को send करता है और mobile app farmer को alert show करती है।</p>
+<div class="image-icon"><img src="" alt="IoT Network Architecture"><p>Image Placeholder: Basic IoT Network Architecture</p></div>
+<h4>Need of IoT Network</h4>
+<ul>
+<li>Devices को internet/cloud से connect करने के लिए।</li>
+<li>Sensor data को remote server तक भेजने के लिए।</li>
+<li>Mobile app या web dashboard से monitoring करने के लिए।</li>
+<li>Remote control और automation enable करने के लिए।</li>
+<li>Multiple devices को एक smart system में connect करने के लिए।</li>
+</ul>
+<h4>Basic Working</h4>
+<pre>Sensor → Microcontroller → Gateway/Router → Internet → Cloud → Application → User</pre>
+<div class="note-box"><b>Real Life Example:</b><br>Smart home में door sensor, camera, smart bulb और thermostat Wi-Fi/router के through internet से connect होकर mobile app में status दिखाते हैं।</div>
+<div class="remember-box"><b>Remember:</b><br>IoT network devices और cloud/application के बीच data travel करने का path provide करता है।</div>
+
+</section>
+<section id="components">
+<h2>Components of Basic IoT Networks</h2>
+
+<p>Basic IoT network कई components से मिलकर बनता है। हर component का अपना role होता है। Sensors data collect करते हैं, microcontroller data process करता है, gateway/router data को internet तक भेजता है, cloud data store और analyze करता है और application user को result दिखाती है।</p>
+<div class="image-icon"><img src="" alt="Components of IoT Network"><p>Image Placeholder: Components of Basic IoT Network</p></div>
+<h4>Main Components</h4>
+<table>
+<tr><th>Component</th><th>Role</th></tr>
+<tr><td>IoT Device / Thing</td><td>Physical object जो data collect या action perform करता है।</td></tr>
+<tr><td>Sensor</td><td>Temperature, motion, light, moisture जैसे data collect करता है।</td></tr>
+<tr><td>Actuator</td><td>Command मिलने पर motor, relay, buzzer, light आदि control करता है।</td></tr>
+<tr><td>Microcontroller</td><td>Sensor data read करके decision/control करता है।</td></tr>
+<tr><td>Gateway</td><td>Local devices और internet/cloud के बीच bridge होता है।</td></tr>
+<tr><td>Router</td><td>Network traffic को सही destination तक forward करता है।</td></tr>
+<tr><td>Internet</td><td>Global connectivity provide करता है।</td></tr>
+<tr><td>Cloud Server</td><td>Data storage, processing और analytics करता है।</td></tr>
+<tr><td>Database</td><td>Sensor readings और device records store करता है।</td></tr>
+<tr><td>Application</td><td>User को monitoring/control interface देता है।</td></tr>
+</table>
+<h4>Component Relationship</h4>
+<p>IoT system में sensor बिना controller के useful नहीं होता, controller बिना network के remote monitoring नहीं कर सकता, और cloud/application बिना device data के useful result नहीं दिखा सकती। इसलिए IoT network में सभी components connected chain की तरह work करते हैं।</p>
+<div class="remember-box"><b>Remember:</b><br>IoT network में device, sensor, controller, gateway, cloud और application मिलकर complete system बनाते हैं।</div>
+
+</section>
+<section id="gateway">
+<h2>IoT Gateway and Router</h2>
+
+<p><strong>IoT Gateway</strong> local IoT devices और cloud/internet के बीच bridge की तरह काम करता है। कई IoT devices directly internet से connect नहीं हो पाते क्योंकि वे low-power protocols जैसे Zigbee, Bluetooth या LoRa use करते हैं। Gateway इन devices से data receive करके IP network/cloud तक भेजता है।</p>
+<p><strong>Router</strong> network device है जो packets को सही destination तक forward करता है। Home IoT में Wi-Fi router devices को local network और internet से connect करता है।</p>
+<div class="image-icon"><img src="" alt="IoT Gateway and Router"><p>Image Placeholder: IoT Gateway and Router Role</p></div>
+<h4>Gateway Functions</h4>
+<ul>
+<li>Protocol conversion करना।</li>
+<li>Local device data collect करना।</li>
+<li>Data filtering और aggregation करना।</li>
+<li>Cloud/server को data forward करना।</li>
+<li>Security और authentication में help करना।</li>
+<li>Local processing/edge computing support करना।</li>
+</ul>
+<h4>Gateway vs Router</h4>
+<table>
+<tr><th>Basis</th><th>Gateway</th><th>Router</th></tr>
+<tr><td>Purpose</td><td>Different networks/protocols को connect करता है।</td><td>Packets को network में route करता है।</td></tr>
+<tr><td>Protocol Conversion</td><td>Possible</td><td>Generally नहीं।</td></tr>
+<tr><td>IoT Role</td><td>Zigbee/Bluetooth devices को cloud से connect कर सकता है।</td><td>Wi-Fi devices को internet access देता है।</td></tr>
+<tr><td>Processing</td><td>Data filtering/edge processing कर सकता है।</td><td>Mainly routing करता है।</td></tr>
+</table>
+<div class="note-box"><b>Real Life Example:</b><br>Smart home hub Zigbee sensors से data लेकर Wi-Fi router के through cloud तक भेजता है। यह hub IoT gateway की तरह काम करता है।</div>
+
+</section>
+<section id="data-travel">
+<h2>How Data Travels in IoT Network</h2>
+
+<p>IoT network में data physical environment से start होकर user application तक जाता है। यह journey कई stages में complete होती है। Data का travel direction केवल sensor से user तक नहीं होता; user command भी वापस device तक travel कर सकती है।</p>
+<div class="image-icon"><img src="" alt="How Data Travels in IoT Network"><p>Image Placeholder: Sensor to Cloud Data Travel Flow</p></div>
+<h4>Data Travel Flow</h4>
+<pre>Physical Environment
+        ↓
+Sensor
+        ↓
+Microcontroller
+        ↓
+Communication Module
+        ↓
+Gateway / Router
+        ↓
+Internet
+        ↓
+Cloud Server
+        ↓
+Database / Analytics
+        ↓
+Mobile App / Web Dashboard
+        ↓
+User Decision / Automatic Command
+        ↓
+Actuator</pre>
+<h4>Step-by-Step Explanation</h4>
+<ol>
+<li>Sensor environment से data collect करता है।</li>
+<li>Microcontroller sensor reading को read और process करता है।</li>
+<li>Communication module data को network में send करता है।</li>
+<li>Gateway/router data को internet/cloud तक forward करता है।</li>
+<li>Cloud server data store और analyze करता है।</li>
+<li>Application user को result show करती है।</li>
+<li>User या automation actuator को command भेज सकता है।</li>
+</ol>
+<h4>Example: Smart Irrigation</h4>
+<p>Soil moisture sensor soil dry detect करता है। Arduino/ESP32 data read करता है। Wi-Fi के through cloud पर reading upload होती है। App farmer को alert दिखाती है। अगर automatic mode है, तो relay water pump ON कर देता है।</p>
+<div class="remember-box"><b>Remember:</b><br>IoT network में data sensing से cloud तक और command cloud/user से actuator तक travel कर सकता है।</div>
+
+</section>
+<section id="layers">
+<h2>IoT Network Layers</h2>
+
+<p>IoT network को समझने के लिए इसे layers में divide किया जा सकता है। हर layer एक specific responsibility handle करती है। यह layered approach large IoT systems को design और understand करने में helpful होती है।</p>
+<div class="image-icon"><img src="" alt="IoT Network Layers"><p>Image Placeholder: IoT Network Layer Architecture</p></div>
+<h4>Common IoT Layers</h4>
+<table>
+<tr><th>Layer</th><th>Role</th></tr>
+<tr><td>Perception Layer</td><td>Sensors और actuators physical world से interact करते हैं।</td></tr>
+<tr><td>Network Layer</td><td>Data को devices से servers/cloud तक transfer करता है।</td></tr>
+<tr><td>Processing Layer</td><td>Cloud/edge पर data storage, processing और analytics करता है।</td></tr>
+<tr><td>Application Layer</td><td>User-specific services जैसे smart home, health, agriculture provide करता है।</td></tr>
+<tr><td>Security Layer</td><td>Authentication, encryption और access control provide करता है।</td></tr>
+</table>
+<h4>Layer Example</h4>
+<p>Smart parking system में ultrasonic sensor perception layer है, Wi-Fi/LoRa network layer है, cloud analytics processing layer है और parking app application layer है।</p>
+<div class="remember-box"><b>Remember:</b><br>IoT network layers system को organized way में समझाने में help करती हैं।</div>
+
+</section>
+<section id="real-examples">
+<h2>Real-life IoT Network Examples</h2>
+
+<p>IoT networks का use many real-life applications में होता है। ये networks devices को smart बनाते हैं और remote monitoring/control possible करते हैं।</p>
+<div class="image-icon"><img src="" alt="IoT Network Examples"><p>Image Placeholder: Real-life IoT Network Examples</p></div>
+<table>
+<tr><th>Application</th><th>Network Working</th></tr>
+<tr><td>Smart Home</td><td>Sensors और smart devices Wi-Fi/router के through app से connect होते हैं।</td></tr>
+<tr><td>Smart Agriculture</td><td>Field sensors gateway/cloud को data भेजते हैं और pump control होता है।</td></tr>
+<tr><td>Smart Hospital</td><td>Patient monitoring devices nurse station/cloud को health data send करते हैं।</td></tr>
+<tr><td>Smart Factory</td><td>Machines और sensors production data server को भेजते हैं।</td></tr>
+<tr><td>Smart Traffic</td><td>Cameras/sensors traffic data control center तक भेजते हैं।</td></tr>
+<tr><td>Smart Classroom</td><td>Attendance, temperature, lights और projector connected system से manage हो सकते हैं।</td></tr>
+</table>
+<h4>Why Network Matters</h4>
+<p>अगर IoT devices connected नहीं होंगे, तो data केवल local रहेगा। Network उन्हें cloud, apps और other devices से connect करके real automation और intelligence enable करता है।</p>
+<div class="note-box"><b>Real Life Example:</b><br>Smart traffic system में sensors और cameras traffic density data control center को send करते हैं, जिससे signal timing automatically adjust हो सकती है।</div>
+
+</section>
+</main>
+</div>
+</body>
+</html>

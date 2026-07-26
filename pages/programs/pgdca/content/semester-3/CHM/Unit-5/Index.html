@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width,initial-scale=1'>
+    <title>HDD</title>
+    <link rel="icon" href="../../../.././../../../assets/images/logo.jpeg">
+    <style>
+        body {
+            font-family: Segoe UI, Arial;
+            background: #f5f7fb;
+            margin: 0;
+            color: #1f2937;
+            line-height: 1.7
+        }
+        html{
+            scroll-behavior: smooth;
+        }
+
+        .page {
+            display: grid;
+            grid-template-columns: 270px 1fr;
+            gap: 20px;
+            max-width: 1450px;
+            margin: auto;
+            padding: 10px
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 10px;
+            background: #fff;
+            padding: 18px;
+            border-radius: 14px;
+            height: calc(100vh - 20px);
+            overflow: auto;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, .08)
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 8px;
+            text-decoration: none;
+            color: #374151;
+            border-radius: 8px
+        }
+
+        .sidebar a:hover {
+            background: #eef2ff
+        }
+
+        .content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 14px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, .08)
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #eef2ff, #f8fafc);
+            padding: 24px;
+            border-radius: 12px
+        }
+
+        h2 {
+            border-left: 5px solid #2563eb;
+            padding-left: 10px
+        }
+
+        .image-icon {
+            min-height: 170px;
+            border: 2px dashed #94a3b8;
+            border-radius: 12px;
+            background: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin: 16px 0
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 10px
+        }
+
+        th {
+            background: #eef2ff
+        }
+
+        .note {
+            background: #f0fdf4;
+            border-left: 5px solid #22c55e;
+            padding: 12px;
+            margin: 14px 0
+        }
+    </style>
+</head>
+
+<body>
+    <div class='page'>
+        <aside class='sidebar'>
+            <h2>Topics</h2>
+            <a href='#intro'>Introduction</a>
+            <a href='#mag'>Magnetic Recording</a>
+            <a href='#enc'>Data Encoding Method</a>
+            <a href='#features'>HDD Features</a>
+            <a href='#parking'>Head Parking</a>
+            <a href='#trouble'>HDD Troubleshooting</a>
+        </aside>
+        <main class='content'>
+            <div class='hero'>
+                <h1>Hard Disk Drive (HDD)</h1>
+            </div>
+
+            <section id='intro'>
+                <h2>Introduction</h2>
+                <p><strong>Hard Disk Drive (HDD)</strong> एक secondary storage device है जो magnetic technology की
+                    सहायता से operating system, software, documents, videos और अन्य data को permanently store करता है।
+                    HDD में एक या अधिक circular magnetic platters high speed पर rotate करते हैं तथा read/write heads
+                    data को read और write करते हैं।</p>
+                <div class='image-icon'><img src='' alt='HDD'>
+                    <p>Image Placeholder: Internal Parts of HDD</p>
+                </div>
+            </section>
+
+            <section id='mag'>
+                <h2>Magnetic Recording</h2>
+                <p>HDD की surface magnetic material से coated होती है। Data छोटे-छोटे magnetic domains के रूप में store
+                    होता है। Read/Write head platter को touch किए बिना उसके ऊपर बहुत कम दूरी पर move करता है। Write
+                    operation के समय magnetic polarity change होती है जबकि read operation में magnetic changes को
+                    electrical signals में convert किया जाता है।</p>
+                <div class='image-icon'><img src='' alt='Magnetic Recording'>
+                    <p>Image Placeholder: Magnetic Recording Process</p>
+                </div>
+                <h3>Recording Process</h3>
+                <ol>
+                    <li>CPU data भेजता है।</li>
+                    <li>Controller binary data तैयार करता है।</li>
+                    <li>Head magnetic polarity बदलकर data write करता है।</li>
+                    <li>Read करते समय polarity detect करके binary data वापस बनता है।</li>
+                </ol>
+            </section>
+
+            <section id='enc'>
+                <h2>Data Encoding Method</h2>
+                <p>Data encoding method binary data को magnetic patterns में बदलने की technique है। समय के साथ अलग-अलग
+                    encoding methods विकसित हुईं।</p>
+                <table>
+                    <tr>
+                        <th>Method</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>FM (Frequency Modulation)</td>
+                        <td>Old method, low storage density.</td>
+                    </tr>
+                    <tr>
+                        <td>MFM (Modified FM)</td>
+                        <td>FM से अधिक efficient.</td>
+                    </tr>
+                    <tr>
+                        <td>RLL (Run Length Limited)</td>
+                        <td>Higher data density और better storage capacity.</td>
+                    </tr>
+                    <tr>
+                        <td>PRML/EPRML</td>
+                        <td>Modern signal processing techniques for accurate reading.</td>
+                    </tr>
+                </table>
+                <div class='note'><b>Remember:</b> बेहतर encoding method से HDD की storage density और performance बढ़ती
+                    है।</div>
+                <div class='image-icon'><img src='' alt='Encoding'>
+                    <p>Image Placeholder: Data Encoding Methods</p>
+                </div>
+            </section>
+
+            <section id='features'>
+                <h2>HDD Features</h2>
+                <ul>
+                    <li>Large storage capacity (GB/TB).</li>
+                    <li>Permanent non-volatile storage.</li>
+                    <li>Cost per GB कम.</li>
+                    <li>SATA और SAS interfaces.</li>
+                    <li>5400 RPM, 7200 RPM या उससे अधिक rotational speed.</li>
+                    <li>Cache memory for faster access.</li>
+                    <li>Suitable for backup and bulk storage.</li>
+                </ul>
+                <table>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Importance</th>
+                    </tr>
+                    <tr>
+                        <td>Capacity</td>
+                        <td>More files store कर सकता है।</td>
+                    </tr>
+                    <tr>
+                        <td>RPM</td>
+                        <td>Higher RPM = Faster access.</td>
+                    </tr>
+                    <tr>
+                        <td>Cache</td>
+                        <td>Frequently used data तेजी से उपलब्ध।</td>
+                    </tr>
+                    <tr>
+                        <td>Interface</td>
+                        <td>Data transfer speed प्रभावित करता है।</td>
+                    </tr>
+                </table>
+                <div class='image-icon'><img src='' alt='Features'>
+                    <p>Image Placeholder: HDD Specifications</p>
+                </div>
+            </section>
+
+            <section id='parking'>
+                <h2>Head Parking</h2>
+                <p><strong>Head Parking</strong> वह process है जिसमें HDD का read/write head platter के data area से
+                    हटाकर safe parking zone में ले जाया जाता है। इससे power off होने या shock लगने पर platter की surface
+                    damage होने का खतरा कम हो जाता है।</p>
+                <div class='image-icon'><img src='' alt='Head Parking'>
+                    <p>Image Placeholder: Head Parking Mechanism</p>
+                </div>
+                <h3>Benefits</h3>
+                <ul>
+                    <li>Data protection</li>
+                    <li>Scratch prevention</li>
+                    <li>Head crash का risk कम</li>
+                    <li>Drive life बढ़ती है।</li>
+                </ul>
+            </section>
+
+            <section id='trouble'>
+                <h2>HDD Troubleshooting</h2>
+                <div class='image-icon'><img src='' alt='Troubleshooting'>
+                    <p>Image Placeholder: HDD Troubleshooting Flow</p>
+                </div>
+                <ul>
+                    <li>Drive detect नहीं हो रही → SATA data/power cable check करें।</li>
+                    <li>Slow performance → Disk cleanup, defragmentation (HDD only), SMART status check करें।</li>
+                    <li>Clicking noise → Mechanical failure की संभावना, तुरंत backup लें।</li>
+                    <li>Bad sectors → CHKDSK या diagnostic tools use करें।</li>
+                    <li>Boot failure → Boot order और OS files verify करें।</li>
+                    <li>Overheating → Cabinet airflow और cooling check करें।</li>
+                </ul>
+                <div class='note'><b>Industry Tip:</b> HDD से unusual clicking sound आए तो नई writes avoid करें और तुरंत
+                    important data backup करें।</div>
+            </section>
+
+        </main>
+    </div>
+</body>
+
+</html>

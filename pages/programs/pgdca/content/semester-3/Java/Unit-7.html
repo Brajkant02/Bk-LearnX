@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exception Handling in Java</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f5f7fb;
+            color: #1f2937;
+            line-height: 1.75
+        }
+
+        .page {
+            display: grid;
+            grid-template-columns: 285px 1fr;
+            gap: 20px;
+            max-width: 1500px;
+            margin: auto;
+            padding: 10px
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 10px;
+            height: calc(100vh - 20px);
+            overflow-y: auto;
+            background: #fff;
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
+            align-self: start
+        }
+
+        .sidebar h2 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #111827
+        }
+
+        .sidebar a {
+            display: block;
+            text-decoration: none;
+            color: #374151;
+            padding: 8px 10px;
+            border-radius: 10px;
+            margin-bottom: 4px;
+            font-size: 14.7px
+        }
+
+        .sidebar a:hover {
+            background: #eef2ff;
+            color: #1d4ed8
+        }
+
+        .content {
+            background: #fff;
+            border-radius: 18px;
+            padding: 10px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, .08)
+        }
+
+        .hero {
+            padding: 28px 18px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #eef2ff, #f8fafc);
+            margin-bottom: 18px
+        }
+
+        .hero h1 {
+            font-size: 34px;
+            color: #111827;
+            margin-bottom: 10px
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #374151
+        }
+
+        section {
+            padding: 22px 10px;
+            border-bottom: 1px solid #e5e7eb
+        }
+
+        section:last-child {
+            border-bottom: none
+        }
+
+        h2 {
+            font-size: 27px;
+            color: #111827;
+            margin-bottom: 12px;
+            border-left: 5px solid #2563eb;
+            padding-left: 12px
+        }
+
+        h3 {
+            font-size: 22px;
+            color: #1f2937;
+            margin: 16px 0 8px
+        }
+
+        h4 {
+            font-size: 18px;
+            color: #111827;
+            margin: 14px 0 6px
+        }
+
+        p {
+            margin: 10px 0;
+            font-size: 17px
+        }
+
+        ul,
+        ol {
+            margin-left: 24px;
+            margin-top: 8px
+        }
+
+        li {
+            margin: 7px 0;
+            font-size: 16.5px
+        }
+
+        strong {
+            color: #111827
+        }
+
+        .image-icon {
+            min-height: 180px;
+            border: 2px dashed #94a3b8;
+            border-radius: 16px;
+            background: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            margin: 18px 0;
+            color: #475569;
+            font-weight: 600;
+            flex-direction: column;
+            gap: 8px
+        }
+
+        .image-icon img {
+            max-width: 100%;
+            height: auto
+        }
+
+        .note-box {
+            background: #f0fdf4;
+            border-left: 5px solid #22c55e;
+            border-radius: 14px;
+            padding: 14px 16px;
+            margin: 16px 0
+        }
+
+        .info-box {
+            background: #ecfeff;
+            border-left: 5px solid #06b6d4;
+            border-radius: 14px;
+            padding: 14px 16px;
+            margin: 16px 0
+        }
+
+        .remember-box {
+            background: #fff7ed;
+            border-left: 5px solid #f97316;
+            border-radius: 14px;
+            padding: 14px 16px;
+            margin: 16px 0
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            font-size: 15.5px
+        }
+
+        th,
+        td {
+            border: 1px solid #d1d5db;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top
+        }
+
+        th {
+            background: #eef2ff;
+            color: #111827
+        }
+
+        code {
+            background: #111827;
+            color: #f9fafb;
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-family: Consolas, monospace;
+            font-size: 15px
+        }
+
+        pre {
+            background: #0f172a;
+            color: #e5e7eb;
+            border-radius: 14px;
+            padding: 16px;
+            margin: 16px 0;
+            overflow-x: auto;
+            font-family: Consolas, monospace;
+            line-height: 1.6
+        }
+
+        .compiler {
+            width: 100%;
+            height: 2rem;
+            background-color: green;
+            text-align: center
+        }
+
+        .compiler a {
+            text-decoration: none;
+            color: white
+        }
+
+        @media(max-width:900px) {
+            .page {
+                grid-template-columns: 1fr
+            }
+
+            .sidebar {
+                position: relative;
+                height: auto
+            }
+
+            .hero h1 {
+                font-size: 27px
+            }
+
+            h2 {
+                font-size: 24px
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <aside class="sidebar">
+            <h2>Topics</h2>
+            <a href="#definition">Definition of Exception Handling</a>
+            <a href="#hierarchy">Exception Hierarchy</a>
+            <a href="#try-catch">Implementation of try and catch</a>
+            <a href="#multiple-catch">Multiple catch Blocks</a>
+            <a href="#finally">finally Keyword</a>
+            <a href="#throw">throw Keyword</a>
+            <a href="#throws">throws Keyword</a>
+            <a href="#built-in">Built in Exceptions</a>
+            <a href="#custom">Creating Own Exception Sub Classes</a>
+            <a href="#live-project">Importance of Exception Handling in Practical Implementation of Live Projects</a>
+            <a href="#try-with-resources">try-with-resources</a>
+        </aside>
+        <main class="content">
+            <div class="hero">
+                <h1>Exception Handling</h1>
+            </div>
+            <section id="definition">
+                <h2>Definition of Exception Handling</h2>
+
+                <p><strong>Exception</strong> Java program में runtime पर आने वाली abnormal condition होती है जो program
+                    के normal flow को disturb कर सकती है। For example, किसी number को zero से divide करना, array के बाहर
+                    index access करना, file not found होना या user से wrong input मिलना exception create कर सकता है।</p>
+                <p><strong>Exception Handling</strong> वह mechanism है जिसके द्वारा program runtime errors को handle
+                    करता है और program को अचानक बंद होने से बचाता है। Exception handling की help से programmer risky
+                    code को अलग block में रखता है और error आने पर proper message या alternate action perform करता है।
+                </p>
+                <div class="image-icon"><img src="" alt="Exception Handling Flow Diagram">
+                    <p>Image Placeholder: Exception Handling Flow Diagram</p>
+                </div>
+                <h4>Without Exception Handling</h4>
+                <pre>class Main {
+    public static void main(String[] args) {
+        int a = 10;
+        int b = 0;
+
+        int result = a / b;
+
+        System.out.println(result);
+        System.out.println("Program ends");
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Runtime error: ArithmeticException<br>Program आगे execute नहीं
+                    होगा।</div>
+                <h4>With Exception Handling</h4>
+                <pre>class Main {
+    public static void main(String[] args) {
+        try {
+            int a = 10;
+            int b = 0;
+
+            int result = a / b;
+            System.out.println(result);
+        } catch (ArithmeticException e) {
+            System.out.println("Cannot divide by zero");
+        }
+
+        System.out.println("Program ends");
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Cannot divide by zero<br>Program ends</div>
+                <h4>Need of Exception Handling</h4>
+                <ul>
+                    <li>Program को abnormal termination से बचाने के लिए।</li>
+                    <li>Runtime errors को controlled तरीके से handle करने के लिए।</li>
+                    <li>User को proper error message देने के लिए।</li>
+                    <li>Important resources जैसे file, database connection आदि properly close करने के लिए।</li>
+                    <li>Live projects में application को reliable और stable बनाने के लिए।</li>
+                </ul>
+                <h4>Error vs Exception</h4>
+                <table>
+                    <tr>
+                        <th>Basis</th>
+                        <th>Error</th>
+                        <th>Exception</th>
+                    </tr>
+                    <tr>
+                        <td>Meaning</td>
+                        <td>Serious problem जिसे generally program handle नहीं करता।</td>
+                        <td>Runtime condition जिसे program handle कर सकता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Example</td>
+                        <td><code>OutOfMemoryError</code></td>
+                        <td><code>ArithmeticException</code></td>
+                    </tr>
+                    <tr>
+                        <td>Handling</td>
+                        <td>Usually not handled</td>
+                        <td>try-catch से handle किया जा सकता है।</td>
+                    </tr>
+                </table>
+                <div class="note-box"><b>Real Life Example:</b><br>ATM में अगर user गलत PIN डालता है तो machine बंद नहीं
+                    होती, बल्कि “Invalid PIN” message दिखाती है। यह exception handling जैसा behavior है।</div>
+                <div class="remember-box"><b>Remember:</b><br>Exception handling runtime errors को handle करके program
+                    के normal flow को continue रखने में help करता है।</div>
+
+            </section>
+            <section id="hierarchy">
+                <h2>Exception Hierarchy</h2>
+
+                <p>Java में exceptions classes के रूप में represent होती हैं। सभी exception और error classes की root
+                    class <code>Throwable</code> है। Throwable के दो main child classes हैं: <code>Exception</code> और
+                    <code>Error</code>. Exception class उन problems को represent करती है जिन्हें program handle कर सकता
+                    है, जबकि Error serious system-level problems को represent करता है।</p>
+                <div class="image-icon"><img src="" alt="Java Exception Hierarchy">
+                    <p>Image Placeholder: Java Exception Hierarchy Diagram</p>
+                </div>
+                <h4>Hierarchy Overview</h4>
+                <pre>Throwable
+│
+├── Exception
+│   ├── IOException
+│   ├── SQLException
+│   └── RuntimeException
+│       ├── ArithmeticException
+│       ├── NullPointerException
+│       ├── ArrayIndexOutOfBoundsException
+│       └── NumberFormatException
+│
+└── Error
+    ├── OutOfMemoryError
+    └── StackOverflowError</pre>
+                <h4>Checked and Unchecked Exceptions</h4>
+                <table>
+                    <tr>
+                        <th>Type</th>
+                        <th>Meaning</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td>Checked Exception</td>
+                        <td>Compile time पर check होती है और handle/declare करना जरूरी होता है।</td>
+                        <td><code>IOException</code>, <code>SQLException</code></td>
+                    </tr>
+                    <tr>
+                        <td>Unchecked Exception</td>
+                        <td>Runtime पर आती है और compiler force नहीं करता।</td>
+                        <td><code>ArithmeticException</code>, <code>NullPointerException</code></td>
+                    </tr>
+                </table>
+                <h4>Checked Exception Example Idea</h4>
+                <pre>import java.io.FileReader;
+
+class Main {
+    public static void main(String[] args) throws Exception {
+        FileReader fr = new FileReader("abc.txt");
+    }
+}</pre>
+                <h4>Unchecked Exception Example</h4>
+                <pre>class Main {
+    public static void main(String[] args) {
+        int result = 10 / 0;
+        System.out.println(result);
+    }
+}</pre>
+                <div class="info-box"><b>Runtime Exception:</b><br>ArithmeticException</div>
+                <div class="remember-box"><b>Remember:</b><br>Checked exceptions compiler द्वारा check होती हैं,
+                    unchecked exceptions mostly programming mistakes की वजह से runtime पर आती हैं।</div>
+
+            </section>
+            <section id="try-catch">
+                <h2>Implementation of try and catch</h2>
+
+                <p><code>try</code> और <code>catch</code> exception handling के most important keywords हैं। Risky code
+                    को <code>try</code> block में लिखा जाता है और exception handle करने वाला code <code>catch</code>
+                    block में लिखा जाता है। अगर try block में exception आती है, तो control matching catch block में चला
+                    जाता है।</p>
+                <div class="image-icon"><img src="" alt="try catch working diagram">
+                    <p>Image Placeholder: try-catch Working Flow</p>
+                </div>
+                <h4>Syntax</h4>
+                <pre>try {
+    // risky code
+} catch (ExceptionType e) {
+    // handling code
+}</pre>
+                <h4>Example</h4>
+                <pre>class Main {
+    public static void main(String[] args) {
+        try {
+            int a = 10;
+            int b = 0;
+
+            int result = a / b;
+            System.out.println(result);
+        } catch (ArithmeticException e) {
+            System.out.println("Error: Division by zero is not allowed");
+        }
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Error: Division by zero is not allowed</div>
+                <h4>Array Exception Example</h4>
+                <pre>class Main {
+    public static void main(String[] args) {
+        try {
+            int[] numbers = {10, 20, 30};
+
+            System.out.println(numbers[5]);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Invalid array index");
+        }
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Invalid array index</div>
+                <h4>Exception Object</h4>
+                <p>Catch block में जो variable लिखा जाता है, जैसे <code>e</code>, वह exception object होता है। इससे
+                    exception details access की जा सकती हैं।</p>
+                <pre>try {
+    int result = 10 / 0;
+} catch (ArithmeticException e) {
+    System.out.println(e.getMessage());
+}</pre>
+                <h4>Common Exception Methods</h4>
+                <table>
+                    <tr>
+                        <th>Method</th>
+                        <th>Use</th>
+                    </tr>
+                    <tr>
+                        <td><code>getMessage()</code></td>
+                        <td>Exception का message return करता है।</td>
+                    </tr>
+                    <tr>
+                        <td><code>toString()</code></td>
+                        <td>Exception class name और message return करता है।</td>
+                    </tr>
+                    <tr>
+                        <td><code>printStackTrace()</code></td>
+                        <td>Error details और line number print करता है।</td>
+                    </tr>
+                </table>
+                <h4>Important Points</h4>
+                <ul>
+                    <li>Try block के बिना catch block नहीं लिखा जा सकता।</li>
+                    <li>Try block में risky code लिखा जाता है।</li>
+                    <li>Catch block exception को handle करता है।</li>
+                    <li>Catch block का exception type actual exception से match होना चाहिए।</li>
+                </ul>
+                <div class="remember-box"><b>Remember:</b><br>try risky code को contain करता है और catch उस risk से आए
+                    exception को handle करता है।</div>
+
+            </section>
+            <section id="multiple-catch">
+                <h2>Multiple catch Blocks</h2>
+
+                <p>Java में एक try block के साथ multiple catch blocks लिखे जा सकते हैं। जब try block में exception आती
+                    है, तो Java ऊपर से नीचे तक catch blocks check करती है और जो catch block matching exception type का
+                    होता है, वही execute होता है।</p>
+                <p>Multiple catch blocks तब useful होते हैं जब risky code में अलग-अलग types की exceptions आ सकती हैं और
+                    हर exception के लिए अलग handling चाहिए।</p>
+                <div class="image-icon"><img src="" alt="Multiple Catch Blocks Diagram">
+                    <p>Image Placeholder: Multiple catch Blocks Flow</p>
+                </div>
+                <h4>Example</h4>
+                <pre>class Main {
+    public static void main(String[] args) {
+        try {
+            int[] arr = {10, 20, 30};
+
+            int result = arr[1] / 0;
+            System.out.println(arr[5]);
+        } catch (ArithmeticException e) {
+            System.out.println("Arithmetic error occurred");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Array index error occurred");
+        } catch (Exception e) {
+            System.out.println("General exception occurred");
+        }
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Arithmetic error occurred</div>
+                <h4>Order of catch Blocks</h4>
+                <p>Specific exception catch block पहले और general exception catch block बाद में लिखना चाहिए। अगर
+                    <code>Exception</code> class का catch block पहले लिख दिया, तो बाद के specific catch blocks
+                    unreachable हो जाएंगे।</p>
+                <h4>Wrong Order</h4>
+                <pre>try {
+    int result = 10 / 0;
+} catch (Exception e) {
+    System.out.println("General exception");
+}
+// catch (ArithmeticException e) { } // Error: unreachable catch block</pre>
+                <h4>Correct Order</h4>
+                <pre>try {
+    int result = 10 / 0;
+} catch (ArithmeticException e) {
+    System.out.println("Arithmetic exception");
+} catch (Exception e) {
+    System.out.println("General exception");
+}</pre>
+                <h4>Multi-catch Block</h4>
+                <p>Java में एक catch block में multiple exception types को pipe <code>|</code> symbol से handle किया जा
+                    सकता है।</p>
+                <pre>try {
+    String s = null;
+    System.out.println(s.length());
+} catch (ArithmeticException | NullPointerException e) {
+    System.out.println("Exception handled");
+}</pre>
+                <div class="remember-box"><b>Remember:</b><br>Multiple catch blocks में child/specific exceptions पहले
+                    और parent/general exception बाद में लिखना चाहिए।</div>
+
+            </section>
+            <section id="finally">
+                <h2>finally Keyword</h2>
+
+                <p><code>finally</code> block exception handling में ऐसा block है जो generally हमेशा execute होता है,
+                    चाहे exception आए या न आए। इसका use important cleanup work के लिए किया जाता है, जैसे file close
+                    करना, database connection close करना, network resource release करना आदि।</p>
+                <p>Finally block try-catch के बाद लिखा जाता है। अगर exception handle हो जाए या exception न आए, दोनों
+                    cases में finally block execute होता है।</p>
+                <div class="image-icon"><img src="" alt="finally block flow diagram">
+                    <p>Image Placeholder: finally Block Execution Flow</p>
+                </div>
+                <h4>Syntax</h4>
+                <pre>try {
+    // risky code
+} catch (Exception e) {
+    // handling code
+} finally {
+    // cleanup code
+}</pre>
+                <h4>Example</h4>
+                <pre>class Main {
+    public static void main(String[] args) {
+        try {
+            int result = 10 / 0;
+            System.out.println(result);
+        } catch (ArithmeticException e) {
+            System.out.println("Exception handled");
+        } finally {
+            System.out.println("Finally block executed");
+        }
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Exception handled<br>Finally block executed</div>
+                <h4>finally Without Exception</h4>
+                <pre>class Main {
+    public static void main(String[] args) {
+        try {
+            int result = 10 / 2;
+            System.out.println(result);
+        } catch (ArithmeticException e) {
+            System.out.println("Exception handled");
+        } finally {
+            System.out.println("Finally block executed");
+        }
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>5<br>Finally block executed</div>
+                <h4>Use of finally in Practical Programs</h4>
+                <pre>FileReader fr = null;
+
+try {
+    fr = new FileReader("data.txt");
+} catch (Exception e) {
+    System.out.println("File problem");
+} finally {
+    System.out.println("Close file/resource here");
+}</pre>
+                <h4>Important Points</h4>
+                <ul>
+                    <li>Finally block cleanup work के लिए use होता है।</li>
+                    <li>Finally block usually always execute होता है।</li>
+                    <li>Try के साथ finally बिना catch के भी हो सकता है।</li>
+                    <li>Finally block में resource closing code रखना best practice है।</li>
+                </ul>
+                <div class="note-box"><b>Real Life Example:</b><br>Hotel room use करने के बाद room key return करना
+                    finally जैसा है। काम successful हो या problem आए, key return करनी ही होती है।</div>
+                <div class="remember-box"><b>Remember:</b><br>finally block cleanup code के लिए use होता है और generally
+                    exception आए या न आए, execute होता है।</div>
+
+            </section>
+            <section id="throw">
+                <h2>throw Keyword</h2>
+
+                <p><code>throw</code> keyword Java में manually exception throw करने के लिए use होता है। जब programmer
+                    खुद किसी condition पर exception generate करना चाहता है, तब throw keyword use किया जाता है। Throw
+                    usually custom validations में useful होता है।</p>
+                <p>Throw keyword एक single exception object को throw करता है। इसके बाद current method का normal flow
+                    stop हो सकता है और exception nearest matching catch block में handle होती है।</p>
+                <div class="image-icon"><img src="" alt="throw keyword diagram">
+                    <p>Image Placeholder: throw Keyword Flow</p>
+                </div>
+                <h4>Syntax</h4>
+                <pre>throw new ExceptionType("message");</pre>
+                <h4>Example</h4>
+                <pre>class Main {
+    static void checkAge(int age) {
+        if (age < 18) {
+            throw new ArithmeticException("Age must be 18 or above");
+        } else {
+            System.out.println("Eligible");
+        }
+    }
+
+    public static void main(String[] args) {
+        checkAge(15);
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Exception in thread "main" java.lang.ArithmeticException: Age
+                    must be 18 or above</div>
+                <h4>Handling thrown Exception</h4>
+                <pre>class Main {
+    static void checkAge(int age) {
+        if (age < 18) {
+            throw new ArithmeticException("Age must be 18 or above");
+        } else {
+            System.out.println("Eligible");
+        }
+    }
+
+    public static void main(String[] args) {
+        try {
+            checkAge(15);
+        } catch (ArithmeticException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Age must be 18 or above</div>
+                <h4>Use Cases</h4>
+                <ul>
+                    <li>Invalid age validation में।</li>
+                    <li>Invalid marks या negative amount check करने में।</li>
+                    <li>Business rules apply करने में।</li>
+                    <li>Custom exception generate करने में।</li>
+                </ul>
+                <div class="remember-box"><b>Remember:</b><br><code>throw</code> manually exception object throw करता
+                    है।</div>
+
+            </section>
+            <section id="throws">
+                <h2>throws Keyword</h2>
+
+                <p><code>throws</code> keyword method declaration के साथ use होता है। यह बताता है कि method किसी
+                    exception को handle नहीं कर रहा, बल्कि caller method को pass कर रहा है। Throws mostly checked
+                    exceptions के साथ use होता है।</p>
+                <p>Throw और throws में difference समझना important है। <code>throw</code> actual exception throw करता है,
+                    जबकि <code>throws</code> method signature में exception possibility declare करता है।</p>
+                <div class="image-icon"><img src="" alt="throws keyword diagram">
+                    <p>Image Placeholder: throws Keyword Propagation Diagram</p>
+                </div>
+                <h4>Syntax</h4>
+                <pre>returnType methodName() throws ExceptionType {
+    // code
+}</pre>
+                <h4>Example</h4>
+                <pre>import java.io.FileReader;
+import java.io.IOException;
+
+class Main {
+    static void readFile() throws IOException {
+        FileReader fr = new FileReader("data.txt");
+    }
+
+    public static void main(String[] args) {
+        try {
+            readFile();
+        } catch (IOException e) {
+            System.out.println("File not found or cannot be read");
+        }
+    }
+}</pre>
+                <h4>Multiple Exceptions with throws</h4>
+                <pre>void process() throws IOException, ArithmeticException {
+    // risky code
+}</pre>
+                <h4>throw vs throws</h4>
+                <table>
+                    <tr>
+                        <th>Basis</th>
+                        <th>throw</th>
+                        <th>throws</th>
+                    </tr>
+                    <tr>
+                        <td>Use</td>
+                        <td>Exception object manually throw करने के लिए।</td>
+                        <td>Method में exception declare करने के लिए।</td>
+                    </tr>
+                    <tr>
+                        <td>Location</td>
+                        <td>Method body के अंदर।</td>
+                        <td>Method signature में।</td>
+                    </tr>
+                    <tr>
+                        <td>Number</td>
+                        <td>एक time पर one exception object।</td>
+                        <td>Multiple exception types declare कर सकते हैं।</td>
+                    </tr>
+                    <tr>
+                        <td>Example</td>
+                        <td><code>throw new Exception();</code></td>
+                        <td><code>void m() throws Exception</code></td>
+                    </tr>
+                </table>
+                <h4>Why throws is Used</h4>
+                <ul>
+                    <li>Checked exception को caller तक pass करने के लिए।</li>
+                    <li>Method signature में risk clearly mention करने के लिए।</li>
+                    <li>Exception handling responsibility caller को देने के लिए।</li>
+                    <li>File handling और database operations में useful।</li>
+                </ul>
+                <div class="remember-box"><b>Remember:</b><br>throw exception object फेंकता है, throws method की
+                    exception possibility declare करता है।</div>
+
+            </section>
+            <section id="built-in">
+                <h2>Built in Exceptions</h2>
+
+                <p>Java में कई built-in exception classes available हैं। ये common runtime और compile-time problems को
+                    represent करती हैं। Built-in exceptions Java library में already defined होती हैं, इसलिए programmer
+                    उन्हें directly use या handle कर सकता है।</p>
+                <div class="image-icon"><img src="" alt="Built-in Exceptions Diagram">
+                    <p>Image Placeholder: Built-in Java Exceptions</p>
+                </div>
+                <h4>Common Built-in Exceptions</h4>
+                <table>
+                    <tr>
+                        <th>Exception</th>
+                        <th>Reason</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td><code>ArithmeticException</code></td>
+                        <td>Arithmetic error, जैसे divide by zero।</td>
+                        <td><code>10 / 0</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>NullPointerException</code></td>
+                        <td>Null object से member access करना।</td>
+                        <td><code>s.length()</code> when s is null</td>
+                    </tr>
+                    <tr>
+                        <td><code>ArrayIndexOutOfBoundsException</code></td>
+                        <td>Invalid array index access करना।</td>
+                        <td><code>arr[10]</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>NumberFormatException</code></td>
+                        <td>Invalid string को number में convert करना।</td>
+                        <td><code>Integer.parseInt("abc")</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>StringIndexOutOfBoundsException</code></td>
+                        <td>Invalid string index access करना।</td>
+                        <td><code>s.charAt(20)</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>IOException</code></td>
+                        <td>Input-output operation problem।</td>
+                        <td>File read/write error</td>
+                    </tr>
+                    <tr>
+                        <td><code>ClassNotFoundException</code></td>
+                        <td>Required class not found।</td>
+                        <td>Dynamic class loading</td>
+                    </tr>
+                </table>
+                <h4>ArithmeticException Example</h4>
+                <pre>try {
+    int result = 10 / 0;
+} catch (ArithmeticException e) {
+    System.out.println("Cannot divide by zero");
+}</pre>
+                <h4>NullPointerException Example</h4>
+                <pre>try {
+    String name = null;
+    System.out.println(name.length());
+} catch (NullPointerException e) {
+    System.out.println("String is null");
+}</pre>
+                <h4>NumberFormatException Example</h4>
+                <pre>try {
+    int num = Integer.parseInt("abc");
+} catch (NumberFormatException e) {
+    System.out.println("Invalid number format");
+}</pre>
+                <h4>ArrayIndexOutOfBoundsException Example</h4>
+                <pre>try {
+    int[] arr = {10, 20, 30};
+    System.out.println(arr[5]);
+} catch (ArrayIndexOutOfBoundsException e) {
+    System.out.println("Invalid index");
+}</pre>
+                <div class="note-box"><b>Real Life Example:</b><br>Form में mobile number की जगह user “abc” enter कर दे
+                    और program उसे number में convert करे, तो NumberFormatException आ सकती है।</div>
+                <div class="remember-box"><b>Remember:</b><br>Built-in exceptions Java में already available exception
+                    classes हैं जो common problems को represent करती हैं।</div>
+
+            </section>
+            <section id="custom">
+                <h2>Creating Own Exception Sub Classes</h2>
+
+                <p>Java में programmer अपनी custom exception class भी बना सकता है। Custom exception तब use होती है जब
+                    built-in exceptions किसी business rule या application-specific problem को properly represent नहीं
+                    करतीं। Custom exception create करने के लिए class को <code>Exception</code> या
+                    <code>RuntimeException</code> class से extend किया जाता है।</p>
+                <div class="image-icon"><img src="" alt="Custom Exception Diagram">
+                    <p>Image Placeholder: Custom Exception Class Diagram</p>
+                </div>
+                <h4>Custom Checked Exception</h4>
+                <pre>class InvalidAgeException extends Exception {
+    InvalidAgeException(String message) {
+        super(message);
+    }
+}
+
+class Main {
+    static void checkAge(int age) throws InvalidAgeException {
+        if (age < 18) {
+            throw new InvalidAgeException("Age is below 18");
+        } else {
+            System.out.println("Valid age");
+        }
+    }
+
+    public static void main(String[] args) {
+        try {
+            checkAge(15);
+        } catch (InvalidAgeException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Age is below 18</div>
+                <h4>Custom Unchecked Exception</h4>
+                <pre>class InvalidMarksException extends RuntimeException {
+    InvalidMarksException(String message) {
+        super(message);
+    }
+}
+
+class Main {
+    static void checkMarks(int marks) {
+        if (marks < 0 || marks > 100) {
+            throw new InvalidMarksException("Marks must be between 0 and 100");
+        }
+
+        System.out.println("Valid marks");
+    }
+
+    public static void main(String[] args) {
+        checkMarks(120);
+    }
+}</pre>
+                <h4>Steps to Create Custom Exception</h4>
+                <ol>
+                    <li>एक class बनाएं।</li>
+                    <li>उसे <code>Exception</code> या <code>RuntimeException</code> से extend करें।</li>
+                    <li>Constructor बनाकर message receive करें।</li>
+                    <li><code>super(message)</code> से parent exception class को message pass करें।</li>
+                    <li>Required condition पर <code>throw</code> keyword से custom exception throw करें।</li>
+                    <li>try-catch से exception handle करें।</li>
+                </ol>
+                <h4>Checked vs Unchecked Custom Exception</h4>
+                <table>
+                    <tr>
+                        <th>Type</th>
+                        <th>Extends</th>
+                        <th>Compiler Handling</th>
+                    </tr>
+                    <tr>
+                        <td>Checked Custom Exception</td>
+                        <td><code>Exception</code></td>
+                        <td>Handle या declare करना जरूरी।</td>
+                    </tr>
+                    <tr>
+                        <td>Unchecked Custom Exception</td>
+                        <td><code>RuntimeException</code></td>
+                        <td>Compiler force नहीं करता।</td>
+                    </tr>
+                </table>
+                <h4>When to Use Custom Exception</h4>
+                <ul>
+                    <li>Business rules represent करने के लिए।</li>
+                    <li>Application-specific errors show करने के लिए।</li>
+                    <li>Error messages को meaningful बनाने के लिए।</li>
+                    <li>Validation logic को clean रखने के लिए।</li>
+                </ul>
+                <div class="note-box"><b>Real Life Example:</b><br>Banking app में अगर user available balance से ज्यादा
+                    amount withdraw करे, तो InsufficientBalanceException custom exception बनाई जा सकती है।</div>
+                <div class="remember-box"><b>Remember:</b><br>Custom exception application-specific problems को
+                    meaningful तरीके से represent करती है।</div>
+
+            </section>
+            <section id="live-project">
+                <h2>Importance of Exception Handling in Practical Implementation of Live Projects</h2>
+
+                <p>Live projects में exception handling बहुत important होती है क्योंकि real users हमेशा expected input
+                    नहीं देते और real systems में file, database, network, payment gateway, API और server जैसी कई चीजों
+                    में failure आ सकता है। अगर exception handling properly न हो, तो application crash हो सकती है, data
+                    loss हो सकता है या user को confusing error screen दिख सकती है।</p>
+                <p>Professional software development में exception handling केवल error रोकने के लिए नहीं, बल्कि
+                    application को reliable, secure और user-friendly बनाने के लिए use होती है। Proper exception handling
+                    से developer logs maintain कर सकता है, user को clean message दिखा सकता है और system resources को
+                    safely close कर सकता है।</p>
+                <div class="image-icon"><img src="" alt="Exception Handling in Live Projects">
+                    <p>Image Placeholder: Exception Handling in Live Project Flow</p>
+                </div>
+                <h4>Importance in Live Projects</h4>
+                <table>
+                    <tr>
+                        <th>Importance</th>
+                        <th>Explanation</th>
+                    </tr>
+                    <tr>
+                        <td>Application Stability</td>
+                        <td>Exception आने पर भी application पूरी तरह crash नहीं होती।</td>
+                    </tr>
+                    <tr>
+                        <td>User Friendly Messages</td>
+                        <td>User को technical error की जगह simple message मिलता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Data Safety</td>
+                        <td>Failed operation में data corruption avoid किया जा सकता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Resource Management</td>
+                        <td>Files, database connections और network connections close किए जा सकते हैं।</td>
+                    </tr>
+                    <tr>
+                        <td>Debugging</td>
+                        <td>Logs से developer error का कारण find कर सकता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Security</td>
+                        <td>Internal technical details user को expose नहीं होतीं।</td>
+                    </tr>
+                </table>
+                <h4>Example: Login System</h4>
+                <p>Login system में database connection fail हो सकता है, user wrong password डाल सकता है या server
+                    response late हो सकता है। Exception handling से application user को proper message दिखा सकती है जैसे
+                    “Unable to login, please try again later.”</p>
+                <pre>try {
+    // database login code
+} catch (Exception e) {
+    System.out.println("Login failed. Please try again.");
+} finally {
+    System.out.println("Close database connection");
+}</pre>
+                <h4>Example: File Upload</h4>
+                <p>File upload feature में file size ज्यादा हो सकता है, file format wrong हो सकता है या storage path
+                    available नहीं हो सकता। Exception handling से इन problems को controlled way में handle किया जा सकता
+                    है।</p>
+                <h4>Best Practices</h4>
+                <ul>
+                    <li>Specific exception catch करें, हर जगह general <code>Exception</code> catch न करें।</li>
+                    <li>User को simple और safe error message दिखाएँ।</li>
+                    <li>Technical details logs में रखें, user screen पर नहीं।</li>
+                    <li>Finally या try-with-resources से resources close करें।</li>
+                    <li>Custom exceptions से business errors को meaningful बनाएं।</li>
+                    <li>Empty catch block avoid करें।</li>
+                </ul>
+                <h4>Bad Practice</h4>
+                <pre>try {
+    int result = 10 / 0;
+} catch (Exception e) {
+    // nothing here
+}</pre>
+                <p>Empty catch block error को hide कर देता है, जिससे debugging difficult हो जाती है।</p>
+                <h4>Better Practice</h4>
+                <pre>try {
+    int result = 10 / 0;
+} catch (ArithmeticException e) {
+    System.out.println("Invalid calculation");
+    e.printStackTrace();
+}</pre>
+                <div class="note-box"><b>Real Life Example:</b><br>Online payment app में payment fail होने पर app crash
+                    नहीं होनी चाहिए। User को “Payment failed, amount will be refunded if deducted” जैसा clear message
+                    मिलना चाहिए।</div>
+                <div class="remember-box"><b>Remember:</b><br>Live projects में exception handling application को
+                    stable, secure और user-friendly बनाती है।</div>
+
+            </section>
+            <section id="try-with-resources">
+                <h2>try-with-resources</h2>
+
+                <p><strong>try-with-resources</strong> Java का modern feature है जिसका use resources को automatically
+                    close करने के लिए किया जाता है। File, database connection, stream जैसी resources को manually close
+                    करना पड़ता है। अगर close करना भूल जाएँ, तो memory leak या resource leak हो सकता है।
+                    Try-with-resources इस problem को reduce करता है।</p>
+                <div class="image-icon"><img src="" alt="try with resources diagram">
+                    <p>Image Placeholder: try-with-resources Flow</p>
+                </div>
+                <h4>Syntax</h4>
+                <pre>try (ResourceType resource = new ResourceType()) {
+    // use resource
+} catch (Exception e) {
+    // handle exception
+}</pre>
+                <h4>Example</h4>
+                <pre>import java.io.FileReader;
+
+class Main {
+    public static void main(String[] args) {
+        try (FileReader fr = new FileReader("data.txt")) {
+            System.out.println("File opened successfully");
+        } catch (Exception e) {
+            System.out.println("File problem occurred");
+        }
+    }
+}</pre>
+                <h4>Benefits</h4>
+                <ul>
+                    <li>Resources automatically close हो जाती हैं।</li>
+                    <li>Finally block में close code लिखने की जरूरत कम हो जाती है।</li>
+                    <li>Code clean और safe बनता है।</li>
+                    <li>Resource leak की possibility कम होती है।</li>
+                </ul>
+                <div class="remember-box"><b>Remember:</b><br>File, stream और database connection जैसी resources के लिए
+                    try-with-resources professional approach है।</div>
+
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>

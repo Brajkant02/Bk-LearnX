@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IoT Networks - Part 2</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f7fb;color:#1f2937;line-height:1.75}
+.page{display:grid;grid-template-columns:285px 1fr;gap:20px;max-width:1500px;margin:auto;padding:10px}
+.sidebar{position:sticky;top:10px;height:calc(100vh - 20px);overflow-y:auto;background:#fff;border-radius:16px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.08);align-self:start}
+.sidebar h2{font-size:20px;margin-bottom:12px;color:#111827}
+.sidebar a{display:block;text-decoration:none;color:#374151;padding:8px 10px;border-radius:10px;margin-bottom:4px;font-size:14.7px}
+.sidebar a:hover{background:#eef2ff;color:#1d4ed8}
+.content{background:#fff;border-radius:18px;padding:10px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.hero{padding:28px 18px;border-radius:16px;background:linear-gradient(135deg,#eef2ff,#f8fafc);margin-bottom:18px}
+.hero h1{font-size:34px;color:#111827;margin-bottom:10px}
+.hero p{font-size:18px;color:#374151}
+section{padding:22px 10px;border-bottom:1px solid #e5e7eb}
+section:last-child{border-bottom:none}
+h2{font-size:27px;color:#111827;margin-bottom:12px;border-left:5px solid #2563eb;padding-left:12px}
+h3{font-size:22px;color:#1f2937;margin:16px 0 8px}
+h4{font-size:18px;color:#111827;margin:14px 0 6px}
+p{margin:10px 0;font-size:17px}
+ul,ol{margin-left:24px;margin-top:8px}
+li{margin:7px 0;font-size:16.5px}
+strong{color:#111827}
+.image-icon{min-height:180px;border:2px dashed #94a3b8;border-radius:16px;background:#f8fafc;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;margin:18px 0;color:#475569;font-weight:600;flex-direction:column;gap:8px}
+.image-icon img{max-width:100%;height:auto}
+.note-box{background:#f0fdf4;border-left:5px solid #22c55e;border-radius:14px;padding:14px 16px;margin:16px 0}
+.info-box{background:#ecfeff;border-left:5px solid #06b6d4;border-radius:14px;padding:14px 16px;margin:16px 0}
+.remember-box{background:#fff7ed;border-left:5px solid #f97316;border-radius:14px;padding:14px 16px;margin:16px 0}
+table{width:100%;border-collapse:collapse;margin:16px 0;border-radius:12px;overflow:hidden;font-size:15.5px}
+th,td{border:1px solid #d1d5db;padding:10px;text-align:left;vertical-align:top}
+th{background:#eef2ff;color:#111827}
+code{background:#111827;color:#f9fafb;padding:2px 6px;border-radius:6px;font-family:Consolas,monospace;font-size:15px}
+pre{background:#0f172a;color:#e5e7eb;border-radius:14px;padding:16px;margin:16px 0;overflow-x:auto;font-family:Consolas,monospace;line-height:1.6}
+@media(max-width:900px){.page{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.hero h1{font-size:27px}h2{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="page">
+<aside class="sidebar">
+<h2>Topics</h2>
+      <a href="#connections">Types of Network Connections</a>
+      <a href="#wired">Wired IoT Connections</a>
+      <a href="#wireless">Wireless IoT Connections</a>
+      <a href="#protocol-role">Role of Internet Protocols in IoT</a>
+      <a href="#ip">IP Address, IPv4 and IPv6</a>
+      <a href="#tcp-udp">TCP and UDP</a>
+      <a href="#app-protocols">HTTP, MQTT and CoAP</a>
+      <a href="#dns-dhcp">DNS and DHCP</a>
+</aside>
+<main class="content">
+<div class="hero">
+<h1>IoT Networks - Part 2</h1>
+<p>इस part में wired/wireless connections, IoT wireless technologies, internet protocols, IPv4/IPv6, TCP/UDP, HTTP/MQTT/CoAP, DNS और DHCP को premium notes format में समझाया गया है।</p>
+</div>
+<section id="connections">
+<h2>Types of Network Connections</h2>
+
+<p>IoT devices network से wired या wireless connection के through connect हो सकते हैं। Connection type choose करते समय range, power consumption, data speed, cost, security और environment को consider किया जाता है।</p>
+<div class="image-icon"><img src="" alt="Types of IoT Network Connections"><p>Image Placeholder: Wired and Wireless IoT Connections</p></div>
+<h4>Main Types</h4>
+<table>
+<tr><th>Connection Type</th><th>Examples</th><th>Use</th></tr>
+<tr><td>Wired</td><td>Ethernet, USB, Serial cable</td><td>Stable और high-speed connection।</td></tr>
+<tr><td>Wireless</td><td>Wi-Fi, Bluetooth, Zigbee, LoRa, Cellular</td><td>Flexible और mobile/remote devices के लिए।</td></tr>
+</table>
+<h4>Wired Connection</h4>
+<p>Wired connection physical cable से होता है। यह stable और reliable होता है, लेकिन mobility कम होती है। Industrial IoT में Ethernet reliable communication के लिए use हो सकता है।</p>
+<h4>Wireless Connection</h4>
+<p>Wireless connection बिना cable के radio signals से होता है। IoT में wireless बहुत popular है क्योंकि sensors remote areas में लगाए जा सकते हैं।</p>
+<div class="remember-box"><b>Remember:</b><br>IoT में connection choice application requirement पर depend करती है।</div>
+
+</section>
+<section id="wired">
+<h2>Wired IoT Connections</h2>
+
+<p><strong>Wired connections</strong> cable-based communication provide करते हैं। ये reliable, stable और noise-resistant हो सकते हैं। Wired IoT networks वहाँ suitable होते हैं जहाँ devices fixed location पर हों और cable installation possible हो।</p>
+<div class="image-icon"><img src="" alt="Wired IoT Connections"><p>Image Placeholder: Wired IoT Network</p></div>
+<h4>Ethernet</h4>
+<p>Ethernet local area network में commonly use होता है। Industrial IoT और smart building systems में Ethernet reliable data transfer के लिए useful है।</p>
+<h4>USB</h4>
+<p>USB microcontroller programming, data transfer और power supply के लिए use हो सकता है। Arduino को computer से USB के through program किया जाता है।</p>
+<h4>Serial Communication Cable</h4>
+<p>UART serial communication में TX और RX pins के through data transfer होता है। यह microcontroller और modules के बीच common है।</p>
+<h4>Advantages</h4>
+<ul>
+<li>Stable connection</li>
+<li>Less interference</li>
+<li>Better security than open wireless</li>
+<li>High speed possible</li>
+</ul>
+<h4>Limitations</h4>
+<ul>
+<li>Cable installation cost</li>
+<li>Mobility कम</li>
+<li>Long distance wiring difficult</li>
+<li>Physical damage risk</li>
+</ul>
+
+</section>
+<section id="wireless">
+<h2>Wireless IoT Connections</h2>
+
+<p><strong>Wireless connections</strong> IoT में सबसे ज्यादा use होते हैं क्योंकि IoT devices अक्सर remote, mobile या difficult locations पर installed होते हैं। Wireless technology range, speed और power requirement के according select की जाती है।</p>
+<div class="image-icon"><img src="" alt="Wireless IoT Connections"><p>Image Placeholder: Wireless IoT Technologies</p></div>
+<h4>Common Wireless Technologies</h4>
+<table>
+<tr><th>Technology</th><th>Range</th><th>Power Use</th><th>Common Use</th></tr>
+<tr><td>Wi-Fi</td><td>Medium</td><td>Medium/High</td><td>Smart home, camera, ESP32 projects</td></tr>
+<tr><td>Bluetooth</td><td>Short</td><td>Low</td><td>Wearables, phone-device connection</td></tr>
+<tr><td>Zigbee</td><td>Short/Medium mesh</td><td>Low</td><td>Smart home sensor network</td></tr>
+<tr><td>LoRaWAN</td><td>Long</td><td>Low</td><td>Smart agriculture, remote monitoring</td></tr>
+<tr><td>Cellular</td><td>Very long</td><td>Medium/High</td><td>Vehicle tracking, remote devices</td></tr>
+<tr><td>NFC/RFID</td><td>Very short</td><td>Low</td><td>Identification, access cards</td></tr>
+</table>
+<h4>Wi-Fi</h4>
+<p>Wi-Fi internet connectivity provide करता है। ESP8266 और ESP32 based IoT projects में Wi-Fi commonly use होता है।</p>
+<h4>Bluetooth</h4>
+<p>Bluetooth short-range communication के लिए useful है। Wearables और mobile app controlled devices में use होता है।</p>
+<h4>Zigbee</h4>
+<p>Zigbee low-power mesh network बनाता है। Smart home sensors और automation devices में useful है।</p>
+<h4>LoRaWAN</h4>
+<p>LoRaWAN long-range low-power communication provide करता है। Agriculture और city-level monitoring में useful है।</p>
+<div class="remember-box"><b>Remember:</b><br>Short range के लिए Bluetooth/Zigbee, internet के लिए Wi-Fi, long range low power के लिए LoRaWAN useful है।</div>
+
+</section>
+<section id="protocol-role">
+<h2>Role of Internet Protocols in IoT</h2>
+
+<p><strong>Internet Protocols</strong> IoT data communication के rules define करते हैं। Protocols ensure करते हैं कि device data सही format में सही destination तक पहुँचे। IoT में network layer और application layer protocols दोनों important होते हैं।</p>
+<div class="image-icon"><img src="" alt="Role of Internet Protocols in IoT"><p>Image Placeholder: IoT Protocol Stack</p></div>
+<h4>Why Protocols are Needed</h4>
+<ul>
+<li>Device addressing के लिए।</li>
+<li>Data packet delivery के लिए।</li>
+<li>Reliable या fast communication choose करने के लिए।</li>
+<li>Application-level message exchange के लिए।</li>
+<li>Security और data formatting के लिए।</li>
+</ul>
+<h4>Protocol Categories</h4>
+<table>
+<tr><th>Category</th><th>Examples</th><th>Use</th></tr>
+<tr><td>Network Protocols</td><td>IP, IPv4, IPv6</td><td>Addressing और routing</td></tr>
+<tr><td>Transport Protocols</td><td>TCP, UDP</td><td>Data delivery</td></tr>
+<tr><td>Application Protocols</td><td>HTTP, MQTT, CoAP</td><td>IoT message exchange</td></tr>
+<tr><td>Security Protocols</td><td>TLS/SSL, HTTPS</td><td>Secure communication</td></tr>
+</table>
+
+</section>
+<section id="ip">
+<h2>IP Address, IPv4 and IPv6</h2>
+
+<p><strong>IP Address</strong> network पर device की unique पहचान होता है। IoT में devices को identify और communicate करने के लिए IP addressing important है। IP की help से data packet source से destination तक पहुँचता है।</p>
+<div class="image-icon"><img src="" alt="IPv4 and IPv6 in IoT"><p>Image Placeholder: IPv4 vs IPv6 Addressing</p></div>
+<h4>IPv4</h4>
+<p>IPv4 32-bit address system है। यह dotted decimal format में लिखा जाता है, जैसे <code>192.168.1.10</code>. IPv4 addresses limited हैं, इसलिए billions IoT devices के लिए IPv6 ज्यादा suitable माना जाता है।</p>
+<h4>IPv6</h4>
+<p>IPv6 128-bit address system है। यह बहुत large address space provide करता है। IoT में billions devices को unique IP address देने के लिए IPv6 useful है।</p>
+<h4>IPv4 vs IPv6</h4>
+<table>
+<tr><th>Basis</th><th>IPv4</th><th>IPv6</th></tr>
+<tr><td>Address Size</td><td>32-bit</td><td>128-bit</td></tr>
+<tr><td>Format</td><td>Decimal dotted</td><td>Hexadecimal separated by colon</td></tr>
+<tr><td>Example</td><td>192.168.1.10</td><td>2001:db8::1</td></tr>
+<tr><td>Address Space</td><td>Limited</td><td>Very large</td></tr>
+<tr><td>IoT Suitability</td><td>Limited for huge scale</td><td>Better for large IoT networks</td></tr>
+</table>
+<div class="remember-box"><b>Remember:</b><br>IPv6 IoT के लिए important है क्योंकि यह बहुत large number of devices को unique addresses दे सकता है।</div>
+
+</section>
+<section id="tcp-udp">
+<h2>TCP and UDP</h2>
+
+<p><strong>TCP</strong> और <strong>UDP</strong> transport layer protocols हैं। ये decide करते हैं कि data packets कैसे deliver होंगे। IoT में कभी reliable delivery चाहिए होती है और कभी fast lightweight delivery।</p>
+<div class="image-icon"><img src="" alt="TCP and UDP in IoT"><p>Image Placeholder: TCP vs UDP Communication</p></div>
+<h4>TCP</h4>
+<p>TCP connection-oriented protocol है। यह reliable data delivery provide करता है। अगर packet lost हो जाए, तो retransmission possible है। HTTP और MQTT usually TCP पर काम करते हैं।</p>
+<h4>UDP</h4>
+<p>UDP connectionless protocol है। यह fast और lightweight होता है, लेकिन reliability guarantee नहीं देता। CoAP usually UDP पर based होता है।</p>
+<table>
+<tr><th>Basis</th><th>TCP</th><th>UDP</th></tr>
+<tr><td>Connection</td><td>Connection-oriented</td><td>Connectionless</td></tr>
+<tr><td>Reliability</td><td>Reliable</td><td>No guarantee</td></tr>
+<tr><td>Speed</td><td>Comparatively slower</td><td>Faster</td></tr>
+<tr><td>Overhead</td><td>More</td><td>Less</td></tr>
+<tr><td>IoT Use</td><td>Reliable data transfer</td><td>Lightweight sensor messaging</td></tr>
+</table>
+<div class="note-box"><b>Real Life Example:</b><br>Payment transaction में TCP जैसी reliability चाहिए, लेकिन frequent small sensor updates में UDP useful हो सकता है।</div>
+
+</section>
+<section id="app-protocols">
+<h2>HTTP, MQTT and CoAP</h2>
+
+<p>IoT application-level communication में HTTP, MQTT और CoAP बहुत important हैं। ये protocols decide करते हैं कि devices application/server से data कैसे exchange करेंगे।</p>
+<div class="image-icon"><img src="" alt="HTTP MQTT CoAP"><p>Image Placeholder: HTTP MQTT CoAP Comparison</p></div>
+<h4>HTTP</h4>
+<p>HTTP request-response model पर based है। Device server को request send करता है और server response देता है। REST API में HTTP बहुत common है, लेकिन low-power IoT devices के लिए यह heavier हो सकता है।</p>
+<h4>MQTT</h4>
+<p>MQTT lightweight publish-subscribe protocol है। Device broker को data publish करता है और interested clients topic subscribe करके data receive करते हैं। Low bandwidth IoT networks में MQTT बहुत popular है।</p>
+<h4>CoAP</h4>
+<p>CoAP constrained devices के लिए lightweight protocol है। यह UDP पर based है और HTTP जैसा resource model follow करता है।</p>
+<table>
+<tr><th>Basis</th><th>HTTP</th><th>MQTT</th><th>CoAP</th></tr>
+<tr><td>Model</td><td>Request-response</td><td>Publish-subscribe</td><td>Request-response</td></tr>
+<tr><td>Transport</td><td>TCP</td><td>TCP</td><td>UDP</td></tr>
+<tr><td>Weight</td><td>Heavy</td><td>Lightweight</td><td>Lightweight</td></tr>
+<tr><td>Best Use</td><td>REST APIs</td><td>Telemetry messaging</td><td>Constrained devices</td></tr>
+</table>
+<div class="remember-box"><b>Remember:</b><br>MQTT IoT telemetry data के लिए बहुत popular lightweight protocol है।</div>
+
+</section>
+<section id="dns-dhcp">
+<h2>DNS and DHCP</h2>
+
+<p><strong>DNS</strong> और <strong>DHCP</strong> IoT networks में supporting services की तरह काम करते हैं। DNS domain name को IP address में convert करता है और DHCP devices को automatically IP address assign करता है।</p>
+<div class="image-icon"><img src="" alt="DNS DHCP in IoT"><p>Image Placeholder: DNS and DHCP in IoT Network</p></div>
+<h4>DNS</h4>
+<p>DNS का full form Domain Name System है। जब IoT device किसी cloud server जैसे <code>api.example.com</code> से connect करता है, तो DNS उस name को IP address में convert करता है।</p>
+<h4>DHCP</h4>
+<p>DHCP का full form Dynamic Host Configuration Protocol है। यह network में connected devices को automatically IP address, gateway और DNS information assign करता है। Home router DHCP server की तरह work कर सकता है।</p>
+<table>
+<tr><th>Service</th><th>Full Form</th><th>Use</th></tr>
+<tr><td>DNS</td><td>Domain Name System</td><td>Name को IP address में convert करना।</td></tr>
+<tr><td>DHCP</td><td>Dynamic Host Configuration Protocol</td><td>Device को automatic IP configuration देना।</td></tr>
+</table>
+<div class="note-box"><b>Real Life Example:</b><br>ESP32 जब Wi-Fi से connect होता है, तो router DHCP से उसे IP address देता है।</div>
+
+</section>
+</main>
+</div>
+</body>
+</html>

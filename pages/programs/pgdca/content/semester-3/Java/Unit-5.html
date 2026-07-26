@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Abstract Class and Interface in Java</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f5f7fb;
+            color: #1f2937;
+            line-height: 1.75
+        }
+
+        .page {
+            display: grid;
+            grid-template-columns: 285px 1fr;
+            gap: 20px;
+            max-width: 1500px;
+            margin: auto;
+            padding: 10px
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 10px;
+            height: calc(100vh - 20px);
+            overflow-y: auto;
+            background: #fff;
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
+            align-self: start
+        }
+
+        .sidebar h2 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #111827
+        }
+
+        .sidebar a {
+            display: block;
+            text-decoration: none;
+            color: #374151;
+            padding: 8px 10px;
+            border-radius: 10px;
+            margin-bottom: 4px;
+            font-size: 14.7px
+        }
+
+        .sidebar a:hover {
+            background: #eef2ff;
+            color: #1d4ed8
+        }
+
+        .content {
+            background: #fff;
+            border-radius: 18px;
+            padding: 10px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, .08)
+        }
+
+        .hero {
+            padding: 28px 18px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #eef2ff, #f8fafc);
+            margin-bottom: 18px
+        }
+
+        .hero h1 {
+            font-size: 34px;
+            color: #111827;
+            margin-bottom: 10px
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #374151
+        }
+
+        section {
+            padding: 22px 10px;
+            border-bottom: 1px solid #e5e7eb
+        }
+
+        section:last-child {
+            border-bottom: none
+        }
+
+        h2 {
+            font-size: 27px;
+            color: #111827;
+            margin-bottom: 12px;
+            border-left: 5px solid #2563eb;
+            padding-left: 12px
+        }
+
+        h3 {
+            font-size: 22px;
+            color: #1f2937;
+            margin: 16px 0 8px
+        }
+
+        h4 {
+            font-size: 18px;
+            color: #111827;
+            margin: 14px 0 6px
+        }
+
+        p {
+            margin: 10px 0;
+            font-size: 17px
+        }
+
+        ul,
+        ol {
+            margin-left: 24px;
+            margin-top: 8px
+        }
+
+        li {
+            margin: 7px 0;
+            font-size: 16.5px
+        }
+
+        strong {
+            color: #111827
+        }
+
+        .image-icon {
+            min-height: 180px;
+            border: 2px dashed #94a3b8;
+            border-radius: 16px;
+            background: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            margin: 18px 0;
+            color: #475569;
+            font-weight: 600;
+            flex-direction: column;
+            gap: 8px
+        }
+
+        .image-icon img {
+            max-width: 100%;
+            height: auto
+        }
+
+        .note-box {
+            background: #f0fdf4;
+            border-left: 5px solid #22c55e;
+            border-radius: 14px;
+            padding: 14px 16px;
+            margin: 16px 0
+        }
+
+        .info-box {
+            background: #ecfeff;
+            border-left: 5px solid #06b6d4;
+            border-radius: 14px;
+            padding: 14px 16px;
+            margin: 16px 0
+        }
+
+        .remember-box {
+            background: #fff7ed;
+            border-left: 5px solid #f97316;
+            border-radius: 14px;
+            padding: 14px 16px;
+            margin: 16px 0
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            font-size: 15.5px
+        }
+
+        th,
+        td {
+            border: 1px solid #d1d5db;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top
+        }
+
+        th {
+            background: #eef2ff;
+            color: #111827
+        }
+
+        code {
+            background: #111827;
+            color: #f9fafb;
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-family: Consolas, monospace;
+            font-size: 15px
+        }
+
+        pre {
+            background: #0f172a;
+            color: #e5e7eb;
+            border-radius: 14px;
+            padding: 16px;
+            margin: 16px 0;
+            overflow-x: auto;
+            font-family: Consolas, monospace;
+            line-height: 1.6
+        }
+
+        .compiler {
+            width: 100%;
+            height: 2rem;
+            background-color: green;
+            text-align: center
+        }
+
+        .compiler a {
+            text-decoration: none;
+            color: white
+        }
+
+        @media(max-width:900px) {
+            .page {
+                grid-template-columns: 1fr
+            }
+
+            .sidebar {
+                position: relative;
+                height: auto
+            }
+
+            .hero h1 {
+                font-size: 27px
+            }
+
+            h2 {
+                font-size: 24px
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <aside class="sidebar">
+            <h2>Topics</h2>
+            <a href="#abstract-class">Abstract Class</a>
+            <a href="#defining-interface">Defining an Interface</a>
+            <a href="#classes-vs-interface">Difference between Classes and Interface</a>
+            <a href="#key-points">Key Points of Abstract Class & Interface</a>
+            <a href="#abstract-vs-interface">Difference between an Abstract Class & Interface</a>
+            <a href="#multiple-inheritance">Implementation of Multiple Inheritance through Interface</a>
+            <a href="#default-static-interface">Default and Static Methods in Interface</a>
+        </aside>
+        <main class="content">
+            <div class="hero">
+                <h1>Abstract Class and Interface</h1>
+
+            </div>
+            <section id="abstract-class">
+                <h2>Abstract Class</h2>
+
+                <p><strong>Abstract class</strong> Java में ऐसी class होती है जिसे directly instantiate नहीं किया जा
+                    सकता, यानी उसका object direct create नहीं किया जा सकता। Abstract class का use common structure और
+                    partial implementation provide करने के लिए किया जाता है। इसमें abstract methods भी हो सकते हैं और
+                    normal methods भी।</p>
+                <p>Abstract class को define करने के लिए <code>abstract</code> keyword use किया जाता है। अगर किसी class
+                    में abstract method है, तो उस class को abstract declare करना जरूरी होता है। Abstract method वह
+                    method होता है जिसका केवल declaration होता है, body नहीं होती। उसकी body subclass provide करती है।
+                </p>
+                <div class="image-icon"><img src="" alt="Abstract Class Diagram">
+                    <p>Image Placeholder: Abstract Class Diagram</p>
+                </div>
+                <h4>Abstract Class Syntax</h4>
+                <pre>abstract class ClassName {
+    abstract void methodName();
+
+    void normalMethod() {
+        // method body
+    }
+}</pre>
+                <h4>Example</h4>
+                <pre>abstract class Animal {
+    abstract void sound();
+
+    void eat() {
+        System.out.println("Animal eats food");
+    }
+}
+
+class Dog extends Animal {
+    void sound() {
+        System.out.println("Dog barks");
+    }
+
+    public static void main(String[] args) {
+        Dog d = new Dog();
+
+        d.sound();
+        d.eat();
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Dog barks<br>Animal eats food</div>
+                <h4>Important Points</h4>
+                <ul>
+                    <li>Abstract class का object directly create नहीं किया जा सकता।</li>
+                    <li>Abstract class में abstract और non-abstract दोनों methods हो सकते हैं।</li>
+                    <li>Abstract method की body नहीं होती।</li>
+                    <li>Subclass abstract methods को override करके body provide करती है।</li>
+                    <li>Abstract class constructors रख सकती है।</li>
+                    <li>Abstract class variables और methods दोनों contain कर सकती है।</li>
+                </ul>
+                <h4>Why Abstract Class is Used</h4>
+                <p>Abstract class तब useful होती है जब parent class में कुछ common implementation देनी हो, लेकिन कुछ
+                    methods child classes के according अलग-अलग implement करवाने हों। इससे common code reuse होता है और
+                    subclasses को एक fixed structure follow करना पड़ता है।</p>
+                <div class="note-box"><b>Real Life Example:</b><br>Vehicle abstract class हो सकती है जिसमें fuelType
+                    common method हो और start() abstract method हो। Car और Bike अपने हिसाब से start() method implement
+                    कर सकती हैं।</div>
+                <div class="remember-box"><b>Remember:</b><br>Abstract class incomplete class होती है जिसे complete करने
+                    का काम subclass करती है।</div>
+
+            </section>
+            <section id="defining-interface">
+                <h2>Defining an Interface</h2>
+
+                <p><strong>Interface</strong> Java में एक blueprint होता है जो class को बताता है कि कौन-कौन से methods
+                    implement करने हैं। Interface में method declarations होते हैं और implementing class उन methods की
+                    body provide करती है। Interface abstraction achieve करने का powerful तरीका है।</p>
+                <p>Interface define करने के लिए <code>interface</code> keyword use होता है। Class interface को implement
+                    करने के लिए <code>implements</code> keyword use करती है। Interface के methods by default
+                    <code>public</code> और <code>abstract</code> माने जाते हैं। Interface के variables by default
+                    <code>public static final</code> होते हैं।
+                </p>
+                <div class="image-icon"><img src="" alt="Java Interface Diagram">
+                    <p>Image Placeholder: Interface Blueprint Diagram</p>
+                </div>
+                <h4>Interface Syntax</h4>
+                <pre>interface InterfaceName {
+    void methodName();
+}
+
+class ClassName implements InterfaceName {
+    public void methodName() {
+        // method body
+    }
+}</pre>
+                <h4>Example</h4>
+                <pre>interface Printable {
+    void print();
+}
+
+class Document implements Printable {
+    public void print() {
+        System.out.println("Printing document");
+    }
+
+    public static void main(String[] args) {
+        Document d = new Document();
+        d.print();
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Printing document</div>
+                <h4>Interface with Multiple Methods</h4>
+                <pre>interface Shape {
+    void draw();
+    void area();
+}
+
+class Circle implements Shape {
+    public void draw() {
+        System.out.println("Drawing circle");
+    }
+
+    public void area() {
+        System.out.println("Calculating circle area");
+    }
+
+    public static void main(String[] args) {
+        Circle c = new Circle();
+
+        c.draw();
+        c.area();
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Drawing circle<br>Calculating circle area</div>
+                <h4>Rules for Interface</h4>
+                <ul>
+                    <li>Interface का object directly create नहीं किया जा सकता।</li>
+                    <li>Class interface को <code>implements</code> keyword से use करती है।</li>
+                    <li>Implementing class को interface के abstract methods implement करने होते हैं।</li>
+                    <li>Interface multiple inheritance achieve करने में help करता है।</li>
+                    <li>Interface variables by default constants होते हैं।</li>
+                </ul>
+                <h4>Interface Variable Example</h4>
+                <pre>interface College {
+    String NAME = "Government Polytechnic Kanpur";
+}
+
+class Student implements College {
+    public static void main(String[] args) {
+        System.out.println(NAME);
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Government Polytechnic Kanpur</div>
+                <div class="remember-box"><b>Remember:</b><br>Interface method declaration देता है और class उस method की
+                    implementation देती है।</div>
+
+            </section>
+            <section id="classes-vs-interface">
+                <h2>Difference between Classes and Interface</h2>
+
+                <p>Class और interface दोनों Java में object-oriented design के important parts हैं, लेकिन दोनों का
+                    purpose अलग है। Class object create करने का blueprint है जिसमें variables, constructors और methods
+                    हो सकते हैं। Interface behavior का contract define करता है जिसे implementing class follow करती है।
+                </p>
+                <div class="image-icon"><img src="" alt="Class vs Interface Diagram">
+                    <p>Image Placeholder: Class vs Interface Comparison Diagram</p>
+                </div>
+                <h4>Class Example</h4>
+                <pre>class Student {
+    String name;
+
+    void display() {
+        System.out.println(name);
+    }
+}</pre>
+                <h4>Interface Example</h4>
+                <pre>interface Printable {
+    void print();
+}</pre>
+                <h4>Difference Table</h4>
+                <table>
+                    <tr>
+                        <th>Basis</th>
+                        <th>Class</th>
+                        <th>Interface</th>
+                    </tr>
+                    <tr>
+                        <td>Keyword</td>
+                        <td><code>class</code></td>
+                        <td><code>interface</code></td>
+                    </tr>
+                    <tr>
+                        <td>Purpose</td>
+                        <td>Objects create करने के लिए blueprint।</td>
+                        <td>Methods का contract/blueprint define करता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Object Creation</td>
+                        <td>Normal class का object create हो सकता है।</td>
+                        <td>Interface का object directly create नहीं हो सकता।</td>
+                    </tr>
+                    <tr>
+                        <td>Methods</td>
+                        <td>Concrete methods और abstract methods हो सकते हैं।</td>
+                        <td>Mostly abstract methods; default/static methods भी हो सकते हैं।</td>
+                    </tr>
+                    <tr>
+                        <td>Variables</td>
+                        <td>Instance, static, final variables हो सकते हैं।</td>
+                        <td>Variables by default public static final होते हैं।</td>
+                    </tr>
+                    <tr>
+                        <td>Constructor</td>
+                        <td>Constructor हो सकता है।</td>
+                        <td>Constructor नहीं होता।</td>
+                    </tr>
+                    <tr>
+                        <td>Inheritance Keyword</td>
+                        <td>Class दूसरी class को <code>extends</code> करती है।</td>
+                        <td>Class interface को <code>implements</code> करती है।</td>
+                    </tr>
+                    <tr>
+                        <td>Multiple Inheritance</td>
+                        <td>Class multiple classes extend नहीं कर सकती।</td>
+                        <td>Class multiple interfaces implement कर सकती है।</td>
+                    </tr>
+                </table>
+                <h4>When Class is Used</h4>
+                <ul>
+                    <li>जब object create करना हो।</li>
+                    <li>जब data और methods दोनों define करने हों।</li>
+                    <li>जब common implementation देनी हो।</li>
+                    <li>जब constructor की जरूरत हो।</li>
+                </ul>
+                <h4>When Interface is Used</h4>
+                <ul>
+                    <li>जब केवल behavior contract define करना हो।</li>
+                    <li>जब multiple inheritance जैसी facility चाहिए।</li>
+                    <li>जब different classes को same method structure follow करवाना हो।</li>
+                    <li>जब full abstraction achieve करनी हो।</li>
+                </ul>
+                <div class="note-box"><b>Real Life Example:</b><br>Class एक actual form design जैसी है, जिससे records
+                    बनते हैं। Interface rule book जैसी है, जो बताती है कि कौन-से actions जरूर होने चाहिए।</div>
+                <div class="remember-box"><b>Remember:</b><br>Class object बनाती है, interface behavior का contract
+                    define करता है।</div>
+
+            </section>
+            <section id="key-points">
+                <h2>Key Points of Abstract Class & Interface</h2>
+
+                <p>Abstract class और interface दोनों abstraction provide करते हैं, लेकिन इनके use cases अलग होते हैं।
+                    Abstract class partial abstraction provide कर सकती है क्योंकि इसमें abstract और concrete दोनों
+                    methods हो सकते हैं। Interface generally contract-based abstraction provide करता है।</p>
+                <div class="image-icon"><img src="" alt="Abstract Class and Interface Key Points">
+                    <p>Image Placeholder: Abstract Class & Interface Key Points Diagram</p>
+                </div>
+                <h4>Key Points of Abstract Class</h4>
+                <ul>
+                    <li>Abstract class <code>abstract</code> keyword से define होती है।</li>
+                    <li>Abstract class का object direct create नहीं किया जा सकता।</li>
+                    <li>इसमें abstract और non-abstract दोनों methods हो सकते हैं।</li>
+                    <li>Abstract class constructors रख सकती है।</li>
+                    <li>Abstract class instance variables रख सकती है।</li>
+                    <li>Subclass abstract methods को implement करती है।</li>
+                    <li>Abstract class partial implementation provide करने के लिए useful है।</li>
+                </ul>
+                <h4>Key Points of Interface</h4>
+                <ul>
+                    <li>Interface <code>interface</code> keyword से define होता है।</li>
+                    <li>Interface का object direct create नहीं किया जा सकता।</li>
+                    <li>Class interface को <code>implements</code> keyword से implement करती है।</li>
+                    <li>Interface methods by default public abstract होते हैं।</li>
+                    <li>Interface variables by default public static final होते हैं।</li>
+                    <li>Class multiple interfaces implement कर सकती है।</li>
+                    <li>Interface multiple inheritance achieve करने में help करता है।</li>
+                </ul>
+                <h4>Abstract Class with Constructor</h4>
+                <pre>abstract class Person {
+    Person() {
+        System.out.println("Person constructor");
+    }
+
+    abstract void work();
+}
+
+class Teacher extends Person {
+    void work() {
+        System.out.println("Teacher teaches");
+    }
+
+    public static void main(String[] args) {
+        Teacher t = new Teacher();
+        t.work();
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Person constructor<br>Teacher teaches</div>
+                <h4>Interface Contract Example</h4>
+                <pre>interface Payment {
+    void pay();
+}
+
+class UpiPayment implements Payment {
+    public void pay() {
+        System.out.println("Payment done using UPI");
+    }
+}</pre>
+                <h4>Important Notes</h4>
+                <table>
+                    <tr>
+                        <th>Point</th>
+                        <th>Abstract Class</th>
+                        <th>Interface</th>
+                    </tr>
+                    <tr>
+                        <td>Object Creation</td>
+                        <td>Direct object नहीं।</td>
+                        <td>Direct object नहीं।</td>
+                    </tr>
+                    <tr>
+                        <td>Constructor</td>
+                        <td>Allowed</td>
+                        <td>Not allowed</td>
+                    </tr>
+                    <tr>
+                        <td>Variables</td>
+                        <td>Normal variables allowed</td>
+                        <td>Constants by default</td>
+                    </tr>
+                    <tr>
+                        <td>Methods</td>
+                        <td>Abstract + concrete</td>
+                        <td>Abstract/default/static methods</td>
+                    </tr>
+                </table>
+                <div class="remember-box"><b>Remember:</b><br>Abstract class common base implementation के लिए और
+                    interface common behavior contract के लिए use होता है।</div>
+
+            </section>
+            <section id="abstract-vs-interface">
+                <h2>Difference between an Abstract Class & Interface</h2>
+
+                <p>Abstract class और interface दोनों abstraction achieve करने के लिए use होते हैं, लेकिन दोनों में कई
+                    practical differences हैं। Abstract class तब use होती है जब related classes में common data और
+                    common implementation share करनी हो। Interface तब use होता है जब unrelated classes को same behavior
+                    follow करवाना हो या multiple inheritance जैसी facility चाहिए।</p>
+                <div class="image-icon"><img src="" alt="Abstract Class vs Interface Diagram">
+                    <p>Image Placeholder: Abstract Class vs Interface Comparison</p>
+                </div>
+                <h4>Difference Table</h4>
+                <table>
+                    <tr>
+                        <th>Basis</th>
+                        <th>Abstract Class</th>
+                        <th>Interface</th>
+                    </tr>
+                    <tr>
+                        <td>Keyword</td>
+                        <td><code>abstract class</code></td>
+                        <td><code>interface</code></td>
+                    </tr>
+                    <tr>
+                        <td>Methods</td>
+                        <td>Abstract और concrete methods दोनों हो सकते हैं।</td>
+                        <td>Abstract methods, default methods और static methods हो सकते हैं।</td>
+                    </tr>
+                    <tr>
+                        <td>Variables</td>
+                        <td>Instance, static, final variables हो सकते हैं।</td>
+                        <td>Variables by default public static final होते हैं।</td>
+                    </tr>
+                    <tr>
+                        <td>Constructor</td>
+                        <td>Constructor allowed है।</td>
+                        <td>Constructor allowed नहीं है।</td>
+                    </tr>
+                    <tr>
+                        <td>Inheritance</td>
+                        <td>Class only one abstract class extend कर सकती है।</td>
+                        <td>Class multiple interfaces implement कर सकती है।</td>
+                    </tr>
+                    <tr>
+                        <td>Access Modifiers</td>
+                        <td>Methods/variables में different access modifiers हो सकते हैं।</td>
+                        <td>Interface methods generally public होते हैं।</td>
+                    </tr>
+                    <tr>
+                        <td>Purpose</td>
+                        <td>Common base और partial implementation देना।</td>
+                        <td>Common behavior contract define करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Keyword Used by Class</td>
+                        <td><code>extends</code></td>
+                        <td><code>implements</code></td>
+                    </tr>
+                    <tr>
+                        <td>Multiple Inheritance</td>
+                        <td>Directly support नहीं।</td>
+                        <td>Multiple interfaces implement possible।</td>
+                    </tr>
+                </table>
+                <h4>Abstract Class Example</h4>
+                <pre>abstract class Bank {
+    void bankInfo() {
+        System.out.println("Bank provides financial services");
+    }
+
+    abstract void interestRate();
+}
+
+class SBI extends Bank {
+    void interestRate() {
+        System.out.println("Interest rate: 6%");
+    }
+}</pre>
+                <h4>Interface Example</h4>
+                <pre>interface Drawable {
+    void draw();
+}
+
+class Circle implements Drawable {
+    public void draw() {
+        System.out.println("Drawing circle");
+    }
+}</pre>
+                <h4>When to Choose Abstract Class</h4>
+                <ul>
+                    <li>जब related classes में common data हो।</li>
+                    <li>जब common methods की implementation share करनी हो।</li>
+                    <li>जब constructors की need हो।</li>
+                    <li>जब partial abstraction चाहिए।</li>
+                </ul>
+                <h4>When to Choose Interface</h4>
+                <ul>
+                    <li>जब multiple inheritance जैसा design चाहिए।</li>
+                    <li>जब only behavior contract define करना हो।</li>
+                    <li>जब unrelated classes को same actions implement करवाने हों।</li>
+                    <li>जब full abstraction या loose coupling चाहिए।</li>
+                </ul>
+                <div class="note-box"><b>Real Life Example:</b><br>Vehicle abstract class हो सकती है क्योंकि Car और Bike
+                    related हैं। Printable interface हो सकता है क्योंकि Document, Image और Bill सभी printable हो सकते
+                    हैं, भले वे unrelated classes हों।</div>
+                <div class="remember-box"><b>Remember:</b><br>Abstract class “is-a base” relation के लिए और interface
+                    “can-do behavior” relation के लिए ज्यादा useful है।</div>
+
+            </section>
+            <section id="multiple-inheritance">
+                <h2>Implementation of Multiple Inheritance through Interface</h2>
+
+                <p>Java classes के through multiple inheritance support नहीं करती। इसका कारण ambiguity problem है। अगर
+                    एक child class दो parent classes से same method inherit करे, तो compiler confuse हो सकता है कि
+                    कौन-सा method use करना है। इस problem को avoid करने के लिए Java ने classes के साथ multiple
+                    inheritance allow नहीं किया।</p>
+                <p>लेकिन Java interface के through multiple inheritance achieve कर सकती है। एक class multiple interfaces
+                    implement कर सकती है। Interfaces केवल method contract provide करते हैं और implementing class actual
+                    method body देती है। इससे ambiguity कम होती है और flexible design possible होता है।</p>
+                <div class="image-icon"><img src="" alt="Multiple Inheritance through Interface Diagram">
+                    <p>Image Placeholder: Multiple Inheritance through Interface Diagram</p>
+                </div>
+                <h4>Multiple Inheritance Problem with Classes</h4>
+                <pre>class A {
+    void show() {
+        System.out.println("A");
+    }
+}
+
+class B {
+    void show() {
+        System.out.println("B");
+    }
+}
+
+// Java does not allow this:
+// class C extends A, B { }</pre>
+                <h4>Multiple Inheritance using Interfaces</h4>
+                <pre>interface Printable {
+    void print();
+}
+
+interface Showable {
+    void show();
+}
+
+class Document implements Printable, Showable {
+    public void print() {
+        System.out.println("Printing document");
+    }
+
+    public void show() {
+        System.out.println("Showing document");
+    }
+
+    public static void main(String[] args) {
+        Document d = new Document();
+
+        d.print();
+        d.show();
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Printing document<br>Showing document</div>
+                <h4>Example with Same Method Name</h4>
+                <p>अगर two interfaces में same method declaration हो, तो implementing class एक method body provide कर
+                    सकती है।</p>
+                <pre>interface A {
+    void display();
+}
+
+interface B {
+    void display();
+}
+
+class C implements A, B {
+    public void display() {
+        System.out.println("Display method implemented");
+    }
+
+    public static void main(String[] args) {
+        C obj = new C();
+        obj.display();
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Display method implemented</div>
+                <h4>Interface Extending Multiple Interfaces</h4>
+                <pre>interface A {
+    void methodA();
+}
+
+interface B {
+    void methodB();
+}
+
+interface C extends A, B {
+    void methodC();
+}
+
+class Test implements C {
+    public void methodA() {
+        System.out.println("Method A");
+    }
+
+    public void methodB() {
+        System.out.println("Method B");
+    }
+
+    public void methodC() {
+        System.out.println("Method C");
+    }
+}</pre>
+                <h4>Benefits</h4>
+                <ul>
+                    <li>Multiple inheritance जैसी facility मिलती है।</li>
+                    <li>Ambiguity problem reduce होती है।</li>
+                    <li>Class को multiple behaviors provide किए जा सकते हैं।</li>
+                    <li>Loose coupling और flexible design possible होता है।</li>
+                    <li>Large applications में contract-based programming easy होती है।</li>
+                </ul>
+                <h4>Important Points</h4>
+                <table>
+                    <tr>
+                        <th>Point</th>
+                        <th>Explanation</th>
+                    </tr>
+                    <tr>
+                        <td>Class Extends</td>
+                        <td>Java class only one class extend कर सकती है।</td>
+                    </tr>
+                    <tr>
+                        <td>Class Implements</td>
+                        <td>Java class multiple interfaces implement कर सकती है।</td>
+                    </tr>
+                    <tr>
+                        <td>Keyword</td>
+                        <td>Multiple interfaces के लिए <code>implements Interface1, Interface2</code></td>
+                    </tr>
+                    <tr>
+                        <td>Method Body</td>
+                        <td>Implementing class methods की body देती है।</td>
+                    </tr>
+                </table>
+                <div class="note-box"><b>Real Life Example:</b><br>SmartPhone class Camera, MusicPlayer और
+                    InternetDevice interfaces implement कर सकती है। एक phone multiple behaviors perform कर सकता है।
+                </div>
+                <div class="remember-box"><b>Remember:</b><br>Java में multiple inheritance classes से नहीं, interfaces
+                    से achieve किया जाता है।</div>
+
+            </section>
+            <section id="default-static-interface">
+                <h2>Default and Static Methods in Interface</h2>
+
+                <p>Modern Java में interfaces केवल abstract methods तक limited नहीं हैं। Interface में
+                    <code>default</code> और <code>static</code> methods भी define किए जा सकते हैं। Default method की
+                    body interface के अंदर होती है और implementing class उसे override कर सकती है। Static method
+                    interface name से call होता है।
+                </p>
+                <h4>Default Method Example</h4>
+                <pre>interface Vehicle {
+    default void start() {
+        System.out.println("Vehicle starts");
+    }
+}
+
+class Car implements Vehicle {
+    public static void main(String[] args) {
+        Car c = new Car();
+        c.start();
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Vehicle starts</div>
+                <h4>Static Method Example</h4>
+                <pre>interface MathHelper {
+    static int square(int n) {
+        return n * n;
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        System.out.println(MathHelper.square(5));
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>25</div>
+                <h4>Why Default Methods Were Added</h4>
+                <ul>
+                    <li>Existing interfaces में new methods add करने के लिए।</li>
+                    <li>Old implementing classes को break होने से बचाने के लिए।</li>
+                    <li>Common behavior interface में provide करने के लिए।</li>
+                    <li>Backward compatibility maintain करने के लिए।</li>
+                </ul>
+                <h4>Important Points</h4>
+                <table>
+                    <tr>
+                        <th>Method Type</th>
+                        <th>Call/Use</th>
+                    </tr>
+                    <tr>
+                        <td>Abstract Method</td>
+                        <td>Class implement करती है।</td>
+                    </tr>
+                    <tr>
+                        <td>Default Method</td>
+                        <td>Interface में body होती है, class override कर सकती है।</td>
+                    </tr>
+                    <tr>
+                        <td>Static Method</td>
+                        <td>Interface name से call होता है।</td>
+                    </tr>
+                </table>
+                <div class="remember-box"><b>Remember:</b><br>Interface में default method implementation provide कर
+                    सकता है, लेकिन object state normally class में रहती है।</div>
+
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>

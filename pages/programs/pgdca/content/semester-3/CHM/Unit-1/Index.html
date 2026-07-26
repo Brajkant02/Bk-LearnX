@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basic Computer Introduction</title>
+  <link rel="icon" href="../../../.././../../../assets/images/logo.jpeg">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+      line-height: 1.75
+    }
+
+    .page {
+      display: grid;
+      grid-template-columns: 290px 1fr;
+      gap: 20px;
+      max-width: 1550px;
+      margin: auto;
+      padding: 10px
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 10px;
+      height: calc(100vh - 20px);
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
+      align-self: start
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #111827
+    }
+
+    .sidebar a {
+      display: block;
+      text-decoration: none;
+      color: #374151;
+      padding: 8px 10px;
+      border-radius: 10px;
+      margin-bottom: 4px;
+      font-size: 14.5px
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+      color: #1d4ed8
+    }
+
+    .content {
+      background: #fff;
+      border-radius: 18px;
+      padding: 10px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08)
+    }
+
+    .hero {
+      padding: 30px 20px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #eef2ff, #f8fafc);
+      margin-bottom: 18px
+    }
+
+    .hero h1 {
+      font-size: 34px;
+      color: #111827;
+      margin-bottom: 10px
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #374151
+    }
+
+    section {
+      padding: 22px 10px;
+      border-bottom: 1px solid #e5e7eb
+    }
+
+    section:last-child {
+      border-bottom: none
+    }
+
+    h2 {
+      font-size: 27px;
+      color: #111827;
+      margin-bottom: 12px;
+      border-left: 5px solid #2563eb;
+      padding-left: 12px
+    }
+
+    h3 {
+      font-size: 22px;
+      color: #1f2937;
+      margin: 18px 0 8px
+    }
+
+    h4 {
+      font-size: 18px;
+      color: #111827;
+      margin: 14px 0 6px
+    }
+
+    p {
+      margin: 10px 0;
+      font-size: 17px
+    }
+
+    ul,
+    ol {
+      margin-left: 24px;
+      margin-top: 8px
+    }
+
+    li {
+      margin: 7px 0;
+      font-size: 16.5px
+    }
+
+    strong {
+      color: #111827
+    }
+
+    .image-icon {
+      min-height: 180px;
+      border: 2px dashed #94a3b8;
+      border-radius: 16px;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      margin: 18px 0;
+      color: #475569;
+      font-weight: 600;
+      flex-direction: column;
+      gap: 8px
+    }
+
+    .image-icon img {
+      max-width: 100%;
+      height: auto
+    }
+
+    .note-box {
+      background: #f0fdf4;
+      border-left: 5px solid #22c55e;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .info-box {
+      background: #ecfeff;
+      border-left: 5px solid #06b6d4;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .remember-box {
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      font-size: 15.3px
+    }
+
+    th,
+    td {
+      border: 1px solid #d1d5db;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top
+    }
+
+    th {
+      background: #eef2ff;
+      color: #111827
+    }
+
+    code {
+      background: #111827;
+      color: #f9fafb;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-family: Consolas, monospace;
+      font-size: 15px
+    }
+
+    pre {
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 14px;
+      padding: 16px;
+      margin: 16px 0;
+      overflow-x: auto;
+      font-family: Consolas, monospace;
+      line-height: 1.6
+    }
+
+    @media(max-width:900px) {
+      .page {
+        grid-template-columns: 1fr
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto
+      }
+
+      .hero h1 {
+        font-size: 27px
+      }
+
+      h2 {
+        font-size: 24px
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <h2>Topics</h2>
+      <a href="#intro">Introduction</a>
+      <a href="#internal-external">Internal, External and Peripheral Components</a>
+      <a href="#keyboard">Keyboard</a>
+      <a href="#mouse">Mouse</a>
+      <a href="#scanner">Scanner</a>
+      <a href="#other-input">Other Input Devices</a>
+      <a href="#special-input">Barcode Reader, OCR, OMR, MICR and Biometric Devices</a>
+      <a href="#monitor">Monitor</a>
+      <a href="#printer">Printer</a>
+      <a href="#other-output">Other Output Devices</a>
+      <a href="#storage-intro">Storage Devices</a>
+      <a href="#hdd-ssd">HDD and SSD</a>
+      <a href="#portable-storage">Pen Drive, Memory Card and External Drive</a>
+      <a href="#optical-storage">CD, DVD and Blu-ray Disc</a>
+      <a href="#nas">NAS and Network Storage</a>
+      <a href="#communication-devices">Communication Devices</a>
+      <a href="#hub-switch">Hub vs Switch</a>
+      <a href="#motherboard">Motherboard</a>
+      <a href="#cpu">CPU</a>
+      <a href="#ram-rom">RAM and ROM</a>
+      <a href="#smps">SMPS</a>
+      <a href="#cooling">Heat Sink and Cooling Fan</a>
+      <a href="#gpu">GPU and Graphics Card</a>
+      <a href="#sound-network-card">Sound Card and Network Card</a>
+      <a href="#comparisons">Important Comparison Tables</a>
+      <a href="#working-flow">Complete Computer Working Flow</a>
+      <a href="#practical">Practical Uses and Industry Knowledge</a>
+    </aside>
+
+    <main class="content">
+      <div class="hero">
+        <h1>Components and Peripheral Devices Connected with Computer</h1>
+      </div>
+      <section id="intro">
+        <h2>Introduction</h2>
+        <p><strong>Computer Components</strong> वे physical parts होते हैं जिनसे computer system बनता है। इनमें internal
+          components, external components और peripheral devices शामिल होते हैं। Internal components system unit के अंदर
+          लगे होते हैं, जबकि external और peripheral devices computer के बाहर connect किए जाते हैं।</p>
+
+        <p><strong>Peripheral Devices</strong> वे devices होते हैं जो computer की functionality बढ़ाते हैं। ये input
+          देने, output प्राप्त करने, data store करने या communication establish करने में help करते हैं। Keyboard, mouse,
+          monitor, printer, scanner, speaker, modem और external storage peripheral devices के examples हैं।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Computer Components and Peripheral Devices">
+          <p>Image Placeholder: Computer Components and Peripheral Devices Diagram</p>
+        </div>
+
+        <h4>Need of Peripheral Devices</h4>
+        <ul>
+          <li>User से input लेने के लिए।</li>
+          <li>Processed information को output के रूप में दिखाने के लिए।</li>
+          <li>Data और programs store करने के लिए।</li>
+          <li>Computer को network और internet से connect करने के लिए।</li>
+          <li>Multimedia, printing, scanning और communication जैसी extra facilities देने के लिए।</li>
+        </ul>
+
+        <h4>Basic Classification</h4>
+        <table>
+          <tr>
+            <th>Category</th>
+            <th>Examples</th>
+          </tr>
+          <tr>
+            <td>Input Devices</td>
+            <td>Keyboard, Mouse, Scanner, Microphone</td>
+          </tr>
+          <tr>
+            <td>Output Devices</td>
+            <td>Monitor, Printer, Speaker, Projector</td>
+          </tr>
+          <tr>
+            <td>Storage Devices</td>
+            <td>HDD, SSD, Pen Drive, Memory Card</td>
+          </tr>
+          <tr>
+            <td>Communication Devices</td>
+            <td>Modem, Router, NIC, Wi-Fi Adapter</td>
+          </tr>
+          <tr>
+            <td>Internal Components</td>
+            <td>CPU, RAM, ROM, Motherboard, SMPS</td>
+          </tr>
+        </table>
+
+        <div class="remember-box"><b>Remember:</b><br>Peripheral devices computer की basic processing capability को
+          useful input, output, storage और communication facilities में बदलते हैं।</div>
+      </section>
+      <section id="internal-external">
+        <h2>Internal, External and Peripheral Components</h2>
+        <p><strong>Internal components</strong> system cabinet या motherboard के अंदर लगे होते हैं। ये computer की
+          processing, memory, power और control operations handle करते हैं। CPU, RAM, ROM, motherboard, SMPS और storage
+          drive internal components हैं।</p>
+
+        <p><strong>External components</strong> computer के बाहर connect होते हैं। Keyboard, mouse, monitor और printer
+          external devices हैं।</p>
+
+        <p><strong>Peripheral devices</strong> internal या external दोनों हो सकते हैं, लेकिन generally peripheral शब्द
+          उन devices के लिए use होता है जो computer के input, output, storage या communication function को support करते
+          हैं।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Internal and External Computer Components">
+          <p>Image Placeholder: Internal vs External Components</p>
+        </div>
+
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>Internal Components</th>
+            <th>External Components</th>
+          </tr>
+          <tr>
+            <td>Location</td>
+            <td>System unit के अंदर</td>
+            <td>Computer के बाहर</td>
+          </tr>
+          <tr>
+            <td>Purpose</td>
+            <td>Processing, memory, power</td>
+            <td>Input, output, storage, communication</td>
+          </tr>
+          <tr>
+            <td>Examples</td>
+            <td>CPU, RAM, Motherboard</td>
+            <td>Keyboard, Monitor, Printer</td>
+          </tr>
+          <tr>
+            <td>Connection</td>
+            <td>Motherboard slots/cables</td>
+            <td>USB, HDMI, Bluetooth, Wi-Fi</td>
+          </tr>
+        </table>
+      </section>
+      <section id="keyboard">
+        <h2>Keyboard</h2>
+        <p><strong>Keyboard</strong> सबसे common input device है। इसका use text, numbers, commands और shortcuts enter
+          करने के लिए किया जाता है। Keyboard में alphabet keys, numeric keys, function keys, control keys और special
+          keys होती हैं।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Computer Keyboard">
+          <p>Image Placeholder: Keyboard Layout</p>
+        </div>
+
+        <h4>Main Key Groups</h4>
+        <table>
+          <tr>
+            <th>Key Group</th>
+            <th>Examples</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td>Alphabet Keys</td>
+            <td>A-Z</td>
+            <td>Text typing</td>
+          </tr>
+          <tr>
+            <td>Numeric Keys</td>
+            <td>0-9</td>
+            <td>Numbers enter करना</td>
+          </tr>
+          <tr>
+            <td>Function Keys</td>
+            <td>F1-F12</td>
+            <td>Special software functions</td>
+          </tr>
+          <tr>
+            <td>Control Keys</td>
+            <td>Ctrl, Alt, Shift</td>
+            <td>Shortcuts और commands</td>
+          </tr>
+          <tr>
+            <td>Navigation Keys</td>
+            <td>Arrow, Home, End</td>
+            <td>Cursor movement</td>
+          </tr>
+        </table>
+
+        <h4>Types</h4>
+        <ul>
+          <li>Wired Keyboard</li>
+          <li>Wireless Keyboard</li>
+          <li>Mechanical Keyboard</li>
+          <li>Membrane Keyboard</li>
+          <li>Virtual Keyboard</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>MS Word में document typing, shortcut commands और data entry
+          के लिए keyboard use होता है।</div>
+      </section>
+      <section id="mouse">
+        <h2>Mouse</h2>
+        <p><strong>Mouse</strong> pointing input device है। इसका use screen पर pointer move करने, objects select करने,
+          files open करने और drag-and-drop operations करने के लिए होता है।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Computer Mouse">
+          <p>Image Placeholder: Mouse Parts and Buttons</p>
+        </div>
+
+        <h4>Main Operations</h4>
+        <ul>
+          <li>Single Click</li>
+          <li>Double Click</li>
+          <li>Right Click</li>
+          <li>Drag and Drop</li>
+          <li>Scrolling</li>
+        </ul>
+
+        <h4>Types</h4>
+        <table>
+          <tr>
+            <th>Type</th>
+            <th>Feature</th>
+          </tr>
+          <tr>
+            <td>Optical Mouse</td>
+            <td>Light sensor use करता है।</td>
+          </tr>
+          <tr>
+            <td>Laser Mouse</td>
+            <td>Higher precision देता है।</td>
+          </tr>
+          <tr>
+            <td>Wireless Mouse</td>
+            <td>Bluetooth या RF से connect होता है।</td>
+          </tr>
+          <tr>
+            <td>Trackball Mouse</td>
+            <td>Ball rotate करके pointer move होता है।</td>
+          </tr>
+        </table>
+      </section>
+      <section id="scanner">
+        <h2>Scanner</h2>
+        <p><strong>Scanner</strong> printed document, image या photograph को digital form में convert करता है। यह
+          optical technology की help से paper information को computer में input देता है।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Scanner Device">
+          <p>Image Placeholder: Scanner Working Diagram</p>
+        </div>
+
+        <h4>Types of Scanner</h4>
+        <table>
+          <tr>
+            <th>Type</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td>Flatbed Scanner</td>
+            <td>Documents और photographs scan करने के लिए।</td>
+          </tr>
+          <tr>
+            <td>Handheld Scanner</td>
+            <td>Portable scanning के लिए।</td>
+          </tr>
+          <tr>
+            <td>Sheet-fed Scanner</td>
+            <td>Multiple pages fast scan करने के लिए।</td>
+          </tr>
+          <tr>
+            <td>Drum Scanner</td>
+            <td>High-quality professional scanning के लिए।</td>
+          </tr>
+        </table>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Printed certificates और photographs को PDF/JPEG में convert
+          करने के लिए scanner use होता है।</div>
+      </section>
+      <section id="other-input">
+        <h2>Other Input Devices</h2>
+        <h4>Microphone</h4>
+        <p>Microphone sound को electrical/digital signal में convert करता है। Voice recording, video calls और speech
+          recognition में use होता है।</p>
+
+        <h4>Webcam</h4>
+        <p>Webcam live image और video capture करती है। Online classes, video calls और surveillance में useful है।</p>
+
+        <h4>Joystick</h4>
+        <p>Joystick games, simulators और control systems में directional movement के लिए use होता है।</p>
+
+        <h4>Light Pen</h4>
+        <p>Light pen screen पर direct pointing और drawing के लिए use होता था।</p>
+
+        <h4>Graphics Tablet</h4>
+        <p>Graphics tablet digital drawing, animation और design work के लिए use होता है।</p>
+
+        <h4>Touch Screen</h4>
+        <p>Touch screen input और output दोनों device है। User screen touch करके command देता है और screen result display
+          करती है।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Other Input Devices">
+          <p>Image Placeholder: Microphone, Webcam, Joystick, Touch Screen</p>
+        </div>
+      </section>
+      <section id="special-input">
+        <h2>Barcode Reader, OCR, OMR, MICR and Biometric Devices</h2>
+        <h4>Barcode Reader</h4>
+        <p>Barcode reader product पर printed barcode scan करके data computer में भेजता है। Shopping malls और inventory
+          systems में common है।</p>
+
+        <h4>QR Code Scanner</h4>
+        <p>QR scanner two-dimensional code read करता है। Payment, login और information sharing में use होता है।</p>
+
+        <h4>OCR</h4>
+        <p><strong>OCR</strong> का full form Optical Character Recognition है। यह scanned printed text को editable text
+          में convert करता है।</p>
+
+        <h4>OMR</h4>
+        <p><strong>OMR</strong> का full form Optical Mark Recognition है। यह answer sheets पर marked circles/bubbles
+          read करता है।</p>
+
+        <h4>MICR</h4>
+        <p><strong>MICR</strong> का full form Magnetic Ink Character Recognition है। Banking में cheque numbers read
+          करने के लिए use होता है।</p>
+
+        <h4>Biometric Device</h4>
+        <p>Fingerprint, face, iris या voice के आधार पर identity verify करता है। Attendance और security systems में use
+          होता है।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Special Input Devices">
+          <p>Image Placeholder: OCR, OMR, MICR, Barcode and Biometric Devices</p>
+        </div>
+
+        <table>
+          <tr>
+            <th>Device</th>
+            <th>Primary Use</th>
+          </tr>
+          <tr>
+            <td>Barcode Reader</td>
+            <td>Product identification</td>
+          </tr>
+          <tr>
+            <td>OCR</td>
+            <td>Printed text to editable text</td>
+          </tr>
+          <tr>
+            <td>OMR</td>
+            <td>Marked answer sheet reading</td>
+          </tr>
+          <tr>
+            <td>MICR</td>
+            <td>Cheque processing</td>
+          </tr>
+          <tr>
+            <td>Biometric Scanner</td>
+            <td>Identity verification</td>
+          </tr>
+        </table>
+      </section>
+      <section id="monitor">
+        <h2>Monitor</h2>
+        <p><strong>Monitor</strong> visual output device है। यह computer द्वारा processed information को text, image,
+          video और graphics के रूप में display करता है।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Computer Monitor">
+          <p>Image Placeholder: Monitor Types</p>
+        </div>
+
+        <h4>Types of Monitor</h4>
+        <table>
+          <tr>
+            <th>Type</th>
+            <th>Feature</th>
+          </tr>
+          <tr>
+            <td>CRT</td>
+            <td>Old, bulky और heavy display technology।</td>
+          </tr>
+          <tr>
+            <td>LCD</td>
+            <td>Flat panel और low power consumption।</td>
+          </tr>
+          <tr>
+            <td>LED</td>
+            <td>Better brightness और energy efficiency।</td>
+          </tr>
+          <tr>
+            <td>OLED</td>
+            <td>High contrast और deep colors।</td>
+          </tr>
+          <tr>
+            <td>Touch Screen Monitor</td>
+            <td>Input और output दोनों।</td>
+          </tr>
+        </table>
+
+        <h4>Important Terms</h4>
+        <ul>
+          <li>Resolution</li>
+          <li>Refresh Rate</li>
+          <li>Screen Size</li>
+          <li>Brightness</li>
+          <li>Response Time</li>
+        </ul>
+      </section>
+      <section id="printer">
+        <h2>Printer</h2>
+        <p><strong>Printer</strong> soft copy को paper पर hard copy में convert करता है। Printers impact और non-impact
+          categories में divide किए जाते हैं।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Printer Types">
+          <p>Image Placeholder: Impact and Non-Impact Printers</p>
+        </div>
+
+        <h4>Impact Printers</h4>
+        <table>
+          <tr>
+            <th>Type</th>
+            <th>Feature</th>
+          </tr>
+          <tr>
+            <td>Dot Matrix</td>
+            <td>Pins ribbon पर strike करके print करते हैं।</td>
+          </tr>
+          <tr>
+            <td>Daisy Wheel</td>
+            <td>Character wheel use करता है।</td>
+          </tr>
+          <tr>
+            <td>Line Printer</td>
+            <td>एक पूरी line एक बार में print करता है।</td>
+          </tr>
+        </table>
+
+        <h4>Non-Impact Printers</h4>
+        <table>
+          <tr>
+            <th>Type</th>
+            <th>Feature</th>
+          </tr>
+          <tr>
+            <td>Inkjet Printer</td>
+            <td>Ink spray करके print करता है।</td>
+          </tr>
+          <tr>
+            <td>Laser Printer</td>
+            <td>Laser और toner use करता है।</td>
+          </tr>
+          <tr>
+            <td>Thermal Printer</td>
+            <td>Heat-sensitive paper use करता है।</td>
+          </tr>
+        </table>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Office documents के लिए laser printer और billing receipts के
+          लिए thermal printer common हैं।</div>
+      </section>
+      <section id="other-output">
+        <h2>Other Output Devices</h2>
+        <h4>Plotter</h4>
+        <p>Plotter large engineering drawings, maps और architectural designs print करने के लिए use होता है।</p>
+
+        <h4>Speaker</h4>
+        <p>Speaker digital audio signal को sound output में convert करता है।</p>
+
+        <h4>Headphones</h4>
+        <p>Headphones personal audio listening के लिए use होते हैं।</p>
+
+        <h4>Projector</h4>
+        <p>Projector computer display को large screen या wall पर show करता है। Presentation, classroom और cinema में use
+          होता है।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Other Output Devices">
+          <p>Image Placeholder: Plotter, Speaker, Headphones and Projector</p>
+        </div>
+      </section>
+      <section id="storage-intro">
+        <h2>Storage Devices</h2>
+        <p><strong>Storage devices</strong> data, software, files और operating system को store करते हैं। Storage
+          temporary या permanent हो सकती है। Primary memory fast but limited होती है, जबकि secondary storage ज्यादा data
+          long-term store करती है।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Computer Storage Devices">
+          <p>Image Placeholder: Storage Devices Classification</p>
+        </div>
+
+        <h4>Types</h4>
+        <table>
+          <tr>
+            <th>Type</th>
+            <th>Examples</th>
+          </tr>
+          <tr>
+            <td>Magnetic Storage</td>
+            <td>HDD, Floppy Disk</td>
+          </tr>
+          <tr>
+            <td>Optical Storage</td>
+            <td>CD, DVD, Blu-ray</td>
+          </tr>
+          <tr>
+            <td>Solid-state Storage</td>
+            <td>SSD, Pen Drive, Memory Card</td>
+          </tr>
+          <tr>
+            <td>Network Storage</td>
+            <td>NAS, Cloud Storage</td>
+          </tr>
+        </table>
+      </section>
+      <section id="hdd-ssd">
+        <h2>HDD and SSD</h2>
+        <p><strong>HDD</strong> magnetic disk-based storage device है। इसमें rotating platters और read/write head होते
+          हैं।</p>
+
+        <p><strong>SSD</strong> flash memory-based storage device है। इसमें moving parts नहीं होते, इसलिए यह faster,
+          silent और durable होता है।</p>
+
+        <div class="image-icon">
+          <img src="" alt="HDD and SSD">
+          <p>Image Placeholder: HDD vs SSD</p>
+        </div>
+
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>HDD</th>
+            <th>SSD</th>
+          </tr>
+          <tr>
+            <td>Technology</td>
+            <td>Magnetic platters</td>
+            <td>Flash memory</td>
+          </tr>
+          <tr>
+            <td>Speed</td>
+            <td>Slower</td>
+            <td>Faster</td>
+          </tr>
+          <tr>
+            <td>Noise</td>
+            <td>Mechanical noise</td>
+            <td>Silent</td>
+          </tr>
+          <tr>
+            <td>Durability</td>
+            <td>Moving parts की वजह से sensitive</td>
+            <td>More durable</td>
+          </tr>
+          <tr>
+            <td>Cost</td>
+            <td>Lower per GB</td>
+            <td>Higher per GB</td>
+          </tr>
+        </table>
+      </section>
+      <section id="portable-storage">
+        <h2>Pen Drive, Memory Card and External Drive</h2>
+        <h4>Pen Drive</h4>
+        <p>USB flash storage device है। Portable, reusable और easy data transfer के लिए useful है।</p>
+
+        <h4>Memory Card</h4>
+        <p>Mobile phones, cameras और embedded devices में use होती है। SD और microSD common formats हैं।</p>
+
+        <h4>External Hard Disk</h4>
+        <p>Large backup और portable storage के लिए use होता है। USB cable से connect होता है।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Portable Storage Devices">
+          <p>Image Placeholder: Pen Drive, Memory Card and External HDD</p>
+        </div>
+      </section>
+      <section id="optical-storage">
+        <h2>CD, DVD and Blu-ray Disc</h2>
+        <p><strong>Optical discs</strong> laser technology से data read/write करते हैं।</p>
+
+        <table>
+          <tr>
+            <th>Disc</th>
+            <th>Approximate Capacity</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td>CD</td>
+            <td>700 MB</td>
+            <td>Music और small files</td>
+          </tr>
+          <tr>
+            <td>DVD</td>
+            <td>4.7 GB or more</td>
+            <td>Movies और software</td>
+          </tr>
+          <tr>
+            <td>Blu-ray</td>
+            <td>25 GB or more</td>
+            <td>HD video और large data</td>
+          </tr>
+        </table>
+
+        <div class="image-icon">
+          <img src="" alt="Optical Storage Devices">
+          <p>Image Placeholder: CD, DVD and Blu-ray Disc</p>
+        </div>
+      </section>
+      <section id="nas">
+        <h2>NAS and Network Storage</h2>
+        <p><strong>NAS</strong> का full form Network Attached Storage है। यह network से connected storage device होता है
+          जिसे multiple users और computers access कर सकते हैं।</p>
+
+        <h4>Uses</h4>
+        <ul>
+          <li>Centralized file storage</li>
+          <li>Office backup</li>
+          <li>Media sharing</li>
+          <li>Multiple-user access</li>
+          <li>Remote file access</li>
+        </ul>
+
+        <div class="image-icon">
+          <img src="" alt="NAS Network Storage">
+          <p>Image Placeholder: NAS Working Diagram</p>
+        </div>
+      </section>
+      <section id="communication-devices">
+        <h2>Communication Devices</h2>
+        <p>Communication devices computer को other computers, networks और internet से connect करते हैं।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Computer Communication Devices">
+          <p>Image Placeholder: Modem, Router, Switch, NIC</p>
+        </div>
+
+        <h4>Modem</h4>
+        <p>Modem digital और analog signals के बीच conversion करता है और internet connection provide कर सकता है।</p>
+
+        <h4>Router</h4>
+        <p>Router different networks के बीच packets forward करता है और home/office devices को internet से connect करता
+          है।</p>
+
+        <h4>Switch</h4>
+        <p>Switch LAN में multiple devices को connect करता है और data सही destination port तक भेजता है।</p>
+
+        <h4>Hub</h4>
+        <p>Hub received data सभी ports पर broadcast करता है। यह switch से कम intelligent होता है।</p>
+
+        <h4>NIC</h4>
+        <p>Network Interface Card computer को wired या wireless network से connect करता है।</p>
+
+        <h4>Wi-Fi Adapter</h4>
+        <p>Desktop/laptop को wireless network access देता है।</p>
+
+        <h4>Bluetooth Adapter</h4>
+        <p>Short-range wireless communication enable करता है।</p>
+      </section>
+      <section id="hub-switch">
+        <h2>Hub vs Switch</h2>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>Hub</th>
+            <th>Switch</th>
+          </tr>
+          <tr>
+            <td>Data Forwarding</td>
+            <td>सभी ports पर भेजता है।</td>
+            <td>Specific destination port पर भेजता है।</td>
+          </tr>
+          <tr>
+            <td>Intelligence</td>
+            <td>Less intelligent</td>
+            <td>More intelligent</td>
+          </tr>
+          <tr>
+            <td>Performance</td>
+            <td>Lower</td>
+            <td>Higher</td>
+          </tr>
+          <tr>
+            <td>Collision</td>
+            <td>More possible</td>
+            <td>Reduced</td>
+          </tr>
+          <tr>
+            <td>Use</td>
+            <td>Old/simple networks</td>
+            <td>Modern LAN networks</td>
+          </tr>
+        </table>
+      </section>
+      <section id="motherboard">
+        <h2>Motherboard</h2>
+        <p><strong>Motherboard</strong> computer की main circuit board है। CPU, RAM, storage, expansion cards और
+          external ports motherboard से connected होते हैं। यह सभी components के बीच communication path provide करती है।
+        </p>
+
+        <div class="image-icon">
+          <img src="" alt="Motherboard Components">
+          <p>Image Placeholder: Motherboard Components Diagram</p>
+        </div>
+
+        <h4>Main Parts</h4>
+        <ul>
+          <li>CPU Socket</li>
+          <li>RAM Slots</li>
+          <li>Chipset</li>
+          <li>PCIe Slots</li>
+          <li>SATA Connectors</li>
+          <li>Power Connectors</li>
+          <li>BIOS/UEFI Chip</li>
+          <li>Input/Output Ports</li>
+        </ul>
+      </section>
+      <section id="cpu">
+        <h2>CPU</h2>
+        <p><strong>CPU</strong> का full form Central Processing Unit है। इसे computer का brain कहा जाता है। CPU
+          instructions fetch, decode और execute करता है।</p>
+
+        <div class="image-icon">
+          <img src="" alt="CPU Internal Parts">
+          <p>Image Placeholder: CPU Block Diagram</p>
+        </div>
+
+        <h4>Main Parts</h4>
+        <table>
+          <tr>
+            <th>Part</th>
+            <th>Function</th>
+          </tr>
+          <tr>
+            <td>ALU</td>
+            <td>Arithmetic और logical operations</td>
+          </tr>
+          <tr>
+            <td>Control Unit</td>
+            <td>Instructions और components control करती है।</td>
+          </tr>
+          <tr>
+            <td>Registers</td>
+            <td>Very fast temporary storage</td>
+          </tr>
+          <tr>
+            <td>Cache</td>
+            <td>Frequently used data store करती है।</td>
+          </tr>
+        </table>
+      </section>
+      <section id="ram-rom">
+        <h2>RAM and ROM</h2>
+        <p><strong>RAM</strong> temporary volatile memory है। Running programs और active data इसमें store होते हैं।</p>
+
+        <p><strong>ROM</strong> non-volatile memory है। Permanent instructions और firmware store करती है।</p>
+
+        <div class="image-icon">
+          <img src="" alt="RAM and ROM">
+          <p>Image Placeholder: RAM vs ROM</p>
+        </div>
+
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>RAM</th>
+            <th>ROM</th>
+          </tr>
+          <tr>
+            <td>Nature</td>
+            <td>Volatile</td>
+            <td>Non-volatile</td>
+          </tr>
+          <tr>
+            <td>Use</td>
+            <td>Running programs</td>
+            <td>Firmware/boot instructions</td>
+          </tr>
+          <tr>
+            <td>Speed</td>
+            <td>Fast</td>
+            <td>Comparatively slower</td>
+          </tr>
+          <tr>
+            <td>Power Off</td>
+            <td>Data lost</td>
+            <td>Data retained</td>
+          </tr>
+        </table>
+      </section>
+      <section id="smps">
+        <h2>SMPS</h2>
+        <p><strong>SMPS</strong> का full form Switched Mode Power Supply है। यह AC power को computer components के लिए
+          required DC voltages में convert करता है।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Computer SMPS">
+          <p>Image Placeholder: SMPS Working Diagram</p>
+        </div>
+
+        <h4>Main Functions</h4>
+        <ul>
+          <li>AC to DC conversion</li>
+          <li>Voltage regulation</li>
+          <li>Different components को different voltage supply</li>
+          <li>Power protection</li>
+        </ul>
+      </section>
+      <section id="cooling">
+        <h2>Heat Sink and Cooling Fan</h2>
+        <p><strong>Heat Sink</strong> CPU/GPU से heat absorb करके surrounding air में transfer करता है।</p>
+
+        <p><strong>Cooling Fan</strong> airflow create करके components का temperature कम करता है।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Heat Sink and Cooling Fan">
+          <p>Image Placeholder: Heat Sink and Cooling Fan</p>
+        </div>
+
+        <h4>Need of Cooling</h4>
+        <ul>
+          <li>Overheating prevent करना</li>
+          <li>Performance maintain करना</li>
+          <li>Component life increase करना</li>
+          <li>System shutdown/crash reduce करना</li>
+        </ul>
+      </section>
+      <section id="gpu">
+        <h2>GPU and Graphics Card</h2>
+        <p><strong>GPU</strong> का full form Graphics Processing Unit है। यह images, videos, animations और 3D graphics
+          process करता है। GPU integrated या dedicated हो सकता है।</p>
+
+        <div class="image-icon">
+          <img src="" alt="GPU Graphics Card">
+          <p>Image Placeholder: Integrated and Dedicated GPU</p>
+        </div>
+
+        <table>
+          <tr>
+            <th>Type</th>
+            <th>Feature</th>
+          </tr>
+          <tr>
+            <td>Integrated GPU</td>
+            <td>CPU/motherboard में built-in, lower power</td>
+          </tr>
+          <tr>
+            <td>Dedicated GPU</td>
+            <td>Separate graphics card, high performance</td>
+          </tr>
+        </table>
+      </section>
+      <section id="sound-network-card">
+        <h2>Sound Card and Network Card</h2>
+        <h4>Sound Card</h4>
+        <p>Sound card audio input और output process करता है। Microphone, speaker और headphones को connect करने में help
+          करता है।</p>
+
+        <h4>Network Card</h4>
+        <p>Network card computer को LAN या internet से connect करता है। Wired Ethernet NIC और wireless NIC दोनों
+          available हैं।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Sound Card and Network Card">
+          <p>Image Placeholder: Sound Card and NIC</p>
+        </div>
+      </section>
+      <section id="comparisons">
+        <h2>Important Comparison Tables</h2>
+        <h4>Input vs Output Devices</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>Input Devices</th>
+            <th>Output Devices</th>
+          </tr>
+          <tr>
+            <td>Data Direction</td>
+            <td>User से computer</td>
+            <td>Computer से user</td>
+          </tr>
+          <tr>
+            <td>Purpose</td>
+            <td>Data/command देना</td>
+            <td>Result दिखाना</td>
+          </tr>
+          <tr>
+            <td>Examples</td>
+            <td>Keyboard, Mouse, Scanner</td>
+            <td>Monitor, Printer, Speaker</td>
+          </tr>
+        </table>
+
+        <h4>Internal vs External Components</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>Internal</th>
+            <th>External</th>
+          </tr>
+          <tr>
+            <td>Location</td>
+            <td>Cabinet के अंदर</td>
+            <td>Computer के बाहर</td>
+          </tr>
+          <tr>
+            <td>Examples</td>
+            <td>CPU, RAM, SMPS</td>
+            <td>Keyboard, Mouse, Monitor</td>
+          </tr>
+          <tr>
+            <td>Connection</td>
+            <td>Motherboard slots/cables</td>
+            <td>USB, HDMI, Bluetooth</td>
+          </tr>
+        </table>
+      </section>
+      <section id="working-flow">
+        <h2>Complete Computer Working Flow</h2>
+        <p>Computer system में input, processing, storage और output मिलकर work करते हैं। Communication devices network
+          connectivity provide करते हैं और internal components operations execute करते हैं।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Computer Working Flow">
+          <p>Image Placeholder: Complete Computer Block Diagram</p>
+        </div>
+
+        <pre>Input Devices
+      ↓
+CPU Processing
+      ↓
+Primary Memory
+      ↓
+Secondary Storage
+      ↓
+Output Devices
+
+Communication Devices ↔ Network / Internet</pre>
+
+        <h4>Example</h4>
+        <p>User keyboard से data enter करता है। CPU data process करता है। RAM temporary data store करती है। Result
+          monitor पर दिखता है और जरूरत होने पर HDD/SSD में save हो जाता है।</p>
+      </section>
+      <section id="practical">
+        <h2>Practical Uses and Industry Knowledge</h2>
+        <h4>Office Environment</h4>
+        <p>Keyboard, mouse, monitor, printer, scanner, network switch और NAS एक साथ use होते हैं।</p>
+
+        <h4>Multimedia Work</h4>
+        <p>GPU, sound card, microphone, webcam, headphones और large monitor important होते हैं।</p>
+
+        <h4>Data Center</h4>
+        <p>High-performance CPU, ECC RAM, SSD storage, network cards, switches और backup systems use होते हैं।</p>
+
+        <h4>Education</h4>
+        <p>Projector, webcam, microphone, speaker और interactive touch screen digital classroom बनाते हैं।</p>
+
+        <div class="note-box"><b>Industry Point:</b><br>Modern peripherals केवल cable से नहीं, बल्कि USB, Bluetooth,
+          Wi-Fi, HDMI और network protocols से भी connect होते हैं।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Computer की usefulness केवल CPU पर depend नहीं करती; peripherals
+          user interaction और real-world applications possible बनाते हैं।</div>
+      </section>
+    </main>
+  </div>
+</body>
+
+</html>

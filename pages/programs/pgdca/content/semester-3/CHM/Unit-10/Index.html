@@ -1,0 +1,1061 @@
+Index
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Network Devices</title>
+  <link rel="icon" href="../../../.././../../../assets/images/logo.jpeg">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+      line-height: 1.75
+    }
+
+    .page {
+      display: grid;
+      grid-template-columns: 285px 1fr;
+      gap: 20px;
+      max-width: 1550px;
+      margin: auto;
+      padding: 10px
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 10px;
+      height: calc(100vh - 20px);
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
+      align-self: start
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #111827
+    }
+
+    .sidebar a {
+      display: block;
+      text-decoration: none;
+      color: #374151;
+      padding: 8px 10px;
+      border-radius: 10px;
+      margin-bottom: 4px;
+      font-size: 14.5px
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+      color: #1d4ed8
+    }
+
+    .content {
+      background: #fff;
+      border-radius: 18px;
+      padding: 10px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08)
+    }
+
+    .hero {
+      padding: 30px 20px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #eef2ff, #f8fafc);
+      margin-bottom: 18px
+    }
+
+    .hero h1 {
+      font-size: 34px;
+      color: #111827;
+      margin-bottom: 10px
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #374151
+    }
+
+    section {
+      padding: 22px 10px;
+      border-bottom: 1px solid #e5e7eb
+    }
+
+    section:last-child {
+      border-bottom: none
+    }
+
+    h2 {
+      font-size: 27px;
+      color: #111827;
+      margin-bottom: 12px;
+      border-left: 5px solid #2563eb;
+      padding-left: 12px
+    }
+
+    h3 {
+      font-size: 22px;
+      color: #1f2937;
+      margin: 18px 0 8px
+    }
+
+    h4 {
+      font-size: 18px;
+      color: #111827;
+      margin: 14px 0 6px
+    }
+
+    p {
+      margin: 10px 0;
+      font-size: 17px
+    }
+
+    ul,
+    ol {
+      margin-left: 24px;
+      margin-top: 8px
+    }
+
+    li {
+      margin: 7px 0;
+      font-size: 16.5px
+    }
+
+    strong {
+      color: #111827
+    }
+
+    .image-icon {
+      min-height: 180px;
+      border: 2px dashed #94a3b8;
+      border-radius: 16px;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      margin: 18px 0;
+      color: #475569;
+      font-weight: 600;
+      flex-direction: column;
+      gap: 8px
+    }
+
+    .image-icon img {
+      max-width: 100%;
+      height: auto
+    }
+
+    .note-box {
+      background: #f0fdf4;
+      border-left: 5px solid #22c55e;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .info-box {
+      background: #ecfeff;
+      border-left: 5px solid #06b6d4;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .remember-box {
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      font-size: 15.3px
+    }
+
+    th,
+    td {
+      border: 1px solid #d1d5db;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top
+    }
+
+    th {
+      background: #eef2ff;
+      color: #111827
+    }
+
+    code {
+      background: #111827;
+      color: #f9fafb;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-family: Consolas, monospace;
+      font-size: 15px
+    }
+
+    pre {
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 14px;
+      padding: 16px;
+      margin: 16px 0;
+      overflow-x: auto;
+      font-family: Consolas, monospace;
+      line-height: 1.6
+    }
+
+    @media(max-width:900px) {
+      .page {
+        grid-template-columns: 1fr
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto
+      }
+
+      .hero h1 {
+        font-size: 27px
+      }
+
+      h2 {
+        font-size: 24px
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <h2>Topics</h2>
+      <a href="#intro">Introduction to Network Devices</a>
+      <a href="#hub">Hub</a>
+      <a href="#switch">Switch</a>
+      <a href="#router">Router</a>
+      <a href="#bridge">Bridge</a>
+      <a href="#gateway">Gateway</a>
+      <a href="#comparison">Hub vs Switch vs Router vs Bridge vs Gateway</a>
+      <a href="#ethernet-card">Ethernet Card / NIC</a>
+      <a href="#cat6">CAT-6 Cable</a>
+      <a href="#ofc">OFC - Optical Fiber Cable</a>
+      <a href="#cable-comparison">CAT-6 vs Optical Fiber</a>
+      <a href="#tools">Cabling Tools</a>
+      <a href="#troubleshooting">Network Troubleshooting</a>
+      <a href="#commands">Useful Troubleshooting Commands</a>
+      <a href="#device-faults">Device-wise Troubleshooting</a>
+      <a href="#maintenance">Network Maintenance and Best Practices</a>
+    </aside>
+    <main class="content">
+      <div class="hero">
+        <h1>Network Devices</h1>        
+      </div>
+      <section id="intro">
+        <h2>Introduction to Network Devices</h2>
+        <p><strong>Network devices</strong> वे hardware components होते हैं जो computers, servers, printers, mobile
+          devices और other systems को network में connect करते हैं। ये devices data को receive, forward, filter, route
+          और convert करते हैं।</p>
+
+        <p>Different network devices अलग-अलग OSI layers पर work करते हैं। Hub physical layer पर, switch data link layer
+          पर और router network layer पर काम करता है। Gateway multiple layers पर protocol conversion कर सकता है।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Network Devices Overview">
+          <p>Image Placeholder: Hub, Switch, Router, Bridge and Gateway</p>
+        </div>
+
+        <h4>Need of Network Devices</h4>
+        <ul>
+          <li>Multiple devices को connect करने के लिए।</li>
+          <li>Data को सही destination तक भेजने के लिए।</li>
+          <li>Network traffic control करने के लिए।</li>
+          <li>Different networks को connect करने के लिए।</li>
+          <li>Internet access provide करने के लिए।</li>
+          <li>Security और network segmentation improve करने के लिए।</li>
+        </ul>
+
+        <div class="remember-box"><b>Remember:</b><br>हर network device का role अलग है; सभी केवल connection देने का काम
+          नहीं करते।</div>
+      </section>
+      <section id="hub">
+        <h2>Hub</h2>
+        <p><strong>Hub</strong> एक basic networking device है जो multiple computers को LAN में connect करता है। Hub
+          received data को identify नहीं करता कि destination कौन है। यह incoming data सभी connected ports पर broadcast
+          कर देता है।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Hub Working">
+          <p>Image Placeholder: Hub Broadcasting Data</p>
+        </div>
+
+        <h4>Working</h4>
+        <ol>
+          <li>एक computer data hub को भेजता है।</li>
+          <li>Hub data receive करता है।</li>
+          <li>Hub same data सभी ports पर forward करता है।</li>
+          <li>Destination device data accept करता है।</li>
+          <li>Other devices data ignore करते हैं।</li>
+        </ol>
+
+        <h4>Types of Hub</h4>
+        <table>
+          <tr>
+            <th>Type</th>
+            <th>Feature</th>
+          </tr>
+          <tr>
+            <td>Passive Hub</td>
+            <td>Signal केवल forward करता है।</td>
+          </tr>
+          <tr>
+            <td>Active Hub</td>
+            <td>Signal regenerate/amplify करता है।</td>
+          </tr>
+          <tr>
+            <td>Intelligent Hub</td>
+            <td>Basic monitoring और management support कर सकता है।</td>
+          </tr>
+        </table>
+
+        <h4>Advantages</h4>
+        <ul>
+          <li>Simple और low cost।</li>
+          <li>Small basic network में easy installation।</li>
+        </ul>
+
+        <h4>Limitations</h4>
+        <ul>
+          <li>Data सभी ports पर broadcast करता है।</li>
+          <li>Network traffic ज्यादा होता है।</li>
+          <li>Security कम होती है।</li>
+          <li>Collisions की possibility ज्यादा।</li>
+          <li>Modern networks में mostly switch ने replace कर दिया है।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Hub को ऐसे समझें जैसे एक व्यक्ति room में loudly message बोले
+          और सभी लोग उसे सुनें।</div>
+      </section>
+      <section id="switch">
+        <h2>Switch</h2>
+        <p><strong>Switch</strong> LAN में multiple devices को connect करता है और MAC address के आधार पर data सही
+          destination port तक भेजता है। यह hub से अधिक intelligent और efficient होता है।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Switch Working">
+          <p>Image Placeholder: Switch MAC Address Table</p>
+        </div>
+
+        <h4>Working</h4>
+        <ol>
+          <li>Switch frame receive करता है।</li>
+          <li>Source MAC address learn करता है।</li>
+          <li>MAC address table update करता है।</li>
+          <li>Destination MAC address check करता है।</li>
+          <li>Frame केवल correct port पर forward करता है।</li>
+        </ol>
+
+        <h4>Types of Switch</h4>
+        <table>
+          <tr>
+            <th>Type</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td>Unmanaged Switch</td>
+            <td>Plug-and-play basic LAN</td>
+          </tr>
+          <tr>
+            <td>Managed Switch</td>
+            <td>VLAN, monitoring और configuration</td>
+          </tr>
+          <tr>
+            <td>Layer-2 Switch</td>
+            <td>MAC address based forwarding</td>
+          </tr>
+          <tr>
+            <td>Layer-3 Switch</td>
+            <td>Switching के साथ routing functions</td>
+          </tr>
+          <tr>
+            <td>PoE Switch</td>
+            <td>Data के साथ power provide करता है।</td>
+          </tr>
+        </table>
+
+        <h4>Advantages</h4>
+        <ul>
+          <li>Traffic reduce करता है।</li>
+          <li>Collision domains separate करता है।</li>
+          <li>Better performance और security।</li>
+          <li>Managed switches VLAN support कर सकते हैं।</li>
+        </ul>
+
+        <div class="remember-box"><b>Remember:</b><br>Switch MAC address के आधार पर frame को correct port तक भेजता है।
+        </div>
+      </section>
+      <section id="router">
+        <h2>Router</h2>
+        <p><strong>Router</strong> different networks को connect करता है और IP address के आधार पर data packets को route
+          करता है। Home router local network को internet से connect करता है।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Router Working">
+          <p>Image Placeholder: Router Connecting LAN and Internet</p>
+        </div>
+
+        <h4>Main Functions</h4>
+        <ul>
+          <li>Different networks connect करना।</li>
+          <li>Best path select करना।</li>
+          <li>IP packets forward करना।</li>
+          <li>NAT perform करना।</li>
+          <li>DHCP service provide करना।</li>
+          <li>Firewall और basic security देना।</li>
+          <li>Wi-Fi access provide करना।</li>
+        </ul>
+
+        <h4>Routing Process</h4>
+        <pre>Source Device
+      ↓
+Default Gateway
+      ↓
+Router checks destination IP
+      ↓
+Routing table selects path
+      ↓
+Packet forwarded to next network</pre>
+
+        <h4>Types</h4>
+        <table>
+          <tr>
+            <th>Type</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td>Wired Router</td>
+            <td>Ethernet-based network</td>
+          </tr>
+          <tr>
+            <td>Wireless Router</td>
+            <td>Wi-Fi और LAN दोनों</td>
+          </tr>
+          <tr>
+            <td>Core Router</td>
+            <td>Large backbone network</td>
+          </tr>
+          <tr>
+            <td>Edge Router</td>
+            <td>Internal network को external network से connect करता है।</td>
+          </tr>
+        </table>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Router traffic police की तरह packet को सही network path पर
+          भेजता है।</div>
+      </section>
+      <section id="bridge">
+        <h2>Bridge</h2>
+        <p><strong>Bridge</strong> two LAN segments को connect करता है और MAC address के आधार पर frames filter/forward
+          करता है। यह network traffic reduce करने में help करता है।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Network Bridge">
+          <p>Image Placeholder: Bridge Connecting Two LAN Segments</p>
+        </div>
+
+        <h4>Working</h4>
+        <ul>
+          <li>Frames receive करता है।</li>
+          <li>Source MAC learn करता है।</li>
+          <li>Destination same segment पर हो तो frame forward नहीं करता।</li>
+          <li>Other segment पर हो तो bridge frame forward करता है।</li>
+        </ul>
+
+        <h4>Types</h4>
+        <table>
+          <tr>
+            <th>Type</th>
+            <th>Meaning</th>
+          </tr>
+          <tr>
+            <td>Transparent Bridge</td>
+            <td>Ethernet LAN में automatically learning करता है।</td>
+          </tr>
+          <tr>
+            <td>Source Route Bridge</td>
+            <td>Path source device determine करता है।</td>
+          </tr>
+          <tr>
+            <td>Translational Bridge</td>
+            <td>Different LAN technologies connect करता है।</td>
+          </tr>
+        </table>
+
+        <div class="remember-box"><b>Remember:</b><br>Bridge LAN को segments में divide करके unnecessary traffic कम करता
+          है।</div>
+      </section>
+      <section id="gateway">
+        <h2>Gateway</h2>
+        <p><strong>Gateway</strong> different networks या systems के बीच entry/exit point होता है। यह protocol
+          conversion, data format conversion और communication translation कर सकता है।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Network Gateway">
+          <p>Image Placeholder: Gateway Protocol Conversion</p>
+        </div>
+
+        <h4>Functions</h4>
+        <ul>
+          <li>Different protocols के बीच conversion।</li>
+          <li>Different network architectures connect करना।</li>
+          <li>Security और filtering।</li>
+          <li>Application-level translation।</li>
+          <li>Network entry and exit point।</li>
+        </ul>
+
+        <h4>Default Gateway</h4>
+        <p>Default gateway वह router address होता है जहाँ device local network के बाहर जाने वाले packets भेजता है।</p>
+
+        <h4>Examples</h4>
+        <ul>
+          <li>Email gateway</li>
+          <li>VoIP gateway</li>
+          <li>IoT gateway</li>
+          <li>Cloud gateway</li>
+          <li>Protocol gateway</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Language translator की तरह gateway different protocols बोलने
+          वाले systems के बीच translation करता है।</div>
+      </section>
+      <section id="comparison">
+        <h2>Hub vs Switch vs Router vs Bridge vs Gateway</h2>
+        <table>
+          <tr>
+            <th>Device</th>
+            <th>Main Basis</th>
+            <th>Primary Role</th>
+            <th>OSI Layer</th>
+          </tr>
+          <tr>
+            <td>Hub</td>
+            <td>No address intelligence</td>
+            <td>Broadcast data</td>
+            <td>Physical Layer</td>
+          </tr>
+          <tr>
+            <td>Switch</td>
+            <td>MAC Address</td>
+            <td>LAN frame forwarding</td>
+            <td>Data Link Layer</td>
+          </tr>
+          <tr>
+            <td>Router</td>
+            <td>IP Address</td>
+            <td>Connect different networks</td>
+            <td>Network Layer</td>
+          </tr>
+          <tr>
+            <td>Bridge</td>
+            <td>MAC Address</td>
+            <td>Connect LAN segments</td>
+            <td>Data Link Layer</td>
+          </tr>
+          <tr>
+            <td>Gateway</td>
+            <td>Protocol/format conversion</td>
+            <td>Connect dissimilar systems</td>
+            <td>Multiple Layers</td>
+          </tr>
+        </table>
+      </section>
+      <section id="ethernet-card">
+        <h2>Ethernet Card / NIC</h2>
+        <p><strong>Ethernet Card</strong> या <strong>NIC</strong> का full form Network Interface Card है। यह computer को
+          wired Ethernet network से connect करता है। हर NIC का unique MAC address होता है।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Ethernet Network Interface Card">
+          <p>Image Placeholder: Ethernet Card Components</p>
+        </div>
+
+        <h4>Main Components</h4>
+        <ul>
+          <li>RJ-45 port</li>
+          <li>MAC controller</li>
+          <li>PHY transceiver</li>
+          <li>Status LEDs</li>
+          <li>PCIe or onboard interface</li>
+        </ul>
+
+        <h4>Functions</h4>
+        <ul>
+          <li>Computer data को Ethernet frames में convert करना।</li>
+          <li>Frames receive और process करना।</li>
+          <li>MAC address provide करना।</li>
+          <li>Speed और duplex negotiation करना।</li>
+        </ul>
+
+        <h4>Common Speeds</h4>
+        <table>
+          <tr>
+            <th>Standard</th>
+            <th>Speed</th>
+          </tr>
+          <tr>
+            <td>Fast Ethernet</td>
+            <td>100 Mbps</td>
+          </tr>
+          <tr>
+            <td>Gigabit Ethernet</td>
+            <td>1 Gbps</td>
+          </tr>
+          <tr>
+            <td>2.5 Gigabit Ethernet</td>
+            <td>2.5 Gbps</td>
+          </tr>
+          <tr>
+            <td>10 Gigabit Ethernet</td>
+            <td>10 Gbps</td>
+          </tr>
+        </table>
+
+        <div class="remember-box"><b>Remember:</b><br>Ethernet card computer और wired network के बीच hardware interface
+          है।</div>
+      </section>
+      <section id="cat6">
+        <h2>CAT-6 Cable</h2>
+        <p><strong>CAT-6</strong> twisted-pair copper Ethernet cable है। इसका use LAN connections में किया जाता है।
+          इसमें four twisted pairs होते हैं और RJ-45 connectors commonly use किए जाते हैं।</p>
+
+        <div class="image-icon">
+          <img src="" alt="CAT-6 Cable">
+          <p>Image Placeholder: CAT-6 Cable and RJ-45 Connector</p>
+        </div>
+
+        <h4>Features</h4>
+        <ul>
+          <li>Higher bandwidth than older categories।</li>
+          <li>Gigabit Ethernet support।</li>
+          <li>Shorter distances पर higher speeds possible।</li>
+          <li>Crosstalk reduction के लिए tighter twists।</li>
+          <li>UTP और shielded variants available।</li>
+        </ul>
+
+        <h4>Internal Pairs</h4>
+        <table>
+          <tr>
+            <th>Pair</th>
+            <th>Typical Colors</th>
+          </tr>
+          <tr>
+            <td>Pair 1</td>
+            <td>White-Orange / Orange</td>
+          </tr>
+          <tr>
+            <td>Pair 2</td>
+            <td>White-Green / Green</td>
+          </tr>
+          <tr>
+            <td>Pair 3</td>
+            <td>White-Blue / Blue</td>
+          </tr>
+          <tr>
+            <td>Pair 4</td>
+            <td>White-Brown / Brown</td>
+          </tr>
+        </table>
+
+        <h4>T568A and T568B Standards</h4>
+        <p>RJ-45 termination में color sequence T568A या T568B standard के अनुसार रखा जाता है। दोनों ends पर same
+          standard हो तो straight-through cable बनती है।</p>
+
+        <div class="remember-box"><b>Remember:</b><br>CAT-6 cable copper-based twisted-pair Ethernet cable है।</div>
+      </section>
+      <section id="ofc">
+        <h2>OFC - Optical Fiber Cable</h2>
+        <p><strong>OFC</strong> का full form Optical Fiber Cable है। यह data को electrical signal की जगह light pulses के
+          रूप में transmit करती है। Fiber cable high speed, long distance और low interference communication के लिए
+          useful है।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Optical Fiber Cable">
+          <p>Image Placeholder: Optical Fiber Structure</p>
+        </div>
+
+        <h4>Structure</h4>
+        <table>
+          <tr>
+            <th>Part</th>
+            <th>Function</th>
+          </tr>
+          <tr>
+            <td>Core</td>
+            <td>Light signal carry करता है।</td>
+          </tr>
+          <tr>
+            <td>Cladding</td>
+            <td>Light को core के अंदर reflect रखती है।</td>
+          </tr>
+          <tr>
+            <td>Buffer Coating</td>
+            <td>Fiber को protection देती है।</td>
+          </tr>
+          <tr>
+            <td>Outer Jacket</td>
+            <td>Mechanical protection।</td>
+          </tr>
+        </table>
+
+        <h4>Types</h4>
+        <table>
+          <tr>
+            <th>Type</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td>Single-mode Fiber</td>
+            <td>Long distance और high bandwidth</td>
+          </tr>
+          <tr>
+            <td>Multi-mode Fiber</td>
+            <td>Shorter distance LAN/data center</td>
+          </tr>
+        </table>
+
+        <h4>Advantages</h4>
+        <ul>
+          <li>Very high bandwidth।</li>
+          <li>Long distance transmission।</li>
+          <li>Electromagnetic interference से unaffected।</li>
+          <li>More secure communication।</li>
+          <li>Low signal loss।</li>
+        </ul>
+
+        <h4>Limitations</h4>
+        <ul>
+          <li>Installation cost higher।</li>
+          <li>Special tools और skills required।</li>
+          <li>Fiber fragile हो सकती है।</li>
+        </ul>
+      </section>
+      <section id="cable-comparison">
+        <h2>CAT-6 vs Optical Fiber</h2>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>CAT-6</th>
+            <th>Optical Fiber</th>
+          </tr>
+          <tr>
+            <td>Medium</td>
+            <td>Copper</td>
+            <td>Glass/Plastic fiber</td>
+          </tr>
+          <tr>
+            <td>Signal</td>
+            <td>Electrical</td>
+            <td>Light</td>
+          </tr>
+          <tr>
+            <td>Distance</td>
+            <td>Short/medium</td>
+            <td>Long</td>
+          </tr>
+          <tr>
+            <td>Speed</td>
+            <td>High</td>
+            <td>Very high</td>
+          </tr>
+          <tr>
+            <td>Interference</td>
+            <td>Possible</td>
+            <td>Very low</td>
+          </tr>
+          <tr>
+            <td>Cost</td>
+            <td>Lower</td>
+            <td>Higher</td>
+          </tr>
+          <tr>
+            <td>Installation</td>
+            <td>Easy</td>
+            <td>Specialized</td>
+          </tr>
+        </table>
+      </section>
+      <section id="tools">
+        <h2>Cabling Tools</h2>
+        <p>Network cabling के लिए correct tools use करना जरूरी है। Wrong termination या damaged cable network faults
+          create कर सकती है।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Network Cabling Tools">
+          <p>Image Placeholder: Crimping Tool, Tester and Punch Down Tool</p>
+        </div>
+
+        <table>
+          <tr>
+            <th>Tool</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td>Crimping Tool</td>
+            <td>RJ-45 connector cable पर fix करना।</td>
+          </tr>
+          <tr>
+            <td>Wire Stripper</td>
+            <td>Cable outer jacket remove करना।</td>
+          </tr>
+          <tr>
+            <td>Cable Cutter</td>
+            <td>Cable cleanly cut करना।</td>
+          </tr>
+          <tr>
+            <td>LAN Cable Tester</td>
+            <td>Continuity और wire sequence test करना।</td>
+          </tr>
+          <tr>
+            <td>Punch Down Tool</td>
+            <td>Patch panel और keystone jack termination।</td>
+          </tr>
+          <tr>
+            <td>Tone Generator and Probe</td>
+            <td>Cable trace करना।</td>
+          </tr>
+          <tr>
+            <td>Fiber Stripper</td>
+            <td>Fiber coating remove करना।</td>
+          </tr>
+          <tr>
+            <td>Fiber Cleaver</td>
+            <td>Fiber end precise cut करना।</td>
+          </tr>
+          <tr>
+            <td>Optical Power Meter</td>
+            <td>Fiber signal power measure करना।</td>
+          </tr>
+          <tr>
+            <td>Visual Fault Locator</td>
+            <td>Fiber break/bend locate करना।</td>
+          </tr>
+        </table>
+
+        <h4>RJ-45 Crimping Steps</h4>
+        <ol>
+          <li>Cable required length में cut करें।</li>
+          <li>Outer jacket strip करें।</li>
+          <li>Twisted pairs untwist करें।</li>
+          <li>T568A या T568B sequence arrange करें।</li>
+          <li>Wires equal length में trim करें।</li>
+          <li>RJ-45 connector में insert करें।</li>
+          <li>Crimping tool से crimp करें।</li>
+          <li>LAN tester से cable test करें।</li>
+        </ol>
+
+        <div class="remember-box"><b>Remember:</b><br>Crimping के बाद cable tester से wire sequence verify करना जरूरी
+          है।</div>
+      </section>
+      <section id="troubleshooting">
+        <h2>Network Troubleshooting</h2>
+        <p>Network troubleshooting systematic process है। पहले physical layer check करें, फिर configuration और
+          higher-layer services inspect करें।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Network Troubleshooting Flowchart">
+          <p>Image Placeholder: Network Troubleshooting Flow</p>
+        </div>
+
+        <h4>Basic Troubleshooting Flow</h4>
+        <pre>No Network
+   ↓
+Check Power and Link LEDs
+   ↓
+Check Cable and Port
+   ↓
+Check NIC Status
+   ↓
+Check IP Configuration
+   ↓
+Ping Loopback
+   ↓
+Ping Local IP
+   ↓
+Ping Gateway
+   ↓
+Ping Internet IP
+   ↓
+Check DNS</pre>
+
+        <h4>No Link Light</h4>
+        <ul>
+          <li>Cable loose/damaged हो सकती है।</li>
+          <li>Switch port disabled/faulty हो सकता है।</li>
+          <li>NIC disabled या damaged हो सकती है।</li>
+          <li>Wrong fiber module/connector issue हो सकता है।</li>
+        </ul>
+
+        <h4>Connected but No Internet</h4>
+        <ul>
+          <li>IP address check करें।</li>
+          <li>Default gateway verify करें।</li>
+          <li>DNS settings check करें।</li>
+          <li>Router internet status check करें।</li>
+          <li>DHCP lease renew करें।</li>
+        </ul>
+
+        <h4>Slow Network</h4>
+        <ul>
+          <li>Duplex mismatch check करें।</li>
+          <li>Damaged cable or high error rate inspect करें।</li>
+          <li>Switch port utilization check करें।</li>
+          <li>Malware/background downloads check करें।</li>
+          <li>Wi-Fi interference check करें।</li>
+        </ul>
+      </section>
+      <section id="commands">
+        <h2>Useful Troubleshooting Commands</h2>
+        <table>
+          <tr>
+            <th>Command</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>ipconfig</code></td>
+            <td>Windows IP configuration देखना।</td>
+          </tr>
+          <tr>
+            <td><code>ifconfig</code> / <code>ip addr</code></td>
+            <td>Linux network configuration।</td>
+          </tr>
+          <tr>
+            <td><code>ping</code></td>
+            <td>Connectivity test।</td>
+          </tr>
+          <tr>
+            <td><code>tracert</code> / <code>traceroute</code></td>
+            <td>Packet path check।</td>
+          </tr>
+          <tr>
+            <td><code>nslookup</code></td>
+            <td>DNS resolution test।</td>
+          </tr>
+          <tr>
+            <td><code>netstat</code></td>
+            <td>Connections और ports check।</td>
+          </tr>
+          <tr>
+            <td><code>arp -a</code></td>
+            <td>ARP table देखना।</td>
+          </tr>
+        </table>
+
+        <h4>Ping Test Order</h4>
+        <pre>ping 127.0.0.1
+ping own_IP
+ping default_gateway
+ping 8.8.8.8
+ping example.com</pre>
+
+        <p>इस order से TCP/IP stack, NIC, local network, internet और DNS problems अलग-अलग identify की जा सकती हैं।</p>
+      </section>
+      <section id="device-faults">
+        <h2>Device-wise Troubleshooting</h2>
+        <table>
+          <tr>
+            <th>Device</th>
+            <th>Problem</th>
+            <th>Check</th>
+          </tr>
+          <tr>
+            <td>Hub</td>
+            <td>All devices slow</td>
+            <td>Collision and broadcast traffic</td>
+          </tr>
+          <tr>
+            <td>Switch</td>
+            <td>One port not working</td>
+            <td>Port status, VLAN, cable</td>
+          </tr>
+          <tr>
+            <td>Router</td>
+            <td>No internet</td>
+            <td>WAN status, IP, DNS, ISP</td>
+          </tr>
+          <tr>
+            <td>Bridge</td>
+            <td>Segments not communicating</td>
+            <td>Bridge table and link status</td>
+          </tr>
+          <tr>
+            <td>Gateway</td>
+            <td>Protocol communication failure</td>
+            <td>Translation/configuration</td>
+          </tr>
+          <tr>
+            <td>NIC</td>
+            <td>No link or low speed</td>
+            <td>Driver, duplex, cable, hardware</td>
+          </tr>
+          <tr>
+            <td>CAT-6</td>
+            <td>Intermittent connection</td>
+            <td>Crimping, bends, cable tester</td>
+          </tr>
+          <tr>
+            <td>Fiber</td>
+            <td>No optical signal</td>
+            <td>Connector cleanliness, bend, power level</td>
+          </tr>
+        </table>
+      </section>
+      <section id="maintenance">
+        <h2>Network Maintenance and Best Practices</h2>
+        <ul>
+          <li>Cables label करें।</li>
+          <li>Patch panel और rack organized रखें।</li>
+          <li>Sharp bends avoid करें।</li>
+          <li>Power cables और network cables अलग route करें।</li>
+          <li>Fiber connectors clean रखें।</li>
+          <li>Switch/router configuration backup लें।</li>
+          <li>Firmware updates carefully apply करें।</li>
+          <li>Unused switch ports disable करें।</li>
+          <li>UPS और surge protection use करें।</li>
+          <li>Network diagram और IP records maintain करें।</li>
+        </ul>
+
+        <div class="note-box"><b>Professional Tip:</b><br>Physical layer check किए बिना software configuration बदलना
+          troubleshooting को और complex बना सकता है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Network troubleshooting हमेशा simplest physical checks से start
+          करनी चाहिए।</div>
+      </section>
+    </main>
+  </div>
+</body>
+
+</html>
