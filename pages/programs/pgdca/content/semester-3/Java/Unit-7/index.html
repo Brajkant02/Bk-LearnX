@@ -69,7 +69,7 @@
             background: #fff;
             border-radius: 18px;
             padding: 10px;
-            box-shadow: 0 4px 18px rgba(0, 0, 0, .08)
+            box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
         }
 
         .hero {
@@ -239,6 +239,10 @@
             color: white
         }
 
+        .content {
+            width: 100%;
+        }
+
         @media(max-width:900px) {
             .page {
                 grid-template-columns: 1fr
@@ -255,6 +259,10 @@
 
             h2 {
                 font-size: 24px
+            }
+
+            .sidebar {
+                display: none;
             }
         }
     </style>
@@ -367,7 +375,8 @@
                 <p>Java में exceptions classes के रूप में represent होती हैं। सभी exception और error classes की root
                     class <code>Throwable</code> है। Throwable के दो main child classes हैं: <code>Exception</code> और
                     <code>Error</code>. Exception class उन problems को represent करती है जिन्हें program handle कर सकता
-                    है, जबकि Error serious system-level problems को represent करता है।</p>
+                    है, जबकि Error serious system-level problems को represent करता है।
+                </p>
                 <div class="image-icon"><img src="" alt="Java Exception Hierarchy">
                     <p>Image Placeholder: Java Exception Hierarchy Diagram</p>
                 </div>
@@ -538,7 +547,8 @@ class Main {
                 <h4>Order of catch Blocks</h4>
                 <p>Specific exception catch block पहले और general exception catch block बाद में लिखना चाहिए। अगर
                     <code>Exception</code> class का catch block पहले लिख दिया, तो बाद के specific catch blocks
-                    unreachable हो जाएंगे।</p>
+                    unreachable हो जाएंगे।
+                </p>
                 <h4>Wrong Order</h4>
                 <pre>try {
     int result = 10 / 0;
@@ -861,7 +871,8 @@ class Main {
                 <p>Java में programmer अपनी custom exception class भी बना सकता है। Custom exception तब use होती है जब
                     built-in exceptions किसी business rule या application-specific problem को properly represent नहीं
                     करतीं। Custom exception create करने के लिए class को <code>Exception</code> या
-                    <code>RuntimeException</code> class से extend किया जाता है।</p>
+                    <code>RuntimeException</code> class से extend किया जाता है।
+                </p>
                 <div class="image-icon"><img src="" alt="Custom Exception Diagram">
                     <p>Image Placeholder: Custom Exception Class Diagram</p>
                 </div>

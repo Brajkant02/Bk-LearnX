@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Language Constructs in Java</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f5f7fb;
+            color: #1f2937;
+            line-height: 1.75
+        }
+
+        .page {
+            display: grid;
+            grid-template-columns: 285px 1fr;
+            gap: 20px;
+            max-width: 1500px;
+            margin: auto;
+            padding: 10px
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 10px;
+            height: calc(100vh - 20px);
+            overflow-y: auto;
+            background: #fff;
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
+            align-self: start
+        }
+
+        .sidebar h2 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #111827
+        }
+
+        .sidebar a {
+            display: block;
+            text-decoration: none;
+            color: #374151;
+            padding: 8px 10px;
+            border-radius: 10px;
+            margin-bottom: 4px;
+            font-size: 14.7px
+        }
+
+        .sidebar a:hover {
+            background: #eef2ff;
+            color: #1d4ed8
+        }
+
+        .content {
+            background: #fff;
+            border-radius: 18px;
+            padding: 10px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, .08)
+        }
+
+        .hero {
+            padding: 28px 18px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #eef2ff, #f8fafc);
+            margin-bottom: 18px
+        }
+
+        .hero h1 {
+            font-size: 34px;
+            color: #111827;
+            margin-bottom: 10px
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #374151
+        }
+
+        section {
+            padding: 22px 10px;
+            border-bottom: 1px solid #e5e7eb
+        }
+
+        section:last-child {
+            border-bottom: none
+        }
+
+        h2 {
+            font-size: 27px;
+            color: #111827;
+            margin-bottom: 12px;
+            border-left: 5px solid #2563eb;
+            padding-left: 12px
+        }
+
+        h3 {
+            font-size: 22px;
+            color: #1f2937;
+            margin: 16px 0 8px
+        }
+
+        h4 {
+            font-size: 18px;
+            color: #111827;
+            margin: 14px 0 6px
+        }
+
+        p {
+            margin: 10px 0;
+            font-size: 17px
+        }
+
+        ul,
+        ol {
+            margin-left: 24px;
+            margin-top: 8px
+        }
+
+        li {
+            margin: 7px 0;
+            font-size: 16.5px
+        }
+
+        strong {
+            color: #111827
+        }
+
+        .image-icon {
+            min-height: 180px;
+            border: 2px dashed #94a3b8;
+            border-radius: 16px;
+            background: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            margin: 18px 0;
+            color: #475569;
+            font-weight: 600;
+            flex-direction: column;
+            gap: 8px
+        }
+
+        .image-icon img {
+            max-width: 100%;
+            height: auto
+        }
+
+        .note-box {
+            background: #f0fdf4;
+            border-left: 5px solid #22c55e;
+            border-radius: 14px;
+            padding: 14px 16px;
+            margin: 16px 0
+        }
+
+        .info-box {
+            background: #ecfeff;
+            border-left: 5px solid #06b6d4;
+            border-radius: 14px;
+            padding: 14px 16px;
+            margin: 16px 0
+        }
+
+        .remember-box {
+            background: #fff7ed;
+            border-left: 5px solid #f97316;
+            border-radius: 14px;
+            padding: 14px 16px;
+            margin: 16px 0
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            font-size: 15.5px
+        }
+
+        th,
+        td {
+            border: 1px solid #d1d5db;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top
+        }
+
+        th {
+            background: #eef2ff;
+            color: #111827
+        }
+
+        code {
+            background: #111827;
+            color: #f9fafb;
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-family: Consolas, monospace;
+            font-size: 15px
+        }
+
+        pre {
+            background: #0f172a;
+            color: #e5e7eb;
+            border-radius: 14px;
+            padding: 16px;
+            margin: 16px 0;
+            overflow-x: auto;
+            font-family: Consolas, monospace;
+            line-height: 1.6
+        }
+
+        .compiler {
+            width: 100%;
+            height: 2rem;
+            background-color: green;
+            text-align: center
+        }
+
+        .compiler a {
+            text-decoration: none;
+            color: white
+        }
+        .content{
+            width: 
+            100%;
+        }
+
+        @media(max-width:900px) {
+            .page {
+                grid-template-columns: 1fr
+            }
+
+            .sidebar {
+                position: relative;
+                height: auto
+            }
+
+            .hero h1 {
+                font-size: 27px
+            }
+
+            h2 {
+                font-size: 24px
+            }
+            .sidebar{
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <aside class="sidebar">
+            <h2>Topics</h2>
+            <a href="#variables">Variables</a>
+            <a href="#types-declarations">Types and Type Declarations</a>
+            <a href="#data-types">Data Types</a>
+            <a href="#operators">All Operators</a>
+            <a href="#if-else">if then else Clause</a>
+            <a href="#conditional">Conditional Expressions</a>
+            <a href="#scanner-output">Input using Scanner Class and Output Statement</a>
+            <a href="#loops">Loops</a>
+            <a href="#iteration-jump">Iteration and Jump Statement</a>
+            <a href="#switch">switch Case</a>
+            <a href="#arrays">Arrays</a>
+            <a href="#methods">Methods</a>
+        </aside>
+        <main class="content">
+            <div class="hero">
+                <h1>Language Constructs</h1>
+            </div>
+            <section id="variables">
+                <h2>Variables</h2>
+
+                <p><strong>Variable</strong> Java program में data store करने के लिए memory location का named container
+                    होता है। Program में जब हमें कोई value बार-बार use करनी होती है, जैसे age, marks, name, price या
+                    total, तो हम उसे variable में store करते हैं। Variable का नाम programmer define करता है और उसका type
+                    बताता है कि उसमें किस प्रकार की value store होगी।</p>
+                <p>Java strongly typed language है। इसका मतलब है कि variable declare करते समय उसका data type बताना जरूरी
+                    होता है। अगर variable <code>int</code> type का है, तो उसमें integer value store होगी। अगर variable
+                    <code>String</code> type का है, तो उसमें text value store होगी।</p>
+                <div class="image-icon"><img src="" alt="Java Variable Memory Diagram">
+                    <p>Image Placeholder: Variable Memory Diagram</p>
+                </div>
+                <h4>Variable Declaration Syntax</h4>
+                <pre>dataType variableName;</pre>
+                <h4>Variable Initialization Syntax</h4>
+                <pre>dataType variableName = value;</pre>
+                <h4>Example</h4>
+                <pre>public class Main {
+    public static void main(String[] args) {
+        int age = 23;
+        double marks = 85.5;
+        String name = "Brajkant";
+
+        System.out.println(age);
+        System.out.println(marks);
+        System.out.println(name);
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>23<br>85.5<br>Brajkant</div>
+                <h4>Rules for Naming Variables</h4>
+                <ul>
+                    <li>Variable name letter, underscore <code>_</code> या dollar sign <code>$</code> से start हो सकता
+                        है।</li>
+                    <li>Variable name number से start नहीं हो सकता।</li>
+                    <li>Java variable names case-sensitive होते हैं।</li>
+                    <li>Reserved keywords variable name नहीं हो सकते।</li>
+                    <li>Meaningful variable names use करना best practice है।</li>
+                </ul>
+                <h4>Valid and Invalid Variable Names</h4>
+                <table>
+                    <tr>
+                        <th>Valid</th>
+                        <th>Invalid</th>
+                        <th>Reason</th>
+                    </tr>
+                    <tr>
+                        <td><code>age</code></td>
+                        <td><code>2age</code></td>
+                        <td>Number से start नहीं हो सकता।</td>
+                    </tr>
+                    <tr>
+                        <td><code>studentName</code></td>
+                        <td><code>student name</code></td>
+                        <td>Space allowed नहीं है।</td>
+                    </tr>
+                    <tr>
+                        <td><code>total_marks</code></td>
+                        <td><code>class</code></td>
+                        <td><code>class</code> Java keyword है।</td>
+                    </tr>
+                </table>
+                <div class="note-box"><b>Real Life Example:</b><br>Student result program में name, roll number, marks
+                    और percentage को अलग-अलग variables में store किया जा सकता है।</div>
+                <div class="remember-box"><b>Remember:</b><br>Java में variable use करने से पहले उसका data type declare
+                    करना जरूरी होता है।</div>
+
+            </section>
+            <section id="types-declarations">
+                <h2>Types and Type Declarations</h2>
+
+                <p>Java में type declaration का मतलब है variable declare करते समय यह बताना कि उसमें किस type का data
+                    store किया जाएगा। Java में हर variable का type fixed होता है। अगर variable <code>int</code> declare
+                    है, तो उसमें text directly store नहीं किया जा सकता। इससे program में type safety बनी रहती है।</p>
+                <p>Java में दो major categories के data types होते हैं: primitive data types और non-primitive data
+                    types। Primitive types basic values store करते हैं, जबकि non-primitive types objects और complex data
+                    को represent करते हैं।</p>
+                <div class="image-icon"><img src="" alt="Java Data Type Classification">
+                    <p>Image Placeholder: Java Data Types Classification</p>
+                </div>
+                <h4>Primitive and Non-Primitive Types</h4>
+                <table>
+                    <tr>
+                        <th>Category</th>
+                        <th>Meaning</th>
+                        <th>Examples</th>
+                    </tr>
+                    <tr>
+                        <td>Primitive Data Types</td>
+                        <td>Basic built-in data types।</td>
+                        <td><code>int</code>, <code>float</code>, <code>char</code>, <code>boolean</code></td>
+                    </tr>
+                    <tr>
+                        <td>Non-Primitive Data Types</td>
+                        <td>Objects और reference based types।</td>
+                        <td><code>String</code>, Arrays, Classes, Objects</td>
+                    </tr>
+                </table>
+                <h4>Type Declaration Example</h4>
+                <pre>int rollNumber;
+double percentage;
+char grade;
+boolean isPass;</pre>
+                <h4>Declaration with Initialization</h4>
+                <pre>int rollNumber = 101;
+double percentage = 82.75;
+char grade = 'A';
+boolean isPass = true;</pre>
+                <h4>Multiple Variable Declaration</h4>
+                <pre>int a = 10, b = 20, c = 30;</pre>
+                <h4>Important Points</h4>
+                <ul>
+                    <li>Java में variable का type पहले decide किया जाता है।</li>
+                    <li>Same type के multiple variables एक line में declare किए जा सकते हैं।</li>
+                    <li>Variable declaration memory allocation से related होती है।</li>
+                    <li>Correct data type choose करने से memory और logic दोनों better होते हैं।</li>
+                </ul>
+                <div class="remember-box"><b>Remember:</b><br>Type declaration Java को बताता है कि variable किस तरह की
+                    value store करेगा।</div>
+
+            </section>
+            <section id="data-types">
+                <h2>Data Types</h2>
+
+                <p>Java data types यह define करते हैं कि variable में किस प्रकार की value store होगी और उसके लिए कितनी
+                    memory चाहिए। Data types program की accuracy और memory management के लिए important होते हैं। इस
+                    syllabus में Integer, floating point type, character और Boolean data types important हैं।</p>
+                <h4>Java Primitive Data Types</h4>
+                <table>
+                    <tr>
+                        <th>Data Type</th>
+                        <th>Size</th>
+                        <th>Use</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td><code>byte</code></td>
+                        <td>1 byte</td>
+                        <td>Small integer values</td>
+                        <td><code>byte b = 10;</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>short</code></td>
+                        <td>2 bytes</td>
+                        <td>Small integer values</td>
+                        <td><code>short s = 100;</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>int</code></td>
+                        <td>4 bytes</td>
+                        <td>Common integer values</td>
+                        <td><code>int age = 23;</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>long</code></td>
+                        <td>8 bytes</td>
+                        <td>Large integer values</td>
+                        <td><code>long population = 1000000L;</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>float</code></td>
+                        <td>4 bytes</td>
+                        <td>Decimal values</td>
+                        <td><code>float price = 99.5f;</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>double</code></td>
+                        <td>8 bytes</td>
+                        <td>More precise decimal values</td>
+                        <td><code>double percentage = 85.75;</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>char</code></td>
+                        <td>2 bytes</td>
+                        <td>Single character</td>
+                        <td><code>char grade = 'A';</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>boolean</code></td>
+                        <td>JVM dependent</td>
+                        <td>true/false value</td>
+                        <td><code>boolean pass = true;</code></td>
+                    </tr>
+                </table>
+                <h4>Integer Data Types</h4>
+                <p>Integer data types whole numbers store करते हैं। Java में <code>byte</code>, <code>short</code>,
+                    <code>int</code> और <code>long</code> integer types हैं। Most programs में integer values के लिए
+                    <code>int</code> commonly use होता है। अगर value बहुत बड़ी हो, तो <code>long</code> use किया जाता
+                    है।</p>
+                <pre>int marks = 85;
+long mobileNumber = 9876543210L;
+
+System.out.println(marks);
+System.out.println(mobileNumber);</pre>
+                <h4>Floating Point Types</h4>
+                <p>Floating point types decimal values store करते हैं। Java में <code>float</code> और
+                    <code>double</code> floating point types हैं। <code>double</code> ज्यादा precise होता है और decimal
+                    calculations में commonly use होता है। <code>float</code> value के end में <code>f</code> लगाना
+                    पड़ता है।</p>
+                <pre>float price = 49.99f;
+double percentage = 82.75;
+
+System.out.println(price);
+System.out.println(percentage);</pre>
+                <h4>Character Type</h4>
+                <p><code>char</code> data type single character store करता है। Java में character single quotes में लिखा
+                    जाता है। Java char Unicode based होता है, इसलिए यह many international characters represent कर सकता
+                    है।</p>
+                <pre>char grade = 'A';
+char symbol = '#';
+
+System.out.println(grade);
+System.out.println(symbol);</pre>
+                <h4>Boolean Type</h4>
+                <p><code>boolean</code> data type only two values store करता है: <code>true</code> या
+                    <code>false</code>. यह decision making और conditions में बहुत useful होता है।</p>
+                <pre>boolean isPass = true;
+boolean isAbsent = false;
+
+System.out.println(isPass);
+System.out.println(isAbsent);</pre>
+                <div class="note-box"><b>Real Life Example:</b><br>Roll number integer हो सकता है, percentage double हो
+                    सकती है, grade char हो सकता है और pass/fail status boolean हो सकता है।</div>
+                <div class="remember-box"><b>Remember:</b><br>Java में decimal calculations के लिए generally
+                    <code>double</code> और whole numbers के लिए <code>int</code> commonly use किया जाता है।</div>
+
+            </section>
+            <section id="operators">
+                <h2>All Operators</h2>
+
+                <p>Operators Java में values और variables पर operations perform करने के लिए use होते हैं। Java में
+                    arithmetic, relational, logical, assignment, increment/decrement, conditional और bitwise operators
+                    important हैं। Operators expressions बनाते हैं और program logic को control करते हैं।</p>
+                <div class="image-icon"><img src="" alt="Java Operators Diagram">
+                    <p>Image Placeholder: Java Operators Classification</p>
+                </div>
+                <h4>Arithmetic Operators</h4>
+                <table>
+                    <tr>
+                        <th>Operator</th>
+                        <th>Meaning</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td><code>+</code></td>
+                        <td>Addition</td>
+                        <td><code>a + b</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>-</code></td>
+                        <td>Subtraction</td>
+                        <td><code>a - b</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>*</code></td>
+                        <td>Multiplication</td>
+                        <td><code>a * b</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>/</code></td>
+                        <td>Division</td>
+                        <td><code>a / b</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>%</code></td>
+                        <td>Remainder</td>
+                        <td><code>a % b</code></td>
+                    </tr>
+                </table>
+                <pre>int a = 10, b = 3;
+
+System.out.println(a + b);
+System.out.println(a - b);
+System.out.println(a * b);
+System.out.println(a / b);
+System.out.println(a % b);</pre>
+                <div class="info-box"><b>Output:</b><br>13<br>7<br>30<br>3<br>1</div>
+                <h4>Relational Operators</h4>
+                <table>
+                    <tr>
+                        <th>Operator</th>
+                        <th>Meaning</th>
+                    </tr>
+                    <tr>
+                        <td><code>==</code></td>
+                        <td>Equal to</td>
+                    </tr>
+                    <tr>
+                        <td><code>!=</code></td>
+                        <td>Not equal to</td>
+                    </tr>
+                    <tr>
+                        <td><code>&gt;</code></td>
+                        <td>Greater than</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;</code></td>
+                        <td>Less than</td>
+                    </tr>
+                    <tr>
+                        <td><code>&gt;=</code></td>
+                        <td>Greater than or equal to</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;=</code></td>
+                        <td>Less than or equal to</td>
+                    </tr>
+                </table>
+                <pre>int marks = 75;
+
+System.out.println(marks >= 33);
+System.out.println(marks == 100);</pre>
+                <div class="info-box"><b>Output:</b><br>true<br>false</div>
+                <h4>Logical Operators</h4>
+                <table>
+                    <tr>
+                        <th>Operator</th>
+                        <th>Meaning</th>
+                        <th>Use</th>
+                    </tr>
+                    <tr>
+                        <td><code>&&</code></td>
+                        <td>Logical AND</td>
+                        <td>Both conditions true हों।</td>
+                    </tr>
+                    <tr>
+                        <td><code>||</code></td>
+                        <td>Logical OR</td>
+                        <td>At least one condition true हो।</td>
+                    </tr>
+                    <tr>
+                        <td><code>!</code></td>
+                        <td>Logical NOT</td>
+                        <td>Result reverse करता है।</td>
+                    </tr>
+                </table>
+                <pre>int age = 20;
+int marks = 70;
+
+System.out.println(age >= 18 && marks >= 60);
+System.out.println(age >= 18 || marks >= 90);
+System.out.println(!(age < 18));</pre>
+                <h4>Assignment Operators</h4>
+                <pre>int x = 10;
+x += 5;   // x = x + 5
+x -= 2;   // x = x - 2
+x *= 3;   // x = x * 3
+
+System.out.println(x);</pre>
+                <h4>Increment and Decrement Operators</h4>
+                <p><code>++</code> value को 1 से increase करता है और <code>--</code> value को 1 से decrease करता है। ये
+                    loops में बहुत use होते हैं।</p>
+                <pre>int count = 5;
+
+count++;
+System.out.println(count);
+
+count--;
+System.out.println(count);</pre>
+                <div class="info-box"><b>Output:</b><br>6<br>5</div>
+                <h4>Conditional Operator</h4>
+                <p>Conditional operator को ternary operator भी कहते हैं। यह <code>if-else</code> का short form होता है।
+                </p>
+                <pre>int marks = 40;
+
+String result = (marks >= 33) ? "Pass" : "Fail";
+
+System.out.println(result);</pre>
+                <div class="info-box"><b>Output:</b><br>Pass</div>
+                <h4>Bitwise Operators</h4>
+                <p>Bitwise operators numbers के binary bits पर operation perform करते हैं। ये low-level programming,
+                    flags और bit manipulation में useful होते हैं।</p>
+                <table>
+                    <tr>
+                        <th>Operator</th>
+                        <th>Meaning</th>
+                    </tr>
+                    <tr>
+                        <td><code>&amp;</code></td>
+                        <td>Bitwise AND</td>
+                    </tr>
+                    <tr>
+                        <td><code>|</code></td>
+                        <td>Bitwise OR</td>
+                    </tr>
+                    <tr>
+                        <td><code>^</code></td>
+                        <td>Bitwise XOR</td>
+                    </tr>
+                    <tr>
+                        <td><code>~</code></td>
+                        <td>Bitwise Complement</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;&lt;</code></td>
+                        <td>Left Shift</td>
+                    </tr>
+                    <tr>
+                        <td><code>&gt;&gt;</code></td>
+                        <td>Right Shift</td>
+                    </tr>
+                </table>
+                <div class="remember-box"><b>Remember:</b><br>Operators expressions बनाते हैं और Java program के
+                    calculations तथा decisions में help करते हैं।</div>
+
+            </section>
+            <section id="if-else">
+                <h2>if then else Clause</h2>
+
+                <p><code>if-else</code> statement Java में decision making के लिए use होता है। Program condition के
+                    according different code blocks execute कर सकता है। अगर condition true है, तो <code>if</code> block
+                    run होता है, otherwise <code>else</code> block run होता है।</p>
+                <h4>if Statement</h4>
+                <pre>int age = 20;
+
+if (age >= 18) {
+    System.out.println("Eligible to vote");
+}</pre>
+                <h4>if-else Statement</h4>
+                <pre>int marks = 30;
+
+if (marks >= 33) {
+    System.out.println("Pass");
+} else {
+    System.out.println("Fail");
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Fail</div>
+                <h4>else-if Ladder</h4>
+                <pre>int marks = 78;
+
+if (marks >= 90) {
+    System.out.println("Grade A+");
+} else if (marks >= 75) {
+    System.out.println("Grade A");
+} else if (marks >= 60) {
+    System.out.println("Grade B");
+} else {
+    System.out.println("Grade C");
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Grade A</div>
+                <h4>Nested if</h4>
+                <pre>String username = "admin";
+String password = "1234";
+
+if (username.equals("admin")) {
+    if (password.equals("1234")) {
+        System.out.println("Login successful");
+    } else {
+        System.out.println("Wrong password");
+    }
+} else {
+    System.out.println("Wrong username");
+}</pre>
+                <div class="note-box"><b>Real Life Example:</b><br>Result system में marks 33 या उससे ज्यादा हों तो
+                    Pass, otherwise Fail print करना if-else का simple example है।</div>
+                <div class="remember-box"><b>Remember:</b><br>Java में condition parentheses <code>()</code> के अंदर
+                    लिखी जाती है और condition का result boolean होना चाहिए।</div>
+
+            </section>
+            <section id="conditional">
+                <h2>Conditional Expressions</h2>
+
+                <p>Conditional expression Java में decision को short form में लिखने का तरीका है। इसे ternary operator भी
+                    कहा जाता है क्योंकि इसमें three operands होते हैं: condition, true expression और false expression।
+                </p>
+                <h4>Syntax</h4>
+                <pre>condition ? valueIfTrue : valueIfFalse;</pre>
+                <h4>Example</h4>
+                <pre>int marks = 45;
+
+String result = (marks >= 33) ? "Pass" : "Fail";
+
+System.out.println(result);</pre>
+                <div class="info-box"><b>Output:</b><br>Pass</div>
+                <h4>Find Greater Number</h4>
+                <pre>int a = 10;
+int b = 20;
+
+int greater = (a > b) ? a : b;
+
+System.out.println("Greater number is " + greater);</pre>
+                <div class="info-box"><b>Output:</b><br>Greater number is 20</div>
+                <h4>Even or Odd</h4>
+                <pre>int num = 8;
+
+String answer = (num % 2 == 0) ? "Even" : "Odd";
+
+System.out.println(answer);</pre>
+                <div class="info-box"><b>Output:</b><br>Even</div>
+                <h4>if-else vs Conditional Expression</h4>
+                <table>
+                    <tr>
+                        <th>Basis</th>
+                        <th>if-else</th>
+                        <th>Conditional Expression</th>
+                    </tr>
+                    <tr>
+                        <td>Length</td>
+                        <td>Longer code</td>
+                        <td>Short code</td>
+                    </tr>
+                    <tr>
+                        <td>Use</td>
+                        <td>Complex decisions</td>
+                        <td>Simple decisions</td>
+                    </tr>
+                    <tr>
+                        <td>Readability</td>
+                        <td>Easy for long logic</td>
+                        <td>Good for small logic</td>
+                    </tr>
+                </table>
+                <div class="remember-box"><b>Remember:</b><br>Conditional operator simple if-else का short form है,
+                    लेकिन complex logic के लिए normal if-else better रहता है।</div>
+
+            </section>
+            <section id="scanner-output">
+                <h2>Input using Scanner Class and Output Statement</h2>
+
+                <p>Java में user से input लेने के लिए commonly <code>Scanner</code> class use होती है। Scanner class
+                    <code>java.util</code> package में available होती है। इसे use करने से पहले import करना पड़ता है।
+                    Output show करने के लिए <code>System.out.println()</code>, <code>System.out.print()</code> और
+                    <code>System.out.printf()</code> statements use होते हैं।</p>
+                <div class="image-icon"><img src="" alt="Scanner Input Output Flow">
+                    <p>Image Placeholder: Scanner Input and Output Flow</p>
+                </div>
+                <h4>Import Scanner</h4>
+                <pre>import java.util.Scanner;</pre>
+                <h4>Creating Scanner Object</h4>
+                <pre>Scanner sc = new Scanner(System.in);</pre>
+                <h4>Input Methods</h4>
+                <table>
+                    <tr>
+                        <th>Method</th>
+                        <th>Use</th>
+                    </tr>
+                    <tr>
+                        <td><code>nextInt()</code></td>
+                        <td>Integer input लेने के लिए।</td>
+                    </tr>
+                    <tr>
+                        <td><code>nextFloat()</code></td>
+                        <td>Float input लेने के लिए।</td>
+                    </tr>
+                    <tr>
+                        <td><code>nextDouble()</code></td>
+                        <td>Double input लेने के लिए।</td>
+                    </tr>
+                    <tr>
+                        <td><code>next()</code></td>
+                        <td>Single word string input लेने के लिए।</td>
+                    </tr>
+                    <tr>
+                        <td><code>nextLine()</code></td>
+                        <td>Full line string input लेने के लिए।</td>
+                    </tr>
+                    <tr>
+                        <td><code>nextBoolean()</code></td>
+                        <td>Boolean input लेने के लिए।</td>
+                    </tr>
+                </table>
+                <h4>Input Example</h4>
+                <pre>import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter your name: ");
+        String name = sc.nextLine();
+
+        System.out.print("Enter your age: ");
+        int age = sc.nextInt();
+
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+    }
+}</pre>
+                <div class="info-box"><b>Sample Output:</b><br>Enter your name: Brajkant<br>Enter your age: 23<br>Name:
+                    Brajkant<br>Age: 23</div>
+                <h4>Output Statements</h4>
+                <table>
+                    <tr>
+                        <th>Statement</th>
+                        <th>Use</th>
+                    </tr>
+                    <tr>
+                        <td><code>System.out.print()</code></td>
+                        <td>Output print करता है, new line नहीं देता।</td>
+                    </tr>
+                    <tr>
+                        <td><code>System.out.println()</code></td>
+                        <td>Output print करके new line देता है।</td>
+                    </tr>
+                    <tr>
+                        <td><code>System.out.printf()</code></td>
+                        <td>Formatted output print करता है।</td>
+                    </tr>
+                </table>
+                <h4>print vs println</h4>
+                <pre>System.out.print("Hello ");
+System.out.print("Java");
+
+System.out.println();
+
+System.out.println("Hello");
+System.out.println("Java");</pre>
+                <div class="info-box"><b>Output:</b><br>Hello Java<br>Hello<br>Java</div>
+                <h4>Formatted Output</h4>
+                <pre>int marks = 85;
+double percentage = 82.756;
+
+System.out.printf("Marks: %d%n", marks);
+System.out.printf("Percentage: %.2f", percentage);</pre>
+                <div class="info-box"><b>Output:</b><br>Marks: 85<br>Percentage: 82.76</div>
+                <div class="note-box"><b>Real Life Example:</b><br>Result calculator में user से subjects के marks
+                    Scanner class से input लेकर total और percentage output में show किए जा सकते हैं।</div>
+                <div class="remember-box"><b>Remember:</b><br>Scanner class use करने के लिए
+                    <code>import java.util.Scanner;</code> लिखना जरूरी है।</div>
+
+            </section>
+            <section id="loops">
+                <h2>Loops</h2>
+
+                <p>Loop का use किसी statement या code block को बार-बार execute करने के लिए किया जाता है। Java में loops
+                    repetitive tasks को आसान बनाते हैं। For example, 1 से 10 तक numbers print करना, multiplication table
+                    print करना, array elements display करना और repeated input लेना loops से किया जा सकता है।</p>
+                <div class="image-icon"><img src="" alt="Java Loops Flow Diagram">
+                    <p>Image Placeholder: Loop Flow Diagram</p>
+                </div>
+                <h4>Types of Loops in Java</h4>
+                <table>
+                    <tr>
+                        <th>Loop</th>
+                        <th>Use</th>
+                    </tr>
+                    <tr>
+                        <td><code>for</code> loop</td>
+                        <td>जब repetition count पता हो।</td>
+                    </tr>
+                    <tr>
+                        <td><code>while</code> loop</td>
+                        <td>जब condition based repetition चाहिए।</td>
+                    </tr>
+                    <tr>
+                        <td><code>do-while</code> loop</td>
+                        <td>जब code कम से कम एक बार run करना हो।</td>
+                    </tr>
+                    <tr>
+                        <td>Enhanced for loop</td>
+                        <td>Arrays और collections traverse करने के लिए।</td>
+                    </tr>
+                </table>
+                <h4>for Loop</h4>
+                <pre>for (int i = 1; i <= 5; i++) {
+    System.out.println(i);
+}</pre>
+                <div class="info-box"><b>Output:</b><br>1<br>2<br>3<br>4<br>5</div>
+                <h4>while Loop</h4>
+                <pre>int i = 1;
+
+while (i <= 5) {
+    System.out.println(i);
+    i++;
+}</pre>
+                <h4>do-while Loop</h4>
+                <pre>int i = 1;
+
+do {
+    System.out.println(i);
+    i++;
+} while (i <= 5);</pre>
+                <h4>Multiplication Table</h4>
+                <pre>int num = 5;
+
+for (int i = 1; i <= 10; i++) {
+    System.out.println(num + " x " + i + " = " + (num * i));
+}</pre>
+                <div class="info-box"><b>Output:</b><br>5 x 1 = 5<br>5 x 2 = 10<br>...<br>5 x 10 = 50</div>
+                <h4>Infinite Loop</h4>
+                <p>अगर loop की condition कभी false नहीं होती, तो loop infinite हो जाता है। Infinite loop program को hang
+                    कर सकता है।</p>
+                <pre>while (true) {
+    System.out.println("This is infinite loop");
+}</pre>
+                <div class="remember-box"><b>Remember:</b><br>Loop में condition और update सही होना चाहिए, otherwise
+                    infinite loop बन सकता है।</div>
+
+            </section>
+            <section id="iteration-jump">
+                <h2>Iteration and Jump Statement</h2>
+
+                <p>Iteration statements loops को represent करते हैं। Java में <code>for</code>, <code>while</code> और
+                    <code>do-while</code> iteration statements हैं। Jump statements program control को एक place से दूसरे
+                    place पर transfer करते हैं। Java में important jump statements <code>break</code>,
+                    <code>continue</code> और <code>return</code> हैं।</p>
+                <h4>break Statement</h4>
+                <p><code>break</code> statement loop या switch को immediately terminate कर देता है।</p>
+                <pre>for (int i = 1; i <= 10; i++) {
+    if (i == 5) {
+        break;
+    }
+    System.out.println(i);
+}</pre>
+                <div class="info-box"><b>Output:</b><br>1<br>2<br>3<br>4</div>
+                <h4>continue Statement</h4>
+                <p><code>continue</code> current iteration को skip करके next iteration पर control भेजता है।</p>
+                <pre>for (int i = 1; i <= 5; i++) {
+    if (i == 3) {
+        continue;
+    }
+    System.out.println(i);
+}</pre>
+                <div class="info-box"><b>Output:</b><br>1<br>2<br>4<br>5</div>
+                <h4>return Statement</h4>
+                <p><code>return</code> method से control वापस भेजता है। अगर method value return करता है, तो return के
+                    साथ value दी जाती है।</p>
+                <pre>public static int add(int a, int b) {
+    return a + b;
+}</pre>
+                <h4>break vs continue</h4>
+                <table>
+                    <tr>
+                        <th>Basis</th>
+                        <th>break</th>
+                        <th>continue</th>
+                    </tr>
+                    <tr>
+                        <td>Work</td>
+                        <td>Loop को stop करता है।</td>
+                        <td>Only current iteration skip करता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Control</td>
+                        <td>Loop के बाहर जाता है।</td>
+                        <td>Next iteration पर जाता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Use</td>
+                        <td>Search complete होने पर loop रोकना।</td>
+                        <td>कुछ values skip करना।</td>
+                    </tr>
+                </table>
+                <div class="note-box"><b>Real Life Example:</b><br>Array में required roll number मिलते ही search रोकने
+                    के लिए <code>break</code> use किया जा सकता है। Invalid value skip करने के लिए <code>continue</code>
+                    use हो सकता है।</div>
+
+            </section>
+            <section id="switch">
+                <h2>switch Case</h2>
+
+                <p><code>switch</code> statement multiple choices में से एक block execute करने के लिए use होता है। जब एक
+                    variable की value के basis पर कई possible cases handle करने हों, तो switch case if-else ladder का
+                    better alternative हो सकता है।</p>
+                <h4>Syntax</h4>
+                <pre>switch (expression) {
+    case value1:
+        statements;
+        break;
+
+    case value2:
+        statements;
+        break;
+
+    default:
+        statements;
+}</pre>
+                <h4>Example</h4>
+                <pre>int day = 3;
+
+switch (day) {
+    case 1:
+        System.out.println("Monday");
+        break;
+    case 2:
+        System.out.println("Tuesday");
+        break;
+    case 3:
+        System.out.println("Wednesday");
+        break;
+    default:
+        System.out.println("Invalid day");
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Wednesday</div>
+                <h4>Calculator Example</h4>
+                <pre>char operator = '+';
+int a = 10;
+int b = 5;
+
+switch (operator) {
+    case '+':
+        System.out.println(a + b);
+        break;
+    case '-':
+        System.out.println(a - b);
+        break;
+    case '*':
+        System.out.println(a * b);
+        break;
+    case '/':
+        System.out.println(a / b);
+        break;
+    default:
+        System.out.println("Invalid operator");
+}</pre>
+                <div class="info-box"><b>Output:</b><br>15</div>
+                <h4>Role of break</h4>
+                <p><code>break</code> switch block से बाहर निकलने के लिए use होता है। अगर break नहीं लगाया गया, तो next
+                    cases भी execute हो सकते हैं। इसे fall-through कहा जाता है।</p>
+                <h4>switch vs if-else</h4>
+                <table>
+                    <tr>
+                        <th>Basis</th>
+                        <th>switch</th>
+                        <th>if-else</th>
+                    </tr>
+                    <tr>
+                        <td>Use</td>
+                        <td>Single expression के multiple fixed values।</td>
+                        <td>Complex conditions।</td>
+                    </tr>
+                    <tr>
+                        <td>Readability</td>
+                        <td>Menu-based programs में clean।</td>
+                        <td>Range और logical conditions के लिए better।</td>
+                    </tr>
+                    <tr>
+                        <td>Operators</td>
+                        <td>Relational conditions directly नहीं।</td>
+                        <td>Relational/logical conditions possible।</td>
+                    </tr>
+                </table>
+                <div class="remember-box"><b>Remember:</b><br>switch case में <code>break</code> लगाना important है ताकि
+                    unwanted fall-through न हो।</div>
+
+            </section>
+            <section id="arrays">
+                <h2>Arrays</h2>
+
+                <p><strong>Array</strong> same type की multiple values store करने के लिए use होता है। अगर हमें 5
+                    students के marks store करने हैं, तो अलग-अलग variables बनाने के बजाय एक array बनाया जा सकता है।
+                    Array fixed size का होता है और elements index number से access होते हैं। Java में array index 0 से
+                    start होता है।</p>
+                <div class="image-icon"><img src="" alt="Java Array Memory Diagram">
+                    <p>Image Placeholder: Array Memory Diagram</p>
+                </div>
+                <h4>Array Declaration</h4>
+                <pre>int[] marks;</pre>
+                <h4>Array Creation</h4>
+                <pre>marks = new int[5];</pre>
+                <h4>Declaration and Creation Together</h4>
+                <pre>int[] marks = new int[5];</pre>
+                <h4>Array Initialization</h4>
+                <pre>int[] marks = {80, 75, 90, 85, 70};</pre>
+                <h4>Accessing Array Elements</h4>
+                <pre>int[] marks = {80, 75, 90};
+
+System.out.println(marks[0]);
+System.out.println(marks[1]);
+System.out.println(marks[2]);</pre>
+                <div class="info-box"><b>Output:</b><br>80<br>75<br>90</div>
+                <h4>Changing Array Element</h4>
+                <pre>int[] marks = {80, 75, 90};
+
+marks[1] = 95;
+
+System.out.println(marks[1]);</pre>
+                <div class="info-box"><b>Output:</b><br>95</div>
+                <h4>Loop Through Array</h4>
+                <pre>int[] marks = {80, 75, 90, 85};
+
+for (int i = 0; i < marks.length; i++) {
+    System.out.println(marks[i]);
+}</pre>
+                <h4>Enhanced for Loop</h4>
+                <pre>int[] marks = {80, 75, 90, 85};
+
+for (int m : marks) {
+    System.out.println(m);
+}</pre>
+                <h4>Array Length</h4>
+                <p><code>length</code> property array का size बताती है।</p>
+                <pre>int[] numbers = {10, 20, 30};
+
+System.out.println(numbers.length);</pre>
+                <div class="info-box"><b>Output:</b><br>3</div>
+                <h4>Advantages of Array</h4>
+                <ul>
+                    <li>Same type की multiple values एक नाम से store होती हैं।</li>
+                    <li>Loop की help से data process करना आसान होता है।</li>
+                    <li>Code shorter और organized बनता है।</li>
+                    <li>Indexing से elements easily access होते हैं।</li>
+                </ul>
+                <h4>Limitations of Array</h4>
+                <ul>
+                    <li>Array का size fixed होता है।</li>
+                    <li>Same type का data store होता है।</li>
+                    <li>Insertion और deletion comparatively difficult हो सकते हैं।</li>
+                </ul>
+                <div class="note-box"><b>Real Life Example:</b><br>एक student के 5 subject marks को array में store करके
+                    total और percentage calculate की जा सकती है।</div>
+                <div class="remember-box"><b>Remember:</b><br>Java array index 0 से start होता है और array size
+                    <code>length</code> property से मिलता है।</div>
+
+            </section>
+            <section id="methods">
+                <h2>Methods</h2>
+
+                <p><strong>Method</strong> Java में statements का reusable block होता है जो किसी specific task को
+                    perform करता है। Method program को modular बनाता है। अगर same task बार-बार करना हो, तो method बनाकर
+                    उसे multiple times call किया जा सकता है।</p>
+                <p>Java में method class के अंदर define होता है। Method input values ले सकता है जिन्हें parameters कहते
+                    हैं और result return कर सकता है। Method code readability, reusability और debugging को improve करता
+                    है।</p>
+                <div class="image-icon"><img src="" alt="Java Method Flow Diagram">
+                    <p>Image Placeholder: Method Call Flow Diagram</p>
+                </div>
+                <h4>Method Syntax</h4>
+                <pre>returnType methodName(parameters) {
+    statements;
+}</pre>
+                <h4>Simple Method</h4>
+                <pre>public class Main {
+    static void greet() {
+        System.out.println("Welcome to Java");
+    }
+
+    public static void main(String[] args) {
+        greet();
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Welcome to Java</div>
+                <h4>Method with Parameters</h4>
+                <pre>public class Main {
+    static void greet(String name) {
+        System.out.println("Hello " + name);
+    }
+
+    public static void main(String[] args) {
+        greet("Brajkant");
+        greet("Amit");
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Hello Brajkant<br>Hello Amit</div>
+                <h4>Method with Return Value</h4>
+                <pre>public class Main {
+    static int add(int a, int b) {
+        return a + b;
+    }
+
+    public static void main(String[] args) {
+        int result = add(10, 20);
+        System.out.println(result);
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>30</div>
+                <h4>void Method</h4>
+                <p><code>void</code> method कोई value return नहीं करता। यह केवल task perform करता है।</p>
+                <pre>static void showMessage() {
+    System.out.println("This is void method");
+}</pre>
+                <h4>Parameter and Argument</h4>
+                <table>
+                    <tr>
+                        <th>Term</th>
+                        <th>Meaning</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td>Parameter</td>
+                        <td>Method definition में लिखा variable।</td>
+                        <td><code>int a, int b</code></td>
+                    </tr>
+                    <tr>
+                        <td>Argument</td>
+                        <td>Method call में दी गई actual value।</td>
+                        <td><code>add(10, 20)</code></td>
+                    </tr>
+                </table>
+                <h4>Benefits of Methods</h4>
+                <ul>
+                    <li>Code reuse होता है।</li>
+                    <li>Program modular बनता है।</li>
+                    <li>Large code को छोटे parts में divide किया जा सकता है।</li>
+                    <li>Debugging आसान होती है।</li>
+                    <li>Readability improve होती है।</li>
+                </ul>
+                <h4>Method for Percentage</h4>
+                <pre>public class Main {
+    static double percentage(int total, int maxMarks) {
+        return (total * 100.0) / maxMarks;
+    }
+
+    public static void main(String[] args) {
+        double result = percentage(420, 500);
+        System.out.println("Percentage: " + result);
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Percentage: 84.0</div>
+                <div class="note-box"><b>Real Life Example:</b><br>Result system में total calculate करने, percentage
+                    निकालने और grade print करने के लिए अलग-अलग methods बनाए जा सकते हैं।</div>
+                <div class="remember-box"><b>Remember:</b><br>Method Java program को reusable, clean और organized बनाता
+                    है।</div>
+
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>
