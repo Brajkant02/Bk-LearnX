@@ -5,366 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Language Constructs in Java</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0
-        }
-
-        html {
-            scroll-behavior: smooth
-        }
-
-        body {
-            font-family: "Segoe UI", Arial, sans-serif;
-            background: #f5f7fb;
-            color: #1f2937;
-            line-height: 1.75
-        }
-
-        .page {
-            display: grid;
-            grid-template-columns: 285px 1fr;
-            gap: 20px;
-            max-width: 1500px;
-            margin: auto;
-            padding: 10px
-        }
-
-        .sidebar {
-            position: sticky;
-            top: 10px;
-            height: calc(100vh - 20px);
-            overflow-y: auto;
-            background: #fff;
-            border-radius: 16px;
-            padding: 18px;
-            box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
-            align-self: start
-        }
-
-        .sidebar h2 {
-            font-size: 20px;
-            margin-bottom: 12px;
-            color: #111827
-        }
-
-        .sidebar a {
-            display: block;
-            text-decoration: none;
-            color: #374151;
-            padding: 8px 10px;
-            border-radius: 10px;
-            margin-bottom: 4px;
-            font-size: 14.7px
-        }
-
-        .sidebar a:hover {
-            background: #eef2ff;
-            color: #1d4ed8
-        }
-
-        .content {
-            background: #fff;
-            border-radius: 18px;
-            padding: 10px;
-            box-shadow: 0 4px 18px rgba(0, 0, 0, .08)
-        }
-
-        .hero {
-            padding: 28px 18px;
-            border-radius: 16px;
-            background: linear-gradient(135deg, #eef2ff, #f8fafc);
-            margin-bottom: 18px
-        }
-
-        .hero h1 {
-            font-size: 34px;
-            color: #111827;
-            margin-bottom: 10px
-        }
-
-        .hero p {
-            font-size: 18px;
-            color: #374151
-        }
-
-        section {
-            padding: 22px 10px;
-            border-bottom: 1px solid #e5e7eb
-        }
-
-        section:last-child {
-            border-bottom: none
-        }
-
-        h2 {
-            font-size: 27px;
-            color: #111827;
-            margin-bottom: 12px;
-            border-left: 5px solid #2563eb;
-            padding-left: 12px
-        }
-
-        h3 {
-            font-size: 22px;
-            color: #1f2937;
-            margin: 16px 0 8px
-        }
-
-        h4 {
-            font-size: 18px;
-            color: #111827;
-            margin: 14px 0 6px
-        }
-
-        p {
-            margin: 10px 0;
-            font-size: 17px
-        }
-
-        ul,
-        ol {
-            margin-left: 24px;
-            margin-top: 8px
-        }
-
-        li {
-            margin: 7px 0;
-            font-size: 16.5px
-        }
-
-        strong {
-            color: #111827
-        }
-
-        .image-icon {
-            min-height: 180px;
-            border: 2px dashed #94a3b8;
-            border-radius: 16px;
-            background: #f8fafc;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 20px;
-            margin: 18px 0;
-            color: #475569;
-            font-weight: 600;
-            flex-direction: column;
-            gap: 8px
-        }
-
-        .image-icon img {
-            max-width: 100%;
-            height: auto
-        }
-
-        .note-box {
-            background: #f0fdf4;
-            border-left: 5px solid #22c55e;
-            border-radius: 14px;
-            padding: 14px 16px;
-            margin: 16px 0
-        }
-
-        .info-box {
-            background: #ecfeff;
-            border-left: 5px solid #06b6d4;
-            border-radius: 14px;
-            padding: 14px 16px;
-            margin: 16px 0
-        }
-
-        .remember-box {
-            background: #fff7ed;
-            border-left: 5px solid #f97316;
-            border-radius: 14px;
-            padding: 14px 16px;
-            margin: 16px 0
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 16px 0;
-            border-radius: 12px;
-            overflow: hidden;
-            font-size: 15.5px
-        }
-
-        th,
-        td {
-            border: 1px solid #d1d5db;
-            padding: 10px;
-            text-align: left;
-            vertical-align: top
-        }
-
-        th {
-            background: #eef2ff;
-            color: #111827
-        }
-
-        code {
-            background: #111827;
-            color: #f9fafb;
-            padding: 2px 6px;
-            border-radius: 6px;
-            font-family: Consolas, monospace;
-            font-size: 15px
-        }
-
-        pre {
-            background: #0f172a;
-            color: #e5e7eb;
-            border-radius: 14px;
-            padding: 16px;
-            margin: 16px 0;
-            overflow-x: auto;
-            font-family: Consolas, monospace;
-            line-height: 1.6
-        }
-
-        .compiler {
-            width: 100%;
-            height: 2rem;
-            background-color: green;
-            text-align: center
-        }
-
-        .compiler a {
-            text-decoration: none;
-            color: white
-        }
-        .content{
-            width: 
-            100%;
-        }
-
-        @media(max-width:900px) {
-            .page {
-                grid-template-columns: 1fr
-            }
-
-            .sidebar {
-                position: relative;
-                height: auto
-            }
-
-            .hero h1 {
-                font-size: 27px
-            }
-
-            h2 {
-                font-size: 24px
-            }
-            .sidebar{
-                display: none;
-            }
-        }
-        /* Iframe content responsive fix */
-html,
-body {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
-.page,
-.content,
-section {
-  min-width: 0;
-  max-width: 100%;
-}
-
-img,
-video,
-svg,
-canvas {
-  max-width: 100%;
-  height: auto;
-}
-
-table {
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  border-radius: 12px;
-  -webkit-overflow-scrolling: touch;
-}
-
-th,
-td {
-  min-width: 110px;
-  overflow-wrap: break-word;
-  word-break: normal;
-}
-
-pre {
-  max-width: 100%;
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-}
-
-code {
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-}
-
-@media (max-width: 900px) {
-  .page {
-    display: block;
-    width: 100%;
-    padding: 5px;
-  }
-
-  .sidebar {
-    display: none;
-  }
-
-  .content {
-    width: 100%;
-    min-width: 0;
-    padding: 6px;
-    border-radius: 10px;
-  }
-
-  section {
-    width: 100%;
-    padding: 16px 6px;
-  }
-
-  .hero {
-    padding: 18px 10px;
-  }
-
-  .hero h1 {
-    font-size: 24px;
-  }
-
-  h2 {
-    font-size: 21px;
-  }
-
-  h3 {
-    font-size: 18px;
-  }
-
-  p,
-  li {
-    font-size: 15px;
-  }
-
-  .image-icon {
-    min-height: 130px;
-    padding: 8px;
-  }
-}
-    </style>
+    <link rel="stylesheet" href="../../../semester-1/style.css">
+    <link rel="icon" href="../../../../../../../assets/images/logo.jpeg">
 </head>
 
 <body>
@@ -397,7 +39,8 @@ code {
                     बताता है कि उसमें किस प्रकार की value store होगी।</p>
                 <p>Java strongly typed language है। इसका मतलब है कि variable declare करते समय उसका data type बताना जरूरी
                     होता है। अगर variable <code>int</code> type का है, तो उसमें integer value store होगी। अगर variable
-                    <code>String</code> type का है, तो उसमें text value store होगी।</p>
+                    <code>String</code> type का है, तो उसमें text value store होगी।
+                </p>
                 <div class="image-icon"><img src="" alt="Java Variable Memory Diagram">
                     <p>Image Placeholder: Variable Memory Diagram</p>
                 </div>
@@ -576,7 +219,8 @@ boolean isPass = true;</pre>
                 <p>Integer data types whole numbers store करते हैं। Java में <code>byte</code>, <code>short</code>,
                     <code>int</code> और <code>long</code> integer types हैं। Most programs में integer values के लिए
                     <code>int</code> commonly use होता है। अगर value बहुत बड़ी हो, तो <code>long</code> use किया जाता
-                    है।</p>
+                    है।
+                </p>
                 <pre>int marks = 85;
 long mobileNumber = 9876543210L;
 
@@ -586,7 +230,8 @@ System.out.println(mobileNumber);</pre>
                 <p>Floating point types decimal values store करते हैं। Java में <code>float</code> और
                     <code>double</code> floating point types हैं। <code>double</code> ज्यादा precise होता है और decimal
                     calculations में commonly use होता है। <code>float</code> value के end में <code>f</code> लगाना
-                    पड़ता है।</p>
+                    पड़ता है।
+                </p>
                 <pre>float price = 49.99f;
 double percentage = 82.75;
 
@@ -603,7 +248,8 @@ System.out.println(grade);
 System.out.println(symbol);</pre>
                 <h4>Boolean Type</h4>
                 <p><code>boolean</code> data type only two values store करता है: <code>true</code> या
-                    <code>false</code>. यह decision making और conditions में बहुत useful होता है।</p>
+                    <code>false</code>. यह decision making और conditions में बहुत useful होता है।
+                </p>
                 <pre>boolean isPass = true;
 boolean isAbsent = false;
 
@@ -612,7 +258,8 @@ System.out.println(isAbsent);</pre>
                 <div class="note-box"><b>Real Life Example:</b><br>Roll number integer हो सकता है, percentage double हो
                     सकती है, grade char हो सकता है और pass/fail status boolean हो सकता है।</div>
                 <div class="remember-box"><b>Remember:</b><br>Java में decimal calculations के लिए generally
-                    <code>double</code> और whole numbers के लिए <code>int</code> commonly use किया जाता है।</div>
+                    <code>double</code> और whole numbers के लिए <code>int</code> commonly use किया जाता है।
+                </div>
 
             </section>
             <section id="operators">
@@ -910,7 +557,8 @@ System.out.println(answer);</pre>
                 <p>Java में user से input लेने के लिए commonly <code>Scanner</code> class use होती है। Scanner class
                     <code>java.util</code> package में available होती है। इसे use करने से पहले import करना पड़ता है।
                     Output show करने के लिए <code>System.out.println()</code>, <code>System.out.print()</code> और
-                    <code>System.out.printf()</code> statements use होते हैं।</p>
+                    <code>System.out.printf()</code> statements use होते हैं।
+                </p>
                 <div class="image-icon"><img src="" alt="Scanner Input Output Flow">
                     <p>Image Placeholder: Scanner Input and Output Flow</p>
                 </div>
@@ -1006,7 +654,8 @@ System.out.printf("Percentage: %.2f", percentage);</pre>
                 <div class="note-box"><b>Real Life Example:</b><br>Result calculator में user से subjects के marks
                     Scanner class से input लेकर total और percentage output में show किए जा सकते हैं।</div>
                 <div class="remember-box"><b>Remember:</b><br>Scanner class use करने के लिए
-                    <code>import java.util.Scanner;</code> लिखना जरूरी है।</div>
+                    <code>import java.util.Scanner;</code> लिखना जरूरी है।
+                </div>
 
             </section>
             <section id="loops">
@@ -1083,7 +732,8 @@ for (int i = 1; i <= 10; i++) {
                 <p>Iteration statements loops को represent करते हैं। Java में <code>for</code>, <code>while</code> और
                     <code>do-while</code> iteration statements हैं। Jump statements program control को एक place से दूसरे
                     place पर transfer करते हैं। Java में important jump statements <code>break</code>,
-                    <code>continue</code> और <code>return</code> हैं।</p>
+                    <code>continue</code> और <code>return</code> हैं।
+                </p>
                 <h4>break Statement</h4>
                 <p><code>break</code> statement loop या switch को immediately terminate कर देता है।</p>
                 <pre>for (int i = 1; i <= 10; i++) {
@@ -1290,7 +940,8 @@ System.out.println(numbers.length);</pre>
                 <div class="note-box"><b>Real Life Example:</b><br>एक student के 5 subject marks को array में store करके
                     total और percentage calculate की जा सकती है।</div>
                 <div class="remember-box"><b>Remember:</b><br>Java array index 0 से start होता है और array size
-                    <code>length</code> property से मिलता है।</div>
+                    <code>length</code> property से मिलता है।
+                </div>
 
             </section>
             <section id="methods">
