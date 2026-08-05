@@ -1,0 +1,28 @@
+<!doctype html><html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Virtual Private Networks - Part 1</title><style>
+body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:#f5f7fb;color:#1f2937;line-height:1.75}
+.page{display:grid;grid-template-columns:290px 1fr;gap:20px;max-width:1500px;margin:auto;padding:10px}
+.side{position:sticky;top:10px;height:calc(100vh - 20px);overflow:auto;background:#fff;padding:18px;border-radius:16px}
+.side a{display:block;padding:8px 10px;text-decoration:none;color:#374151;border-radius:8px}
+.main{background:#fff;padding:10px;border-radius:18px}
+.hero{background:#eef2ff;padding:28px 18px;border-radius:16px}
+section{padding:22px 10px;border-bottom:1px solid #e5e7eb}
+h2{border-left:5px solid #2563eb;padding-left:12px}
+p,li{font-size:16.5px}
+table{width:100%;border-collapse:collapse;margin:16px 0}
+th,td{border:1px solid #d1d5db;padding:10px;text-align:left;vertical-align:top}
+th{background:#eef2ff}
+.img{min-height:170px;border:2px dashed #94a3b8;border-radius:16px;background:#f8fafc;display:flex;align-items:center;justify-content:center;text-align:center;margin:18px 0;padding:18px}
+.note{background:#f0fdf4;border-left:5px solid #22c55e;padding:14px;border-radius:12px}
+.rem{background:#fff7ed;border-left:5px solid #f97316;padding:14px;border-radius:12px}
+.warn{background:#fef2f2;border-left:5px solid #ef4444;padding:14px;border-radius:12px}
+pre{background:#0f172a;color:#fff;padding:16px;border-radius:14px;overflow:auto}
+@media(max-width:900px){.page{grid-template-columns:1fr}.side{position:relative;height:auto}}
+</style></head><body><div class="page"><aside class="side"><h2>Topics</h2><a href="#intro">Introduction to VPN</a><a href="#types">Types of VPN</a><a href="#tunnel">Tunnelling Concept</a><a href="#protocols">Tunnelling Protocols</a><a href="#modes">Tunnel Mode and Transport Mode</a><a href="#uses">VPN Use Cases</a></aside><main class="main"><div class="hero"><h1>Virtual Private Networks - Part 1</h1><p>VPN fundamentals, types, tunnelling protocols और tunnel/transport modes.</p></div><section id="intro"><h2>Introduction to VPN</h2><p><strong>VPN (Virtual Private Network)</strong> public network पर secure private communication channel create करती है। यह data को encapsulate और अक्सर encrypt करके remote users, branches और cloud resources के बीच secure connectivity देती है।</p><div class="img">Image Placeholder: VPN Encrypted Tunnel</div><ul><li>Remote access</li><li>Branch connectivity</li><li>Data confidentiality</li><li>Authentication</li><li>Integrity protection</li></ul><div class="rem"><b>Remember:</b> VPN public network पर logical secure tunnel बनाती है।</div></section><section id="types"><h2>Types of VPN</h2><table><tr><th>Type</th><th>Description</th></tr><tr><td>Remote Access VPN</td><td>Individual user को organization network से connect करता है</td></tr><tr><td>Site-to-Site VPN</td><td>Two office networks connect करता है</td></tr><tr><td>Intranet VPN</td><td>Same organization की branches</td></tr><tr><td>Extranet VPN</td><td>Partners/vendors को limited access</td></tr><tr><td>Client-Based</td><td>VPN software client use करता है</td></tr><tr><td>Clientless</td><td>Browser-based access</td></tr></table></section><section id="tunnel"><h2>Tunnelling Concept</h2><p><strong>Tunnelling</strong> original packet को another packet के अंदर encapsulate करने की process है।</p><pre>Original Packet
+↓
+Encapsulation
+↓
+Tunnel Packet
+↓
+Public Network
+↓
+Decapsulation</pre></section><section id="protocols"><h2>Tunnelling Protocols</h2><table><tr><th>Protocol</th><th>Main Use</th></tr><tr><td>PPTP</td><td>Legacy VPN tunnelling</td></tr><tr><td>L2TP</td><td>Layer-2 tunnelling, often with IPsec</td></tr><tr><td>IPsec</td><td>Network-layer security</td></tr><tr><td>SSL/TLS VPN</td><td>Secure remote access</td></tr><tr><td>GRE</td><td>Generic encapsulation without encryption</td></tr></table><div class="warn"><b>Security Note:</b> पुराने protocols modern security requirements पूरी नहीं करते।</div></section><section id="modes"><h2>Tunnel Mode and Transport Mode</h2><table><tr><th>Basis</th><th>Transport Mode</th><th>Tunnel Mode</th></tr><tr><td>Protection</td><td>Payload protect</td><td>Complete original IP packet protect</td></tr><tr><td>New IP Header</td><td>Usually no</td><td>Yes</td></tr><tr><td>Typical Use</td><td>Host-to-host</td><td>Gateway-to-gateway</td></tr><tr><td>Overhead</td><td>Lower</td><td>Higher</td></tr></table><div class="img">Image Placeholder: Transport vs Tunnel Mode</div></section><section id="uses"><h2>VPN Use Cases</h2><ul><li>Work from home</li><li>Branch office connectivity</li><li>Cloud access</li><li>Partner connectivity</li><li>Public Wi-Fi protection</li></ul></section></main></div></body></html>

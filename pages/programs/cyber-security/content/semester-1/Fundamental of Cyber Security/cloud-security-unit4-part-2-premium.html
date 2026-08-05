@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloud Security Unit-4 - Part 2</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f7fb;color:#1f2937;line-height:1.75}
+.page{display:grid;grid-template-columns:300px 1fr;gap:20px;max-width:1580px;margin:auto;padding:10px}
+.sidebar{position:sticky;top:10px;height:calc(100vh - 20px);overflow-y:auto;background:#fff;border-radius:16px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.08);align-self:start}
+.sidebar h2{font-size:20px;margin-bottom:12px;color:#111827}
+.sidebar a{display:block;text-decoration:none;color:#374151;padding:8px 10px;border-radius:10px;margin-bottom:4px;font-size:14.4px}
+.sidebar a:hover{background:#eef2ff;color:#1d4ed8}
+.content{background:#fff;border-radius:18px;padding:10px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.hero{padding:30px 20px;border-radius:16px;background:linear-gradient(135deg,#eef2ff,#f8fafc);margin-bottom:18px}
+.hero h1{font-size:34px;color:#111827;margin-bottom:10px}
+.hero p{font-size:18px;color:#374151}
+section{padding:22px 10px;border-bottom:1px solid #e5e7eb}
+section:last-child{border-bottom:none}
+h2{font-size:27px;color:#111827;margin-bottom:12px;border-left:5px solid #2563eb;padding-left:12px}
+h3{font-size:22px;color:#1f2937;margin:18px 0 8px}
+h4{font-size:18px;color:#111827;margin:14px 0 6px}
+p{margin:10px 0;font-size:17px}
+ul,ol{margin-left:24px;margin-top:8px}
+li{margin:7px 0;font-size:16.5px}
+strong{color:#111827}
+.image-icon{min-height:180px;border:2px dashed #94a3b8;border-radius:16px;background:#f8fafc;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;margin:18px 0;color:#475569;font-weight:600;flex-direction:column;gap:8px}
+.image-icon img{max-width:100%;height:auto}
+.note-box{background:#f0fdf4;border-left:5px solid #22c55e;border-radius:14px;padding:14px 16px;margin:16px 0}
+.info-box{background:#ecfeff;border-left:5px solid #06b6d4;border-radius:14px;padding:14px 16px;margin:16px 0}
+.remember-box{background:#fff7ed;border-left:5px solid #f97316;border-radius:14px;padding:14px 16px;margin:16px 0}
+.warning-box{background:#fef2f2;border-left:5px solid #ef4444;border-radius:14px;padding:14px 16px;margin:16px 0}
+table{width:100%;border-collapse:collapse;margin:16px 0;border-radius:12px;overflow:hidden;font-size:15.3px}
+th,td{border:1px solid #d1d5db;padding:10px;text-align:left;vertical-align:top}
+th{background:#eef2ff;color:#111827}
+pre{background:#0f172a;color:#e5e7eb;border-radius:14px;padding:16px;margin:16px 0;overflow-x:auto;font-family:Consolas,monospace;line-height:1.6}
+@media(max-width:900px){.page{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.hero h1{font-size:27px}h2{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="page">
+<aside class="sidebar"><h2>Topics</h2><a href="#iaas">Infrastructure as a Service (IaaS)</a>
+<a href="#paas">Platform as a Service (PaaS)</a>
+<a href="#saas">Software as a Service (SaaS)</a>
+<a href="#comparison">IaaS vs PaaS vs SaaS</a>
+<a href="#virtualization">Virtualization and Virtual Machines</a>
+<a href="#provisioning">Virtual Machine Provisioning</a>
+<a href="#migration-vm">Virtual Machine Migration Services</a>
+<a href="#vm-management">Management of Virtual Machines</a></aside>
+<main class="content">
+<div class="hero"><h1>Cloud Security Unit-4 - Part 2</h1><p>IaaS, PaaS, SaaS, virtualization, VM provisioning, VM migration और virtual machine management को deep premium format में समझाया गया है।</p></div>
+<section id="iaas"><h2>Infrastructure as a Service (IaaS)</h2>
+<p><strong>IaaS</strong> virtual servers, storage, network और computing infrastructure service के रूप में provide करता है। User operating system और applications manage करता है, जबकि provider physical hardware manage करता है।</p>
+<div class="image-icon"><img src="" alt="IaaS Model"><p>Image Placeholder: IaaS Responsibility Model</p></div>
+<h4>Uses</h4>
+<ul>
+<li>Virtual machines</li>
+<li>Storage</li>
+<li>Backup systems</li>
+<li>Development environments</li>
+<li>Disaster recovery</li>
+</ul>
+</section>
+<section id="paas"><h2>Platform as a Service (PaaS)</h2>
+<p><strong>PaaS</strong> application development और deployment के लिए runtime, frameworks, databases और development tools provide करता है।</p>
+<h4>Advantages</h4>
+<ul>
+<li>Fast development</li>
+<li>Infrastructure management कम</li>
+<li>Built-in scalability</li>
+<li>Development tools available</li>
+</ul>
+</section>
+<section id="saas"><h2>Software as a Service (SaaS)</h2>
+<p><strong>SaaS</strong> complete software application internet के माध्यम से provide करता है। User browser या app से software use करता है।</p>
+<h4>Examples of Use</h4>
+<ul>
+<li>Email</li>
+<li>CRM</li>
+<li>Online office tools</li>
+<li>Learning management systems</li>
+<li>Project management tools</li>
+</ul>
+</section>
+<section id="comparison"><h2>IaaS vs PaaS vs SaaS</h2>
+<table>
+<tr><th>Basis</th><th>IaaS</th><th>PaaS</th><th>SaaS</th></tr>
+<tr><td>User Controls</td><td>OS, apps, data</td><td>Apps and data</td><td>Mostly usage/configuration</td></tr>
+<tr><td>Provider Controls</td><td>Hardware and virtualization</td><td>Infrastructure and platform</td><td>Complete stack</td></tr>
+<tr><td>Best For</td><td>IT infrastructure</td><td>Developers</td><td>End users</td></tr>
+</table>
+</section>
+<section id="virtualization"><h2>Virtualization and Virtual Machines</h2>
+<p><strong>Virtualization</strong> single physical machine पर multiple virtual machines create करने की technology है। प्रत्येक VM अपना operating system और applications चला सकती है।</p>
+<div class="image-icon"><img src="" alt="Virtualization"><p>Image Placeholder: Physical Host and Multiple VMs</p></div>
+<h4>Components</h4>
+<ul>
+<li>Host machine</li>
+<li>Hypervisor</li>
+<li>Guest operating systems</li>
+<li>Virtual CPU, memory and storage</li>
+</ul>
+</section>
+<section id="provisioning"><h2>Virtual Machine Provisioning</h2>
+<p><strong>VM Provisioning</strong> new virtual machine को create, configure और resources assign करने की process है।</p>
+<h4>Steps</h4>
+<ol>
+<li>VM template select करें।</li>
+<li>CPU, RAM और storage assign करें।</li>
+<li>Network configure करें।</li>
+<li>Operating system deploy करें।</li>
+<li>Security policies apply करें।</li>
+<li>Monitoring enable करें।</li>
+</ol>
+</section>
+<section id="migration-vm"><h2>Virtual Machine Migration Services</h2>
+<p><strong>VM Migration</strong> virtual machine को one host से another host पर move करने की process है।</p>
+<table>
+<tr><th>Type</th><th>Meaning</th></tr>
+<tr><td>Cold Migration</td><td>VM shutdown करके move करना</td></tr>
+<tr><td>Live Migration</td><td>Running VM को minimal interruption के साथ move करना</td></tr>
+<tr><td>Storage Migration</td><td>VM disk files को new storage पर move करना</td></tr>
+</table>
+<h4>Benefits</h4>
+<ul>
+<li>Load balancing</li>
+<li>Hardware maintenance</li>
+<li>Fault avoidance</li>
+<li>Resource optimization</li>
+</ul>
+</section>
+<section id="vm-management"><h2>Management of Virtual Machines</h2>
+<h4>VM Management Tasks</h4>
+<ul>
+<li>Provisioning</li>
+<li>Monitoring</li>
+<li>Scaling</li>
+<li>Snapshot management</li>
+<li>Patch management</li>
+<li>Migration</li>
+<li>Backup and recovery</li>
+<li>Resource scheduling</li>
+</ul>
+<div class="remember-box"><b>Remember:</b><br>VM management का उद्देश्य resources efficiently use करना और workloads available रखना है।</div>
+</section>
+</main>
+</div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!doctype html><html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Wireless Attacks Unit-V - Part 2</title><style>
+body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:#f5f7fb;color:#1f2937;line-height:1.72}
+.page{display:grid;grid-template-columns:290px 1fr;gap:18px;max-width:1520px;margin:auto;padding:10px}
+aside{position:sticky;top:10px;height:calc(100vh - 20px);overflow:auto;background:#fff;padding:16px;border-radius:14px;box-shadow:0 4px 18px rgba(0,0,0,.07)}
+aside a{display:block;padding:7px 9px;text-decoration:none;color:#374151;border-radius:8px}
+aside a:hover{background:#eef2ff}
+main{background:#fff;padding:10px;border-radius:16px;box-shadow:0 4px 18px rgba(0,0,0,.07)}
+.hero{background:linear-gradient(135deg,#eef2ff,#f8fafc);padding:25px 18px;border-radius:14px}
+section{padding:20px 10px;border-bottom:1px solid #e5e7eb}
+h2{border-left:5px solid #2563eb;padding-left:10px}
+p,li{font-size:16.5px}
+table{width:100%;border-collapse:collapse;margin:14px 0}
+th,td{border:1px solid #d1d5db;padding:9px;text-align:left;vertical-align:top}
+th{background:#eef2ff}
+.img{min-height:155px;border:2px dashed #94a3b8;border-radius:14px;background:#f8fafc;display:flex;align-items:center;justify-content:center;text-align:center;margin:16px 0;padding:16px}
+.note{background:#f0fdf4;border-left:5px solid #22c55e;padding:12px;border-radius:10px}
+.warn{background:#fef2f2;border-left:5px solid #ef4444;padding:12px;border-radius:10px}
+.rem{background:#fff7ed;border-left:5px solid #f97316;padding:12px;border-radius:10px}
+.info{background:#ecfeff;border-left:5px solid #06b6d4;padding:12px;border-radius:10px}
+pre{background:#0f172a;color:#fff;padding:14px;border-radius:12px;overflow:auto}
+@media(max-width:900px){.page{grid-template-columns:1fr}aside{position:relative;height:auto}}
+</style></head><body><div class="page"><aside><h2>Topics</h2><a href="#threats">Wireless Threats</a><a href="#method">Wireless Hacking Methodology - Defensive View</a><a href="#sniff">Packet Sniffing</a><a href="#arp-replay">ARP Replay Attack - Concept</a><a href="#fake-auth">Fake Authentication Attack</a><a href="#deauth">Deauthentication Attack</a><a href="#fake-hotspot">Fake Hotspots</a><a href="#evil-twin">Evil Twin Attack</a><a href="#counter">Wireless Threat Countermeasures</a></aside><main><div class="hero"><h1>Wireless Attacks Unit-V - Part 2</h1><p>Wireless threats, packet sniffing, ARP replay, fake authentication, deauthentication, evil twin और fake hotspots का defensive study.</p></div><section id="threats"><h2>Wireless Threats</h2><table><tr><th>Threat</th><th>Meaning</th></tr><tr><td>Eavesdropping</td><td>Wireless traffic observe करना</td></tr><tr><td>Rogue Access Point</td><td>Unauthorized AP</td></tr><tr><td>Evil Twin</td><td>Legitimate Wi-Fi जैसा fake AP</td></tr><tr><td>Deauthentication</td><td>Clients को disconnect कराना</td></tr><tr><td>Weak Encryption</td><td>Old security standard का misuse</td></tr><tr><td>Credential Theft</td><td>Fake login page या phishing</td></tr></table><div class="img">Image Placeholder: Common Wireless Threats</div></section><section id="method"><h2>Wireless Hacking Methodology - Defensive View</h2><pre>Define Authorized Scope
+      ↓
+Discover Wireless Assets
+      ↓
+Review Encryption and Authentication
+      ↓
+Identify Misconfigurations
+      ↓
+Validate Safely
+      ↓
+Apply Countermeasures
+      ↓
+Retest</pre></section><section id="sniff"><h2>Packet Sniffing</h2><p>Wireless packet sniffing radio traffic capture और analysis की process है। Administrators इसका use troubleshooting और security monitoring के लिए करते हैं।</p><h4>Protection</h4><ul><li>Strong encryption</li><li>VPN on untrusted Wi-Fi</li><li>HTTPS</li><li>Wireless IDS</li></ul></section><section id="arp-replay"><h2>ARP Replay Attack - Concept</h2><p>ARP replay attacks historically weak wireless encryption environments में repeated traffic का misuse करके security weaknesses exploit करने से जुड़ी रही हैं।</p><div class="warn"><b>Not Included:</b> Attack execution steps intentionally नहीं दिए गए हैं।</div><h4>Protection</h4><ul><li>WEP हटाएं</li><li>WPA2/WPA3 use करें</li><li>Network monitoring</li><li>Client isolation</li></ul></section><section id="fake-auth"><h2>Fake Authentication Attack</h2><p>Fake authentication में unauthorized client legitimate device की तरह associate होने की कोशिश करता है।</p><h4>Protection</h4><ul><li>Enterprise authentication</li><li>Certificate-based access</li><li>802.1X</li><li>Wireless IDS/IPS</li></ul></section><section id="deauth"><h2>Deauthentication Attack</h2><p>Deauthentication attack clients को access point से disconnect करने की कोशिश करता है।</p><h4>Protection</h4><ul><li>Protected Management Frames</li><li>WPA3</li><li>Wireless intrusion detection</li><li>Signal anomaly monitoring</li></ul></section><section id="fake-hotspot"><h2>Fake Hotspots</h2><p>Fake hotspot legitimate public Wi-Fi जैसा दिखाई देता है और users को connect करने के लिए trick करता है।</p><h4>Protection</h4><ul><li>Network name verify करें</li><li>Auto-connect disable करें</li><li>VPN use करें</li><li>Sensitive logins avoid करें</li><li>HTTPS certificate warnings ignore न करें</li></ul></section><section id="evil-twin"><h2>Evil Twin Attack</h2><p><strong>Evil Twin</strong> legitimate access point की copy जैसा fake wireless network है।</p><div class="img">Image Placeholder: Legitimate AP vs Evil Twin</div><h4>Detection Signs</h4><ul><li>Duplicate SSID</li><li>Unexpected weak security</li><li>Unusual login page</li><li>Certificate warning</li><li>Signal/location mismatch</li></ul></section><section id="counter"><h2>Wireless Threat Countermeasures</h2><ul><li>WPA3/WPA2-Enterprise</li><li>Protected Management Frames</li><li>Wireless IDS/IPS</li><li>Rogue AP detection</li><li>Guest isolation</li><li>Regular surveys</li><li>User awareness</li></ul><div class="rem"><b>Remember:</b> Wireless signal building की walls से बाहर भी जा सकता है, इसलिए external exposure consider करना जरूरी है।</div></section></main></div></body></html>

@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>XML and JSON Premium Notes</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+      line-height: 1.75
+    }
+
+    .page {
+      display: grid;
+      grid-template-columns: 285px 1fr;
+      gap: 20px;
+      max-width: 1500px;
+      margin: auto;
+      padding: 10px
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 10px;
+      height: calc(100vh - 20px);
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
+      align-self: start
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #111827
+    }
+
+    .sidebar a {
+      display: block;
+      text-decoration: none;
+      color: #374151;
+      padding: 8px 10px;
+      border-radius: 10px;
+      margin-bottom: 4px;
+      font-size: 14.7px
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+      color: #1d4ed8
+    }
+
+    .content {
+      background: #fff;
+      border-radius: 18px;
+      padding: 10px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08)
+    }
+
+    .hero {
+      padding: 28px 18px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #eef2ff, #f8fafc);
+      margin-bottom: 18px
+    }
+
+    .hero h1 {
+      font-size: 34px;
+      color: #111827;
+      margin-bottom: 10px
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #374151
+    }
+
+    section {
+      padding: 22px 10px;
+      border-bottom: 1px solid #e5e7eb
+    }
+
+    section:last-child {
+      border-bottom: none
+    }
+
+    h2 {
+      font-size: 27px;
+      color: #111827;
+      margin-bottom: 12px;
+      border-left: 5px solid #2563eb;
+      padding-left: 12px
+    }
+
+    h3 {
+      font-size: 22px;
+      color: #1f2937;
+      margin: 16px 0 8px
+    }
+
+    h4 {
+      font-size: 18px;
+      color: #111827;
+      margin: 14px 0 6px
+    }
+
+    p {
+      margin: 10px 0;
+      font-size: 17px
+    }
+
+    ul,
+    ol {
+      margin-left: 24px;
+      margin-top: 8px
+    }
+
+    li {
+      margin: 7px 0;
+      font-size: 16.5px
+    }
+
+    strong {
+      color: #111827
+    }
+
+    .image-icon {
+      min-height: 180px;
+      border: 2px dashed #94a3b8;
+      border-radius: 16px;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      margin: 18px 0;
+      color: #475569;
+      font-weight: 600
+    }
+
+    .image-icon img {
+      max-width: 100%;
+      height: auto
+    }
+
+    .note-box {
+      background: #f0fdf4;
+      border-left: 5px solid #22c55e;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .info-box {
+      background: #ecfeff;
+      border-left: 5px solid #06b6d4;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .remember-box {
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      font-size: 15.5px
+    }
+
+    th,
+    td {
+      border: 1px solid #d1d5db;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top
+    }
+
+    th {
+      background: #eef2ff;
+      color: #111827
+    }
+
+    code {
+      background: #111827;
+      color: #f9fafb;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-family: Consolas, monospace;
+      font-size: 15px
+    }
+
+    pre {
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 14px;
+      padding: 16px;
+      margin: 16px 0;
+      overflow-x: auto;
+      font-family: Consolas, monospace;
+      line-height: 1.6
+    }
+
+    .compiler {
+      width: 100%;
+      height: 2rem;
+      background-color: green;
+      text-align: center;
+    }
+
+    .compiler a {
+      text-decoration: none;
+      color: white;
+    }
+
+    @media(max-width:900px) {
+      .page {
+        grid-template-columns: 1fr
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto
+      }
+
+      .hero h1 {
+        font-size: 27px
+      }
+
+      h2 {
+        font-size: 24px
+      }
+    }
+    /* Iframe content responsive fix */
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.page,
+.content,
+section {
+  min-width: 0;
+  max-width: 100%;
+}
+
+img,
+video,
+svg,
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+table {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border-radius: 12px;
+  -webkit-overflow-scrolling: touch;
+}
+
+th,
+td {
+  min-width: 110px;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+pre {
+  max-width: 100%;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+code {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 900px) {
+  .page {
+    display: block;
+    width: 100%;
+    padding: 5px;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .content {
+    width: 100%;
+    min-width: 0;
+    padding: 6px;
+    border-radius: 10px;
+  }
+
+  section {
+    width: 100%;
+    padding: 16px 6px;
+  }
+
+  .hero {
+    padding: 18px 10px;
+  }
+
+  .hero h1 {
+    font-size: 24px;
+  }
+
+  h2 {
+    font-size: 21px;
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+
+  p,
+  li {
+    font-size: 15px;
+  }
+
+  .image-icon {
+    min-height: 130px;
+    padding: 8px;
+  }
+}
+  </style>
+
+
+<link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
+<script src="../../../../../../../assets/shared/portal.js" defer></script>
+<script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
+</head>
+
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <h2>Topics</h2>
+      <a href="#xml-intro">Introduction and Use of XML</a>
+      <a href="#xml-html">Difference between XML and HTML</a>
+      <a href="#xml-elements">XML Elements</a>
+      <a href="#xml-attribute">XML Attribute</a>
+      <a href="#namespace">Name Space</a>
+      <a href="#syntax-rules">Syntax Rules</a>
+      <a href="#dtd-schema">XML DTD and XML Schema</a>
+      <a href="#rss">RSS Feed</a>
+      <a href="#json-intro">JSON Introduction and Uses</a>
+      <a href="#json-xml">JSON v/s XML</a>
+      <a href="#json-syntax">JSON Syntax</a>
+    </aside>
+
+    <main class="content">
+      <div class="hero">
+        <h1>XML & JSON</h1>
+      </div>
+
+      <section id="xml-intro">
+        <h2>Introduction and Use of XML</h2>
+
+        <p><strong>XML</strong> का full form <strong>Extensible Markup Language</strong> है। XML एक markup language है
+          जिसका use data को store और transport करने के लिए किया जाता है। XML का main purpose data को structured,
+          readable और platform-independent form में represent करना है। XML में user अपने tags खुद define कर सकता है,
+          इसलिए इसे extensible कहा जाता है।</p>
+
+        <p>HTML mainly data को browser में display करने के लिए use होती है, जबकि XML data को describe और carry करने के
+          लिए use होती है। XML में predefined tags नहीं होते। Programmer data के according meaningful tags create करता
+          है, जैसे <code>&lt;student&gt;</code>, <code>&lt;name&gt;</code>, <code>&lt;course&gt;</code> आदि।</p>
+
+        <p>XML human-readable भी है और machine-readable भी। इसका मतलब है कि इसे इंसान पढ़कर समझ सकता है और software
+          programs भी इसे process कर सकते हैं। XML का use configuration files, data exchange, web services, RSS feeds,
+          document storage और application settings में किया जाता है।</p>
+
+        <h4>Simple XML Example</h4>
+        <pre>&lt;student&gt;
+  &lt;name&gt;Brajkant&lt;/name&gt;
+  &lt;course&gt;PGDCA&lt;/course&gt;
+  &lt;city&gt;Kanpur&lt;/city&gt;
+&lt;/student&gt;</pre>
+
+        <h4>Why XML is Used</h4>
+        <ul>
+          <li>Data को structured form में store करने के लिए।</li>
+          <li>Different applications के बीच data exchange करने के लिए।</li>
+          <li>Platform-independent data representation के लिए।</li>
+          <li>Configuration files create करने के लिए।</li>
+          <li>RSS feed और web services में data transfer करने के लिए।</li>
+          <li>Custom tags की help से meaningful data define करने के लिए।</li>
+        </ul>
+
+        <h4>Features of XML</h4>
+        <table>
+          <tr>
+            <th>Feature</th>
+            <th>Explanation</th>
+          </tr>
+          <tr>
+            <td>Extensible</td>
+            <td>User अपने tags define कर सकता है।</td>
+          </tr>
+          <tr>
+            <td>Self-descriptive</td>
+            <td>Tags data का meaning clear करते हैं।</td>
+          </tr>
+          <tr>
+            <td>Platform Independent</td>
+            <td>Different systems पर use हो सकती है।</td>
+          </tr>
+          <tr>
+            <td>Human Readable</td>
+            <td>XML text form में होती है, इसलिए पढ़ना आसान है।</td>
+          </tr>
+          <tr>
+            <td>Hierarchical</td>
+            <td>Data tree structure में arranged होता है।</td>
+          </tr>
+        </table>
+
+        <h4>XML Data Example for Book</h4>
+        <pre>&lt;book&gt;
+  &lt;title&gt;Web Development&lt;/title&gt;
+  &lt;author&gt;Rahul Sharma&lt;/author&gt;
+  &lt;price&gt;350&lt;/price&gt;
+&lt;/book&gt;</pre>
+
+        <div class="note-box"><b>Real Life Example:</b><br>College software से student data किसी दूसरे system को भेजना
+          हो, तो XML format में name, roll number, course और marks को structured form में send किया जा सकता है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>XML data को display करने के लिए नहीं, बल्कि data को store और
+          transport करने के लिए use होती है।</div>
+      </section>
+
+      <section id="xml-html">
+        <h2>Difference between XML and HTML</h2>
+
+        <p>XML और HTML दोनों markup languages हैं, लेकिन दोनों का purpose अलग है। HTML का use web pages को display करने
+          के लिए किया जाता है, जबकि XML का use data को store और transport करने के लिए किया जाता है। HTML में predefined
+          tags होते हैं, जैसे <code>&lt;h1&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;table&gt;</code>. XML में tags
+          user खुद define करता है।</p>
+
+        <p>HTML browser को बताता है कि content कैसे show करना है, जबकि XML data का meaning और structure बताता है। XML
+          strict syntax follow करती है। XML में tags properly closed और nested होने चाहिए। HTML browsers कई बार छोटी
+          mistakes को ignore कर देते हैं, लेकिन XML parser strict होता है।</p>
+
+        <h4>Difference Table</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>HTML</th>
+            <th>XML</th>
+          </tr>
+          <tr>
+            <td>Full Form</td>
+            <td>HyperText Markup Language</td>
+            <td>Extensible Markup Language</td>
+          </tr>
+          <tr>
+            <td>Purpose</td>
+            <td>Data display करने के लिए।</td>
+            <td>Data store और transport करने के लिए।</td>
+          </tr>
+          <tr>
+            <td>Tags</td>
+            <td>Predefined tags होते हैं।</td>
+            <td>User-defined tags होते हैं।</td>
+          </tr>
+          <tr>
+            <td>Focus</td>
+            <td>Presentation पर focus।</td>
+            <td>Data structure पर focus।</td>
+          </tr>
+          <tr>
+            <td>Syntax</td>
+            <td>Relatively flexible।</td>
+            <td>Strict syntax rules।</td>
+          </tr>
+          <tr>
+            <td>Closing Tags</td>
+            <td>कुछ tags बिना closing के भी work कर सकते हैं।</td>
+            <td>Every tag properly closed होना चाहिए।</td>
+          </tr>
+          <tr>
+            <td>Case Sensitivity</td>
+            <td>Tags case-sensitive नहीं होते।</td>
+            <td>Tags case-sensitive होते हैं।</td>
+          </tr>
+          <tr>
+            <td>Example</td>
+            <td><code>&lt;p&gt;Hello&lt;/p&gt;</code></td>
+            <td><code>&lt;name&gt;Brajkant&lt;/name&gt;</code></td>
+          </tr>
+        </table>
+
+        <h4>HTML Example</h4>
+        <pre>&lt;h1&gt;Student Details&lt;/h1&gt;
+&lt;p&gt;Name: Brajkant&lt;/p&gt;</pre>
+
+        <h4>XML Example</h4>
+        <pre>&lt;student&gt;
+  &lt;name&gt;Brajkant&lt;/name&gt;
+  &lt;course&gt;PGDCA&lt;/course&gt;
+&lt;/student&gt;</pre>
+
+        <div class="note-box"><b>Real Life Example:</b><br>HTML report card को browser में सुंदर तरीके से दिखा सकती है,
+          जबकि XML उसी report card data को another software को transfer करने के लिए useful हो सकती है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>HTML दिखाने के लिए है और XML data carry करने के लिए है।</div>
+      </section>
+
+      <section id="xml-elements">
+        <h2>XML Elements</h2>
+
+        <p>XML element XML document का basic building block होता है। एक XML element opening tag, content और closing tag
+          से मिलकर बनता है। XML element data को meaningful form में represent करता है। For example,
+          <code>&lt;name&gt;Brajkant&lt;/name&gt;</code> में <code>name</code> element है और उसका content
+          <code>Brajkant</code> है।
+        </p>
+
+        <h4>Basic Element Syntax</h4>
+        <pre>&lt;elementName&gt;Content&lt;/elementName&gt;</pre>
+
+        <h4>Example</h4>
+        <pre>&lt;name&gt;Brajkant&lt;/name&gt;</pre>
+
+        <h4>Nested Elements</h4>
+        <p>XML में elements के अंदर other elements हो सकते हैं। इसे nested elements कहा जाता है।</p>
+
+        <pre>&lt;student&gt;
+  &lt;name&gt;Brajkant&lt;/name&gt;
+  &lt;course&gt;PGDCA&lt;/course&gt;
+  &lt;marks&gt;85&lt;/marks&gt;
+&lt;/student&gt;</pre>
+
+        <h4>Root Element</h4>
+        <p>हर XML document में एक single root element होना चाहिए। Root element बाकी सभी elements को contain करता है।</p>
+
+        <pre>&lt;students&gt;
+  &lt;student&gt;
+    &lt;name&gt;Brajkant&lt;/name&gt;
+  &lt;/student&gt;
+
+  &lt;student&gt;
+    &lt;name&gt;Amit&lt;/name&gt;
+  &lt;/student&gt;
+&lt;/students&gt;</pre>
+
+        <p>ऊपर <code>&lt;students&gt;</code> root element है।</p>
+
+        <h4>Empty Element</h4>
+        <p>अगर element में content नहीं है, तो उसे empty element की तरह लिखा जा सकता है।</p>
+
+        <pre>&lt;middleName&gt;&lt;/middleName&gt;
+
+&lt;middleName /&gt;</pre>
+
+        <h4>XML Element Naming Rules</h4>
+        <ul>
+          <li>Element names case-sensitive होते हैं।</li>
+          <li>Element name letter या underscore से start हो सकता है।</li>
+          <li>Element name number से start नहीं होना चाहिए।</li>
+          <li>Element name में spaces नहीं होने चाहिए।</li>
+          <li>Element name meaningful होना चाहिए।</li>
+          <li>Opening और closing tag names exactly same होने चाहिए।</li>
+        </ul>
+
+        <h4>Correct and Wrong Element Examples</h4>
+        <table>
+          <tr>
+            <th>Correct</th>
+            <th>Wrong</th>
+          </tr>
+          <tr>
+            <td><code>&lt;studentName&gt;Brajkant&lt;/studentName&gt;</code></td>
+            <td><code>&lt;student name&gt;Brajkant&lt;/student name&gt;</code></td>
+          </tr>
+          <tr>
+            <td><code>&lt;course&gt;PGDCA&lt;/course&gt;</code></td>
+            <td><code>&lt;course&gt;PGDCA&lt;/Course&gt;</code></td>
+          </tr>
+          <tr>
+            <td><code>&lt;marks&gt;85&lt;/marks&gt;</code></td>
+            <td><code>&lt;1marks&gt;85&lt;/1marks&gt;</code></td>
+          </tr>
+        </table>
+
+        <div class="remember-box"><b>Remember:</b><br>XML document में one root element जरूरी होता है और XML tags
+          case-sensitive होते हैं।</div>
+      </section>
+
+      <section id="xml-attribute">
+        <h2>XML Attribute</h2>
+
+        <p>XML attributes elements को extra information provide करते हैं। Attribute हमेशा opening tag के अंदर लिखा जाता
+          है और name-value pair के रूप में होता है। Attribute value quotes में लिखी जाती है। XML में data element के
+          अंदर भी रखा जा सकता है और attribute में भी, लेकिन main data normally element में रखना better माना जाता है।</p>
+
+        <h4>Attribute Syntax</h4>
+        <pre>&lt;element attribute="value"&gt;Content&lt;/element&gt;</pre>
+
+        <h4>Example</h4>
+        <pre>&lt;student roll="101"&gt;
+  &lt;name&gt;Brajkant&lt;/name&gt;
+  &lt;course&gt;PGDCA&lt;/course&gt;
+&lt;/student&gt;</pre>
+
+        <p>यहाँ <code>roll="101"</code> attribute है।</p>
+
+        <h4>Multiple Attributes</h4>
+        <pre>&lt;student roll="101" batch="2026"&gt;
+  &lt;name&gt;Brajkant&lt;/name&gt;
+&lt;/student&gt;</pre>
+
+        <h4>Element vs Attribute</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>Element</th>
+            <th>Attribute</th>
+          </tr>
+          <tr>
+            <td>Location</td>
+            <td>Opening और closing tag के बीच।</td>
+            <td>Opening tag के अंदर।</td>
+          </tr>
+          <tr>
+            <td>Use</td>
+            <td>Main data store करने के लिए।</td>
+            <td>Extra information देने के लिए।</td>
+          </tr>
+          <tr>
+            <td>Example</td>
+            <td><code>&lt;name&gt;Brajkant&lt;/name&gt;</code></td>
+            <td><code>roll="101"</code></td>
+          </tr>
+        </table>
+
+        <h4>Same Data as Element</h4>
+        <pre>&lt;student&gt;
+  &lt;roll&gt;101&lt;/roll&gt;
+  &lt;name&gt;Brajkant&lt;/name&gt;
+&lt;/student&gt;</pre>
+
+        <h4>Same Data as Attribute</h4>
+        <pre>&lt;student roll="101"&gt;
+  &lt;name&gt;Brajkant&lt;/name&gt;
+&lt;/student&gt;</pre>
+
+        <h4>Attribute Rules</h4>
+        <ul>
+          <li>Attribute values quotes में होनी चाहिए।</li>
+          <li>Same element में same attribute दो बार नहीं होना चाहिए।</li>
+          <li>Attributes extra information के लिए use करें।</li>
+          <li>Main structured data elements में रखना better है।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Student का roll number attribute में और name/course elements
+          में रखा जा सकता है। लेकिन अगर roll number पर processing करनी है, तो उसे element के रूप में रखना ज्यादा clear
+          हो सकता है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>XML attributes extra information देते हैं, जबकि elements main data
+          represent करते हैं।</div>
+      </section>
+
+      <section id="namespace">
+        <h2>Name Space</h2>
+
+        <p>XML namespace का use element और attribute names के conflict को avoid करने के लिए किया जाता है। जब अलग-अलग XML
+          documents या vocabularies को combine किया जाता है, तो same element name का meaning अलग हो सकता है। Namespace
+          unique identifier provide करके names को अलग करता है।</p>
+
+        <p>Namespace define करने के लिए <code>xmlns</code> attribute use होता है। Namespace usually URI के रूप में लिखा
+          जाता है। यह जरूरी नहीं कि URI actual webpage open करे; इसका main purpose unique name provide करना होता है।</p>
+
+        <h4>Problem Without Namespace</h4>
+        <pre>&lt;table&gt;
+  &lt;tr&gt;
+    &lt;td&gt;HTML Table&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;table&gt;
+  &lt;name&gt;Wooden Table&lt;/name&gt;
+  &lt;price&gt;5000&lt;/price&gt;
+&lt;/table&gt;</pre>
+
+        <p>यहाँ दोनों जगह <code>&lt;table&gt;</code> tag है, लेकिन first HTML table को represent कर सकता है और second
+          furniture table को। इससे confusion हो सकता है।</p>
+
+        <h4>Using Namespace</h4>
+        <pre>&lt;root
+  xmlns:h="http://www.w3.org/TR/html4/"
+  xmlns:f="https://example.com/furniture"&gt;
+
+  &lt;h:table&gt;
+    &lt;h:tr&gt;
+      &lt;h:td&gt;HTML Table&lt;/h:td&gt;
+    &lt;/h:tr&gt;
+  &lt;/h:table&gt;
+
+  &lt;f:table&gt;
+    &lt;f:name&gt;Wooden Table&lt;/f:name&gt;
+    &lt;f:price&gt;5000&lt;/f:price&gt;
+  &lt;/f:table&gt;
+
+&lt;/root&gt;</pre>
+
+        <p>यहाँ <code>h:</code> और <code>f:</code> prefixes अलग namespaces को represent कर रहे हैं।</p>
+
+        <h4>Default Namespace</h4>
+        <pre>&lt;student xmlns="https://example.com/student"&gt;
+  &lt;name&gt;Brajkant&lt;/name&gt;
+  &lt;course&gt;PGDCA&lt;/course&gt;
+&lt;/student&gt;</pre>
+
+        <h4>Namespace Parts</h4>
+        <table>
+          <tr>
+            <th>Part</th>
+            <th>Meaning</th>
+          </tr>
+          <tr>
+            <td><code>xmlns</code></td>
+            <td>Namespace define करने के लिए attribute।</td>
+          </tr>
+          <tr>
+            <td>Prefix</td>
+            <td>Short name, जैसे <code>h</code> या <code>f</code>।</td>
+          </tr>
+          <tr>
+            <td>URI</td>
+            <td>Unique namespace identifier।</td>
+          </tr>
+          <tr>
+            <td>Qualified Name</td>
+            <td>Prefix के साथ element name, जैसे <code>h:table</code>।</td>
+          </tr>
+        </table>
+
+        <div class="note-box"><b>Real Life Example:</b><br>अगर दो departments अपने XML में <code>&lt;code&gt;</code>
+          element use करते हैं, लेकिन one course code और दूसरा employee code के लिए, तो namespace confusion avoid करता
+          है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Namespace same tag names के conflict को avoid करने के लिए use होता
+          है।</div>
+      </section>
+
+      <section id="syntax-rules">
+        <h2>Syntax Rules</h2>
+
+        <p>XML syntax HTML से ज्यादा strict होती है। XML document properly structured होना चाहिए। अगर XML syntax rules
+          follow नहीं किए गए, तो parser error दे सकता है। Proper syntax वाले XML document को well-formed XML कहा जाता
+          है।</p>
+
+        <h4>Important XML Syntax Rules</h4>
+        <table>
+          <tr>
+            <th>Rule</th>
+            <th>Explanation</th>
+          </tr>
+          <tr>
+            <td>One Root Element</td>
+            <td>XML document में only one root element होना चाहिए।</td>
+          </tr>
+          <tr>
+            <td>Closing Tags Required</td>
+            <td>Every opening tag का closing tag होना चाहिए।</td>
+          </tr>
+          <tr>
+            <td>Case Sensitive</td>
+            <td><code>&lt;Name&gt;</code> और <code>&lt;name&gt;</code> अलग हैं।</td>
+          </tr>
+          <tr>
+            <td>Proper Nesting</td>
+            <td>Tags सही order में nested और closed होने चाहिए।</td>
+          </tr>
+          <tr>
+            <td>Attribute Values in Quotes</td>
+            <td>Attribute values हमेशा quotes में होनी चाहिए।</td>
+          </tr>
+          <tr>
+            <td>Special Characters Escaped</td>
+            <td>Special characters के लिए entities use करनी चाहिए।</td>
+          </tr>
+        </table>
+
+        <h4>Correct XML</h4>
+        <pre>&lt;student&gt;
+  &lt;name&gt;Brajkant&lt;/name&gt;
+  &lt;course&gt;PGDCA&lt;/course&gt;
+&lt;/student&gt;</pre>
+
+        <h4>Wrong XML: Missing Closing Tag</h4>
+        <pre>&lt;student&gt;
+  &lt;name&gt;Brajkant
+  &lt;course&gt;PGDCA&lt;/course&gt;
+&lt;/student&gt;</pre>
+
+        <h4>Wrong XML: Case Mismatch</h4>
+        <pre>&lt;name&gt;Brajkant&lt;/Name&gt;</pre>
+
+        <h4>Wrong XML: Multiple Root Elements</h4>
+        <pre>&lt;student&gt;Brajkant&lt;/student&gt;
+&lt;course&gt;PGDCA&lt;/course&gt;</pre>
+
+        <h4>Correct XML with One Root</h4>
+        <pre>&lt;record&gt;
+  &lt;student&gt;Brajkant&lt;/student&gt;
+  &lt;course&gt;PGDCA&lt;/course&gt;
+&lt;/record&gt;</pre>
+
+        <h4>Special Characters in XML</h4>
+        <table>
+          <tr>
+            <th>Character</th>
+            <th>Entity</th>
+          </tr>
+          <tr>
+            <td><code>&lt;</code></td>
+            <td><code>&amp;lt;</code></td>
+          </tr>
+          <tr>
+            <td><code>&gt;</code></td>
+            <td><code>&amp;gt;</code></td>
+          </tr>
+          <tr>
+            <td><code>&amp;</code></td>
+            <td><code>&amp;amp;</code></td>
+          </tr>
+          <tr>
+            <td><code>"</code></td>
+            <td><code>&amp;quot;</code></td>
+          </tr>
+          <tr>
+            <td><code>'</code></td>
+            <td><code>&amp;apos;</code></td>
+          </tr>
+        </table>
+
+        <div class="remember-box"><b>Remember:</b><br>Well-formed XML में one root element, proper closing tags, proper
+          nesting और quoted attributes जरूरी हैं।</div>
+      </section>
+
+      <section id="dtd-schema">
+        <h2>XML DTD and XML Schema</h2>
+
+        <p>XML document की structure और rules define करने के लिए DTD और XML Schema use किए जाते हैं। XML file
+          well-formed हो सकती है, लेकिन यह जरूरी नहीं कि वह required structure follow कर रही हो। DTD या Schema document
+          को validate करने में help करते हैं। Valid XML वह XML होती है जो defined rules के according हो।</p>
+
+        <h4>DTD</h4>
+        <p><strong>DTD</strong> का full form <strong>Document Type Definition</strong> है। DTD XML document की legal
+          structure define करता है। इसमें कौन-कौन से elements होंगे, उनका order क्या होगा और कौन से attributes allowed
+          होंगे, यह define किया जा सकता है।</p>
+
+        <h4>Internal DTD Example</h4>
+        <pre>&lt;!DOCTYPE student [
+  &lt;!ELEMENT student (name, course)&gt;
+  &lt;!ELEMENT name (#PCDATA)&gt;
+  &lt;!ELEMENT course (#PCDATA)&gt;
+]&gt;
+
+&lt;student&gt;
+  &lt;name&gt;Brajkant&lt;/name&gt;
+  &lt;course&gt;PGDCA&lt;/course&gt;
+&lt;/student&gt;</pre>
+
+        <h4>External DTD</h4>
+        <pre>&lt;!DOCTYPE student SYSTEM "student.dtd"&gt;</pre>
+
+        <h4>student.dtd</h4>
+        <pre>&lt;!ELEMENT student (name, course)&gt;
+&lt;!ELEMENT name (#PCDATA)&gt;
+&lt;!ELEMENT course (#PCDATA)&gt;</pre>
+
+        <h4>XML Schema</h4>
+        <p><strong>XML Schema</strong> या <strong>XSD</strong> XML document की structure define करने का advanced और
+          powerful way है। XML Schema XML syntax में लिखा जाता है और data types support करता है। DTD की comparison में
+          XML Schema ज्यादा powerful है क्योंकि इसमें string, integer, date आदि data types define किए जा सकते हैं।</p>
+
+        <h4>XML Schema Example</h4>
+        <pre>&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+
+  &lt;xs:element name="student"&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element name="name" type="xs:string"/&gt;
+        &lt;xs:element name="course" type="xs:string"/&gt;
+        &lt;xs:element name="marks" type="xs:integer"/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+
+&lt;/xs:schema&gt;</pre>
+
+        <h4>DTD vs XML Schema</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>DTD</th>
+            <th>XML Schema</th>
+          </tr>
+          <tr>
+            <td>Full Form</td>
+            <td>Document Type Definition</td>
+            <td>XML Schema Definition</td>
+          </tr>
+          <tr>
+            <td>Syntax</td>
+            <td>XML syntax नहीं होती।</td>
+            <td>XML syntax में लिखा जाता है।</td>
+          </tr>
+          <tr>
+            <td>Data Types</td>
+            <td>Limited support।</td>
+            <td>Strong data type support।</td>
+          </tr>
+          <tr>
+            <td>Namespace Support</td>
+            <td>Limited।</td>
+            <td>Better namespace support।</td>
+          </tr>
+          <tr>
+            <td>Power</td>
+            <td>Simple validation।</td>
+            <td>Advanced validation।</td>
+          </tr>
+        </table>
+
+        <h4>Use of DTD and Schema</h4>
+        <ul>
+          <li>XML document की structure define करने के लिए।</li>
+          <li>XML data validation के लिए।</li>
+          <li>Elements और attributes rules define करने के लिए।</li>
+          <li>Data exchange में format consistency maintain करने के लिए।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>अगर college को student XML file में name, roll और marks
+          compulsory चाहिए, तो XML Schema से rules define करके invalid files reject की जा सकती हैं।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>DTD और XML Schema XML document की rules और structure define करते
+          हैं। XML Schema DTD से ज्यादा powerful है।</div>
+      </section>
+
+      <section id="rss">
+        <h2>RSS FEED</h2>
+
+        <p><strong>RSS</strong> का full form <strong>Really Simple Syndication</strong> है। RSS feed XML based format है
+          जिसका use frequently updated content share करने के लिए किया जाता है। News websites, blogs, educational
+          websites और podcast platforms RSS feeds use कर सकते हैं ताकि users या applications latest updates
+          automatically receive कर सकें।</p>
+
+        <p>RSS feed एक XML document होती है जिसमें website की latest posts, titles, links, descriptions और publish dates
+          stored होते हैं। RSS reader या feed reader application इस feed को read करके user को latest updates दिखाता है।
+        </p>
+
+        <h4>Simple RSS Feed Example</h4>
+        <pre>&lt;rss version="2.0"&gt;
+  &lt;channel&gt;
+    &lt;title&gt;BK LearnX Updates&lt;/title&gt;
+    &lt;link&gt;https://example.com&lt;/link&gt;
+    &lt;description&gt;Latest study material updates&lt;/description&gt;
+
+    &lt;item&gt;
+      &lt;title&gt;New HTML Chapter Added&lt;/title&gt;
+      &lt;link&gt;https://example.com/html&lt;/link&gt;
+      &lt;description&gt;HTML notes are now available.&lt;/description&gt;
+      &lt;pubDate&gt;Fri, 10 Jul 2026 10:00:00 GMT&lt;/pubDate&gt;
+    &lt;/item&gt;
+
+  &lt;/channel&gt;
+&lt;/rss&gt;</pre>
+
+        <h4>RSS Feed Components</h4>
+        <table>
+          <tr>
+            <th>Element</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>&lt;rss&gt;</code></td>
+            <td>RSS document का root element।</td>
+          </tr>
+          <tr>
+            <td><code>&lt;channel&gt;</code></td>
+            <td>Website/feed information contain करता है।</td>
+          </tr>
+          <tr>
+            <td><code>&lt;title&gt;</code></td>
+            <td>Feed या item का title।</td>
+          </tr>
+          <tr>
+            <td><code>&lt;link&gt;</code></td>
+            <td>Website या item का URL।</td>
+          </tr>
+          <tr>
+            <td><code>&lt;description&gt;</code></td>
+            <td>Short description।</td>
+          </tr>
+          <tr>
+            <td><code>&lt;item&gt;</code></td>
+            <td>Individual update/post।</td>
+          </tr>
+          <tr>
+            <td><code>&lt;pubDate&gt;</code></td>
+            <td>Publishing date।</td>
+          </tr>
+        </table>
+
+        <h4>Uses of RSS Feed</h4>
+        <ul>
+          <li>Latest news updates share करने के लिए।</li>
+          <li>Blog posts automatically distribute करने के लिए।</li>
+          <li>Podcast updates provide करने के लिए।</li>
+          <li>Educational content updates send करने के लिए।</li>
+          <li>Users को website visit किए बिना updates देने के लिए।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>BK LearnX में नया chapter upload होते ही RSS feed में update
+          add हो सकता है, जिससे students को latest material का पता चल सके।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>RSS feed XML based होती है और latest updates automatically share
+          करने के लिए use होती है।</div>
+      </section>
+
+      <section id="json-intro">
+        <h2>JSON Introduction and Uses</h2>
+
+        <p><strong>JSON</strong> का full form <strong>JavaScript Object Notation</strong> है। JSON एक lightweight data
+          format है जिसका use data को store और exchange करने के लिए किया जाता है। JSON human-readable और
+          machine-readable दोनों है। यह especially web APIs में बहुत popular है क्योंकि इसका structure simple और compact
+          होता है।</p>
+
+        <p>JSON JavaScript object syntax से inspired है, लेकिन यह language-independent data format है। इसका मतलब है कि
+          JSON को JavaScript, Python, PHP, Java, C#, Ruby और many other languages में use किया जा सकता है। Modern web
+          development में client और server के बीच data exchange के लिए JSON बहुत common है।</p>
+
+        <h4>Simple JSON Example</h4>
+        <pre>{
+  "name": "Brajkant",
+  "course": "PGDCA",
+  "city": "Kanpur"
+}</pre>
+
+        <h4>JSON Uses</h4>
+        <ul>
+          <li>Client और server के बीच data exchange करने के लिए।</li>
+          <li>Web APIs में response data भेजने के लिए।</li>
+          <li>Configuration files में settings store करने के लिए।</li>
+          <li>Database-like structured data represent करने के लिए।</li>
+          <li>Mobile apps और web apps में data transfer करने के लिए।</li>
+          <li>JavaScript applications में object data handle करने के लिए।</li>
+        </ul>
+
+        <h4>JSON Data with Array</h4>
+        <pre>{
+  "students": [
+    {
+      "name": "Brajkant",
+      "course": "PGDCA"
+    },
+    {
+      "name": "Amit",
+      "course": "DCCN"
+    }
+  ]
+}</pre>
+
+        <h4>Features of JSON</h4>
+        <table>
+          <tr>
+            <th>Feature</th>
+            <th>Explanation</th>
+          </tr>
+          <tr>
+            <td>Lightweight</td>
+            <td>XML की comparison में छोटा और simple होता है।</td>
+          </tr>
+          <tr>
+            <td>Readable</td>
+            <td>Human और machine दोनों आसानी से read कर सकते हैं।</td>
+          </tr>
+          <tr>
+            <td>Language Independent</td>
+            <td>Many programming languages में use हो सकता है।</td>
+          </tr>
+          <tr>
+            <td>API Friendly</td>
+            <td>Web APIs में commonly use होता है।</td>
+          </tr>
+          <tr>
+            <td>Structured</td>
+            <td>Key-value pairs और arrays support करता है।</td>
+          </tr>
+        </table>
+
+        <h4>JSON in JavaScript</h4>
+        <pre>let student = {
+  "name": "Brajkant",
+  "course": "PGDCA"
+};
+
+console.log(student.name);</pre>
+
+        <div class="info-box"><b>Output:</b><br>Brajkant</div>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Weather app server से JSON data receive कर सकता है जैसे city,
+          temperature और condition. App उस JSON data को read करके screen पर weather show करता है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>JSON modern web APIs में data exchange का सबसे common lightweight
+          format है।</div>
+      </section>
+
+      <section id="json-xml">
+        <h2>JSON v/s XML</h2>
+
+        <p>JSON और XML दोनों data exchange formats हैं। दोनों का use structured data को store और transfer करने के लिए
+          किया जाता है, लेकिन JSON lightweight और simple होता है, जबकि XML ज्यादा verbose और tag-based होता है। Modern
+          web APIs में JSON ज्यादा popular है क्योंकि यह compact, fast और JavaScript friendly है।</p>
+
+        <h4>JSON Example</h4>
+        <pre>{
+  "student": {
+    "name": "Brajkant",
+    "course": "PGDCA",
+    "marks": 85
+  }
+}</pre>
+
+        <h4>XML Example</h4>
+        <pre>&lt;student&gt;
+  &lt;name&gt;Brajkant&lt;/name&gt;
+  &lt;course&gt;PGDCA&lt;/course&gt;
+  &lt;marks&gt;85&lt;/marks&gt;
+&lt;/student&gt;</pre>
+
+        <h4>Difference Table</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>JSON</th>
+            <th>XML</th>
+          </tr>
+          <tr>
+            <td>Full Form</td>
+            <td>JavaScript Object Notation</td>
+            <td>Extensible Markup Language</td>
+          </tr>
+          <tr>
+            <td>Structure</td>
+            <td>Key-value pairs और arrays।</td>
+            <td>Tags और nested elements।</td>
+          </tr>
+          <tr>
+            <td>Size</td>
+            <td>Less verbose, compact।</td>
+            <td>More verbose due to tags।</td>
+          </tr>
+          <tr>
+            <td>Readability</td>
+            <td>Simple और easy to read।</td>
+            <td>Readable but longer।</td>
+          </tr>
+          <tr>
+            <td>Parsing</td>
+            <td>Fast parsing।</td>
+            <td>Comparatively slower parsing।</td>
+          </tr>
+          <tr>
+            <td>Array Support</td>
+            <td>Direct array support।</td>
+            <td>Arrays को repeated elements से represent करते हैं।</td>
+          </tr>
+          <tr>
+            <td>Comments</td>
+            <td>Comments allowed नहीं हैं।</td>
+            <td>Comments allowed हैं।</td>
+          </tr>
+          <tr>
+            <td>Use</td>
+            <td>Modern APIs, web apps।</td>
+            <td>Documents, configuration, legacy systems, RSS।</td>
+          </tr>
+        </table>
+
+        <h4>When to Use JSON</h4>
+        <ul>
+          <li>Web APIs में data send/receive करना हो।</li>
+          <li>Lightweight data format चाहिए।</li>
+          <li>JavaScript application के साथ काम करना हो।</li>
+          <li>Fast parsing और compact response चाहिए।</li>
+        </ul>
+
+        <h4>When to Use XML</h4>
+        <ul>
+          <li>Strict document structure चाहिए।</li>
+          <li>DTD या Schema validation चाहिए।</li>
+          <li>RSS feeds या old enterprise systems के साथ काम करना हो।</li>
+          <li>Document-oriented data store करना हो।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Modern mobile app server से JSON data लेना पसंद करता है, जबकि
+          पुराने banking या enterprise systems XML format use कर सकते हैं।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>JSON compact और API-friendly है, XML strict और document-oriented
+          है।</div>
+      </section>
+
+      <section id="json-syntax">
+        <h2>JSON Syntax</h2>
+
+        <p>JSON syntax simple होती है, लेकिन इसके rules strict होते हैं। JSON data key-value pairs में लिखा जाता है।
+          Keys हमेशा double quotes में होती हैं। Values string, number, boolean, null, object या array हो सकती हैं। JSON
+          में comments allowed नहीं होते।</p>
+
+        <h4>Basic JSON Syntax</h4>
+        <pre>{
+  "key": "value"
+}</pre>
+
+        <h4>JSON Object</h4>
+        <pre>{
+  "name": "Brajkant",
+  "age": 23,
+  "course": "PGDCA"
+}</pre>
+
+        <h4>JSON Array</h4>
+        <pre>{
+  "subjects": ["HTML", "CSS", "JavaScript", "Bootstrap"]
+}</pre>
+
+        <h4>Nested JSON</h4>
+        <pre>{
+  "student": {
+    "name": "Brajkant",
+    "course": "PGDCA",
+    "address": {
+      "city": "Kanpur",
+      "state": "Uttar Pradesh"
+    }
+  }
+}</pre>
+
+        <h4>JSON Data Types</h4>
+        <table>
+          <tr>
+            <th>Data Type</th>
+            <th>Example</th>
+          </tr>
+          <tr>
+            <td>String</td>
+            <td><code>"Brajkant"</code></td>
+          </tr>
+          <tr>
+            <td>Number</td>
+            <td><code>23</code>, <code>85.5</code></td>
+          </tr>
+          <tr>
+            <td>Boolean</td>
+            <td><code>true</code>, <code>false</code></td>
+          </tr>
+          <tr>
+            <td>Null</td>
+            <td><code>null</code></td>
+          </tr>
+          <tr>
+            <td>Object</td>
+            <td><code>{"name": "Amit"}</code></td>
+          </tr>
+          <tr>
+            <td>Array</td>
+            <td><code>["HTML", "CSS"]</code></td>
+          </tr>
+        </table>
+
+        <h4>JSON Syntax Rules</h4>
+        <ul>
+          <li>Data key-value pairs में होता है।</li>
+          <li>Keys double quotes में लिखी जाती हैं।</li>
+          <li>String values भी double quotes में होती हैं।</li>
+          <li>Data pairs comma से separate होते हैं।</li>
+          <li>Objects curly braces <code>{ }</code> में लिखे जाते हैं।</li>
+          <li>Arrays square brackets <code>[ ]</code> में लिखी जाती हैं।</li>
+          <li>JSON में comments allowed नहीं हैं।</li>
+          <li>Last item के बाद extra comma नहीं लगाना चाहिए।</li>
+        </ul>
+
+        <h4>Correct JSON</h4>
+        <pre>{
+  "name": "Brajkant",
+  "course": "PGDCA",
+  "age": 23
+}</pre>
+
+        <h4>Wrong JSON: Single Quotes</h4>
+        <pre>{
+  'name': 'Brajkant'
+}</pre>
+
+        <h4>Wrong JSON: Extra Comma</h4>
+        <pre>{
+  "name": "Brajkant",
+  "course": "PGDCA",
+}</pre>
+
+        <h4>JSON.parse() and JSON.stringify()</h4>
+        <p>JavaScript में JSON string को object में convert करने के लिए <code>JSON.parse()</code> और object को JSON
+          string में convert करने के लिए <code>JSON.stringify()</code> use होता है।</p>
+
+        <pre>let jsonText = '{"name":"Brajkant","course":"PGDCA"}';
+
+let obj = JSON.parse(jsonText);
+
+console.log(obj.name);</pre>
+
+        <div class="info-box"><b>Output:</b><br>Brajkant</div>
+
+        <pre>let student = {
+  name: "Brajkant",
+  course: "PGDCA"
+};
+
+let jsonString = JSON.stringify(student);
+
+console.log(jsonString);</pre>
+
+        <div class="info-box"><b>Output:</b><br>{"name":"Brajkant","course":"PGDCA"}</div>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Server से आया JSON text browser में JavaScript object में
+          convert करके webpage पर student details display की जा सकती हैं।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>JSON में keys double quotes में होती हैं और extra comma allowed
+          नहीं होता।</div>
+      </section>
+
+    </main>
+  </div>
+</body>
+
+</html>

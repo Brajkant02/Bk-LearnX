@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MySQL/SQL - Part 4</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f7fb;color:#1f2937;line-height:1.75}
+.page{display:grid;grid-template-columns:290px 1fr;gap:20px;max-width:1550px;margin:auto;padding:10px}
+.sidebar{position:sticky;top:10px;height:calc(100vh - 20px);overflow-y:auto;background:#fff;border-radius:16px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.08);align-self:start}
+.sidebar h2{font-size:20px;margin-bottom:12px;color:#111827}
+.sidebar a{display:block;text-decoration:none;color:#374151;padding:8px 10px;border-radius:10px;margin-bottom:4px;font-size:14.5px}
+.sidebar a:hover{background:#eef2ff;color:#1d4ed8}
+.content{background:#fff;border-radius:18px;padding:10px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.hero{padding:30px 20px;border-radius:16px;background:linear-gradient(135deg,#eef2ff,#f8fafc);margin-bottom:18px}
+.hero h1{font-size:34px;color:#111827;margin-bottom:10px}
+.hero p{font-size:18px;color:#374151}
+section{padding:22px 10px;border-bottom:1px solid #e5e7eb}
+section:last-child{border-bottom:none}
+h2{font-size:27px;color:#111827;margin-bottom:12px;border-left:5px solid #2563eb;padding-left:12px}
+h3{font-size:22px;color:#1f2937;margin:18px 0 8px}
+h4{font-size:18px;color:#111827;margin:14px 0 6px}
+p{margin:10px 0;font-size:17px}
+ul,ol{margin-left:24px;margin-top:8px}
+li{margin:7px 0;font-size:16.5px}
+strong{color:#111827}
+.image-icon{min-height:180px;border:2px dashed #94a3b8;border-radius:16px;background:#f8fafc;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;margin:18px 0;color:#475569;font-weight:600;flex-direction:column;gap:8px}
+.image-icon img{max-width:100%;height:auto}
+.note-box{background:#f0fdf4;border-left:5px solid #22c55e;border-radius:14px;padding:14px 16px;margin:16px 0}
+.info-box{background:#ecfeff;border-left:5px solid #06b6d4;border-radius:14px;padding:14px 16px;margin:16px 0}
+.remember-box{background:#fff7ed;border-left:5px solid #f97316;border-radius:14px;padding:14px 16px;margin:16px 0}
+table{width:100%;border-collapse:collapse;margin:16px 0;border-radius:12px;overflow:hidden;font-size:15.3px}
+th,td{border:1px solid #d1d5db;padding:10px;text-align:left;vertical-align:top}
+th{background:#eef2ff;color:#111827}
+code{background:#111827;color:#f9fafb;padding:2px 6px;border-radius:6px;font-family:Consolas,monospace;font-size:15px}
+pre{background:#0f172a;color:#e5e7eb;border-radius:14px;padding:16px;margin:16px 0;overflow-x:auto;font-family:Consolas,monospace;line-height:1.6}
+@media(max-width:900px){.page{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.hero h1{font-size:27px}h2{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="page">
+<aside class="sidebar"><h2>Topics</h2><a href="#aggregate">Aggregate Functions</a>
+<a href="#string">String Functions</a>
+<a href="#date">Date and Time Functions</a>
+<a href="#null">NULL Values</a>
+<a href="#ifnull">Handling NULL</a>
+<a href="#combined">Combined Practical Query</a>
+<a href="#mistakes">Common Mistakes</a>
+<a href="#best">Best Practices</a></aside>
+<main class="content">
+<div class="hero"><h1>MySQL/SQL - Part 4</h1><p>Aggregate, string, date-time functions और NULL values को premium practical format में समझाया गया है।</p></div>
+<section id="aggregate"><h2>Aggregate Functions</h2>
+<table>
+<tr><th>Function</th><th>Purpose</th></tr>
+<tr><td>COUNT()</td><td>Rows count</td></tr>
+<tr><td>SUM()</td><td>Total</td></tr>
+<tr><td>AVG()</td><td>Average</td></tr>
+<tr><td>MIN()</td><td>Minimum</td></tr>
+<tr><td>MAX()</td><td>Maximum</td></tr>
+</table>
+<pre>SELECT COUNT(*) FROM student;
+SELECT AVG(marks) FROM student;
+SELECT MAX(marks) FROM student;</pre>
+</section>
+<section id="string"><h2>String Functions</h2>
+<pre>SELECT UPPER(name) FROM student;
+SELECT LOWER(name) FROM student;
+SELECT LENGTH(name) FROM student;
+SELECT CONCAT(name, ' - ', city) FROM student;
+SELECT SUBSTRING(name,1,3) FROM student;
+SELECT TRIM(name) FROM student;
+SELECT REPLACE(city,'Kanpur','Cawnpore') FROM student;</pre>
+</section>
+<section id="date"><h2>Date and Time Functions</h2>
+<pre>SELECT NOW();
+SELECT CURDATE();
+SELECT CURTIME();
+SELECT YEAR(NOW());
+SELECT MONTH(NOW());
+SELECT DAY(NOW());
+SELECT DATEDIFF('2026-12-31','2026-07-11');</pre>
+</section>
+<section id="null"><h2>NULL Values</h2>
+<p>NULL का मतलब missing, unknown या unavailable value है। यह zero या empty string नहीं है।</p>
+<pre>SELECT * FROM student WHERE email IS NULL;
+SELECT * FROM student WHERE email IS NOT NULL;</pre>
+<div class="remember-box"><b>Remember:</b><br>NULL compare करने के लिए = NULL नहीं, IS NULL use करें।</div>
+</section>
+<section id="ifnull"><h2>Handling NULL</h2>
+<pre>SELECT name, IFNULL(email,'Not Available')
+FROM student;
+
+SELECT COALESCE(phone,email,'No Contact')
+FROM student;</pre>
+</section>
+<section id="combined"><h2>Combined Practical Query</h2>
+<pre>SELECT city,
+       COUNT(*) AS total_students,
+       AVG(marks) AS average_marks
+FROM student
+WHERE marks IS NOT NULL
+GROUP BY city
+HAVING AVG(marks) > 70
+ORDER BY average_marks DESC;</pre>
+</section>
+<section id="mistakes"><h2>Common Mistakes</h2>
+<ul>
+<li>UPDATE/DELETE में WHERE भूलना।</li>
+<li>NULL के साथ = use करना।</li>
+<li>Wrong data type select करना।</li>
+<li>JOIN condition miss करना।</li>
+<li>GROUP BY के बिना aggregate misuse करना।</li>
+<li>Reserved words को object name बनाना।</li>
+</ul>
+</section>
+<section id="best"><h2>Best Practices</h2>
+<ul>
+<li>Meaningful naming conventions use करें।</li>
+<li>Primary key हर important table में रखें।</li>
+<li>Foreign keys से referential integrity maintain करें।</li>
+<li>Transactions use करें।</li>
+<li>Queries test करके run करें।</li>
+<li>Frequently searched columns पर index use करें।</li>
+<li>Backup रखें।</li>
+</ul>
+<div class="note-box"><b>Professional Tip:</b><br>SQL केवल commands याद करने का subject नहीं; data relationships और query logic समझना जरूरी है।</div>
+</section>
+</main>
+</div>
+</body>
+</html>

@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Classes in Python</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+      line-height: 1.75
+    }
+
+    .page {
+      display: grid;
+      grid-template-columns: 285px 1fr;
+      gap: 20px;
+      max-width: 1500px;
+      margin: auto;
+      padding: 10px
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 10px;
+      height: calc(100vh - 20px);
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
+      align-self: start
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #111827
+    }
+
+    .sidebar a {
+      display: block;
+      text-decoration: none;
+      color: #374151;
+      padding: 8px 10px;
+      border-radius: 10px;
+      margin-bottom: 4px;
+      font-size: 14.7px
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+      color: #1d4ed8
+    }
+
+    .content {
+      background: #fff;
+      border-radius: 18px;
+      padding: 10px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08)
+    }
+
+    .hero {
+      padding: 28px 18px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #eef2ff, #f8fafc);
+      margin-bottom: 18px
+    }
+
+    .hero h1 {
+      font-size: 34px;
+      color: #111827;
+      margin-bottom: 10px
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #374151
+    }
+
+    section {
+      padding: 22px 10px;
+      border-bottom: 1px solid #e5e7eb
+    }
+
+    section:last-child {
+      border-bottom: none
+    }
+
+    h2 {
+      font-size: 27px;
+      color: #111827;
+      margin-bottom: 12px;
+      border-left: 5px solid #2563eb;
+      padding-left: 12px
+    }
+
+    h3 {
+      font-size: 22px;
+      color: #1f2937;
+      margin: 16px 0 8px
+    }
+
+    h4 {
+      font-size: 18px;
+      color: #111827;
+      margin: 14px 0 6px
+    }
+
+    p {
+      margin: 10px 0;
+      font-size: 17px
+    }
+
+    ul,
+    ol {
+      margin-left: 24px;
+      margin-top: 8px
+    }
+
+    li {
+      margin: 7px 0;
+      font-size: 16.5px
+    }
+
+    strong {
+      color: #111827
+    }
+
+    .image-icon {
+      min-height: 180px;
+      border: 2px dashed #94a3b8;
+      border-radius: 16px;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      margin: 18px 0;
+      color: #475569;
+      font-weight: 600
+    }
+
+    .image-icon img {
+      max-width: 100%;
+      height: auto
+    }
+
+    .note-box {
+      background: #f0fdf4;
+      border-left: 5px solid #22c55e;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .info-box {
+      background: #ecfeff;
+      border-left: 5px solid #06b6d4;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .remember-box {
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      font-size: 15.5px
+    }
+
+    th,
+    td {
+      border: 1px solid #d1d5db;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top
+    }
+
+    th {
+      background: #eef2ff;
+      color: #111827
+    }
+
+    code {
+      background: #111827;
+      color: #f9fafb;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-family: Consolas, monospace;
+      font-size: 15px
+    }
+
+    pre {
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 14px;
+      padding: 16px;
+      margin: 16px 0;
+      overflow-x: auto;
+      font-family: Consolas, monospace;
+      line-height: 1.6
+    }
+
+    .compiler {
+      width: 100%;
+      height: 2rem;
+      background-color: green;
+      text-align: center;
+    }
+
+    .compiler a {
+      text-decoration: none;
+      color: white;
+    }
+
+    @media(max-width:900px) {
+      .page {
+        grid-template-columns: 1fr
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto
+      }
+
+      .hero h1 {
+        font-size: 27px
+      }
+
+      h2 {
+        font-size: 24px
+      }
+    }
+    /* Iframe content responsive fix */
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.page,
+.content,
+section {
+  min-width: 0;
+  max-width: 100%;
+}
+
+img,
+video,
+svg,
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+table {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border-radius: 12px;
+  -webkit-overflow-scrolling: touch;
+}
+
+th,
+td {
+  min-width: 110px;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+pre {
+  max-width: 100%;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+code {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 900px) {
+  .page {
+    display: block;
+    width: 100%;
+    padding: 5px;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .content {
+    width: 100%;
+    min-width: 0;
+    padding: 6px;
+    border-radius: 10px;
+  }
+
+  section {
+    width: 100%;
+    padding: 16px 6px;
+  }
+
+  .hero {
+    padding: 18px 10px;
+  }
+
+  .hero h1 {
+    font-size: 24px;
+  }
+
+  h2 {
+    font-size: 21px;
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+
+  p,
+  li {
+    font-size: 15px;
+  }
+
+  .image-icon {
+    min-height: 130px;
+    padding: 8px;
+  }
+}
+  </style>
+
+<link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
+<script src="../../../../../../../assets/shared/portal.js" defer></script>
+<script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
+</head>
+
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <h2>Topics</h2>
+      <a href="#classes">Classes in Python</a>
+      <a href="#principles">Principles of Object Orientation</a>
+      <a href="#creating">Creating Classes</a>
+      <a href="#instance-methods">Instance Methods</a>
+      <a href="#file-organization">File Organization</a>
+      <a href="#special-methods">Special Methods</a>
+      <a href="#class-variables">Class Variables</a>
+      <a href="#inheritance">Inheritance</a>
+      <a href="#polymorphism">Polymorphism</a>
+    </aside>
+
+    <main class="content">
+      <div class="hero">
+        <h1>Classes in Python</h1>
+        <p>इस chapter में Python Object-Oriented Programming, classes, objects, instance methods, special methods, class variables, inheritance और polymorphism को simple examples के साथ समझाया गया है।</p>
+      </div>
+
+      <section id="classes">
+        <h2>Classes in Python</h2>
+
+        <p>Python में class object-oriented programming का basic building block है। Class एक blueprint या template की तरह होती है, जिससे objects create किए जाते हैं। जिस तरह house बनाने से पहले उसका design या map बनाया जाता है, उसी तरह object बनाने से पहले class बनाई जाती है।</p>
+
+        <p>Class में data और behavior दोनों को एक साथ रखा जाता है। Data को attributes या variables कहा जाता है और behavior को methods कहा जाता है। Object class का real instance होता है। यानी class plan है और object उस plan से बना actual item है।</p>
+
+        <p>Python पूरी तरह object-oriented language है। Python में almost हर चीज object होती है, जैसे integer, string, list, function और module. Classes programmer को अपने custom data types create करने की facility देती हैं।</p>
+
+        <h4>Class and Object Concept</h4>
+        <table>
+          <tr>
+            <th>Term</th>
+            <th>Meaning</th>
+            <th>Example</th>
+          </tr>
+          <tr>
+            <td>Class</td>
+            <td>Object बनाने का blueprint।</td>
+            <td>Student</td>
+          </tr>
+          <tr>
+            <td>Object</td>
+            <td>Class से बना actual instance।</td>
+            <td>Brajkant नाम का student object</td>
+          </tr>
+          <tr>
+            <td>Attribute</td>
+            <td>Object का data/property।</td>
+            <td>name, age, course</td>
+          </tr>
+          <tr>
+            <td>Method</td>
+            <td>Object का behavior/function।</td>
+            <td>show_details()</td>
+          </tr>
+        </table>
+
+        <h4>Simple Class Example</h4>
+        <pre>class Student:
+    name = "Brajkant"
+    course = "PGDCA"
+
+s1 = Student()
+
+print(s1.name)
+print(s1.course)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Brajkant<br>PGDCA</div>
+
+        <h4>Why Classes Are Needed</h4>
+        <ul>
+          <li>Real-world entities को program में represent करने के लिए।</li>
+          <li>Data और functions को एक single unit में combine करने के लिए।</li>
+          <li>Large programs को organized और modular बनाने के लिए।</li>
+          <li>Code reuse और maintainability improve करने के लिए।</li>
+          <li>Inheritance और polymorphism जैसे OOP concepts apply करने के लिए।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Student Management System में Student class बनाई जा सकती है जिसमें name, roll number, course attributes और display, update, calculate_result methods हो सकते हैं।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Class blueprint है और object उस blueprint से बना actual instance है।</div>
+      </section>
+
+      <section id="principles">
+        <h2>Principles of Object Orientation</h2>
+
+        <p>Object-oriented programming यानी OOP एक programming approach है जिसमें program को objects के form में design किया जाता है। Object real-world entity को represent करता है। OOP का main purpose program को modular, reusable, secure और easy to maintain बनाना है।</p>
+
+        <p>OOP के important principles हैं: Encapsulation, Abstraction, Inheritance और Polymorphism. ये principles large software development में बहुत useful होते हैं क्योंकि इनसे code organized रहता है और complexity reduce होती है।</p>
+
+        <h4>Encapsulation</h4>
+        <p>Encapsulation का मतलब data और methods को एक single unit यानी class में bind करना है। इससे data directly हर जगह से access नहीं होता और object अपने methods के through data को manage करता है।</p>
+
+        <pre>class Student:
+    def __init__(self, name):
+        self.name = name
+
+    def show_name(self):
+        print("Name:", self.name)
+
+s1 = Student("Brajkant")
+s1.show_name()</pre>
+
+        <div class="info-box"><b>Output:</b><br>Name: Brajkant</div>
+
+        <h4>Abstraction</h4>
+        <p>Abstraction का मतलब unnecessary details को hide करके only essential features show करना है। User को यह जानने की जरूरत नहीं होती कि अंदर logic कैसे काम कर रहा है।</p>
+
+        <p>For example, जब हम mobile में call button press करते हैं, तो हमें internal network processing की detail नहीं पता होती। हमें केवल call feature visible होता है।</p>
+
+        <h4>Inheritance</h4>
+        <p>Inheritance में एक class दूसरी class की properties और methods को acquire कर सकती है। इससे code reuse होता है और relationship-based classes बनाई जा सकती हैं।</p>
+
+        <pre>class Person:
+    def show(self):
+        print("I am a person")
+
+class Student(Person):
+    pass
+
+s1 = Student()
+s1.show()</pre>
+
+        <div class="info-box"><b>Output:</b><br>I am a person</div>
+
+        <h4>Polymorphism</h4>
+        <p>Polymorphism का मतलब है same method name या same operation का different objects के साथ different behavior दिखाना। Python में polymorphism method overriding और duck typing के through commonly दिखता है।</p>
+
+        <pre>class Dog:
+    def sound(self):
+        print("Dog barks")
+
+class Cat:
+    def sound(self):
+        print("Cat meows")
+
+for animal in (Dog(), Cat()):
+    animal.sound()</pre>
+
+        <div class="info-box"><b>Output:</b><br>Dog barks<br>Cat meows</div>
+
+        <h4>OOP Principles Table</h4>
+        <table>
+          <tr>
+            <th>Principle</th>
+            <th>Meaning</th>
+            <th>Benefit</th>
+          </tr>
+          <tr>
+            <td>Encapsulation</td>
+            <td>Data और methods को class में bind करना।</td>
+            <td>Data security और organization।</td>
+          </tr>
+          <tr>
+            <td>Abstraction</td>
+            <td>Complex details hide करना।</td>
+            <td>User को simple interface मिलता है।</td>
+          </tr>
+          <tr>
+            <td>Inheritance</td>
+            <td>एक class से दूसरी class properties लेना।</td>
+            <td>Code reuse।</td>
+          </tr>
+          <tr>
+            <td>Polymorphism</td>
+            <td>Same name, different behavior।</td>
+            <td>Flexibility।</td>
+          </tr>
+        </table>
+
+        <div class="remember-box"><b>Remember:</b><br>OOP real-world problem को objects और classes के form में solve करने की technique है।</div>
+      </section>
+
+      <section id="creating">
+        <h2>Creating Classes</h2>
+
+        <p>Python में class create करने के लिए <code>class</code> keyword का use किया जाता है। Class name usually capital letter से start किया जाता है। यह naming convention है, compulsory syntax नहीं। Class के अंदर variables और methods define किए जा सकते हैं।</p>
+
+        <p>Object create करने के लिए class name को function की तरह call किया जाता है। Object create होते ही class का constructor method <code>__init__()</code> automatically call हो सकता है। Constructor object की initial values set करने के लिए use होता है।</p>
+
+        <h4>Basic Syntax</h4>
+        <pre>class ClassName:
+    statements</pre>
+
+        <h4>Creating Object</h4>
+        <pre>class Student:
+    pass
+
+s1 = Student()
+
+print(type(s1))</pre>
+
+        <div class="info-box"><b>Output:</b><br>&lt;class 'main.student'&gt;</div>
+
+        <h4>Using __init__() Constructor</h4>
+        <p><code>__init__()</code> special method है जो object create होते समय automatically execute होता है। इसका use object की initial properties set करने के लिए किया जाता है।</p>
+
+        <pre>class Student:
+    def __init__(self, name, course):
+        self.name = name
+        self.course = course
+
+s1 = Student("Brajkant", "PGDCA")
+
+print(s1.name)
+print(s1.course)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Brajkant<br>PGDCA</div>
+
+        <h4>self Parameter</h4>
+        <p><code>self</code> current object को represent करता है। Class के अंदर object के attributes और methods को access करने के लिए self use किया जाता है। Python automatically current object को self के रूप में pass करता है।</p>
+
+        <pre>class Student:
+    def __init__(self, name):
+        self.name = name
+
+    def show(self):
+        print("Name:", self.name)
+
+s1 = Student("Brajkant")
+s1.show()</pre>
+
+        <div class="info-box"><b>Output:</b><br>Name: Brajkant</div>
+
+        <h4>Creating Multiple Objects</h4>
+        <pre>class Student:
+    def __init__(self, name, course):
+        self.name = name
+        self.course = course
+
+s1 = Student("Brajkant", "PGDCA")
+s2 = Student("Amit", "DCCN")
+
+print(s1.name, s1.course)
+print(s2.name, s2.course)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Brajkant PGDCA<br>Amit DCCN</div>
+
+        <h4>Common Mistakes</h4>
+        <ul>
+          <li>Class name के बाद colon <code>:</code> लगाना भूल जाना।</li>
+          <li>Method में <code>self</code> parameter लिखना भूल जाना।</li>
+          <li><code>__init__</code> spelling गलत लिखना।</li>
+          <li>Object create करते समय required arguments pass न करना।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Student class से अलग-अलग student objects बनाए जा सकते हैं, जिनमें हर student का name और course अलग होगा।</div>
+      </section>
+
+      <section id="instance-methods">
+        <h2>Instance Methods</h2>
+
+        <p>Instance methods वे methods होते हैं जो class के object यानी instance पर काम करते हैं। ये methods object के data को access और modify कर सकते हैं। Instance method का पहला parameter usually <code>self</code> होता है, जो current object को refer करता है।</p>
+
+        <p>Instance methods object-specific behavior define करते हैं। For example, Student class में <code>show_details()</code>, <code>update_course()</code> और <code>calculate_result()</code> जैसे methods instance methods हो सकते हैं क्योंकि ये particular student object के data पर काम करेंगे।</p>
+
+        <h4>Simple Instance Method</h4>
+        <pre>class Student:
+    def __init__(self, name, course):
+        self.name = name
+        self.course = course
+
+    def show_details(self):
+        print("Name:", self.name)
+        print("Course:", self.course)
+
+s1 = Student("Brajkant", "PGDCA")
+s1.show_details()</pre>
+
+        <div class="info-box"><b>Output:</b><br>Name: Brajkant<br>Course: PGDCA</div>
+
+        <h4>Method to Update Data</h4>
+        <pre>class Student:
+    def __init__(self, name, course):
+        self.name = name
+        self.course = course
+
+    def update_course(self, new_course):
+        self.course = new_course
+
+    def show_details(self):
+        print(self.name, self.course)
+
+s1 = Student("Brajkant", "PGDCA")
+s1.update_course("Python")
+s1.show_details()</pre>
+
+        <div class="info-box"><b>Output:</b><br>Brajkant Python</div>
+
+        <h4>Method with Return Value</h4>
+        <pre>class Marks:
+    def __init__(self, m1, m2, m3):
+        self.m1 = m1
+        self.m2 = m2
+        self.m3 = m3
+
+    def total(self):
+        return self.m1 + self.m2 + self.m3
+
+student_marks = Marks(80, 75, 90)
+
+print("Total:", student_marks.total())</pre>
+
+        <div class="info-box"><b>Output:</b><br>Total: 245</div>
+
+        <h4>Instance Method Features</h4>
+        <ul>
+          <li>Object के data को access कर सकता है।</li>
+          <li>Object के data को modify कर सकता है।</li>
+          <li>पहला parameter usually <code>self</code> होता है।</li>
+          <li>Object के through call किया जाता है।</li>
+          <li>Object-specific behavior define करता है।</li>
+        </ul>
+
+        <div class="remember-box"><b>Remember:</b><br>Instance method का पहला parameter <code>self</code> होता है और यह current object के data पर काम करता है।</div>
+      </section>
+
+      <section id="file-organization">
+        <h2>File Organization</h2>
+
+        <p>Python projects में classes को properly organize करना बहुत important है। Small program में class और main code एक ही file में लिखा जा सकता है, लेकिन large project में classes को अलग modules/files में रखना better होता है। इससे code clean, reusable और maintainable बनता है।</p>
+
+        <p>File organization का मतलब है project की files को logical तरीके से arrange करना। Related classes को एक module में रखा जा सकता है। Main program अलग file में हो सकता है। इससे team members अलग-अलग files पर easily काम कर सकते हैं।</p>
+
+        <h4>Single File Example</h4>
+        <pre># main.py
+
+class Student:
+    def __init__(self, name):
+        self.name = name
+
+    def show(self):
+        print("Name:", self.name)
+
+s1 = Student("Brajkant")
+s1.show()</pre>
+
+        <div class="info-box"><b>Output:</b><br>Name: Brajkant</div>
+
+        <h4>Separate Class File</h4>
+        <p>मान लो class को <code>student.py</code> file में रखा गया है:</p>
+
+        <pre># student.py
+
+class Student:
+    def __init__(self, name, course):
+        self.name = name
+        self.course = course
+
+    def show(self):
+        print(self.name, self.course)</pre>
+
+        <p>अब main file में class import की जा सकती है:</p>
+
+        <pre># main.py
+
+from student import Student
+
+s1 = Student("Brajkant", "PGDCA")
+s1.show()</pre>
+
+        <div class="info-box"><b>Output:</b><br>Brajkant PGDCA</div>
+
+        <h4>Possible Project Structure</h4>
+        <pre>project/
+│
+├── main.py
+├── student.py
+├── teacher.py
+├── course.py
+└── utils.py</pre>
+
+        <h4>Benefits of Proper File Organization</h4>
+        <ul>
+          <li>Code readability improve होती है।</li>
+          <li>Large project manage करना आसान होता है।</li>
+          <li>Classes को reuse करना आसान होता है।</li>
+          <li>Testing और debugging simple होती है।</li>
+          <li>Team work में confusion कम होता है।</li>
+        </ul>
+
+        <h4>Common Mistakes</h4>
+        <ul>
+          <li>सब code एक ही file में लिख देना।</li>
+          <li>File names को unclear रखना।</li>
+          <li>Standard module names जैसे <code>math.py</code>, <code>time.py</code> रखना।</li>
+          <li>Import path सही न रखना।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>School management project में Student, Teacher, Course और Fee की classes अलग-अलग files में रखी जा सकती हैं।</div>
+      </section>
+
+      <section id="special-methods">
+        <h2>Special Methods</h2>
+
+        <p>Python में special methods वे methods होते हैं जिनके नाम के beginning और ending में double underscore होता है। इन्हें dunder methods भी कहा जाता है। जैसे <code>__init__()</code>, <code>__str__()</code>, <code>__len__()</code>, <code>__add__()</code> आदि।</p>
+
+        <p>Special methods Python objects को built-in behavior देने के लिए use होते हैं। इनके through हम object को print करने, compare करने, add करने, length निकालने और other operations perform करने के लिए customize कर सकते हैं।</p>
+
+        <h4>__init__()</h4>
+        <p><code>__init__()</code> constructor method है जो object create होने पर automatically call होता है।</p>
+
+        <pre>class Student:
+    def __init__(self, name):
+        self.name = name
+
+s1 = Student("Brajkant")
+print(s1.name)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Brajkant</div>
+
+        <h4>__str__()</h4>
+        <p><code>__str__()</code> object का user-friendly string representation return करता है। जब object को print किया जाता है, तो यह method automatically call होता है।</p>
+
+        <pre>class Student:
+    def __init__(self, name, course):
+        self.name = name
+        self.course = course
+
+    def __str__(self):
+        return f"self-name-self.course}"
+
+s1 = Student("Brajkant", "PGDCA")
+
+print(s1)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Brajkant - PGDCA</div>
+
+        <h4>__len__()</h4>
+        <p><code>__len__()</code> object पर <code>len()</code> function का behavior define कर सकता है।</p>
+
+        <pre>class Batch:
+    def __init__(self, students):
+        self.students = students
+
+    def __len__(self):
+        return len(self.students)
+
+b1 = Batch(["Amit", "Ravi", "Brajkant"])
+
+print(len(b1))</pre>
+
+        <div class="info-box"><b>Output:</b><br>3</div>
+
+        <h4>__add__()</h4>
+        <p><code>__add__()</code> method object पर plus operator <code>+</code> का behavior customize करता है।</p>
+
+        <pre>class Marks:
+    def __init__(self, value):
+        self.value = value
+
+    def __add__(self, other):
+        return self.value + other.value
+
+m1 = Marks(80)
+m2 = Marks(90)
+
+print(m1 + m2)</pre>
+
+        <div class="info-box"><b>Output:</b><br>170</div>
+
+        <h4>Common Special Methods</h4>
+        <table>
+          <tr>
+            <th>Method</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>__init__()</code></td>
+            <td>Object initialization के लिए।</td>
+          </tr>
+          <tr>
+            <td><code>__str__()</code></td>
+            <td>Readable string output के लिए।</td>
+          </tr>
+          <tr>
+            <td><code>__len__()</code></td>
+            <td><code>len()</code> behavior define करने के लिए।</td>
+          </tr>
+          <tr>
+            <td><code>__add__()</code></td>
+            <td><code>+</code> operator behavior define करने के लिए।</td>
+          </tr>
+          <tr>
+            <td><code>__eq__()</code></td>
+            <td>Equality comparison के लिए।</td>
+          </tr>
+        </table>
+
+        <div class="remember-box"><b>Remember:</b><br>Special methods Python objects को built-in functions और operators के साथ काम करने योग्य बनाते हैं।</div>
+      </section>
+
+      <section id="class-variables">
+        <h2>Class Variables</h2>
+
+        <p>Class variables वे variables होते हैं जो class के अंदर लेकिन methods के बाहर define किए जाते हैं। ये variables class के सभी objects के लिए common होते हैं। अगर कोई data सभी objects के लिए same होना चाहिए, तो उसे class variable के रूप में define किया जा सकता है।</p>
+
+        <p>Instance variables हर object के लिए अलग-अलग values रखते हैं, जबकि class variables सभी objects द्वारा shared होते हैं। Class variables को class name या object name दोनों से access किया जा सकता है, लेकिन best practice class name से access करना है।</p>
+
+        <h4>Class Variable Example</h4>
+        <pre>class Student:
+    college = "Government Polytechnic Kanpur"
+
+    def __init__(self, name):
+        self.name = name
+
+s1 = Student("Brajkant")
+s2 = Student("Amit")
+
+print(s1.name, s1.college)
+print(s2.name, s2.college)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Brajkant Government Polytechnic Kanpur<br>Amit Government Polytechnic Kanpur</div>
+
+        <h4>Changing Class Variable</h4>
+        <pre>class Student:
+    college = "GPK"
+
+Student.college = "Government Polytechnic Kanpur"
+
+print(Student.college)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Government Polytechnic Kanpur</div>
+
+        <h4>Class Variable vs Instance Variable</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>Class Variable</th>
+            <th>Instance Variable</th>
+          </tr>
+          <tr>
+            <td>Defined</td>
+            <td>Class के अंदर, methods के बाहर।</td>
+            <td>Usually <code>__init__()</code> में <code>self</code> के साथ।</td>
+          </tr>
+          <tr>
+            <td>Shared</td>
+            <td>सभी objects में shared।</td>
+            <td>हर object की अलग value।</td>
+          </tr>
+          <tr>
+            <td>Access</td>
+            <td>Class name से access करना best है।</td>
+            <td>Object name से access होता है।</td>
+          </tr>
+          <tr>
+            <td>Example</td>
+            <td><code>college</code></td>
+            <td><code>name</code>, <code>age</code></td>
+          </tr>
+        </table>
+
+        <h4>Counting Objects Using Class Variable</h4>
+        <pre>class Student:
+    count = 0
+
+    def __init__(self, name):
+        self.name = name
+        Student.count += 1
+
+s1 = Student("Brajkant")
+s2 = Student("Amit")
+s3 = Student("Neha")
+
+print("Total Students:", Student.count)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Total Students: 3</div>
+
+        <div class="note-box"><b>Real Life Example:</b><br>College name सभी students के लिए same हो सकता है, इसलिए उसे class variable बनाया जा सकता है। Student name हर object के लिए अलग होगा, इसलिए वह instance variable होगा।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Class variable shared होता है, instance variable object-specific होता है।</div>
+      </section>
+
+      <section id="inheritance">
+        <h2>Inheritance</h2>
+
+        <p>Inheritance object-oriented programming का important principle है। इसमें एक class दूसरी class की properties और methods को acquire कर सकती है। जिस class से properties ली जाती हैं उसे parent class, base class या superclass कहते हैं। जो class properties receive करती है उसे child class, derived class या subclass कहते हैं।</p>
+
+        <p>Inheritance का main benefit code reuse है। अगर common features parent class में define कर दिए जाएँ, तो child classes उन्हें reuse कर सकती हैं। इससे duplicate code कम होता है और program structured बनता है।</p>
+
+        <h4>Simple Inheritance</h4>
+        <pre>class Person:
+    def show_person(self):
+        print("I am a person")
+
+class Student(Person):
+    def show_student(self):
+        print("I am a student")
+
+s1 = Student()
+
+s1.show_person()
+s1.show_student()</pre>
+
+        <div class="info-box"><b>Output:</b><br>I am a person<br>I am a student</div>
+
+        <h4>Parent Constructor Calling</h4>
+        <p>Child class में parent class का constructor call करने के लिए <code>super()</code> function use किया जाता है।</p>
+
+        <pre>class Person:
+    def __init__(self, name):
+        self.name = name
+
+class Student(Person):
+    def __init__(self, name, course):
+        super().__init__(name)
+        self.course = course
+
+s1 = Student("Brajkant", "PGDCA")
+
+print(s1.name)
+print(s1.course)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Brajkant<br>PGDCA</div>
+
+        <h4>Method Overriding</h4>
+        <p>जब child class parent class के same method name को अपनी requirement के according redefine करती है, तो उसे method overriding कहते हैं।</p>
+
+        <pre>class Person:
+    def show(self):
+        print("Person details")
+
+class Student(Person):
+    def show(self):
+        print("Student details")
+
+s1 = Student()
+s1.show()</pre>
+
+        <div class="info-box"><b>Output:</b><br>Student details</div>
+
+        <h4>Types of Inheritance</h4>
+        <table>
+          <tr>
+            <th>Type</th>
+            <th>Meaning</th>
+          </tr>
+          <tr>
+            <td>Single Inheritance</td>
+            <td>एक child class एक parent class से inherit करती है।</td>
+          </tr>
+          <tr>
+            <td>Multiple Inheritance</td>
+            <td>एक child class multiple parent classes से inherit करती है।</td>
+          </tr>
+          <tr>
+            <td>Multilevel Inheritance</td>
+            <td>Inheritance chain बनती है: Grandparent → Parent → Child।</td>
+          </tr>
+          <tr>
+            <td>Hierarchical Inheritance</td>
+            <td>एक parent class से multiple child classes inherit करती हैं।</td>
+          </tr>
+        </table>
+
+        <h4>Multilevel Inheritance Example</h4>
+        <pre>class GrandParent:
+    def grand_parent_method(self):
+        print("Grandparent method")
+
+class Parent(GrandParent):
+    def parent_method(self):
+        print("Parent method")
+
+class Child(Parent):
+    def child_method(self):
+        print("Child method")
+
+obj = Child()
+
+obj.grand_parent_method()
+obj.parent_method()
+obj.child_method()</pre>
+
+        <div class="info-box"><b>Output:</b><br>Grandparent method<br>Parent method<br>Child method</div>
+
+        <h4>Benefits of Inheritance</h4>
+        <ul>
+          <li>Code reuse possible होता है।</li>
+          <li>Duplicate code कम होता है।</li>
+          <li>Real-world relationship represent करना आसान होता है।</li>
+          <li>Program organized और maintainable बनता है।</li>
+          <li>Method overriding से behavior customize किया जा सकता है।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Person parent class हो सकती है और Student, Teacher, Employee child classes हो सकती हैं। सभी में name और age common हो सकते हैं, लेकिन work अलग-अलग होगा।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Inheritance का main purpose code reuse और relationship-based class design है।</div>
+      </section>
+
+      <section id="polymorphism">
+        <h2>Polymorphism</h2>
+
+        <p>Polymorphism object-oriented programming का important principle है। Polymorphism का मतलब है “many forms”. Programming में इसका मतलब है same method name, same function या same operator का different objects के साथ different behavior दिखाना।</p>
+
+        <p>Python में polymorphism बहुत natural तरीके से work करता है क्योंकि Python dynamically typed language है। अगर अलग-अलग classes में same method name available है, तो same code उन objects पर अलग-अलग behavior दिखा सकता है।</p>
+
+        <h4>Method Polymorphism</h4>
+        <pre>class Dog:
+    def sound(self):
+        print("Dog barks")
+
+class Cat:
+    def sound(self):
+        print("Cat meows")
+
+class Cow:
+    def sound(self):
+        print("Cow moos")
+
+animals = [Dog(), Cat(), Cow()]
+
+for animal in animals:
+    animal.sound()</pre>
+
+        <div class="info-box"><b>Output:</b><br>Dog barks<br>Cat meows<br>Cow moos</div>
+
+        <h4>Function Polymorphism</h4>
+        <p>Same function different objects को accept करके उनके behavior के according result दे सकता है।</p>
+
+        <pre>def make_sound(animal):
+    animal.sound()
+
+dog = Dog()
+cat = Cat()
+
+make_sound(dog)
+make_sound(cat)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Dog barks<br>Cat meows</div>
+
+        <h4>Operator Polymorphism</h4>
+        <p>Python में same operator अलग-अलग data types के साथ अलग behavior दिखा सकता है।</p>
+
+        <pre>print(10 + 20)
+print("Hello " + "Python")
+print([1, 2] + [3, 4])</pre>
+
+        <div class="info-box"><b>Output:</b><br>30<br>Hello Python<br>[1, 2, 3, 4]</div>
+
+        <p>ऊपर <code>+</code> operator numbers के लिए addition कर रहा है, strings के लिए concatenation कर रहा है और lists के लिए merging कर रहा है। यही operator polymorphism है।</p>
+
+        <h4>Method Overriding as Polymorphism</h4>
+        <pre>class Shape:
+    def area(self):
+        print("Area of shape")
+
+class Circle(Shape):
+    def area(self):
+        print("Area of circle")
+
+class Rectangle(Shape):
+    def area(self):
+        print("Area of rectangle")
+
+shapes = [Circle(), Rectangle()]
+
+for shape in shapes:
+    shape.area()</pre>
+
+        <div class="info-box"><b>Output:</b><br>Area of circle<br>Area of rectangle</div>
+
+        <h4>Duck Typing</h4>
+        <p>Python में duck typing का मतलब है कि object किस class का है यह कम important है, object required method provide करता है या नहीं यह ज्यादा important है। अगर कोई object <code>sound()</code> method provide करता है, तो उसे sound behavior के लिए use किया जा सकता है।</p>
+
+        <pre>class Bird:
+    def fly(self):
+        print("Bird can fly")
+
+class Airplane:
+    def fly(self):
+        print("Airplane can fly")
+
+def start_flying(obj):
+    obj.fly()
+
+start_flying(Bird())
+start_flying(Airplane())</pre>
+
+        <div class="info-box"><b>Output:</b><br>Bird can fly<br>Airplane can fly</div>
+
+        <h4>Benefits of Polymorphism</h4>
+        <ul>
+          <li>Code flexible बनता है।</li>
+          <li>Same interface से different objects handle हो सकते हैं।</li>
+          <li>Code reuse improve होता है।</li>
+          <li>Large applications में extensibility बढ़ती है।</li>
+          <li>Child classes अपनी behavior customize कर सकती हैं।</li>
+        </ul>
+
+        <h4>Inheritance vs Polymorphism</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>Inheritance</th>
+            <th>Polymorphism</th>
+          </tr>
+          <tr>
+            <td>Meaning</td>
+            <td>एक class दूसरी class से properties लेती है।</td>
+            <td>Same method/operator different behavior दिखाता है।</td>
+          </tr>
+          <tr>
+            <td>Purpose</td>
+            <td>Code reuse।</td>
+            <td>Flexibility।</td>
+          </tr>
+          <tr>
+            <td>Example</td>
+            <td>Student inherits Person।</td>
+            <td>Dog और Cat दोनों sound() differently execute करते हैं।</td>
+          </tr>
+        </table>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Payment system में CreditCard, UPI और Cash classes में same <code>pay()</code> method हो सकता है, लेकिन हर payment method का process अलग होगा।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Polymorphism का मतलब है same name या same interface का multiple forms में behave करना।</div>
+      </section>
+
+    </main>
+  </div>
+</body>
+
+</html>

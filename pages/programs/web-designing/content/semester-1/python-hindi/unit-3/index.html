@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Language Components in Python</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+      line-height: 1.75
+    }
+
+    .page {
+      display: grid;
+      grid-template-columns: 285px 1fr;
+      gap: 20px;
+      max-width: 1500px;
+      margin: auto;
+      padding: 10px
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 10px;
+      height: calc(100vh - 20px);
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
+      align-self: start
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #111827
+    }
+
+    .sidebar a {
+      display: block;
+      text-decoration: none;
+      color: #374151;
+      padding: 8px 10px;
+      border-radius: 10px;
+      margin-bottom: 4px;
+      font-size: 14.7px
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+      color: #1d4ed8
+    }
+
+    .content {
+      background: #fff;
+      border-radius: 18px;
+      padding: 10px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08)
+    }
+
+    .hero {
+      padding: 28px 18px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #eef2ff, #f8fafc);
+      margin-bottom: 18px
+    }
+
+    .hero h1 {
+      font-size: 34px;
+      color: #111827;
+      margin-bottom: 10px
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #374151
+    }
+
+    section {
+      padding: 22px 10px;
+      border-bottom: 1px solid #e5e7eb
+    }
+
+    section:last-child {
+      border-bottom: none
+    }
+
+    h2 {
+      font-size: 27px;
+      color: #111827;
+      margin-bottom: 12px;
+      border-left: 5px solid #2563eb;
+      padding-left: 12px
+    }
+
+    h3 {
+      font-size: 22px;
+      color: #1f2937;
+      margin: 16px 0 8px
+    }
+
+    h4 {
+      font-size: 18px;
+      color: #111827;
+      margin: 14px 0 6px
+    }
+
+    p {
+      margin: 10px 0;
+      font-size: 17px
+    }
+
+    ul,
+    ol {
+      margin-left: 24px;
+      margin-top: 8px
+    }
+
+    li {
+      margin: 7px 0;
+      font-size: 16.5px
+    }
+
+    strong {
+      color: #111827
+    }
+
+    .image-icon {
+      min-height: 180px;
+      border: 2px dashed #94a3b8;
+      border-radius: 16px;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      margin: 18px 0;
+      color: #475569;
+      font-weight: 600
+    }
+
+    .image-icon img {
+      max-width: 100%;
+      height: auto
+    }
+
+    .note-box {
+      background: #f0fdf4;
+      border-left: 5px solid #22c55e;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .info-box {
+      background: #ecfeff;
+      border-left: 5px solid #06b6d4;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .remember-box {
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      font-size: 15.5px
+    }
+
+    th,
+    td {
+      border: 1px solid #d1d5db;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top
+    }
+
+    th {
+      background: #eef2ff;
+      color: #111827
+    }
+
+    code {
+      background: #111827;
+      color: #f9fafb;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-family: Consolas, monospace;
+      font-size: 15px
+    }
+
+    pre {
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 14px;
+      padding: 16px;
+      margin: 16px 0;
+      overflow-x: auto;
+      font-family: Consolas, monospace;
+      line-height: 1.6
+    }
+
+    .compiler {
+      width: 100%;
+      height: 2rem;
+      background-color: green;
+      text-align: center;
+    }
+
+    .compiler a {
+      text-decoration: none;
+      color: white;
+    }
+
+    @media(max-width:900px) {
+      .page {
+        grid-template-columns: 1fr
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto
+      }
+
+      .hero h1 {
+        font-size: 27px
+      }
+
+      h2 {
+        font-size: 24px
+      }
+    }
+    /* Iframe content responsive fix */
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.page,
+.content,
+section {
+  min-width: 0;
+  max-width: 100%;
+}
+
+img,
+video,
+svg,
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+table {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border-radius: 12px;
+  -webkit-overflow-scrolling: touch;
+}
+
+th,
+td {
+  min-width: 110px;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+pre {
+  max-width: 100%;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+code {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 900px) {
+  .page {
+    display: block;
+    width: 100%;
+    padding: 5px;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .content {
+    width: 100%;
+    min-width: 0;
+    padding: 6px;
+    border-radius: 10px;
+  }
+
+  section {
+    width: 100%;
+    padding: 16px 6px;
+  }
+
+  .hero {
+    padding: 18px 10px;
+  }
+
+  .hero h1 {
+    font-size: 24px;
+  }
+
+  h2 {
+    font-size: 21px;
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+
+  p,
+  li {
+    font-size: 15px;
+  }
+
+  .image-icon {
+    min-height: 130px;
+    padding: 8px;
+  }
+}
+  </style>
+
+<link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
+<script src="../../../../../../../assets/shared/portal.js" defer></script>
+<script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
+</head>
+
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <h2>Topics</h2>
+      <a href="#indenting">Indenting Requirements</a>
+      <a href="#if-statement">The if Statement</a>
+      <a href="#relational-logical">Relational and Logical Operators</a>
+      <a href="#bitwise">Bit Wise Operators</a>
+      <a href="#while-loop">The while Loop</a>
+      <a href="#break-continue">break and continue</a>
+      <a href="#for-loop">The for Loop</a>
+    </aside>
+
+    <main class="content">
+      <div class="hero">
+        <h1>Language Components</h1>
+        <p>इस chapter में Python के core language components जैसे indentation, decision making, comparison, logical thinking, bitwise operation और loops को exam-oriented तरीके से समझाया गया है।</p>
+      </div>
+
+      <section id="indenting">
+        <h2>Indenting Requirements</h2>
+
+        <p>Python में indentation language का बहुत important rule है। Indentation का मतलब line की शुरुआत में खाली space देना होता है। दूसरी languages जैसे C, C++ और Java में code blocks को दिखाने के लिए curly braces <code>{ }</code> का use किया जाता है, लेकिन Python में code block indentation से बनता है। इसी वजह से Python code clean, readable और structured दिखाई देता है।</p>
+
+        <p>जब हम <code>if</code>, <code>else</code>, <code>for</code>, <code>while</code>, function या class जैसे statements लिखते हैं, तो इनके अंदर आने वाले statements को left side से थोड़ा अंदर लिखना पड़ता है। Python interpreter indentation देखकर समझता है कि कौन-सा statement किस block के अंदर belong करता है। इसलिए Python में indentation केवल formatting नहीं है, बल्कि syntax का compulsory part है।</p>
+
+        <p>Python में आमतौर पर एक block के लिए 4 spaces use किए जाते हैं। अगर एक ही block के statements अलग-अलग indentation पर लिखे जाएँ, तो program में error आ सकता है। इसलिए same block के सभी statements को same level पर indent करना चाहिए।</p>
+
+        <h4>Correct Indentation</h4>
+        <pre>if 10 > 5:
+    print("10 is greater than 5")
+    print("This line is inside if block")
+
+print("This line is outside if block")</pre>
+
+        <div class="info-box"><b>Output:</b><br>10 is greater than 5<br>This line is inside if block<br>This line is outside if block</div>
+
+        <h4>Wrong Indentation</h4>
+        <pre>if 10 > 5:
+print("10 is greater than 5")</pre>
+
+        <div class="info-box"><b>Output:</b><br>IndentationError: expected an indented block</div>
+
+        <h4>How Python Reads Indentation</h4>
+        <p>जब Python को colon <code>:</code> मिलता है, तो वह expect करता है कि अगली line indented होगी। अगर अगली line indentation के बिना लिख दी गई, तो Python समझ नहीं पाएगा कि block कहाँ शुरू हो रहा है। इसी कारण indentation error आता है।</p>
+
+        <h4>Important Rules</h4>
+        <ul>
+          <li>Same block के सभी statements की indentation same होनी चाहिए।</li>
+          <li>Generally 4 spaces use करना best practice माना जाता है।</li>
+          <li>Tabs और spaces को mix करने से avoid करना चाहिए।</li>
+          <li>Indentation code को readable और professional बनाता है।</li>
+          <li>Colon <code>:</code> के बाद usually indented block आता है।</li>
+        </ul>
+
+        <h4>Common Mistakes</h4>
+        <ul>
+          <li>Colon <code>:</code> लगाने के बाद next line indent न करना।</li>
+          <li>एक ही block में कभी 2 spaces और कभी 4 spaces use करना।</li>
+          <li>Tabs और spaces को एक साथ mix करना।</li>
+          <li>Outer block और inner block को same indentation पर लिख देना।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>जैसे notebook में main heading के अंदर sub-points थोड़ा अंदर से लिखे जाते हैं ताकि structure clear रहे, वैसे ही Python में block के अंदर statements indentation से लिखे जाते हैं।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Python में indentation styling नहीं, syntax का part है। गलत indentation से program run नहीं होगा।</div>
+      </section>
+
+      <section id="if-statement">
+        <h2>The if Statement</h2>
+
+        <p><code>if</code> statement Python में decision making के लिए use होता है। Program में कई बार ऐसी situation आती है जहाँ हमें condition के आधार पर decide करना पड़ता है कि कौन-सा code execute होगा। ऐसी condition-based execution के लिए <code>if</code>, <code>if-else</code>, <code>if-elif-else</code> और nested if statements use किए जाते हैं।</p>
+
+        <p>if statement में condition check होती है। अगर condition true होती है, तो if block के अंदर लिखा code execute होता है। अगर condition false होती है, तो if block skip हो जाता है। यह concept real life decision जैसा होता है, जैसे “अगर marks 33 या उससे अधिक हैं तो student pass है, नहीं तो fail है।”</p>
+
+        <h4>Basic Syntax</h4>
+        <pre>if condition:
+    statement_1
+    statement_2</pre>
+
+        <h4>Simple if Example</h4>
+        <pre>age = 18
+
+if age >= 18:
+    print("You are eligible to vote")</pre>
+
+        <div class="info-box"><b>Output:</b><br>You are eligible to vote</div>
+
+        <h4>Working Process</h4>
+        <ol>
+          <li>सबसे पहले condition evaluate होती है।</li>
+          <li>अगर condition <code>True</code> है, तो indented block execute होता है।</li>
+          <li>अगर condition <code>False</code> है, तो block skip हो जाता है।</li>
+          <li>Block complete होने के बाद control next statement पर चला जाता है।</li>
+        </ol>
+
+        <h4>if-else Statement</h4>
+        <p>जब condition true होने पर एक block और false होने पर दूसरा block execute करना हो, तब <code>if-else</code> statement use किया जाता है।</p>
+
+        <pre>marks = 35
+
+if marks >= 33:
+    print("Pass")
+else:
+    print("Fail")</pre>
+
+        <div class="info-box"><b>Output:</b><br>Pass</div>
+
+        <h4>if-elif-else Statement</h4>
+        <p>जब program में multiple conditions check करनी हों, तब <code>elif</code> का use किया जाता है। Python conditions को top to bottom check करता है। जो condition सबसे पहले true होती है, उसका block execute हो जाता है और बाकी conditions skip हो जाती हैं।</p>
+
+        <pre>marks = 75
+
+if marks >= 90:
+    print("Grade A+")
+elif marks >= 75:
+    print("Grade A")
+elif marks >= 60:
+    print("Grade B")
+else:
+    print("Grade C")</pre>
+
+        <div class="info-box"><b>Output:</b><br>Grade A</div>
+
+        <h4>Nested if</h4>
+        <p>जब एक if statement के अंदर दूसरा if statement लिखा जाता है, तो उसे nested if कहा जाता है। इसका use तब होता है जब एक condition true होने के बाद दूसरी condition check करनी हो।</p>
+
+        <pre>username = "admin"
+password = "1234"
+
+if username == "admin":
+    if password == "1234":
+        print("Login Successful")
+    else:
+        print("Wrong Password")
+else:
+    print("Wrong Username")</pre>
+
+        <div class="info-box"><b>Output:</b><br>Login Successful</div>
+
+        <h4>Common Mistakes</h4>
+        <ul>
+          <li><code>if</code> condition के बाद colon <code>:</code> लगाना भूल जाना।</li>
+          <li><code>=</code> और <code>==</code> में confusion करना।</li>
+          <li>if block के statements को indent न करना।</li>
+          <li>Multiple conditions में wrong order रखना।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Login system में पहले username check होता है, फिर password check होता है। यह nested if का practical example है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br><code>if</code> statement program को intelligent बनाता है क्योंकि program condition के हिसाब से decision ले सकता है।</div>
+      </section>
+
+      <section id="relational-logical">
+        <h2>Relational and Logical Operators</h2>
+
+        <p>Relational operators और logical operators decision making में बहुत important role निभाते हैं। Relational operators दो values को compare करते हैं और result में <code>True</code> या <code>False</code> देते हैं। Logical operators multiple conditions को combine करके final result decide करते हैं।</p>
+
+        <p>जब भी हम <code>if</code>, <code>while</code> या किसी condition-based statement का use करते हैं, तब relational और logical operators बहुत काम आते हैं। जैसे age compare करना, marks check करना, username-password validate करना, या किसी range में value check करना।</p>
+
+        <h4>Relational Operators</h4>
+        <table>
+          <tr>
+            <th>Operator</th>
+            <th>Meaning</th>
+            <th>Example</th>
+            <th>Result</th>
+          </tr>
+          <tr>
+            <td><code>==</code></td>
+            <td>Equal to</td>
+            <td><code>10 == 10</code></td>
+            <td>True</td>
+          </tr>
+          <tr>
+            <td><code>!=</code></td>
+            <td>Not equal to</td>
+            <td><code>10 != 5</code></td>
+            <td>True</td>
+          </tr>
+          <tr>
+            <td><code>&gt;</code></td>
+            <td>Greater than</td>
+            <td><code>10 &gt; 5</code></td>
+            <td>True</td>
+          </tr>
+          <tr>
+            <td><code>&lt;</code></td>
+            <td>Less than</td>
+            <td><code>5 &lt; 10</code></td>
+            <td>True</td>
+          </tr>
+          <tr>
+            <td><code>&gt;=</code></td>
+            <td>Greater than or equal to</td>
+            <td><code>10 &gt;= 10</code></td>
+            <td>True</td>
+          </tr>
+          <tr>
+            <td><code>&lt;=</code></td>
+            <td>Less than or equal to</td>
+            <td><code>8 &lt;= 10</code></td>
+            <td>True</td>
+          </tr>
+        </table>
+
+        <h4>Relational Operator Example</h4>
+        <pre>a = 10
+b = 20
+
+print(a == b)
+print(a != b)
+print(a < b)
+print(a > b)</pre>
+
+        <div class="info-box"><b>Output:</b><br>False<br>True<br>True<br>False</div>
+
+        <h4>Logical Operators</h4>
+        <table>
+          <tr>
+            <th>Operator</th>
+            <th>Meaning</th>
+            <th>Working</th>
+          </tr>
+          <tr>
+            <td><code>and</code></td>
+            <td>Logical AND</td>
+            <td>दोनों conditions true हों तभी result true होगा।</td>
+          </tr>
+          <tr>
+            <td><code>or</code></td>
+            <td>Logical OR</td>
+            <td>कम से कम एक condition true हो तो result true होगा।</td>
+          </tr>
+          <tr>
+            <td><code>not</code></td>
+            <td>Logical NOT</td>
+            <td>Condition का opposite result देता है।</td>
+          </tr>
+        </table>
+
+        <h4>Logical Operator Example</h4>
+        <pre>age = 20
+marks = 80
+
+print(age >= 18 and marks >= 60)
+print(age >= 18 or marks >= 90)
+print(not(age < 18))</pre>
+
+        <div class="info-box"><b>Output:</b><br>True<br>True<br>True</div>
+
+        <h4>Truth Table</h4>
+        <table>
+          <tr>
+            <th>Condition 1</th>
+            <th>Condition 2</th>
+            <th>and</th>
+            <th>or</th>
+          </tr>
+          <tr>
+            <td>True</td>
+            <td>True</td>
+            <td>True</td>
+            <td>True</td>
+          </tr>
+          <tr>
+            <td>True</td>
+            <td>False</td>
+            <td>False</td>
+            <td>True</td>
+          </tr>
+          <tr>
+            <td>False</td>
+            <td>True</td>
+            <td>False</td>
+            <td>True</td>
+          </tr>
+          <tr>
+            <td>False</td>
+            <td>False</td>
+            <td>False</td>
+            <td>False</td>
+          </tr>
+        </table>
+
+        <h4>Range Checking Example</h4>
+        <pre>marks = 85
+
+if marks >= 0 and marks <= 100:
+    print("Valid Marks")
+else:
+    print("Invalid Marks")</pre>
+
+        <div class="info-box"><b>Output:</b><br>Valid Marks</div>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Online form में age 18 से 60 के बीच होनी चाहिए। ऐसी checking relational और logical operators से की जाती है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br><code>=</code> assignment के लिए होता है, जबकि <code>==</code> comparison के लिए होता है। यह beginner level की सबसे common mistake है।</div>
+      </section>
+
+      <section id="bitwise">
+        <h2>Bit Wise Operators</h2>
+
+        <p>Bitwise operators integer values पर binary level operation perform करते हैं। Computer internally numbers को binary form यानी 0 और 1 में store करता है। Bitwise operators इन्हीं bits पर work करते हैं। ये operators normal arithmetic operators जैसे <code>+</code>, <code>-</code>, <code>*</code> से अलग होते हैं क्योंकि ये number की actual value पर नहीं बल्कि उसके binary representation पर काम करते हैं।</p>
+
+        <p>Bitwise operators का use low-level programming, embedded systems, networking, file permissions, flags और performance-based operations में किया जाता है। Beginners के लिए ये topic थोड़ा advanced लग सकता है, लेकिन exam point of view से इसके operators और basic examples समझना जरूरी है।</p>
+
+        <h4>Binary Concept</h4>
+        <p>Decimal number 5 को binary में <code>101</code> लिखा जाता है और decimal number 3 को binary में <code>011</code> लिखा जाता है। Bitwise operators इन bits को position-wise compare करते हैं।</p>
+
+        <h4>Common Bitwise Operators</h4>
+        <table>
+          <tr>
+            <th>Operator</th>
+            <th>Name</th>
+            <th>Work</th>
+          </tr>
+          <tr>
+            <td><code>&amp;</code></td>
+            <td>Bitwise AND</td>
+            <td>दोनों bits 1 हों तो result 1 देता है।</td>
+          </tr>
+          <tr>
+            <td><code>|</code></td>
+            <td>Bitwise OR</td>
+            <td>किसी भी एक bit के 1 होने पर result 1 देता है।</td>
+          </tr>
+          <tr>
+            <td><code>^</code></td>
+            <td>Bitwise XOR</td>
+            <td>दोनों bits अलग हों तो result 1 देता है।</td>
+          </tr>
+          <tr>
+            <td><code>~</code></td>
+            <td>Bitwise NOT</td>
+            <td>Bits को invert करता है।</td>
+          </tr>
+          <tr>
+            <td><code>&lt;&lt;</code></td>
+            <td>Left Shift</td>
+            <td>Bits को left side shift करता है।</td>
+          </tr>
+          <tr>
+            <td><code>&gt;&gt;</code></td>
+            <td>Right Shift</td>
+            <td>Bits को right side shift करता है।</td>
+          </tr>
+        </table>
+
+        <h4>Bitwise AND Working</h4>
+        <pre>5 = 101
+3 = 011
+---------
+1 = 001</pre>
+
+        <pre>a = 5
+b = 3
+
+print(a & b)</pre>
+
+        <div class="info-box"><b>Output:</b><br>1</div>
+
+        <h4>Bitwise OR Working</h4>
+        <pre>5 = 101
+3 = 011
+---------
+7 = 111</pre>
+
+        <pre>a = 5
+b = 3
+
+print(a | b)</pre>
+
+        <div class="info-box"><b>Output:</b><br>7</div>
+
+        <h4>Bitwise XOR Example</h4>
+        <pre>a = 5
+b = 3
+
+print(a ^ b)</pre>
+
+        <div class="info-box"><b>Output:</b><br>6</div>
+
+        <h4>Bitwise NOT Example</h4>
+        <pre>x = 5
+
+print(~x)</pre>
+
+        <div class="info-box"><b>Output:</b><br>-6</div>
+
+        <p>Python में <code>~x</code> का result <code>-(x + 1)</code> होता है। इसलिए <code>~5</code> का result <code>-6</code> आता है।</p>
+
+        <h4>Shift Operators</h4>
+        <p>Left shift operator bits को left side shift करता है। यह generally number को 2 से multiply करने जैसा effect देता है। Right shift operator bits को right side shift करता है। यह generally number को 2 से divide करने जैसा effect देता है।</p>
+
+        <pre>x = 4
+
+print(x << 1)
+print(x >> 1)</pre>
+
+        <div class="info-box"><b>Output:</b><br>8<br>2</div>
+
+        <h4>Common Mistakes</h4>
+        <ul>
+          <li>Bitwise AND <code>&amp;</code> और logical AND <code>and</code> को same समझ लेना।</li>
+          <li>Bitwise OR <code>|</code> और logical OR <code>or</code> में confusion करना।</li>
+          <li>Binary values को समझे बिना output याद करने की कोशिश करना।</li>
+          <li><code>^</code> को power operator समझना, जबकि Python में power के लिए <code>**</code> use होता है।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Networking में subnet masks, hardware programming में pins और permission systems में flags को handle करने के लिए bitwise operators useful होते हैं।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Bitwise operators binary bits पर काम करते हैं। इन्हें समझने के लिए decimal to binary conversion की basic knowledge helpful होती है।</div>
+      </section>
+
+      <section id="while-loop">
+        <h2>The while Loop</h2>
+
+        <p><code>while</code> loop का use किसी block of code को बार-बार execute करने के लिए किया जाता है। यह loop तब तक चलता है जब तक दी गई condition true रहती है। जैसे ही condition false होती है, loop terminate हो जाता है। while loop condition-based loop होता है, इसलिए इसका use वहाँ ज्यादा होता है जहाँ पहले से पता न हो कि loop कितनी बार चलेगा।</p>
+
+        <p>while loop में तीन main parts होते हैं: initialization, condition और update. Initialization में variable की starting value दी जाती है। Condition decide करती है कि loop चलेगा या नहीं। Update statement variable की value change करती है ताकि loop eventually stop हो सके।</p>
+
+        <h4>Basic Syntax</h4>
+        <pre>while condition:
+    statements</pre>
+
+        <h4>Simple Example</h4>
+        <pre>i = 1
+
+while i <= 5:
+    print(i)
+    i = i + 1</pre>
+
+        <div class="info-box"><b>Output:</b><br>1<br>2<br>3<br>4<br>5</div>
+
+        <h4>Working Process</h4>
+        <ol>
+          <li>सबसे पहले variable initialize होता है।</li>
+          <li>while condition check होती है।</li>
+          <li>अगर condition true है तो loop body execute होती है।</li>
+          <li>Update statement variable की value change करती है।</li>
+          <li>Control वापस condition पर जाता है।</li>
+          <li>Condition false होते ही loop stop हो जाता है।</li>
+        </ol>
+
+        <h4>Sum of First Five Numbers</h4>
+        <pre>i = 1
+total = 0
+
+while i <= 5:
+    total = total + i
+    i = i + 1
+
+print("Sum =", total)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Sum = 15</div>
+
+        <h4>Counting Even Numbers</h4>
+        <pre>i = 2
+
+while i <= 10:
+    print(i)
+    i = i + 2</pre>
+
+        <div class="info-box"><b>Output:</b><br>2<br>4<br>6<br>8<br>10</div>
+
+        <h4>while Loop with else</h4>
+        <p>Python में while loop के साथ else block भी use किया जा सकता है। अगर loop normally complete होता है, तो else block execute होता है।</p>
+
+        <pre>i = 1
+
+while i <= 3:
+    print(i)
+    i = i + 1
+else:
+    print("Loop completed")</pre>
+
+        <div class="info-box"><b>Output:</b><br>1<br>2<br>3<br>Loop completed</div>
+
+        <h4>Infinite Loop</h4>
+        <p>अगर condition कभी false नहीं होती, तो loop continuously चलता रहता है। इसे infinite loop कहते हैं। Infinite loop से program hang हो सकता है, इसलिए while loop में update statement carefully लिखनी चाहिए।</p>
+
+        <pre>i = 1
+
+while i <= 5:
+    print(i)</pre>
+
+        <div class="info-box"><b>Output:</b><br>यह program infinite loop बना देगा क्योंकि <code>i</code> की value update नहीं हो रही है।</div>
+
+        <h4>Common Mistakes</h4>
+        <ul>
+          <li>Update statement लिखना भूल जाना।</li>
+          <li>Wrong condition लिखना जिससे loop कभी run ही न हो।</li>
+          <li>Condition हमेशा true बना देना।</li>
+          <li>Loop variable को गलत direction में update करना।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>ATM PIN entry system में user सही PIN enter करे तब तक input लेना while loop का practical example हो सकता है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>while loop तब useful है जब repetition condition पर depend करे और iterations की exact संख्या पहले से fixed न हो।</div>
+      </section>
+
+      <section id="break-continue">
+        <h2>break and continue</h2>
+
+        <p><code>break</code> और <code>continue</code> loop control statements हैं। Loop normally अपनी condition या sequence के हिसाब से चलता है, लेकिन कई बार हमें loop के flow को manually control करना पड़ता है। ऐसी situation में break और continue का use किया जाता है।</p>
+
+        <p><code>break</code> loop को पूरी तरह terminate करता है, जबकि <code>continue</code> current iteration को skip करके loop की next iteration पर control भेज देता है। दोनों statements while और for loop में use हो सकते हैं।</p>
+
+        <h4>break Statement</h4>
+        <p><code>break</code> statement जैसे ही execute होता है, loop तुरंत stop हो जाता है और control loop के बाहर चला जाता है। इसका use तब किया जाता है जब required value मिल जाए या किसी special condition पर loop को आगे नहीं चलाना हो।</p>
+
+        <pre>for i in range(1, 6):
+    if i == 4:
+        break
+    print(i)</pre>
+
+        <div class="info-box"><b>Output:</b><br>1<br>2<br>3</div>
+
+        <h4>break with while Loop</h4>
+        <pre>i = 1
+
+while i <= 10:
+    if i == 5:
+        break
+    print(i)
+    i = i + 1</pre>
+
+        <div class="info-box"><b>Output:</b><br>1<br>2<br>3<br>4</div>
+
+        <h4>continue Statement</h4>
+        <p><code>continue</code> statement current iteration के बाकी code को skip कर देता है और loop को next iteration पर भेज देता है। इसका use तब किया जाता है जब किसी particular value को ignore करना हो।</p>
+
+        <pre>for i in range(1, 6):
+    if i == 3:
+        continue
+    print(i)</pre>
+
+        <div class="info-box"><b>Output:</b><br>1<br>2<br>4<br>5</div>
+
+        <h4>continue with while Loop</h4>
+        <pre>i = 0
+
+while i < 5:
+    i = i + 1
+    if i == 3:
+        continue
+    print(i)</pre>
+
+        <div class="info-box"><b>Output:</b><br>1<br>2<br>4<br>5</div>
+
+        <h4>Difference Between break and continue</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>break</th>
+            <th>continue</th>
+          </tr>
+          <tr>
+            <td>Work</td>
+            <td>Loop को पूरी तरह stop करता है।</td>
+            <td>Only current iteration skip करता है।</td>
+          </tr>
+          <tr>
+            <td>Control</td>
+            <td>Loop के बाहर चला जाता है।</td>
+            <td>Loop की next iteration पर जाता है।</td>
+          </tr>
+          <tr>
+            <td>Use</td>
+            <td>Search complete होने पर loop stop करना।</td>
+            <td>Unwanted value को skip करना।</td>
+          </tr>
+          <tr>
+            <td>Effect</td>
+            <td>Remaining iterations execute नहीं होतीं।</td>
+            <td>Remaining iterations continue होती हैं।</td>
+          </tr>
+        </table>
+
+        <h4>Search Example using break</h4>
+        <pre>students = ["Amit", "Ravi", "Brajkant", "Neha"]
+
+for student in students:
+    if student == "Brajkant":
+        print("Student Found")
+        break</pre>
+
+        <div class="info-box"><b>Output:</b><br>Student Found</div>
+
+        <h4>Skip Example using continue</h4>
+        <pre>numbers = [1, 2, 3, 4, 5]
+
+for num in numbers:
+    if num == 3:
+        continue
+    print(num)</pre>
+
+        <div class="info-box"><b>Output:</b><br>1<br>2<br>4<br>5</div>
+
+        <div class="note-box"><b>Real Life Example:</b><br>अगर list में कोई required student मिल गया, तो <code>break</code> से search stop कर सकते हैं। अगर किसी invalid entry को ignore करना हो, तो <code>continue</code> use कर सकते हैं।</div>
+
+        <div class="remember-box"><b>Remember:</b><br><code>break</code> loop को खत्म करता है, लेकिन <code>continue</code> loop को खत्म नहीं करता; वह केवल current round skip करता है।</div>
+      </section>
+
+      <section id="for-loop">
+        <h2>The for Loop</h2>
+
+        <p><code>for</code> loop Python में sequence-based iteration के लिए use होता है। Sequence का मतलब ऐसी collection जिससे एक-एक item निकाला जा सके, जैसे string, list, tuple, dictionary या range. for loop sequence के हर item पर एक बार code execute करता है।</p>
+
+        <p>जब हमें पता हो कि loop कितनी बार चलाना है, या हमें किसी collection के सभी items पर काम करना है, तब for loop सबसे useful होता है। Python का for loop C/C++ के traditional for loop से थोड़ा अलग होता है, क्योंकि Python में for loop index-based से ज्यादा item-based होता है।</p>
+
+        <h4>Basic Syntax</h4>
+        <pre>for variable in sequence:
+    statements</pre>
+
+        <h4>Using range()</h4>
+        <p><code>range()</code> function numbers की sequence generate करता है। यह for loop के साथ बहुत commonly use होता है। <code>range(1, 6)</code> numbers 1 से 5 तक generate करता है, यानी stop value include नहीं होती।</p>
+
+        <pre>for i in range(1, 6):
+    print(i)</pre>
+
+        <div class="info-box"><b>Output:</b><br>1<br>2<br>3<br>4<br>5</div>
+
+        <h4>range() Forms</h4>
+        <table>
+          <tr>
+            <th>Form</th>
+            <th>Meaning</th>
+            <th>Example</th>
+          </tr>
+          <tr>
+            <td><code>range(stop)</code></td>
+            <td>0 से stop-1 तक numbers देता है।</td>
+            <td><code>range(5)</code> → 0,1,2,3,4</td>
+          </tr>
+          <tr>
+            <td><code>range(start, stop)</code></td>
+            <td>start से stop-1 तक numbers देता है।</td>
+            <td><code>range(1, 5)</code> → 1,2,3,4</td>
+          </tr>
+          <tr>
+            <td><code>range(start, stop, step)</code></td>
+            <td>step के according numbers generate करता है।</td>
+            <td><code>range(2, 11, 2)</code> → 2,4,6,8,10</td>
+          </tr>
+        </table>
+
+        <h4>Loop on String</h4>
+        <pre>name = "Python"
+
+for ch in name:
+    print(ch)</pre>
+
+        <div class="info-box"><b>Output:</b><br>P<br>y<br>t<br>h<br>o<br>n</div>
+
+        <h4>Loop on List</h4>
+        <pre>subjects = ["Python", "DCCN", "BCIT"]
+
+for subject in subjects:
+    print(subject)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Python<br>DCCN<br>BCIT</div>
+
+        <h4>Table Printing Example</h4>
+        <pre>num = 5
+
+for i in range(1, 11):
+    print(num, "x", i, "=", num * i)</pre>
+
+        <div class="info-box"><b>Output:</b><br>5 x 1 = 5<br>5 x 2 = 10<br>5 x 3 = 15<br>5 x 4 = 20<br>5 x 5 = 25<br>5 x 6 = 30<br>5 x 7 = 35<br>5 x 8 = 40<br>5 x 9 = 45<br>5 x 10 = 50</div>
+
+        <h4>for Loop with else</h4>
+        <p>Python में for loop के साथ else block भी use हो सकता है। अगर loop normally complete होता है और break से stop नहीं होता, तो else block execute होता है।</p>
+
+        <pre>for i in range(1, 4):
+    print(i)
+else:
+    print("Loop completed")</pre>
+
+        <div class="info-box"><b>Output:</b><br>1<br>2<br>3<br>Loop completed</div>
+
+        <h4>Nested for Loop</h4>
+        <p>जब एक for loop के अंदर दूसरा for loop लिखा जाता है, तो उसे nested for loop कहते हैं। इसका use pattern printing, table generation और matrix operations में किया जाता है।</p>
+
+        <pre>for i in range(1, 4):
+    for j in range(1, 4):
+        print(i, j)</pre>
+
+        <div class="info-box"><b>Output:</b><br>1 1<br>1 2<br>1 3<br>2 1<br>2 2<br>2 3<br>3 1<br>3 2<br>3 3</div>
+
+        <h4>while Loop vs for Loop</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>while Loop</th>
+            <th>for Loop</th>
+          </tr>
+          <tr>
+            <td>Use</td>
+            <td>Condition-based repetition के लिए।</td>
+            <td>Sequence-based repetition के लिए।</td>
+          </tr>
+          <tr>
+            <td>Iterations</td>
+            <td>जब exact count पहले से clear न हो।</td>
+            <td>जब sequence या range available हो।</td>
+          </tr>
+          <tr>
+            <td>Update</td>
+            <td>Manual update required होती है।</td>
+            <td>Sequence से item automatically मिलता है।</td>
+          </tr>
+          <tr>
+            <td>Example</td>
+            <td>PIN correct होने तक input लेना।</td>
+            <td>List के सभी names print करना।</td>
+          </tr>
+        </table>
+
+        <h4>Common Mistakes</h4>
+        <ul>
+          <li><code>range()</code> की stop value को include समझ लेना।</li>
+          <li>for loop के अंदर statements को indent न करना।</li>
+          <li>Nested loop में inner और outer loop का flow confuse करना।</li>
+          <li>Sequence के item और index में difference न समझना।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Students की list में हर student का name print करना, marks list का total निकालना और multiplication table generate करना for loop के common examples हैं।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>while loop condition based होता है, जबकि for loop mostly sequence या fixed repetition के लिए use होता है।</div>
+      </section>
+
+    </main>
+  </div>
+</body>
+
+</html>

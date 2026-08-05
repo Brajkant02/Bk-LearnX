@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HTML Premium Notes</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+      line-height: 1.75
+    }
+
+    .page {
+      display: grid;
+      grid-template-columns: 285px 1fr;
+      gap: 20px;
+      max-width: 1500px;
+      margin: auto;
+      padding: 10px
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 10px;
+      height: calc(100vh - 20px);
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
+      align-self: start
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #111827
+    }
+
+    .sidebar a {
+      display: block;
+      text-decoration: none;
+      color: #374151;
+      padding: 8px 10px;
+      border-radius: 10px;
+      margin-bottom: 4px;
+      font-size: 14.7px
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+      color: #1d4ed8
+    }
+
+    .content {
+      background: #fff;
+      border-radius: 18px;
+      padding: 10px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08)
+    }
+
+    .hero {
+      padding: 28px 18px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #eef2ff, #f8fafc);
+      margin-bottom: 18px
+    }
+
+    .hero h1 {
+      font-size: 34px;
+      color: #111827;
+      margin-bottom: 10px
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #374151
+    }
+
+    section {
+      padding: 22px 10px;
+      border-bottom: 1px solid #e5e7eb
+    }
+
+    section:last-child {
+      border-bottom: none
+    }
+
+    h2 {
+      font-size: 27px;
+      color: #111827;
+      margin-bottom: 12px;
+      border-left: 5px solid #2563eb;
+      padding-left: 12px
+    }
+
+    h3 {
+      font-size: 22px;
+      color: #1f2937;
+      margin: 16px 0 8px
+    }
+
+    h4 {
+      font-size: 18px;
+      color: #111827;
+      margin: 14px 0 6px
+    }
+
+    p {
+      margin: 10px 0;
+      font-size: 17px
+    }
+
+    ul,
+    ol {
+      margin-left: 24px;
+      margin-top: 8px
+    }
+
+    li {
+      margin: 7px 0;
+      font-size: 16.5px
+    }
+
+    strong {
+      color: #111827
+    }
+
+    .image-icon {
+      min-height: 180px;
+      border: 2px dashed #94a3b8;
+      border-radius: 16px;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      margin: 18px 0;
+      color: #475569;
+      font-weight: 600
+    }
+
+    .image-icon img {
+      max-width: 100%;
+      height: auto
+    }
+
+    .note-box {
+      background: #f0fdf4;
+      border-left: 5px solid #22c55e;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .info-box {
+      background: #ecfeff;
+      border-left: 5px solid #06b6d4;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .remember-box {
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      font-size: 15.5px
+    }
+
+    th,
+    td {
+      border: 1px solid #d1d5db;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top
+    }
+
+    th {
+      background: #eef2ff;
+      color: #111827
+    }
+
+    code {
+      background: #111827;
+      color: #f9fafb;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-family: Consolas, monospace;
+      font-size: 15px
+    }
+
+    pre {
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 14px;
+      padding: 16px;
+      margin: 16px 0;
+      overflow-x: auto;
+      font-family: Consolas, monospace;
+      line-height: 1.6
+    }
+
+    .compiler {
+      width: 100%;
+      height: 2rem;
+      background-color: green;
+      text-align: center;
+    }
+
+    .compiler a {
+      text-decoration: none;
+      color: white;
+    }
+
+    @media(max-width:900px) {
+      .page {
+        grid-template-columns: 1fr
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto
+      }
+
+      .hero h1 {
+        font-size: 27px
+      }
+
+      h2 {
+        font-size: 24px
+      }
+    }
+    /* Iframe content responsive fix */
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.page,
+.content,
+section {
+  min-width: 0;
+  max-width: 100%;
+}
+
+img,
+video,
+svg,
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+table {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border-radius: 12px;
+  -webkit-overflow-scrolling: touch;
+}
+
+th,
+td {
+  min-width: 110px;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+pre {
+  max-width: 100%;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+code {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 900px) {
+  .page {
+    display: block;
+    width: 100%;
+    padding: 5px;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .content {
+    width: 100%;
+    min-width: 0;
+    padding: 6px;
+    border-radius: 10px;
+  }
+
+  section {
+    width: 100%;
+    padding: 16px 6px;
+  }
+
+  .hero {
+    padding: 18px 10px;
+  }
+
+  .hero h1 {
+    font-size: 24px;
+  }
+
+  h2 {
+    font-size: 21px;
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+
+  p,
+  li {
+    font-size: 15px;
+  }
+
+  .image-icon {
+    min-height: 130px;
+    padding: 8px;
+  }
+}
+  </style>
+
+<link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
+<script src="../../../../../../../assets/shared/portal.js" defer></script>
+<script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
+</head>
+
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <h2>Topics</h2>
+      <a href="#html-document">HTML Document</a>
+      <a href="#structure">Basic Structure</a>
+      <a href="#syntax">Syntax</a>
+      <a href="#tags-attributes">Tags and Attributes</a>
+      <a href="#tag-types">Types of HTML Tags</a>
+      <a href="#nesting">Rules of Nesting</a>
+      <a href="#basic-tags">Basic Tags</a>
+      <a href="#page-formatting">Page Formatting</a>
+      <a href="#text-formatting">Text Formatting</a>
+      <a href="#lists">Creating Lists</a>
+      <a href="#images-links">Images and Links</a>
+      <a href="#same-page">Linking Same Page</a>
+      <a href="#tables">Table Tags</a>
+      <a href="#frames">Frames and IFrame</a>
+      <a href="#forms">HTML Forms</a>
+      <a href="#xhtml">XHTML</a>
+    </aside>
+
+    <main class="content">
+      <div class="hero">
+        <h1>HTML</h1>
+      </div>
+
+      <section id="html-document">
+        <h2>HTML Document</h2>
+
+        <p><strong>HTML</strong> का full form <strong>HyperText Markup Language</strong> है। यह web pages बनाने के लिए use होने वाली standard markup language है। HTML किसी webpage का structure बनाता है। Browser HTML code को read करता है और उसे user के सामने formatted webpage के रूप में display करता है।</p>
+
+        <p>HTML programming language की तरह logic execute नहीं करती, बल्कि यह page के elements को describe करती है। इसमें headings, paragraphs, images, links, lists, tables, forms और sections जैसे elements बनाए जाते हैं। HTML document एक text file होती है जिसकी extension usually <code>.html</code> या <code>.htm</code> होती है।</p>
+
+        <h4>Simple HTML Document</h4>
+        <pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;My First Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Welcome to HTML&lt;/h1&gt;
+  &lt;p&gt;This is my first web page.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+
+        <h4>Output</h4>
+        <div class="info-box"><b>Browser Output:</b><br>Welcome to HTML<br>This is my first web page.</div>
+
+        <h4>Important Points</h4>
+        <ul>
+          <li>HTML webpage का structure create करता है।</li>
+          <li>HTML document browser में open होता है।</li>
+          <li>HTML file की extension <code>.html</code> होती है।</li>
+          <li>HTML tags angle brackets <code>&lt; &gt;</code> में लिखे जाते हैं।</li>
+          <li>HTML के साथ CSS और JavaScript मिलकर complete web page बनाते हैं।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>अगर webpage एक घर है, तो HTML उस घर की दीवार, कमरे और structure की तरह है। CSS decoration की तरह और JavaScript electric switches/interactivity की तरह काम करता है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>HTML web page का skeleton यानी structure बनाता है।</div>
+      </section>
+
+      <section id="structure">
+        <h2>Basic Structure of HTML</h2>
+
+        <p>HTML document की एक fixed basic structure होती है। इस structure में <code>&lt;!DOCTYPE html&gt;</code>, <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code>, <code>&lt;title&gt;</code> और <code>&lt;body&gt;</code> tags शामिल होते हैं। हर tag का अपना specific role होता है।</p>
+
+        <h4>Basic Structure</h4>
+        <pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Page Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  Page content goes here
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+
+        <h4>Structure Parts</h4>
+        <table>
+          <tr>
+            <th>Part</th>
+            <th>Work</th>
+          </tr>
+          <tr>
+            <td><code>&lt;!DOCTYPE html&gt;</code></td>
+            <td>Browser को बताता है कि document HTML5 है।</td>
+          </tr>
+          <tr>
+            <td><code>&lt;html&gt;</code></td>
+            <td>पूरे HTML document का root element है।</td>
+          </tr>
+          <tr>
+            <td><code>&lt;head&gt;</code></td>
+            <td>Page की information, title, meta और links रखता है।</td>
+          </tr>
+          <tr>
+            <td><code>&lt;title&gt;</code></td>
+            <td>Browser tab में page का title show करता है।</td>
+          </tr>
+          <tr>
+            <td><code>&lt;body&gt;</code></td>
+            <td>Visible webpage content रखता है।</td>
+          </tr>
+        </table>
+
+        <h4>Head and Body Difference</h4>
+        <table>
+          <tr>
+            <th>Head</th>
+            <th>Body</th>
+          </tr>
+          <tr>
+            <td>Page की information store करता है।</td>
+            <td>Visible content store करता है।</td>
+          </tr>
+          <tr>
+            <td>Mostly user को directly visible नहीं होता।</td>
+            <td>User को browser में visible होता है।</td>
+          </tr>
+          <tr>
+            <td>Title, meta, CSS links आदि रखता है।</td>
+            <td>Headings, paragraphs, images, links आदि रखता है।</td>
+          </tr>
+        </table>
+
+        <div class="remember-box"><b>Remember:</b><br>HTML page में visible content हमेशा <code>&lt;body&gt;</code> tag के अंदर लिखा जाता है।</div>
+      </section>
+
+      <section id="syntax">
+        <h2>Syntax</h2>
+
+        <p>HTML syntax का मतलब HTML code लिखने के rules से है। HTML में content को tags के अंदर लिखा जाता है। Most HTML tags opening tag और closing tag के pair में आते हैं। Opening tag start बताता है और closing tag end बताता है।</p>
+
+        <h4>Basic Syntax</h4>
+        <pre>&lt;tagname&gt;Content&lt;/tagname&gt;</pre>
+
+        <h4>Example</h4>
+        <pre>&lt;p&gt;This is a paragraph.&lt;/p&gt;</pre>
+
+        <div class="info-box"><b>Output:</b><br>This is a paragraph.</div>
+
+        <h4>Element Structure</h4>
+        <pre>&lt;h1&gt;Welcome&lt;/h1&gt;</pre>
+
+        <table>
+          <tr>
+            <th>Part</th>
+            <th>Meaning</th>
+          </tr>
+          <tr>
+            <td><code>&lt;h1&gt;</code></td>
+            <td>Opening tag</td>
+          </tr>
+          <tr>
+            <td><code>Welcome</code></td>
+            <td>Content</td>
+          </tr>
+          <tr>
+            <td><code>&lt;/h1&gt;</code></td>
+            <td>Closing tag</td>
+          </tr>
+        </table>
+
+        <h4>Case Sensitivity</h4>
+        <p>HTML tags case-sensitive नहीं होते, लेकिन modern HTML में lowercase tags लिखना best practice माना जाता है।</p>
+
+        <pre>&lt;P&gt;Hello&lt;/P&gt;
+&lt;p&gt;Hello&lt;/p&gt;</pre>
+
+        <p>दोनों काम कर सकते हैं, लेकिन <code>&lt;p&gt;</code> lowercase format professional और recommended है।</p>
+
+        <h4>Common Syntax Rules</h4>
+        <ul>
+          <li>Tags angle brackets में लिखे जाते हैं।</li>
+          <li>Most tags का opening और closing pair होता है।</li>
+          <li>Closing tag में slash <code>/</code> होता है।</li>
+          <li>Tags properly nested होने चाहिए।</li>
+          <li>Attribute values को quotes में लिखना चाहिए।</li>
+        </ul>
+
+        <div class="remember-box"><b>Remember:</b><br>HTML syntax simple है, लेकिन correct nesting और proper closing tags important हैं।</div>
+      </section>
+
+      <section id="tags-attributes">
+        <h2>HTML Tags and Attributes</h2>
+
+        <p>HTML tags webpage के elements define करते हैं। Tags browser को बताते हैं कि content heading है, paragraph है, image है, link है या table है। Tags angle brackets के अंदर लिखे जाते हैं।</p>
+
+        <p>Attributes HTML elements को extra information provide करते हैं। Attributes हमेशा opening tag में लिखे जाते हैं और generally name-value pair में होते हैं। जैसे image tag में <code>src</code> image location बताता है और <code>alt</code> image का alternate text बताता है।</p>
+
+        <h4>Tag Example</h4>
+        <pre>&lt;h1&gt;HTML Tutorial&lt;/h1&gt;
+&lt;p&gt;HTML is used to create web pages.&lt;/p&gt;</pre>
+
+        <h4>Attribute Example</h4>
+        <pre>&lt;img src="computer.jpg" alt="Computer Image"&gt;
+
+&lt;a href="https://example.com"&gt;Visit Website&lt;/a&gt;</pre>
+
+        <h4>Common Attributes</h4>
+        <table>
+          <tr>
+            <th>Attribute</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>href</code></td>
+            <td>Link का address बताता है।</td>
+          </tr>
+          <tr>
+            <td><code>src</code></td>
+            <td>Image/video/file source बताता है।</td>
+          </tr>
+          <tr>
+            <td><code>alt</code></td>
+            <td>Image का alternate text बताता है।</td>
+          </tr>
+          <tr>
+            <td><code>id</code></td>
+            <td>Element की unique identity देता है।</td>
+          </tr>
+          <tr>
+            <td><code>class</code></td>
+            <td>CSS styling group के लिए use होता है।</td>
+          </tr>
+          <tr>
+            <td><code>style</code></td>
+            <td>Inline CSS apply करता है।</td>
+          </tr>
+          <tr>
+            <td><code>title</code></td>
+            <td>Tooltip information देता है।</td>
+          </tr>
+        </table>
+
+        <h4>Multiple Attributes</h4>
+        <pre>&lt;a href="https://example.com" target="_blank" title="Open website"&gt;
+  Open Example
+&lt;/a&gt;</pre>
+
+        <div class="note-box"><b>Real Life Example:</b><br>जैसे किसी student के name के साथ roll number, course और class extra details होते हैं, वैसे ही HTML tag के साथ attributes extra information देते हैं।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Tag element बनाता है और attribute उस element की extra information देता है।</div>
+      </section>
+
+      <section id="tag-types">
+        <h2>Types of HTML Tags</h2>
+
+        <p>HTML tags को उनके behavior और structure के basis पर अलग-अलग types में divide किया जा सकता है। कुछ tags opening और closing pair में आते हैं, जबकि कुछ tags self-closing या empty होते हैं। कुछ tags block-level होते हैं और कुछ inline होते हैं।</p>
+
+        <h4>Paired Tags</h4>
+        <p>Paired tags में opening और closing दोनों tags होते हैं। Content इन दोनों tags के बीच लिखा जाता है।</p>
+
+        <pre>&lt;p&gt;This is paragraph&lt;/p&gt;
+&lt;h1&gt;Main Heading&lt;/h1&gt;</pre>
+
+        <h4>Empty Tags</h4>
+        <p>Empty tags में closing tag नहीं होता क्योंकि इनमें content नहीं होता।</p>
+
+        <pre>&lt;br&gt;
+&lt;hr&gt;
+&lt;img src="photo.jpg" alt="Photo"&gt;</pre>
+
+        <h4>Block-Level Tags</h4>
+        <p>Block-level tags new line से start होते हैं और available width पूरी ले लेते हैं।</p>
+
+        <pre>&lt;div&gt;This is div&lt;/div&gt;
+&lt;p&gt;This is paragraph&lt;/p&gt;</pre>
+
+        <h4>Inline Tags</h4>
+        <p>Inline tags same line में रहते हैं और केवल required width लेते हैं।</p>
+
+        <pre>&lt;span&gt;Text&lt;/span&gt;
+&lt;b&gt;Bold&lt;/b&gt;
+&lt;a href="#"&gt;Link&lt;/a&gt;</pre>
+
+        <h4>Comparison Table</h4>
+        <table>
+          <tr>
+            <th>Type</th>
+            <th>Meaning</th>
+            <th>Example</th>
+          </tr>
+          <tr>
+            <td>Paired Tag</td>
+            <td>Opening और closing tag होते हैं।</td>
+            <td><code>&lt;p&gt;&lt;/p&gt;</code></td>
+          </tr>
+          <tr>
+            <td>Empty Tag</td>
+            <td>Closing tag नहीं होता।</td>
+            <td><code>&lt;br&gt;</code></td>
+          </tr>
+          <tr>
+            <td>Block Tag</td>
+            <td>New line से start होता है।</td>
+            <td><code>&lt;div&gt;</code></td>
+          </tr>
+          <tr>
+            <td>Inline Tag</td>
+            <td>Same line में रहता है।</td>
+            <td><code>&lt;span&gt;</code></td>
+          </tr>
+        </table>
+
+        <div class="remember-box"><b>Remember:</b><br>Block elements full width लेते हैं, जबकि inline elements content जितनी width लेते हैं।</div>
+      </section>
+
+      <section id="nesting">
+        <h2>Rules of Nesting</h2>
+
+        <p>Nesting का मतलब एक HTML element के अंदर दूसरा HTML element लिखना है। HTML में nesting बहुत common है, लेकिन nested tags properly close होने चाहिए। जो tag बाद में open हुआ है, उसे पहले close करना चाहिए।</p>
+
+        <h4>Correct Nesting</h4>
+        <pre>&lt;p&gt;This is &lt;b&gt;bold text&lt;/b&gt; in paragraph.&lt;/p&gt;</pre>
+
+        <h4>Wrong Nesting</h4>
+        <pre>&lt;p&gt;This is &lt;b&gt;bold text&lt;/p&gt;&lt;/b&gt;</pre>
+
+        <p>Wrong nesting से browser output unpredictable हो सकता है और page structure खराब हो सकता है।</p>
+
+        <h4>Nesting Example with List</h4>
+        <pre>&lt;ul&gt;
+  &lt;li&gt;HTML&lt;/li&gt;
+  &lt;li&gt;CSS&lt;/li&gt;
+  &lt;li&gt;JavaScript&lt;/li&gt;
+&lt;/ul&gt;</pre>
+
+        <h4>Important Rules</h4>
+        <ul>
+          <li>Tags को proper order में close करें।</li>
+          <li>Parent element के अंदर child element properly रखा जाए।</li>
+          <li>List items हमेशा list tag के अंदर रखें।</li>
+          <li>Table rows table के अंदर और table cells rows के अंदर रखें।</li>
+          <li>Readable code के लिए indentation use करें।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>जैसे file folder के अंदर sub-folder proper structure में होता है, वैसे ही HTML elements proper nesting में होने चाहिए।</div>
+      </section>
+
+      <section id="basic-tags">
+        <h2>Basic Tags</h2>
+
+        <p>HTML के basic tags हर webpage में commonly use होते हैं। इनमें HTML tag, head tag, title tag और body tag सबसे important हैं। ये tags HTML document का foundation बनाते हैं।</p>
+
+        <h4>HTML Tag</h4>
+        <p><code>&lt;html&gt;</code> tag पूरे HTML document का root tag होता है। बाकी सभी main tags इसके अंदर आते हैं।</p>
+
+        <pre>&lt;html&gt;
+  ...
+&lt;/html&gt;</pre>
+
+        <h4>Head Tag</h4>
+        <p><code>&lt;head&gt;</code> tag document की information रखता है जैसे title, meta tags, CSS links आदि।</p>
+
+        <pre>&lt;head&gt;
+  &lt;title&gt;My Website&lt;/title&gt;
+&lt;/head&gt;</pre>
+
+        <h4>Title Tag</h4>
+        <p><code>&lt;title&gt;</code> tag browser tab में page title show करता है। यह SEO और user identification के लिए भी useful है।</p>
+
+        <pre>&lt;title&gt;Home Page&lt;/title&gt;</pre>
+
+        <h4>Body Tag</h4>
+        <p><code>&lt;body&gt;</code> tag webpage का visible content रखता है। User को browser में जो content दिखाई देता है, वह body tag के अंदर लिखा जाता है।</p>
+
+        <pre>&lt;body&gt;
+  &lt;h1&gt;Welcome&lt;/h1&gt;
+  &lt;p&gt;This is my page.&lt;/p&gt;
+&lt;/body&gt;</pre>
+
+        <h4>Basic Tags Table</h4>
+        <table>
+          <tr>
+            <th>Tag</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>&lt;html&gt;</code></td>
+            <td>Complete HTML document को contain करता है।</td>
+          </tr>
+          <tr>
+            <td><code>&lt;head&gt;</code></td>
+            <td>Page metadata और title रखता है।</td>
+          </tr>
+          <tr>
+            <td><code>&lt;title&gt;</code></td>
+            <td>Browser tab title show करता है।</td>
+          </tr>
+          <tr>
+            <td><code>&lt;body&gt;</code></td>
+            <td>Visible page content रखता है।</td>
+          </tr>
+        </table>
+
+        <div class="remember-box"><b>Remember:</b><br>Visible webpage content हमेशा body tag के अंदर लिखा जाता है।</div>
+      </section>
+
+      <section id="page-formatting">
+        <h2>Page Formatting</h2>
+
+        <p>Page formatting का मतलब webpage के content को readable और properly arranged बनाना है। HTML में paragraph, line break, blank space, background color, div और span जैसे elements page formatting में help करते हैं।</p>
+
+        <h4>Adding a New Paragraph</h4>
+        <p><code>&lt;p&gt;</code> tag paragraph बनाने के लिए use होता है। Browser paragraph के पहले और बाद में automatically spacing देता है।</p>
+
+        <pre>&lt;p&gt;This is first paragraph.&lt;/p&gt;
+&lt;p&gt;This is second paragraph.&lt;/p&gt;</pre>
+
+        <div class="info-box"><b>Output:</b><br>This is first paragraph.<br><br>This is second paragraph.</div>
+
+        <h4>Adding a Line Break</h4>
+        <p><code>&lt;br&gt;</code> tag line break के लिए use होता है। यह empty tag है।</p>
+
+        <pre>First Line&lt;br&gt;
+Second Line</pre>
+
+        <div class="info-box"><b>Output:</b><br>First Line<br>Second Line</div>
+
+        <h4>Inserting a Blank Space</h4>
+        <p>HTML normal multiple spaces को single space की तरह treat करता है। Extra blank space के लिए <code>&amp;nbsp;</code> use किया जा सकता है।</p>
+
+        <pre>Hello&amp;nbsp;&amp;nbsp;&amp;nbsp;World</pre>
+
+        <div class="info-box"><b>Output:</b><br>Hello&nbsp;&nbsp;&nbsp;World</div>
+
+        <h4>Changing Page Background</h4>
+        <p>Modern HTML में background change करने के लिए CSS use किया जाता है।</p>
+
+        <pre>&lt;body style="background-color: lightblue;"&gt;
+  &lt;h1&gt;Welcome&lt;/h1&gt;
+&lt;/body&gt;</pre>
+
+        <h4>Div Tag</h4>
+        <p><code>&lt;div&gt;</code> block-level container होता है। इसका use content को sections में divide करने और CSS styling apply करने के लिए किया जाता है।</p>
+
+        <pre>&lt;div&gt;
+  &lt;h2&gt;About Us&lt;/h2&gt;
+  &lt;p&gt;This is about section.&lt;/p&gt;
+&lt;/div&gt;</pre>
+
+        <h4>Span Tag</h4>
+        <p><code>&lt;span&gt;</code> inline container होता है। इसका use text के छोटे part पर styling apply करने के लिए किया जाता है।</p>
+
+        <pre>&lt;p&gt;This is &lt;span style="color:red;"&gt;important&lt;/span&gt; text.&lt;/p&gt;</pre>
+
+        <h4>Div vs Span</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>Div</th>
+            <th>Span</th>
+          </tr>
+          <tr>
+            <td>Type</td>
+            <td>Block-level element।</td>
+            <td>Inline element।</td>
+          </tr>
+          <tr>
+            <td>Use</td>
+            <td>Large sections/grouping के लिए।</td>
+            <td>Small inline text styling के लिए।</td>
+          </tr>
+          <tr>
+            <td>New Line</td>
+            <td>New line से start होता है।</td>
+            <td>Same line में रहता है।</td>
+          </tr>
+        </table>
+
+        <div class="remember-box"><b>Remember:</b><br><code>div</code> section/container के लिए और <code>span</code> inline text styling के लिए use होता है।</div>
+      </section>
+
+      <section id="text-formatting">
+        <h2>Text Formatting</h2>
+
+        <p>HTML text formatting elements text को meaningful और visually different बनाने के लिए use होते हैं। इन tags से text को bold, italic, important, emphasized, marked, deleted, inserted, subscript और superscript form में दिखाया जा सकता है।</p>
+
+        <h4>HTML Headings</h4>
+        <p>HTML में heading tags <code>&lt;h1&gt;</code> से <code>&lt;h6&gt;</code> तक होते हैं। <code>&lt;h1&gt;</code> सबसे important और largest heading होती है, जबकि <code>&lt;h6&gt;</code> सबसे smallest heading होती है।</p>
+
+        <pre>&lt;h1&gt;Heading 1&lt;/h1&gt;
+&lt;h2&gt;Heading 2&lt;/h2&gt;
+&lt;h3&gt;Heading 3&lt;/h3&gt;
+&lt;h4&gt;Heading 4&lt;/h4&gt;
+&lt;h5&gt;Heading 5&lt;/h5&gt;
+&lt;h6&gt;Heading 6&lt;/h6&gt;</pre>
+
+        <h4>Formatting Elements</h4>
+        <table>
+          <tr>
+            <th>Tag</th>
+            <th>Use</th>
+            <th>Example</th>
+          </tr>
+          <tr>
+            <td><code>&lt;b&gt;</code></td>
+            <td>Bold text दिखाता है।</td>
+            <td><code>&lt;b&gt;Bold&lt;/b&gt;</code></td>
+          </tr>
+          <tr>
+            <td><code>&lt;strong&gt;</code></td>
+            <td>Important text show करता है।</td>
+            <td><code>&lt;strong&gt;Important&lt;/strong&gt;</code></td>
+          </tr>
+          <tr>
+            <td><code>&lt;i&gt;</code></td>
+            <td>Italic text दिखाता है।</td>
+            <td><code>&lt;i&gt;Italic&lt;/i&gt;</code></td>
+          </tr>
+          <tr>
+            <td><code>&lt;em&gt;</code></td>
+            <td>Emphasized text दिखाता है।</td>
+            <td><code>&lt;em&gt;Emphasis&lt;/em&gt;</code></td>
+          </tr>
+          <tr>
+            <td><code>&lt;mark&gt;</code></td>
+            <td>Marked/highlighted text।</td>
+            <td><code>&lt;mark&gt;Marked&lt;/mark&gt;</code></td>
+          </tr>
+          <tr>
+            <td><code>&lt;small&gt;</code></td>
+            <td>Small text।</td>
+            <td><code>&lt;small&gt;Small&lt;/small&gt;</code></td>
+          </tr>
+          <tr>
+            <td><code>&lt;del&gt;</code></td>
+            <td>Deleted text।</td>
+            <td><code>&lt;del&gt;Old&lt;/del&gt;</code></td>
+          </tr>
+          <tr>
+            <td><code>&lt;ins&gt;</code></td>
+            <td>Inserted text।</td>
+            <td><code>&lt;ins&gt;New&lt;/ins&gt;</code></td>
+          </tr>
+          <tr>
+            <td><code>&lt;sub&gt;</code></td>
+            <td>Subscript text।</td>
+            <td><code>H&lt;sub&gt;2&lt;/sub&gt;O</code></td>
+          </tr>
+          <tr>
+            <td><code>&lt;sup&gt;</code></td>
+            <td>Superscript text।</td>
+            <td><code>x&lt;sup&gt;2&lt;/sup&gt;</code></td>
+          </tr>
+        </table>
+
+        <h4>Formatting Example</h4>
+        <pre>&lt;p&gt;&lt;b&gt;Bold text&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Important text&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;i&gt;Italic text&lt;/i&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Emphasized text&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;mark&gt;Marked text&lt;/mark&gt;&lt;/p&gt;
+&lt;p&gt;H&lt;sub&gt;2&lt;/sub&gt;O&lt;/p&gt;
+&lt;p&gt;x&lt;sup&gt;2&lt;/sup&gt;&lt;/p&gt;</pre>
+
+        <div class="info-box"><b>Output:</b><br><b>Bold text</b><br><strong>Important text</strong><br><i>Italic text</i><br><em>Emphasized text</em><br><mark>Marked text</mark><br>H<sub>2</sub>O<br>x<sup>2</sup></div>
+
+        <h4>Comments</h4>
+        <p>HTML comments browser में display नहीं होते। Comments code explain करने के लिए use होते हैं।</p>
+
+        <pre>&lt;!-- This is a comment --&gt;</pre>
+
+        <h4>Horizontal Lines</h4>
+        <p><code>&lt;hr&gt;</code> tag horizontal line insert करता है। इसका use sections separate करने के लिए किया जाता है।</p>
+
+        <pre>&lt;p&gt;Section 1&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Section 2&lt;/p&gt;</pre>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Chemistry में H<sub>2</sub>O लिखने के लिए subscript और maths में x<sup>2</sup> लिखने के लिए superscript use होता है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br><code>&lt;strong&gt;</code> और <code>&lt;em&gt;</code> semantic importance बताते हैं, जबकि <code>&lt;b&gt;</code> और <code>&lt;i&gt;</code> mainly visual formatting करते हैं।</div>
+      </section>
+
+      <section id="lists">
+        <h2>Creating Lists</h2>
+
+        <p>HTML lists का use related items को organized तरीके से show करने के लिए किया जाता है। HTML में mainly तीन types की lists होती हैं: ordered list, unordered list और definition list।</p>
+
+        <h4>Ordered List</h4>
+        <p>Ordered list numbered list होती है। इसे <code>&lt;ol&gt;</code> tag से बनाया जाता है और items <code>&lt;li&gt;</code> tag में लिखे जाते हैं।</p>
+
+        <pre>&lt;ol&gt;
+  &lt;li&gt;HTML&lt;/li&gt;
+  &lt;li&gt;CSS&lt;/li&gt;
+  &lt;li&gt;JavaScript&lt;/li&gt;
+&lt;/ol&gt;</pre>
+
+        <div class="info-box"><b>Output:</b><br>1. HTML<br>2. CSS<br>3. JavaScript</div>
+
+        <h4>Unordered List</h4>
+        <p>Unordered list bullet list होती है। इसे <code>&lt;ul&gt;</code> tag से बनाया जाता है।</p>
+
+        <pre>&lt;ul&gt;
+  &lt;li&gt;Python&lt;/li&gt;
+  &lt;li&gt;Java&lt;/li&gt;
+  &lt;li&gt;C++&lt;/li&gt;
+&lt;/ul&gt;</pre>
+
+        <div class="info-box"><b>Output:</b><br>• Python<br>• Java<br>• C++</div>
+
+        <h4>Definition List</h4>
+        <p>Definition list terms और उनकी description show करने के लिए use होती है। इसमें <code>&lt;dl&gt;</code>, <code>&lt;dt&gt;</code> और <code>&lt;dd&gt;</code> tags use होते हैं।</p>
+
+        <pre>&lt;dl&gt;
+  &lt;dt&gt;HTML&lt;/dt&gt;
+  &lt;dd&gt;HTML is used to create web pages.&lt;/dd&gt;
+
+  &lt;dt&gt;CSS&lt;/dt&gt;
+  &lt;dd&gt;CSS is used for styling web pages.&lt;/dd&gt;
+&lt;/dl&gt;</pre>
+
+        <h4>List Tags</h4>
+        <table>
+          <tr>
+            <th>Tag</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>&lt;ol&gt;</code></td>
+            <td>Ordered list बनाता है।</td>
+          </tr>
+          <tr>
+            <td><code>&lt;ul&gt;</code></td>
+            <td>Unordered list बनाता है।</td>
+          </tr>
+          <tr>
+            <td><code>&lt;li&gt;</code></td>
+            <td>List item define करता है।</td>
+          </tr>
+          <tr>
+            <td><code>&lt;dl&gt;</code></td>
+            <td>Definition list बनाता है।</td>
+          </tr>
+          <tr>
+            <td><code>&lt;dt&gt;</code></td>
+            <td>Definition term define करता है।</td>
+          </tr>
+          <tr>
+            <td><code>&lt;dd&gt;</code></td>
+            <td>Definition description define करता है।</td>
+          </tr>
+        </table>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Syllabus topics को ordered list में और features को unordered list में show किया जा सकता है।</div>
+      </section>
+
+      <section id="images-links">
+        <h2>Images, Text Links and Image Links</h2>
+
+        <p>HTML में images insert करने के लिए <code>&lt;img&gt;</code> tag use होता है। Links create करने के लिए <code>&lt;a&gt;</code> anchor tag use होता है। Link text पर भी लगाया जा सकता है और image पर भी।</p>
+
+        <h4>Images</h4>
+        <p><code>&lt;img&gt;</code> empty tag है। इसमें <code>src</code> और <code>alt</code> attributes important होते हैं।</p>
+
+        <pre>&lt;img src="computer.jpg" alt="Computer Image" width="300"&gt;</pre>
+
+        <div class="image-icon">Image Placeholder: computer.jpg</div>
+
+        <h4>Image Attributes</h4>
+        <table>
+          <tr>
+            <th>Attribute</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>src</code></td>
+            <td>Image file का path बताता है।</td>
+          </tr>
+          <tr>
+            <td><code>alt</code></td>
+            <td>Image load न होने पर alternate text show करता है।</td>
+          </tr>
+          <tr>
+            <td><code>width</code></td>
+            <td>Image width set करता है।</td>
+          </tr>
+          <tr>
+            <td><code>height</code></td>
+            <td>Image height set करता है।</td>
+          </tr>
+        </table>
+
+        <h4>Text Links</h4>
+        <pre>&lt;a href="https://www.google.com"&gt;Open Google&lt;/a&gt;</pre>
+
+        <h4>Opening a Page in New Window or Tab</h4>
+        <p>New tab में page open करने के लिए <code>target="_blank"</code> use किया जाता है।</p>
+
+        <pre>&lt;a href="https://www.google.com" target="_blank"&gt;Open Google&lt;/a&gt;</pre>
+
+        <h4>Image Links</h4>
+        <p>Image को clickable link बनाने के लिए <code>&lt;a&gt;</code> tag के अंदर <code>&lt;img&gt;</code> tag रखा जाता है।</p>
+
+        <pre>&lt;a href="https://example.com"&gt;
+  &lt;img src="logo.png" alt="Logo" width="150"&gt;
+&lt;/a&gt;</pre>
+
+        <h4>Absolute and Relative Links</h4>
+        <table>
+          <tr>
+            <th>Type</th>
+            <th>Example</th>
+            <th>Meaning</th>
+          </tr>
+          <tr>
+            <td>Absolute Link</td>
+            <td><code>https://example.com/page.html</code></td>
+            <td>Complete web address।</td>
+          </tr>
+          <tr>
+            <td>Relative Link</td>
+            <td><code>about.html</code></td>
+            <td>Current website/folder के relation में path।</td>
+          </tr>
+        </table>
+
+        <div class="remember-box"><b>Remember:</b><br><code>alt</code> attribute accessibility और SEO के लिए important होता है।</div>
+      </section>
+
+      <section id="same-page">
+        <h2>Linking to an Area of Same Page</h2>
+
+        <p>HTML में same page के किसी specific section पर जाने के लिए internal linking या anchor linking का use किया जाता है। इसके लिए target section को <code>id</code> दिया जाता है और link में <code>#id</code> use किया जाता है।</p>
+
+        <h4>Same Page Link Example</h4>
+        <pre>&lt;a href="#contact"&gt;Go to Contact Section&lt;/a&gt;
+
+&lt;h2 id="contact"&gt;Contact Us&lt;/h2&gt;
+&lt;p&gt;This is contact section.&lt;/p&gt;</pre>
+
+        <h4>Uses</h4>
+        <ul>
+          <li>Long webpage में quick navigation के लिए।</li>
+          <li>Table of contents बनाने के लिए।</li>
+          <li>FAQ page में questions से answers तक jump करने के लिए।</li>
+          <li>Single page website में section navigation के लिए।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>BK LearnX notes page के left sidebar में topics पर click करने से same page के अलग-अलग sections open होते हैं। यह same page linking का example है।</div>
+      </section>
+
+      <section id="tables">
+        <h2>Introduction to Table Tags</h2>
+
+        <p>HTML tables का use data को rows और columns के form में display करने के लिए किया जाता है। Table tabular data जैसे marksheet, timetable, price list, comparison chart और student records show करने के लिए useful है।</p>
+
+        <h4>Basic Table Example</h4>
+        <pre>&lt;table border="1"&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Name&lt;/th&gt;
+    &lt;th&gt;Course&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Brajkant&lt;/td&gt;
+    &lt;td&gt;PGDCA&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</pre>
+
+        <h4>Table Tags</h4>
+        <table>
+          <tr>
+            <th>Tag</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>&lt;table&gt;</code></td>
+            <td>Table create करता है।</td>
+          </tr>
+          <tr>
+            <td><code>&lt;tr&gt;</code></td>
+            <td>Table row create करता है।</td>
+          </tr>
+          <tr>
+            <td><code>&lt;th&gt;</code></td>
+            <td>Table heading cell create करता है।</td>
+          </tr>
+          <tr>
+            <td><code>&lt;td&gt;</code></td>
+            <td>Table data cell create करता है।</td>
+          </tr>
+          <tr>
+            <td><code>&lt;caption&gt;</code></td>
+            <td>Table title/caption देता है।</td>
+          </tr>
+        </table>
+
+        <h4>Rowspan and Colspan</h4>
+        <p><code>rowspan</code> multiple rows merge करता है और <code>colspan</code> multiple columns merge करता है।</p>
+
+        <pre>&lt;td colspan="2"&gt;Total Marks&lt;/td&gt;
+&lt;td rowspan="2"&gt;Result&lt;/td&gt;</pre>
+
+        <h4>Advantages of Tables</h4>
+        <ul>
+          <li>Data को organized form में show करते हैं।</li>
+          <li>Comparison easy हो जाता है।</li>
+          <li>Rows और columns में data readable दिखता है।</li>
+          <li>Marksheet, timetable और reports के लिए useful हैं।</li>
+        </ul>
+
+        <h4>Limitations of Tables</h4>
+        <ul>
+          <li>Layout design के लिए tables use करना old practice है।</li>
+          <li>Mobile responsive बनाना difficult हो सकता है।</li>
+          <li>Complex tables small screens पर overflow कर सकते हैं।</li>
+          <li>Accessibility issues आ सकते हैं अगर table structure सही न हो।</li>
+        </ul>
+
+        <div class="remember-box"><b>Remember:</b><br>Tables का use tabular data के लिए करें, page layout बनाने के लिए नहीं।</div>
+      </section>
+
+      <section id="frames">
+        <h2>Frames and IFrame</h2>
+
+        <p>HTML frames पुराने समय में एक browser window को multiple sections में divide करने के लिए use होते थे। HTML5 में traditional frames और frameset obsolete हो चुके हैं। Modern HTML में external page या content embed करने के लिए <code>&lt;iframe&gt;</code> tag use किया जाता है।</p>
+
+        <h4>IFrame</h4>
+        <p><code>&lt;iframe&gt;</code> का full form inline frame है। यह current webpage के अंदर another webpage या resource display कर सकता है।</p>
+
+        <pre>&lt;iframe src="chapter.html" width="100%" height="400"&gt;&lt;/iframe&gt;</pre>
+
+        <h4>Common IFrame Attributes</h4>
+        <table>
+          <tr>
+            <th>Attribute</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>src</code></td>
+            <td>Embedded page का address।</td>
+          </tr>
+          <tr>
+            <td><code>width</code></td>
+            <td>IFrame की width।</td>
+          </tr>
+          <tr>
+            <td><code>height</code></td>
+            <td>IFrame की height।</td>
+          </tr>
+          <tr>
+            <td><code>title</code></td>
+            <td>Accessibility के लिए iframe title।</td>
+          </tr>
+          <tr>
+            <td><code>loading</code></td>
+            <td>Lazy loading enable कर सकता है।</td>
+          </tr>
+        </table>
+
+        <h4>Responsive IFrame Example</h4>
+        <pre>&lt;div style="width:100%; height:100vh;"&gt;
+  &lt;iframe src="chapter.html" style="width:100%; height:100%; border:none;"&gt;&lt;/iframe&gt;
+&lt;/div&gt;</pre>
+
+        <h4>Uses of IFrame</h4>
+        <ul>
+          <li>Another HTML page embed करने के लिए।</li>
+          <li>Map embed करने के लिए।</li>
+          <li>YouTube video embed करने के लिए।</li>
+          <li>PDF या external content show करने के लिए।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>BK LearnX project में chapter HTML files को main page में iframe के through show किया जा सकता है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Frames obsolete हैं, modern HTML में iframe use होता है।</div>
+      </section>
+
+      <section id="forms">
+        <h2>HTML Forms</h2>
+
+        <p>HTML forms user से data collect करने के लिए use होते हैं। Form में text box, password field, radio buttons, checkboxes, dropdown, textarea, file upload और submit button जैसे controls हो सकते हैं।</p>
+
+        <p>Form का data server को send किया जा सकता है या JavaScript से process किया जा सकता है। Login form, registration form, contact form, feedback form और search form HTML forms के common examples हैं।</p>
+
+        <h4>Basic Form Example</h4>
+        <pre>&lt;form action="submit" method="post"&gt;
+  &lt;label&gt;Name:&lt;/label&gt;
+  &lt;input type="text" name="username"&gt;
+
+  &lt;label&gt;Password:&lt;/label&gt;
+  &lt;input type="password" name="password"&gt;
+
+  &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</pre>
+
+        <h4>Common Form Elements</h4>
+        <table>
+          <tr>
+            <th>Element</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>&lt;form&gt;</code></td>
+            <td>Form container बनाता है।</td>
+          </tr>
+          <tr>
+            <td><code>&lt;input&gt;</code></td>
+            <td>User input field बनाता है।</td>
+          </tr>
+          <tr>
+            <td><code>&lt;label&gt;</code></td>
+            <td>Input का label देता है।</td>
+          </tr>
+          <tr>
+            <td><code>&lt;textarea&gt;</code></td>
+            <td>Multi-line input field।</td>
+          </tr>
+          <tr>
+            <td><code>&lt;select&gt;</code></td>
+            <td>Dropdown list।</td>
+          </tr>
+          <tr>
+            <td><code>&lt;option&gt;</code></td>
+            <td>Dropdown option।</td>
+          </tr>
+          <tr>
+            <td><code>&lt;button&gt;</code></td>
+            <td>Button create करता है।</td>
+          </tr>
+        </table>
+
+        <h4>Input Types</h4>
+        <table>
+          <tr>
+            <th>Type</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>text</code></td>
+            <td>Normal text input।</td>
+          </tr>
+          <tr>
+            <td><code>password</code></td>
+            <td>Password input।</td>
+          </tr>
+          <tr>
+            <td><code>email</code></td>
+            <td>Email input।</td>
+          </tr>
+          <tr>
+            <td><code>number</code></td>
+            <td>Number input।</td>
+          </tr>
+          <tr>
+            <td><code>radio</code></td>
+            <td>Single option selection।</td>
+          </tr>
+          <tr>
+            <td><code>checkbox</code></td>
+            <td>Multiple options selection।</td>
+          </tr>
+          <tr>
+            <td><code>file</code></td>
+            <td>File upload।</td>
+          </tr>
+          <tr>
+            <td><code>submit</code></td>
+            <td>Form submit।</td>
+          </tr>
+        </table>
+
+        <h4>GET and POST Method</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>GET</th>
+            <th>POST</th>
+          </tr>
+          <tr>
+            <td>Data Visibility</td>
+            <td>URL में data visible हो सकता है।</td>
+            <td>URL में data visible नहीं होता।</td>
+          </tr>
+          <tr>
+            <td>Use</td>
+            <td>Search/filter जैसे कामों के लिए।</td>
+            <td>Login, registration, secure data के लिए।</td>
+          </tr>
+          <tr>
+            <td>Data Size</td>
+            <td>Limited।</td>
+            <td>More data send कर सकता है।</td>
+          </tr>
+        </table>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Student registration page में name, email, mobile number, course और password लेने के लिए HTML form use होता है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Form user input collect करता है। Sensitive data के लिए generally POST method use किया जाता है।</div>
+      </section>
+
+      <section id="xhtml">
+        <h2>XHTML</h2>
+
+        <p><strong>XHTML</strong> का full form <strong>Extensible HyperText Markup Language</strong> है। यह HTML और XML का combination है। XHTML HTML की तरह web pages create करने के लिए use होता है, लेकिन इसमें XML जैसी strict rules follow करनी पड़ती हैं।</p>
+
+        <p>XHTML में tags properly closed होने चाहिए, tags lowercase में होने चाहिए, attributes quoted होने चाहिए और nesting correct होनी चाहिए। XHTML का purpose cleaner, stricter और well-formed HTML documents बनाना था।</p>
+
+        <h4>XHTML Rules</h4>
+        <ul>
+          <li>All tags properly closed होने चाहिए।</li>
+          <li>Tags lowercase में लिखे जाने चाहिए।</li>
+          <li>Attributes values quotes में होनी चाहिए।</li>
+          <li>Tags properly nested होने चाहिए।</li>
+          <li>Empty tags भी closed format में लिखे जाते हैं।</li>
+        </ul>
+
+        <h4>HTML vs XHTML Example</h4>
+        <table>
+          <tr>
+            <th>HTML</th>
+            <th>XHTML</th>
+          </tr>
+          <tr>
+            <td><code>&lt;br&gt;</code></td>
+            <td><code>&lt;br /&gt;</code></td>
+          </tr>
+          <tr>
+            <td><code>&lt;IMG SRC=photo.jpg&gt;</code></td>
+            <td><code>&lt;img src="photo.jpg" /&gt;</code></td>
+          </tr>
+          <tr>
+            <td><code>&lt;p&gt;Text</code></td>
+            <td><code>&lt;p&gt;Text&lt;/p&gt;</code></td>
+          </tr>
+        </table>
+
+        <h4>Advantages of XHTML</h4>
+        <ul>
+          <li>Code clean और strict होता है।</li>
+          <li>Parsing और validation easy होती है।</li>
+          <li>XML tools के साथ compatible हो सकता है।</li>
+          <li>Properly structured documents बनते हैं।</li>
+        </ul>
+
+        <h4>Limitations of XHTML</h4>
+        <ul>
+          <li>Rules ज्यादा strict होते हैं।</li>
+          <li>Small mistake से document error दे सकता है।</li>
+          <li>Modern HTML5 ने कई practical cases में XHTML को replace कर दिया।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>XHTML को ऐसे समझो जैसे HTML का strict discipline वाला version, जिसमें हर tag properly closed और formatted होना जरूरी है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>XHTML HTML जैसा है, लेकिन XML-style strict rules follow करता है।</div>
+      </section>
+
+    </main>
+  </div>
+</body>
+
+</html>

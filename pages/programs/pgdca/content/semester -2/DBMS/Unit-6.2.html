@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PL/SQL - Part 2</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f7fb;color:#1f2937;line-height:1.75}
+.page{display:grid;grid-template-columns:290px 1fr;gap:20px;max-width:1550px;margin:auto;padding:10px}
+.sidebar{position:sticky;top:10px;height:calc(100vh - 20px);overflow-y:auto;background:#fff;border-radius:16px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.08);align-self:start}
+.sidebar h2{font-size:20px;margin-bottom:12px;color:#111827}
+.sidebar a{display:block;text-decoration:none;color:#374151;padding:8px 10px;border-radius:10px;margin-bottom:4px;font-size:14.5px}
+.sidebar a:hover{background:#eef2ff;color:#1d4ed8}
+.content{background:#fff;border-radius:18px;padding:10px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.hero{padding:30px 20px;border-radius:16px;background:linear-gradient(135deg,#eef2ff,#f8fafc);margin-bottom:18px}
+.hero h1{font-size:34px;color:#111827;margin-bottom:10px}
+.hero p{font-size:18px;color:#374151}
+section{padding:22px 10px;border-bottom:1px solid #e5e7eb}
+section:last-child{border-bottom:none}
+h2{font-size:27px;color:#111827;margin-bottom:12px;border-left:5px solid #2563eb;padding-left:12px}
+h3{font-size:22px;color:#1f2937;margin:18px 0 8px}
+h4{font-size:18px;color:#111827;margin:14px 0 6px}
+p{margin:10px 0;font-size:17px}
+ul,ol{margin-left:24px;margin-top:8px}
+li{margin:7px 0;font-size:16.5px}
+strong{color:#111827}
+.image-icon{min-height:180px;border:2px dashed #94a3b8;border-radius:16px;background:#f8fafc;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;margin:18px 0;color:#475569;font-weight:600;flex-direction:column;gap:8px}
+.image-icon img{max-width:100%;height:auto}
+.note-box{background:#f0fdf4;border-left:5px solid #22c55e;border-radius:14px;padding:14px 16px;margin:16px 0}
+.info-box{background:#ecfeff;border-left:5px solid #06b6d4;border-radius:14px;padding:14px 16px;margin:16px 0}
+.remember-box{background:#fff7ed;border-left:5px solid #f97316;border-radius:14px;padding:14px 16px;margin:16px 0}
+.warning-box{background:#fef2f2;border-left:5px solid #ef4444;border-radius:14px;padding:14px 16px;margin:16px 0}
+table{width:100%;border-collapse:collapse;margin:16px 0;border-radius:12px;overflow:hidden;font-size:15.3px}
+th,td{border:1px solid #d1d5db;padding:10px;text-align:left;vertical-align:top}
+th{background:#eef2ff;color:#111827}
+code{background:#111827;color:#f9fafb;padding:2px 6px;border-radius:6px;font-family:Consolas,monospace;font-size:15px}
+pre{background:#0f172a;color:#e5e7eb;border-radius:14px;padding:16px;margin:16px 0;overflow-x:auto;font-family:Consolas,monospace;line-height:1.6}
+@media(max-width:900px){.page{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.hero h1{font-size:27px}h2{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="page">
+<aside class="sidebar"><h2>Topics</h2><a href="#functions">User Defined Function</a>
+<a href="#function-example">Function Example</a>
+<a href="#function-rules">Function Characteristics</a>
+<a href="#procedure">Stored Procedure</a>
+<a href="#procedure-example">Procedure Example</a>
+<a href="#parameters">Procedure Parameter Modes</a>
+<a href="#function-vs-procedure">Function vs Procedure</a>
+<a href="#transaction">Transaction Concept</a>
+<a href="#acid">ACID Properties</a>
+<a href="#transaction-control">Transaction Control Statements</a>
+<a href="#transaction-errors">Transaction Error Handling</a></aside>
+<main class="content">
+<div class="hero"><h1>PL/SQL - Part 2</h1><p>User-defined functions, stored procedures, parameter modes, functions vs procedures और transaction control को deep practical format में समझाया गया है।</p></div>
+<section id="functions"><h2>User Defined Function</h2>
+<p><strong>User Defined Function</strong> named PL/SQL block होती है जो एक value return करती है। इसका use calculation, validation और reusable business logic के लिए किया जाता है।</p>
+<div class="image-icon"><img src="" alt="PL SQL Function"><p>Image Placeholder: Function Input, Processing and Return Value</p></div>
+<h4>General Syntax</h4>
+<pre>CREATE OR REPLACE FUNCTION function_name
+(parameter_name datatype)
+RETURN datatype
+IS
+BEGIN
+    -- Statements
+    RETURN value;
+END;
+/</pre>
+</section>
+<section id="function-example"><h2>Function Example</h2>
+<pre>CREATE OR REPLACE FUNCTION calculate_grade
+(
+    p_marks NUMBER
+)
+RETURN VARCHAR2
+IS
+    v_grade VARCHAR2(10);
+BEGIN
+    IF p_marks >= 75 THEN
+        v_grade := 'A';
+    ELSIF p_marks >= 60 THEN
+        v_grade := 'B';
+    ELSIF p_marks >= 40 THEN
+        v_grade := 'C';
+    ELSE
+        v_grade := 'F';
+    END IF;
+
+    RETURN v_grade;
+END;
+/</pre>
+<h4>Calling the Function</h4>
+<pre>SELECT calculate_grade(82) FROM dual;</pre>
+</section>
+<section id="function-rules"><h2>Function Characteristics</h2>
+<ul>
+<li>Function return type declare करना mandatory है।</li>
+<li>At least one RETURN statement होना चाहिए।</li>
+<li>Parameters optional हो सकते हैं।</li>
+<li>Function SQL statements में call की जा सकती है, यदि suitable हो।</li>
+<li>Function business logic reuse करती है।</li>
+</ul>
+</section>
+<section id="procedure"><h2>Stored Procedure</h2>
+<p><strong>Stored Procedure</strong> database में saved named PL/SQL block होती है। यह task perform करती है, लेकिन function की तरह direct return value mandatory नहीं होती।</p>
+<div class="image-icon"><img src="" alt="Stored Procedure"><p>Image Placeholder: Stored Procedure Execution</p></div>
+<h4>General Syntax</h4>
+<pre>CREATE OR REPLACE PROCEDURE procedure_name
+(parameter_name mode datatype)
+IS
+BEGIN
+    -- Statements
+END;
+/</pre>
+</section>
+<section id="procedure-example"><h2>Procedure Example</h2>
+<pre>CREATE OR REPLACE PROCEDURE update_student_marks
+(
+    p_student_id IN NUMBER,
+    p_new_marks  IN NUMBER
+)
+IS
+BEGIN
+    UPDATE student
+    SET marks = p_new_marks
+    WHERE student_id = p_student_id;
+
+    COMMIT;
+END;
+/</pre>
+<h4>Calling Procedure</h4>
+<pre>BEGIN
+    update_student_marks(101, 88);
+END;
+/</pre>
+</section>
+<section id="parameters"><h2>Procedure Parameter Modes</h2>
+<table>
+<tr><th>Mode</th><th>Meaning</th></tr>
+<tr><td>IN</td><td>Value procedure को input के रूप में दी जाती है।</td></tr>
+<tr><td>OUT</td><td>Procedure result caller को return करती है।</td></tr>
+<tr><td>IN OUT</td><td>Value input भी होती है और modified output भी बनती है।</td></tr>
+</table>
+<pre>CREATE OR REPLACE PROCEDURE increase_salary
+(
+    p_salary IN OUT NUMBER
+)
+IS
+BEGIN
+    p_salary := p_salary * 1.10;
+END;
+/</pre>
+</section>
+<section id="function-vs-procedure"><h2>Function vs Procedure</h2>
+<table>
+<tr><th>Basis</th><th>Function</th><th>Procedure</th></tr>
+<tr><td>Return Value</td><td>Mandatory</td><td>Not mandatory</td></tr>
+<tr><td>Main Purpose</td><td>Calculate and return</td><td>Perform an action</td></tr>
+<tr><td>SQL Query Use</td><td>Can often be used</td><td>Normally called as statement</td></tr>
+<tr><td>Parameters</td><td>Mostly input oriented</td><td>IN, OUT, IN OUT</td></tr>
+</table>
+</section>
+<section id="transaction"><h2>Transaction Concept</h2>
+<p><strong>Transaction</strong> database operations का logical unit है। Transaction में सभी operations successful होने चाहिए या failure पर सभी changes undo होने चाहिए।</p>
+<div class="image-icon"><img src="" alt="Database Transaction"><p>Image Placeholder: Transaction Flow</p></div>
+<h4>Bank Transfer Example</h4>
+<pre>START TRANSACTION;
+
+UPDATE account
+SET balance = balance - 500
+WHERE account_id = 1;
+
+UPDATE account
+SET balance = balance + 500
+WHERE account_id = 2;
+
+COMMIT;</pre>
+</section>
+<section id="acid"><h2>ACID Properties</h2>
+<table>
+<tr><th>Property</th><th>Meaning</th></tr>
+<tr><td>Atomicity</td><td>All operations complete हों या none।</td></tr>
+<tr><td>Consistency</td><td>Database valid state में रहे।</td></tr>
+<tr><td>Isolation</td><td>Concurrent transactions एक-दूसरे को incorrectly affect न करें।</td></tr>
+<tr><td>Durability</td><td>Committed changes permanently save रहें।</td></tr>
+</table>
+</section>
+<section id="transaction-control"><h2>Transaction Control Statements</h2>
+<h4>COMMIT</h4>
+<p>Changes permanently save करता है।</p>
+<h4>ROLLBACK</h4>
+<p>Uncommitted changes undo करता है।</p>
+<h4>SAVEPOINT</h4>
+<p>Transaction के बीच recovery point create करता है।</p>
+<pre>UPDATE account SET balance=balance-500 WHERE id=1;
+SAVEPOINT after_debit;
+
+UPDATE account SET balance=balance+500 WHERE id=2;
+
+ROLLBACK TO after_debit;
+COMMIT;</pre>
+</section>
+<section id="transaction-errors"><h2>Transaction Error Handling</h2>
+<pre>BEGIN
+    UPDATE account
+    SET balance = balance - 500
+    WHERE account_id = 1;
+
+    UPDATE account
+    SET balance = balance + 500
+    WHERE account_id = 2;
+
+    COMMIT;
+
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        RAISE;
+END;
+/</pre>
+<div class="remember-box"><b>Remember:</b><br>Financial और inventory operations में transaction control बहुत important है।</div>
+</section>
+</main>
+</div>
+</body>
+</html>

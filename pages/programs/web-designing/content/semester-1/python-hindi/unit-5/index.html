@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Functions in Python</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+      line-height: 1.75
+    }
+
+    .page {
+      display: grid;
+      grid-template-columns: 285px 1fr;
+      gap: 20px;
+      max-width: 1500px;
+      margin: auto;
+      padding: 10px
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 10px;
+      height: calc(100vh - 20px);
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
+      align-self: start
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #111827
+    }
+
+    .sidebar a {
+      display: block;
+      text-decoration: none;
+      color: #374151;
+      padding: 8px 10px;
+      border-radius: 10px;
+      margin-bottom: 4px;
+      font-size: 14.7px
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+      color: #1d4ed8
+    }
+
+    .content {
+      background: #fff;
+      border-radius: 18px;
+      padding: 10px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08)
+    }
+
+    .hero {
+      padding: 28px 18px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #eef2ff, #f8fafc);
+      margin-bottom: 18px
+    }
+
+    .hero h1 {
+      font-size: 34px;
+      color: #111827;
+      margin-bottom: 10px
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #374151
+    }
+
+    section {
+      padding: 22px 10px;
+      border-bottom: 1px solid #e5e7eb
+    }
+
+    section:last-child {
+      border-bottom: none
+    }
+
+    h2 {
+      font-size: 27px;
+      color: #111827;
+      margin-bottom: 12px;
+      border-left: 5px solid #2563eb;
+      padding-left: 12px
+    }
+
+    h3 {
+      font-size: 22px;
+      color: #1f2937;
+      margin: 16px 0 8px
+    }
+
+    h4 {
+      font-size: 18px;
+      color: #111827;
+      margin: 14px 0 6px
+    }
+
+    p {
+      margin: 10px 0;
+      font-size: 17px
+    }
+
+    ul,
+    ol {
+      margin-left: 24px;
+      margin-top: 8px
+    }
+
+    li {
+      margin: 7px 0;
+      font-size: 16.5px
+    }
+
+    strong {
+      color: #111827
+    }
+
+    .image-icon {
+      min-height: 180px;
+      border: 2px dashed #94a3b8;
+      border-radius: 16px;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      margin: 18px 0;
+      color: #475569;
+      font-weight: 600
+    }
+
+    .image-icon img {
+      max-width: 100%;
+      height: auto
+    }
+
+    .note-box {
+      background: #f0fdf4;
+      border-left: 5px solid #22c55e;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .info-box {
+      background: #ecfeff;
+      border-left: 5px solid #06b6d4;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .remember-box {
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      font-size: 15.5px
+    }
+
+    th,
+    td {
+      border: 1px solid #d1d5db;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top
+    }
+
+    th {
+      background: #eef2ff;
+      color: #111827
+    }
+
+    code {
+      background: #111827;
+      color: #f9fafb;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-family: Consolas, monospace;
+      font-size: 15px
+    }
+
+    pre {
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 14px;
+      padding: 16px;
+      margin: 16px 0;
+      overflow-x: auto;
+      font-family: Consolas, monospace;
+      line-height: 1.6
+    }
+
+    .compiler {
+      width: 100%;
+      height: 2rem;
+      background-color: green;
+      text-align: center;
+    }
+
+    .compiler a {
+      text-decoration: none;
+      color: white;
+    }
+
+    @media(max-width:900px) {
+      .page {
+        grid-template-columns: 1fr
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto
+      }
+
+      .hero h1 {
+        font-size: 27px
+      }
+
+      h2 {
+        font-size: 24px
+      }
+    }
+    /* Iframe content responsive fix */
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.page,
+.content,
+section {
+  min-width: 0;
+  max-width: 100%;
+}
+
+img,
+video,
+svg,
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+table {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border-radius: 12px;
+  -webkit-overflow-scrolling: touch;
+}
+
+th,
+td {
+  min-width: 110px;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+pre {
+  max-width: 100%;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+code {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 900px) {
+  .page {
+    display: block;
+    width: 100%;
+    padding: 5px;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .content {
+    width: 100%;
+    min-width: 0;
+    padding: 6px;
+    border-radius: 10px;
+  }
+
+  section {
+    width: 100%;
+    padding: 16px 6px;
+  }
+
+  .hero {
+    padding: 18px 10px;
+  }
+
+  .hero h1 {
+    font-size: 24px;
+  }
+
+  h2 {
+    font-size: 21px;
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+
+  p,
+  li {
+    font-size: 15px;
+  }
+
+  .image-icon {
+    min-height: 130px;
+    padding: 8px;
+  }
+}
+  </style>
+
+<link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
+<script src="../../../../../../../assets/shared/portal.js" defer></script>
+<script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
+</head>
+
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <h2>Topics</h2>
+      <a href="#intro">Introduction</a>
+      <a href="#defining">Defining Your Own Functions</a>
+      <a href="#parameters">Parameters</a>
+      <a href="#documentation">Function Documentation</a>
+      <a href="#keyword-optional">Keyword and Optional Parameters</a>
+      <a href="#passing-collections">Passing Collections to a Function</a>
+      <a href="#variable-args">Variable Number of Arguments</a>
+      <a href="#scope">Scope</a>
+      <a href="#first-class">Functions - First Class Citizens</a>
+      <a href="#passing-functions">Passing Functions to a Function</a>
+      <a href="#map">map</a>
+      <a href="#filter">filter</a>
+      <a href="#mapping-dict">Mapping Functions in a Dictionary</a>
+      <a href="#lambda">Lambda</a>
+      <a href="#inner-functions">Inner Functions</a>
+      <a href="#closures">Closures</a>
+    </aside>
+
+    <main class="content">
+      <div class="hero">
+        <h1>Functions in Python</h1>
+        <p>इस chapter में Python functions को beginner-friendly और exam-oriented style में समझाया गया है, जिसमें function definition, parameters, scope, lambda, map, filter, closures और first-class functions शामिल हैं।</p>
+      </div>
+
+      <section id="intro">
+        <h2>Introduction</h2>
+
+        <p>Function programming का एक important concept है। Function code का ऐसा reusable block होता है जिसे किसी specific task को perform करने के लिए बनाया जाता है। जब program बड़ा हो जाता है, तो पूरा code एक जगह लिखना difficult हो जाता है। ऐसे में functions की help से program को छोटे-छोटे logical parts में divide किया जाता है।</p>
+
+        <p>Python में function का use code reuse, readability और modular programming के लिए किया जाता है। एक बार function define करने के बाद उसे program में बार-बार call किया जा सकता है। इससे same code को repeatedly लिखने की जरूरत नहीं पड़ती और program easy to maintain बन जाता है।</p>
+
+        <p>Python में दो तरह के functions commonly मिलते हैं: built-in functions और user-defined functions. Built-in functions Python द्वारा पहले से available होते हैं जैसे <code>print()</code>, <code>input()</code>, <code>len()</code>, <code>type()</code>. User-defined functions programmer खुद अपनी requirement के according बनाता है।</p>
+
+        <h4>Need of Functions</h4>
+        <ul>
+          <li>Same code को बार-बार लिखने से बचाने के लिए।</li>
+          <li>Program को छोटे और manageable parts में divide करने के लिए।</li>
+          <li>Code readability improve करने के लिए।</li>
+          <li>Debugging और testing को आसान बनाने के लिए।</li>
+          <li>Large applications में modular programming करने के लिए।</li>
+        </ul>
+
+        <h4>Built-in Function Example</h4>
+        <pre>name = "Brajkant"
+
+print(len(name))
+print(type(name))</pre>
+
+        <div class="info-box"><b>Output:</b><br>8<br>&lt;class 'str'&gt;</div>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Calculator में addition, subtraction, multiplication और division के लिए अलग-अलग functions बनाए जा सकते हैं। इससे calculator program साफ और easy to manage बनता है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Function का main purpose code reuse और program को organized बनाना है।</div>
+      </section>
+
+      <section id="defining">
+        <h2>Defining Your Own Functions</h2>
+
+        <p>Python में user-defined function बनाने के लिए <code>def</code> keyword का use किया जाता है। Function का नाम programmer अपनी requirement के according रखता है। Function name के बाद parentheses <code>()</code> लगाए जाते हैं और line के end में colon <code>:</code> लगाया जाता है। Function के अंदर आने वाला code indented block में लिखा जाता है।</p>
+
+        <p>Function define करना और function call करना दो अलग-अलग steps हैं। केवल function define करने से function execute नहीं होता। Function execute करने के लिए function का नाम parentheses के साथ call करना पड़ता है।</p>
+
+        <h4>Basic Syntax</h4>
+        <pre>def function_name():
+    statements</pre>
+
+        <h4>Simple Function Example</h4>
+        <pre>def greet():
+    print("Welcome to Python")
+
+greet()</pre>
+
+        <div class="info-box"><b>Output:</b><br>Welcome to Python</div>
+
+        <h4>Function Calling</h4>
+        <p>Function को call करने का मतलब function के अंदर लिखा code execute करना है। एक function को program में multiple times call किया जा सकता है।</p>
+
+        <pre>def message():
+    print("Learning Python Functions")
+
+message()
+message()
+message()</pre>
+
+        <div class="info-box"><b>Output:</b><br>Learning Python Functions<br>Learning Python Functions<br>Learning Python Functions</div>
+
+        <h4>Function with Return Value</h4>
+        <p><code>return</code> statement function से result वापस भेजने के लिए use होता है। अगर function कोई calculation करता है और result को आगे use करना है, तो return statement helpful होता है।</p>
+
+        <pre>def add():
+    a = 10
+    b = 20
+    return a + b
+
+result = add()
+print(result)</pre>
+
+        <div class="info-box"><b>Output:</b><br>30</div>
+
+        <h4>print() and return Difference</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>print()</th>
+            <th>return</th>
+          </tr>
+          <tr>
+            <td>Work</td>
+            <td>Output screen पर show करता है।</td>
+            <td>Function से value वापस भेजता है।</td>
+          </tr>
+          <tr>
+            <td>Use</td>
+            <td>Display के लिए।</td>
+            <td>Further calculation के लिए।</td>
+          </tr>
+          <tr>
+            <td>Result Storage</td>
+            <td>Value store नहीं होती।</td>
+            <td>Returned value variable में store हो सकती है।</td>
+          </tr>
+        </table>
+
+        <h4>Common Mistakes</h4>
+        <ul>
+          <li><code>def</code> line के बाद colon <code>:</code> लगाना भूल जाना।</li>
+          <li>Function body को indent न करना।</li>
+          <li>Function define करने के बाद उसे call न करना।</li>
+          <li><code>print()</code> और <code>return</code> को same समझ लेना।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>School result software में total marks calculate करने के लिए अलग function बनाया जा सकता है और percentage calculate करने के लिए अलग function बनाया जा सकता है।</div>
+      </section>
+
+      <section id="parameters">
+        <h2>Parameters</h2>
+
+        <p>Parameters function को input देने का तरीका हैं। जब function define करते समय parentheses के अंदर variable names लिखे जाते हैं, तो उन्हें parameters कहा जाता है। जब function call करते समय actual values pass की जाती हैं, तो उन्हें arguments कहा जाता है।</p>
+
+        <p>Parameter की help से एक ही function different values पर काम कर सकता है। इससे function flexible और reusable बन जाता है। बिना parameter वाला function हर बार same काम करता है, जबकि parameter वाला function input के according result देता है।</p>
+
+        <h4>Function with Parameters</h4>
+        <pre>def greet(name):
+    print("Hello", name)
+
+greet("Brajkant")
+greet("Amit")</pre>
+
+        <div class="info-box"><b>Output:</b><br>Hello Brajkant<br>Hello Amit</div>
+
+        <h4>Multiple Parameters</h4>
+        <pre>def add(a, b):
+    print("Sum =", a + b)
+
+add(10, 20)
+add(50, 30)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Sum = 30<br>Sum = 80</div>
+
+        <h4>Parameters and Arguments</h4>
+        <table>
+          <tr>
+            <th>Term</th>
+            <th>Meaning</th>
+            <th>Example</th>
+          </tr>
+          <tr>
+            <td>Parameter</td>
+            <td>Function definition में लिखा variable।</td>
+            <td><code>def add(a, b):</code></td>
+          </tr>
+          <tr>
+            <td>Argument</td>
+            <td>Function call करते समय दी गई actual value।</td>
+            <td><code>add(10, 20)</code></td>
+          </tr>
+        </table>
+
+        <h4>Returning Result with Parameters</h4>
+        <pre>def multiply(a, b):
+    return a * b
+
+result = multiply(5, 4)
+print(result)</pre>
+
+        <div class="info-box"><b>Output:</b><br>20</div>
+
+        <h4>Common Mistakes</h4>
+        <ul>
+          <li>Function call में arguments की संख्या कम या ज्यादा देना।</li>
+          <li>Parameter name और argument value में confusion करना।</li>
+          <li>Function में result return करना भूल जाना।</li>
+        </ul>
+
+        <div class="remember-box"><b>Remember:</b><br>Parameters function को reusable बनाते हैं क्योंकि same function अलग-अलग values के साथ काम कर सकता है।</div>
+      </section>
+
+      <section id="documentation">
+        <h2>Function Documentation</h2>
+
+        <p>Function documentation का मतलब function के purpose, parameters और return value को explain करना है। Python में function documentation लिखने के लिए docstring का use किया जाता है। Docstring function के अंदर सबसे पहली statement के रूप में triple quotes <code>""" """</code> में लिखी जाती है।</p>
+
+        <p>Documentation पढ़कर दूसरा programmer आसानी से समझ सकता है कि function क्या काम करता है, कौन-कौन से input लेता है और क्या output return करता है। Large projects में documentation बहुत important होती है क्योंकि code को maintain करने वाले लोग अलग-अलग हो सकते हैं।</p>
+
+        <h4>Docstring Example</h4>
+        <pre>def add(a, b):
+    """this-function-takes-two-numbers-and-returns-their-sum.
+    """
+    return a + b
+
+print(add(10, 20))</pre>
+
+        <div class="info-box"><b>Output:</b><br>30</div>
+
+        <h4>Viewing Function Documentation</h4>
+        <p>Function की docstring को <code>.__doc__</code> property या <code>help()</code> function से देखा जा सकता है।</p>
+
+        <pre>def square(num):
+    """returns-square-of-a-number."""
+    return num * num
+
+print(square.__doc__)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Returns square of a number.</div>
+
+        <h4>Good Documentation Includes</h4>
+        <ul>
+          <li>Function का purpose।</li>
+          <li>Parameters का meaning।</li>
+          <li>Return value की जानकारी।</li>
+          <li>Important conditions या limitations।</li>
+          <li>Simple example if needed।</li>
+        </ul>
+
+        <h4>Documented Function Example</h4>
+        <pre>def calculate_percentage(obtained, total):
+    """calculates-percentage-from-obtained-marks-and-total-marks.
+    obtained: marks obtained by student
+    total: maximum marks
+    returns: percentage value
+    """
+    return (obtained / total) * 100
+
+print(calculate_percentage(420, 500))</pre>
+
+        <div class="info-box"><b>Output:</b><br>84.0</div>
+
+        <div class="note-box"><b>Real Life Example:</b><br>अगर project में team members काम कर रहे हैं, तो docstring देखकर वे समझ सकते हैं कि कौन-सा function किस purpose के लिए बनाया गया है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Docstring code को professional और maintainable बनाती है।</div>
+      </section>
+
+      <section id="keyword-optional">
+        <h2>Keyword and Optional Parameters</h2>
+
+        <p>Python में function arguments pass करने के कई तरीके होते हैं। जब function call करते समय parameter name के साथ value दी जाती है, तो उसे keyword argument कहा जाता है। Keyword arguments का advantage यह है कि values का order matter नहीं करता, क्योंकि Python parameter name देखकर value assign करता है।</p>
+
+        <p>Optional parameters ऐसे parameters होते हैं जिनकी default value पहले से define होती है। अगर function call करते समय उस parameter की value pass नहीं की जाती, तो default value use होती है। इससे function flexible बनता है।</p>
+
+        <h4>Keyword Arguments</h4>
+        <pre>def student(name, course):
+    print("Name:", name)
+    print("Course:", course)
+
+student(course="PGDCA", name="Brajkant")</pre>
+
+        <div class="info-box"><b>Output:</b><br>Name: Brajkant<br>Course: PGDCA</div>
+
+        <h4>Optional Parameters</h4>
+        <pre>def greet(name="Student"):
+    print("Hello", name)
+
+greet()
+greet("Brajkant")</pre>
+
+        <div class="info-box"><b>Output:</b><br>Hello Student<br>Hello Brajkant</div>
+
+        <h4>Default Value Example</h4>
+        <pre>def bill(amount, discount=0):
+    final_amount = amount - discount
+    print("Final Amount:", final_amount)
+
+bill(1000)
+bill(1000, 200)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Final Amount: 1000<br>Final Amount: 800</div>
+
+        <h4>Positional vs Keyword Arguments</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>Positional Argument</th>
+            <th>Keyword Argument</th>
+          </tr>
+          <tr>
+            <td>Value Assignment</td>
+            <td>Position के basis पर।</td>
+            <td>Parameter name के basis पर।</td>
+          </tr>
+          <tr>
+            <td>Order</td>
+            <td>Order important होता है।</td>
+            <td>Order generally important नहीं होता।</td>
+          </tr>
+          <tr>
+            <td>Example</td>
+            <td><code>student("Brajkant", "PGDCA")</code></td>
+            <td><code>student(course="PGDCA", name="Brajkant")</code></td>
+          </tr>
+        </table>
+
+        <h4>Common Mistake</h4>
+        <pre>def show(a=10, b):
+    print(a, b)</pre>
+
+        <div class="info-box"><b>Output:</b><br>SyntaxError: non-default argument follows default argument</div>
+
+        <p>Python में default parameter के बाद non-default parameter नहीं आना चाहिए। सही order में पहले normal parameters और फिर default parameters लिखे जाते हैं।</p>
+
+        <pre>def show(b, a=10):
+    print(a, b)
+
+show(20)</pre>
+
+        <div class="info-box"><b>Output:</b><br>10 20</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Default parameters हमेशा normal parameters के बाद लिखे जाने चाहिए।</div>
+      </section>
+
+      <section id="passing-collections">
+        <h2>Passing Collections to a Function</h2>
+
+        <p>Python में collection जैसे list, tuple, set और dictionary को function में argument के रूप में pass किया जा सकता है। इससे function multiple values पर एक साथ काम कर सकता है। Collection pass करने से code simple और reusable बनता है।</p>
+
+        <p>जब mutable collection जैसे list या dictionary function में pass होती है और function के अंदर उसे change किया जाता है, तो original collection भी change हो सकती है। इसलिए mutable और immutable objects का behavior समझना जरूरी है।</p>
+
+        <h4>Passing List</h4>
+        <pre>def show_subjects(subjects):
+    for subject in subjects:
+        print(subject)
+
+subjects = ["Python", "DCCN", "BCIT"]
+
+show_subjects(subjects)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Python<br>DCCN<br>BCIT</div>
+
+        <h4>Passing Tuple</h4>
+        <pre>def show_days(days):
+    for day in days:
+        print(day)
+
+week_days = ("Monday", "Tuesday", "Wednesday")
+
+show_days(week_days)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Monday<br>Tuesday<br>Wednesday</div>
+
+        <h4>Passing Dictionary</h4>
+        <pre>def show_student(student):
+    for key, value in student.items():
+        print(key, ":", value)
+
+student = {
+    "name": "Brajkant",
+    "course": "PGDCA",
+    "age": 23
+}
+
+show_student(student)</pre>
+
+        <div class="info-box"><b>Output:</b><br>name : Brajkant<br>course : PGDCA<br>age : 23</div>
+
+        <h4>Mutable Collection Example</h4>
+        <pre>def add_subject(subjects):
+    subjects.append("WDT")
+
+my_subjects = ["Python", "DCCN"]
+add_subject(my_subjects)
+
+print(my_subjects)</pre>
+
+        <div class="info-box"><b>Output:</b><br>['Python', 'DCCN', 'WDT']</div>
+
+        <p>ऊपर वाले example में list function के अंदर change हुई और original list भी change हो गई क्योंकि list mutable होती है।</p>
+
+        <h4>Important Points</h4>
+        <ul>
+          <li>List, tuple, set और dictionary function में pass हो सकते हैं।</li>
+          <li>List और dictionary mutable होते हैं, इसलिए function के अंदर changes original object पर affect कर सकते हैं।</li>
+          <li>Tuple immutable होता है, इसलिए उसके items directly change नहीं किए जा सकते।</li>
+          <li>Collection pass करके multiple values पर easily processing की जा सकती है।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Marks की list function में pass करके total, average और percentage calculate की जा सकती है।</div>
+      </section>
+
+      <section id="variable-args">
+        <h2>Variable Number of Arguments</h2>
+
+        <p>कई बार function बनाते समय हमें पहले से पता नहीं होता कि user कितने arguments pass करेगा। ऐसी situation में Python variable number of arguments की facility provide करता है। इसके लिए <code>*args</code> और <code>**kwargs</code> का use किया जाता है।</p>
+
+        <p><code>*args</code> multiple positional arguments को tuple के रूप में collect करता है। <code>**kwargs</code> multiple keyword arguments को dictionary के रूप में collect करता है। ये दोनों features function को flexible बनाते हैं।</p>
+
+        <h4>*args Example</h4>
+        <pre>def add_numbers(*numbers):
+    total = 0
+    for num in numbers:
+        total = total + num
+    print("Total =", total)
+
+add_numbers(10, 20)
+add_numbers(10, 20, 30, 40)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Total = 30<br>Total = 100</div>
+
+        <h4>**kwargs Example</h4>
+        <pre>def student_info(**details):
+    for key, value in details.items():
+        print(key, ":", value)
+
+student_info(name="Brajkant", course="PGDCA", age=23)</pre>
+
+        <div class="info-box"><b>Output:</b><br>name : Brajkant<br>course : PGDCA<br>age : 23</div>
+
+        <h4>*args and **kwargs Difference</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>*args</th>
+            <th>**kwargs</th>
+          </tr>
+          <tr>
+            <td>Arguments Type</td>
+            <td>Positional arguments</td>
+            <td>Keyword arguments</td>
+          </tr>
+          <tr>
+            <td>Collection Type</td>
+            <td>Tuple</td>
+            <td>Dictionary</td>
+          </tr>
+          <tr>
+            <td>Example</td>
+            <td><code>func(10, 20, 30)</code></td>
+            <td><code>func(name="Amit", age=20)</code></td>
+          </tr>
+        </table>
+
+        <h4>Order of Arguments</h4>
+        <pre>def show(a, *args, **kwargs):
+    print(a)
+    print(args)
+    print(kwargs)
+
+show(10, 20, 30, name="Brajkant", course="PGDCA")</pre>
+
+        <div class="info-box"><b>Output:</b><br>10<br>(20, 30)<br>{'name': 'Brajkant', 'course': 'PGDCA'}</div>
+
+        <div class="remember-box"><b>Remember:</b><br><code>*args</code> tuple बनाता है और <code>**kwargs</code> dictionary बनाता है।</div>
+      </section>
+
+      <section id="scope">
+        <h2>Scope</h2>
+
+        <p>Scope का मतलब है किसी variable की accessibility या visibility. यानी कोई variable program के किस part में access किया जा सकता है। Python में variables का scope इस बात पर depend करता है कि variable कहाँ define किया गया है।</p>
+
+        <p>Python में mainly local scope और global scope important हैं। जो variable function के अंदर define होता है, वह local variable कहलाता है और केवल उसी function के अंदर accessible होता है। जो variable function के बाहर define होता है, वह global variable कहलाता है और program में कई जगह access किया जा सकता है।</p>
+
+        <h4>Local Variable</h4>
+        <pre>def show():
+    x = 10
+    print(x)
+
+show()</pre>
+
+        <div class="info-box"><b>Output:</b><br>10</div>
+
+        <h4>Local Variable Outside Function</h4>
+        <pre>def show():
+    x = 10
+
+show()
+print(x)</pre>
+
+        <div class="info-box"><b>Output:</b><br>NameError: name 'x' is not defined</div>
+
+        <h4>Global Variable</h4>
+        <pre>x = 100
+
+def show():
+    print(x)
+
+show()
+print(x)</pre>
+
+        <div class="info-box"><b>Output:</b><br>100<br>100</div>
+
+        <h4>global Keyword</h4>
+        <p>अगर function के अंदर global variable को modify करना हो, तो <code>global</code> keyword use किया जाता है।</p>
+
+        <pre>x = 10
+
+def change():
+    global x
+    x = 50
+
+change()
+print(x)</pre>
+
+        <div class="info-box"><b>Output:</b><br>50</div>
+
+        <h4>LEGB Rule</h4>
+        <p>Python variable को search करने के लिए LEGB rule follow करता है:</p>
+
+        <table>
+          <tr>
+            <th>Letter</th>
+            <th>Meaning</th>
+          </tr>
+          <tr>
+            <td>L</td>
+            <td>Local scope</td>
+          </tr>
+          <tr>
+            <td>E</td>
+            <td>Enclosing scope</td>
+          </tr>
+          <tr>
+            <td>G</td>
+            <td>Global scope</td>
+          </tr>
+          <tr>
+            <td>B</td>
+            <td>Built-in scope</td>
+          </tr>
+        </table>
+
+        <h4>Common Mistake</h4>
+        <pre>x = 10
+
+def show():
+    x = x + 5
+    print(x)
+
+show()</pre>
+
+        <div class="info-box"><b>Output:</b><br>UnboundLocalError</div>
+
+        <p>यह error इसलिए आता है क्योंकि Python function के अंदर <code>x</code> को local variable मान रहा है, लेकिन use करने से पहले उसकी value assign नहीं हुई।</p>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Function के अंदर temporary calculation के लिए local variable use करना safe होता है, क्योंकि वह बाहर के variables को affect नहीं करता।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Local variable function के अंदर accessible होता है, जबकि global variable function के बाहर define होता है।</div>
+      </section>
+
+      <section id="first-class">
+        <h2>Functions - First Class Citizens</h2>
+
+        <p>Python में functions को first-class citizens कहा जाता है। इसका मतलब है कि functions को normal objects की तरह treat किया जा सकता है। जैसे हम integer, string या list को variable में store कर सकते हैं, वैसे ही function को भी variable में store किया जा सकता है।</p>
+
+        <p>First-class function होने के कारण Python में function को variable में assign किया जा सकता है, function को दूसरे function में argument के रूप में pass किया जा सकता है, function को दूसरे function से return किया जा सकता है और collection में store किया जा सकता है। यह feature functional programming style को support करता है।</p>
+
+        <h4>Function Assigned to Variable</h4>
+        <pre>def greet():
+    print("Hello Python")
+
+message = greet
+
+message()</pre>
+
+        <div class="info-box"><b>Output:</b><br>Hello Python</div>
+
+        <h4>Function Stored in List</h4>
+        <pre>def add(a, b):
+    return a + b
+
+def multiply(a, b):
+    return a * b
+
+operations = [add, multiply]
+
+print(operations[0](10, 20))
+print(operations[1](10, 20))</pre>
+
+        <div class="info-box"><b>Output:</b><br>30<br>200</div>
+
+        <h4>Main Features</h4>
+        <ul>
+          <li>Function को variable में assign किया जा सकता है।</li>
+          <li>Function को argument के रूप में pass किया जा सकता है।</li>
+          <li>Function को return value के रूप में return किया जा सकता है।</li>
+          <li>Function को list, dictionary जैसी collections में store किया जा सकता है।</li>
+        </ul>
+
+        <div class="remember-box"><b>Remember:</b><br>Python में function भी object है, इसलिए इसे data की तरह pass और store किया जा सकता है।</div>
+      </section>
+
+      <section id="passing-functions">
+        <h2>Passing Functions to a Function</h2>
+
+        <p>Python में एक function को दूसरे function में argument के रूप में pass किया जा सकता है। यह feature तब useful होता है जब हमें किसी operation को flexible बनाना हो। जिस function को argument के रूप में pass किया जाता है, उसे callback function की तरह use किया जा सकता है।</p>
+
+        <p>इस concept का use map, filter, decorators और functional programming में बहुत होता है। इससे code reusable और dynamic बनता है क्योंकि same function अलग-अलग operations receive करके अलग result दे सकता है।</p>
+
+        <h4>Simple Example</h4>
+        <pre>def square(num):
+    return num * num
+
+def process(value, function):
+    return function(value)
+
+result = process(5, square)
+
+print(result)</pre>
+
+        <div class="info-box"><b>Output:</b><br>25</div>
+
+        <h4>Passing Different Functions</h4>
+        <pre>def square(num):
+    return num * num
+
+def cube(num):
+    return num * num * num
+
+def process(value, function):
+    return function(value)
+
+print(process(4, square))
+print(process(4, cube))</pre>
+
+        <div class="info-box"><b>Output:</b><br>16<br>64</div>
+
+        <h4>Real Use Case</h4>
+        <pre>def uppercase(text):
+    return text.upper()
+
+def lowercase(text):
+    return text.lower()
+
+def format_text(text, function):
+    return function(text)
+
+print(format_text("Python", uppercase))
+print(format_text("Python", lowercase))</pre>
+
+        <div class="info-box"><b>Output:</b><br>PYTHON<br>python</div>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Data processing system में एक function data receive कर सकता है और दूसरा function decide कर सकता है कि data को uppercase, lowercase या clean कैसे करना है।</div>
+      </section>
+
+      <section id="map">
+        <h2>map</h2>
+
+        <p><code>map()</code> Python का built-in function है। इसका use किसी function को iterable के हर item पर apply करने के लिए किया जाता है। Iterable में list, tuple, string आदि आ सकते हैं। map function हर item पर given function apply करता है और result return करता है।</p>
+
+        <p><code>map()</code> का result map object होता है। इसे list या tuple में convert करके output देखा जा सकता है। map तब useful होता है जब हमें collection के सभी items पर same operation perform करना हो।</p>
+
+        <h4>Basic Syntax</h4>
+        <pre>map(function, iterable)</pre>
+
+        <h4>Square of Numbers</h4>
+        <pre>def square(num):
+    return num * num
+
+numbers = [1, 2, 3, 4, 5]
+
+result = map(square, numbers)
+
+print(list(result))</pre>
+
+        <div class="info-box"><b>Output:</b><br>[1, 4, 9, 16, 25]</div>
+
+        <h4>Using map with lambda</h4>
+        <pre>numbers = [1, 2, 3, 4, 5]
+
+result = map(lambda x: x * x, numbers)
+
+print(list(result))</pre>
+
+        <div class="info-box"><b>Output:</b><br>[1, 4, 9, 16, 25]</div>
+
+        <h4>Converting String Numbers to Integers</h4>
+        <pre>values = ["10", "20", "30"]
+
+numbers = list(map(int, values))
+
+print(numbers)</pre>
+
+        <div class="info-box"><b>Output:</b><br>[10, 20, 30]</div>
+
+        <h4>Important Points</h4>
+        <ul>
+          <li><code>map()</code> हर item पर function apply करता है।</li>
+          <li>Result map object होता है।</li>
+          <li>Output देखने के लिए इसे <code>list()</code> या <code>tuple()</code> में convert कर सकते हैं।</li>
+          <li>map with lambda short operations के लिए useful है।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Marks list में सभी marks में 5 grace marks add करने के लिए map use किया जा सकता है।</div>
+      </section>
+
+      <section id="filter">
+        <h2>filter</h2>
+
+        <p><code>filter()</code> Python का built-in function है जिसका use iterable से selected items filter करने के लिए किया जाता है। यह function हर item पर condition apply करता है और जिन items के लिए condition true होती है, उन्हें result में रखता है।</p>
+
+        <p><code>filter()</code> function दो arguments लेता है: एक function जो True/False return करता है और दूसरा iterable. इसका result filter object होता है जिसे list या tuple में convert किया जा सकता है।</p>
+
+        <h4>Basic Syntax</h4>
+        <pre>filter(function, iterable)</pre>
+
+        <h4>Filtering Even Numbers</h4>
+        <pre>def is_even(num):
+    return num % 2 == 0
+
+numbers = [1, 2, 3, 4, 5, 6]
+
+result = filter(is_even, numbers)
+
+print(list(result))</pre>
+
+        <div class="info-box"><b>Output:</b><br>[2, 4, 6]</div>
+
+        <h4>Using filter with lambda</h4>
+        <pre>numbers = [10, 15, 20, 25, 30]
+
+result = filter(lambda x: x >= 20, numbers)
+
+print(list(result))</pre>
+
+        <div class="info-box"><b>Output:</b><br>[20, 25, 30]</div>
+
+        <h4>Filtering Names</h4>
+        <pre>names = ["Amit", "Ravi", "Ankit", "Neha"]
+
+result = filter(lambda name: name.startswith("A"), names)
+
+print(list(result))</pre>
+
+        <div class="info-box"><b>Output:</b><br>['Amit', 'Ankit']</div>
+
+        <h4>map() vs filter()</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>map()</th>
+            <th>filter()</th>
+          </tr>
+          <tr>
+            <td>Work</td>
+            <td>हर item को transform करता है।</td>
+            <td>Condition true होने वाले items select करता है।</td>
+          </tr>
+          <tr>
+            <td>Function Result</td>
+            <td>Modified value return करता है।</td>
+            <td>True या False return करता है।</td>
+          </tr>
+          <tr>
+            <td>Example</td>
+            <td>हर number का square निकालना।</td>
+            <td>Only even numbers निकालना।</td>
+          </tr>
+        </table>
+
+        <div class="remember-box"><b>Remember:</b><br><code>map()</code> transform करता है, जबकि <code>filter()</code> select करता है।</div>
+      </section>
+
+      <section id="mapping-dict">
+        <h2>Mapping Functions in a Dictionary</h2>
+
+        <p>Python में functions को dictionary में values के रूप में store किया जा सकता है। क्योंकि functions first-class citizens हैं, इसलिए उन्हें dictionary में map करके dynamic operation perform किया जा सकता है। इस technique को mapping functions in a dictionary कहा जा सकता है।</p>
+
+        <p>इसका use menu-driven programs, calculator applications और command-based systems में बहुत useful होता है। User की choice के according dictionary से function select करके call किया जा सकता है। इससे लंबा if-elif structure avoid हो सकता है।</p>
+
+        <h4>Calculator Example</h4>
+        <pre>def add(a, b):
+    return a + b
+
+def subtract(a, b):
+    return a - b
+
+def multiply(a, b):
+    return a * b
+
+operations = {
+    "add": add,
+    "sub": subtract,
+    "mul": multiply
+}
+
+print(operations["add"](10, 20))
+print(operations["mul"](10, 20))</pre>
+
+        <div class="info-box"><b>Output:</b><br>30<br>200</div>
+
+        <h4>Menu Based Example</h4>
+        <pre>def start():
+    print("Program Started")
+
+def stop():
+    print("Program Stopped")
+
+commands = {
+    "start": start,
+    "stop": stop
+}
+
+choice = "start"
+commands[choice]()</pre>
+
+        <div class="info-box"><b>Output:</b><br>Program Started</div>
+
+        <h4>Benefits</h4>
+        <ul>
+          <li>Code साफ और short रहता है।</li>
+          <li>Long if-elif chain reduce होती है।</li>
+          <li>Dynamic function calling possible होती है।</li>
+          <li>Menu-driven programs में useful है।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Calculator app में user अगर “add” select करे तो add function call हो, “sub” select करे तो subtract function call हो। यह dictionary mapping से easily किया जा सकता है।</div>
+      </section>
+
+      <section id="lambda">
+        <h2>Lambda</h2>
+
+        <p>Lambda Python में anonymous function बनाने का तरीका है। Anonymous function का मतलब ऐसा function जिसका कोई name नहीं होता। Lambda function usually छोटी और single expression वाली function logic के लिए use होता है।</p>
+
+        <p>Normal function <code>def</code> keyword से बनाया जाता है, लेकिन lambda function <code>lambda</code> keyword से बनाया जाता है। Lambda function एक ही expression evaluate करके result return करता है। इसमें multiple statements नहीं लिखे जाते।</p>
+
+        <h4>Basic Syntax</h4>
+        <pre>lambda arguments: expression</pre>
+
+        <h4>Simple Lambda Example</h4>
+        <pre>square = lambda x: x * x
+
+print(square(5))</pre>
+
+        <div class="info-box"><b>Output:</b><br>25</div>
+
+        <h4>Lambda with Two Arguments</h4>
+        <pre>add = lambda a, b: a + b
+
+print(add(10, 20))</pre>
+
+        <div class="info-box"><b>Output:</b><br>30</div>
+
+        <h4>Lambda with map()</h4>
+        <pre>numbers = [1, 2, 3, 4]
+
+result = map(lambda x: x * 2, numbers)
+
+print(list(result))</pre>
+
+        <div class="info-box"><b>Output:</b><br>[2, 4, 6, 8]</div>
+
+        <h4>Lambda with filter()</h4>
+        <pre>numbers = [10, 15, 20, 25]
+
+result = filter(lambda x: x % 2 == 0, numbers)
+
+print(list(result))</pre>
+
+        <div class="info-box"><b>Output:</b><br>[10, 20]</div>
+
+        <h4>Normal Function vs Lambda</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>Normal Function</th>
+            <th>Lambda Function</th>
+          </tr>
+          <tr>
+            <td>Keyword</td>
+            <td><code>def</code></td>
+            <td><code>lambda</code></td>
+          </tr>
+          <tr>
+            <td>Name</td>
+            <td>Usually named होता है।</td>
+            <td>Anonymous हो सकता है।</td>
+          </tr>
+          <tr>
+            <td>Statements</td>
+            <td>Multiple statements हो सकते हैं।</td>
+            <td>Single expression होता है।</td>
+          </tr>
+          <tr>
+            <td>Use</td>
+            <td>Complex logic के लिए।</td>
+            <td>Short logic के लिए।</td>
+          </tr>
+        </table>
+
+        <div class="remember-box"><b>Remember:</b><br>Lambda function short और simple operation के लिए useful है, complex logic के लिए normal function better रहता है।</div>
+      </section>
+
+      <section id="inner-functions">
+        <h2>Inner Functions</h2>
+
+        <p>Python में एक function के अंदर दूसरा function define किया जा सकता है। ऐसे function को inner function या nested function कहा जाता है। Inner function केवल outer function के अंदर accessible होता है। इसका use code organization, data hiding और closures बनाने में किया जाता है।</p>
+
+        <p>Inner function outer function के variables को access कर सकता है। इससे function के अंदर related logic को group किया जा सकता है। अगर कोई helper function केवल एक main function के अंदर use हो रहा है, तो उसे inner function बनाना useful हो सकता है।</p>
+
+        <h4>Simple Inner Function</h4>
+        <pre>def outer():
+    print("Outer function")
+
+    def inner():
+        print("Inner function")
+
+    inner()
+
+outer()</pre>
+
+        <div class="info-box"><b>Output:</b><br>Outer function<br>Inner function</div>
+
+        <h4>Accessing Outer Variable</h4>
+        <pre>def outer():
+    message = "Hello from outer"
+
+    def inner():
+        print(message)
+
+    inner()
+
+outer()</pre>
+
+        <div class="info-box"><b>Output:</b><br>Hello from outer</div>
+
+        <h4>Inner Function Not Accessible Outside</h4>
+        <pre>def outer():
+    def inner():
+        print("Inner function")
+
+    inner()
+
+outer()
+inner()</pre>
+
+        <div class="info-box"><b>Output:</b><br>NameError: name 'inner' is not defined</div>
+
+        <h4>Use of Inner Functions</h4>
+        <ul>
+          <li>Helper logic को hide करने के लिए।</li>
+          <li>Outer function के data को safely use करने के लिए।</li>
+          <li>Closures बनाने के लिए।</li>
+          <li>Decorators में advanced use के लिए।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>एक billing function के अंदर discount calculate करने के लिए inner function बनाया जा सकता है, अगर वह discount logic केवल उसी billing function में use होना है।</div>
+      </section>
+
+      <section id="closures">
+        <h2>Closures</h2>
+
+        <p>Closure Python का advanced लेकिन important concept है। Closure तब बनता है जब inner function outer function के variable को याद रखता है, even जब outer function execution complete हो चुका हो। इसका मतलब inner function अपने surrounding environment की values को preserve कर सकता है।</p>
+
+        <p>Closure बनाने के लिए तीन conditions commonly होती हैं: एक nested function होना चाहिए, inner function outer function के variable को use करे, और outer function inner function को return करे। Closures का use data hiding, function factories और decorators में किया जाता है।</p>
+
+        <h4>Closure Example</h4>
+        <pre>def outer(name):
+    def inner():
+        print("Hello", name)
+
+    return inner
+
+greet = outer("Brajkant")
+greet()</pre>
+
+        <div class="info-box"><b>Output:</b><br>Hello Brajkant</div>
+
+        <p>इस example में <code>outer()</code> function complete हो चुका है, फिर भी <code>inner()</code> function ने <code>name</code> value को remember रखा। यही closure behavior है।</p>
+
+        <h4>Multiplier Closure</h4>
+        <pre>def multiplier(n):
+    def multiply(x):
+        return x * n
+
+    return multiply
+
+double = multiplier(2)
+triple = multiplier(3)
+
+print(double(5))
+print(triple(5))</pre>
+
+        <div class="info-box"><b>Output:</b><br>10<br>15</div>
+
+        <h4>Conditions for Closure</h4>
+        <ul>
+          <li>Function के अंदर inner function define होना चाहिए।</li>
+          <li>Inner function outer function के variable को use करे।</li>
+          <li>Outer function inner function को return करे।</li>
+          <li>Outer function finish होने के बाद भी inner function variable value remember रखे।</li>
+        </ul>
+
+        <h4>Benefits of Closures</h4>
+        <ul>
+          <li>Data hiding में help करते हैं।</li>
+          <li>Function factories बनाने में useful हैं।</li>
+          <li>Decorators को समझने का base concept हैं।</li>
+          <li>Code को flexible और reusable बनाते हैं।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>अगर हमें अलग-अलग tax calculators बनाने हैं, जैसे 5% tax और 18% tax, तो closure की help से tax rate remember रखने वाले functions बनाए जा सकते हैं।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Closure में inner function outer function की value को याद रखता है, even outer function finish होने के बाद भी।</div>
+      </section>
+
+    </main>
+  </div>
+</body>
+
+</html>

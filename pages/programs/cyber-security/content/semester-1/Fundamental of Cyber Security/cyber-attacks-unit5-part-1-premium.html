@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit-5 Cyber Attacks Procedure - Part 1</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f7fb;color:#1f2937;line-height:1.75}
+.page{display:grid;grid-template-columns:300px 1fr;gap:20px;max-width:1580px;margin:auto;padding:10px}
+.sidebar{position:sticky;top:10px;height:calc(100vh - 20px);overflow-y:auto;background:#fff;border-radius:16px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.08);align-self:start}
+.sidebar h2{font-size:20px;margin-bottom:12px;color:#111827}
+.sidebar a{display:block;text-decoration:none;color:#374151;padding:8px 10px;border-radius:10px;margin-bottom:4px;font-size:14.4px}
+.sidebar a:hover{background:#eef2ff;color:#1d4ed8}
+.content{background:#fff;border-radius:18px;padding:10px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.hero{padding:30px 20px;border-radius:16px;background:linear-gradient(135deg,#eef2ff,#f8fafc);margin-bottom:18px}
+.hero h1{font-size:34px;color:#111827;margin-bottom:10px}
+.hero p{font-size:18px;color:#374151}
+section{padding:22px 10px;border-bottom:1px solid #e5e7eb}
+section:last-child{border-bottom:none}
+h2{font-size:27px;color:#111827;margin-bottom:12px;border-left:5px solid #2563eb;padding-left:12px}
+h3{font-size:22px;color:#1f2937;margin:18px 0 8px}
+h4{font-size:18px;color:#111827;margin:14px 0 6px}
+p{margin:10px 0;font-size:17px}
+ul,ol{margin-left:24px;margin-top:8px}
+li{margin:7px 0;font-size:16.5px}
+strong{color:#111827}
+.image-icon{min-height:180px;border:2px dashed #94a3b8;border-radius:16px;background:#f8fafc;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;margin:18px 0;color:#475569;font-weight:600;flex-direction:column;gap:8px}
+.note-box{background:#f0fdf4;border-left:5px solid #22c55e;border-radius:14px;padding:14px 16px;margin:16px 0}
+.info-box{background:#ecfeff;border-left:5px solid #06b6d4;border-radius:14px;padding:14px 16px;margin:16px 0}
+.remember-box{background:#fff7ed;border-left:5px solid #f97316;border-radius:14px;padding:14px 16px;margin:16px 0}
+.warning-box{background:#fef2f2;border-left:5px solid #ef4444;border-radius:14px;padding:14px 16px;margin:16px 0}
+table{width:100%;border-collapse:collapse;margin:16px 0;border-radius:12px;overflow:hidden;font-size:15.3px}
+th,td{border:1px solid #d1d5db;padding:10px;text-align:left;vertical-align:top}
+th{background:#eef2ff;color:#111827}
+pre{background:#0f172a;color:#e5e7eb;border-radius:14px;padding:16px;margin:16px 0;overflow-x:auto;font-family:Consolas,monospace;line-height:1.6}
+@media(max-width:900px){.page{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.hero h1{font-size:27px}h2{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="page">
+<aside class="sidebar"><h2>Topics</h2><a href="#intro">General Procedure Adopted for Cyber Attacks</a>
+<a href="#recon">Reconnaissance</a>
+<a href="#footprinting">Footprinting Concepts and Methodology</a>
+<a href="#search-engines">Footprinting using Search Engines</a>
+<a href="#web-services">Footprinting using Web Services</a>
+<a href="#social-sites">Social Networking Sites</a>
+<a href="#website">Website Footprinting</a>
+<a href="#email">Email Footprinting</a>
+<a href="#whois">WHOIS Footprinting</a>
+<a href="#dns">DNS Footprinting</a>
+<a href="#network">Network Footprinting</a>
+<a href="#social-engineering">Footprinting by Social Engineering</a>
+<a href="#tools">Footprinting Tools - Categories</a>
+<a href="#countermeasures">Footprinting Countermeasures</a></aside>
+<main class="content">
+<div class="hero"><h1>Unit-5 Cyber Attacks Procedure - Part 1</h1><p>Reconnaissance और footprinting concepts, public sources, website/email/WHOIS/DNS/network footprinting, social engineering और countermeasures को defensive premium format में समझाया गया है।</p></div>
+<section id="intro"><h2>General Procedure Adopted for Cyber Attacks</h2>
+<p>Cyber attacks को समझने के लिए security professionals attacker के सामान्य stages का अध्ययन करते हैं। इनमें reconnaissance, scanning, enumeration, exploitation, privilege escalation और evidence concealment जैसे phases शामिल हो सकते हैं।</p>
+<div class="image-icon">Image Placeholder: High-Level Cyber Attack Lifecycle</div>
+<div class="warning-box"><b>Authorized Use Only:</b><br>इन concepts का अध्ययन केवल authorized lab, defensive security, audit और academic learning के लिए किया जाना चाहिए।</div>
+</section>
+<section id="recon"><h2>Reconnaissance</h2>
+<p><strong>Reconnaissance</strong> target organization, people, systems और public digital footprint के बारे में information collect करने की initial stage है।</p>
+<h4>Types</h4>
+<table>
+<tr><th>Type</th><th>Meaning</th></tr>
+<tr><td>Passive Reconnaissance</td><td>Public sources से information collect करना, target systems से direct interaction नहीं।</td></tr>
+<tr><td>Active Reconnaissance</td><td>Authorized environment में target infrastructure से limited interaction करके details verify करना।</td></tr>
+</table>
+</section>
+<section id="footprinting"><h2>Footprinting Concepts and Methodology</h2>
+<p><strong>Footprinting</strong> organization की internet presence, domains, public documents, technologies, employees और exposed services का high-level profile तैयार करने की process है।</p>
+<h4>Methodology</h4>
+<ol>
+<li>Scope और authorization define करें।</li>
+<li>Public sources identify करें।</li>
+<li>Organization-related information collect करें।</li>
+<li>Information validate और classify करें।</li>
+<li>Security exposure assess करें।</li>
+<li>Countermeasures recommend करें।</li>
+</ol>
+</section>
+<section id="search-engines"><h2>Footprinting using Search Engines</h2>
+<p>Search engines public web pages, indexed files, news, cached content और exposed references identify करने में useful होते हैं। Defensive audit में organization यह verify करती है कि sensitive information accidentally public तो नहीं है।</p>
+<h4>Defensive Checks</h4>
+<ul>
+<li>Publicly indexed documents review करना</li>
+<li>Old or duplicate pages identify करना</li>
+<li>Sensitive contact details exposure देखना</li>
+<li>Search results में fake brand pages identify करना</li>
+</ul>
+</section>
+<section id="web-services"><h2>Footprinting using Web Services</h2>
+<p>Public web services और internet databases domain reputation, certificate transparency, website technologies और public metadata जैसी information provide कर सकते हैं।</p>
+<div class="image-icon">Image Placeholder: Public Web Intelligence Sources</div>
+<h4>Security Value</h4>
+<ul>
+<li>External attack surface understanding</li>
+<li>Expired certificates identify करना</li>
+<li>Unknown public subdomains review करना</li>
+<li>Brand impersonation detect करना</li>
+</ul>
+</section>
+<section id="social-sites"><h2>Social Networking Sites</h2>
+<p>Social networking sites पर employees, job roles, technologies, office locations और business activities से संबंधित information मिल सकती है। Attackers इसे social engineering के लिए misuse कर सकते हैं।</p>
+<h4>Countermeasures</h4>
+<ul>
+<li>Employees को oversharing awareness दें।</li>
+<li>Public profile privacy review करें।</li>
+<li>Internal projects publicly disclose न करें।</li>
+<li>Unknown connection requests verify करें।</li>
+</ul>
+</section>
+<section id="website"><h2>Website Footprinting</h2>
+<p>Website footprinting में public pages, contact forms, technology indicators, privacy policies, subdomains और exposed metadata का defensive review किया जाता है।</p>
+<h4>Website Owner Checklist</h4>
+<ul>
+<li>Sensitive comments हटाएं।</li>
+<li>Default pages disable करें।</li>
+<li>Directory listing बंद रखें।</li>
+<li>Security headers configure करें।</li>
+<li>Old files remove करें।</li>
+</ul>
+</section>
+<section id="email"><h2>Email Footprinting</h2>
+<p>Email addresses, public contact patterns और exposed email formats attackers को phishing campaigns तैयार करने में help कर सकते हैं।</p>
+<h4>Protection</h4>
+<ul>
+<li>Public contact forms use करें।</li>
+<li>Email addresses unnecessary pages पर publish न करें।</li>
+<li>Spam filtering और MFA use करें।</li>
+<li>Phishing simulations और awareness training conduct करें।</li>
+</ul>
+</section>
+<section id="whois"><h2>WHOIS Footprinting</h2>
+<p>WHOIS-style domain registration records domain ownership, registrar और administrative metadata के बारे में public information दे सकते हैं। Privacy protection और accurate records security तथा compliance के लिए important हैं।</p>
+</section>
+<section id="dns"><h2>DNS Footprinting</h2>
+<p>DNS domain names को IP addresses और services से map करता है। Defensive review में organization अपने public DNS records की accuracy और unnecessary exposure check करती है।</p>
+<div class="image-icon">Image Placeholder: Domain Name to DNS Records</div>
+<h4>Countermeasures</h4>
+<ul>
+<li>Unused DNS records remove करें।</li>
+<li>Zone transfer restrict करें।</li>
+<li>DNS changes monitor करें।</li>
+<li>DNSSEC जहाँ suitable हो use करें।</li>
+</ul>
+</section>
+<section id="network"><h2>Network Footprinting</h2>
+<p>Network footprinting का उद्देश्य authorized scope में internet-facing network ranges, gateways और publicly exposed infrastructure को map करना है।</p>
+<h4>Defensive Purpose</h4>
+<ul>
+<li>Unknown assets identify करना</li>
+<li>Public exposure verify करना</li>
+<li>Asset inventory update करना</li>
+<li>Security monitoring improve करना</li>
+</ul>
+</section>
+<section id="social-engineering"><h2>Footprinting by Social Engineering</h2>
+<p>Social engineering में attacker human trust, urgency या authority का misuse करके information प्राप्त करने की कोशिश करता है।</p>
+<h4>Common Warning Signs</h4>
+<ul>
+<li>Urgent confidential request</li>
+<li>Password या OTP मांगना</li>
+<li>Unknown caller claiming authority</li>
+<li>Unexpected attachment or link</li>
+<li>Policy bypass request</li>
+</ul>
+<div class="remember-box"><b>Remember:</b><br>Information security में human verification process technical controls जितना ही important है।</div>
+</section>
+<section id="tools"><h2>Footprinting Tools - Categories</h2>
+<p>Authorized security teams footprinting के लिए search, monitoring, domain intelligence, certificate review और asset inventory tools use कर सकती हैं।</p>
+<table>
+<tr><th>Tool Category</th><th>Purpose</th></tr>
+<tr><td>Search Tools</td><td>Public pages and documents</td></tr>
+<tr><td>Domain Tools</td><td>Registration and DNS metadata</td></tr>
+<tr><td>Monitoring Tools</td><td>Brand and public exposure alerts</td></tr>
+<tr><td>Asset Inventory Tools</td><td>Known internet-facing systems</td></tr>
+</table>
+</section>
+<section id="countermeasures"><h2>Footprinting Countermeasures</h2>
+<ul>
+<li>Public information exposure minimize करें।</li>
+<li>Employee security awareness बढ़ाएं।</li>
+<li>Domain और certificate monitoring करें।</li>
+<li>Search engine indexing review करें।</li>
+<li>DNS records और subdomains audit करें।</li>
+<li>External attack surface inventory maintain करें।</li>
+<li>Fake social accounts और phishing domains monitor करें।</li>
+</ul>
+</section>
+</main>
+</div>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ER Model - Part 2</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f7fb;color:#1f2937;line-height:1.75}
+.page{display:grid;grid-template-columns:290px 1fr;gap:20px;max-width:1550px;margin:auto;padding:10px}
+.sidebar{position:sticky;top:10px;height:calc(100vh - 20px);overflow-y:auto;background:#fff;border-radius:16px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.08);align-self:start}
+.sidebar h2{font-size:20px;margin-bottom:12px;color:#111827}
+.sidebar a{display:block;text-decoration:none;color:#374151;padding:8px 10px;border-radius:10px;margin-bottom:4px;font-size:14.5px}
+.sidebar a:hover{background:#eef2ff;color:#1d4ed8}
+.content{background:#fff;border-radius:18px;padding:10px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.hero{padding:30px 20px;border-radius:16px;background:linear-gradient(135deg,#eef2ff,#f8fafc);margin-bottom:18px}
+.hero h1{font-size:34px;color:#111827;margin-bottom:10px}
+.hero p{font-size:18px;color:#374151}
+section{padding:22px 10px;border-bottom:1px solid #e5e7eb}
+section:last-child{border-bottom:none}
+h2{font-size:27px;color:#111827;margin-bottom:12px;border-left:5px solid #2563eb;padding-left:12px}
+h3{font-size:22px;color:#1f2937;margin:18px 0 8px}
+h4{font-size:18px;color:#111827;margin:14px 0 6px}
+p{margin:10px 0;font-size:17px}
+ul,ol{margin-left:24px;margin-top:8px}
+li{margin:7px 0;font-size:16.5px}
+strong{color:#111827}
+.image-icon{min-height:180px;border:2px dashed #94a3b8;border-radius:16px;background:#f8fafc;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;margin:18px 0;color:#475569;font-weight:600;flex-direction:column;gap:8px}
+.image-icon img{max-width:100%;height:auto}
+.note-box{background:#f0fdf4;border-left:5px solid #22c55e;border-radius:14px;padding:14px 16px;margin:16px 0}
+.info-box{background:#ecfeff;border-left:5px solid #06b6d4;border-radius:14px;padding:14px 16px;margin:16px 0}
+.remember-box{background:#fff7ed;border-left:5px solid #f97316;border-radius:14px;padding:14px 16px;margin:16px 0}
+table{width:100%;border-collapse:collapse;margin:16px 0;border-radius:12px;overflow:hidden;font-size:15.3px}
+th,td{border:1px solid #d1d5db;padding:10px;text-align:left;vertical-align:top}
+th{background:#eef2ff;color:#111827}
+pre{background:#0f172a;color:#e5e7eb;border-radius:14px;padding:16px;margin:16px 0;overflow-x:auto;font-family:Consolas,monospace;line-height:1.6}
+@media(max-width:900px){.page{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.hero h1{font-size:27px}h2{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="page">
+<aside class="sidebar"><h2>Topics</h2><a href="#entity">Entity and Entity Set</a>
+<a href="#relationship">Relationship and Relationship Set</a>
+<a href="#attributes">Attributes</a>
+<a href="#super-key">Super Key</a>
+<a href="#candidate-key">Candidate Key</a>
+<a href="#primary-key">Primary Key</a>
+<a href="#unique-key">Unique Key</a>
+<a href="#degree">Degree of Relationship</a>
+<a href="#mapping">Mapping Constraints</a>
+<a href="#participation">Participation Constraint</a>
+<a href="#strong">Strong Entity Set</a>
+<a href="#weak">Weak Entity Set</a></aside>
+<main class="content">
+<div class="hero"><h1>ER Model - Part 2</h1><p>Entity, relationship, attributes, keys, mapping constraints, participation constraints, strong entity और weak entity को deep premium format में समझाया गया है।</p></div>
+<section id="entity"><h2>Entity and Entity Set</h2>
+<p><strong>Entity</strong> real-world object, person, place, event या concept होता है जिसे uniquely identify किया जा सके।</p>
+<p><strong>Entity Set</strong> same type की entities का collection होता है।</p>
+<h4>Example</h4>
+<ul>
+<li>Student एक entity है।</li>
+<li>All students का collection Student Entity Set है।</li>
+</ul>
+<div class="image-icon"><img src="" alt="Entity and Entity Set"><p>Image Placeholder: Entity and Entity Set</p></div>
+</section>
+<section id="relationship"><h2>Relationship and Relationship Set</h2>
+<p><strong>Relationship</strong> दो या अधिक entities के बीच association है।</p>
+<p><strong>Relationship Set</strong> same type के relationships का collection है।</p>
+<h4>Example</h4>
+<p>Student <b>enrolls in</b> Course. यहाँ enrolls relationship है।</p>
+<div class="image-icon"><img src="" alt="Relationship Set"><p>Image Placeholder: Student-Course Relationship</p></div>
+</section>
+<section id="attributes"><h2>Attributes</h2>
+<p><strong>Attribute</strong> entity की property या characteristic होती है।</p>
+<table>
+<tr><th>Attribute Type</th><th>Meaning</th><th>Example</th></tr>
+<tr><td>Simple</td><td>Further divide नहीं होता</td><td>Age</td></tr>
+<tr><td>Composite</td><td>Subparts में divide होता है</td><td>Name, Address</td></tr>
+<tr><td>Single-valued</td><td>One value</td><td>Date of Birth</td></tr>
+<tr><td>Multi-valued</td><td>Multiple values</td><td>Phone Numbers</td></tr>
+<tr><td>Derived</td><td>Calculated value</td><td>Age from DOB</td></tr>
+<tr><td>Key Attribute</td><td>Entity identify करता है</td><td>Student_ID</td></tr>
+</table>
+<div class="image-icon"><img src="" alt="Attribute Types"><p>Image Placeholder: Types of Attributes</p></div>
+</section>
+<section id="super-key"><h2>Super Key</h2>
+<p><strong>Super Key</strong> one or more attributes का set होता है जो entity को uniquely identify कर सकता है। इसमें unnecessary attributes भी included हो सकते हैं।</p>
+<h4>Example</h4>
+<p>Student table में Student_ID और Student_ID + Name दोनों super keys हो सकते हैं।</p>
+</section>
+<section id="candidate-key"><h2>Candidate Key</h2>
+<p><strong>Candidate Key</strong> minimal super key होती है। इसमें कोई unnecessary attribute नहीं होता।</p>
+<h4>Example</h4>
+<p>Student_ID और Email दोनों candidate keys हो सकते हैं, यदि दोनों unique हैं।</p>
+</section>
+<section id="primary-key"><h2>Primary Key</h2>
+<p><strong>Primary Key</strong> candidate keys में से selected key होती है जो entity को uniquely identify करती है। इसकी value unique और non-null होती है।</p>
+<h4>Example</h4>
+<p>Student_ID को primary key select किया जा सकता है।</p>
+</section>
+<section id="unique-key"><h2>Unique Key</h2>
+<p><strong>Unique Key</strong> attribute की values को unique बनाती है। कुछ DBMS में unique key null value allow कर सकती है, जबकि primary key null नहीं होती।</p>
+<table>
+<tr><th>Basis</th><th>Primary Key</th><th>Unique Key</th></tr>
+<tr><td>Uniqueness</td><td>Required</td><td>Required</td></tr>
+<tr><td>Null</td><td>Not allowed</td><td>DBMS-dependent</td></tr>
+<tr><td>Count per Table</td><td>One</td><td>Multiple possible</td></tr>
+</table>
+</section>
+<section id="degree"><h2>Degree of Relationship</h2>
+<table>
+<tr><th>Degree</th><th>Description</th><th>Example</th></tr>
+<tr><td>Unary</td><td>Same entity set relationship</td><td>Employee supervises Employee</td></tr>
+<tr><td>Binary</td><td>Two entity sets</td><td>Student enrolls Course</td></tr>
+<tr><td>Ternary</td><td>Three entity sets</td><td>Supplier supplies Part to Project</td></tr>
+</table>
+</section>
+<section id="mapping"><h2>Mapping Constraints</h2>
+<p>Mapping constraints बताती हैं कि एक entity दूसरी entity से कितनी entities के साथ related हो सकती है।</p>
+<div class="image-icon"><img src="" alt="Mapping Constraints"><p>Image Placeholder: 1:1, 1:N, N:1, M:N</p></div>
+<table>
+<tr><th>Type</th><th>Meaning</th><th>Example</th></tr>
+<tr><td>One-to-One</td><td>One entity to one entity</td><td>Person-Passport</td></tr>
+<tr><td>One-to-Many</td><td>One entity to many entities</td><td>Department-Employees</td></tr>
+<tr><td>Many-to-One</td><td>Many entities to one entity</td><td>Students-Department</td></tr>
+<tr><td>Many-to-Many</td><td>Many entities to many entities</td><td>Students-Courses</td></tr>
+</table>
+</section>
+<section id="participation"><h2>Participation Constraint</h2>
+<p>Participation constraint बताती है कि entity relationship में mandatory participate करती है या optional।</p>
+<h4>Total Participation</h4>
+<p>हर entity को relationship में participate करना आवश्यक है। इसे double line से show किया जाता है।</p>
+<h4>Partial Participation</h4>
+<p>कुछ entities participate कर सकती हैं और कुछ नहीं। इसे single line से show किया जाता है।</p>
+<div class="image-icon"><img src="" alt="Participation Constraint"><p>Image Placeholder: Total and Partial Participation</p></div>
+</section>
+<section id="strong"><h2>Strong Entity Set</h2>
+<p><strong>Strong Entity Set</strong> अपनी primary key रखता है और independently exist कर सकता है।</p>
+<h4>Example</h4>
+<p>Employee entity के पास Employee_ID है।</p>
+<div class="image-icon"><img src="" alt="Strong Entity"><p>Image Placeholder: Strong Entity Set</p></div>
+</section>
+<section id="weak"><h2>Weak Entity Set</h2>
+<p><strong>Weak Entity Set</strong> अपनी complete primary key नहीं रखता और strong entity पर depend करता है। इसे identify करने के लिए owner entity की key और partial key use होती है।</p>
+<h4>Example</h4>
+<p>Employee का Dependent entity weak हो सकता है।</p>
+<div class="image-icon"><img src="" alt="Weak Entity"><p>Image Placeholder: Strong and Weak Entity Relationship</p></div>
+<table>
+<tr><th>Basis</th><th>Strong Entity</th><th>Weak Entity</th></tr>
+<tr><td>Primary Key</td><td>Own key</td><td>Depends on owner key</td></tr>
+<tr><td>Existence</td><td>Independent</td><td>Dependent</td></tr>
+<tr><td>Notation</td><td>Single rectangle</td><td>Double rectangle</td></tr>
+</table>
+</section>
+</main>
+</div>
+</body>
+</html>

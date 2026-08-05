@@ -1,0 +1,32 @@
+<!doctype html><html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Network Attacks Part-2 - Metasploit Framework Concepts</title><style>
+body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:#f5f7fb;color:#1f2937;line-height:1.72}
+.page{display:grid;grid-template-columns:290px 1fr;gap:18px;max-width:1520px;margin:auto;padding:10px}
+aside{position:sticky;top:10px;height:calc(100vh - 20px);overflow:auto;background:#fff;padding:16px;border-radius:14px;box-shadow:0 4px 18px rgba(0,0,0,.07)}
+aside a{display:block;padding:7px 9px;text-decoration:none;color:#374151;border-radius:8px}
+aside a:hover{background:#eef2ff}
+main{background:#fff;padding:10px;border-radius:16px;box-shadow:0 4px 18px rgba(0,0,0,.07)}
+.hero{background:linear-gradient(135deg,#eef2ff,#f8fafc);padding:25px 18px;border-radius:14px}
+section{padding:20px 10px;border-bottom:1px solid #e5e7eb}
+h2{border-left:5px solid #2563eb;padding-left:10px}
+p,li{font-size:16.5px}
+table{width:100%;border-collapse:collapse;margin:14px 0}
+th,td{border:1px solid #d1d5db;padding:9px;text-align:left;vertical-align:top}
+th{background:#eef2ff}
+.img{min-height:155px;border:2px dashed #94a3b8;border-radius:14px;background:#f8fafc;display:flex;align-items:center;justify-content:center;text-align:center;margin:16px 0;padding:16px}
+.note{background:#f0fdf4;border-left:5px solid #22c55e;padding:12px;border-radius:10px}
+.warn{background:#fef2f2;border-left:5px solid #ef4444;padding:12px;border-radius:10px}
+.rem{background:#fff7ed;border-left:5px solid #f97316;padding:12px;border-radius:10px}
+.info{background:#ecfeff;border-left:5px solid #06b6d4;padding:12px;border-radius:10px}
+pre{background:#0f172a;color:#fff;padding:14px;border-radius:12px;overflow:auto}
+@media(max-width:900px){.page{grid-template-columns:1fr}aside{position:relative;height:auto}}
+</style></head><body><div class="page"><aside><h2>Topics</h2><a href="#intro">Metasploit Framework - Introduction</a><a href="#interface">Metasploit Interface</a><a href="#modules">Module Categories</a><a href="#exploit">Exploit Selection - Defensive Principles</a><a href="#payload">Payloads and Custom Payloads - Safe Overview</a><a href="#scripting">Metasploit Scripting Concept</a><a href="#delivery">Exploit Delivery - High-Level</a><a href="#evasion">Antivirus and Firewall Evasion - Defensive Understanding</a><a href="#workflow">Safe Metasploit Lab Workflow</a><a href="#report">Reporting</a></aside><main><div class="hero"><h1>Network Attacks Part-2 - Metasploit Framework Concepts</h1><p>Metasploit interface, modules, exploits, payloads और scripting concepts को safe lab perspective से समझाया गया है.</p></div><section id="intro"><h2>Metasploit Framework - Introduction</h2><p><strong>Metasploit Framework</strong> authorized penetration testing और vulnerability validation framework है। इसका use controlled lab में known vulnerabilities के impact को verify करने के लिए किया जाता है।</p><div class="img">Image Placeholder: Metasploit Framework Architecture</div><div class="warn"><b>Safety:</b> Real-world target पर unauthorized exploitation strictly prohibited है।</div></section><section id="interface"><h2>Metasploit Interface</h2><p>Framework interface modules search, configuration, session handling और reporting जैसी activities organize करती है।</p><h4>High-Level Areas</h4><ul><li>Console</li><li>Module search</li><li>Options</li><li>Sessions</li><li>Workspaces</li></ul></section><section id="modules"><h2>Module Categories</h2><table><tr><th>Module</th><th>Purpose</th></tr><tr><td>Exploit</td><td>Known weakness validation</td></tr><tr><td>Auxiliary</td><td>Scanning, enumeration, support tasks</td></tr><tr><td>Payload</td><td>Controlled post-validation action</td></tr><tr><td>Post</td><td>Authorized post-assessment checks</td></tr><tr><td>Encoder/NOP</td><td>Historical module-support concepts</td></tr></table></section><section id="exploit"><h2>Exploit Selection - Defensive Principles</h2><ul><li>Exact product/version match</li><li>Authorized scope</li><li>Lab validation first</li><li>Impact understanding</li><li>Rollback plan</li><li>Minimal proof of concept</li></ul></section><section id="payload"><h2>Payloads and Custom Payloads - Safe Overview</h2><p>Payloads post-exploitation action define करते हैं। Custom payloads specialized code होते हैं, लेकिन उन्हें केवल isolated lab और approved research में use करना चाहिए।</p><div class="info"><b>Safe Alternative:</b> Non-invasive verification payload या simulation prefer करें।</div></section><section id="scripting"><h2>Metasploit Scripting Concept</h2><p>Scripting repetitive assessment tasks automate करने में help कर सकती है। Safe scripting में scope enforcement, logging, rate control और error handling शामिल होना चाहिए।</p></section><section id="delivery"><h2>Exploit Delivery - High-Level</h2><p>Delivery का अर्थ vulnerable component तक test case पहुँचाना है। Defensive course में delivery vectors को email, web, network service और removable media जैसी categories के रूप में समझा जाता है।</p><h4>Protection</h4><ul><li>Patch management</li><li>Application allowlisting</li><li>Email filtering</li><li>Web filtering</li><li>Endpoint detection</li></ul></section><section id="evasion"><h2>Antivirus and Firewall Evasion - Defensive Understanding</h2><p>Attackers detection evade करने की कोशिश कर सकते हैं। Defensive perspective में focus detection gaps, behavior analytics और layered controls पर होना चाहिए।</p><ul><li>EDR behavior detection</li><li>Application control</li><li>Network monitoring</li><li>Sandboxing</li><li>Threat intelligence</li></ul><div class="warn"><b>Not Included:</b> Evasion steps, obfuscation methods और bypass instructions intentionally नहीं दिए गए हैं।</div></section><section id="workflow"><h2>Safe Metasploit Lab Workflow</h2><pre>Build Isolated Lab
+      ↓
+Confirm Written Scope
+      ↓
+Identify Known Vulnerability
+      ↓
+Use Minimal Safe Validation
+      ↓
+Record Evidence
+      ↓
+Patch and Retest</pre></section><section id="report"><h2>Reporting</h2><ul><li>Target and scope</li><li>Validated vulnerability</li><li>Impact</li><li>Evidence</li><li>Remediation</li><li>Retest result</li></ul><div class="rem"><b>Remember:</b> Framework skill से ज्यादा important authorization, control और reporting है।</div></section></main></div></body></html>

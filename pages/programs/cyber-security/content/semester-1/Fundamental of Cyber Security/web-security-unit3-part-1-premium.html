@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web Security Unit-3 - Part 1</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f7fb;color:#1f2937;line-height:1.75}
+.page{display:grid;grid-template-columns:300px 1fr;gap:20px;max-width:1580px;margin:auto;padding:10px}
+.sidebar{position:sticky;top:10px;height:calc(100vh - 20px);overflow-y:auto;background:#fff;border-radius:16px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.08);align-self:start}
+.sidebar h2{font-size:20px;margin-bottom:12px;color:#111827}
+.sidebar a{display:block;text-decoration:none;color:#374151;padding:8px 10px;border-radius:10px;margin-bottom:4px;font-size:14.4px}
+.sidebar a:hover{background:#eef2ff;color:#1d4ed8}
+.content{background:#fff;border-radius:18px;padding:10px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.hero{padding:30px 20px;border-radius:16px;background:linear-gradient(135deg,#eef2ff,#f8fafc);margin-bottom:18px}
+.hero h1{font-size:34px;color:#111827;margin-bottom:10px}
+.hero p{font-size:18px;color:#374151}
+section{padding:22px 10px;border-bottom:1px solid #e5e7eb}
+section:last-child{border-bottom:none}
+h2{font-size:27px;color:#111827;margin-bottom:12px;border-left:5px solid #2563eb;padding-left:12px}
+h3{font-size:22px;color:#1f2937;margin:18px 0 8px}
+h4{font-size:18px;color:#111827;margin:14px 0 6px}
+p{margin:10px 0;font-size:17px}
+ul,ol{margin-left:24px;margin-top:8px}
+li{margin:7px 0;font-size:16.5px}
+strong{color:#111827}
+.image-icon{min-height:180px;border:2px dashed #94a3b8;border-radius:16px;background:#f8fafc;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;margin:18px 0;color:#475569;font-weight:600;flex-direction:column;gap:8px}
+.image-icon img{max-width:100%;height:auto}
+.note-box{background:#f0fdf4;border-left:5px solid #22c55e;border-radius:14px;padding:14px 16px;margin:16px 0}
+.info-box{background:#ecfeff;border-left:5px solid #06b6d4;border-radius:14px;padding:14px 16px;margin:16px 0}
+.remember-box{background:#fff7ed;border-left:5px solid #f97316;border-radius:14px;padding:14px 16px;margin:16px 0}
+.warning-box{background:#fef2f2;border-left:5px solid #ef4444;border-radius:14px;padding:14px 16px;margin:16px 0}
+table{width:100%;border-collapse:collapse;margin:16px 0;border-radius:12px;overflow:hidden;font-size:15.3px}
+th,td{border:1px solid #d1d5db;padding:10px;text-align:left;vertical-align:top}
+th{background:#eef2ff;color:#111827}
+pre{background:#0f172a;color:#e5e7eb;border-radius:14px;padding:16px;margin:16px 0;overflow-x:auto;font-family:Consolas,monospace;line-height:1.6}
+code{background:#111827;color:#f9fafb;padding:2px 6px;border-radius:6px}
+@media(max-width:900px){.page{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.hero h1{font-size:27px}h2{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="page">
+<aside class="sidebar"><h2>Topics</h2><a href="#intro">Introduction to Web Security</a>
+<a href="#forensic">A Web Security Forensic Lesson</a>
+<a href="#forensic-steps">Web Forensic Investigation Steps</a>
+<a href="#attacks-overview">Introduction to Web Attacks</a>
+<a href="#secure-lifecycle">Secure Web Development Lifecycle</a>
+<a href="#common-controls">Common Web Security Controls</a></aside>
+<main class="content">
+<div class="hero"><h1>Web Security Unit-3 - Part 1</h1><p>Web security introduction, forensic investigation, common attacks, secure development lifecycle और web security controls को premium exam-oriented format में समझाया गया है।</p></div>
+<section id="intro"><h2>Introduction to Web Security</h2>
+<p><strong>Web Security</strong> websites, web applications, web servers, browsers, APIs और transmitted data को unauthorized access, misuse, manipulation और attacks से बचाने की process है।</p>
+<div class="image-icon"><img src="" alt="Web Security Overview"><p>Image Placeholder: Web Security Ecosystem</p></div>
+<h4>Main Objectives</h4>
+<ul>
+<li>User data protect करना</li>
+<li>Website availability maintain करना</li>
+<li>Authentication secure रखना</li>
+<li>Application vulnerabilities reduce करना</li>
+<li>Secure communication ensure करना</li>
+</ul>
+<div class="remember-box"><b>Remember:</b><br>Web security में client, server, network, application और database सभी layers की protection जरूरी है।</div>
+</section>
+<section id="forensic"><h2>A Web Security Forensic Lesson</h2>
+<p><strong>Web Forensics</strong> web-related security incident के digital evidence को collect, preserve, analyze और report करने की process है।</p>
+<h4>Evidence Sources</h4>
+<ul>
+<li>Web server logs</li>
+<li>Application logs</li>
+<li>Firewall logs</li>
+<li>Database logs</li>
+<li>Browser history and cache</li>
+<li>Network packet captures</li>
+</ul>
+<div class="image-icon"><img src="" alt="Web Forensics Process"><p>Image Placeholder: Web Forensics Investigation Flow</p></div>
+</section>
+<section id="forensic-steps"><h2>Web Forensic Investigation Steps</h2>
+<ol>
+<li>Incident identify करें।</li>
+<li>Evidence preserve करें।</li>
+<li>Logs और timestamps collect करें।</li>
+<li>Suspicious requests analyze करें।</li>
+<li>Attack path reconstruct करें।</li>
+<li>Impact determine करें।</li>
+<li>Report और recommendations तैयार करें।</li>
+</ol>
+<div class="note-box"><b>Professional Tip:</b><br>Evidence को modify किए बिना preserve करना forensic investigation की सबसे important requirement है।</div>
+</section>
+<section id="attacks-overview"><h2>Introduction to Web Attacks</h2>
+<p>Web attack वह malicious activity है जिसका उद्देश्य website, users, server या data को compromise करना होता है।</p>
+<table>
+<tr><th>Attack</th><th>Target</th></tr>
+<tr><td>SQL Injection</td><td>Database queries</td></tr>
+<tr><td>Cross-Site Scripting</td><td>User browser</td></tr>
+<tr><td>CSRF</td><td>Authenticated user actions</td></tr>
+<tr><td>Session Hijacking</td><td>User session</td></tr>
+<tr><td>Directory Traversal</td><td>Server files</td></tr>
+<tr><td>File Upload Attack</td><td>Application/server</td></tr>
+<tr><td>DoS/DDoS</td><td>Availability</td></tr>
+</table>
+</section>
+<section id="secure-lifecycle"><h2>Secure Web Development Lifecycle</h2>
+<pre>Requirements
+    ↓
+Secure Design
+    ↓
+Secure Coding
+    ↓
+Testing
+    ↓
+Deployment
+    ↓
+Monitoring
+    ↓
+Patching</pre>
+<h4>Key Practices</h4>
+<ul>
+<li>Threat modeling</li>
+<li>Input validation</li>
+<li>Code review</li>
+<li>Dependency updates</li>
+<li>Security testing</li>
+<li>Logging and monitoring</li>
+</ul>
+</section>
+<section id="common-controls"><h2>Common Web Security Controls</h2>
+<ul>
+<li>HTTPS</li>
+<li>Strong authentication</li>
+<li>Authorization checks</li>
+<li>Input validation</li>
+<li>Output encoding</li>
+<li>Secure cookies</li>
+<li>Content Security Policy</li>
+<li>Rate limiting</li>
+<li>Firewall/WAF</li>
+<li>Backup and recovery</li>
+</ul>
+<div class="warning-box"><b>Important:</b><br>Client-side validation useful है, लेकिन security के लिए server-side validation mandatory है।</div>
+</section>
+</main>
+</div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html><html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Virtual Private Networks - Part 3</title><style>
+body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:#f5f7fb;color:#1f2937;line-height:1.75}
+.page{display:grid;grid-template-columns:290px 1fr;gap:20px;max-width:1500px;margin:auto;padding:10px}
+.side{position:sticky;top:10px;height:calc(100vh - 20px);overflow:auto;background:#fff;padding:18px;border-radius:16px}
+.side a{display:block;padding:8px 10px;text-decoration:none;color:#374151;border-radius:8px}
+.main{background:#fff;padding:10px;border-radius:18px}
+.hero{background:#eef2ff;padding:28px 18px;border-radius:16px}
+section{padding:22px 10px;border-bottom:1px solid #e5e7eb}
+h2{border-left:5px solid #2563eb;padding-left:12px}
+p,li{font-size:16.5px}
+table{width:100%;border-collapse:collapse;margin:16px 0}
+th,td{border:1px solid #d1d5db;padding:10px;text-align:left;vertical-align:top}
+th{background:#eef2ff}
+.img{min-height:170px;border:2px dashed #94a3b8;border-radius:16px;background:#f8fafc;display:flex;align-items:center;justify-content:center;text-align:center;margin:18px 0;padding:18px}
+.note{background:#f0fdf4;border-left:5px solid #22c55e;padding:14px;border-radius:12px}
+.rem{background:#fff7ed;border-left:5px solid #f97316;padding:14px;border-radius:12px}
+.warn{background:#fef2f2;border-left:5px solid #ef4444;padding:14px;border-radius:12px}
+pre{background:#0f172a;color:#fff;padding:16px;border-radius:14px;overflow:auto}
+@media(max-width:900px){.page{grid-template-columns:1fr}.side{position:relative;height:auto}}
+</style></head><body><div class="page"><aside class="side"><h2>Topics</h2><a href="#gre">Generic Routing Encapsulation (GRE)</a><a href="#greipsec">GRE over IPsec</a><a href="#comparison">GRE vs IPsec</a><a href="#implementation">Implementation of VPNs</a><a href="#site">Site-to-Site VPN</a><a href="#remote">Remote Access VPN</a><a href="#testing">VPN Testing and Troubleshooting</a><a href="#best">Best Practices</a></aside><main class="main"><div class="hero"><h1>Virtual Private Networks - Part 3</h1><p>GRE, GRE over IPsec और practical VPN implementation.</p></div><section id="gre"><h2>Generic Routing Encapsulation (GRE)</h2><p><strong>GRE</strong> generic tunnelling protocol है जो different protocols को IP network के ऊपर encapsulate कर सकता है। इसमें built-in encryption नहीं होती।</p><div class="img">Image Placeholder: GRE Tunnel</div><ul><li>Multi-protocol support</li><li>Point-to-point tunnel</li><li>Routing protocols support</li><li>Multicast support</li><li>No confidentiality</li></ul></section><section id="greipsec"><h2>GRE over IPsec</h2><p>GRE flexibility देता है और IPsec security provide करता है।</p><pre>Original Traffic
+↓
+GRE Encapsulation
+↓
+IPsec Encryption
+↓
+Public Network
+↓
+IPsec Decryption
+↓
+GRE Decapsulation</pre></section><section id="comparison"><h2>GRE vs IPsec</h2><table><tr><th>Basis</th><th>GRE</th><th>IPsec</th></tr><tr><td>Main Purpose</td><td>Encapsulation</td><td>Security</td></tr><tr><td>Encryption</td><td>No</td><td>Yes</td></tr><tr><td>Multicast</td><td>Yes</td><td>Limited</td></tr><tr><td>Routing Protocols</td><td>Supports</td><td>Limited</td></tr></table></section><section id="implementation"><h2>Implementation of VPNs</h2><ol><li>Business requirement define करें।</li><li>VPN type select करें।</li><li>Gateways identify करें।</li><li>Addressing and routing plan बनाएं।</li><li>Authentication method choose करें।</li><li>Algorithms select करें।</li><li>Tunnel policies configure करें।</li><li>Firewall rules update करें।</li><li>Testing and monitoring करें।</li></ol></section><section id="site"><h2>Site-to-Site VPN</h2><pre>Branch A LAN
+↓
+VPN Gateway A
+⇄ Encrypted Tunnel ⇄
+VPN Gateway B
+↓
+Branch B LAN</pre><ul><li>Unique subnets</li><li>Correct routing</li><li>Matching policies</li><li>Reliable connectivity</li></ul></section><section id="remote"><h2>Remote Access VPN</h2><pre>Remote User
+↓
+VPN Client
+↓
+Internet
+↓
+VPN Gateway
+↓
+Internal Resources</pre><ul><li>MFA</li><li>Device compliance</li><li>Least privilege</li><li>Session timeout</li><li>Logging</li></ul></section><section id="testing"><h2>VPN Testing and Troubleshooting</h2><table><tr><th>Problem</th><th>Possible Cause</th></tr><tr><td>Tunnel not forming</td><td>Authentication or policy mismatch</td></tr><tr><td>No traffic</td><td>Routing or firewall issue</td></tr><tr><td>Slow speed</td><td>MTU, latency or encryption overhead</td></tr><tr><td>One-way traffic</td><td>Asymmetric routing or ACL issue</td></tr></table></section><section id="best"><h2>Best Practices</h2><ul><li>Strong encryption use करें</li><li>MFA enable करें</li><li>Default credentials remove करें</li><li>Keys rotate करें</li><li>Logs monitor करें</li><li>Least privilege रखें</li><li>Failover test करें</li></ul><div class="note"><b>Professional Tip:</b> VPN secure tunnel देती है, लेकिन compromised endpoint को secure नहीं बना सकती।</div></section></main></div></body></html>

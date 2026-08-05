@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Collections in Python</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+      line-height: 1.75
+    }
+
+    .page {
+      display: grid;
+      grid-template-columns: 285px 1fr;
+      gap: 20px;
+      max-width: 1500px;
+      margin: auto;
+      padding: 10px
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 10px;
+      height: calc(100vh - 20px);
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
+      align-self: start
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #111827
+    }
+
+    .sidebar a {
+      display: block;
+      text-decoration: none;
+      color: #374151;
+      padding: 8px 10px;
+      border-radius: 10px;
+      margin-bottom: 4px;
+      font-size: 14.7px
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+      color: #1d4ed8
+    }
+
+    .content {
+      background: #fff;
+      border-radius: 18px;
+      padding: 10px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08)
+    }
+
+    .hero {
+      padding: 28px 18px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #eef2ff, #f8fafc);
+      margin-bottom: 18px
+    }
+
+    .hero h1 {
+      font-size: 34px;
+      color: #111827;
+      margin-bottom: 10px
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #374151
+    }
+
+    section {
+      padding: 22px 10px;
+      border-bottom: 1px solid #e5e7eb
+    }
+
+    section:last-child {
+      border-bottom: none
+    }
+
+    h2 {
+      font-size: 27px;
+      color: #111827;
+      margin-bottom: 12px;
+      border-left: 5px solid #2563eb;
+      padding-left: 12px
+    }
+
+    h3 {
+      font-size: 22px;
+      color: #1f2937;
+      margin: 16px 0 8px
+    }
+
+    h4 {
+      font-size: 18px;
+      color: #111827;
+      margin: 14px 0 6px
+    }
+
+    p {
+      margin: 10px 0;
+      font-size: 17px
+    }
+
+    ul,
+    ol {
+      margin-left: 24px;
+      margin-top: 8px
+    }
+
+    li {
+      margin: 7px 0;
+      font-size: 16.5px
+    }
+
+    strong {
+      color: #111827
+    }
+
+    .image-icon {
+      min-height: 180px;
+      border: 2px dashed #94a3b8;
+      border-radius: 16px;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      margin: 18px 0;
+      color: #475569;
+      font-weight: 600
+    }
+
+    .image-icon img {
+      max-width: 100%;
+      height: auto
+    }
+
+    .note-box {
+      background: #f0fdf4;
+      border-left: 5px solid #22c55e;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .info-box {
+      background: #ecfeff;
+      border-left: 5px solid #06b6d4;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .remember-box {
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      font-size: 15.5px
+    }
+
+    th,
+    td {
+      border: 1px solid #d1d5db;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top
+    }
+
+    th {
+      background: #eef2ff;
+      color: #111827
+    }
+
+    code {
+      background: #111827;
+      color: #f9fafb;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-family: Consolas, monospace;
+      font-size: 15px
+    }
+
+    pre {
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 14px;
+      padding: 16px;
+      margin: 16px 0;
+      overflow-x: auto;
+      font-family: Consolas, monospace;
+      line-height: 1.6
+    }
+
+    .compiler {
+      width: 100%;
+      height: 2rem;
+      background-color: green;
+      text-align: center;
+    }
+
+    .compiler a {
+      text-decoration: none;
+      color: white;
+    }
+
+    @media(max-width:900px) {
+      .page {
+        grid-template-columns: 1fr
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto
+      }
+
+      .hero h1 {
+        font-size: 27px
+      }
+
+      h2 {
+        font-size: 24px
+      }
+    }
+    /* Iframe content responsive fix */
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.page,
+.content,
+section {
+  min-width: 0;
+  max-width: 100%;
+}
+
+img,
+video,
+svg,
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+table {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border-radius: 12px;
+  -webkit-overflow-scrolling: touch;
+}
+
+th,
+td {
+  min-width: 110px;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+pre {
+  max-width: 100%;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+code {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 900px) {
+  .page {
+    display: block;
+    width: 100%;
+    padding: 5px;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .content {
+    width: 100%;
+    min-width: 0;
+    padding: 6px;
+    border-radius: 10px;
+  }
+
+  section {
+    width: 100%;
+    padding: 16px 6px;
+  }
+
+  .hero {
+    padding: 18px 10px;
+  }
+
+  .hero h1 {
+    font-size: 24px;
+  }
+
+  h2 {
+    font-size: 21px;
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+
+  p,
+  li {
+    font-size: 15px;
+  }
+
+  .image-icon {
+    min-height: 130px;
+    padding: 8px;
+  }
+}
+  </style>
+
+<link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
+<script src="../../../../../../../assets/shared/portal.js" defer></script>
+<script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
+</head>
+
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <h2>Topics</h2>
+      <a href="#intro">Introduction</a>
+      <a href="#lists">Lists</a>
+      <a href="#tuples">Tuples</a>
+      <a href="#sets">Sets</a>
+      <a href="#dictionaries">Dictionaries</a>
+      <a href="#sorting-dictionaries">Sorting Dictionaries</a>
+      <a href="#copying-collections">Copying Collections</a>
+      <a href="#summary">Summary</a>
+    </aside>
+
+    <main class="content">
+      <div class="hero">
+        <h1>Collections in Python</h1>
+        <p>इस chapter में Python collections जैसे List, Tuple, Set और Dictionary को beginner-friendly examples, syntax, output और real-life use के साथ समझाया गया है।</p>
+      </div>
+
+      <section id="intro">
+        <h2>Introduction</h2>
+
+        <p>Python में collections का मतलब ऐसे data structures से है जिनमें एक से ज्यादा values को एक ही variable में store किया जा सकता है। Normal variable में usually एक value store होती है, लेकिन collections में multiple values को group form में रखा जाता है। इससे program में data को manage करना, access करना, update करना और process करना आसान हो जाता है।</p>
+
+        <p>Python में four commonly used built-in collection types होते हैं: <code>list</code>, <code>tuple</code>, <code>set</code> और <code>dictionary</code>. हर collection का अपना अलग purpose और behavior होता है। कुछ collections ordered होते हैं, कुछ unordered होते हैं, कुछ duplicate values allow करते हैं और कुछ duplicate values allow नहीं करते।</p>
+
+        <h4>Need of Collections</h4>
+        <p>मान लो किसी class के 50 students के names store करने हैं। अगर normal variables use करेंगे तो <code>name1</code>, <code>name2</code>, <code>name3</code> जैसे बहुत सारे variables बनाने पड़ेंगे। यह तरीका difficult और unprofessional है। Collection की help से सभी names एक ही variable में store किए जा सकते हैं।</p>
+
+        <pre>students = ["Amit", "Ravi", "Neha", "Brajkant"]</pre>
+
+        <h4>Types of Collections</h4>
+        <table>
+          <tr>
+            <th>Collection</th>
+            <th>Ordered</th>
+            <th>Changeable</th>
+            <th>Duplicates</th>
+            <th>Example</th>
+          </tr>
+          <tr>
+            <td><code>List</code></td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Allowed</td>
+            <td><code>[10, 20, 30]</code></td>
+          </tr>
+          <tr>
+            <td><code>Tuple</code></td>
+            <td>Yes</td>
+            <td>No</td>
+            <td>Allowed</td>
+            <td><code>(10, 20, 30)</code></td>
+          </tr>
+          <tr>
+            <td><code>Set</code></td>
+            <td>No</td>
+            <td>Yes</td>
+            <td>Not Allowed</td>
+            <td><code>{10, 20, 30}</code></td>
+          </tr>
+          <tr>
+            <td><code>Dictionary</code></td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Duplicate keys not allowed</td>
+            <td><code>{"name": "Amit"}</code></td>
+          </tr>
+        </table>
+
+        <div class="note-box"><b>Real Life Example:</b><br>School management system में students की list, fixed subjects का tuple, unique roll numbers का set और student record का dictionary use किया जा सकता है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Collection choose करते समय यह देखना जरूरी है कि data change होगा या नहीं, order चाहिए या नहीं, और duplicate values allow करनी हैं या नहीं।</div>
+      </section>
+
+      <section id="lists">
+        <h2>Lists</h2>
+
+        <p>List Python की सबसे commonly used collection type है। List में multiple items को एक single variable में store किया जाता है। List ordered होती है, यानी items जिस order में insert किए जाते हैं, उसी order में store रहते हैं। List changeable होती है, यानी items को add, remove और update किया जा सकता है। List duplicate values भी allow करती है।</p>
+
+        <p>List को square brackets <code>[ ]</code> के अंदर लिखा जाता है। List में same type या different type की values store की जा सकती हैं। यानी एक list में numbers, strings और boolean values भी एक साथ रखी जा सकती हैं।</p>
+
+        <h4>Creating a List</h4>
+        <pre>subjects = ["Python", "DCCN", "BCIT", "WDT"]
+
+print(subjects)</pre>
+
+        <div class="info-box"><b>Output:</b><br>['Python', 'DCCN', 'BCIT', 'WDT']</div>
+
+        <h4>List with Mixed Data</h4>
+        <pre>student = ["Brajkant", 23, "PGDCA", 85.5]
+
+print(student)</pre>
+
+        <div class="info-box"><b>Output:</b><br>['Brajkant', 23, 'PGDCA', 85.5]</div>
+
+        <h4>Accessing List Items</h4>
+        <p>List items को index की help से access किया जाता है। Python में indexing 0 से start होती है।</p>
+
+        <pre>subjects = ["Python", "DCCN", "BCIT", "WDT"]
+
+print(subjects[0])
+print(subjects[2])</pre>
+
+        <div class="info-box"><b>Output:</b><br>Python<br>BCIT</div>
+
+        <h4>Negative Indexing</h4>
+        <p>Negative indexing list के last item से counting start करती है। <code>-1</code> last item को represent करता है।</p>
+
+        <pre>subjects = ["Python", "DCCN", "BCIT", "WDT"]
+
+print(subjects[-1])
+print(subjects[-2])</pre>
+
+        <div class="info-box"><b>Output:</b><br>WDT<br>BCIT</div>
+
+        <h4>Changing List Item</h4>
+        <pre>subjects = ["Python", "DCCN", "BCIT"]
+
+subjects[1] = "Networking"
+
+print(subjects)</pre>
+
+        <div class="info-box"><b>Output:</b><br>['Python', 'Networking', 'BCIT']</div>
+
+        <h4>Adding Items</h4>
+        <table>
+          <tr>
+            <th>Method</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>append()</code></td>
+            <td>List के end में item add करता है।</td>
+          </tr>
+          <tr>
+            <td><code>insert()</code></td>
+            <td>Specific position पर item add करता है।</td>
+          </tr>
+          <tr>
+            <td><code>extend()</code></td>
+            <td>एक list के items दूसरी list में add करता है।</td>
+          </tr>
+        </table>
+
+        <pre>subjects = ["Python", "DCCN"]
+
+subjects.append("BCIT")
+subjects.insert(1, "WDT")
+
+print(subjects)</pre>
+
+        <div class="info-box"><b>Output:</b><br>['Python', 'WDT', 'DCCN', 'BCIT']</div>
+
+        <h4>Removing Items</h4>
+        <table>
+          <tr>
+            <th>Method</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>remove()</code></td>
+            <td>Specified item remove करता है।</td>
+          </tr>
+          <tr>
+            <td><code>pop()</code></td>
+            <td>Index के basis पर item remove करता है।</td>
+          </tr>
+          <tr>
+            <td><code>clear()</code></td>
+            <td>List के सभी items remove करता है।</td>
+          </tr>
+        </table>
+
+        <pre>subjects = ["Python", "DCCN", "BCIT", "WDT"]
+
+subjects.remove("BCIT")
+subjects.pop(0)
+
+print(subjects)</pre>
+
+        <div class="info-box"><b>Output:</b><br>['DCCN', 'WDT']</div>
+
+        <h4>Looping Through List</h4>
+        <pre>subjects = ["Python", "DCCN", "BCIT"]
+
+for subject in subjects:
+    print(subject)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Python<br>DCCN<br>BCIT</div>
+
+        <h4>Useful List Methods</h4>
+        <table>
+          <tr>
+            <th>Method</th>
+            <th>Work</th>
+          </tr>
+          <tr>
+            <td><code>sort()</code></td>
+            <td>List को ascending order में sort करता है।</td>
+          </tr>
+          <tr>
+            <td><code>reverse()</code></td>
+            <td>List का order reverse करता है।</td>
+          </tr>
+          <tr>
+            <td><code>count()</code></td>
+            <td>किसी item की occurrence count करता है।</td>
+          </tr>
+          <tr>
+            <td><code>index()</code></td>
+            <td>किसी item का index return करता है।</td>
+          </tr>
+          <tr>
+            <td><code>copy()</code></td>
+            <td>List की shallow copy बनाता है।</td>
+          </tr>
+        </table>
+
+        <pre>numbers = [40, 10, 30, 20]
+
+numbers.sort()
+print(numbers)
+
+numbers.reverse()
+print(numbers)</pre>
+
+        <div class="info-box"><b>Output:</b><br>[10, 20, 30, 40]<br>[40, 30, 20, 10]</div>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Shopping cart में products को list में store किया जा सकता है क्योंकि user products add, remove और update कर सकता है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>List ordered, changeable और duplicate values allow करने वाली collection है।</div>
+      </section>
+
+      <section id="tuples">
+        <h2>Tuples</h2>
+
+        <p>Tuple Python की एक collection type है जिसमें multiple items store किए जाते हैं। Tuple ordered होती है, यानी items का order fixed रहता है। लेकिन tuple unchangeable होती है, यानी tuple create होने के बाद उसके items को change, add या remove नहीं किया जा सकता। इसी property को immutable कहा जाता है।</p>
+
+        <p>Tuple को parentheses <code>( )</code> के अंदर लिखा जाता है। Tuple का use ऐसे data के लिए किया जाता है जो program में fixed रहना चाहिए, जैसे days of week, months name, fixed coordinates, RGB color values आदि।</p>
+
+        <h4>Creating a Tuple</h4>
+        <pre>subjects = ("Python", "DCCN", "BCIT")
+
+print(subjects)</pre>
+
+        <div class="info-box"><b>Output:</b><br>('Python', 'DCCN', 'BCIT')</div>
+
+        <h4>Accessing Tuple Items</h4>
+        <pre>subjects = ("Python", "DCCN", "BCIT")
+
+print(subjects[0])
+print(subjects[-1])</pre>
+
+        <div class="info-box"><b>Output:</b><br>Python<br>BCIT</div>
+
+        <h4>Single Item Tuple</h4>
+        <p>अगर tuple में केवल एक item है, तो उसके बाद comma लगाना जरूरी होता है। बिना comma के Python उसे normal value समझ सकता है।</p>
+
+        <pre>a = ("Python")
+b = ("Python",)
+
+print(type(a))
+print(type(b))</pre>
+
+        <div class="info-box"><b>Output:</b><br>&lt;class 'str'&gt;<br>&lt;class 'tuple'&gt;</div>
+
+        <h4>Tuple Cannot Be Changed</h4>
+        <pre>subjects = ("Python", "DCCN", "BCIT")
+
+subjects[0] = "Java"</pre>
+
+        <div class="info-box"><b>Output:</b><br>TypeError: 'tuple' object does not support item assignment</div>
+
+        <h4>Looping Through Tuple</h4>
+        <pre>subjects = ("Python", "DCCN", "BCIT")
+
+for subject in subjects:
+    print(subject)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Python<br>DCCN<br>BCIT</div>
+
+        <h4>Tuple Methods</h4>
+        <table>
+          <tr>
+            <th>Method</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>count()</code></td>
+            <td>किसी item की occurrence count करता है।</td>
+          </tr>
+          <tr>
+            <td><code>index()</code></td>
+            <td>किसी item का first index return करता है।</td>
+          </tr>
+        </table>
+
+        <pre>numbers = (10, 20, 10, 30, 10)
+
+print(numbers.count(10))
+print(numbers.index(30))</pre>
+
+        <div class="info-box"><b>Output:</b><br>3<br>3</div>
+
+        <h4>List vs Tuple</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>List</th>
+            <th>Tuple</th>
+          </tr>
+          <tr>
+            <td>Symbol</td>
+            <td><code>[ ]</code></td>
+            <td><code>( )</code></td>
+          </tr>
+          <tr>
+            <td>Changeable</td>
+            <td>Yes</td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <td>Speed</td>
+            <td>Tuple की तुलना में थोड़ा slow हो सकती है।</td>
+            <td>Generally fast होती है।</td>
+          </tr>
+          <tr>
+            <td>Use</td>
+            <td>Changeable data के लिए।</td>
+            <td>Fixed data के लिए।</td>
+          </tr>
+        </table>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Week days जैसे Monday, Tuesday, Wednesday आदि fixed data हैं, इसलिए इन्हें tuple में store करना logical choice हो सकता है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Tuple ordered और duplicate values allow करती है, लेकिन changeable नहीं होती।</div>
+      </section>
+
+      <section id="sets">
+        <h2>Sets</h2>
+
+        <p>Set Python की collection type है जो unique items को store करती है। Set में duplicate values allow नहीं होतीं। Set unordered होती है, यानी items का fixed order नहीं होता। Set changeable होती है, लेकिन set के अंदर रखे items immutable होने चाहिए।</p>
+
+        <p>Set को curly braces <code>{ }</code> के अंदर लिखा जाता है। Set का use तब किया जाता है जब हमें unique values store करनी हों या mathematical set operations जैसे union, intersection और difference perform करने हों।</p>
+
+        <h4>Creating a Set</h4>
+        <pre>numbers = {10, 20, 30, 40}
+
+print(numbers)</pre>
+
+        <div class="info-box"><b>Output:</b><br>{40, 10, 20, 30}</div>
+
+        <p>Set unordered होता है, इसलिए output का order हर बार same होना जरूरी नहीं है।</p>
+
+        <h4>Duplicates Are Removed</h4>
+        <pre>numbers = {10, 20, 10, 30, 20}
+
+print(numbers)</pre>
+
+        <div class="info-box"><b>Output:</b><br>{10, 20, 30}</div>
+
+        <h4>Adding Items</h4>
+        <pre>subjects = {"Python", "DCCN"}
+
+subjects.add("BCIT")
+
+print(subjects)</pre>
+
+        <div class="info-box"><b>Output:</b><br>{'Python', 'BCIT', 'DCCN'}</div>
+
+        <h4>Removing Items</h4>
+        <table>
+          <tr>
+            <th>Method</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>remove()</code></td>
+            <td>Item remove करता है। Item न मिले तो error देता है।</td>
+          </tr>
+          <tr>
+            <td><code>discard()</code></td>
+            <td>Item remove करता है। Item न मिले तो error नहीं देता।</td>
+          </tr>
+          <tr>
+            <td><code>pop()</code></td>
+            <td>Random item remove करता है।</td>
+          </tr>
+          <tr>
+            <td><code>clear()</code></td>
+            <td>Set के सभी items remove करता है।</td>
+          </tr>
+        </table>
+
+        <pre>subjects = {"Python", "DCCN", "BCIT"}
+
+subjects.discard("DCCN")
+
+print(subjects)</pre>
+
+        <div class="info-box"><b>Output:</b><br>{'Python', 'BCIT'}</div>
+
+        <h4>Set Operations</h4>
+        <table>
+          <tr>
+            <th>Operation</th>
+            <th>Method / Operator</th>
+            <th>Meaning</th>
+          </tr>
+          <tr>
+            <td>Union</td>
+            <td><code>union()</code> or <code>|</code></td>
+            <td>दोनों sets के सभी unique items देता है।</td>
+          </tr>
+          <tr>
+            <td>Intersection</td>
+            <td><code>intersection()</code> or <code>&amp;</code></td>
+            <td>Common items देता है।</td>
+          </tr>
+          <tr>
+            <td>Difference</td>
+            <td><code>difference()</code> or <code>-</code></td>
+            <td>पहले set में मौजूद लेकिन दूसरे में absent items देता है।</td>
+          </tr>
+        </table>
+
+        <pre>a = {1, 2, 3, 4}
+b = {3, 4, 5, 6}
+
+print(a | b)
+print(a & b)
+print(a - b)</pre>
+
+        <div class="info-box"><b>Output:</b><br>{1, 2, 3, 4, 5, 6}<br>{3, 4}<br>{1, 2}</div>
+
+        <h4>Looping Through Set</h4>
+        <pre>subjects = {"Python", "DCCN", "BCIT"}
+
+for subject in subjects:
+    print(subject)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Python<br>DCCN<br>BCIT</div>
+
+        <div class="note-box"><b>Real Life Example:</b><br>अगर किसी website पर duplicate email IDs remove करनी हों, तो emails को set में convert करके unique emails प्राप्त किए जा सकते हैं।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Set unordered होता है और duplicate values automatically remove कर देता है।</div>
+      </section>
+
+      <section id="dictionaries">
+        <h2>Dictionaries</h2>
+
+        <p>Dictionary Python की बहुत powerful collection type है। Dictionary data को key-value pair के रूप में store करती है। इसमें हर value को access करने के लिए एक unique key होती है। List में values index से access होती हैं, लेकिन dictionary में values keys से access होती हैं।</p>
+
+        <p>Dictionary ordered और changeable होती है। इसमें duplicate keys allow नहीं होतीं, लेकिन values duplicate हो सकती हैं। Dictionary को curly braces <code>{ }</code> के अंदर लिखा जाता है और key-value pair को colon <code>:</code> से separate किया जाता है।</p>
+
+        <h4>Creating a Dictionary</h4>
+        <pre>student = {
+    "name": "Brajkant",
+    "course": "PGDCA",
+    "age": 23
+}
+
+print(student)</pre>
+
+        <div class="info-box"><b>Output:</b><br>{'name': 'Brajkant', 'course': 'PGDCA', 'age': 23}</div>
+
+        <h4>Accessing Values</h4>
+        <pre>student = {
+    "name": "Brajkant",
+    "course": "PGDCA",
+    "age": 23
+}
+
+print(student["name"])
+print(student.get("course"))</pre>
+
+        <div class="info-box"><b>Output:</b><br>Brajkant<br>PGDCA</div>
+
+        <h4>Changing Values</h4>
+        <pre>student = {
+    "name": "Brajkant",
+    "course": "PGDCA",
+    "age": 23
+}
+
+student["age"] = 24
+
+print(student)</pre>
+
+        <div class="info-box"><b>Output:</b><br>{'name': 'Brajkant', 'course': 'PGDCA', 'age': 24}</div>
+
+        <h4>Adding New Item</h4>
+        <pre>student = {
+    "name": "Brajkant",
+    "course": "PGDCA"
+}
+
+student["city"] = "Kanpur"
+
+print(student)</pre>
+
+        <div class="info-box"><b>Output:</b><br>{'name': 'Brajkant', 'course': 'PGDCA', 'city': 'Kanpur'}</div>
+
+        <h4>Removing Items</h4>
+        <table>
+          <tr>
+            <th>Method</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>pop()</code></td>
+            <td>Specified key-value pair remove करता है।</td>
+          </tr>
+          <tr>
+            <td><code>popitem()</code></td>
+            <td>Last inserted item remove करता है।</td>
+          </tr>
+          <tr>
+            <td><code>clear()</code></td>
+            <td>Dictionary के सभी items remove करता है।</td>
+          </tr>
+        </table>
+
+        <pre>student = {
+    "name": "Brajkant",
+    "course": "PGDCA",
+    "age": 23
+}
+
+student.pop("age")
+
+print(student)</pre>
+
+        <div class="info-box"><b>Output:</b><br>{'name': 'Brajkant', 'course': 'PGDCA'}</div>
+
+        <h4>Important Dictionary Methods</h4>
+        <table>
+          <tr>
+            <th>Method</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>keys()</code></td>
+            <td>सभी keys return करता है।</td>
+          </tr>
+          <tr>
+            <td><code>values()</code></td>
+            <td>सभी values return करता है।</td>
+          </tr>
+          <tr>
+            <td><code>items()</code></td>
+            <td>सभी key-value pairs return करता है।</td>
+          </tr>
+          <tr>
+            <td><code>get()</code></td>
+            <td>Key के basis पर value return करता है।</td>
+          </tr>
+          <tr>
+            <td><code>update()</code></td>
+            <td>Dictionary में new data add/update करता है।</td>
+          </tr>
+        </table>
+
+        <pre>student = {
+    "name": "Brajkant",
+    "course": "PGDCA",
+    "age": 23
+}
+
+print(student.keys())
+print(student.values())
+print(student.items())</pre>
+
+        <div class="info-box"><b>Output:</b><br>dict_keys(['name', 'course', 'age'])<br>dict_values(['Brajkant', 'PGDCA', 23])<br>dict_items([('name', 'Brajkant'), ('course', 'PGDCA'), ('age', 23)])</div>
+
+        <h4>Looping Through Dictionary</h4>
+        <pre>student = {
+    "name": "Brajkant",
+    "course": "PGDCA",
+    "age": 23
+}
+
+for key, value in student.items():
+    print(key, ":", value)</pre>
+
+        <div class="info-box"><b>Output:</b><br>name : Brajkant<br>course : PGDCA<br>age : 23</div>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Student record, employee details, product information और marksheet data dictionary में store करना बहुत useful होता है क्योंकि हर value को meaningful key से access किया जा सकता है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Dictionary key-value pair पर based होती है। Keys unique होती हैं, लेकिन values repeat हो सकती हैं।</div>
+      </section>
+
+      <section id="sorting-dictionaries">
+        <h2>Sorting Dictionaries</h2>
+
+        <p>Dictionary को sort करने का मतलब dictionary के keys या values के basis पर data को arranged order में show करना होता है। Dictionary में data key-value pair के रूप में stored रहता है, इसलिए sorting normally keys या values पर की जाती है।</p>
+
+        <p>Python में dictionary को sort करने के लिए commonly <code>sorted()</code> function का use किया जाता है। Sorting original dictionary को directly change नहीं करती, बल्कि sorted result return करती है। जरूरत के अनुसार हम sorted result से new dictionary बना सकते हैं।</p>
+
+        <h4>Sorting by Keys</h4>
+        <pre>marks = {
+    "Ravi": 78,
+    "Amit": 92,
+    "Neha": 85
+}
+
+for key in sorted(marks):
+    print(key, ":", marks[key])</pre>
+
+        <div class="info-box"><b>Output:</b><br>Amit : 92<br>Neha : 85<br>Ravi : 78</div>
+
+        <h4>Creating New Dictionary Sorted by Keys</h4>
+        <pre>marks = {
+    "Ravi": 78,
+    "Amit": 92,
+    "Neha": 85
+}
+
+sorted_marks = dict(sorted(marks.items()))
+
+print(sorted_marks)</pre>
+
+        <div class="info-box"><b>Output:</b><br>{'Amit': 92, 'Neha': 85, 'Ravi': 78}</div>
+
+        <h4>Sorting by Values</h4>
+        <p>Values के basis पर sorting करने के लिए <code>lambda</code> function का use किया जा सकता है।</p>
+
+        <pre>marks = {
+    "Ravi": 78,
+    "Amit": 92,
+    "Neha": 85
+}
+
+sorted_marks = dict(sorted(marks.items(), key=lambda item: item[1]))
+
+print(sorted_marks)</pre>
+
+        <div class="info-box"><b>Output:</b><br>{'Ravi': 78, 'Neha': 85, 'Amit': 92}</div>
+
+        <h4>Descending Order Sorting</h4>
+        <pre>marks = {
+    "Ravi": 78,
+    "Amit": 92,
+    "Neha": 85
+}
+
+sorted_marks = dict(sorted(marks.items(), key=lambda item: item[1], reverse=True))
+
+print(sorted_marks)</pre>
+
+        <div class="info-box"><b>Output:</b><br>{'Amit': 92, 'Neha': 85, 'Ravi': 78}</div>
+
+        <h4>Important Points</h4>
+        <ul>
+          <li><code>sorted()</code> function sorting के लिए use होता है।</li>
+          <li>Dictionary को keys या values दोनों के basis पर sort किया जा सकता है।</li>
+          <li><code>items()</code> key-value pair return करता है।</li>
+          <li><code>lambda item: item[1]</code> value के basis पर sorting करता है।</li>
+          <li><code>reverse=True</code> descending order के लिए use होता है।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Marks dictionary को values के basis पर sort करके toppers की list निकाली जा सकती है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Dictionary sorting में सबसे important बात यह है कि sorting key पर करनी है या value पर, यह पहले decide करना पड़ता है।</div>
+      </section>
+
+      <section id="copying-collections">
+        <h2>Copying Collections</h2>
+
+        <p>Python में collections को copy करना important concept है। कई बार हमें existing collection का duplicate बनाकर उस पर काम करना होता है, ताकि original collection change न हो। लेकिन Python में assignment operator <code>=</code> use करने पर actual copy नहीं बनती, बल्कि दोनों variables same collection को refer करने लगते हैं।</p>
+
+        <p>इसलिए collections की proper copy बनाने के लिए <code>copy()</code>, constructor functions जैसे <code>list()</code>, <code>dict()</code>, <code>set()</code>, और sometimes slicing का use किया जाता है।</p>
+
+        <h4>Assignment Is Not Real Copy</h4>
+        <pre>a = [10, 20, 30]
+b = a
+
+b.append(40)
+
+print(a)
+print(b)</pre>
+
+        <div class="info-box"><b>Output:</b><br>[10, 20, 30, 40]<br>[10, 20, 30, 40]</div>
+
+        <p>ऊपर वाले example में <code>b = a</code> से new list नहीं बनी। दोनों variables same list को point कर रहे हैं, इसलिए <code>b</code> में change करने पर <code>a</code> भी changed दिख रही है।</p>
+
+        <h4>Copying List Using copy()</h4>
+        <pre>a = [10, 20, 30]
+b = a.copy()
+
+b.append(40)
+
+print(a)
+print(b)</pre>
+
+        <div class="info-box"><b>Output:</b><br>[10, 20, 30]<br>[10, 20, 30, 40]</div>
+
+        <h4>Copying List Using Slicing</h4>
+        <pre>a = [10, 20, 30]
+b = a[:]
+
+b.remove(20)
+
+print(a)
+print(b)</pre>
+
+        <div class="info-box"><b>Output:</b><br>[10, 20, 30]<br>[10, 30]</div>
+
+        <h4>Copying Dictionary</h4>
+        <pre>student = {
+    "name": "Brajkant",
+    "course": "PGDCA"
+}
+
+new_student = student.copy()
+new_student["city"] = "Kanpur"
+
+print(student)
+print(new_student)</pre>
+
+        <div class="info-box"><b>Output:</b><br>{'name': 'Brajkant', 'course': 'PGDCA'}<br>{'name': 'Brajkant', 'course': 'PGDCA', 'city': 'Kanpur'}</div>
+
+        <h4>Copying Set</h4>
+        <pre>a = {10, 20, 30}
+b = a.copy()
+
+b.add(40)
+
+print(a)
+print(b)</pre>
+
+        <div class="info-box"><b>Output:</b><br>{10, 20, 30}<br>{40, 10, 20, 30}</div>
+
+        <h4>Shallow Copy and Deep Copy</h4>
+        <p>Normal <code>copy()</code> method shallow copy बनाता है। अगर collection के अंदर nested collection है, तो shallow copy inner collection को अलग से fully copy नहीं करती। Deep copy के लिए Python के <code>copy</code> module का <code>deepcopy()</code> function use किया जाता है।</p>
+
+        <pre>import copy
+
+a = [[1, 2], [3, 4]]
+b = copy.deepcopy(a)
+
+b[0][0] = 100
+
+print(a)
+print(b)</pre>
+
+        <div class="info-box"><b>Output:</b><br>[[1, 2], [3, 4]]<br>[[100, 2], [3, 4]]</div>
+
+        <h4>Copying Methods Table</h4>
+        <table>
+          <tr>
+            <th>Collection</th>
+            <th>Copy Method</th>
+            <th>Example</th>
+          </tr>
+          <tr>
+            <td>List</td>
+            <td><code>copy()</code>, slicing, <code>list()</code></td>
+            <td><code>b = a.copy()</code></td>
+          </tr>
+          <tr>
+            <td>Tuple</td>
+            <td>Normally copy needed नहीं होती क्योंकि tuple immutable है।</td>
+            <td><code>b = tuple(a)</code></td>
+          </tr>
+          <tr>
+            <td>Set</td>
+            <td><code>copy()</code>, <code>set()</code></td>
+            <td><code>b = a.copy()</code></td>
+          </tr>
+          <tr>
+            <td>Dictionary</td>
+            <td><code>copy()</code>, <code>dict()</code></td>
+            <td><code>b = a.copy()</code></td>
+          </tr>
+        </table>
+
+        <div class="note-box"><b>Real Life Example:</b><br>अगर original marks list safe रखनी है और duplicate list में grace marks add करके testing करनी है, तो copy बनाकर काम करना सही रहेगा।</div>
+
+        <div class="remember-box"><b>Remember:</b><br><code>=</code> operator real copy नहीं बनाता। Proper copy के लिए <code>copy()</code> या suitable constructor use करना चाहिए।</div>
+      </section>
+
+      <section id="summary">
+        <h2>Summary</h2>
+
+        <p>Python collections multiple values को एक single variable में store करने के लिए use होते हैं। Collection data को organize और manage करने का powerful तरीका provide करते हैं। Python में main collection types List, Tuple, Set और Dictionary हैं।</p>
+
+        <p>List ordered, changeable और duplicate values allow करने वाली collection है। Tuple ordered और duplicate values allow करती है, लेकिन changeable नहीं होती। Set unordered होता है और duplicate values remove कर देता है। Dictionary key-value pairs के रूप में data store करती है और keys unique होती हैं।</p>
+
+        <p>Dictionary को keys या values के basis पर sort किया जा सकता है। Collections को copy करते समय assignment operator <code>=</code> और actual copy में difference समझना जरूरी है। Proper copy बनाने के लिए <code>copy()</code>, slicing, constructor functions और nested data के लिए <code>deepcopy()</code> use किया जा सकता है।</p>
+
+        <table>
+          <tr>
+            <th>Collection</th>
+            <th>Best Use</th>
+          </tr>
+          <tr>
+            <td>List</td>
+            <td>जब data change करना हो और order important हो।</td>
+          </tr>
+          <tr>
+            <td>Tuple</td>
+            <td>जब data fixed रखना हो।</td>
+          </tr>
+          <tr>
+            <td>Set</td>
+            <td>जब unique values store करनी हों।</td>
+          </tr>
+          <tr>
+            <td>Dictionary</td>
+            <td>जब data key-value pair में store करना हो।</td>
+          </tr>
+        </table>
+
+        <div class="remember-box"><b>Remember Points:</b><br>List = ordered + changeable.<br>Tuple = ordered + unchangeable.<br>Set = unordered + unique values.<br>Dictionary = key-value pairs.<br><code>=</code> copy नहीं, reference बनाता है।</div>
+      </section>
+
+    </main>
+  </div>
+</body>
+
+</html>

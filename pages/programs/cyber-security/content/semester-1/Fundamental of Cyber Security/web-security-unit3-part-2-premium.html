@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web Security Unit-3 - Part 2</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f7fb;color:#1f2937;line-height:1.75}
+.page{display:grid;grid-template-columns:300px 1fr;gap:20px;max-width:1580px;margin:auto;padding:10px}
+.sidebar{position:sticky;top:10px;height:calc(100vh - 20px);overflow-y:auto;background:#fff;border-radius:16px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.08);align-self:start}
+.sidebar h2{font-size:20px;margin-bottom:12px;color:#111827}
+.sidebar a{display:block;text-decoration:none;color:#374151;padding:8px 10px;border-radius:10px;margin-bottom:4px;font-size:14.4px}
+.sidebar a:hover{background:#eef2ff;color:#1d4ed8}
+.content{background:#fff;border-radius:18px;padding:10px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.hero{padding:30px 20px;border-radius:16px;background:linear-gradient(135deg,#eef2ff,#f8fafc);margin-bottom:18px}
+.hero h1{font-size:34px;color:#111827;margin-bottom:10px}
+.hero p{font-size:18px;color:#374151}
+section{padding:22px 10px;border-bottom:1px solid #e5e7eb}
+section:last-child{border-bottom:none}
+h2{font-size:27px;color:#111827;margin-bottom:12px;border-left:5px solid #2563eb;padding-left:12px}
+h3{font-size:22px;color:#1f2937;margin:18px 0 8px}
+h4{font-size:18px;color:#111827;margin:14px 0 6px}
+p{margin:10px 0;font-size:17px}
+ul,ol{margin-left:24px;margin-top:8px}
+li{margin:7px 0;font-size:16.5px}
+strong{color:#111827}
+.image-icon{min-height:180px;border:2px dashed #94a3b8;border-radius:16px;background:#f8fafc;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;margin:18px 0;color:#475569;font-weight:600;flex-direction:column;gap:8px}
+.image-icon img{max-width:100%;height:auto}
+.note-box{background:#f0fdf4;border-left:5px solid #22c55e;border-radius:14px;padding:14px 16px;margin:16px 0}
+.info-box{background:#ecfeff;border-left:5px solid #06b6d4;border-radius:14px;padding:14px 16px;margin:16px 0}
+.remember-box{background:#fff7ed;border-left:5px solid #f97316;border-radius:14px;padding:14px 16px;margin:16px 0}
+.warning-box{background:#fef2f2;border-left:5px solid #ef4444;border-radius:14px;padding:14px 16px;margin:16px 0}
+table{width:100%;border-collapse:collapse;margin:16px 0;border-radius:12px;overflow:hidden;font-size:15.3px}
+th,td{border:1px solid #d1d5db;padding:10px;text-align:left;vertical-align:top}
+th{background:#eef2ff;color:#111827}
+pre{background:#0f172a;color:#e5e7eb;border-radius:14px;padding:16px;margin:16px 0;overflow-x:auto;font-family:Consolas,monospace;line-height:1.6}
+code{background:#111827;color:#f9fafb;padding:2px 6px;border-radius:6px}
+@media(max-width:900px){.page{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.hero h1{font-size:27px}h2{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="page">
+<aside class="sidebar"><h2>Topics</h2><a href="#ntier">Overview of N-Tier Web Applications</a>
+<a href="#http">HTTP Basics</a>
+<a href="#https">HTTPS</a>
+<a href="#http-vs-https">HTTP vs HTTPS</a>
+<a href="#url">URL Structure</a>
+<a href="#under-cover">Web Under the Cover</a>
+<a href="#html-source">Reading HTML Source</a>
+<a href="#web-attacks">Common Web Attack Concepts</a></aside>
+<main class="content">
+<div class="hero"><h1>Web Security Unit-3 - Part 2</h1><p>N-tier architecture, HTTP, HTTPS, URL structure, web request flow, HTML source reading और common web attacks को deep premium format में समझाया गया है।</p></div>
+<section id="ntier"><h2>Overview of N-Tier Web Applications</h2>
+<p><strong>N-Tier Architecture</strong> application को multiple logical layers में divide करती है। Commonly presentation, application/business और data tiers होते हैं।</p>
+<div class="image-icon"><img src="" alt="N Tier Architecture"><p>Image Placeholder: Presentation, Business and Data Tiers</p></div>
+<table>
+<tr><th>Tier</th><th>Purpose</th></tr>
+<tr><td>Presentation Tier</td><td>User interface</td></tr>
+<tr><td>Application Tier</td><td>Business logic</td></tr>
+<tr><td>Data Tier</td><td>Database and storage</td></tr>
+</table>
+<h4>Security Benefit</h4>
+<p>Layers separate होने से access control, monitoring और security policies better लागू की जा सकती हैं।</p>
+</section>
+<section id="http"><h2>HTTP Basics</h2>
+<p><strong>HTTP</strong> browser और web server के बीच communication protocol है। यह request-response model पर काम करता है।</p>
+<pre>Client Request → Web Server
+Web Server Response → Client</pre>
+<h4>Common Methods</h4>
+<ul>
+<li>GET</li>
+<li>POST</li>
+<li>PUT</li>
+<li>DELETE</li>
+<li>PATCH</li>
+</ul>
+</section>
+<section id="https"><h2>HTTPS</h2>
+<p><strong>HTTPS</strong> HTTP का secure version है जिसमें TLS encryption use होती है।</p>
+<div class="image-icon"><img src="" alt="HTTPS Communication"><p>Image Placeholder: HTTPS Encrypted Communication</p></div>
+<h4>Benefits</h4>
+<ul>
+<li>Data confidentiality</li>
+<li>Server authentication</li>
+<li>Data integrity</li>
+<li>Protection against interception</li>
+</ul>
+</section>
+<section id="http-vs-https"><h2>HTTP vs HTTPS</h2>
+<table>
+<tr><th>Basis</th><th>HTTP</th><th>HTTPS</th></tr>
+<tr><td>Security</td><td>Unencrypted</td><td>Encrypted</td></tr>
+<tr><td>Default Port</td><td>80</td><td>443</td></tr>
+<tr><td>Certificate</td><td>Not required</td><td>TLS certificate required</td></tr>
+<tr><td>Use</td><td>Non-sensitive communication</td><td>Secure websites and transactions</td></tr>
+</table>
+</section>
+<section id="url"><h2>URL Structure</h2>
+<p><strong>URL</strong> web resource का address है।</p>
+<pre>https://www.example.com:443/course/page?id=10#notes</pre>
+<table>
+<tr><th>Part</th><th>Meaning</th></tr>
+<tr><td>https</td><td>Protocol</td></tr>
+<tr><td>www.example.com</td><td>Domain</td></tr>
+<tr><td>443</td><td>Port</td></tr>
+<tr><td>/course/page</td><td>Path</td></tr>
+<tr><td>?id=10</td><td>Query string</td></tr>
+<tr><td>#notes</td><td>Fragment</td></tr>
+</table>
+</section>
+<section id="under-cover"><h2>Web Under the Cover</h2>
+<p>Browser में webpage दिखाई देने के पीछे DNS resolution, TCP connection, TLS handshake, HTTP request, server processing और response rendering जैसे steps होते हैं।</p>
+<pre>Enter URL
+   ↓
+DNS Resolution
+   ↓
+Connection
+   ↓
+TLS Handshake
+   ↓
+HTTP Request
+   ↓
+Server Processing
+   ↓
+HTML/CSS/JS Response
+   ↓
+Browser Rendering</pre>
+</section>
+<section id="html-source"><h2>Reading HTML Source</h2>
+<p>HTML source page की structure, links, forms, scripts और metadata दिखाता है। Security study में source inspection से exposed comments, hidden fields, insecure references और client-side logic identify की जा सकती है।</p>
+<div class="image-icon"><img src="" alt="HTML Source"><p>Image Placeholder: Browser View Source</p></div>
+<h4>Security Considerations</h4>
+<ul>
+<li>Secrets source code में न रखें।</li>
+<li>Comments में sensitive information avoid करें।</li>
+<li>Client-side checks पर depend न करें।</li>
+<li>Hidden fields को trusted data न मानें।</li>
+</ul>
+</section>
+<section id="web-attacks"><h2>Common Web Attack Concepts</h2>
+<table>
+<tr><th>Attack</th><th>Basic Meaning</th><th>Protection</th></tr>
+<tr><td>SQL Injection</td><td>Unsafe input database query alter करता है</td><td>Parameterized queries</td></tr>
+<tr><td>XSS</td><td>Malicious script browser में run</td><td>Output encoding, CSP</td></tr>
+<tr><td>CSRF</td><td>User से unwanted action</td><td>CSRF tokens</td></tr>
+<tr><td>Session Hijacking</td><td>Session identifier misuse</td><td>Secure cookies, rotation</td></tr>
+<tr><td>Directory Traversal</td><td>Unauthorized file paths access</td><td>Path validation</td></tr>
+</table>
+<div class="remember-box"><b>Remember:</b><br>Most web attacks unsafe input, weak authentication और incorrect access control से जुड़े होते हैं।</div>
+</section>
+</main>
+</div>
+</body>
+</html>

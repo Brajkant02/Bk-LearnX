@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Relational Model Constraints - Part 2</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f7fb;color:#1f2937;line-height:1.75}
+.page{display:grid;grid-template-columns:290px 1fr;gap:20px;max-width:1550px;margin:auto;padding:10px}
+.sidebar{position:sticky;top:10px;height:calc(100vh - 20px);overflow-y:auto;background:#fff;border-radius:16px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.08);align-self:start}
+.sidebar h2{font-size:20px;margin-bottom:12px;color:#111827}
+.sidebar a{display:block;text-decoration:none;color:#374151;padding:8px 10px;border-radius:10px;margin-bottom:4px;font-size:14.5px}
+.sidebar a:hover{background:#eef2ff;color:#1d4ed8}
+.content{background:#fff;border-radius:18px;padding:10px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.hero{padding:30px 20px;border-radius:16px;background:linear-gradient(135deg,#eef2ff,#f8fafc);margin-bottom:18px}
+.hero h1{font-size:34px;color:#111827;margin-bottom:10px}
+.hero p{font-size:18px;color:#374151}
+section{padding:22px 10px;border-bottom:1px solid #e5e7eb}
+section:last-child{border-bottom:none}
+h2{font-size:27px;color:#111827;margin-bottom:12px;border-left:5px solid #2563eb;padding-left:12px}
+h3{font-size:22px;color:#1f2937;margin:18px 0 8px}
+h4{font-size:18px;color:#111827;margin:14px 0 6px}
+p{margin:10px 0;font-size:17px}
+ul,ol{margin-left:24px;margin-top:8px}
+li{margin:7px 0;font-size:16.5px}
+strong{color:#111827}
+.image-icon{min-height:180px;border:2px dashed #94a3b8;border-radius:16px;background:#f8fafc;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;margin:18px 0;color:#475569;font-weight:600;flex-direction:column;gap:8px}
+.image-icon img{max-width:100%;height:auto}
+.note-box{background:#f0fdf4;border-left:5px solid #22c55e;border-radius:14px;padding:14px 16px;margin:16px 0}
+.info-box{background:#ecfeff;border-left:5px solid #06b6d4;border-radius:14px;padding:14px 16px;margin:16px 0}
+.remember-box{background:#fff7ed;border-left:5px solid #f97316;border-radius:14px;padding:14px 16px;margin:16px 0}
+table{width:100%;border-collapse:collapse;margin:16px 0;border-radius:12px;overflow:hidden;font-size:15.3px}
+th,td{border:1px solid #d1d5db;padding:10px;text-align:left;vertical-align:top}
+th{background:#eef2ff;color:#111827}
+code{background:#111827;color:#f9fafb;padding:2px 6px;border-radius:6px;font-family:Consolas,monospace;font-size:15px}
+pre{background:#0f172a;color:#e5e7eb;border-radius:14px;padding:16px;margin:16px 0;overflow-x:auto;font-family:Consolas,monospace;line-height:1.6}
+@media(max-width:900px){.page{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.hero h1{font-size:27px}h2{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="page">
+<aside class="sidebar"><h2>Topics</h2><a href="#intro">Introduction to Relational Constraints</a>
+<a href="#domain">Domain Constraint</a>
+<a href="#tuple-uniqueness">Tuple Uniqueness Constraint</a>
+<a href="#key-constraints">Key Constraints</a>
+<a href="#integrity">Integrity Constraints</a>
+<a href="#entity-integrity">Entity Integrity Constraint</a>
+<a href="#referential">Referential Integrity Constraint</a>
+<a href="#violations">Constraint Violation Examples</a>
+<a href="#actions">Referential Actions</a></aside>
+<main class="content">
+<div class="hero"><h1>Relational Model Constraints - Part 2</h1><p>Domain, tuple uniqueness, key constraints, integrity constraints, entity integrity और referential integrity को deep premium format में समझाया गया है।</p></div>
+<section id="intro"><h2>Introduction to Relational Constraints</h2>
+<p><strong>Relational Constraints</strong> वे rules हैं जो database data को valid, accurate और consistent बनाए रखते हैं। Constraints गलत, duplicate या incomplete data को prevent करती हैं।</p>
+<div class="image-icon"><img src="" alt="Relational Constraints"><p>Image Placeholder: Relational Constraints Overview</p></div>
+</section>
+<section id="domain"><h2>Domain Constraint</h2>
+<p><strong>Domain Constraint</strong> define करती है कि किसी attribute में किस type और range की values store हो सकती हैं।</p>
+<h4>Examples</h4>
+<ul>
+<li>Age integer और positive हो।</li>
+<li>Email text format में हो।</li>
+<li>Marks 0 से 100 के बीच हों।</li>
+<li>Gender predefined values में हो।</li>
+</ul>
+<pre>Marks INT CHECK (Marks BETWEEN 0 AND 100)</pre>
+</section>
+<section id="tuple-uniqueness"><h2>Tuple Uniqueness Constraint</h2>
+<p>Relation में duplicate tuples नहीं होने चाहिए। प्रत्येक row किसी unique real-world record को represent करे। Primary key और candidate keys tuple uniqueness enforce करने में help करती हैं।</p>
+<div class="note-box"><b>Example:</b><br>दो students का Student_ID same नहीं हो सकता।</div>
+</section>
+<section id="key-constraints"><h2>Key Constraints</h2>
+<h4>Super Key</h4>
+<p>Attributes का कोई भी set जो tuple को uniquely identify करे।</p>
+<h4>Candidate Key</h4>
+<p>Minimal super key।</p>
+<h4>Primary Key</h4>
+<p>Selected candidate key।</p>
+<h4>Alternate Key</h4>
+<p>Candidate key जो primary key select नहीं हुई।</p>
+<h4>Foreign Key</h4>
+<p>एक relation का attribute जो दूसरे relation की primary key refer करता है।</p>
+<div class="image-icon"><img src="" alt="Key Constraints"><p>Image Placeholder: Primary and Foreign Key Relationship</p></div>
+</section>
+<section id="integrity"><h2>Integrity Constraints</h2>
+<p>Integrity constraints database consistency maintain करती हैं। Main types entity integrity और referential integrity हैं।</p>
+<table>
+<tr><th>Constraint</th><th>Purpose</th></tr>
+<tr><td>Entity Integrity</td><td>Primary key null नहीं हो सकती।</td></tr>
+<tr><td>Referential Integrity</td><td>Foreign key valid referenced value रखे।</td></tr>
+<tr><td>Domain Integrity</td><td>Values valid domain से हों।</td></tr>
+<tr><td>User-defined Integrity</td><td>Business-specific rules।</td></tr>
+</table>
+</section>
+<section id="entity-integrity"><h2>Entity Integrity Constraint</h2>
+<p><strong>Entity Integrity</strong> के अनुसार primary key की value null नहीं हो सकती, क्योंकि primary key प्रत्येक tuple को uniquely identify करती है।</p>
+<h4>Example</h4>
+<pre>Student_ID INT PRIMARY KEY</pre>
+<p>Student_ID missing होने पर student record uniquely identify नहीं होगा।</p>
+</section>
+<section id="referential"><h2>Referential Integrity Constraint</h2>
+<p><strong>Referential Integrity</strong> ensure करती है कि foreign key की value referenced table की primary key में exist करे या allowed होने पर null हो।</p>
+<div class="image-icon"><img src="" alt="Referential Integrity"><p>Image Placeholder: Referential Integrity between Tables</p></div>
+<h4>Example</h4>
+<pre>DEPARTMENT(Dept_ID, Dept_Name)
+STUDENT(Student_ID, Name, Dept_ID)</pre>
+<p>STUDENT.Dept_ID में वही value होनी चाहिए जो DEPARTMENT.Dept_ID में मौजूद हो।</p>
+</section>
+<section id="violations"><h2>Constraint Violation Examples</h2>
+<table>
+<tr><th>Violation</th><th>Example</th></tr>
+<tr><td>Domain Violation</td><td>Marks = 150</td></tr>
+<tr><td>Tuple Uniqueness</td><td>Duplicate Student_ID</td></tr>
+<tr><td>Entity Integrity</td><td>Primary key null</td></tr>
+<tr><td>Referential Integrity</td><td>Unknown Dept_ID as foreign key</td></tr>
+</table>
+</section>
+<section id="actions"><h2>Referential Actions</h2>
+<p>Referenced row update या delete होने पर DBMS different actions perform कर सकता है।</p>
+<table>
+<tr><th>Action</th><th>Meaning</th></tr>
+<tr><td>CASCADE</td><td>Related child rows भी update/delete हों।</td></tr>
+<tr><td>SET NULL</td><td>Foreign key null हो जाए।</td></tr>
+<tr><td>SET DEFAULT</td><td>Default value set हो।</td></tr>
+<tr><td>RESTRICT / NO ACTION</td><td>Referenced row change prevent हो।</td></tr>
+</table>
+<div class="remember-box"><b>Remember:</b><br>Constraints database में केवल errors रोकती नहीं, बल्कि business rules enforce करती हैं।</div>
+</section>
+</main>
+</div>
+</body>
+</html>

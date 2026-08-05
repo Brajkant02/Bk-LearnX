@@ -6,276 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BCIT Unit 2 - Data Representation</title>
 
-    <style>
-        :root {
-            --bg: #f4f7fb;
-            --card: #ffffff;
-            --text: #1f2937;
-            --muted: #6b7280;
-            --primary: #1d4ed8;
-            --soft: #dbeafe;
-            --border: #d1d5db;
-        }
-
-        * {
-            box-sizing: border-box
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            margin: 0;
-            font-family: Arial, 'Noto Sans Devanagari', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.75
-        }
+    <link rel="stylesheet" href="../../style.css">
 
 
-
-        .layout {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 0px;
-            max-width: 1300px;
-            margin: 24px auto;
-            padding: 0 18px
-        }
-
-        nav {
-            position: sticky;
-            top: 14px;
-            align-self: start;
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 18px;
-            padding: 18px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, .06);
-            overflow-y: auto;
-            height: calc(100vh - 40px);
-        }
-
-        nav h3 {
-            margin: 0 0 12px;
-            color: var(--primary)
-        }
-
-        nav a {
-            display: block;
-            text-decoration: none;
-            color: var(--text);
-            padding: 9px 10px;
-            border-radius: 10px;
-            font-size: 14px
-        }
-
-        nav a:hover {
-            background: var(--soft);
-            color: var(--primary)
-        }
-
-        main {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            margin-left:10px;
-            padding: 10px 40px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, .06)
-        }
-
-        .topic-card {
-            background: var(--card);
-            /* border: 1px solid var(--border); */
-            /* border-radius: 10px; */
-            /* margin-bottom: 22px; */
-            padding: 10px 40px;
-            /* box-shadow: 0 10px 25px rgba(0, 0, 0, .06) */
-        }
-
-        .topic-number {
-            display: inline-block;
-            background: var(--soft);
-            color: var(--primary);
-            padding: 10px 30px;
-            border-radius: 999px;
-            font-weight: bold;
-            font-size: 14px
-        }
-
-        h2 {
-            font-size: clamp(22px, 3vw, 32px);
-            margin: 14px 0px ;
-            color: #111827;
-            border-left: 5px solid blue;
-        }
-
-        p {
-            font-size: 18px;
-            margin: 10px 15px;
-            text-align: justify
-        }
-
-        .image-placeholder {
-            border: 2px dashed #93c5fd;
-            background: #eff6ff;
-            border-radius: 18px;
-            min-height: 190px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: #1e40af;
-
-        }
-
-        .img-icon {
-            font-size: 42px;
-            margin-bottom: 8px
-        }
-
-        .img-icon img {
-            width: 100%;
-            height: auto;
-        }
-
-        .exam-box {
-            margin-top: 18px;
-            background: #fff7ed;
-            border-left: 6px solid #f97316;
-            padding: 14px 16px;
-            border-radius: 12px;
-            font-size: 17px
-        }
-
-        .table-box {
-            overflow-x: auto
-        }
-
-        .summary {
-            background: #ecfdf5;
-            border: 1px solid #86efac;
-            border-radius: 20px;
-            padding: 22px;
-            margin-bottom: 30px
-        }
-
-        footer {
-            text-align: center;
-            padding: 26px;
-            color: var(--muted)
-        }
-
-
-
-        /* Safe fixes: image overflow aur content spacing ko stable rakhne ke liye */
-        main {
-            min-width: 0;
-        }
-
-        .topic-card {
-            overflow: hidden;
-        }
-
-        .image-placeholder {
-            width: 100%;
-            overflow: hidden;
-            padding: 10px;
-        }
-
-        .img-icon {
-            width: 100%;
-            margin-bottom: 0;
-        }
-
-        .img-icon img,
-        .image-placeholder img {
-            display: block;
-            width: 100%;
-            max-width: 100%;
-            height: auto;
-            object-fit: contain;
-            border-radius: 12px;
-        }
-
-        @media(max-width:850px) {
-            .layout {
-                grid-template-columns: 1fr
-            }
-
-            nav {
-                position: relative;
-                top: 0
-            }
-
-            p {
-                font-size: 16px
-            }
-
-            .topic-card {
-                padding: 18px
-            }
-        }
-
-        @media print {
-            nav {
-                display: none
-            }
-
-            .layout {
-                display: block;
-                max-width: 100%;
-            }
-
-            .topic-card {
-                page-break-inside: avoid;
-                box-shadow: none
-            }
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th,
-        td {
-            border: 1px solid #000;
-            padding: 12px;
-            text-align: left;
-            vertical-align: top;
-        }
-
-        th {
-            background: #0d47a1;
-            color: #fff;
-        }
-
-        tr:nth-child(even) {
-            background: #f5f5f5;
-        }
-
-        .content,
-        .container,
-        main,
-        section {
-            padding-left: 10px !important;
-            padding-right: 10px !important;
-        }
-    </style>
-
-<link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
-<script src="../../../../../../../assets/shared/portal.js" defer></script>
-<script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
+    <link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
+    <script src="../../../../../../../assets/shared/portal.js" defer></script>
+    <script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
 </head>
 
 <body>
-    <div class="layout">
-        <nav>
-            <h3>Topics</h3>
+    <div class="page">
+        <nav class="sidebar">
+            <h2>Topics</h2>
             <a href="#topic-1">1. Data Representation</a>
             <a href="#topic-2">2. Definition of Information and Data</a>
             <a href="#topic-3">3. Difference between Data and Information</a>
@@ -292,8 +34,11 @@
             <a href="#topic-14">14. ASCII Coding System</a>
             <a href="#topic-15">15. EBCDIC Coding System</a>
         </nav>
-        <main>
-            <section class="topic-card" id="topic-1">
+        <main class="content">
+            <div class="hero">
+               <h1>Data Representation</h1>
+            </div>
+            <section id="topic-1">
                 <h2>Data Representation</h2>
                 <p>Data Representation का अर्थ है Computer के अंदर Data को किस form में store, process और display किया
                     जाता है। Computer एक digital electronic machine है, इसलिए यह हमारी भाषा, numbers, images, audio या
@@ -304,7 +49,7 @@
                     computer system का बहुत important concept है क्योंकि इसी के आधार पर memory storage, processing
                     speed, coding systems और communication work करते हैं।</p>
             </section>
-            <section class="topic-card" id="topic-2">
+            <section id="topic-2">
 
                 <h2>Data</h2>
                 <p>Data ऐसे raw facts, figures, symbols या characters का संग्रह होता है, जिनका अपने आप में कोई स्पष्ट
@@ -434,7 +179,7 @@
                 <h2>Conversion from Decimal to Binary</h2>
                 <div class="image-placeholder">
                     <div class="img-icon">
-                        <img src="./images/dtb.webp" alt="Conversion from Decimal to Binary">
+                        <img src="./images/decimal-to-binary.webp" alt="Conversion from Decimal to Binary">
                     </div>
                 </div>
             </section>
@@ -442,7 +187,7 @@
                 <h2>Conversion from Binary to Decimal</h2>
                 <div class="image-placeholder">
                     <div class="img-icon">
-                        <img src="./images/btd.webp" alt="Conversion from Binary to Decimal">
+                        <img src="./images/binary-to-decimal.webp" alt="Conversion from Binary to Decimal">
                     </div>
 
                 </div>
@@ -452,7 +197,7 @@
                 <h2>Binary Number into Hexadecimal Number</h2>
                 <div class="image-placeholder">
                     <div class="img-icon">
-                        <img src="./images/bth.webp" alt="Binary Number into Hexadecimal Number">
+                        <img src="./images/binary-to-hexadecimal.webp" alt="Binary Number into Hexadecimal Number">
                     </div>
 
                 </div>
@@ -462,7 +207,8 @@
                 <h2>Hexadecimal Number into Binary Number System</h2>
                 <div class="image-placeholder">
                     <div class="img-icon">
-                        <img src="./images/htb.webp" alt="Hexadecimal Number into Binary Number System">
+                        <img src="./images/hexadecimal-to-binary.webp"
+                            alt="Hexadecimal Number into Binary Number System">
                     </div>
                 </div>
             </section>
@@ -509,7 +255,7 @@
                     systems में पाया जाता है।</p>
                 <div class="image-placeholder">
                     <div class="img-icon">
-                        <img src="./images/ebcdic-coding-system-table-image.webp" alt="EBCDIC Coding System" class="code">
+                        <img src="./images/ebcdic-coding-system.webp" alt="EBCDIC Coding System" class="code">
                     </div>
                 </div>
             </section>

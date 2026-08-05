@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Introduction to Network Security - Part 1</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f7fb;color:#1f2937;line-height:1.75}
+.page{display:grid;grid-template-columns:300px 1fr;gap:20px;max-width:1580px;margin:auto;padding:10px}
+.sidebar{position:sticky;top:10px;height:calc(100vh - 20px);overflow-y:auto;background:#fff;border-radius:16px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.08);align-self:start}
+.sidebar h2{font-size:20px;margin-bottom:12px;color:#111827}
+.sidebar a{display:block;text-decoration:none;color:#374151;padding:8px 10px;border-radius:10px;margin-bottom:4px;font-size:14.4px}
+.sidebar a:hover{background:#eef2ff;color:#1d4ed8}
+.content{background:#fff;border-radius:18px;padding:10px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.hero{padding:30px 20px;border-radius:16px;background:linear-gradient(135deg,#eef2ff,#f8fafc);margin-bottom:18px}
+.hero h1{font-size:34px;color:#111827;margin-bottom:10px}
+.hero p{font-size:18px;color:#374151}
+section{padding:22px 10px;border-bottom:1px solid #e5e7eb}
+section:last-child{border-bottom:none}
+h2{font-size:27px;color:#111827;margin-bottom:12px;border-left:5px solid #2563eb;padding-left:12px}
+h3{font-size:22px;color:#1f2937;margin:18px 0 8px}
+h4{font-size:18px;color:#111827;margin:14px 0 6px}
+p{margin:10px 0;font-size:17px}
+ul,ol{margin-left:24px;margin-top:8px}
+li{margin:7px 0;font-size:16.5px}
+strong{color:#111827}
+.image-icon{min-height:180px;border:2px dashed #94a3b8;border-radius:16px;background:#f8fafc;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;margin:18px 0;color:#475569;font-weight:600;flex-direction:column;gap:8px}
+.note-box{background:#f0fdf4;border-left:5px solid #22c55e;border-radius:14px;padding:14px 16px;margin:16px 0}
+.info-box{background:#ecfeff;border-left:5px solid #06b6d4;border-radius:14px;padding:14px 16px;margin:16px 0}
+.remember-box{background:#fff7ed;border-left:5px solid #f97316;border-radius:14px;padding:14px 16px;margin:16px 0}
+.warning-box{background:#fef2f2;border-left:5px solid #ef4444;border-radius:14px;padding:14px 16px;margin:16px 0}
+table{width:100%;border-collapse:collapse;margin:16px 0;border-radius:12px;overflow:hidden;font-size:15.3px}
+th,td{border:1px solid #d1d5db;padding:10px;text-align:left;vertical-align:top}
+th{background:#eef2ff;color:#111827}
+pre{background:#0f172a;color:#e5e7eb;border-radius:14px;padding:16px;margin:16px 0;overflow-x:auto;font-family:Consolas,monospace;line-height:1.6}
+@media(max-width:900px){.page{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.hero h1{font-size:27px}h2{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="page">
+<aside class="sidebar"><h2>Topics</h2><a href="#intro">Introduction to Network Security</a>
+<a href="#types">Types of Networks</a>
+<a href="#ip">IP Address</a>
+<a href="#subnet">IP Subnets</a>
+<a href="#nat">Network Address Translation (NAT)</a>
+<a href="#dhcp">DHCP Server</a>
+<a href="#ports">Ports</a>
+<a href="#dns">DNS and DNS Server</a>
+<a href="#proxy">Proxy Servers</a>
+<a href="#vpn">Virtual Private Networks</a></aside>
+<main class="content">
+<div class="hero"><h1>Introduction to Network Security - Part 1</h1><p>Network types, IP addressing, subnets, NAT, DHCP, ports, DNS, proxy servers और VPN को premium exam-oriented format में समझाया गया है।</p></div>
+<section id="intro"><h2>Introduction to Network Security</h2>
+<p><strong>Network Security</strong> network infrastructure, devices, communication channels और transmitted data को unauthorized access, misuse, modification, malware और attacks से बचाने की process है।</p>
+<div class="image-icon">Image Placeholder: Network Security Ecosystem</div>
+<h4>Main Objectives</h4>
+<ul>
+<li>Confidentiality maintain करना</li>
+<li>Data integrity protect करना</li>
+<li>Network availability बनाए रखना</li>
+<li>Unauthorized access रोकना</li>
+<li>Attacks detect और respond करना</li>
+</ul>
+<div class="remember-box"><b>Remember:</b><br>Network security केवल firewall तक limited नहीं है; इसमें devices, protocols, users, endpoints और monitoring सभी शामिल होते हैं।</div>
+</section>
+<section id="types"><h2>Types of Networks</h2>
+<table>
+<tr><th>Network Type</th><th>Description</th></tr>
+<tr><td>PAN</td><td>Personal devices का छोटा network</td></tr>
+<tr><td>LAN</td><td>Building या campus-level network</td></tr>
+<tr><td>MAN</td><td>City-level network</td></tr>
+<tr><td>WAN</td><td>Large geographical area</td></tr>
+<tr><td>WLAN</td><td>Wireless local area network</td></tr>
+<tr><td>VPN</td><td>Secure virtual private connectivity</td></tr>
+</table>
+</section>
+<section id="ip"><h2>IP Address</h2>
+<p><strong>IP Address</strong> network पर device का logical address है। यह communication और routing में use होता है।</p>
+<h4>Versions</h4>
+<ul>
+<li>IPv4 – 32-bit address</li>
+<li>IPv6 – 128-bit address</li>
+</ul>
+<div class="image-icon">Image Placeholder: IPv4 and IPv6 Addressing</div>
+</section>
+<section id="subnet"><h2>IP Subnets</h2>
+<p><strong>Subnetting</strong> large network को smaller logical networks में divide करने की process है। इससे traffic control, performance और security improve होती है।</p>
+<h4>Benefits</h4>
+<ul>
+<li>Broadcast traffic reduce</li>
+<li>Departments isolate करना</li>
+<li>Access control आसान</li>
+<li>Network management improve</li>
+</ul>
+</section>
+<section id="nat"><h2>Network Address Translation (NAT)</h2>
+<p><strong>NAT</strong> private IP addresses को public IP address से map करता है। इससे internal network addresses hide रहते हैं और public IPv4 addresses conserve होते हैं।</p>
+<div class="image-icon">Image Placeholder: Private Network through NAT</div>
+<h4>Types</h4>
+<ul>
+<li>Static NAT</li>
+<li>Dynamic NAT</li>
+<li>PAT / NAT Overload</li>
+</ul>
+</section>
+<section id="dhcp"><h2>DHCP Server</h2>
+<p><strong>DHCP</strong> network devices को automatically IP address, subnet mask, gateway और DNS information assign करता है।</p>
+<pre>Discover → Offer → Request → Acknowledge</pre>
+<h4>Security Concerns</h4>
+<ul>
+<li>Rogue DHCP server</li>
+<li>Unauthorized device allocation</li>
+<li>Address pool exhaustion</li>
+</ul>
+</section>
+<section id="ports"><h2>Ports</h2>
+<p><strong>Port</strong> network communication में service या application endpoint identify करता है।</p>
+<table>
+<tr><th>Port</th><th>Common Service</th></tr>
+<tr><td>22</td><td>SSH</td></tr>
+<tr><td>53</td><td>DNS</td></tr>
+<tr><td>80</td><td>HTTP</td></tr>
+<tr><td>443</td><td>HTTPS</td></tr>
+<tr><td>25</td><td>SMTP</td></tr>
+</table>
+</section>
+<section id="dns"><h2>DNS and DNS Server</h2>
+<p><strong>DNS</strong> domain names को IP addresses में translate करता है। DNS server name resolution requests process करता है।</p>
+<div class="image-icon">Image Placeholder: DNS Resolution Process</div>
+<h4>Security Risks</h4>
+<ul>
+<li>DNS spoofing</li>
+<li>Cache poisoning</li>
+<li>Misconfigured records</li>
+<li>Unauthorized zone transfer</li>
+</ul>
+</section>
+<section id="proxy"><h2>Proxy Servers</h2>
+<p><strong>Proxy Server</strong> client और internet के बीच intermediary की तरह work करता है।</p>
+<h4>Uses</h4>
+<ul>
+<li>Web filtering</li>
+<li>Caching</li>
+<li>Access control</li>
+<li>User activity logging</li>
+<li>IP masking</li>
+</ul>
+</section>
+<section id="vpn"><h2>Virtual Private Networks</h2>
+<p><strong>VPN</strong> public network पर encrypted tunnel create करती है।</p>
+<h4>Uses</h4>
+<ul>
+<li>Remote employee access</li>
+<li>Branch office connectivity</li>
+<li>Public Wi-Fi security</li>
+<li>Encrypted communication</li>
+</ul>
+<div class="image-icon">Image Placeholder: VPN Encrypted Tunnel</div>
+</section>
+</main>
+</div>
+</body>
+</html>

@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Basic Python Syntax</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+      line-height: 1.75
+    }
+
+    .page {
+      display: grid;
+      grid-template-columns: 285px 1fr;
+      gap: 20px;
+      max-width: 1500px;
+      margin: auto;
+      padding: 10px
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 10px;
+      height: calc(100vh - 20px);
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
+      align-self: start
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #111827
+    }
+
+    .sidebar a {
+      display: block;
+      text-decoration: none;
+      color: #374151;
+      padding: 8px 10px;
+      border-radius: 10px;
+      margin-bottom: 4px;
+      font-size: 14.7px
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+      color: #1d4ed8
+    }
+
+    .content {
+      background: #fff;
+      border-radius: 18px;
+      padding: 10px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08)
+    }
+
+    .hero {
+      padding: 28px 18px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #eef2ff, #f8fafc);
+      margin-bottom: 18px
+    }
+
+    .hero h1 {
+      font-size: 34px;
+      color: #111827;
+      margin-bottom: 10px
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #374151
+    }
+
+    section {
+      padding: 22px 10px;
+      border-bottom: 1px solid #e5e7eb
+    }
+
+    section:last-child {
+      border-bottom: none
+    }
+
+    h2 {
+      font-size: 27px;
+      color: #111827;
+      margin-bottom: 12px;
+      border-left: 5px solid #2563eb;
+      padding-left: 12px
+    }
+
+    h3 {
+      font-size: 22px;
+      color: #1f2937;
+      margin: 16px 0 8px
+    }
+
+    h4 {
+      font-size: 18px;
+      color: #111827;
+      margin: 14px 0 6px
+    }
+
+    p {
+      margin: 10px 0;
+      font-size: 17px
+    }
+
+    ul,
+    ol {
+      margin-left: 24px;
+      margin-top: 8px
+    }
+
+    li {
+      margin: 7px 0;
+      font-size: 16.5px
+    }
+
+    strong {
+      color: #111827
+    }
+
+    .image-icon {
+      min-height: 180px;
+      border: 2px dashed #94a3b8;
+      border-radius: 16px;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      margin: 18px 0;
+      color: #475569;
+      font-weight: 600
+    }
+
+    .image-icon img {
+      max-width: 100%;
+      height: auto
+    }
+
+    .note-box {
+      background: #f0fdf4;
+      border-left: 5px solid #22c55e;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .info-box {
+      background: #ecfeff;
+      border-left: 5px solid #06b6d4;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .remember-box {
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      font-size: 15.5px
+    }
+
+    th,
+    td {
+      border: 1px solid #d1d5db;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top
+    }
+
+    th {
+      background: #eef2ff;
+      color: #111827
+    }
+
+    code {
+      background: #111827;
+      color: #f9fafb;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-family: Consolas, monospace;
+      font-size: 15px
+    }
+
+    pre {
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 14px;
+      padding: 16px;
+      margin: 16px 0;
+      overflow-x: auto;
+      font-family: Consolas, monospace;
+      line-height: 1.6
+    }
+
+    .compiler {
+      width: 100%;
+      height: 2rem;
+      background-color: green;
+      text-align: center;
+    }
+
+    .compiler a {
+      text-decoration: none;
+      color: white;
+    }
+
+    @media(max-width:900px) {
+      .page {
+        grid-template-columns: 1fr
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto
+      }
+
+      .hero h1 {
+        font-size: 27px
+      }
+
+      h2 {
+        font-size: 24px
+      }
+    }
+    /* Iframe content responsive fix */
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.page,
+.content,
+section {
+  min-width: 0;
+  max-width: 100%;
+}
+
+img,
+video,
+svg,
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+table {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border-radius: 12px;
+  -webkit-overflow-scrolling: touch;
+}
+
+th,
+td {
+  min-width: 110px;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+pre {
+  max-width: 100%;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+code {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 900px) {
+  .page {
+    display: block;
+    width: 100%;
+    padding: 5px;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .content {
+    width: 100%;
+    min-width: 0;
+    padding: 6px;
+    border-radius: 10px;
+  }
+
+  section {
+    width: 100%;
+    padding: 16px 6px;
+  }
+
+  .hero {
+    padding: 18px 10px;
+  }
+
+  .hero h1 {
+    font-size: 24px;
+  }
+
+  h2 {
+    font-size: 21px;
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+
+  p,
+  li {
+    font-size: 15px;
+  }
+
+  .image-icon {
+    min-height: 130px;
+    padding: 8px;
+  }
+}
+  </style>
+
+<link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
+<script src="../../../../../../../assets/shared/portal.js" defer></script>
+<script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
+</head>
+
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <h2>Topics</h2>
+      <a href="#syntax">Basic Syntax</a>
+      <a href="#comments">Comments</a>
+      <a href="#string-values">String Values</a>
+      <a href="#string-methods">String Methods</a>
+      <a href="#format-method">The format Method</a>
+      <a href="#string-operators">String Operators</a>
+      <a href="#numeric-types">Numeric Data Types</a>
+      <a href="#conversion">Conversion Functions</a>
+      <a href="#simple-output">Simple Output</a>
+      <a href="#simple-input">Simple Input</a>
+      <a href="#percent-method">The % Method</a>
+      <a href="#print-function">The print Function</a>
+    </aside>
+
+    <main class="content">
+      <div class="hero">
+        <h1>Unit 2: Basic Python Syntax</h1>
+        <p>इस chapter में Python syntax, comments, strings, numeric data types, conversion, input-output और formatting को beginner-friendly examples के साथ समझाया गया है।</p>
+      </div>
+
+      <section id="syntax">
+        <h2>Basic Syntax</h2>
+        <p>किसी भी programming language में syntax का मतलब code लिखने के rules से होता है। जैसे English में sentence बनाने के लिए grammar होती है, वैसे ही Python में correct program लिखने के लिए syntax follow करना पड़ता है।</p>
+        <p>Python का syntax simple और readable होता है। इसमें curly braces की जगह indentation का use block define करने के लिए किया जाता है। इसी कारण Python code साफ और easy to understand दिखता है।</p>
+
+        <h4>First Python Program</h4>
+        <pre>print("Hello Python")</pre>
+
+        <div class="info-box"><b>Output:</b><br>Hello Python</div>
+
+        <h4>Indentation</h4>
+        <p>Indentation का मतलब line की शुरुआत में space देना है। Python indentation से समझता है कि कौन-सा statement किस block के अंदर है।</p>
+        <pre>if 10 > 5:
+    print("10 is greater than 5")</pre>
+
+        <div class="info-box"><b>Output:</b><br>10 is greater than 5</div>
+
+        <h4>Case Sensitivity</h4>
+        <p>Python case-sensitive language है। इसका मतलब <code>name</code>, <code>Name</code> और <code>NAME</code> तीनों अलग-अलग variables माने जाते हैं।</p>
+        <pre>name = "Brajkant"
+Name = "Python"
+
+print(name)
+print(Name)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Brajkant<br>Python</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Python में indentation optional नहीं है। गलत indentation होने पर program run नहीं होगा।</div>
+      </section>
+
+      <section id="comments">
+        <h2>Comments</h2>
+        <p>Comments का use code को explain करने के लिए किया जाता है। Python interpreter comments को execute नहीं करता। ये programmer के लिए notes की तरह काम करते हैं।</p>
+
+        <h4>Single Line Comment</h4>
+        <p>Single line comment लिखने के लिए hash symbol <code>#</code> का use किया जाता है।</p>
+        <pre># This is a comment
+print("Welcome to Python")</pre>
+
+        <div class="info-box"><b>Output:</b><br>Welcome to Python</div>
+
+        <h4>Multi Line Comment</h4>
+        <p>Python में multi-line comment के लिए कई बार triple quotes का use किया जाता है।</p>
+        <pre>"""
+This program prints
+a welcome message
+"""
+
+print("Hello Student")</pre>
+
+        <div class="info-box"><b>Output:</b><br>Hello Student</div>
+
+        <h4>Use of Comments</h4>
+        <ul>
+          <li>Code को समझाने के लिए।</li>
+          <li>Future में logic याद रखने के लिए।</li>
+          <li>Team members को program का purpose बताने के लिए।</li>
+          <li>Testing के समय किसी line को temporarily disable करने के लिए।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>अगर आपने marks calculation program बनाया है, तो comments की help से आप formula और logic explain कर सकते हैं।</div>
+      </section>
+
+      <section id="string-values">
+        <h2>String Values</h2>
+        <p>String characters का collection होता है। Python में text value को string कहा जाता है। String को single quotes, double quotes या triple quotes के अंदर लिखा जा सकता है।</p>
+
+        <h4>Single and Double Quotes</h4>
+        <pre>name = 'Brajkant'
+course = "PGDCA"
+
+print(name)
+print(course)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Brajkant<br>PGDCA</div>
+
+        <h4>Triple Quotes</h4>
+        <p>Triple quotes का use multi-line string लिखने के लिए किया जाता है।</p>
+        <pre>message = """python-is-easy-python-is-powerful-python-is-beginner-friendly."""
+
+print(message)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Python is easy.<br>Python is powerful.<br>Python is beginner friendly.</div>
+
+        <h4>String Indexing</h4>
+        <p>String में हर character की एक position होती है जिसे index कहते हैं। Python में indexing 0 से start होती है।</p>
+        <pre>word = "Python"
+
+print(word[0])
+print(word[1])
+print(word[5])</pre>
+
+        <div class="info-box"><b>Output:</b><br>P<br>y<br>n</div>
+
+        <h4>String Slicing</h4>
+        <p>String के किसी part को निकालने के लिए slicing का use किया जाता है।</p>
+        <pre>word = "Python"
+
+print(word[0:3])
+print(word[2:6])</pre>
+
+        <div class="info-box"><b>Output:</b><br>Pyt<br>thon</div>
+      </section>
+
+      <section id="string-methods">
+        <h2>String Methods</h2>
+        <p>String methods built-in methods होते हैं जिनका use string पर different operations perform करने के लिए किया जाता है। ये methods text को modify, search, split और check करने में help करते हैं।</p>
+
+        <h4>Common String Methods</h4>
+        <table>
+          <tr>
+            <th>Method</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>upper()</code></td>
+            <td>String को uppercase में convert करता है।</td>
+          </tr>
+          <tr>
+            <td><code>lower()</code></td>
+            <td>String को lowercase में convert करता है।</td>
+          </tr>
+          <tr>
+            <td><code>title()</code></td>
+            <td>हर word का first letter capital करता है।</td>
+          </tr>
+          <tr>
+            <td><code>strip()</code></td>
+            <td>String के starting और ending spaces remove करता है।</td>
+          </tr>
+          <tr>
+            <td><code>replace()</code></td>
+            <td>String के किसी part को replace करता है।</td>
+          </tr>
+          <tr>
+            <td><code>split()</code></td>
+            <td>String को parts में divide करके list बनाता है।</td>
+          </tr>
+        </table>
+
+        <h4>Example</h4>
+        <pre>text = "  python programming  "
+
+print(text.upper())
+print(text.lower())
+print(text.title())
+print(text.strip())
+print(text.replace("python", "Java"))</pre>
+
+        <div class="info-box"><b>Output:</b><br>PYTHON PROGRAMMING<br>python programming<br>Python Programming<br>python programming<br>Java programming</div>
+
+        <h4>find() and count()</h4>
+        <pre>text = "Python is easy and Python is powerful"
+
+print(text.find("easy"))
+print(text.count("Python"))</pre>
+
+        <div class="info-box"><b>Output:</b><br>10<br>2</div>
+
+        <h4>Checking Methods</h4>
+        <pre>name = "Brajkant"
+number = "12345"
+
+print(name.isalpha())
+print(number.isdigit())
+print(name.isdigit())</pre>
+
+        <div class="info-box"><b>Output:</b><br>True<br>True<br>False</div>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Form validation में <code>isdigit()</code> से check किया जा सकता है कि mobile number में केवल digits हैं या नहीं।</div>
+      </section>
+
+      <section id="format-method">
+        <h2>The format Method</h2>
+        <p><code>format()</code> method का use string के अंदर variables की values insert करने के लिए किया जाता है। इससे output साफ, readable और professional बनता है।</p>
+
+        <h4>Basic Example</h4>
+        <pre>name = "Brajkant"
+course = "PGDCA"
+
+print("My name is {} and my course is {}".format(name, course))</pre>
+
+        <div class="info-box"><b>Output:</b><br>My name is Brajkant and my course is PGDCA</div>
+
+        <h4>Index Based Formatting</h4>
+        <pre>print("my-name-is-0-i-am-learning-1.".format("Brajkant", "Python"))</pre>
+
+        <div class="info-box"><b>Output:</b><br>My name is Brajkant. I am learning Python.</div>
+
+        <h4>Decimal Formatting</h4>
+        <pre>price = 45.6789
+
+print("price-is.2f}".format(price))</pre>
+
+        <div class="info-box"><b>Output:</b><br>Price is 45.68</div>
+
+        <div class="remember-box"><b>Remember:</b><br><code>{:.2f}</code> का मतलब decimal point के बाद केवल 2 digits show करना है।</div>
+      </section>
+
+      <section id="string-operators">
+        <h2>String Operators</h2>
+        <p>Python में string operators का use strings को combine, repeat, compare और search करने के लिए किया जाता है।</p>
+
+        <h4>Concatenation Operator</h4>
+        <p>Plus operator <code>+</code> दो strings को जोड़ने के लिए use होता है।</p>
+        <pre>first = "Hello"
+second = "Python"
+
+print(first + " " + second)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Hello Python</div>
+
+        <h4>Repetition Operator</h4>
+        <p>Star operator <code>*</code> string को repeat करने के लिए use होता है।</p>
+        <pre>word = "Python "
+
+print(word * 3)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Python Python Python</div>
+
+        <h4>Membership Operators</h4>
+        <p><code>in</code> और <code>not in</code> operators check करते हैं कि कोई value string के अंदर present है या नहीं।</p>
+        <pre>text = "Python Programming"
+
+print("Python" in text)
+print("Java" not in text)</pre>
+
+        <div class="info-box"><b>Output:</b><br>True<br>True</div>
+      </section>
+
+      <section id="numeric-types">
+        <h2>Numeric Data Types</h2>
+        <p>Numeric data types का use numbers store करने के लिए किया जाता है। Python में mainly तीन numeric data types होते हैं: <code>int</code>, <code>float</code> और <code>complex</code>।</p>
+
+        <table>
+          <tr>
+            <th>Data Type</th>
+            <th>Meaning</th>
+            <th>Example</th>
+          </tr>
+          <tr>
+            <td><code>int</code></td>
+            <td>Whole numbers store करता है।</td>
+            <td>10, 200, -5</td>
+          </tr>
+          <tr>
+            <td><code>float</code></td>
+            <td>Decimal numbers store करता है।</td>
+            <td>10.5, 3.14</td>
+          </tr>
+          <tr>
+            <td><code>complex</code></td>
+            <td>Real और imaginary part वाले numbers store करता है।</td>
+            <td>3 + 5j</td>
+          </tr>
+        </table>
+
+        <h4>Example</h4>
+        <pre>a = 10
+b = 25.75
+c = 3 + 5j
+
+print(type(a))
+print(type(b))
+print(type(c))</pre>
+
+        <div class="info-box"><b>Output:</b><br>&lt;class 'int'&gt;<br>&lt;class 'float'&gt;<br>&lt;class 'complex'&gt;</div>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Age और roll number के लिए <code>int</code>, price और percentage के लिए <code>float</code> use किया जा सकता है।</div>
+      </section>
+
+      <section id="conversion">
+        <h2>Conversion Functions</h2>
+        <p>Conversion functions का use एक data type को दूसरे data type में convert करने के लिए किया जाता है। इसे type conversion या type casting भी कहा जाता है।</p>
+
+        <table>
+          <tr>
+            <th>Function</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>int()</code></td>
+            <td>Value को integer में convert करता है।</td>
+          </tr>
+          <tr>
+            <td><code>float()</code></td>
+            <td>Value को decimal number में convert करता है।</td>
+          </tr>
+          <tr>
+            <td><code>str()</code></td>
+            <td>Value को string में convert करता है।</td>
+          </tr>
+          <tr>
+            <td><code>bool()</code></td>
+            <td>Value को True या False में convert करता है।</td>
+          </tr>
+        </table>
+
+        <h4>Example</h4>
+        <pre>a = "10"
+b = "20.5"
+
+x = int(a)
+y = float(b)
+
+print(x)
+print(y)
+print(type(x))
+print(type(y))</pre>
+
+        <div class="info-box"><b>Output:</b><br>10<br>20.5<br>&lt;class 'int'&gt;<br>&lt;class 'float'&gt;</div>
+
+        <h4>String Conversion</h4>
+        <pre>age = 23
+
+message = "My age is " + str(age)
+
+print(message)</pre>
+
+        <div class="info-box"><b>Output:</b><br>My age is 23</div>
+
+        <div class="remember-box"><b>Remember:</b><br><code>input()</code> से आई value string होती है, इसलिए calculation से पहले <code>int()</code> या <code>float()</code> use करना पड़ता है।</div>
+      </section>
+
+      <section id="simple-output">
+        <h2>Simple Output</h2>
+        <p>Python में output show करने के लिए सबसे commonly <code>print()</code> function का use किया जाता है। इससे message, variable value और calculation result screen पर display किया जा सकता है।</p>
+
+        <h4>Printing Text</h4>
+        <pre>print("Welcome to Python")</pre>
+
+        <div class="info-box"><b>Output:</b><br>Welcome to Python</div>
+
+        <h4>Printing Variables</h4>
+        <pre>name = "Brajkant"
+course = "PGDCA"
+
+print(name)
+print(course)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Brajkant<br>PGDCA</div>
+
+        <h4>Printing Multiple Values</h4>
+        <pre>name = "Brajkant"
+age = 23
+
+print("Name:", name, "Age:", age)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Name: Brajkant Age: 23</div>
+      </section>
+
+      <section id="simple-input">
+        <h2>Simple Input</h2>
+        <p>User से value लेने के लिए Python में <code>input()</code> function का use किया जाता है। यह function हमेशा value को string के रूप में return करता है।</p>
+
+        <h4>Taking String Input</h4>
+        <pre>name = input("Enter your name: ")
+
+print("Hello", name)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Enter your name: Brajkant<br>Hello Brajkant</div>
+
+        <h4>Taking Integer Input</h4>
+        <pre>age = int(input("Enter your age: "))
+
+print("Your age is", age)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Enter your age: 23<br>Your age is 23</div>
+
+        <h4>Adding Two Numbers</h4>
+        <pre>a = int(input("Enter first number: "))
+b = int(input("Enter second number: "))
+
+sum = a + b
+
+print("Sum is", sum)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Enter first number: 10<br>Enter second number: 20<br>Sum is 30</div>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Admission form में student का name, age, mobile number और course input लेकर program में process किया जा सकता है।</div>
+      </section>
+
+      <section id="percent-method">
+        <h2>The % Method</h2>
+        <p>Percentage formatting Python की old style string formatting technique है। इसमें placeholders का use करके values को string के अंदर insert किया जाता है।</p>
+
+        <h4>Common Placeholders</h4>
+        <table>
+          <tr>
+            <th>Placeholder</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>%s</code></td>
+            <td>String value के लिए।</td>
+          </tr>
+          <tr>
+            <td><code>%d</code></td>
+            <td>Integer value के लिए।</td>
+          </tr>
+          <tr>
+            <td><code>%f</code></td>
+            <td>Float value के लिए।</td>
+          </tr>
+          <tr>
+            <td><code>%.2f</code></td>
+            <td>Float value को 2 decimal places तक show करने के लिए।</td>
+          </tr>
+        </table>
+
+        <h4>Example</h4>
+        <pre>name = "Brajkant"
+age = 23
+
+print("My name is %s and my age is %d" % (name, age))</pre>
+
+        <div class="info-box"><b>Output:</b><br>My name is Brajkant and my age is 23</div>
+
+        <h4>Float Formatting</h4>
+        <pre>marks = 87.5678
+
+print("marks.2f" % marks)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Marks = 87.57</div>
+
+        <div class="remember-box"><b>Remember:</b><br>आजकल <code>format()</code> और f-string ज्यादा use होते हैं, लेकिन exam point of view से <code>%</code> method भी important है।</div>
+      </section>
+
+      <section id="print-function">
+        <h2>The print Function</h2>
+        <p><code>print()</code> function Python का सबसे basic और useful function है। इसका use screen पर output display करने के लिए किया जाता है।</p>
+
+        <h4>Basic Syntax</h4>
+        <pre>print(value)</pre>
+
+        <h4>Using sep Parameter</h4>
+        <p><code>sep</code> parameter multiple values के बीच separator set करने के लिए use होता है।</p>
+        <pre>print("Python", "Java", "C++", sep=" | ")</pre>
+
+        <div class="info-box"><b>Output:</b><br>Python | Java | C++</div>
+
+        <h4>Using end Parameter</h4>
+        <p><code>end</code> parameter decide करता है कि print statement के बाद क्या लगना चाहिए। By default print के बाद new line आती है।</p>
+        <pre>print("Hello", end=" ")
+print("Python")</pre>
+
+        <div class="info-box"><b>Output:</b><br>Hello Python</div>
+
+        <h4>Printing Calculation Result</h4>
+        <pre>a = 10
+b = 20
+
+print("Addition:", a + b)
+print("Multiplication:", a * b)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Addition: 30<br>Multiplication: 200</div>
+
+        <h4>Escape Characters</h4>
+        <table>
+          <tr>
+            <th>Escape Character</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>\n</code></td>
+            <td>New line के लिए।</td>
+          </tr>
+          <tr>
+            <td><code>\t</code></td>
+            <td>Tab space के लिए।</td>
+          </tr>
+          <tr>
+            <td><code>\\</code></td>
+            <td>Backslash print करने के लिए।</td>
+          </tr>
+          <tr>
+            <td><code>\"item/code/td-td-double-quote-print/td/tr/table-pre-print"Name:\tBrajkant")
+print("Course:\tPGDCA")
+print("Python\nProgramming"item/pre-div-class"info-box"b-output/b-br-name-brajkant-br-course-pgdca-br-python-br-programming/div-div-class"note-box"><b>Real Life Example:</b><br>Result card, bill receipt और report card जैसे outputs को format करके print करने में <code>print()</code> function बहुत useful होता है।</div>
+      </section>
+    </main>
+  </div>
+</body>
+
+</html>

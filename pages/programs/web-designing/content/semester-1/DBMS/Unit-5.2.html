@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MySQL/SQL - Part 2</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f7fb;color:#1f2937;line-height:1.75}
+.page{display:grid;grid-template-columns:290px 1fr;gap:20px;max-width:1550px;margin:auto;padding:10px}
+.sidebar{position:sticky;top:10px;height:calc(100vh - 20px);overflow-y:auto;background:#fff;border-radius:16px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.08);align-self:start}
+.sidebar h2{font-size:20px;margin-bottom:12px;color:#111827}
+.sidebar a{display:block;text-decoration:none;color:#374151;padding:8px 10px;border-radius:10px;margin-bottom:4px;font-size:14.5px}
+.sidebar a:hover{background:#eef2ff;color:#1d4ed8}
+.content{background:#fff;border-radius:18px;padding:10px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.hero{padding:30px 20px;border-radius:16px;background:linear-gradient(135deg,#eef2ff,#f8fafc);margin-bottom:18px}
+.hero h1{font-size:34px;color:#111827;margin-bottom:10px}
+.hero p{font-size:18px;color:#374151}
+section{padding:22px 10px;border-bottom:1px solid #e5e7eb}
+section:last-child{border-bottom:none}
+h2{font-size:27px;color:#111827;margin-bottom:12px;border-left:5px solid #2563eb;padding-left:12px}
+h3{font-size:22px;color:#1f2937;margin:18px 0 8px}
+h4{font-size:18px;color:#111827;margin:14px 0 6px}
+p{margin:10px 0;font-size:17px}
+ul,ol{margin-left:24px;margin-top:8px}
+li{margin:7px 0;font-size:16.5px}
+strong{color:#111827}
+.image-icon{min-height:180px;border:2px dashed #94a3b8;border-radius:16px;background:#f8fafc;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;margin:18px 0;color:#475569;font-weight:600;flex-direction:column;gap:8px}
+.image-icon img{max-width:100%;height:auto}
+.note-box{background:#f0fdf4;border-left:5px solid #22c55e;border-radius:14px;padding:14px 16px;margin:16px 0}
+.info-box{background:#ecfeff;border-left:5px solid #06b6d4;border-radius:14px;padding:14px 16px;margin:16px 0}
+.remember-box{background:#fff7ed;border-left:5px solid #f97316;border-radius:14px;padding:14px 16px;margin:16px 0}
+table{width:100%;border-collapse:collapse;margin:16px 0;border-radius:12px;overflow:hidden;font-size:15.3px}
+th,td{border:1px solid #d1d5db;padding:10px;text-align:left;vertical-align:top}
+th{background:#eef2ff;color:#111827}
+code{background:#111827;color:#f9fafb;padding:2px 6px;border-radius:6px;font-family:Consolas,monospace;font-size:15px}
+pre{background:#0f172a;color:#e5e7eb;border-radius:14px;padding:16px;margin:16px 0;overflow-x:auto;font-family:Consolas,monospace;line-height:1.6}
+@media(max-width:900px){.page{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.hero h1{font-size:27px}h2{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="page">
+<aside class="sidebar"><h2>Topics</h2><a href="#create-db">Creating Database and Tables</a>
+<a href="#describe">DESCRIBE Command</a>
+<a href="#insert">INSERT Command</a>
+<a href="#update">UPDATE Command</a>
+<a href="#delete">DELETE, TRUNCATE and DROP</a>
+<a href="#alter">ALTER TABLE</a>
+<a href="#constraints">Constraints</a>
+<a href="#foreign-key">Foreign Key Example</a>
+<a href="#views">Views</a>
+<a href="#indexes">Indexes</a></aside>
+<main class="content">
+<div class="hero"><h1>MySQL/SQL - Part 2</h1><p>Tables, INSERT, UPDATE, DELETE, ALTER, constraints, views और indexes को practical premium format में समझाया गया है।</p></div>
+<section id="create-db"><h2>Creating Database and Tables</h2>
+<pre>CREATE DATABASE college;
+USE college;
+
+CREATE TABLE student (
+  student_id INT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  email VARCHAR(120) UNIQUE,
+  marks INT CHECK (marks BETWEEN 0 AND 100),
+  city VARCHAR(50) DEFAULT 'Kanpur'
+);</pre>
+<div class="image-icon"><img src="" alt="Create Table Structure"><p>Image Placeholder: Table Structure</p></div>
+</section>
+<section id="describe"><h2>DESCRIBE Command</h2>
+<p><code>DESCRIBE</code> table की structure show करता है।</p>
+<pre>DESCRIBE student;</pre>
+<p>यह field name, data type, null setting, key और default value show करता है।</p>
+</section>
+<section id="insert"><h2>INSERT Command</h2>
+<pre>INSERT INTO student
+(student_id, name, email, marks)
+VALUES
+(1, 'Aman', 'aman@example.com', 78);</pre>
+<h4>Multiple Rows</h4>
+<pre>INSERT INTO student VALUES
+(2,'Ravi','ravi@example.com',82,'Kanpur'),
+(3,'Neha','neha@example.com',91,'Delhi');</pre>
+</section>
+<section id="update"><h2>UPDATE Command</h2>
+<pre>UPDATE student
+SET marks = 85
+WHERE student_id = 2;</pre>
+<div class="note-box"><b>Warning:</b><br>WHERE clause के बिना UPDATE सभी rows को affect कर सकती है।</div>
+</section>
+<section id="delete"><h2>DELETE, TRUNCATE and DROP</h2>
+<table>
+<tr><th>Command</th><th>Effect</th></tr>
+<tr><td>DELETE</td><td>Selected rows remove</td></tr>
+<tr><td>TRUNCATE</td><td>All rows fast remove</td></tr>
+<tr><td>DROP</td><td>Complete table structure remove</td></tr>
+</table>
+<pre>DELETE FROM student WHERE student_id=3;
+TRUNCATE TABLE temp_data;
+DROP TABLE old_table;</pre>
+</section>
+<section id="alter"><h2>ALTER TABLE</h2>
+<pre>ALTER TABLE student ADD phone VARCHAR(15);
+ALTER TABLE student MODIFY name VARCHAR(150);
+ALTER TABLE student DROP COLUMN phone;
+ALTER TABLE student RENAME TO students;</pre>
+</section>
+<section id="constraints"><h2>Constraints</h2>
+<table>
+<tr><th>Constraint</th><th>Purpose</th></tr>
+<tr><td>PRIMARY KEY</td><td>Unique row identification</td></tr>
+<tr><td>FOREIGN KEY</td><td>Tables relationship</td></tr>
+<tr><td>UNIQUE</td><td>Duplicate values prevent</td></tr>
+<tr><td>NOT NULL</td><td>Null values prevent</td></tr>
+<tr><td>CHECK</td><td>Condition enforce</td></tr>
+<tr><td>DEFAULT</td><td>Default value assign</td></tr>
+</table>
+</section>
+<section id="foreign-key"><h2>Foreign Key Example</h2>
+<pre>CREATE TABLE department (
+  dept_id INT PRIMARY KEY,
+  dept_name VARCHAR(100)
+);
+
+CREATE TABLE student (
+  student_id INT PRIMARY KEY,
+  name VARCHAR(100),
+  dept_id INT,
+  FOREIGN KEY (dept_id)
+  REFERENCES department(dept_id)
+);</pre>
+</section>
+<section id="views"><h2>Views</h2>
+<p><strong>View</strong> virtual table होती है जो query result पर based होती है।</p>
+<pre>CREATE VIEW high_marks AS
+SELECT student_id, name, marks
+FROM student
+WHERE marks >= 80;</pre>
+<h4>Advantages</h4>
+<ul><li>Security improve</li><li>Complex query simplify</li><li>Reusable query</li><li>User-specific data view</li></ul>
+</section>
+<section id="indexes"><h2>Indexes</h2>
+<p><strong>Index</strong> data search speed improve करता है, लेकिन insert/update cost बढ़ा सकता है।</p>
+<pre>CREATE INDEX idx_student_name
+ON student(name);</pre>
+<div class="remember-box"><b>Remember:</b><br>हर column पर index बनाना सही नहीं; frequently searched columns पर use करें।</div>
+</section>
+</main>
+</div>
+</body>
+</html>

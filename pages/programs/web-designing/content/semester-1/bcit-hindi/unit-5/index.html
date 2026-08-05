@@ -5,234 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fundamentals of Internet</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0
-        }
+    <link rel="stylesheet" href="../../style.css">
 
-        html {
-            scroll-behavior: smooth
-        }
 
-        body {
-            font-family: "Segoe UI", Arial, sans-serif;
-            background: #f5f7fb;
-            color: #1f2937;
-            line-height: 1.75
-        }
-
-        .page {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 20px;
-            max-width: 1450px;
-            margin: auto;
-            padding: 10px
-        }
-
-        .sidebar {
-            position: sticky;
-            top: 10px;
-            height: calc(100vh - 20px);
-            overflow-y: auto;
-            background: #fff;
-            border-radius: 16px;
-            padding: 18px;
-            box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
-            align-self: start
-        }
-
-        .sidebar h2 {
-            font-size: 20px;
-            margin-bottom: 12px;
-            color: #111827
-        }
-
-        .sidebar a {
-            display: block;
-            text-decoration: none;
-            color: #374151;
-            padding: 8px 10px;
-            border-radius: 10px;
-            margin-bottom: 4px;
-            font-size: 14.8px
-        }
-
-        .sidebar a:hover {
-            background: #eef2ff;
-            color: #1d4ed8
-        }
-
-        .content {
-            background: #fff;
-            border-radius: 18px;
-            padding: 10px;
-            box-shadow: 0 4px 18px rgba(0, 0, 0, .08)
-        }
-
-        .hero {
-            padding: 28px 18px;
-            border-radius: 16px;
-            background: linear-gradient(135deg, #eef2ff, #f8fafc);
-            margin-bottom: 18px
-        }
-
-        .hero h1 {
-            font-size: 34px;
-            color: #111827;
-            margin-bottom: 10px
-        }
-
-        .hero p {
-            font-size: 18px;
-            color: #374151
-        }
-
-        section {
-            padding: 22px 10px;
-            border-bottom: 1px solid #e5e7eb
-        }
-
-        section:last-child {
-            border-bottom: none
-        }
-
-        h2 {
-            font-size: 27px;
-            color: #111827;
-            margin-bottom: 12px;
-            border-left: 5px solid #2563eb;
-            padding-left: 12px
-        }
-
-        h3 {
-            font-size: 21px;
-            color: #1f2937;
-            margin: 16px 0 8px
-        }
-
-        p {
-            margin: 10px 0;
-            font-size: 17px
-        }
-
-        ul,
-        ol {
-            margin-left: 24px;
-            margin-top: 8px
-        }
-
-        li {
-            margin: 7px 0;
-            font-size: 16.5px
-        }
-
-        strong {
-            color: #111827
-        }
-
-        .note,
-        .example,
-        .exam {
-            border-radius: 14px;
-            padding: 14px 16px;
-            margin: 16px 0
-        }
-
-        .note {
-            background: #ecfeff;
-            border-left: 5px solid #06b6d4
-        }
-
-        .example {
-            background: #f0fdf4;
-            border-left: 5px solid #22c55e
-        }
-
-        .exam {
-            background: #fff7ed;
-            border-left: 5px solid #f97316
-        }
-
-        .image-box {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 180px;
-            border: 2px dashed #94a3b8;
-            border-radius: 16px;
-            background: #f8fafc;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 20px;
-            margin: 18px 0;
-            color: #475569;
-            font-weight: 600
-        }
-
-        .image-box img {
-            width: 100%;
-
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 16px 0;
-            border-radius: 12px;
-            overflow: hidden;
-            font-size: 15.5px
-        }
-
-        th,
-        td {
-            border: 1px solid #d1d5db;
-            padding: 10px;
-            text-align: left;
-            vertical-align: top
-        }
-
-        th {
-            background: #eef2ff;
-            color: #111827
-        }
-
-        code {
-            background: #111827;
-            color: #f9fafb;
-            padding: 2px 6px;
-            border-radius: 6px;
-            font-family: Consolas, monospace;
-            font-size: 15px
-        }
-
-        @media(max-width:900px) {
-            .page {
-                grid-template-columns: 1fr
-            }
-
-            .sidebar {
-                position: relative;
-                height: auto
-            }
-
-            .hero h1 {
-                font-size: 27px
-            }
-
-            h2 {
-                font-size: 24px
-            }
-        }
-    </style>
-
-<link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
-<script src="../../../../../../../assets/shared/portal.js" defer></script>
-<script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
+    <link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
+    <script src="../../../../../../../assets/shared/portal.js" defer></script>
+    <script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
 </head>
 
 <body>
@@ -299,7 +77,7 @@
                 <p>जब user browser में <code>www.example.com</code> open करता है, तो browser client की तरह web server को
                     request भेजता है। Server requested webpage send करता है और browser उसे user को display करता है।</p>
                 <div class="image-box">
-                    <img src="./images/client-server-model.webp" alt="Client-server-model">
+                    <img src="./images/client server model.webp" alt="Client-server-model">
                 </div>
                 <h3>Advantages</h3>
                 <ul>
@@ -439,7 +217,7 @@
                     किया जाता है। यह आने वाले (incoming) और जाने वाले (outgoing) network traffic की निगरानी (monitoring)
                     करता है तथा पहले से निर्धारित security rules के आधार पर data packets को allow या block करता है।</p>
                 <div class="image-box">
-                    <img src="./images/firewall.webp" alt="ffirewall">
+                    <img src="./images/firewALL.webp" alt="ffirewall">
                 </div>
                 <div class="example"><strong>Example:</strong> मान लीजिए किसी office के मुख्य प्रवेश द्वार पर एक
                     security guard खड़ा है। वह केवल authorized persons को ही अंदर जाने देता है और unauthorized persons
@@ -454,7 +232,7 @@
                     school, college या building के अंदर कई computers और devices को आपस में जोड़ता है, ताकि वे data और
                     resources को साझा (share) कर सकें।</p>
                 <div class="image-box">
-                    <img src="./images/lan.webp" alt="LAN">
+                    <img src="./images/LAN.webp" alt="LAN">
                 </div>
                 <div class="example"><strong>Example:</strong> किसी school computer lab में 30 computers एक Switch के
                     माध्यम से आपस में जुड़े होते हैं, ताकि सभी students एक ही printer, Internet connection और files का
@@ -465,7 +243,7 @@
                     से बड़ा और WAN से छोटा होता है। MAN का उपयोग किसी शहर के विभिन्न offices, colleges, universities,
                     government departments तथा business organizations को जोड़ने के लिए किया जाता है।</p>
                 <div class="image-box">
-                    <img src="./images/man.webp" alt="MAN">
+                    <img src="./images/MAN.webp" alt="MAN">
                 </div>
                 <div class="example"><strong>Example:</strong> मान लीजिए किसी university के अलग-अलग campuses पूरे शहर
                     में स्थित हैं। यदि इन सभी campuses के computer networks को आपस में जोड़ दिया जाए, तो वह MAN कहलाता
@@ -485,16 +263,11 @@
             </section>
 
             <section id="topology">
-                <h2>Network Topology</h2>
+                <h2>Topology</h2>
                 <p>Topology का अर्थ किसी network में devices और communication links की व्यवस्था (arrangement) या संरचना
                     (structure) से है। यह बताती है कि computers और अन्य network devices आपस में किस प्रकार जुड़े हुए हैं
                     तथा उनके बीच data का आदान-प्रदान कैसे होता है।</p>
-                <div class="image-icon">
-                    <img src="" alt="">
-                </div>
                 <h3>1. Bus Topology</h3>
-
-
                 <p>
                     <strong>Bus Topology</strong> एक ऐसी <strong>Network Topology</strong> है जिसमें सभी Computers,
                     Servers और Networking Devices
@@ -804,7 +577,7 @@
                     Networks में किया जाता है।
                 </p>
                 <div class="image-icon">
-                    <img src="./images/mesh-topology.webp" alt="Mesh Topology Diagram">
+                    <img src="./images/mesh topology.webp" alt="Mesh Topology Diagram">
                 </div>
 
                 <p><b>Advantages of Mesh Topology</b></p>
@@ -991,7 +764,7 @@
 
 
                 <p>
-                    <strong>Definition:</strong><br>
+
                     <strong>Hybrid Topology</strong> एक ऐसी <strong>Network Topology</strong> है जिसमें
                     दो या दो से अधिक अलग-अलग Topologies जैसे
                     <strong>Star</strong>, <strong>Bus</strong>, <strong>Ring</strong> और
@@ -1002,7 +775,7 @@
                     Reliable और Scalable होती है।
                 </p>
                 <div class="image-icon">
-                    <img src="./images/hybrid-topology.webp" alt="Hybrid Topology Diagram">
+                    <img src="./images/hybrid topology.webp" alt="Hybrid Topology Diagram">
                 </div>
 
 
@@ -1266,7 +1039,7 @@
                 <h2>15. Email and Process of Sending/Receiving Email</h2>
                 <p><strong>Email (Electronic Mail)</strong> internet based communication service है जिसके द्वारा user
                     text messages, documents, images और attachments electronically भेज और प्राप्त कर सकता है।</p>
-                <div class="image-box"><img src="./images/email.webp" alt="em"></div>
+                <div class="image-box"><img src="./images/Gmail.webp" alt="em"></div>
                 <h3>Process</h3>
                 <ol>
                     <li>User email client/webmail में message type करता है।</li>
@@ -1345,12 +1118,12 @@
                     Data का आदान-प्रदान दोनों दिशाओं में होता है, लेकिन एक साथ नहीं होता।
                 </p>
                 <div class="image-icon">
-                    <img src="./images/half-duplex.webp" alt="Half Duplex Transmission Mode Diagram">
+                    <img src="./images/half duplex.webp" alt="Half Duplex Transmission Mode Diagram">
                 </div>
                 <div class="note">
                     <b>Real Life Example:</b><br>
                     <strong>Walkie-Talkie</strong> इसका सबसे अच्छा उदाहरण है।
-                    एक व्यक्ति पहले बोलता है, फिर दूसरा व्यक्ति उत्तर देता है।
+                    एक व्यक्ति पहले बोलता है, फिर दूसरा व्यक्ति उत्तर देता है。
                     दोनों व्यक्ति एक साथ बात नहीं कर सकते।
                 </div>
                 <h3>3. Full Duplex Transmission Mode</h3>
@@ -1362,7 +1135,7 @@
                     आधुनिक Computer Networks तथा Internet Communication में इसी Mode का सबसे अधिक उपयोग किया जाता है।
                 </p>
                 <div class="image-icon">
-                    <img src="./images/full-duplex.webp" alt="Full Duplex Transmission Mode Diagram">
+                    <img src="./images/full duplex.webp" alt="Full Duplex Transmission Mode Diagram">
                 </div>
 
                 <div class="note">
@@ -1407,13 +1180,16 @@
             <section id="search-social">
                 <h2>Search Engines and Social Network Sites</h2>
                 <h3>Search Engine</h3>
-                <p><strong>Search Engine</strong> एक web-based application है, जिसका उपयोग Internet पर उपलब्ध information, web pages, images, videos तथा अन्य online content को खोजने (search) के लिए किया जाता है। यह user द्वारा दिए गए keywords के आधार पर सबसे उपयुक्त search results प्रदर्शित करता है।<br>
-                     <strong>Examples:</strong> Google, Bing, Yahoo, DuckDuckGo.</p>
+                <p><strong>Search Engine</strong> एक web-based application है, जिसका उपयोग Internet पर उपलब्ध
+                    information, web pages, images, videos तथा अन्य online content को खोजने (search) के लिए किया जाता
+                    है। यह user द्वारा दिए गए keywords के आधार पर सबसे उपयुक्त search results प्रदर्शित करता है।<br>
+                    <strong>Examples:</strong> Google, Bing, Yahoo, DuckDuckGo.
+                </p>
                 <h3>Social Network Sites</h3>
                 <p><strong>Social Network Sites</strong> online platforms हैं जहाँ users profile बना सकते हैं,
                     friends/followers से connect कर सकते हैं और posts, images, videos share कर सकते हैं। Examples:
                     Facebook, Instagram, LinkedIn, X.</p>
-               
+
             </section>
 
             <section id="security">
@@ -1431,7 +1207,7 @@
                 <p><strong>Firewall</strong> security system है जो incoming और outgoing network traffic को monitor और
                     control करता है। यह trusted और untrusted network के बीच barrier की तरह काम करता है।</p>
                 <div class="image-box">
-                    <img src="./images/firewall.webp" alt="">
+                    <img src="./images/firewALL.webp" alt="">
                 </div>
                 <ul>
                     <li>Strong password use करें।</li>

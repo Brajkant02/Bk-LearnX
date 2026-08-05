@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang='en'><head><meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>DBMS Part-1</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;background:#f4f7fb;margin:0;color:#222;line-height:1.7}
+.wrap{max-width:1200px;margin:auto;padding:24px}
+h1{background:#2563eb;color:#fff;padding:18px;border-radius:12px}
+section{background:#fff;margin:18px 0;padding:20px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+h2{border-left:5px solid #2563eb;padding-left:10px}
+table{width:100%;border-collapse:collapse}th,td{border:1px solid #ccc;padding:8px}th{background:#eef2ff}
+.img{border:2px dashed #999;padding:30px;text-align:center;border-radius:10px;margin:12px 0}
+.note{background:#eefcf2;border-left:5px solid #22c55e;padding:12px;border-radius:8px}
+</style></head><body><div class='wrap'>
+<h1>Database System Concept & Data Modeling (Part-1)</h1>
+
+<section><h2>1. Basic Concepts of DBMS</h2>
+<p><b>Database</b> is an organized collection of related data. <b>DBMS (Database Management System)</b> is software used to create, store, retrieve, update and manage data efficiently.</p>
+<div class='img'>Image Placeholder: DBMS Overview Diagram</div>
+<p>Examples: MySQL, PostgreSQL, Oracle Database, SQL Server, SQLite.</p>
+<div class='note'><b>Real Life Example:</b> Bank, Hospital, School and E-commerce websites all use DBMS to manage large amounts of data.</div>
+</section>
+
+<section><h2>2. Advantages of DBMS over File Processing System</h2>
+<table>
+<tr><th>File Processing</th><th>DBMS</th></tr>
+<tr><td>Data redundancy</td><td>Minimum redundancy</td></tr>
+<tr><td>Difficult sharing</td><td>Easy data sharing</td></tr>
+<tr><td>Weak security</td><td>Strong security</td></tr>
+<tr><td>No backup management</td><td>Backup & recovery available</td></tr>
+<tr><td>Data inconsistency</td><td>Consistency maintained</td></tr>
+</table>
+</section>
+
+<section><h2>3. Data Abstraction</h2>
+<p>Data abstraction hides unnecessary implementation details and shows only the required information to users.</p>
+<ul>
+<li><b>Physical Level:</b> How data is stored.</li>
+<li><b>Logical Level:</b> What data is stored and relationships.</li>
+<li><b>View Level:</b> Only required data shown to users.</li>
+</ul>
+<div class='img'>Image Placeholder: Data Abstraction Levels</div>
+</section>
+
+<section><h2>4. Database Languages</h2>
+<table>
+<tr><th>Language</th><th>Purpose</th></tr>
+<tr><td>DDL</td><td>Create, Alter, Drop database objects</td></tr>
+<tr><td>DML</td><td>Insert, Update, Delete data</td></tr>
+<tr><td>DQL</td><td>SELECT query</td></tr>
+<tr><td>DCL</td><td>GRANT, REVOKE permissions</td></tr>
+<tr><td>TCL</td><td>COMMIT, ROLLBACK, SAVEPOINT</td></tr>
+</table>
+</section>
+
+<section><h2>5. Components of DBMS</h2>
+<ul>
+<li>Database Engine</li>
+<li>Query Processor</li>
+<li>Storage Manager</li>
+<li>Transaction Manager</li>
+<li>Data Dictionary</li>
+<li>Users & Applications</li>
+</ul>
+<div class='img'>Image Placeholder: Components of DBMS</div>
+</section>
+
+<section><h2>6. Overall Structure of DBMS</h2>
+<pre>User/Application
+        ↓
+     SQL Queries
+        ↓
+   Query Processor
+        ↓
+ Database Engine
+        ↓
+ Storage Manager
+        ↓
+ Database Files</pre>
+</section>
+
+<section><h2>7. Three Views of Data</h2>
+<table>
+<tr><th>View</th><th>Description</th></tr>
+<tr><td>External View</td><td>User-specific data view.</td></tr>
+<tr><td>Conceptual View</td><td>Complete logical structure of database.</td></tr>
+<tr><td>Internal View</td><td>Physical storage details.</td></tr>
+</table>
+<div class='img'>Image Placeholder: Three View Architecture</div>
+</section>
+
+<section><h2>8. Three-Level Architecture</h2>
+<p>DBMS follows External → Conceptual → Internal architecture to achieve data abstraction and independence.</p>
+</section>
+
+<section><h2>9. Data Independence</h2>
+<ul>
+<li><b>Physical Data Independence:</b> Storage changes without affecting logical structure.</li>
+<li><b>Logical Data Independence:</b> Logical changes without affecting user views.</li>
+</ul>
+</section>
+
+<section><h2>10. Client-Server Architecture</h2>
+<p>In Client-Server Architecture, client sends requests and the database server processes queries and returns results.</p>
+<div class='img'>Image Placeholder: Client-Server Architecture</div>
+</section>
+
+</div></body></html>

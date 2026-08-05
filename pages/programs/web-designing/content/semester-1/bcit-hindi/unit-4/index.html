@@ -5,257 +5,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Unit 4 - Linux Operating System</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0
-        }
+    <link rel="stylesheet" href="../../style.css">
 
-        html {
-            scroll-behavior: smooth
-        }
 
-        body {
-            font-family: "Segoe UI", Arial, sans-serif;
-            line-height: 1.7;
-            background: #f5f7fb;
-            color: #1f2937
-        }
-
-        .page {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 20px;
-            max-width: 1400px;
-            margin: auto;
-            padding: 10px
-        }
-
-        .sidebar {
-            position: sticky;
-            top: 10px;
-            height: calc(100vh - 20px);
-            overflow-y: auto;
-            background: #fff;
-            border-radius: 16px;
-            padding: 18px;
-            box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
-            align-self: start
-        }
-
-        .sidebar h2 {
-            font-size: 20px;
-            margin-bottom: 12px;
-            color: #111827
-        }
-
-        .sidebar a {
-            display: block;
-            text-decoration: none;
-            color: #374151;
-            padding: 9px 10px;
-            border-radius: 10px;
-            margin-bottom: 5px;
-            font-size: 15px
-        }
-
-        .sidebar a:hover {
-            background: #eef2ff;
-            color: #1d4ed8
-        }
-
-        .content {
-            background: #fff;
-            border-radius: 18px;
-            padding: 10px;
-            box-shadow: 0 4px 18px rgba(0, 0, 0, .08)
-        }
-
-        .hero {
-            padding: 28px 18px;
-            border-radius: 16px;
-            background: linear-gradient(135deg, #eef2ff, #f8fafc);
-            margin-bottom: 18px
-        }
-
-        .hero h1 {
-            font-size: 34px;
-            color: #111827;
-            margin-bottom: 10px
-        }
-
-        .hero p {
-            font-size: 18px;
-            color: #374151
-        }
-
-        section {
-            padding: 20px 10px;
-            border-bottom: 1px solid #e5e7eb
-        }
-
-        section:last-child {
-            border-bottom: none
-        }
-
-        h2 {
-            font-size: 28px;
-            color: #111827;
-            margin-bottom: 12px;
-            border-left: 5px solid #2563eb;
-            padding-left: 12px
-        }
-
-        h3 {
-            font-size: 21px;
-            color: #1f2937;
-            margin: 16px 0 8px
-        }
-
-        p {
-            margin: 10px 0;
-            font-size: 17px
-        }
-
-        ul,
-        ol {
-            margin-left: 24px;
-            margin-top: 8px
-        }
-
-        li {
-            margin: 7px 0;
-            font-size: 16.5px
-        }
-
-        strong {
-            color: #111827
-        }
-
-        .note,
-        .example,
-        .exam {
-            border-radius: 14px;
-            padding: 14px 16px;
-            margin: 16px 0
-        }
-
-        .note {
-            background: #ecfeff;
-            border-left: 5px solid #06b6d4
-        }
-
-        .example {
-            background: #f0fdf4;
-            border-left: 5px solid #22c55e
-        }
-
-        .exam {
-            background: #fff7ed;
-            border-left: 5px solid #f97316
-        }
-
-        .image-box {
-            min-height: 190px;
-            border: 2px dashed #94a3b8;
-            border-radius: 16px;
-            background: #f8fafc;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 20px;
-            margin: 18px 0;
-            color: #475569;
-            font-weight: 600
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 16px 0;
-            border-radius: 12px;
-            font-size: 15.5px
-        }
-
-        th,
-        td {
-            border: 1px solid #d1d5db;
-            padding: 10px;
-            text-align: left;
-            vertical-align: top
-        }
-
-        th {
-            background: #eef2ff;
-            color: #111827
-        }
-
-        code {
-            background: #111827;
-            color: #f9fafb;
-            padding: 2px 6px;
-            border-radius: 6px;
-            font-family: Consolas, monospace;
-            font-size: 15px
-        }
-
-        .cmd {
-            background: #0f172a;
-            color: #e5e7eb;
-            border-radius: 14px;
-            padding: 14px;
-            margin: 12px 0;
-            font-family: Consolas, monospace;
-            overflow-x: auto
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 14px;
-            margin: 16px 0
-        }
-
-        .card {
-            background: #f9fafb;
-            border: 1px solid #e5e7eb;
-            border-radius: 14px;
-            padding: 14px
-        }
-
-        .card h3 {
-            margin-top: 0
-        }
-
-        @media(max-width:900px) {
-            .page {
-                grid-template-columns: 1fr
-            }
-
-            .sidebar {
-                position: relative;
-                height: auto
-            }
-
-            .hero h1 {
-                font-size: 27px
-            }
-
-            h2 {
-                font-size: 24px
-            }
-
-            .grid {
-                grid-template-columns: 1fr
-            }
-        }
-    </style>
-
-<link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
-<script src="../../../../../../../assets/shared/portal.js" defer></script>
-<script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
+    <link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
+    <script src="../../../../../../../assets/shared/portal.js" defer></script>
+    <script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
 </head>
 
 <body>
@@ -276,7 +31,7 @@
         <main class="content">
             <div class="hero">
                 <h1>Linux Operating System</h1>
-                
+
             </div>
             <section id="intro">
                 <h2>Linux Operating System</h2>
@@ -288,8 +43,8 @@
                 <p>Linux को 1991 में <strong>Linus Torvalds</strong> ने develop किया था। Linux का सबसे बड़ा advantage यह
                     है कि इसका source code openly available होता है, इसलिए कोई भी developer इसे study, modify और
                     distribute कर सकता है।</p>
-               
-              
+
+
             </section>
             <section id="features">
                 <h2>Features of Linux</h2>
@@ -341,7 +96,7 @@
                     (efficient) तरीके से चलाना है। Linux Architecture कई layers से मिलकर बनी होती है, जहाँ प्रत्येक
                     layer का अपना अलग कार्य होता है।</p>
                 <div class="image-box">
-                    <img src="./images.webp" alt="Architecture of Linux Operating System">
+                    <img src="./image/linux-os-architecture.webp" alt="Architecture of Linux Operating System">
                 </div>
 
 
@@ -462,7 +217,7 @@
                 <p>Linux में root directory को <code>/</code> से represent किया जाता है। बाकी सभी directories इसी root
                     directory के अंदर होती हैं।</p>
                 <div class="image-box">
-                    <img src="./file-system.webp" alt="file system">
+                    <img src="./image/linux-file-system-structure.webp" alt="file system">
                 </div>
                 <table>
                     <tr>
@@ -519,7 +274,7 @@
                 <p><strong>VI Editor</strong> Linux/Unix का एक powerful text editor है। इसका use text files create और
                     edit करने के लिए किया जाता है। VI editor terminal-based होता है, यानी इसे GUI के बिना command line
                     से use किया जा सकता है।</p>
-               
+
                 <h3>Modes of VI Editor</h3>
                 <table>
                     <tr>
@@ -590,7 +345,7 @@
                 <p><strong>Linux Installation</strong> का मतलब computer में Linux Operating System install करना है।
                     Linux को direct hard disk पर install किया जा सकता है, dual boot में Windows के साथ install किया जा
                     सकता है, या Virtual Machine में भी install किया जा सकता है।</p>
-              
+
                 <h3>Requirements for Linux Installation</h3>
                 <ul>
                     <li>Linux ISO file जैसे Ubuntu, Fedora, Linux Mint आदि।</li>
@@ -640,7 +395,7 @@
                     </tr>
                 </table>
             </section>
-            
+
         </main>
     </div>
 </body>

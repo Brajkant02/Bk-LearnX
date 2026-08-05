@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exceptions in Python</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+      line-height: 1.75
+    }
+
+    .page {
+      display: grid;
+      grid-template-columns: 285px 1fr;
+      gap: 20px;
+      max-width: 1500px;
+      margin: auto;
+      padding: 10px
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 10px;
+      height: calc(100vh - 20px);
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
+      align-self: start
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #111827
+    }
+
+    .sidebar a {
+      display: block;
+      text-decoration: none;
+      color: #374151;
+      padding: 8px 10px;
+      border-radius: 10px;
+      margin-bottom: 4px;
+      font-size: 14.7px
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+      color: #1d4ed8
+    }
+
+    .content {
+      background: #fff;
+      border-radius: 18px;
+      padding: 10px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08)
+    }
+
+    .hero {
+      padding: 28px 18px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #eef2ff, #f8fafc);
+      margin-bottom: 18px
+    }
+
+    .hero h1 {
+      font-size: 34px;
+      color: #111827;
+      margin-bottom: 10px
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #374151
+    }
+
+    section {
+      padding: 22px 10px;
+      border-bottom: 1px solid #e5e7eb
+    }
+
+    section:last-child {
+      border-bottom: none
+    }
+
+    h2 {
+      font-size: 27px;
+      color: #111827;
+      margin-bottom: 12px;
+      border-left: 5px solid #2563eb;
+      padding-left: 12px
+    }
+
+    h3 {
+      font-size: 22px;
+      color: #1f2937;
+      margin: 16px 0 8px
+    }
+
+    h4 {
+      font-size: 18px;
+      color: #111827;
+      margin: 14px 0 6px
+    }
+
+    p {
+      margin: 10px 0;
+      font-size: 17px
+    }
+
+    ul,
+    ol {
+      margin-left: 24px;
+      margin-top: 8px
+    }
+
+    li {
+      margin: 7px 0;
+      font-size: 16.5px
+    }
+
+    strong {
+      color: #111827
+    }
+
+    .image-icon {
+      min-height: 180px;
+      border: 2px dashed #94a3b8;
+      border-radius: 16px;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      margin: 18px 0;
+      color: #475569;
+      font-weight: 600
+    }
+
+    .image-icon img {
+      max-width: 100%;
+      height: auto
+    }
+
+    .note-box {
+      background: #f0fdf4;
+      border-left: 5px solid #22c55e;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .info-box {
+      background: #ecfeff;
+      border-left: 5px solid #06b6d4;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .remember-box {
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      font-size: 15.5px
+    }
+
+    th,
+    td {
+      border: 1px solid #d1d5db;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top
+    }
+
+    th {
+      background: #eef2ff;
+      color: #111827
+    }
+
+    code {
+      background: #111827;
+      color: #f9fafb;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-family: Consolas, monospace;
+      font-size: 15px
+    }
+
+    pre {
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 14px;
+      padding: 16px;
+      margin: 16px 0;
+      overflow-x: auto;
+      font-family: Consolas, monospace;
+      line-height: 1.6
+    }
+
+    .compiler {
+      width: 100%;
+      height: 2rem;
+      background-color: green;
+      text-align: center;
+    }
+
+    .compiler a {
+      text-decoration: none;
+      color: white;
+    }
+
+    @media(max-width:900px) {
+      .page {
+        grid-template-columns: 1fr
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto
+      }
+
+      .hero h1 {
+        font-size: 27px
+      }
+
+      h2 {
+        font-size: 24px
+      }
+    }
+    /* Iframe content responsive fix */
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.page,
+.content,
+section {
+  min-width: 0;
+  max-width: 100%;
+}
+
+img,
+video,
+svg,
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+table {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border-radius: 12px;
+  -webkit-overflow-scrolling: touch;
+}
+
+th,
+td {
+  min-width: 110px;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+pre {
+  max-width: 100%;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+code {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 900px) {
+  .page {
+    display: block;
+    width: 100%;
+    padding: 5px;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .content {
+    width: 100%;
+    min-width: 0;
+    padding: 6px;
+    border-radius: 10px;
+  }
+
+  section {
+    width: 100%;
+    padding: 16px 6px;
+  }
+
+  .hero {
+    padding: 18px 10px;
+  }
+
+  .hero h1 {
+    font-size: 24px;
+  }
+
+  h2 {
+    font-size: 21px;
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+
+  p,
+  li {
+    font-size: 15px;
+  }
+
+  .image-icon {
+    min-height: 130px;
+    padding: 8px;
+  }
+}
+  </style>
+
+<link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
+<script src="../../../../../../../assets/shared/portal.js" defer></script>
+<script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
+</head>
+
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <h2>Topics</h2>
+      <a href="#errors">Errors</a>
+      <a href="#runtime-errors">Runtime Errors</a>
+      <a href="#exception-model">The Exception Model</a>
+      <a href="#hierarchy">Exception Hierarchy</a>
+      <a href="#multiple">Handling Multiple Exceptions</a>
+      <a href="#raise">Raise</a>
+      <a href="#assert">assert</a>
+    </aside>
+
+    <main class="content">
+      <div class="hero">
+        <h1>Exceptions in Python</h1>
+        <p>इस chapter में Python errors और exceptions को simple Hindi-English style में समझाया गया है, जिसमें runtime errors, exception handling model, hierarchy, multiple exceptions, raise और assert शामिल हैं।</p>
+      </div>
+
+      <section id="errors">
+        <h2>Errors</h2>
+
+        <p>Programming में error का मतलब program में ऐसी problem से है जिसकी वजह से program सही तरीके से execute नहीं हो पाता। Python में error आने पर program normally stop हो जाता है और screen पर error message show करता है। Error message programmer को यह समझने में help करता है कि problem किस line में और किस type की है।</p>
+
+        <p>Python में errors को broadly syntax errors और exceptions में divide किया जा सकता है। Syntax error तब आता है जब program Python grammar के according सही नहीं लिखा गया होता। Exception तब आती है जब program syntax के according सही है, लेकिन execution के time कोई problem हो जाती है।</p>
+
+        <h4>Syntax Error</h4>
+        <p>Syntax error तब आता है जब code Python के rules के according नहीं होता। जैसे colon भूल जाना, brackets mismatch होना, quotes close न करना आदि।</p>
+
+        <pre>if 10 > 5
+    print("Hello")</pre>
+
+        <div class="info-box"><b>Output:</b><br>SyntaxError: expected ':'</div>
+
+        <h4>Logical Error</h4>
+        <p>Logical error में program run तो हो जाता है, लेकिन output गलत आता है। यह error Python automatically detect नहीं कर पाता क्योंकि syntax correct होता है, लेकिन logic गलत होता है।</p>
+
+        <pre>length = 10
+breadth = 5
+
+area = length + breadth
+
+print("Area =", area)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Area = 15</div>
+
+        <p>ऊपर program run हो गया, लेकिन rectangle area का formula गलत लिखा गया। सही formula <code>length * breadth</code> होना चाहिए।</p>
+
+        <h4>Exception</h4>
+        <p>Exception वह error है जो program execution के दौरान आती है। जैसे zero से divide करना, invalid input देना, file न मिलना, list index गलत देना आदि।</p>
+
+        <pre>a = 10
+b = 0
+
+print(a / b)</pre>
+
+        <div class="info-box"><b>Output:</b><br>ZeroDivisionError: division by zero</div>
+
+        <h4>Types of Errors</h4>
+        <table>
+          <tr>
+            <th>Error Type</th>
+            <th>Meaning</th>
+            <th>Example</th>
+          </tr>
+          <tr>
+            <td>Syntax Error</td>
+            <td>Code grammar गलत होना।</td>
+            <td>Colon भूल जाना।</td>
+          </tr>
+          <tr>
+            <td>Runtime Error</td>
+            <td>Program run होते समय error आना।</td>
+            <td>Zero से divide करना।</td>
+          </tr>
+          <tr>
+            <td>Logical Error</td>
+            <td>Program run हो लेकिन output गलत हो।</td>
+            <td>गलत formula use करना।</td>
+          </tr>
+        </table>
+
+        <div class="note-box"><b>Real Life Example:</b><br>अगर calculator app में user denominator 0 डाल दे, तो division possible नहीं होगी। यह runtime exception का example है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Syntax error program start होने से पहले catch हो जाता है, जबकि exception usually program execution के दौरान आती है।</div>
+      </section>
+
+      <section id="runtime-errors">
+        <h2>Runtime Errors</h2>
+
+        <p>Runtime errors वे errors होते हैं जो program run होते समय आते हैं। Program syntax के हिसाब से correct हो सकता है, लेकिन execution के दौरान कोई invalid operation होने पर runtime error आता है। Python में runtime errors को exceptions के रूप में handle किया जाता है।</p>
+
+        <p>Runtime error आने पर program का normal flow break हो जाता है। अगर error को handle नहीं किया गया है, तो program stop हो जाता है और traceback show करता है। Traceback में error की location, line number और error type की information मिलती है।</p>
+
+        <h4>ZeroDivisionError</h4>
+        <pre>a = 10
+b = 0
+
+print(a / b)</pre>
+
+        <div class="info-box"><b>Output:</b><br>ZeroDivisionError: division by zero</div>
+
+        <h4>ValueError</h4>
+        <p>ValueError तब आता है जब function को सही type की value मिलती है, लेकिन value का format या content invalid होता है।</p>
+
+        <pre>age = int("twenty")
+
+print(age)</pre>
+
+        <div class="info-box"><b>Output:</b><br>ValueError: invalid literal for int()</div>
+
+        <h4>TypeError</h4>
+        <p>TypeError तब आता है जब operation incompatible data types पर perform किया जाता है।</p>
+
+        <pre>name = "Brajkant"
+age = 23
+
+print(name + age)</pre>
+
+        <div class="info-box"><b>Output:</b><br>TypeError: can only concatenate str to str</div>
+
+        <h4>IndexError</h4>
+        <p>IndexError तब आता है जब list, tuple या string में ऐसी index position access की जाती है जो exist नहीं करती।</p>
+
+        <pre>numbers = [10, 20, 30]
+
+print(numbers[5])</pre>
+
+        <div class="info-box"><b>Output:</b><br>IndexError: list index out of range</div>
+
+        <h4>KeyError</h4>
+        <p>Dictionary में ऐसी key access करने पर जो available नहीं है, KeyError आता है।</p>
+
+        <pre>student = {
+    "name": "Brajkant",
+    "course": "PGDCA"
+}
+
+print(student["age"])</pre>
+
+        <div class="info-box"><b>Output:</b><br>KeyError: 'age'</div>
+
+        <h4>FileNotFoundError</h4>
+        <p>File open करते समय अगर file exist नहीं करती, तो FileNotFoundError आता है।</p>
+
+        <pre>file = open("student.txt", "r")
+
+print(file.read())</pre>
+
+        <div class="info-box"><b>Output:</b><br>FileNotFoundError: No such file or directory</div>
+
+        <h4>Common Runtime Errors</h4>
+        <table>
+          <tr>
+            <th>Error</th>
+            <th>Cause</th>
+          </tr>
+          <tr>
+            <td><code>ZeroDivisionError</code></td>
+            <td>Number को zero से divide करना।</td>
+          </tr>
+          <tr>
+            <td><code>ValueError</code></td>
+            <td>Invalid value conversion करना।</td>
+          </tr>
+          <tr>
+            <td><code>TypeError</code></td>
+            <td>Wrong data types पर operation करना।</td>
+          </tr>
+          <tr>
+            <td><code>IndexError</code></td>
+            <td>Invalid index access करना।</td>
+          </tr>
+          <tr>
+            <td><code>KeyError</code></td>
+            <td>Dictionary में missing key access करना।</td>
+          </tr>
+          <tr>
+            <td><code>FileNotFoundError</code></td>
+            <td>Missing file open करना।</td>
+          </tr>
+        </table>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Online form में user age की जगह text लिख दे, तो program में ValueError आ सकता है क्योंकि text को number में convert नहीं किया जा सकता।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Runtime errors को exception handling की help से control किया जा सकता है ताकि program अचानक बंद न हो।</div>
+      </section>
+
+      <section id="exception-model">
+        <h2>The Exception Model</h2>
+
+        <p>Python में exception handling model program को error आने पर safely handle करने की facility देता है। इसका purpose यह है कि अगर program में runtime error आए, तो program तुरंत crash न हो बल्कि error को detect करके proper message या alternative action perform करे।</p>
+
+        <p>Exception handling के लिए Python में mainly <code>try</code>, <code>except</code>, <code>else</code> और <code>finally</code> blocks use होते हैं। Risky code को <code>try</code> block में रखा जाता है। अगर try block में exception आती है, तो matching <code>except</code> block execute होता है। अगर exception नहीं आती, तो <code>else</code> block run हो सकता है। <code>finally</code> block हमेशा execute होता है, चाहे exception आए या न आए।</p>
+
+        <h4>Basic Syntax</h4>
+        <pre>try:
+    risky_code
+except ExceptionName:
+    handling_code
+else:
+    code_if_no_exception
+finally:
+    always_execute_code</pre>
+
+        <h4>Simple try-except Example</h4>
+        <pre>try:
+    a = 10
+    b = 0
+    print(a / b)
+except ZeroDivisionError:
+    print("Cannot divide by zero")</pre>
+
+        <div class="info-box"><b>Output:</b><br>Cannot divide by zero</div>
+
+        <h4>How Exception Handling Works</h4>
+        <ol>
+          <li>Python सबसे पहले try block execute करता है।</li>
+          <li>अगर try block में error नहीं आती, तो except block skip हो जाता है।</li>
+          <li>अगर try block में exception आती है, तो Python matching except block search करता है।</li>
+          <li>Matching except block मिलने पर उसका code execute होता है।</li>
+          <li>finally block हो तो वह last में जरूर execute होता है।</li>
+        </ol>
+
+        <h4>try-except-else Example</h4>
+        <pre>try:
+    num = int(input("Enter number: "))
+except ValueError:
+    print("Please enter valid number")
+else:
+    print("You entered:", num)</pre>
+
+        <div class="info-box"><b>Output:</b><br>अगर user 10 enter करे: You entered: 10<br>अगर user abc enter करे: Please enter valid number</div>
+
+        <h4>finally Block</h4>
+        <p><code>finally</code> block हमेशा execute होता है। इसका use cleanup tasks के लिए किया जाता है, जैसे file close करना, database connection close करना या resource release करना।</p>
+
+        <pre>try:
+    file = open("data.txt", "r")
+    print(file.read())
+except FileNotFoundError:
+    print("File not found")
+finally:
+    print("Program finished")</pre>
+
+        <div class="info-box"><b>Output:</b><br>File not found<br>Program finished</div>
+
+        <h4>Exception Model Blocks</h4>
+        <table>
+          <tr>
+            <th>Block</th>
+            <th>Work</th>
+          </tr>
+          <tr>
+            <td><code>try</code></td>
+            <td>Risky code रखता है।</td>
+          </tr>
+          <tr>
+            <td><code>except</code></td>
+            <td>Exception handle करता है।</td>
+          </tr>
+          <tr>
+            <td><code>else</code></td>
+            <td>Exception न आने पर execute होता है।</td>
+          </tr>
+          <tr>
+            <td><code>finally</code></td>
+            <td>Always execute होता है।</td>
+          </tr>
+        </table>
+
+        <h4>Common Mistakes</h4>
+        <ul>
+          <li>Risky code को try block में न रखना।</li>
+          <li>हर error के लिए general except use करना।</li>
+          <li>finally block में ऐसा code लिखना जो खुद error दे।</li>
+          <li>Exception handle करके भी useful message न देना।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>ATM machine में अगर network issue हो जाए, तो machine सीधे बंद नहीं होती बल्कि message show करती है: “Transaction failed, try again later.” यही exception handling जैसा behavior है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br><code>try</code> risky code के लिए, <code>except</code> error handling के लिए, <code>else</code> success case के लिए और <code>finally</code> cleanup के लिए use होता है।</div>
+      </section>
+
+      <section id="hierarchy">
+        <h2>Exception Hierarchy</h2>
+
+        <p>Python में सभी exceptions एक hierarchy में arranged होती हैं। इसका मतलब है कि exceptions classes के रूप में defined होती हैं और वे inheritance relationship follow करती हैं। Most built-in exceptions <code>BaseException</code> class से indirectly inherit करती हैं। Normal program errors के लिए commonly <code>Exception</code> class और उसकी subclasses use होती हैं।</p>
+
+        <p>Exception hierarchy समझना इसलिए important है क्योंकि अगर हम parent exception को catch करते हैं, तो उसकी child exceptions भी catch हो सकती हैं। लेकिन अच्छी programming practice यह है कि पहले specific exception catch करें और बाद में general exception catch करें।</p>
+
+        <h4>Basic Hierarchy</h4>
+        <pre>BaseException
+ ├── SystemExit
+ ├── KeyboardInterrupt
+ ├── GeneratorExit
+ └── Exception
+      ├── ArithmeticError
+      │    ├── ZeroDivisionError
+      │    └── OverflowError
+      ├── LookupError
+      │    ├── IndexError
+      │    └── KeyError
+      ├── ValueError
+      ├── TypeError
+      ├── NameError
+      ├── FileNotFoundError
+      └── RuntimeError</pre>
+
+        <h4>Specific Exception</h4>
+        <pre>try:
+    print(10 / 0)
+except ZeroDivisionError:
+    print("Zero division handled")</pre>
+
+        <div class="info-box"><b>Output:</b><br>Zero division handled</div>
+
+        <h4>Parent Exception</h4>
+        <pre>try:
+    print(10 / 0)
+except Exception:
+    print("Some error occurred")</pre>
+
+        <div class="info-box"><b>Output:</b><br>Some error occurred</div>
+
+        <p>ऊपर <code>Exception</code> parent class है, इसलिए यह <code>ZeroDivisionError</code> जैसी child exception को भी catch कर सकती है।</p>
+
+        <h4>Wrong Order</h4>
+        <pre>try:
+    print(10 / 0)
+except Exception:
+    print("General error")
+except ZeroDivisionError:
+    print("Zero division error")</pre>
+
+        <div class="info-box"><b>Output:</b><br>General error</div>
+
+        <p>यहाँ <code>ZeroDivisionError</code> वाला block execute नहीं होगा क्योंकि पहले general <code>Exception</code> block exception catch कर चुका है।</p>
+
+        <h4>Correct Order</h4>
+        <pre>try:
+    print(10 / 0)
+except ZeroDivisionError:
+    print("Zero division error")
+except Exception:
+    print("General error")</pre>
+
+        <div class="info-box"><b>Output:</b><br>Zero division error</div>
+
+        <h4>Important Exception Classes</h4>
+        <table>
+          <tr>
+            <th>Exception Class</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>Exception</code></td>
+            <td>Most normal exceptions की parent class।</td>
+          </tr>
+          <tr>
+            <td><code>ArithmeticError</code></td>
+            <td>Arithmetic related errors की parent class।</td>
+          </tr>
+          <tr>
+            <td><code>ZeroDivisionError</code></td>
+            <td>Zero से divide करने पर।</td>
+          </tr>
+          <tr>
+            <td><code>LookupError</code></td>
+            <td>Invalid index/key access errors की parent class।</td>
+          </tr>
+          <tr>
+            <td><code>IndexError</code></td>
+            <td>Invalid sequence index access करने पर।</td>
+          </tr>
+          <tr>
+            <td><code>KeyError</code></td>
+            <td>Dictionary में missing key access करने पर।</td>
+          </tr>
+          <tr>
+            <td><code>ValueError</code></td>
+            <td>Invalid value होने पर।</td>
+          </tr>
+          <tr>
+            <td><code>TypeError</code></td>
+            <td>Wrong data type operation होने पर।</td>
+          </tr>
+        </table>
+
+        <div class="remember-box"><b>Remember:</b><br>Multiple except blocks में हमेशा specific exception पहले और general exception बाद में लिखना चाहिए।</div>
+      </section>
+
+      <section id="multiple">
+        <h2>Handling Multiple Exceptions</h2>
+
+        <p>एक program में अलग-अलग types की exceptions आ सकती हैं। जैसे user input invalid हो सकता है, zero division हो सकता है, file missing हो सकती है या list index wrong हो सकता है। ऐसी situation में Python multiple exceptions handle करने की facility देता है।</p>
+
+        <p>Multiple exceptions handle करने के लिए हम multiple <code>except</code> blocks लिख सकते हैं या एक ही except block में tuple के रूप में multiple exception classes दे सकते हैं। इससे program different error situations में proper response दे सकता है।</p>
+
+        <h4>Multiple except Blocks</h4>
+        <pre>try:
+    a = int(input("Enter first number: "))
+    b = int(input("Enter second number: "))
+    print(a / b)
+
+except ValueError:
+    print("Please enter only numbers")
+
+except ZeroDivisionError:
+    print("Cannot divide by zero")</pre>
+
+        <div class="info-box"><b>Output:</b><br>Invalid input पर: Please enter only numbers<br>Second number 0 होने पर: Cannot divide by zero</div>
+
+        <h4>Single except with Multiple Exceptions</h4>
+        <pre>try:
+    numbers = [10, 20, 30]
+    print(numbers[5])
+
+except (IndexError, TypeError):
+    print("Index or type related error occurred")</pre>
+
+        <div class="info-box"><b>Output:</b><br>Index or type related error occurred</div>
+
+        <h4>Using Exception Object</h4>
+        <p>Exception object में actual error message store हो सकता है। इसे <code>as</code> keyword से access किया जाता है।</p>
+
+        <pre>try:
+    print(10 / 0)
+
+except ZeroDivisionError as e:
+    print("Error:", e)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Error: division by zero</div>
+
+        <h4>Specific and General Exception Together</h4>
+        <pre>try:
+    value = int("abc")
+    print(10 / value)
+
+except ValueError:
+    print("Invalid number")
+
+except ZeroDivisionError:
+    print("Cannot divide by zero")
+
+except Exception as e:
+    print("Other error:", e)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Invalid number</div>
+
+        <h4>Best Practice</h4>
+        <ul>
+          <li>Specific exceptions को पहले handle करें।</li>
+          <li>General <code>Exception</code> को last में रखें।</li>
+          <li>हर exception में useful message दें।</li>
+          <li>Unnecessary broad exception handling avoid करें।</li>
+          <li>Error को silently ignore न करें।</li>
+        </ul>
+
+        <h4>Example: Safe Division Program</h4>
+        <pre>try:
+    a = int(input("Enter first number: "))
+    b = int(input("Enter second number: "))
+
+    result = a / b
+    print("Result =", result)
+
+except ValueError:
+    print("invalid-input-please-enter-numeric-value.")
+
+except ZeroDivisionError:
+    print("division-by-zero-is-not-allowed.")
+
+except Exception as e:
+    print("Unexpected error:", e)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Input के according proper message show होगा।</div>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Banking application में invalid account number, insufficient balance, network issue और server error अलग-अलग exceptions की तरह handle किए जा सकते हैं।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Multiple exceptions handle करने से program ज्यादा user-friendly और reliable बनता है।</div>
+      </section>
+
+      <section id="raise">
+        <h2>Raise</h2>
+
+        <p><code>raise</code> keyword का use manually exception generate करने के लिए किया जाता है। कई बार program में ऐसी condition आती है जहाँ Python automatically error नहीं देता, लेकिन programmer logic के according उसे invalid मानता है। ऐसी situation में programmer खुद exception raise कर सकता है।</p>
+
+        <p>Raise का use custom validation, business rules और user-defined error conditions में किया जाता है। जैसे age negative नहीं हो सकती, marks 0 से 100 के बीच होने चाहिए, password empty नहीं होना चाहिए आदि।</p>
+
+        <h4>Basic Syntax</h4>
+        <pre>raise ExceptionName("Error message")</pre>
+
+        <h4>Simple raise Example</h4>
+        <pre>age = -5
+
+if age < 0:
+    raise ValueError("Age cannot be negative")</pre>
+
+        <div class="info-box"><b>Output:</b><br>ValueError: Age cannot be negative</div>
+
+        <h4>Handling Raised Exception</h4>
+        <pre>try:
+    age = -5
+
+    if age < 0:
+        raise ValueError("Age cannot be negative")
+
+except ValueError as e:
+    print("Error:", e)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Error: Age cannot be negative</div>
+
+        <h4>Marks Validation Example</h4>
+        <pre>def check_marks(marks):
+    if marks < 0 or marks > 100:
+        raise ValueError("Marks must be between 0 and 100")
+    return "Valid Marks"
+
+try:
+    print(check_marks(120))
+except ValueError as e:
+    print(e)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Marks must be between 0 and 100</div>
+
+        <h4>Re-raising Exception</h4>
+        <p>कभी-कभी exception catch करने के बाद उसे फिर से raise किया जाता है ताकि higher level पर भी error handle हो सके।</p>
+
+        <pre>try:
+    print(10 / 0)
+except ZeroDivisionError:
+    print("Logging error")
+    raise</pre>
+
+        <div class="info-box"><b>Output:</b><br>Logging error<br>ZeroDivisionError: division by zero</div>
+
+        <h4>Why raise is Useful</h4>
+        <ul>
+          <li>Custom validation apply करने के लिए।</li>
+          <li>Invalid data को रोकने के लिए।</li>
+          <li>Business rules enforce करने के लिए।</li>
+          <li>Program में clear error message देने के लिए।</li>
+          <li>Function को गलत input से protect करने के लिए।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Exam result program में marks 0 से कम या 100 से ज्यादा हों तो programmer खुद <code>raise</code> की help से error generate कर सकता है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br><code>raise</code> का use तब होता है जब programmer खुद किसी condition को error मानकर exception generate करना चाहता है।</div>
+      </section>
+
+      <section id="assert">
+        <h2>assert</h2>
+
+        <p><code>assert</code> Python में debugging और condition checking के लिए use होता है। इसका use यह check करने के लिए किया जाता है कि कोई condition true है या नहीं। अगर condition true है, तो program normally continue करता है। अगर condition false है, तो Python <code>AssertionError</code> raise करता है।</p>
+
+        <p>assert का use mainly development और testing phase में किया जाता है। यह programmer को जल्दी पता लगाने में help करता है कि program में कोई assumption fail हो रही है। Production level code में user input validation के लिए assert पर depend करना generally अच्छा practice नहीं माना जाता, क्योंकि Python optimization mode में assertions disable हो सकते हैं।</p>
+
+        <h4>Basic Syntax</h4>
+        <pre>assert condition, "Error message"</pre>
+
+        <h4>Simple assert Example</h4>
+        <pre>age = 20
+
+assert age >= 18, "Age must be 18 or above"
+
+print("Eligible")</pre>
+
+        <div class="info-box"><b>Output:</b><br>Eligible</div>
+
+        <h4>AssertionError Example</h4>
+        <pre>age = 15
+
+assert age >= 18, "Age must be 18 or above"
+
+print("Eligible")</pre>
+
+        <div class="info-box"><b>Output:</b><br>AssertionError: Age must be 18 or above</div>
+
+        <h4>Using assert in Function</h4>
+        <pre>def calculate_percentage(obtained, total):
+    assert total > 0, "Total marks must be greater than zero"
+    return (obtained / total) * 100
+
+print(calculate_percentage(400, 500))</pre>
+
+        <div class="info-box"><b>Output:</b><br>80.0</div>
+
+        <h4>assert vs raise</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>assert</th>
+            <th>raise</th>
+          </tr>
+          <tr>
+            <td>Purpose</td>
+            <td>Debugging और internal condition checking के लिए।</td>
+            <td>Manually exception generate करने के लिए।</td>
+          </tr>
+          <tr>
+            <td>Exception</td>
+            <td>AssertionError raise करता है।</td>
+            <td>Any specified exception raise कर सकता है।</td>
+          </tr>
+          <tr>
+            <td>Use Case</td>
+            <td>Programmer assumptions check करने के लिए।</td>
+            <td>User validation या business rule के लिए।</td>
+          </tr>
+          <tr>
+            <td>Production Use</td>
+            <td>Carefully use करना चाहिए।</td>
+            <td>Validation के लिए better choice है।</td>
+          </tr>
+        </table>
+
+        <h4>Common Mistakes</h4>
+        <ul>
+          <li>User input validation के लिए assert पर completely depend करना।</li>
+          <li>ऐसी condition assert में लिखना जिसका fail होना normal user mistake हो।</li>
+          <li>Assertion message न देना जिससे error unclear हो जाता है।</li>
+          <li>assert और raise को same समझना।</li>
+        </ul>
+
+        <h4>When to Use assert</h4>
+        <ul>
+          <li>Internal assumptions check करने के लिए।</li>
+          <li>Debugging के दौरान expected condition verify करने के लिए।</li>
+          <li>Function में impossible situations detect करने के लिए।</li>
+          <li>Development phase में logical mistakes catch करने के लिए।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>अगर program में percentage calculate हो रही है, तो total marks zero नहीं होने चाहिए। Development phase में इस assumption को check करने के लिए assert use किया जा सकता है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br><code>assert</code> debugging tool है। User validation के लिए usually <code>raise</code> और proper exception handling ज्यादा suitable होता है।</div>
+      </section>
+
+    </main>
+  </div>
+</body>
+
+</html>

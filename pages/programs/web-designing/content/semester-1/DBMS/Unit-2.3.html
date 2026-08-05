@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ER Diagram & Notations - Part 3</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f7fb;color:#1f2937;line-height:1.75}
+.page{display:grid;grid-template-columns:290px 1fr;gap:20px;max-width:1550px;margin:auto;padding:10px}
+.sidebar{position:sticky;top:10px;height:calc(100vh - 20px);overflow-y:auto;background:#fff;border-radius:16px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.08);align-self:start}
+.sidebar h2{font-size:20px;margin-bottom:12px;color:#111827}
+.sidebar a{display:block;text-decoration:none;color:#374151;padding:8px 10px;border-radius:10px;margin-bottom:4px;font-size:14.5px}
+.sidebar a:hover{background:#eef2ff;color:#1d4ed8}
+.content{background:#fff;border-radius:18px;padding:10px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.hero{padding:30px 20px;border-radius:16px;background:linear-gradient(135deg,#eef2ff,#f8fafc);margin-bottom:18px}
+.hero h1{font-size:34px;color:#111827;margin-bottom:10px}
+.hero p{font-size:18px;color:#374151}
+section{padding:22px 10px;border-bottom:1px solid #e5e7eb}
+section:last-child{border-bottom:none}
+h2{font-size:27px;color:#111827;margin-bottom:12px;border-left:5px solid #2563eb;padding-left:12px}
+h3{font-size:22px;color:#1f2937;margin:18px 0 8px}
+h4{font-size:18px;color:#111827;margin:14px 0 6px}
+p{margin:10px 0;font-size:17px}
+ul,ol{margin-left:24px;margin-top:8px}
+li{margin:7px 0;font-size:16.5px}
+strong{color:#111827}
+.image-icon{min-height:180px;border:2px dashed #94a3b8;border-radius:16px;background:#f8fafc;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;margin:18px 0;color:#475569;font-weight:600;flex-direction:column;gap:8px}
+.image-icon img{max-width:100%;height:auto}
+.note-box{background:#f0fdf4;border-left:5px solid #22c55e;border-radius:14px;padding:14px 16px;margin:16px 0}
+.info-box{background:#ecfeff;border-left:5px solid #06b6d4;border-radius:14px;padding:14px 16px;margin:16px 0}
+.remember-box{background:#fff7ed;border-left:5px solid #f97316;border-radius:14px;padding:14px 16px;margin:16px 0}
+table{width:100%;border-collapse:collapse;margin:16px 0;border-radius:12px;overflow:hidden;font-size:15.3px}
+th,td{border:1px solid #d1d5db;padding:10px;text-align:left;vertical-align:top}
+th{background:#eef2ff;color:#111827}
+pre{background:#0f172a;color:#e5e7eb;border-radius:14px;padding:16px;margin:16px 0;overflow-x:auto;font-family:Consolas,monospace;line-height:1.6}
+@media(max-width:900px){.page{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.hero h1{font-size:27px}h2{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="page">
+<aside class="sidebar"><h2>Topics</h2><a href="#er-diagram">E-R Diagram</a>
+<a href="#notations">E-R Diagram Notations</a>
+<a href="#student">Student Management ER Diagram</a>
+<a href="#library">Library Management ER Diagram</a>
+<a href="#hospital">Hospital Management ER Diagram</a>
+<a href="#banking">Banking ER Diagram</a>
+<a href="#conversion">Converting ER Model to Relational Tables</a>
+<a href="#mistakes">Common ER Design Mistakes</a>
+<a href="#best-practices">Best Practices for ER Modeling</a></aside>
+<main class="content">
+<div class="hero"><h1>ER Diagram & Notations - Part 3</h1><p>ER notations, symbols, complete examples, relational conversion, common mistakes और best practices को premium format में समझाया गया है।</p></div>
+<section id="er-diagram"><h2>E-R Diagram</h2>
+<p><strong>E-R Diagram</strong> entities, attributes, relationships और constraints का graphical representation है। यह database design शुरू करने से पहले conceptual structure समझने में help करता है।</p>
+<div class="image-icon"><img src="" alt="ER Diagram Overview"><p>Image Placeholder: Complete ER Diagram</p></div>
+</section>
+<section id="notations"><h2>E-R Diagram Notations</h2>
+<table>
+<tr><th>Symbol</th><th>Meaning</th></tr>
+<tr><td>Rectangle</td><td>Strong Entity</td></tr>
+<tr><td>Double Rectangle</td><td>Weak Entity</td></tr>
+<tr><td>Diamond</td><td>Relationship</td></tr>
+<tr><td>Double Diamond</td><td>Identifying Relationship</td></tr>
+<tr><td>Oval</td><td>Attribute</td></tr>
+<tr><td>Double Oval</td><td>Multi-valued Attribute</td></tr>
+<tr><td>Dashed Oval</td><td>Derived Attribute</td></tr>
+<tr><td>Underlined Attribute</td><td>Key Attribute</td></tr>
+<tr><td>Double Line</td><td>Total Participation</td></tr>
+</table>
+<div class="image-icon"><img src="" alt="ER Symbols"><p>Image Placeholder: ER Diagram Symbols and Notations</p></div>
+</section>
+<section id="student"><h2>Student Management ER Diagram</h2>
+<h4>Entities</h4>
+<ul><li>Student</li><li>Course</li><li>Department</li><li>Teacher</li></ul>
+<h4>Relationships</h4>
+<ul><li>Student enrolls in Course</li><li>Course belongs to Department</li><li>Teacher teaches Course</li></ul>
+<div class="image-icon"><img src="" alt="Student Management ER Diagram"><p>Image Placeholder: Student Management ER Diagram</p></div>
+</section>
+<section id="library"><h2>Library Management ER Diagram</h2>
+<h4>Entities</h4>
+<ul><li>Book</li><li>Member</li><li>Author</li><li>Issue</li></ul>
+<h4>Relationships</h4>
+<ul><li>Member borrows Book</li><li>Author writes Book</li><li>Issue records transaction</li></ul>
+<div class="image-icon"><img src="" alt="Library ER Diagram"><p>Image Placeholder: Library Management ER Diagram</p></div>
+</section>
+<section id="hospital"><h2>Hospital Management ER Diagram</h2>
+<h4>Entities</h4>
+<ul><li>Patient</li><li>Doctor</li><li>Appointment</li><li>Department</li></ul>
+<h4>Relationships</h4>
+<ul><li>Patient books Appointment</li><li>Doctor attends Appointment</li><li>Doctor belongs to Department</li></ul>
+<div class="image-icon"><img src="" alt="Hospital ER Diagram"><p>Image Placeholder: Hospital Management ER Diagram</p></div>
+</section>
+<section id="banking"><h2>Banking ER Diagram</h2>
+<h4>Entities</h4>
+<ul><li>Customer</li><li>Account</li><li>Branch</li><li>Transaction</li></ul>
+<h4>Relationships</h4>
+<ul><li>Customer owns Account</li><li>Account belongs to Branch</li><li>Account performs Transaction</li></ul>
+<div class="image-icon"><img src="" alt="Banking ER Diagram"><p>Image Placeholder: Banking System ER Diagram</p></div>
+</section>
+<section id="conversion"><h2>Converting ER Model to Relational Tables</h2>
+<h4>Basic Rules</h4>
+<ul>
+<li>Strong entity को table में convert करें।</li>
+<li>Attributes को columns बनाएं।</li>
+<li>Primary key select करें।</li>
+<li>One-to-many relationship में foreign key add करें।</li>
+<li>Many-to-many relationship के लिए separate table बनाएं।</li>
+<li>Weak entity table में owner key include करें।</li>
+</ul>
+<pre>Student(Student_ID, Name)
+Course(Course_ID, Title)
+Enrollment(Student_ID, Course_ID)</pre>
+</section>
+<section id="mistakes"><h2>Common ER Design Mistakes</h2>
+<ul>
+<li>Entity और attribute में confusion।</li>
+<li>Primary key missing।</li>
+<li>Wrong cardinality।</li>
+<li>Many-to-many relationship को direct table में रखना।</li>
+<li>Weak entity dependency ignore करना।</li>
+<li>Derived attribute को unnecessarily store करना।</li>
+<li>Duplicate entities बनाना।</li>
+</ul>
+</section>
+<section id="best-practices"><h2>Best Practices for ER Modeling</h2>
+<ul>
+<li>Clear entity names use करें।</li>
+<li>Primary key early identify करें।</li>
+<li>Relationships के meaningful names रखें।</li>
+<li>Cardinality और participation clearly show करें।</li>
+<li>Diagram को readable रखें।</li>
+<li>Large system को sub-diagrams में divide करें।</li>
+<li>Real business rules verify करें।</li>
+</ul>
+<div class="remember-box"><b>Remember:</b><br>Good ER diagram वही है जो real-world rules को accurately represent करे।</div>
+</section>
+</main>
+</div>
+</body>
+</html>

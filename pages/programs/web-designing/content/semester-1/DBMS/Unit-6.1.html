@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PL/SQL - Part 1</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f7fb;color:#1f2937;line-height:1.75}
+.page{display:grid;grid-template-columns:290px 1fr;gap:20px;max-width:1550px;margin:auto;padding:10px}
+.sidebar{position:sticky;top:10px;height:calc(100vh - 20px);overflow-y:auto;background:#fff;border-radius:16px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.08);align-self:start}
+.sidebar h2{font-size:20px;margin-bottom:12px;color:#111827}
+.sidebar a{display:block;text-decoration:none;color:#374151;padding:8px 10px;border-radius:10px;margin-bottom:4px;font-size:14.5px}
+.sidebar a:hover{background:#eef2ff;color:#1d4ed8}
+.content{background:#fff;border-radius:18px;padding:10px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.hero{padding:30px 20px;border-radius:16px;background:linear-gradient(135deg,#eef2ff,#f8fafc);margin-bottom:18px}
+.hero h1{font-size:34px;color:#111827;margin-bottom:10px}
+.hero p{font-size:18px;color:#374151}
+section{padding:22px 10px;border-bottom:1px solid #e5e7eb}
+section:last-child{border-bottom:none}
+h2{font-size:27px;color:#111827;margin-bottom:12px;border-left:5px solid #2563eb;padding-left:12px}
+h3{font-size:22px;color:#1f2937;margin:18px 0 8px}
+h4{font-size:18px;color:#111827;margin:14px 0 6px}
+p{margin:10px 0;font-size:17px}
+ul,ol{margin-left:24px;margin-top:8px}
+li{margin:7px 0;font-size:16.5px}
+strong{color:#111827}
+.image-icon{min-height:180px;border:2px dashed #94a3b8;border-radius:16px;background:#f8fafc;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;margin:18px 0;color:#475569;font-weight:600;flex-direction:column;gap:8px}
+.image-icon img{max-width:100%;height:auto}
+.note-box{background:#f0fdf4;border-left:5px solid #22c55e;border-radius:14px;padding:14px 16px;margin:16px 0}
+.info-box{background:#ecfeff;border-left:5px solid #06b6d4;border-radius:14px;padding:14px 16px;margin:16px 0}
+.remember-box{background:#fff7ed;border-left:5px solid #f97316;border-radius:14px;padding:14px 16px;margin:16px 0}
+.warning-box{background:#fef2f2;border-left:5px solid #ef4444;border-radius:14px;padding:14px 16px;margin:16px 0}
+table{width:100%;border-collapse:collapse;margin:16px 0;border-radius:12px;overflow:hidden;font-size:15.3px}
+th,td{border:1px solid #d1d5db;padding:10px;text-align:left;vertical-align:top}
+th{background:#eef2ff;color:#111827}
+code{background:#111827;color:#f9fafb;padding:2px 6px;border-radius:6px;font-family:Consolas,monospace;font-size:15px}
+pre{background:#0f172a;color:#e5e7eb;border-radius:14px;padding:16px;margin:16px 0;overflow-x:auto;font-family:Consolas,monospace;line-height:1.6}
+@media(max-width:900px){.page{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.hero h1{font-size:27px}h2{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="page">
+<aside class="sidebar"><h2>Topics</h2><a href="#intro">Introduction to PL/SQL</a>
+<a href="#features">Features and Advantages of PL/SQL</a>
+<a href="#block">Structure of a PL/SQL Block</a>
+<a href="#variables">Variables, Constants and Data Types</a>
+<a href="#output">Displaying Output</a>
+<a href="#if">IF Control Statement</a>
+<a href="#case">CASE Statement</a>
+<a href="#basic-loop">Basic LOOP Statement</a>
+<a href="#while">WHILE LOOP</a>
+<a href="#for">FOR LOOP</a>
+<a href="#loop-control">EXIT and CONTINUE</a>
+<a href="#exceptions">Basic Exception Handling</a></aside>
+<main class="content">
+<div class="hero"><h1>PL/SQL - Part 1</h1><p>PL/SQL introduction, block structure, variables, control-of-flow statements, loops और basic exception handling को premium exam-oriented format में समझाया गया है।</p></div>
+<section id="intro"><h2>Introduction to PL/SQL</h2>
+<p><strong>PL/SQL</strong> का full form Procedural Language/Structured Query Language है। यह SQL के साथ procedural programming features जैसे variables, conditions, loops, functions, procedures और exception handling provide करती है। इसका उपयोग database server पर business logic execute करने के लिए किया जाता है।</p>
+<div class="image-icon"><img src="" alt="PL SQL Overview"><p>Image Placeholder: SQL and PL/SQL Relationship</p></div>
+<h4>Why PL/SQL is Needed</h4>
+<ul>
+<li>Multiple SQL statements को एक block में execute करना।</li>
+<li>Conditions और loops use करना।</li>
+<li>Reusable functions और procedures create करना।</li>
+<li>Database operations को secure और centralized बनाना।</li>
+<li>Errors को exception handling के through manage करना।</li>
+</ul>
+<div class="remember-box"><b>Remember:</b><br>SQL declarative language है, जबकि PL/SQL SQL के साथ procedural programming capabilities add करती है।</div>
+</section>
+<section id="features"><h2>Features and Advantages of PL/SQL</h2>
+<ul>
+<li>Block-structured programming।</li>
+<li>SQL statements का direct support।</li>
+<li>Variables, constants और data types।</li>
+<li>Conditional और iterative statements।</li>
+<li>Functions और stored procedures।</li>
+<li>Triggers और cursors।</li>
+<li>Exception handling।</li>
+<li>Server-side execution के कारण network traffic कम।</li>
+<li>Code reuse और modularity।</li>
+<li>Database security improve होती है।</li>
+</ul>
+</section>
+<section id="block"><h2>Structure of a PL/SQL Block</h2>
+<p>PL/SQL program को blocks में लिखा जाता है। एक block में optional declaration section, mandatory executable section और optional exception section हो सकते हैं।</p>
+<pre>DECLARE
+    -- Variables and constants
+
+BEGIN
+    -- Executable statements
+
+EXCEPTION
+    -- Error handling statements
+
+END;
+/</pre>
+<div class="image-icon"><img src="" alt="PL SQL Block Structure"><p>Image Placeholder: PL/SQL Block Structure</p></div>
+<table>
+<tr><th>Section</th><th>Purpose</th></tr>
+<tr><td>DECLARE</td><td>Variables, constants, cursors define करना।</td></tr>
+<tr><td>BEGIN</td><td>Executable statements लिखना।</td></tr>
+<tr><td>EXCEPTION</td><td>Runtime errors handle करना।</td></tr>
+<tr><td>END</td><td>Block complete करना।</td></tr>
+</table>
+</section>
+<section id="variables"><h2>Variables, Constants and Data Types</h2>
+<h4>Variable Declaration</h4>
+<pre>DECLARE
+    student_name VARCHAR2(100);
+    total_marks NUMBER(5);
+    result_status BOOLEAN;
+BEGIN
+    student_name := 'Aman';
+    total_marks := 420;
+END;
+/</pre>
+<h4>Constant</h4>
+<pre>passing_marks CONSTANT NUMBER := 40;</pre>
+<h4>%TYPE Attribute</h4>
+<p><code>%TYPE</code> table column जैसा data type automatically use करता है।</p>
+<pre>student_name student.name%TYPE;</pre>
+<h4>%ROWTYPE Attribute</h4>
+<p><code>%ROWTYPE</code> complete table row जैसी record structure create करता है।</p>
+<pre>student_record student%ROWTYPE;</pre>
+</section>
+<section id="output"><h2>Displaying Output</h2>
+<p>PL/SQL output show करने के लिए Oracle environment में <code>DBMS_OUTPUT.PUT_LINE</code> use किया जाता है।</p>
+<pre>SET SERVEROUTPUT ON;
+
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('Welcome to PL/SQL');
+END;
+/</pre>
+<div class="note-box"><b>Practical Note:</b><br>Output देखने के लिए environment में server output enable होना चाहिए।</div>
+</section>
+<section id="if"><h2>IF Control Statement</h2>
+<h4>Simple IF</h4>
+<pre>IF marks >= 40 THEN
+    DBMS_OUTPUT.PUT_LINE('Pass');
+END IF;</pre>
+<h4>IF-ELSE</h4>
+<pre>IF marks >= 40 THEN
+    DBMS_OUTPUT.PUT_LINE('Pass');
+ELSE
+    DBMS_OUTPUT.PUT_LINE('Fail');
+END IF;</pre>
+<h4>IF-ELSIF-ELSE</h4>
+<pre>IF marks >= 75 THEN
+    grade := 'A';
+ELSIF marks >= 60 THEN
+    grade := 'B';
+ELSIF marks >= 40 THEN
+    grade := 'C';
+ELSE
+    grade := 'F';
+END IF;</pre>
+</section>
+<section id="case"><h2>CASE Statement</h2>
+<p>CASE statement multiple conditions को readable form में handle करती है।</p>
+<pre>CASE grade
+    WHEN 'A' THEN message := 'Excellent';
+    WHEN 'B' THEN message := 'Very Good';
+    WHEN 'C' THEN message := 'Good';
+    ELSE message := 'Needs Improvement';
+END CASE;</pre>
+<h4>Searched CASE</h4>
+<pre>CASE
+    WHEN marks >= 75 THEN grade := 'A';
+    WHEN marks >= 60 THEN grade := 'B';
+    ELSE grade := 'C';
+END CASE;</pre>
+</section>
+<section id="basic-loop"><h2>Basic LOOP Statement</h2>
+<pre>DECLARE
+    counter NUMBER := 1;
+BEGIN
+    LOOP
+        DBMS_OUTPUT.PUT_LINE(counter);
+        counter := counter + 1;
+        EXIT WHEN counter > 5;
+    END LOOP;
+END;
+/</pre>
+<p>Basic LOOP तब तक चलता है जब तक EXIT condition true नहीं होती।</p>
+</section>
+<section id="while"><h2>WHILE LOOP</h2>
+<pre>DECLARE
+    counter NUMBER := 1;
+BEGIN
+    WHILE counter <= 5 LOOP
+        DBMS_OUTPUT.PUT_LINE(counter);
+        counter := counter + 1;
+    END LOOP;
+END;
+/</pre>
+<p>WHILE loop execution से पहले condition check करता है।</p>
+</section>
+<section id="for"><h2>FOR LOOP</h2>
+<pre>BEGIN
+    FOR counter IN 1..5 LOOP
+        DBMS_OUTPUT.PUT_LINE(counter);
+    END LOOP;
+END;
+/</pre>
+<h4>Reverse FOR Loop</h4>
+<pre>FOR counter IN REVERSE 1..5 LOOP
+    DBMS_OUTPUT.PUT_LINE(counter);
+END LOOP;</pre>
+</section>
+<section id="loop-control"><h2>EXIT and CONTINUE</h2>
+<h4>EXIT</h4>
+<p>Loop को immediately terminate करता है।</p>
+<h4>CONTINUE</h4>
+<p>Current iteration skip करके next iteration start करता है।</p>
+<pre>FOR i IN 1..10 LOOP
+    CONTINUE WHEN MOD(i,2)=0;
+    DBMS_OUTPUT.PUT_LINE(i);
+END LOOP;</pre>
+<div class="remember-box"><b>Remember:</b><br>IF decision लेने के लिए और LOOP repeated execution के लिए use होता है।</div>
+</section>
+<section id="exceptions"><h2>Basic Exception Handling</h2>
+<p>Exception runtime error या unusual condition होती है। PL/SQL exception section errors को gracefully handle करता है।</p>
+<pre>DECLARE
+    result NUMBER;
+BEGIN
+    result := 10 / 0;
+EXCEPTION
+    WHEN ZERO_DIVIDE THEN
+        DBMS_OUTPUT.PUT_LINE('Division by zero is not allowed');
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Unexpected error');
+END;
+/</pre>
+<div class="warning-box"><b>Warning:</b><br><code>WHEN OTHERS</code> useful है, लेकिन real applications में specific exceptions को पहले handle करना चाहिए।</div>
+</section>
+</main>
+</div>
+</body>
+</html>

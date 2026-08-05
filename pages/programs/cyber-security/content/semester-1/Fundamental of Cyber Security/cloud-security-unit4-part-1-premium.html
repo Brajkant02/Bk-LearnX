@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloud Security Unit-4 - Part 1</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f7fb;color:#1f2937;line-height:1.75}
+.page{display:grid;grid-template-columns:300px 1fr;gap:20px;max-width:1580px;margin:auto;padding:10px}
+.sidebar{position:sticky;top:10px;height:calc(100vh - 20px);overflow-y:auto;background:#fff;border-radius:16px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.08);align-self:start}
+.sidebar h2{font-size:20px;margin-bottom:12px;color:#111827}
+.sidebar a{display:block;text-decoration:none;color:#374151;padding:8px 10px;border-radius:10px;margin-bottom:4px;font-size:14.4px}
+.sidebar a:hover{background:#eef2ff;color:#1d4ed8}
+.content{background:#fff;border-radius:18px;padding:10px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.hero{padding:30px 20px;border-radius:16px;background:linear-gradient(135deg,#eef2ff,#f8fafc);margin-bottom:18px}
+.hero h1{font-size:34px;color:#111827;margin-bottom:10px}
+.hero p{font-size:18px;color:#374151}
+section{padding:22px 10px;border-bottom:1px solid #e5e7eb}
+section:last-child{border-bottom:none}
+h2{font-size:27px;color:#111827;margin-bottom:12px;border-left:5px solid #2563eb;padding-left:12px}
+h3{font-size:22px;color:#1f2937;margin:18px 0 8px}
+h4{font-size:18px;color:#111827;margin:14px 0 6px}
+p{margin:10px 0;font-size:17px}
+ul,ol{margin-left:24px;margin-top:8px}
+li{margin:7px 0;font-size:16.5px}
+strong{color:#111827}
+.image-icon{min-height:180px;border:2px dashed #94a3b8;border-radius:16px;background:#f8fafc;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;margin:18px 0;color:#475569;font-weight:600;flex-direction:column;gap:8px}
+.image-icon img{max-width:100%;height:auto}
+.note-box{background:#f0fdf4;border-left:5px solid #22c55e;border-radius:14px;padding:14px 16px;margin:16px 0}
+.info-box{background:#ecfeff;border-left:5px solid #06b6d4;border-radius:14px;padding:14px 16px;margin:16px 0}
+.remember-box{background:#fff7ed;border-left:5px solid #f97316;border-radius:14px;padding:14px 16px;margin:16px 0}
+.warning-box{background:#fef2f2;border-left:5px solid #ef4444;border-radius:14px;padding:14px 16px;margin:16px 0}
+table{width:100%;border-collapse:collapse;margin:16px 0;border-radius:12px;overflow:hidden;font-size:15.3px}
+th,td{border:1px solid #d1d5db;padding:10px;text-align:left;vertical-align:top}
+th{background:#eef2ff;color:#111827}
+pre{background:#0f172a;color:#e5e7eb;border-radius:14px;padding:16px;margin:16px 0;overflow-x:auto;font-family:Consolas,monospace;line-height:1.6}
+@media(max-width:900px){.page{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.hero h1{font-size:27px}h2{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="page">
+<aside class="sidebar"><h2>Topics</h2><a href="#intro">Introduction to Cloud Computing</a>
+<a href="#benefits">Advantages and Challenges of Cloud Computing</a>
+<a href="#deployment">Cloud Deployment Models</a>
+<a href="#migration">Migrating into a Cloud</a>
+<a href="#migration-strategies">Cloud Migration Strategies</a>
+<a href="#integration">Integration as a Service for Cloud Era</a>
+<a href="#enterprise">Enterprise Cloud Computing Paradigm</a></aside>
+<main class="content">
+<div class="hero"><h1>Cloud Security Unit-4 - Part 1</h1><p>Cloud computing introduction, deployment models, cloud migration, Integration as a Service और enterprise cloud paradigm को premium exam-oriented format में समझाया गया है।</p></div>
+<section id="intro"><h2>Introduction to Cloud Computing</h2>
+<p><strong>Cloud Computing</strong> internet के माध्यम से computing resources—जैसे servers, storage, databases, networking, software और processing power—on-demand उपलब्ध कराने की technology है। User को हर resource physically own करने की आवश्यकता नहीं होती; वह आवश्यकता के अनुसार service use करता है।</p>
+<div class="image-icon"><img src="" alt="Cloud Computing Overview"><p>Image Placeholder: Cloud Computing Ecosystem</p></div>
+<h4>Main Characteristics</h4>
+<ul>
+<li>On-demand self-service</li>
+<li>Broad network access</li>
+<li>Resource pooling</li>
+<li>Rapid elasticity</li>
+<li>Measured service</li>
+</ul>
+<div class="remember-box"><b>Remember:</b><br>Cloud computing में resources fixed hardware की जगह service के रूप में उपलब्ध होते हैं।</div>
+</section>
+<section id="benefits"><h2>Advantages and Challenges of Cloud Computing</h2>
+<h4>Advantages</h4>
+<ul>
+<li>Lower initial cost</li>
+<li>Scalability</li>
+<li>Remote access</li>
+<li>Fast deployment</li>
+<li>Backup and disaster recovery support</li>
+<li>Pay-as-you-use model</li>
+</ul>
+<h4>Challenges</h4>
+<ul>
+<li>Security and privacy</li>
+<li>Internet dependency</li>
+<li>Vendor lock-in</li>
+<li>Compliance issues</li>
+<li>Service downtime</li>
+<li>Migration complexity</li>
+</ul>
+</section>
+<section id="deployment"><h2>Cloud Deployment Models</h2>
+<table>
+<tr><th>Model</th><th>Description</th></tr>
+<tr><td>Public Cloud</td><td>Shared infrastructure provided by cloud vendor</td></tr>
+<tr><td>Private Cloud</td><td>Single organization के लिए dedicated cloud</td></tr>
+<tr><td>Hybrid Cloud</td><td>Public और private cloud का combination</td></tr>
+<tr><td>Community Cloud</td><td>Similar organizations द्वारा shared cloud</td></tr>
+</table>
+<div class="image-icon"><img src="" alt="Cloud Deployment Models"><p>Image Placeholder: Public, Private and Hybrid Cloud</p></div>
+</section>
+<section id="migration"><h2>Migrating into a Cloud</h2>
+<p><strong>Cloud Migration</strong> applications, databases, files और workloads को traditional infrastructure से cloud environment में move करने की process है।</p>
+<h4>Migration Steps</h4>
+<ol>
+<li>Existing systems assess करें।</li>
+<li>Business goals define करें।</li>
+<li>Suitable cloud model choose करें।</li>
+<li>Security and compliance evaluate करें।</li>
+<li>Data and application migration plan बनाएं।</li>
+<li>Testing और validation करें।</li>
+<li>Performance monitor करें।</li>
+</ol>
+</section>
+<section id="migration-strategies"><h2>Cloud Migration Strategies</h2>
+<table>
+<tr><th>Strategy</th><th>Meaning</th></tr>
+<tr><td>Rehosting</td><td>Application को minimal changes के साथ move करना</td></tr>
+<tr><td>Replatforming</td><td>Some optimization के साथ migrate करना</td></tr>
+<tr><td>Refactoring</td><td>Cloud-native design के लिए application redesign करना</td></tr>
+<tr><td>Retiring</td><td>Unnecessary systems बंद करना</td></tr>
+<tr><td>Retaining</td><td>कुछ systems existing environment में रखना</td></tr>
+</table>
+</section>
+<section id="integration"><h2>Integration as a Service for Cloud Era</h2>
+<p><strong>Integration as a Service</strong> cloud-based approach है जिसमें applications, databases, APIs और business processes को connect करने के लिए integration capabilities service के रूप में provide की जाती हैं।</p>
+<h4>Main Functions</h4>
+<ul>
+<li>Application integration</li>
+<li>Data synchronization</li>
+<li>API connectivity</li>
+<li>Workflow integration</li>
+<li>Cloud-to-cloud and cloud-to-on-premise connectivity</li>
+</ul>
+<div class="image-icon"><img src="" alt="Integration as a Service"><p>Image Placeholder: Cloud Integration Flow</p></div>
+</section>
+<section id="enterprise"><h2>Enterprise Cloud Computing Paradigm</h2>
+<p><strong>Enterprise Cloud Computing</strong> large organizations द्वारा business applications, data, collaboration, analytics और IT infrastructure को cloud model में operate करने की approach है।</p>
+<h4>Main Goals</h4>
+<ul>
+<li>Operational efficiency</li>
+<li>Scalable infrastructure</li>
+<li>Centralized management</li>
+<li>Business continuity</li>
+<li>Faster innovation</li>
+<li>Cost optimization</li>
+</ul>
+<div class="note-box"><b>Example:</b><br>एक enterprise finance system private cloud पर और public website public cloud पर चला सकती है।</div>
+</section>
+</main>
+</div>
+</body>
+</html>

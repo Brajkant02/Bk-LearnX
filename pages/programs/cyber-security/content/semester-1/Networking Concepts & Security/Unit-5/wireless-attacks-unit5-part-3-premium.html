@@ -1,0 +1,32 @@
+<!doctype html><html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Wireless Attacks Unit-V - Part 3</title><style>
+body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:#f5f7fb;color:#1f2937;line-height:1.72}
+.page{display:grid;grid-template-columns:290px 1fr;gap:18px;max-width:1520px;margin:auto;padding:10px}
+aside{position:sticky;top:10px;height:calc(100vh - 20px);overflow:auto;background:#fff;padding:16px;border-radius:14px;box-shadow:0 4px 18px rgba(0,0,0,.07)}
+aside a{display:block;padding:7px 9px;text-decoration:none;color:#374151;border-radius:8px}
+aside a:hover{background:#eef2ff}
+main{background:#fff;padding:10px;border-radius:16px;box-shadow:0 4px 18px rgba(0,0,0,.07)}
+.hero{background:linear-gradient(135deg,#eef2ff,#f8fafc);padding:25px 18px;border-radius:14px}
+section{padding:20px 10px;border-bottom:1px solid #e5e7eb}
+h2{border-left:5px solid #2563eb;padding-left:10px}
+p,li{font-size:16.5px}
+table{width:100%;border-collapse:collapse;margin:14px 0}
+th,td{border:1px solid #d1d5db;padding:9px;text-align:left;vertical-align:top}
+th{background:#eef2ff}
+.img{min-height:155px;border:2px dashed #94a3b8;border-radius:14px;background:#f8fafc;display:flex;align-items:center;justify-content:center;text-align:center;margin:16px 0;padding:16px}
+.note{background:#f0fdf4;border-left:5px solid #22c55e;padding:12px;border-radius:10px}
+.warn{background:#fef2f2;border-left:5px solid #ef4444;padding:12px;border-radius:10px}
+.rem{background:#fff7ed;border-left:5px solid #f97316;padding:12px;border-radius:10px}
+.info{background:#ecfeff;border-left:5px solid #06b6d4;padding:12px;border-radius:10px}
+pre{background:#0f172a;color:#fff;padding:14px;border-radius:12px;overflow:auto}
+@media(max-width:900px){.page{grid-template-columns:1fr}aside{position:relative;height:auto}}
+</style></head><body><div class="page"><aside><h2>Topics</h2><a href="#wep">Attacks on WEP - Defensive Overview</a><a href="#wpa">Attacks on WPA - Defensive Overview</a><a href="#wpa2">Attacks on WPA2 - Defensive Overview</a><a href="#compare">WEP vs WPA vs WPA2</a><a href="#bluetooth">Bluetooth Security</a><a href="#tools">Wireless Security Tools - Categories</a><a href="#fluxion">Fluxion Framework - Defensive Overview</a><a href="#detection">Detection of Wireless Attacks</a><a href="#rem">Security Migration Plan</a></aside><main><div class="hero"><h1>Wireless Attacks Unit-V - Part 3</h1><p>WEP, WPA, WPA2 attacks, Bluetooth threats, wireless tools और Fluxion framework का safe defensive overview.</p></div><section id="wep"><h2>Attacks on WEP - Defensive Overview</h2><p>WEP weak encryption design, short initialization vectors और outdated key handling के कारण insecure माना जाता है।</p><h4>Countermeasure</h4><p>WEP को पूरी तरह disable करके WPA2 या WPA3 use करें।</p></section><section id="wpa"><h2>Attacks on WPA - Defensive Overview</h2><p>WPA ने WEP से security improve की, लेकिन legacy configurations और weak passwords risk बन सकते हैं।</p><h4>Protection</h4><ul><li>Strong passphrase</li><li>Modern hardware</li><li>WPA2/WPA3 migration</li><li>WPS disable</li></ul></section><section id="wpa2"><h2>Attacks on WPA2 - Defensive Overview</h2><p>WPA2 strong है, लेकिन weak passwords, outdated firmware, poor enterprise configuration और protocol implementation issues risk create कर सकते हैं।</p><h4>Protection</h4><ul><li>Strong unique passwords</li><li>AES-based configuration</li><li>Firmware updates</li><li>Enterprise authentication</li><li>Management-frame protection</li></ul></section><section id="compare"><h2>WEP vs WPA vs WPA2</h2><table><tr><th>Standard</th><th>Status</th><th>Recommendation</th></tr><tr><td>WEP</td><td>Broken/obsolete</td><td>Never use</td></tr><tr><td>WPA</td><td>Legacy</td><td>Replace</td></tr><tr><td>WPA2</td><td>Strong if configured correctly</td><td>Use with strong settings</td></tr><tr><td>WPA3</td><td>Modern</td><td>Preferred where supported</td></tr></table></section><section id="bluetooth"><h2>Bluetooth Security</h2><p>Bluetooth short-range communication technology है। Threats में unauthorized pairing, tracking, data exposure और weak legacy modes शामिल हो सकते हैं।</p><div class="img">Image Placeholder: Bluetooth Security</div><h4>Protection</h4><ul><li>Discoverable mode बंद रखें</li><li>Unknown pairing requests reject करें</li><li>Firmware update रखें</li><li>Unused Bluetooth disable करें</li><li>Sensitive data sharing limit करें</li></ul></section><section id="tools"><h2>Wireless Security Tools - Categories</h2><table><tr><th>Category</th><th>Purpose</th></tr><tr><td>Wireless Survey Tools</td><td>SSID, channel, signal review</td></tr><tr><td>Packet Analysis Tools</td><td>Authorized traffic analysis</td></tr><tr><td>Wireless IDS/IPS</td><td>Rogue AP and attack detection</td></tr><tr><td>Configuration Auditors</td><td>Encryption and policy checks</td></tr></table></section><section id="fluxion"><h2>Fluxion Framework - Defensive Overview</h2><p>Fluxion wireless social-engineering attacks से जुड़ा framework माना जाता है। Course perspective में इसका उद्देश्य fake access point, credential phishing और user-awareness risks समझना है।</p><div class="warn"><b>Not Included:</b> Credential capture, fake portal setup या attack execution instructions नहीं दिए गए हैं।</div></section><section id="detection"><h2>Detection of Wireless Attacks</h2><ul><li>Duplicate SSID alerts</li><li>Unexpected deauthentication spikes</li><li>Rogue access point detection</li><li>New MAC address monitoring</li><li>Channel and signal anomalies</li><li>Authentication failure trends</li></ul></section><section id="rem"><h2>Security Migration Plan</h2><pre>Identify Legacy Wi-Fi
+      ↓
+Replace WEP/WPA
+      ↓
+Enable WPA2/WPA3
+      ↓
+Update Firmware
+      ↓
+Strengthen Authentication
+      ↓
+Test and Monitor</pre><div class="rem"><b>Remember:</b> Wireless security का सबसे effective step obsolete protocols को replace करना है।</div></section></main></div></body></html>

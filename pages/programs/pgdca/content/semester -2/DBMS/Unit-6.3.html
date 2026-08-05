@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PL/SQL - Part 3</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f7fb;color:#1f2937;line-height:1.75}
+.page{display:grid;grid-template-columns:290px 1fr;gap:20px;max-width:1550px;margin:auto;padding:10px}
+.sidebar{position:sticky;top:10px;height:calc(100vh - 20px);overflow-y:auto;background:#fff;border-radius:16px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.08);align-self:start}
+.sidebar h2{font-size:20px;margin-bottom:12px;color:#111827}
+.sidebar a{display:block;text-decoration:none;color:#374151;padding:8px 10px;border-radius:10px;margin-bottom:4px;font-size:14.5px}
+.sidebar a:hover{background:#eef2ff;color:#1d4ed8}
+.content{background:#fff;border-radius:18px;padding:10px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.hero{padding:30px 20px;border-radius:16px;background:linear-gradient(135deg,#eef2ff,#f8fafc);margin-bottom:18px}
+.hero h1{font-size:34px;color:#111827;margin-bottom:10px}
+.hero p{font-size:18px;color:#374151}
+section{padding:22px 10px;border-bottom:1px solid #e5e7eb}
+section:last-child{border-bottom:none}
+h2{font-size:27px;color:#111827;margin-bottom:12px;border-left:5px solid #2563eb;padding-left:12px}
+h3{font-size:22px;color:#1f2937;margin:18px 0 8px}
+h4{font-size:18px;color:#111827;margin:14px 0 6px}
+p{margin:10px 0;font-size:17px}
+ul,ol{margin-left:24px;margin-top:8px}
+li{margin:7px 0;font-size:16.5px}
+strong{color:#111827}
+.image-icon{min-height:180px;border:2px dashed #94a3b8;border-radius:16px;background:#f8fafc;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;margin:18px 0;color:#475569;font-weight:600;flex-direction:column;gap:8px}
+.image-icon img{max-width:100%;height:auto}
+.note-box{background:#f0fdf4;border-left:5px solid #22c55e;border-radius:14px;padding:14px 16px;margin:16px 0}
+.info-box{background:#ecfeff;border-left:5px solid #06b6d4;border-radius:14px;padding:14px 16px;margin:16px 0}
+.remember-box{background:#fff7ed;border-left:5px solid #f97316;border-radius:14px;padding:14px 16px;margin:16px 0}
+.warning-box{background:#fef2f2;border-left:5px solid #ef4444;border-radius:14px;padding:14px 16px;margin:16px 0}
+table{width:100%;border-collapse:collapse;margin:16px 0;border-radius:12px;overflow:hidden;font-size:15.3px}
+th,td{border:1px solid #d1d5db;padding:10px;text-align:left;vertical-align:top}
+th{background:#eef2ff;color:#111827}
+code{background:#111827;color:#f9fafb;padding:2px 6px;border-radius:6px;font-family:Consolas,monospace;font-size:15px}
+pre{background:#0f172a;color:#e5e7eb;border-radius:14px;padding:16px;margin:16px 0;overflow-x:auto;font-family:Consolas,monospace;line-height:1.6}
+@media(max-width:900px){.page{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.hero h1{font-size:27px}h2{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="page">
+<aside class="sidebar"><h2>Topics</h2><a href="#triggers">Introduction to Triggers</a>
+<a href="#trigger-types">Types of Triggers</a>
+<a href="#trigger-example">Trigger Example</a>
+<a href="#trigger-uses">Applications and Limitations of Triggers</a>
+<a href="#cursor">Introduction to Cursors</a>
+<a href="#implicit">Implicit Cursor</a>
+<a href="#explicit">Explicit Cursor</a>
+<a href="#cursor-for">Cursor FOR Loop</a>
+<a href="#cursor-parameters">Parameterized Cursor</a>
+<a href="#grant">GRANT Statement</a>
+<a href="#revoke">REVOKE Statement</a>
+<a href="#roles">Roles and Privilege Management</a>
+<a href="#best-practices">PL/SQL Best Practices</a></aside>
+<main class="content">
+<div class="hero"><h1>PL/SQL - Part 3</h1><p>Triggers, implicit/explicit cursors, parameterized cursors, GRANT, REVOKE, roles और security best practices को premium practical format में समझाया गया है।</p></div>
+<section id="triggers"><h2>Introduction to Triggers</h2>
+<p><strong>Trigger</strong> stored PL/SQL block है जो specified database event होने पर automatically execute होता है। Trigger को user directly call नहीं करता।</p>
+<div class="image-icon"><img src="" alt="Database Trigger"><p>Image Placeholder: Trigger Event and Automatic Action</p></div>
+<h4>Common Events</h4>
+<ul>
+<li>INSERT</li>
+<li>UPDATE</li>
+<li>DELETE</li>
+<li>Database login or schema events</li>
+</ul>
+</section>
+<section id="trigger-types"><h2>Types of Triggers</h2>
+<table>
+<tr><th>Type</th><th>Meaning</th></tr>
+<tr><td>BEFORE Trigger</td><td>Event से पहले execute।</td></tr>
+<tr><td>AFTER Trigger</td><td>Event के बाद execute।</td></tr>
+<tr><td>INSTEAD OF Trigger</td><td>Original operation की जगह execute।</td></tr>
+<tr><td>Row-Level Trigger</td><td>हर affected row के लिए execute।</td></tr>
+<tr><td>Statement-Level Trigger</td><td>Complete SQL statement के लिए once execute।</td></tr>
+</table>
+</section>
+<section id="trigger-example"><h2>Trigger Example</h2>
+<pre>CREATE OR REPLACE TRIGGER student_audit_trigger
+AFTER UPDATE OF marks ON student
+FOR EACH ROW
+BEGIN
+    INSERT INTO student_audit
+    (
+        student_id,
+        old_marks,
+        new_marks,
+        change_date
+    )
+    VALUES
+    (
+        :OLD.student_id,
+        :OLD.marks,
+        :NEW.marks,
+        SYSDATE
+    );
+END;
+/</pre>
+<h4>:OLD and :NEW</h4>
+<ul>
+<li><code>:OLD</code> previous value represent करता है।</li>
+<li><code>:NEW</code> new value represent करता है।</li>
+</ul>
+</section>
+<section id="trigger-uses"><h2>Applications and Limitations of Triggers</h2>
+<h4>Applications</h4>
+<ul>
+<li>Audit logging</li>
+<li>Automatic validation</li>
+<li>Derived values update करना</li>
+<li>Security rules</li>
+<li>Business rule enforcement</li>
+</ul>
+<h4>Limitations</h4>
+<ul>
+<li>Hidden automatic logic debugging कठिन बना सकती है।</li>
+<li>Too many triggers performance reduce कर सकते हैं।</li>
+<li>Recursive or conflicting behavior हो सकता है।</li>
+</ul>
+</section>
+<section id="cursor"><h2>Introduction to Cursors</h2>
+<p><strong>Cursor</strong> query result की rows को one-by-one process करने की mechanism है। SQL normally set-based है, लेकिन cursor row-by-row processing allow करता है।</p>
+<div class="image-icon"><img src="" alt="PL SQL Cursor"><p>Image Placeholder: Cursor Processing Rows</p></div>
+<h4>Types</h4>
+<ul>
+<li>Implicit Cursor</li>
+<li>Explicit Cursor</li>
+</ul>
+</section>
+<section id="implicit"><h2>Implicit Cursor</h2>
+<p>Oracle automatically DML statements और single-row SELECT INTO के लिए implicit cursor create करता है।</p>
+<h4>Cursor Attributes</h4>
+<table>
+<tr><th>Attribute</th><th>Meaning</th></tr>
+<tr><td>SQL%FOUND</td><td>At least one row affected।</td></tr>
+<tr><td>SQL%NOTFOUND</td><td>No row affected।</td></tr>
+<tr><td>SQL%ROWCOUNT</td><td>Affected rows की count।</td></tr>
+<tr><td>SQL%ISOPEN</td><td>Implicit cursor status।</td></tr>
+</table>
+<pre>UPDATE student SET marks = marks + 5;
+
+DBMS_OUTPUT.PUT_LINE(
+    SQL%ROWCOUNT || ' rows updated'
+);</pre>
+</section>
+<section id="explicit"><h2>Explicit Cursor</h2>
+<p>Explicit cursor programmer manually declare करता है जब query multiple rows return करती है।</p>
+<h4>Cursor Life Cycle</h4>
+<ol>
+<li>DECLARE</li>
+<li>OPEN</li>
+<li>FETCH</li>
+<li>CLOSE</li>
+</ol>
+<pre>DECLARE
+    CURSOR student_cursor IS
+        SELECT student_id, name
+        FROM student;
+
+    v_id   student.student_id%TYPE;
+    v_name student.name%TYPE;
+
+BEGIN
+    OPEN student_cursor;
+
+    LOOP
+        FETCH student_cursor INTO v_id, v_name;
+        EXIT WHEN student_cursor%NOTFOUND;
+
+        DBMS_OUTPUT.PUT_LINE(v_id || ' ' || v_name);
+    END LOOP;
+
+    CLOSE student_cursor;
+END;
+/</pre>
+</section>
+<section id="cursor-for"><h2>Cursor FOR Loop</h2>
+<p>Cursor FOR loop OPEN, FETCH और CLOSE automatically manage करता है।</p>
+<pre>BEGIN
+    FOR student_record IN
+    (
+        SELECT student_id, name
+        FROM student
+    )
+    LOOP
+        DBMS_OUTPUT.PUT_LINE(
+            student_record.student_id || ' ' ||
+            student_record.name
+        );
+    END LOOP;
+END;
+/</pre>
+</section>
+<section id="cursor-parameters"><h2>Parameterized Cursor</h2>
+<pre>DECLARE
+    CURSOR student_cursor(p_city VARCHAR2) IS
+        SELECT student_id, name
+        FROM student
+        WHERE city = p_city;
+
+BEGIN
+    FOR record_item IN student_cursor('Kanpur')
+    LOOP
+        DBMS_OUTPUT.PUT_LINE(record_item.name);
+    END LOOP;
+END;
+/</pre>
+</section>
+<section id="grant"><h2>GRANT Statement</h2>
+<p><strong>GRANT</strong> user या role को database privileges देता है।</p>
+<pre>GRANT SELECT ON student TO teacher_user;
+GRANT INSERT, UPDATE ON student TO clerk_user;
+GRANT EXECUTE ON update_student_marks TO admin_user;</pre>
+<h4>Common Privileges</h4>
+<ul>
+<li>SELECT</li>
+<li>INSERT</li>
+<li>UPDATE</li>
+<li>DELETE</li>
+<li>EXECUTE</li>
+<li>CREATE SESSION</li>
+</ul>
+</section>
+<section id="revoke"><h2>REVOKE Statement</h2>
+<p><strong>REVOKE</strong> previously granted privilege remove करता है।</p>
+<pre>REVOKE UPDATE ON student FROM clerk_user;
+REVOKE EXECUTE ON update_student_marks FROM admin_user;</pre>
+<div class="warning-box"><b>Security Principle:</b><br>User को केवल उतनी permissions दें जितनी उसके work के लिए required हों। इसे principle of least privilege कहते हैं।</div>
+</section>
+<section id="roles"><h2>Roles and Privilege Management</h2>
+<p><strong>Role</strong> privileges का named collection होता है। Multiple users को same privileges देने के लिए role useful है।</p>
+<pre>CREATE ROLE teacher_role;
+
+GRANT SELECT ON student TO teacher_role;
+GRANT SELECT ON course TO teacher_role;
+
+GRANT teacher_role TO teacher_user;</pre>
+<h4>Advantages</h4>
+<ul>
+<li>Permission management simple।</li>
+<li>Consistency maintain होती है।</li>
+<li>Security administration आसान।</li>
+</ul>
+</section>
+<section id="best-practices"><h2>PL/SQL Best Practices</h2>
+<ul>
+<li>Meaningful variable और object names use करें।</li>
+<li>Specific exceptions handle करें।</li>
+<li>Transactions को unnecessary long न रखें।</li>
+<li>Row-by-row cursor के बजाय set-based SQL prefer करें जहाँ possible हो।</li>
+<li>Triggers में complex hidden logic avoid करें।</li>
+<li>Functions और procedures को single clear responsibility दें।</li>
+<li>Privileges least privilege principle के अनुसार assign करें।</li>
+<li>Production changes से पहले backup और testing करें।</li>
+</ul>
+<div class="remember-box"><b>Remember:</b><br>PL/SQL का purpose database logic को reusable, secure और manageable बनाना है।</div>
+</section>
+</main>
+</div>
+</body>
+</html>

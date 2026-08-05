@@ -1,0 +1,26 @@
+<!doctype html><html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Virtual Private Networks - Part 2</title><style>
+body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:#f5f7fb;color:#1f2937;line-height:1.75}
+.page{display:grid;grid-template-columns:290px 1fr;gap:20px;max-width:1500px;margin:auto;padding:10px}
+.side{position:sticky;top:10px;height:calc(100vh - 20px);overflow:auto;background:#fff;padding:18px;border-radius:16px}
+.side a{display:block;padding:8px 10px;text-decoration:none;color:#374151;border-radius:8px}
+.main{background:#fff;padding:10px;border-radius:18px}
+.hero{background:#eef2ff;padding:28px 18px;border-radius:16px}
+section{padding:22px 10px;border-bottom:1px solid #e5e7eb}
+h2{border-left:5px solid #2563eb;padding-left:12px}
+p,li{font-size:16.5px}
+table{width:100%;border-collapse:collapse;margin:16px 0}
+th,td{border:1px solid #d1d5db;padding:10px;text-align:left;vertical-align:top}
+th{background:#eef2ff}
+.img{min-height:170px;border:2px dashed #94a3b8;border-radius:16px;background:#f8fafc;display:flex;align-items:center;justify-content:center;text-align:center;margin:18px 0;padding:18px}
+.note{background:#f0fdf4;border-left:5px solid #22c55e;padding:14px;border-radius:12px}
+.rem{background:#fff7ed;border-left:5px solid #f97316;padding:14px;border-radius:12px}
+.warn{background:#fef2f2;border-left:5px solid #ef4444;padding:14px;border-radius:12px}
+pre{background:#0f172a;color:#fff;padding:16px;border-radius:14px;overflow:auto}
+@media(max-width:900px){.page{grid-template-columns:1fr}.side{position:relative;height:auto}}
+</style></head><body><div class="page"><aside class="side"><h2>Topics</h2><a href="#ipsec">IPsec Protocol Suite</a><a href="#ah">Authentication Header (AH)</a><a href="#esp">Encapsulating Security Payload (ESP)</a><a href="#compare">AH vs ESP</a><a href="#sa">Security Association</a><a href="#ike">Internet Key Exchange (IKE)</a><a href="#phase1">IKE Phase 1</a><a href="#phase2">IKE Phase 2</a><a href="#phasecompare">Phase 1 vs Phase 2</a></aside><main class="main"><div class="hero"><h1>Virtual Private Networks - Part 2</h1><p>IPsec, AH, ESP, Security Associations और IKE Phase 1/2.</p></div><section id="ipsec"><h2>IPsec Protocol Suite</h2><p><strong>IPsec</strong> IP communication को secure करने वाले protocols का suite है। यह authentication, integrity, confidentiality और anti-replay protection provide कर सकता है।</p><div class="img">Image Placeholder: IPsec Architecture</div><ul><li>AH</li><li>ESP</li><li>Security Associations</li><li>IKE</li><li>Transport and Tunnel Modes</li></ul></section><section id="ah"><h2>Authentication Header (AH)</h2><p>AH packet integrity, origin authentication और anti-replay protection provide करता है, लेकिन encryption नहीं करता।</p><ul><li>Integrity</li><li>Authentication</li><li>Anti-replay</li><li>No confidentiality</li></ul></section><section id="esp"><h2>Encapsulating Security Payload (ESP)</h2><p>ESP confidentiality के साथ integrity, authentication और anti-replay protection provide कर सकता है।</p><ul><li>Encryption</li><li>Integrity</li><li>Authentication</li><li>Anti-replay</li></ul><div class="img">Image Placeholder: ESP Packet Protection</div></section><section id="compare"><h2>AH vs ESP</h2><table><tr><th>Feature</th><th>AH</th><th>ESP</th></tr><tr><td>Encryption</td><td>No</td><td>Yes</td></tr><tr><td>Integrity</td><td>Yes</td><td>Yes</td></tr><tr><td>NAT Compatibility</td><td>Limited</td><td>Better</td></tr><tr><td>Common Use</td><td>Rare</td><td>Widely used</td></tr></table></section><section id="sa"><h2>Security Association</h2><p><strong>Security Association</strong> one-way logical security relationship है जिसमें algorithms, keys, mode और lifetime define होते हैं।</p><ul><li>Encryption algorithm</li><li>Integrity algorithm</li><li>Keys</li><li>Lifetime</li><li>Peer identity</li></ul></section><section id="ike"><h2>Internet Key Exchange (IKE)</h2><p>IKE peers के बीच authentication और secure key negotiation के लिए use होता है।</p><div class="img">Image Placeholder: IKE Key Negotiation</div><ul><li>Peer authentication</li><li>Algorithm negotiation</li><li>Key exchange</li><li>SA creation</li></ul></section><section id="phase1"><h2>IKE Phase 1</h2><p>Phase 1 secure management channel establish करती है।</p><pre>Peer Authentication
+↓
+Algorithm Negotiation
+↓
+Key Exchange
+↓
+Secure IKE Channel</pre></section><section id="phase2"><h2>IKE Phase 2</h2><p>Phase 2 secure IKE channel के अंदर actual IPsec SAs negotiate करती है।</p><ul><li>Traffic selectors</li><li>ESP/AH parameters</li><li>Session keys</li><li>IPsec SAs</li></ul></section><section id="phasecompare"><h2>Phase 1 vs Phase 2</h2><table><tr><th>Basis</th><th>Phase 1</th><th>Phase 2</th></tr><tr><td>Purpose</td><td>Secure control channel</td><td>IPsec data SAs</td></tr><tr><td>Output</td><td>IKE SA</td><td>IPsec SA</td></tr></table><div class="rem"><b>Remember:</b> Phase 1 secure channel बनाती है, Phase 2 actual protected traffic parameters बनाती है।</div></section></main></div></body></html>

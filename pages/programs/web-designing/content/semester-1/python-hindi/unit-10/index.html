@@ -1,0 +1,1625 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Regular Expressions in Python</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+      line-height: 1.75
+    }
+
+    .page {
+      display: grid;
+      grid-template-columns: 285px 1fr;
+      gap: 20px;
+      max-width: 1500px;
+      margin: auto;
+      padding: 10px
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 10px;
+      height: calc(100vh - 20px);
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
+      align-self: start
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #111827
+    }
+
+    .sidebar a {
+      display: block;
+      text-decoration: none;
+      color: #374151;
+      padding: 8px 10px;
+      border-radius: 10px;
+      margin-bottom: 4px;
+      font-size: 14.7px
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+      color: #1d4ed8
+    }
+
+    .content {
+      background: #fff;
+      border-radius: 18px;
+      padding: 10px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08)
+    }
+
+    .hero {
+      padding: 28px 18px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #eef2ff, #f8fafc);
+      margin-bottom: 18px
+    }
+
+    .hero h1 {
+      font-size: 34px;
+      color: #111827;
+      margin-bottom: 10px
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #374151
+    }
+
+    section {
+      padding: 22px 10px;
+      border-bottom: 1px solid #e5e7eb
+    }
+
+    section:last-child {
+      border-bottom: none
+    }
+
+    h2 {
+      font-size: 27px;
+      color: #111827;
+      margin-bottom: 12px;
+      border-left: 5px solid #2563eb;
+      padding-left: 12px
+    }
+
+    h3 {
+      font-size: 22px;
+      color: #1f2937;
+      margin: 16px 0 8px
+    }
+
+    h4 {
+      font-size: 18px;
+      color: #111827;
+      margin: 14px 0 6px
+    }
+
+    p {
+      margin: 10px 0;
+      font-size: 17px
+    }
+
+    ul,
+    ol {
+      margin-left: 24px;
+      margin-top: 8px
+    }
+
+    li {
+      margin: 7px 0;
+      font-size: 16.5px
+    }
+
+    strong {
+      color: #111827
+    }
+
+    .image-icon {
+      min-height: 180px;
+      border: 2px dashed #94a3b8;
+      border-radius: 16px;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      margin: 18px 0;
+      color: #475569;
+      font-weight: 600
+    }
+
+    .image-icon img {
+      max-width: 100%;
+      height: auto
+    }
+
+    .note-box {
+      background: #f0fdf4;
+      border-left: 5px solid #22c55e;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .info-box {
+      background: #ecfeff;
+      border-left: 5px solid #06b6d4;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .remember-box {
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      font-size: 15.5px
+    }
+
+    th,
+    td {
+      border: 1px solid #d1d5db;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top
+    }
+
+    th {
+      background: #eef2ff;
+      color: #111827
+    }
+
+    code {
+      background: #111827;
+      color: #f9fafb;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-family: Consolas, monospace;
+      font-size: 15px
+    }
+
+    pre {
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 14px;
+      padding: 16px;
+      margin: 16px 0;
+      overflow-x: auto;
+      font-family: Consolas, monospace;
+      line-height: 1.6
+    }
+
+    .compiler {
+      width: 100%;
+      height: 2rem;
+      background-color: green;
+      text-align: center;
+    }
+
+    .compiler a {
+      text-decoration: none;
+      color: white;
+    }
+
+    @media(max-width:900px) {
+      .page {
+        grid-template-columns: 1fr
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto
+      }
+
+      .hero h1 {
+        font-size: 27px
+      }
+
+      h2 {
+        font-size: 24px
+      }
+    }
+    /* Iframe content responsive fix */
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.page,
+.content,
+section {
+  min-width: 0;
+  max-width: 100%;
+}
+
+img,
+video,
+svg,
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+table {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border-radius: 12px;
+  -webkit-overflow-scrolling: touch;
+}
+
+th,
+td {
+  min-width: 110px;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+pre {
+  max-width: 100%;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+code {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 900px) {
+  .page {
+    display: block;
+    width: 100%;
+    padding: 5px;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .content {
+    width: 100%;
+    min-width: 0;
+    padding: 6px;
+    border-radius: 10px;
+  }
+
+  section {
+    width: 100%;
+    padding: 16px 6px;
+  }
+
+  .hero {
+    padding: 18px 10px;
+  }
+
+  .hero h1 {
+    font-size: 24px;
+  }
+
+  h2 {
+    font-size: 21px;
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+
+  p,
+  li {
+    font-size: 15px;
+  }
+
+  .image-icon {
+    min-height: 130px;
+    padding: 8px;
+  }
+}
+  </style>
+
+<link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
+<script src="../../../../../../../assets/shared/portal.js" defer></script>
+<script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
+</head>
+
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <h2>Topics</h2>
+      <a href="#intro">Introduction</a>
+      <a href="#simple">Simple Character Matches</a>
+      <a href="#special">Special Characters</a>
+      <a href="#classes">Character Classes</a>
+      <a href="#quantifiers">Quantifiers</a>
+      <a href="#dot">The Dot Character</a>
+      <a href="#greedy">Greedy Matches</a>
+      <a href="#grouping">Grouping</a>
+      <a href="#begin-end">Matching at Beginning or End</a>
+      <a href="#match-objects">Match Objects</a>
+      <a href="#substituting">Substituting</a>
+      <a href="#splitting">Splitting a String</a>
+      <a href="#compiling">Compiling Regular Expressions</a>
+      <a href="#flags">Flags</a>
+    </aside>
+
+    <main class="content">
+      <div class="hero">
+        <h1>Regular Expressions in Python</h1>
+        <p>इस chapter में Python Regular Expressions यानी Regex को simple examples, syntax, output और real-life use के साथ समझाया गया है। Regex text searching, validation, extraction और replacement के लिए बहुत useful है।</p>
+      </div>
+
+      <section id="intro">
+        <h2>Introduction</h2>
+
+        <p>Regular Expression को short में Regex या RegEx कहा जाता है। यह एक special pattern होता है जिसका use text में किसी specific format या sequence को search, match, validate, extract, split या replace करने के लिए किया जाता है। जब normal string methods जैसे <code>find()</code>, <code>replace()</code> या <code>split()</code> complex pattern को handle नहीं कर पाते, तब regular expressions बहुत useful होते हैं।</p>
+
+        <p>Python में regular expressions use करने के लिए <code>re</code> module available है। यह Python का standard module है, इसलिए इसे अलग से install करने की जरूरत नहीं होती। हमें केवल <code>import re</code> लिखकर इसे program में use करना होता है।</p>
+
+        <p>Regex का use email validation, mobile number checking, password pattern checking, log file analysis, text cleaning, data extraction और web scraping जैसे कामों में किया जाता है। Regex powerful होता है, लेकिन शुरुआत में थोड़ा difficult लग सकता है क्योंकि इसमें special symbols और patterns use होते हैं।</p>
+
+        <h4>Importing re Module</h4>
+        <pre>import re</pre>
+
+        <h4>Simple Search Example</h4>
+        <pre>import re
+
+text = "Python is easy to learn"
+
+result = re.search("easy", text)
+
+if result:
+    print("Match found")
+else:
+    print("Match not found")</pre>
+
+        <div class="info-box"><b>Output:</b><br>Match found</div>
+
+        <h4>Common re Module Functions</h4>
+        <table>
+          <tr>
+            <th>Function</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>re.search()</code></td>
+            <td>String में pattern search करता है।</td>
+          </tr>
+          <tr>
+            <td><code>re.match()</code></td>
+            <td>String के beginning से pattern match करता है।</td>
+          </tr>
+          <tr>
+            <td><code>re.findall()</code></td>
+            <td>सभी matches की list return करता है।</td>
+          </tr>
+          <tr>
+            <td><code>re.finditer()</code></td>
+            <td>सभी matches के match objects return करता है।</td>
+          </tr>
+          <tr>
+            <td><code>re.sub()</code></td>
+            <td>Pattern को replace करता है।</td>
+          </tr>
+          <tr>
+            <td><code>re.split()</code></td>
+            <td>Pattern के basis पर string split करता है।</td>
+          </tr>
+          <tr>
+            <td><code>re.compile()</code></td>
+            <td>Pattern को reusable regex object में compile करता है।</td>
+          </tr>
+        </table>
+
+        <h4>Why Regex is Needed</h4>
+        <ul>
+          <li>Complex text patterns search करने के लिए।</li>
+          <li>Email, mobile number और password validation के लिए।</li>
+          <li>Text से required data extract करने के लिए।</li>
+          <li>Unwanted characters remove करने के लिए।</li>
+          <li>Large text files और logs analyze करने के लिए।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>अगर website form में user का email check करना है कि उसमें <code>@</code> और proper domain format है या नहीं, तो regex का use किया जा सकता है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Regex text pattern matching की powerful technique है और Python में इसे <code>re</code> module से use किया जाता है।</div>
+      </section>
+
+      <section id="simple">
+        <h2>Simple Character Matches</h2>
+
+        <p>Simple character match का मतलब है किसी string में normal characters को exactly search करना। अगर pattern में कोई special regex symbol नहीं है, तो regex उस text को normally match करता है। For example, pattern <code>Python</code> string में exactly “Python” word को search करेगा।</p>
+
+        <p>Regex matching case-sensitive होती है। इसका मतलब है कि <code>python</code> और <code>Python</code> दोनों अलग माने जाते हैं। अगर case-insensitive matching करनी हो, तो flags का use किया जाता है।</p>
+
+        <h4>Using re.search()</h4>
+        <pre>import re
+
+text = "Python is a powerful language"
+
+result = re.search("Python", text)
+
+if result:
+    print("Pattern found")
+else:
+    print("Pattern not found")</pre>
+
+        <div class="info-box"><b>Output:</b><br>Pattern found</div>
+
+        <h4>Case-Sensitive Match</h4>
+        <pre>import re
+
+text = "Python is easy"
+
+result = re.search("python", text)
+
+print(result)</pre>
+
+        <div class="info-box"><b>Output:</b><br>None</div>
+
+        <p>यहाँ output <code>None</code> इसलिए आया क्योंकि string में <code>Python</code> capital P के साथ है, लेकिन pattern में <code>python</code> small p के साथ है।</p>
+
+        <h4>Using re.findall()</h4>
+        <p><code>findall()</code> function string में pattern के सभी matches की list return करता है।</p>
+
+        <pre>import re
+
+text = "python-is-easy-python-is-popular."
+
+result = re.findall("Python", text)
+
+print(result)</pre>
+
+        <div class="info-box"><b>Output:</b><br>['Python', 'Python']</div>
+
+        <h4>Matching Digits as Simple Text</h4>
+        <pre>import re
+
+text = "My roll number is 102"
+
+result = re.search("102", text)
+
+if result:
+    print("Roll number found")</pre>
+
+        <div class="info-box"><b>Output:</b><br>Roll number found</div>
+
+        <h4>Important Points</h4>
+        <ul>
+          <li>Normal characters exact text को match करते हैं।</li>
+          <li>Regex default रूप से case-sensitive होती है।</li>
+          <li><code>search()</code> first match find करता है।</li>
+          <li><code>findall()</code> सभी matches की list देता है।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Large text में “Python” word कितनी बार आया है, यह जानने के लिए simple character match use किया जा सकता है।</div>
+      </section>
+
+      <section id="special">
+        <h2>Special Characters</h2>
+
+        <p>Regex में कुछ characters special meaning रखते हैं। इन्हें metacharacters कहा जाता है। ये normal characters की तरह match नहीं होते, बल्कि pattern matching में special role play करते हैं। जैसे <code>.</code> किसी भी character को match कर सकता है, <code>^</code> beginning को represent करता है और <code>$</code> end को represent करता है।</p>
+
+        <p>अगर हमें special character को normal character की तरह match करना हो, तो उसके पहले backslash <code>\</code> लगाया जाता है। इसे escaping कहा जाता है।</p>
+
+        <h4>Common Special Characters</h4>
+        <table>
+          <tr>
+            <th>Character</th>
+            <th>Meaning</th>
+          </tr>
+          <tr>
+            <td><code>.</code></td>
+            <td>New line को छोड़कर कोई भी single character।</td>
+          </tr>
+          <tr>
+            <td><code>^</code></td>
+            <td>String की beginning।</td>
+          </tr>
+          <tr>
+            <td><code>$</code></td>
+            <td>String का end।</td>
+          </tr>
+          <tr>
+            <td><code>*</code></td>
+            <td>Zero या more repetitions।</td>
+          </tr>
+          <tr>
+            <td><code>+</code></td>
+            <td>One या more repetitions।</td>
+          </tr>
+          <tr>
+            <td><code>?</code></td>
+            <td>Zero या one repetition।</td>
+          </tr>
+          <tr>
+            <td><code>[]</code></td>
+            <td>Character class।</td>
+          </tr>
+          <tr>
+            <td><code>()</code></td>
+            <td>Grouping।</td>
+          </tr>
+          <tr>
+            <td><code>|</code></td>
+            <td>OR condition।</td>
+          </tr>
+          <tr>
+            <td><code>\</code></td>
+            <td>Escape character।</td>
+          </tr>
+        </table>
+
+        <h4>Escaping Special Character</h4>
+        <pre>import re
+
+text = "price-is-99.50"
+
+result = re.search(r"/.", text)
+
+if result:
+    print("Dot found")</pre>
+
+        <div class="info-box"><b>Output:</b><br>Dot found</div>
+
+        <h4>OR Operator</h4>
+        <pre>import re
+
+text = "I like Python"
+
+result = re.search("Python|Java", text)
+
+if result:
+    print("Match:", result.group())</pre>
+
+        <div class="info-box"><b>Output:</b><br>Match: Python</div>
+
+        <h4>Raw String</h4>
+        <p>Regex patterns में Python raw string <code>r"pattern"</code> use करना अच्छा माना जाता है। Raw string में backslash को specially escape करने की जरूरत कम हो जाती है।</p>
+
+        <pre>pattern = r"/d"</pre>
+
+        <h4>Common Mistakes</h4>
+        <ul>
+          <li>Special character को normal character समझ लेना।</li>
+          <li>Dot <code>.</code> को actual dot समझकर use करना।</li>
+          <li>Backslash escaping भूल जाना।</li>
+          <li>Raw string का use न करना।</li>
+        </ul>
+
+        <div class="remember-box"><b>Remember:</b><br>Regex में special characters pattern को powerful बनाते हैं, लेकिन actual character match करने के लिए escape करना पड़ता है।</div>
+      </section>
+
+      <section id="classes">
+        <h2>Character Classes</h2>
+
+        <p>Character class का use characters के group में से किसी एक character को match करने के लिए किया जाता है। Character class square brackets <code>[ ]</code> के अंदर लिखी जाती है। For example, <code>[abc]</code> का मतलब है कि string में a, b या c में से कोई एक character match हो सकता है।</p>
+
+        <p>Character classes validation और pattern matching में बहुत useful होती हैं। इनसे हम digits, alphabets, vowels, special range और unwanted characters को easily identify कर सकते हैं।</p>
+
+        <h4>Simple Character Class</h4>
+        <pre>import re
+
+text = "cat bat rat"
+
+result = re.findall("[cr]at", text)
+
+print(result)</pre>
+
+        <div class="info-box"><b>Output:</b><br>['cat', 'rat']</div>
+
+        <h4>Range in Character Class</h4>
+        <pre>import re
+
+text = "abc 123 XYZ"
+
+print(re.findall("[a-z]", text))
+print(re.findall("[A-Z]", text))
+print(re.findall("[0-9]", text))</pre>
+
+        <div class="info-box"><b>Output:</b><br>['a', 'b', 'c']<br>['X', 'Y', 'Z']<br>['1', '2', '3']</div>
+
+        <h4>Negated Character Class</h4>
+        <p>अगर character class के beginning में <code>^</code> लगाया जाए, तो इसका मतलब होता है “इन characters को छोड़कर बाकी match करो”.</p>
+
+        <pre>import re
+
+text = "abc123"
+
+result = re.findall("[^0-9]", text)
+
+print(result)</pre>
+
+        <div class="info-box"><b>Output:</b><br>['a', 'b', 'c']</div>
+
+        <h4>Predefined Character Classes</h4>
+        <table>
+          <tr>
+            <th>Pattern</th>
+            <th>Meaning</th>
+          </tr>
+          <tr>
+            <td><code>\d</code></td>
+            <td>Digit character, same as <code>[0-9]</code></td>
+          </tr>
+          <tr>
+            <td><code>\D</code></td>
+            <td>Non-digit character</td>
+          </tr>
+          <tr>
+            <td><code>\w</code></td>
+            <td>Word character, letters, digits और underscore</td>
+          </tr>
+          <tr>
+            <td><code>\W</code></td>
+            <td>Non-word character</td>
+          </tr>
+          <tr>
+            <td><code>\s</code></td>
+            <td>Whitespace character</td>
+          </tr>
+          <tr>
+            <td><code>\S</code></td>
+            <td>Non-whitespace character</td>
+          </tr>
+        </table>
+
+        <h4>Using Predefined Classes</h4>
+        <pre>import re
+
+text = "Name: Brajkant, Age: 23"
+
+print(re.findall(r"/d", text))
+print(re.findall(r"/w", text))</pre>
+
+        <div class="info-box"><b>Output:</b><br>['2', '3']<br>['Name', 'Brajkant', 'Age', '23']</div>
+
+        <h4>Mobile Number Digits Example</h4>
+        <pre>import re
+
+mobile = "9876543210"
+
+result = re.fullmatch(r"/d-10", mobile)
+
+if result:
+    print("Valid mobile number")
+else:
+    print("Invalid mobile number")</pre>
+
+        <div class="info-box"><b>Output:</b><br>Valid mobile number</div>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Form validation में mobile number में only digits हैं या नहीं, यह check करने के लिए <code>\d</code> का use किया जा सकता है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Character class square brackets में characters का set define करती है।</div>
+      </section>
+
+      <section id="quantifiers">
+        <h2>Quantifiers</h2>
+
+        <p>Quantifiers regex में यह बताते हैं कि कोई character या group कितनी बार repeat हो सकता है। अगर हमें pattern में exact count, minimum count या variable count check करना हो, तो quantifiers use होते हैं।</p>
+
+        <p>For example, mobile number में exactly 10 digits चाहिए, password में कम से कम कुछ characters चाहिए या किसी word में repeated letters हो सकते हैं। ऐसे cases में quantifiers बहुत helpful होते हैं।</p>
+
+        <h4>Common Quantifiers</h4>
+        <table>
+          <tr>
+            <th>Quantifier</th>
+            <th>Meaning</th>
+          </tr>
+          <tr>
+            <td><code>*</code></td>
+            <td>Zero या more times</td>
+          </tr>
+          <tr>
+            <td><code>+</code></td>
+            <td>One या more times</td>
+          </tr>
+          <tr>
+            <td><code>?</code></td>
+            <td>Zero या one time</td>
+          </tr>
+          <tr>
+            <td><code>{n}</code></td>
+            <td>Exactly n times</td>
+          </tr>
+          <tr>
+            <td><code>{n,}</code></td>
+            <td>At least n times</td>
+          </tr>
+          <tr>
+            <td><code>{n,m}</code></td>
+            <td>Minimum n और maximum m times</td>
+          </tr>
+        </table>
+
+        <h4>Using + Quantifier</h4>
+        <pre>import re
+
+text = "a ab abb abbb"
+
+result = re.findall(r"ab+", text)
+
+print(result)</pre>
+
+        <div class="info-box"><b>Output:</b><br>['ab', 'abb', 'abbb']</div>
+
+        <h4>Using * Quantifier</h4>
+        <pre>import re
+
+text = "a ab abb abbb"
+
+result = re.findall(r"ab*", text)
+
+print(result)</pre>
+
+        <div class="info-box"><b>Output:</b><br>['a', 'ab', 'abb', 'abbb']</div>
+
+        <h4>Using ? Quantifier</h4>
+        <pre>import re
+
+text = "color colour"
+
+result = re.findall(r"colou?r", text)
+
+print(result)</pre>
+
+        <div class="info-box"><b>Output:</b><br>['color', 'colour']</div>
+
+        <h4>Exact Count</h4>
+        <pre>import re
+
+text = "123 1234 12345"
+
+result = re.findall(r"/d-4", text)
+
+print(result)</pre>
+
+        <div class="info-box"><b>Output:</b><br>['1234', '1234']</div>
+
+        <p>Last number 12345 में first four digits भी match हो गए। Exact complete word match के लिए boundaries या fullmatch use किया जा सकता है।</p>
+
+        <h4>Mobile Number Validation</h4>
+        <pre>import re
+
+mobile = "9876543210"
+
+result = re.fullmatch(r"/d-10", mobile)
+
+if result:
+    print("Valid")
+else:
+    print("Invalid")</pre>
+
+        <div class="info-box"><b>Output:</b><br>Valid</div>
+
+        <h4>Minimum and Maximum Count</h4>
+        <pre>import re
+
+text = "ab abb abbb abbbb"
+
+result = re.findall(r"ab{2,3}", text)
+
+print(result)</pre>
+
+        <div class="info-box"><b>Output:</b><br>['abb', 'abbb', 'abbb']</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Quantifiers pattern repetition को control करते हैं। Validation में <code>{n}</code> बहुत useful होता है।</div>
+      </section>
+
+      <section id="dot">
+        <h2>The Dot Character</h2>
+
+        <p>Regex में dot character <code>.</code> एक special character है। यह newline को छोड़कर किसी भी single character को match करता है। इसका use तब किया जाता है जब exact character important न हो, केवल position या pattern structure important हो।</p>
+
+        <p>Dot powerful है, लेकिन इसे carefully use करना चाहिए क्योंकि यह बहुत broad match कर सकता है। अगर actual dot यानी period symbol match करना हो, तो <code>\.</code> लिखना पड़ता है।</p>
+
+        <h4>Simple Dot Example</h4>
+        <pre>import re
+
+text = "cat cot cut c9t"
+
+result = re.findall(r"c.t", text)
+
+print(result)</pre>
+
+        <div class="info-box"><b>Output:</b><br>['cat', 'cot', 'cut', 'c9t']</div>
+
+        <h4>Dot Does Not Match Newline by Default</h4>
+        <pre>import re
+
+text = "a/nb"
+
+result = re.search(r"a.b", text)
+
+print(result)</pre>
+
+        <div class="info-box"><b>Output:</b><br>None</div>
+
+        <h4>Matching Dot Literally</h4>
+        <pre>import re
+
+text = "price-is-99.50"
+
+result = re.search(r"/.", text)
+
+if result:
+    print("Actual dot found")</pre>
+
+        <div class="info-box"><b>Output:</b><br>Actual dot found</div>
+
+        <h4>Dot with Quantifier</h4>
+        <pre>import re
+
+text = "Start Python End"
+
+result = re.findall(r"start.*end", text)
+
+print(result)</pre>
+
+        <div class="info-box"><b>Output:</b><br>['Start Python End']</div>
+
+        <h4>Important Points</h4>
+        <ul>
+          <li><code>.</code> किसी भी single character को match करता है।</li>
+          <li>By default newline को match नहीं करता।</li>
+          <li>Actual dot match करने के लिए <code>\.</code> use करें।</li>
+          <li>Dot को quantifiers के साथ use करने पर match बहुत बड़ा हो सकता है।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>अगर हमें ऐसे words search करने हैं जिनमें first और last character fixed हों लेकिन middle character कोई भी हो सकता है, तो dot character useful होता है।</div>
+      </section>
+
+      <section id="greedy">
+        <h2>Greedy Matches</h2>
+
+        <p>Regex quantifiers by default greedy होते हैं। Greedy का मतलब है कि regex engine जितना possible हो उतना ज्यादा text match करने की कोशिश करता है। Quantifiers जैसे <code>*</code>, <code>+</code>, <code>{n,m}</code> normally greedy behavior दिखाते हैं।</p>
+
+        <p>कई बार greedy matching unexpected result दे सकती है क्योंकि pattern expected से ज्यादा text match कर लेता है। ऐसी situation में non-greedy या lazy matching use की जाती है। Lazy matching के लिए quantifier के बाद question mark <code>?</code> लगाया जाता है, जैसे <code>*?</code>, <code>+?</code>.</p>
+
+        <h4>Greedy Match Example</h4>
+        <pre>import re
+
+text = "lt-b-gt-python-lt/b-gt-and-lt-b-gt-java-lt/b-gt"
+
+result = re.findall(r"lt-b-gt.*&lt;/b-gt", text)
+
+print(result)</pre>
+
+        <div class="info-box"><b>Output:</b><br>['lt-b-gt-python-lt/b-gt-and-lt-b-gt-java-lt/b-gt']</div>
+
+        <p>यहाँ regex ने first <code>&lt;b&gt;</code> से last <code>&lt;/b&gt;</code> तक पूरा text match कर लिया क्योंकि <code>.*</code> greedy है।</p>
+
+        <h4>Non-Greedy Match Example</h4>
+        <pre>import re
+
+text = "lt-b-gt-python-lt/b-gt-and-lt-b-gt-java-lt/b-gt"
+
+result = re.findall(r"lt-b-gt.*?&lt;/b&gt;", text)
+
+print(result)</pre>
+
+        <div class="info-box"><b>Output:</b><br>['lt-b-gt-python-lt/b-gt', 'lt-b-gt-java-lt/b-gt']</div>
+
+        <h4>Greedy vs Non-Greedy</h4>
+        <table>
+          <tr>
+            <th>Type</th>
+            <th>Pattern</th>
+            <th>Behavior</th>
+          </tr>
+          <tr>
+            <td>Greedy</td>
+            <td><code>.*</code></td>
+            <td>Maximum possible text match करता है।</td>
+          </tr>
+          <tr>
+            <td>Non-Greedy</td>
+            <td><code>.*?</code></td>
+            <td>Minimum possible text match करता है।</td>
+          </tr>
+          <tr>
+            <td>Greedy</td>
+            <td><code>.+</code></td>
+            <td>One or more maximum characters।</td>
+          </tr>
+          <tr>
+            <td>Non-Greedy</td>
+            <td><code>.+?</code></td>
+            <td>One or more minimum characters।</td>
+          </tr>
+        </table>
+
+        <h4>Common Mistakes</h4>
+        <ul>
+          <li><code>.*</code> का use करके expected से ज्यादा text match कर लेना।</li>
+          <li>HTML/XML जैसी strings में greedy matching को ignore करना।</li>
+          <li>Lazy quantifier <code>?</code> का role न समझना।</li>
+        </ul>
+
+        <div class="remember-box"><b>Remember:</b><br>Greedy matching ज्यादा से ज्यादा text match करती है, जबकि non-greedy matching कम से कम text match करती है।</div>
+      </section>
+
+      <section id="grouping">
+        <h2>Grouping</h2>
+
+        <p>Regex में grouping के लिए parentheses <code>( )</code> का use किया जाता है। Grouping से pattern के किसी part को एक unit की तरह treat किया जा सकता है। Groups का use repeated pattern, extraction, alternation और match object से specific data निकालने के लिए किया जाता है।</p>
+
+        <p>जब pattern में groups बनाए जाते हैं, तो match object की help से उन groups को अलग-अलग access किया जा सकता है। Groups data extraction में बहुत useful होते हैं, जैसे email से username और domain अलग निकालना।</p>
+
+        <h4>Simple Group Example</h4>
+        <pre>import re
+
+text = "My number is 9876543210"
+
+result = re.search(r"item/d-10", text)
+
+print(result.group(1))</pre>
+
+        <div class="info-box"><b>Output:</b><br>9876543210</div>
+
+        <h4>Multiple Groups</h4>
+        <pre>import re
+
+text = "Date: 10-07-2026"
+
+result = re.search(r"item/d-2/d-2/d-4", text)
+
+print(result.group(1))
+print(result.group(2))
+print(result.group(3))</pre>
+
+        <div class="info-box"><b>Output:</b><br>10<br>07<br>2026</div>
+
+        <h4>Using groups()</h4>
+        <pre>import re
+
+text = "Date: 10-07-2026"
+
+result = re.search(r"item/d-2/d-2/d-4", text)
+
+print(result.groups())</pre>
+
+        <div class="info-box"><b>Output:</b><br>('10', '07', '2026')</div>
+
+        <h4>Grouping with OR</h4>
+        <pre>import re
+
+text = "I like Python"
+
+result = re.search(r"python-java-c/item/item", text)
+
+print(result.group())</pre>
+
+        <div class="info-box"><b>Output:</b><br>Python</div>
+
+        <h4>Non-Capturing Group</h4>
+        <p>अगर group केवल pattern grouping के लिए चाहिए और उसे capture नहीं करना है, तो <code>(?: )</code> use किया जाता है।</p>
+
+        <pre>import re
+
+text = "PythonPython"
+
+result = re.search(r"(?:Python)+", text)
+
+print(result.group())</pre>
+
+        <div class="info-box"><b>Output:</b><br>PythonPython</div>
+
+        <h4>Email Group Example</h4>
+        <pre>import re
+
+email = "student-example.com"
+
+result = re.search(r"item/w/w/./w", email)
+
+print("Username:", result.group(1))
+print("Domain:", result.group(2))</pre>
+
+        <div class="info-box"><b>Output:</b><br>Username: student<br>Domain: example.com</div>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Date string से day, month और year अलग निकालने के लिए grouping बहुत useful होती है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Parentheses pattern को group करते हैं और captured data को <code>group()</code> से access किया जा सकता है।</div>
+      </section>
+
+      <section id="begin-end">
+        <h2>Matching at Beginning or End</h2>
+
+        <p>Regex में beginning और end matching के लिए anchors का use किया जाता है। Anchor actual character को match नहीं करता, बल्कि position को match करता है। String की शुरुआत check करने के लिए <code>^</code> और string के end को check करने के लिए <code>$</code> use होता है।</p>
+
+        <p>Anchors validation में बहुत useful होते हैं। अगर हमें ensure करना है कि पूरी string एक particular pattern follow करे, तो beginning और ending anchors का use किया जाता है।</p>
+
+        <h4>Beginning Match with ^</h4>
+        <pre>import re
+
+text = "Python is easy"
+
+result = re.search(r"^Python", text)
+
+if result:
+    print("String starts with Python")</pre>
+
+        <div class="info-box"><b>Output:</b><br>String starts with Python</div>
+
+        <h4>End Match with $</h4>
+        <pre>import re
+
+text = "I am learning Python"
+
+result = re.search(r"Python$", text)
+
+if result:
+    print("String ends with Python")</pre>
+
+        <div class="info-box"><b>Output:</b><br>String ends with Python</div>
+
+        <h4>Full Pattern Validation</h4>
+        <pre>import re
+
+mobile = "9876543210"
+
+result = re.search(r"item/d-10", mobile)
+
+if result:
+    print("Valid mobile number")
+else:
+    print("Invalid mobile number")</pre>
+
+        <div class="info-box"><b>Output:</b><br>Valid mobile number</div>
+
+        <h4>Using re.match()</h4>
+        <p><code>re.match()</code> string के beginning से pattern match करता है। यह पूरी string में search नहीं करता, बल्कि शुरुआत से matching check करता है।</p>
+
+        <pre>import re
+
+text = "Python is easy"
+
+result = re.match("Python", text)
+
+print(result.group())</pre>
+
+        <div class="info-box"><b>Output:</b><br>Python</div>
+
+        <h4>Using re.fullmatch()</h4>
+        <p><code>fullmatch()</code> check करता है कि पूरी string pattern से match हो रही है या नहीं। Validation के लिए यह बहुत useful है।</p>
+
+        <pre>import re
+
+pin = "209625"
+
+result = re.fullmatch(r"/d-6", pin)
+
+if result:
+    print("Valid PIN code")</pre>
+
+        <div class="info-box"><b>Output:</b><br>Valid PIN code</div>
+
+        <h4>Anchor Table</h4>
+        <table>
+          <tr>
+            <th>Anchor</th>
+            <th>Meaning</th>
+          </tr>
+          <tr>
+            <td><code>^</code></td>
+            <td>String की beginning।</td>
+          </tr>
+          <tr>
+            <td><code>$</code></td>
+            <td>String का end।</td>
+          </tr>
+          <tr>
+            <td><code>\b</code></td>
+            <td>Word boundary।</td>
+          </tr>
+          <tr>
+            <td><code>\B</code></td>
+            <td>Not word boundary।</td>
+          </tr>
+        </table>
+
+        <div class="remember-box"><b>Remember:</b><br><code>^</code> beginning के लिए और <code>$</code> ending के लिए use होता है। Validation में दोनों साथ use करना common है।</div>
+      </section>
+
+      <section id="match-objects">
+        <h2>Match Objects</h2>
+
+        <p>जब <code>re.search()</code>, <code>re.match()</code> या <code>re.fullmatch()</code> को pattern match मिलता है, तो वह match object return करता है। अगर match नहीं मिलता, तो <code>None</code> return होता है। Match object में matched text, start position, end position और groups जैसी information होती है।</p>
+
+        <p>Match object regex result को detail में analyze करने के लिए useful होता है। इससे हम matched text, index positions और captured groups प्राप्त कर सकते हैं।</p>
+
+        <h4>Creating Match Object</h4>
+        <pre>import re
+
+text = "Python is easy"
+
+result = re.search("easy", text)
+
+print(result)</pre>
+
+        <div class="info-box"><b>Output:</b><br>&lt;re.Match object; span=(10, 14), match='easy'&gt;</div>
+
+        <h4>group()</h4>
+        <p><code>group()</code> matched text return करता है।</p>
+
+        <pre>import re
+
+text = "Python is easy"
+
+result = re.search("easy", text)
+
+print(result.group())</pre>
+
+        <div class="info-box"><b>Output:</b><br>easy</div>
+
+        <h4>start() and end()</h4>
+        <p><code>start()</code> match की starting index और <code>end()</code> ending index return करता है।</p>
+
+        <pre>import re
+
+text = "Python is easy"
+
+result = re.search("easy", text)
+
+print(result.start())
+print(result.end())</pre>
+
+        <div class="info-box"><b>Output:</b><br>10<br>14</div>
+
+        <h4>span()</h4>
+        <p><code>span()</code> start और end position को tuple के रूप में return करता है।</p>
+
+        <pre>import re
+
+text = "Python is easy"
+
+result = re.search("easy", text)
+
+print(result.span())</pre>
+
+        <div class="info-box"><b>Output:</b><br>(10, 14)</div>
+
+        <h4>Using Match Object Safely</h4>
+        <p>Match object use करने से पहले check करना चाहिए कि result <code>None</code> तो नहीं है। अगर <code>None</code> पर <code>group()</code> call करेंगे, तो error आएगा।</p>
+
+        <pre>import re
+
+text = "Python is easy"
+
+result = re.search("Java", text)
+
+if result:
+    print(result.group())
+else:
+    print("No match found")</pre>
+
+        <div class="info-box"><b>Output:</b><br>No match found</div>
+
+        <h4>Match Object Methods</h4>
+        <table>
+          <tr>
+            <th>Method</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>group()</code></td>
+            <td>Matched text return करता है।</td>
+          </tr>
+          <tr>
+            <td><code>groups()</code></td>
+            <td>All captured groups return करता है।</td>
+          </tr>
+          <tr>
+            <td><code>start()</code></td>
+            <td>Match की start index return करता है।</td>
+          </tr>
+          <tr>
+            <td><code>end()</code></td>
+            <td>Match की end index return करता है।</td>
+          </tr>
+          <tr>
+            <td><code>span()</code></td>
+            <td>Start और end index tuple में return करता है।</td>
+          </tr>
+        </table>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Text editor में search feature match object की position से बता सकता है कि searched word किस index पर मिला है।</div>
+      </section>
+
+      <section id="substituting">
+        <h2>Substituting</h2>
+
+        <p>Substituting का मतलब text में किसी pattern को दूसरे text से replace करना होता है। Python regex में इसके लिए <code>re.sub()</code> function use होता है। यह normal <code>replace()</code> method से ज्यादा powerful है क्योंकि यह exact text की जगह pattern के basis पर replacement कर सकता है।</p>
+
+        <p>Substitution text cleaning, data formatting, unwanted characters remove करने और sensitive information mask करने में बहुत useful होता है।</p>
+
+        <h4>Basic Syntax</h4>
+        <pre>re.sub(pattern, replacement, string)</pre>
+
+        <h4>Simple Replacement</h4>
+        <pre>import re
+
+text = "I like Java"
+
+new_text = re.sub("Java", "Python", text)
+
+print(new_text)</pre>
+
+        <div class="info-box"><b>Output:</b><br>I like Python</div>
+
+        <h4>Replacing Digits</h4>
+        <pre>import re
+
+text = "My number is 9876543210"
+
+new_text = re.sub(r"/d", "*", text)
+
+print(new_text)</pre>
+
+        <div class="info-box"><b>Output:</b><br>My number is **********</div>
+
+        <h4>Removing Extra Spaces</h4>
+        <pre>import re
+
+text = "Python    is     easy"
+
+new_text = re.sub(r"/s", " ", text)
+
+print(new_text)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Python is easy</div>
+
+        <h4>Using count Parameter</h4>
+        <p><code>count</code> parameter बताता है कि कितनी replacements करनी हैं।</p>
+
+        <pre>import re
+
+text = "Python Python Python"
+
+new_text = re.sub("Python", "Java", text, count=2)
+
+print(new_text)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Java Java Python</div>
+
+        <h4>Substitution with Groups</h4>
+        <pre>import re
+
+date = "10-07-2026"
+
+new_date = re.sub(r"item/d-2/d-2/d-4", r"/3//2//1", date)
+
+print(new_date)</pre>
+
+        <div class="info-box"><b>Output:</b><br>2026/07/10</div>
+
+        <h4>Common Uses</h4>
+        <ul>
+          <li>Text cleaning।</li>
+          <li>Multiple spaces को single space में convert करना।</li>
+          <li>Digits या sensitive data mask करना।</li>
+          <li>Date format change करना।</li>
+          <li>Unwanted symbols remove करना।</li>
+        </ul>
+
+        <div class="remember-box"><b>Remember:</b><br><code>re.sub()</code> pattern-based replacement के लिए use होता है।</div>
+      </section>
+
+      <section id="splitting">
+        <h2>Splitting a String</h2>
+
+        <p>Splitting का मतलब string को छोटे parts में divide करना है। Python string का normal <code>split()</code> method fixed separator पर split करता है, लेकिन regex वाला <code>re.split()</code> pattern के basis पर split कर सकता है।</p>
+
+        <p>जब separator simple न हो, जैसे multiple spaces, comma, semicolon, dash या mixed separators हों, तब <code>re.split()</code> बहुत useful होता है।</p>
+
+        <h4>Basic Syntax</h4>
+        <pre>re.split(pattern, string)</pre>
+
+        <h4>Split by Spaces</h4>
+        <pre>import re
+
+text = "Python is easy"
+
+result = re.split(r"/s", text)
+
+print(result)</pre>
+
+        <div class="info-box"><b>Output:</b><br>['Python', 'is', 'easy']</div>
+
+        <h4>Split by Multiple Spaces</h4>
+        <pre>import re
+
+text = "Python    is     easy"
+
+result = re.split(r"/s", text)
+
+print(result)</pre>
+
+        <div class="info-box"><b>Output:</b><br>['Python', 'is', 'easy']</div>
+
+        <h4>Split by Multiple Separators</h4>
+        <pre>import re
+
+text = "Python,Java;C++ HTML"
+
+result = re.split(r"item/s", text)
+
+print(result)</pre>
+
+        <div class="info-box"><b>Output:</b><br>['Python', 'Java', 'C++', 'HTML']</div>
+
+        <h4>Using maxsplit</h4>
+        <pre>import re
+
+text = "Python Java C++ HTML"
+
+result = re.split(r"/s", text, maxsplit=2)
+
+print(result)</pre>
+
+        <div class="info-box"><b>Output:</b><br>['Python', 'Java', 'C++ HTML']</div>
+
+        <h4>split() vs re.split()</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>split()</th>
+            <th>re.split()</th>
+          </tr>
+          <tr>
+            <td>Separator</td>
+            <td>Fixed separator use करता है।</td>
+            <td>Pattern-based separator use करता है।</td>
+          </tr>
+          <tr>
+            <td>Module</td>
+            <td>No module required।</td>
+            <td><code>re</code> module required।</td>
+          </tr>
+          <tr>
+            <td>Use</td>
+            <td>Simple splitting।</td>
+            <td>Complex splitting।</td>
+          </tr>
+        </table>
+
+        <div class="note-box"><b>Real Life Example:</b><br>CSV-like text में comma, semicolon और spaces मिले हुए हों, तो <code>re.split()</code> से data आसानी से अलग किया जा सकता है।</div>
+      </section>
+
+      <section id="compiling">
+        <h2>Compiling Regular Expressions</h2>
+
+        <p>Python में <code>re.compile()</code> function regex pattern को compile करके pattern object बनाता है। अगर same pattern को program में बार-बार use करना है, तो compile करना useful होता है। इससे code clean होता है और repeated matching easier हो जाती है।</p>
+
+        <p>Compiled regex object के साथ <code>search()</code>, <code>match()</code>, <code>findall()</code>, <code>sub()</code> और <code>split()</code> जैसे methods directly use किए जा सकते हैं।</p>
+
+        <h4>Basic Syntax</h4>
+        <pre>pattern = re.compile(r"regex_pattern")</pre>
+
+        <h4>Compiled Pattern Example</h4>
+        <pre>import re
+
+pattern = re.compile(r"/d")
+
+text = "Marks are 85 and age is 23"
+
+result = pattern.findall(text)
+
+print(result)</pre>
+
+        <div class="info-box"><b>Output:</b><br>['85', '23']</div>
+
+        <h4>Using search() with Compiled Pattern</h4>
+        <pre>import re
+
+mobile_pattern = re.compile(r"item/d-10")
+
+mobile = "9876543210"
+
+if mobile_pattern.search(mobile):
+    print("Valid mobile number")
+else:
+    print("Invalid mobile number")</pre>
+
+        <div class="info-box"><b>Output:</b><br>Valid mobile number</div>
+
+        <h4>Compiled Pattern with sub()</h4>
+        <pre>import re
+
+pattern = re.compile(r"/s")
+
+text = "Python    is     easy"
+
+new_text = pattern.sub(" ", text)
+
+print(new_text)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Python is easy</div>
+
+        <h4>Benefits of Compiling</h4>
+        <ul>
+          <li>Same regex pattern को बार-बार use करना आसान होता है।</li>
+          <li>Code readable और organized बनता है।</li>
+          <li>Pattern object reusable होता है।</li>
+          <li>Large programs में regex management easy हो जाता है।</li>
+        </ul>
+
+        <h4>Without Compile vs With Compile</h4>
+        <table>
+          <tr>
+            <th>Without Compile</th>
+            <th>With Compile</th>
+          </tr>
+          <tr>
+            <td><code>re.findall(r"/d", text)</code></td>
+            <td><code>pattern.findall(text)</code></td>
+          </tr>
+          <tr>
+            <td>Short one-time use के लिए ठीक।</td>
+            <td>Repeated use के लिए better।</td>
+          </tr>
+        </table>
+
+        <div class="remember-box"><b>Remember:</b><br>Same regex pattern को बार-बार use करना हो तो <code>re.compile()</code> better approach है।</div>
+      </section>
+
+      <section id="flags">
+        <h2>Flags</h2>
+
+        <p>Regex flags pattern matching behavior को modify करते हैं। Flags की help से case-insensitive matching, multiline matching, dot-all matching और readable regex writing जैसी facilities मिलती हैं। Python में flags को <code>re.search()</code>, <code>re.findall()</code>, <code>re.compile()</code> आदि functions में pass किया जा सकता है।</p>
+
+        <h4>Common Regex Flags</h4>
+        <table>
+          <tr>
+            <th>Flag</th>
+            <th>Short Name</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>re.IGNORECASE</code></td>
+            <td><code>re.I</code></td>
+            <td>Case-insensitive matching।</td>
+          </tr>
+          <tr>
+            <td><code>re.MULTILINE</code></td>
+            <td><code>re.M</code></td>
+            <td><code>^</code> और <code>$</code> को हर line पर work करवाता है।</td>
+          </tr>
+          <tr>
+            <td><code>re.DOTALL</code></td>
+            <td><code>re.S</code></td>
+            <td>Dot <code>.</code> को newline भी match करवाता है।</td>
+          </tr>
+          <tr>
+            <td><code>re.VERBOSE</code></td>
+            <td><code>re.X</code></td>
+            <td>Regex को readable format में लिखने देता है।</td>
+          </tr>
+        </table>
+
+        <h4>IGNORECASE Example</h4>
+        <pre>import re
+
+text = "Python is easy"
+
+result = re.search("python", text, re.IGNORECASE)
+
+if result:
+    print("Match found")</pre>
+
+        <div class="info-box"><b>Output:</b><br>Match found</div>
+
+        <h4>MULTILINE Example</h4>
+        <pre>import re
+
+text = """Python is easy
+Java is popular
+Python is powerful"""
+
+result = re.findall(r"^Python", text, re.MULTILINE)
+
+print(result)</pre>
+
+        <div class="info-box"><b>Output:</b><br>['Python', 'Python']</div>
+
+        <h4>DOTALL Example</h4>
+        <pre>import re
+
+text = "start/npython/nend"
+
+result = re.search(r"start.*end", text, re.DOTALL)
+
+if result:
+    print("Matched")</pre>
+
+        <div class="info-box"><b>Output:</b><br>Matched</div>
+
+        <h4>VERBOSE Example</h4>
+        <p><code>re.VERBOSE</code> long regex को readable बनाने में help करता है। इसमें spaces और comments use किए जा सकते हैं।</p>
+
+        <pre>import re
+
+pattern = re.compile(r"""
+    ^           # start
+    \d{10}      # exactly 10 digits
+    $           # end
+""", re.VERBOSE)
+
+mobile = "9876543210"
+
+if pattern.search(mobile):
+    print("Valid")</pre>
+
+        <div class="info-box"><b>Output:</b><br>Valid</div>
+
+        <h4>Combining Multiple Flags</h4>
+        <pre>import re
+
+text = """python
+Python
+PYTHON"""
+
+result = re.findall(r"^python", text, re.IGNORECASE | re.MULTILINE)
+
+print(result)</pre>
+
+        <div class="info-box"><b>Output:</b><br>['python', 'Python', 'PYTHON']</div>
+
+        <h4>Important Points</h4>
+        <ul>
+          <li>Flags regex matching behavior change करते हैं।</li>
+          <li><code>re.I</code> case-insensitive matching के लिए use होता है।</li>
+          <li><code>re.M</code> multiline beginning/end matching के लिए use होता है।</li>
+          <li><code>re.S</code> dot को newline match करने देता है।</li>
+          <li><code>re.X</code> readable regex लिखने में help करता है।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>User “python”, “Python” या “PYTHON” किसी भी case में search करे, तो <code>re.IGNORECASE</code> से सभी match किए जा सकते हैं।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Flags regex को flexible बनाते हैं। Multiple flags को <code>|</code> operator से combine किया जा सकता है।</div>
+      </section>
+
+    </main>
+  </div>
+</body>
+
+</html>

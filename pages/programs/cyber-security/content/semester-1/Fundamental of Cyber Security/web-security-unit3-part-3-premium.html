@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web Security Unit-3 - Part 3</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f7fb;color:#1f2937;line-height:1.75}
+.page{display:grid;grid-template-columns:300px 1fr;gap:20px;max-width:1580px;margin:auto;padding:10px}
+.sidebar{position:sticky;top:10px;height:calc(100vh - 20px);overflow-y:auto;background:#fff;border-radius:16px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.08);align-self:start}
+.sidebar h2{font-size:20px;margin-bottom:12px;color:#111827}
+.sidebar a{display:block;text-decoration:none;color:#374151;padding:8px 10px;border-radius:10px;margin-bottom:4px;font-size:14.4px}
+.sidebar a:hover{background:#eef2ff;color:#1d4ed8}
+.content{background:#fff;border-radius:18px;padding:10px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.hero{padding:30px 20px;border-radius:16px;background:linear-gradient(135deg,#eef2ff,#f8fafc);margin-bottom:18px}
+.hero h1{font-size:34px;color:#111827;margin-bottom:10px}
+.hero p{font-size:18px;color:#374151}
+section{padding:22px 10px;border-bottom:1px solid #e5e7eb}
+section:last-child{border-bottom:none}
+h2{font-size:27px;color:#111827;margin-bottom:12px;border-left:5px solid #2563eb;padding-left:12px}
+h3{font-size:22px;color:#1f2937;margin:18px 0 8px}
+h4{font-size:18px;color:#111827;margin:14px 0 6px}
+p{margin:10px 0;font-size:17px}
+ul,ol{margin-left:24px;margin-top:8px}
+li{margin:7px 0;font-size:16.5px}
+strong{color:#111827}
+.image-icon{min-height:180px;border:2px dashed #94a3b8;border-radius:16px;background:#f8fafc;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;margin:18px 0;color:#475569;font-weight:600;flex-direction:column;gap:8px}
+.image-icon img{max-width:100%;height:auto}
+.note-box{background:#f0fdf4;border-left:5px solid #22c55e;border-radius:14px;padding:14px 16px;margin:16px 0}
+.info-box{background:#ecfeff;border-left:5px solid #06b6d4;border-radius:14px;padding:14px 16px;margin:16px 0}
+.remember-box{background:#fff7ed;border-left:5px solid #f97316;border-radius:14px;padding:14px 16px;margin:16px 0}
+.warning-box{background:#fef2f2;border-left:5px solid #ef4444;border-radius:14px;padding:14px 16px;margin:16px 0}
+table{width:100%;border-collapse:collapse;margin:16px 0;border-radius:12px;overflow:hidden;font-size:15.3px}
+th,td{border:1px solid #d1d5db;padding:10px;text-align:left;vertical-align:top}
+th{background:#eef2ff;color:#111827}
+pre{background:#0f172a;color:#e5e7eb;border-radius:14px;padding:16px;margin:16px 0;overflow-x:auto;font-family:Consolas,monospace;line-height:1.6}
+code{background:#111827;color:#f9fafb;padding:2px 6px;border-radius:6px}
+@media(max-width:900px){.page{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.hero h1{font-size:27px}h2{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="page">
+<aside class="sidebar"><h2>Topics</h2><a href="#java-security">Overview of Java Security</a>
+<a href="#access-modifiers">Java Access Control</a>
+<a href="#applet">Applet Security</a>
+<a href="#servlet">Servlet Security</a>
+<a href="#session">Session and Cookie Security</a>
+<a href="#symmetric">Symmetric Encryption</a>
+<a href="#asymmetric">Asymmetric Encryption</a>
+<a href="#comparison">Symmetric vs Asymmetric Encryption</a>
+<a href="#hybrid">Hybrid Encryption in HTTPS</a>
+<a href="#checklist">Web Security Checklist</a></aside>
+<main class="content">
+<div class="hero"><h1>Web Security Unit-3 - Part 3</h1><p>Java security, applet sandbox, servlet security, session/cookie protection और symmetric-asymmetric encryption को premium practical format में समझाया गया है।</p></div>
+<section id="java-security"><h2>Overview of Java Security</h2>
+<p><strong>Java Security</strong> Java applications को unauthorized code execution, insecure permissions, weak input handling और unsafe dependencies से protect करने की process है।</p>
+<div class="image-icon"><img src="" alt="Java Security"><p>Image Placeholder: Java Application Security Layers</p></div>
+<h4>Key Areas</h4>
+<ul>
+<li>Bytecode verification</li>
+<li>Class loading</li>
+<li>Access modifiers</li>
+<li>Exception handling</li>
+<li>Secure coding</li>
+<li>Cryptography APIs</li>
+<li>Dependency management</li>
+</ul>
+</section>
+<section id="access-modifiers"><h2>Java Access Control</h2>
+<table>
+<tr><th>Modifier</th><th>Access</th></tr>
+<tr><td>private</td><td>Same class only</td></tr>
+<tr><td>default</td><td>Same package</td></tr>
+<tr><td>protected</td><td>Package and subclasses</td></tr>
+<tr><td>public</td><td>Everywhere</td></tr>
+</table>
+<p>Least privilege principle के अनुसार data और methods को minimum required visibility देनी चाहिए।</p>
+</section>
+<section id="applet"><h2>Applet Security</h2>
+<p><strong>Applet</strong> browser या applet viewer में run होने वाला Java program था। Traditional applets sandbox restrictions के अंदर execute होते थे ताकि local system resources पर direct access limited रहे।</p>
+<div class="image-icon"><img src="" alt="Applet Security Sandbox"><p>Image Placeholder: Applet Sandbox Model</p></div>
+<h4>Security Restrictions</h4>
+<ul>
+<li>Local files पर restricted access</li>
+<li>System commands पर restrictions</li>
+<li>Limited network access</li>
+<li>Signed applets के लिए additional trust</li>
+</ul>
+<div class="info-box"><b>Historical Note:</b><br>Java applets modern browsers में practically obsolete हैं, लेकिन syllabus में sandbox security concept समझने के लिए important हैं।</div>
+</section>
+<section id="servlet"><h2>Servlet Security</h2>
+<p><strong>Servlet</strong> server-side Java component है जो web requests process करता है। Servlet security authentication, authorization, session management और input handling पर depend करती है।</p>
+<h4>Security Practices</h4>
+<ul>
+<li>Input validation</li>
+<li>Parameterized database queries</li>
+<li>Secure session cookies</li>
+<li>Role-based access</li>
+<li>HTTPS use</li>
+<li>Error details hide करना</li>
+<li>File upload validation</li>
+</ul>
+</section>
+<section id="session"><h2>Session and Cookie Security</h2>
+<h4>Secure Cookie Attributes</h4>
+<ul>
+<li>Secure</li>
+<li>HttpOnly</li>
+<li>SameSite</li>
+<li>Short expiry</li>
+</ul>
+<h4>Session Practices</h4>
+<ul>
+<li>Login के बाद session ID rotate करें।</li>
+<li>Logout पर session invalidate करें।</li>
+<li>Inactive sessions expire करें।</li>
+<li>Session ID URL में expose न करें।</li>
+</ul>
+</section>
+<section id="symmetric"><h2>Symmetric Encryption</h2>
+<p><strong>Symmetric Encryption</strong> में encryption और decryption के लिए same secret key use होती है।</p>
+<div class="image-icon"><img src="" alt="Symmetric Encryption"><p>Image Placeholder: Same Key Encryption and Decryption</p></div>
+<h4>Advantages</h4>
+<ul>
+<li>Fast</li>
+<li>Large data के लिए efficient</li>
+<li>Lower computational cost</li>
+</ul>
+<h4>Limitation</h4>
+<p>Secret key securely share करना difficult हो सकता है।</p>
+</section>
+<section id="asymmetric"><h2>Asymmetric Encryption</h2>
+<p><strong>Asymmetric Encryption</strong> public key और private key pair use करती है।</p>
+<div class="image-icon"><img src="" alt="Asymmetric Encryption"><p>Image Placeholder: Public and Private Key Model</p></div>
+<h4>Uses</h4>
+<ul>
+<li>Secure key exchange</li>
+<li>Digital signatures</li>
+<li>Authentication</li>
+<li>Secure communication</li>
+</ul>
+</section>
+<section id="comparison"><h2>Symmetric vs Asymmetric Encryption</h2>
+<table>
+<tr><th>Basis</th><th>Symmetric</th><th>Asymmetric</th></tr>
+<tr><td>Keys</td><td>One shared key</td><td>Public/private pair</td></tr>
+<tr><td>Speed</td><td>Faster</td><td>Slower</td></tr>
+<tr><td>Use</td><td>Bulk data encryption</td><td>Key exchange/signatures</td></tr>
+<tr><td>Example</td><td>AES</td><td>RSA</td></tr>
+</table>
+</section>
+<section id="hybrid"><h2>Hybrid Encryption in HTTPS</h2>
+<p>HTTPS typically hybrid approach use करती है: asymmetric cryptography secure key exchange/authentication के लिए और symmetric encryption actual session data के लिए।</p>
+<pre>Asymmetric Method
+      ↓
+Secure Session Key Exchange
+      ↓
+Symmetric Encryption
+      ↓
+Fast Secure Communication</pre>
+</section>
+<section id="checklist"><h2>Web Security Checklist</h2>
+<ul>
+<li>HTTPS enabled</li>
+<li>Input validation implemented</li>
+<li>Parameterized queries used</li>
+<li>Secure sessions configured</li>
+<li>Access control tested</li>
+<li>Server errors sanitized</li>
+<li>Dependencies updated</li>
+<li>Logs monitored</li>
+<li>Backups tested</li>
+<li>Security testing performed</li>
+</ul>
+<div class="remember-box"><b>Remember:</b><br>Secure web application network, server, code, database और user session सभी layers पर protection use करती है।</div>
+</section>
+</main>
+</div>
+</body>
+</html>

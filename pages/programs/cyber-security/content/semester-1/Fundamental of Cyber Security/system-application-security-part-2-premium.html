@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>System & Application Security - Part 2</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f7fb;color:#1f2937;line-height:1.75}
+.page{display:grid;grid-template-columns:300px 1fr;gap:20px;max-width:1580px;margin:auto;padding:10px}
+.sidebar{position:sticky;top:10px;height:calc(100vh - 20px);overflow-y:auto;background:#fff;border-radius:16px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.08);align-self:start}
+.sidebar h2{font-size:20px;margin-bottom:12px;color:#111827}
+.sidebar a{display:block;text-decoration:none;color:#374151;padding:8px 10px;border-radius:10px;margin-bottom:4px;font-size:14.4px}
+.sidebar a:hover{background:#eef2ff;color:#1d4ed8}
+.content{background:#fff;border-radius:18px;padding:10px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.hero{padding:30px 20px;border-radius:16px;background:linear-gradient(135deg,#eef2ff,#f8fafc);margin-bottom:18px}
+.hero h1{font-size:34px;color:#111827;margin-bottom:10px}
+.hero p{font-size:18px;color:#374151}
+section{padding:22px 10px;border-bottom:1px solid #e5e7eb}
+section:last-child{border-bottom:none}
+h2{font-size:27px;color:#111827;margin-bottom:12px;border-left:5px solid #2563eb;padding-left:12px}
+h3{font-size:22px;color:#1f2937;margin:18px 0 8px}
+h4{font-size:18px;color:#111827;margin:14px 0 6px}
+p{margin:10px 0;font-size:17px}
+ul,ol{margin-left:24px;margin-top:8px}
+li{margin:7px 0;font-size:16.5px}
+strong{color:#111827}
+.image-icon{min-height:180px;border:2px dashed #94a3b8;border-radius:16px;background:#f8fafc;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;margin:18px 0;color:#475569;font-weight:600;flex-direction:column;gap:8px}
+.image-icon img{max-width:100%;height:auto}
+.note-box{background:#f0fdf4;border-left:5px solid #22c55e;border-radius:14px;padding:14px 16px;margin:16px 0}
+.info-box{background:#ecfeff;border-left:5px solid #06b6d4;border-radius:14px;padding:14px 16px;margin:16px 0}
+.remember-box{background:#fff7ed;border-left:5px solid #f97316;border-radius:14px;padding:14px 16px;margin:16px 0}
+.warning-box{background:#fef2f2;border-left:5px solid #ef4444;border-radius:14px;padding:14px 16px;margin:16px 0}
+table{width:100%;border-collapse:collapse;margin:16px 0;border-radius:12px;overflow:hidden;font-size:15.3px}
+th,td{border:1px solid #d1d5db;padding:10px;text-align:left;vertical-align:top}
+th{background:#eef2ff;color:#111827}
+pre{background:#0f172a;color:#e5e7eb;border-radius:14px;padding:16px;margin:16px 0;overflow-x:auto;font-family:Consolas,monospace;line-height:1.6}
+@media(max-width:900px){.page{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.hero h1{font-size:27px}h2{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="page">
+<aside class="sidebar"><h2>Topics</h2><a href="#backup">Backups</a>
+<a href="#archival">Archival Storage</a>
+<a href="#disposal">Secure Disposal of Data</a>
+<a href="#firewall">Firewall</a>
+<a href="#vpn">Virtual Private Network (VPN)</a>
+<a href="#ids">Intrusion Detection System</a>
+<a href="#access-control">Access Control Security</a>
+<a href="#models">Access Control Models</a>
+<a href="#least-privilege">Least Privilege and Account Security</a>
+<a href="#integrated-defense">Integrated Security Architecture</a>
+<a href="#checklist">System & Application Security Checklist</a></aside>
+<main class="content">
+<div class="hero"><h1>System & Application Security - Part 2</h1><p>Backups, archival storage, secure disposal, firewall, VPN, intrusion detection और access control security को deep premium exam-oriented format में समझाया गया है।</p></div>
+<section id="backup"><h2>Backups</h2>
+<p><strong>Backup</strong> important data की duplicate copy है जो data loss, hardware failure, malware या accidental deletion के बाद recovery में help करती है।</p>
+<div class="image-icon"><img src="" alt="Backup Strategy"><p>Image Placeholder: Backup and Recovery Strategy</p></div>
+<h4>Backup Types</h4>
+<table>
+<tr><th>Type</th><th>Meaning</th></tr>
+<tr><td>Full Backup</td><td>Complete data copy</td></tr>
+<tr><td>Incremental Backup</td><td>Last backup के बाद changes</td></tr>
+<tr><td>Differential Backup</td><td>Last full backup के बाद changes</td></tr>
+</table>
+<h4>3-2-1 Rule</h4>
+<ul>
+<li>3 copies of data</li>
+<li>2 different storage media</li>
+<li>1 copy offsite/offline</li>
+</ul>
+</section>
+<section id="archival"><h2>Archival Storage</h2>
+<p><strong>Archival Storage</strong> old but important data को long-term retention के लिए सुरक्षित रखना है। Archived data daily use में नहीं होता, लेकिन legal, historical या business requirement के कारण preserve किया जाता है।</p>
+<h4>Considerations</h4>
+<ul>
+<li>Retention period</li>
+<li>Encryption</li>
+<li>Access control</li>
+<li>Format compatibility</li>
+<li>Integrity checks</li>
+<li>Geographical redundancy</li>
+</ul>
+</section>
+<section id="disposal"><h2>Secure Disposal of Data</h2>
+<p>Data disposal का उद्देश्य expired या unnecessary data को इस प्रकार remove करना है कि उसे recover न किया जा सके।</p>
+<h4>Methods</h4>
+<ul>
+<li>Secure deletion</li>
+<li>Cryptographic erasure</li>
+<li>Disk wiping</li>
+<li>Physical destruction</li>
+<li>Paper shredding</li>
+</ul>
+<div class="warning-box"><b>Common Mistake:</b><br>Normal delete command अक्सर data को permanently erase नहीं करती।</div>
+</section>
+<section id="firewall"><h2>Firewall</h2>
+<p><strong>Firewall</strong> incoming और outgoing network traffic को predefined security rules के अनुसार allow या block करता है।</p>
+<div class="image-icon"><img src="" alt="Firewall"><p>Image Placeholder: Firewall between Internal and External Network</p></div>
+<table>
+<tr><th>Type</th><th>Purpose</th></tr>
+<tr><td>Packet Filtering</td><td>IP, port और protocol के आधार पर traffic filter</td></tr>
+<tr><td>Stateful Firewall</td><td>Connection state track करता है</td></tr>
+<tr><td>Application Firewall</td><td>Application-level traffic inspect करता है</td></tr>
+<tr><td>Host Firewall</td><td>Single device protect करता है</td></tr>
+</table>
+</section>
+<section id="vpn"><h2>Virtual Private Network (VPN)</h2>
+<p><strong>VPN</strong> public network पर encrypted tunnel create करती है जिससे remote users या offices secure communication कर सकते हैं।</p>
+<h4>Uses</h4>
+<ul>
+<li>Remote employee access</li>
+<li>Branch connectivity</li>
+<li>Public Wi-Fi protection</li>
+<li>Encrypted data transmission</li>
+</ul>
+<div class="image-icon"><img src="" alt="VPN"><p>Image Placeholder: VPN Secure Tunnel</p></div>
+</section>
+<section id="ids"><h2>Intrusion Detection System</h2>
+<p><strong>IDS</strong> network या system activity monitor करके suspicious behavior identify करता है और alerts generate करता है।</p>
+<table>
+<tr><th>Type</th><th>Meaning</th></tr>
+<tr><td>NIDS</td><td>Network traffic monitor करता है</td></tr>
+<tr><td>HIDS</td><td>Single host/system monitor करता है</td></tr>
+<tr><td>Signature-Based</td><td>Known attack patterns detect करता है</td></tr>
+<tr><td>Anomaly-Based</td><td>Normal behavior से deviation detect करता है</td></tr>
+</table>
+<h4>IDS vs IPS</h4>
+<table>
+<tr><th>IDS</th><th>IPS</th></tr>
+<tr><td>Detect and alert</td><td>Detect and block/prevent</td></tr>
+</table>
+</section>
+<section id="access-control"><h2>Access Control Security</h2>
+<p><strong>Access Control</strong> यह तय करता है कि कौन user किस resource पर कौन-सा action perform कर सकता है।</p>
+<h4>Basic Process</h4>
+<pre>Identification
+     ↓
+Authentication
+     ↓
+Authorization
+     ↓
+Accounting / Auditing</pre>
+</section>
+<section id="models"><h2>Access Control Models</h2>
+<table>
+<tr><th>Model</th><th>Meaning</th></tr>
+<tr><td>DAC</td><td>Owner permissions control करता है</td></tr>
+<tr><td>MAC</td><td>Central policy और classification-based control</td></tr>
+<tr><td>RBAC</td><td>Role के आधार पर permissions</td></tr>
+<tr><td>ABAC</td><td>Attributes और conditions के आधार पर access</td></tr>
+</table>
+</section>
+<section id="least-privilege"><h2>Least Privilege and Account Security</h2>
+<ul>
+<li>User को minimum required permissions दें।</li>
+<li>Shared accounts avoid करें।</li>
+<li>MFA use करें।</li>
+<li>Inactive accounts disable करें।</li>
+<li>Privileged accounts monitor करें।</li>
+<li>Access reviews regularly करें।</li>
+<li>Strong password policy लागू करें।</li>
+</ul>
+<div class="remember-box"><b>Remember:</b><br>Access control का उद्देश्य सही user को सही resource पर सही समय पर सही permission देना है।</div>
+</section>
+<section id="integrated-defense"><h2>Integrated Security Architecture</h2>
+<pre>User Authentication
+        ↓
+Access Control
+        ↓
+Firewall / VPN
+        ↓
+Application Security
+        ↓
+IDS / Monitoring
+        ↓
+Backup and Recovery</pre>
+<p>Strong security single technology से नहीं, बल्कि layered defense से बनती है।</p>
+<div class="image-icon"><img src="" alt="Layered Security"><p>Image Placeholder: Defense in Depth Architecture</p></div>
+</section>
+<section id="checklist"><h2>System & Application Security Checklist</h2>
+<ul>
+<li>Systems patched हैं</li>
+<li>MFA enabled है</li>
+<li>Least privilege लागू है</li>
+<li>Backups tested हैं</li>
+<li>Logs centralized हैं</li>
+<li>Firewall rules reviewed हैं</li>
+<li>VPN securely configured है</li>
+<li>IDS alerts monitored हैं</li>
+<li>Data disposal policy available है</li>
+<li>Applications security-tested हैं</li>
+</ul>
+<div class="note-box"><b>Professional Tip:</b><br>Security controls तभी useful हैं जब उन्हें regularly test, monitor और update किया जाए।</div>
+</section>
+</main>
+</div>
+</body>
+</html>

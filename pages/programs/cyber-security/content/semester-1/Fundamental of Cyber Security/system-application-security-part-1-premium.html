@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>System & Application Security - Part 1</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f7fb;color:#1f2937;line-height:1.75}
+.page{display:grid;grid-template-columns:300px 1fr;gap:20px;max-width:1580px;margin:auto;padding:10px}
+.sidebar{position:sticky;top:10px;height:calc(100vh - 20px);overflow-y:auto;background:#fff;border-radius:16px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.08);align-self:start}
+.sidebar h2{font-size:20px;margin-bottom:12px;color:#111827}
+.sidebar a{display:block;text-decoration:none;color:#374151;padding:8px 10px;border-radius:10px;margin-bottom:4px;font-size:14.4px}
+.sidebar a:hover{background:#eef2ff;color:#1d4ed8}
+.content{background:#fff;border-radius:18px;padding:10px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.hero{padding:30px 20px;border-radius:16px;background:linear-gradient(135deg,#eef2ff,#f8fafc);margin-bottom:18px}
+.hero h1{font-size:34px;color:#111827;margin-bottom:10px}
+.hero p{font-size:18px;color:#374151}
+section{padding:22px 10px;border-bottom:1px solid #e5e7eb}
+section:last-child{border-bottom:none}
+h2{font-size:27px;color:#111827;margin-bottom:12px;border-left:5px solid #2563eb;padding-left:12px}
+h3{font-size:22px;color:#1f2937;margin:18px 0 8px}
+h4{font-size:18px;color:#111827;margin:14px 0 6px}
+p{margin:10px 0;font-size:17px}
+ul,ol{margin-left:24px;margin-top:8px}
+li{margin:7px 0;font-size:16.5px}
+strong{color:#111827}
+.image-icon{min-height:180px;border:2px dashed #94a3b8;border-radius:16px;background:#f8fafc;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;margin:18px 0;color:#475569;font-weight:600;flex-direction:column;gap:8px}
+.image-icon img{max-width:100%;height:auto}
+.note-box{background:#f0fdf4;border-left:5px solid #22c55e;border-radius:14px;padding:14px 16px;margin:16px 0}
+.info-box{background:#ecfeff;border-left:5px solid #06b6d4;border-radius:14px;padding:14px 16px;margin:16px 0}
+.remember-box{background:#fff7ed;border-left:5px solid #f97316;border-radius:14px;padding:14px 16px;margin:16px 0}
+.warning-box{background:#fef2f2;border-left:5px solid #ef4444;border-radius:14px;padding:14px 16px;margin:16px 0}
+table{width:100%;border-collapse:collapse;margin:16px 0;border-radius:12px;overflow:hidden;font-size:15.3px}
+th,td{border:1px solid #d1d5db;padding:10px;text-align:left;vertical-align:top}
+th{background:#eef2ff;color:#111827}
+pre{background:#0f172a;color:#e5e7eb;border-radius:14px;padding:16px;margin:16px 0;overflow-x:auto;font-family:Consolas,monospace;line-height:1.6}
+@media(max-width:900px){.page{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.hero h1{font-size:27px}h2{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="page">
+<aside class="sidebar"><h2>Topics</h2><a href="#intro">Introduction to System & Application Security</a>
+<a href="#hacking-concept">System Hacking Concepts</a>
+<a href="#gaining-access">Gaining Access</a>
+<a href="#password-cracking">Password Cracking Concepts</a>
+<a href="#vulnerability">Vulnerability Exploitation</a>
+<a href="#privilege">Escalating Privileges</a>
+<a href="#hiding-files">Hiding Files and Concealment</a>
+<a href="#logs">Clearing or Tampering with Logs</a>
+<a href="#secure-development">Application Security Practices</a></aside>
+<main class="content">
+<div class="hero"><h1>System & Application Security - Part 1</h1><p>System hacking concepts को ethical and defensive perspective से—gaining access, password attacks, vulnerability exploitation, privilege escalation, file concealment, log tampering और application security practices सहित—समझाया गया है।</p></div>
+<section id="intro"><h2>Introduction to System & Application Security</h2>
+<p><strong>System and Application Security</strong> operating systems, user accounts, files, applications, databases और services को unauthorized access, misuse, malware और attacks से protect करने की process है।</p>
+<div class="image-icon"><img src="" alt="System and Application Security"><p>Image Placeholder: System and Application Security Layers</p></div>
+<h4>Main Objectives</h4>
+<ul>
+<li>Unauthorized access रोकना</li>
+<li>Applications की vulnerabilities कम करना</li>
+<li>User privileges control करना</li>
+<li>Logs और monitoring maintain करना</li>
+<li>Data confidentiality, integrity और availability protect करना</li>
+</ul>
+<div class="warning-box"><b>Important:</b><br>System hacking concepts केवल authorized lab, academic study और defensive security understanding के लिए पढ़े जाने चाहिए।</div>
+</section>
+<section id="hacking-concept"><h2>System Hacking Concepts</h2>
+<p><strong>System Hacking</strong> का academic meaning system weaknesses को identify करके unauthorized access या control के possible stages को समझना है। Ethical security professionals इन stages को जानकर defense strong बनाते हैं।</p>
+<div class="image-icon"><img src="" alt="System Hacking Lifecycle"><p>Image Placeholder: High-Level System Hacking Lifecycle</p></div>
+<pre>Reconnaissance
+      ↓
+Gaining Access
+      ↓
+Privilege Escalation
+      ↓
+Persistence / Concealment
+      ↓
+Evidence Handling and Response</pre>
+</section>
+<section id="gaining-access"><h2>Gaining Access</h2>
+<p><strong>Gaining Access</strong> वह stage है जहाँ attacker किसी weakness, stolen credential या misconfiguration का misuse करके system में entry प्राप्त करने की कोशिश करता है।</p>
+<h4>Common Causes</h4>
+<ul>
+<li>Weak passwords</li>
+<li>Default credentials</li>
+<li>Unpatched software</li>
+<li>Phishing</li>
+<li>Misconfigured services</li>
+<li>Excessive permissions</li>
+</ul>
+<h4>Defensive Measures</h4>
+<ul>
+<li>MFA enable करें।</li>
+<li>Strong password policy use करें।</li>
+<li>Unused services disable करें।</li>
+<li>Regular patching करें।</li>
+<li>Login attempts monitor करें।</li>
+</ul>
+</section>
+<section id="password-cracking"><h2>Password Cracking Concepts</h2>
+<p><strong>Password Cracking</strong> passwords को guess, recover या break करने की attempt है। Security study में इसका उद्देश्य weak password practices के risks समझना है।</p>
+<table>
+<tr><th>Concept</th><th>Meaning</th></tr>
+<tr><td>Brute Force</td><td>Many possible combinations try करना</td></tr>
+<tr><td>Dictionary Attack</td><td>Common words/password lists try करना</td></tr>
+<tr><td>Credential Stuffing</td><td>Leaked credentials reuse करना</td></tr>
+<tr><td>Password Spraying</td><td>Few common passwords many accounts पर try करना</td></tr>
+</table>
+<h4>Protection</h4>
+<ul>
+<li>Long passphrases</li>
+<li>MFA</li>
+<li>Account lockout/rate limiting</li>
+<li>Password hashing</li>
+<li>Unique passwords</li>
+</ul>
+</section>
+<section id="vulnerability"><h2>Vulnerability Exploitation</h2>
+<p><strong>Vulnerability</strong> system, software या configuration की weakness है। <strong>Exploitation</strong> उस weakness का misuse है।</p>
+<h4>Examples of Weaknesses</h4>
+<ul>
+<li>Outdated software</li>
+<li>Weak input validation</li>
+<li>Insecure permissions</li>
+<li>Open unnecessary ports</li>
+<li>Default configuration</li>
+</ul>
+<h4>Defensive Cycle</h4>
+<ol>
+<li>Assets identify करें।</li>
+<li>Vulnerability scan करें।</li>
+<li>Risk prioritize करें।</li>
+<li>Patch या mitigate करें।</li>
+<li>Retest करें।</li>
+</ol>
+</section>
+<section id="privilege"><h2>Escalating Privileges</h2>
+<p><strong>Privilege Escalation</strong> low-level access से higher permissions प्राप्त करने की unauthorized attempt है।</p>
+<table>
+<tr><th>Type</th><th>Meaning</th></tr>
+<tr><td>Vertical Escalation</td><td>User से administrator-level access</td></tr>
+<tr><td>Horizontal Escalation</td><td>Same-level दूसरे user के data/access तक पहुँचना</td></tr>
+</table>
+<h4>Protection</h4>
+<ul>
+<li>Least privilege principle</li>
+<li>Role-based access control</li>
+<li>Patch management</li>
+<li>Privilege review</li>
+<li>Administrative account separation</li>
+</ul>
+</section>
+<section id="hiding-files"><h2>Hiding Files and Concealment</h2>
+<p>Attackers unauthorized files, tools या data को hidden locations, misleading names या altered attributes के माध्यम से conceal कर सकते हैं। Defensive security में hidden files और unusual changes detect करना important है।</p>
+<h4>Detection Measures</h4>
+<ul>
+<li>File integrity monitoring</li>
+<li>Hidden file review</li>
+<li>Endpoint detection tools</li>
+<li>Unusual process monitoring</li>
+<li>Known-good baseline comparison</li>
+</ul>
+</section>
+<section id="logs"><h2>Clearing or Tampering with Logs</h2>
+<p>Security logs user activity, login attempts, system events और errors record करते हैं। Attackers traces hide करने के लिए logs delete या alter करने की कोशिश कर सकते हैं।</p>
+<h4>Protection</h4>
+<ul>
+<li>Centralized logging</li>
+<li>Remote log storage</li>
+<li>Write-protected audit logs</li>
+<li>Regular log backup</li>
+<li>Alerting on log deletion</li>
+<li>Time synchronization</li>
+</ul>
+<div class="remember-box"><b>Remember:</b><br>Logs incident investigation के लिए critical evidence होते हैं।</div>
+</section>
+<section id="secure-development"><h2>Application Security Practices</h2>
+<ul>
+<li>Secure coding standards</li>
+<li>Input validation</li>
+<li>Authentication and session security</li>
+<li>Error handling without sensitive disclosure</li>
+<li>Dependency updates</li>
+<li>Code review</li>
+<li>Security testing</li>
+<li>Secrets को source code में store न करना</li>
+</ul>
+<div class="note-box"><b>Professional Tip:</b><br>Application security development के अंत में add नहीं की जानी चाहिए; इसे design stage से include करना चाहिए।</div>
+</section>
+</main>
+</div>
+</body>
+</html>

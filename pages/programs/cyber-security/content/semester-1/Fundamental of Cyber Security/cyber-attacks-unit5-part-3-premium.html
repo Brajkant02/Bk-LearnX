@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit-5 Cyber Attacks Procedure - Part 3</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f7fb;color:#1f2937;line-height:1.75}
+.page{display:grid;grid-template-columns:300px 1fr;gap:20px;max-width:1580px;margin:auto;padding:10px}
+.sidebar{position:sticky;top:10px;height:calc(100vh - 20px);overflow-y:auto;background:#fff;border-radius:16px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.08);align-self:start}
+.sidebar h2{font-size:20px;margin-bottom:12px;color:#111827}
+.sidebar a{display:block;text-decoration:none;color:#374151;padding:8px 10px;border-radius:10px;margin-bottom:4px;font-size:14.4px}
+.sidebar a:hover{background:#eef2ff;color:#1d4ed8}
+.content{background:#fff;border-radius:18px;padding:10px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.hero{padding:30px 20px;border-radius:16px;background:linear-gradient(135deg,#eef2ff,#f8fafc);margin-bottom:18px}
+.hero h1{font-size:34px;color:#111827;margin-bottom:10px}
+.hero p{font-size:18px;color:#374151}
+section{padding:22px 10px;border-bottom:1px solid #e5e7eb}
+section:last-child{border-bottom:none}
+h2{font-size:27px;color:#111827;margin-bottom:12px;border-left:5px solid #2563eb;padding-left:12px}
+h3{font-size:22px;color:#1f2937;margin:18px 0 8px}
+h4{font-size:18px;color:#111827;margin:14px 0 6px}
+p{margin:10px 0;font-size:17px}
+ul,ol{margin-left:24px;margin-top:8px}
+li{margin:7px 0;font-size:16.5px}
+strong{color:#111827}
+.image-icon{min-height:180px;border:2px dashed #94a3b8;border-radius:16px;background:#f8fafc;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;margin:18px 0;color:#475569;font-weight:600;flex-direction:column;gap:8px}
+.note-box{background:#f0fdf4;border-left:5px solid #22c55e;border-radius:14px;padding:14px 16px;margin:16px 0}
+.info-box{background:#ecfeff;border-left:5px solid #06b6d4;border-radius:14px;padding:14px 16px;margin:16px 0}
+.remember-box{background:#fff7ed;border-left:5px solid #f97316;border-radius:14px;padding:14px 16px;margin:16px 0}
+.warning-box{background:#fef2f2;border-left:5px solid #ef4444;border-radius:14px;padding:14px 16px;margin:16px 0}
+table{width:100%;border-collapse:collapse;margin:16px 0;border-radius:12px;overflow:hidden;font-size:15.3px}
+th,td{border:1px solid #d1d5db;padding:10px;text-align:left;vertical-align:top}
+th{background:#eef2ff;color:#111827}
+pre{background:#0f172a;color:#e5e7eb;border-radius:14px;padding:16px;margin:16px 0;overflow-x:auto;font-family:Consolas,monospace;line-height:1.6}
+@media(max-width:900px){.page{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.hero h1{font-size:27px}h2{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="page">
+<aside class="sidebar"><h2>Topics</h2><a href="#enum">Enumeration Concepts</a>
+<a href="#techniques">Enumeration Techniques - High-Level</a>
+<a href="#netbios">NetBIOS Enumeration</a>
+<a href="#netbios-defense">NetBIOS Security Countermeasures</a>
+<a href="#directory">Directory and Account Exposure</a>
+<a href="#shares">Shared Resource Security</a>
+<a href="#logging">Enumeration Detection and Logging</a>
+<a href="#procedure">Defensive Assessment Procedure</a>
+<a href="#ethics">Legal and Ethical Considerations</a>
+<a href="#checklist">Unit-5 Security Checklist</a></aside>
+<main class="content">
+<div class="hero"><h1>Unit-5 Cyber Attacks Procedure - Part 3</h1><p>Enumeration concepts, NetBIOS enumeration, shared resources, detection, countermeasures और legal-ethical considerations को premium defensive format में समझाया गया है।</p></div>
+<section id="enum"><h2>Enumeration Concepts</h2>
+<p><strong>Enumeration</strong> authorized security assessment में systems से structured information identify करने की process है, जैसे users, groups, shared resources, services और naming information।</p>
+<div class="image-icon">Image Placeholder: Enumeration Information Categories</div>
+<div class="warning-box"><b>Authorized Use Only:</b><br>Enumeration केवल owned या explicitly authorized systems पर perform की जानी चाहिए।</div>
+</section>
+<section id="techniques"><h2>Enumeration Techniques - High-Level</h2>
+<h4>Information Categories</h4>
+<ul>
+<li>User and group information</li>
+<li>Shared resources</li>
+<li>Service banners</li>
+<li>Domain and directory information</li>
+<li>Network naming information</li>
+<li>Application endpoints</li>
+</ul>
+<p>Defensive teams enumeration exposure review करके unnecessary information disclosure reduce करती हैं।</p>
+</section>
+<section id="netbios"><h2>NetBIOS Enumeration</h2>
+<p><strong>NetBIOS</strong> legacy Windows networking में naming और resource-sharing services से संबंधित technology है। Misconfigured environments में system names, workgroups या shared resources जैसी information expose हो सकती है।</p>
+<div class="image-icon">Image Placeholder: NetBIOS Name and Share Exposure</div>
+<h4>Security Risks</h4>
+<ul>
+<li>System names exposure</li>
+<li>Workgroup/domain information disclosure</li>
+<li>Shared resource visibility</li>
+<li>Legacy protocol risk</li>
+</ul>
+</section>
+<section id="netbios-defense"><h2>NetBIOS Security Countermeasures</h2>
+<ul>
+<li>NetBIOS को जहाँ required न हो disable करें।</li>
+<li>File sharing को trusted networks तक restrict करें।</li>
+<li>Firewall पर legacy ports block/restrict करें।</li>
+<li>Strong authentication use करें।</li>
+<li>Anonymous access disable करें।</li>
+<li>Shared folders और permissions audit करें।</li>
+</ul>
+</section>
+<section id="directory"><h2>Directory and Account Exposure</h2>
+<p>Usernames, groups और directory structures का exposure password attacks और social engineering risk बढ़ा सकता है।</p>
+<h4>Protection</h4>
+<ul>
+<li>Generic error messages use करें।</li>
+<li>Account discovery prevent करें।</li>
+<li>Inactive accounts disable करें।</li>
+<li>MFA लागू करें।</li>
+<li>Directory permissions review करें।</li>
+</ul>
+</section>
+<section id="shares"><h2>Shared Resource Security</h2>
+<table>
+<tr><th>Risk</th><th>Protection</th></tr>
+<tr><td>Public share</td><td>Authentication required</td></tr>
+<tr><td>Excessive permissions</td><td>Least privilege</td></tr>
+<tr><td>Sensitive files</td><td>Encryption and access review</td></tr>
+<tr><td>Guest access</td><td>Disable unless necessary</td></tr>
+</table>
+</section>
+<section id="logging"><h2>Enumeration Detection and Logging</h2>
+<h4>Useful Monitoring</h4>
+<ul>
+<li>Repeated account queries</li>
+<li>Unusual share access</li>
+<li>Authentication failures</li>
+<li>Legacy protocol traffic</li>
+<li>Unexpected directory queries</li>
+</ul>
+<p>Centralized logs और alerting suspicious enumeration behavior detect करने में help करते हैं।</p>
+</section>
+<section id="procedure"><h2>Defensive Assessment Procedure</h2>
+<pre>Define Scope
+    ↓
+Collect Public Information
+    ↓
+Discover Authorized Assets
+    ↓
+Review Exposed Services
+    ↓
+Assess Information Disclosure
+    ↓
+Apply Countermeasures
+    ↓
+Retest and Document</pre>
+</section>
+<section id="ethics"><h2>Legal and Ethical Considerations</h2>
+<ul>
+<li>Written authorization लें।</li>
+<li>Defined scope follow करें।</li>
+<li>Production disruption avoid करें।</li>
+<li>Sensitive data securely handle करें।</li>
+<li>Findings responsible तरीके से report करें।</li>
+<li>Evidence और logs preserve करें।</li>
+</ul>
+</section>
+<section id="checklist"><h2>Unit-5 Security Checklist</h2>
+<ul>
+<li>Public footprint reviewed</li>
+<li>Employee oversharing awareness provided</li>
+<li>DNS and domain records audited</li>
+<li>External assets inventoried</li>
+<li>Unnecessary services disabled</li>
+<li>Network diagram updated</li>
+<li>Legacy protocols restricted</li>
+<li>Shared resources reviewed</li>
+<li>Logs centralized</li>
+<li>Authorized retesting completed</li>
+</ul>
+<div class="remember-box"><b>Remember:</b><br>Reconnaissance, scanning और enumeration को समझने का उद्देश्य attackers की मदद करना नहीं, बल्कि organization की exposed information और attack surface कम करना है।</div>
+</section>
+</main>
+</div>
+</body>
+</html>

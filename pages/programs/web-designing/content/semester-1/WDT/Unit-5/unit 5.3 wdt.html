@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moodle - Part 3</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f7fb;color:#1f2937;line-height:1.75}
+.page{display:grid;grid-template-columns:290px 1fr;gap:20px;max-width:1550px;margin:auto;padding:10px}
+.sidebar{position:sticky;top:10px;height:calc(100vh - 20px);overflow-y:auto;background:#fff;border-radius:16px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.08);align-self:start}
+.sidebar h2{font-size:20px;margin-bottom:12px;color:#111827}
+.sidebar a{display:block;text-decoration:none;color:#374151;padding:8px 10px;border-radius:10px;margin-bottom:4px;font-size:14.5px}
+.sidebar a:hover{background:#eef2ff;color:#1d4ed8}
+.content{background:#fff;border-radius:18px;padding:10px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.hero{padding:30px 20px;border-radius:16px;background:linear-gradient(135deg,#eef2ff,#f8fafc);margin-bottom:18px}
+.hero h1{font-size:34px;color:#111827;margin-bottom:10px}
+.hero p{font-size:18px;color:#374151}
+section{padding:22px 10px;border-bottom:1px solid #e5e7eb}
+section:last-child{border-bottom:none}
+h2{font-size:27px;color:#111827;margin-bottom:12px;border-left:5px solid #2563eb;padding-left:12px}
+h3{font-size:22px;color:#1f2937;margin:18px 0 8px}
+h4{font-size:18px;color:#111827;margin:14px 0 6px}
+p{margin:10px 0;font-size:17px}
+ul,ol{margin-left:24px;margin-top:8px}
+li{margin:7px 0;font-size:16.5px}
+strong{color:#111827}
+.image-icon{min-height:180px;border:2px dashed #94a3b8;border-radius:16px;background:#f8fafc;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;margin:18px 0;color:#475569;font-weight:600;flex-direction:column;gap:8px}
+.image-icon img{max-width:100%;height:auto}
+.note-box{background:#f0fdf4;border-left:5px solid #22c55e;border-radius:14px;padding:14px 16px;margin:16px 0}
+.info-box{background:#ecfeff;border-left:5px solid #06b6d4;border-radius:14px;padding:14px 16px;margin:16px 0}
+.remember-box{background:#fff7ed;border-left:5px solid #f97316;border-radius:14px;padding:14px 16px;margin:16px 0}
+table{width:100%;border-collapse:collapse;margin:16px 0;border-radius:12px;overflow:hidden;font-size:15.3px}
+th,td{border:1px solid #d1d5db;padding:10px;text-align:left;vertical-align:top}
+th{background:#eef2ff;color:#111827}
+pre{background:#0f172a;color:#e5e7eb;border-radius:14px;padding:16px;margin:16px 0;overflow-x:auto;font-family:Consolas,monospace;line-height:1.6}
+@media(max-width:900px){.page{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.hero h1{font-size:27px}h2{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="page">
+<aside class="sidebar"><h2>Topics</h2><a href="#intro">Moodle Introduction</a>
+<a href="#installation">Moodle Installation</a>
+<a href="#architecture">Moodle Architecture</a>
+<a href="#ui">Moodle User Interface</a>
+<a href="#themes">Theme Management</a>
+<a href="#courses">Managing Courses and Categories</a>
+<a href="#activities">Activities</a>
+<a href="#resources">Resources and Blocks</a>
+<a href="#users">User Management</a>
+<a href="#auth">Authentication and Enrollment</a>
+<a href="#files">File Management</a>
+<a href="#homepage">Setting up the Home Page</a>
+<a href="#roles">Roles and Permissions</a>
+<a href="#security">Security</a>
+<a href="#performance">Performance</a>
+<a href="#backup">Backup and Restore</a>
+<a href="#server">Server Settings</a></aside>
+<main class="content">
+<div class="hero"><h1>Moodle - Part 3</h1><p>Moodle installation, architecture, themes, courses, activities, resources, users, authentication, enrollment, roles, security, performance, backup और server settings को deep premium format में समझाया गया है।</p></div>
+<section id="intro"><h2>Moodle Introduction</h2>
+<p><strong>Moodle</strong> एक open-source Learning Management System है जिसका use online courses, activities, assignments, quizzes, grades और learners manage करने के लिए किया जाता है।</p>
+<div class="image-icon"><img src="" alt="Moodle LMS"><p>Image Placeholder: Moodle LMS Overview</p></div>
+</section>
+<section id="installation"><h2>Moodle Installation</h2>
+<h4>Requirements</h4>
+<ul><li>Web server</li><li>PHP</li><li>Database</li><li>Moodle data directory</li></ul>
+<h4>Steps</h4>
+<ol><li>Moodle package obtain करें।</li><li>Files web server पर place करें।</li><li>Database create करें।</li><li>Moodle data directory create करें।</li><li>Browser installer run करें।</li><li>Admin account और site settings configure करें।</li></ol>
+<div class="image-icon"><img src="" alt="Moodle Installation"><p>Image Placeholder: Moodle Installation Wizard</p></div>
+</section>
+<section id="architecture"><h2>Moodle Architecture</h2>
+<table>
+<tr><th>Layer</th><th>Purpose</th></tr>
+<tr><td>User Interface</td><td>Teachers and learners interaction</td></tr>
+<tr><td>Application Layer</td><td>Courses, activities, grading</td></tr>
+<tr><td>Plugins</td><td>Extended functionality</td></tr>
+<tr><td>Database</td><td>Users, courses, grades, logs</td></tr>
+<tr><td>File Storage</td><td>Resources and uploaded files</td></tr>
+</table>
+<div class="image-icon"><img src="" alt="Moodle Architecture"><p>Image Placeholder: Moodle Architecture</p></div>
+</section>
+<section id="ui"><h2>Moodle User Interface</h2>
+<h4>Main Areas</h4>
+<ul><li>Dashboard</li><li>Site administration</li><li>Course page</li><li>Navigation drawer</li><li>Blocks</li><li>User menu</li></ul>
+</section>
+<section id="themes"><h2>Theme Management</h2>
+<ul><li>Theme install करना</li><li>Default theme select करना</li><li>Logo/colors configure करना</li><li>Custom CSS add करना</li><li>Mobile responsiveness test करना</li></ul>
+<div class="image-icon"><img src="" alt="Moodle Themes"><p>Image Placeholder: Moodle Theme Management</p></div>
+</section>
+<section id="courses"><h2>Managing Courses and Categories</h2>
+<h4>Course Categories</h4>
+<p>Categories courses को department, subject, semester या program के अनुसार organize करती हैं।</p>
+<h4>Course Management</h4>
+<ul><li>Create course</li><li>Course format choose करना</li><li>Start/end dates</li><li>Visibility</li><li>Completion tracking</li><li>Groups and grouping</li></ul>
+</section>
+<section id="activities"><h2>Activities</h2>
+<table>
+<tr><th>Activity</th><th>Purpose</th></tr>
+<tr><td>Assignment</td><td>Student submissions</td></tr>
+<tr><td>Quiz</td><td>Online assessment</td></tr>
+<tr><td>Forum</td><td>Discussion</td></tr>
+<tr><td>Chat</td><td>Real-time communication</td></tr>
+<tr><td>Lesson</td><td>Branching learning content</td></tr>
+<tr><td>Workshop</td><td>Peer assessment</td></tr>
+</table>
+</section>
+<section id="resources"><h2>Resources and Blocks</h2>
+<h4>Resources</h4>
+<ul><li>File</li><li>Folder</li><li>Page</li><li>Book</li><li>URL</li><li>Label/Text area</li></ul>
+<h4>Blocks</h4>
+<ul><li>Calendar</li><li>Upcoming events</li><li>Course completion</li><li>Navigation</li><li>HTML/Text block</li></ul>
+<div class="image-icon"><img src="" alt="Moodle Activities Resources Blocks"><p>Image Placeholder: Moodle Activities, Resources and Blocks</p></div>
+</section>
+<section id="users"><h2>User Management</h2>
+<h4>Main Tasks</h4>
+<ul><li>Create/upload users</li><li>Edit profiles</li><li>Suspend/delete users</li><li>Cohorts manage करना</li><li>Bulk user actions</li></ul>
+</section>
+<section id="auth"><h2>Authentication and Enrollment</h2>
+<h4>Authentication</h4>
+<ul><li>Manual accounts</li><li>Email-based self-registration</li><li>LDAP</li><li>OAuth</li><li>External database</li></ul>
+<h4>Enrollment</h4>
+<ul><li>Manual enrollment</li><li>Self enrollment</li><li>Cohort sync</li><li>Guest access</li><li>External database enrollment</li></ul>
+</section>
+<section id="files"><h2>File Management</h2>
+<p>Moodle files course context, user context और activities के अनुसार manage करता है।</p>
+<h4>Good Practices</h4>
+<ul><li>Logical file names</li><li>Compressed media</li><li>Correct permissions</li><li>Repository integration</li><li>Storage monitoring</li></ul>
+</section>
+<section id="homepage"><h2>Setting up the Home Page</h2>
+<ul><li>Site name and description</li><li>Front page items</li><li>Available courses</li><li>Blocks</li><li>Custom announcements</li><li>Theme-based layout</li></ul>
+<div class="image-icon"><img src="" alt="Moodle Home Page"><p>Image Placeholder: Moodle Front Page</p></div>
+</section>
+<section id="roles"><h2>Roles and Permissions</h2>
+<table>
+<tr><th>Role</th><th>Main Responsibility</th></tr>
+<tr><td>Administrator</td><td>Complete site management</td></tr>
+<tr><td>Manager</td><td>Course/category administration</td></tr>
+<tr><td>Teacher</td><td>Course content and grading</td></tr>
+<tr><td>Non-editing Teacher</td><td>Teaching without content editing</td></tr>
+<tr><td>Student</td><td>Learning and submissions</td></tr>
+<tr><td>Guest</td><td>Limited view access</td></tr>
+</table>
+</section>
+<section id="security"><h2>Security</h2>
+<ul><li>Strong passwords</li><li>HTTPS</li><li>Regular updates</li><li>Least privilege roles</li><li>Backup protection</li><li>Plugin review</li><li>Login monitoring</li><li>Secure file permissions</li></ul>
+<div class="remember-box"><b>Remember:</b><br>Moodle security केवल server की नहीं, roles, plugins और user practices की भी responsibility है।</div>
+</section>
+<section id="performance"><h2>Performance</h2>
+<ul><li>Caching enable करें।</li><li>Database optimize करें।</li><li>Large media compress करें।</li><li>Cron configure करें।</li><li>Unused plugins remove करें।</li><li>Server resources monitor करें।</li></ul>
+</section>
+<section id="backup"><h2>Backup and Restore</h2>
+<h4>Backup Types</h4>
+<ul><li>Course backup</li><li>Automated backup</li><li>Site backup</li><li>Database backup</li><li>Moodledata backup</li></ul>
+<h4>Restore</h4>
+<p>Course backup file से course restore किया जा सकता है। Full disaster recovery के लिए code, database और moodledata तीनों required हैं।</p>
+</section>
+<section id="server"><h2>Server Settings</h2>
+<h4>Important Settings</h4>
+<ul><li>PHP limits</li><li>Upload size</li><li>Memory limit</li><li>Database connection</li><li>Cron jobs</li><li>Email configuration</li><li>Session handling</li><li>File permissions</li></ul>
+<div class="note-box"><b>Professional Tip:</b><br>Production Moodle पर server settings, cron और backup schedule properly configure करना जरूरी है।</div>
+</section>
+</main>
+</div>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MySQL/SQL - Part 1</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f7fb;color:#1f2937;line-height:1.75}
+.page{display:grid;grid-template-columns:290px 1fr;gap:20px;max-width:1550px;margin:auto;padding:10px}
+.sidebar{position:sticky;top:10px;height:calc(100vh - 20px);overflow-y:auto;background:#fff;border-radius:16px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.08);align-self:start}
+.sidebar h2{font-size:20px;margin-bottom:12px;color:#111827}
+.sidebar a{display:block;text-decoration:none;color:#374151;padding:8px 10px;border-radius:10px;margin-bottom:4px;font-size:14.5px}
+.sidebar a:hover{background:#eef2ff;color:#1d4ed8}
+.content{background:#fff;border-radius:18px;padding:10px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.hero{padding:30px 20px;border-radius:16px;background:linear-gradient(135deg,#eef2ff,#f8fafc);margin-bottom:18px}
+.hero h1{font-size:34px;color:#111827;margin-bottom:10px}
+.hero p{font-size:18px;color:#374151}
+section{padding:22px 10px;border-bottom:1px solid #e5e7eb}
+section:last-child{border-bottom:none}
+h2{font-size:27px;color:#111827;margin-bottom:12px;border-left:5px solid #2563eb;padding-left:12px}
+h3{font-size:22px;color:#1f2937;margin:18px 0 8px}
+h4{font-size:18px;color:#111827;margin:14px 0 6px}
+p{margin:10px 0;font-size:17px}
+ul,ol{margin-left:24px;margin-top:8px}
+li{margin:7px 0;font-size:16.5px}
+strong{color:#111827}
+.image-icon{min-height:180px;border:2px dashed #94a3b8;border-radius:16px;background:#f8fafc;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;margin:18px 0;color:#475569;font-weight:600;flex-direction:column;gap:8px}
+.image-icon img{max-width:100%;height:auto}
+.note-box{background:#f0fdf4;border-left:5px solid #22c55e;border-radius:14px;padding:14px 16px;margin:16px 0}
+.info-box{background:#ecfeff;border-left:5px solid #06b6d4;border-radius:14px;padding:14px 16px;margin:16px 0}
+.remember-box{background:#fff7ed;border-left:5px solid #f97316;border-radius:14px;padding:14px 16px;margin:16px 0}
+table{width:100%;border-collapse:collapse;margin:16px 0;border-radius:12px;overflow:hidden;font-size:15.3px}
+th,td{border:1px solid #d1d5db;padding:10px;text-align:left;vertical-align:top}
+th{background:#eef2ff;color:#111827}
+code{background:#111827;color:#f9fafb;padding:2px 6px;border-radius:6px;font-family:Consolas,monospace;font-size:15px}
+pre{background:#0f172a;color:#e5e7eb;border-radius:14px;padding:16px;margin:16px 0;overflow-x:auto;font-family:Consolas,monospace;line-height:1.6}
+@media(max-width:900px){.page{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.hero h1{font-size:27px}h2{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="page">
+<aside class="sidebar"><h2>Topics</h2><a href="#intro">Introduction to SQL and MySQL</a>
+<a href="#categories">SQL Language Categories</a>
+<a href="#ddl">Data Definition Language</a>
+<a href="#dml">Data Manipulation Language</a>
+<a href="#dcl">DCL and TCL</a>
+<a href="#naming">Object Naming Conventions</a>
+<a href="#datatypes">MySQL Data Types</a></aside>
+<main class="content">
+<div class="hero"><h1>MySQL/SQL - Part 1</h1><p>SQL fundamentals, DDL, DML, DCL, TCL, naming conventions और data types को premium format में समझाया गया है।</p></div>
+<section id="intro"><h2>Introduction to SQL and MySQL</h2>
+<p><strong>SQL</strong> का full form Structured Query Language है। इसका use relational database में data create, store, retrieve, update, delete और control करने के लिए किया जाता है। <strong>MySQL</strong> एक popular relational database management system है जो SQL language support करता है।</p>
+<div class="image-icon"><img src="" alt="SQL and MySQL Overview"><p>Image Placeholder: SQL and MySQL Overview</p></div>
+<h4>Main Uses</h4>
+<ul><li>Database create करना</li><li>Tables बनाना</li><li>Records insert/update/delete करना</li><li>Data search और filter करना</li><li>Security और transactions manage करना</li></ul>
+</section>
+<section id="categories"><h2>SQL Language Categories</h2>
+<table>
+<tr><th>Category</th><th>Purpose</th><th>Commands</th></tr>
+<tr><td>DDL</td><td>Database objects define करना</td><td>CREATE, ALTER, DROP, TRUNCATE</td></tr>
+<tr><td>DML</td><td>Data modify करना</td><td>INSERT, UPDATE, DELETE</td></tr>
+<tr><td>DQL</td><td>Data retrieve करना</td><td>SELECT</td></tr>
+<tr><td>DCL</td><td>Permissions control करना</td><td>GRANT, REVOKE</td></tr>
+<tr><td>TCL</td><td>Transactions manage करना</td><td>COMMIT, ROLLBACK, SAVEPOINT</td></tr>
+</table>
+</section>
+<section id="ddl"><h2>Data Definition Language</h2>
+<p><strong>DDL</strong> database structure create और modify करने के लिए use होती है।</p>
+<pre>CREATE DATABASE college;
+ALTER TABLE student ADD email VARCHAR(100);
+DROP TABLE old_student;
+TRUNCATE TABLE temp_data;</pre>
+</section>
+<section id="dml"><h2>Data Manipulation Language</h2>
+<p><strong>DML</strong> table के records को insert, update और delete करने के लिए use होती है।</p>
+<pre>INSERT INTO student VALUES (1, 'Aman');
+UPDATE student SET name='Ravi' WHERE id=1;
+DELETE FROM student WHERE id=1;</pre>
+</section>
+<section id="dcl"><h2>DCL and TCL</h2>
+<h4>DCL</h4><pre>GRANT SELECT ON college.* TO user1;
+REVOKE INSERT ON college.* FROM user1;</pre>
+<h4>TCL</h4><pre>START TRANSACTION;
+UPDATE account SET balance=balance-500 WHERE id=1;
+COMMIT;</pre>
+</section>
+<section id="naming"><h2>Object Naming Conventions</h2>
+<ul><li>Names meaningful रखें।</li><li>Spaces avoid करें।</li><li>Reserved keywords use न करें।</li><li>Consistent lowercase naming use करें।</li><li>Primary key के लिए id या table_id pattern रखें।</li><li>Foreign key का नाम referenced key से match करें।</li></ul>
+<table>
+<tr><th>Good Name</th><th>Poor Name</th></tr>
+<tr><td>student_id</td><td>x1</td></tr>
+<tr><td>course_name</td><td>data</td></tr>
+<tr><td>enrollment_date</td><td>date1</td></tr>
+</table>
+</section>
+<section id="datatypes"><h2>MySQL Data Types</h2>
+<table>
+<tr><th>Category</th><th>Data Types</th><th>Use</th></tr>
+<tr><td>Numeric</td><td>INT, BIGINT, DECIMAL, FLOAT</td><td>Numbers</td></tr>
+<tr><td>String</td><td>CHAR, VARCHAR, TEXT</td><td>Text</td></tr>
+<tr><td>Date/Time</td><td>DATE, TIME, DATETIME, TIMESTAMP</td><td>Date and time</td></tr>
+<tr><td>Boolean</td><td>BOOLEAN</td><td>True/False</td></tr>
+<tr><td>Binary</td><td>BLOB</td><td>Binary files</td></tr>
+</table>
+<div class="remember-box"><b>Remember:</b><br>Correct data type storage, validation और performance तीनों improve करता है।</div>
+</section>
+</main>
+</div>
+</body>
+</html>

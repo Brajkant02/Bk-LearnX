@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>jQuery Premium Notes</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+      line-height: 1.75
+    }
+
+    .page {
+      display: grid;
+      grid-template-columns: 285px 1fr;
+      gap: 20px;
+      max-width: 1500px;
+      margin: auto;
+      padding: 10px
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 10px;
+      height: calc(100vh - 20px);
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
+      align-self: start
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #111827
+    }
+
+    .sidebar a {
+      display: block;
+      text-decoration: none;
+      color: #374151;
+      padding: 8px 10px;
+      border-radius: 10px;
+      margin-bottom: 4px;
+      font-size: 14.7px
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+      color: #1d4ed8
+    }
+
+    .content {
+      background: #fff;
+      border-radius: 18px;
+      padding: 10px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08)
+    }
+
+    .hero {
+      padding: 28px 18px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #eef2ff, #f8fafc);
+      margin-bottom: 18px
+    }
+
+    .hero h1 {
+      font-size: 34px;
+      color: #111827;
+      margin-bottom: 10px
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #374151
+    }
+
+    section {
+      padding: 22px 10px;
+      border-bottom: 1px solid #e5e7eb
+    }
+
+    section:last-child {
+      border-bottom: none
+    }
+
+    h2 {
+      font-size: 27px;
+      color: #111827;
+      margin-bottom: 12px;
+      border-left: 5px solid #2563eb;
+      padding-left: 12px
+    }
+
+    h3 {
+      font-size: 22px;
+      color: #1f2937;
+      margin: 16px 0 8px
+    }
+
+    h4 {
+      font-size: 18px;
+      color: #111827;
+      margin: 14px 0 6px
+    }
+
+    p {
+      margin: 10px 0;
+      font-size: 17px
+    }
+
+    ul,
+    ol {
+      margin-left: 24px;
+      margin-top: 8px
+    }
+
+    li {
+      margin: 7px 0;
+      font-size: 16.5px
+    }
+
+    strong {
+      color: #111827
+    }
+
+    .image-icon {
+      min-height: 180px;
+      border: 2px dashed #94a3b8;
+      border-radius: 16px;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      margin: 18px 0;
+      color: #475569;
+      font-weight: 600
+    }
+
+    .image-icon img {
+      max-width: 100%;
+      height: auto
+    }
+
+    .note-box {
+      background: #f0fdf4;
+      border-left: 5px solid #22c55e;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .info-box {
+      background: #ecfeff;
+      border-left: 5px solid #06b6d4;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .remember-box {
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      font-size: 15.5px
+    }
+
+    th,
+    td {
+      border: 1px solid #d1d5db;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top
+    }
+
+    th {
+      background: #eef2ff;
+      color: #111827
+    }
+
+    code {
+      background: #111827;
+      color: #f9fafb;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-family: Consolas, monospace;
+      font-size: 15px
+    }
+
+    pre {
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 14px;
+      padding: 16px;
+      margin: 16px 0;
+      overflow-x: auto;
+      font-family: Consolas, monospace;
+      line-height: 1.6
+    }
+
+    .compiler {
+      width: 100%;
+      height: 2rem;
+      background-color: green;
+      text-align: center;
+    }
+
+    .compiler a {
+      text-decoration: none;
+      color: white;
+    }
+
+    @media(max-width:900px) {
+      .page {
+        grid-template-columns: 1fr
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto
+      }
+
+      .hero h1 {
+        font-size: 27px
+      }
+
+      h2 {
+        font-size: 24px
+      }
+    }
+    /* Iframe content responsive fix */
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.page,
+.content,
+section {
+  min-width: 0;
+  max-width: 100%;
+}
+
+img,
+video,
+svg,
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+table {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border-radius: 12px;
+  -webkit-overflow-scrolling: touch;
+}
+
+th,
+td {
+  min-width: 110px;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+pre {
+  max-width: 100%;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+code {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 900px) {
+  .page {
+    display: block;
+    width: 100%;
+    padding: 5px;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .content {
+    width: 100%;
+    min-width: 0;
+    padding: 6px;
+    border-radius: 10px;
+  }
+
+  section {
+    width: 100%;
+    padding: 16px 6px;
+  }
+
+  .hero {
+    padding: 18px 10px;
+  }
+
+  .hero h1 {
+    font-size: 24px;
+  }
+
+  h2 {
+    font-size: 21px;
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+
+  p,
+  li {
+    font-size: 15px;
+  }
+
+  .image-icon {
+    min-height: 130px;
+    padding: 8px;
+  }
+}
+  </style>
+
+<link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
+<script src="../../../../../../../assets/shared/portal.js" defer></script>
+<script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
+</head>
+
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <h2>Topics</h2>
+      <a href="#concept">JQuery Concept</a>
+      <a href="#adding">Adding JQuery to Web Page</a>
+      <a href="#selectors">JQuery Selectors</a>
+      <a href="#events">JQuery Event Methods</a>
+      <a href="#effects">JQuery Effects</a>
+      <a href="#hide-show">Hide/Show Effects</a>
+      <a href="#fade">Fade Effects</a>
+      <a href="#slide">Slide Effects</a>
+      <a href="#header-footer">Insertion of Header / Footer</a>
+    </aside>
+
+    <main class="content">
+      <div class="hero">
+        <h1>JQUERY</h1>
+      </div>
+
+      <section id="concept">
+        <h2>JQuery Concept</h2>
+
+        <p><strong>jQuery</strong> एक fast, small और feature-rich JavaScript library है। इसका main purpose JavaScript को आसान बनाना है। JavaScript में DOM selection, event handling, animations और AJAX जैसे tasks के लिए कई lines code लिखना पड़ता है, लेकिन jQuery में वही काम कम code में किया जा सकता है।</p>
+
+        <p>jQuery का slogan है: <strong>Write less, do more</strong>. इसका मतलब है कि कम code लिखकर ज्यादा काम किया जा सकता है। jQuery especially DOM manipulation, HTML element selection, CSS change, event handling, hide/show, fade, slide effects और AJAX operations के लिए popular रही है।</p>
+
+        <p>Modern JavaScript में कई features directly available हो गए हैं, इसलिए new projects में pure JavaScript या frameworks जैसे React, Vue आदि भी use होते हैं। फिर भी syllabus और पुराने web projects में jQuery important है क्योंकि बहुत सारी websites और plugins आज भी jQuery पर based हैं।</p>
+
+        <h4>Why jQuery Was Created</h4>
+        <ul>
+          <li>JavaScript DOM manipulation को easy बनाने के लिए।</li>
+          <li>Different browsers के behavior को handle करने के लिए।</li>
+          <li>Animations और effects को simple बनाने के लिए।</li>
+          <li>Event handling को short और readable बनाने के लिए।</li>
+          <li>AJAX operations को आसान बनाने के लिए।</li>
+        </ul>
+
+        <h4>JavaScript vs jQuery Example</h4>
+        <p>Same काम JavaScript और jQuery में compare करके देखें।</p>
+
+        <pre>// JavaScript
+document.getElementById("heading").style.color = "blue";</pre>
+
+        <pre>// jQuery
+$("#heading").css("color", "blue");</pre>
+
+        <h4>Basic jQuery Syntax</h4>
+        <pre>$(selector).action();</pre>
+
+        <table>
+          <tr>
+            <th>Part</th>
+            <th>Meaning</th>
+          </tr>
+          <tr>
+            <td><code>$</code></td>
+            <td>jQuery का short symbol है।</td>
+          </tr>
+          <tr>
+            <td><code>selector</code></td>
+            <td>HTML element select करता है।</td>
+          </tr>
+          <tr>
+            <td><code>action()</code></td>
+            <td>Selected element पर काम perform करता है।</td>
+          </tr>
+        </table>
+
+        <h4>Example</h4>
+        <pre>$("#box").hide();</pre>
+
+        <p>यह code <code>id="box"</code> वाले element को hide कर देगा।</p>
+
+        <div class="note-box"><b>Real Life Example:</b><br>अगर webpage पर “Show Answer” button click करने पर answer smoothly open हो, तो यह jQuery effects से आसानी से बनाया जा सकता है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>jQuery JavaScript की library है, अलग programming language नहीं। यह JavaScript code को short और आसान बनाती है।</div>
+      </section>
+
+      <section id="adding">
+        <h2>Adding JQuery to Web Page</h2>
+
+        <p>jQuery use करने से पहले उसे web page में add करना जरूरी होता है। HTML page में jQuery add करने के दो common methods हैं: CDN link के through और local downloaded file के through। CDN method beginner और quick testing के लिए easy होता है, जबकि local file method offline या controlled project setup के लिए useful होता है।</p>
+
+        <h4>Adding jQuery Using CDN</h4>
+        <p>CDN का full form Content Delivery Network है। इसमें jQuery file internet server से load होती है।</p>
+
+        <pre>&lt;script src="https://code.jquery.com/jquery-3.7.1.min.js"&gt;&lt;/script&gt;</pre>
+
+        <h4>Complete CDN Example</h4>
+        <pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;jQuery Example&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;h1 id="heading"&gt;Hello jQuery&lt;/h1&gt;
+
+  &lt;script src="https://code.jquery.com/jquery-3.7.1.min.js"&gt;&lt;/script&gt;
+
+  &lt;script&gt;
+    $("#heading").css("color", "blue");
+  &lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+
+        <div class="info-box"><b>Output:</b><br>Heading blue color में show होगी।</div>
+
+        <h4>Adding jQuery Using Local File</h4>
+        <p>Local method में jQuery file download करके project folder में रखी जाती है और HTML में link की जाती है।</p>
+
+        <pre>&lt;script src="jquery-min.js"&gt;&lt;/script&gt;</pre>
+
+        <h4>Correct Script Order</h4>
+        <p>jQuery code लिखने से पहले jQuery library load होनी चाहिए। अगर jQuery library के पहले jQuery code लिख दिया गया, तो <code>$ is not defined</code> error आ सकता है।</p>
+
+        <pre>&lt;!-- Correct order --&gt;
+&lt;script src="jquery-min.js"&gt;&lt;/script&gt;
+&lt;script src="script.js"&gt;&lt;/script&gt;</pre>
+
+        <h4>Document Ready Function</h4>
+        <p>jQuery code को तब run करना चाहिए जब HTML document पूरी तरह load हो जाए। इसके लिए document ready function use किया जाता है।</p>
+
+        <pre>$(document).ready(function() {
+  $("p").css("color", "green");
+});</pre>
+
+        <h4>Short Form of Document Ready</h4>
+        <pre>$(function() {
+  $("p").hide();
+});</pre>
+
+        <h4>CDN vs Local jQuery</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>CDN</th>
+            <th>Local File</th>
+          </tr>
+          <tr>
+            <td>Source</td>
+            <td>Internet server से load होती है।</td>
+            <td>Project folder से load होती है।</td>
+          </tr>
+          <tr>
+            <td>Internet Need</td>
+            <td>Internet required हो सकता है।</td>
+            <td>Offline भी work कर सकती है।</td>
+          </tr>
+          <tr>
+            <td>Setup</td>
+            <td>Easy और quick।</td>
+            <td>File download करनी पड़ती है।</td>
+          </tr>
+          <tr>
+            <td>Use</td>
+            <td>Testing और online projects।</td>
+            <td>Offline lab/practical और controlled projects।</td>
+          </tr>
+        </table>
+
+        <h4>Common Mistakes</h4>
+        <ul>
+          <li>jQuery library include करना भूल जाना।</li>
+          <li>jQuery code library load होने से पहले लिख देना।</li>
+          <li>CDN link गलत लिखना।</li>
+          <li>Local file का path गलत देना।</li>
+        </ul>
+
+        <div class="remember-box"><b>Remember:</b><br>jQuery code run करने से पहले jQuery library page में load होना जरूरी है।</div>
+      </section>
+
+      <section id="selectors">
+        <h2>JQuery Selectors</h2>
+
+        <p>jQuery selectors का use HTML elements को select करने के लिए किया जाता है। jQuery selectors CSS selectors जैसे ही होते हैं। jQuery में selected elements पर actions perform किए जाते हैं, जैसे hide, show, css change, text change, value read आदि।</p>
+
+        <p>jQuery selector syntax में dollar sign <code>$</code> और parentheses का use होता है। Selector quotes के अंदर लिखा जाता है।</p>
+
+        <h4>Basic Syntax</h4>
+        <pre>$(selector).action();</pre>
+
+        <h4>Element Selector</h4>
+        <p>Element selector tag name से elements select करता है।</p>
+
+        <pre>$("p").hide();</pre>
+
+        <p>यह सभी paragraphs को hide कर देगा।</p>
+
+        <h4>ID Selector</h4>
+        <p>ID selector unique element select करता है। CSS की तरह jQuery में भी ID selector <code>#</code> से लिखा जाता है।</p>
+
+        <pre>$("#heading").css("color", "red");</pre>
+
+        <h4>Class Selector</h4>
+        <p>Class selector same class वाले elements select करता है। Class selector dot <code>.</code> से लिखा जाता है।</p>
+
+        <pre>$("box").hide();</pre>
+
+        <h4>Universal Selector</h4>
+        <p>Universal selector सभी elements को select करता है।</p>
+
+        <pre>$("*").css("font-family", "Arial");</pre>
+
+        <h4>Grouping Selector</h4>
+        <p>Multiple selectors को एक साथ select किया जा सकता है।</p>
+
+        <pre>$("h1-p.note").css("color", "blue");</pre>
+
+        <h4>Attribute Selector</h4>
+        <p>Attribute selector किसी specific attribute वाले elements select करता है।</p>
+
+        <pre>$("input[type='text']"item.css("border", "2px solid blue"item/pre-h4-common-jquery-selectors/h4-table-tr-th-selector/th-th-example/th-th-meaning/th/tr-tr-td-element/td-td-code"p"item/code/td-td-all-paragraph-elements/td/tr-tr-td-id/td-td-code"#title"item/code/td-td-id"title"element/td/tr-tr-td-class/td-td-code".card"item/code/td-td-class"card"elements/td/tr-tr-td-universal/td-td-code"*"item/code/td-td-all-elements/td/tr-tr-td-grouping/td-td-code"h1, p"item/code/td-td-h1-p/td/tr-tr-td-first/td-td-code"p:first"item/code/td-td-first-paragraph/td/tr-tr-td-even/td-td-code"tr:even"item/code/td-td-even-table-rows/td/tr-tr-td-odd/td-td-code"tr:odd"item/code/td-td-odd-table-rows/td/tr/table-h4-example/h4-pre-lt-p-gt-first-paragraph-lt/p-gt-lt-p-class"special"gt-second-paragraph-lt/p-gt-lt-button-id"btn"gt-hide-special-lt/button-gt-lt-script-gt-document.ready(function() {
+  $("#btn"item.click(function() {
+    $(".special"item.hide();
+  });
+});
+&lt;/script-gt/pre-div-class"info-box"b-output/b-br-button-click-class"special"paragraph-hide/div-div-class"note-box"b-real-life-example/b-br-website-error-messages-code.error</code-class-jquery-hide/show/div-div-class"remember-box"b-remember/b-br-jquery-selectors-css-selectors-elements-select-actions-apply/div/section-section-id"events"h2-jquery-event-methods/h2-p-event-webpage-action-user-button-click-mouse-move-keyboard-type-form-submit-input-value-change-jquery-event-methods-actions-handle-use/p-p-javascript-events-handle-code-jquery-event-handling-short-readable/p-h4-click-method/h4-pre"#btn"item.click(function() {
+  alert("Button clicked"item/pre-h4-dblclick-method/h4-pre"#box"dblclick-function-this.hide();
+});</pre-h4-mouseenter-and-mouseleave/h4-pre"#box"mouseenter-function-this.css("background-color", "yellow");
+});
+
+$("#box"mouseleave-function-this.css("background-color", "white"item/pre-h4-focus-and-blur/h4-pre"input"focus-function-this.css("background-color", "lightyellow");
+});
+
+$("input"blur-function-this.css("background-color", "white"item/pre-h4-change-method/h4-pre"select"item.change(function() {
+  alert("Selection changed"item/pre-h4-submit-method/h4-pre"form"item.submit(function() {
+  alert("Form submitted"item/pre-h4-common-jquery-event-methods/h4-table-tr-th-event-method/th-th-use/th/tr-tr-td-code-click/code/td-td-element-click-run/td/tr-tr-td-code-dblclick/code/td-td-double-click-run/td/tr-tr-td-code-mouseenter/code/td-td-mouse-element/td/tr-tr-td-code-mouseleave/code/td-td-mouse-element/td/tr-tr-td-code-focus/code/td-td-input-field-focus/td/tr-tr-td-code-blur/code/td-td-input-field-focus/td/tr-tr-td-code-change/code/td-td-input/select-value-change/td/tr-tr-td-code-submit/code/td-td-form-submit/td/tr-tr-td-code-keyup/code/td-td-keyboard-key-release/td/tr/table-h4-using-on-method/h4-p-code-on/code-method-modern-jquery-event-attach-powerful-multiple-events-handle/p-pre"#btn"item.on("click", function() {
+  alert("Clicked using on method"item/pre-h4-multiple-events-with-on/h4-pre"#box"on-mouseenter-function-this.css("background-color", "yellow"mouseleave-function-this.css("background-color", "white"click-function-this.css("color", "red"item/pre-h4-this-keyword-in-jquery/h4-p-event-code-this/code-element-represent-event-occur-jquery-code-this/code-use/p-pre"p"click-function-this.hide();
+});</pre-div-class"info-box"b-output/b-br-paragraph-click-paragraph-hide/div-div-class"note-box"b-real-life-example/b-br-input-field-focus-border-blue-focus-normal-jquery-events/div-div-class"remember-box"b-remember/b-br-jquery-event-methods-user-actions-response-use/div/section-section-id"effects"h2-jquery-effects/h2-p-jquery-effects-use-webpage-elements-visually-hide-show-fade-slide-animate-effects-website-interactive-attractive-jquery-effects-ready-made-methods-available-complex-animation-simple-code/p-p-common-jquery-effects-hide/show-fade-slide-effects-methods-speed-parameter-code"slow"item/code-code"fast"item/code-milliseconds-value/p-h4-effect-speed/h4-table-tr-th-speed-value/th-th-meaning/th/tr-tr-td-code"slow"item/code/td-td-slow-animation/td/tr-tr-td-code"fast"item/code/td-td-fast-animation/td/tr-tr-td-code-1000/code/td-td-1000-milliseconds-1-second/td/tr/table-h4-basic-effect-syntax/h4-pre-selector.effectname(speed, callback);</pre-p-callback-optional-function-effect-complete-run/p-h4-callback-example/h4-pre"#box"item.hide(1000, function() {
+  alert("Box is hidden"item/pre-div-class"remember-box"b-remember/b-br-jquery-effects-elements-smooth-hide/show-animate-use/div/section-section-id"hide-show"h2-hide/show-effects/h2-p-jquery-code-hide/code-code-show/code-code-toggle/code-methods-elements-hide-show-use-methods-faq-menu-answer-section-popup-content-dynamic-ui-useful/p-h4-hide/h4-pre"#hideBtn"item.click(function() {
+  $("#box"item.hide();
+});</pre-h4-show/h4-pre"#showBtn"item.click(function() {
+  $("#box"item.show();
+});</pre-h4-toggle/h4-p-code-toggle/code-element-visible-hide-hidden-show/p-pre"#toggleBtn"item.click(function() {
+  $("#box"item.toggle();
+});</pre-h4-complete-example/h4-pre-lt-div-id"box"gt-this-is-a-box-lt/div-gt-lt-button-id"hideBtn"gt-hide-lt/button-gt-lt-button-id"showBtn"gt-show-lt/button-gt-lt-button-id"toggleBtn"gt-toggle-lt/button-gt-lt-script-gt-document.ready(function() {
+  $("#hideBtn"item.click(function() {
+    $("#box"item.hide(1000);
+  });
+
+  $("#showBtn"item.click(function() {
+    $("#box"item.show(1000);
+  });
+
+  $("#toggleBtn"item.click(function() {
+    $("#box"item.toggle(1000);
+  });
+});
+&lt;/script-gt/pre-div-class"info-box"b-output/b-br-hide-button-box-show-button-box-toggle-button/div-h4-methods-table/h4-table-tr-th-method/th-th-use/th/tr-tr-td-code-hide/code/td-td-element-hide/td/tr-tr-td-code-show/code/td-td-element-show/td/tr-tr-td-code-toggle/code/td-td-element-hide/show/td/tr/table-div-class"note-box"b-real-life-example/b-br-read-more-button-click-extra-content-show-hide/show-effect-practical-use/div/section-section-id"fade"h2-fade-effects/h2-p-fade-effects-element-opacity-gradually-change-jquery-fade-effects-code-fadein/code-code-fadeout/code-code-fadetoggle/code-code-fadeto/code-methods-use-effects-smooth-professional-ui-help/p-h4-fadein/h4-p-hidden-element-gradually-visible/p-pre"#box"item.fadein(1000);</pre-h4-fadeout/h4-p-visible-element-gradually-hide/p-pre"#box"item.fadeout(1000);</pre-h4-fadetoggle/h4-p-element-visible-fade-out-hidden-fade-in/p-pre"#box"item.fadetoggle(1000);</pre-h4-fadeto/h4-p-element-specific-opacity-fade/p-pre"#box"fadeto-1000-0.5);</pre-h4-complete-fade-example/h4-pre-lt-div-id"box"gt-fade-box-lt/div-gt-lt-button-id"fadeBtn"gt-fade-toggle-lt/button-gt-lt-script-gt-document.ready(function() {
+  $("#fadeBtn"item.click(function() {
+    $("#box"item.fadetoggle(1000);
+  });
+});
+&lt;/script-gt/pre-h4-fade-methods-table/h4-table-tr-th-method/th-th-use/th/tr-tr-td-code-fadein/code/td-td-hidden-element-gradually-show/td/tr-tr-td-code-fadeout/code/td-td-element-gradually-hide/td/tr-tr-td-code-fadetoggle/code/td-td-fade-in-fade-out/td/tr-tr-td-code-fadeto/code/td-td-element-specific-opacity-fade/td/tr/table-div-class"note-box"b-real-life-example/b-br-notification-message-seconds-fadeout-effect-use/div-div-class"remember-box"b-remember/b-br-fade-effects-opacity-gradually-change/div/section-section-id"slide"h2-slide-effects/h2-p-slide-effects-elements-slide-show-hide-jquery-slide-effects-code-slidedown/code-code-slideup/code-code-slidetoggle/code-methods-use-effects-dropdown-menu-faq-answer-accordion-collapsible-sections-useful/p-h4-slidedown/h4-p-hidden-element-slide-show/p-pre"#panel"item.slidedown(1000);</pre-h4-slideup/h4-p-visible-element-slide-hide/p-pre"#panel"item.slideup(1000);</pre-h4-slidetoggle/h4-p-element-visible-slide-up-hidden-slide-down/p-pre"#panel"item.slidetoggle(1000);</pre-h4-complete-slide-example/h4-pre-lt-button-id"question"&gt;What is jQuery?&lt;/button&gt;
+&lt;div id="answer"gt-jquery-is-a-javascript-library.&lt;/div-gt-lt-script-gt-document.ready(function() {
+  $("#answer"item.hide();
+
+  $("#question"item.click(function() {
+    $("#answer"item.slidetoggle(1000);
+  });
+});
+&lt;/script-gt/pre-div-class"info-box"b-output/b-br-question-button-click-answer-section-slide-open/close/div-h4-slide-methods-table/h4-table-tr-th-method/th-th-use/th/tr-tr-td-code-slidedown/code/td-td-element-slide-show/td/tr-tr-td-code-slideup/code/td-td-element-slide-hide/td/tr-tr-td-code-slidetoggle/code/td-td-slide-show/hide/td/tr/table-div-class"note-box"b-real-life-example/b-br-faq-page-answer-question-click-slide-show-slidetoggle-best-example/div-div-class"remember-box"b-remember/b-br-slide-effects-height-gradually-change-element-show/hide/div/section-section-id"header-footer"h2-insertion-of-header/footer-in-html-pages-using-jquery/h2-p-website-header-footer-common-sections-header-logo-navigation-menu-important-links-footer-copyright-contact-details-social-links-extra-links-website-multiple-pages-page-same-header/footer-manually-repetitive-time-consuming/p-p-jquery-help-common-header-footer-html-files-page-dynamically-load-code-reuse-maintenance-header-change-header-file-update-pages-change-reflect/p-h4-project-structure/h4-pre-project/index-html-about-html-contact-html-header-html-footer-html-script.js</pre-h4-header.html</h4-pre-lt-header-gt-lt-h1-gt-bk-learnx-lt/h1-gt-lt-nav-gt-lt-a-href"./index.html"gt-home-lt/a-gt-lt-a-href"about.html"gt-about-lt/a-gt-lt-a-href"contact.html"gt-contact-lt/a-gt-lt/nav-gt-lt/header-gt/pre-h4-footer.html</h4-pre-lt-footer-gt-lt-p-gt-2026-bk-learnx-all-rights-reserved.&lt;/p-gt-lt/footer-gt/pre-h4-index.html</h4-pre-lt-doctype-html-gt-lt-html-gt-lt-head-gt-lt-title-gt-home-page-lt/title-gt-lt/head-gt-lt-body-gt-lt-div-id"header"gt-lt/div-gt-lt-main-gt-lt-h2-gt-welcome-to-home-page-lt/h2-gt-lt-p-gt-this-is-main-content.&lt;/p-gt-lt/main-gt-lt-div-id"footer"gt-lt/div-gt-lt-script-src"https://code.jquery.com/jquery-3.7.1.min.js"gt-lt/script-gt-lt-script-src"script.js"gt-lt/script-gt-lt/body-gt-lt/html-gt/pre-h4-script.js</h4-pre-document.ready(function() {
+  $("#header"item.load("header.html");
+  $("#footer"item.load("footer.html"item/pre-h4-how-it-works/h4-ol-li-html-page-code-id"header"item/code-code-id"footer"item/code-empty-div/li-li-jquery-load-method-header-html-footer.html files को load करता है।</li-li-header-content-header-div-insert/li-li-footer-content-footer-div-insert/li-li-same-code-multiple-pages-use/li/ol-h4-load-method/h4-p-code-load/code-jquery-ajax-method-external-file-content-selected-element-load/p-pre"#header"item.load("header.html"item/pre-h4-important-note-for-local-files/h4-p-browsers-direct-local-file-opening-code-load/code-properly-allow-case-project-local-server-run-better-vs-code-live-server-extension/p-h4-advantages/h4-ul-li-header/footer-code-repeat/li-li-website-maintenance-easy/li-li-common-layout-multiple-pages-reuse/li-li-change-file-pages-update/li-li-project-organized/li/ul-h4-common-mistakes/h4-ul-li-jquery-library-add/li-li-header/footer-file-path/li-li-page-direct-file-system-run-load-method-work/li-li-header-div-id-jquery-selector-mismatch/li-li-jquery-code-document-ready-run/li/ul-div-class"note-box"b-real-life-example/b-br-bk-learnx-website-100-pages-page-navbar-manually-code-header.html</code-jquery-load/div-div-class"remember-box"><b>Remember:</b><br>Header और footer insertion के लिए jQuery <code>load()</code> method useful है, लेकिन इसे local server पर run करना best रहता है।</div>
+      </section>
+
+    </main>
+  </div>
+</body>
+
+</html>

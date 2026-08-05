@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit-5 Cyber Attacks Procedure - Part 2</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f7fb;color:#1f2937;line-height:1.75}
+.page{display:grid;grid-template-columns:300px 1fr;gap:20px;max-width:1580px;margin:auto;padding:10px}
+.sidebar{position:sticky;top:10px;height:calc(100vh - 20px);overflow-y:auto;background:#fff;border-radius:16px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.08);align-self:start}
+.sidebar h2{font-size:20px;margin-bottom:12px;color:#111827}
+.sidebar a{display:block;text-decoration:none;color:#374151;padding:8px 10px;border-radius:10px;margin-bottom:4px;font-size:14.4px}
+.sidebar a:hover{background:#eef2ff;color:#1d4ed8}
+.content{background:#fff;border-radius:18px;padding:10px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.hero{padding:30px 20px;border-radius:16px;background:linear-gradient(135deg,#eef2ff,#f8fafc);margin-bottom:18px}
+.hero h1{font-size:34px;color:#111827;margin-bottom:10px}
+.hero p{font-size:18px;color:#374151}
+section{padding:22px 10px;border-bottom:1px solid #e5e7eb}
+section:last-child{border-bottom:none}
+h2{font-size:27px;color:#111827;margin-bottom:12px;border-left:5px solid #2563eb;padding-left:12px}
+h3{font-size:22px;color:#1f2937;margin:18px 0 8px}
+h4{font-size:18px;color:#111827;margin:14px 0 6px}
+p{margin:10px 0;font-size:17px}
+ul,ol{margin-left:24px;margin-top:8px}
+li{margin:7px 0;font-size:16.5px}
+strong{color:#111827}
+.image-icon{min-height:180px;border:2px dashed #94a3b8;border-radius:16px;background:#f8fafc;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;margin:18px 0;color:#475569;font-weight:600;flex-direction:column;gap:8px}
+.note-box{background:#f0fdf4;border-left:5px solid #22c55e;border-radius:14px;padding:14px 16px;margin:16px 0}
+.info-box{background:#ecfeff;border-left:5px solid #06b6d4;border-radius:14px;padding:14px 16px;margin:16px 0}
+.remember-box{background:#fff7ed;border-left:5px solid #f97316;border-radius:14px;padding:14px 16px;margin:16px 0}
+.warning-box{background:#fef2f2;border-left:5px solid #ef4444;border-radius:14px;padding:14px 16px;margin:16px 0}
+table{width:100%;border-collapse:collapse;margin:16px 0;border-radius:12px;overflow:hidden;font-size:15.3px}
+th,td{border:1px solid #d1d5db;padding:10px;text-align:left;vertical-align:top}
+th{background:#eef2ff;color:#111827}
+pre{background:#0f172a;color:#e5e7eb;border-radius:14px;padding:16px;margin:16px 0;overflow-x:auto;font-family:Consolas,monospace;line-height:1.6}
+@media(max-width:900px){.page{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.hero h1{font-size:27px}h2{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="page">
+<aside class="sidebar"><h2>Topics</h2><a href="#scanning">Scanning Concept</a>
+<a href="#host-discovery">Host Discovery</a>
+<a href="#service-discovery">Service Discovery</a>
+<a href="#os-discovery">Operating System Discovery</a>
+<a href="#ids-firewall">Scanning beyond IDS and Firewall - Defensive View</a>
+<a href="#network-diagram">Drawing Network Diagram</a>
+<a href="#diagram-process">Network Diagram Creation Process</a>
+<a href="#scan-results">Interpreting Scan Results</a>
+<a href="#countermeasures">Scanning Countermeasures</a></aside>
+<main class="content">
+<div class="hero"><h1>Unit-5 Cyber Attacks Procedure - Part 2</h1><p>Scanning concept, host and OS discovery, IDS/firewall defensive considerations, network diagram और scanning countermeasures को premium exam-oriented format में समझाया गया है।</p></div>
+<section id="scanning"><h2>Scanning Concept</h2>
+<p><strong>Scanning</strong> authorized security assessment में systems, hosts, services और network characteristics identify करने की process है। इसका purpose security exposure understand करना और vulnerabilities reduce करना है।</p>
+<div class="image-icon">Image Placeholder: Authorized Network Scanning Process</div>
+</section>
+<section id="host-discovery"><h2>Host Discovery</h2>
+<p>Host discovery का उद्देश्य authorized network में active systems identify करना है। Security teams asset inventory और monitoring coverage verify करने के लिए इसका use करती हैं।</p>
+<h4>Defensive Benefits</h4>
+<ul>
+<li>Unknown devices identify करना</li>
+<li>Inactive assets remove करना</li>
+<li>Monitoring coverage improve करना</li>
+<li>Network segmentation verify करना</li>
+</ul>
+</section>
+<section id="service-discovery"><h2>Service Discovery</h2>
+<p>Service discovery से यह समझा जाता है कि authorized systems पर कौन-सी network services available हैं।</p>
+<h4>Security Review Points</h4>
+<ul>
+<li>Unnecessary services बंद हैं या नहीं</li>
+<li>Default ports/services exposed हैं या नहीं</li>
+<li>Service versions supported हैं या नहीं</li>
+<li>Access restrictions configured हैं या नहीं</li>
+</ul>
+</section>
+<section id="os-discovery"><h2>Operating System Discovery</h2>
+<p>OS discovery का उद्देश्य network behavior और system responses के आधार पर operating system family का अनुमान लगाना है। Defensive teams इससे outdated platforms और patching requirements identify करती हैं।</p>
+<div class="note-box"><b>Security Use:</b><br>Unsupported operating systems को identify करके upgrade plan बनाना चाहिए।</div>
+</section>
+<section id="ids-firewall"><h2>Scanning beyond IDS and Firewall - Defensive View</h2>
+<p>Attackers detection avoid करने की कोशिश कर सकते हैं। इसलिए defenders को केवल firewall पर depend नहीं करना चाहिए। Layered monitoring और behavioral analysis जरूरी है।</p>
+<h4>Defensive Controls</h4>
+<ul>
+<li>IDS/IPS tuning</li>
+<li>Rate-limit and anomaly detection</li>
+<li>Centralized logs</li>
+<li>Endpoint detection</li>
+<li>Network segmentation</li>
+<li>Regular authorized assessments</li>
+</ul>
+<div class="warning-box"><b>Important:</b><br>Detection bypass techniques का प्रयोग unauthorized systems पर करना illegal और unsafe है।</div>
+</section>
+<section id="network-diagram"><h2>Drawing Network Diagram</h2>
+<p>Network diagram devices, servers, routers, switches, firewalls, zones और connections का visual representation है।</p>
+<div class="image-icon">Image Placeholder: Secure Network Diagram</div>
+<h4>Main Elements</h4>
+<ul>
+<li>Internet connection</li>
+<li>Firewall</li>
+<li>DMZ</li>
+<li>Internal network</li>
+<li>Servers</li>
+<li>User systems</li>
+<li>Wireless network</li>
+<li>Backup network</li>
+</ul>
+</section>
+<section id="diagram-process"><h2>Network Diagram Creation Process</h2>
+<ol>
+<li>Authorized scope identify करें।</li>
+<li>Devices और IP ranges list करें।</li>
+<li>Connections और zones identify करें।</li>
+<li>Security devices mark करें।</li>
+<li>Trust boundaries show करें।</li>
+<li>Diagram validate और update करें।</li>
+</ol>
+</section>
+<section id="scan-results"><h2>Interpreting Scan Results</h2>
+<table>
+<tr><th>Finding</th><th>Defensive Action</th></tr>
+<tr><td>Unknown Host</td><td>Asset ownership verify करें</td></tr>
+<tr><td>Open Unnecessary Service</td><td>Disable or restrict करें</td></tr>
+<tr><td>Outdated OS</td><td>Upgrade/patch plan बनाएं</td></tr>
+<tr><td>Unexpected Network Path</td><td>Segmentation review करें</td></tr>
+<tr><td>Unmonitored Device</td><td>Logging and monitoring add करें</td></tr>
+</table>
+</section>
+<section id="countermeasures"><h2>Scanning Countermeasures</h2>
+<ul>
+<li>Unnecessary ports और services बंद रखें।</li>
+<li>Firewall rules least privilege पर रखें।</li>
+<li>IDS/IPS और logs monitor करें।</li>
+<li>Network segmentation लागू करें।</li>
+<li>Asset inventory update रखें।</li>
+<li>Patch management नियमित रखें।</li>
+<li>Authorized scans schedule करें।</li>
+</ul>
+<div class="remember-box"><b>Remember:</b><br>Scanning prevention से अधिक important accurate detection, exposure reduction और regular assessment है।</div>
+</section>
+</main>
+</div>
+</body>
+</html>
