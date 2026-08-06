@@ -255,111 +255,112 @@
         font-size: 24px
       }
     }
+
     /* Iframe content responsive fix */
-html,
-body {
-  width: 100%;
-  max-width: 100%;
-  
-}
+    html,
+    body {
+      width: 100%;
+      max-width: 100%;
 
-.page,
-.content,
-section {
-  min-width: 0;
-  max-width: 100%;
-}
+    }
 
-img,
-video,
-svg,
-canvas {
-  max-width: 100%;
-  height: auto;
-}
+    .page,
+    .content,
+    section {
+      min-width: 0;
+      max-width: 100%;
+    }
 
-table {
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  border-radius: 12px;
-  -webkit-overflow-scrolling: touch;
-}
+    img,
+    video,
+    svg,
+    canvas {
+      max-width: 100%;
+      height: auto;
+    }
 
-th,
-td {
-  min-width: 110px;
-  overflow-wrap: break-word;
-  word-break: normal;
-}
+    table {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      overflow-x: auto;
+      overflow-y: hidden;
+      border-radius: 12px;
+      -webkit-overflow-scrolling: touch;
+    }
 
-pre {
-  max-width: 100%;
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-}
+    th,
+    td {
+      min-width: 110px;
+      overflow-wrap: break-word;
+      word-break: normal;
+    }
 
-code {
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-}
+    pre {
+      max-width: 100%;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
 
-@media (max-width: 900px) {
-  .page {
-    display: block;
-    width: 100%;
-    padding: 5px;
-  }
+    code {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
 
-  .sidebar {
-    display: none;
-  }
+    @media (max-width: 900px) {
+      .page {
+        display: block;
+        width: 100%;
+        padding: 5px;
+      }
 
-  .content {
-    width: 100%;
-    min-width: 0;
-    padding: 6px;
-    border-radius: 10px;
-  }
+      .sidebar {
+        display: none;
+      }
 
-  section {
-    width: 100%;
-    padding: 16px 6px;
-  }
+      .content {
+        width: 100%;
+        min-width: 0;
+        padding: 6px;
+        border-radius: 10px;
+      }
 
-  .hero {
-    padding: 18px 10px;
-  }
+      section {
+        width: 100%;
+        padding: 16px 6px;
+      }
 
-  .hero h1 {
-    font-size: 24px;
-  }
+      .hero {
+        padding: 18px 10px;
+      }
 
-  h2 {
-    font-size: 21px;
-  }
+      .hero h1 {
+        font-size: 24px;
+      }
 
-  h3 {
-    font-size: 18px;
-  }
+      h2 {
+        font-size: 21px;
+      }
 
-  p,
-  li {
-    font-size: 15px;
-  }
+      h3 {
+        font-size: 18px;
+      }
 
-  .image-icon {
-    min-height: 130px;
-    padding: 8px;
-  }
-}
+      p,
+      li {
+        font-size: 15px;
+      }
+
+      .image-icon {
+        min-height: 130px;
+        padding: 8px;
+      }
+    }
   </style>
 
-<link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
-<script src="../../../../../../../assets/shared/portal.js" defer></script>
-<script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
+  <link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
+  <script src="../../../../../../../assets/shared/portal.js" defer></script>
+  <script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
 </head>
 
 <body>
@@ -380,17 +381,25 @@ code {
     <main class="content">
       <div class="hero">
         <h1>Input and Output in Python</h1>
-        <p>इस chapter में Python input-output, data streams, file handling, access modes, pipes और IO exceptions को exam-oriented Hindi-English style में समझाया गया है।</p>
+
       </div>
 
       <section id="intro">
         <h2>Introduction</h2>
 
-        <p>Input और Output programming के बहुत basic लेकिन important concepts हैं। Input का मतलब user, file, keyboard, network या किसी external source से data लेना होता है। Output का मतलब processed data को screen, file, printer, console या किसी other destination पर send करना होता है। हर useful program किसी न किसी form में input लेता है, उस data को process करता है और फिर output देता है।</p>
+        <p>Input और Output programming के बहुत basic लेकिन important concepts हैं। Input का मतलब user, file, keyboard,
+          network या किसी external source से data लेना होता है। Output का मतलब processed data को screen, file, printer,
+          console या किसी other destination पर send करना होता है। हर useful program किसी न किसी form में input लेता है,
+          उस data को process करता है और फिर output देता है।</p>
 
-        <p>Python में simple input के लिए <code>input()</code> function और output के लिए <code>print()</code> function commonly use होते हैं। लेकिन जब data को permanent रूप से store करना हो, तो files का use किया जाता है। File handling की help से Python program text files, binary files और other data files को read और write कर सकता है।</p>
+        <p>Python में simple input के लिए <code>input()</code> function और output के लिए <code>print()</code> function
+          commonly use होते हैं। लेकिन जब data को permanent रूप से store करना हो, तो files का use किया जाता है। File
+          handling की help से Python program text files, binary files और other data files को read और write कर सकता है।
+        </p>
 
-        <p>Input-output operations real applications में बहुत important होते हैं। जैसे student record save करना, result file बनाना, log file maintain करना, report generate करना, user data read करना और program output को file में store करना आदि।</p>
+        <p>Input-output operations real applications में बहुत important होते हैं। जैसे student record save करना, result
+          file बनाना, log file maintain करना, report generate करना, user data read करना और program output को file में
+          store करना आदि।</p>
 
         <h4>Simple Input Example</h4>
         <pre>name = input("Enter your name: ")
@@ -422,17 +431,24 @@ file.close()</pre>
           <li>External files के साथ communication करने के लिए।</li>
         </ul>
 
-        <div class="note-box"><b>Real Life Example:</b><br>College management software में student names, roll numbers और marks को file में save किया जा सकता है ताकि program बंद होने के बाद भी data available रहे।</div>
+        <div class="note-box"><b>Real Life Example:</b><br>College management software में student names, roll numbers
+          और marks को file में save किया जा सकता है ताकि program बंद होने के बाद भी data available रहे।</div>
 
-        <div class="remember-box"><b>Remember:</b><br>Input data को program में लाता है, output processed data को बाहर दिखाता या store करता है।</div>
+        <div class="remember-box"><b>Remember:</b><br>Input data को program में लाता है, output processed data को बाहर
+          दिखाता या store करता है।</div>
       </section>
 
       <section id="streams">
         <h2>Data Streams</h2>
 
-        <p>Data stream का मतलब data का continuous flow होता है। जब data एक source से दूसरे destination तक move करता है, तो उसे stream के रूप में समझा जा सकता है। Python में input और output operations streams के through perform होते हैं। Stream data को एक continuous sequence की तरह handle करता है।</p>
+        <p>Data stream का मतलब data का continuous flow होता है। जब data एक source से दूसरे destination तक move करता है,
+          तो उसे stream के रूप में समझा जा सकता है। Python में input और output operations streams के through perform
+          होते हैं। Stream data को एक continuous sequence की तरह handle करता है।</p>
 
-        <p>Computer programming में stream एक abstract concept है। Programmer को यह जरूरी नहीं कि data exactly hardware level पर कैसे move हो रहा है। वह stream object की help से read और write operations perform करता है। Data keyboard से program में आए, file से read हो या network से आए, conceptually वह stream के form में process हो सकता है।</p>
+        <p>Computer programming में stream एक abstract concept है। Programmer को यह जरूरी नहीं कि data exactly hardware
+          level पर कैसे move हो रहा है। वह stream object की help से read और write operations perform करता है। Data
+          keyboard से program में आए, file से read हो या network से आए, conceptually वह stream के form में process हो
+          सकता है।</p>
 
         <h4>Types of Data Streams</h4>
         <table>
@@ -459,7 +475,8 @@ file.close()</pre>
         </table>
 
         <h4>Standard Streams in Python</h4>
-        <p>Python में standard streams <code>sys</code> module के through available होती हैं। ये streams command line और console based input-output से connected होती हैं।</p>
+        <p>Python में standard streams <code>sys</code> module के through available होती हैं। ये streams command line और
+          console based input-output से connected होती हैं।</p>
 
         <table>
           <tr>
@@ -505,7 +522,9 @@ sys.stderr.write("This is an error message")</pre>
         <div class="info-box"><b>Output:</b><br>Error stream पर message show होगा।</div>
 
         <h4>Text Stream and Binary Stream</h4>
-        <p>Text stream human-readable characters को handle करती है, जैसे text file में names, sentences और numbers as text. Binary stream raw bytes को handle करती है, जैसे images, audio files, video files और executable files।</p>
+        <p>Text stream human-readable characters को handle करती है, जैसे text file में names, sentences और numbers as
+          text. Binary stream raw bytes को handle करती है, जैसे images, audio files, video files और executable files।
+        </p>
 
         <table>
           <tr>
@@ -530,17 +549,23 @@ sys.stderr.write("This is an error message")</pre>
           </tr>
         </table>
 
-        <div class="note-box"><b>Real Life Example:</b><br>जब आप keyboard से name type करते हैं, तो data input stream के through program तक जाता है। जब program result screen पर दिखाता है, तो output stream use होती है।</div>
+        <div class="note-box"><b>Real Life Example:</b><br>जब आप keyboard से name type करते हैं, तो data input stream के
+          through program तक जाता है। जब program result screen पर दिखाता है, तो output stream use होती है।</div>
 
-        <div class="remember-box"><b>Remember:</b><br>Stream data flow को represent करती है। File, keyboard और console सभी stream concept से जुड़े हो सकते हैं।</div>
+        <div class="remember-box"><b>Remember:</b><br>Stream data flow को represent करती है। File, keyboard और console
+          सभी stream concept से जुड़े हो सकते हैं।</div>
       </section>
 
       <section id="own-streams">
         <h2>Creating Your Own Data Streams</h2>
 
-        <p>Python में हम अपनी data streams create कर सकते हैं। इसका मतलब है कि हम file objects या memory-based stream objects create करके उनके through data read/write कर सकते हैं। जब हम <code>open()</code> function से file open करते हैं, तो Python file object return करता है। यह file object stream की तरह behave करता है।</p>
+        <p>Python में हम अपनी data streams create कर सकते हैं। इसका मतलब है कि हम file objects या memory-based stream
+          objects create करके उनके through data read/write कर सकते हैं। जब हम <code>open()</code> function से file open
+          करते हैं, तो Python file object return करता है। यह file object stream की तरह behave करता है।</p>
 
-        <p>कई बार हमें actual file की जगह memory में ही data stream बनानी होती है। इसके लिए Python में <code>io</code> module helpful होता है। <code>io.StringIO</code> text data के लिए memory stream बनाता है और <code>io.BytesIO</code> binary data के लिए memory stream बनाता है।</p>
+        <p>कई बार हमें actual file की जगह memory में ही data stream बनानी होती है। इसके लिए Python में <code>io</code>
+          module helpful होता है। <code>io.StringIO</code> text data के लिए memory stream बनाता है और
+          <code>io.BytesIO</code> binary data के लिए memory stream बनाता है।</p>
 
         <h4>File as Data Stream</h4>
         <pre>file = open("message.txt", "w")
@@ -563,13 +588,15 @@ file.close()</pre>
         <div class="info-box"><b>Output:</b><br>Hello Python</div>
 
         <h4>Using with Statement</h4>
-        <p><code>with</code> statement file handling का safer तरीका है। इसमें file automatically close हो जाती है, इसलिए programmer को manually <code>close()</code> call करना जरूरी नहीं रहता।</p>
+        <p><code>with</code> statement file handling का safer तरीका है। इसमें file automatically close हो जाती है, इसलिए
+          programmer को manually <code>close()</code> call करना जरूरी नहीं रहता।</p>
 
         <pre>with open("message.txt", "w") as file:
     file.write("Learning file handling")</pre>
 
         <h4>Creating Memory Stream with StringIO</h4>
-        <p><code>StringIO</code> memory में text stream create करता है। यह actual disk file create नहीं करता, बल्कि RAM में file-like object बनाता है।</p>
+        <p><code>StringIO</code> memory में text stream create करता है। यह actual disk file create नहीं करता, बल्कि RAM
+          में file-like object बनाता है।</p>
 
         <pre>from io import StringIO
 
@@ -632,17 +659,22 @@ print(stream.getvalue())</pre>
           </tr>
         </table>
 
-        <div class="note-box"><b>Real Life Example:</b><br>Testing में actual file create किए बिना memory stream से file-like operations test किए जा सकते हैं।</div>
+        <div class="note-box"><b>Real Life Example:</b><br>Testing में actual file create किए बिना memory stream से
+          file-like operations test किए जा सकते हैं।</div>
 
-        <div class="remember-box"><b>Remember:</b><br><code>open()</code> file stream बनाता है, जबकि <code>StringIO</code> और <code>BytesIO</code> memory streams बनाते हैं।</div>
+        <div class="remember-box"><b>Remember:</b><br><code>open()</code> file stream बनाता है, जबकि
+          <code>StringIO</code> और <code>BytesIO</code> memory streams बनाते हैं।</div>
       </section>
 
       <section id="access-modes">
         <h2>Access Modes</h2>
 
-        <p>Access mode यह बताता है कि file को किस purpose के लिए open किया जा रहा है। File को read करने के लिए अलग mode, write करने के लिए अलग mode और append करने के लिए अलग mode use होता है। Python में <code>open()</code> function file name और mode accept करता है।</p>
+        <p>Access mode यह बताता है कि file को किस purpose के लिए open किया जा रहा है। File को read करने के लिए अलग mode,
+          write करने के लिए अलग mode और append करने के लिए अलग mode use होता है। Python में <code>open()</code> function
+          file name और mode accept करता है।</p>
 
-        <p>अगर mode properly choose नहीं किया गया, तो file का data overwrite हो सकता है या file access error आ सकता है। इसलिए file handling में access modes समझना बहुत जरूरी है।</p>
+        <p>अगर mode properly choose नहीं किया गया, तो file का data overwrite हो सकता है या file access error आ सकता है।
+          इसलिए file handling में access modes समझना बहुत जरूरी है।</p>
 
         <h4>Basic Syntax</h4>
         <pre>file = open("filename", "mode")</pre>
@@ -712,7 +744,8 @@ file.close()</pre>
         <p><code>a</code> mode file के end में new data add करता है। Old data remove नहीं होता।</p>
 
         <h4>Binary Modes</h4>
-        <p>Binary files के लिए mode में <code>b</code> add किया जाता है। जैसे <code>rb</code> read binary, <code>wb</code> write binary और <code>ab</code> append binary।</p>
+        <p>Binary files के लिए mode में <code>b</code> add किया जाता है। जैसे <code>rb</code> read binary,
+          <code>wb</code> write binary और <code>ab</code> append binary।</p>
 
         <pre>file = open("image.jpg", "rb")
 data = file.read()
@@ -754,15 +787,20 @@ file.close()</pre>
           <li>File close करना भूल जाना।</li>
         </ul>
 
-        <div class="remember-box"><b>Remember:</b><br><code>w</code> mode old data overwrite करता है, जबकि <code>a</code> mode file के end में data add करता है।</div>
+        <div class="remember-box"><b>Remember:</b><br><code>w</code> mode old data overwrite करता है, जबकि
+          <code>a</code> mode file के end में data add करता है।</div>
       </section>
 
       <section id="writing">
         <h2>Writing Data to a File</h2>
 
-        <p>Python में file में data write करने के लिए file को write mode <code>w</code>, append mode <code>a</code> या related modes में open किया जाता है। File write operation का use data को permanent रूप से store करने के लिए किया जाता है।</p>
+        <p>Python में file में data write करने के लिए file को write mode <code>w</code>, append mode <code>a</code> या
+          related modes में open किया जाता है। File write operation का use data को permanent रूप से store करने के लिए
+          किया जाता है।</p>
 
-        <p>जब file <code>w</code> mode में open होती है, तो अगर file already exist करती है, उसका old data clear हो जाता है। अगर file exist नहीं करती, तो Python नई file create कर देता है। Append mode में old data safe रहता है और new data end में add होता है।</p>
+        <p>जब file <code>w</code> mode में open होती है, तो अगर file already exist करती है, उसका old data clear हो जाता
+          है। अगर file exist नहीं करती, तो Python नई file create कर देता है। Append mode में old data safe रहता है और
+          new data end में add होता है।</p>
 
         <h4>Using write()</h4>
         <pre>file = open("student.txt", "w")
@@ -784,7 +822,8 @@ file.close()</pre>
         <div class="info-box"><b>Output:</b><br>Name: Brajkant<br>Course: PGDCA</div>
 
         <h4>Using writelines()</h4>
-        <p><code>writelines()</code> method list of strings को file में write करने के लिए use होता है। यह automatically new line add नहीं करता, इसलिए <code>\n</code> manually देना पड़ता है।</p>
+        <p><code>writelines()</code> method list of strings को file में write करने के लिए use होता है। यह automatically
+          new line add नहीं करता, इसलिए <code>\n</code> manually देना पड़ता है।</p>
 
         <pre>lines = ["python/n", "dccn/n", "bcit/n"]
 
@@ -800,14 +839,16 @@ file.close()</pre>
     file.write("course-pgdca/n")
     file.write("Learning: Python File Handling")</pre>
 
-        <p><code>with</code> statement file को automatically close कर देता है। यह safer और professional approach मानी जाती है।</p>
+        <p><code>with</code> statement file को automatically close कर देता है। यह safer और professional approach मानी
+          जाती है।</p>
 
         <h4>Appending Data</h4>
         <pre>with open("student.txt", "a") as file:
     file.write("/ncity-kanpur")</pre>
 
         <h4>Writing Numbers to File</h4>
-        <p>File में data write करते समय data string format में होना चाहिए। अगर number write करना हो, तो उसे <code>str()</code> से string में convert करना पड़ता है।</p>
+        <p>File में data write करते समय data string format में होना चाहिए। अगर number write करना हो, तो उसे
+          <code>str()</code> से string में convert करना पड़ता है।</p>
 
         <pre>marks = 85
 
@@ -838,17 +879,22 @@ with open("marks.txt", "w") as file:
           <li>File close करना भूल जाना।</li>
         </ul>
 
-        <div class="note-box"><b>Real Life Example:</b><br>Student admission form का data file में write करके record save किया जा सकता है।</div>
+        <div class="note-box"><b>Real Life Example:</b><br>Student admission form का data file में write करके record
+          save किया जा सकता है।</div>
 
-        <div class="remember-box"><b>Remember:</b><br>File में write करने के लिए data generally string form में होना चाहिए।</div>
+        <div class="remember-box"><b>Remember:</b><br>File में write करने के लिए data generally string form में होना
+          चाहिए।</div>
       </section>
 
       <section id="reading">
         <h2>Reading Data From a File</h2>
 
-        <p>Python में file से data read करने के लिए file को read mode <code>r</code> में open किया जाता है। Reading operation का use stored data को program में वापस लाने के लिए किया जाता है। Program file से data read करके उसे process, display या analyze कर सकता है।</p>
+        <p>Python में file से data read करने के लिए file को read mode <code>r</code> में open किया जाता है। Reading
+          operation का use stored data को program में वापस लाने के लिए किया जाता है। Program file से data read करके उसे
+          process, display या analyze कर सकता है।</p>
 
-        <p>File reading के लिए Python कई methods provide करता है जैसे <code>read()</code>, <code>readline()</code> और <code>readlines()</code>. हर method का use अलग situation में किया जाता है।</p>
+        <p>File reading के लिए Python कई methods provide करता है जैसे <code>read()</code>, <code>readline()</code> और
+          <code>readlines()</code>. हर method का use अलग situation में किया जाता है।</p>
 
         <h4>Using read()</h4>
         <p><code>read()</code> method पूरी file का content एक string के रूप में read करता है।</p>
@@ -934,7 +980,8 @@ file.close()</pre>
           <li>File close करना भूल जाना।</li>
         </ul>
 
-        <div class="note-box"><b>Real Life Example:</b><br>Marks file से students के marks read करके total और percentage calculate की जा सकती है।</div>
+        <div class="note-box"><b>Real Life Example:</b><br>Marks file से students के marks read करके total और percentage
+          calculate की जा सकती है।</div>
 
         <div class="remember-box"><b>Remember:</b><br>Large files को line by line read करना better होता है।</div>
       </section>
@@ -942,12 +989,17 @@ file.close()</pre>
       <section id="additional">
         <h2>Additional File Methods</h2>
 
-        <p>Python file objects में read और write के अलावा भी कई useful methods और properties होती हैं। ये methods file pointer control करने, file status check करने, file close करने और file position manage करने में help करती हैं।</p>
+        <p>Python file objects में read और write के अलावा भी कई useful methods और properties होती हैं। ये methods file
+          pointer control करने, file status check करने, file close करने और file position manage करने में help करती हैं।
+        </p>
 
-        <p>File handling में file pointer एक important concept है। जब file read या write होती है, तो Python internally pointer maintain करता है कि next operation किस position से होगा। <code>tell()</code> और <code>seek()</code> methods इसी pointer को manage करते हैं।</p>
+        <p>File handling में file pointer एक important concept है। जब file read या write होती है, तो Python internally
+          pointer maintain करता है कि next operation किस position से होगा। <code>tell()</code> और <code>seek()</code>
+          methods इसी pointer को manage करते हैं।</p>
 
         <h4>close()</h4>
-        <p><code>close()</code> method opened file को close करता है। File close करना important है क्योंकि इससे system resources release होते हैं।</p>
+        <p><code>close()</code> method opened file को close करता है। File close करना important है क्योंकि इससे system
+          resources release होते हैं।</p>
 
         <pre>file = open("student.txt", "r")
 data = file.read()
@@ -987,7 +1039,8 @@ print(file.closed)</pre>
         <div class="info-box"><b>Output:</b><br>पहले 5 characters<br>फिर वही पहले 5 characters</div>
 
         <h4>flush()</h4>
-        <p><code>flush()</code> method buffered data को तुरंत file में write करने के लिए use होता है। Normally Python automatically buffer manage करता है, लेकिन कुछ cases में manual flush useful हो सकता है।</p>
+        <p><code>flush()</code> method buffered data को तुरंत file में write करने के लिए use होता है। Normally Python
+          automatically buffer manage करता है, लेकिन कुछ cases में manual flush useful हो सकता है।</p>
 
         <pre>file = open("data.txt", "w")
 
@@ -1038,17 +1091,24 @@ file.close()</pre>
 
         <div class="info-box"><b>Output:</b><br>student.txt<br>r</div>
 
-        <div class="note-box"><b>Real Life Example:</b><br>अगर file पढ़ते समय pointer end पर चला गया है और हमें फिर से शुरुआत से read करना है, तो <code>seek(0)</code> use किया जा सकता है।</div>
+        <div class="note-box"><b>Real Life Example:</b><br>अगर file पढ़ते समय pointer end पर चला गया है और हमें फिर से
+          शुरुआत से read करना है, तो <code>seek(0)</code> use किया जा सकता है।</div>
 
-        <div class="remember-box"><b>Remember:</b><br><code>tell()</code> current position बताता है और <code>seek()</code> position change करता है।</div>
+        <div class="remember-box"><b>Remember:</b><br><code>tell()</code> current position बताता है और
+          <code>seek()</code> position change करता है।</div>
       </section>
 
       <section id="pipes">
         <h2>Using Pipes as Data Streams</h2>
 
-        <p>Pipe एक mechanism है जिसके through एक program का output दूसरे program के input के रूप में use किया जा सकता है। Operating systems में pipes command line पर बहुत common हैं। Pipe data को stream के form में transfer करता है, इसलिए इसे data stream की तरह समझा जा सकता है।</p>
+        <p>Pipe एक mechanism है जिसके through एक program का output दूसरे program के input के रूप में use किया जा सकता
+          है। Operating systems में pipes command line पर बहुत common हैं। Pipe data को stream के form में transfer करता
+          है, इसलिए इसे data stream की तरह समझा जा सकता है।</p>
 
-        <p>Python में pipes का use external commands के साथ communication करने, command output read करने और process input/output handle करने के लिए किया जा सकता है। इसके लिए commonly <code>subprocess</code> module use किया जाता है। Older Python में <code>os.popen()</code> भी use होता था, लेकिन modern programs में <code>subprocess</code> ज्यादा recommended है।</p>
+        <p>Python में pipes का use external commands के साथ communication करने, command output read करने और process
+          input/output handle करने के लिए किया जा सकता है। इसके लिए commonly <code>subprocess</code> module use किया
+          जाता है। Older Python में <code>os.popen()</code> भी use होता था, लेकिन modern programs में
+          <code>subprocess</code> ज्यादा recommended है।</p>
 
         <h4>Command Line Pipe Concept</h4>
         <pre>command1 | command2</pre>
@@ -1087,37 +1147,159 @@ print(output)</pre>
         <pre>import subprocess
 
 process = subprocess.Popen(
-    ["python", "-c", "name=input(); print('Hello', name)"stdin-subprocess-pipe-stdout-subprocess-pipe-text-true-output-error-process.communicate(input="Brajkant"print-output/pre-div-class"info-box"b-output/b-br-hello-brajkant/div-h4-pipes-as-streams/h4-table-tr-th-pipe-part/th-th-meaning/th/tr-tr-td-code-stdin/code/td-td-process-input/td/tr-tr-td-code-stdout/code/td-td-process-output-read/td/tr-tr-td-code-stderr/code/td-td-process-error-output-read/td/tr-tr-td-code-pipe/code/td-td-data-stream-connect/td/tr/table-h4-using-os.popen()</h4-p-code-os.popen()</code-command-output-file-like-stream-read-facility/p-pre-import-os-stream-os.popen("echo Hello"output-stream.read()
+    ["python", "-c", "name=input(); print('Hello', name)"],
+    stdin=subprocess.PIPE,
+    stdout=subprocess.PIPE,
+    text=True
+)
 
-print(output)</pre-div-class"info-box"b-output/b-br-hello/div-h4-important-points/h4-ul-li-pipe-process-output-process-input-connect/li-li-python-pipes-code-subprocess/code-module-commonly-use/li-li-code-stdin/code-code-stdout/code-code-stderr/code-process-streams/li-li-external-commands-run-security/li/ul-h4-common-mistakes/h4-ul-li-user-input-directly-shell-command-use/li-li-command-platform-specific-ignore/li-li-output-bytes-text/li-li-code-communicate/code-use-process-wait-issue-create/li/ul-div-class"note-box"b-real-life-example/b-br-python-program-system-command-output-read-report-folder-list-system-status-command-result/div-div-class"remember-box"b-remember/b-br-pipes-processes-data-stream-create-modern-python-external-process-handling-code-subprocess/code-module/div/section-section-id"io-exceptions"h2-handling-io-exceptions/h2-p-input-output-operations-errors-possibility-file-missing-permission-denied-disk-full-path-file-already-program-use-errors-io-exceptions/p-p-python-io-exceptions-handle-code-try-except/code-blocks-use-file-handling-exception-handling-important-file-operations-external-resources-depend-exception-handle-program-crash/p-h4-filenotfounderror/h4-pre-try-file-open"unknown.txt", "r"print-file-read-file.close()
+output, error = process.communicate(input="Brajkant")
 
-except filenotfounderror:
-    print("File does not exist"item/pre-div-class"info-box"b-output/b-br-file-does-not-exist/div-h4-permissionerror/h4-p-permissionerror-program-file-folder-access-permission/p-pre-try-file-open"protected.txt", "w"file.write("Hello"file.close()
+print(output)</pre>
 
-except permissionerror:
-    print("You do not have permission to write this file"item/pre-div-class"info-box"b-output/b-br-permission-message-show/div-h4-handling-multiple-io-exceptions/h4-pre-try-file-open"data.txt", "r"data-file-read-print-data-file.close()
+        <div class="info-box"><b>Output:</b><br>Hello Brajkant</div>
 
-except filenotfounderror:
+        <h4>Using os.popen()</h4>
+        <pre>import os
+
+stream = os.popen("echo Hello")
+output = stream.read()
+stream.close()
+
+print(output)</pre>
+
+        <div class="info-box"><b>Output:</b><br>Hello</div>
+
+        <h4>Important Points</h4>
+        <ul>
+          <li>Pipe से one process का output दूसरे process के input में भेजा जा सकता है।</li>
+          <li><code>subprocess</code> module modern Python में external commands execute करने के लिए recommended है।</li>
+          <li><code>stdin</code>, <code>stdout</code>, और <code>stderr</code> streams से process input/output control होता है।</li>
+          <li><code>os.popen()</code पुराना तरीका है; नए programs में <code>subprocess</code> prefer करें।</li>
+        </ul>
+
+        <h4>Common Mistakes</h4>
+        <ul>
+          <li>Shell command में user input directly डालना security risk बन सकता है।</li>
+          <li>Platform-specific commands जैसे <code>echo</code> को cross-platform code में ध्यान से use करें।</li>
+          <li>Output bytes और text mode में confusion होने पर correct <code>text=True</code> या encode/decode use करें।</li>
+          <li><code>communicate()</code use करने से process के complete होने तक wait मिलता है।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Python program से system command run करके report, file list, या status output read किया जा सकता है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Pipes processes के बीच data stream connect करने का तरीका हैं, और modern Python में <code>subprocess</code> ज्यादा safe और flexible है।</div>
+      </section>
+
+      <section id="io-exceptions">
+        <h2>Handling IO Exceptions</h2>
+
+        <p>Input-output operations errors के लिए Python में exceptions handle करना important है। File missing होने, permission denied होने या disk full होने जैसी situations में program crash होने से बचने के लिए <code>try-except</code> use करें।</p>
+
+        <h4>FileNotFoundError</h4>
+        <pre>try:
+    file = open("unknown.txt", "r")
+    print(file.read())
+    file.close()
+except FileNotFoundError:
+    print("File does not exist")</pre>
+
+        <div class="info-box"><b>Output:</b><br>File does not exist</div>
+
+        <h4>PermissionError</h4>
+        <pre>try:
+    file = open("protected.txt", "w")
+    file.write("Hello")
+    file.close()
+except PermissionError:
+    print("You do not have permission to write this file")</pre>
+
+        <div class="info-box"><b>Output:</b><br>You do not have permission to write this file</div>
+
+        <h4>Handling Multiple IO Exceptions</h4>
+        <pre>try:
+    file = open("data.txt", "r")
+    data = file.read()
+    print(data)
+    file.close()
+except FileNotFoundError:
     print("File not found")
-
 except PermissionError:
     print("Permission denied")
-
 except IOError:
-    print("Input output error occurred"item/pre-div-class"info-box"b-output/b-br-error-type-according-suitable-message-show/div-h4-using-finally-for-closing-file/h4-pre-file-none-try-file-open"data.txt", "r"print-file.read())
+    print("Input/output error occurred")</pre>
 
-except filenotfounderror:
-    print("File not found"finally-if-file-file.close()
-        print("File closed"item/pre-div-class"info-box"b-output/b-br-file-found-not-found-condition-according-output/div-h4-better-approach-with-with-statement/h4-p-code-with/code-statement-use-file-automatically-close-even-exception/p-pre-try-with-open"data.txt", "r"as-file-print-file.read())
+        <h4>Using finally for Closing File</h4>
+        <pre>file = None
+try:
+    file = open("data.txt", "r")
+    print(file.read())
+except FileNotFoundError:
+    print("File not found")
+finally:
+    if file:
+        file.close()
+        print("File closed")</pre>
 
-except filenotfounderror:
-    print("File not found"item/pre-div-class"info-box"b-output/b-br-file-missing-file-not-found/div-h4-common-io-exceptions/h4-table-tr-th-exception/th-th-cause/th/tr-tr-td-code-filenotfounderror/code/td-td-file-exist/td/tr-tr-td-code-permissionerror/code/td-td-file-access-permission/td/tr-tr-td-code-isadirectoryerror/code/td-td-file-directory-open/td/tr-tr-td-code-fileexistserror/code/td-td-code-x/code-mode-already-existing-file-create/td/tr-tr-td-code-ioerror/code/td-td-general-input-output-error/td/tr/table-h4-safe-file-writing-example/h4-pre-try-with-open"result.txt", "w"as-file-file.write("Result: Pass")
+        <h4>Better Approach with with Statement</h4>
+        <p><code>with</code> statement file को automatically close कर देता है, चाहे exception आए या नहीं। यह safer and cleaner approach है।</p>
+        <pre>try:
+    with open("data.txt", "r") as file:
+        print(file.read())
+except FileNotFoundError:
+    print("File not found")</pre>
 
+        <div class="info-box"><b>Output:</b><br>File not found</div>
+
+        <h4>Common IO Exceptions</h4>
+        <table>
+          <tr>
+            <th>Exception</th>
+            <th>Cause</th>
+          </tr>
+          <tr>
+            <td><code>FileNotFoundError</code></td>
+            <td>File मौजूद नहीं है</td>
+          </tr>
+          <tr>
+            <td><code>PermissionError</code></td>
+            <td>File या folder access permission नहीं है</td>
+          </tr>
+          <tr>
+            <td><code>IsADirectoryError</code></td>
+            <td>File की जगह directory open करने की कोशिश</td>
+          </tr>
+          <tr>
+            <td><code>FileExistsError</code></td>
+            <td>New file create करने की कोशिश जब file already exist हो</td>
+          </tr>
+          <tr>
+            <td><code>IOError</code></td>
+            <td>General input/output error</td>
+          </tr>
+        </table>
+
+        <h4>Safe File Writing Example</h4>
+        <pre>try:
+    with open("result.txt", "w") as file:
+        file.write("Result: Pass")
 except PermissionError:
     print("Cannot write file due to permission problem")
-
 except IOError:
-    print("File writing error occurred"item/pre-h4-best-practices/h4-ul-li-file-handling-possible-exceptions-handle/li-li-code-with/code-statement-use-file-automatically-close/li-li-user-clear-meaningful-error-message/li-li-file-path-properly-check/li-li-important-data-overwrite/li/ul-div-class"note-box"b-real-life-example/b-br-result-file-save-disk-permission-issue-program-crash-message-show-result-file-save/div-div-class"remember-box"><b>Remember:</b><br>File handling में <code>with</code> statement और <code>try-except</code> दोनों मिलकर program को safer बनाते हैं।</div>
+    print("File writing error occurred")</pre>
+
+        <h4>Best Practices</h4>
+        <ul>
+          <li>File handling में possible exceptions handle करें।</li>
+          <li><code>with</code> statement use करें ताकि file automatically close हो जाए।</li>
+          <li>Clear और meaningful error messages दें।</li>
+          <li>File path और permissions पहले check करें।</li>
+          <li>Important data overwrite होने से बचने के लिए ध्यान रखें।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Result file save करते समय disk permission issue या missing file की वजह से program crash रोकने के लिए exception handling helpful होती है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>File handling में <code>with</code> statement और <code>try-except</code> दोनों together use करने से program safer बनता है।</div>
       </section>
 
     </main>
