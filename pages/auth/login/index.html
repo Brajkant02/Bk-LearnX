@@ -89,6 +89,45 @@
             transform: scale(0.98);
         }
 
+        .google-btn {
+            width: 100%;
+            padding: clamp(0.75rem, 2.5vw, 1rem);
+            background: #fff;
+            color: #444;
+            border: 1px solid #d0d7de;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: clamp(0.875rem, 3vw, 1rem);
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .google-btn:hover {
+            background: #f6f8fa;
+            border-color: #b6c2cf;
+        }
+
+        .separator {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 1rem 0 0.25rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .separator::before,
+        .separator::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .separator span {
+            padding: 0 0.75rem;
+        }
+
         .register-text {
             text-align: center;
             margin-top: 1.5rem;
@@ -164,7 +203,10 @@
 
             <input type="submit" value="Login" class="btn">
 
-            <p id="loginMessage" style="margin-top-1rem-font-size-.95rem;"></p>
+            <div class="separator"><span>or</span></div>
+            <button type="button" class="google-btn" id="googleLoginBtn">Continue with Google</button>
+
+            <p id="loginMessage" style="margin-top: 1rem; font-size: 0.95rem;"></p>
         </form>
 
         <p class="register-text">
@@ -179,9 +221,40 @@
 
     <script src="../../../assets/shared/config.js"></script>
     <script>
+        const messageEl = document.getElementById('loginMessage');
+        const redirectToHome = () => {
+            window.location.href = '../../home/index.html';
+        };
+
+        const applyGoogleAuth = () => {
+            const params = new URLSearchParams(window.location.search);
+            const googleError = params.get('google_error');
+            const googleAuth = params.get('google_auth');
+            const token = params.get('token');
+            const encodedUser = params.get('user');
+
+            if (googleError) {
+                messageEl.textContent = decodeURIComponent(googleError);
+                messageEl.style.color = 'red';
+                return;
+            }
+
+            if (googleAuth === '1' && token && encodedUser) {
+                try {
+                    localStorage.setItem('bk_token', token);
+                    localStorage.setItem('bk_user', decodeURIComponent(encodedUser));
+                    messageEl.textContent = 'Google login successful. Redirecting...';
+                    messageEl.style.color = 'green';
+                    setTimeout(redirectToHome, 800);
+                } catch (error) {
+                    messageEl.textContent = 'Unable to finish Google login.';
+                    messageEl.style.color = 'red';
+                }
+            }
+        };
+
         document.getElementById('loginForm').addEventListener('submit', async function (event) {
             event.preventDefault();
-            const messageEl = document.getElementById('loginMessage');
             const email = document.getElementById('loginEmail').value.trim();
             const password = document.getElementById('loginPassword').value;
 
@@ -209,13 +282,18 @@
                 localStorage.setItem('bk_token', result.token); localStorage.setItem('bk_user', JSON.stringify(result.user));
                 messageEl.textContent = 'Login successful. Redirecting...';
                 messageEl.style.color = 'green';
-                setTimeout(() => {
-                    window.location.href = '../../home/index.html';
-                }, 1000);
+                setTimeout(redirectToHome, 1000);
             } catch (error) {
                 messageEl.textContent = 'unable-to-connect-to-the-server.';
             }
         });
+
+        document.getElementById('googleLoginBtn').addEventListener('click', function () {
+            const redirectUrl = encodeURIComponent(window.location.href);
+            window.location.href = BK_CONFIG.API_BASE_URL + '/api/auth/google?redirect=' + redirectUrl;
+        });
+
+        applyGoogleAuth();
     </script>
     <script src="../../../assets/shared/theme.js" defer></script>
 </body>

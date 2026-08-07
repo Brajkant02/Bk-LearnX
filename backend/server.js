@@ -1,11 +1,115 @@
 require('dotenv').config();
 const express = require('express'), cors = require('cors'), bcrypt = require('bcryptjs'), fs = require('fs').promises, path = require('path'), crypto = require('crypto'), nodemailer = require('nodemailer');
 const app = express(), PORT = process.env.PORT || 3000, DATA = path.join(__dirname, 'data'); app.use(cors()); app.use(express.json({ limit: '3mb' }));
-const files = { users: 'users.json', activity: 'activity.json', progress: 'progress.json' }; const sessions = new Map(), adminSessions = new Map();
+const files = { users: 'users.json', activity: 'activity.json', progress: 'progress.json' }; const sessions = new Map(), adminSessions = new Map(), googleStates = new Map();
 async function read(k) { try { return JSON.parse(await fs.readFile(path.join(DATA, files[k]), 'utf8')) } catch { return [] } } async function write(k, v) { await fs.mkdir(DATA, { recursive: true }); await fs.writeFile(path.join(DATA, files[k]), JSON.stringify(v, null, 2)) } const token = () => crypto.randomBytes(24).toString('hex');
+function createGoogleState(redirectUrl) { const state = crypto.randomBytes(16).toString('hex'); googleStates.set(state, { redirectUrl, createdAt: Date.now() }); return state; }
+function consumeGoogleState(state) { const entry = googleStates.get(state); if (entry) googleStates.delete(state); return entry; }
 async function auth(req, res, next) { const t = (req.headers.authorization || '').replace('Bearer ', ''); const s = sessions.get(t); if (!s) return res.status(401).json({ message: 'Please login again.' }); req.userId = s.userId; req.sessionToken = t; next() }
 function admin(req, res, next) { const t = req.header('x-admin-token'); if (!adminSessions.has(t)) return res.status(401).json({ message: 'Unauthorized' }); next() }
 app.get('/api/health', (q, r) => r.json({ status: 'ok' }));
+app.get('/api/auth/google', (req, res) => {
+  const fallbackRedirect = process.env.FRONTEND_URL || 'http://localhost:3000/pages/auth/login/index.html';
+  const requestedRedirect = typeof req.query.redirect === 'string' && req.query.redirect.trim() ? req.query.redirect : fallbackRedirect;
+  const redirectTarget = new URL(requestedRedirect, `${req.protocol}://${req.get('host')}`); const clientId = process.env.GOOGLE_CLIENT_ID;
+  const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
+  if (!clientId || !clientSecret) {
+    redirectTarget.searchParams.set('google_error', 'Google login is not configured on this server yet.');
+    return res.redirect(redirectTarget.toString());
+  }
+  const state = createGoogleState(redirectTarget.toString());
+  const redirectUri = process.env.GOOGLE_REDIRECT_URI || `${req.protocol}://${req.get('host')}/api/auth/google/callback`;
+  const params = new URLSearchParams({
+    client_id: clientId,
+    redirect_uri: redirectUri,
+    response_type: 'code',
+    scope: 'openid email profile',
+    access_type: 'offline',
+    prompt: 'consent',
+    state
+  });
+  res.redirect(`https://accounts.google.com/o/oauth2/v2/auth?${params.toString()}`);
+});
+app.get('/api/auth/google/callback', async (req, res) => {
+  const { code, state, error } = req.query;
+  const fallbackRedirect = process.env.FRONTEND_URL || 'http://localhost:3000/pages/auth/login/index.html';
+  const errorTarget = new URL(fallbackRedirect, `${req.protocol}://${req.get('host')}`);
+  if (error) {
+    errorTarget.searchParams.set('google_error', 'Google sign-in was cancelled or failed.');
+    return res.redirect(errorTarget.toString());
+  }
+  if (!code || !state) {
+    errorTarget.searchParams.set('google_error', 'Google sign-in response was incomplete.');
+    return res.redirect(errorTarget.toString());
+  }
+  const savedState = consumeGoogleState(String(state));
+  if (!savedState) {
+    errorTarget.searchParams.set('google_error', 'Google sign-in state expired. Please try again.');
+    return res.redirect(errorTarget.toString());
+  }
+  const redirectTarget = new URL(savedState.redirectUrl, `${req.protocol}://${req.get('host')}`);
+  try {
+    const tokenResponse = await fetch('https://oauth2.googleapis.com/token', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        code: String(code),
+        client_id: process.env.GOOGLE_CLIENT_ID || '',
+        client_secret: process.env.GOOGLE_CLIENT_SECRET || '',
+        redirect_uri: process.env.GOOGLE_REDIRECT_URI || `${req.protocol}://${req.get('host')}/api/auth/google/callback`,
+        grant_type: 'authorization_code'
+      })
+    });
+    const tokenData = await tokenResponse.json();
+    if (!tokenData.access_token) {
+      throw new Error(tokenData.error_description || tokenData.error || 'Failed to exchange Google code.');
+    }
+    const profileResponse = await fetch('https://www.googleapis.com/oauth2/v2/userinfo', {
+      headers: { Authorization: `Bearer ${tokenData.access_token}` }
+    });
+    const profile = await profileResponse.json();
+    if (!profile.email) {
+      throw new Error('Google profile did not return an email address.');
+    }
+    const users = await read('users');
+    const email = String(profile.email).trim().toLowerCase();
+    let user = users.find(x => (x.email || '').toLowerCase() === email);
+    if (!user) {
+      user = {
+        id: crypto.randomUUID(),
+        name: profile.name || profile.given_name || email.split('@')[0],
+        email,
+        branch: '',
+        semester: '',
+        passwordHash: '',
+        registeredAt: new Date().toISOString(),
+        lastLoginAt: null,
+        lastLogoutAt: null,
+        phone: '',
+        college: '',
+        photo: profile.picture || '',
+        provider: 'google'
+      };
+      users.push(user);
+    } else {
+      user.name = user.name || profile.name || profile.given_name || email.split('@')[0];
+      user.photo = user.photo || profile.picture || '';
+      user.provider = 'google';
+    }
+    user.lastLoginAt = new Date().toISOString();
+    await write('users', users);
+    const sessionToken = token();
+    sessions.set(sessionToken, { userId: user.id, loginAt: Date.now(), lastSeen: Date.now(), currentPage: '' });
+    redirectTarget.searchParams.set('google_auth', '1');
+    redirectTarget.searchParams.set('token', sessionToken);
+    redirectTarget.searchParams.set('user', encodeURIComponent(JSON.stringify(safe(user))));
+    res.redirect(redirectTarget.toString());
+  } catch (error) {
+    console.error('Google OAuth error:', error.message || error);
+    redirectTarget.searchParams.set('google_error', 'Unable to sign in with Google right now.');
+    res.redirect(redirectTarget.toString());
+  }
+});
 app.post('/api/register', async (req, res) => { const { name, email, branch, semester, password, confirmPassword } = req.body; if (!name || !email || !branch || !semester || !password) return res.status(400).json({ message: 'All fields required.' }); if (password !== confirmPassword) return res.status(400).json({ message: 'Passwords do not match.' }); const users = await read('users'); if (users.some(x => x.email.toLowerCase() === email.toLowerCase())) return res.status(409).json({ message: 'Email already registered.' }); const u = { id: crypto.randomUUID(), name, email, branch, semester, passwordHash: await bcrypt.hash(password, 10), registeredAt: new Date().toISOString(), lastLoginAt: null, lastLogoutAt: null, phone: '', college: '', photo: '' }; users.push(u); await write('users', users); res.status(201).json({ message: 'Registration successful.' }) });
 app.post('/api/login', async (req, res) => { const users = await read('users'), u = users.find(x => x.email.toLowerCase() === (req.body.email || '').toLowerCase()); if (!u || !await bcrypt.compare(req.body.password || '', u.passwordHash)) return res.status(401).json({ message: 'Invalid email or password.' }); u.lastLoginAt = new Date().toISOString(); await write('users', users); const t = token(); sessions.set(t, { userId: u.id, loginAt: Date.now(), lastSeen: Date.now(), currentPage: '' }); res.json({ token: t, user: safe(u) }) });
 
@@ -124,13 +228,3 @@ const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin@bklearnx.local', ADMIN_PAS
 app.post('/api/admin/login', async (req, res) => { if ((req.body.email || '').toLowerCase() !== ADMIN_EMAIL.toLowerCase() || req.body.password !== ADMIN_PASSWORD) return res.status(401).json({ message: 'Invalid admin credentials.' }); const t = token(); adminSessions.set(t, { at: Date.now() }); res.json({ token: t }) });
 app.get('/api/admin/dashboard', admin, async (req, res) => { const [users, activity, progress] = await Promise.all([read('users'), read('activity'), read('progress')]); const now = Date.now(), day = new Date().toISOString().slice(0, 10); const rows = users.map(u => { const sess = [...sessions.values()].find(s => s.userId === u.id); const ps = progress.filter(p => p.userId === u.id); return { ...safe(u), online: !!sess && now - sess.lastSeen < 120000, currentPage: sess?.currentPage || '', lastActivity: sess ? new Date(sess.lastSeen).toISOString() : u.lastLogoutAt || u.lastLoginAt, completion: ps.length ? Math.round(ps.filter(x => x.completed).length / ps.length * 100) : 0 } }); res.json({ stats: { totalStudents: users.length, onlineStudents: rows.filter(x => x.online).length, loginsToday: users.filter(x => (x.lastLoginAt || '').startsWith(day)).length, averageCompletion: rows.length ? Math.round(rows.reduce((a, b) => a + b.completion, 0) / rows.length) : 0 }, students: rows, recentActivity: activity.slice(-30).reverse().map(a => ({ ...a, studentName: users.find(u => u.id === a.userId)?.name })) }) });
 app.listen(PORT, () => console.log(`BK LearnX backend: http://localhost:${PORT}`));
-
-const nodemailer = require("nodemailer");
-
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_APP_PASSWORD
-  }
-});

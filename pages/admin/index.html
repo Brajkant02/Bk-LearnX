@@ -59,16 +59,20 @@
         async function load() {
             try {
                 const r = await fetch(API + '/api/admin/dashboard', { headers: { 'x-admin-token': token } });
-                if (!r.ok) throw 0;
+                if (!r.ok) throw new Error('Unauthorized');
                 const d = await r.json();
-                total.textContent = d.stats.totalStudents;
-                online.textContent = d.stats.onlineStudents;
-                today.textContent = d.stats.loginsToday;
-                completion.textContent = d.stats.averageCompletion + '%';
-                students.innerHTML = d.students.map(s => `<tr><td><strong>${s.name}</strong><br><span class="muted">${s.email}</span></td><td>${s.branch}<br>${s.semester}</td><td><span class="badge ${s.online ? 'online' : 'offline'}">${s.online ? 'Online' : 'Logged out'}</span></td><td>${s.currentPage || '—'}<br><span class="muted">${s.lastActivity ? new Date(s.lastActivity).toLocaleString() : '—'}</span></td><td>${s.completion}%</td></tr>`).join('');
-                activity.innerHTML = (d.recentActivity || []).map(a => `<div style="padding:9px 0;border-bottom:1px solid #e5e7eb"><strong>${a.studentName || 'Student'}</strong> — ${a.type}<br><span class="muted">${a.title || a.page || ''} · ${a.durationSeconds || 0}s</span></div>`).join('') || '<p class="empty-state">No activity yet.</p>'
-            } catch {
-                activity.innerHTML = '<p class="empty-state">Backend server connect nahi hua.</p>'
+                const stats = d.stats || {};
+                const studentsList = Array.isArray(d.students) ? d.students : [];
+                const activityList = Array.isArray(d.recentActivity) ? d.recentActivity : [];
+                total.textContent = stats.totalStudents ?? studentsList.length;
+                online.textContent = stats.onlineStudents ?? 0;
+                today.textContent = stats.loginsToday ?? 0;
+                completion.textContent = `${stats.averageCompletion ?? 0}%`;
+                students.innerHTML = studentsList.length ? studentsList.map(s => `<tr><td><strong>${s.name || 'Student'}</strong><br><span class="muted">${s.email || ''}</span></td><td>${s.branch || '—'}<br>${s.semester || '—'}</td><td><span class="badge ${s.online ? 'online' : 'offline'}">${s.online ? 'Online' : 'Logged out'}</span></td><td>${s.currentPage || '—'}<br><span class="muted">${s.lastActivity ? new Date(s.lastActivity).toLocaleString() : '—'}</span></td><td>${s.completion ?? 0}%</td></tr>`).join('') : '<tr><td colspan="5" class="empty-state">No students registered yet.</td></tr>';
+                activity.innerHTML = activityList.length ? activityList.map(a => `<div style="padding:9px 0;border-bottom:1px solid #e5e7eb"><strong>${a.studentName || 'Student'}</strong> — ${a.type || 'activity'}<br><span class="muted">${a.title || a.page || ''} · ${a.durationSeconds || 0}s</span></div>`).join('') : '<p class="empty-state">No activity yet.</p>';
+            } catch (error) {
+                console.error(error);
+                activity.innerHTML = '<p class="empty-state">Backend server connect nahi hua ya admin access invalid hai.</p>';
             }
         }
 
