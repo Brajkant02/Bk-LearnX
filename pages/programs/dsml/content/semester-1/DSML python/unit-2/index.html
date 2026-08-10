@@ -6,355 +6,951 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Basic Python Syntax</title>
   <style>
+    /* ================================
+   BK LEARNX - UNIT NOTES CSS
+   Responsive + Iframe Safe Layout
+================================ */
+
+    /* ---------- RESET ---------- */
+
     * {
       box-sizing: border-box;
       margin: 0;
-      padding: 0
+      padding: 0;
     }
 
     html {
-      scroll-behavior: smooth
+      scroll-behavior: smooth;
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
     }
 
     body {
+      width: 100%;
+      max-width: 100%;
+      min-height: 100vh;
+
+      margin: 0;
+      padding: 0;
+
       font-family: "Segoe UI", Arial, sans-serif;
+
       background: #f5f7fb;
       color: #1f2937;
-      line-height: 1.75
+
+      line-height: 1.75;
+
+      overflow-x: hidden;
     }
+
+
+    /* ================================
+   MAIN PAGE LAYOUT
+================================ */
 
     .page {
       display: grid;
-      grid-template-columns: 285px 1fr;
+
+      /*
+       285px = Sidebar
+       Remaining space = Content
+       minmax(0,1fr) prevents content
+       from going outside the screen.
+    */
+      grid-template-columns: 285px minmax(0, 1fr);
+
       gap: 20px;
-      max-width: 1500px;
-      margin: auto;
-      padding: 10px
+
+      width: 100%;
+      width:100%;max-width:none;
+
+      margin: 0 auto;
+
+      padding: 10px;
+
+      min-width: 0;
     }
+
+
+    /* ================================
+   SIDEBAR
+================================ */
 
     .sidebar {
       position: sticky;
+
       top: 10px;
+
+      width: 100%;
+      min-width: 0;
+
       height: calc(100vh - 20px);
+
       overflow-y: auto;
-      background: #fff;
+      overflow-x: hidden;
+
+      background: #ffffff;
+
       border-radius: 16px;
+
       padding: 18px;
-      box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
-      align-self: start
+
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+
+      align-self: start;
     }
+
+
+    /* Sidebar Scrollbar */
+
+    .sidebar::-webkit-scrollbar {
+      width: 7px;
+    }
+
+    .sidebar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .sidebar::-webkit-scrollbar-thumb {
+      background: #9ca3af;
+      border-radius: 10px;
+    }
+
+
+    /* Sidebar Heading */
 
     .sidebar h2 {
       font-size: 20px;
+
       margin-bottom: 12px;
-      color: #111827
+
+      color: #111827;
     }
+
+
+    /* Sidebar Links */
 
     .sidebar a {
       display: block;
+
+      width: 100%;
+
       text-decoration: none;
+
       color: #374151;
+
       padding: 8px 10px;
+
       border-radius: 10px;
+
       margin-bottom: 4px;
-      font-size: 14.7px
+
+      font-size: 14.7px;
+
+      overflow-wrap: break-word;
+
+      transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
     }
+
+
+    /* Sidebar Hover */
 
     .sidebar a:hover {
       background: #eef2ff;
-      color: #1d4ed8
+
+      color: #1d4ed8;
+
+      transform: translateX(2px);
     }
+
+
+    /* ================================
+   MAIN CONTENT
+================================ */
 
     .content {
-      background: #fff;
+      width: 100%;
+
+      min-width: 0;
+
+      max-width: 100%;
+
+      background: #ffffff;
+
       border-radius: 18px;
+
       padding: 10px;
-      box-shadow: 0 4px 18px rgba(0, 0, 0, .08)
+
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+
+      overflow-x: hidden;
     }
 
+
+    /* ================================
+   HERO
+================================ */
+
     .hero {
+      width: 100%;
+
+      max-width: 100%;
+
       padding: 28px 18px;
+
       border-radius: 16px;
-      background: linear-gradient(135deg, #eef2ff, #f8fafc);
-      margin-bottom: 18px
+
+      background:
+        linear-gradient(135deg,
+          #eef2ff,
+          #f8fafc);
+
+      margin-bottom: 18px;
+
+      overflow-wrap: break-word;
     }
+
 
     .hero h1 {
       font-size: 34px;
+
       color: #111827;
-      margin-bottom: 10px
+
+      margin-bottom: 10px;
+
+      overflow-wrap: break-word;
     }
+
 
     .hero p {
       font-size: 18px;
-      color: #374151
+
+      color: #374151;
+
+      overflow-wrap: break-word;
     }
+
+
+    /* ================================
+   SECTIONS
+================================ */
 
     section {
+      width: 100%;
+
+      max-width: 100%;
+
+      min-width: 0;
+
       padding: 22px 10px;
-      border-bottom: 1px solid #e5e7eb
+
+      border-bottom: 1px solid #e5e7eb;
+
+      overflow-wrap: break-word;
     }
 
+
     section:last-child {
-      border-bottom: none
+      border-bottom: none;
     }
+
+
+    /* ================================
+   HEADINGS
+================================ */
 
     h2 {
       font-size: 27px;
+
       color: #111827;
+
       margin-bottom: 12px;
+
       border-left: 5px solid #2563eb;
-      padding-left: 12px
+
+      padding-left: 12px;
+
+      overflow-wrap: break-word;
     }
+
 
     h3 {
       font-size: 22px;
+
       color: #1f2937;
-      margin: 16px 0 8px
+
+      margin: 16px 0 8px;
+
+      overflow-wrap: break-word;
     }
+
 
     h4 {
       font-size: 18px;
+
       color: #111827;
-      margin: 14px 0 6px
+
+      margin: 14px 0 6px;
+
+      overflow-wrap: break-word;
     }
 
+
+    /* ================================
+   PARAGRAPHS
+================================ */
+
     p {
+      width: 100%;
+
+      max-width: 100%;
+
       margin: 10px 0;
-      font-size: 17px
+
+      font-size: 17px;
+
+      overflow-wrap: break-word;
+
+      word-wrap: break-word;
     }
+
+
+    /* ================================
+   LISTS
+================================ */
 
     ul,
     ol {
       margin-left: 24px;
-      margin-top: 8px
+
+      margin-top: 8px;
+
+      max-width: 100%;
     }
+
 
     li {
       margin: 7px 0;
-      font-size: 16.5px
+
+      font-size: 16.5px;
+
+      overflow-wrap: break-word;
     }
+
+
+    /* ================================
+   STRONG
+================================ */
 
     strong {
-      color: #111827
+      color: #111827;
     }
+
+
+    /* ================================
+   IMAGE BOX
+================================ */
 
     .image-icon {
+      width: 100%;
+
       min-height: 180px;
+
       border: 2px dashed #94a3b8;
+
       border-radius: 16px;
+
       background: #f8fafc;
+
       display: flex;
+
       align-items: center;
+
       justify-content: center;
+
       text-align: center;
+
       padding: 20px;
+
       margin: 18px 0;
+
       color: #475569;
-      font-weight: 600
+
+      font-weight: 600;
+
+      overflow: hidden;
     }
+
 
     .image-icon img {
+      display: block;
+
       max-width: 100%;
-      height: auto
+
+      width: auto;
+
+      height: auto;
+
+      object-fit: contain;
     }
+
+
+    /* ================================
+   INFO BOXES
+================================ */
 
     .note-box {
+      width: 100%;
+
+      max-width: 100%;
+
       background: #f0fdf4;
+
       border-left: 5px solid #22c55e;
+
       border-radius: 14px;
+
       padding: 14px 16px;
-      margin: 16px 0
+
+      margin: 16px 0;
+
+      overflow-wrap: break-word;
     }
+
 
     .info-box {
+      width: 100%;
+
+      max-width: 100%;
+
       background: #ecfeff;
+
       border-left: 5px solid #06b6d4;
+
       border-radius: 14px;
+
       padding: 14px 16px;
-      margin: 16px 0
+
+      margin: 16px 0;
+
+      overflow-wrap: break-word;
     }
 
+
     .remember-box {
+      width: 100%;
+
+      max-width: 100%;
+
       background: #fff7ed;
+
       border-left: 5px solid #f97316;
+
       border-radius: 14px;
+
       padding: 14px 16px;
-      margin: 16px 0
+
+      margin: 16px 0;
+
+      overflow-wrap: break-word;
     }
+
+
+    /* ================================
+   TABLE
+================================ */
 
     table {
       width: 100%;
+
+      max-width: 100%;
+
       border-collapse: collapse;
+
       margin: 16px 0;
+
       border-radius: 12px;
+
       overflow: hidden;
-      font-size: 15.5px
+
+      font-size: 15.5px;
     }
+
+
+    /* Table Cells */
 
     th,
     td {
       border: 1px solid #d1d5db;
+
       padding: 10px;
+
       text-align: left;
-      vertical-align: top
+
+      vertical-align: top;
+
+      overflow-wrap: break-word;
+
+      word-wrap: break-word;
     }
+
 
     th {
       background: #eef2ff;
-      color: #111827
+
+      color: #111827;
     }
+
+
+    /* ================================
+   CODE
+================================ */
 
     code {
       background: #111827;
+
       color: #f9fafb;
+
       padding: 2px 6px;
+
       border-radius: 6px;
+
       font-family: Consolas, monospace;
-      font-size: 15px
+
+      font-size: 15px;
+
+      overflow-wrap: break-word;
     }
 
+
+    /* ================================
+   PRE / CODE BLOCK
+================================ */
+
     pre {
+      width: 100%;
+
+      max-width: 100%;
+
       background: #0f172a;
+
       color: #e5e7eb;
+
       border-radius: 14px;
+
       padding: 16px;
+
       margin: 16px 0;
+
       overflow-x: auto;
+
+      overflow-y: hidden;
+
       font-family: Consolas, monospace;
-      line-height: 1.6
+
+      line-height: 1.6;
+
+      white-space: pre-wrap;
+
+      overflow-wrap: anywhere;
+
+      word-break: break-word;
     }
+
+
+    /* ================================
+   COMPILER
+================================ */
 
     .compiler {
       width: 100%;
-      height: 2rem;
+
+      min-height: 2rem;
+
       background-color: green;
+
       text-align: center;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      border-radius: 8px;
     }
+
 
     .compiler a {
       text-decoration: none;
+
       color: white;
     }
 
-    @media(max-width:900px) {
-      .page {
-        grid-template-columns: 1fr
-      }
 
-      .sidebar {
-        position: relative;
-        height: auto
-      }
-
-      .hero h1 {
-        font-size: 27px
-      }
-
-      h2 {
-        font-size: 24px
-      }
-    }
-
-    /* Iframe content responsive fix */
-    html,
-    body {
-      width: 100%;
-      max-width: 100%;
-    }
-
-    .page,
-    .content,
-    section {
-      min-width: 0;
-      max-width: 100%;
-    }
+    /* ================================
+   MEDIA / IMAGES / VIDEO
+================================ */
 
     img,
     video,
     svg,
     canvas {
       max-width: 100%;
+
       height: auto;
     }
 
-    table {
+
+    /* ================================
+   IFRAME SAFETY
+================================ */
+
+    iframe {
       display: block;
+
       width: 100%;
+
       max-width: 100%;
-      overflow-x: auto;
-      overflow-y: hidden;
-      border-radius: 12px;
-      -webkit-overflow-scrolling: touch;
+
+      border: none;
     }
 
-    th,
-    td {
-      min-width: 110px;
-      overflow-wrap: break-word;
-      word-break: normal;
+
+    /* ================================
+   RESPONSIVE - TABLET
+================================ */
+
+    @media (max-width: 1100px) {
+
+      .page {
+        grid-template-columns:
+          240px minmax(0, 1fr);
+
+        gap: 15px;
+
+        padding: 8px;
+      }
+
+
+      .sidebar {
+        padding: 14px;
+      }
+
+
+      .sidebar a {
+        font-size: 14px;
+      }
+
+
+      .hero h1 {
+        font-size: 30px;
+      }
+
+
+      h2 {
+        font-size: 25px;
+      }
     }
 
-    pre {
-      max-width: 100%;
-      white-space: pre-wrap;
-      overflow-wrap: anywhere;
-    }
 
-    code {
-      white-space: pre-wrap;
-      overflow-wrap: anywhere;
-    }
+    /* ================================
+   RESPONSIVE - MOBILE
+================================ */
 
     @media (max-width: 900px) {
+
+      html,
+      body {
+        width: 100%;
+
+        max-width: 100%;
+
+        overflow-x: hidden;
+      }
+
+
       .page {
         display: block;
+
         width: 100%;
+
+        max-width: 100%;
+
+        min-width: 0;
+
         padding: 5px;
+
+        margin: 0;
       }
+
+
+      /* Hide Sidebar on Mobile */
 
       .sidebar {
         display: none;
       }
 
+
+      /* Full Width Content */
+
       .content {
+        display: block;
+
         width: 100%;
+
+        max-width: 100%;
+
         min-width: 0;
+
         padding: 6px;
+
+        margin: 0;
+
         border-radius: 10px;
+
+        overflow-x: hidden;
       }
+
 
       section {
         width: 100%;
+
+        max-width: 100%;
+
         padding: 16px 6px;
       }
 
+
       .hero {
+        width: 100%;
+
+        max-width: 100%;
+
         padding: 18px 10px;
       }
+
 
       .hero h1 {
         font-size: 24px;
       }
 
+
+      .hero p {
+        font-size: 16px;
+      }
+
+
       h2 {
         font-size: 21px;
       }
 
+
       h3 {
         font-size: 18px;
       }
+
+
+      h4 {
+        font-size: 16px;
+      }
+
 
       p,
       li {
         font-size: 15px;
       }
 
+
       .image-icon {
         min-height: 130px;
+
         padding: 8px;
       }
+
+
+      /* Mobile table horizontal scroll */
+
+      table {
+        display: block;
+
+        width: 100%;
+
+        max-width: 100%;
+
+        overflow-x: auto;
+
+        overflow-y: hidden;
+
+        -webkit-overflow-scrolling: touch;
+      }
+
+
+      th,
+      td {
+        min-width: 110px;
+
+        white-space: normal;
+
+        overflow-wrap: break-word;
+      }
+
+
+      pre {
+        width: 100%;
+
+        max-width: 100%;
+
+        white-space: pre-wrap;
+
+        overflow-x: auto;
+
+        overflow-wrap: anywhere;
+
+        word-break: break-word;
+      }
+
+
+      code {
+        white-space: pre-wrap;
+
+        overflow-wrap: anywhere;
+
+        word-break: break-word;
+      }
     }
+
+
+    /* ================================
+   VERY SMALL MOBILE
+================================ */
+
+    @media (max-width: 480px) {
+
+      .page {
+        padding: 3px;
+      }
+
+
+      .content {
+        padding: 4px;
+
+        border-radius: 8px;
+      }
+
+
+      section {
+        padding: 14px 5px;
+      }
+
+
+      .hero {
+        padding: 15px 8px;
+
+        border-radius: 12px;
+      }
+
+
+      .hero h1 {
+        font-size: 21px;
+      }
+
+
+      .hero p {
+        font-size: 14px;
+      }
+
+
+      h2 {
+        font-size: 19px;
+
+        padding-left: 8px;
+
+        border-left-width: 4px;
+      }
+
+
+      h3 {
+        font-size: 17px;
+      }
+
+
+      h4 {
+        font-size: 15px;
+      }
+
+
+      p,
+      li {
+        font-size: 14px;
+
+        line-height: 1.65;
+      }
+
+
+      .note-box,
+      .info-box,
+      .remember-box {
+        padding: 12px;
+
+        margin: 12px 0;
+      }
+
+
+      pre {
+        padding: 12px;
+
+        font-size: 13px;
+
+        border-radius: 10px;
+      }
+
+
+      code {
+        font-size: 13px;
+      }
+    }
+
+
+    /* ================================
+   EXTRA WIDTH PROTECTION
+================================ */
+
+    .page *,
+    .content *,
+    section * {
+      max-width: 100%;
+    }
+
+
+    .content,
+    section,
+    .hero,
+    .note-box,
+    .info-box,
+    .remember-box,
+    .image-icon,
+    pre {
+      overflow-wrap: anywhere;
+    }
+
+
+    /* Prevent long text / URLs from
+   breaking the complete layout */
+
+    a {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+
+    /* ================================
+   END
+================================ */
   </style>
 
   <link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
@@ -902,11 +1498,12 @@ print("Python\nProgramming")</pre>
 
         <div class="info-box"><b>Output:</b><br>Name: Brajkant<br>Course: PGDCA<br>Python<br>Programming</div>
 
-        <div class="note-box"><b>Real Life Example:</b><br>Result card, bill receipt और report card जैसे outputs को format करके print करने में <code>print()</code>
+        <div class="note-box"><b>Real Life Example:</b><br>Result card, bill receipt और report card जैसे outputs को
+          format करके print करने में <code>print()</code>
           function बहुत useful होता है।</pre>
-  </div>
-  </section>
-  </main>
+        </div>
+      </section>
+    </main>
   </div>
 </body>
 
