@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Linear Algebra</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f7fb;color:#1f2937;line-height:1.75}
+.page{display:grid;grid-template-columns:280px 1fr;gap:20px;max-width:1450px;margin:auto;padding:10px}
+.sidebar{position:sticky;top:10px;height:calc(100vh - 20px);overflow-y:auto;background:#fff;border-radius:16px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.08);align-self:start}
+.sidebar h2{font-size:20px;margin-bottom:12px;color:#111827}
+.sidebar a{display:block;text-decoration:none;color:#374151;padding:8px 10px;border-radius:10px;margin-bottom:4px;font-size:14.8px}
+.sidebar a:hover{background:#eef2ff;color:#1d4ed8}
+.content{background:#fff;border-radius:18px;padding:10px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.hero{padding:28px 18px;border-radius:16px;background:linear-gradient(135deg,#eef2ff,#f8fafc);margin-bottom:18px}
+.hero h1{font-size:34px;color:#111827;margin-bottom:10px}
+.hero p{font-size:18px;color:#374151}
+section{padding:22px 10px;border-bottom:1px solid #e5e7eb}
+section:last-child{border-bottom:none}
+h2{font-size:27px;color:#111827;margin-bottom:12px;border-left:5px solid #2563eb;padding-left:12px}
+h3{font-size:22px;color:#1f2937;margin:16px 0 8px}
+h4{font-size:18px;color:#111827;margin:14px 0 6px}
+p{margin:10px 0;font-size:17px}
+ul,ol{margin-left:24px;margin-top:8px}
+li{margin:7px 0;font-size:16.5px}
+strong{color:#111827}
+.image-icon{min-height:130px;border:2px dashed #94a3b8;border-radius:16px;background:#f8fafc;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;margin:18px 0;color:#475569;font-weight:600}
+.image-icon img{max-width:100%;height:auto}
+.note-box{background:#f0fdf4;border-left:5px solid #22c55e;border-radius:14px;padding:14px 16px;margin:16px 0}
+table{width:100%;border-collapse:collapse;margin:16px 0;border-radius:12px;overflow:hidden;font-size:15.5px}
+th,td{border:1px solid #d1d5db;padding:10px;text-align:left;vertical-align:top}
+th{background:#eef2ff;color:#111827}
+.formula{background:#111827;color:#f9fafb;padding:12px 14px;border-radius:12px;margin:12px 0;font-family:Consolas,monospace;overflow-x:auto}
+.page,.content,section{min-width:0;max-width:100%}
+img,video,svg,canvas{max-width:100%;height:auto}
+table{display:block;width:100%;max-width:100%;overflow-x:auto;overflow-y:hidden;border-radius:12px;-webkit-overflow-scrolling:touch}
+th,td{min-width:110px;overflow-wrap:break-word;word-break:normal}
+pre{max-width:100%;white-space:pre-wrap;overflow-wrap:anywhere}
+code{white-space:pre-wrap;overflow-wrap:anywhere}
+@media(max-width:900px){.page{display:block;width:100%;padding:5px}.sidebar{display:none}.content{width:100%;min-width:0;padding:6px;border-radius:10px}.hero{padding:18px 10px}.hero h1{font-size:24px}h2{font-size:21px}h3{font-size:18px}p,li{font-size:15px}.image-icon{min-height:130px;padding:8px}}
+</style>
+<link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
+<script src="../../../../../../../assets/shared/portal.js" defer></script>
+<script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
+</head>
+
+<body>
+<div class="page">
+
+<aside class="sidebar">
+<h2>Topics</h2>
+<a href="#linear-algebra-introduction">Linear Algebra Introduction</a>
+<a href="#vectors-introduction">Vectors Introduction</a>
+<a href="#dot-product">Dot Product</a>
+<a href="#cross-product">Cross Product</a>
+<a href="#scalar-triple-product">Scalar Triple Product</a>
+<a href="#vector-triple-product">Vector Triple Product</a>
+<a href="#vector-projection">Projection</a>
+<a href="#matrix-introduction">Matrix Introduction</a>
+<a href="#matrix-algebra">Algebra of Matrices</a>
+<a href="#matrix-addition">Addition of Matrices</a>
+<a href="#matrix-multiplication">Multiplication of Matrices</a>
+<a href="#special-matrices">Types of Matrices</a>
+<a href="#transpose">Transpose and Properties</a>
+<a href="#determinants">Determinants</a>
+<a href="#cramers-rule">Cramer's Rule</a>
+<a href="#matrix-inverse">Inverse of a Matrix</a>
+<a href="#trace">Trace of a Matrix</a>
+<a href="#elementary-transformations">Elementary Row/Column Transformations</a>
+<a href="#gaussian-elimination">Gauss Elimination Method</a>
+<a href="#linear-dependence">Linear Dependence and Independence</a>
+<a href="#rank-matrix">Rank of a Matrix</a>
+<a href="#rank-determinants">Rank through Determinants</a>
+<a href="#rank-row-transformations">Rank through Row Transformations</a>
+<a href="#rank-independent-vectors">Rank through Independent Vectors</a>
+<a href="#consistency-equations">Consistency of Equations</a>
+<a href="#eigenvalues-eigenvectors">Eigenvalues and Eigenvectors</a>
+<a href="#eigen-order-two-three">Eigen Pairs of Order 2 and 3</a>
+<a href="#cayley-hamilton">Cayley-Hamilton Theorem</a>
+<a href="#ch-inverse-powers">CH Theorem: Inverse and Powers</a>
+<a href="#vector-space">Vector Space</a>
+<a href="#basis-subspace">Basis and Subspace</a>
+<a href="#dimension">Dimension</a>
+<a href="#changing-basis">Changing Basis</a>
+<a href="#linear-transformations">Linear Transformations</a>
+<a href="#norms-spaces">Norms and Spaces</a>
+<a href="#orthogonal-complement">Orthogonal Complement</a>
+<a href="#projection-mapping">Projection Mapping</a>
+<a href="#linear-algebra-summary">Complete Unit Summary</a>
+</aside>
+
+<main class="content">
+
+<div class="hero">
+<h1>Linear Algebra</h1>
+<p><strong>35 Periods</strong> — Hindi + English Mixed, Exam-Oriented Notes</p>
+</div>
+
+<section id="linear-algebra-introduction">
+<h2>Linear Algebra Introduction</h2>
+<div class="image-icon"><img src="../images/linear-algebra.webp" alt="Linear Algebra"></div>
+<p><strong>Linear Algebra</strong> Mathematics की वह branch है जिसमें Vectors, Matrices, Linear Equations, Vector Spaces, Linear Transformations तथा Eigenvalues जैसे concepts का अध्ययन किया जाता है।</p>
+<p>Data Science, Machine Learning, Artificial Intelligence, Computer Graphics, Engineering, Physics और Optimization में Linear Algebra का बहुत महत्वपूर्ण उपयोग होता है।</p>
+<div class="note-box"><b>Exam Point:</b><br>Linear Algebra का मुख्य focus vectors, matrices और linear relationships को represent, calculate और analyze करना है।</div>
+</section>
+
+<section id="vectors-introduction">
+<h2>1. Vectors: Introduction</h2>
+<div class="image-icon"><img src="../images/vectors-introduction.webp" alt="Vectors Introduction"></div>
+<p><strong>Vector</strong> ऐसी mathematical quantity है जिसमें <strong>Magnitude</strong> और <strong>Direction</strong> दोनों होते हैं। इसे directed line segment या ordered components के रूप में represent किया जा सकता है।</p>
+<h3>Vector Representation</h3>
+<div class="formula">a = a₁i + a₂j + a₃k = [a₁, a₂, a₃]ᵀ</div>
+<p>यहाँ <strong>i, j, k</strong> coordinate directions के unit vectors हैं।</p>
+<h3>Magnitude of a Vector</h3>
+<div class="formula">|a| = √(a₁² + a₂² + a₃²)</div>
+<h3>Types of Vectors</h3>
+<ul>
+<li><strong>Zero Vector:</strong> सभी components zero होते हैं।</li>
+<li><strong>Unit Vector:</strong> जिसका magnitude 1 होता है।</li>
+<li><strong>Equal Vectors:</strong> समान magnitude और direction वाले vectors।</li>
+<li><strong>Parallel Vectors:</strong> जिनकी directions समान या opposite हो सकती हैं।</li>
+<li><strong>Orthogonal Vectors:</strong> जिनके बीच angle 90° होता है।</li>
+</ul>
+</section>
+
+<section id="dot-product">
+<h2>2. Dot Product</h2>
+<div class="image-icon"><img src="../images/dot-product.webp" alt="Dot Product"></div>
+<p><strong>Dot Product</strong> या Scalar Product दो vectors का ऐसा product है जिसका result एक <strong>Scalar</strong> होता है।</p>
+<div class="formula">a · b = |a||b| cos θ</div>
+<p>यदि a = (a₁,a₂,a₃) और b = (b₁,b₂,b₃), तो:</p>
+<div class="formula">a · b = a₁b₁ + a₂b₂ + a₃b₃</div>
+<h3>Important Properties</h3>
+<ul>
+<li>a · b = b · a</li>
+<li>a · (b + c) = a · b + a · c</li>
+<li>a · a = |a|²</li>
+<li>यदि a · b = 0, तो non-zero vectors a और b perpendicular हैं।</li>
+</ul>
+<div class="note-box"><b>Use:</b> Angle between vectors, perpendicularity और projection में Dot Product का उपयोग होता है।</div>
+</section>
+
+<section id="cross-product">
+<h2>3. Cross Product</h2>
+<div class="image-icon"><img src="../images/cross-product.webp" alt="Cross Product"></div>
+<p><strong>Cross Product</strong> दो vectors का vector product है जिसका result एक नया vector होता है जो दोनों original vectors के perpendicular होता है।</p>
+<div class="formula">a × b = |a||b| sin θ n̂</div>
+<h3>Component Form</h3>
+<div class="formula">a × b = (a₂b₃-a₃b₂)i − (a₁b₃-a₃b₁)j + (a₁b₂-a₂b₁)k</div>
+<h3>Properties</h3>
+<ul>
+<li>a × b = −(b × a)</li>
+<li>a × a = 0</li>
+<li>a × (b + c) = a × b + a × c</li>
+<li>यदि vectors parallel हैं, तो a × b = 0.</li>
+</ul>
+</section>
+
+<section id="scalar-triple-product">
+<h2>4. Scalar Triple Product</h2>
+<div class="image-icon"><img src="../images/scalar-triple-product.webp" alt="Scalar Triple Product"></div>
+<p>तीन vectors का scalar triple product cross product और dot product को combine करके प्राप्त किया जाता है।</p>
+<div class="formula">a · (b × c)</div>
+<p>इसे determinant के रूप में भी calculate किया जा सकता है:</p>
+<div class="formula">a · (b × c) = | a₁ a₂ a₃ ; b₁ b₂ b₃ ; c₁ c₂ c₃ |</div>
+<p>Scalar Triple Product का absolute value तीन vectors द्वारा बने parallelepiped का volume देता है।</p>
+</section>
+
+<section id="vector-triple-product">
+<h2>5. Vector Triple Product</h2>
+<div class="image-icon"><img src="../images/vector-triple-product.webp" alt="Vector Triple Product"></div>
+<p>Vector Triple Product में तीन vectors के बीच cross और vector operations होते हैं।</p>
+<div class="formula">a × (b × c) = b(a · c) − c(a · b)</div>
+<p>इसे <strong>Vector Triple Product Identity</strong> या <strong>BAC-CAB Rule</strong> भी कहा जाता है।</p>
+</section>
+
+<section id="vector-projection">
+<h2>6. Projection of a Vector</h2>
+<div class="image-icon"><img src="../images/vector-projection.webp" alt="Vector Projection"></div>
+<p>एक vector का दूसरे vector पर <strong>Projection</strong> उस vector के direction में पहले vector के component को represent करता है।</p>
+<div class="formula">proj_b(a) = ((a · b) / |b|²)b</div>
+<h3>Scalar Projection</h3>
+<div class="formula">comp_b(a) = (a · b) / |b|</div>
+<p>Projection का उपयोग Geometry, Physics, Computer Graphics, Data Science और Machine Learning में किया जाता है।</p>
+<div class="note-box"><b>Exam Point:</b> Projection vector की direction दूसरे vector के parallel होती है।</div>
+</section>
+
+<section id="matrix-introduction">
+<h2>7. Matrix: Introduction</h2>
+<div class="image-icon"><img src="../images/matrix-introduction.webp" alt="Matrix Introduction"></div>
+<p><strong>Matrix</strong> numbers, symbols या expressions को rows और columns के rectangular arrangement में represent करने का तरीका है।</p>
+<div class="formula">A = [ a₁₁  a₁₂  a₁₃ ; a₂₁  a₂₂  a₂₃ ]</div>
+<p>यदि Matrix में m rows और n columns हैं, तो उसका order <strong>m × n</strong> होता है।</p>
+<h3>Applications</h3>
+<ul><li>Linear Equations</li><li>Data Representation</li><li>Computer Graphics</li><li>Machine Learning</li><li>Image Processing</li><li>Scientific Computing</li></ul>
+</section>
+
+<section id="matrix-algebra">
+<h2>8. Algebra of Matrices</h2>
+<div class="image-icon"><img src="../images/matrix-algebra.webp" alt="Algebra of Matrices"></div>
+<p>Matrix Algebra में matrices के बीच Addition, Subtraction, Scalar Multiplication और Matrix Multiplication जैसी operations की जाती हैं।</p>
+<h3>Equality of Matrices</h3>
+<p>दो matrices equal तभी होंगी जब उनका order समान हो और corresponding elements equal हों।</p>
+<h3>Scalar Multiplication</h3>
+<div class="formula">kA = [kaᵢⱼ]</div>
+</section>
+
+<section id="matrix-addition">
+<h2>9. Addition of Matrices</h2>
+<div class="image-icon"><img src="../images/matrix-addition.webp" alt="Matrix Addition"></div>
+<p>दो matrices को add करने के लिए उनका order समान होना चाहिए। Corresponding elements को add किया जाता है।</p>
+<div class="formula">A + B = [aᵢⱼ + bᵢⱼ]</div>
+<h3>Properties</h3>
+<ul>
+<li>A + B = B + A</li>
+<li>(A + B) + C = A + (B + C)</li>
+<li>A + 0 = A</li>
+<li>A + (−A) = 0</li>
+</ul>
+</section>
+
+<section id="matrix-multiplication">
+<h2>10. Multiplication of Matrices</h2>
+<div class="image-icon"><img src="../images/matrix-multiplication.webp" alt="Matrix Multiplication"></div>
+<p>यदि A का order m × n और B का order n × p है, तो AB defined होगा और उसका order m × p होगा।</p>
+<div class="formula">(AB)ᵢⱼ = Σ aᵢₖbₖⱼ</div>
+<p>Matrix multiplication में first matrix की row को second matrix के column से multiply करके sum किया जाता है।</p>
+<h3>Important Properties</h3>
+<ul>
+<li>Generally AB ≠ BA</li>
+<li>A(BC) = (AB)C</li>
+<li>A(B+C) = AB + AC</li>
+<li>(A+B)C = AC + BC</li>
+</ul>
+</section>
+
+<section id="special-matrices">
+<h2>11. Special Types of Matrices</h2>
+<div class="image-icon"><img src="../images/special-matrices.webp" alt="Types of Matrices"></div>
+<table>
+<tr><th>Matrix Type</th><th>Definition / Condition</th></tr>
+<tr><td>Null Matrix</td><td>जिसके सभी elements zero हों।</td></tr>
+<tr><td>Unit / Identity Matrix</td><td>Main diagonal पर 1 और बाकी elements 0.</td></tr>
+<tr><td>Square Matrix</td><td>Rows और columns की संख्या समान हो।</td></tr>
+<tr><td>Symmetric Matrix</td><td>Aᵀ = A</td></tr>
+<tr><td>Skew-Symmetric Matrix</td><td>Aᵀ = −A</td></tr>
+<tr><td>Hermitian Matrix</td><td>A* = A</td></tr>
+<tr><td>Skew-Hermitian Matrix</td><td>A* = −A</td></tr>
+<tr><td>Orthogonal Matrix</td><td>AᵀA = AAᵀ = I</td></tr>
+<tr><td>Unitary Matrix</td><td>A*A = AA* = I</td></tr>
+<tr><td>Diagonal Matrix</td><td>Main diagonal के बाहर के सभी elements zero.</td></tr>
+<tr><td>Triangular Matrix</td><td>Upper या Lower triangular form में entries zero होती हैं।</td></tr>
+</table>
+</section>
+
+<section id="transpose">
+<h2>12. Transpose of a Matrix and Properties</h2>
+<div class="image-icon"><img src="../images/matrix-transpose.webp" alt="Transpose of Matrix"></div>
+<p>Matrix का <strong>Transpose</strong> प्राप्त करने के लिए उसकी rows को columns और columns को rows में बदल दिया जाता है।</p>
+<div class="formula">Aᵀ = [aⱼᵢ]</div>
+<h3>Properties</h3>
+<ul>
+<li>(Aᵀ)ᵀ = A</li>
+<li>(A+B)ᵀ = Aᵀ+Bᵀ</li>
+<li>(kA)ᵀ = kAᵀ</li>
+<li>(AB)ᵀ = BᵀAᵀ</li>
+<li>यदि A symmetric है, तो Aᵀ=A.</li>
+</ul>
+</section>
+
+<section id="determinants">
+<h2>13. Determinant of a Matrix</h2>
+<div class="image-icon"><img src="../images/determinants.webp" alt="Determinant"></div>
+<p><strong>Determinant</strong> केवल square matrix के लिए defined एक scalar quantity है। इसे generally |A| या det(A) से represent किया जाता है।</p>
+<h3>2 × 2 Determinant</h3>
+<div class="formula">|a b; c d| = ad − bc</div>
+<h3>Important Properties</h3>
+<ul>
+<li>दो rows/columns interchange करने पर determinant का sign change होता है।</li>
+<li>यदि दो rows/columns equal हों, determinant zero होता है।</li>
+<li>यदि किसी row/column के सभी elements zero हों, determinant zero होता है।</li>
+<li>एक row/column को scalar k से multiply करने पर determinant भी k times हो जाता है।</li>
+<li>Triangular Matrix का determinant diagonal elements का product होता है।</li>
+<li>det(AB)=det(A)det(B).</li>
+</ul>
+</section>
+
+<section id="cramers-rule">
+<h2>14. Cramer's Rule</h2>
+<div class="image-icon"><img src="../images/cramers-rule.webp" alt="Cramer's Rule"></div>
+<p><strong>Cramer's Rule</strong> linear equations के system को determinants की सहायता से solve करने की method है।</p>
+<p>दो equations के लिए:</p>
+<div class="formula">a₁x + b₁y = c₁<br>a₂x + b₂y = c₂</div>
+<div class="formula">D = |a₁ b₁; a₂ b₂|</div>
+<div class="formula">Dₓ = |c₁ b₁; c₂ b₂| &nbsp;&nbsp; Dᵧ = |a₁ c₁; a₂ c₂|</div>
+<div class="formula">x = Dₓ/D &nbsp;&nbsp;&nbsp; y = Dᵧ/D</div>
+<p>Cramer's Rule तब directly useful है जब coefficient determinant non-zero हो।</p>
+</section>
+
+<section id="matrix-inverse">
+<h2>15. Inverse of a Matrix</h2>
+<div class="image-icon"><img src="../images/matrix-inverse.webp" alt="Inverse of Matrix"></div>
+<p>यदि square matrix A के लिए कोई matrix A⁻¹ ऐसा हो कि:</p>
+<div class="formula">AA⁻¹ = A⁻¹A = I</div>
+<p>तो A⁻¹ को A का <strong>Inverse Matrix</strong> कहते हैं।</p>
+<h3>2 × 2 Matrix Formula</h3>
+<div class="formula">A = [a b; c d]</div>
+<div class="formula">A⁻¹ = 1/(ad−bc) [d −b; −c a]</div>
+<p>Inverse तभी exists करता है जब <strong>det(A) ≠ 0</strong> हो।</p>
+<h3>Adjoint Method</h3>
+<div class="formula">A⁻¹ = adj(A) / |A|</div>
+</section>
+
+<section id="trace">
+<h2>16. Trace of a Matrix</h2>
+<div class="image-icon"><img src="../images/trace-matrix.webp" alt="Trace of Matrix"></div>
+<p>Square matrix के principal/main diagonal elements के sum को <strong>Trace</strong> कहते हैं।</p>
+<div class="formula">tr(A) = a₁₁ + a₂₂ + ... + aₙₙ</div>
+<p>Trace केवल square matrix के लिए defined होता है।</p>
+</section>
+
+<section id="elementary-transformations">
+<h2>17. Elementary Row / Column Transformations</h2>
+<div class="image-icon"><img src="../images/elementary-transformations.webp" alt="Elementary Row Column Transformations"></div>
+<p>Matrix को simplify करने, inverse निकालने और rank determine करने के लिए elementary row और column transformations का उपयोग किया जाता है।</p>
+<h3>Three Elementary Row Operations</h3>
+<ol>
+<li><strong>Row Interchange:</strong> Rᵢ ↔ Rⱼ</li>
+<li><strong>Row Scaling:</strong> Rᵢ → kRᵢ, जहाँ k ≠ 0</li>
+<li><strong>Row Replacement:</strong> Rᵢ → Rᵢ + kRⱼ</li>
+</ol>
+<h3>Column Operations</h3>
+<p>इसी प्रकार Cᵢ ↔ Cⱼ, Cᵢ → kCᵢ और Cᵢ → Cᵢ+kCⱼ operations apply की जा सकती हैं।</p>
+<div class="note-box"><b>Uses:</b> Inverse computation, rank calculation, matrix simplification और systems of linear equations solve करने में।</div>
+</section>
+
+<section id="gaussian-elimination">
+<h2>18. Gauss's Elimination Method</h2>
+<div class="image-icon"><img src="../images/gaussian-elimination.webp" alt="Gaussian Elimination"></div>
+<p><strong>Gaussian Elimination</strong> linear equations को solve करने की method है जिसमें augmented matrix को elementary row operations की सहायता से upper triangular या row-echelon form में convert किया जाता है।</p>
+<h3>Steps</h3>
+<ol>
+<li>Equations को augmented matrix में represent करें।</li>
+<li>Elementary row operations से first pivot के नीचे entries zero करें।</li>
+<li>Next pivot पर यही process repeat करें।</li>
+<li>Row-echelon / upper triangular form प्राप्त करें।</li>
+<li>Back substitution से unknown variables की values find करें।</li>
+</ol>
+<div class="formula">Augmented Matrix → Row Operations → Row Echelon Form → Back Substitution → Solution</div>
+</section>
+
+<section id="linear-dependence">
+<h2>19. Linear Dependence and Independence of Vectors</h2>
+<div class="image-icon"><img src="../images/linear-dependence.webp" alt="Linear Dependence Independence"></div>
+<p>Vectors v₁,v₂,...,vₙ <strong>linearly dependent</strong> होते हैं यदि ऐसी coefficients c₁,c₂,...,cₙ exist करती हों, जो सभी zero न हों और:</p>
+<div class="formula">c₁v₁ + c₂v₂ + ... + cₙvₙ = 0</div>
+<p>यदि केवल trivial solution c₁=c₂=...=cₙ=0 possible हो, तो vectors <strong>linearly independent</strong> होते हैं।</p>
+<div class="note-box"><b>Easy Idea:</b> यदि कोई vector बाकी vectors के linear combination से बनाया जा सकता है, तो set generally dependent होता है।</div>
+</section>
+
+<section id="rank-matrix">
+<h2>20. Rank of a Matrix</h2>
+<div class="image-icon"><img src="../images/rank-matrix.webp" alt="Rank of Matrix"></div>
+<p><strong>Rank</strong> matrix में maximum number of linearly independent rows या columns को represent करता है।</p>
+<p>Rank को r(A) या rank(A) से denote किया जाता है।</p>
+<h3>Meaning</h3>
+<p>Rank matrix में available independent information या independent directions की संख्या के बारे में बताता है।</p>
+</section>
+
+<section id="rank-determinants">
+<h2>21. Computing Rank through Determinants</h2>
+<div class="image-icon"><img src="../images/rank-through-determinants.webp" alt="Rank through Determinants"></div>
+<p>Matrix की rank determine करने के लिए उसके non-zero minors को check किया जा सकता है।</p>
+<p>यदि किसी matrix का सबसे बड़ा non-zero minor order r का है, तो matrix की rank r होगी।</p>
+<h3>Basic Principle</h3>
+<div class="formula">Rank(A) = Order of the largest non-zero minor</div>
+<p>यदि n × n determinant non-zero है, तो rank(A)=n.</p>
+</section>
+
+<section id="rank-row-transformations">
+<h2>22. Computing Rank through Elementary Row Transformations</h2>
+<div class="image-icon"><img src="../images/rank-row-transformations.webp" alt="Rank through Row Transformations"></div>
+<p>Matrix को elementary row operations द्वारा row-echelon form में convert किया जाता है। Row-echelon form में non-zero rows की संख्या matrix की rank के बराबर होती है।</p>
+<div class="formula">Rank(A) = Number of Non-Zero Rows in Row-Echelon Form</div>
+</section>
+
+<section id="rank-independent-vectors">
+<h2>23. Rank through the Concept of Independent Vectors</h2>
+<div class="image-icon"><img src="../images/rank-independent-vectors.webp" alt="Rank Independent Vectors"></div>
+<p>Matrix की rows या columns को vectors की तरह consider करके maximum linearly independent vectors की संख्या निकाली जा सकती है। यही संख्या matrix की rank होती है।</p>
+<div class="note-box"><b>Key Relation:</b><br>Rank = Maximum number of linearly independent rows = Maximum number of linearly independent columns.</div>
+</section>
+
+<section id="consistency-equations">
+<h2>24. Consistency of Equations</h2>
+<div class="image-icon"><img src="../images/consistency-equations.webp" alt="Consistency of Equations"></div>
+<p>Linear equations का system <strong>consistent</strong> होता है यदि उसका कम-से-कम एक solution exist करता है। यदि कोई solution नहीं है, तो system inconsistent कहलाता है।</p>
+<h3>Rank Condition</h3>
+<p>For a system AX=B:</p>
+<div class="formula">Consistent ⇔ rank(A) = rank([A|B])</div>
+<p>यदि common rank number of unknowns के बराबर है, तो unique solution मिल सकता है। यदि common rank unknowns से कम है, तो infinitely many solutions हो सकते हैं।</p>
+<div class="note-box"><b>Important:</b> यदि rank(A) ≠ rank([A|B]), तो system inconsistent होता है।</div>
+</section>
+
+<section id="eigenvalues-eigenvectors">
+<h2>25. Eigenvalues and Eigenvectors — Eigen Pairs</h2>
+<div class="image-icon"><img src="../images/eigenvalues-eigenvectors.webp" alt="Eigenvalues and Eigenvectors"></div>
+<p>यदि square matrix A और non-zero vector x के लिए कोई scalar λ ऐसा हो कि:</p>
+<div class="formula">Ax = λx</div>
+<p>तो λ को <strong>Eigenvalue</strong> और x को corresponding <strong>Eigenvector</strong> कहते हैं। दोनों मिलकर <strong>Eigen Pair</strong> बनाते हैं।</p>
+<h3>Characteristic Equation</h3>
+<div class="formula">det(A − λI) = 0</div>
+<p>इस equation को solve करके eigenvalues प्राप्त की जाती हैं। फिर प्रत्येक eigenvalue के लिए:</p>
+<div class="formula">(A − λI)x = 0</div>
+<p>solve करके corresponding eigenvectors प्राप्त किए जाते हैं।</p>
+</section>
+
+<section id="eigen-order-two-three">
+<h2>26. Eigenvalues and Eigenvectors of Order Two and Three</h2>
+<div class="image-icon"><img src="../images/eigen-order-two-three.webp" alt="Eigen Pairs Order Two Three"></div>
+<h3>For 2 × 2 Matrix</h3>
+<div class="formula">A = [a b; c d]</div>
+<div class="formula">det(A−λI)=0<br>|a−λ  b; c  d−λ|=0</div>
+<p>इससे quadratic characteristic equation प्राप्त होती है और उसके roots eigenvalues होते हैं।</p>
+<h3>For 3 × 3 Matrix</h3>
+<p>3 × 3 matrix के लिए characteristic equation सामान्यतः cubic polynomial होती है। उसके roots eigenvalues होते हैं। प्रत्येक eigenvalue के लिए (A−λI)x=0 solve करके eigenvector प्राप्त किया जाता है।</p>
+<div class="note-box"><b>Exam Procedure:</b><br>1. det(A−λI)=0 लिखें → 2. Eigenvalues निकालें → 3. प्रत्येक λ के लिए (A−λI)x=0 solve करें → 4. Eigenvectors लिखें।</div>
+</section>
+
+<section id="cayley-hamilton">
+<h2>27. Cayley-Hamilton Theorem</h2>
+<div class="image-icon"><img src="../images/cayley-hamilton.webp" alt="Cayley Hamilton Theorem"></div>
+<p><strong>Cayley-Hamilton Theorem</strong> कहता है कि प्रत्येक square matrix अपनी characteristic equation को satisfy करती है।</p>
+<p>यदि characteristic polynomial:</p>
+<div class="formula">p(λ) = det(λI − A)</div>
+<p>है, तो theorem के अनुसार:</p>
+<div class="formula">p(A) = 0</div>
+<p>इस syllabus में theorem का <strong>proof required नहीं है</strong>, लेकिन theorem की verification important है।</p>
+<h3>2 × 2 Form</h3>
+<p>यदि characteristic equation λ² − tr(A)λ + det(A)=0 है, तो A को λ की जगह रखने पर:</p>
+<div class="formula">A² − tr(A)A + det(A)I = 0</div>
+</section>
+
+<section id="ch-inverse-powers">
+<h2>28. Use of Cayley-Hamilton Theorem in Inverse and Powers</h2>
+<div class="image-icon"><img src="../images/ch-inverse-powers.webp" alt="Cayley Hamilton Inverse Powers"></div>
+<p>Cayley-Hamilton theorem का उपयोग matrix की higher powers और inverse निकालने के लिए किया जा सकता है।</p>
+<h3>Inverse</h3>
+<p>यदि A invertible है और:</p>
+<div class="formula">A² − tr(A)A + det(A)I = 0</div>
+<p>तो suitable rearrangement से A⁻¹ को A और I के terms में express किया जा सकता है:</p>
+<div class="formula">A⁻¹ = (tr(A)I − A) / det(A)</div>
+<p>यह 2 × 2 invertible matrix के characteristic equation से प्राप्त होता है।</p>
+<h3>Higher Powers</h3>
+<p>Cayley-Hamilton relation को rearrange करके A² को lower powers में express किया जा सकता है। इसी relation को repeatedly use करके A³, A⁴ आदि powers को simplify किया जा सकता है।</p>
+</section>
+
+<section id="vector-space">
+<h2>29. Introduction to Vector Space</h2>
+<div class="image-icon"><img src="../images/vector-space.webp" alt="Vector Space"></div>
+<p><strong>Vector Space</strong> एक set V है जिसमें vector addition और scalar multiplication defined होते हैं तथा ये operations कुछ standard axioms satisfy करते हैं।</p>
+<h3>Main Requirements</h3>
+<ul>
+<li>दो vectors का addition उसी space में होना चाहिए।</li>
+<li>Scalar multiplication का result उसी space में होना चाहिए।</li>
+<li>Addition associative और commutative होना चाहिए।</li>
+<li>Zero vector exist करना चाहिए।</li>
+<li>हर vector का additive inverse exist करना चाहिए।</li>
+<li>Scalar multiplication distributive properties satisfy करे।</li>
+</ul>
+<h3>Examples</h3>
+<ul><li>R²</li><li>R³</li><li>Polynomials का set</li><li>Suitable matrices का set</li><li>Functions के कुछ sets</li></ul>
+</section>
+
+<section id="basis-subspace">
+<h2>30. Basis and Subspace</h2>
+<div class="image-icon"><img src="../images/basis-subspace.webp" alt="Basis and Subspace"></div>
+<h3>Basis</h3>
+<p>किसी vector space का <strong>Basis</strong> ऐसा set of vectors है जो उस space को span करता है और linearly independent होता है।</p>
+<div class="note-box"><b>Basis = Spanning Set + Linear Independence</b></div>
+<h3>Subspace</h3>
+<p><strong>Subspace</strong> किसी vector space का ऐसा subset है जो स्वयं vector space की सभी आवश्यक properties satisfy करता है।</p>
+<h3>Subspace Conditions</h3>
+<ul>
+<li>Zero vector contain करे।</li>
+<li>Vector addition के under closed हो।</li>
+<li>Scalar multiplication के under closed हो।</li>
+</ul>
+</section>
+
+<section id="dimension">
+<h2>31. Dimension</h2>
+<div class="image-icon"><img src="../images/dimension-vector-space.webp" alt="Dimension of Vector Space"></div>
+<p>Vector space के किसी basis में मौजूद vectors की संख्या को उस vector space की <strong>Dimension</strong> कहते हैं।</p>
+<div class="formula">Dimension(V) = Number of vectors in a basis of V</div>
+<p>उदाहरण के लिए R² की dimension 2 और R³ की dimension 3 है।</p>
+<p>यदि किसी matrix के column space का basis r independent vectors contain करता है, तो उसकी dimension और matrix की rank r होती है।</p>
+</section>
+
+<section id="changing-basis">
+<h2>32. Changing Basis</h2>
+<div class="image-icon"><img src="../images/changing-basis.webp" alt="Changing Basis"></div>
+<p>एक vector को अलग-अलग bases में अलग coordinate representation मिल सकती है। एक basis से दूसरे basis में coordinates convert करने की प्रक्रिया को <strong>Change of Basis</strong> कहते हैं।</p>
+<p>यदि P change-of-basis matrix है, तो coordinate vectors के बीच relation convention के अनुसार P और P⁻¹ की सहायता से establish किया जाता है।</p>
+<div class="note-box"><b>Important Idea:</b> Vector वही रहता है, लेकिन उसके coordinates basis बदलने पर बदल सकते हैं।</div>
+</section>
+
+<section id="linear-transformations">
+<h2>33. Linear Transformations</h2>
+<div class="image-icon"><img src="../images/linear-transformations.webp" alt="Linear Transformations"></div>
+<p><strong>Linear Transformation</strong> एक mapping T:V→W है जो vector addition और scalar multiplication preserve करती है।</p>
+<div class="formula">T(u+v)=T(u)+T(v)</div>
+<div class="formula">T(cu)=cT(u)</div>
+<h3>Matrix Representation</h3>
+<p>Finite-dimensional vector spaces में linear transformations को matrices द्वारा represent किया जा सकता है। यही concept Computer Graphics, Machine Learning और engineering transformations में important है।</p>
+</section>
+
+<section id="norms-spaces">
+<h2>34. Norms and Spaces</h2>
+<div class="image-icon"><img src="../images/norms-spaces.webp" alt="Norms and Spaces"></div>
+<p><strong>Norm</strong> किसी vector की length या size को measure करने वाली function है। इसे ||v|| से denote किया जाता है।</p>
+<h3>Common Euclidean Norm</h3>
+<div class="formula">||v||₂ = √(v₁² + v₂² + ... + vₙ²)</div>
+<h3>Norm Properties</h3>
+<ul>
+<li>||v|| ≥ 0</li>
+<li>||v|| = 0 iff v = 0</li>
+<li>||cv|| = |c| ||v||</li>
+<li>||u+v|| ≤ ||u|| + ||v|| — Triangle Inequality</li>
+</ul>
+<p>Norms distance, magnitude, error measurement और optimization में उपयोगी हैं।</p>
+</section>
+
+<section id="orthogonal-complement">
+<h2>35. Orthogonal Complement</h2>
+<div class="image-icon"><img src="../images/orthogonal-complement.webp" alt="Orthogonal Complement"></div>
+<p>यदि V vector space का subspace W दिया गया है, तो W के सभी vectors के perpendicular vectors के set को <strong>Orthogonal Complement</strong> कहा जाता है और इसे W⊥ से denote करते हैं।</p>
+<div class="formula">W⊥ = {v : v · w = 0 for every w ∈ W}</div>
+<p>Orthogonal complement में मौजूद vectors W के प्रत्येक vector के साथ perpendicular होते हैं।</p>
+</section>
+
+<section id="projection-mapping">
+<h2>36. Projection Mapping</h2>
+<div class="image-icon"><img src="../images/projection-mapping.webp" alt="Projection Mapping"></div>
+<p><strong>Projection Mapping</strong> में किसी vector या point को किसी subspace या direction पर project किया जाता है। Orthogonal projection में projection और residual/error component perpendicular होते हैं।</p>
+<h3>Projection onto a Vector</h3>
+<div class="formula">proj_b(a) = ((a·b)/(b·b))b</div>
+<h3>Projection Decomposition</h3>
+<div class="formula">a = proj_b(a) + r</div>
+<p>जहाँ residual r, b के perpendicular होता है। Projection concept least squares, data fitting, computer graphics और machine learning में बहुत useful है।</p>
+</section>
+
+<section id="linear-algebra-summary">
+<h2>37. Complete Unit Summary</h2>
+<div class="image-icon"><img src="../images/linear-algebra-summary.webp" alt="Linear Algebra Summary"></div>
+<p><strong>Linear Algebra</strong> में Vectors, Matrices, Determinants, Linear Equations, Rank, Eigenvalues, Eigenvectors और Vector Spaces का systematic study किया जाता है।</p>
+<table>
+<tr><th>Concept</th><th>Quick Revision</th></tr>
+<tr><td>Vector</td><td>Magnitude + Direction</td></tr>
+<tr><td>Dot Product</td><td>Scalar result; a·b = |a||b|cosθ</td></tr>
+<tr><td>Cross Product</td><td>Perpendicular vector result</td></tr>
+<tr><td>Projection</td><td>एक vector का दूसरे direction पर component</td></tr>
+<tr><td>Matrix</td><td>Rows और columns में arranged elements</td></tr>
+<tr><td>Determinant</td><td>Square matrix से related scalar quantity</td></tr>
+<tr><td>Inverse</td><td>AA⁻¹=A⁻¹A=I</td></tr>
+<tr><td>Rank</td><td>Maximum independent rows/columns</td></tr>
+<tr><td>Eigen Pair</td><td>Av=λv</td></tr>
+<tr><td>Cayley-Hamilton</td><td>Matrix अपनी characteristic equation satisfy करती है</td></tr>
+<tr><td>Vector Space</td><td>Vector addition और scalar multiplication वाला structured set</td></tr>
+<tr><td>Basis</td><td>Spanning + linearly independent set</td></tr>
+<tr><td>Dimension</td><td>Basis में vectors की संख्या</td></tr>
+<tr><td>Linear Transformation</td><td>Addition और scalar multiplication preserve करने वाली mapping</td></tr>
+<tr><td>Norm</td><td>Vector size/length measurement</td></tr>
+<tr><td>Orthogonal Complement</td><td>Subspace के सभी perpendicular vectors</td></tr>
+</table>
+<div class="note-box">
+<b>Final Exam Revision:</b><br><br>
+<strong>Vectors</strong> → Dot + Cross + Triple Product + Projection<br><br>
+<strong>Matrices</strong> → Algebra + Types + Transpose + Determinant + Inverse + Trace<br><br>
+<strong>Transformations</strong> → Row/Column Operations + Gauss Elimination<br><br>
+<strong>Rank</strong> → Determinants + Row Reduction + Independent Vectors<br><br>
+<strong>Eigen</strong> → Eigenvalues + Eigenvectors + Cayley-Hamilton<br><br>
+<strong>Vector Spaces</strong> → Basis + Subspace + Dimension + Linear Transformations + Norms + Orthogonal Complement + Projection
+</div>
+</section>
+
+</main>
+</div>
+</body>
+</html>

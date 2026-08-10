@@ -34,7 +34,7 @@ const unitSelect = document.getElementById("unit");
 const chapterHeading = document.getElementById("chapterName");
 const currentChapter = document.getElementById("currentChapter");
 const courseTitle = document.getElementById("courseTitle");
-const unitCards = Array.from(document.querySelectorAll("unit-card"));
+const unitCards = Array.from(document.querySelectorAll(".unit-card"));
 
 courseTitle.textContent = courseConfig.courseName;
 

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Probability Theory</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f7fb;color:#1f2937;line-height:1.75}
+.page{display:grid;grid-template-columns:280px 1fr;gap:20px;max-width:1450px;margin:auto;padding:10px}
+.sidebar{position:sticky;top:10px;height:calc(100vh - 20px);overflow-y:auto;background:#fff;border-radius:16px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.08);align-self:start}
+.sidebar h2{font-size:20px;margin-bottom:12px;color:#111827}
+.sidebar a{display:block;text-decoration:none;color:#374151;padding:8px 10px;border-radius:10px;margin-bottom:4px;font-size:14.8px}
+.sidebar a:hover{background:#eef2ff;color:#1d4ed8}
+.content{background:#fff;border-radius:18px;padding:10px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.hero{padding:28px 18px;border-radius:16px;background:linear-gradient(135deg,#eef2ff,#f8fafc);margin-bottom:18px}
+.hero h1{font-size:34px;color:#111827;margin-bottom:10px}
+.hero p{font-size:18px;color:#374151}
+section{padding:22px 10px;border-bottom:1px solid #e5e7eb}
+section:last-child{border-bottom:none}
+h2{font-size:27px;color:#111827;margin-bottom:12px;border-left:5px solid #2563eb;padding-left:12px}
+h3{font-size:22px;color:#1f2937;margin:16px 0 8px}
+p{margin:10px 0;font-size:17px}
+ul,ol{margin-left:24px;margin-top:8px}
+li{margin:7px 0;font-size:16.5px}
+strong{color:#111827}
+.image-icon{min-height:130px;border:2px dashed #94a3b8;border-radius:16px;background:#f8fafc;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;margin:18px 0;color:#475569;font-weight:600}
+.image-icon img{max-width:100%;height:auto}
+.note-box{background:#f0fdf4;border-left:5px solid #22c55e;border-radius:14px;padding:14px 16px;margin:16px 0}
+.example{background:#eff6ff;border-left:5px solid #3b82f6;border-radius:14px;padding:14px 16px;margin:16px 0}
+.formula{background:#111827;color:#f9fafb;padding:12px 14px;border-radius:12px;margin:12px 0;font-family:Consolas,monospace;overflow-x:auto}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:15.5px}
+th,td{border:1px solid #d1d5db;padding:10px;text-align:left;vertical-align:top}
+th{background:#eef2ff;color:#111827}
+.page,.content,section{min-width:0;max-width:100%}
+img,video,svg,canvas{max-width:100%;height:auto}
+table{display:block;width:100%;max-width:100%;overflow-x:auto;overflow-y:hidden;border-radius:12px;-webkit-overflow-scrolling:touch}
+th,td{min-width:110px;overflow-wrap:break-word}
+@media(max-width:900px){.page{display:block;width:100%;padding:5px}.sidebar{display:none}.content{width:100%;min-width:0;padding:6px;border-radius:10px}.hero{padding:18px 10px}.hero h1{font-size:24px}h2{font-size:21px}h3{font-size:18px}p,li{font-size:15px}.image-icon{min-height:130px;padding:8px}}
+</style>
+<link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
+<script src="../../../../../../../assets/shared/portal.js" defer></script>
+<script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
+</head>
+<body>
+<div class="page">
+
+<aside class="sidebar">
+<h2>Topics</h2>
+<a href="#probability-introduction">Probability Introduction</a>
+<a href="#basic-terms">Basic Terms & Concepts</a>
+<a href="#addition-theorem">Addition Theorem</a>
+<a href="#multiplication-theorem">Multiplication Theorem</a>
+<a href="#simple-problems">Simple Probability Problems</a>
+<a href="#random-variable">Random Variable</a>
+<a href="#continuous-random-variable">Continuous Random Variable</a>
+<a href="#conditional-probability">Conditional Probability</a>
+<a href="#bayes-theorem">Bayes' Theorem</a>
+<a href="#pdf">Probability Density Function</a>
+<a href="#normal-distribution">Normal Distribution</a>
+<a href="#central-limit-theorem">Central Limit Theorem</a>
+<a href="#binomial-distribution">Binomial Distribution</a>
+<a href="#conjugate-distribution">Conjugate Distribution</a>
+<a href="#poisson-distribution">Poisson Distribution</a>
+<a href="#bell-curve">Bell Curve</a>
+<a href="#sampling-distribution">Sampling Distribution</a>
+<a href="#discriminant-analysis">Discriminant Analysis</a>
+<a href="#revision-summary">Complete Revision Summary</a>
+</aside>
+
+<main class="content">
+
+<div class="hero">
+<h1>Probability Theory</h1>
+<p><strong>25 Periods</strong> — Hindi + English Mixed, Exam-Oriented Notes</p>
+</div>
+
+<section id="probability-introduction">
+<h2>1. Introduction to Probability</h2>
+<div class="image-icon"><img src="../images/probability-introduction.webp" alt="Probability Introduction"></div>
+<p><strong>Probability</strong> Mathematics और Statistics की वह branch है जो किसी event के होने की <strong>likelihood / संभावना</strong> को measure करती है। Probability का value हमेशा 0 और 1 के बीच होता है।</p>
+<div class="formula">0 ≤ P(A) ≤ 1</div>
+<p>यदि किसी event का probability 0 है, तो event impossible है; और probability 1 होने पर event certain है।</p>
+<h3>Experiment</h3>
+<p>ऐसी प्रक्रिया जिसका result पहले से निश्चित नहीं होता, उसे <strong>Random Experiment</strong> कहते हैं। जैसे coin toss, dice roll आदि।</p>
+<h3>Sample Space</h3>
+<p>Random experiment के सभी possible outcomes के set को <strong>Sample Space (S)</strong> कहते हैं।</p>
+<h3>Event</h3>
+<p>Sample space का कोई भी subset <strong>Event</strong> कहलाता है।</p>
+<div class="formula">P(A) = Number of favourable outcomes / Total number of equally likely outcomes</div>
+</section>
+
+<section id="basic-terms">
+<h2>2. Basic Terms and Concepts</h2>
+<div class="image-icon"><img src="../images/basic-probability-terms.webp" alt="Basic Probability Terms"></div>
+<table>
+<tr><th>Term</th><th>Meaning</th></tr>
+<tr><td>Experiment</td><td>ऐसी प्रक्रिया जिसका outcome uncertain हो।</td></tr>
+<tr><td>Outcome</td><td>Experiment का एक possible result.</td></tr>
+<tr><td>Sample Space</td><td>सभी possible outcomes का set.</td></tr>
+<tr><td>Event</td><td>Sample space का subset.</td></tr>
+<tr><td>Sure Event</td><td>जिसकी probability 1 हो।</td></tr>
+<tr><td>Impossible Event</td><td>जिसकी probability 0 हो।</td></tr>
+<tr><td>Complement</td><td>Event A के न होने की घटना, A′ या Aᶜ.</td></tr>
+</table>
+<h3>Complement Rule</h3>
+<div class="formula">P(Aᶜ) = 1 − P(A)</div>
+<div class="note-box"><b>Exam Point:</b> Probability को हमेशा event की possibility को numerical value में express करने के लिए use किया जाता है।</div>
+</section>
+
+<section id="addition-theorem">
+<h2>3. Addition Theorem of Probability</h2>
+<div class="image-icon"><img src="../images/addition-theorem.webp" alt="Addition Theorem"></div>
+<p>दो events A और B में से कम-से-कम एक event होने की probability को addition theorem से calculate किया जाता है।</p>
+<div class="formula">P(A ∪ B) = P(A) + P(B) − P(A ∩ B)</div>
+<p>यहाँ A ∩ B दोनों events के simultaneously होने को represent करता है।</p>
+<h3>For Mutually Exclusive Events</h3>
+<p>यदि A और B mutually exclusive हैं, तो दोनों एक साथ नहीं हो सकते। इसलिए:</p>
+<div class="formula">P(A ∩ B) = 0</div>
+<div class="formula">P(A ∪ B) = P(A) + P(B)</div>
+<div class="example"><b>Example:</b> एक die roll में 2 या 5 आने की probability = 1/6 + 1/6 = 1/3.</div>
+</section>
+
+<section id="multiplication-theorem">
+<h2>4. Multiplication Theorem of Probability</h2>
+<div class="image-icon"><img src="../images/multiplication-theorem.webp" alt="Multiplication Theorem"></div>
+<p>दो events A और B दोनों के होने की probability multiplication theorem से प्राप्त की जा सकती है।</p>
+<div class="formula">P(A ∩ B) = P(A)P(B|A)</div>
+<p>इसी प्रकार:</p>
+<div class="formula">P(A ∩ B) = P(B)P(A|B)</div>
+<h3>For Independent Events</h3>
+<p>यदि A और B independent हैं, तो:</p>
+<div class="formula">P(B|A) = P(B)</div>
+<div class="formula">P(A ∩ B) = P(A)P(B)</div>
+<div class="example"><b>Example:</b> दो independent coin tosses में दोनों बार Head आने की probability = 1/2 × 1/2 = 1/4.</div>
+</section>
+
+<section id="simple-problems">
+<h2>5. Simple Problems on Probability</h2>
+<div class="image-icon"><img src="../images/simple-probability-problems.webp" alt="Simple Probability Problems"></div>
+<h3>Example 1 — Dice</h3>
+<p>एक fair die को एक बार roll किया गया। Even number आने की probability निकालें।</p>
+<div class="formula">S = {1,2,3,4,5,6}<br>Favourable = {2,4,6}<br>P(E) = 3/6 = 1/2</div>
+<h3>Example 2 — Coin</h3>
+<p>एक fair coin को एक बार toss किया गया। Tail आने की probability:</p>
+<div class="formula">P(T) = 1/2</div>
+<h3>Example 3 — Addition Theorem</h3>
+<p>यदि P(A)=0.5, P(B)=0.4 और P(A∩B)=0.2, तो:</p>
+<div class="formula">P(A∪B)=0.5+0.4−0.2=0.7</div>
+</section>
+
+<section id="random-variable">
+<h2>6. Random Variable</h2>
+<div class="image-icon"><img src="../images/random-variable.webp" alt="Random Variable"></div>
+<p><strong>Random Variable</strong> एक function है जो random experiment के outcomes को numerical values assign करता है। इसे सामान्यतः X या Y से denote करते हैं।</p>
+<h3>Types</h3>
+<ul>
+<li><strong>Discrete Random Variable:</strong> Countable values लेता है, जैसे 0,1,2,3...</li>
+<li><strong>Continuous Random Variable:</strong> किसी interval में कोई भी real value ले सकता है।</li>
+</ul>
+<h3>Example</h3>
+<p>दो coins toss करने पर X = number of heads. Possible values X = 0,1,2.</p>
+<div class="note-box"><b>Important:</b> Random variable outcome itself नहीं बल्कि outcome को numerical value देने वाला mathematical function है।</div>
+</section>
+
+<section id="continuous-random-variable">
+<h2>7. Continuous Random Variable</h2>
+<div class="image-icon"><img src="../images/continuous-random-variable.webp" alt="Continuous Random Variable"></div>
+<p>Continuous Random Variable किसी continuous interval में infinitely many possible values ले सकता है। उदाहरण: height, weight, temperature, time आदि।</p>
+<p>Continuous variable की probability generally <strong>Probability Density Function (PDF)</strong> से describe की जाती है। किसी exact single point की probability continuous case में 0 होती है।</p>
+<div class="formula">P(a ≤ X ≤ b) = ∫ₐᵇ f(x) dx</div>
+<p>जहाँ f(x) probability density function है।</p>
+</section>
+
+<section id="conditional-probability">
+<h2>8. Conditional Probability</h2>
+<div class="image-icon"><img src="../images/conditional-probability.webp" alt="Conditional Probability"></div>
+<p><strong>Conditional Probability</strong> किसी event A के होने की probability है, जब हमें पता हो कि event B already occur हो चुका है।</p>
+<div class="formula">P(A|B) = P(A ∩ B) / P(B), &nbsp; P(B)>0</div>
+<p>इसे “probability of A given B” पढ़ते हैं।</p>
+<h3>Example</h3>
+<p>यदि P(A∩B)=0.2 और P(B)=0.5, तो:</p>
+<div class="formula">P(A|B)=0.2/0.5=0.4</div>
+</section>
+
+<section id="bayes-theorem">
+<h2>9. Bayes' Theorem</h2>
+<div class="image-icon"><img src="../images/bayes-theorem.webp" alt="Bayes Theorem"></div>
+<p><strong>Bayes' Theorem</strong> available evidence के आधार पर किसी hypothesis की probability को update करने की method है। यह conditional probability पर आधारित है।</p>
+<div class="formula">P(A|B) = P(B|A)P(A) / P(B)</div>
+<h3>General Form</h3>
+<div class="formula">P(Aᵢ|B) = P(B|Aᵢ)P(Aᵢ) / Σ P(B|Aⱼ)P(Aⱼ)</div>
+<p>Bayes theorem का use medical diagnosis, spam filtering, classification, machine learning और decision making में होता है।</p>
+<div class="note-box"><b>Terms:</b> P(A) = Prior Probability, P(B|A) = Likelihood, P(A|B) = Posterior Probability.</div>
+</section>
+
+<section id="pdf">
+<h2>10. Probability Density Function (PDF)</h2>
+<div class="image-icon"><img src="../images/probability-density-function.webp" alt="Probability Density Function"></div>
+<p><strong>Probability Density Function</strong> continuous random variable की probability distribution को describe करती है।</p>
+<h3>Properties of PDF</h3>
+<ul>
+<li>f(x) ≥ 0 for all x.</li>
+<li>पूरे range के ऊपर total area 1 होता है।</li>
+<li>किसी interval की probability उस interval के नीचे area के बराबर होती है।</li>
+</ul>
+<div class="formula">∫₋∞^∞ f(x) dx = 1</div>
+<div class="formula">P(a≤X≤b)=∫ₐᵇ f(x)dx</div>
+<p>PDF की height को अकेले probability नहीं माना जाता; interval के नीचे area probability देता है।</p>
+</section>
+
+<section id="normal-distribution">
+<h2>11. Normal Distribution</h2>
+<div class="image-icon"><img src="../images/normal-distribution.webp" alt="Normal Distribution"></div>
+<p><strong>Normal Distribution</strong> एक continuous probability distribution है जिसका graph symmetric bell-shaped curve होता है। इसे Gaussian Distribution भी कहा जाता है।</p>
+<h3>Probability Density Function</h3>
+<div class="formula">f(x)=1/(σ√(2π)) · e^[-(x−μ)²/(2σ²)]</div>
+<p>यहाँ μ = mean और σ = standard deviation है।</p>
+<h3>Characteristics</h3>
+<ul>
+<li>Curve symmetric होता है।</li>
+<li>Mean = Median = Mode.</li>
+<li>कुल area under curve = 1.</li>
+<li>Curve के दोनों tails theoretically x-axis के बहुत करीब जाते हैं।</li>
+<li>Distribution का shape mean और standard deviation से determine होता है।</li>
+</ul>
+</section>
+
+<section id="central-limit-theorem">
+<h2>12. Central Limit Theorem (CLT)</h2>
+<div class="image-icon"><img src="../images/central-limit-theorem.webp" alt="Central Limit Theorem"></div>
+<p><strong>Central Limit Theorem</strong> statistics का एक fundamental theorem है। यह बताता है कि sufficiently large sample size होने पर independent observations के sample mean की sampling distribution approximately normal हो जाती है, चाहे original population distribution normal न भी हो।</p>
+<h3>Importance</h3>
+<ul>
+<li>Sampling distributions को understand करने में मदद करता है।</li>
+<li>Statistical inference और confidence intervals में important है।</li>
+<li>Large samples के लिए normal approximation provide करता है।</li>
+</ul>
+<div class="formula">Mean of X̄ = μ &nbsp;&nbsp; | &nbsp;&nbsp; SE(X̄)=σ/√n</div>
+<div class="note-box"><b>Exam Point:</b> CLT की key idea है — large samples के sample means की distribution approximately normal होती है।</div>
+</section>
+
+<section id="binomial-distribution">
+<h2>13. Binomial Distribution</h2>
+<div class="image-icon"><img src="../images/binomial-distribution.webp" alt="Binomial Distribution"></div>
+<p><strong>Binomial Distribution</strong> एक discrete probability distribution है जो fixed number of independent trials में success की संख्या को model करती है।</p>
+<h3>Conditions</h3>
+<ul>
+<li>Fixed number of trials n.</li>
+<li>हर trial के केवल two outcomes: Success / Failure.</li>
+<li>Trials independent हों।</li>
+<li>हर trial में success probability p constant हो।</li>
+</ul>
+<h3>Probability Formula</h3>
+<div class="formula">P(X=x)=C(n,x)pˣ(1−p)ⁿ⁻ˣ</div>
+<p>जहाँ x = successes, n = trials और p = success probability.</p>
+<h3>Mean and Variance</h3>
+<div class="formula">Mean = np &nbsp;&nbsp;&nbsp; Variance = np(1−p)</div>
+<div class="example"><b>Example:</b> 3 coin tosses में exactly 2 heads की probability: C(3,2)(1/2)²(1/2)¹ = 3/8.</div>
+</section>
+
+<section id="conjugate-distribution">
+<h2>14. Conjugate Distribution</h2>
+<div class="image-icon"><img src="../images/conjugate-distribution.webp" alt="Conjugate Distribution"></div>
+<p><strong>Conjugate Distribution</strong> Bayesian statistics में ऐसा prior distribution है जिसके साथ likelihood combine करने पर posterior distribution उसी family का रहता है। इससे Bayesian calculations comparatively simple हो जाती हैं।</p>
+<h3>Common Examples</h3>
+<table>
+<tr><th>Likelihood</th><th>Conjugate Prior</th><th>Posterior Family</th></tr>
+<tr><td>Bernoulli / Binomial</td><td>Beta</td><td>Beta</td></tr>
+<tr><td>Poisson</td><td>Gamma</td><td>Gamma</td></tr>
+<tr><td>Normal (known variance)</td><td>Normal</td><td>Normal</td></tr>
+</table>
+<div class="note-box"><b>Key Idea:</b> Conjugacy का उद्देश्य posterior distribution को ऐसी known family में रखना है जिससे calculation और interpretation आसान हो।</div>
+</section>
+
+<section id="poisson-distribution">
+<h2>15. Poisson Distribution</h2>
+<div class="image-icon"><img src="../images/poisson-distribution.webp" alt="Poisson Distribution"></div>
+<p><strong>Poisson Distribution</strong> fixed interval में किसी event के कितनी बार होने की probability को model करने वाली discrete distribution है, जब events की average rate known हो और appropriate independence assumptions हों।</p>
+<h3>Probability Formula</h3>
+<div class="formula">P(X=k)=e⁻λ λᵏ/k!, &nbsp; k=0,1,2,...</div>
+<p>यहाँ λ given interval में expected number of events है।</p>
+<h3>Mean and Variance</h3>
+<div class="formula">Mean = λ &nbsp;&nbsp;&nbsp; Variance = λ</div>
+<h3>Examples</h3>
+<ul>
+<li>एक घंटे में आने वाली calls की संख्या।</li>
+<li>एक page पर printing errors की संख्या।</li>
+<li>एक fixed time interval में arrivals की संख्या।</li>
+</ul>
+</section>
+
+<section id="bell-curve">
+<h2>16. Bell Curve</h2>
+<div class="image-icon"><img src="../images/bell-curve.webp" alt="Bell Curve"></div>
+<p><strong>Bell Curve</strong normal distribution के characteristic bell-shaped graph को कहा जाता है। इसका center mean पर होता है और curve दोनों sides पर symmetric होता है।</p>
+<h3>68–95–99.7 Rule</h3>
+<ul>
+<li>लगभग <strong>68%</strong> observations μ ± 1σ के अंदर होते हैं।</li>
+<li>लगभग <strong>95%</strong> observations μ ± 2σ के अंदर होते हैं।</li>
+<li>लगभग <strong>99.7%</strong> observations μ ± 3σ के अंदर होते हैं।</li>
+</ul>
+<div class="note-box"><b>Use:</b> Normal data के spread को quickly समझने और unusual observations identify करने में Bell Curve useful है।</div>
+</section>
+
+<section id="sampling-distribution">
+<h2>17. Sampling Distribution</h2>
+<div class="image-icon"><img src="../images/sampling-distribution.webp" alt="Sampling Distribution"></div>
+<p><strong>Sampling Distribution</strong> किसी population से बार-बार samples लेने पर किसी statistic, जैसे sample mean, sample proportion या sample variance, की probability distribution है।</p>
+<h3>Example</h3>
+<p>यदि एक population से size n के बहुत सारे samples लिए जाएँ और हर sample का mean calculate किया जाए, तो इन sample means का distribution <strong>sampling distribution of sample mean</strong> कहलाएगा।</p>
+<h3>Importance</h3>
+<ul>
+<li>Population parameters का estimation.</li>
+<li>Confidence intervals.</li>
+<li>Hypothesis testing.</li>
+<li>Standard error calculation.</li>
+<li>Central Limit Theorem की application.</li>
+</ul>
+<div class="formula">SE(X̄)=σ/√n</div>
+</section>
+
+<section id="discriminant-analysis">
+<h2>18. Discriminant Analysis</h2>
+<div class="image-icon"><img src="../images/discriminant-analysis.webp" alt="Discriminant Analysis"></div>
+<p><strong>Discriminant Analysis</strong> एक statistical classification technique है जिसका उद्देश्य observations को predefined groups/classes में classify करना और groups के बीच difference को analyze करना है।</p>
+<h3>Basic Idea</h3>
+<p>Input variables/features की सहायता से ऐसी discriminant function बनाई जाती है जो different classes को अलग करने में मदद करती है।</p>
+<h3>Types</h3>
+<ul>
+<li><strong>Linear Discriminant Analysis (LDA):</strong> Classes को linear decision boundary से separate करने की कोशिश करता है।</li>
+<li><strong>Quadratic Discriminant Analysis (QDA):</strong> More flexible quadratic decision boundaries allow करता है।</li>
+</ul>
+<h3>Applications</h3>
+<ul>
+<li>Classification problems</li>
+<li>Pattern recognition</li>
+<li>Customer classification</li>
+<li>Medical diagnosis</li>
+<li>Machine Learning</li>
+</ul>
+<div class="note-box"><b>Exam Point:</b> Discriminant Analysis statistical data से class membership predict करने और classes को distinguish करने के लिए use किया जाता है।</div>
+</section>
+
+<section id="revision-summary">
+<h2>19. Complete Revision Summary</h2>
+<div class="image-icon"><img src="../images/probability-revision-summary.webp" alt="Probability Theory Summary"></div>
+<table>
+<tr><th>Topic</th><th>Quick Revision</th></tr>
+<tr><td>Probability</td><td>Event के होने की likelihood; 0 ≤ P(A) ≤ 1.</td></tr>
+<tr><td>Addition Theorem</td><td>P(A∪B)=P(A)+P(B)−P(A∩B)</td></tr>
+<tr><td>Multiplication Theorem</td><td>P(A∩B)=P(A)P(B|A)</td></tr>
+<tr><td>Random Variable</td><td>Outcomes को numerical values assign करने वाला function.</td></tr>
+<tr><td>Conditional Probability</td><td>P(A|B)=P(A∩B)/P(B)</td></tr>
+<tr><td>Bayes' Theorem</td><td>Evidence के आधार पर posterior probability update करता है।</td></tr>
+<tr><td>PDF</td><td>Continuous variable की density; total area 1.</td></tr>
+<tr><td>Normal Distribution</td><td>Symmetric bell-shaped continuous distribution.</td></tr>
+<tr><td>CLT</td><td>Large samples में sample mean की distribution approximately normal.</td></tr>
+<tr><td>Binomial</td><td>Fixed independent Bernoulli trials में successes की संख्या।</td></tr>
+<tr><td>Conjugate Distribution</td><td>Prior + likelihood से same-family posterior.</td></tr>
+<tr><td>Poisson</td><td>Fixed interval में event counts का distribution.</td></tr>
+<tr><td>Bell Curve</td><td>Normal distribution का symmetric curve.</td></tr>
+<tr><td>Sampling Distribution</td><td>Sample statistic की probability distribution.</td></tr>
+<tr><td>Discriminant Analysis</td><td>Statistical classification और class separation technique.</td></tr>
+</table>
+<div class="note-box">
+<b>Final Exam Revision Flow:</b><br><br>
+<strong>Basic Probability</strong> → Experiment → Sample Space → Event → Probability<br><br>
+<strong>Probability Rules</strong> → Addition Theorem → Multiplication Theorem → Simple Problems<br><br>
+<strong>Conditional Probability</strong> → Conditional Rule → Bayes' Theorem<br><br>
+<strong>Random Variables</strong> → Discrete → Continuous → PDF<br><br>
+<strong>Distributions</strong> → Normal → Binomial → Poisson → Conjugate Distribution<br><br>
+<strong>Sampling</strong> → Bell Curve → Sampling Distribution → CLT<br><br>
+<strong>Applied Statistics</strong> → Discriminant Analysis
+</div>
+</section>
+
+</main>
+</div>
+</body>
+</html>

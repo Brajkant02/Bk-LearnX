@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Pre-Processing and Data Visualization</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <div class="page">
+        <aside class="sidebar">
+
+            <h2>Topics</h2>
+            <a href="#data-preprocessing-visualization">Data Pre-Processing and Data Visualization</a>
+            <a href="#what-is-data-preprocessing">What is Data Pre-Processing?</a>
+            <a href="#importance-data-preprocessing">Importance of Data Pre-Processing</a>
+            <a href="#major-tasks-data-preprocessing">Major Tasks of Data Pre-Processing</a>
+            <a href="#data-cleaning">Data Cleaning</a>
+            <a href="#data-integration">Data Integration</a>
+            <a href="#data-reduction">Data Reduction</a>
+            <a href="#data-transformation">Data Transformation</a>
+            <a href="#data-preprocessing-flow">Data Pre-Processing Flow</a>
+            <a href="#what-is-data-visualization">What is Data Visualization?</a>
+            <a href="#importance-data-visualization">Importance of Data Visualization</a>
+            <a href="#common-data-visualization-forms">Common Data Visualization Forms</a>
+            <a href="#data-visualization-tools">Data Visualization Tools</a>
+            <a href="#power-bi">Power BI</a>
+            <a href="#tableau">Tableau</a>
+            <a href="#python-data-visualization-tools">Python Data Visualization Tools</a>
+            <a href="#other-data-visualization-tools">Other Data Visualization Tools</a>
+            <a href="#visualization-tools-comparison">Visualization Tools Comparison</a>
+            <a href="#preprocessing-vs-visualization">Pre-Processing vs. Visualization</a>
+            <a href="#complete-data-processing-visualization">Complete Data Processing and Visualization</a>
+            
+        </aside>
+        <main class="content">
+            <div class="hero">
+                <h1>Data Pre-Processing and Data Visualization</h1>
+                </div>
+         <!-- =========================================================
+     DATA PRE-PROCESSING AND DATA VISUALIZATION
+     15 PERIODS
+     ========================================================= -->
+
+
+<section id="data-preprocessing-visualization">
+
+    <h2>Data Pre-Processing and Data Visualization</h2>
+
+    <div class="image-icon">
+        <img src="../images/data-preprocessing-visualization.webp"
+             alt="Data Pre-Processing and Data Visualization">
+    </div>
+
+    <p>
+        किसी भी Data Science या Data Analysis Process में Raw Data को
+        सीधे Analyze करना हमेशा उचित नहीं होता। Raw Data में
+        <strong>Missing Values</strong>, <strong>Duplicate Records</strong>,
+        <strong>Incorrect Values</strong>, <strong>Inconsistent Formats</strong>
+        तथा अन्य प्रकार की Errors हो सकती हैं।
+    </p>
+
+    <p>
+        इसलिए Analysis से पहले Data को Clean, Integrate, Reduce तथा
+        Transform करना आवश्यक होता है। इस पूरी तैयारी की प्रक्रिया को
+        <strong>Data Pre-Processing</strong> कहा जाता है।
+    </p>
+
+    <p>
+        Data को Process करने के बाद प्राप्त Information को समझने तथा
+        Present करने के लिए <strong>Data Visualization</strong> का उपयोग
+        किया जाता है। इसमें Data को Charts, Graphs, Maps तथा अन्य
+        Visual Forms में Represent किया जाता है।
+    </p>
+
+    <div class="note-box">
+        <b>Exam Point:</b><br>
+        Data Pre-Processing का उद्देश्य Raw Data को
+        Clean, Consistent और Analysis-ready बनाना है, जबकि
+        Data Visualization का उद्देश्य Data को Visual Form में
+        प्रस्तुत करके Patterns, Trends और Insights को आसानी से समझाना है।
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     1. WHAT IS DATA PREPROCESSING
+     ========================================================= -->
+
+<section id="what-is-data-preprocessing">
+
+    <h2>1. What is Data Pre-Processing?</h2>
+
+    <div class="image-icon">
+        <img src="../images/what-is-data-preprocessing.webp"
+             alt="What is Data Pre-Processing">
+    </div>
+
+    <p>
+        <strong>Data Pre-Processing</strong> वह प्रक्रिया है जिसमें
+        Raw Data को Analysis, Data Mining या Machine Learning के लिए
+        suitable format में तैयार किया जाता है।
+    </p>
+
+    <p>
+        जब Data विभिन्न Sources से Collect किया जाता है, तो वह अक्सर
+        Raw और Unorganized Form में होता है। इसमें Missing Values,
+        Duplicate Records, Incorrect Data, Different Formats और
+        Unwanted Information मौजूद हो सकती है।
+    </p>
+
+    <p>
+        Data Pre-Processing इन समस्याओं को Identify करके Data को
+        अधिक <strong>Accurate, Consistent, Complete और Usable</strong>
+        बनाने का कार्य करता है।
+    </p>
+
+    <p>
+        GeeksforGeeks के अनुसार Data Pre-Processing Raw Data को
+        Clean और Transform करके Analysis या Mining के लिए
+        usable format में तैयार करने की प्रक्रिया है। इसके प्रमुख
+        tasks में Data Cleaning, Data Integration, Data Transformation
+        और Data Reduction शामिल हैं। :contentReference[oaicite:1]{index=1}
+    </p>
+
+    <h3>Definition</h3>
+
+    <p>
+        <strong>Definition:</strong><br>
+        "Data Pre-Processing वह process है जिसमें Raw Data को
+        Clean, Transform, Integrate और Reduce करके उसे
+        Analysis या Data Mining के लिए suitable बनाया जाता है।"
+    </p>
+
+    <div class="note-box">
+        <b>Simple Meaning:</b><br>
+        Raw Data → Cleaning → Integration → Reduction →
+        Transformation → Analysis-ready Data
+    </div>
+
+    <h3>Example</h3>
+
+    <p>
+        मान लीजिए किसी College के Student Data में किसी Student का
+        Age Missing है, किसी Student का Name दो बार लिखा गया है,
+        कुछ Mobile Numbers अलग-अलग Format में हैं और कुछ Records
+        गलत हैं।
+    </p>
+
+    <p>
+        Analysis से पहले इन Problems को ठीक करना आवश्यक है।
+        यही Data Pre-Processing का काम है।
+    </p>
+
+</section>
+
+
+<!-- =========================================================
+     2. IMPORTANCE OF DATA PREPROCESSING
+     ========================================================= -->
+
+<section id="importance-data-preprocessing">
+
+    <h2>2. Importance of Data Pre-Processing</h2>
+
+    <div class="image-icon">
+        <img src="../images/importance-data-preprocessing.webp"
+             alt="Importance of Data Pre-Processing">
+    </div>
+
+    <p>
+        Data Pre-Processing Data Analysis और Machine Learning की
+        एक महत्वपूर्ण step है। यदि Input Data की Quality खराब है,
+        तो Analysis के Results भी गलत या misleading हो सकते हैं।
+    </p>
+
+    <p>
+        Clean और well-structured Data Analytical Models को meaningful
+        Patterns सीखने में सहायता करता है और गलत Inputs के कारण
+        misleading Results की संभावना को कम करता है। :contentReference[oaicite:2]{index=2}
+    </p>
+
+    <h3>Importance</h3>
+
+    <ol>
+
+        <li>
+            <strong>Improves Data Quality</strong><br>
+            Data से Errors, Duplicates और Inconsistencies को कम किया
+            जाता है, जिससे Data Quality बेहतर होती है।
+        </li>
+
+        <li>
+            <strong>Handles Missing Values</strong><br>
+            Missing Data को उचित Method से Handle किया जाता है।
+        </li>
+
+        <li>
+            <strong>Removes Duplicate Data</strong><br>
+            Duplicate Records को Identify करके Remove किया जा सकता है।
+        </li>
+
+        <li>
+            <strong>Improves Accuracy</strong><br>
+            Clean Data के कारण Analysis और Machine Learning Results
+            अधिक Reliable हो सकते हैं।
+        </li>
+
+        <li>
+            <strong>Provides Consistency</strong><br>
+            अलग-अलग Formats को Standard Format में Convert किया जाता है।
+        </li>
+
+        <li>
+            <strong>Reduces Complexity</strong><br>
+            Unnecessary Data को Reduce करके Processing को आसान बनाया जा सकता है।
+        </li>
+
+        <li>
+            <strong>Improves Analysis</strong><br>
+            Properly Prepared Data से Patterns और Trends को बेहतर तरीके
+            से Identify किया जा सकता है।
+        </li>
+
+        <li>
+            <strong>Improves Machine Learning</strong><br>
+            Machine Learning Algorithms को Clean और Structured Input
+            मिलने से Model Performance बेहतर हो सकती है।
+        </li>
+
+    </ol>
+
+    <div class="note-box">
+        <b>Exam Point:</b><br>
+        "Garbage In, Garbage Out" का अर्थ है कि यदि Input Data
+        खराब Quality का है, तो उससे प्राप्त Output भी unreliable
+        हो सकता है। इसलिए Data Pre-Processing बहुत महत्वपूर्ण है।
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     3. MAJOR TASKS
+     ========================================================= -->
+
+<section id="major-tasks-data-preprocessing">
+
+    <h2>3. Major Tasks in Data Pre-Processing</h2>
+
+    <div class="image-icon">
+        <img src="../images/major-tasks-data-preprocessing.webp"
+             alt="Major Tasks in Data Pre-Processing">
+    </div>
+
+    <p>
+        Data Pre-Processing में कई Tasks perform किए जाते हैं।
+        आपके syllabus के अनुसार इसके चार प्रमुख Tasks हैं:
+    </p>
+
+    <ol>
+
+        <li>
+            <strong>Data Cleaning</strong>
+        </li>
+
+        <li>
+            <strong>Data Integration</strong>
+        </li>
+
+        <li>
+            <strong>Data Reduction</strong>
+        </li>
+
+        <li>
+            <strong>Data Transformation</strong>
+        </li>
+
+    </ol>
+
+    <table>
+
+        <tr>
+            <th>Task</th>
+            <th>Main Purpose</th>
+        </tr>
+
+        <tr>
+            <td>Data Cleaning</td>
+            <td>Errors, Missing और Duplicate Data को Handle करना</td>
+        </tr>
+
+        <tr>
+            <td>Data Integration</td>
+            <td>Multiple Sources के Data को Combine करना</td>
+        </tr>
+
+        <tr>
+            <td>Data Reduction</td>
+            <td>Data Size और Complexity को कम करना</td>
+        </tr>
+
+        <tr>
+            <td>Data Transformation</td>
+            <td>Data को Suitable और Standard Format में Convert करना</td>
+        </tr>
+
+    </table>
+
+    <div class="image-icon">
+
+        <strong>
+            Raw Data
+            <br>↓
+            Data Cleaning
+            <br>↓
+            Data Integration
+            <br>↓
+            Data Reduction
+            <br>↓
+            Data Transformation
+            <br>↓
+            Analysis-ready Data
+        </strong>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     4. DATA CLEANING
+     ========================================================= -->
+
+<section id="data-cleaning">
+
+    <h2>4. Data Cleaning</h2>
+
+    <div class="image-icon">
+        <img src="../images/data-cleaning.webp"
+             alt="Data Cleaning">
+    </div>
+
+    <p>
+        <strong>Data Cleaning</strong> या <strong>Data Cleansing</strong>
+        वह process है जिसमें Dataset के Errors, Inconsistencies,
+        Missing Values, Duplicate Records तथा Incorrect Information
+        को Identify और Correct किया जाता है।
+    </p>
+
+    <p>
+        Raw Data अक्सर incomplete, inconsistent या noisy हो सकता है।
+        यदि ऐसे Data को बिना Clean किए Analyze किया जाए, तो Analysis
+        के Results गलत हो सकते हैं।
+    </p>
+
+    <p>
+        GeeksforGeeks के अनुसार Data Cleaning में Missing Data,
+        Duplicate Records, Incorrect Values, Standardization तथा
+        Outliers जैसी समस्याओं को Handle किया जा सकता है। :contentReference[oaicite:3]{index=3}
+    </p>
+
+    <h3>Definition</h3>
+
+    <p>
+        <strong>Definition:</strong><br>
+        "Data Cleaning वह process है जिसमें Dataset में मौजूद
+        Errors, Missing Values, Duplicates और Inconsistencies को
+        Identify करके Data को Accurate और Consistent बनाया जाता है।"
+    </p>
+
+    <h3>Common Data Cleaning Tasks</h3>
+
+    <ol>
+
+        <li>
+            <strong>Handling Missing Values</strong><br>
+            जिन Records में Data Missing है, उन्हें Identify करके
+            appropriate method से Handle किया जाता है।
+        </li>
+
+        <li>
+            <strong>Removing Duplicate Records</strong><br>
+            एक ही Record के Multiple Copies को Remove किया जाता है।
+        </li>
+
+        <li>
+            <strong>Correcting Incorrect Data</strong><br>
+            गलत या Invalid Values को Correct किया जाता है।
+        </li>
+
+        <li>
+            <strong>Standardizing Formats</strong><br>
+            अलग-अलग Formats को एक Standard Format में Convert किया जाता है।
+        </li>
+
+        <li>
+            <strong>Handling Outliers</strong><br>
+            Dataset में मौजूद unusual या extreme values को Identify
+            करके आवश्यकता के अनुसार Handle किया जाता है।
+        </li>
+
+    </ol>
+
+    <h3>Example</h3>
+
+    <table>
+
+        <tr>
+            <th>Before Cleaning</th>
+            <th>After Cleaning</th>
+        </tr>
+
+        <tr>
+            <td>Kanpur</td>
+            <td>Kanpur</td>
+        </tr>
+
+        <tr>
+            <td>kanpur</td>
+            <td>Kanpur</td>
+        </tr>
+
+        <tr>
+            <td>Kanpur City</td>
+            <td>Kanpur</td>
+        </tr>
+
+        <tr>
+            <td>Duplicate Record</td>
+            <td>Removed</td>
+        </tr>
+
+    </table>
+
+    <div class="note-box">
+        <b>Exam Point:</b><br>
+        Data Cleaning का मुख्य उद्देश्य Data को
+        <strong>Accurate, Consistent, Complete और Reliable</strong>
+        बनाना है।
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     5. DATA INTEGRATION
+     ========================================================= -->
+
+<section id="data-integration">
+
+    <h2>5. Data Integration</h2>
+
+    <div class="image-icon">
+        <img src="../images/data-integration.webp"
+             alt="Data Integration">
+    </div>
+
+    <p>
+        <strong>Data Integration</strong> वह process है जिसमें
+        अलग-अलग Sources से प्राप्त Data को Combine करके एक
+        Unified और Consistent Dataset बनाया जाता है।
+    </p>
+
+    <p>
+        किसी Organization में Data अलग-अलग Departments और Systems
+        में Store हो सकता है। उदाहरण के लिए Customer Information
+        एक Database में, Sales Data दूसरे Database में और Payment
+        Data किसी अन्य System में हो सकता है।
+    </p>
+
+    <p>
+        इन सभी Sources के Data को एक साथ Analyze करने के लिए
+        उन्हें Integrate करना आवश्यक होता है।
+    </p>
+
+    <h3>Definition</h3>
+
+    <p>
+        <strong>Definition:</strong><br>
+        "Data Integration वह process है जिसमें Multiple Data Sources
+        से प्राप्त Data को Combine करके एक Unified Dataset बनाया जाता है।"
+    </p>
+
+    <h3>Sources of Data Integration</h3>
+
+    <ul>
+
+        <li>Databases</li>
+
+        <li>Excel Files</li>
+
+        <li>CSV Files</li>
+
+        <li>Web Applications</li>
+
+        <li>Cloud Services</li>
+
+        <li>APIs</li>
+
+        <li>Business Applications</li>
+
+    </ul>
+
+    <h3>Example</h3>
+
+    <table>
+
+        <tr>
+            <th>Source</th>
+            <th>Data</th>
+        </tr>
+
+        <tr>
+            <td>Sales Database</td>
+            <td>Order Information</td>
+        </tr>
+
+        <tr>
+            <td>Customer Database</td>
+            <td>Customer Details</td>
+        </tr>
+
+        <tr>
+            <td>Payment System</td>
+            <td>Payment Information</td>
+        </tr>
+
+        <tr>
+            <td>Integrated Dataset</td>
+            <td>Combined Business Information</td>
+        </tr>
+
+    </table>
+
+    <h3>Advantages of Data Integration</h3>
+
+    <ol>
+
+        <li>
+            Multiple Sources का Data एक स्थान पर उपलब्ध हो जाता है।
+        </li>
+
+        <li>
+            Data Analysis अधिक आसान हो जाता है।
+        </li>
+
+        <li>
+            Complete Business View प्राप्त की जा सकती है।
+        </li>
+
+        <li>
+            Duplicate Information को Identify करने में सहायता मिलती है।
+        </li>
+
+        <li>
+            Better Decision Making संभव होती है।
+        </li>
+
+    </ol>
+
+    <div class="note-box">
+        <b>Exam Example:</b><br>
+        यदि किसी E-Commerce Company के Customer Data,
+        Sales Data और Payment Data अलग-अलग Databases में हैं,
+        तो इन्हें Combine करके Customer-wise Sales Analysis करना
+        <strong>Data Integration</strong> का Example है।
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     6. DATA REDUCTION
+     ========================================================= -->
+
+<section id="data-reduction">
+
+    <h2>6. Data Reduction</h2>
+
+    <div class="image-icon">
+        <img src="../images/data-reduction.webp"
+             alt="Data Reduction">
+    </div>
+
+    <p>
+        <strong>Data Reduction</strong> वह process है जिसमें Dataset
+        की Size और Complexity को कम किया जाता है, लेकिन Analysis के
+        लिए महत्वपूर्ण Information को यथासंभव Preserve रखा जाता है।
+    </p>
+
+    <p>
+        Big या Large Dataset को Process करने में अधिक Storage,
+        Memory और Computing Time लग सकता है। Data Reduction के
+        माध्यम से unnecessary या redundant Data को कम करके
+        Processing को अधिक Efficient बनाया जा सकता है।
+    </p>
+
+    <h3>Definition</h3>
+
+    <p>
+        <strong>Definition:</strong><br>
+        "Data Reduction वह process है जिसमें Data की मात्रा और
+        Complexity को कम किया जाता है, जबकि महत्वपूर्ण Information
+        को Preserve करने का प्रयास किया जाता है।"
+    </p>
+
+    <h3>Need of Data Reduction</h3>
+
+    <ul>
+
+        <li>Storage Requirement कम करने के लिए।</li>
+
+        <li>Processing Time कम करने के लिए।</li>
+
+        <li>Computational Cost कम करने के लिए।</li>
+
+        <li>Large Dataset को Manage करने के लिए।</li>
+
+        <li>Analysis को Faster बनाने के लिए।</li>
+
+    </ul>
+
+    <h3>Common Approaches</h3>
+
+    <ol>
+
+        <li>
+            <strong>Feature Selection</strong><br>
+            केवल आवश्यक Features को Select किया जाता है।
+        </li>
+
+        <li>
+            <strong>Sampling</strong><br>
+            पूरे Dataset की जगह उसका Representative Sample लिया जाता है।
+        </li>
+
+        <li>
+            <strong>Aggregation</strong><br>
+            Detailed Data को Summary या Aggregate Form में Convert किया जाता है।
+        </li>
+
+        <li>
+            <strong>Dimensionality Reduction</strong><br>
+            Dataset के Features या Dimensions की संख्या कम की जाती है।
+        </li>
+
+    </ol>
+
+    <h3>Example</h3>
+
+    <p>
+        मान लीजिए किसी Company के पास 100 Columns वाला Dataset है,
+        लेकिन Sales Analysis के लिए केवल
+        <strong>Product, Quantity, Price और Date</strong> आवश्यक हैं।
+        बाकी unnecessary Columns को Analysis Dataset से हटाना
+        Data Reduction का एक सरल Example हो सकता है।
+    </p>
+
+    <div class="note-box">
+        <b>Exam Point:</b><br>
+        Data Reduction का उद्देश्य Data को छोटा और manageable बनाना है,
+        ताकि Processing और Analysis अधिक Efficient हो सके।
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     7. DATA TRANSFORMATION
+     ========================================================= -->
+
+<section id="data-transformation">
+
+    <h2>7. Data Transformation</h2>
+
+    <div class="image-icon">
+        <img src="../images/data-transformation.webp"
+             alt="Data Transformation">
+    </div>
+
+    <p>
+        <strong>Data Transformation</strong> वह process है जिसमें
+        Data को उसके Original Form से बदलकर एक ऐसे Format या Structure
+        में Convert किया जाता है जो Analysis, Reporting या Data
+        Processing के लिए अधिक suitable हो।
+    </p>
+
+    <p>
+        विभिन्न Data Sources में Data अलग-अलग Formats और Structures
+        में हो सकता है। इसलिए Analysis से पहले Data को Standardize,
+        Normalize, Aggregate या अन्य तरीके से Transform किया जा सकता है।
+    </p>
+
+    <p>
+        GeeksforGeeks के अनुसार Data Transformation में Raw Data को
+        Clean, Standardized और Analysis-ready Format में Convert किया
+        जाता है। इसके अंतर्गत Cleansing, Standardization, Aggregation,
+        Filtering तथा अधिक Complex Transformation Tasks शामिल हो सकते हैं। :contentReference[oaicite:4]{index=4}
+    </p>
+
+    <h3>Definition</h3>
+
+    <p>
+        <strong>Definition:</strong><br>
+        "Data Transformation वह process है जिसमें Data को उसके
+        Original Format से बदलकर Analysis या Processing के लिए
+        Suitable और Standard Format में Convert किया जाता है।"
+    </p>
+
+    <h3>Common Data Transformation Techniques</h3>
+
+    <ol>
+
+        <li>
+            <strong>Normalization</strong><br>
+            Numerical Values को एक Common Scale पर लाने की Technique।
+        </li>
+
+        <li>
+            <strong>Standardization</strong><br>
+            Data को Standard Statistical Format में Convert करना।
+        </li>
+
+        <li>
+            <strong>Aggregation</strong><br>
+            Multiple Records को Summary Value में Convert करना।
+        </li>
+
+        <li>
+            <strong>Filtering</strong><br>
+            केवल Required Records को Select करना।
+        </li>
+
+        <li>
+            <strong>Encoding</strong><br>
+            Categorical Data को Numerical या अन्य suitable Representation
+            में Convert करना।
+        </li>
+
+        <li>
+            <strong>Formatting</strong><br>
+            Dates, Text और Numbers को Standard Format में Convert करना।
+        </li>
+
+    </ol>
+
+    <h3>Example</h3>
+
+    <table>
+
+        <tr>
+            <th>Original Data</th>
+            <th>Transformed Data</th>
+        </tr>
+
+        <tr>
+            <td>Male / Female</td>
+            <td>Standardized Categories</td>
+        </tr>
+
+        <tr>
+            <td>01-02-2026</td>
+            <td>2026-02-01</td>
+        </tr>
+
+        <tr>
+            <td>₹1,000</td>
+            <td>1000</td>
+        </tr>
+
+        <tr>
+            <td>Jan, Feb, Mar</td>
+            <td>Month Category</td>
+        </tr>
+
+    </table>
+
+    <div class="note-box">
+        <b>Exam Point:</b><br>
+        Data Transformation का उद्देश्य Data को
+        <strong>Consistent, Standard और Analysis-ready</strong>
+        Format में Convert करना है।
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     8. COMPLETE DATA PREPROCESSING FLOW
+     ========================================================= -->
+
+<section id="data-preprocessing-flow">
+
+    <h2>8. Complete Data Pre-Processing Flow</h2>
+
+    <div class="image-icon">
+        <img src="../images/data-preprocessing-flow.webp"
+             alt="Data Pre-Processing Flow">
+    </div>
+
+    <p>
+        Data Pre-Processing को एक systematic workflow के रूप में
+        समझा जा सकता है। Raw Data प्राप्त होने के बाद उसे विभिन्न
+        stages से गुजरना पड़ता है ताकि वह Analysis के लिए तैयार हो सके।
+    </p>
+
+    <div class="image-icon">
+
+        <strong>
+            Raw Data
+            <br>↓
+            Data Cleaning
+            <br>↓
+            Data Integration
+            <br>↓
+            Data Reduction
+            <br>↓
+            Data Transformation
+            <br>↓
+            Clean & Prepared Data
+            <br>↓
+            Data Analysis
+            <br>↓
+            Data Visualization
+        </strong>
+
+    </div>
+
+    <p>
+        ध्यान देना आवश्यक है कि वास्तविक Projects में इन steps का
+        exact order Dataset, Problem और Processing Pipeline के अनुसार
+        बदल सकता है। लेकिन Conceptual रूप से Cleaning, Integration,
+        Reduction और Transformation Data Preparation के महत्वपूर्ण
+        components हैं।
+    </p>
+
+</section>
+
+
+<!-- =========================================================
+     9. WHAT IS DATA VISUALIZATION
+     ========================================================= -->
+
+<section id="what-is-data-visualization">
+
+    <h2>9. What is Data Visualization?</h2>
+
+    <div class="image-icon">
+        <img src="../images/what-is-data-visualization.webp"
+             alt="What is Data Visualization">
+    </div>
+
+    <p>
+        <strong>Data Visualization</strong> वह process है जिसमें
+        Data को Graphical या Visual Form में Present किया जाता है,
+        ताकि Complex Information को आसानी से समझा जा सके।
+    </p>
+
+    <p>
+        Large Dataset को केवल Tables या Numbers के रूप में देखने पर
+        Patterns और Trends को समझना कठिन हो सकता है। लेकिन यदि उसी
+        Data को Bar Chart, Line Chart, Pie Chart, Map या अन्य
+        Visualization के रूप में Present किया जाए, तो Information
+        अधिक आसानी से समझ में आती है।
+    </p>
+
+    <p>
+        GeeksforGeeks के अनुसार Data Visualization Complex Data को
+        Charts, Graphs और Maps जैसे Graphical Formats में Convert
+        करती है और Patterns, Trends तथा Outliers को जल्दी समझने में
+        सहायता करती है। :contentReference[oaicite:5]{index=5}
+    </p>
+
+    <h3>Definition</h3>
+
+    <p>
+        <strong>Definition:</strong><br>
+        "Data Visualization वह process है जिसमें Data को
+        Charts, Graphs, Maps और अन्य Visual Forms के माध्यम से
+        Present किया जाता है ताकि Information को आसानी से
+        Understand और Interpret किया जा सके।"
+    </p>
+
+    <div class="note-box">
+        <b>Simple Example:</b><br>
+        यदि एक Company के 12 Months के Sales Numbers को केवल
+        Table में दिखाने की बजाय Line Chart में दिखाया जाए,
+        तो Sales का Trend तुरंत समझ में आ सकता है।
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     10. IMPORTANCE OF DATA VISUALIZATION
+     ========================================================= -->
+
+<section id="importance-data-visualization">
+
+    <h2>10. Importance of Data Visualization</h2>
+
+    <div class="image-icon">
+        <img src="../images/importance-data-visualization.webp"
+             alt="Importance of Data Visualization">
+    </div>
+
+    <ol>
+
+        <li>
+            <strong>Simplifies Complex Data</strong><br>
+            Large और Complex Data को आसान Visual Form में प्रस्तुत किया जा सकता है।
+        </li>
+
+        <li>
+            <strong>Identifies Trends</strong><br>
+            Data में मौजूद Trends को जल्दी Identify किया जा सकता है।
+        </li>
+
+        <li>
+            <strong>Identifies Patterns</strong><br>
+            Hidden Patterns और Relationships को समझने में सहायता मिलती है।
+        </li>
+
+        <li>
+            <strong>Highlights Outliers</strong><br>
+            Unusual या Extreme Values को आसानी से देखा जा सकता है।
+        </li>
+
+        <li>
+            <strong>Better Decision Making</strong><br>
+            Visual Information के आधार पर Decision जल्दी और
+            आसानी से लिया जा सकता है।
+        </li>
+
+        <li>
+            <strong>Easy Communication</strong><br>
+            Complex Analysis को अन्य लोगों के सामने समझाना आसान होता है।
+        </li>
+
+        <li>
+            <strong>Improves Reporting</strong><br>
+            Reports और Dashboards को अधिक understandable बनाया जा सकता है।
+        </li>
+
+    </ol>
+
+    <div class="note-box">
+        <b>Exam Point:</b><br>
+        Data Visualization का सबसे बड़ा लाभ यह है कि यह
+        Complex Data को Simple, Understandable और Interactive
+        Visual Information में Convert करती है।
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     11. COMMON DATA VISUALIZATION FORMS
+     ========================================================= -->
+
+<section id="common-data-visualization-forms">
+
+    <h2>11. Common Forms of Data Visualization</h2>
+
+    <div class="image-icon">
+        <img src="../images/common-data-visualization-forms.webp"
+             alt="Common Forms of Data Visualization">
+    </div>
+
+    <h3>1. Bar Chart</h3>
+
+    <p>
+        <strong>Bar Chart</strong> का उपयोग अलग-अलग Categories के
+        Values की Comparison के लिए किया जाता है।
+    </p>
+
+    <p>
+        <strong>Example:</strong> विभिन्न Products की Sales Compare करना।
+    </p>
+
+    <h3>2. Line Chart</h3>
+
+    <p>
+        <strong>Line Chart</strong> का उपयोग Time के साथ होने वाले
+        Changes और Trends को दिखाने के लिए किया जाता है।
+    </p>
+
+    <p>
+        <strong>Example:</strong> January से December तक Monthly Sales।
+    </p>
+
+    <h3>3. Pie Chart</h3>
+
+    <p>
+        <strong>Pie Chart</strong> किसी Total में अलग-अलग Categories
+        के Proportion या Share को दिखाने के लिए उपयोग किया जाता है।
+    </p>
+
+    <p>
+        <strong>Example:</strong> Company Revenue में विभिन्न
+        Products का Percentage Share।
+    </p>
+
+    <h3>4. Histogram</h3>
+
+    <p>
+        <strong>Histogram</strong> Numerical Data के Distribution को
+        समझने के लिए उपयोग किया जाता है।
+    </p>
+
+    <h3>5. Scatter Plot</h3>
+
+    <p>
+        <strong>Scatter Plot</strong> दो Numerical Variables के बीच
+        Relationship या Distribution को दिखाने में सहायता करता है।
+    </p>
+
+    <h3>6. Map</h3>
+
+    <p>
+        <strong>Maps</strong> का उपयोग Location-based या Geographic
+        Data को Visualize करने के लिए किया जाता है।
+    </p>
+
+    <h3>7. Dashboard</h3>
+
+    <p>
+        <strong>Dashboard</strong> में कई Visualizations को एक ही
+        Screen पर Combine करके Important KPIs और Business Information
+        को एक साथ Display किया जाता है।
+    </p>
+
+    <table>
+
+        <tr>
+            <th>Visualization</th>
+            <th>Main Purpose</th>
+        </tr>
+
+        <tr>
+            <td>Bar Chart</td>
+            <td>Category Comparison</td>
+        </tr>
+
+        <tr>
+            <td>Line Chart</td>
+            <td>Trend Over Time</td>
+        </tr>
+
+        <tr>
+            <td>Pie Chart</td>
+            <td>Percentage / Proportion</td>
+        </tr>
+
+        <tr>
+            <td>Histogram</td>
+            <td>Data Distribution</td>
+        </tr>
+
+        <tr>
+            <td>Scatter Plot</td>
+            <td>Relationship Between Variables</td>
+        </tr>
+
+        <tr>
+            <td>Map</td>
+            <td>Geographical Data</td>
+        </tr>
+
+        <tr>
+            <td>Dashboard</td>
+            <td>Multiple KPIs and Visuals</td>
+        </tr>
+
+    </table>
+
+</section>
+
+
+<!-- =========================================================
+     12. DATA VISUALIZATION TOOLS
+     ========================================================= -->
+
+<section id="data-visualization-tools">
+
+    <h2>12. Data Visualization Tools</h2>
+
+    <div class="image-icon">
+        <img src="../images/data-visualization-tools.webp"
+             alt="Data Visualization Tools">
+    </div>
+
+    <p>
+        <strong>Data Visualization Tools</strong> ऐसे Software,
+        Libraries या Platforms हैं जिनकी सहायता से Raw या Processed
+        Data को Charts, Graphs, Maps, Reports और Interactive Dashboards
+        में Convert किया जा सकता है।
+    </p>
+
+    <p>
+        GeeksforGeeks के अनुसार Popular Data Visualization Tools में
+        <strong>Tableau, Power BI, Google Charts, Plotly, Infogram,
+        Chart.js, Datawrapper, Highcharts, Flourish और Sisense</strong>
+        जैसे tools शामिल हैं। :contentReference[oaicite:6]{index=6}
+    </p>
+
+</section>
+
+
+<!-- =========================================================
+     13. MICROSOFT POWER BI
+     ========================================================= -->
+
+<section id="power-bi">
+
+    <h2>13. Microsoft Power BI</h2>
+
+    <div class="image-icon">
+        <img src="../images/power-bi.webp"
+             alt="Microsoft Power BI">
+    </div>
+
+    <p>
+        <strong>Power BI</strong> Microsoft का एक
+        <strong>Data Analytics and Business Intelligence</strong>
+        platform है। इसका उपयोग Data Sources से Data Connect करने,
+        Data को Clean और Transform करने तथा Interactive Reports और
+        Dashboards बनाने के लिए किया जाता है।
+    </p>
+
+    <p>
+        Power BI में Excel, Databases, Web Sources और अन्य Data Sources
+        से Data Import किया जा सकता है। इसमें विभिन्न प्रकार के
+        Charts, Tables, Maps और Interactive Visualizations उपलब्ध होते हैं।
+    </p>
+
+    <h3>Main Features</h3>
+
+    <ul>
+
+        <li>Interactive Dashboards</li>
+
+        <li>Data Visualization</li>
+
+        <li>Multiple Data Source Connectivity</li>
+
+        <li>Data Cleaning and Transformation</li>
+
+        <li>Reports Creation</li>
+
+        <li>Filters and Interactive Analysis</li>
+
+        <li>Business Intelligence Features</li>
+
+    </ul>
+
+    <p>
+        GeeksforGeeks के अनुसार Power BI विभिन्न Data Sources से
+        Data Connect करके Interactive Reports और Dashboards बनाने
+        की सुविधा देता है तथा Power Query की सहायता से Data को
+        Clean, Transform और Shape किया जा सकता है। :contentReference[oaicite:7]{index=7}
+    </p>
+
+    <div class="note-box">
+        <b>Exam Example:</b><br>
+        किसी Company की Monthly Sales, Profit और Customer Data को
+        Power BI में Import करके Interactive Sales Dashboard बनाना
+        Data Visualization का practical example है।
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     14. TABLEAU
+     ========================================================= -->
+
+<section id="tableau">
+
+    <h2>14. Tableau</h2>
+
+    <div class="image-icon">
+        <img src="../images/tableau.webp"
+             alt="Tableau">
+    </div>
+
+    <p>
+        <strong>Tableau</strong> एक लोकप्रिय Data Visualization और
+        Business Analytics Tool है जिसका उपयोग Data को Interactive
+        Charts, Graphs, Maps और Dashboards के रूप में Present करने
+        के लिए किया जाता है।
+    </p>
+
+    <p>
+        Tableau में Data Sources से Data Connect करके
+        Drag-and-Drop Interface की सहायता से विभिन्न Visualizations
+        बनाए जा सकते हैं।
+    </p>
+
+    <h3>Features of Tableau</h3>
+
+    <ul>
+
+        <li>Interactive Data Visualization</li>
+
+        <li>Drag-and-Drop Interface</li>
+
+        <li>Charts and Graphs</li>
+
+        <li>Geographical Maps</li>
+
+        <li>Interactive Dashboards</li>
+
+        <li>Data Filtering</li>
+
+        <li>Data Analysis</li>
+
+    </ul>
+
+    <p>
+        Tableau में विभिन्न Data Formats और Sources के साथ काम किया
+        जा सकता है तथा Charts, Maps, Heat Maps, Histograms और अन्य
+        Visualizations बनाए जा सकते हैं। :contentReference[oaicite:8]{index=8}
+    </p>
+
+</section>
+
+
+<!-- =========================================================
+     15. PYTHON VISUALIZATION TOOLS
+     ========================================================= -->
+
+<section id="python-data-visualization-tools">
+
+    <h2>15. Python Data Visualization Tools</h2>
+
+    <div class="image-icon">
+        <img src="../images/python-data-visualization.webp"
+             alt="Python Data Visualization Tools">
+    </div>
+
+    <p>
+        Python में Data Visualization के लिए कई Libraries उपलब्ध हैं।
+        इन Libraries की सहायता से Data को Charts, Graphs और
+        Interactive Visualizations में Convert किया जा सकता है।
+    </p>
+
+    <h3>1. Matplotlib</h3>
+
+    <p>
+        <strong>Matplotlib</strong> Python की एक widely used
+        Visualization Library है। इसका उपयोग Line Charts,
+        Bar Charts, Histograms, Scatter Plots और अन्य Graphs
+        बनाने के लिए किया जाता है।
+    </p>
+
+    <h3>2. Seaborn</h3>
+
+    <p>
+        <strong>Seaborn</strong> Python की Statistical Data Visualization
+        Library है। यह Statistical Relationships और Data Distributions
+        को Visualize करने में उपयोगी है।
+    </p>
+
+    <h3>3. Plotly</h3>
+
+    <p>
+        <strong>Plotly</strong> Interactive Data Visualizations बनाने
+        के लिए उपयोग की जाने वाली Library है। इससे Interactive
+        Charts और Graphs बनाए जा सकते हैं।
+    </p>
+
+    <h3>4. Pandas</h3>
+
+    <p>
+        <strong>Pandas</strong> मुख्य रूप से Data Manipulation और
+        Analysis के लिए उपयोग होती है, लेकिन इसमें Basic Plotting
+        Capabilities भी उपलब्ध हैं और यह Visualization Libraries
+        के साथ आसानी से Integrate हो सकती है।
+    </p>
+
+    <p>
+        GeeksforGeeks के Python Data Visualization material में
+        Matplotlib, Pandas, Seaborn और Plotly जैसे tools/libraries
+        को Data Visualization के context में discuss किया गया है। :contentReference[oaicite:9]{index=9}
+    </p>
+
+</section>
+
+
+<!-- =========================================================
+     16. OTHER DATA VISUALIZATION TOOLS
+     ========================================================= -->
+
+<section id="other-data-visualization-tools">
+
+    <h2>16. Other Data Visualization Tools</h2>
+
+    <div class="image-icon">
+        <img src="../images/other-data-visualization-tools.webp"
+             alt="Other Data Visualization Tools">
+    </div>
+
+    <table>
+
+        <tr>
+            <th>Tool</th>
+            <th>Purpose</th>
+        </tr>
+
+        <tr>
+            <td>Google Charts</td>
+            <td>Web-based Charts और Visualizations</td>
+        </tr>
+
+        <tr>
+            <td>Plotly</td>
+            <td>Interactive Data Visualization</td>
+        </tr>
+
+        <tr>
+            <td>Chart.js</td>
+            <td>Web-based JavaScript Charts</td>
+        </tr>
+
+        <tr>
+            <td>Flourish</td>
+            <td>Interactive Visual Stories</td>
+        </tr>
+
+        <tr>
+            <td>Datawrapper</td>
+            <td>Charts, Maps और Data Stories</td>
+        </tr>
+
+        <tr>
+            <td>Highcharts</td>
+            <td>Interactive Web Charts</td>
+        </tr>
+
+        <tr>
+            <td>Qlik Sense</td>
+            <td>Business Intelligence और Visualization</td>
+        </tr>
+
+        <tr>
+            <td>Looker</td>
+            <td>Business Intelligence और Data Analysis</td>
+        </tr>
+
+    </table>
+
+    <p>
+        विभिन्न Visualization Tools के Features और Target Users
+        अलग-अलग हो सकते हैं। इसलिए Tool का Selection Dataset,
+        Required Visualization, Technical Skills और Business Need
+        के आधार पर किया जाता है। :contentReference[oaicite:10]{index=10}
+    </p>
+
+</section>
+
+
+<!-- =========================================================
+     17. POWER BI VS TABLEAU VS PYTHON
+     ========================================================= -->
+
+<section id="visualization-tools-comparison">
+
+    <h2>17. Comparison of Data Visualization Tools</h2>
+
+    <div class="image-icon">
+        <img src="../images/visualization-tools-comparison.webp"
+             alt="Comparison of Data Visualization Tools">
+    </div>
+
+    <table>
+
+        <tr>
+            <th>Basis</th>
+            <th>Power BI</th>
+            <th>Tableau</th>
+            <th>Python</th>
+        </tr>
+
+        <tr>
+            <td>Type</td>
+            <td>BI Platform</td>
+            <td>Visualization / BI Tool</td>
+            <td>Programming Language</td>
+        </tr>
+
+        <tr>
+            <td>Ease of Use</td>
+            <td>Beginner Friendly</td>
+            <td>Relatively Easy</td>
+            <td>Programming Knowledge Required</td>
+        </tr>
+
+        <tr>
+            <td>Dashboards</td>
+            <td>Excellent</td>
+            <td>Excellent</td>
+            <td>Libraries Required</td>
+        </tr>
+
+        <tr>
+            <td>Programming</td>
+            <td>Low</td>
+            <td>Low</td>
+            <td>High</td>
+        </tr>
+
+        <tr>
+            <td>Best Use</td>
+            <td>Business Reports</td>
+            <td>Advanced Visualization</td>
+            <td>Data Analysis & Custom Visualization</td>
+        </tr>
+
+    </table>
+
+</section>
+
+
+<!-- =========================================================
+     18. DATA PREPROCESSING VS DATA VISUALIZATION
+     ========================================================= -->
+
+<section id="preprocessing-vs-visualization">
+
+    <h2>18. Data Pre-Processing vs Data Visualization</h2>
+
+    <div class="image-icon">
+        <img src="../images/preprocessing-vs-visualization.webp"
+             alt="Data Pre-Processing vs Data Visualization">
+    </div>
+
+    <table>
+
+        <tr>
+            <th>Basis</th>
+            <th>Data Pre-Processing</th>
+            <th>Data Visualization</th>
+        </tr>
+
+        <tr>
+            <td>Meaning</td>
+            <td>Data को Prepare करना</td>
+            <td>Data को Visual Form में Present करना</td>
+        </tr>
+
+        <tr>
+            <td>Main Goal</td>
+            <td>Clean और Analysis-ready Data</td>
+            <td>Easy Understanding और Interpretation</td>
+        </tr>
+
+        <tr>
+            <td>Main Tasks</td>
+            <td>Cleaning, Integration, Reduction, Transformation</td>
+            <td>Charts, Graphs, Maps, Dashboards</td>
+        </tr>
+
+        <tr>
+            <td>Input</td>
+            <td>Raw Data</td>
+            <td>Processed Data</td>
+        </tr>
+
+        <tr>
+            <td>Output</td>
+            <td>Prepared Dataset</td>
+            <td>Visual Insights</td>
+        </tr>
+
+    </table>
+
+</section>
+
+
+<!-- =========================================================
+     19. COMPLETE PROCESS
+     ========================================================= -->
+
+<section id="complete-data-processing-visualization">
+
+    <h2>19. Complete Data Processing and Visualization Process</h2>
+
+    <div class="image-icon">
+        <img src="../images/complete-data-processing-visualization.webp"
+             alt="Complete Data Processing and Visualization Process">
+    </div>
+
+    <div class="image-icon">
+
+        <strong>
+            Data Collection
+            <br>↓
+            Raw Data
+            <br>↓
+            Data Cleaning
+            <br>↓
+            Data Integration
+            <br>↓
+            Data Reduction
+            <br>↓
+            Data Transformation
+            <br>↓
+            Prepared Data
+            <br>↓
+            Data Analysis
+            <br>↓
+            Data Visualization
+            <br>↓
+            Charts / Graphs / Dashboards
+            <br>↓
+            Insights
+            <br>↓
+            Decision Making
+        </strong>
+
+    </div>
+
+    <p>
+        इस पूरे process में सबसे पहले Data अलग-अलग Sources से
+        Collect किया जाता है। इसके बाद Data Pre-Processing की सहायता
+        से Data को Clean, Integrate, Reduce और Transform किया जाता है।
+    </p>
+
+    <p>
+        Prepared Data का Analysis करने के बाद उसके Results को
+        Visualization Tools की सहायता से Charts, Graphs, Maps और
+        Dashboards में Present किया जाता है। इससे Decision Makers को
+        Data से प्राप्त Insights को आसानी से समझने में सहायता मिलती है।
+    </p>
+
+</section>
+
+
+
+        </main>
+
+    </div>
+</body>
+
+</html>

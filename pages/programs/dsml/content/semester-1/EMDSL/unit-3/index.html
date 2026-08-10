@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Statistics</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f7fb;color:#1f2937;line-height:1.75}
+.page{display:grid;grid-template-columns:280px 1fr;gap:20px;max-width:1450px;margin:auto;padding:10px}
+.sidebar{position:sticky;top:10px;height:calc(100vh - 20px);overflow-y:auto;background:#fff;border-radius:16px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.08);align-self:start}
+.sidebar h2{font-size:20px;margin-bottom:12px;color:#111827}
+.sidebar a{display:block;text-decoration:none;color:#374151;padding:8px 10px;border-radius:10px;margin-bottom:4px;font-size:14.5px}
+.sidebar a:hover{background:#eef2ff;color:#1d4ed8}
+.content{background:#fff;border-radius:18px;padding:10px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.hero{padding:28px 18px;border-radius:16px;background:linear-gradient(135deg,#eef2ff,#f8fafc);margin-bottom:18px}
+.hero h1{font-size:34px;color:#111827;margin-bottom:10px}
+.hero p{font-size:18px;color:#374151}
+section{padding:22px 10px;border-bottom:1px solid #e5e7eb}
+section:last-child{border-bottom:none}
+h2{font-size:27px;color:#111827;margin-bottom:12px;border-left:5px solid #2563eb;padding-left:12px}
+h3{font-size:22px;color:#1f2937;margin:16px 0 8px}
+h4{font-size:18px;margin:14px 0 6px}
+p{margin:10px 0;font-size:17px}
+ul,ol{margin-left:24px;margin-top:8px}
+li{margin:7px 0;font-size:16.5px}
+strong{color:#111827}
+.image-icon{min-height:130px;border:2px dashed #94a3b8;border-radius:16px;background:#f8fafc;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;margin:18px 0;color:#475569;font-weight:600}
+.image-icon img{max-width:100%;height:auto}
+.note-box{background:#f0fdf4;border-left:5px solid #22c55e;border-radius:14px;padding:14px 16px;margin:16px 0}
+.example{background:#eff6ff;border-left:5px solid #3b82f6;border-radius:14px;padding:14px 16px;margin:16px 0}
+.formula{background:#111827;color:#f9fafb;padding:12px 14px;border-radius:12px;margin:12px 0;font-family:Consolas,monospace;overflow-x:auto}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:15.5px}
+th,td{border:1px solid #d1d5db;padding:10px;text-align:left;vertical-align:top}
+th{background:#eef2ff;color:#111827}
+.page,.content,section{min-width:0;max-width:100%}
+img,video,svg,canvas{max-width:100%;height:auto}
+table{display:block;width:100%;max-width:100%;overflow-x:auto;overflow-y:hidden;border-radius:12px;-webkit-overflow-scrolling:touch}
+th,td{min-width:110px;overflow-wrap:break-word}
+@media(max-width:900px){.page{display:block;width:100%;padding:5px}.sidebar{display:none}.content{width:100%;min-width:0;padding:6px;border-radius:10px}.hero{padding:18px 10px}.hero h1{font-size:24px}h2{font-size:21px}h3{font-size:18px}p,li{font-size:15px}.image-icon{min-height:130px;padding:8px}}
+</style>
+<link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
+<script src="../../../../../../../assets/shared/portal.js" defer></script>
+<script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
+</head>
+<body>
+<div class="page">
+
+<aside class="sidebar">
+<h2>Topics</h2>
+<a href="#statistics-introduction">Statistics Introduction</a>
+<a href="#types-statistics">Types of Statistics</a>
+<a href="#descriptive-statistics">Descriptive Statistics</a>
+<a href="#prescriptive-statistics">Prescriptive Statistics</a>
+<a href="#predictive-statistics">Predictive Statistics</a>
+<a href="#statistical-measures">Statistical Measures</a>
+<a href="#frequency-measures">Measures of Frequency</a>
+<a href="#central-tendency">Measures of Central Tendency</a>
+<a href="#mean">Mean</a>
+<a href="#median">Median</a>
+<a href="#mode">Mode</a>
+<a href="#spread-measures">Measures of Spread</a>
+<a href="#variance">Variance</a>
+<a href="#standard-deviation">Standard Deviation</a>
+<a href="#quartiles">Quartiles</a>
+<a href="#position-measures">Measures of Position</a>
+<a href="#correlation">Correlation</a>
+<a href="#covariance">Covariance</a>
+<a href="#correlation-vs-covariance">Correlation vs Covariance</a>
+<a href="#revision-summary">Complete Revision Summary</a>
+</aside>
+
+<main class="content">
+
+<div class="hero">
+<h1>Statistics</h1>
+<p><strong>26 Periods</strong> — Hindi + English Mixed, Exam-Oriented Notes</p>
+</div>
+
+<section id="statistics-introduction">
+<h2>1. Statistics Introduction</h2>
+<div class="image-icon"><img src="../images/statistics-introduction.webp" alt="Statistics Introduction"></div>
+<p><strong>Statistics</strong> Mathematics की वह branch है जिसमें Data को <strong>collect, organize, present, analyze और interpret</strong> किया जाता है, ताकि meaningful conclusions और decisions लिए जा सकें।</p>
+<p>Statistics केवल numbers का collection नहीं है। इसका उद्देश्य raw data को useful information में convert करना है। इसका उपयोग Business, Economics, Science, Healthcare, Education, Data Science, Machine Learning और Research में व्यापक रूप से किया जाता है।</p>
+
+<h3>Major Steps of Statistics</h3>
+<ol>
+<li><strong>Data Collection:</strong> आवश्यक data को collect करना।</li>
+<li><strong>Data Organization:</strong> Data को tables या categories में arrange करना।</li>
+<li><strong>Data Presentation:</strong> Charts, graphs और tables द्वारा present करना।</li>
+<li><strong>Data Analysis:</strong> Statistical methods से patterns और relationships find करना।</li>
+<li><strong>Interpretation:</strong> Results का meaning समझना।</li>
+<li><strong>Decision Making:</strong> Statistical evidence के आधार पर decision लेना।</li>
+</ol>
+
+<div class="note-box"><b>Exam Point:</b><br>Statistics का मुख्य उद्देश्य data से meaningful information निकालना और uncertainty के बीच better decisions लेने में सहायता करना है।</div>
+</section>
+
+<section id="types-statistics">
+<h2>2. Types of Statistics</h2>
+<div class="image-icon"><img src="../images/types-of-statistics.webp" alt="Types of Statistics"></div>
+<p>इस syllabus में Statistics को मुख्य रूप से <strong>Descriptive, Prescriptive और Predictive Statistics</strong> में divide किया गया है।</p>
+
+<table>
+<tr><th>Type</th><th>Main Purpose</th><th>Example</th></tr>
+<tr><td>Descriptive Statistics</td><td>Existing data को summarize और describe करना।</td><td>Mean, Median, Charts</td></tr>
+<tr><td>Prescriptive Statistics</td><td>Available analysis के आधार पर possible actions/recommendations suggest करना।</td><td>Best pricing decision</td></tr>
+<tr><td>Predictive Statistics</td><td>Past/current data की सहायता से future outcomes estimate करना।</td><td>Future sales prediction</td></tr>
+</table>
+
+<div class="note-box"><b>Quick Difference:</b><br>
+Descriptive → What happened?<br>
+Predictive → What may happen?<br>
+Prescriptive → What action should be considered?
+</div>
+</section>
+
+<section id="descriptive-statistics">
+<h2>3. Descriptive Statistics</h2>
+<div class="image-icon"><img src="../images/descriptive-statistics.webp" alt="Descriptive Statistics"></div>
+<p><strong>Descriptive Statistics</strong> का काम collected data को summarize और describe करना है। इसमें data से कोई future prediction या recommendation necessarily नहीं की जाती, बल्कि available data की characteristics explain की जाती हैं।</p>
+<h3>Common Methods</h3>
+<ul>
+<li>Mean, Median, Mode</li>
+<li>Range, Variance, Standard Deviation</li>
+<li>Quartiles</li>
+<li>Frequency Tables</li>
+<li>Charts and Graphs</li>
+</ul>
+<div class="example"><b>Example:</b> किसी class के 50 students के marks का average, median और highest-lowest marks निकालना descriptive statistics का example है।</div>
+</section>
+
+<section id="prescriptive-statistics">
+<h2>4. Prescriptive Statistics</h2>
+<div class="image-icon"><img src="../images/prescriptive-statistics.webp" alt="Prescriptive Statistics"></div>
+<p><strong>Prescriptive Statistics</strong> statistical analysis के results का उपयोग करके possible actions या decisions के लिए recommendations provide करती है। इसका focus केवल “क्या हुआ” पर नहीं बल्कि “अब क्या किया जा सकता है” पर होता है।</p>
+<h3>Applications</h3>
+<ul>
+<li>Business decision making</li>
+<li>Pricing optimization</li>
+<li>Resource allocation</li>
+<li>Marketing planning</li>
+<li>Risk management</li>
+</ul>
+<div class="note-box"><b>Exam Point:</b> Prescriptive approach analysis के आधार पर suitable action या recommendation identify करने में help करती है।</div>
+</section>
+
+<section id="predictive-statistics">
+<h2>5. Predictive Statistics</h2>
+<div class="image-icon"><img src="../images/predictive-statistics.webp" alt="Predictive Statistics"></div>
+<p><strong>Predictive Statistics</strong> historical और current data के patterns का उपयोग करके future या unknown outcomes का estimate करने की process है।</p>
+<h3>Examples</h3>
+<ul>
+<li>Next month's sales forecast.</li>
+<li>Customer churn prediction.</li>
+<li>Demand forecasting.</li>
+<li>Risk prediction.</li>
+<li>Weather or traffic forecasting.</li>
+</ul>
+<p>Predictive analysis में statistical models, regression, probability और machine learning techniques का उपयोग किया जा सकता है।</p>
+</section>
+
+<section id="statistical-measures">
+<h2>6. Types of Statistical Measures</h2>
+<div class="image-icon"><img src="../images/statistical-measures.webp" alt="Statistical Measures"></div>
+<p><strong>Statistical Measure</strong> data की किसी important characteristic को numerical value में summarize करता है। यह large dataset को compact और understandable form में represent करने में मदद करता है।</p>
+
+<table>
+<tr><th>Measure</th><th>What it tells</th></tr>
+<tr><td>Frequency</td><td>कोई value/category कितनी बार occur हुई।</td></tr>
+<tr><td>Central Tendency</td><td>Data का central या typical value.</td></tr>
+<tr><td>Spread / Dispersion</td><td>Data कितना फैला हुआ है।</td></tr>
+<tr><td>Position</td><td>Data में किसी observation की relative location.</td></tr>
+<tr><td>Correlation</td><td>दो variables के linear relationship की strength/direction.</td></tr>
+<tr><td>Covariance</td><td>दो variables के साथ-साथ बदलने की direction.</td></tr>
+</table>
+</section>
+
+<section id="frequency-measures">
+<h2>7. Measures of Frequency</h2>
+<div class="image-icon"><img src="../images/measures-of-frequency.webp" alt="Measures of Frequency"></div>
+<p><strong>Frequency</strong> बताती है कि कोई value, category या event dataset में कितनी बार दिखाई देता है।</p>
+<h3>Frequency Table</h3>
+<table>
+<tr><th>Marks</th><th>Frequency</th></tr>
+<tr><td>0–20</td><td>5</td></tr>
+<tr><td>21–40</td><td>8</td></tr>
+<tr><td>41–60</td><td>12</td></tr>
+<tr><td>61–80</td><td>10</td></tr>
+<tr><td>81–100</td><td>5</td></tr>
+</table>
+<p>ऊपर table में प्रत्येक class interval के सामने number of observations उसकी frequency है।</p>
+
+<h3>Common Frequency Concepts</h3>
+<ul>
+<li><strong>Absolute Frequency:</strong> Actual count.</li>
+<li><strong>Relative Frequency:</strong> Total observations के proportion के रूप में frequency.</li>
+<li><strong>Cumulative Frequency:</strong> Frequencies का running total.</li>
+</ul>
+<div class="formula">Relative Frequency = Frequency / Total Frequency</div>
+</section>
+
+<section id="central-tendency">
+<h2>8. Measures of Central Tendency</h2>
+<div class="image-icon"><img src="../images/central-tendency.webp" alt="Central Tendency"></div>
+<p><strong>Measures of Central Tendency</strong> dataset के center या typical value को represent करते हैं। इसके तीन प्रमुख measures हैं: <strong>Mean, Median और Mode</strong>।</p>
+
+<table>
+<tr><th>Measure</th><th>Basic Meaning</th></tr>
+<tr><td>Mean</td><td>सभी values का arithmetic average.</td></tr>
+<tr><td>Median</td><td>Ordered data की middle value.</td></tr>
+<tr><td>Mode</td><td>सबसे अधिक बार आने वाली value.</td></tr>
+</table>
+</section>
+
+<section id="mean">
+<h2>9. Mean</h2>
+<div class="image-icon"><img src="../images/mean.webp" alt="Mean"></div>
+<p><strong>Mean</strong> को arithmetic average भी कहा जाता है। यह सभी observations के sum को total number of observations से divide करके प्राप्त होता है।</p>
+<div class="formula">Mean (x̄) = Σx / n</div>
+<h3>Example</h3>
+<p>Data: 10, 20, 30, 40, 50</p>
+<div class="formula">x̄ = (10+20+30+40+50)/5 = 150/5 = 30</div>
+<h3>Advantages</h3>
+<ul>
+<li>Calculate करना आसान है।</li>
+<li>सभी observations का उपयोग करता है।</li>
+<li>Further mathematical calculations में useful है।</li>
+</ul>
+<h3>Limitation</h3>
+<p>Mean extreme values या outliers से काफी प्रभावित हो सकता है।</p>
+</section>
+
+<section id="median">
+<h2>10. Median</h2>
+<div class="image-icon"><img src="../images/median.webp" alt="Median"></div>
+<p><strong>Median</strong> ordered dataset की middle value होती है। Data को पहले ascending या descending order में arrange किया जाता है।</p>
+<h3>Odd Number of Observations</h3>
+<div class="formula">Median Position = (n+1)/2</div>
+<p>Example: 10, 20, 30, 40, 50 → Median = 30.</p>
+<h3>Even Number of Observations</h3>
+<p>दो middle values का average लिया जाता है।</p>
+<div class="formula">Median = (Middle Value 1 + Middle Value 2)/2</div>
+<div class="note-box"><b>Advantage:</b> Median extreme values से mean की तुलना में कम affected होता है, इसलिए skewed data में useful है।</div>
+</section>
+
+<section id="mode">
+<h2>11. Mode</h2>
+<div class="image-icon"><img src="../images/mode.webp" alt="Mode"></div>
+<p><strong>Mode</strong> dataset में सबसे अधिक बार occur होने वाली value है।</p>
+<div class="example"><b>Example:</b> Data = 2, 3, 3, 4, 5, 3, 6 → Mode = 3.</div>
+<h3>Types</h3>
+<ul>
+<li><strong>Unimodal:</strong> One mode.</li>
+<li><strong>Bimodal:</strong> Two modes.</li>
+<li><strong>Multimodal:</strong> More than two modes.</li>
+</ul>
+<p>Mode categorical data के लिए भी useful है, जहाँ mean calculate करना meaningful नहीं होता।</p>
+</section>
+
+<section id="spread-measures">
+<h2>12. Measures of Spread</h2>
+<div class="image-icon"><img src="../images/measures-of-spread.webp" alt="Measures of Spread"></div>
+<p><strong>Measures of Spread</strong> या dispersion data के observations mean/center के आसपास कितना spread हैं, यह measure करते हैं। इस syllabus में मुख्य measures <strong>Variance, Standard Deviation और Quartiles</strong> हैं।</p>
+<div class="note-box"><b>Key Idea:</b> Central tendency center बताती है, जबकि spread measures data की variability बताती हैं।</div>
+</section>
+
+<section id="variance">
+<h2>13. Variance</h2>
+<div class="image-icon"><img src="../images/variance.webp" alt="Variance"></div>
+<p><strong>Variance</strong> observations के mean से deviations के squared average को measure करती है।</p>
+<h3>Population Variance</h3>
+<div class="formula">σ² = Σ(xᵢ−μ)² / N</div>
+<h3>Sample Variance</h3>
+<div class="formula">s² = Σ(xᵢ−x̄)² / (n−1)</div>
+<p>Variance में deviations को square किया जाता है, इसलिए इसकी unit original data की unit का square होती है।</p>
+<div class="note-box"><b>Interpretation:</b> Higher variance generally means observations are more spread out around the mean.</div>
+</section>
+
+<section id="standard-deviation">
+<h2>14. Standard Deviation</h2>
+<div class="image-icon"><img src="../images/standard-deviation.webp" alt="Standard Deviation"></div>
+<p><strong>Standard Deviation (SD)</strong> variance का square root है। यह data की spread को original units में express करता है।</p>
+<div class="formula">Population SD: σ = √[Σ(xᵢ−μ)² / N]</div>
+<div class="formula">Sample SD: s = √[Σ(xᵢ−x̄)² / (n−1)]</div>
+<h3>Interpretation</h3>
+<ul>
+<li>Small SD → values mean के आसपास relatively close.</li>
+<li>Large SD → values अधिक spread out.</li>
+<li>SD की unit original variable जैसी ही होती है।</li>
+</ul>
+</section>
+
+<section id="quartiles">
+<h2>15. Quartiles</h2>
+<div class="image-icon"><img src="../images/quartiles.webp" alt="Quartiles"></div>
+<p><strong>Quartiles</strong> ordered data को चार approximately equal parts में divide करते हैं।</p>
+<table>
+<tr><th>Quartile</th><th>Meaning</th></tr>
+<tr><td>Q1</td><td>First Quartile; लगभग 25% observations इसके नीचे होते हैं।</td></tr>
+<tr><td>Q2</td><td>Second Quartile; Median के बराबर।</td></tr>
+<tr><td>Q3</td><td>Third Quartile; लगभग 75% observations इसके नीचे होते हैं।</td></tr>
+</table>
+<h3>Interquartile Range</h3>
+<div class="formula">IQR = Q3 − Q1</div>
+<p>IQR middle 50% data की spread को measure करता है और extreme values से relatively less affected होता है।</p>
+</section>
+
+<section id="position-measures">
+<h2>16. Measures of Position</h2>
+<div class="image-icon"><img src="../images/measures-of-position.webp" alt="Measures of Position"></div>
+<p><strong>Measures of Position</strong> dataset में किसी observation की relative location बताती हैं। Common position measures में <strong>Quartiles, Percentiles और Z-score</strong> शामिल हैं।</p>
+<h3>Percentile</h3>
+<p>किसी percentile का अर्थ है कि approximately कितने percent observations उस value के नीचे या बराबर हैं। उदाहरण के लिए 90th percentile का मतलब है कि लगभग 90% observations उससे नीचे या बराबर हैं।</p>
+<h3>Z-score</h3>
+<div class="formula">z = (x−μ)/σ</div>
+<p>Z-score बताता है कि कोई observation mean से कितने standard deviations दूर है।</p>
+<div class="note-box"><b>Example:</b> z = +2 का अर्थ observation mean से 2 standard deviations ऊपर है, जबकि z = −2 mean से 2 SD नीचे है।</div>
+</section>
+
+<section id="correlation">
+<h2>17. Correlation</h2>
+<div class="image-icon"><img src="../images/correlation.webp" alt="Correlation"></div>
+<p><strong>Correlation</strong> दो variables के बीच linear relationship की <strong>direction और strength</strong> को measure करता है। Pearson correlation coefficient को सामान्यतः r से denote किया जाता है।</p>
+<div class="formula">−1 ≤ r ≤ +1</div>
+<table>
+<tr><th>r Value</th><th>Interpretation</th></tr>
+<tr><td>r ≈ +1</td><td>Strong positive linear relationship.</td></tr>
+<tr><td>r ≈ 0</td><td>Little or no linear relationship.</td></tr>
+<tr><td>r ≈ −1</td><td>Strong negative linear relationship.</td></tr>
+</table>
+<h3>Positive Correlation</h3>
+<p>एक variable increase होने पर दूसरा भी generally increase करता है।</p>
+<h3>Negative Correlation</h3>
+<p>एक variable increase होने पर दूसरा generally decrease करता है।</p>
+<div class="note-box"><b>Important:</b> Correlation association को measure करता है; correlation alone causation prove नहीं करता।</div>
+</section>
+
+<section id="covariance">
+<h2>18. Covariance</h2>
+<div class="image-icon"><img src="../images/covariance.webp" alt="Covariance"></div>
+<p><strong>Covariance</strong> दो variables के साथ-साथ change होने की direction को measure करता है।</p>
+<h3>Population Covariance</h3>
+<div class="formula">Cov(X,Y) = Σ[(xᵢ−μₓ)(yᵢ−μᵧ)] / N</div>
+<h3>Sample Covariance</h3>
+<div class="formula">sₓᵧ = Σ[(xᵢ−x̄)(yᵢ−ȳ)] / (n−1)</div>
+<table>
+<tr><th>Covariance</th><th>Meaning</th></tr>
+<tr><td>Positive</td><td>Variables generally same direction में move करते हैं।</td></tr>
+<tr><td>Negative</td><td>Variables generally opposite directions में move करते हैं।</td></tr>
+<tr><td>Near Zero</td><td>Linear co-movement weak हो सकता है।</td></tr>
+</table>
+<p>Covariance की value variables की units पर depend करती है, इसलिए अलग datasets के बीच direct comparison कठिन हो सकता है।</p>
+</section>
+
+<section id="correlation-vs-covariance">
+<h2>19. Correlation vs Covariance</h2>
+<div class="image-icon"><img src="../images/correlation-vs-covariance.webp" alt="Correlation vs Covariance"></div>
+<table>
+<tr><th>Basis</th><th>Correlation</th><th>Covariance</th></tr>
+<tr><td>Meaning</td><td>Linear relationship की direction और strength.</td><td>Joint variation की direction.</td></tr>
+<tr><td>Range</td><td>−1 to +1</td><td>Fixed range नहीं।</td></tr>
+<tr><td>Units</td><td>Unitless</td><td>Variables की units का product.</td></tr>
+<tr><td>Comparison</td><td>Different datasets में comparatively easy.</td><td>Scale और units से affected.</td></tr>
+</table>
+<div class="formula">Correlation = Cov(X,Y) / (σₓσᵧ)</div>
+</section>
+
+<section id="revision-summary">
+<h2>20. Complete Revision Summary</h2>
+<div class="image-icon"><img src="../images/statistics-revision-summary.webp" alt="Statistics Revision Summary"></div>
+<table>
+<tr><th>Topic</th><th>Quick Revision</th></tr>
+<tr><td>Statistics</td><td>Data को collect, organize, present, analyze और interpret करने का systematic study.</td></tr>
+<tr><td>Descriptive</td><td>Existing data को summarize और describe करता है।</td></tr>
+<tr><td>Predictive</td><td>Future/unknown outcomes का estimate करता है।</td></tr>
+<tr><td>Prescriptive</td><td>Analysis के आधार पर possible actions/recommendations suggest करता है।</td></tr>
+<tr><td>Frequency</td><td>Value/category कितनी बार occur हुई।</td></tr>
+<tr><td>Mean</td><td>Σx/n</td></tr>
+<tr><td>Median</td><td>Ordered data की middle value.</td></tr>
+<tr><td>Mode</td><td>Most frequently occurring value.</td></tr>
+<tr><td>Variance</td><td>Squared deviations का average-based measure.</td></tr>
+<tr><td>Standard Deviation</td><td>Variance का square root; original units में spread.</td></tr>
+<tr><td>Quartiles</td><td>Data को four parts में divide करते हैं।</td></tr>
+<tr><td>Position</td><td>Observation की relative location; percentile और z-score useful हैं।</td></tr>
+<tr><td>Correlation</td><td>Linear relationship की strength/direction; −1 to +1.</td></tr>
+<tr><td>Covariance</td><td>दो variables के joint variation की direction.</td></tr>
+</table>
+
+<div class="note-box">
+<b>Final Exam Revision Flow:</b><br><br>
+<strong>Statistics Basics</strong> → Definition → Data Handling → Applications<br><br>
+<strong>Types</strong> → Descriptive → Predictive → Prescriptive<br><br>
+<strong>Measures</strong> → Frequency → Central Tendency → Spread → Position<br><br>
+<strong>Central Tendency</strong> → Mean → Median → Mode<br><br>
+<strong>Spread</strong> → Variance → Standard Deviation → Quartiles / IQR<br><br>
+<strong>Relationship</strong> → Correlation → Covariance → Comparison
+</div>
+</section>
+
+</main>
+</div>
+</body>
+</html>

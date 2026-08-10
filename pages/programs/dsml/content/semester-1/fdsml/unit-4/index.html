@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to Machine Learning</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
+    <script src="../../../../../../../assets/shared/portal.js" defer></script>
+    <script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
+</head>
+
+<body>
+    <div class="page">
+
+        <aside class="sidebar">
+            <h2>Topics</h2>
+
+            <a href="#introduction-machine-learning">Introduction to Machine Learning</a>
+            <a href="#machine-learning-definition">Machine Learning Definition</a>
+            <a href="#machine-learning-methods-approaches">Methods and Approaches</a>
+            <a href="#supervised-learning">Supervised Learning</a>
+            <a href="#unsupervised-learning">Unsupervised Learning</a>
+            <a href="#supervised-vs-unsupervised">Supervised vs Unsupervised</a>
+            <a href="#decision-tree-learning">Decision Tree Learning</a>
+            <a href="#deep-learning-data-science">Deep Learning & Data Science</a>
+            <a href="#machine-learning-summary">Unit Summary</a>
+        </aside>
+
+        <main class="content">
+
+            <div class="hero">
+                <h1>Introduction to Machine Learning</h1>
+
+            </div>
+
+
+            <section id="introduction-machine-learning">
+
+                <h2>Introduction to Machine Learning</h2>
+
+                <div class="image-icon">
+                    <img src="../images/introduction-machine-learning.webp" alt="Introduction to Machine Learning">
+                </div>
+
+                <p>
+                    <strong>Machine Learning (ML)</strong> Artificial Intelligence (AI) की
+                    एक important branch है जिसमें Computer Systems को इस प्रकार बनाया जाता है
+                    कि वे <strong>Data</strong> से Patterns और Information सीख सकें तथा
+                    उस Learning के आधार पर Prediction या Decision ले सकें।
+                </p>
+
+                <p>
+                    Traditional Programming में Programmer द्वारा Rules और Instructions
+                    explicitly दिए जाते हैं। इसके विपरीत Machine Learning में Computer को
+                    Data और suitable Algorithm दिया जाता है, जिससे System Data में मौजूद
+                    Patterns को सीखकर नए Data पर Prediction कर सकता है।
+                </p>
+
+                <div class="note-box">
+                    <b>Exam Point:</b><br>
+                    Machine Learning का मुख्य उद्देश्य Computer को ऐसा सक्षम बनाना है
+                    कि वह Data से सीख सके और हर Rule को manually program किए बिना
+                    Prediction या Decision कर सके।
+                </div>
+
+            </section>
+
+
+            <section id="machine-learning-definition">
+
+                <h2>1. Machine Learning Definition</h2>
+
+                <div class="image-icon">
+                    <img src="../images/machine-learning-definition.webp" alt="Machine Learning Definition">
+                </div>
+
+                <p>
+                    <strong>Machine Learning</strong> एक ऐसी computational approach है
+                    जिसमें Computer Algorithms Data से Patterns और Relationships सीखते हैं
+                    और उस Learning का उपयोग नए या unseen Data पर Prediction तथा Decision
+                    लेने के लिए करते हैं।
+                </p>
+
+                <h3>Definition</h3>
+
+                <p>
+                    <strong>Definition:</strong><br>
+                    "Machine Learning is a branch of Artificial Intelligence that enables
+                    computers to learn from data and improve their performance without being
+                    explicitly programmed for every task."
+                </p>
+
+                <h3>Simple Example</h3>
+
+                <p>
+                    मान लीजिए किसी Email System को हजारों Emails दिए गए हैं जिनमें कुछ
+                    <strong>Spam</strong> और कुछ <strong>Not Spam</strong> हैं।
+                    Machine Learning Algorithm इन Emails के Patterns को सीख सकता है।
+                    इसके बाद नया Email आने पर System Prediction कर सकता है कि वह Spam है
+                    या Not Spam।
+                </p>
+
+                <h3>Traditional Programming vs Machine Learning</h3>
+
+                <table>
+                    <tr>
+                        <th>Basis</th>
+                        <th>Traditional Programming</th>
+                        <th>Machine Learning</th>
+                    </tr>
+                    <tr>
+                        <td>Input</td>
+                        <td>Rules + Data</td>
+                        <td>Data + Learning Algorithm</td>
+                    </tr>
+                    <tr>
+                        <td>Processing</td>
+                        <td>Programmed Rules</td>
+                        <td>Patterns Learned from Data</td>
+                    </tr>
+                    <tr>
+                        <td>Output</td>
+                        <td>Result</td>
+                        <td>Prediction / Decision</td>
+                    </tr>
+                    <tr>
+                        <td>Learning</td>
+                        <td>Normally Manual</td>
+                        <td>Data-driven</td>
+                    </tr>
+                </table>
+
+            </section>
+
+
+            <section id="machine-learning-methods-approaches">
+
+                <h2>2. Methods and Approaches of Machine Learning</h2>
+
+                <div class="image-icon">
+                    <img src="../images/machine-learning-methods.webp" alt="Machine Learning Methods and Approaches">
+                </div>
+
+                <p>
+                    Machine Learning में अलग-अलग Learning Methods और Approaches का उपयोग
+                    किया जाता है। इनका Selection उपलब्ध Data, Problem Type और Expected
+                    Output के आधार पर किया जाता है।
+                </p>
+
+                <h3>Main Approaches</h3>
+
+                <ol>
+                    <li><strong>Supervised Learning</strong> — Labeled Data से Learning.</li>
+                    <li><strong>Unsupervised Learning</strong> — Unlabeled Data से Patterns खोजने की कोशिश.</li>
+                    <li><strong>Semi-Supervised Learning</strong> — Labeled और Unlabeled दोनों Data का उपयोग.</li>
+                    <li><strong>Reinforcement Learning</strong> — Reward और Penalty/Feedback के आधार पर Learning.</li>
+                </ol>
+
+                <table>
+                    <tr>
+                        <th>Approach</th>
+                        <th>Data</th>
+                        <th>Basic Idea</th>
+                    </tr>
+                    <tr>
+                        <td>Supervised Learning</td>
+                        <td>Labeled Data</td>
+                        <td>Known Output से सीखना और Prediction करना</td>
+                    </tr>
+                    <tr>
+                        <td>Unsupervised Learning</td>
+                        <td>Unlabeled Data</td>
+                        <td>Hidden Patterns और Structures खोजने का प्रयास</td>
+                    </tr>
+                    <tr>
+                        <td>Semi-Supervised Learning</td>
+                        <td>Labeled + Unlabeled Data</td>
+                        <td>दोनों प्रकार के Data का उपयोग</td>
+                    </tr>
+                    <tr>
+                        <td>Reinforcement Learning</td>
+                        <td>Feedback / Reward</td>
+                        <td>Action के परिणाम से Learning</td>
+                    </tr>
+                </table>
+
+                <div class="note-box">
+                    <b>Exam Point:</b><br>
+                    इस syllabus में मुख्य focus <strong>Supervised Learning</strong>,
+                    <strong>Unsupervised Learning</strong>, Decision Tree Learning और
+                    Deep Learning concept पर है।
+                </div>
+
+            </section>
+
+
+            <section id="supervised-learning">
+
+                <h2>3. Supervised Learning</h2>
+
+                <div class="image-icon">
+                    <img src="../images/supervised-learning.webp" alt="Supervised Learning">
+                </div>
+
+                <p>
+                    <strong>Supervised Learning</strong> Machine Learning की वह approach है
+                    जिसमें Algorithm को <strong>Labeled Data</strong> से train किया जाता है।
+                    Labeled Data में Input के साथ उसका correct Output या Target भी दिया जाता है।
+                </p>
+
+                <p>
+                    Algorithm Training Data के Input और Output के बीच relationship को सीखता है।
+                    Training complete होने के बाद Model को नए Input Data पर Output predict करने
+                    के लिए use किया जाता है।
+                </p>
+
+                <h3>Definition</h3>
+
+                <p>
+                    <strong>Definition:</strong><br>
+                    "Supervised Learning is a machine learning approach in which a model
+                    learns from labeled training data to predict the output for new data."
+                </p>
+
+                <h3>Working Process</h3>
+
+                <ol>
+                    <li>Labeled Dataset Collect किया जाता है।</li>
+                    <li>Dataset को Training Process में दिया जाता है।</li>
+                    <li>Algorithm Data के Patterns सीखता है।</li>
+                    <li>Trained Model तैयार होता है।</li>
+                    <li>Model को Test Data पर Test किया जाता है।</li>
+                    <li>नए Data के लिए Prediction किया जाता है।</li>
+                </ol>
+
+                <h3>Types of Supervised Learning</h3>
+
+                <ol>
+                    <li>
+                        <strong>Classification:</strong>
+                        Output को predefined Classes या Categories में classify किया जाता है।
+                    </li>
+                    <li>
+                        <strong>Regression:</strong>
+                        Continuous Numerical Value की Prediction की जाती है।
+                    </li>
+                </ol>
+
+                <h3>Examples</h3>
+
+                <ul>
+                    <li>Email Spam Detection</li>
+                    <li>House Price Prediction</li>
+                    <li>Student Result Prediction</li>
+                    <li>Credit Risk Prediction</li>
+                    <li>Image Classification</li>
+                </ul>
+
+                <div class="note-box">
+                    <b>Real Life Example:</b><br>
+                    यदि Model को पुराने Houses के Area, Location और Price का Data दिया जाए
+                    और नए House की Price Predict की जाए, तो यह
+                    <strong>Supervised Learning</strong> का उदाहरण है।
+                </div>
+
+            </section>
+
+
+            <section id="unsupervised-learning">
+
+                <h2>4. Unsupervised Learning</h2>
+
+                <div class="image-icon">
+                    <img src="../images/unsupervised-learning.webp" alt="Unsupervised Learning">
+                </div>
+
+                <p>
+                    <strong>Unsupervised Learning</strong> Machine Learning की वह approach है
+                    जिसमें Algorithm को <strong>Unlabeled Data</strong> दिया जाता है।
+                    इसमें Dataset के साथ कोई predefined Target या Correct Output उपलब्ध नहीं होता।
+                </p>
+
+                <p>
+                    Algorithm Data में मौजूद Similarities, Relationships और Patterns को
+                    identify करने का प्रयास करता है और Data को meaningful Groups या
+                    Structures में organize कर सकता है।
+                </p>
+
+                <h3>Definition</h3>
+
+                <p>
+                    <strong>Definition:</strong><br>
+                    "Unsupervised Learning is a machine learning approach in which an algorithm
+                    learns patterns and structures from unlabeled data without predefined output labels."
+                </p>
+
+                <h3>Working Process</h3>
+
+                <ol>
+                    <li>Unlabeled Dataset Collect किया जाता है।</li>
+                    <li>Data को Machine Learning Algorithm में दिया जाता है।</li>
+                    <li>Algorithm Similarities और Relationships Analyze करता है।</li>
+                    <li>Similar Data को Groups या Clusters में Organize किया जाता है।</li>
+                    <li>Hidden Patterns या Structures Identify किए जाते हैं।</li>
+                </ol>
+
+                <h3>Common Techniques</h3>
+
+                <ol>
+                    <li>
+                        <strong>Clustering:</strong>
+                        Similar Data Points को Groups या Clusters में Divide करना।
+                    </li>
+                    <li>
+                        <strong>Association:</strong>
+                        Data Items के बीच Relationships खोजने का प्रयास।
+                    </li>
+                    <li>
+                        <strong>Dimensionality Reduction:</strong>
+                        Features या Dimensions को कम करके Important Information को preserve करने का प्रयास।
+                    </li>
+                </ol>
+
+                <h3>Examples</h3>
+
+                <ul>
+                    <li>Customer Segmentation</li>
+                    <li>Market Analysis</li>
+                    <li>Product Grouping</li>
+                    <li>Document Grouping</li>
+                    <li>Pattern Discovery</li>
+                </ul>
+
+                <div class="note-box">
+                    <b>Real Life Example:</b><br>
+                    Shopping Website के Customers को उनकी Shopping Habits के आधार पर
+                    अलग-अलग Groups में divide करना, जैसे Budget, Regular और Premium Customers,
+                    <strong>Unsupervised Learning</strong> का example हो सकता है।
+                </div>
+
+            </section>
+
+
+            <section id="supervised-vs-unsupervised">
+
+                <h2>5. Supervised Learning vs Unsupervised Learning</h2>
+
+                <div class="image-icon">
+                    <img src="../images/supervised-vs-unsupervised.webp" alt="Supervised vs Unsupervised Learning">
+                </div>
+
+                <table>
+                    <tr>
+                        <th>Basis</th>
+                        <th>Supervised Learning</th>
+                        <th>Unsupervised Learning</th>
+                    </tr>
+                    <tr>
+                        <td>Data</td>
+                        <td>Labeled Data</td>
+                        <td>Unlabeled Data</td>
+                    </tr>
+                    <tr>
+                        <td>Output</td>
+                        <td>Known Target</td>
+                        <td>No Predefined Target</td>
+                    </tr>
+                    <tr>
+                        <td>Main Goal</td>
+                        <td>Prediction</td>
+                        <td>Pattern / Structure Discovery</td>
+                    </tr>
+                    <tr>
+                        <td>Common Tasks</td>
+                        <td>Classification, Regression</td>
+                        <td>Clustering, Association</td>
+                    </tr>
+                    <tr>
+                        <td>Example</td>
+                        <td>Spam Detection</td>
+                        <td>Customer Segmentation</td>
+                    </tr>
+                </table>
+
+                <div class="note-box">
+                    <b>Easy Trick:</b><br>
+                    <strong>Supervised = Teacher के साथ Learning</strong><br>
+                    <strong>Unsupervised = बिना Teacher के Pattern Finding</strong>
+                </div>
+
+            </section>
+
+
+            <section id="decision-tree-learning">
+
+                <h2>6. Decision Tree Learning</h2>
+
+                <div class="image-icon">
+                    <img src="../images/decision-tree-learning.webp" alt="Decision Tree Learning">
+                </div>
+
+                <p>
+                    <strong>Decision Tree</strong> एक Tree-based Machine Learning model है
+                    जिसका उपयोग Classification तथा कुछ Regression Problems को solve करने
+                    के लिए किया जाता है।
+                </p>
+
+                <p>
+                    Decision Tree में Data को अलग-अलग Conditions या Questions के आधार पर
+                    धीरे-धीरे Split किया जाता है। प्रत्येक Internal Node एक Decision या
+                    Condition को represent करता है, Branch उस Decision का Result दिखाती है,
+                    और Leaf Node Final Prediction या Class को represent करती है।
+                </p>
+
+                <h3>Definition</h3>
+
+                <p>
+                    <strong>Definition:</strong><br>
+                    "Decision Tree is a tree-structured machine learning model that makes
+                    decisions by repeatedly splitting data based on selected features or conditions."
+                </p>
+
+                <h3>Basic Components</h3>
+
+                <table>
+                    <tr>
+                        <th>Component</th>
+                        <th>Meaning</th>
+                    </tr>
+                    <tr>
+                        <td>Root Node</td>
+                        <td>Tree का Starting Point</td>
+                    </tr>
+                    <tr>
+                        <td>Internal / Decision Node</td>
+                        <td>एक Condition या Feature पर Decision</td>
+                    </tr>
+                    <tr>
+                        <td>Branch</td>
+                        <td>Decision का Possible Outcome</td>
+                    </tr>
+                    <tr>
+                        <td>Leaf Node</td>
+                        <td>Final Output / Prediction</td>
+                    </tr>
+                </table>
+
+                <h3>Simple Example</h3>
+
+                <div class="formula">
+                    Weather?<br>
+                    ├── Sunny → Play = No<br>
+                    ├── Rainy → Play = No<br>
+                    └── Cloudy → Play = Yes
+                </div>
+
+                <h3>Working of Decision Tree</h3>
+
+                <ol>
+                    <li>Dataset को Analyze किया जाता है।</li>
+                    <li>Suitable Feature या Condition Select की जाती है।</li>
+                    <li>Dataset को Selected Condition के आधार पर Split किया जाता है।</li>
+                    <li>Subsets पर आगे Conditions Apply की जाती हैं।</li>
+                    <li>Process suitable Leaf Nodes मिलने तक जारी रह सकता है।</li>
+                    <li>Leaf Node Final Prediction या Class को represent करती है।</li>
+                </ol>
+
+                <h3>Advantages</h3>
+
+                <ol>
+                    <li>Understand और Interpret करना आसान होता है।</li>
+                    <li>Classification Problems में उपयोगी है।</li>
+                    <li>Decision को Tree Structure में आसानी से explain किया जा सकता है।</li>
+                    <li>Feature-based Decisions को clearly represent करता है।</li>
+                </ol>
+
+                <h3>Disadvantages</h3>
+
+                <ol>
+                    <li>बहुत complex Tree Overfitting कर सकता है।</li>
+                    <li>Small Changes in Data से Tree Structure बदल सकता है।</li>
+                    <li>Large Tree को Interpret करना कठिन हो सकता है।</li>
+                    <li>Improper Splitting से Model Performance प्रभावित हो सकती है।</li>
+                </ol>
+
+                <div class="note-box">
+                    <b>Exam Point:</b><br>
+                    Decision Tree की basic structure:
+                    <strong>Root → Internal Nodes → Branches → Leaf</strong>
+                    होती है। Leaf Node Final Decision या Prediction देती है।
+                </div>
+
+            </section>
+
+
+            <section id="deep-learning-data-science">
+
+                <h2>7. Deep Learning Concept Related to Data Science</h2>
+
+                <div class="image-icon">
+                    <img src="../images/deep-learning-data-science.webp" alt="Deep Learning and Data Science">
+                </div>
+
+                <p>
+                    <strong>Deep Learning</strong> Machine Learning का एक advanced approach है
+                    जिसमें multi-layered <strong>Artificial Neural Networks</strong> का उपयोग
+                    करके complex Data से Patterns और Representations सीखने का प्रयास किया जाता है।
+                </p>
+
+                <p>
+                    Deep Learning में Neural Network की multiple layers होती हैं।
+                    ये layers Input Data से increasingly complex features या representations
+                    सीख सकती हैं। इसलिए Deep Learning Images, Audio, Video, Text और अन्य
+                    high-dimensional Data के साथ उपयोगी है।
+                </p>
+
+                <h3>Definition</h3>
+
+                <p>
+                    <strong>Definition:</strong><br>
+                    "Deep Learning is a branch of Machine Learning that uses multi-layered
+                    artificial neural networks to learn complex patterns and representations from data."
+                </p>
+
+                <h3>Basic Structure</h3>
+
+                <div class="formula">
+                    Input Layer<br>
+                    ↓<br>
+                    Hidden Layer 1<br>
+                    ↓<br>
+                    Hidden Layer 2<br>
+                    ↓<br>
+                    Hidden Layer 3<br>
+                    ↓<br>
+                    Output Layer
+                </div>
+
+                <h3>Main Components</h3>
+
+                <ol>
+                    <li>
+                        <strong>Input Layer:</strong>
+                        Input Data को Network में receive करती है।
+                    </li>
+                    <li>
+                        <strong>Hidden Layers:</strong>
+                        Data से Features और Representations सीखने के लिए Processing करती हैं।
+                    </li>
+                    <li>
+                        <strong>Output Layer:</strong>
+                        Final Prediction या Output Generate करती है।
+                    </li>
+                    <li>
+                        <strong>Neurons:</strong>
+                        Network के basic computational units होते हैं।
+                    </li>
+                    <li>
+                        <strong>Weights:</strong>
+                        Connections की Importance को represent करते हैं।
+                    </li>
+                </ol>
+
+                <h3>Deep Learning in Data Science</h3>
+
+                <p>
+                    Data Science में Deep Learning का उपयोग तब किया जाता है जब Dataset
+                    बहुत Large और Complex हो तथा उसमें Images, Videos, Audio, Text या
+                    अन्य high-dimensional information शामिल हो।
+                </p>
+
+                <table>
+                    <tr>
+                        <th>Area</th>
+                        <th>Application</th>
+                    </tr>
+                    <tr>
+                        <td>Computer Vision</td>
+                        <td>Image Classification और Object Detection</td>
+                    </tr>
+                    <tr>
+                        <td>Natural Language Processing</td>
+                        <td>Text और Language Processing</td>
+                    </tr>
+                    <tr>
+                        <td>Speech Processing</td>
+                        <td>Speech Recognition</td>
+                    </tr>
+                    <tr>
+                        <td>Recommendation Systems</td>
+                        <td>User और Product Pattern Analysis</td>
+                    </tr>
+                    <tr>
+                        <td>Healthcare</td>
+                        <td>Medical Image और Data Analysis</td>
+                    </tr>
+                    <tr>
+                        <td>Fraud Detection</td>
+                        <td>Complex Transaction Pattern Detection</td>
+                    </tr>
+                </table>
+
+                <h3>Advantages</h3>
+
+                <ol>
+                    <li>Complex Patterns को Learn करने की क्षमता।</li>
+                    <li>Large और high-dimensional Data पर उपयोगी।</li>
+                    <li>Images, Audio और Text जैसे Data के लिए powerful approach।</li>
+                    <li>Complex Feature Representations सीख सकता है।</li>
+                </ol>
+
+                <h3>Limitations</h3>
+
+                <ol>
+                    <li>Large मात्रा में Data की आवश्यकता हो सकती है।</li>
+                    <li>Training के लिए अधिक Computational Resources लग सकते हैं।</li>
+                    <li>Training Time अधिक हो सकता है।</li>
+                    <li>Complex Models को Interpret करना कठिन हो सकता है।</li>
+                </ol>
+
+                <div class="note-box">
+                    <b>Exam Point:</b><br>
+                    <strong>Deep Learning = Machine Learning + Multi-Layer Neural Networks</strong>.
+                    इसका उपयोग complex और large-scale Data से patterns सीखने के लिए किया जाता है।
+                </div>
+
+            </section>
+
+
+            <section id="machine-learning-summary">
+
+                <h2>8. Unit Summary</h2>
+
+                <div class="image-icon">
+                    <img src="../images/machine-learning-summary.webp" alt="Introduction to Machine Learning Summary">
+                </div>
+
+                <p>
+                    <strong>Machine Learning</strong> Artificial Intelligence की एक important
+                    branch है जो Computer Systems को Data से सीखने और नए Data पर Prediction
+                    या Decision लेने में सक्षम बनाती है।
+                </p>
+
+                <p>
+                    Machine Learning की प्रमुख approaches में
+                    <strong>Supervised Learning</strong> और
+                    <strong>Unsupervised Learning</strong> शामिल हैं। Supervised Learning
+                    में Labeled Data का उपयोग किया जाता है, जबकि Unsupervised Learning में
+                    Unlabeled Data से Patterns और Structures खोजने का प्रयास किया जाता है।
+                </p>
+
+                <p>
+                    <strong>Decision Tree Learning</strong> एक Tree-based approach है जिसमें
+                    Data को Conditions के आधार पर अलग-अलग Branches में Split किया जाता है।
+                    इसके मुख्य components Root Node, Internal Nodes, Branches और Leaf Nodes हैं।
+                </p>
+
+                <p>
+                    <strong>Deep Learning</strong> Machine Learning का advanced approach है
+                    जिसमें Multi-layer Artificial Neural Networks का उपयोग करके Complex
+                    Patterns और Representations को Learn करने का प्रयास किया जाता है।
+                </p>
+
+                <div class="note-box">
+                    <b>Final Exam Revision:</b><br><br>
+
+                    <strong>Machine Learning</strong> → Data से Learning
+                    <br><br>
+
+                    <strong>Supervised Learning</strong> → Labeled Data → Prediction
+                    <br><br>
+
+                    <strong>Unsupervised Learning</strong> → Unlabeled Data → Pattern Discovery
+                    <br><br>
+
+                    <strong>Decision Tree</strong> → Tree-based Decision / Prediction Model
+                    <br><br>
+
+                    <strong>Deep Learning</strong> → Multi-layer Neural Networks → Complex Pattern Learning
+                </div>
+
+            </section>
+
+        </main>
+    </div>
+</body>
+
+</html>

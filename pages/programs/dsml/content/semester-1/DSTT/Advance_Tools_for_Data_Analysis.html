@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advance Tools for Data Analysis</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f7fb;color:#1f2937;line-height:1.75}
+.page{display:grid;grid-template-columns:285px 1fr;gap:20px;max-width:1450px;margin:auto;padding:10px}
+.sidebar{position:sticky;top:10px;height:calc(100vh - 20px);overflow-y:auto;background:#fff;border-radius:16px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.08);align-self:start}
+.sidebar h2{font-size:20px;margin-bottom:12px;color:#111827}
+.sidebar a{display:block;text-decoration:none;color:#374151;padding:8px 10px;border-radius:10px;margin-bottom:4px;font-size:14px}
+.sidebar a:hover{background:#eef2ff;color:#1d4ed8}
+.content{background:#fff;border-radius:18px;padding:10px;box-shadow:0 4px 18px rgba(0,0,0,.08);min-width:0}
+.hero{padding:28px 18px;border-radius:16px;background:linear-gradient(135deg,#eef2ff,#f8fafc);margin-bottom:18px}
+.hero h1{font-size:34px;color:#111827;margin-bottom:10px}
+.hero p{font-size:18px;color:#374151}
+section{padding:22px 10px;border-bottom:1px solid #e5e7eb}
+section:last-child{border-bottom:none}
+h2{font-size:27px;color:#111827;margin-bottom:12px;border-left:5px solid #2563eb;padding-left:12px}
+h3{font-size:22px;color:#1f2937;margin:18px 0 8px}
+h4{font-size:18px;margin:14px 0 6px}
+p{margin:10px 0;font-size:17px}
+ul,ol{margin-left:24px;margin-top:8px}
+li{margin:7px 0;font-size:16.5px}
+strong{color:#111827}
+.image-icon{min-height:120px;border:2px dashed #94a3b8;border-radius:16px;background:#f8fafc;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;margin:18px 0;color:#475569;font-weight:600}
+.image-icon img{max-width:100%;height:auto}
+.note-box{background:#f0fdf4;border-left:5px solid #22c55e;border-radius:14px;padding:14px 16px;margin:16px 0}
+.example{background:#eff6ff;border-left:5px solid #3b82f6;border-radius:14px;padding:14px 16px;margin:16px 0}
+.warning{background:#fff7ed;border-left:5px solid #f97316;border-radius:14px;padding:14px 16px;margin:16px 0}
+.card-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:16px 0}
+.card{background:#f8fafc;border:1px solid #e5e7eb;border-radius:14px;padding:16px}
+.card h4{color:#1d4ed8;margin-top:0}
+.workflow{background:#111827;color:#f9fafb;border-radius:14px;padding:18px;margin:16px 0;font-weight:600;overflow-x:auto}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:15.5px;display:block;overflow-x:auto}
+th,td{border:1px solid #d1d5db;padding:10px;text-align:left;vertical-align:top;min-width:130px}
+th{background:#eef2ff;color:#111827}
+.code-section{background:#050505;border-radius:18px;padding:18px;margin:18px 0;box-shadow:0 8px 28px rgba(0,0,0,.18);border:1px solid #252525}
+.code-title{color:#fff;font-size:16px;font-weight:700;margin-bottom:12px}
+.code{background:#050505;color:#f8fafc;padding:18px 20px;border-radius:12px;overflow-x:auto;font-family:Consolas,"Courier New",monospace;font-size:15px;line-height:1.75;white-space:pre}
+@media(max-width:900px){
+.page{display:block;width:100%;padding:5px}.sidebar{display:none}.content{width:100%;padding:6px;border-radius:10px}
+.hero{padding:18px 10px}.hero h1{font-size:25px}h2{font-size:21px}h3{font-size:18px}p,li{font-size:15px}
+.image-icon{min-height:110px;padding:8px}.card-grid{grid-template-columns:1fr}.code{font-size:13px;padding:14px}
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+<aside class="sidebar">
+<h2>Topics</h2>
+<a href="#intro">Advance Tools for Data Analysis</a>
+
+<a href="#bigml">BIGML</a>
+<a href="#bigml-interface">BigML Interface</a>
+<a href="#resources">Resources</a>
+<a href="#list-view">List View</a>
+<a href="#resource-view">Resource View</a>
+<a href="#search-delete">Searching & Deleting Resources</a>
+<a href="#metadata">Changing Resource Metadata</a>
+
+<a href="#nltk">Natural Language Toolkit</a>
+<a href="#nltk-install">Introduction & Installation</a>
+<a href="#tokenizing">Tokenizing Text</a>
+<a href="#wordnet">WordNet</a>
+
+<a href="#talend">Talend</a>
+<a href="#talend-intro">Introduction</a>
+<a href="#talend-install">Installation</a>
+<a href="#talend-project">Creating Project</a>
+<a href="#talend-import">Importing Project</a>
+<a href="#talend-components">Data Integration Components</a>
+
+<a href="#tableau">Tableau</a>
+<a href="#tableau-start">Start Page</a>
+<a href="#excel">Connecting to Excel Files</a>
+<a href="#text">Connecting to Text Files</a>
+<a href="#sqlserver">Connecting to Microsoft SQL Server</a>
+<a href="#hierarchy">Creating & Removing Hierarchies</a>
+<a href="#joining">Joining Tables</a>
+
+<a href="#comparison">Tool Comparison</a>
+<a href="#revision">Exam Revision</a>
+</aside>
+
+<main class="content">
+
+<div class="hero">
+<h1>Advance Tools for Data Analysis</h1>
+<p><strong>06 Periods</strong> — Hindi + English Mixed, Exam-Oriented Notes</p>
+</div>
+
+<section id="intro">
+<h2>1. Advance Tools for Data Analysis</h2>
+<div class="image-icon">
+<img src="../images/advance-tools-data-analysis.webp" alt="Advance Tools for Data Analysis">
+</div>
+
+<p><strong>Advanced Data Analysis Tools</strong> ऐसे software platforms और libraries हैं जिनका उपयोग data को collect, manage, transform, integrate, analyze और visualize करने के लिए किया जाता है। ये tools basic spreadsheet operations से आगे जाकर specialized data analysis tasks को आसान बनाते हैं।</p>
+
+<p>इस topic में चार महत्वपूर्ण tools/platforms का अध्ययन किया जाता है: <strong>BIGML, Natural Language Toolkit (NLTK), Talend और Tableau</strong>। प्रत्येक tool data analysis के अलग-अलग aspect में उपयोगी है।</p>
+
+<table>
+<tr><th>Tool</th><th>Main Area</th></tr>
+<tr><td>BIGML</td><td>Data/ML resources और analysis workflow</td></tr>
+<tr><td>NLTK</td><td>Natural Language Processing और text analysis</td></tr>
+<tr><td>Talend</td><td>Data Integration और ETL-related workflows</td></tr>
+<tr><td>Tableau</td><td>Data connection, analysis और visualization</td></tr>
+</table>
+
+<div class="note-box"><b>Exam Point:</b> Exam में प्रत्येक tool की definition, purpose, major features और syllabus में दिए गए operations को क्रम से लिखना चाहिए।</div>
+</section>
+
+<!-- BIGML -->
+<section id="bigml">
+<h2>2. BIGML</h2>
+<div class="image-icon">
+<img src="../images/bigml.webp" alt="BIGML">
+</div>
+
+<h3>Definition</h3>
+<p><strong>BIGML</strong> एक web-based data science और machine learning platform है जो data resources को manage करने तथा machine learning workflow को organize करने के लिए interface और resources उपलब्ध कराता है।</p>
+
+<h3>Purpose of BIGML</h3>
+<ul>
+<li>Data resources को manage करना।</li>
+<li>Resources को organize और inspect करना।</li>
+<li>Required resources को search करना।</li>
+<li>Unwanted resources को delete करना।</li>
+<li>Resource metadata को update/manage करना।</li>
+</ul>
+
+<div class="note-box"><b>Exam Point:</b> BIGML section में syllabus का मुख्य focus interface और resource management operations पर है।</div>
+</section>
+
+<section id="bigml-interface">
+<h2>3. Introduction to the BigML Interface</h2>
+
+<h3>Definition</h3>
+<p><strong>BigML Interface</strong> वह graphical/web interface है जिसके माध्यम से user platform पर available resources को access, organize और manage कर सकता है।</p>
+
+<h3>Interface का Basic Use</h3>
+<ol>
+<li>BigML platform में sign in/access करें।</li>
+<li>Available resources और project-related information देखें।</li>
+<li>Required resource को select करें।</li>
+<li>Resource details inspect करें।</li>
+<li>Search, delete या metadata management जैसे operations perform करें।</li>
+</ol>
+
+<div class="example"><b>Example:</b> यदि project में कई uploaded resources हैं, तो interface की सहायता से उन्हें identify करके required resource को open और manage किया जा सकता है।</div>
+</section>
+
+<section id="resources">
+<h2>4. Resources in BIGML</h2>
+
+<h3>Definition</h3>
+<p><strong>Resource</strong> data या analysis workflow से related कोई manageable item होता है जिसे platform पर store और access किया जा सकता है। Resources को identify करने और manage करने के लिए resource information और metadata उपयोगी होते हैं।</p>
+
+<h3>Resource Management</h3>
+<ul>
+<li>Resources को list में देखना।</li>
+<li>Specific resource को open करके details देखना।</li>
+<li>Resource search करना।</li>
+<li>Unwanted resource delete करना।</li>
+<li>Resource metadata बदलना।</li>
+</ul>
+</section>
+
+<section id="list-view">
+<h2>5. List View</h2>
+
+<h3>Definition</h3>
+<p><strong>List View</strong में resources को एक list के रूप में display किया जाता है ताकि user एक साथ multiple resources को देख और manage कर सके।</p>
+
+<h3>Uses</h3>
+<ul>
+<li>Multiple resources को एक साथ देखना।</li>
+<li>Resource names और basic information identify करना।</li>
+<li>Required resource को quickly select करना।</li>
+<li>Resource management को आसान बनाना।</li>
+</ul>
+
+<div class="note-box"><b>Quick Point:</b> List View = resources का summarized/list-based view।</div>
+</section>
+
+<section id="resource-view">
+<h2>6. Resource View</h2>
+
+<h3>Definition</h3>
+<p><strong>Resource View</strong में selected resource की अधिक detailed information और available management options दिखाई जाती हैं।</p>
+
+<h3>List View vs Resource View</h3>
+<table>
+<tr><th>Basis</th><th>List View</th><th>Resource View</th></tr>
+<tr><td>Purpose</td><td>Multiple resources को देखना</td><td>एक selected resource की details देखना</td></tr>
+<tr><td>Information</td><td>Basic/summary information</td><td>More detailed information</td></tr>
+<tr><td>Use</td><td>Browse और select करना</td><td>Inspect और manage करना</td></tr>
+</table>
+</section>
+
+<section id="search-delete">
+<h2>7. Searching and Deleting Resources</h2>
+
+<h3>Searching Resources</h3>
+<p><strong>Resource Searching</strong> का अर्थ available resources में required resource को search करना है। Search सुविधा large number of resources में specific item ढूँढने का समय कम करती है।</p>
+
+<h3>Basic Search Process</h3>
+<ol>
+<li>Resource/list area open करें।</li>
+<li>Search field में relevant keyword या resource information enter करें।</li>
+<li>Matching resources identify करें।</li>
+<li>Required resource select करके उसके details देखें।</li>
+</ol>
+
+<h3>Deleting Resources</h3>
+<p><strong>Deleting</strong> का अर्थ unwanted resource को resource collection से remove करना है।</p>
+
+<ol>
+<li>Required resource identify करें।</li>
+<li>Resource के available actions/options open करें।</li>
+<li>Delete option choose करें।</li>
+<li>यदि confirmation मांगा जाए तो confirm करें।</li>
+</ol>
+
+<div class="warning"><b>Important:</b> Delete operation करने से पहले resource की आवश्यकता और selected resource की identity carefully verify करनी चाहिए।</div>
+</section>
+
+<section id="metadata">
+<h2>8. Changing Resource Metadata</h2>
+
+<h3>Definition</h3>
+<p><strong>Metadata</strong> वह descriptive information है जो किसी resource के बारे में details provide करती है। Resource metadata बदलने का अर्थ resource से related available descriptive information को update करना है।</p>
+
+<h3>General Process</h3>
+<ol>
+<li>Required resource open करें।</li>
+<li>Resource information/metadata section locate करें।</li>
+<li>Editable metadata field में required change करें।</li>
+<li>Updated information save करें।</li>
+</ol>
+
+<div class="example"><b>Example:</b> किसी resource की descriptive information को project requirements के अनुसार update करके उसे identify और organize करना आसान बनाया जा सकता है।</div>
+</section>
+
+<!-- NLTK -->
+<section id="nltk">
+<h2>9. Natural Language Toolkit (NLTK)</h2>
+<div class="image-icon">
+<img src="../images/nltk.webp" alt="Natural Language Toolkit NLTK">
+</div>
+
+<h3>Definition</h3>
+<p><strong>Natural Language Toolkit (NLTK)</strong> Python का एक popular toolkit है जिसका उपयोग human language text के processing और analysis के लिए किया जाता है। यह Natural Language Processing (NLP) के concepts को सीखने और implement करने में उपयोगी है।</p>
+
+<h3>Applications</h3>
+<ul>
+<li>Text processing</li>
+<li>Tokenization</li>
+<li>Corpus processing</li>
+<li>Lexical analysis</li>
+<li>WordNet के साथ lexical relationships explore करना</li>
+<li>NLP experiments और educational projects</li>
+</ul>
+
+<div class="note-box"><b>Exam Point:</b> NLTK का full form <strong>Natural Language Toolkit</strong> है और इसका प्रमुख use Natural Language Processing के लिए होता है।</div>
+</section>
+
+<section id="nltk-install">
+<h2>10. NLTK Introduction and Installation</h2>
+
+<h3>Introduction</h3>
+<p>NLTK Python environment में natural language data को process और analyze करने के लिए modules और resources provide करता है।</p>
+
+<h3>Installation</h3>
+<p>Python environment में NLTK package install करने के लिए सामान्यतः package manager का उपयोग किया जाता है:</p>
+
+<div class="code-section">
+<div class="code-title">Installation Command</div>
+<div class="code">pip install nltk</div>
+</div>
+
+<p>Installation के बाद Python program में NLTK को import किया जा सकता है:</p>
+
+<div class="code-section">
+<div class="code-title">Python Example</div>
+<div class="code">import nltk
+
+print("NLTK is ready for NLP tasks")</div>
+</div>
+
+<div class="note-box"><b>Note:</b> NLTK के कुछ language resources अलग से download करने पड़ सकते हैं, depending on the NLP task.</div>
+</section>
+
+<section id="tokenizing">
+<h2>11. Tokenizing Text</h2>
+
+<h3>Definition</h3>
+<p><strong>Tokenization</strong> text को छोटे meaningful units में divide करने की process है। इन units को <strong>Tokens</strong> कहा जाता है। Tokens words या sentences जैसे units हो सकते हैं।</p>
+
+<h3>Types</h3>
+<div class="card-grid">
+<div class="card"><h4>Word Tokenization</h4><p>Text को individual words/tokens में divide किया जाता है।</p></div>
+<div class="card"><h4>Sentence Tokenization</h4><p>Text को individual sentences में divide किया जाता है।</p></div>
+</div>
+
+<h3>Example</h3>
+<div class="code-section">
+<div class="code-title">Python + NLTK</div>
+<div class="code">import nltk
+from nltk.tokenize import word_tokenize
+
+text = "Data science is useful."
+tokens = word_tokenize(text)
+
+print(tokens)</div>
+</div>
+
+<div class="output-section" style="background:#0b0b0b;border-radius:18px;padding:18px;margin:18px 0;border:1px solid #292929">
+<div class="code-title">Expected Output</div>
+<div class="code" style="background:#111;color:#e5e7eb">['Data', 'science', 'is', 'useful', '.']</div>
+</div>
+
+<div class="note-box"><b>Use:</b> Tokenization आगे होने वाले text analysis tasks के लिए एक basic preprocessing step है।</div>
+</section>
+
+<section id="wordnet">
+<h2>12. WordNet</h2>
+
+<h3>Definition</h3>
+<p><strong>WordNet</strong> एक lexical database है जिसमें English words को उनके meanings और semantic relationships के आधार पर organize किया जाता है। NLTK के माध्यम से WordNet resources को access किया जा सकता है।</p>
+
+<h3>Important Concepts</h3>
+<ul>
+<li><strong>Synonyms:</strong> Similar meaning वाले words।</li>
+<li><strong>Synsets:</strong> एक particular meaning को represent करने वाले related words का group।</li>
+<li><strong>Semantic Relations:</strong> Words के बीच meaning-based relationships।</li>
+</ul>
+
+<h3>Example</h3>
+<div class="code-section">
+<div class="code-title">Python + WordNet</div>
+<div class="code">from nltk.corpus import wordnet
+
+synsets = wordnet.synsets("computer")
+
+for s in synsets[:3]:
+    print(s.name())</div>
+</div>
+
+<div class="note-box"><b>Exam Point:</b> WordNet NLTK में lexical/semantic information explore करने के लिए important resource है।</div>
+</section>
+
+<!-- TALEND -->
+<section id="talend">
+<h2>13. Talend</h2>
+<div class="image-icon">
+<img src="../images/talend.webp" alt="Talend Data Integration">
+</div>
+
+<h3>Definition</h3>
+<p><strong>Talend</strong> एक data integration platform/toolset है जिसका उपयोग अलग-अलग data sources और systems के बीच data को integrate, transform और manage करने वाले workflows बनाने के लिए किया जाता है।</p>
+
+<h3>Purpose</h3>
+<ul>
+<li>Different data sources को connect करना।</li>
+<li>Data को extract और transform करना।</li>
+<li>Data को target system तक transfer करना।</li>
+<li>Data integration workflows create करना।</li>
+</ul>
+</section>
+
+<section id="talend-intro">
+<h2>14. Introduction to Talend</h2>
+
+<p>Talend में data integration tasks को visual job/workflow के रूप में design किया जा सकता है। इसमें अलग-अलग components को जोड़कर source से target तक data flow तैयार किया जाता है।</p>
+
+<div class="workflow">
+Source Data → Extract → Transform → Load → Target System
+</div>
+
+<div class="note-box"><b>Exam Point:</b> Talend का मुख्य concept अलग-अलग data sources और destinations को integrate करके data workflow तैयार करना है।</div>
+</section>
+
+<section id="talend-install">
+<h2>15. Talend Installation</h2>
+
+<h3>General Process</h3>
+<ol>
+<li>Required Talend product/version identify करें।</li>
+<li>Supported system requirements check करें।</li>
+<li>Official distribution/install package obtain करें।</li>
+<li>Installation instructions के अनुसार setup complete करें।</li>
+<li>Application launch करके environment verify करें।</li>
+</ol>
+
+<div class="warning"><b>Note:</b> Talend के अलग products/versions में installation steps और requirements अलग हो सकते हैं। इसलिए practical installation में selected version की official documentation follow करनी चाहिए।</div>
+</section>
+
+<section id="talend-project">
+<h2>16. Creating a Project in Talend</h2>
+
+<h3>Definition</h3>
+<p><strong>Project</strong> एक organized workspace होता है जिसमें data integration jobs, metadata और related resources manage किए जाते हैं।</p>
+
+<h3>General Steps</h3>
+<ol>
+<li>Talend application open करें।</li>
+<li>Project/workspace creation option choose करें।</li>
+<li>Project का suitable name enter करें।</li>
+<li>Required project settings configure करें।</li>
+<li>Project create करके workspace open करें।</li>
+</ol>
+
+<div class="example"><b>Example:</b> Customer Data Integration नाम का project बनाकर उसमें customer-related data integration jobs organize की जा सकती हैं।</div>
+</section>
+
+<section id="talend-import">
+<h2>17. Importing a Project in Talend</h2>
+
+<h3>Definition</h3>
+<p><strong>Project Import</strong> का अर्थ existing Talend project को current environment में bring करना है ताकि उसके jobs और related resources को access या continue किया जा सके।</p>
+
+<h3>General Steps</h3>
+<ol>
+<li>Talend में project import option open करें।</li>
+<li>Existing project package/location select करें।</li>
+<li>Project information verify करें।</li>
+<li>Import operation complete करें।</li>
+<li>Imported project को workspace में open करें।</li>
+</ol>
+</section>
+
+<section id="talend-components">
+<h2>18. Components for Data Integration</h2>
+
+<h3>Definition</h3>
+<p><strong>Data Integration Components</strong> ऐसे reusable building blocks होते हैं जिनकी सहायता से Talend में data flow और integration jobs design की जाती हैं।</p>
+
+<table>
+<tr><th>Component Type</th><th>Purpose</th></tr>
+<tr><td>Input/Source Components</td><td>Source systems से data read करने के लिए।</td></tr>
+<tr><td>Transformation Components</td><td>Data को process या transform करने के लिए।</td></tr>
+<tr><td>Output/Target Components</td><td>Processed data को target system में write करने के लिए।</td></tr>
+<tr><td>Flow/Control Components</td><td>Workflow और processing flow control करने के लिए।</td></tr>
+</table>
+
+<div class="workflow">
+Input → Transformation → Output
+</div>
+
+<div class="note-box"><b>Exam Point:</b> Talend job में components को connect करके data integration workflow तैयार किया जाता है।</div>
+</section>
+
+<!-- TABLEAU -->
+<section id="tableau">
+<h2>19. Tableau</h2>
+<div class="image-icon">
+<img src="../images/tableau.webp" alt="Tableau">
+</div>
+
+<h3>Definition</h3>
+<p><strong>Tableau</strong> एक data visualization और business intelligence platform है जिसका उपयोग different data sources से data connect करके interactive visualizations, charts और dashboards बनाने के लिए किया जाता है।</p>
+
+<h3>Main Uses</h3>
+<ul>
+<li>Different data sources से connect करना।</li>
+<li>Data visualization create करना।</li>
+<li>Charts और dashboards बनाना।</li>
+<li>Data relationships और trends समझना।</li>
+<li>Business reporting और analysis में सहायता करना।</li>
+</ul>
+</section>
+
+<section id="tableau-start">
+<h2>20. Tableau Start Page</h2>
+
+<h3>Definition</h3>
+<p><strong>Tableau Start Page</strong वह initial workspace है जहाँ से user data source से connect करना या existing workbook/open project पर काम करना शुरू कर सकता है।</p>
+
+<h3>Basic Areas</h3>
+<ul>
+<li>Available data connection options</li>
+<li>Recent workbooks/resources</li>
+<li>Connection to files</li>
+<li>Connection to server/database sources</li>
+</ul>
+
+<div class="note-box"><b>Exam Point:</b> Tableau में analysis शुरू करने के लिए पहले appropriate data source से connection establish किया जाता है।</div>
+</section>
+
+<section id="excel">
+<h2>21. Connecting to Excel Files in Tableau</h2>
+
+<h3>Definition</h3>
+<p>Tableau में Excel connection का उपयोग Excel workbook में stored data को Tableau environment में analysis और visualization के लिए connect करने हेतु किया जाता है।</p>
+
+<h3>General Steps</h3>
+<ol>
+<li>Tableau Start Page open करें।</li>
+<li>File-based connection options में Excel select करें।</li>
+<li>Required Excel workbook locate करके open करें।</li>
+<li>Available sheets/tables identify करें।</li>
+<li>Required data source select करके analysis शुरू करें।</li>
+</ol>
+
+<div class="example"><b>Example:</b> Sales.xlsx में stored sales data को Tableau से connect करके sales dashboard बनाया जा सकता है।</div>
+</section>
+
+<section id="text">
+<h2>22. Connecting to Text Files</h2>
+
+<h3>Definition</h3>
+<p>Text file connection का उपयोग CSV या अन्य supported text-based tabular data को Tableau में analysis के लिए load/connect करने हेतु किया जाता है।</p>
+
+<h3>General Steps</h3>
+<ol>
+<li>Tableau Start Page open करें।</li>
+<li>Text/CSV connection option select करें।</li>
+<li>Required text file choose करें।</li>
+<li>Data preview और field structure check करें।</li>
+<li>Connection complete करके visualization create करें।</li>
+</ol>
+
+<div class="note-box"><b>Example:</b> Employee.csv file को Tableau से connect करके department-wise employee analysis किया जा सकता है।</div>
+</section>
+
+<section id="sqlserver">
+<h2>23. Connecting to Microsoft SQL Server</h2>
+
+<h3>Definition</h3>
+<p><strong>Microsoft SQL Server</strong> एक relational database management system है। Tableau SQL Server से connect होकर database tables और data को analysis तथा visualization के लिए use कर सकता है।</p>
+
+<h3>General Connection Steps</h3>
+<ol>
+<li>Tableau Start Page पर server/database connection option select करें।</li>
+<li><strong>Microsoft SQL Server</strong> connector choose करें।</li>
+<li>Server name और required connection details enter करें।</li>
+<li>Authentication information provide करें as required.</li>
+<li>Database select करें।</li>
+<li>Required tables/data source select करें।</li>
+<li>Connection verify करके analysis शुरू करें।</li>
+</ol>
+
+<div class="warning"><b>Security Point:</b> Database credentials को secure रखना चाहिए और unauthorized users के साथ share नहीं करना चाहिए।</div>
+</section>
+
+<section id="hierarchy">
+<h2>24. Creating and Removing Hierarchies</h2>
+
+<h3>Definition</h3>
+<p><strong>Hierarchy</strong> related data fields को logical levels में organize करने का तरीका है। इसका उपयोग data को higher level से lower level तक drill-down करने के लिए किया जा सकता है।</p>
+
+<h3>Example</h3>
+<div class="workflow">Country → State → City</div>
+
+<h3>Creating Hierarchy</h3>
+<ol>
+<li>Related fields identify करें।</li>
+<li>Fields को logical order में arrange करें।</li>
+<li>Tableau में hierarchy create करने का option use करें।</li>
+<li>Hierarchy का suitable name दें।</li>
+<li>Fields को hierarchy में required order में रखें।</li>
+</ol>
+
+<h3>Removing Hierarchy</h3>
+<ol>
+<li>Existing hierarchy identify करें।</li>
+<li>Hierarchy/field options open करें।</li>
+<li>Remove hierarchy option select करें।</li>
+<li>Required confirmation/operation complete करें।</li>
+</ol>
+
+<div class="example"><b>Real Life Example:</b> Sales data में Region → State → City hierarchy बनाकर user पहले region, फिर state और फिर city level पर analysis कर सकता है।</div>
+</section>
+
+<section id="joining">
+<h2>25. Joining Tables</h2>
+
+<h3>Definition</h3>
+<p><strong>Joining Tables</strong> का अर्थ common field या key के आधार पर दो या दो से अधिक tables के records को combine करना है ताकि related information को एक साथ analyze किया जा सके।</p>
+
+<h3>Common Join Types</h3>
+<table>
+<tr><th>Join</th><th>Basic Meaning</th></tr>
+<tr><td>Inner Join</td><td>Matching records को combine करता है।</td></tr>
+<tr><td>Left Join</td><td>Left table के सभी records और matching right records रखता है।</td></tr>
+<tr><td>Right Join</td><td>Right table के सभी records और matching left records रखता है।</td></tr>
+<tr><td>Full Outer Join</td><td>दोनों tables के records को include करता है; matching records combine होते हैं।</td></tr>
+</table>
+
+<h3>General Process in Tableau</h3>
+<ol>
+<li>Required tables को data source area में add करें।</li>
+<li>Common field/key identify करें।</li>
+<li>Required join type choose करें।</li>
+<li>Join condition verify करें।</li>
+<li>Combined data का preview/check करें।</li>
+<li>Visualization के लिए resulting data source use करें।</li>
+</ol>
+
+<div class="example"><b>Example:</b> Customer table में Customer_ID और Orders table में Customer_ID common field हो, तो दोनों tables को Customer_ID के आधार पर join करके customer और order information को साथ analyze किया जा सकता है।</div>
+</section>
+
+<section id="comparison">
+<h2>26. BIGML vs NLTK vs Talend vs Tableau</h2>
+
+<table>
+<tr><th>Tool</th><th>Primary Focus</th><th>Important Syllabus Areas</th></tr>
+<tr><td>BIGML</td><td>Data/ML resource management</td><td>Interface, resources, list/resource view, search, delete, metadata</td></tr>
+<tr><td>NLTK</td><td>Natural Language Processing</td><td>Installation, tokenization, WordNet</td></tr>
+<tr><td>Talend</td><td>Data Integration</td><td>Installation, projects, import, integration components</td></tr>
+<tr><td>Tableau</td><td>Visualization & BI</td><td>Connections, hierarchies, table joins</td></tr>
+</table>
+</section>
+
+<section id="revision">
+<h2>27. Complete Exam Revision</h2>
+
+<div class="workflow">
+BIGML → Interface → Resources → List View → Resource View → Search/Delete → Metadata
+<br><br>
+NLTK → Installation → Text Tokenization → WordNet
+<br><br>
+Talend → Introduction → Installation → Create Project → Import Project → Integration Components
+<br><br>
+Tableau → Start Page → Excel → Text/CSV → SQL Server → Hierarchies → Joining Tables
+</div>
+
+<table>
+<tr><th>Question</th><th>Quick Answer Point</th></tr>
+<tr><td>What is BIGML?</td><td>Data science/ML platform with resource management and analysis workflow capabilities.</td></tr>
+<tr><td>What is NLTK?</td><td>Python toolkit for Natural Language Processing and text analysis.</td></tr>
+<tr><td>What is Tokenization?</td><td>Text को smaller meaningful tokens में divide करने की process।</td></tr>
+<tr><td>What is WordNet?</td><td>English lexical database containing words and semantic relationships.</td></tr>
+<tr><td>What is Talend?</td><td>Data integration platform/toolset for connecting and transforming data workflows.</td></tr>
+<tr><td>What is Tableau?</td><td>Data visualization और business intelligence platform.</td></tr>
+<tr><td>What is a Hierarchy?</td><td>Related fields को logical levels में organize करने का तरीका।</td></tr>
+<tr><td>What is Table Join?</td><td>Common field/key के आधार पर tables के related records combine करना।</td></tr>
+</table>
+
+<div class="note-box">
+<b>Exam Answer Pattern:</b><br><br>
+Definition → Purpose → Main Features → Working/Steps → Example → Important Point
+</div>
+</section>
+
+</main>
+</div>
+</body>
+</html>

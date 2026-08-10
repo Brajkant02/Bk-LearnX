@@ -1,628 +1,1275 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Google Analytics</title>
-    <link rel="stylesheet" href="../../../semester-1/style.css">
-    <link rel="icon" href="../../../../../../../assets/images/logo.jpeg" type="image/x-icon">
+    <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
     <div class="page">
         <aside class="sidebar">
-            <h2>Topics</h2><a href="#intro">Getting Started with Google Analytics</a>
-            <a href="#setup">Basic Setup Process</a>
-            <a href="#dashboard">Understanding the Dashboard</a>
-            <a href="#audience">Audience Reporting</a>
-            <a href="#advertising">Advertising Reporting</a>
-            <a href="#traffic">Traffic Source Reporting</a>
-            <a href="#content">Content Reporting</a>
-            <a href="#conversion">Conversion Reporting</a>
-            <a href="#metrics">Important Analytics Metrics</a>
-            ><a href="#decisions">Taking Decisions Based on Analytics Reporting</a>
-            <a href="#goals">Defining Business Goals and Objectives</a>
-            <a href="#social">Tracking Social Media Traffic</a>
-            <a href="#seo">Tracking SEO Traffic</a>
-            <a href="#ads-integration">Integrating Google Ads with Analytics</a>
-            <a href="#methods">Measuring Tools and Methods</a>
-            <a href="#roi">Measuring Site ROI</a>
-            <a href="#reporting">Custom Reporting and Comparison</a>
-            <a href="#goal-conversion">Introduction to Goal Conversion</a>
-            <a href="#tracking-conversions">Tracking the Conversions</a>
-            <a href="#utm">Configuring UTMs (Custom URLs)</a>
-            <a href="#utm-best">UTM Best Practices</a>
-            <a href="#gtm">Google Tag Manager - Overview</a>
-            <a href="#gtm-flow">Tag Manager Working Flow</a>
-            <a href="#gtm-advantages">Advantages of Google Tag Manager</a>
-            <a href="#measurement-plan">Creating a Measurement Plan</a>
-            <a href="#privacy">Analytics Privacy and Data Quality</a>
-            <a href="#final-checklist">Analytics Implementation Checklist</a>
+
+            <h2>Topics</h2>
+            <a href="#getting-started-google-analytics">Getting Started with Google Analytics</a>
+            <a href="#analytics-dashboard">Analytics Dashboard</a>
+            <a href="#analytics-decisions">Analytics Decisions</a>
+            <a href="#business-goals-objectives">Business Goals and Objectives</a>
+            <a href="#social-media-traffic">Social Media Traffic</a>
+            <a href="#seo-traffic">SEO Traffic</a>
+            <a href="#integrating-google-ads">Integrating Google Ads</a>
+            <a href="#analytics-measuring-tools">Analytics Measuring Tools</a>
+            <a href="#site-roi">Site ROI</a>
+            <a href="#goal-conversion">Goal Conversion</a>
+            <a href="#tracking-conversions">Tracking Conversions</a>
+            <a href="#configuring-utms">Configuring UTM Parameters</a>
+            <a href="#google-tag-manager">Google Tag Manager</a>
+            <a href="#google-analytics-complete-process">Google Analytics Complete Process</a>
+
         </aside>
         <main class="content">
             <div class="hero">
                 <h1>Google Analytics</h1>
-             
             </div>
-            <section id="intro">
+            <!-- =========================================================
+     GOOGLE ANALYTICS
+     08 PERIODS
+     ========================================================= -->
+
+
+            <!-- =========================================================
+     1. GETTING STARTED WITH GOOGLE ANALYTICS
+     ========================================================= -->
+
+            <section id="getting-started-google-analytics">
+
                 <h2>Getting Started with Google Analytics</h2>
-                <p><strong>Google Analytics</strong> website और application पर आने वाले visitors, उनके behavior, traffic
-                    sources और conversions को measure तथा analyze करने का analytics platform है। इसका उपयोग यह समझने के
-                    लिए किया जाता है कि users website पर कैसे पहुँचते हैं, कौन-सा content देखते हैं और कौन-सी actions
-                    complete करते हैं।</p>
-                <div class="image-icon"><img src="" alt="Google Analytics Overview">
-                    <p>Image Placeholder: Google Analytics Overview</p>
+
+                <div class="image-icon">
+                    <img src="../images/google-analytics.webp" alt="Google Analytics">
                 </div>
-                <h4>Main Uses</h4>
+
+                <p>
+                    <strong>Google Analytics</strong> एक Web Analytics Service है,
+                    जिसका उपयोग Website या Application पर आने वाले Users के
+                    Behavior, Traffic Sources, Engagement तथा Conversions को
+                    Measure और Analyze करने के लिए किया जाता है।
+                </p>
+
+                <p>
+                    Website Owner केवल Website बना लेने से यह नहीं जान सकता कि
+                    उसकी Website कितने लोग देख रहे हैं, Visitors कहाँ से आ रहे हैं,
+                    कौन-से Pages सबसे अधिक देखे जा रहे हैं, Users कितनी देर Website
+                    पर रह रहे हैं या कितने Users किसी Product को Purchase,
+                    Form Submit अथवा Registration जैसे desired actions को
+                    Complete कर रहे हैं।
+                </p>
+
+                <p>
+                    Google Analytics इन सभी Activities से Related Data को
+                    Collect और Report करने में सहायता करता है। इस Data का
+                    Analysis करके Website Owner अपनी Website, Content और
+                    Digital Marketing Strategy में आवश्यक Improvements कर सकता है।
+                    GFG के अनुसार Analytics Website Visitors के Behavior,
+                    Traffic Sources और Performance को समझने के लिए उपयोगी है।
+                    :contentReference[oaicite:1]{index=1}
+                </p>
+
+                <h3>Definition</h3>
+
+                <p>
+                    <strong>Definition:</strong><br>
+                    "Google Analytics एक Web Analytics Tool है जो Website या
+                    App के Users, Traffic, Engagement, Content Performance और
+                    Conversions से Related Data को Collect, Measure और Analyze
+                    करने में सहायता करता है।"
+                </p>
+
+                <div class="note-box">
+                    <b>Exam Point:</b><br>
+                    Google Analytics का मुख्य उद्देश्य Website के Users और
+                    उनके Behavior को समझना तथा Data के आधार पर Website और
+                    Marketing Performance को Improve करना है।
+                </div>
+
+                <h3>Why Google Analytics is Used?</h3>
+
                 <ul>
-                    <li>Website traffic measure करना</li>
-                    <li>User behavior समझना</li>
-                    <li>Traffic sources compare करना</li>
-                    <li>Conversions track करना</li>
-                    <li>Campaign performance analyze करना</li>
-                    <li>Business decisions support करना</li>
+
+                    <li>Website पर आने वाले Users की संख्या जानने के लिए।</li>
+
+                    <li>Users कहाँ से Website पर आ रहे हैं यह जानने के लिए।</li>
+
+                    <li>Popular Pages और Content Identify करने के लिए।</li>
+
+                    <li>User Engagement Measure करने के लिए।</li>
+
+                    <li>Conversions Track करने के लिए।</li>
+
+                    <li>Marketing Campaigns की Performance Analyze करने के लिए।</li>
+
+                    <li>Website की Weak Areas Identify करने के लिए।</li>
+
+                    <li>Data-based Business Decisions लेने के लिए।</li>
+
                 </ul>
-                <div class="remember-box"><b>Remember:</b><br>Analytics केवल numbers दिखाने का tool नहीं, बल्कि
-                    data-based decision making का system है।</div>
-            </section>
-            <section id="setup">
-                <h2>Basic Setup Process</h2>
-                <h4>General Setup Steps</h4>
-                <ol>
-                    <li>Google account से Analytics property create करें।</li>
-                    <li>Website या app data stream configure करें।</li>
-                    <li>Measurement tag website में add करें।</li>
-                    <li>Real-time report से data collection verify करें।</li>
-                    <li>Important events और conversions configure करें।</li>
-                    <li>Required users को access दें।</li>
-                </ol>
-                <div class="image-icon"><img src="" alt="Analytics Setup Flow">
-                    <p>Image Placeholder: Google Analytics Setup Flow</p>
+
+                <h3>Basic Working of Google Analytics</h3>
+
+                <div class="image-icon">
+
+                    <strong>
+                        User Visits Website
+                        <br>↓
+                        Analytics Data Collection
+                        <br>↓
+                        User Interaction Recording
+                        <br>↓
+                        Data Processing
+                        <br>↓
+                        Reports
+                        <br>↓
+                        Analysis
+                        <br>↓
+                        Business Decision
+                    </strong>
+
                 </div>
-            </section>
-            <section id="dashboard">
-                <h2>Understanding the Dashboard</h2>
-                <p>Dashboard important reports और metrics का summary view provide करता है। इससे user traffic, sources,
-                    engagement और conversions का quick overview देख सकता है।</p>
-                <h4>Main Dashboard Areas</h4>
+
+                <h3>Important Analytics Terms</h3>
+
                 <table>
+
                     <tr>
-                        <th>Area</th>
-                        <th>Purpose</th>
-                    </tr>
-                    <tr>
-                        <td>Audience</td>
-                        <td>Users, location, device, language और demographics</td>
-                    </tr>
-                    <tr>
-                        <td>Advertising</td>
-                        <td>Campaign और conversion attribution</td>
-                    </tr>
-                    <tr>
-                        <td>Traffic Source</td>
-                        <td>Users कहाँ से आए</td>
-                    </tr>
-                    <tr>
-                        <td>Content</td>
-                        <td>Pages, screens और engagement</td>
-                    </tr>
-                    <tr>
-                        <td>Conversions</td>
-                        <td>Desired actions और business results</td>
-                    </tr>
-                </table>
-            </section>
-            <section id="audience">
-                <h2>Audience Reporting</h2>
-                <p>Audience reports यह समझने में help करती हैं कि website पर कौन users आ रहे हैं।</p>
-                <h4>Important Audience Dimensions</h4>
-                <ul>
-                    <li>New and returning users</li>
-                    <li>Country and city</li>
-                    <li>Device category</li>
-                    <li>Browser and operating system</li>
-                    <li>Language</li>
-                    <li>Engagement behavior</li>
-                </ul>
-                <div class="image-icon"><img src="" alt="Audience Dashboard">
-                    <p>Image Placeholder: Audience Report Dashboard</p>
-                </div>
-            </section>
-            <section id="advertising">
-                <h2>Advertising Reporting</h2>
-                <p>Advertising reports paid marketing campaigns और conversions के बीच relationship समझने में help करती
-                    हैं।</p>
-                <h4>Uses</h4>
-                <ul>
-                    <li>Paid campaign traffic compare करना</li>
-                    <li>Conversion attribution देखना</li>
-                    <li>Campaign cost और result compare करना</li>
-                    <li>High-performing ad channels identify करना</li>
-                    <li>Return on ad spend evaluate करना</li>
-                </ul>
-            </section>
-            <section id="traffic">
-                <h2>Traffic Source Reporting</h2>
-                <p>Traffic source reports users के website तक पहुँचने के रास्ते को show करती हैं।</p>
-                <table>
-                    <tr>
-                        <th>Source Type</th>
+                        <th>Term</th>
                         <th>Meaning</th>
                     </tr>
+
+                    <tr>
+                        <td>Users</td>
+                        <td>Website या App के Users से Related संख्या।</td>
+                    </tr>
+
+                    <tr>
+                        <td>Sessions</td>
+                        <td>Website पर User Visits से Related Measurement।</td>
+                    </tr>
+
+                    <tr>
+                        <td>Events</td>
+                        <td>User द्वारा की गई Specific Interactions।</td>
+                    </tr>
+
+                    <tr>
+                        <td>Engagement</td>
+                        <td>Users का Website Content के साथ Interaction।</td>
+                    </tr>
+
+                    <tr>
+                        <td>Conversions</td>
+                        <td>Business के लिए Important Desired Actions।</td>
+                    </tr>
+
+                    <tr>
+                        <td>Traffic Source</td>
+                        <td>Website पर User किस Source से आया।</td>
+                    </tr>
+
+                </table>
+
+            </section>
+
+
+            <!-- =========================================================
+     2. UNDERSTANDING DASHBOARD
+     ========================================================= -->
+
+            <section id="analytics-dashboard">
+
+                <h2>Understanding Google Analytics Dashboard</h2>
+
+                <div class="image-icon">
+                    <img src="../images/analytics-dashboard.webp" alt="Google Analytics Dashboard">
+                </div>
+
+                <p>
+                    <strong>Google Analytics Dashboard</strong> Website या App के
+                    important performance data को एक स्थान पर देखने और समझने
+                    में सहायता करता है।
+                </p>
+
+                <p>
+                    आपके syllabus में Dashboard को मुख्य रूप से
+                    <strong>Audience, Advertising, Traffic Source, Content
+                        और Conversions</strong> के आधार पर समझाया गया है।
+                    Current Google Analytics 4 (GA4) interface में Reports,
+                    Explore और Advertising जैसे sections दिखाई दे सकते हैं,
+                    इसलिए पुराने syllabus के labels और current interface में
+                    कुछ difference हो सकता है।
+                </p>
+
+                <div class="note-box">
+                    <b>Exam Note:</b><br>
+                    Exam में syllabus के अनुसार
+                    <strong>Audience | Advertising | Traffic Source |
+                        Content | Conversions</strong> headings लिखें।
+                    Practical GA4 में इनके concepts अलग-अलग reports,
+                    explorations और dimensions/metrics में दिखाई दे सकते हैं।
+                </div>
+
+                <h3>1. Audience</h3>
+
+                <p>
+                    <strong>Audience</strong> section का उद्देश्य Website पर आने वाले
+                    Users के बारे में Information समझना है। इसमें Users की
+                    Location, Device, Technology और अन्य characteristics से
+                    Related Data का Analysis किया जा सकता है।
+                </p>
+
+                <ul>
+
+                    <li>Users किस Country या City से आते हैं।</li>
+
+                    <li>Users Mobile, Tablet या Desktop में से किस Device का उपयोग करते हैं।</li>
+
+                    <li>New और Returning Users को समझना।</li>
+
+                    <li>Audience के Behavior और Engagement को Analyze करना।</li>
+
+                </ul>
+
+                <h3>2. Advertising</h3>
+
+                <p>
+                    <strong>Advertising</strong> से Related Reports का उपयोग
+                    Advertising Campaigns की Performance और उनके Results को
+                    Analyze करने के लिए किया जा सकता है।
+                </p>
+
+                <p>
+                    इससे Advertiser यह समझ सकता है कि अलग-अलग Campaigns से
+                    कितने Users आए और उनके द्वारा कौन-से valuable actions
+                    किए गए।
+                </p>
+
+                <h3>3. Traffic Source</h3>
+
+                <p>
+                    <strong>Traffic Source</strong> यह बताता है कि Users
+                    Website तक किस माध्यम से पहुँचे।
+                </p>
+
+                <table>
+
+                    <tr>
+                        <th>Traffic Source</th>
+                        <th>Meaning</th>
+                    </tr>
+
                     <tr>
                         <td>Organic Search</td>
-                        <td>Search engine से unpaid traffic</td>
+                        <td>Search Engine से आने वाला Traffic।</td>
                     </tr>
-                    <tr>
-                        <td>Paid Search</td>
-                        <td>Search ads से traffic</td>
-                    </tr>
+
                     <tr>
                         <td>Direct</td>
-                        <td>Direct URL/opening या unidentified source</td>
+                        <td>Direct Visit या identifiable referral के बिना आने वाला Traffic।</td>
                     </tr>
+
                     <tr>
                         <td>Referral</td>
-                        <td>Other website links से traffic</td>
+                        <td>किसी दूसरी Website के Link से आने वाला Traffic।</td>
                     </tr>
+
                     <tr>
                         <td>Social</td>
-                        <td>Social media platforms से traffic</td>
+                        <td>Social Media Platforms से आने वाला Traffic।</td>
                     </tr>
+
                     <tr>
-                        <td>Email</td>
-                        <td>Email campaign links से traffic</td>
+                        <td>Paid</td>
+                        <td>Paid Advertising Campaigns से आने वाला Traffic।</td>
                     </tr>
+
                 </table>
-            </section>
-            <section id="content">
-                <h2>Content Reporting</h2>
-                <p>Content reports यह बताती हैं कि users कौन-से pages या screens देखते हैं और उनके साथ कितना interact
-                    करते हैं।</p>
-                <h4>Important Content Metrics</h4>
+
+                <h3>4. Content</h3>
+
+                <p>
+                    <strong>Content Reports</strong> Website के Pages और Content
+                    की Performance को समझने में सहायता करते हैं।
+                </p>
+
                 <ul>
-                    <li>Page views / screen views</li>
-                    <li>Users</li>
-                    <li>Average engagement time</li>
-                    <li>Entrances</li>
-                    <li>Exits</li>
-                    <li>Events</li>
-                    <li>Conversions by page</li>
+
+                    <li>कौन-से Pages अधिक देखे जा रहे हैं।</li>
+
+                    <li>कौन-से Landing Pages Users को आकर्षित कर रहे हैं।</li>
+
+                    <li>कौन-से Pages पर Users अधिक Engagement कर रहे हैं।</li>
+
+                    <li>कौन-से Pages से Users Website छोड़ रहे हैं।</li>
+
                 </ul>
-                <div class="note-box"><b>Example:</b><br>यदि “Python Loops” page पर high engagement है, तो related
-                    advanced Python content create किया जा सकता है।</div>
-            </section>
-            <section id="conversion">
-                <h2>Conversion Reporting</h2>
-                <p><strong>Conversion</strong> वह important action है जिसे business user से complete कराना चाहता है,
-                    जैसे purchase, form submission, signup या download।</p>
-                <h4>Examples</h4>
-                <ul>
-                    <li>Course enrollment</li>
-                    <li>Contact form submission</li>
-                    <li>Product purchase</li>
-                    <li>PDF download</li>
-                    <li>Newsletter signup</li>
-                </ul>
-                <div class="image-icon"><img src="" alt="Conversion Report">
-                    <p>Image Placeholder: Conversion Reporting</p>
+
+                <h3>5. Conversions</h3>
+
+                <p>
+                    <strong>Conversions</strong> उन Important Actions को कहते हैं
+                    जो Website के Business Objective को पूरा करते हैं।
+                    उदाहरण के लिए Purchase, Registration, Lead Form Submission,
+                    Subscription या किसी Important Button पर Action।
+                </p>
+
+                <div class="note-box">
+                    <b>Example:</b><br>
+                    यदि किसी Online Store का Goal Product Sale है,
+                    तो successful purchase एक महत्वपूर्ण Conversion हो सकता है।
                 </div>
+
             </section>
-            <section id="metrics">
-                <h2>Important Analytics Metrics</h2>
+
+
+            <!-- =========================================================
+     3. TAKING DECISIONS BASED ON ANALYTICS REPORTING
+     ========================================================= -->
+
+            <section id="analytics-decisions">
+
+                <h2>Taking Decisions Based on Analytics Reporting</h2>
+
+                <div class="image-icon">
+                    <img src="../images/analytics-reporting.webp" alt="Analytics Reporting">
+                </div>
+
+                <p>
+                    Google Analytics का सबसे महत्वपूर्ण उपयोग केवल Reports देखना
+                    नहीं बल्कि उन Reports से meaningful Information निकालकर
+                    <strong>Data-driven Decisions</strong> लेना है।
+                </p>
+
+                <p>
+                    यदि Website Owner को पता चलता है कि किसी Page पर बहुत अधिक
+                    Visitors आ रहे हैं लेकिन Users desired action Complete नहीं कर रहे,
+                    तो वह Page Content, CTA, Navigation या User Experience में
+                    Improvement कर सकता है।
+                </p>
+
+                <h3>Decision Making Process</h3>
+
+                <ol>
+
+                    <li>Business Question Identify करें।</li>
+
+                    <li>Relevant Analytics Report Select करें।</li>
+
+                    <li>Important Metrics और Dimensions देखें।</li>
+
+                    <li>Data में Trends और Patterns Identify करें।</li>
+
+                    <li>Problem या Opportunity Identify करें।</li>
+
+                    <li>Possible Improvement Plan करें।</li>
+
+                    <li>Changes Implement करें।</li>
+
+                    <li>बाद में Analytics Data से Result Compare करें।</li>
+
+                </ol>
+
+                <h3>Example</h3>
+
+                <p>
+                    मान लीजिए Analytics Report दिखाती है कि Website का
+                    <strong>Mobile Traffic</strong> बहुत अधिक है लेकिन Mobile Users
+                    का Engagement कम है।
+                </p>
+
+                <p>
+                    ऐसी स्थिति में Website Owner Mobile Layout, Page Speed,
+                    Font Size, Navigation और Buttons को Check करके सुधार कर सकता है।
+                </p>
+
+                <div class="note-box">
+                    <b>Exam Point:</b><br>
+                    Analytics Reporting का उद्देश्य Data को देखकर
+                    सही Business Decisions लेना और Website Performance को
+                    लगातार Improve करना है।
+                </div>
+
+            </section>
+
+
+            <!-- =========================================================
+     4. DEFINING BUSINESS GOALS AND OBJECTIVES
+     ========================================================= -->
+
+            <section id="business-goals-objectives">
+
+                <h2>Defining Business Goals and Objectives</h2>
+
+                <div class="image-icon">
+                    <img src="../images/business-goals-analytics.webp" alt="Business Goals and Objectives">
+                </div>
+
+                <p>
+                    Analytics का सही उपयोग तभी संभव है जब Website के
+                    <strong>Business Goals</strong> और <strong>Objectives</strong>
+                    पहले से Clearly Defined हों।
+                </p>
+
+                <p>
+                    Business Goal एक broad result होता है जिसे Organization
+                    प्राप्त करना चाहती है, जबकि Objective उस Goal को प्राप्त
+                    करने के लिए निर्धारित Specific और measurable target हो सकता है।
+                </p>
+
+                <h3>Common Website Business Goals</h3>
+
+                <ul>
+
+                    <li>Online Sales बढ़ाना।</li>
+
+                    <li>Lead Generation बढ़ाना।</li>
+
+                    <li>New Users प्राप्त करना।</li>
+
+                    <li>Brand Awareness बढ़ाना।</li>
+
+                    <li>Customer Engagement Improve करना।</li>
+
+                    <li>Course Registration बढ़ाना।</li>
+
+                    <li>Product Downloads बढ़ाना।</li>
+
+                    <li>Subscription बढ़ाना।</li>
+
+                </ul>
+
+                <h3>Example</h3>
+
                 <table>
+
+                    <tr>
+                        <th>Business Goal</th>
+                        <th>Possible Objective</th>
+                    </tr>
+
+                    <tr>
+                        <td>Increase Sales</td>
+                        <td>Online Purchases बढ़ाना।</td>
+                    </tr>
+
+                    <tr>
+                        <td>Generate Leads</td>
+                        <td>Contact Form Submissions बढ़ाना।</td>
+                    </tr>
+
+                    <tr>
+                        <td>Improve Engagement</td>
+                        <td>Content Interaction बढ़ाना।</td>
+                    </tr>
+
+                    <tr>
+                        <td>Increase Awareness</td>
+                        <td>Relevant Website Traffic बढ़ाना।</td>
+                    </tr>
+
+                </table>
+
+                <div class="note-box">
+                    <b>Important:</b><br>
+                    Goal स्पष्ट होने पर ही यह तय करना आसान होता है कि
+                    कौन-से Metrics और Conversions को Track करना चाहिए।
+                </div>
+
+            </section>
+
+
+            <!-- =========================================================
+     5. TRACKING SOCIAL MEDIA TRAFFIC
+     ========================================================= -->
+
+            <section id="social-media-traffic">
+
+                <h2>Tracking Social Media Traffic</h2>
+
+                <div class="image-icon">
+                    <img src="../images/social-media-analytics.webp" alt="Tracking Social Media Traffic">
+                </div>
+
+                <p>
+                    Social Media Platforms जैसे Facebook, Instagram, LinkedIn,
+                    YouTube आदि से Website पर आने वाले Users को
+                    <strong>Social Media Traffic</strong> कहा जाता है।
+                </p>
+
+                <p>
+                    Google Analytics की सहायता से यह Analyze किया जा सकता है कि
+                    Social Media से कितना Traffic Website पर आ रहा है और
+                    Users Website पर पहुँचने के बाद क्या Actions कर रहे हैं।
+                    GFG के अनुसार Social Traffic Metrics यह समझने में सहायता करते हैं
+                    कि Facebook, Twitter या Instagram जैसे Platforms Website पर
+                    कितने Visitors भेज रहे हैं। :contentReference[oaicite:2]{index=2}
+                </p>
+
+                <h3>What Can Be Measured?</h3>
+
+                <ul>
+
+                    <li>Social Media से आने वाले Users।</li>
+
+                    <li>Social Campaign से आने वाला Traffic।</li>
+
+                    <li>Engagement।</li>
+
+                    <li>Landing Page Performance।</li>
+
+                    <li>Conversions।</li>
+
+                    <li>Different Social Platforms की Performance।</li>
+
+                </ul>
+
+                <h3>Example</h3>
+
+                <p>
+                    यदि किसी Website के Facebook Post से 1,000 Users Website पर
+                    आते हैं और उनमें से 80 Users Registration Complete करते हैं,
+                    तो Analytics Data के आधार पर Facebook Traffic की
+                    Conversion Performance Analyze की जा सकती है।
+                </p>
+
+            </section>
+
+
+            <!-- =========================================================
+     6. TRACKING SEO TRAFFIC
+     ========================================================= -->
+
+            <section id="seo-traffic">
+
+                <h2>Tracking SEO Traffic</h2>
+
+                <div class="image-icon">
+                    <img src="../images/seo-analytics.webp" alt="Tracking SEO Traffic">
+                </div>
+
+                <p>
+                    Search Engine से बिना Direct Advertisement के Website पर आने
+                    वाले Traffic को सामान्यतः <strong>Organic Search Traffic</strong>
+                    कहा जाता है।
+                </p>
+
+                <p>
+                    SEO Traffic को Analyze करके Website Owner यह समझ सकता है कि
+                    Search Engines से Users कितने आ रहे हैं, कौन-से Landing Pages
+                    उन्हें attract कर रहे हैं और Organic Traffic से कौन-से
+                    meaningful actions प्राप्त हो रहे हैं।
+                </p>
+
+                <h3>Important SEO Traffic Information</h3>
+
+                <ul>
+
+                    <li>Organic Users</li>
+
+                    <li>Organic Sessions / Visits</li>
+
+                    <li>Landing Pages</li>
+
+                    <li>Engagement</li>
+
+                    <li>Conversions</li>
+
+                    <li>Geographic Performance</li>
+
+                    <li>Device Performance</li>
+
+                </ul>
+
+                <p>
+                    GFG के अनुसार Organic Search Traffic Search Engines जैसे
+                    Google या Bing के माध्यम से Website को Discover करने वाले
+                    Visitors को represent करता है और Organic Traffic का Analysis
+                    SEO Performance समझने में सहायता करता है। :contentReference[oaicite:3]{index=3}
+                </p>
+
+                <div class="note-box">
+                    <b>Exam Point:</b><br>
+                    SEO Traffic Tracking से यह पता लगाया जा सकता है कि
+                    Search Engine Optimization के कारण Website तक किस प्रकार
+                    के Users पहुँच रहे हैं और वे Website पर क्या कर रहे हैं।
+                </div>
+
+            </section>
+
+
+            <!-- =========================================================
+     7. INTEGRATING GOOGLE ADS WITH GOOGLE ANALYTICS
+     ========================================================= -->
+
+            <section id="integrating-google-ads">
+
+                <h2>Integrating Google AdWords Campaigns into Google Analytics</h2>
+
+                <div class="image-icon">
+                    <img src="../images/google-ads-analytics-integration.webp"
+                        alt="Google Ads and Google Analytics Integration">
+                </div>
+
+                <p>
+                    Google Ads Campaigns को Google Analytics के साथ Integrate करने
+                    का उद्देश्य Advertising और Website Performance Data को एक साथ
+                    Analyze करना है।
+                </p>
+
+                <p>
+                    Integration के बाद Advertiser Campaign से आने वाले Users,
+                    Engagement और Conversions जैसी Information को बेहतर तरीके से
+                    Analyze कर सकता है।
+                </p>
+
+                <h3>Benefits</h3>
+
+                <ol>
+
+                    <li>Paid Campaign Traffic को Analyze करना।</li>
+
+                    <li>Campaign Performance Compare करना।</li>
+
+                    <li>Landing Page Performance समझना।</li>
+
+                    <li>Conversions को Campaign से Relate करना।</li>
+
+                    <li>Advertising Budget की Effectiveness Analyze करना।</li>
+
+                    <li>Better Marketing Decisions लेना।</li>
+
+                </ol>
+
+                <h3>Basic Integration Concept</h3>
+
+                <div class="image-icon">
+
+                    <strong>
+                        Google Ads Campaign
+                        <br>↓
+                        User Clicks Advertisement
+                        <br>↓
+                        Website
+                        <br>↓
+                        Analytics Data Collection
+                        <br>↓
+                        Engagement / Conversion
+                        <br>↓
+                        Campaign Analysis
+                    </strong>
+
+                </div>
+
+                <div class="note-box">
+                    <b>Exam Point:</b><br>
+                    Google Ads और Google Analytics Integration से Advertiser
+                    Advertisement से Website तक आने वाले User Journey और
+                    Campaign Performance को बेहतर ढंग से Analyze कर सकता है।
+                </div>
+
+            </section>
+
+
+            <!-- =========================================================
+     8. MEASURING TOOLS AND METHODS
+     ========================================================= -->
+
+            <section id="analytics-measuring-tools">
+
+                <h2>Measuring Tools and Methods</h2>
+
+                <div class="image-icon">
+                    <img src="../images/analytics-measuring-tools.webp" alt="Analytics Measuring Tools and Methods">
+                </div>
+
+                <p>
+                    Website Performance को Measure करने के लिए अलग-अलग
+                    <strong>Metrics, Dimensions, Events, Reports और Tracking Methods</strong>
+                    का उपयोग किया जाता है।
+                </p>
+
+                <h3>Metrics</h3>
+
+                <p>
+                    <strong>Metrics</strong> Numeric Measurements होते हैं जो बताते हैं
+                    कि किसी Activity की मात्रा कितनी है।
+                </p>
+
+                <table>
+
                     <tr>
                         <th>Metric</th>
                         <th>Meaning</th>
                     </tr>
+
                     <tr>
                         <td>Users</td>
-                        <td>Unique visitors के approximate count</td>
+                        <td>Users की संख्या से Related Measurement।</td>
                     </tr>
+
                     <tr>
                         <td>Sessions</td>
-                        <td>User interaction periods</td>
+                        <td>Visits / Sessions से Related Measurement।</td>
                     </tr>
-                    <tr>
-                        <td>Views</td>
-                        <td>Page/screen display count</td>
-                    </tr>
-                    <tr>
-                        <td>Engagement Rate</td>
-                        <td>Meaningful sessions का proportion</td>
-                    </tr>
+
                     <tr>
                         <td>Event Count</td>
-                        <td>Tracked actions की total count</td>
+                        <td>Tracked Events की संख्या।</td>
                     </tr>
+
+                    <tr>
+                        <td>Engagement Rate</td>
+                        <td>Engaged Sessions का अनुपात।</td>
+                    </tr>
+
                     <tr>
                         <td>Conversions</td>
-                        <td>Important completed actions</td>
+                        <td>Completed Important Actions।</td>
                     </tr>
+
                     <tr>
-                        <td>Revenue</td>
-                        <td>Tracked income amount</td>
+                        <td>Total Revenue</td>
+                        <td>Tracked Revenue का Measurement।</td>
                     </tr>
+
                 </table>
+
+                <h3>Dimensions</h3>
+
+                <p>
+                    <strong>Dimensions</strong> Data को Categorize या Describe करने
+                    वाले Attributes होते हैं। उदाहरण के लिए Country, Device,
+                    Page Title या Traffic Source।
+                </p>
+
+                <p>
+                    GFG के अनुसार Metrics actual measurable numbers होते हैं,
+                    जबकि Dimensions Data को Context और Category प्रदान करते हैं।
+                    :contentReference[oaicite:4]{index=4}
+                </p>
+
+                <h3>Events</h3>
+
+                <p>
+                    <strong>Events</strong> Users द्वारा Website या App पर की गई
+                    Specific Interactions को Track करने के लिए उपयोग किए जाते हैं।
+                    उदाहरण के लिए Button Click, Video Play या File Download।
+                    :contentReference[oaicite:5]{index=5}
+                </p>
+
             </section>
-            <section id="decisions">
-                <h2>Taking Decisions Based on Analytics Reporting</h2>
-                <p>Analytics reporting का उद्देश्य reports देखना नहीं, बल्कि data के आधार पर action लेना है।</p>
-                <h4>Decision Process</h4>
-                <ol>
-                    <li>Business question define करें।</li>
-                    <li>Relevant metric select करें।</li>
-                    <li>Data compare करें।</li>
-                    <li>Problem या opportunity identify करें।</li>
-                    <li>Change implement करें।</li>
-                    <li>Result फिर से measure करें।</li>
-                </ol>
-                <div class="image-icon"><img src="" alt="Analytics Decision Cycle">
-                    <p>Image Placeholder: Measure, Analyze, Improve Cycle</p>
+
+
+            <!-- =========================================================
+     9. MEASURING SITE'S ROI
+     ========================================================= -->
+
+            <section id="site-roi">
+
+                <h2>Measuring Your Site's ROI</h2>
+
+                <div class="image-icon">
+                    <img src="../images/site-roi.webp" alt="Measuring Website ROI">
                 </div>
-            </section>
-            <section id="goals">
-                <h2>Defining Business Goals and Objectives</h2>
-                <p>Analytics setup business objectives के अनुसार होना चाहिए। बिना clear objective के बहुत सारे metrics
-                    confusion create कर सकते हैं।</p>
-                <h4>Common Business Goals</h4>
-                <ul>
-                    <li>Sales increase करना</li>
-                    <li>Leads generate करना</li>
-                    <li>Course enrollment बढ़ाना</li>
-                    <li>Brand awareness बढ़ाना</li>
-                    <li>User engagement improve करना</li>
-                    <li>Customer retention बढ़ाना</li>
-                </ul>
-                <h4>Goal to Metric Mapping</h4>
-                <table>
-                    <tr>
-                        <th>Business Goal</th>
-                        <th>Useful Metrics</th>
-                    </tr>
-                    <tr>
-                        <td>Sales</td>
-                        <td>Purchases, revenue, conversion rate</td>
-                    </tr>
-                    <tr>
-                        <td>Lead Generation</td>
-                        <td>Form submissions, cost per lead</td>
-                    </tr>
-                    <tr>
-                        <td>Content Engagement</td>
-                        <td>Engagement time, events, views</td>
-                    </tr>
-                    <tr>
-                        <td>Brand Awareness</td>
-                        <td>Users, impressions, new visitors</td>
-                    </tr>
-                </table>
-            </section>
-            <section id="social">
-                <h2>Tracking Social Media Traffic</h2>
-                <p>Social media traffic को source, medium और campaign information के आधार पर track किया जा सकता है।</p>
-                <h4>What to Measure</h4>
-                <ul>
-                    <li>Users from each social platform</li>
-                    <li>Engagement by platform</li>
-                    <li>Conversions from social traffic</li>
-                    <li>Landing page performance</li>
-                    <li>Campaign-specific traffic</li>
-                </ul>
-                <div class="note-box"><b>Example:</b><br>Facebook और YouTube traffic की engagement तथा conversion
-                    compare करके बेहतर platform identify किया जा सकता है।</div>
-            </section>
-            <section id="seo">
-                <h2>Tracking SEO Traffic</h2>
-                <p>SEO traffic analysis organic search से आने वाले users और उनके behavior को measure करती है।</p>
-                <h4>Important Areas</h4>
-                <ul>
-                    <li>Organic users</li>
-                    <li>Organic landing pages</li>
-                    <li>Engagement from search traffic</li>
-                    <li>Conversions from organic traffic</li>
-                    <li>Search queries through Search Console integration</li>
-                </ul>
-                <div class="image-icon"><img src="" alt="SEO Traffic Report">
-                    <p>Image Placeholder: Organic Search Traffic Report</p>
+
+                <p>
+                    <strong>ROI (Return on Investment)</strong> एक महत्वपूर्ण
+                    Business Measurement है जो यह समझने में सहायता करता है कि
+                    किसी Investment के मुकाबले कितना Return प्राप्त हुआ।
+                </p>
+
+                <p>
+                    Website के context में ROI को Advertising Cost, Website
+                    Development Cost, Marketing Cost और प्राप्त Revenue या
+                    Business Value के आधार पर Analyze किया जा सकता है।
+                </p>
+
+                <h3>Basic ROI Formula</h3>
+
+                <div class="note-box">
+
+                    <strong>
+                        ROI = (Gain from Investment − Cost of Investment)
+                        ÷ Cost of Investment × 100
+                    </strong>
+
                 </div>
-            </section>
-            <section id="ads-integration">
-                <h2>Integrating Google Ads with Analytics</h2>
-                <p>Google Ads account को Analytics से connect करने पर advertising traffic, campaign behavior और
-                    conversions को एक साथ analyze किया जा सकता है।</p>
-                <h4>Benefits</h4>
+
+                <h3>Example</h3>
+
+                <p>
+                    मान लीजिए किसी Business ने Online Advertising पर
+                    ₹20,000 खर्च किए और Campaign से ₹60,000 का Revenue
+                    प्राप्त हुआ।
+                </p>
+
+                <p>
+                    तब Investment और Return को Compare करके Campaign की
+                    Financial Performance Analyze की जा सकती है।
+                </p>
+
+                <h3>Why ROI is Important?</h3>
+
                 <ul>
-                    <li>Campaign traffic behavior देखना</li>
-                    <li>Ad clicks के बाद website engagement समझना</li>
-                    <li>Conversions import/export करना</li>
-                    <li>Audience creation</li>
-                    <li>Campaign ROI analysis</li>
+
+                    <li>Marketing Investment की Effectiveness जानने के लिए।</li>
+
+                    <li>Profitable और Non-profitable Campaigns Identify करने के लिए।</li>
+
+                    <li>Advertising Budget को सही जगह Allocate करने के लिए।</li>
+
+                    <li>Business Growth के लिए बेहतर Decisions लेने के लिए।</li>
+
                 </ul>
-                <div class="image-icon"><img src="" alt="Google Ads Integration">
-                    <p>Image Placeholder: Google Ads and Analytics Integration</p>
-                </div>
+
             </section>
-            <section id="methods">
-                <h2>Measuring Tools and Methods</h2>
-                <table>
-                    <tr>
-                        <th>Tool / Method</th>
-                        <th>Purpose</th>
-                    </tr>
-                    <tr>
-                        <td>Analytics Reports</td>
-                        <td>User behavior और conversions</td>
-                    </tr>
-                    <tr>
-                        <td>Search Console</td>
-                        <td>Search performance और indexing</td>
-                    </tr>
-                    <tr>
-                        <td>Google Ads Reports</td>
-                        <td>Paid campaign performance</td>
-                    </tr>
-                    <tr>
-                        <td>UTM Parameters</td>
-                        <td>Campaign links identify करना</td>
-                    </tr>
-                    <tr>
-                        <td>Tag Manager</td>
-                        <td>Tracking tags manage करना</td>
-                    </tr>
-                    <tr>
-                        <td>A/B Testing</td>
-                        <td>Two versions compare करना</td>
-                    </tr>
-                </table>
-            </section>
-            <section id="roi">
-                <h2>Measuring Site ROI</h2>
-                <p><strong>ROI (Return on Investment)</strong> marketing investment से प्राप्त return को measure करता
-                    है।</p>
-                <pre>ROI = (Revenue - Cost) / Cost × 100</pre>
-                <h4>Example</h4>
-                <p>Campaign cost ₹10,000 और revenue ₹25,000 हो:</p>
-                <pre>ROI = (25,000 - 10,000) / 10,000 × 100
-ROI = 150%</pre>
-                <h4>ROI Analysis में Include करें</h4>
-                <ul>
-                    <li>Advertising cost</li>
-                    <li>Content production cost</li>
-                    <li>Tool cost</li>
-                    <li>Generated revenue</li>
-                    <li>Lead value</li>
-                </ul>
-                <div class="remember-box"><b>Remember:</b><br>High traffic हमेशा high ROI नहीं होता; conversions और
-                    revenue भी measure करने चाहिए।</div>
-            </section>
-            <section id="reporting">
-                <h2>Custom Reporting and Comparison</h2>
-                <h4>Useful Comparisons</h4>
-                <ul>
-                    <li>This month vs previous month</li>
-                    <li>Organic vs paid traffic</li>
-                    <li>Mobile vs desktop users</li>
-                    <li>New vs returning visitors</li>
-                    <li>Campaign A vs Campaign B</li>
-                    <li>Landing page conversion rates</li>
-                </ul>
-            </section>
+
+
+            <!-- =========================================================
+     10. GOAL CONVERSION
+     ========================================================= -->
+
             <section id="goal-conversion">
+
                 <h2>Introduction to Goal Conversion</h2>
-                <p><strong>Goal Conversion</strong> किसी important user action को track करने की process है। Modern
-                    analytics systems में important events को conversions के रूप में mark किया जाता है।</p>
-                <div class="image-icon"><img src="" alt="Goal Conversion Funnel">
-                    <p>Image Placeholder: Visitor to Conversion Funnel</p>
+
+                <div class="image-icon">
+                    <img src="../images/goal-conversion.webp" alt="Goal Conversion Google Analytics">
                 </div>
-                <h4>Common Conversion Actions</h4>
+
+                <p>
+                    <strong>Conversion</strong> का अर्थ है User द्वारा Website पर
+                    ऐसा Desired Action Complete करना जो Business के लिए महत्वपूर्ण है।
+                </p>
+
+                <p>
+                    उदाहरण के लिए Online Store में Purchase, Educational Website में
+                    Registration, Business Website में Lead Form Submission या
+                    Newsletter Subscription एक Conversion हो सकता है।
+                </p>
+
+                <h3>Examples of Conversions</h3>
+
                 <ul>
-                    <li>Purchase completed</li>
-                    <li>Form submitted</li>
-                    <li>Account created</li>
-                    <li>Video completed</li>
-                    <li>File downloaded</li>
-                    <li>Phone/email click</li>
+
+                    <li>Product Purchase</li>
+
+                    <li>Registration</li>
+
+                    <li>Lead Form Submission</li>
+
+                    <li>Newsletter Subscription</li>
+
+                    <li>File Download</li>
+
+                    <li>Important Button Click</li>
+
+                    <li>Course Enrollment</li>
+
+                    <li>Contact Request</li>
+
                 </ul>
+
+                <h3>Goal Conversion Tracking</h3>
+
+                <p>
+                    Conversion Tracking का उद्देश्य यह जानना है कि कितने Users ने
+                    Defined Business Objective को Complete किया और कौन-से
+                    Traffic Sources या Campaigns इन Conversions में योगदान दे रहे हैं।
+                </p>
+
+                <div class="image-icon">
+
+                    <strong>
+                        User Visits Website
+                        <br>↓
+                        Views Product / Service
+                        <br>↓
+                        Takes Action
+                        <br>↓
+                        Action is Tracked
+                        <br>↓
+                        Conversion Recorded
+                        <br>↓
+                        Performance Analysis
+                    </strong>
+
+                </div>
+
+                <div class="note-box">
+                    <b>Important:</b><br>
+                    Current GA4 में Conversion के लिए महत्वपूर्ण Events को
+                    conversion/key event के रूप में configure किया जा सकता है।
+                    इसलिए पुराने Universal Analytics के "Goals" terminology और
+                    current GA4 terminology में practical difference हो सकता है।
+                </div>
+
             </section>
+
+
+            <!-- =========================================================
+     11. TRACKING THE CONVERSIONS
+     ========================================================= -->
+
             <section id="tracking-conversions">
+
                 <h2>Tracking the Conversions</h2>
-                <h4>General Process</h4>
+
+                <div class="image-icon">
+                    <img src="../images/conversion-tracking.webp" alt="Conversion Tracking">
+                </div>
+
+                <p>
+                    <strong>Conversion Tracking</strong> Website के Important
+                    User Actions को Measure करने की प्रक्रिया है।
+                    इसका उपयोग यह पता लगाने के लिए किया जाता है कि Website,
+                    Marketing Campaign या Traffic Source कितनी अच्छी तरह
+                    Business Results Generate कर रहा है।
+                </p>
+
+                <h3>Basic Conversion Tracking Process</h3>
+
                 <ol>
-                    <li>Business action define करें।</li>
-                    <li>Related event identify/create करें।</li>
-                    <li>Event data collection test करें।</li>
-                    <li>Important event को conversion mark करें।</li>
-                    <li>Reports में conversion performance monitor करें।</li>
+
+                    <li>Business Goal Define करें।</li>
+
+                    <li>Desired User Action Identify करें।</li>
+
+                    <li>Relevant Event Create या Configure करें।</li>
+
+                    <li>Important Event को Conversion / Key Event के रूप में Mark करें।</li>
+
+                    <li>Data Collection Verify करें।</li>
+
+                    <li>Reports में Conversion Data Analyze करें।</li>
+
+                    <li>Traffic Source और Campaign Performance Compare करें।</li>
+
                 </ol>
-                <h4>Conversion Funnel</h4>
-                <pre>Landing Page
-     ↓
-Offer Viewed
-     ↓
-Form Started
-     ↓
-Form Submitted
-     ↓
-Thank You Page</pre>
+
+                <h3>Example</h3>
+
+                <p>
+                    यदि BK LearnX Website का मुख्य उद्देश्य Student Registration है,
+                    तो Registration Complete होने पर Trigger होने वाले Event को
+                    Important Conversion के रूप में Track किया जा सकता है।
+                </p>
+
             </section>
-            <section id="utm">
+
+
+            <!-- =========================================================
+     12. CONFIGURING UTMs
+     ========================================================= -->
+
+            <section id="configuring-utms">
+
                 <h2>Configuring UTMs (Custom URLs)</h2>
-                <p><strong>UTM Parameters</strong> campaign links में add किए जाने वाले labels हैं जो traffic
-                    source, medium और campaign identify करते हैं।</p>
-                <h4>Main UTM Parameters</h4>
+
+                <div class="image-icon">
+                    <img src="../images/utm-custom-url.webp" alt="UTM Custom URLs">
+                </div>
+
+                <p>
+                    <strong>UTM (Urchin Tracking Module)</strong> Parameters
+                    URL में जोड़े जाने वाले Tracking Parameters हैं, जिनकी सहायता
+                    से Marketing Campaigns से आने वाले Traffic को अधिक Detail में
+                    Identify और Analyze किया जा सकता है।
+                </p>
+
+                <p>
+                    यदि एक ही Website Link को Facebook Post, Email Campaign,
+                    YouTube Description और Advertisement में Share किया गया है,
+                    तो UTM Parameters की सहायता से Traffic के Source और Campaign
+                    Context को अलग-अलग Identify किया जा सकता है।
+                </p>
+
+                <h3>Common UTM Parameters</h3>
+
                 <table>
+
                     <tr>
                         <th>Parameter</th>
                         <th>Purpose</th>
                     </tr>
+
                     <tr>
                         <td>utm_source</td>
-                        <td>Traffic source, जैसे facebook</td>
+                        <td>Traffic का Source बताने के लिए।</td>
                     </tr>
+
                     <tr>
                         <td>utm_medium</td>
-                        <td>Marketing medium, जैसे social या email</td>
+                        <td>Marketing Medium बताने के लिए।</td>
                     </tr>
+
                     <tr>
                         <td>utm_campaign</td>
-                        <td>Campaign name</td>
+                        <td>Campaign का नाम Identify करने के लिए।</td>
                     </tr>
+
                     <tr>
                         <td>utm_term</td>
-                        <td>Paid keyword information</td>
+                        <td>Keyword या Paid Search Term से Related Tracking के लिए।</td>
                     </tr>
+
                     <tr>
                         <td>utm_content</td>
-                        <td>Different ads/links compare करना</td>
+                        <td>एक ही Campaign के अलग-अलग Ads या Links को Differentiate करने के लिए।</td>
                     </tr>
+
                 </table>
-                <h4>Example URL</h4>
-                <pre>https://example.com/course
-?utm_source=youtube
-&utm_medium=video
-&utm_campaign=seo_course</pre>
-                <div class="warning-box"><b>Common Mistake:</b><br>UTM names में inconsistent spelling और
-                    capitalization reports को अलग-अलग campaigns में divide कर सकती है।</div>
-            </section>
-            <section id="utm-best">
-                <h2>UTM Best Practices</h2>
-                <ul>
-                    <li>Consistent lowercase naming use करें।</li>
-                    <li>Spaces की जगह hyphen या underscore use करें।</li>
-                    <li>Campaign naming document maintain करें।</li>
-                    <li>Sensitive information URL में add न करें।</li>
-                    <li>Internal website links पर UTM unnecessarily use न करें।</li>
-                    <li>Final URL publish करने से पहले test करें।</li>
-                </ul>
-            </section>
-            <section id="gtm">
-                <h2>Google Tag Manager - Overview</h2>
-                <p><strong>Google Tag Manager (GTM)</strong> website और app पर analytics तथा marketing tags manage
-                    करने का tag management system है। इसके माध्यम से कई tracking scripts centralized interface से
-                    manage किए जा सकते हैं।</p>
-                <div class="image-icon"><img src="" alt="Google Tag Manager">
-                    <p>Image Placeholder: Google Tag Manager Architecture</p>
+
+                <h3>Example of UTM URL</h3>
+
+                <div class="code-box">
+
+                    <pre>
+https://example.com/course
+?utm_source=facebook
+&utm_medium=social
+&utm_campaign=summer_course
+</pre>
+
                 </div>
-                <h4>Main Components</h4>
-                <table>
-                    <tr>
-                        <th>Component</th>
-                        <th>Meaning</th>
-                    </tr>
-                    <tr>
-                        <td>Tag</td>
-                        <td>Tracking or marketing code</td>
-                    </tr>
-                    <tr>
-                        <td>Trigger</td>
-                        <td>Tag कब fire होगा</td>
-                    </tr>
-                    <tr>
-                        <td>Variable</td>
-                        <td>Dynamic information used by tags/triggers</td>
-                    </tr>
-                    <tr>
-                        <td>Container</td>
-                        <td>Tags, triggers और variables का collection</td>
-                    </tr>
-                </table>
-            </section>
-            <section id="gtm-flow">
-                <h2>Tag Manager Working Flow</h2>
-                <pre>User Action
-    ↓
-Trigger Condition
-    ↓
-Tag Fires
-    ↓
-Data Sent to Analytics / Ads</pre>
-                <h4>Example</h4>
-                <p>User “Download Notes” button click करता है → Click Trigger activate होता है → Analytics Event Tag
-                    data send करती है।</p>
-            </section>
-            <section id="gtm-advantages">
-                <h2>Advantages of Google Tag Manager</h2>
+
+                <h3>Example Explanation</h3>
+
                 <ul>
-                    <li>Centralized tag management</li>
-                    <li>Developer dependency reduce हो सकती है</li>
-                    <li>Preview and debug mode</li>
-                    <li>Version control</li>
-                    <li>Multiple marketing tools integration</li>
-                    <li>Event tracking आसान</li>
+
+                    <li>
+                        <strong>utm_source=facebook</strong>
+                        → Traffic Facebook से आया।
+                    </li>
+
+                    <li>
+                        <strong>utm_medium=social</strong>
+                        → Medium Social Media था।
+                    </li>
+
+                    <li>
+                        <strong>utm_campaign=summer_course</strong>
+                        → Traffic Summer Course Campaign से Related था।
+                    </li>
+
                 </ul>
-                <div class="info-box"><b>Important:</b><br>Tag Manager tracking plan का replacement नहीं है; सही
-                    events, naming और testing फिर भी जरूरी हैं।</div>
+
+                <h3>Advantages of UTM</h3>
+
+                <ol>
+
+                    <li>Campaign Traffic को Identify करना आसान होता है।</li>
+
+                    <li>Different Marketing Sources Compare किए जा सकते हैं।</li>
+
+                    <li>Campaign Performance Analyze की जा सकती है।</li>
+
+                    <li>Marketing Decisions अधिक Data-driven बनते हैं।</li>
+
+                    <li>Specific Links और Campaigns की Performance अलग-अलग देखी जा सकती है।</li>
+
+                </ol>
+
+                <div class="note-box">
+                    <b>Exam Point:</b><br>
+                    UTM Parameters Custom URLs में Tracking Information जोड़ते हैं,
+                    जिससे यह समझना आसान होता है कि Website Traffic किस Source,
+                    Medium या Campaign से आया है।
+                </div>
+
             </section>
-            <section id="measurement-plan">
-                <h2>Creating a Measurement Plan</h2>
-                <table>
-                    <tr>
-                        <th>Business Objective</th>
-                        <th>User Action</th>
-                        <th>Metric/Event</th>
-                    </tr>
-                    <tr>
-                        <td>Increase enrollments</td>
-                        <td>Course registration</td>
-                        <td>registration_complete</td>
-                    </tr>
-                    <tr>
-                        <td>Generate leads</td>
-                        <td>Contact form submit</td>
-                        <td>generate_lead</td>
-                    </tr>
-                    <tr>
-                        <td>Increase engagement</td>
-                        <td>Video watch</td>
-                        <td>video_complete</td>
-                    </tr>
-                    <tr>
-                        <td>Grow downloads</td>
-                        <td>PDF download</td>
-                        <td>file_download</td>
-                    </tr>
-                </table>
-            </section>
-            <section id="privacy">
-                <h2>Analytics Privacy and Data Quality</h2>
-                <h4>Privacy Practices</h4>
+
+
+            <!-- =========================================================
+     13. GOOGLE TAG MANAGER
+     ========================================================= -->
+
+            <section id="google-tag-manager">
+
+                <h2>Google Tag Manager – A Brief Overview</h2>
+
+                <div class="image-icon">
+                    <img src="../images/google-tag-manager.webp" alt="Google Tag Manager">
+                </div>
+
+                <p>
+                    <strong>Google Tag Manager (GTM)</strong> एक Tag Management
+                    System है जिसकी सहायता से Website या Application में
+                    विभिन्न Tracking Tags और related configurations को
+                    Manage किया जा सकता है।
+                </p>
+
+                <p>
+                    Traditional तरीके में प्रत्येक Tracking Code को Website के
+                    Source Code में manually add करना पड़ सकता है। Tag Manager
+                    का उद्देश्य ऐसे Tags को एक centralized interface के माध्यम से
+                    Manage करने की सुविधा देना है।
+                </p>
+
+                <h3>Important Components of Google Tag Manager</h3>
+
+                <h4>1. Tag</h4>
+
+                <p>
+                    <strong>Tag</strong> एक tracking या measurement instruction
+                    होता है जो किसी User Interaction या Website Activity पर
+                    specific action perform कर सकता है।
+                </p>
+
+                <h4>2. Trigger</h4>
+
+                <p>
+                    <strong>Trigger</strong> यह निर्धारित करता है कि Tag कब
+                    Fire होना चाहिए।
+                </p>
+
+                <p>
+                    उदाहरण:
+                </p>
+
                 <ul>
-                    <li>Only required data collect करें।</li>
-                    <li>Sensitive personal information avoid करें।</li>
-                    <li>User consent requirements follow करें।</li>
-                    <li>Access permissions control करें।</li>
-                    <li>Data retention settings review करें।</li>
+
+                    <li>Page View</li>
+
+                    <li>Button Click</li>
+
+                    <li>Form Submission</li>
+
+                    <li>Scroll</li>
+
+                    <li>Link Click</li>
+
                 </ul>
-                <h4>Data Quality Practices</h4>
-                <ul>
-                    <li>Tracking test करें।</li>
-                    <li>Duplicate tags avoid करें।</li>
-                    <li>Internal traffic filter करें जहाँ needed हो।</li>
-                    <li>Consistent event names use करें।</li>
-                    <li>Reports regularly validate करें।</li>
-                </ul>
+
+                <h4>3. Variable</h4>
+
+                <p>
+                    <strong>Variable</strong> ऐसी Value या Information होती है
+                    जिसका उपयोग Tags और Triggers की Configuration में किया जा सकता है।
+                </p>
+
+                <h3>Basic Working</h3>
+
+                <div class="image-icon">
+
+                    <strong>
+                        Website User Interaction
+                        <br>↓
+                        Trigger Condition
+                        <br>↓
+                        Trigger Matches
+                        <br>↓
+                        Tag Fires
+                        <br>↓
+                        Data Sent to Analytics / Other Tool
+                    </strong>
+
+                </div>
+
+                <h3>Advantages of Google Tag Manager</h3>
+
+                <ol>
+
+                    <li>
+                        <strong>Centralized Tag Management</strong><br>
+                        विभिन्न Tags को एक स्थान से Manage किया जा सकता है।
+                    </li>
+
+                    <li>
+                        <strong>Less Dependency on Developers</strong><br>
+                        कई सामान्य Tracking Changes के लिए हर बार Website Code
+                        में Direct Changes की आवश्यकता कम हो सकती है।
+                    </li>
+
+                    <li>
+                        <strong>Easy Event Tracking</strong><br>
+                        Button Click, Form Submission आदि Interactions के
+                        Tracking Setup को Manage किया जा सकता है।
+                    </li>
+
+                    <li>
+                        <strong>Better Organization</strong><br>
+                        Multiple Tracking Tags को Structured तरीके से Manage किया जा सकता है।
+                    </li>
+
+                    <li>
+                        <strong>Testing and Debugging</strong><br>
+                        Tags को Publish करने से पहले उनकी Configuration को
+                        Test और Debug किया जा सकता है।
+                    </li>
+
+                </ol>
+
+                <div class="note-box">
+                    <b>Exam Point:</b><br>
+                    Google Tag Manager का मुख्य उद्देश्य Website/App में
+                    Tracking Tags को Centralized तरीके से Manage करना है।
+                    इसके मुख्य Concepts हैं:
+                    <strong>Tags, Triggers और Variables</strong>।
+                </div>
+
             </section>
-            <section id="final-checklist">
-                <h2>Analytics Implementation Checklist</h2>
-                <ul>
-                    <li>Business goals defined</li>
-                    <li>Analytics property and stream configured</li>
-                    <li>Measurement tag verified</li>
-                    <li>Important events identified</li>
-                    <li>Conversions configured</li>
-                    <li>UTM naming standard created</li>
-                    <li>Google Ads integration reviewed</li>
-                    <li>Social and SEO traffic monitored</li>
-                    <li>ROI metrics defined</li>
-                    <li>Tag Manager tested</li>
-                    <li>Privacy and access settings reviewed</li>
-                </ul>
-                <div class="remember-box"><b>Remember:</b><br>Good analytics setup वही है जो business goals को
-                    measurable user actions और reliable reports से connect करे।</div>
+
+
+            <!-- =========================================================
+     COMPLETE GOOGLE ANALYTICS PROCESS
+     ========================================================= -->
+
+            <section id="google-analytics-complete-process">
+
+                <h2>Complete Google Analytics Process</h2>
+
+                <div class="image-icon">
+                    <img src="../images/complete-google-analytics-process.webp" alt="Complete Google Analytics Process">
+                </div>
+
+                <div class="image-icon">
+
+                    <strong>
+
+                        Define Business Goal
+                        <br>↓
+                        Setup Google Analytics
+                        <br>↓
+                        Collect Website Data
+                        <br>↓
+                        Analyze Audience
+                        <br>↓
+                        Analyze Traffic Sources
+                        <br>↓
+                        Analyze Content
+                        <br>↓
+                        Track Events & Conversions
+                        <br>↓
+                        Analyze Campaigns
+                        <br>↓
+                        Measure ROI
+                        <br>↓
+                        Take Business Decisions
+                        <br>↓
+                        Optimize Website
+                        <br>↓
+                        Measure Again
+
+                    </strong>
+
+                </div>
+
+
             </section>
+
         </main>
+
     </div>
 </body>
 

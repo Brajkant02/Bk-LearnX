@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Code Development with Git and GitHub</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f7fb;color:#1f2937;line-height:1.75}
+.page{display:grid;grid-template-columns:285px 1fr;gap:20px;max-width:1450px;margin:auto;padding:10px}
+.sidebar{position:sticky;top:10px;height:calc(100vh - 20px);overflow-y:auto;background:#fff;border-radius:16px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.08);align-self:start}
+.sidebar h2{font-size:20px;margin-bottom:12px;color:#111827}
+.sidebar a{display:block;text-decoration:none;color:#374151;padding:8px 10px;border-radius:10px;margin-bottom:4px;font-size:14px}
+.sidebar a:hover{background:#eef2ff;color:#1d4ed8}
+.content{background:#fff;border-radius:18px;padding:10px;box-shadow:0 4px 18px rgba(0,0,0,.08);min-width:0}
+.hero{padding:28px 18px;border-radius:16px;background:linear-gradient(135deg,#eef2ff,#f8fafc);margin-bottom:18px}
+.hero h1{font-size:34px;color:#111827;margin-bottom:10px}
+.hero p{font-size:18px;color:#374151}
+section{padding:22px 10px;border-bottom:1px solid #e5e7eb}
+section:last-child{border-bottom:none}
+h2{font-size:27px;color:#111827;margin-bottom:12px;border-left:5px solid #2563eb;padding-left:12px}
+h3{font-size:22px;color:#1f2937;margin:18px 0 8px}
+h4{font-size:18px;margin:14px 0 6px}
+p{margin:10px 0;font-size:17px}
+ul,ol{margin-left:24px;margin-top:8px}
+li{margin:7px 0;font-size:16.5px}
+strong{color:#111827}
+.image-icon{min-height:120px;border:2px dashed #94a3b8;border-radius:16px;background:#f8fafc;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;margin:18px 0;color:#475569;font-weight:600}
+.image-icon img{max-width:100%;height:auto}
+.note-box{background:#f0fdf4;border-left:5px solid #22c55e;border-radius:14px;padding:14px 16px;margin:16px 0}
+.example{background:#eff6ff;border-left:5px solid #3b82f6;border-radius:14px;padding:14px 16px;margin:16px 0}
+.warning{background:#fff7ed;border-left:5px solid #f97316;border-radius:14px;padding:14px 16px;margin:16px 0}
+.workflow{background:#111827;color:#f9fafb;border-radius:14px;padding:18px;margin:16px 0;font-weight:600;overflow-x:auto}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:15.5px;display:block;overflow-x:auto}
+th,td{border:1px solid #d1d5db;padding:10px;text-align:left;vertical-align:top;min-width:130px}
+th{background:#eef2ff;color:#111827}
+.code-section{background:#050505;border-radius:18px;padding:18px;margin:18px 0;box-shadow:0 8px 28px rgba(0,0,0,.18);border:1px solid #252525}
+.code-title{color:#fff;font-size:16px;font-weight:700;margin-bottom:12px}
+.code{background:#050505;color:#f8fafc;padding:18px 20px;border-radius:12px;overflow-x:auto;font-family:Consolas,"Courier New",monospace;font-size:15px;line-height:1.75;white-space:pre}
+.output-section{background:#0b0b0b;border-radius:18px;padding:18px;margin:18px 0;border:1px solid #292929}
+.output-title{color:#fff;font-size:16px;font-weight:700;margin-bottom:12px}
+.output{background:#111;color:#e5e7eb;border:1px solid #333;padding:16px 18px;border-radius:12px;font-family:Consolas,"Courier New",monospace;overflow-x:auto;white-space:pre}
+.card-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:16px 0}
+.card{background:#f8fafc;border:1px solid #e5e7eb;border-radius:14px;padding:16px}
+.card h4{color:#1d4ed8;margin-top:0}
+@media(max-width:900px){
+.page{display:block;width:100%;padding:5px}.sidebar{display:none}.content{width:100%;padding:6px;border-radius:10px}
+.hero{padding:18px 10px}.hero h1{font-size:25px}h2{font-size:21px}h3{font-size:18px}p,li{font-size:15px}
+.image-icon{min-height:110px;padding:8px}.card-grid{grid-template-columns:1fr}.code{font-size:13px;padding:14px}.code-section,.output-section{padding:12px}
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+<aside class="sidebar">
+<h2>Topics</h2>
+<a href="#intro">Introduction to Version Control</a>
+<a href="#version-control">Version Control</a>
+<a href="#history">Keeping Historical Copies</a>
+<a href="#automation">Version Control & Automation</a>
+<a href="#what-git">What is Git?</a>
+<a href="#install-git">Installing Git</a>
+<a href="#local">Using Git Locally</a>
+<a href="#delete-rename">Deleting & Renaming Files</a>
+<a href="#undo">Undoing Changes</a>
+<a href="#amend">Amending Commits</a>
+<a href="#rollback">Rollbacks</a>
+<a href="#github">Introduction to GitHub</a>
+<a href="#remotes">Working with Remotes</a>
+<a href="#fetch">Fetching New Changes</a>
+<a href="#update">Updating Local Repository</a>
+<a href="#best-practices">Best Practices</a>
+<a href="#revision">Complete Revision</a>
+</aside>
+
+<main class="content">
+
+<div class="hero">
+<h1>Code Development with Git and GitHub</h1>
+<p><strong>06 Periods</strong> — Hindi + English Mixed, Exam-Oriented Notes</p>
+</div>
+
+<section id="intro">
+<h2>1. Introduction to Version Control</h2>
+<div class="image-icon"><img src="../images/version-control.webp" alt="Version Control"></div>
+
+<h3>Definition</h3>
+<p><strong>Version Control</strong> एक system है जो files या source code में समय के साथ होने वाले changes को record और manage करता है। इसका उपयोग developers को पुराने versions देखने, changes compare करने और जरूरत पड़ने पर previous version पर वापस जाने में मदद करने के लिए किया जाता है।</p>
+
+<p>Software development में कई developers एक ही project पर काम कर सकते हैं। ऐसी स्थिति में version control changes को व्यवस्थित रखने और collaboration को आसान बनाने में महत्वपूर्ण भूमिका निभाता है।</p>
+
+<div class="note-box">
+<b>Exam Point:</b><br>
+Version Control का मुख्य उद्देश्य source code के different versions को track, manage और recover करना है।
+</div>
+</section>
+
+<section id="version-control">
+<h2>2. Version Control</h2>
+
+<h3>Definition</h3>
+<p>Version Control system files के changes का history maintain करता है। प्रत्येक important change को एक identifiable version या commit के रूप में record किया जा सकता है।</p>
+
+<h3>Importance</h3>
+<ul>
+<li>Changes का history maintain करना।</li>
+<li>Previous version को देखना या restore करना।</li>
+<li>Multiple developers के work को manage करना।</li>
+<li>Errors और unwanted changes को identify करना।</li>
+<li>Project development को organized रखना।</li>
+</ul>
+
+<div class="example">
+<b>Example:</b> यदि website का नया version काम नहीं कर रहा है, तो version history की सहायता से पिछले stable version को identify किया जा सकता है।
+</div>
+</section>
+
+<section id="history">
+<h2>3. Keeping Historical Copies</h2>
+
+<h3>Definition</h3>
+<p><strong>Historical Copies</strong> का अर्थ project के पुराने versions या states का record रखना है, ताकि future में changes को review, compare या recover किया जा सके।</p>
+
+<h3>Benefits</h3>
+<ul>
+<li>Old versions सुरक्षित रहते हैं।</li>
+<li>Changes का comparison किया जा सकता है।</li>
+<li>गलत changes को identify किया जा सकता है।</li>
+<li>Previous working state पर वापस जाना आसान होता है।</li>
+<li>Team development में accountability बढ़ती है।</li>
+</ul>
+
+<div class="note-box">
+<b>Git में:</b> Commits project के historical snapshots को record करने का मुख्य तरीका हैं।
+</div>
+</section>
+
+<section id="automation">
+<h2>4. Version Control and Automation</h2>
+
+<h3>Definition</h3>
+<p><strong>Automation</strong> का अर्थ repetitive development tasks को tools और scripts की सहायता से automatically perform करना है। Version Control systems development workflow में automation tools के साथ integrate किए जा सकते हैं।</p>
+
+<h3>Relationship</h3>
+<ul>
+<li>Code changes version control में record किए जाते हैं।</li>
+<li>Automated tests changes को check कर सकते हैं।</li>
+<li>Build और deployment processes automate किए जा सकते हैं।</li>
+<li>Team को consistent development workflow मिलता है।</li>
+</ul>
+
+<div class="workflow">
+Code Change → Commit → Automated Check/Test → Build → Deployment
+</div>
+
+<div class="note-box">
+<b>Important:</b> Git स्वयं complete automation platform नहीं है; यह version control प्रदान करता है और automation workflows के साथ integrate किया जा सकता है।
+</div>
+</section>
+
+<section id="what-git">
+<h2>5. What is Git?</h2>
+<div class="image-icon"><img src="../images/git.webp" alt="Git"></div>
+
+<h3>Definition</h3>
+<p><strong>Git</strong> एक distributed version control system है जिसका उपयोग source code और अन्य project files में होने वाले changes को track और manage करने के लिए किया जाता है।</p>
+
+<h3>Main Features of Git</h3>
+<ul>
+<li>Distributed Version Control</li>
+<li>Change Tracking</li>
+<li>Commit History</li>
+<li>Branching and Merging</li>
+<li>Local Repository</li>
+<li>Remote Repository Support</li>
+<li>Collaboration</li>
+<li>Rollback/Recovery capabilities</li>
+</ul>
+
+<div class="note-box">
+<b>Exam Point:</b><br>
+Git = Distributed Version Control System (DVCS).
+</div>
+</section>
+
+<section id="install-git">
+<h2>6. Installing Git</h2>
+
+<h3>Definition</h3>
+<p>Git Installation का अर्थ computer में Git software को install करना है ताकि command line या graphical tools के माध्यम से repositories और version control operations use किए जा सकें।</p>
+
+<h3>General Installation Process</h3>
+<ol>
+<li>अपने operating system के लिए Git installer प्राप्त करें।</li>
+<li>Installer run करें।</li>
+<li>Installation options को requirement के अनुसार select करें।</li>
+<li>Installation complete करें।</li>
+<li>Terminal/Command Prompt खोलकर Git installation verify करें।</li>
+</ol>
+
+<div class="code-section">
+<div class="code-title">Check Git Version</div>
+<div class="code">git --version</div>
+</div>
+
+<div class="output-section">
+<div class="output-title">Example Output</div>
+<div class="output">git version 2.x.x</div>
+</div>
+
+<div class="note-box">
+<b>Note:</b> Exact Git version आपके installed release के अनुसार अलग हो सकती है।
+</div>
+</section>
+
+<section id="local">
+<h2>7. Using Git Locally</h2>
+
+<h3>Definition</h3>
+<p><strong>Local Git Repository</strong> आपके computer पर मौजूद project repository होती है जिसमें Git project के files और version history को manage करता है।</p>
+
+<h3>Basic Local Workflow</h3>
+<div class="workflow">
+Working Directory → Staging Area → Local Repository
+</div>
+
+<h3>Important Commands</h3>
+<table>
+<tr><th>Command</th><th>Purpose</th></tr>
+<tr><td><code>git init</code></td><td>Current folder में नया Git repository initialize करना।</td></tr>
+<tr><td><code>git status</code></td><td>Working directory और staging area की current स्थिति देखना।</td></tr>
+<tr><td><code>git add</code></td><td>Changes को staging area में रखना।</td></tr>
+<tr><td><code>git commit</code></td><td>Staged changes को repository history में record करना।</td></tr>
+<tr><td><code>git log</code></td><td>Commit history देखना।</td></tr>
+</table>
+
+<div class="code-section">
+<div class="code-title">Basic Git Workflow</div>
+<div class="code">git init
+git status
+git add .
+git commit -m "Initial commit"
+git log</div>
+</div>
+
+<div class="note-box">
+<b>Exam Point:</b> <strong>git add</strong> changes को staging area में रखता है, जबकि <strong>git commit</strong> staged changes को repository history में record करता है।
+</div>
+</section>
+
+<section id="delete-rename">
+<h2>8. Deleting and Renaming Files</h2>
+
+<h3>Deleting a File</h3>
+<p>Git में tracked file को delete करने के लिए file को remove करके change को stage किया जा सकता है।</p>
+
+<div class="code-section">
+<div class="code-title">Delete File</div>
+<div class="code">git rm old-file.txt
+git commit -m "Remove old file"</div>
+</div>
+
+<h3>Renaming a File</h3>
+<p>Git में tracked file का name change करने के लिए <strong>git mv</strong> command उपयोग की जा सकती है।</p>
+
+<div class="code-section">
+<div class="code-title">Rename File</div>
+<div class="code">git mv old-name.txt new-name.txt
+git commit -m "Rename file"</div>
+</div>
+
+<div class="note-box">
+<b>Exam Point:</b> <code>git rm</code> tracked file को remove करने और <code>git mv</code> file को move/rename करने के लिए उपयोगी है।
+</div>
+</section>
+
+<section id="undo">
+<h2>9. Undoing Changes Before Committing</h2>
+
+<h3>Definition</h3>
+<p>यदि किसी file में change किया गया है लेकिन अभी commit नहीं किया गया है, तो आवश्यकता के अनुसार उस change को discard या unstage किया जा सकता है।</p>
+
+<h3>Unstaging a File</h3>
+<p>यदि file staging area में add हो चुकी है लेकिन उसे unstage करना है, तो:</p>
+
+<div class="code-section">
+<div class="code-title">Unstage Changes</div>
+<div class="code">git restore --staged filename.txt</div>
+</div>
+
+<h3>Discarding Working Directory Changes</h3>
+<p>यदि current working-tree change को discard करना हो:</p>
+
+<div class="code-section">
+<div class="code-title">Discard Uncommitted Change</div>
+<div class="code">git restore filename.txt</div>
+</div>
+
+<div class="warning">
+<b>Warning:</b> Working-directory changes discard करने पर uncommitted work खो सकता है। Command चलाने से पहले file के changes verify करें।
+</div>
+</section>
+
+<section id="amend">
+<h2>10. Amending Commits</h2>
+
+<h3>Definition</h3>
+<p><strong>Amend</strong> का अर्थ latest commit को modify करना है। इसका उपयोग latest commit में कोई additional change जोड़ने या commit message सुधारने के लिए किया जा सकता है।</p>
+
+<h3>Example</h3>
+<div class="code-section">
+<div class="code-title">Amend Latest Commit</div>
+<div class="code">git add updated-file.txt
+git commit --amend -m "Updated project files"</div>
+</div>
+
+<p>यदि केवल latest commit message बदलना हो, तो भी <code>git commit --amend</code> उपयोग किया जा सकता है।</p>
+
+<div class="warning">
+<b>Important:</b> Shared remote history में already-pushed commit को amend करना सावधानी से करना चाहिए, क्योंकि इससे commit history बदल सकती है।
+</div>
+</section>
+
+<section id="rollback">
+<h2>11. Rollbacks</h2>
+
+<h3>Definition</h3>
+<p><strong>Rollback</strong> का अर्थ project को किसी previous known state की ओर वापस ले जाना है। Git में rollback के लिए अलग-अलग commands और approaches situation के अनुसार use की जाती हैं।</p>
+
+<h3>Viewing History</h3>
+<div class="code-section">
+<div class="code-title">View Commit History</div>
+<div class="code">git log --oneline</div>
+</div>
+
+<h3>Reverting a Commit</h3>
+<p><strong>git revert</strong> एक नया commit बनाकर किसी previous commit के changes को reverse करने के लिए उपयोग किया जाता है। यह shared history के लिए generally safer approach है।</p>
+
+<div class="code-section">
+<div class="code-title">Revert a Commit</div>
+<div class="code">git revert &lt;commit-id&gt;</div>
+</div>
+
+<h3>Reset</h3>
+<p><strong>git reset</strong> repository के HEAD/staging/working state को अलग-अलग modes में move करने के लिए उपयोग किया जा सकता है। इसका उपयोग carefully करना चाहिए, especially shared history के साथ।</p>
+
+<div class="code-section">
+<div class="code-title">Example</div>
+<div class="code">git reset --soft HEAD~1</div>
+</div>
+
+<div class="note-box">
+<b>Difference:</b> <strong>revert</strong> reverse changes के लिए नया commit बनाता है; <strong>reset</strong> current branch history/state को move कर सकता है।
+</div>
+</section>
+
+<section id="github">
+<h2>12. Introduction to GitHub</h2>
+<div class="image-icon"><img src="../images/github.webp" alt="GitHub"></div>
+
+<h3>Definition</h3>
+<p><strong>GitHub</strong> एक online platform है जहाँ Git repositories को host, share और collaborate किया जा सकता है। यह developers को source code manage करने और teams के साथ collaborate करने के लिए सुविधाएँ प्रदान करता है।</p>
+
+<h3>Git vs GitHub</h3>
+<table>
+<tr><th>Git</th><th>GitHub</th></tr>
+<tr><td>Version control system</td><td>Git repository hosting/collaboration platform</td></tr>
+<tr><td>Local computer पर भी use हो सकता है</td><td>Online remote collaboration के लिए commonly used</td></tr>
+<tr><td>Commits, branches आदि manage करता है</td><td>Repositories, collaboration और remote workflows provide करता है</td></tr>
+</table>
+
+<div class="note-box">
+<b>Exam Point:</b> Git और GitHub same चीज नहीं हैं। Git एक version control system है, जबकि GitHub Git repositories के hosting और collaboration के लिए platform है।
+</div>
+</section>
+
+<section id="remotes">
+<h2>13. Working with Remotes</h2>
+
+<h3>Definition</h3>
+<p><strong>Remote Repository</strong> repository की वह copy/location है जो local computer के बाहर किसी remote server/platform पर hosted होती है। GitHub एक common remote hosting platform है।</p>
+
+<h3>Common Commands</h3>
+<div class="code-section">
+<div class="code-title">Remote Commands</div>
+<div class="code">git remote -v
+git remote add origin &lt;repository-url&gt;
+git push -u origin main</div>
+</div>
+
+<h3>Explanation</h3>
+<ul>
+<li><code>git remote -v</code> configured remote URLs दिखाता है।</li>
+<li><code>git remote add origin</code> local repository के साथ remote repository connect करता है।</li>
+<li><code>git push</code> local commits को remote repository पर भेजता है।</li>
+</ul>
+
+<div class="workflow">
+Local Repository ⇄ Remote Repository (GitHub)
+</div>
+</section>
+
+<section id="fetch">
+<h2>14. Fetching New Changes</h2>
+
+<h3>Definition</h3>
+<p><strong>Fetching</strong> का अर्थ remote repository से नए commits और references की information को local repository में लाना है, बिना current working branch में उन changes को automatically merge किए।</p>
+
+<div class="code-section">
+<div class="code-title">Fetch Remote Changes</div>
+<div class="code">git fetch origin</div>
+</div>
+
+<h3>Fetch vs Pull</h3>
+<table>
+<tr><th>Fetch</th><th>Pull</th></tr>
+<tr><td>Remote changes की information download करता है।</td><td>Remote changes को fetch करके current branch में integrate करने की प्रक्रिया भी करता है।</td></tr>
+<tr><td>Working files को automatically update नहीं करता।</td><td>Working branch update हो सकती है, depending on configuration/workflow।</td></tr>
+</table>
+</section>
+
+<section id="update">
+<h2>15. Updating the Local Repository</h2>
+
+<h3>Definition</h3>
+<p>Local repository को update करने का अर्थ remote repository में available latest changes को local development environment के साथ synchronize करना है।</p>
+
+<h3>Common Pull Workflow</h3>
+<div class="code-section">
+<div class="code-title">Update Local Branch</div>
+<div class="code">git pull origin main</div>
+</div>
+
+<h3>Basic Collaboration Workflow</h3>
+<div class="workflow">
+git fetch → Review Changes → Integrate/Pull → Resolve Conflicts if needed → Test → Continue Development
+</div>
+
+<div class="warning">
+<b>Important:</b> Pull करने से पहले local uncommitted changes की स्थिति check करना अच्छा practice है।
+</div>
+</section>
+
+<section id="best-practices">
+<h2>16. Best Practices for Collaboration</h2>
+
+<h3>Important Practices</h3>
+<ol>
+<li><strong>Meaningful Commit Messages:</strong> Commit message में change का purpose clearly लिखें।</li>
+<li><strong>Small Commits:</strong> Related और manageable changes को meaningful commits में record करें।</li>
+<li><strong>Pull Before Work:</strong> Team workflow के अनुसार latest remote changes प्राप्त करें।</li>
+<li><strong>Use Branches:</strong> Features और experiments के लिए appropriate branches use करें।</li>
+<li><strong>Review Changes:</strong> Shared code को integrate करने से पहले changes review करें।</li>
+<li><strong>Resolve Conflicts Carefully:</strong> Merge conflicts को समझकर correct version maintain करें।</li>
+<li><strong>Do Not Commit Sensitive Data:</strong> Passwords, API keys और secrets repository में commit न करें।</li>
+<li><strong>Keep Repository Organized:</strong> Unnecessary files और generated artifacts को version control में रखने से बचें।</li>
+<li><strong>Test Before Push:</strong> Important changes को push करने से पहले test करें।</li>
+<li><strong>Communicate with Team:</strong> Conflicting changes और major modifications के बारे में team को inform करें।</li>
+</ol>
+
+<div class="note-box">
+<b>Exam Point:</b> Effective collaboration के लिए clean commits, clear communication, regular synchronization, code review और secure repository practices important हैं।
+</div>
+</section>
+
+<section id="revision">
+<h2>17. Complete Exam Revision</h2>
+
+<div class="workflow">
+Version Control
+        ↓
+Git
+        ↓
+Local Repository
+        ↓
+Working → Staging → Commit
+        ↓
+Remote Repository / GitHub
+        ↓
+Fetch / Pull / Push
+        ↓
+Team Collaboration
+</div>
+
+<table>
+<tr><th>Topic</th><th>Quick Revision</th></tr>
+<tr><td>Version Control</td><td>Files/source code के changes को track और manage करने की system।</td></tr>
+<tr><td>Historical Copies</td><td>Previous versions का record ताकि changes compare/recover किए जा सकें।</td></tr>
+<tr><td>Git</td><td>Distributed Version Control System।</td></tr>
+<tr><td>git init</td><td>New local Git repository initialize करता है।</td></tr>
+<tr><td>git add</td><td>Changes को staging area में रखता है।</td></tr>
+<tr><td>git commit</td><td>Staged changes को history में record करता है।</td></tr>
+<tr><td>git rm</td><td>Tracked file remove करने के लिए।</td></tr>
+<tr><td>git mv</td><td>File move/rename करने के लिए।</td></tr>
+<tr><td>git restore</td><td>Uncommitted changes restore/unstage करने के लिए situation के अनुसार।</td></tr>
+<tr><td>git commit --amend</td><td>Latest commit को modify करने के लिए।</td></tr>
+<tr><td>git revert</td><td>Previous commit के changes को reverse करने के लिए नया commit बनाता है।</td></tr>
+<tr><td>GitHub</td><td>Git repositories की hosting और collaboration platform।</td></tr>
+<tr><td>git fetch</td><td>Remote changes की information local repository में लाता है।</td></tr>
+<tr><td>git pull</td><td>Remote changes को fetch करके local branch में integrate करने का common तरीका।</td></tr>
+<tr><td>git push</td><td>Local commits को remote repository पर भेजता है।</td></tr>
+</table>
+
+<div class="note-box">
+<b>Important Exam Questions:</b><br><br>
+1. Version Control क्या है? इसके advantages समझाइए।<br>
+2. Git क्या है? इसकी प्रमुख features लिखिए।<br>
+3. Git को locally कैसे use किया जाता है?<br>
+4. <code>git rm</code> और <code>git mv</code> का उपयोग समझाइए।<br>
+5. Uncommitted changes को undo कैसे किया जाता है?<br>
+6. GitHub क्या है? Git और GitHub में अंतर बताइए।<br>
+7. Remote repository क्या है? Fetch, Pull और Push समझाइए।<br>
+8. Git/GitHub collaboration की best practices लिखिए।
+</div>
+</section>
+
+</main>
+</div>
+</body>
+</html>

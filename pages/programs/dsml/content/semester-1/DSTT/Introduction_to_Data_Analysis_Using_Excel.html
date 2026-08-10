@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Introduction to Data Analysis Using Excel</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f7fb;color:#1f2937;line-height:1.75}
+.page{display:grid;grid-template-columns:280px 1fr;gap:20px;max-width:1450px;margin:auto;padding:10px}
+.sidebar{position:sticky;top:10px;height:calc(100vh - 20px);overflow-y:auto;background:#fff;border-radius:16px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.08);align-self:start}
+.sidebar h2{font-size:20px;margin-bottom:12px;color:#111827}
+.sidebar a{display:block;text-decoration:none;color:#374151;padding:8px 10px;border-radius:10px;margin-bottom:4px;font-size:14px}
+.sidebar a:hover{background:#eef2ff;color:#1d4ed8}
+.content{background:#fff;border-radius:18px;padding:10px;box-shadow:0 4px 18px rgba(0,0,0,.08);min-width:0}
+.hero{padding:28px 18px;border-radius:16px;background:linear-gradient(135deg,#eef2ff,#f8fafc);margin-bottom:18px}
+.hero h1{font-size:34px;color:#111827;margin-bottom:10px}
+.hero p{font-size:18px;color:#374151}
+section{padding:22px 10px;border-bottom:1px solid #e5e7eb}
+section:last-child{border-bottom:none}
+h2{font-size:27px;color:#111827;margin-bottom:12px;border-left:5px solid #2563eb;padding-left:12px}
+h3{font-size:22px;color:#1f2937;margin:18px 0 8px}
+h4{font-size:18px;margin:14px 0 6px}
+p{margin:10px 0;font-size:17px}
+ul,ol{margin-left:24px;margin-top:8px}
+li{margin:7px 0;font-size:16.5px}
+strong{color:#111827}
+.image-icon{min-height:120px;border:2px dashed #94a3b8;border-radius:16px;background:#f8fafc;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;margin:18px 0;color:#475569;font-weight:600}
+.image-icon img{max-width:100%;height:auto}
+.note-box{background:#f0fdf4;border-left:5px solid #22c55e;border-radius:14px;padding:14px 16px;margin:16px 0}
+.example{background:#eff6ff;border-left:5px solid #3b82f6;border-radius:14px;padding:14px 16px;margin:16px 0}
+.formula{background:#111827;color:#f9fafb;padding:14px 16px;border-radius:12px;margin:14px 0;font-family:Consolas,monospace;overflow-x:auto}
+.code-section{background:#050505;border-radius:18px;padding:18px;margin:18px 0;box-shadow:0 8px 28px rgba(0,0,0,.18);border:1px solid #252525}
+.code-title{color:#fff;font-size:16px;font-weight:700;margin-bottom:12px}
+.code{background:#050505;color:#f8fafc;padding:18px 20px;border-radius:12px;overflow-x:auto;font-family:Consolas,"Courier New",monospace;font-size:15px;line-height:1.75;white-space:pre}
+.output-section{background:#0b0b0b;border-radius:18px;padding:18px;margin:18px 0;border:1px solid #292929}
+.output-title{color:#fff;font-size:16px;font-weight:700;margin-bottom:12px}
+.output{background:#111;color:#e5e7eb;border:1px solid #333;padding:16px 18px;border-radius:12px;font-family:Consolas,"Courier New",monospace;overflow-x:auto;white-space:pre}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:15.5px;display:block;overflow-x:auto}
+th,td{border:1px solid #d1d5db;padding:10px;text-align:left;vertical-align:top;min-width:120px}
+th{background:#eef2ff;color:#111827}
+@media(max-width:900px){
+.page{display:block;width:100%;padding:5px}.sidebar{display:none}.content{width:100%;padding:6px;border-radius:10px}
+.hero{padding:18px 10px}.hero h1{font-size:25px}h2{font-size:21px}h3{font-size:18px}p,li{font-size:15px}
+.image-icon{min-height:110px;padding:8px}.code{font-size:13px;padding:14px}.code-section,.output-section{padding:12px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<aside class="sidebar">
+<h2>Topics</h2>
+<a href="#intro">Introduction to Data Analysis</a>
+<a href="#spreadsheets">Introduction to Spreadsheets</a>
+<a href="#reading-data">Reading Data into Excel</a>
+<a href="#manipulation">Basic Data Manipulation</a>
+<a href="#basic-functions">Basic Functions</a>
+<a href="#if">IF Function</a>
+<a href="#nested-if">Nested IF</a>
+<a href="#vlookup">VLOOKUP</a>
+<a href="#hlookup">HLOOKUP</a>
+<a href="#filtering">Data Filtering</a>
+<a href="#pivot-tables">Pivot Tables</a>
+<a href="#charts-intro">Introduction to Charts</a>
+<a href="#line-graphs">Line Graphs</a>
+<a href="#bar-graphs">Bar Graphs</a>
+<a href="#pie-charts">Pie Charts</a>
+<a href="#pivot-charts">Pivot Charts</a>
+<a href="#scatter">Scatter Plots</a>
+<a href="#histograms">Histograms</a>
+<a href="#revision">Complete Revision</a>
+</aside>
+
+<main class="content">
+
+<div class="hero">
+<h1>Introduction to Data Analysis Using Excel</h1>
+<p><strong>06 Periods</strong> — Hindi + English Mixed, Exam-Oriented Notes</p>
+</div>
+
+<section id="intro">
+<h2>1. Introduction to Data Analysis Using Excel</h2>
+<div class="image-icon"><img src="../images/data-analysis-excel.webp" alt="Data Analysis Using Excel"></div>
+
+<h3>Definition</h3>
+<p><strong>Data Analysis</strong> का अर्थ है collected data को व्यवस्थित, process, examine और interpret करके useful information तथा meaningful conclusions प्राप्त करना। <strong>Microsoft Excel</strong> एक spreadsheet application है जो data entry, calculation, organization, filtering, summarization और visualization में सहायता करता है।</p>
+
+<h3>Importance of Excel in Data Analysis</h3>
+<ul>
+<li>Large amount of tabular data को organize करना।</li>
+<li>Formulas और functions से calculations करना।</li>
+<li>Data को sort और filter करना।</li>
+<li>Pivot Tables से summary तैयार करना।</li>
+<li>Charts और graphs के माध्यम से data visualize करना।</li>
+<li>Business, education, finance और reporting में analysis करना।</li>
+</ul>
+
+<div class="note-box"><b>Exam Point:</b> Excel केवल data entry tool नहीं है; इसका उपयोग data organization, calculation, analysis और visualization के लिए भी किया जाता है।</div>
+</section>
+
+<section id="spreadsheets">
+<h2>2. Introduction to Spreadsheets</h2>
+<div class="image-icon"><img src="../images/excel-spreadsheet.webp" alt="Excel Spreadsheet"></div>
+
+<h3>Definition</h3>
+<p><strong>Spreadsheet</strong> एक electronic worksheet है जिसमें data को rows और columns के रूप में store किया जाता है। Excel में प्रत्येक row और column के intersection को <strong>Cell</strong> कहा जाता है।</p>
+
+<h3>Important Spreadsheet Terms</h3>
+<table>
+<tr><th>Term</th><th>Meaning</th></tr>
+<tr><td>Workbook</td><td>Excel की पूरी file जिसमें एक या अधिक worksheets हो सकती हैं।</td></tr>
+<tr><td>Worksheet</td><td>Rows और columns से बनी working sheet।</td></tr>
+<tr><td>Cell</td><td>Row और column का intersection, जैसे A1।</td></tr>
+<tr><td>Row</td><td>Horizontal arrangement, जिसे numbers से identify किया जाता है।</td></tr>
+<tr><td>Column</td><td>Vertical arrangement, जिसे letters से identify किया जाता है।</td></tr>
+<tr><td>Cell Reference</td><td>Cell की पहचान, जैसे A1, B5 आदि।</td></tr>
+</table>
+</section>
+
+<section id="reading-data">
+<h2>3. Reading Data into Excel</h2>
+
+<h3>Definition</h3>
+<p><strong>Reading Data into Excel</strong> का अर्थ external source या existing file से data को Excel worksheet में लाना और उसे analysis के लिए तैयार करना है।</p>
+
+<h3>Common Data Sources</h3>
+<ul>
+<li>Manual data entry</li>
+<li>CSV files</li>
+<li>Text files</li>
+<li>Other Excel workbooks</li>
+<li>Copied data from other applications</li>
+<li>External data sources supported by Excel</li>
+</ul>
+
+<h3>Basic Steps</h3>
+<ol>
+<li>Excel workbook open करें।</li>
+<li>Required worksheet select करें।</li>
+<li>Data manually enter करें या external file से import करें।</li>
+<li>Columns के suitable headings दें।</li>
+<li>Data types check करें, जैसे Number, Date और Text।</li>
+<li>Blank या incorrect entries को identify करें।</li>
+</ol>
+
+<div class="example"><b>Example:</b> Student Name, Roll No., Subject और Marks की CSV file को Excel में import करके further analysis किया जा सकता है।</div>
+</section>
+
+<section id="manipulation">
+<h2>4. Basic Data Manipulation in Excel</h2>
+
+<h3>Definition</h3>
+<p><strong>Data Manipulation</strong> का अर्थ data को edit, arrange, copy, move, sort, format और transform करके analysis के लिए useful बनाना है।</p>
+
+<h3>Common Operations</h3>
+<ul>
+<li>Data entry और editing</li>
+<li>Copy, Cut और Paste</li>
+<li>Rows और columns insert/delete करना</li>
+<li>Sort करना</li>
+<li>Filter करना</li>
+<li>Find और Replace</li>
+<li>Cell formatting</li>
+<li>Number और date formatting</li>
+<li>Duplicate data identify/remove करना</li>
+</ul>
+
+<div class="note-box"><b>Example:</b> यदि student marks को highest से lowest order में arrange करना हो, तो Excel का Sort feature उपयोग किया जा सकता है।</div>
+</section>
+
+<section id="basic-functions">
+<h2>5. Basic Functions in Excel</h2>
+
+<h3>Definition</h3>
+<p><strong>Excel Functions</strong> predefined formulas होते हैं जो calculations और data analysis को आसान बनाते हैं। Functions generally <strong>=</strong> sign से शुरू होते हैं।</p>
+
+<table>
+<tr><th>Function</th><th>Purpose</th><th>Example</th></tr>
+<tr><td>SUM</td><td>Numbers का total निकालना।</td><td>=SUM(B2:B6)</td></tr>
+<tr><td>AVERAGE</td><td>Average निकालना।</td><td>=AVERAGE(B2:B6)</td></tr>
+<tr><td>COUNT</td><td>Numeric cells count करना।</td><td>=COUNT(B2:B6)</td></tr>
+<tr><td>MAX</td><td>Largest value निकालना।</td><td>=MAX(B2:B6)</td></tr>
+<tr><td>MIN</td><td>Smallest value निकालना।</td><td>=MIN(B2:B6)</td></tr>
+</table>
+
+<h3>Example</h3>
+<div class="code-section">
+<div class="code-title">Excel Formulas</div>
+<div class="code">=SUM(B2:B6)
+=AVERAGE(B2:B6)
+=MAX(B2:B6)
+=MIN(B2:B6)
+=COUNT(B2:B6)</div>
+</div>
+
+<div class="output-section">
+<div class="output-title">Example Output</div>
+<div class="output">SUM      → 425
+AVERAGE  → 85
+MAX      → 95
+MIN      → 70
+COUNT    → 5</div>
+</div>
+</section>
+
+<section id="if">
+<h2>6. IF Function</h2>
+
+<h3>Definition</h3>
+<p><strong>IF Function</strong> एक logical function है जो किसी condition को test करता है। Condition TRUE होने पर एक result और FALSE होने पर दूसरा result return किया जाता है।</p>
+
+<h3>Syntax</h3>
+<div class="formula">=IF(logical_test, value_if_true, value_if_false)</div>
+
+<h3>Example</h3>
+<p>यदि marks 40 या उससे अधिक हैं तो "Pass", अन्यथा "Fail" दिखाना है:</p>
+
+<div class="code-section">
+<div class="code-title">Excel Formula</div>
+<div class="code">=IF(B2>=40,"Pass","Fail")</div>
+</div>
+
+<div class="output-section">
+<div class="output-title">Example Output</div>
+<div class="output">Marks = 75
+Result = Pass</div>
+</div>
+
+<h3>Uses</h3>
+<ul>
+<li>Pass/Fail result निकालना।</li>
+<li>Eligible/Not Eligible check करना।</li>
+<li>Target achieved/not achieved identify करना।</li>
+<li>Conditional classification करना।</li>
+</ul>
+</section>
+
+<section id="nested-if">
+<h2>7. Nested IF</h2>
+
+<h3>Definition</h3>
+<p><strong>Nested IF</strong> में एक IF function के अंदर दूसरा IF function use किया जाता है। इसका उपयोग multiple conditions के आधार पर different results देने के लिए किया जाता है।</p>
+
+<h3>Example</h3>
+<p>Marks के आधार पर Grade निकालने के लिए:</p>
+
+<div class="code-section">
+<div class="code-title">Excel Formula</div>
+<div class="code">=IF(B2>=80,"A",IF(B2>=60,"B",IF(B2>=40,"C","F")))</div>
+</div>
+
+<div class="output-section">
+<div class="output-title">Example Output</div>
+<div class="output">Marks = 85  → A
+Marks = 65  → B
+Marks = 45  → C
+Marks = 30  → F</div>
+</div>
+
+<div class="note-box"><b>Exam Point:</b> Nested IF का उपयोग multiple decision levels को handle करने के लिए किया जाता है।</div>
+</section>
+
+<section id="vlookup">
+<h2>8. VLOOKUP Function</h2>
+
+<h3>Definition</h3>
+<p><strong>VLOOKUP</strong> का अर्थ Vertical Lookup है। यह table की first column में किसी value को search करके उसी row से specified column की corresponding value return करता है।</p>
+
+<h3>Syntax</h3>
+<div class="formula">=VLOOKUP(lookup_value, table_array, col_index_num, [range_lookup])</div>
+
+<h3>Example Table</h3>
+<table>
+<tr><th>ID</th><th>Name</th><th>Marks</th></tr>
+<tr><td>101</td><td>Amit</td><td>85</td></tr>
+<tr><td>102</td><td>Ravi</td><td>72</td></tr>
+<tr><td>103</td><td>Sita</td><td>91</td></tr>
+</table>
+
+<p>ID 102 के marks निकालने के लिए:</p>
+<div class="code-section">
+<div class="code-title">Excel Formula</div>
+<div class="code">=VLOOKUP(102,A2:C4,3,FALSE)</div>
+</div>
+
+<div class="output-section">
+<div class="output-title">Example Output</div>
+<div class="output">72</div>
+</div>
+
+<div class="note-box"><b>Important:</b> VLOOKUP में lookup value table_array की first column में search की जाती है।</div>
+</section>
+
+<section id="hlookup">
+<h2>9. HLOOKUP Function</h2>
+
+<h3>Definition</h3>
+<p><strong>HLOOKUP</strong> का अर्थ Horizontal Lookup है। यह table की first row में value search करके specified row से corresponding value return करता है।</p>
+
+<h3>Syntax</h3>
+<div class="formula">=HLOOKUP(lookup_value, table_array, row_index_num, [range_lookup])</div>
+
+<h3>Example Table</h3>
+<table>
+<tr><th>Student</th><th>Amit</th><th>Ravi</th><th>Sita</th></tr>
+<tr><td>Marks</td><td>85</td><td>72</td><td>91</td></tr>
+</table>
+
+<p>Ravi के marks निकालने के लिए:</p>
+<div class="code-section">
+<div class="code-title">Excel Formula</div>
+<div class="code">=HLOOKUP("Ravi",A1:D2,2,FALSE)</div>
+</div>
+
+<div class="output-section">
+<div class="output-title">Example Output</div>
+<div class="output">72</div>
+</div>
+
+<div class="note-box"><b>Difference:</b> VLOOKUP vertical direction में lookup करता है, जबकि HLOOKUP horizontal direction में lookup करता है।</div>
+</section>
+
+<section id="filtering">
+<h2>10. Introduction to Filtering</h2>
+
+<h3>Definition</h3>
+<p><strong>Filtering</strong> एक technique है जिसमें dataset से केवल required records को display किया जाता है और बाकी records temporarily hidden रहते हैं। इससे large dataset में specific information ढूँढना आसान होता है।</p>
+
+<h3>Data Filtering in Excel</h3>
+<ol>
+<li>Dataset में किसी cell को select करें।</li>
+<li><strong>Data → Filter</strong> option use करें।</li>
+<li>Column heading पर filter arrow दिखाई देगा।</li>
+<li>Required values या conditions select करें।</li>
+<li>Excel केवल matching records display करेगा।</li>
+</ol>
+
+<div class="example"><b>Example:</b> Student data में केवल "B.Sc." branch के students display करने के लिए Branch column पर filter लगाया जा सकता है।</div>
+</section>
+
+<section id="pivot-tables">
+<h2>11. Pivot Tables in Excel</h2>
+
+<h3>Definition</h3>
+<p><strong>Pivot Table</strong> Excel का एक powerful data summarization tool है जो large dataset को quickly summarize, analyze और compare करने में मदद करता है।</p>
+
+<h3>Uses</h3>
+<ul>
+<li>Total और summary निकालना।</li>
+<li>Categories के अनुसार data group करना।</li>
+<li>Count, Sum, Average आदि summarize करना।</li>
+<li>Different dimensions के बीच comparison करना।</li>
+<li>Large data को compact report में बदलना।</li>
+</ul>
+
+<h3>Basic Steps</h3>
+<ol>
+<li>Complete dataset select करें।</li>
+<li><strong>Insert → PivotTable</strong> select करें।</li>
+<li>Required location choose करें।</li>
+<li>Fields को Rows, Columns, Values और Filters areas में place करें।</li>
+<li>Required summary analyze करें।</li>
+</ol>
+
+<div class="example"><b>Example:</b> Sales dataset से Product-wise total sales या Region-wise sales summary Pivot Table की सहायता से निकाली जा सकती है।</div>
+</section>
+
+<section id="charts-intro">
+<h2>12. Introduction to Charts in Excel</h2>
+
+<h3>Definition</h3>
+<p><strong>Chart</strong> data का graphical representation है। Charts complex numerical information को visually understandable form में present करने में सहायता करते हैं।</p>
+
+<h3>Benefits</h3>
+<ul>
+<li>Trends को जल्दी समझना।</li>
+<li>Categories की comparison करना।</li>
+<li>Patterns और relationships identify करना।</li>
+<li>Reports और presentations को अधिक understandable बनाना।</li>
+</ul>
+
+<div class="note-box"><b>Exam Point:</b> Chart selection हमेशा data के nature और analysis objective के अनुसार करना चाहिए।</div>
+</section>
+
+<section id="line-graphs">
+<h2>13. Line Graphs</h2>
+
+<h3>Definition</h3>
+<p><strong>Line Graph</strong> data points को lines से connect करके trends और changes को समय या किसी continuous sequence के साथ दिखाता है।</p>
+
+<h3>Best Use</h3>
+<ul>
+<li>Monthly sales trend</li>
+<li>Yearly revenue changes</li>
+<li>Temperature over time</li>
+<li>Website traffic over days</li>
+</ul>
+
+<h3>Example</h3>
+<table>
+<tr><th>Month</th><th>Sales</th></tr>
+<tr><td>January</td><td>100</td></tr>
+<tr><td>February</td><td>130</td></tr>
+<tr><td>March</td><td>160</td></tr>
+<tr><td>April</td><td>145</td></tr>
+</table>
+
+<div class="note-box"><b>Key Point:</b> Line Graph changes और trends को show करने के लिए particularly useful है।</div>
+</section>
+
+<section id="bar-graphs">
+<h2>14. Bar Graphs</h2>
+
+<h3>Definition</h3>
+<p><strong>Bar Graph</strong> अलग-अलग categories के numerical values को rectangular bars की सहायता से compare करता है। Bars की length या height value को represent करती है।</p>
+
+<h3>Best Use</h3>
+<ul>
+<li>Product-wise sales comparison</li>
+<li>Department-wise performance</li>
+<li>Different cities की comparison</li>
+<li>Category-wise quantity</li>
+</ul>
+
+<div class="example"><b>Example:</b> यदि A, B और C products की sales क्रमशः 100, 150 और 80 हैं, तो bar graph इन तीनों products की sales comparison को visually दिखा सकता है।</div>
+</section>
+
+<section id="pie-charts">
+<h2>15. Pie Charts</h2>
+
+<h3>Definition</h3>
+<p><strong>Pie Chart</strong> एक circular chart है जो total value को अलग-अलग categories के हिस्सों या proportions में represent करता है।</p>
+
+<h3>Best Use</h3>
+<ul>
+<li>Budget distribution</li>
+<li>Market share</li>
+<li>Expense categories</li>
+<li>Percentage-based composition</li>
+</ul>
+
+<div class="note-box"><b>Important:</b> Pie Chart तब useful होता है जब categories के हिस्सों को एक total के relation में दिखाना हो।</div>
+</section>
+
+<section id="pivot-charts">
+<h2>16. Pivot Charts</h2>
+
+<h3>Definition</h3>
+<p><strong>Pivot Chart</strong> Pivot Table के summarized data का graphical representation है। यह Pivot Table के साथ connected रहता है और summarized information को visual form में analyze करने में मदद करता है।</p>
+
+<h3>Basic Steps</h3>
+<ol>
+<li>Pivot Table create करें।</li>
+<li>Pivot Table select करें।</li>
+<li>Insert/PivotChart option choose करें।</li>
+<li>Required chart type select करें।</li>
+<li>Fields और filters के आधार पर chart analyze करें।</li>
+</ol>
+
+<div class="example"><b>Example:</b> Region-wise sales की Pivot Table से Pivot Chart बनाकर regions की performance visually compare की जा सकती है।</div>
+</section>
+
+<section id="scatter">
+<h2>17. Scatter Plots</h2>
+
+<h3>Definition</h3>
+<p><strong>Scatter Plot</strong> दो numerical variables के बीच relationship या distribution को individual points की सहायता से दिखाता है।</p>
+
+<h3>Uses</h3>
+<ul>
+<li>Height और Weight के बीच relationship देखना।</li>
+<li>Advertising cost और sales के बीच relationship analyze करना।</li>
+<li>Study hours और marks के relationship को examine करना।</li>
+<li>Possible patterns और outliers identify करना।</li>
+</ul>
+
+<div class="note-box"><b>Key Point:</b> Scatter Plot correlation या relationship को visually inspect करने में useful होता है।</div>
+</section>
+
+<section id="histograms">
+<h2>18. Histograms</h2>
+
+<h3>Definition</h3>
+<p><strong>Histogram</strong> numerical data के distribution को continuous intervals या bins में group करके दिखाने वाला graph है। इसमें adjacent bars distribution की frequency को represent करते हैं।</p>
+
+<h3>Uses</h3>
+<ul>
+<li>Data distribution समझना।</li>
+<li>Frequency identify करना।</li>
+<li>Concentration of values देखना।</li>
+<li>Distribution pattern और possible unusual values को inspect करना।</li>
+</ul>
+
+<div class="example"><b>Example:</b> किसी class के students के marks को ranges जैसे 0–10, 11–20, 21–30 आदि bins में group करके histogram बनाया जा सकता है।</div>
+</section>
+
+<section id="revision">
+<h2>19. Complete Exam Revision</h2>
+
+<table>
+<tr><th>Topic</th><th>Quick Revision</th></tr>
+<tr><td>Spreadsheet</td><td>Rows और columns में data organize करने वाली electronic worksheet।</td></tr>
+<tr><td>Data Manipulation</td><td>Data को edit, arrange, sort, filter और format करना।</td></tr>
+<tr><td>Basic Functions</td><td>SUM, AVERAGE, COUNT, MAX, MIN आदि।</td></tr>
+<tr><td>IF</td><td>Condition के आधार पर result देता है।</td></tr>
+<tr><td>Nested IF</td><td>Multiple conditions को handle करने के लिए multiple IF functions।</td></tr>
+<tr><td>VLOOKUP</td><td>First column में vertical lookup करके corresponding value return करता है।</td></tr>
+<tr><td>HLOOKUP</td><td>First row में horizontal lookup करके corresponding value return करता है।</td></tr>
+<tr><td>Filtering</td><td>Required records display करके बाकी records temporarily hide करता है।</td></tr>
+<tr><td>Pivot Table</td><td>Large dataset को summarize और analyze करता है।</td></tr>
+<tr><td>Line Graph</td><td>Trends और changes show करता है।</td></tr>
+<tr><td>Bar Graph</td><td>Categories की comparison करता है।</td></tr>
+<tr><td>Pie Chart</td><td>Total के parts/proportions दिखाता है।</td></tr>
+<tr><td>Pivot Chart</td><td>Pivot Table के summarized data का visual representation।</td></tr>
+<tr><td>Scatter Plot</td><td>दो numerical variables के relationship को show करता है।</td></tr>
+<tr><td>Histogram</td><td>Continuous numerical data का frequency distribution दिखाता है।</td></tr>
+</table>
+
+<div class="note-box">
+<b>Exam Answer Flow:</b><br><br>
+Definition → Features/Uses → Steps/Procedure → Formula/Example → Output/Result → Advantages or Important Points
+</div>
+</section>
+
+</main>
+</div>
+</body>
+</html>

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculus</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f7fb;color:#1f2937;line-height:1.75}
+.page{display:grid;grid-template-columns:280px 1fr;gap:20px;max-width:1450px;margin:auto;padding:10px}
+.sidebar{position:sticky;top:10px;height:calc(100vh - 20px);overflow-y:auto;background:#fff;border-radius:16px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.08);align-self:start}
+.sidebar h2{font-size:20px;margin-bottom:12px;color:#111827}
+.sidebar a{display:block;text-decoration:none;color:#374151;padding:8px 10px;border-radius:10px;margin-bottom:4px;font-size:14.5px}
+.sidebar a:hover{background:#eef2ff;color:#1d4ed8}
+.content{background:#fff;border-radius:18px;padding:10px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.hero{padding:28px 18px;border-radius:16px;background:linear-gradient(135deg,#eef2ff,#f8fafc);margin-bottom:18px}
+.hero h1{font-size:34px;color:#111827;margin-bottom:10px}
+.hero p{font-size:18px;color:#374151}
+section{padding:22px 10px;border-bottom:1px solid #e5e7eb}
+section:last-child{border-bottom:none}
+h2{font-size:27px;color:#111827;margin-bottom:12px;border-left:5px solid #2563eb;padding-left:12px}
+h3{font-size:22px;color:#1f2937;margin:16px 0 8px}
+h4{font-size:18px;margin:14px 0 6px}
+p{margin:10px 0;font-size:17px}
+ul,ol{margin-left:24px;margin-top:8px}
+li{margin:7px 0;font-size:16.5px}
+strong{color:#111827}
+.image-icon{min-height:130px;border:2px dashed #94a3b8;border-radius:16px;background:#f8fafc;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;margin:18px 0;color:#475569;font-weight:600}
+.image-icon img{max-width:100%;height:auto}
+.note-box{background:#f0fdf4;border-left:5px solid #22c55e;border-radius:14px;padding:14px 16px;margin:16px 0}
+.example{background:#eff6ff;border-left:5px solid #3b82f6;border-radius:14px;padding:14px 16px;margin:16px 0}
+.formula{background:#111827;color:#f9fafb;padding:12px 14px;border-radius:12px;margin:12px 0;font-family:Consolas,monospace;overflow-x:auto}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:15.5px}
+th,td{border:1px solid #d1d5db;padding:10px;text-align:left;vertical-align:top}
+th{background:#eef2ff;color:#111827}
+.page,.content,section{min-width:0;max-width:100%}
+img,video,svg,canvas{max-width:100%;height:auto}
+table{display:block;width:100%;max-width:100%;overflow-x:auto;overflow-y:hidden;border-radius:12px;-webkit-overflow-scrolling:touch}
+th,td{min-width:110px;overflow-wrap:break-word}
+@media(max-width:900px){.page{display:block;width:100%;padding:5px}.sidebar{display:none}.content{width:100%;min-width:0;padding:6px;border-radius:10px}.hero{padding:18px 10px}.hero h1{font-size:24px}h2{font-size:21px}h3{font-size:18px}p,li{font-size:15px}.image-icon{min-height:130px;padding:8px}}
+</style>
+<link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
+<script src="../../../../../../../assets/shared/portal.js" defer></script>
+<script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
+</head>
+<body>
+<div class="page">
+
+<aside class="sidebar">
+<h2>Topics</h2>
+<a href="#fundamental-theorem">Fundamental Theorem of Calculus</a>
+<a href="#integration">Integration</a>
+<a href="#integration-products">Integration of Products</a>
+<a href="#integration-quotients">Integration of Quotients</a>
+<a href="#integration-chains">Integration of Chains</a>
+<a href="#calculus-rules">Simple Rules for Calculus</a>
+<a href="#differential-calculus">Differential Calculus</a>
+<a href="#derivative-definition">Definition of Derivative</a>
+<a href="#derivative-function">Finding Derivative of a Function</a>
+<a href="#partial-derivatives">Partial Derivatives</a>
+<a href="#jacobian-matrix">Jacobian Matrix</a>
+<a href="#vector-calculus">Vector Calculus</a>
+<a href="#lagrange-multipliers">Lagrange Multipliers</a>
+<a href="#constrained-optimization">Constrained Optimization</a>
+<a href="#revision-summary">Complete Revision Summary</a>
+</aside>
+
+<main class="content">
+
+<div class="hero">
+<h1>Calculus</h1>
+<p><strong>26 Periods</strong> — Hindi + English Mixed, Exam-Oriented Notes</p>
+</div>
+
+<section id="fundamental-theorem">
+<h2>1. The Fundamental Theorem of Calculus</h2>
+<div class="image-icon"><img src="../images/fundamental-theorem-calculus.webp" alt="Fundamental Theorem of Calculus"></div>
+<p><strong>Fundamental Theorem of Calculus (FTC)</strong> differentiation और integration के बीच important relationship establish करता है। यह बताता है कि integration और differentiation एक-दूसरे के inverse operations की तरह काम करते हैं।</p>
+
+<h3>First Part</h3>
+<p>यदि <strong>F(x)=∫ₐˣ f(t)dt</strong>, जहाँ f continuous है, तो:</p>
+<div class="formula">F′(x) = f(x)</div>
+
+<h3>Second Part</h3>
+<p>यदि F, f का antiderivative है, तो definite integral को endpoints पर F की values से calculate किया जा सकता है:</p>
+<div class="formula">∫ₐᵇ f(x)dx = F(b) − F(a)</div>
+
+<div class="example"><b>Example:</b> ∫₀² x dx = [x²/2]₀² = 2.</div>
+<div class="note-box"><b>Exam Point:</b> FTC calculus में derivative और definite integral को connect करने वाला fundamental result है।</div>
+</section>
+
+<section id="integration">
+<h2>2. Integration</h2>
+<div class="image-icon"><img src="../images/integration.webp" alt="Integration"></div>
+<p><strong>Integration</strong> किसी function का antiderivative find करने या definite integral के case में accumulated quantity/area निकालने की process है।</p>
+
+<h3>Basic Rules</h3>
+<div class="formula">∫ xⁿ dx = xⁿ⁺¹/(n+1) + C, &nbsp; n ≠ −1</div>
+<div class="formula">∫ k dx = kx + C</div>
+<div class="formula">∫ eˣ dx = eˣ + C</div>
+<div class="formula">∫ 1/x dx = ln|x| + C</div>
+
+<p>यहाँ <strong>C</strong> arbitrary constant है, जो indefinite integration में add किया जाता है।</p>
+</section>
+
+<section id="integration-products">
+<h2>3. Integration of Products</h2>
+<div class="image-icon"><img src="../images/integration-products.webp" alt="Integration Products"></div>
+<p>जब दो functions का product integrate करना हो, तब commonly <strong>Integration by Parts</strong> का उपयोग किया जाता है। यह product rule of differentiation का reverse form माना जा सकता है।</p>
+<div class="formula">∫u dv = uv − ∫v du</div>
+
+<h3>Steps</h3>
+<ol>
+<li>Suitable function को u और दूसरे part को dv choose करें।</li>
+<li>u का derivative निकालकर du प्राप्त करें।</li>
+<li>dv को integrate करके v प्राप्त करें।</li>
+<li>Formula में values substitute करें।</li>
+<li>Remaining integral solve करें।</li>
+</ol>
+
+<div class="example"><b>Example:</b> ∫x eˣ dx में u=x और dv=eˣdx लेने पर integration by parts apply किया जा सकता है।</div>
+</section>
+
+<section id="integration-quotients">
+<h2>4. Integration of Quotients</h2>
+<div class="image-icon"><img src="../images/integration-quotients.webp" alt="Integration Quotients"></div>
+<p>जब function quotient या fraction form में हो, तो integration की method expression की structure पर depend करती है। कई cases में <strong>substitution</strong>, algebraic simplification या partial fractions useful होते हैं।</p>
+
+<h3>Simple Substitution Idea</h3>
+<p>यदि numerator denominator के derivative से related हो, तो denominator को substitution के रूप में लिया जा सकता है।</p>
+<div class="formula">∫ f′(x)/f(x) dx = ln|f(x)| + C</div>
+
+<div class="example"><b>Example:</b> ∫(2x)/(x²+1) dx में u=x²+1 लेने पर du=2x dx और answer ln(x²+1)+C मिलता है।</div>
+</section>
+
+<section id="integration-chains">
+<h2>5. Integration of Chains / Chain-Type Functions</h2>
+<div class="image-icon"><img src="../images/integration-chains.webp" alt="Integration of Chains"></div>
+<p>जब function के अंदर दूसरा function मौजूद हो, जैसे <strong>f(g(x))</strong>, तब substitution method useful होती है। इसे chain-rule related integration भी समझा जा सकता है।</p>
+<h3>Basic Pattern</h3>
+<div class="formula">∫ f(g(x))g′(x) dx = ∫ f(u) du</div>
+<p>जहाँ u=g(x).</p>
+<div class="example"><b>Example:</b> ∫2x(x²+1)⁵ dx में u=x²+1 लेने पर integral आसानी से solve किया जा सकता है।</div>
+</section>
+
+<section id="calculus-rules">
+<h2>6. Simple Rules for Calculus</h2>
+<div class="image-icon"><img src="../images/simple-calculus-rules.webp" alt="Simple Calculus Rules"></div>
+
+<h3>Power Rule</h3>
+<div class="formula">d/dx(xⁿ) = nxⁿ⁻¹</div>
+
+<h3>Constant Rule</h3>
+<div class="formula">d/dx(c) = 0</div>
+
+<h3>Constant Multiple Rule</h3>
+<div class="formula">d/dx[cf(x)] = c f′(x)</div>
+
+<h3>Sum / Difference Rule</h3>
+<div class="formula">d/dx[f(x) ± g(x)] = f′(x) ± g′(x)</div>
+
+<h3>Product Rule</h3>
+<div class="formula">(fg)′ = f′g + fg′</div>
+
+<h3>Quotient Rule</h3>
+<div class="formula">(f/g)′ = (gf′ − fg′)/g²</div>
+
+<h3>Chain Rule</h3>
+<div class="formula">d/dx[f(g(x))] = f′(g(x))g′(x)</div>
+</section>
+
+<section id="differential-calculus">
+<h2>7. Differential Calculus</h2>
+<div class="image-icon"><img src="../images/differential-calculus.webp" alt="Differential Calculus"></div>
+<p><strong>Differential Calculus</strong> functions के rate of change को study करता है। इसका main concept <strong>derivative</strong> है।</p>
+<p>Derivative यह बताता है कि independent variable में small change होने पर dependent variable किस rate से change करता है।</p>
+
+<h3>Applications</h3>
+<ul>
+<li>Rate of change</li>
+<li>Slope of a curve</li>
+<li>Velocity and acceleration</li>
+<li>Maximum and minimum problems</li>
+<li>Optimization</li>
+<li>Machine Learning में gradient-based methods</li>
+</ul>
+</section>
+
+<section id="derivative-definition">
+<h2>8. Definition of a Derivative</h2>
+<div class="image-icon"><img src="../images/derivative-definition.webp" alt="Definition of Derivative"></div>
+<p>Function f(x) का derivative किसी point पर function के instantaneous rate of change को represent करता है।</p>
+<div class="formula">f′(x) = limₕ→0 [f(x+h) − f(x)]/h</div>
+<p>यह <strong>first principle / limit definition</strong> of derivative है।</p>
+<h3>Geometrical Meaning</h3>
+<p>Graph पर किसी point पर derivative उस point पर curve की <strong>tangent line की slope</strong> देता है।</p>
+<div class="note-box"><b>Exam Point:</b> Derivative को “rate of change” और “tangent की slope” दोनों रूपों में explain किया जा सकता है।</div>
+</section>
+
+<section id="derivative-function">
+<h2>9. How to Find the Derivative of a Function</h2>
+<div class="image-icon"><img src="../images/finding-derivative.webp" alt="Finding Derivative"></div>
+<p>Function की derivative निकालने के लिए function की form देखकर appropriate differentiation rule apply किया जाता है।</p>
+
+<h3>Example 1 — Polynomial</h3>
+<div class="formula">f(x)=x³+4x²−5x+2</div>
+<div class="formula">f′(x)=3x²+8x−5</div>
+
+<h3>Example 2 — Product</h3>
+<div class="formula">f(x)=x²sin(x)</div>
+<p>Product Rule apply करें:</p>
+<div class="formula">f′(x)=2x sin(x)+x² cos(x)</div>
+
+<h3>Example 3 — Chain Rule</h3>
+<div class="formula">f(x)=(3x+1)⁵</div>
+<div class="formula">f′(x)=5(3x+1)⁴×3 = 15(3x+1)⁴</div>
+</section>
+
+<section id="partial-derivatives">
+<h2>10. Partial Derivatives</h2>
+<div class="image-icon"><img src="../images/partial-derivatives.webp" alt="Partial Derivatives"></div>
+<p>जब function में एक से अधिक independent variables हों, तब किसी एक variable के respect में differentiation करते समय बाकी variables को constant माना जाता है। इसे <strong>Partial Differentiation</strong> कहते हैं।</p>
+
+<h3>Example</h3>
+<div class="formula">f(x,y)=x²y+3xy²</div>
+<p>x के respect में:</p>
+<div class="formula">∂f/∂x = 2xy + 3y²</div>
+<p>y के respect में:</p>
+<div class="formula">∂f/∂y = x² + 6xy</div>
+
+<h3>Notation</h3>
+<ul>
+<li>∂f/∂x — partial derivative with respect to x.</li>
+<li>∂f/∂y — partial derivative with respect to y.</li>
+<li>Higher-order partial derivatives भी निकाले जा सकते हैं।</li>
+</ul>
+</section>
+
+<section id="jacobian-matrix">
+<h2>11. The Jacobian Matrix</h2>
+<div class="image-icon"><img src="../images/jacobian-matrix.webp" alt="Jacobian Matrix"></div>
+<p><strong>Jacobian Matrix</strong> multivariable functions के first-order partial derivatives को matrix form में arrange करती है। यह coordinate transformations और multivariable calculus में important है।</p>
+
+<h3>For Two Functions</h3>
+<p>यदि:</p>
+<div class="formula">u=u(x,y), &nbsp; v=v(x,y)</div>
+<p>तो Jacobian:</p>
+<div class="formula">J = ∂(u,v)/∂(x,y) = | ∂u/∂x   ∂u/∂y ; ∂v/∂x   ∂v/∂y |</div>
+
+<h3>Uses</h3>
+<ul>
+<li>Variable transformation.</li>
+<li>Change of coordinates.</li>
+<li>Multivariable integration.</li>
+<li>Nonlinear systems और numerical methods.</li>
+<li>Optimization और machine learning contexts.</li>
+</ul>
+</section>
+
+<section id="vector-calculus">
+<h2>12. Introduction to Vector Calculus</h2>
+<div class="image-icon"><img src="../images/vector-calculus.webp" alt="Vector Calculus"></div>
+<p><strong>Vector Calculus</strong> vectors और multivariable functions के differentiation और integration का study है। इसका उपयोग Physics, Engineering, Computer Graphics, Fluid Mechanics और Data Science related mathematical models में किया जाता है।</p>
+
+<h3>Important Concepts</h3>
+<ul>
+<li><strong>Scalar Field:</strong> प्रत्येक point पर एक scalar value assign करता है।</li>
+<li><strong>Vector Field:</strong> प्रत्येक point पर एक vector assign करता है।</li>
+<li><strong>Gradient:</strong> Scalar field के maximum increase की direction बताता है।</li>
+<li><strong>Divergence:</strong> Vector field के local source/sink behavior को describe करता है।</li>
+<li><strong>Curl:</strong> Vector field की local rotation tendency को describe करता है।</li>
+</ul>
+
+<h3>Gradient</h3>
+<div class="formula">∇f = (∂f/∂x)i + (∂f/∂y)j + (∂f/∂z)k</div>
+<div class="note-box"><b>Exam Point:</b> Vector calculus में gradient, divergence और curl basic operators हैं।</div>
+</section>
+
+<section id="lagrange-multipliers">
+<h2>13. Lagrange Multipliers</h2>
+<div class="image-icon"><img src="../images/lagrange-multipliers.webp" alt="Lagrange Multipliers"></div>
+<p><strong>Lagrange Multipliers</strong> constrained optimization की एक method है। इसका उपयोग तब किया जाता है जब किसी function का maximum या minimum find करना हो और साथ में कोई constraint दिया गया हो।</p>
+
+<h3>Basic Setup</h3>
+<p>Objective function:</p>
+<div class="formula">f(x,y)</div>
+<p>Constraint:</p>
+<div class="formula">g(x,y)=c</div>
+<p>Lagrangian function:</p>
+<div class="formula">L(x,y,λ)=f(x,y)−λ[g(x,y)−c]</div>
+
+<h3>Conditions</h3>
+<div class="formula">∂L/∂x = 0, &nbsp; ∂L/∂y = 0, &nbsp; ∂L/∂λ = 0</div>
+
+<p>इन equations को simultaneously solve करके candidate points प्राप्त किए जाते हैं।</p>
+</section>
+
+<section id="constrained-optimization">
+<h2>14. Constrained Optimization</h2>
+<div class="image-icon"><img src="../images/constrained-optimization.webp" alt="Constrained Optimization"></div>
+<p><strong>Constrained Optimization</strong> में objective function को maximize या minimize करना होता है, लेकिन variables पर एक या अधिक restrictions/constraints लागू होते हैं।</p>
+
+<h3>Example Structure</h3>
+<div class="formula">Maximize / Minimize: f(x,y)</div>
+<div class="formula">Subject to: g(x,y)=c</div>
+
+<h3>General Steps using Lagrange Multipliers</h3>
+<ol>
+<li>Objective function identify करें।</li>
+<li>Constraint identify करें।</li>
+<li>Lagrangian function form करें।</li>
+<li>All required partial derivatives zero के बराबर रखें।</li>
+<li>Equations solve करके candidate points find करें।</li>
+<li>Objective function पर candidate points evaluate करें।</li>
+<li>Maximum/minimum condition को interpret करें।</li>
+</ol>
+
+<div class="example"><b>Real-Life Applications:</b> Limited resources में maximum profit, minimum cost, shortest distance और engineering design optimization जैसे problems में constrained optimization useful है।</div>
+</section>
+
+<section id="revision-summary">
+<h2>15. Complete Revision Summary</h2>
+<div class="image-icon"><img src="../images/calculus-revision-summary.webp" alt="Calculus Revision Summary"></div>
+<table>
+<tr><th>Topic</th><th>Quick Revision</th></tr>
+<tr><td>Fundamental Theorem</td><td>Integration और differentiation के relationship को establish करता है।</td></tr>
+<tr><td>Integration</td><td>Antiderivative या accumulated quantity/area की calculation.</td></tr>
+<tr><td>Products</td><td>Integration by Parts: ∫u dv = uv − ∫v du.</td></tr>
+<tr><td>Quotients</td><td>Structure के अनुसार substitution, simplification या other integration methods.</td></tr>
+<tr><td>Chains</td><td>Inner function की substitution useful होती है।</td></tr>
+<tr><td>Differential Calculus</td><td>Rate of change और derivatives का study.</td></tr>
+<tr><td>Derivative</td><td>f′(x)=limₕ→0 [f(x+h)−f(x)]/h.</td></tr>
+<tr><td>Partial Derivative</td><td>Multivariable function को एक variable के respect में differentiate करना।</td></tr>
+<tr><td>Jacobian</td><td>First-order partial derivatives की matrix.</td></tr>
+<tr><td>Vector Calculus</td><td>Gradient, divergence, curl और vector fields का study.</td></tr>
+<tr><td>Lagrange Multipliers</td><td>Constraint के साथ maximum/minimum find करने की method.</td></tr>
+<tr><td>Constrained Optimization</td><td>Restrictions के under objective function optimize करना।</td></tr>
+</table>
+
+<div class="note-box">
+<b>Final Exam Revision Flow:</b><br><br>
+<strong>Calculus Basics</strong> → Differentiation → Integration<br><br>
+<strong>Integration</strong> → Basic Rules → Products → Quotients → Chain-Type Functions → FTC<br><br>
+<strong>Differential Calculus</strong> → Derivative Definition → Rules → Function Derivatives<br><br>
+<strong>Multivariable Calculus</strong> → Partial Derivatives → Jacobian Matrix → Vector Calculus<br><br>
+<strong>Optimization</strong> → Lagrange Multipliers → Constrained Optimization
+</div>
+</section>
+
+</main>
+</div>
+</body>
+</html>
