@@ -1,17 +1,619 @@
-<!DOCTYPE html><html lang="hi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Introduction to Internet of Things (IoT)</title><style>
-*{box-sizing:border-box}body{margin:0;background:#f4f7fb;color:#1f2937;font-family:Segoe UI,Arial,sans-serif;line-height:1.75}.layout{display:grid;grid-template-columns:280px 1fr;gap:18px;max-width:1500px;margin:auto;padding:12px}aside{position:sticky;top:12px;height:calc(100vh - 24px);overflow:auto;background:#fff;border-radius:16px;padding:18px;box-shadow:0 5px 20px #0001}aside h2{margin:0 0 12px}aside a{display:block;text-decoration:none;color:#374151;padding:7px 9px;border-radius:8px;font-size:14px}aside a:hover{background:#eef2ff;color:#1d4ed8}main{background:#fff;border-radius:18px;padding:10px;box-shadow:0 5px 20px #0001}.hero{padding:30px 22px;background:linear-gradient(135deg,#e0e7ff,#f8fafc);border-radius:16px}.hero h1{font-size:35px;margin:0 0 8px;color:#111827}section{padding:24px 14px;border-bottom:1px solid #e5e7eb}h2{font-size:27px;border-left:5px solid #2563eb;padding-left:12px}h3{color:#1e3a8a;margin-top:20px}p,li{font-size:16px}ul,ol{padding-left:28px}.note,.exam{padding:14px 16px;border-radius:12px;margin:16px 0}.note{background:#eff6ff;border-left:5px solid #3b82f6}.exam{background:#ecfdf5;border-left:5px solid #10b981}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.card{background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:15px}.card h4{color:#1d4ed8;margin:0}.flow{background:#080808;color:#fff;border-radius:14px;padding:18px;text-align:center;font-family:Consolas,monospace;overflow:auto;margin:18px 0}table{width:100%;border-collapse:collapse;margin:16px 0;display:block;overflow:auto}th,td{border:1px solid #cbd5e1;padding:10px;text-align:left;min-width:150px}th{background:#eef2ff}.diagram{border:2px dashed #94a3b8;background:#f8fafc;padding:20px;text-align:center;border-radius:15px}@media(max-width:900px){.layout{display:block}aside{display:none}.hero h1{font-size:27px}.grid{grid-template-columns:1fr}}
-</style></head><body><div class="layout"><aside><h2>Topics</h2><a href="#intro">Introduction to IoT</a><a href="#definition">Defining IoT</a><a href="#things">Things in IoT</a><a href="#characteristics">Characteristics</a><a href="#physical">Physical Design</a><a href="#logical">Logical Design</a><a href="#functional">Functional Blocks</a><a href="#protocols">IoT Protocols</a><a href="#models">Communication Models</a><a href="#apis">Communication APIs</a><a href="#technologies">Enabling Technologies</a><a href="#applications">Applications</a><a href="#revision">Quick Revision</a></aside><main><div class="hero"><h1>Introduction to Internet of Things (IoT)</h1><p><b>10 Periods</b> • Hindi + English Mixed • Exam-Oriented Notes</p></div>
-<section id="intro"><h2>1. Introduction to IoT</h2><p><b>Internet of Things (IoT)</b> एक technology concept है जिसमें physical objects या “Things” को sensors, software, processing capability और network connectivity की सहायता से Internet से connect किया जाता है। Connected devices data collect, exchange और process कर सकते हैं।</p><p>IoT का उद्देश्य केवल computers और smartphones को connect करना नहीं, बल्कि daily life तथा industrial environment की physical चीजों को भी Internet के माध्यम से communicate और automate करना है।</p><div class="flow">Physical Thing → Sensor → Network/Internet → Processing/Cloud → Application → User</div><div class="exam"><b>Exam Point:</b> IoT में physical objects को sensing, processing और communication capabilities के साथ Internet से connect किया जाता है ताकि वे data exchange और useful actions perform कर सकें।</div></section>
-<section id="definition"><h2>2. Defining IoT</h2><h3>Definition</h3><p><b>Internet of Things (IoT)</b> interconnected physical devices, sensors, software और network technologies का system है, जिसमें objects Internet के माध्यम से data collect, exchange और process कर सकते हैं।</p><h3>IoT के Main Elements</h3><div class="grid"><div class="card"><h4>Physical Things</h4><p>Sensor, vehicle, machine, appliance आदि real-world objects।</p></div><div class="card"><h4>Sensors</h4><p>Temperature, motion, light, pressure आदि detect करते हैं।</p></div><div class="card"><h4>Connectivity</h4><p>Wi-Fi, Bluetooth, Cellular, Ethernet आदि communication माध्यम।</p></div><div class="card"><h4>Processing</h4><p>Device, edge या cloud system collected data process करता है।</p></div></div></section>
-<section id="things"><h2>3. Things in IoT</h2><p>IoT में <b>Thing</b> किसी भी physical object को कहा जा सकता है जिसे identify किया जा सके और जिसमें sensing, processing या communication capability जोड़ी जा सके।</p><ul><li>Smart Watch</li><li>Smart TV</li><li>Smart Bulb</li><li>Smart Refrigerator</li><li>Industrial Machine</li><li>Vehicle</li><li>Temperature Sensor</li><li>Security Camera</li></ul><table><tr><th>Component</th><th>Purpose</th></tr><tr><td>Sensor</td><td>Environment से data collect करना।</td></tr><tr><td>Actuator</td><td>Command के अनुसार physical action करना।</td></tr><tr><td>Processor</td><td>Data को process करना।</td></tr><tr><td>Communication Module</td><td>Network के माध्यम से data send/receive करना।</td></tr><tr><td>Power Source</td><td>Device को energy देना।</td></tr></table></section>
-<section id="characteristics"><h2>4. Characteristics of IoT</h2><ol><li><b>Connectivity:</b> Devices network/Internet से connected रहते हैं।</li><li><b>Sensing:</b> Sensors physical environment से data collect करते हैं।</li><li><b>Data Exchange:</b> Devices और systems data share करते हैं।</li><li><b>Intelligence:</b> Data processing के आधार पर decisions/actions लिए जा सकते हैं।</li><li><b>Automation:</b> कई tasks automatically perform हो सकते हैं।</li><li><b>Real-Time Monitoring:</b> Live data monitoring possible है।</li><li><b>Scalability:</b> बड़ी संख्या में devices जोड़े जा सकते हैं।</li><li><b>Heterogeneity:</b> अलग hardware/software technologies साथ काम कर सकती हैं।</li><li><b>Security:</b> Devices और data को protect करना आवश्यक है।</li></ol></section>
-<section id="physical"><h2>5. Physical Design of IoT</h2><p><b>Physical Design</b> IoT system के physical components और devices से related है। इसमें Things, Sensors, Actuators, Processing Units और Communication Interfaces आते हैं।</p><h3>Sensors</h3><p>Temperature, humidity, pressure, light और motion जैसे parameters measure करते हैं।</p><h3>Actuators</h3><p>Received command के आधार पर physical action perform करते हैं, जैसे motor ON/OFF करना।</p><h3>Processing Unit</h3><p>Microcontroller, microprocessor या embedded computer data process कर सकता है।</p><h3>Communication Interface</h3><p>Wi-Fi, Bluetooth, Zigbee, Ethernet और Cellular आदि से communication होता है।</p><div class="flow">Sensor → Microcontroller → Communication Module → Internet/Cloud<br>                                                ↓<br>                                             Actuator / Action</div></section>
-<section id="logical"><h2>6. Logical Design of IoT</h2><p><b>Logical Design</b> IoT system के functional behavior और software-level organization को describe करता है। यह बताता है कि components logically कैसे communicate और interact करते हैं।</p><ul><li>Functional Blocks</li><li>Communication Models</li><li>Communication APIs</li><li>Protocols</li><li>Data Processing and Services</li></ul><div class="diagram"><b>Device → Communication → Data Processing → Application/Service → User</b></div><table><tr><th>Physical Design</th><th>Logical Design</th></tr><tr><td>Hardware और physical components पर focus।</td><td>Functions और communication behavior पर focus।</td></tr><tr><td>Sensors, actuators, processors आदि।</td><td>Functional blocks, models, APIs, protocols आदि।</td></tr></table></section>
-<section id="functional"><h2>7. Functional Blocks of IoT</h2><table><tr><th>Functional Block</th><th>Function</th></tr><tr><td>Sensing</td><td>Physical environment से data collect करना।</td></tr><tr><td>Processing</td><td>Collected data को process/analyze करना।</td></tr><tr><td>Communication</td><td>Devices और systems के बीच data transfer करना।</td></tr><tr><td>Services</td><td>User/application को required services देना।</td></tr><tr><td>Management</td><td>Devices, resources और operations manage करना।</td></tr><tr><td>Security</td><td>Device, network और data की protection।</td></tr></table><div class="flow">Sensing → Processing → Communication → Services<br>                    ↓<br>             Management + Security</div></section>
-<section id="protocols"><h2>8. IoT Protocols</h2><p><b>IoT Protocols</b> communication के rules और standards हैं जिनका उपयोग devices के बीच data exchange के लिए किया जाता है।</p><table><tr><th>Protocol</th><th>Use / Description</th></tr><tr><td>MQTT</td><td>Lightweight publish/subscribe messaging protocol; IoT applications में commonly used।</td></tr><tr><td>CoAP</td><td>Constrained devices और low-resource environments के लिए lightweight protocol।</td></tr><tr><td>HTTP/HTTPS</td><td>Web-based communication और APIs के लिए widely used।</td></tr><tr><td>WebSocket</td><td>Persistent two-way communication के लिए।</td></tr><tr><td>Bluetooth/BLE</td><td>Short-range wireless communication।</td></tr><tr><td>Zigbee</td><td>Low-power wireless device networks में उपयोगी।</td></tr></table></section>
-<section id="models"><h2>9. IoT Communication Models</h2><h3>1. Request-Response</h3><p>Client/device request भेजता है और server/system response देता है।</p><div class="flow">Client → Request → Server<br>Client ← Response ← Server</div><h3>2. Publish-Subscribe</h3><p>Publisher message publish करता है और subscribers उसे receive करते हैं। MQTT इसका common example है।</p><div class="flow">Publisher → Broker → Subscribers</div><h3>3. Push-Pull</h3><p>Producer data push करता है और consumer available data pull करके process करता है।</p><h3>4. Exclusive Pair</h3><p>दो endpoints के बीच persistent और continuous communication connection maintain होता है।</p><table><tr><th>Model</th><th>Basic Idea</th></tr><tr><td>Request-Response</td><td>Request के बाद Response।</td></tr><tr><td>Publish-Subscribe</td><td>Publisher → Broker → Subscribers।</td></tr><tr><td>Push-Pull</td><td>Producer push करता है, consumer pull करता है।</td></tr><tr><td>Exclusive Pair</td><td>दो endpoints के बीच persistent connection।</td></tr></table></section>
-<section id="apis"><h2>10. IoT Communication APIs</h2><p><b>API (Application Programming Interface)</b> rules और interfaces का set है जिसके माध्यम से software applications और services एक-दूसरे से communicate करती हैं।</p><div class="grid"><div class="card"><h4>REST API</h4><p>HTTP-based web services और IoT integrations में commonly used approach।</p></div><div class="card"><h4>WebSocket API</h4><p>Real-time two-way communication के लिए useful।</p></div><div class="card"><h4>MQTT Interface</h4><p>Publish/subscribe messaging के माध्यम से IoT data exchange।</p></div><div class="card"><h4>Device/Cloud APIs</h4><p>Cloud applications और IoT devices/services के integration में उपयोगी।</p></div></div><h3>Benefits</h3><ul><li>Different systems को integrate करना आसान।</li><li>Structured data exchange possible।</li><li>Applications और devices के बीच interaction।</li><li>Cloud services के साथ integration आसान।</li></ul></section>
-<section id="technologies"><h2>11. IoT Enabling Technologies</h2><p>IoT implementation के लिए कई technologies मिलकर काम करती हैं ताकि devices data sense, communicate, process और analyze कर सकें।</p><table><tr><th>Technology</th><th>Role in IoT</th></tr><tr><td>RFID</td><td>Object identification और tracking।</td></tr><tr><td>Sensors</td><td>Physical environment से data collection।</td></tr><tr><td>Wireless Sensor Networks</td><td>Multiple sensors को network में connect करना।</td></tr><tr><td>Cloud Computing</td><td>Data storage, processing और services।</td></tr><tr><td>Big Data Analytics</td><td>Large IoT datasets से insights निकालना।</td></tr><tr><td>Artificial Intelligence</td><td>Prediction, automation और intelligent decisions।</td></tr><tr><td>Mobile Technology</td><td>IoT services को mobile users से connect करना।</td><tr><td>Edge Computing</td><td>Source/device के पास data process करके latency और bandwidth requirements कम करने में मदद।</td></tr></table><div class="exam"><b>Important:</b> IoT एक single technology नहीं है; यह sensors, connectivity, computing, cloud, analytics, AI और security जैसी technologies का combination है।</div></section>
-<section id="applications"><h2>12. Applications of IoT</h2><div class="grid"><div class="card"><h4>Smart Home</h4><p>Smart lights, appliances और security systems।</p></div><div class="card"><h4>Healthcare</h4><p>Wearables और remote monitoring।</p></div><div class="card"><h4>Smart Agriculture</h4><p>Soil moisture, irrigation और environmental monitoring।</p></div><div class="card"><h4>Smart City</h4><p>Traffic, parking, lighting और waste management।</p></div><div class="card"><h4>Industrial IoT</h4><p>Machine monitoring और predictive maintenance।</p></div><div class="card"><h4>Connected Vehicles</h4><p>Tracking, diagnostics और connected services।</p></div></div></section>
-<section id="revision"><h2>13. Quick Revision</h2><table><tr><th>Topic</th><th>One-Line Revision</th></tr><tr><td>IoT</td><td>Internet-connected physical things का system।</td></tr><tr><td>Things</td><td>IoT environment में connected physical objects।</td></tr><tr><td>Characteristics</td><td>Connectivity, sensing, data exchange, intelligence, automation आदि।</td></tr><tr><td>Physical Design</td><td>Hardware और physical components।</td></tr><tr><td>Logical Design</td><td>Functions, communication और software-level organization।</td></tr><tr><td>Functional Blocks</td><td>Sensing, processing, communication, services, management, security।</td></tr><tr><td>Protocols</td><td>MQTT, CoAP, HTTP आदि communication rules/standards।</td><tr><td>Models</td><td>Request-Response, Publish-Subscribe, Push-Pull, Exclusive Pair।</td></tr><tr><td>APIs</td><td>Software/services के बीच communication interfaces।</td></tr><tr><td>Enabling Technologies</td><td>RFID, sensors, cloud, big data, AI, mobile, edge आदि।</td></tr></table><div class="exam"><b>Important Exam Questions</b><br><br>1. IoT क्या है? Definition और characteristics समझाइए।<br>2. IoT में Things से क्या तात्पर्य है?<br>3. Physical और Logical Design of IoT समझाइए।<br>4. Functional Blocks of IoT समझाइए।<br>5. IoT Protocols क्या हैं? MQTT और HTTP समझाइए।<br>6. IoT Communication Models समझाइए।<br>7. IoT Communication APIs क्या हैं?<br>8. IoT Enabling Technologies समझाइए।</div></section>
-</main></div></body></html>
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Introduction to Internet of Things (IoT)</title>
+    <style>
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            background: #f4f7fb;
+            color: #1f2937;
+            font-family: Segoe UI, Arial, sans-serif;
+            line-height: 1.75
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 18px;
+            max-width: 1500px;
+            margin: auto;
+            padding: 12px
+        }
+
+        aside {
+            position: sticky;
+            top: 12px;
+            height: calc(100vh - 24px);
+            overflow: auto;
+            background: #fff;
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: 0 5px 20px #0001
+        }
+
+        aside h2 {
+            margin: 0 0 12px
+        }
+
+        aside a {
+            display: block;
+            text-decoration: none;
+            color: #374151;
+            padding: 7px 9px;
+            border-radius: 8px;
+            font-size: 14px
+        }
+
+        aside a:hover {
+            background: #eef2ff;
+            color: #1d4ed8
+        }
+
+        main {
+            background: #fff;
+            border-radius: 18px;
+            padding: 10px;
+            box-shadow: 0 5px 20px #0001
+        }
+
+        .hero {
+            padding: 30px 22px;
+            background: linear-gradient(135deg, #e0e7ff, #f8fafc);
+            border-radius: 16px
+        }
+
+        .hero h1 {
+            font-size: 35px;
+            margin: 0 0 8px;
+            color: #111827
+        }
+
+        section {
+            padding: 24px 14px;
+            border-bottom: 1px solid #e5e7eb
+        }
+
+        h2 {
+            font-size: 27px;
+            border-left: 5px solid #2563eb;
+            padding-left: 12px
+        }
+
+        h3 {
+            color: #1e3a8a;
+            margin-top: 20px
+        }
+
+        p,
+        li {
+            font-size: 16px
+        }
+
+        ul,
+        ol {
+            padding-left: 28px
+        }
+
+        .note,
+        .exam {
+            padding: 14px 16px;
+            border-radius: 12px;
+            margin: 16px 0
+        }
+
+        .note {
+            background: #eff6ff;
+            border-left: 5px solid #3b82f6
+        }
+
+        .exam {
+            background: #ecfdf5;
+            border-left: 5px solid #10b981
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px
+        }
+
+        .card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 15px
+        }
+
+        .card h4 {
+            color: #1d4ed8;
+            margin: 0
+        }
+
+        .flow {
+            background: #080808;
+            color: #fff;
+            border-radius: 14px;
+            padding: 18px;
+            text-align: center;
+            font-family: Consolas, monospace;
+            overflow: auto;
+            margin: 18px 0
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            display: block;
+            overflow: auto
+        }
+
+        th,
+        td {
+            border: 1px solid #cbd5e1;
+            padding: 10px;
+            text-align: left;
+            min-width: 150px
+        }
+
+        th {
+            background: #eef2ff
+        }
+
+        .diagram {
+            border: 2px dashed #94a3b8;
+            background: #f8fafc;
+            padding: 20px;
+            text-align: center;
+            border-radius: 15px
+        }
+
+        @media(max-width:900px) {
+            .layout {
+                display: block
+            }
+
+            aside {
+                display: none
+            }
+
+            .hero h1 {
+                font-size: 27px
+            }
+
+            .grid {
+                grid-template-columns: 1fr
+            }
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="layout">
+        <aside>
+            <h2>Topics</h2><a href="#intro">Introduction to IoT</a><a href="#definition">Defining IoT</a><a
+                href="#things">Things in IoT</a><a href="#characteristics">Characteristics</a><a
+                href="#physical">Physical Design</a><a href="#logical">Logical Design</a><a
+                href="#functional">Functional Blocks</a><a href="#protocols">IoT Protocols</a><a
+                href="#models">Communication Models</a><a href="#apis">Communication APIs</a><a
+                href="#technologies">Enabling Technologies</a><a href="#applications">Applications</a><a
+                href="#revision">Quick Revision</a>
+        </aside>
+        <main>
+            <div class="hero">
+                <h1>Introduction to Internet of Things (IoT)</h1>
+                <p><b>10 Periods</b> • Hindi + English Mixed • Exam-Oriented Notes</p>
+            </div>
+            <section id="intro">
+                <h2>1. Introduction to IoT</h2>
+                <p><b>Internet of Things (IoT)</b> एक technology concept है जिसमें physical objects या “Things” को
+                    sensors, software, processing capability और network connectivity की सहायता से Internet से connect
+                    किया जाता है। Connected devices data collect, exchange और process कर सकते हैं।</p>
+                <p>IoT का उद्देश्य केवल computers और smartphones को connect करना नहीं, बल्कि daily life तथा industrial
+                    environment की physical चीजों को भी Internet के माध्यम से communicate और automate करना है।</p>
+                <div class="flow">Physical Thing → Sensor → Network/Internet → Processing/Cloud → Application → User
+                </div>
+                <div class="exam"><b>Exam Point:</b> IoT में physical objects को sensing, processing और communication
+                    capabilities के साथ Internet से connect किया जाता है ताकि वे data exchange और useful actions perform
+                    कर सकें।</div>
+            </section>
+            <section id="definition">
+                <h2>2. Defining IoT</h2>
+                <h3>Definition</h3>
+                <p><b>Internet of Things (IoT)</b> interconnected physical devices, sensors, software और network
+                    technologies का system है, जिसमें objects Internet के माध्यम से data collect, exchange और process कर
+                    सकते हैं।</p>
+                <h3>IoT के Main Elements</h3>
+                <div class="grid">
+                    <div class="card">
+                        <h4>Physical Things</h4>
+                        <p>Sensor, vehicle, machine, appliance आदि real-world objects।</p>
+                    </div>
+                    <div class="card">
+                        <h4>Sensors</h4>
+                        <p>Temperature, motion, light, pressure आदि detect करते हैं।</p>
+                    </div>
+                    <div class="card">
+                        <h4>Connectivity</h4>
+                        <p>Wi-Fi, Bluetooth, Cellular, Ethernet आदि communication माध्यम।</p>
+                    </div>
+                    <div class="card">
+                        <h4>Processing</h4>
+                        <p>Device, edge या cloud system collected data process करता है।</p>
+                    </div>
+                </div>
+            </section>
+            <section id="things">
+                <h2>3. Things in IoT</h2>
+                <p>IoT में <b>Thing</b> किसी भी physical object को कहा जा सकता है जिसे identify किया जा सके और जिसमें
+                    sensing, processing या communication capability जोड़ी जा सके।</p>
+                <ul>
+                    <li>Smart Watch</li>
+                    <li>Smart TV</li>
+                    <li>Smart Bulb</li>
+                    <li>Smart Refrigerator</li>
+                    <li>Industrial Machine</li>
+                    <li>Vehicle</li>
+                    <li>Temperature Sensor</li>
+                    <li>Security Camera</li>
+                </ul>
+                <table>
+                    <tr>
+                        <th>Component</th>
+                        <th>Purpose</th>
+                    </tr>
+                    <tr>
+                        <td>Sensor</td>
+                        <td>Environment से data collect करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Actuator</td>
+                        <td>Command के अनुसार physical action करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Processor</td>
+                        <td>Data को process करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Communication Module</td>
+                        <td>Network के माध्यम से data send/receive करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Power Source</td>
+                        <td>Device को energy देना।</td>
+                    </tr>
+                </table>
+            </section>
+            <section id="characteristics">
+                <h2>4. Characteristics of IoT</h2>
+                <ol>
+                    <li><b>Connectivity:</b> Devices network/Internet से connected रहते हैं।</li>
+                    <li><b>Sensing:</b> Sensors physical environment से data collect करते हैं।</li>
+                    <li><b>Data Exchange:</b> Devices और systems data share करते हैं।</li>
+                    <li><b>Intelligence:</b> Data processing के आधार पर decisions/actions लिए जा सकते हैं।</li>
+                    <li><b>Automation:</b> कई tasks automatically perform हो सकते हैं।</li>
+                    <li><b>Real-Time Monitoring:</b> Live data monitoring possible है।</li>
+                    <li><b>Scalability:</b> बड़ी संख्या में devices जोड़े जा सकते हैं।</li>
+                    <li><b>Heterogeneity:</b> अलग hardware/software technologies साथ काम कर सकती हैं।</li>
+                    <li><b>Security:</b> Devices और data को protect करना आवश्यक है।</li>
+                </ol>
+            </section>
+            <section id="physical">
+                <h2>5. Physical Design of IoT</h2>
+                <p><b>Physical Design</b> IoT system के physical components और devices से related है। इसमें Things,
+                    Sensors, Actuators, Processing Units और Communication Interfaces आते हैं।</p>
+                <h3>Sensors</h3>
+                <p>Temperature, humidity, pressure, light और motion जैसे parameters measure करते हैं।</p>
+                <h3>Actuators</h3>
+                <p>Received command के आधार पर physical action perform करते हैं, जैसे motor ON/OFF करना।</p>
+                <h3>Processing Unit</h3>
+                <p>Microcontroller, microprocessor या embedded computer data process कर सकता है।</p>
+                <h3>Communication Interface</h3>
+                <p>Wi-Fi, Bluetooth, Zigbee, Ethernet और Cellular आदि से communication होता है।</p>
+                <div class="flow">Sensor → Microcontroller → Communication Module →
+                    Internet/Cloud<br>                                                ↓<br>                                            
+                    Actuator / Action</div>
+            </section>
+            <section id="logical">
+                <h2>6. Logical Design of IoT</h2>
+                <p><b>Logical Design</b> IoT system के functional behavior और software-level organization को describe
+                    करता है। यह बताता है कि components logically कैसे communicate और interact करते हैं।</p>
+                <ul>
+                    <li>Functional Blocks</li>
+                    <li>Communication Models</li>
+                    <li>Communication APIs</li>
+                    <li>Protocols</li>
+                    <li>Data Processing and Services</li>
+                </ul>
+                <div class="diagram"><b>Device → Communication → Data Processing → Application/Service → User</b></div>
+                <table>
+                    <tr>
+                        <th>Physical Design</th>
+                        <th>Logical Design</th>
+                    </tr>
+                    <tr>
+                        <td>Hardware और physical components पर focus।</td>
+                        <td>Functions और communication behavior पर focus।</td>
+                    </tr>
+                    <tr>
+                        <td>Sensors, actuators, processors आदि।</td>
+                        <td>Functional blocks, models, APIs, protocols आदि।</td>
+                    </tr>
+                </table>
+            </section>
+            <section id="functional">
+                <h2>7. Functional Blocks of IoT</h2>
+                <table>
+                    <tr>
+                        <th>Functional Block</th>
+                        <th>Function</th>
+                    </tr>
+                    <tr>
+                        <td>Sensing</td>
+                        <td>Physical environment से data collect करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Processing</td>
+                        <td>Collected data को process/analyze करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Communication</td>
+                        <td>Devices और systems के बीच data transfer करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Services</td>
+                        <td>User/application को required services देना।</td>
+                    </tr>
+                    <tr>
+                        <td>Management</td>
+                        <td>Devices, resources और operations manage करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Security</td>
+                        <td>Device, network और data की protection।</td>
+                    </tr>
+                </table>
+                <div class="flow">Sensing → Processing → Communication →
+                    Services<br>                    ↓<br>             Management + Security</div>
+            </section>
+            <section id="protocols">
+                <h2>8. IoT Protocols</h2>
+                <p><b>IoT Protocols</b> communication के rules और standards हैं जिनका उपयोग devices के बीच data exchange
+                    के लिए किया जाता है।</p>
+                <table>
+                    <tr>
+                        <th>Protocol</th>
+                        <th>Use / Description</th>
+                    </tr>
+                    <tr>
+                        <td>MQTT</td>
+                        <td>Lightweight publish/subscribe messaging protocol; IoT applications में commonly used।</td>
+                    </tr>
+                    <tr>
+                        <td>CoAP</td>
+                        <td>Constrained devices और low-resource environments के लिए lightweight protocol।</td>
+                    </tr>
+                    <tr>
+                        <td>HTTP/HTTPS</td>
+                        <td>Web-based communication और APIs के लिए widely used।</td>
+                    </tr>
+                    <tr>
+                        <td>WebSocket</td>
+                        <td>Persistent two-way communication के लिए।</td>
+                    </tr>
+                    <tr>
+                        <td>Bluetooth/BLE</td>
+                        <td>Short-range wireless communication।</td>
+                    </tr>
+                    <tr>
+                        <td>Zigbee</td>
+                        <td>Low-power wireless device networks में उपयोगी।</td>
+                    </tr>
+                </table>
+            </section>
+            <section id="models">
+                <h2>9. IoT Communication Models</h2>
+                <h3>1. Request-Response</h3>
+                <p>Client/device request भेजता है और server/system response देता है।</p>
+                <div class="flow">Client → Request → Server<br>Client ← Response ← Server</div>
+                <h3>2. Publish-Subscribe</h3>
+                <p>Publisher message publish करता है और subscribers उसे receive करते हैं। MQTT इसका common example है।
+                </p>
+                <div class="flow">Publisher → Broker → Subscribers</div>
+                <h3>3. Push-Pull</h3>
+                <p>Producer data push करता है और consumer available data pull करके process करता है।</p>
+                <h3>4. Exclusive Pair</h3>
+                <p>दो endpoints के बीच persistent और continuous communication connection maintain होता है।</p>
+                <table>
+                    <tr>
+                        <th>Model</th>
+                        <th>Basic Idea</th>
+                    </tr>
+                    <tr>
+                        <td>Request-Response</td>
+                        <td>Request के बाद Response।</td>
+                    </tr>
+                    <tr>
+                        <td>Publish-Subscribe</td>
+                        <td>Publisher → Broker → Subscribers।</td>
+                    </tr>
+                    <tr>
+                        <td>Push-Pull</td>
+                        <td>Producer push करता है, consumer pull करता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Exclusive Pair</td>
+                        <td>दो endpoints के बीच persistent connection।</td>
+                    </tr>
+                </table>
+            </section>
+            <section id="apis">
+                <h2>10. IoT Communication APIs</h2>
+                <p><b>API (Application Programming Interface)</b> rules और interfaces का set है जिसके माध्यम से software
+                    applications और services एक-दूसरे से communicate करती हैं।</p>
+                <div class="grid">
+                    <div class="card">
+                        <h4>REST API</h4>
+                        <p>HTTP-based web services और IoT integrations में commonly used approach।</p>
+                    </div>
+                    <div class="card">
+                        <h4>WebSocket API</h4>
+                        <p>Real-time two-way communication के लिए useful।</p>
+                    </div>
+                    <div class="card">
+                        <h4>MQTT Interface</h4>
+                        <p>Publish/subscribe messaging के माध्यम से IoT data exchange।</p>
+                    </div>
+                    <div class="card">
+                        <h4>Device/Cloud APIs</h4>
+                        <p>Cloud applications और IoT devices/services के integration में उपयोगी।</p>
+                    </div>
+                </div>
+                <h3>Benefits</h3>
+                <ul>
+                    <li>Different systems को integrate करना आसान।</li>
+                    <li>Structured data exchange possible।</li>
+                    <li>Applications और devices के बीच interaction।</li>
+                    <li>Cloud services के साथ integration आसान।</li>
+                </ul>
+            </section>
+            <section id="technologies">
+                <h2>11. IoT Enabling Technologies</h2>
+                <p>IoT implementation के लिए कई technologies मिलकर काम करती हैं ताकि devices data sense, communicate,
+                    process और analyze कर सकें।</p>
+                <table>
+                    <tr>
+                        <th>Technology</th>
+                        <th>Role in IoT</th>
+                    </tr>
+                    <tr>
+                        <td>RFID</td>
+                        <td>Object identification और tracking।</td>
+                    </tr>
+                    <tr>
+                        <td>Sensors</td>
+                        <td>Physical environment से data collection।</td>
+                    </tr>
+                    <tr>
+                        <td>Wireless Sensor Networks</td>
+                        <td>Multiple sensors को network में connect करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Cloud Computing</td>
+                        <td>Data storage, processing और services।</td>
+                    </tr>
+                    <tr>
+                        <td>Big Data Analytics</td>
+                        <td>Large IoT datasets से insights निकालना।</td>
+                    </tr>
+                    <tr>
+                        <td>Artificial Intelligence</td>
+                        <td>Prediction, automation और intelligent decisions।</td>
+                    </tr>
+                    <tr>
+                        <td>Mobile Technology</td>
+                        <td>IoT services को mobile users से connect करना।</td>
+                    <tr>
+                        <td>Edge Computing</td>
+                        <td>Source/device के पास data process करके latency और bandwidth requirements कम करने में मदद।
+                        </td>
+                    </tr>
+                </table>
+                <div class="exam"><b>Important:</b> IoT एक single technology नहीं है; यह sensors, connectivity,
+                    computing, cloud, analytics, AI और security जैसी technologies का combination है।</div>
+            </section>
+            <section id="applications">
+                <h2>12. Applications of IoT</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h4>Smart Home</h4>
+                        <p>Smart lights, appliances और security systems।</p>
+                    </div>
+                    <div class="card">
+                        <h4>Healthcare</h4>
+                        <p>Wearables और remote monitoring।</p>
+                    </div>
+                    <div class="card">
+                        <h4>Smart Agriculture</h4>
+                        <p>Soil moisture, irrigation और environmental monitoring।</p>
+                    </div>
+                    <div class="card">
+                        <h4>Smart City</h4>
+                        <p>Traffic, parking, lighting और waste management।</p>
+                    </div>
+                    <div class="card">
+                        <h4>Industrial IoT</h4>
+                        <p>Machine monitoring और predictive maintenance।</p>
+                    </div>
+                    <div class="card">
+                        <h4>Connected Vehicles</h4>
+                        <p>Tracking, diagnostics और connected services।</p>
+                    </div>
+                </div>
+            </section>
+            <section id="revision">
+                <h2>13. Quick Revision</h2>
+                <table>
+                    <tr>
+                        <th>Topic</th>
+                        <th>One-Line Revision</th>
+                    </tr>
+                    <tr>
+                        <td>IoT</td>
+                        <td>Internet-connected physical things का system।</td>
+                    </tr>
+                    <tr>
+                        <td>Things</td>
+                        <td>IoT environment में connected physical objects।</td>
+                    </tr>
+                    <tr>
+                        <td>Characteristics</td>
+                        <td>Connectivity, sensing, data exchange, intelligence, automation आदि।</td>
+                    </tr>
+                    <tr>
+                        <td>Physical Design</td>
+                        <td>Hardware और physical components।</td>
+                    </tr>
+                    <tr>
+                        <td>Logical Design</td>
+                        <td>Functions, communication और software-level organization।</td>
+                    </tr>
+                    <tr>
+                        <td>Functional Blocks</td>
+                        <td>Sensing, processing, communication, services, management, security।</td>
+                    </tr>
+                    <tr>
+                        <td>Protocols</td>
+                        <td>MQTT, CoAP, HTTP आदि communication rules/standards।</td>
+                    <tr>
+                        <td>Models</td>
+                        <td>Request-Response, Publish-Subscribe, Push-Pull, Exclusive Pair।</td>
+                    </tr>
+                    <tr>
+                        <td>APIs</td>
+                        <td>Software/services के बीच communication interfaces।</td>
+                    </tr>
+                    <tr>
+                        <td>Enabling Technologies</td>
+                        <td>RFID, sensors, cloud, big data, AI, mobile, edge आदि।</td>
+                    </tr>
+                </table>
+                <div class="exam"><b>Important Exam Questions</b><br><br>1. IoT क्या है? Definition और characteristics
+                    समझाइए।<br>2. IoT में Things से क्या तात्पर्य है?<br>3. Physical और Logical Design of IoT
+                    समझाइए।<br>4. Functional Blocks of IoT समझाइए।<br>5. IoT Protocols क्या हैं? MQTT और HTTP
+                    समझाइए।<br>6. IoT Communication Models समझाइए।<br>7. IoT Communication APIs क्या हैं?<br>8. IoT
+                    Enabling Technologies समझाइए।</div>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>
