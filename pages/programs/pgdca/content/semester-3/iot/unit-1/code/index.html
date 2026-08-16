@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IoT Unit 1 - Sample Code</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f4f7fb;
+      color: #1f2937;
+      line-height: 1.7;
+    }
+    .wrap {
+      max-width: 980px;
+      margin: 32px auto;
+      padding: 24px;
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 8px 26px rgba(15, 23, 42, 0.08);
+    }
+    h1 {
+      margin-top: 0;
+      color: #111827;
+    }
+    .meta {
+      background: #eef2ff;
+      border-left: 5px solid #4f46e5;
+      padding: 12px 16px;
+      border-radius: 10px;
+      margin: 16px 0 22px;
+    }
+    .code-box {
+      background: #0f172a;
+      color: #e2e8f0;
+      border-radius: 14px;
+      padding: 18px;
+      overflow: auto;
+      font-family: Consolas, monospace;
+      font-size: 14px;
+      white-space: pre-wrap;
+    }
+    .back {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 10px 16px;
+      background: #2563eb;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>IoT Unit 1 - Sample Code</h1>
+    <div class="meta">
+      Agar aapko “Code not found” ya 404 error dikh raha hai, iska reason yeh hai ki is unit ke liye actual code page abhi missing tha.
+      Is page ko fallback ke roop me set kiya gaya hai taaki code section properly open ho sake.
+    </div>
+
+    <p>Simple example: LED ko ON/OFF karna aur Serial Monitor me data print karna.</p>
+
+    <div class="code-box">const int ledPin = 13;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+  Serial.println("IoT Unit 1: LED Test Started");
+}
+
+void loop() {
+  digitalWrite(ledPin, HIGH);
+  Serial.println("LED ON");
+  delay(1000);
+
+  digitalWrite(ledPin, LOW);
+  Serial.println("LED OFF");
+  delay(1000);
+}</div>
+
+    <p><strong>Explanation:</strong> Yahan <code>setup()</code> se pin define hota hai aur <code>loop()</code> me LED repeat ON/OFF hota hai. Yeh basic IoT/embedded concept ka easy example hai.</p>
+
+    <a class="back" href="../index.html">← Unit 1 page par wapas jao</a>
+  </div>
+</body>
+</html>
