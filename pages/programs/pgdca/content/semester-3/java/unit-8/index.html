@@ -1,0 +1,2414 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FB7SX0P0D3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-FB7SX0P0D3');
+    </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multithreading in Java</title>
+  <link rel="stylesheet" href="../../../semester-1/style.css">
+  <link rel="icon" href="../../../../../../../assets/images/logo.jpeg">
+</head>
+
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <h2>Topics</h2>
+      <a href="#intro">Introduction to Multithreading</a>
+      <a href="#process-thread">Process vs Thread</a>
+      <a href="#multitasking-vs-multithreading">Difference between Multitasking and Multithreading</a>
+      <a href="#advantages">Advantages of Multithreading</a>
+      <a href="#life-cycle">Thread Life Cycle</a>
+      <a href="#thread-class">Creating Threads by Extending Thread Class</a>
+      <a href="#runnable-interface">Creating Threads by Implementing Runnable Interface</a>
+      <a href="#thread-vs-runnable">Thread Class vs Runnable Interface</a>
+      <a href="#main-thread">Main Thread</a>
+      <a href="#thread-methods">Thread Methods</a>
+      <a href="#start-run">start() and run() Method</a>
+      <a href="#sleep">sleep() Method</a>
+      <a href="#join">join() Method</a>
+      <a href="#yield">yield() Method</a>
+      <a href="#current-isalive">currentThread() and isAlive()</a>
+      <a href="#priorities">Thread Priorities</a>
+      <a href="#daemon">Daemon Thread</a>
+      <a href="#synchronization">Synchronization</a>
+      <a href="#race-condition">Race Condition</a>
+      <a href="#sync-method">Synchronized Method</a>
+      <a href="#sync-block">Synchronized Block</a>
+      <a href="#static-sync">Static Synchronization</a>
+      <a href="#inter-thread">Inter-thread Communication</a>
+      <a href="#thread-safety">Thread Safety</a>
+      <a href="#deadlock">Deadlock</a>
+      <a href="#livelock-starvation">Livelock and Starvation</a>
+      <a href="#live-project">Practical Live Project Uses</a>
+      <a href="#best-practices">Best Practices</a>
+    </aside>
+    <main class="content">
+      <div class="hero">
+        <h1>Multithreading</h1>
+
+      </div>
+      <section id="intro">
+        <h2>Introduction to Multithreading</h2>
+
+        <p><strong>Multithreading</strong> Java का एक powerful feature है जिसकी help से एक program के अंदर multiple
+          threads एक साथ execute हो सकते हैं। Thread program execution की smallest unit होती है। Simple words में,
+          thread एक lightweight process की तरह होता है जो किसी specific task को perform करता है।</p>
+
+        <p>Java में multithreading का use तब किया जाता है जब हमें एक application में multiple tasks simultaneously
+          perform कराने हों। For example, एक media player में music play होना, progress bar update होना और user controls
+          respond करना, ये सभी tasks अलग-अलग threads द्वारा handle किए जा सकते हैं।</p>
+
+        <p>Multithreading program की performance और responsiveness improve कर सकता है। अगर एक task time ले रहा है, तो
+          दूसरा task wait किए बिना run हो सकता है। Java में thread support built-in है और <code>java.lang.Thread</code>
+          class तथा <code>Runnable</code> interface की help से threads create किए जा सकते हैं।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Multithreading Introduction Diagram">
+          <p>Image Placeholder: Multithreading Basic Concept Diagram</p>
+        </div>
+
+        <h4>Why Multithreading is Needed</h4>
+        <ul>
+          <li>Multiple tasks को parallel-like manner में perform करने के लिए।</li>
+          <li>Program responsiveness improve करने के लिए।</li>
+          <li>CPU utilization better करने के लिए।</li>
+          <li>Time-consuming tasks को background में run करने के लिए।</li>
+          <li>Real-time applications को smooth बनाने के लिए।</li>
+        </ul>
+
+        <h4>Simple Real Life Example</h4>
+        <p>मान लो आप mobile पर song सुन रहे हैं और साथ में file download भी हो रही है। Song play होना और file download
+          होना दो different tasks हैं। ये tasks एक ही application या system में simultaneously चल सकते हैं। यही
+          multithreading का practical feel है।</p>
+
+        <h4>Java Thread Example Preview</h4>
+        <pre>class MyThread extends Thread {
+    public void run() {
+        System.out.println("Thread is running");
+    }
+
+    public static void main(String[] args) {
+        MyThread t1 = new MyThread();
+        t1.start();
+    }
+}</pre>
+
+        <div class="info-box"><b>Output:</b><br>Thread is running</div>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Online exam software में timer, question loading, answer
+          saving और network checking जैसे काम अलग-अलग threads में manage किए जा सकते हैं।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Thread एक lightweight execution unit है और multithreading एक
+          program में multiple threads run कराने की technique है।</div>
+
+      </section>
+      <section id="process-thread">
+        <h2>Process vs Thread</h2>
+
+        <p><strong>Process</strong> एक running program होता है। जब कोई program memory में load होकर execute होता है, तो
+          उसे process कहा जाता है। For example, browser, music player और text editor अलग-अलग processes हो सकते हैं। हर
+          process के पास अपनी separate memory और resources होते हैं।</p>
+
+        <p><strong>Thread</strong> process के अंदर execution की छोटी unit होती है। एक process के अंदर multiple threads
+          हो सकते हैं। Threads same process की memory और resources share करते हैं, इसलिए threads को lightweight माना
+          जाता है।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Process vs Thread Diagram">
+          <p>Image Placeholder: Process vs Thread Diagram</p>
+        </div>
+
+        <h4>Process Example</h4>
+        <p>अगर आपके computer में Chrome browser open है, तो वह एक process हो सकता है। Chrome के अंदर अलग-अलग tabs,
+          download manager और rendering tasks अलग-अलग threads की तरह work कर सकते हैं।</p>
+
+        <h4>Thread Example</h4>
+        <p>एक Java application में एक thread user input handle कर सकता है, दूसरा calculation कर सकता है और तीसरा data
+          save कर सकता है। ये सभी threads same application process के अंदर run हो सकते हैं।</p>
+
+        <h4>Difference Table</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>Process</th>
+            <th>Thread</th>
+          </tr>
+          <tr>
+            <td>Meaning</td>
+            <td>Running program को process कहते हैं।</td>
+            <td>Process के अंदर execution की smallest unit thread होती है।</td>
+          </tr>
+          <tr>
+            <td>Memory</td>
+            <td>हर process की separate memory होती है।</td>
+            <td>Threads same process की memory share करते हैं।</td>
+          </tr>
+          <tr>
+            <td>Weight</td>
+            <td>Heavyweight होता है।</td>
+            <td>Lightweight होता है।</td>
+          </tr>
+          <tr>
+            <td>Communication</td>
+            <td>Process communication comparatively difficult होती है।</td>
+            <td>Threads communication easy होती है क्योंकि memory shared होती है।</td>
+          </tr>
+          <tr>
+            <td>Creation</td>
+            <td>Process creation ज्यादा time ले सकता है।</td>
+            <td>Thread creation comparatively fast होती है।</td>
+          </tr>
+          <tr>
+            <td>Dependency</td>
+            <td>Process independent हो सकता है।</td>
+            <td>Thread process के अंदर exist करता है।</td>
+          </tr>
+        </table>
+
+        <h4>Important Point</h4>
+        <p>एक process बिना thread के execute नहीं हो सकता, क्योंकि actual execution thread द्वारा ही होता है। Java
+          program में main method भी main thread द्वारा execute होता है।</p>
+
+        <pre>class Main {
+    public static void main(String[] args) {
+        System.out.println(Thread.currentThread().getName());
+    }
+}</pre>
+
+        <div class="info-box"><b>Output:</b><br>main</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Process running program है और thread उस process के अंदर actual
+          execution path है।</div>
+
+      </section>
+      <section id="multitasking-vs-multithreading">
+        <h2>Difference between Multitasking and Multithreading</h2>
+
+        <p><strong>Multitasking</strong> का मतलब है एक system द्वारा multiple tasks को एक साथ manage करना। इसमें
+          operating system multiple processes को run कर सकता है, जैसे browser, music player और MS Word simultaneously
+          चलना।</p>
+
+        <p><strong>Multithreading</strong> का मतलब है एक single process या program के अंदर multiple threads run होना।
+          इसमें एक application के अंदर ही कई tasks simultaneously execute हो सकते हैं। Multithreading multitasking का एक
+          specific form माना जा सकता है जो same program के अंदर होता है।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Multitasking vs Multithreading Diagram">
+          <p>Image Placeholder: Multitasking vs Multithreading Diagram</p>
+        </div>
+
+        <h4>Multitasking Example</h4>
+        <p>Computer पर आप एक साथ YouTube चला रहे हैं, PDF पढ़ रहे हैं और file download कर रहे हैं। ये multiple
+          applications/processes हैं, इसलिए यह multitasking है।</p>
+
+        <h4>Multithreading Example</h4>
+        <p>एक browser के अंदर एक thread webpage render कर रहा है, दूसरा video play कर रहा है और तीसरा file download कर
+          रहा है। यह multithreading का example है।</p>
+
+        <h4>Difference Table</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>Multitasking</th>
+            <th>Multithreading</th>
+          </tr>
+          <tr>
+            <td>Meaning</td>
+            <td>Multiple tasks/processes को manage करना।</td>
+            <td>Single process के अंदर multiple threads run करना।</td>
+          </tr>
+          <tr>
+            <td>Level</td>
+            <td>Operating system level पर होता है।</td>
+            <td>Program/application level पर होता है।</td>
+          </tr>
+          <tr>
+            <td>Memory</td>
+            <td>Processes separate memory use कर सकते हैं।</td>
+            <td>Threads same process memory share करते हैं।</td>
+          </tr>
+          <tr>
+            <td>Overhead</td>
+            <td>Comparatively ज्यादा overhead।</td>
+            <td>Comparatively कम overhead।</td>
+          </tr>
+          <tr>
+            <td>Example</td>
+            <td>Chrome + VLC + Word एक साथ चलना।</td>
+            <td>Chrome में download + rendering + video playback।</td>
+          </tr>
+          <tr>
+            <td>Communication</td>
+            <td>Processes के बीच communication harder।</td>
+            <td>Threads के बीच communication easier।</td>
+          </tr>
+        </table>
+
+        <h4>Important Points</h4>
+        <ul>
+          <li>Multitasking multiple programs को handle करता है।</li>
+          <li>Multithreading same program के अंदर multiple execution paths देता है।</li>
+          <li>Multithreading fast हो सकती है क्योंकि threads same memory share करते हैं।</li>
+          <li>Multitasking operating system की responsibility होती है।</li>
+          <li>Multithreading programmer द्वारा Java code में implement की जा सकती है।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Kitchen में एक chef अगर rice, dal और sabzi साथ manage कर रहा
+          है, तो multitasking जैसा है। लेकिन एक restaurant system में order-taking, billing और kitchen updates एक app के
+          अलग threads से handle हों, तो multithreading जैसा है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Multitasking multiple processes से related है, जबकि multithreading
+          single process के अंदर multiple threads से related है।</div>
+
+      </section>
+      <section id="advantages">
+        <h2>Advantages of Multithreading</h2>
+
+        <p>Multithreading Java applications को fast, responsive और efficient बनाने में help करता है। Especially GUI
+          applications, games, server applications, real-time systems और network applications में multithreading बहुत
+          useful होता है।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Advantages of Multithreading Diagram">
+          <p>Image Placeholder: Advantages of Multithreading Diagram</p>
+        </div>
+
+        <h4>Better CPU Utilization</h4>
+        <p>Multithreading CPU को idle रहने से बचा सकता है। अगर एक thread input-output operation में wait कर रहा है, तो
+          दूसरा thread CPU का use कर सकता है। इससे system resources का better use होता है।</p>
+
+        <h4>Improved Responsiveness</h4>
+        <p>GUI applications में अगर heavy task main thread पर run हो, तो application freeze हो सकती है। Multithreading
+          से heavy task background में run होता है और user interface responsive रहता है।</p>
+
+        <h4>Faster Task Execution</h4>
+        <p>कुछ tasks को smaller parts में divide करके अलग-अलग threads में run किया जा सकता है। इससे total execution time
+          reduce हो सकता है, especially multi-core processors पर।</p>
+
+        <h4>Resource Sharing</h4>
+        <p>Threads same process की memory share करते हैं। इससे data sharing processes की comparison में easy हो जाती है।
+          लेकिन shared data के साथ synchronization जरूरी हो सकता है।</p>
+
+        <h4>Useful for Server Applications</h4>
+        <p>Server applications में multiple users की requests handle करनी होती हैं। हर user request को अलग thread से
+          handle किया जा सकता है ताकि server multiple clients को simultaneously response दे सके।</p>
+
+        <h4>Advantages Table</h4>
+        <table>
+          <tr>
+            <th>Advantage</th>
+            <th>Explanation</th>
+          </tr>
+          <tr>
+            <td>Responsiveness</td>
+            <td>Application user input पर quickly respond कर सकती है।</td>
+          </tr>
+          <tr>
+            <td>CPU Utilization</td>
+            <td>CPU का better use होता है।</td>
+          </tr>
+          <tr>
+            <td>Resource Sharing</td>
+            <td>Threads same memory share कर सकते हैं।</td>
+          </tr>
+          <tr>
+            <td>Performance</td>
+            <td>Some tasks faster complete हो सकते हैं।</td>
+          </tr>
+          <tr>
+            <td>Server Handling</td>
+            <td>Multiple users/requests handle करना easy होता है।</td>
+          </tr>
+        </table>
+
+        <h4>Practical Example Areas</h4>
+        <ul>
+          <li>Online chat applications</li>
+          <li>Web servers</li>
+          <li>File download managers</li>
+          <li>Video/audio players</li>
+          <li>Games</li>
+          <li>Banking and ticket booking systems</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Download manager में multiple files एक साथ download करना
+          multithreading से possible हो सकता है। हर file download के लिए अलग thread use किया जा सकता है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Multithreading का main benefit responsiveness, resource sharing और
+          better performance है।</div>
+
+      </section>
+      <section id="life-cycle">
+        <h2>Thread Life Cycle</h2>
+
+        <p><strong>Thread life cycle</strong> thread की different states को represent करता है। Java में thread object
+          create होने से लेकर terminate होने तक कई states से गुजर सकता है। Thread scheduler और program logic decide करते
+          हैं कि thread कब run होगा, कब wait करेगा और कब terminate होगा।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Thread Life Cycle Diagram">
+          <p>Image Placeholder: Thread Life Cycle Diagram</p>
+        </div>
+
+        <h4>Main Thread States</h4>
+        <table>
+          <tr>
+            <th>State</th>
+            <th>Meaning</th>
+          </tr>
+          <tr>
+            <td>New</td>
+            <td>Thread object create हुआ है, लेकिन start नहीं हुआ।</td>
+          </tr>
+          <tr>
+            <td>Runnable</td>
+            <td>Thread start हो चुका है और CPU मिलने का wait कर रहा है।</td>
+          </tr>
+          <tr>
+            <td>Running</td>
+            <td>Thread currently execute हो रहा है।</td>
+          </tr>
+          <tr>
+            <td>Blocked/Waiting</td>
+            <td>Thread किसी resource या condition का wait कर रहा है।</td>
+          </tr>
+          <tr>
+            <td>Timed Waiting</td>
+            <td>Thread specific time के लिए wait/sleep कर रहा है।</td>
+          </tr>
+          <tr>
+            <td>Terminated</td>
+            <td>Thread execution complete हो गया है।</td>
+          </tr>
+        </table>
+
+        <h4>New State</h4>
+        <p>जब thread object create होता है लेकिन <code>start()</code> method call नहीं हुआ होता, तब thread New state में
+          होता है।</p>
+        <pre>Thread t = new Thread();</pre>
+
+        <h4>Runnable State</h4>
+        <p>जब <code>start()</code> method call होता है, तो thread Runnable state में जाता है। इसका मतलब thread ready है,
+          लेकिन CPU scheduler कब उसे run करेगा यह scheduler decide करेगा।</p>
+        <pre>t.start();</pre>
+
+        <h4>Running State</h4>
+        <p>जब thread को CPU मिलता है और उसका <code>run()</code> method execute होता है, तब thread Running state में होता
+          है।</p>
+
+        <h4>Waiting / Blocked State</h4>
+        <p>Thread किसी resource lock, input-output operation या दूसरे thread के complete होने का wait कर सकता है। इस
+          situation में thread waiting या blocked state में जा सकता है।</p>
+
+        <h4>Timed Waiting State</h4>
+        <p>जब thread <code>sleep()</code> या timed join जैसी method से specific time के लिए wait करता है, तो वह timed
+          waiting state में होता है।</p>
+
+        <pre>Thread.sleep(1000);</pre>
+
+        <h4>Terminated State</h4>
+        <p>जब thread का <code>run()</code> method complete हो जाता है, तो thread terminated state में चला जाता है।
+          Terminated thread को दुबारा start नहीं किया जा सकता।</p>
+
+        <h4>Life Cycle Flow</h4>
+        <pre>New
+ ↓ start()
+Runnable
+ ↓ scheduler gives CPU
+Running
+ ↓ sleep/wait/block
+Waiting / Timed Waiting / Blocked
+ ↓ condition complete
+Runnable
+ ↓ run() completes
+Terminated</pre>
+
+        <h4>Example Showing Thread State</h4>
+        <pre>class MyThread extends Thread {
+    public void run() {
+        System.out.println("Thread is running");
+    }
+
+    public static void main(String[] args) {
+        MyThread t = new MyThread();
+
+        System.out.println(t.getState());
+
+        t.start();
+
+        System.out.println(t.getState());
+    }
+}</pre>
+
+        <div class="info-box"><b>Possible Output:</b><br>NEW<br>RUNNABLE</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Thread start होने से पहले New state में होता है और run method
+          complete होने के बाद Terminated state में जाता है।</div>
+
+      </section>
+      <section id="thread-class">
+        <h2>Creating Threads by Extending Thread Class</h2>
+
+        <p>Java में thread create करने का पहला तरीका है <code>Thread</code> class को extend करना। इसके लिए एक class
+          <code>Thread</code> class को extend करती है और <code>run()</code> method को override करती है। Thread start
+          करने के लिए object बनाकर <code>start()</code> method call किया जाता है।
+        </p>
+
+        <p>Important बात यह है कि direct <code>run()</code> method call करने से new thread create नहीं होता। New thread
+          create करने के लिए <code>start()</code> method call करना जरूरी है। <code>start()</code> internally
+          <code>run()</code> method को new thread में execute करता है।
+        </p>
+
+        <div class="image-icon">
+          <img src="" alt="Creating Thread by Extending Thread Class">
+          <p>Image Placeholder: Thread Class Creation Diagram</p>
+        </div>
+
+        <h4>Steps</h4>
+        <ol>
+          <li>एक class बनाएं और <code>Thread</code> class को extend करें।</li>
+          <li><code>run()</code> method override करें।</li>
+          <li>Class का object create करें।</li>
+          <li><code>start()</code> method call करें।</li>
+        </ol>
+
+        <h4>Example</h4>
+        <pre>class MyThread extends Thread {
+    public void run() {
+        System.out.println("Thread is running");
+    }
+
+    public static void main(String[] args) {
+        MyThread t1 = new MyThread();
+
+        t1.start();
+    }
+}</pre>
+
+        <div class="info-box"><b>Output:</b><br>Thread is running</div>
+
+        <h4>Multiple Threads Example</h4>
+        <pre>class MyThread extends Thread {
+    public void run() {
+        for (int i = 1; i <= 5; i++) {
+            System.out.println(Thread.currentThread().getName() + " : " + i);
+        }
+    }
+
+    public static void main(String[] args) {
+        MyThread t1 = new MyThread();
+        MyThread t2 = new MyThread();
+
+        t1.start();
+        t2.start();
+    }
+}</pre>
+
+        <div class="info-box"><b>Possible Output:</b><br>Thread-0 : 1<br>Thread-1 : 1<br>Thread-0 : 2<br>Thread-1 :
+          2<br>Output order scheduler के according change हो सकता है।</div>
+
+        <h4>start() vs run()</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>start()</th>
+            <th>run()</th>
+          </tr>
+          <tr>
+            <td>Work</td>
+            <td>New thread create करता है।</td>
+            <td>Normal method की तरह execute होता है।</td>
+          </tr>
+          <tr>
+            <td>Thread Creation</td>
+            <td>Yes</td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <td>Calling</td>
+            <td>JVM internally run() call करता है।</td>
+            <td>Programmer directly call कर सकता है, but no new thread।</td>
+          </tr>
+          <tr>
+            <td>Use</td>
+            <td>Thread start करने के लिए।</td>
+            <td>Thread का task define करने के लिए।</td>
+          </tr>
+        </table>
+
+        <h4>Direct run() Call Example</h4>
+        <pre>class MyThread extends Thread {
+    public void run() {
+        System.out.println("Running in: " + Thread.currentThread().getName());
+    }
+
+    public static void main(String[] args) {
+        MyThread t1 = new MyThread();
+
+        t1.run();
+    }
+}</pre>
+
+        <div class="info-box"><b>Output:</b><br>Running in: main</div>
+
+        <div class="note-box"><b>Real Life Example:</b><br>अगर आप worker ko kaam start karne ke bajay khud hi kaam karne
+          lagen, to नया worker active नहीं हुआ। Direct run() call कुछ ऐसा ही है—new thread start नहीं होता।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Thread start करने के लिए हमेशा <code>start()</code> method call
+          करें, direct <code>run()</code> नहीं।</div>
+
+      </section>
+      <section id="runnable-interface">
+        <h2>Creating Threads by Implementing Runnable Interface</h2>
+
+        <p>Java में thread create करने का दूसरा और commonly recommended तरीका है <code>Runnable</code> interface
+          implement करना। इसमें class <code>Runnable</code> interface को implement करती है और <code>run()</code> method
+          की body provide करती है। फिर उस class के object को <code>Thread</code> class के constructor में pass करके
+          thread start किया जाता है।</p>
+
+        <p>Runnable interface approach better मानी जाती है क्योंकि Java में class केवल एक class extend कर सकती है। अगर
+          कोई class already किसी other class को extend कर रही है, तो वह Thread class extend नहीं कर सकती। ऐसी situation
+          में Runnable interface useful होता है।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Creating Thread using Runnable Interface">
+          <p>Image Placeholder: Runnable Interface Thread Creation Diagram</p>
+        </div>
+
+        <h4>Steps</h4>
+        <ol>
+          <li>एक class बनाएं और <code>Runnable</code> interface implement करें।</li>
+          <li><code>run()</code> method override करें।</li>
+          <li>Runnable class का object create करें।</li>
+          <li>Runnable object को <code>Thread</code> constructor में pass करें।</li>
+          <li><code>start()</code> method call करें।</li>
+        </ol>
+
+        <h4>Example</h4>
+        <pre>class MyRunnable implements Runnable {
+    public void run() {
+        System.out.println("Thread is running using Runnable");
+    }
+
+    public static void main(String[] args) {
+        MyRunnable obj = new MyRunnable();
+
+        Thread t1 = new Thread(obj);
+
+        t1.start();
+    }
+}</pre>
+
+        <div class="info-box"><b>Output:</b><br>Thread is running using Runnable</div>
+
+        <h4>Multiple Threads using Runnable</h4>
+        <pre>class MyRunnable implements Runnable {
+    public void run() {
+        for (int i = 1; i <= 5; i++) {
+            System.out.println(Thread.currentThread().getName() + " : " + i);
+        }
+    }
+
+    public static void main(String[] args) {
+        MyRunnable obj = new MyRunnable();
+
+        Thread t1 = new Thread(obj);
+        Thread t2 = new Thread(obj);
+
+        t1.start();
+        t2.start();
+    }
+}</pre>
+
+        <div class="info-box"><b>Possible Output:</b><br>Thread-0 : 1<br>Thread-1 : 1<br>Thread-0 : 2<br>Thread-1 :
+          2<br>Output order fixed नहीं होता।</div>
+
+        <h4>Runnable with Custom Thread Name</h4>
+        <pre>class MyRunnable implements Runnable {
+    public void run() {
+        System.out.println("Running: " + Thread.currentThread().getName());
+    }
+
+    public static void main(String[] args) {
+        MyRunnable obj = new MyRunnable();
+
+        Thread t1 = new Thread(obj, "Download Thread");
+        Thread t2 = new Thread(obj, "Music Thread");
+
+        t1.start();
+        t2.start();
+    }
+}</pre>
+
+        <div class="info-box"><b>Possible Output:</b><br>Running: Download Thread<br>Running: Music Thread</div>
+
+        <h4>Why Runnable is Preferred</h4>
+        <ul>
+          <li>Java multiple class inheritance support नहीं करती, इसलिए Runnable flexible है।</li>
+          <li>Task और Thread object अलग रहते हैं।</li>
+          <li>Same Runnable object multiple threads को दिया जा सकता है।</li>
+          <li>Better object-oriented design possible होता है।</li>
+        </ul>
+
+        <div class="remember-box"><b>Remember:</b><br>Runnable interface में task define होता है, और Thread class उस
+          task को अलग thread में run करती है।</div>
+
+      </section>
+      <section id="thread-vs-runnable">
+        <h2>Thread Class vs Runnable Interface</h2>
+
+        <p>Java में thread create करने के लिए Thread class extend करना और Runnable interface implement करना दोनों
+          possible हैं। लेकिन practical programming में Runnable approach ज्यादा flexible मानी जाती है। Thread class
+          approach simple है, लेकिन अगर class already किसी दूसरी class को extend कर रही है, तो Thread class extend करना
+          possible नहीं होगा।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Thread Class vs Runnable Interface">
+          <p>Image Placeholder: Thread Class vs Runnable Interface Comparison</p>
+        </div>
+
+        <h4>Comparison Table</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>Extending Thread Class</th>
+            <th>Implementing Runnable Interface</th>
+          </tr>
+          <tr>
+            <td>Keyword</td>
+            <td><code>extends Thread</code></td>
+            <td><code>implements Runnable</code></td>
+          </tr>
+          <tr>
+            <td>Inheritance</td>
+            <td>Class Thread class extend करती है।</td>
+            <td>Class Runnable interface implement करती है।</td>
+          </tr>
+          <tr>
+            <td>Flexibility</td>
+            <td>Less flexible, क्योंकि Java में single class inheritance है।</td>
+            <td>More flexible, क्योंकि class another class extend कर सकती है।</td>
+          </tr>
+          <tr>
+            <td>Task Separation</td>
+            <td>Thread और task tightly connected होते हैं।</td>
+            <td>Task और thread अलग रहते हैं।</td>
+          </tr>
+          <tr>
+            <td>Reusability</td>
+            <td>Comparatively कम।</td>
+            <td>Same Runnable object multiple threads में use हो सकता है।</td>
+          </tr>
+          <tr>
+            <td>Recommended</td>
+            <td>Small/simple examples के लिए ठीक।</td>
+            <td>Professional code में generally better।</td>
+          </tr>
+        </table>
+
+        <h4>Thread Class Example</h4>
+        <pre>class MyThread extends Thread {
+    public void run() {
+        System.out.println("Using Thread class");
+    }
+}</pre>
+
+        <h4>Runnable Interface Example</h4>
+        <pre>class MyTask implements Runnable {
+    public void run() {
+        System.out.println("Using Runnable interface");
+    }
+}</pre>
+
+        <h4>Important Choice</h4>
+        <p>अगर simple demo program है, तो Thread class extend करना easy है। लेकिन अगर real project या reusable task
+          design करना है, तो Runnable interface better है।</p>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Runnable task को worker की job description समझो और Thread
+          actual worker है जो उस job को perform करता है। Same job description multiple workers को दी जा सकती है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Thread class simple है, लेकिन Runnable interface ज्यादा flexible
+          और professional approach है।</div>
+
+      </section>
+      <section id="main-thread">
+        <h2>Main Thread</h2>
+
+        <p>Java program start होते ही JVM automatically एक thread create करती है जिसे <strong>main thread</strong> कहा
+          जाता है। यही main thread <code>main()</code> method को execute करता है। अगर program में कोई extra thread
+          create नहीं किया गया, तो पूरा program main thread में ही execute होता है।</p>
+
+        <p>Main thread important है क्योंकि यही program का starting point होता है। User-created threads भी main thread
+          से ही create और start किए जाते हैं।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Main Thread Diagram">
+          <p>Image Placeholder: Main Thread and Child Threads Diagram</p>
+        </div>
+
+        <h4>Current Thread Example</h4>
+        <pre>class Main {
+    public static void main(String[] args) {
+        Thread t = Thread.currentThread();
+
+        System.out.println("Current thread: " + t.getName());
+    }
+}</pre>
+
+        <div class="info-box"><b>Output:</b><br>Current thread: main</div>
+
+        <h4>Changing Main Thread Name</h4>
+        <pre>class Main {
+    public static void main(String[] args) {
+        Thread t = Thread.currentThread();
+
+        t.setName("My Main Thread");
+
+        System.out.println(t.getName());
+    }
+}</pre>
+
+        <div class="info-box"><b>Output:</b><br>My Main Thread</div>
+
+        <h4>Main Thread with Child Thread</h4>
+        <pre>class MyThread extends Thread {
+    public void run() {
+        System.out.println("Child thread: " + Thread.currentThread().getName());
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Main thread: " + Thread.currentThread().getName());
+
+        MyThread t1 = new MyThread();
+        t1.start();
+    }
+}</pre>
+
+        <div class="info-box"><b>Possible Output:</b><br>Main thread: main<br>Child thread: Thread-0</div>
+
+        <h4>Important Points</h4>
+        <ul>
+          <li>Main thread JVM द्वारा automatically create होता है।</li>
+          <li>Main thread <code>main()</code> method execute करता है।</li>
+          <li>Child threads main thread से create हो सकते हैं।</li>
+          <li><code>Thread.currentThread()</code> current running thread का reference देता है।</li>
+        </ul>
+
+        <div class="remember-box"><b>Remember:</b><br>Java program की execution main thread से start होती है।</div>
+
+      </section>
+      <section id="thread-methods">
+        <h2>Thread Methods</h2>
+
+        <p>Java में <code>Thread</code> class कई important methods provide करती है जिनकी help से thread को start, pause,
+          wait, identify और manage किया जा सकता है। Thread methods multithreading programs को control करने में useful
+          होते हैं।</p>
+
+        <p>Thread methods को समझना इसलिए जरूरी है क्योंकि thread का execution normal method execution जैसा fixed नहीं
+          होता। Thread scheduler decide करता है कि कौन-सा thread कब CPU time पाएगा। इसलिए thread control methods program
+          behavior को manage करने में help करते हैं।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Java Thread Methods Diagram">
+          <p>Image Placeholder: Java Thread Methods Overview</p>
+        </div>
+
+        <h4>Common Thread Methods</h4>
+        <table>
+          <tr>
+            <th>Method</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>start()</code></td>
+            <td>New thread start करता है और internally run method call करता है।</td>
+          </tr>
+          <tr>
+            <td><code>run()</code></td>
+            <td>Thread का task define करता है।</td>
+          </tr>
+          <tr>
+            <td><code>sleep()</code></td>
+            <td>Current thread को specific time के लिए pause करता है।</td>
+          </tr>
+          <tr>
+            <td><code>join()</code></td>
+            <td>एक thread दूसरे thread के complete होने तक wait करता है।</td>
+          </tr>
+          <tr>
+            <td><code>yield()</code></td>
+            <td>Current thread scheduler को chance देता है कि same priority thread run हो सके।</td>
+          </tr>
+          <tr>
+            <td><code>currentThread()</code></td>
+            <td>Currently running thread का reference देता है।</td>
+          </tr>
+          <tr>
+            <td><code>isAlive()</code></td>
+            <td>Check करता है कि thread alive है या नहीं।</td>
+          </tr>
+          <tr>
+            <td><code>getName()</code></td>
+            <td>Thread का name return करता है।</td>
+          </tr>
+          <tr>
+            <td><code>setName()</code></td>
+            <td>Thread का name set करता है।</td>
+          </tr>
+        </table>
+
+        <div class="remember-box"><b>Remember:</b><br>Thread methods thread execution को start, pause, wait और identify
+          करने के लिए use होते हैं।</div>
+
+      </section>
+      <section id="start-run">
+        <h2>start() and run() Method</h2>
+
+        <p><code>start()</code> और <code>run()</code> methods multithreading में सबसे basic और important methods हैं।
+          <code>run()</code> method thread का task define करता है, जबकि <code>start()</code> method new thread create
+          करके उस task को execute करता है।
+        </p>
+
+        <p>अगर programmer direct <code>run()</code> method call करता है, तो new thread create नहीं होता। वह normal
+          method की तरह current thread में execute होता है। इसलिए actual multithreading के लिए <code>start()</code>
+          method call करना जरूरी है।</p>
+
+        <div class="image-icon">
+          <img src="" alt="start and run method diagram">
+          <p>Image Placeholder: start() vs run() Diagram</p>
+        </div>
+
+        <h4>Using start()</h4>
+        <pre>class MyThread extends Thread {
+    public void run() {
+        System.out.println("Running in: " + Thread.currentThread().getName());
+    }
+
+    public static void main(String[] args) {
+        MyThread t1 = new MyThread();
+
+        t1.start();
+    }
+}</pre>
+
+        <div class="info-box"><b>Possible Output:</b><br>Running in: Thread-0</div>
+
+        <h4>Using run() Directly</h4>
+        <pre>class MyThread extends Thread {
+    public void run() {
+        System.out.println("Running in: " + Thread.currentThread().getName());
+    }
+
+    public static void main(String[] args) {
+        MyThread t1 = new MyThread();
+
+        t1.run();
+    }
+}</pre>
+
+        <div class="info-box"><b>Output:</b><br>Running in: main</div>
+
+        <h4>Difference Table</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>start()</th>
+            <th>run()</th>
+          </tr>
+          <tr>
+            <td>Purpose</td>
+            <td>New thread start करता है।</td>
+            <td>Thread का task contain करता है।</td>
+          </tr>
+          <tr>
+            <td>Thread Creation</td>
+            <td>New thread create होता है।</td>
+            <td>New thread create नहीं होता।</td>
+          </tr>
+          <tr>
+            <td>Execution</td>
+            <td>JVM internally run() call करती है।</td>
+            <td>Normal method की तरह execute होता है।</td>
+          </tr>
+          <tr>
+            <td>Call Count</td>
+            <td>Same thread object पर एक बार call किया जा सकता है।</td>
+            <td>Normal method की तरह multiple times call हो सकता है।</td>
+          </tr>
+        </table>
+
+        <h4>Calling start() Twice</h4>
+        <pre>class MyThread extends Thread {
+    public void run() {
+        System.out.println("Thread running");
+    }
+
+    public static void main(String[] args) {
+        MyThread t1 = new MyThread();
+
+        t1.start();
+        // t1.start(); // Runtime error: IllegalThreadStateException
+    }
+}</pre>
+
+        <div class="note-box"><b>Real Life Example:</b><br>run() task की instruction sheet है और start() worker को
+          actual काम शुरू करवाता है। Instruction sheet पढ़ लेने से नया worker start नहीं होता।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Actual new thread start करने के लिए <code>start()</code> use करें,
+          direct <code>run()</code> नहीं।</div>
+
+      </section>
+      <section id="sleep">
+        <h2>sleep() Method</h2>
+
+        <p><code>sleep()</code> method current running thread को specific time के लिए pause कर देता है। Time
+          milliseconds में दिया जाता है। Sleep method static method है और इसे generally
+          <code>Thread.sleep(milliseconds)</code> के रूप में call किया जाता है।
+        </p>
+
+        <p>Sleep method <code>InterruptedException</code> throw कर सकता है, इसलिए इसे try-catch block में handle करना
+          पड़ता है या method declaration में <code>throws</code> लिखना पड़ता है।</p>
+
+        <div class="image-icon">
+          <img src="" alt="sleep method diagram">
+          <p>Image Placeholder: sleep() Method Flow</p>
+        </div>
+
+        <h4>Syntax</h4>
+        <pre>Thread.sleep(milliseconds);</pre>
+
+        <h4>Example</h4>
+        <pre>class MyThread extends Thread {
+    public void run() {
+        for (int i = 1; i <= 5; i++) {
+            System.out.println(i);
+
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                System.out.println(e);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        MyThread t1 = new MyThread();
+        t1.start();
+    }
+}</pre>
+
+        <div class="info-box"><b>Output:</b><br>1<br>2<br>3<br>4<br>5<br>Each number लगभग 1 second gap से print होगा।
+        </div>
+
+        <h4>Multiple Threads with sleep()</h4>
+        <pre>class MyThread extends Thread {
+    public void run() {
+        for (int i = 1; i <= 3; i++) {
+            System.out.println(Thread.currentThread().getName() + " : " + i);
+
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                System.out.println(e);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        MyThread t1 = new MyThread();
+        MyThread t2 = new MyThread();
+
+        t1.start();
+        t2.start();
+    }
+}</pre>
+
+        <div class="info-box"><b>Possible Output:</b><br>Thread-0 : 1<br>Thread-1 : 1<br>Thread-0 : 2<br>Thread-1 :
+          2<br>Order scheduler के according change हो सकता है।</div>
+
+        <h4>Important Points</h4>
+        <ul>
+          <li><code>sleep()</code> current thread को pause करता है।</li>
+          <li>Time milliseconds में दिया जाता है।</li>
+          <li>1000 milliseconds = 1 second होता है।</li>
+          <li>Sleep method <code>InterruptedException</code> throw कर सकता है।</li>
+          <li>Sleep होने पर thread timed waiting state में जाता है।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Loading animation में dots को half-second gap से show करना
+          sleep method जैसा behavior हो सकता है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br><code>sleep()</code> current thread को temporary pause करता है,
+          permanently stop नहीं।</div>
+
+      </section>
+      <section id="join">
+        <h2>join() Method</h2>
+
+        <p><code>join()</code> method एक thread को दूसरे thread के complete होने तक wait करवाता है। अगर main thread किसी
+          child thread पर <code>join()</code> call करता है, तो main thread तब तक wait करेगा जब तक child thread complete
+          नहीं हो जाता।</p>
+
+        <p>Join method तब useful होता है जब किसी task का output दूसरे task के लिए जरूरी हो। For example, अगर calculation
+          thread पहले complete होना चाहिए और फिर result print होना चाहिए, तो join use किया जा सकता है।</p>
+
+        <div class="image-icon">
+          <img src="" alt="join method diagram">
+          <p>Image Placeholder: join() Method Flow</p>
+        </div>
+
+        <h4>Example Without join()</h4>
+        <pre>class MyThread extends Thread {
+    public void run() {
+        for (int i = 1; i <= 3; i++) {
+            System.out.println("Child thread: " + i);
+        }
+    }
+
+    public static void main(String[] args) {
+        MyThread t1 = new MyThread();
+
+        t1.start();
+
+        System.out.println("Main thread ends");
+    }
+}</pre>
+
+        <div class="info-box"><b>Possible Output:</b><br>Main thread ends<br>Child thread: 1<br>Child thread: 2<br>Child
+          thread: 3<br>Order fixed नहीं है।</div>
+
+        <h4>Example With join()</h4>
+        <pre>class MyThread extends Thread {
+    public void run() {
+        for (int i = 1; i <= 3; i++) {
+            System.out.println("Child thread: " + i);
+        }
+    }
+
+    public static void main(String[] args) {
+        MyThread t1 = new MyThread();
+
+        t1.start();
+
+        try {
+            t1.join();
+        } catch (InterruptedException e) {
+            System.out.println(e);
+        }
+
+        System.out.println("Main thread ends");
+    }
+}</pre>
+
+        <div class="info-box"><b>Output:</b><br>Child thread: 1<br>Child thread: 2<br>Child thread: 3<br>Main thread
+          ends</div>
+
+        <h4>join with Time</h4>
+        <pre>t1.join(1000);</pre>
+
+        <p>यह main/current thread को maximum 1000 milliseconds तक wait करवाएगा। अगर thread उससे पहले complete हो जाए, तो
+          waiting earlier finish हो सकती है।</p>
+
+        <h4>Important Points</h4>
+        <ul>
+          <li><code>join()</code> current thread को wait करवाता है।</li>
+          <li>जिस thread पर join call होता है, उसके complete होने तक current thread wait करता है।</li>
+          <li>Join method <code>InterruptedException</code> throw कर सकता है।</li>
+          <li>Thread dependency manage करने में join useful है।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>अगर खाना serve करने से पहले rice cooking complete होना जरूरी
+          है, तो serve task rice task के complete होने का wait करेगा। यह join जैसा है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br><code>join()</code> एक thread को दूसरे thread के complete होने तक
+          wait करवाता है।</div>
+
+      </section>
+      <section id="yield">
+        <h2>yield() Method</h2>
+
+        <p><code>yield()</code> method current running thread को temporarily pause करके scheduler को hint देता है कि
+          same priority के other threads को chance दिया जा सकता है। यह guarantee नहीं देता कि दूसरा thread जरूर run
+          होगा। Thread scheduler final decision लेता है।</p>
+
+        <p>Yield method static method है और इसे <code>Thread.yield()</code> के रूप में call किया जाता है। यह current
+          thread को runnable state में वापस भेज सकता है ताकि scheduler other threads को consider कर सके।</p>
+
+        <div class="image-icon">
+          <img src="" alt="yield method diagram">
+          <p>Image Placeholder: yield() Method Flow</p>
+        </div>
+
+        <h4>Syntax</h4>
+        <pre>Thread.yield();</pre>
+
+        <h4>Example</h4>
+        <pre>class MyThread extends Thread {
+    public void run() {
+        for (int i = 1; i <= 5; i++) {
+            System.out.println(Thread.currentThread().getName() + " : " + i);
+
+            Thread.yield();
+        }
+    }
+
+    public static void main(String[] args) {
+        MyThread t1 = new MyThread();
+        MyThread t2 = new MyThread();
+
+        t1.start();
+        t2.start();
+    }
+}</pre>
+
+        <div class="info-box"><b>Possible Output:</b><br>Thread-0 : 1<br>Thread-1 : 1<br>Thread-0 : 2<br>Thread-1 :
+          2<br>Output scheduler पर depend करता है।</div>
+
+        <h4>Important Points</h4>
+        <ul>
+          <li><code>yield()</code> scheduler को hint देता है।</li>
+          <li>यह guarantee नहीं देता कि current thread immediately stop होगा।</li>
+          <li>Same priority threads को chance मिल सकता है।</li>
+          <li>Yield method rarely used होता है, क्योंकि behavior platform और scheduler पर depend कर सकता है।</li>
+        </ul>
+
+        <h4>sleep() vs yield()</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>sleep()</th>
+            <th>yield()</th>
+          </tr>
+          <tr>
+            <td>Purpose</td>
+            <td>Thread को fixed time के लिए pause करता है।</td>
+            <td>Scheduler को other thread चलाने का hint देता है।</td>
+          </tr>
+          <tr>
+            <td>Time</td>
+            <td>Time specify करना पड़ता है।</td>
+            <td>No time specify।</td>
+          </tr>
+          <tr>
+            <td>State</td>
+            <td>Timed waiting state में जाता है।</td>
+            <td>Runnable state में रह सकता है।</td>
+          </tr>
+          <tr>
+            <td>Guarantee</td>
+            <td>Given time तक pause होता है।</td>
+            <td>No guarantee।</td>
+          </tr>
+        </table>
+
+        <div class="remember-box"><b>Remember:</b><br><code>yield()</code> केवल scheduler को hint देता है; यह guaranteed
+          control transfer नहीं है।</div>
+
+      </section>
+      <section id="current-isalive">
+        <h2>currentThread() and isAlive()</h2>
+
+        <p><code>currentThread()</code> और <code>isAlive()</code> methods thread information check करने के लिए useful
+          हैं। <code>currentThread()</code> currently executing thread का reference देता है। <code>isAlive()</code>
+          check करता है कि thread अभी alive है या नहीं।</p>
+
+        <div class="image-icon">
+          <img src="" alt="currentThread and isAlive diagram">
+          <p>Image Placeholder: currentThread() and isAlive() Diagram</p>
+        </div>
+
+        <h4>currentThread() Method</h4>
+        <p><code>Thread.currentThread()</code> static method है जो currently running thread का reference return करता है।
+          इससे thread name, priority और other information access की जा सकती है।</p>
+
+        <pre>class Main {
+    public static void main(String[] args) {
+        Thread t = Thread.currentThread();
+
+        System.out.println("Current thread: " + t.getName());
+        System.out.println("Priority: " + t.getPriority());
+    }
+}</pre>
+
+        <div class="info-box"><b>Output:</b><br>Current thread: main<br>Priority: 5</div>
+
+        <h4>isAlive() Method</h4>
+        <p><code>isAlive()</code> method true return करता है अगर thread start हो चुका है और अभी terminate नहीं हुआ। अगर
+          thread new state में है या complete हो चुका है, तो false return कर सकता है।</p>
+
+        <pre>class MyThread extends Thread {
+    public void run() {
+        System.out.println("Thread running");
+    }
+
+    public static void main(String[] args) {
+        MyThread t1 = new MyThread();
+
+        System.out.println(t1.isAlive());
+
+        t1.start();
+
+        System.out.println(t1.isAlive());
+    }
+}</pre>
+
+        <div class="info-box"><b>Possible Output:</b><br>false<br>true</div>
+
+        <h4>Using getName() and setName()</h4>
+        <pre>class MyThread extends Thread {
+    public void run() {
+        System.out.println("Thread name: " + Thread.currentThread().getName());
+    }
+
+    public static void main(String[] args) {
+        MyThread t1 = new MyThread();
+
+        t1.setName("Download Thread");
+
+        t1.start();
+    }
+}</pre>
+
+        <div class="info-box"><b>Output:</b><br>Thread name: Download Thread</div>
+
+        <h4>Method Table</h4>
+        <table>
+          <tr>
+            <th>Method</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>currentThread()</code></td>
+            <td>Currently running thread का reference देता है।</td>
+          </tr>
+          <tr>
+            <td><code>isAlive()</code></td>
+            <td>Thread alive है या नहीं check करता है।</td>
+          </tr>
+          <tr>
+            <td><code>getName()</code></td>
+            <td>Thread का name return करता है।</td>
+          </tr>
+          <tr>
+            <td><code>setName()</code></td>
+            <td>Thread का name set करता है।</td>
+          </tr>
+        </table>
+
+        <div class="remember-box"><b>Remember:</b><br><code>currentThread()</code> current thread बताता है और
+          <code>isAlive()</code> thread की running life status check करता है।
+        </div>
+
+      </section>
+      <section id="priorities">
+        <h2>Thread Priorities</h2>
+
+        <p><strong>Thread priority</strong> thread scheduler को यह hint देती है कि कौन-सा thread comparatively more
+          important है। Java में हर thread की priority होती है। Priority integer value होती है जो 1 से 10 तक हो सकती है।
+          Default priority 5 होती है।</p>
+
+        <p>High priority thread को scheduler ज्यादा preference दे सकता है, लेकिन यह guaranteed नहीं है कि high priority
+          thread हमेशा पहले या ज्यादा चलेगा। Actual scheduling operating system और JVM पर depend कर सकती है।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Thread Priorities Diagram">
+          <p>Image Placeholder: Thread Priorities Diagram</p>
+        </div>
+
+        <h4>Priority Constants</h4>
+        <table>
+          <tr>
+            <th>Constant</th>
+            <th>Value</th>
+            <th>Meaning</th>
+          </tr>
+          <tr>
+            <td><code>Thread.MIN_PRIORITY</code></td>
+            <td>1</td>
+            <td>Minimum priority</td>
+          </tr>
+          <tr>
+            <td><code>Thread.NORM_PRIORITY</code></td>
+            <td>5</td>
+            <td>Normal/default priority</td>
+          </tr>
+          <tr>
+            <td><code>Thread.MAX_PRIORITY</code></td>
+            <td>10</td>
+            <td>Maximum priority</td>
+          </tr>
+        </table>
+
+        <h4>getPriority() and setPriority()</h4>
+        <pre>class Main {
+    public static void main(String[] args) {
+        Thread t = Thread.currentThread();
+
+        System.out.println("Default priority: " + t.getPriority());
+
+        t.setPriority(8);
+
+        System.out.println("New priority: " + t.getPriority());
+    }
+}</pre>
+
+        <div class="info-box"><b>Output:</b><br>Default priority: 5<br>New priority: 8</div>
+
+        <h4>Example with Multiple Threads</h4>
+        <pre>class MyThread extends Thread {
+    public void run() {
+        System.out.println(Thread.currentThread().getName() +
+                           " priority: " +
+                           Thread.currentThread().getPriority());
+    }
+
+    public static void main(String[] args) {
+        MyThread t1 = new MyThread();
+        MyThread t2 = new MyThread();
+        MyThread t3 = new MyThread();
+
+        t1.setPriority(Thread.MIN_PRIORITY);
+        t2.setPriority(Thread.NORM_PRIORITY);
+        t3.setPriority(Thread.MAX_PRIORITY);
+
+        t1.start();
+        t2.start();
+        t3.start();
+    }
+}</pre>
+
+        <div class="info-box"><b>Possible Output:</b><br>Thread-0 priority: 1<br>Thread-1 priority: 5<br>Thread-2
+          priority: 10<br>Execution order fixed नहीं होता।</div>
+
+        <h4>Invalid Priority</h4>
+        <pre>Thread t = new Thread();
+
+// t.setPriority(11); // Error: IllegalArgumentException</pre>
+
+        <h4>Important Points</h4>
+        <ul>
+          <li>Thread priority 1 से 10 के बीच होती है।</li>
+          <li>Default priority 5 होती है।</li>
+          <li>Priority scheduler को hint देती है, guarantee नहीं।</li>
+          <li>Invalid priority value देने पर <code>IllegalArgumentException</code> आ सकता है।</li>
+          <li>Priority inheritance भी हो सकती है: child thread generally parent thread की priority inherit करता है।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Hospital में emergency patient को priority मिलती है, लेकिन
+          actual treatment availability doctors/resources पर depend करती है। Thread priority भी scheduler को preference
+          hint देती है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Thread priority scheduler hint है, guaranteed execution order
+          नहीं।</div>
+
+      </section>
+      <section id="daemon">
+        <h2>Daemon Thread</h2>
+
+        <p><strong>Daemon thread</strong> background service thread होता है जो main/user threads को support करता है।
+          Daemon thread का use background tasks के लिए होता है, जैसे garbage collection, auto-save, monitoring या
+          cleanup work। Java program तब तक चलता रहता है जब तक user threads active हैं। केवल daemon threads बचे हों, तो
+          JVM program terminate कर सकती है।</p>
+
+        <p>Daemon thread low-priority support service की तरह होता है। इसे create करने के लिए thread start करने से पहले
+          <code>setDaemon(true)</code> call किया जाता है। Thread start होने के बाद daemon status change नहीं किया जा
+          सकता।
+        </p>
+
+        <div class="image-icon">
+          <img src="" alt="Daemon Thread Diagram">
+          <p>Image Placeholder: Daemon Thread Background Service Diagram</p>
+        </div>
+
+        <h4>Creating Daemon Thread</h4>
+        <pre>class MyThread extends Thread {
+    public void run() {
+        if (Thread.currentThread().isDaemon()) {
+            System.out.println("Daemon thread running");
+        } else {
+            System.out.println("User thread running");
+        }
+    }
+
+    public static void main(String[] args) {
+        MyThread t1 = new MyThread();
+
+        t1.setDaemon(true);
+
+        t1.start();
+    }
+}</pre>
+
+        <div class="info-box"><b>Possible Output:</b><br>Daemon thread running</div>
+
+        <h4>Important Rule</h4>
+        <pre>MyThread t1 = new MyThread();
+
+t1.start();
+
+// t1.setDaemon(true); // Error: IllegalThreadStateException</pre>
+
+        <p>Thread start होने के बाद उसे daemon नहीं बनाया जा सकता।</p>
+
+        <h4>User Thread vs Daemon Thread</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>User Thread</th>
+            <th>Daemon Thread</th>
+          </tr>
+          <tr>
+            <td>Purpose</td>
+            <td>Main application task perform करता है।</td>
+            <td>Background support task perform करता है।</td>
+          </tr>
+          <tr>
+            <td>JVM Exit</td>
+            <td>User thread चल रहा हो तो JVM wait करती है।</td>
+            <td>Only daemon threads बचें तो JVM exit कर सकती है।</td>
+          </tr>
+          <tr>
+            <td>Example</td>
+            <td>Main application logic</td>
+            <td>Garbage collector</td>
+          </tr>
+          <tr>
+            <td>Creation</td>
+            <td>Default thread user thread होता है।</td>
+            <td><code>setDaemon(true)</code> से daemon बनाया जाता है।</td>
+          </tr>
+        </table>
+
+        <h4>Methods</h4>
+        <table>
+          <tr>
+            <th>Method</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>setDaemon(true)</code></td>
+            <td>Thread को daemon बनाता है।</td>
+          </tr>
+          <tr>
+            <td><code>isDaemon()</code></td>
+            <td>Check करता है कि thread daemon है या नहीं।</td>
+          </tr>
+        </table>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Office में security guard background support देता है। Main
+          office work बंद हो जाए तो guard का role भी खत्म हो सकता है। Daemon thread भी user threads को support करता है।
+        </div>
+
+        <div class="remember-box"><b>Remember:</b><br>Daemon thread background support thread होता है और इसे start करने
+          से पहले daemon set करना जरूरी है।</div>
+
+      </section>
+      <section id="synchronization">
+        <h2>Synchronization</h2>
+
+        <p><strong>Synchronization</strong> Java multithreading में एक technique है जिसका use shared resources को
+          multiple threads द्वारा simultaneously access करने से protect करने के लिए किया जाता है। जब दो या more threads
+          same data या same object को एक साथ modify करते हैं, तो inconsistent result आ सकता है। इस problem को control
+          करने के लिए synchronization use होता है।</p>
+
+        <p>Java में synchronization lock या monitor concept पर based है। जब कोई thread synchronized method या
+          synchronized block में enter करता है, तो वह object का lock acquire करता है। जब तक वह lock release नहीं करता,
+          दूसरा thread उस synchronized section में enter नहीं कर सकता। इससे एक time पर only one thread critical section
+          access करता है।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Synchronization Concept Diagram">
+          <p>Image Placeholder: Synchronization Lock Concept Diagram</p>
+        </div>
+
+        <h4>Need of Synchronization</h4>
+        <ul>
+          <li>Shared data को safe रखने के लिए।</li>
+          <li>Race condition avoid करने के लिए।</li>
+          <li>Data inconsistency prevent करने के लिए।</li>
+          <li>Thread-safe operations perform करने के लिए।</li>
+          <li>Banking, booking और transaction systems में correct result maintain करने के लिए।</li>
+        </ul>
+
+        <h4>Critical Section</h4>
+        <p>Program का वह part जहाँ shared resource access या modify होता है, critical section कहलाता है। Critical
+          section को synchronized बनाना important होता है ताकि multiple threads एक साथ उसे modify न कर सकें।</p>
+
+        <h4>Example Idea</h4>
+        <p>अगर दो users same bank account से एक साथ amount withdraw कर रहे हैं, तो balance update carefully होना चाहिए।
+          अगर synchronization न हो, तो दोनों threads पुराने balance को read करके wrong transaction कर सकते हैं।</p>
+
+        <div class="note-box"><b>Real Life Example:</b><br>एक ATM machine में अगर same account से दो transactions एक साथ
+          process हों, तो balance update synchronized होना चाहिए ताकि गलत balance न बने।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Synchronization shared resource को one-thread-at-a-time access
+          कराने की technique है।</div>
+
+      </section>
+      <section id="race-condition">
+        <h2>Race Condition</h2>
+
+        <p><strong>Race condition</strong> वह problem है जिसमें multiple threads same shared data को एक साथ access और
+          modify करते हैं, और final result thread execution order पर depend करने लगता है। इसका output unpredictable और
+          गलत हो सकता है।</p>
+
+        <p>Race condition mostly तब होती है जब read-modify-write operation synchronized नहीं होता। For example, counter
+          की value read करना, उसमें 1 add करना और फिर वापस store करना एक small operation जैसा लगता है, लेकिन internally
+          यह multiple steps में होता है। अगर दो threads same time पर ये steps करें, तो update lost हो सकता है।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Race Condition Diagram">
+          <p>Image Placeholder: Race Condition Diagram</p>
+        </div>
+
+        <h4>Race Condition Example</h4>
+        <pre>class Counter {
+    int count = 0;
+
+    void increment() {
+        count++;
+    }
+}
+
+class MyThread extends Thread {
+    Counter c;
+
+    MyThread(Counter c) {
+        this.c = c;
+    }
+
+    public void run() {
+        for (int i = 1; i <= 1000; i++) {
+            c.increment();
+        }
+    }
+}
+
+class Main {
+    public static void main(String[] args) throws Exception {
+        Counter c = new Counter();
+
+        MyThread t1 = new MyThread(c);
+        MyThread t2 = new MyThread(c);
+
+        t1.start();
+        t2.start();
+
+        t1.join();
+        t2.join();
+
+        System.out.println("Count: " + c.count);
+    }
+}</pre>
+
+        <div class="info-box"><b>Possible Output:</b><br>Count: 1789<br>या कोई भी value 2000 से कम आ सकती है। Output
+          fixed नहीं है।</div>
+
+        <h4>Why Wrong Output Comes</h4>
+        <ol>
+          <li>Thread-1 count की value read करता है।</li>
+          <li>Thread-2 भी same old value read कर लेता है।</li>
+          <li>दोनों value increment करते हैं।</li>
+          <li>दोनों updated value वापस store करते हैं।</li>
+          <li>एक update lost हो सकता है।</li>
+        </ol>
+
+        <h4>Solution Using synchronized</h4>
+        <pre>class Counter {
+    int count = 0;
+
+    synchronized void increment() {
+        count++;
+    }
+}</pre>
+
+        <p>अब एक time पर केवल एक thread increment method execute करेगा, इसलिए result correct आने की possibility strong
+          हो जाती है।</p>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Ticket booking system में अगर one seat बची है और two users
+          simultaneously book करें, तो race condition से दोनों को same seat मिल सकती है। Synchronization इस problem को
+          रोकता है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Race condition तब होती है जब shared data पर multiple threads बिना
+          control के operation करते हैं।</div>
+
+      </section>
+      <section id="sync-method">
+        <h2>Synchronized Method</h2>
+
+        <p><strong>Synchronized method</strong> वह method होता है जिसके declaration में <code>synchronized</code>
+          keyword use किया जाता है। जब कोई thread synchronized method call करता है, तो वह current object का lock acquire
+          करता है। जब तक method complete नहीं होता, दूसरा thread same object पर synchronized method execute नहीं कर
+          सकता।</p>
+
+        <p>Synchronized method race condition avoid करने का easy तरीका है। अगर पूरा method critical section है, तो
+          method को synchronized बनाना suitable होता है।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Synchronized Method Diagram">
+          <p>Image Placeholder: Synchronized Method Lock Diagram</p>
+        </div>
+
+        <h4>Syntax</h4>
+        <pre>synchronized returnType methodName() {
+    // critical section
+}</pre>
+
+        <h4>Example</h4>
+        <pre>class Counter {
+    int count = 0;
+
+    synchronized void increment() {
+        count++;
+    }
+}
+
+class MyThread extends Thread {
+    Counter c;
+
+    MyThread(Counter c) {
+        this.c = c;
+    }
+
+    public void run() {
+        for (int i = 1; i <= 1000; i++) {
+            c.increment();
+        }
+    }
+}
+
+class Main {
+    public static void main(String[] args) throws Exception {
+        Counter c = new Counter();
+
+        MyThread t1 = new MyThread(c);
+        MyThread t2 = new MyThread(c);
+
+        t1.start();
+        t2.start();
+
+        t1.join();
+        t2.join();
+
+        System.out.println("Count: " + c.count);
+    }
+}</pre>
+
+        <div class="info-box"><b>Output:</b><br>Count: 2000</div>
+
+        <h4>How It Works</h4>
+        <ol>
+          <li>Thread-1 synchronized method में enter करता है।</li>
+          <li>Thread-1 object lock acquire करता है।</li>
+          <li>Thread-2 same object पर wait करता है।</li>
+          <li>Thread-1 method complete करके lock release करता है।</li>
+          <li>Thread-2 lock acquire करके method execute करता है।</li>
+        </ol>
+
+        <h4>Advantages</h4>
+        <ul>
+          <li>Race condition avoid होती है।</li>
+          <li>Shared data safe रहता है।</li>
+          <li>Code simple और readable रहता है।</li>
+          <li>Critical method को protect करना easy होता है।</li>
+        </ul>
+
+        <h4>Limitation</h4>
+        <p>अगर पूरा method synchronized है लेकिन critical section छोटा है, तो performance reduce हो सकती है क्योंकि
+          method का non-critical part भी lock के अंदर execute होगा। ऐसी situation में synchronized block better हो सकता
+          है।</p>
+
+        <div class="remember-box"><b>Remember:</b><br>Synchronized method एक object पर एक time में only one thread को
+          method execute करने देता है।</div>
+
+      </section>
+      <section id="sync-block">
+        <h2>Synchronized Block</h2>
+
+        <p><strong>Synchronized block</strong> का use method के अंदर केवल specific critical section को synchronized
+          बनाने के लिए किया जाता है। जब पूरा method synchronized करने की जरूरत न हो, तब synchronized block better
+          approach होता है। इससे lock केवल उस code पर लगता है जहाँ shared resource access हो रहा है।</p>
+
+        <p>Synchronized block performance के लिए better हो सकता है क्योंकि यह complete method को lock नहीं करता, बल्कि
+          only selected statements को lock करता है।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Synchronized Block Diagram">
+          <p>Image Placeholder: Synchronized Block Diagram</p>
+        </div>
+
+        <h4>Syntax</h4>
+        <pre>synchronized (objectReference) {
+    // critical section
+}</pre>
+
+        <h4>Example</h4>
+        <pre>class Printer {
+    void printDocument(String name) {
+        System.out.println("Preparing document: " + name);
+
+        synchronized (this) {
+            for (int i = 1; i <= 3; i++) {
+                System.out.println(name + " page " + i);
+            }
+        }
+
+        System.out.println("Document completed: " + name);
+    }
+}
+
+class MyThread extends Thread {
+    Printer printer;
+    String docName;
+
+    MyThread(Printer printer, String docName) {
+        this.printer = printer;
+        this.docName = docName;
+    }
+
+    public void run() {
+        printer.printDocument(docName);
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Printer p = new Printer();
+
+        MyThread t1 = new MyThread(p, "Java Notes");
+        MyThread t2 = new MyThread(p, "Python Notes");
+
+        t1.start();
+        t2.start();
+    }
+}</pre>
+
+        <div class="info-box"><b>Possible Output:</b><br>Preparing document lines intermix हो सकती हैं, लेकिन
+          synchronized block के अंदर pages एक document के complete print होंगे।</div>
+
+        <h4>Synchronized Method vs Synchronized Block</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>Synchronized Method</th>
+            <th>Synchronized Block</th>
+          </tr>
+          <tr>
+            <td>Lock Area</td>
+            <td>पूरा method lock होता है।</td>
+            <td>Only selected code block lock होता है।</td>
+          </tr>
+          <tr>
+            <td>Performance</td>
+            <td>अगर method बड़ा है, तो slower हो सकता है।</td>
+            <td>Better performance दे सकता है।</td>
+          </tr>
+          <tr>
+            <td>Use</td>
+            <td>जब पूरा method critical हो।</td>
+            <td>जब method का छोटा part critical हो।</td>
+          </tr>
+          <tr>
+            <td>Control</td>
+            <td>Less control</td>
+            <td>More control</td>
+          </tr>
+        </table>
+
+        <h4>Important Point</h4>
+        <p>Synchronized block में lock object carefully choose करना चाहिए। अगर threads same lock object use नहीं करते,
+          तो synchronization effective नहीं होगा।</p>
+
+        <div class="remember-box"><b>Remember:</b><br>Synchronized block केवल selected critical section को lock करता है,
+          इसलिए यह method synchronization से ज्यादा controlled होता है।</div>
+
+      </section>
+      <section id="static-sync">
+        <h2>Static Synchronization</h2>
+
+        <p><strong>Static synchronization</strong> static methods को synchronize करने के लिए use होती है। Static
+          synchronized method object lock नहीं, बल्कि class-level lock use करता है। इसका मतलब है कि class के static
+          synchronized method को एक time पर only one thread execute कर सकता है, even अगर different objects use हो रहे
+          हों।</p>
+
+        <p>Normal synchronized method object lock use करता है। अगर two different objects हैं, तो दो threads same
+          synchronized method को different objects पर simultaneously execute कर सकते हैं। लेकिन static synchronized
+          method class lock use करता है, इसलिए lock पूरे class level पर apply होता है।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Static Synchronization Diagram">
+          <p>Image Placeholder: Static Synchronization Class Lock Diagram</p>
+        </div>
+
+        <h4>Static Synchronized Method</h4>
+        <pre>class Display {
+    static synchronized void printTable(int n) {
+        for (int i = 1; i <= 5; i++) {
+            System.out.println(n * i);
+
+            try {
+                Thread.sleep(300);
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+    }
+}
+
+class MyThread1 extends Thread {
+    public void run() {
+        Display.printTable(5);
+    }
+}
+
+class MyThread2 extends Thread {
+    public void run() {
+        Display.printTable(10);
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        MyThread1 t1 = new MyThread1();
+        MyThread2 t2 = new MyThread2();
+
+        t1.start();
+        t2.start();
+    }
+}</pre>
+
+        <h4>Object Lock vs Class Lock</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>Object Lock</th>
+            <th>Class Lock</th>
+          </tr>
+          <tr>
+            <td>Used By</td>
+            <td>Non-static synchronized methods</td>
+            <td>Static synchronized methods</td>
+          </tr>
+          <tr>
+            <td>Lock Level</td>
+            <td>Object level</td>
+            <td>Class level</td>
+          </tr>
+          <tr>
+            <td>Different Objects</td>
+            <td>Different objects पर simultaneously possible</td>
+            <td>Class lock common होता है</td>
+          </tr>
+          <tr>
+            <td>Syntax</td>
+            <td><code>synchronized void method()</code></td>
+            <td><code>static synchronized void method()</code></td>
+          </tr>
+        </table>
+
+        <h4>When Static Synchronization is Needed</h4>
+        <ul>
+          <li>जब shared data static हो।</li>
+          <li>जब data class-level पर common हो।</li>
+          <li>जब different objects से भी same static resource protect करना हो।</li>
+        </ul>
+
+        <div class="remember-box"><b>Remember:</b><br>Static synchronized method class lock use करता है, object lock
+          नहीं।</div>
+
+      </section>
+      <section id="inter-thread">
+        <h2>Inter-thread Communication</h2>
+
+        <p><strong>Inter-thread communication</strong> का मतलब है threads का आपस में communicate करना। Java में
+          <code>wait()</code>, <code>notify()</code> और <code>notifyAll()</code> methods inter-thread communication के
+          लिए use होते हैं। ये methods <code>Object</code> class में defined हैं, इसलिए हर Java object इन्हें use कर
+          सकता है।
+        </p>
+
+        <p>Inter-thread communication तब useful होती है जब एक thread को दूसरे thread द्वारा कोई condition complete होने
+          तक wait करना हो। For example, producer-consumer problem में consumer तब तक wait करता है जब तक producer data
+          produce न कर दे।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Inter Thread Communication Diagram">
+          <p>Image Placeholder: wait notify notifyAll Diagram</p>
+        </div>
+
+        <h4>Methods</h4>
+        <table>
+          <tr>
+            <th>Method</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td><code>wait()</code></td>
+            <td>Current thread को wait state में भेजता है और lock release करता है।</td>
+          </tr>
+          <tr>
+            <td><code>notify()</code></td>
+            <td>Waiting threads में से one thread को wake up करता है।</td>
+          </tr>
+          <tr>
+            <td><code>notifyAll()</code></td>
+            <td>All waiting threads को wake up करता है।</td>
+          </tr>
+        </table>
+
+        <h4>Important Rule</h4>
+        <p><code>wait()</code>, <code>notify()</code> और <code>notifyAll()</code> methods को synchronized context के
+          अंदर call करना चाहिए। Otherwise <code>IllegalMonitorStateException</code> आ सकती है।</p>
+
+        <h4>Simple Example</h4>
+        <pre>class Shared {
+    synchronized void waitMethod() {
+        try {
+            System.out.println("Thread waiting");
+            wait();
+            System.out.println("Thread resumed");
+        } catch (InterruptedException e) {
+            System.out.println(e);
+        }
+    }
+
+    synchronized void notifyMethod() {
+        System.out.println("Notifying thread");
+        notify();
+    }
+}
+
+class Main {
+    public static void main(String[] args) throws Exception {
+        Shared obj = new Shared();
+
+        Thread t1 = new Thread(() -> obj.waitMethod());
+        Thread t2 = new Thread(() -> obj.notifyMethod());
+
+        t1.start();
+
+        Thread.sleep(1000);
+
+        t2.start();
+    }
+}</pre>
+
+        <div class="info-box"><b>Possible Output:</b><br>Thread waiting<br>Notifying thread<br>Thread resumed</div>
+
+        <h4>wait() vs sleep()</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>wait()</th>
+            <th>sleep()</th>
+          </tr>
+          <tr>
+            <td>Class</td>
+            <td>Object class</td>
+            <td>Thread class</td>
+          </tr>
+          <tr>
+            <td>Lock</td>
+            <td>Lock release करता है।</td>
+            <td>Lock release नहीं करता।</td>
+          </tr>
+          <tr>
+            <td>Use</td>
+            <td>Inter-thread communication</td>
+            <td>Thread pause करना</td>
+          </tr>
+          <tr>
+            <td>Call Context</td>
+            <td>Synchronized block/method में call करना चाहिए।</td>
+            <td>कहीं भी call हो सकता है।</td>
+          </tr>
+        </table>
+
+        <div class="remember-box"><b>Remember:</b><br>wait lock release करता है, sleep lock release नहीं करता।</div>
+
+      </section>
+      <section id="thread-safety">
+        <h2>Thread Safety</h2>
+
+        <p><strong>Thread safety</strong> का मतलब है कि program या class multiple threads द्वारा use होने पर भी correct
+          और consistent result दे। अगर multiple threads shared data को access कर रहे हैं और data corrupt नहीं होता, तो
+          code thread-safe कहलाता है।</p>
+
+        <p>Thread safety achieve करने के लिए synchronization, immutable objects, atomic operations, thread-safe
+          collections और proper locking techniques use की जाती हैं।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Thread Safety Diagram">
+          <p>Image Placeholder: Thread Safety Concept Diagram</p>
+        </div>
+
+        <h4>Thread Unsafe Example</h4>
+        <pre>class Counter {
+    int count = 0;
+
+    void increment() {
+        count++;
+    }
+}</pre>
+
+        <p>यह code thread-safe नहीं है क्योंकि multiple threads count को simultaneously update कर सकते हैं।</p>
+
+        <h4>Thread Safe Example</h4>
+        <pre>class Counter {
+    int count = 0;
+
+    synchronized void increment() {
+        count++;
+    }
+}</pre>
+
+        <h4>Ways to Achieve Thread Safety</h4>
+        <table>
+          <tr>
+            <th>Technique</th>
+            <th>Explanation</th>
+          </tr>
+          <tr>
+            <td>Synchronization</td>
+            <td>Critical section को lock करके one thread at a time access देता है।</td>
+          </tr>
+          <tr>
+            <td>Immutable Objects</td>
+            <td>Object state change नहीं होती, इसलिए sharing safe होती है।</td>
+          </tr>
+          <tr>
+            <td>Atomic Classes</td>
+            <td>Atomic operations thread-safe तरीके से perform होते हैं।</td>
+          </tr>
+          <tr>
+            <td>Thread-safe Collections</td>
+            <td>Special collections concurrent access handle करती हैं।</td>
+          </tr>
+          <tr>
+            <td>Local Variables</td>
+            <td>Method local variables हर thread के stack में separate होती हैं।</td>
+          </tr>
+        </table>
+
+        <h4>Important Points</h4>
+        <ul>
+          <li>Shared mutable data thread safety risk create करता है।</li>
+          <li>Immutable data generally safe होता है।</li>
+          <li>Synchronization correct use करें, unnecessary use performance reduce कर सकता है।</li>
+          <li>Thread safety live projects में बहुत important है।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>Bank balance update, seat booking, stock quantity update और
+          wallet transaction thread-safe होने चाहिए।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Thread-safe code multiple threads के साथ भी correct result देता
+          है।</div>
+
+      </section>
+      <section id="deadlock">
+        <h2>Deadlock</h2>
+
+        <p><strong>Deadlock</strong> multithreading की serious problem है जिसमें two or more threads हमेशा के लिए
+          एक-दूसरे के lock release करने का wait करते रहते हैं। इस situation में program stuck हो सकता है और threads आगे
+          execute नहीं कर पाते।</p>
+
+        <p>Deadlock mostly तब होता है जब multiple threads multiple locks को different order में acquire करते हैं।
+          Thread-1 Lock-A hold करके Lock-B का wait करे और Thread-2 Lock-B hold करके Lock-A का wait करे, तो deadlock बन
+          सकता है।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Deadlock Diagram">
+          <p>Image Placeholder: Deadlock Circular Waiting Diagram</p>
+        </div>
+
+        <h4>Deadlock Example</h4>
+        <pre>class DeadlockExample {
+    public static void main(String[] args) {
+        final String resource1 = "Printer";
+        final String resource2 = "Scanner";
+
+        Thread t1 = new Thread() {
+            public void run() {
+                synchronized (resource1) {
+                    System.out.println("Thread 1 locked Printer");
+
+                    try {
+                        Thread.sleep(100);
+                    } catch (Exception e) {
+                        System.out.println(e);
+                    }
+
+                    synchronized (resource2) {
+                        System.out.println("Thread 1 locked Scanner");
+                    }
+                }
+            }
+        };
+
+        Thread t2 = new Thread() {
+            public void run() {
+                synchronized (resource2) {
+                    System.out.println("Thread 2 locked Scanner");
+
+                    try {
+                        Thread.sleep(100);
+                    } catch (Exception e) {
+                        System.out.println(e);
+                    }
+
+                    synchronized (resource1) {
+                        System.out.println("Thread 2 locked Printer");
+                    }
+                }
+            }
+        };
+
+        t1.start();
+        t2.start();
+    }
+}</pre>
+
+        <div class="info-box"><b>Possible Output:</b><br>Thread 1 locked Printer<br>Thread 2 locked Scanner<br>Program
+          stuck हो सकता है।</div>
+
+        <h4>Conditions for Deadlock</h4>
+        <table>
+          <tr>
+            <th>Condition</th>
+            <th>Meaning</th>
+          </tr>
+          <tr>
+            <td>Mutual Exclusion</td>
+            <td>Resource एक time पर only one thread use कर सकता है।</td>
+          </tr>
+          <tr>
+            <td>Hold and Wait</td>
+            <td>Thread एक resource hold करके दूसरे का wait कर रहा है।</td>
+          </tr>
+          <tr>
+            <td>No Preemption</td>
+            <td>Resource forcibly thread से छीना नहीं जा सकता।</td>
+          </tr>
+          <tr>
+            <td>Circular Wait</td>
+            <td>Threads circular chain में एक-दूसरे का wait करते हैं।</td>
+          </tr>
+        </table>
+
+        <h4>How to Avoid Deadlock</h4>
+        <ul>
+          <li>Locks हमेशा same order में acquire करें।</li>
+          <li>Nested locks avoid करें जहाँ possible हो।</li>
+          <li>Lock holding time कम रखें।</li>
+          <li>Unnecessary synchronization avoid करें।</li>
+          <li>Timeout-based locking techniques use करें।</li>
+        </ul>
+
+        <div class="note-box"><b>Real Life Example:</b><br>दो लोग एक-दूसरे की bike key लेकर खड़े हों और दोनों अपनी key
+          वापस मिलने तक दूसरे को key न दें, तो दोनों stuck हो जाएंगे। यही deadlock जैसा है।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Deadlock में threads एक-दूसरे के lock release होने का wait करते
+          रहते हैं और program stuck हो सकता है।</div>
+
+      </section>
+      <section id="livelock-starvation">
+        <h2>Livelock and Starvation</h2>
+
+        <p><strong>Livelock</strong> और <strong>starvation</strong> multithreading की extra important problems हैं। ये
+          deadlock जैसी famous problems नहीं हैं, लेकिन practical thread scheduling और resource sharing में समझना useful
+          है।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Livelock and Starvation Diagram">
+          <p>Image Placeholder: Livelock and Starvation Diagram</p>
+        </div>
+
+        <h4>Livelock</h4>
+        <p>Livelock में threads active तो रहते हैं, लेकिन useful progress नहीं कर पाते। Threads बार-बार अपनी state
+          change करते रहते हैं, लेकिन task complete नहीं होता। Deadlock में threads stuck हो जाते हैं, जबकि livelock में
+          threads move करते हुए भी आगे नहीं बढ़ते।</p>
+
+        <h4>Starvation</h4>
+        <p>Starvation में किसी thread को लंबे समय तक required resource या CPU time नहीं मिल पाता क्योंकि other threads
+          repeatedly resources use करते रहते हैं। Low priority thread starvation का शिकार हो सकता है अगर high priority
+          threads constantly CPU use कर रहे हों।</p>
+
+        <h4>Comparison</h4>
+        <table>
+          <tr>
+            <th>Problem</th>
+            <th>Meaning</th>
+            <th>Thread State</th>
+          </tr>
+          <tr>
+            <td>Deadlock</td>
+            <td>Threads एक-दूसरे का wait करते हुए stuck हो जाते हैं।</td>
+            <td>No progress, blocked</td>
+          </tr>
+          <tr>
+            <td>Livelock</td>
+            <td>Threads active हैं लेकिन useful progress नहीं।</td>
+            <td>Active but no progress</td>
+          </tr>
+          <tr>
+            <td>Starvation</td>
+            <td>Thread को resource/CPU time बहुत देर तक नहीं मिलता।</td>
+            <td>Waiting for chance</td>
+          </tr>
+        </table>
+
+        <h4>How to Reduce Starvation</h4>
+        <ul>
+          <li>Thread priorities carefully use करें।</li>
+          <li>Fair locking mechanisms use करें।</li>
+          <li>Long-running locks avoid करें।</li>
+          <li>Resource allocation balanced रखें।</li>
+        </ul>
+
+        <div class="remember-box"><b>Remember:</b><br>Deadlock में threads stuck होते हैं, livelock में active होते हुए
+          भी progress नहीं करते, और starvation में thread को chance नहीं मिलता।</div>
+
+      </section>
+      <section id="live-project">
+        <h2>Practical Live Project Uses</h2>
+
+        <p>Live projects में multithreading का use बहुत common है। Modern applications में कई tasks simultaneously run
+          करने पड़ते हैं। अगर सभी tasks single thread पर run हों, तो application slow, unresponsive या stuck हो सकती है।
+          Multithreading से background processing, server request handling, file operations और real-time updates manage
+          किए जा सकते हैं।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Multithreading Live Project Uses">
+          <p>Image Placeholder: Multithreading in Live Projects</p>
+        </div>
+
+        <h4>Web Server</h4>
+        <p>Web server multiple users की requests handle करता है। हर client request को separate thread से process किया जा
+          सकता है ताकि server simultaneously multiple users को response दे सके।</p>
+
+        <h4>Banking Application</h4>
+        <p>Banking systems में balance update, transaction history, SMS notification और fraud check अलग-अलग tasks हो
+          सकते हैं। Synchronization जरूरी है ताकि balance update correct रहे।</p>
+
+        <h4>File Download Manager</h4>
+        <p>Download manager multiple files या file parts को अलग-अलग threads से download कर सकता है। इससे download speed
+          और responsiveness improve हो सकती है।</p>
+
+        <h4>Online Ticket Booking</h4>
+        <p>Ticket booking app में multiple users same seat book करने की कोशिश कर सकते हैं। Synchronization और thread
+          safety से double booking avoid की जाती है।</p>
+
+        <h4>GUI Applications</h4>
+        <p>GUI apps में heavy task background thread में run होना चाहिए ताकि interface freeze न हो। जैसे progress bar
+          update और file processing simultaneously हो सकते हैं।</p>
+
+        <h4>Use Cases Table</h4>
+        <table>
+          <tr>
+            <th>Project Type</th>
+            <th>Multithreading Use</th>
+          </tr>
+          <tr>
+            <td>Web Server</td>
+            <td>Multiple client requests handle करना।</td>
+          </tr>
+          <tr>
+            <td>Banking System</td>
+            <td>Transactions और notifications manage करना।</td>
+          </tr>
+          <tr>
+            <td>Download Manager</td>
+            <td>Multiple downloads simultaneously run करना।</td>
+          </tr>
+          <tr>
+            <td>Chat Application</td>
+            <td>Message sending और receiving parallel handle करना।</td>
+          </tr>
+          <tr>
+            <td>Online Exam System</td>
+            <td>Timer, answer save, network check और UI update manage करना।</td>
+          </tr>
+        </table>
+
+        <div class="note-box"><b>Real Life Example:</b><br>BK LearnX जैसे learning platform में video loading, user
+          progress saving, quiz timer और notification fetching जैसे tasks multithreading या async processing से smooth
+          बन सकते हैं।</div>
+
+        <div class="remember-box"><b>Remember:</b><br>Live projects में multithreading responsiveness, scalability और
+          background processing के लिए बहुत useful है।</div>
+
+      </section>
+      <section id="best-practices">
+        <h2>Best Practices</h2>
+
+        <p>Multithreading powerful है, लेकिन गलत use करने पर race condition, deadlock, data inconsistency और debugging
+          problems आ सकती हैं। इसलिए professional coding में multithreading best practices follow करना जरूरी है।</p>
+
+        <div class="image-icon">
+          <img src="" alt="Multithreading Best Practices">
+          <p>Image Placeholder: Multithreading Best Practices Diagram</p>
+        </div>
+
+        <h4>Important Best Practices</h4>
+        <ul>
+          <li>Shared mutable data को carefully synchronize करें।</li>
+          <li>Unnecessary synchronization avoid करें क्योंकि performance reduce हो सकती है।</li>
+          <li>Locks को minimum time तक hold करें।</li>
+          <li>Nested locks avoid करें जहाँ possible हो।</li>
+          <li>Deadlock avoid करने के लिए locks same order में acquire करें।</li>
+          <li>Thread names meaningful रखें ताकि debugging easy हो।</li>
+          <li>Sleep को logic control के लिए overuse न करें।</li>
+          <li>Runnable interface या modern concurrency tools prefer करें।</li>
+          <li>Exceptions को thread के अंदर properly handle करें।</li>
+          <li>Thread-safe collections और atomic classes use करें जहाँ suitable हो।</li>
+        </ul>
+
+        <h4>Bad Practice</h4>
+        <pre>synchronized void fullMethod() {
+    // long non-critical code
+    // small critical code
+    // more long non-critical code
+}</pre>
+
+        <p>अगर critical part छोटा है, तो पूरा method synchronize करना performance reduce कर सकता है।</p>
+
+        <h4>Better Practice</h4>
+        <pre>void method() {
+    // non-critical code
+
+    synchronized (this) {
+        // only critical code
+    }
+
+    // non-critical code
+}</pre>
+
+        <h4>Debugging Tip</h4>
+        <p>Thread names set करने से output और debugging easier हो जाती है।</p>
+
+        <pre>Thread t1 = new Thread(task, "Download-Thread");
+Thread t2 = new Thread(task, "Save-Thread");</pre>
+
+        <h4>Professional Advice</h4>
+        <p>Real projects में raw threads के साथ-साथ Java concurrency utilities जैसे ExecutorService, synchronized
+          collections, locks और atomic classes भी use की जाती हैं। लेकिन syllabus level पर Thread, Runnable,
+          synchronization और deadlock concepts को strong करना सबसे जरूरी है।</p>
+
+        <div class="remember-box"><b>Remember:</b><br>Multithreading में correct output speed से ज्यादा important है।
+          पहले thread safety ensure करें, फिर performance optimize करें।</div>
+
+      </section>
+
+    </main>
+  </div>
+</body>
+
+</html>

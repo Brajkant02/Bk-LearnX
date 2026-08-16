@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FB7SX0P0D3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-FB7SX0P0D3');
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Classes and Objects in Java</title>
+    <link rel="stylesheet" href="../../../semester-1/style.css">
+    <link rel="icon" href="../../../../../../../assets/images/logo.jpeg">
+</head>
+
+<body>
+    <div class="page">
+        <aside class="sidebar">
+            <h2>Topics</h2>
+            <a href="#class-fundamentals">Class Fundamentals</a>
+            <a href="#constructors">Constructors</a>
+            <a href="#declaring-objects">Declaring Objects: Object and Object Reference</a>
+            <a href="#accessing-members">Creating and Accessing Variables and Methods</a>
+            <a href="#static-nonstatic">Static and Non Static Variables/Methods</a>
+            <a href="#packages">Defining Packages</a>
+            <a href="#create-access-package">Creating and Accessing a Package</a>
+            <a href="#importing-packages">Importing Packages</a>
+            <a href="#classpath">Understanding CLASSPATH</a>
+            <a href="#autoboxing">Auto Boxing</a>
+            <a href="#string">String</a>
+            <a href="#string-buffer">String Buffer</a>
+        </aside>
+        <main class="content">
+            <div class="hero">
+                <h1>Classes and Objects</h1>
+
+            </div>
+            <section id="class-fundamentals">
+                <h2>Class Fundamentals</h2>
+
+                <p><strong>Class</strong> Java में object-oriented programming का सबसे basic और important concept है।
+                    Class एक blueprint, template या design की तरह होती है जिससे objects create किए जाते हैं। Class के
+                    अंदर data members यानी variables और behavior यानी methods define किए जाते हैं।</p>
+                <p>Java में हर program कम से कम एक class के अंदर लिखा जाता है। Class real-world entity का structure
+                    represent करती है। For example, अगर हमें student information manage करनी है, तो हम
+                    <code>Student</code> class बना सकते हैं जिसमें name, roll number और course जैसे variables तथा
+                    displayDetails जैसे methods हो सकते हैं।
+                </p>
+                <div class="image-icon"><img src="" alt="Java Class Blueprint Diagram">
+                    <p>Image Placeholder: Class as Blueprint Diagram</p>
+                </div>
+                <h4>Basic Syntax</h4>
+                <pre>class ClassName {
+    // variables
+    // methods
+}</pre>
+                <h4>Example</h4>
+                <pre>class Student {
+    String name;
+    int roll;
+
+    void display() {
+        System.out.println("Name: " + name);
+        System.out.println("Roll: " + roll);
+    }
+}</pre>
+                <h4>Class Members</h4>
+                <table>
+                    <tr>
+                        <th>Member</th>
+                        <th>Meaning</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td>Variables</td>
+                        <td>Object का data store करते हैं।</td>
+                        <td><code>String name;</code></td>
+                    </tr>
+                    <tr>
+                        <td>Methods</td>
+                        <td>Object का behavior define करते हैं।</td>
+                        <td><code>void display()</code></td>
+                    </tr>
+                    <tr>
+                        <td>Constructors</td>
+                        <td>Object initialize करते हैं।</td>
+                        <td><code>Student()</code></td>
+                    </tr>
+                </table>
+                <h4>Class Naming Convention</h4>
+                <ul>
+                    <li>Class name capital letter से start करना best practice है।</li>
+                    <li>Class name meaningful होना चाहिए।</li>
+                    <li>एक Java file में public class का name file name से match करना चाहिए।</li>
+                    <li>Class के अंदर variables और methods logically related होने चाहिए।</li>
+                </ul>
+                <div class="note-box"><b>Real Life Example:</b><br>Student class एक admission form के format जैसी है। उस
+                    format से कई students के records बनाए जा सकते हैं।</div>
+                <div class="remember-box"><b>Remember:</b><br>Class object बनाने का blueprint है, actual data object में
+                    store होता है।</div>
+
+            </section>
+            <section id="constructors">
+                <h2>Constructors</h2>
+
+                <p><strong>Constructor</strong> special method जैसा block होता है जो object create होने पर automatically
+                    call होता है। Constructor का main purpose object को initialize करना होता है। Constructor का name
+                    class name के same होता है और इसका कोई return type नहीं होता, even <code>void</code> भी नहीं।</p>
+                <p>जब हम <code>new</code> keyword से object create करते हैं, तो constructor automatically execute होता
+                    है। Constructor की help से object के variables को starting values दी जा सकती हैं।</p>
+                <div class="image-icon"><img src="" alt="Constructor Object Initialization Diagram">
+                    <p>Image Placeholder: Constructor Object Initialization</p>
+                </div>
+                <h4>Constructor Rules</h4>
+                <ul>
+                    <li>Constructor का name class name के same होना चाहिए।</li>
+                    <li>Constructor का return type नहीं होता।</li>
+                    <li>Object create होते समय constructor automatically call होता है।</li>
+                    <li>Constructor overloaded हो सकता है।</li>
+                    <li>अगर programmer constructor नहीं बनाता, तो Java default constructor provide करती है।</li>
+                </ul>
+                <h4>Default Constructor</h4>
+                <pre>class Student {
+    Student() {
+        System.out.println("Student object created");
+    }
+
+    public static void main(String[] args) {
+        Student s1 = new Student();
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Student object created</div>
+                <h4>Parameterized Constructor</h4>
+                <pre>class Student {
+    String name;
+    int roll;
+
+    Student(String n, int r) {
+        name = n;
+        roll = r;
+    }
+
+    void display() {
+        System.out.println(name + " " + roll);
+    }
+
+    public static void main(String[] args) {
+        Student s1 = new Student("Brajkant", 101);
+        s1.display();
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Brajkant 101</div>
+                <h4>Constructor Overloading</h4>
+                <p>एक class में multiple constructors हो सकते हैं, लेकिन उनके parameters अलग होने चाहिए। इसे constructor
+                    overloading कहते हैं।</p>
+                <pre>class Student {
+    String name;
+    int roll;
+
+    Student() {
+        name = "Unknown";
+        roll = 0;
+    }
+
+    Student(String n, int r) {
+        name = n;
+        roll = r;
+    }
+
+    void display() {
+        System.out.println(name + " " + roll);
+    }
+
+    public static void main(String[] args) {
+        Student s1 = new Student();
+        Student s2 = new Student("Amit", 102);
+
+        s1.display();
+        s2.display();
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Unknown 0<br>Amit 102</div>
+                <h4>Constructor vs Method</h4>
+                <table>
+                    <tr>
+                        <th>Basis</th>
+                        <th>Constructor</th>
+                        <th>Method</th>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>Class name जैसा होता है।</td>
+                        <td>Any valid name हो सकता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Return Type</td>
+                        <td>Return type नहीं होता।</td>
+                        <td>Return type होता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Calling</td>
+                        <td>Object create होते समय automatically call होता है।</td>
+                        <td>Object या class से manually call किया जाता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Purpose</td>
+                        <td>Object initialize करना।</td>
+                        <td>Specific task perform करना।</td>
+                    </tr>
+                </table>
+                <div class="remember-box"><b>Remember:</b><br>Constructor object को initial state देने के लिए use होता
+                    है।</div>
+
+            </section>
+            <section id="declaring-objects">
+                <h2>Declaring Objects: Object and Object Reference</h2>
+
+                <p><strong>Object</strong> class का real instance होता है। Class केवल blueprint होती है, लेकिन object
+                    actual memory में create होता है। Object के पास class में defined variables और methods की
+                    copy/access होती है। Object real-world entity को represent करता है।</p>
+                <p><strong>Object Reference</strong> वह variable होता है जो object की memory location को refer करता है।
+                    Java में object directly variable में store नहीं होता; reference variable object तक पहुँचने का
+                    address-like reference रखता है।</p>
+                <div class="image-icon"><img src="" alt="Object and Object Reference Memory Diagram">
+                    <p>Image Placeholder: Object and Object Reference Memory Diagram</p>
+                </div>
+                <h4>Object Declaration</h4>
+                <pre>Student s1;</pre>
+                <p>यहाँ <code>s1</code> reference variable declare हुआ है, लेकिन अभी object create नहीं हुआ।</p>
+                <h4>Object Creation</h4>
+                <pre>s1 = new Student();</pre>
+                <p>यहाँ <code>new Student()</code> actual object create करता है और उसका reference <code>s1</code> में
+                    store होता है।</p>
+                <h4>Declaration and Creation Together</h4>
+                <pre>Student s1 = new Student();</pre>
+                <h4>Complete Example</h4>
+                <pre>class Student {
+    String name;
+    int roll;
+
+    void display() {
+        System.out.println(name + " " + roll);
+    }
+
+    public static void main(String[] args) {
+        Student s1 = new Student();
+
+        s1.name = "Brajkant";
+        s1.roll = 101;
+
+        s1.display();
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Brajkant 101</div>
+                <h4>Multiple Objects</h4>
+                <pre>class Student {
+    String name;
+    int roll;
+
+    void display() {
+        System.out.println(name + " " + roll);
+    }
+
+    public static void main(String[] args) {
+        Student s1 = new Student();
+        Student s2 = new Student();
+
+        s1.name = "Brajkant";
+        s1.roll = 101;
+
+        s2.name = "Amit";
+        s2.roll = 102;
+
+        s1.display();
+        s2.display();
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Brajkant 101<br>Amit 102</div>
+                <h4>Object and Reference Difference</h4>
+                <table>
+                    <tr>
+                        <th>Basis</th>
+                        <th>Object</th>
+                        <th>Object Reference</th>
+                    </tr>
+                    <tr>
+                        <td>Meaning</td>
+                        <td>Class का actual instance।</td>
+                        <td>Object को refer करने वाला variable।</td>
+                    </tr>
+                    <tr>
+                        <td>Memory</td>
+                        <td>Heap memory में create होता है।</td>
+                        <td>Reference variable stack में हो सकता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Example</td>
+                        <td><code>new Student()</code></td>
+                        <td><code>Student s1</code></td>
+                    </tr>
+                    <tr>
+                        <td>Use</td>
+                        <td>Actual data और behavior रखता है।</td>
+                        <td>Object तक access देता है।</td>
+                    </tr>
+                </table>
+                <div class="note-box"><b>Real Life Example:</b><br>Object actual student record है और reference उस
+                    record तक पहुँचने वाला नाम या link जैसा है।</div>
+                <div class="remember-box"><b>Remember:</b><br><code>Student s1;</code> केवल reference बनाता है, object
+                    create करने के लिए <code>new Student()</code> जरूरी है।</div>
+
+            </section>
+            <section id="accessing-members">
+                <h2>Creating and Accessing Variables and Methods</h2>
+
+                <p>Class के अंदर variables और methods define किए जाते हैं। Object create करने के बाद dot operator
+                    <code>.</code> की help से variables और methods access किए जाते हैं। Variables object की state
+                    represent करते हैं और methods object का behavior represent करते हैं।
+                </p>
+                <div class="image-icon"><img src="" alt="Accessing Variables and Methods Diagram">
+                    <p>Image Placeholder: Accessing Variables and Methods Using Dot Operator</p>
+                </div>
+                <h4>Dot Operator</h4>
+                <pre>objectName.variableName;
+objectName.methodName();</pre>
+                <h4>Example</h4>
+                <pre>class Car {
+    String brand;
+    int speed;
+
+    void showDetails() {
+        System.out.println("Brand: " + brand);
+        System.out.println("Speed: " + speed);
+    }
+
+    public static void main(String[] args) {
+        Car c1 = new Car();
+
+        c1.brand = "Honda";
+        c1.speed = 120;
+
+        c1.showDetails();
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Brand: Honda<br>Speed: 120</div>
+                <h4>Method with Parameters</h4>
+                <pre>class Calculator {
+    void add(int a, int b) {
+        System.out.println("Sum: " + (a + b));
+    }
+
+    public static void main(String[] args) {
+        Calculator calc = new Calculator();
+        calc.add(10, 20);
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Sum: 30</div>
+                <h4>Method with Return Value</h4>
+                <pre>class Calculator {
+    int square(int n) {
+        return n * n;
+    }
+
+    public static void main(String[] args) {
+        Calculator calc = new Calculator();
+        int result = calc.square(5);
+
+        System.out.println(result);
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>25</div>
+                <h4>Instance Variables and Local Variables</h4>
+                <table>
+                    <tr>
+                        <th>Basis</th>
+                        <th>Instance Variable</th>
+                        <th>Local Variable</th>
+                    </tr>
+                    <tr>
+                        <td>Location</td>
+                        <td>Class के अंदर, methods के बाहर।</td>
+                        <td>Method/block के अंदर।</td>
+                    </tr>
+                    <tr>
+                        <td>Access</td>
+                        <td>Object के through access होता है।</td>
+                        <td>Only method/block के अंदर access होता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Default Value</td>
+                        <td>Default value मिल सकती है।</td>
+                        <td>Use से पहले initialize करना जरूरी है।</td>
+                    </tr>
+                    <tr>
+                        <td>Example</td>
+                        <td><code>String name;</code></td>
+                        <td><code>int total = 0;</code></td>
+                    </tr>
+                </table>
+                <h4>this Keyword Overview</h4>
+                <p><code>this</code> current object को refer करता है। जब local variable और instance variable का name
+                    same हो, तब <code>this</code> confusion remove करता है।</p>
+                <pre>class Student {
+    String name;
+
+    Student(String name) {
+        this.name = name;
+    }
+
+    void display() {
+        System.out.println(name);
+    }
+}</pre>
+                <div class="remember-box"><b>Remember:</b><br>Object members access करने के लिए dot operator
+                    <code>.</code> use किया जाता है।
+                </div>
+
+            </section>
+            <section id="static-nonstatic">
+                <h2>Static and Non Static Variables/Methods</h2>
+
+                <p>Java में variables और methods static या non-static हो सकते हैं। <strong>Static</strong> members class
+                    से belong करते हैं, जबकि <strong>non-static</strong> members object से belong करते हैं। Static
+                    members को class name से access किया जा सकता है, जबकि non-static members के लिए object create करना
+                    पड़ता है।</p>
+                <div class="image-icon"><img src="" alt="Static vs Non Static Diagram">
+                    <p>Image Placeholder: Static vs Non-Static Memory Diagram</p>
+                </div>
+                <h4>Static Variable</h4>
+                <p>Static variable class level variable होता है। यह सभी objects के बीच shared होता है। अगर किसी value को
+                    सभी objects के लिए common रखना हो, तो static variable use किया जा सकता है।</p>
+                <pre>class Student {
+    String name;
+    static String college = "Government Polytechnic Kanpur";
+
+    Student(String n) {
+        name = n;
+    }
+
+    void display() {
+        System.out.println(name + " - " + college);
+    }
+
+    public static void main(String[] args) {
+        Student s1 = new Student("Brajkant");
+        Student s2 = new Student("Amit");
+
+        s1.display();
+        s2.display();
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Brajkant - Government Polytechnic Kanpur<br>Amit - Government
+                    Polytechnic Kanpur</div>
+                <h4>Static Method</h4>
+                <p>Static method class से belong करता है। इसे object बनाए बिना class name से call किया जा सकता है।
+                    <code>main()</code> method भी static होता है क्योंकि program start होते समय object create नहीं होता।
+                </p>
+                <pre>class MathUtil {
+    static int square(int n) {
+        return n * n;
+    }
+
+    public static void main(String[] args) {
+        int result = MathUtil.square(5);
+        System.out.println(result);
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>25</div>
+                <h4>Non-Static Variable and Method</h4>
+                <p>Non-static variables और methods object से belong करते हैं। हर object की अपनी separate copy/value हो
+                    सकती है। इन्हें access करने के लिए object की जरूरत होती है।</p>
+                <pre>class Student {
+    String name;
+
+    void showName() {
+        System.out.println(name);
+    }
+
+    public static void main(String[] args) {
+        Student s1 = new Student();
+        s1.name = "Brajkant";
+        s1.showName();
+    }
+}</pre>
+                <h4>Static vs Non-Static</h4>
+                <table>
+                    <tr>
+                        <th>Basis</th>
+                        <th>Static</th>
+                        <th>Non-Static</th>
+                    </tr>
+                    <tr>
+                        <td>Belongs To</td>
+                        <td>Class</td>
+                        <td>Object</td>
+                    </tr>
+                    <tr>
+                        <td>Access</td>
+                        <td>Class name से access हो सकता है।</td>
+                        <td>Object से access होता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Memory</td>
+                        <td>Class loading के समय memory मिलती है।</td>
+                        <td>Object create होने पर memory मिलती है।</td>
+                    </tr>
+                    <tr>
+                        <td>Shared</td>
+                        <td>सभी objects में shared।</td>
+                        <td>हर object की अलग copy।</td>
+                    </tr>
+                    <tr>
+                        <td>Example</td>
+                        <td><code>static String college;</code></td>
+                        <td><code>String name;</code></td>
+                    </tr>
+                </table>
+                <h4>Important Rule</h4>
+                <p>Static method directly non-static variable को access नहीं कर सकता क्योंकि static method class level
+                    पर होता है और non-static variable object level पर होता है।</p>
+                <pre>class Test {
+    int x = 10;
+
+    static void show() {
+        // System.out.println(x);  // Error
+    }
+}</pre>
+                <div class="note-box"><b>Real Life Example:</b><br>College name सभी students के लिए common है, इसलिए
+                    static variable हो सकता है। Student name हर object के लिए अलग है, इसलिए non-static variable होगा।
+                </div>
+                <div class="remember-box"><b>Remember:</b><br>Static class से belong करता है और non-static object से
+                    belong करता है।</div>
+
+            </section>
+            <section id="packages">
+                <h2>Defining Packages</h2>
+
+                <p><strong>Package</strong> Java में related classes और interfaces का group होता है। Package का use code
+                    को organize करने, naming conflict avoid करने और access control manage करने के लिए किया जाता है। बड़े
+                    projects में classes को अलग-अलग packages में रखना professional practice है।</p>
+                <p>Java में package दो types के होते हैं: built-in packages और user-defined packages. Built-in packages
+                    Java library में already available होते हैं, जैसे <code>java.util</code>, <code>java.io</code>,
+                    <code>java.lang</code>. User-defined packages programmer खुद बनाता है।
+                </p>
+                <div class="image-icon"><img src="" alt="Java Package Structure Diagram">
+                    <p>Image Placeholder: Java Package Folder Structure</p>
+                </div>
+                <h4>Package Declaration Syntax</h4>
+                <pre>package packageName;</pre>
+                <h4>Example</h4>
+                <pre>package mypack;
+
+public class Student {
+    public void display() {
+        System.out.println("Student class in mypack package");
+    }
+}</pre>
+                <h4>Important Rules</h4>
+                <ul>
+                    <li>Package statement Java file की first statement होनी चाहिए।</li>
+                    <li>Package name usually lowercase में लिखा जाता है।</li>
+                    <li>Package folder structure से related होता है।</li>
+                    <li>Public class को package के बाहर access किया जा सकता है।</li>
+                    <li>Same package में related classes रखना best practice है।</li>
+                </ul>
+                <h4>Advantages of Packages</h4>
+                <table>
+                    <tr>
+                        <th>Advantage</th>
+                        <th>Explanation</th>
+                    </tr>
+                    <tr>
+                        <td>Code Organization</td>
+                        <td>Related classes को group किया जा सकता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Name Conflict Avoid</td>
+                        <td>Same class name different packages में use हो सकता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Access Control</td>
+                        <td>Package-level access control possible होता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Reusability</td>
+                        <td>Package classes को other programs में use किया जा सकता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Maintenance</td>
+                        <td>Large project maintain करना easy होता है।</td>
+                    </tr>
+                </table>
+                <h4>Built-in Package Example</h4>
+                <pre>import java.util.Scanner;</pre>
+                <p>यहाँ <code>java.util</code> built-in package है और <code>Scanner</code> class उसी package में
+                    available है।</p>
+                <div class="note-box"><b>Real Life Example:</b><br>College project में <code>student</code>,
+                    <code>teacher</code>, <code>fees</code> और <code>result</code> अलग-अलग packages हो सकते हैं।
+                </div>
+                <div class="remember-box"><b>Remember:</b><br>Package classes को organize करने और naming conflicts avoid
+                    करने के लिए use होता है।</div>
+
+            </section>
+            <section id="create-access-package">
+                <h2>Creating and Accessing a Package</h2>
+
+                <p>User-defined package create करने के लिए Java file के top पर <code>package</code> statement लिखी जाती
+                    है। Package name के according folder structure भी maintain किया जाता है। Package create करने के बाद
+                    उसकी class को दूसरे program से import करके access किया जा सकता है।</p>
+                <div class="image-icon"><img src="" alt="Creating and Accessing Package Diagram">
+                    <p>Image Placeholder: Creating and Accessing Package Flow</p>
+                </div>
+                <h4>Step 1: Create Package Class</h4>
+                <pre>// File: mypack/Message.java
+package mypack;
+
+public class Message {
+    public void show() {
+        System.out.println("Hello from mypack package");
+    }
+}</pre>
+                <h4>Step 2: Compile Package Class</h4>
+                <pre>javac -d . Message.java</pre>
+                <p><code>-d .</code> option package folder structure create करने में help करता है।</p>
+                <h4>Step 3: Access Package Class</h4>
+                <pre>// File: Test.java
+import mypack.Message;
+
+class Test {
+    public static void main(String[] args) {
+        Message m = new Message();
+        m.show();
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Hello from mypack package</div>
+                <h4>Folder Structure</h4>
+                <pre>project/
+│
+├── Test.java
+└── mypack/
+    └── Message.class</pre>
+                <h4>Accessing with Fully Qualified Name</h4>
+                <p>Class import किए बिना भी fully qualified name से access की जा सकती है।</p>
+                <pre>class Test {
+    public static void main(String[] args) {
+        mypack.Message m = new mypack.Message();
+        m.show();
+    }
+}</pre>
+                <h4>Common Mistakes</h4>
+                <ul>
+                    <li>Package statement file की first statement न रखना।</li>
+                    <li>Class को public न बनाना और दूसरे package से access करने की कोशिश करना।</li>
+                    <li>Folder structure package name से match न करना।</li>
+                    <li>Compile command में <code>-d</code> option न use करना।</li>
+                </ul>
+                <div class="remember-box"><b>Remember:</b><br>Package class को दूसरे program में access करने के लिए
+                    class public होनी चाहिए और package properly import होना चाहिए।</div>
+
+            </section>
+            <section id="importing-packages">
+                <h2>Importing Packages</h2>
+
+                <p>Java में package की classes use करने के लिए <code>import</code> keyword use किया जाता है। Import
+                    statement compiler को बताता है कि required class किस package में available है। Import statement
+                    package statement के बाद और class declaration से पहले लिखी जाती है।</p>
+                <h4>Import Single Class</h4>
+                <pre>import java.util.Scanner;</pre>
+                <h4>Import All Classes from Package</h4>
+                <pre>import java.util.*;</pre>
+                <p>यह <code>java.util</code> package की सभी classes को accessible बनाता है। लेकिन sub-packages
+                    automatically import नहीं होते।</p>
+                <h4>Scanner Example</h4>
+                <pre>import java.util.Scanner;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter name: ");
+        String name = sc.nextLine();
+
+        System.out.println("Name: " + name);
+    }
+}</pre>
+                <h4>Using java.util.*</h4>
+                <pre>import java.util.*;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Date d = new Date();
+
+        System.out.println(d);
+    }
+}</pre>
+                <h4>java.lang Package</h4>
+                <p><code>java.lang</code> package automatically imported होता है। इसलिए <code>String</code>,
+                    <code>System</code>, <code>Math</code> जैसी classes को manually import करने की जरूरत नहीं होती।
+                </p>
+                <pre>class Main {
+    public static void main(String[] args) {
+        String name = "Java";
+        System.out.println(Math.sqrt(25));
+    }
+}</pre>
+                <h4>Single Import vs Wildcard Import</h4>
+                <table>
+                    <tr>
+                        <th>Basis</th>
+                        <th>Single Import</th>
+                        <th>Wildcard Import</th>
+                    </tr>
+                    <tr>
+                        <td>Syntax</td>
+                        <td><code>import java.util.Scanner;</code></td>
+                        <td><code>import java.util.*;</code></td>
+                    </tr>
+                    <tr>
+                        <td>Use</td>
+                        <td>Specific class import।</td>
+                        <td>Package की all classes accessible।</td>
+                    </tr>
+                    <tr>
+                        <td>Readability</td>
+                        <td>Clear होता है कि कौन-सी class use हो रही है।</td>
+                        <td>Less specific हो सकता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Performance</td>
+                        <td>Runtime performance पर meaningful effect नहीं।</td>
+                        <td>Runtime performance पर meaningful effect नहीं।</td>
+                    </tr>
+                </table>
+                <div class="remember-box"><b>Remember:</b><br><code>import java.util.*;</code> sub-packages को import
+                    नहीं करता, केवल उसी package की classes को accessible बनाता है।</div>
+
+            </section>
+            <section id="classpath">
+                <h2>Understanding CLASSPATH</h2>
+
+                <p><strong>CLASSPATH</strong> Java में वह path होता है जहाँ Java compiler और JVM classes, packages और
+                    libraries को search करते हैं। जब हम कोई Java program compile या run करते हैं और उसमें दूसरे package
+                    या class का use होता है, तो Java को पता होना चाहिए कि वह class कहाँ available है। यह information
+                    CLASSPATH से मिलती है।</p>
+                <p>Simple words में, CLASSPATH Java को class files की location बताता है। अगर required class CLASSPATH
+                    में available नहीं है, तो <code>ClassNotFoundException</code> या compile-time error आ सकता है।</p>
+                <div class="image-icon"><img src="" alt="Java CLASSPATH Diagram">
+                    <p>Image Placeholder: CLASSPATH Search Diagram</p>
+                </div>
+                <h4>Why CLASSPATH is Needed</h4>
+                <ul>
+                    <li>Compiler को required classes की location बताने के लिए।</li>
+                    <li>JVM को runtime पर classes load करने के लिए।</li>
+                    <li>User-defined packages access करने के लिए।</li>
+                    <li>External libraries/JAR files use करने के लिए।</li>
+                </ul>
+                <h4>Current Directory as Classpath</h4>
+                <pre>java -cp . Main</pre>
+                <p>यह command current directory से classes search करती है।</p>
+                <h4>Classpath with Package Folder</h4>
+                <pre>javac -cp . Test.java
+java -cp . Test</pre>
+                <h4>Classpath with JAR File</h4>
+                <pre>java -cp mylibrary.jar Main</pre>
+                <h4>Classpath with Multiple Locations</h4>
+                <pre>java -cp .;mylibrary.jar Main</pre>
+                <p>Windows में multiple paths separate करने के लिए semicolon <code>;</code> use होता है। Linux/Mac में
+                    colon <code>:</code> use होता है।</p>
+                <h4>Common CLASSPATH Problems</h4>
+                <table>
+                    <tr>
+                        <th>Problem</th>
+                        <th>Reason</th>
+                    </tr>
+                    <tr>
+                        <td>Class not found</td>
+                        <td>Class file CLASSPATH में नहीं है।</td>
+                    </tr>
+                    <tr>
+                        <td>Package does not exist</td>
+                        <td>Package folder या path गलत है।</td>
+                    </tr>
+                    <tr>
+                        <td>JAR not found</td>
+                        <td>JAR file का path गलत है।</td>
+                    </tr>
+                    <tr>
+                        <td>Wrong version class</td>
+                        <td>Old class file load हो रही है।</td>
+                    </tr>
+                </table>
+                <h4>Important Point for Beginners</h4>
+                <p>अगर Java files same folder में हैं और packages use नहीं हो रहे, तो simple compile/run commands enough
+                    होते हैं। Packages और external libraries use करते समय CLASSPATH समझना जरूरी हो जाता है।</p>
+                <div class="note-box"><b>Real Life Example:</b><br>जैसे किसी file को open करने के लिए computer को file
+                    की location पता होनी चाहिए, वैसे ही Java को class file की location CLASSPATH से पता चलती है।</div>
+                <div class="remember-box"><b>Remember:</b><br>CLASSPATH Java compiler और JVM को बताता है कि required
+                    classes कहाँ search करनी हैं।</div>
+
+            </section>
+            <section id="autoboxing">
+                <h2>Auto Boxing</h2>
+
+                <p><strong>Autoboxing</strong> Java में primitive data type को automatically उसके corresponding wrapper
+                    class object में convert करने की process है। For example, <code>int</code> value automatically
+                    <code>Integer</code> object में convert हो सकती है। इसके reverse process को
+                    <strong>Unboxing</strong> कहा जाता है।
+                </p>
+                <p>Wrapper classes primitive types को object form में represent करती हैं। Collections जैसे ArrayList
+                    primitive values directly store नहीं करते, वे objects store करते हैं। ऐसे cases में autoboxing बहुत
+                    useful है।</p>
+                <div class="image-icon"><img src="" alt="Autoboxing and Unboxing Diagram">
+                    <p>Image Placeholder: Autoboxing and Unboxing Diagram</p>
+                </div>
+                <h4>Primitive and Wrapper Classes</h4>
+                <table>
+                    <tr>
+                        <th>Primitive Type</th>
+                        <th>Wrapper Class</th>
+                    </tr>
+                    <tr>
+                        <td><code>byte</code></td>
+                        <td><code>Byte</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>short</code></td>
+                        <td><code>Short</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>int</code></td>
+                        <td><code>Integer</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>long</code></td>
+                        <td><code>Long</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>float</code></td>
+                        <td><code>Float</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>double</code></td>
+                        <td><code>Double</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>char</code></td>
+                        <td><code>Character</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>boolean</code></td>
+                        <td><code>Boolean</code></td>
+                    </tr>
+                </table>
+                <h4>Autoboxing Example</h4>
+                <pre>class Main {
+    public static void main(String[] args) {
+        int a = 10;
+
+        Integer obj = a;   // Autoboxing
+
+        System.out.println(obj);
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>10</div>
+                <h4>Unboxing Example</h4>
+                <pre>class Main {
+    public static void main(String[] args) {
+        Integer obj = 25;
+
+        int num = obj;   // Unboxing
+
+        System.out.println(num);
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>25</div>
+                <h4>Autoboxing in Collection</h4>
+                <pre>import java.util.ArrayList;
+
+class Main {
+    public static void main(String[] args) {
+        ArrayList&lt;Integer&gt; numbers = new ArrayList&lt;&gt;();
+
+        numbers.add(10);   // int automatically Integer में convert
+        numbers.add(20);
+
+        System.out.println(numbers);
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>[10, 20]</div>
+                <h4>Benefits</h4>
+                <ul>
+                    <li>Primitive और object conversion automatic हो जाता है।</li>
+                    <li>Code simple और readable बनता है।</li>
+                    <li>Collections में primitive values use करना easy हो जाता है।</li>
+                    <li>Manual wrapper object creation की जरूरत कम हो जाती है।</li>
+                </ul>
+                <div class="remember-box"><b>Remember:</b><br>Autoboxing primitive to wrapper conversion है और unboxing
+                    wrapper to primitive conversion है।</div>
+
+            </section>
+            <section id="string">
+                <h2>String</h2>
+
+                <p><strong>String</strong> Java में characters का sequence होता है। String का use text data store करने
+                    के लिए किया जाता है। Java में <code>String</code> class <code>java.lang</code> package में होती है
+                    और यह automatically available रहती है। String immutable होती है, यानी once create होने के बाद उसका
+                    original content change नहीं होता।</p>
+                <p>जब हम String पर कोई operation करते हैं, तो original String modify नहीं होती बल्कि नई String create हो
+                    सकती है। इसी वजह से repeated modification के लिए StringBuffer या StringBuilder better हो सकते हैं।
+                </p>
+                <div class="image-icon"><img src="" alt="Java String Immutability Diagram">
+                    <p>Image Placeholder: String Immutability Diagram</p>
+                </div>
+                <h4>Creating String</h4>
+                <pre>String name = "Brajkant";
+
+String course = new String("Java");</pre>
+                <h4>String Example</h4>
+                <pre>class Main {
+    public static void main(String[] args) {
+        String name = "Brajkant";
+
+        System.out.println(name);
+        System.out.println(name.length());
+        System.out.println(name.toUpperCase());
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Brajkant<br>8<br>BRAJKANT</div>
+                <h4>Common String Methods</h4>
+                <table>
+                    <tr>
+                        <th>Method</th>
+                        <th>Use</th>
+                    </tr>
+                    <tr>
+                        <td><code>length()</code></td>
+                        <td>String की length return करता है।</td>
+                    </tr>
+                    <tr>
+                        <td><code>charAt(index)</code></td>
+                        <td>Specific index का character देता है।</td>
+                    </tr>
+                    <tr>
+                        <td><code>toUpperCase()</code></td>
+                        <td>String को uppercase में convert करता है।</td>
+                    </tr>
+                    <tr>
+                        <td><code>toLowerCase()</code></td>
+                        <td>String को lowercase में convert करता है।</td>
+                    </tr>
+                    <tr>
+                        <td><code>trim()</code></td>
+                        <td>Starting और ending spaces remove करता है।</td>
+                    </tr>
+                    <tr>
+                        <td><code>equals()</code></td>
+                        <td>String content compare करता है।</td>
+                    </tr>
+                    <tr>
+                        <td><code>contains()</code></td>
+                        <td>Check करता है कि substring present है या नहीं।</td>
+                    </tr>
+                    <tr>
+                        <td><code>substring()</code></td>
+                        <td>String का part return करता है।</td>
+                    </tr>
+                </table>
+                <h4>String Comparison</h4>
+                <p>Java में String content compare करने के लिए <code>equals()</code> method use करना चाहिए।
+                    <code>==</code> reference compare कर सकता है।
+                </p>
+                <pre>class Main {
+    public static void main(String[] args) {
+        String a = "Java";
+        String b = "Java";
+
+        System.out.println(a.equals(b));
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>true</div>
+                <h4>String Concatenation</h4>
+                <pre>String firstName = "Brajkant";
+String lastName = "Sharma";
+
+String fullName = firstName + " " + lastName;
+
+System.out.println(fullName);</pre>
+                <div class="info-box"><b>Output:</b><br>Brajkant Sharma</div>
+                <h4>String Immutability Example</h4>
+                <pre>String s = "Java";
+s.concat(" Programming");
+
+System.out.println(s);</pre>
+                <div class="info-box"><b>Output:</b><br>Java</div>
+                <p>यहाँ original String change नहीं हुई क्योंकि String immutable है।</p>
+                <h4>Correct Way</h4>
+                <pre>String s = "Java";
+s = s.concat(" Programming");
+
+System.out.println(s);</pre>
+                <div class="info-box"><b>Output:</b><br>Java Programming</div>
+                <div class="note-box"><b>Real Life Example:</b><br>User name, email, address, course name और password
+                    जैसे text data String में store किए जाते हैं।</div>
+                <div class="remember-box"><b>Remember:</b><br>String immutable होती है और String content compare करने के
+                    लिए <code>equals()</code> use करना चाहिए।</div>
+
+            </section>
+            <section id="string-buffer">
+                <h2>String Buffer</h2>
+
+                <p><strong>StringBuffer</strong> Java में mutable sequence of characters represent करता है। Mutable का
+                    मतलब है कि StringBuffer object का content modify किया जा सकता है। अगर किसी text को बार-बार change
+                    करना हो, जैसे append, insert, delete या reverse, तो StringBuffer normal String से ज्यादा suitable हो
+                    सकता है।</p>
+                <p>String immutable होती है, इसलिए repeated modifications में multiple new objects बन सकते हैं।
+                    StringBuffer existing object को modify करता है। StringBuffer thread-safe भी होता है, यानी
+                    synchronized methods provide करता है।</p>
+                <div class="image-icon"><img src="" alt="String vs StringBuffer Diagram">
+                    <p>Image Placeholder: String vs StringBuffer Mutability Diagram</p>
+                </div>
+                <h4>Creating StringBuffer</h4>
+                <pre>StringBuffer sb = new StringBuffer("Java");</pre>
+                <h4>append() Method</h4>
+                <pre>class Main {
+    public static void main(String[] args) {
+        StringBuffer sb = new StringBuffer("Java");
+
+        sb.append(" Programming");
+
+        System.out.println(sb);
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Java Programming</div>
+                <h4>insert() Method</h4>
+                <pre>StringBuffer sb = new StringBuffer("Java");
+
+sb.insert(4, " Language");
+
+System.out.println(sb);</pre>
+                <div class="info-box"><b>Output:</b><br>Java Language</div>
+                <h4>replace() Method</h4>
+                <pre>StringBuffer sb = new StringBuffer("Java Language");
+
+sb.replace(5, 13, "Programming");
+
+System.out.println(sb);</pre>
+                <div class="info-box"><b>Output:</b><br>Java Programming</div>
+                <h4>delete() Method</h4>
+                <pre>StringBuffer sb = new StringBuffer("Java Programming");
+
+sb.delete(4, 16);
+
+System.out.println(sb);</pre>
+                <div class="info-box"><b>Output:</b><br>Java</div>
+                <h4>reverse() Method</h4>
+                <pre>StringBuffer sb = new StringBuffer("Java");
+
+sb.reverse();
+
+System.out.println(sb);</pre>
+                <div class="info-box"><b>Output:</b><br>avaJ</div>
+                <h4>Common StringBuffer Methods</h4>
+                <table>
+                    <tr>
+                        <th>Method</th>
+                        <th>Use</th>
+                    </tr>
+                    <tr>
+                        <td><code>append()</code></td>
+                        <td>End में text add करता है।</td>
+                    </tr>
+                    <tr>
+                        <td><code>insert()</code></td>
+                        <td>Specific position पर text insert करता है।</td>
+                    </tr>
+                    <tr>
+                        <td><code>replace()</code></td>
+                        <td>Text का part replace करता है।</td>
+                    </tr>
+                    <tr>
+                        <td><code>delete()</code></td>
+                        <td>Text का part remove करता है।</td>
+                    </tr>
+                    <tr>
+                        <td><code>reverse()</code></td>
+                        <td>Characters को reverse करता है।</td>
+                    </tr>
+                    <tr>
+                        <td><code>capacity()</code></td>
+                        <td>Current capacity return करता है।</td>
+                    </tr>
+                </table>
+                <h4>String vs StringBuffer</h4>
+                <table>
+                    <tr>
+                        <th>Basis</th>
+                        <th>String</th>
+                        <th>StringBuffer</th>
+                    </tr>
+                    <tr>
+                        <td>Mutability</td>
+                        <td>Immutable</td>
+                        <td>Mutable</td>
+                    </tr>
+                    <tr>
+                        <td>Modification</td>
+                        <td>New object create हो सकता है।</td>
+                        <td>Same object modify होता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Performance</td>
+                        <td>Repeated changes में slower हो सकती है।</td>
+                        <td>Repeated changes में better।</td>
+                    </tr>
+                    <tr>
+                        <td>Thread Safety</td>
+                        <td>Immutable होने से safe nature।</td>
+                        <td>Methods synchronized होते हैं।</td>
+                    </tr>
+                    <tr>
+                        <td>Use</td>
+                        <td>Fixed text data।</td>
+                        <td>Frequently changing text data।</td>
+                    </tr>
+                </table>
+                <div class="note-box"><b>Real Life Example:</b><br>अगर program में report text धीरे-धीरे add करके बनाना
+                    है, तो StringBuffer use करना useful हो सकता है।</div>
+                <div class="remember-box"><b>Remember:</b><br>String immutable है, StringBuffer mutable है। Repeated
+                    text modification के लिए StringBuffer better होता है।</div>
+
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>
