@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <!-- Google tag (gtag.js) -->
+       <script async src="https://www.googletagmanager.com/gtag/js?id=G-FB7SX0P0D3"></script>
+       <script>
+              window.dataLayer = window.dataLayer || [];
+              function gtag() { dataLayer.push(arguments); }
+              gtag('js', new Date());
+
+              gtag('config', 'G-FB7SX0P0D3');
+       </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>MYSQL / SQL</title>
+  <style>
+    * {
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      margin: 0;
+      background: #f3f6fa;
+      color: #1f2937;
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.8
+    }
+
+    .layout {
+      max-width: 1550px;
+      margin: auto;
+      padding: 14px;
+      display: grid;
+      grid-template-columns: 290px 1fr;
+      gap: 18px
+    }
+
+    aside {
+      position: sticky;
+      top: 14px;
+      height: calc(100vh - 28px);
+      overflow: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 18px;
+      box-shadow: 0 5px 22px #0001
+    }
+
+    aside h2 {
+      margin: 0 0 12px;
+      color: #111827
+    }
+
+    aside a {
+      display: block;
+      padding: 7px 9px;
+      margin: 3px 0;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #374151;
+      font-size: 14px
+    }
+
+    aside a:hover {
+      background: #e0e7ff;
+      color: #1d4ed8
+    }
+
+    main {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 5px 22px #0001;
+      overflow: hidden
+    }
+
+    .hero {
+      padding: 34px;
+      background: linear-gradient(135deg, #dbeafe, #eef2ff, #f8fafc)
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: 36px;
+      color: #111827
+    }
+
+    .hero p {
+      margin: 5px 0;
+      color: #475569
+    }
+
+    section {
+      padding: 28px 30px;
+      border-bottom: 1px solid #e5e7eb
+    }
+
+    section:last-child {
+      border: 0
+    }
+
+    h2 {
+      font-size: 28px;
+      color: #172554;
+      border-left: 5px solid #2563eb;
+      padding-left: 12px;
+      margin: 0 0 18px
+    }
+
+    h3 {
+      font-size: 21px;
+      color: #1e3a8a;
+      margin: 24px 0 8px
+    }
+
+    h4 {
+      font-size: 18px;
+      color: #334155;
+      margin: 18px 0 5px
+    }
+
+    p {
+      font-size: 16.5px;
+      margin: 10px 0
+    }
+
+    li {
+      font-size: 16px;
+      margin: 7px 0
+    }
+
+    .note,
+    .exam,
+    .important {
+      padding: 16px 18px;
+      border-radius: 12px;
+      margin: 18px 0
+    }
+
+    .note {
+      background: #eff6ff;
+      border-left: 5px solid #3b82f6
+    }
+
+    .exam {
+      background: #ecfdf5;
+      border-left: 5px solid #10b981
+    }
+
+    .important {
+      background: #fff7ed;
+      border-left: 5px solid #f97316
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin: 18px 0
+    }
+
+    .card {
+      background: #f8fafc;
+      border: 1px solid #dbe3ef;
+      border-radius: 14px;
+      padding: 17px
+    }
+
+    .card h4 {
+      margin-top: 0;
+      color: #1d4ed8
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 18px 0;
+      font-size: 15px
+    }
+
+    th,
+    td {
+      border: 1px solid #cbd5e1;
+      padding: 11px;
+      vertical-align: top;
+      text-align: left
+    }
+
+    th {
+      background: #eef2ff;
+      color: #111827
+    }
+
+    .flow {
+      background: #09090b;
+      color: #f8fafc;
+      padding: 20px;
+      border-radius: 14px;
+      text-align: center;
+      font-family: Consolas, monospace;
+      overflow: auto;
+      margin: 18px 0
+    }
+
+    .code {
+      background: #09090b;
+      color: #e5e7eb;
+      padding: 18px;
+      border-radius: 13px;
+      overflow: auto;
+      font-family: Consolas, monospace;
+      white-space: pre
+    }
+
+    .diagram {
+      background: #f8fafc;
+      border: 2px dashed #94a3b8;
+      border-radius: 15px;
+      padding: 22px;
+      text-align: center;
+      margin: 18px 0
+    }
+
+    .badge {
+      display: inline-block;
+      background: #dbeafe;
+      color: #1e40af;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700
+    }
+
+    @media(max-width:900px) {
+      .layout {
+        display: block;
+        padding: 5px
+      }
+
+      aside {
+        display: none
+      }
+
+      .hero {
+        padding: 24px 18px
+      }
+
+      .hero h1 {
+        font-size: 28px
+      }
+
+      section {
+        padding: 22px 18px
+      }
+
+      h2 {
+        font-size: 23px
+      }
+
+      .grid {
+        grid-template-columns: 1fr
+      }
+
+      p,
+      li {
+        font-size: 15px
+      }
+
+      table {
+        display: block;
+        overflow-x: auto
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="layout">
+
+    <aside>
+      <h2>Topics</h2>
+      <a href="#intro">1. Introduction to SQL/MySQL</a>
+      <a href="#ddl">2. DDL</a>
+      <a href="#dml">3. DML</a>
+      <a href="#sql">4. SQL</a>
+      <a href="#naming">5. Object Naming Conventions</a>
+      <a href="#datatypes">6. Data Types</a>
+      <a href="#tables">7. Tables</a>
+      <a href="#constraints">8. Constraints</a>
+      <a href="#views">9. Views</a>
+      <a href="#indexes">10. Indexes</a>
+      <a href="#describe">11. DESCRIBE</a>
+      <a href="#select">12. SELECT</a>
+      <a href="#where">13. WHERE</a>
+      <a href="#distinct">14. DISTINCT</a>
+      <a href="#orderby">15. ORDER BY</a>
+      <a href="#having">16. HAVING</a>
+      <a href="#logical">17. Logical Operations</a>
+      <a href="#operators">18. SQL Operators</a>
+      <a href="#joins">19. JOIN</a>
+      <a href="#aggregate">20. Aggregate Functions</a>
+      <a href="#string">21. String Functions</a>
+      <a href="#datetime">22. Date & Time Functions</a>
+      <a href="#null">23. NULL Values</a>
+      <a href="#workflow">24. Complete SQL Workflow</a>
+      <a href="#revision">25. Revision & Questions</a>
+    </aside>
+
+    <main>
+
+      <div class="hero">
+        <h1>MYSQL / SQL</h1>        
+      </div>
+
+      <section id="intro">
+        <h2>1. Introduction to MySQL and SQL</h2>
+
+        <p>
+          <strong>SQL (Structured Query Language)</strong> एक standard language है जिसका उपयोग
+          relational databases के साथ communicate करने के लिए किया जाता है। SQL की सहायता
+          से database objects create किए जा सकते हैं, data insert/update/delete किया जा सकता
+          है और queries के द्वारा required information retrieve की जा सकती है।
+        </p>
+
+        <p>
+          <strong>MySQL</strong> एक popular relational database management system (RDBMS) है
+          जो SQL का उपयोग करके relational data को manage करता है। MySQL में databases,
+          tables, views, indexes और other database objects create और manage किए जा सकते हैं।
+        </p>
+
+        <h3>SQL और MySQL में अंतर</h3>
+        <table>
+          <tr>
+            <th>SQL</th>
+            <th>MySQL</th>
+          </tr>
+          <tr>
+            <td>Database से interact करने की language है।</td>
+            <td>एक RDBMS/database software system है।</td>
+          </tr>
+          <tr>
+            <td>Queries और database operations define करता है।</td>
+            <td>SQL commands को execute करके data manage करता है।</td>
+          </tr>
+          <tr>
+            <td>यह स्वयं database server software नहीं है।</td>
+            <td>यह database server/RDBMS environment provide करता है।</td>
+          </tr>
+        </table>
+
+        <div class="flow">
+          User / Application
+          ↓
+          SQL Query
+          ↓
+          MySQL RDBMS
+          ↓
+          Database / Tables
+          ↓
+          Result
+        </div>
+
+        <div class="exam"><b>Exam Definition:</b> SQL is a language used to define, manipulate, retrieve and control
+          data in relational database systems.</div>
+      </section>
+
+      <section id="ddl">
+        <h2>2. Data Definition Language (DDL)</h2>
+
+        <p>
+          <strong>DDL (Data Definition Language)</strong> SQL commands का वह group है जिसका
+          उपयोग database schema और database objects की structure को define या modify करने
+          के लिए किया जाता है। इसमें tables, indexes, views और अन्य schema-related objects
+          के structure पर काम किया जाता है। citeturn0search1turn0search5
+        </p>
+
+        <h3>Important DDL Commands</h3>
+        <table>
+          <tr>
+            <th>Command</th>
+            <th>Purpose</th>
+            <th>Example</th>
+          </tr>
+          <tr>
+            <td>CREATE</td>
+            <td>New database object create करना।</td>
+            <td>CREATE TABLE Student (...);</td>
+          </tr>
+          <tr>
+            <td>ALTER</td>
+            <td>Existing object की structure modify करना।</td>
+            <td>ALTER TABLE Student ADD Email VARCHAR(100);</td>
+          </tr>
+          <tr>
+            <td>DROP</td>
+            <td>Database object को remove करना।</td>
+            <td>DROP TABLE Student;</td>
+          </tr>
+          <tr>
+            <td>TRUNCATE</td>
+            <td>Table के सभी rows remove करना, structure को बनाए रखना।</td>
+            <td>TRUNCATE TABLE Student;</td>
+          </tr>
+          <tr>
+            <td>RENAME</td>
+            <td>Object/table का नाम बदलना।</td>
+            <td>RENAME TABLE Student TO Students;</td>
+          </tr>
+        </table>
+
+        <h3>CREATE TABLE Example</h3>
+        <div class="code">CREATE TABLE Student (
+          StudentID INT PRIMARY KEY,
+          Name VARCHAR(50),
+          Age INT,
+          Course VARCHAR(50)
+          );</div>
+
+        <p>
+          CREATE command database object का structure define करता है और columns के साथ
+          data types तथा constraints specify किए जा सकते हैं। citeturn0search2turn0search10
+        </p>
+
+        <div class="note"><b>Remember:</b> DDL → Database <strong>Structure</strong> को define/modify करता है।</div>
+      </section>
+
+      <section id="dml">
+        <h2>3. Data Manipulation Language (DML)</h2>
+
+        <p>
+          <strong>DML</strong> का उपयोग database tables में stored actual data को manipulate
+          करने के लिए किया जाता है। इसके मुख्य commands INSERT, UPDATE और DELETE हैं।
+          कुछ educational classifications में SELECT को DML के साथ discuss किया जाता है,
+          जबकि कई references इसे DQL के रूप में अलग रखते हैं। citeturn0search1turn0search9
+        </p>
+
+        <h3>INSERT</h3>
+        <p>Table में नया record add करने के लिए INSERT का उपयोग किया जाता है।</p>
+        <div class="code">INSERT INTO Student (StudentID, Name, Age, Course)
+          VALUES (101, 'Amit', 21, 'PGDCA');</div>
+
+        <h3>UPDATE</h3>
+        <p>Existing records की values modify करने के लिए UPDATE use होता है।</p>
+        <div class="code">UPDATE Student
+          SET Age = 22
+          WHERE StudentID = 101;</div>
+
+        <h3>DELETE</h3>
+        <p>Specific records remove करने के लिए DELETE use होता है।</p>
+        <div class="code">DELETE FROM Student
+          WHERE StudentID = 101;</div>
+
+        <div class="important"><b>Warning:</b> UPDATE या DELETE में WHERE clause न देने पर unintended rows प्रभावित हो
+          सकती हैं।</div>
+      </section>
+
+      <section id="sql">
+        <h2>4. SQL — Structured Query Language</h2>
+
+        <p>
+          SQL relational database के साथ interaction की primary language है। SQL commands
+          का उपयोग schema define करने, data manipulate करने, queries run करने और permissions
+          manage करने के लिए किया जाता है।
+        </p>
+
+        <h3>Common SQL Categories</h3>
+        <table>
+          <tr>
+            <th>Category</th>
+            <th>Meaning</th>
+            <th>Examples</th>
+          </tr>
+          <tr>
+            <td>DDL</td>
+            <td>Data Definition Language</td>
+            <td>CREATE, ALTER, DROP, TRUNCATE</td>
+          </tr>
+          <tr>
+            <td>DML</td>
+            <td>Data Manipulation Language</td>
+            <td>INSERT, UPDATE, DELETE</td>
+          </tr>
+          <tr>
+            <td>DQL</td>
+            <td>Data Query Language</td>
+            <td>SELECT</td>
+          </tr>
+          <tr>
+            <td>DCL</td>
+            <td>Data Control Language</td>
+            <td>GRANT, REVOKE</td>
+          </tr>
+          <tr>
+            <td>TCL</td>
+            <td>Transaction Control Language</td>
+            <td>COMMIT, ROLLBACK</td>
+          </tr>
+        </table>
+
+        <p>
+          GFG के SQL command reference में DDL, DQL, DML, DCL और TCL categories दी गई हैं,
+          और SELECT को data retrieval के लिए DQL में रखा गया है। citeturn0search1
+        </p>
+      </section>
+
+      <section id="naming">
+        <h2>5. Object Naming Conventions & Guidelines</h2>
+
+        <p>
+          Database objects में databases, tables, columns, views और indexes जैसे names
+          शामिल हो सकते हैं। Consistent naming conventions database को पढ़ने, maintain करने
+          और queries लिखने में आसान बनाती हैं।
+        </p>
+
+        <h3>Recommended Guidelines</h3>
+        <ol>
+          <li>Names meaningful और descriptive रखें।</li>
+          <li>एक project में consistent naming style रखें।</li>
+          <li>Spaces और confusing special characters से बचना practical होता है।</li>
+          <li>SQL keywords जैसे SELECT, TABLE, ORDER आदि को object names के रूप में avoid करें।</li>
+          <li>Table और column names short लेकिन understandable रखें।</li>
+          <li>एक ही concept के लिए पूरे database में एक consistent name रखें।</li>
+          <li>Names में unnecessary abbreviations कम रखें।</li>
+          <li>Related objects के लिए predictable naming pattern रखें।</li>
+        </ol>
+
+        <h3>Good vs Poor Naming</h3>
+        <table>
+          <tr>
+            <th>Better</th>
+            <th>Less Descriptive</th>
+          </tr>
+          <tr>
+            <td>Student</td>
+            <td>st1</td>
+          </tr>
+          <tr>
+            <td>StudentID</td>
+            <td>x</td>
+          </tr>
+          <tr>
+            <td>CourseName</td>
+            <td>cn</td>
+          </tr>
+          <tr>
+            <td>EnrollmentDate</td>
+            <td>dt</td>
+          </tr>
+          <tr>
+            <td>StudentPhone</td>
+            <td>p1</td>
+          </tr>
+        </table>
+
+        <div class="note"><b>Tip:</b> Naming convention team/project की official style guide के अनुसार consistent रखनी
+          चाहिए।</div>
+      </section>
+
+      <section id="datatypes">
+        <h2>6. MySQL Data Types</h2>
+
+        <p>
+          Data type यह define करता है कि किसी column में किस प्रकार की values store की जा
+          सकती हैं। सही data type storage, validation और query behavior के लिए important है।
+        </p>
+
+        <h3>1. Numeric Data Types</h3>
+        <table>
+          <tr>
+            <th>Type</th>
+            <th>Use</th>
+            <th>Example</th>
+          </tr>
+          <tr>
+            <td>INT</td>
+            <td>Whole numbers</td>
+            <td>101</td>
+          </tr>
+          <tr>
+            <td>BIGINT</td>
+            <td>Large integer values</td>
+            <td>9876543210</td>
+          </tr>
+          <tr>
+            <td>DECIMAL</td>
+            <td>Exact fixed-point values, जैसे money</td>
+            <td>12500.50</td>
+          </tr>
+          <tr>
+            <td>FLOAT / DOUBLE</td>
+            <td>Floating-point numerical values</td>
+            <td>98.75</td>
+          </tr>
+        </table>
+
+        <h3>2. String Data Types</h3>
+        <table>
+          <tr>
+            <th>Type</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td>CHAR(n)</td>
+            <td>Fixed-length character/string data।</td>
+          </tr>
+          <tr>
+            <td>VARCHAR(n)</td>
+            <td>Variable-length string data।</td>
+          </tr>
+          <tr>
+            <td>TEXT</td>
+            <td>Larger text content के लिए।</td>
+          </tr>
+        </table>
+
+        <h3>3. Date & Time Data Types</h3>
+        <table>
+          <tr>
+            <th>Type</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td>DATE</td>
+            <td>Date values, जैसे 2026-08-17</td>
+          </tr>
+          <tr>
+            <td>TIME</td>
+            <td>Time values</td>
+          </tr>
+          <tr>
+            <td>DATETIME</td>
+            <td>Date और time दोनों</td>
+          </tr>
+          <tr>
+            <td>TIMESTAMP</td>
+            <td>Date/time values, commonly timestamped records के लिए</td>
+          </tr>
+        </table>
+
+        <div class="code">CREATE TABLE Employee (
+          ID INT,
+          Name VARCHAR(100),
+          Salary DECIMAL(10,2),
+          JoiningDate DATE
+          );</div>
+      </section>
+
+      <section id="tables">
+        <h2>7. Tables — Creating, Inserting, Updating and Deleting</h2>
+
+        <p>
+          Relational database में <strong>Table</strong> data को rows और columns के रूप में
+          store करने की primary structure है। प्रत्येक column एक attribute को represent
+          करता है और प्रत्येक row एक record/tuple को represent करती है। citeturn0search10
+        </p>
+
+        <h3>Creating a Table</h3>
+        <div class="code">CREATE TABLE Student (
+          StudentID INT PRIMARY KEY,
+          Name VARCHAR(50) NOT NULL,
+          Age INT,
+          Course VARCHAR(50)
+          );</div>
+
+        <h3>Inserting Records</h3>
+        <div class="code">INSERT INTO Student (StudentID, Name, Age, Course)
+          VALUES
+          (101, 'Amit', 21, 'PGDCA'),
+          (102, 'Neha', 22, 'PGDCA'),
+          (103, 'Rahul', 20, 'BCA');</div>
+
+        <h3>Updating Records</h3>
+        <div class="code">UPDATE Student
+          SET Course = 'MCA'
+          WHERE StudentID = 103;</div>
+
+        <h3>Deleting Records</h3>
+        <div class="code">DELETE FROM Student
+          WHERE StudentID = 103;</div>
+
+        <h3>Altering Table Structure</h3>
+        <div class="code">ALTER TABLE Student
+          ADD Email VARCHAR(100);
+
+          ALTER TABLE Student
+          MODIFY Age SMALLINT;
+
+          ALTER TABLE Student
+          DROP COLUMN Email;</div>
+
+        <div class="important"><b>Difference:</b> DELETE records/data को remove करता है; DROP पूरे table/object को
+          remove करता है; TRUNCATE table के सभी records remove करता है लेकिन table structure रखता है।</div>
+      </section>
+
+      <section id="constraints">
+        <h2>8. Constraints</h2>
+
+        <p>
+          <strong>Constraints</strong> database में data integrity और validity maintain करने
+          के लिए rules हैं। इन्हें table creation या alteration के समय columns पर apply किया
+          जा सकता है। Common constraints में NOT NULL, UNIQUE, PRIMARY KEY, FOREIGN KEY,
+          CHECK और DEFAULT शामिल हैं। citeturn0search2turn0search6
+        </p>
+
+        <table>
+          <tr>
+            <th>Constraint</th>
+            <th>Purpose</th>
+            <th>Example</th>
+          </tr>
+          <tr>
+            <td>NOT NULL</td>
+            <td>Column को NULL value accept करने से रोकना।</td>
+            <td>Name VARCHAR(50) NOT NULL</td>
+          </tr>
+          <tr>
+            <td>UNIQUE</td>
+            <td>Duplicate values को रोकना।</td>
+            <td>Email VARCHAR(100) UNIQUE</td>
+          </tr>
+          <tr>
+            <td>PRIMARY KEY</td>
+            <td>हर record को uniquely identify करना।</td>
+            <td>StudentID INT PRIMARY KEY</td>
+          </tr>
+          <tr>
+            <td>FOREIGN KEY</td>
+            <td>दो tables के बीच referential relationship establish करना।</td>
+            <td>FOREIGN KEY (DeptID) REFERENCES Department(DeptID)</td>
+          </tr>
+          <tr>
+            <td>CHECK</td>
+            <td>Value पर condition enforce करना।</td>
+            <td>Age INT CHECK (Age &gt;= 18)</td>
+          </tr>
+          <tr>
+            <td>DEFAULT</td>
+            <td>Value absent होने पर default value देना।</td>
+            <td>Status VARCHAR(20) DEFAULT 'Active'</td>
+          </tr>
+        </table>
+
+        <h3>Complete Example</h3>
+        <div class="code">CREATE TABLE Department (
+          DeptID INT PRIMARY KEY,
+          DeptName VARCHAR(50) NOT NULL UNIQUE
+          );
+
+          CREATE TABLE Employee (
+          EmpID INT PRIMARY KEY,
+          Name VARCHAR(100) NOT NULL,
+          Email VARCHAR(100) UNIQUE,
+          Age INT CHECK (Age &gt;= 18),
+          DeptID INT,
+          Status VARCHAR(20) DEFAULT 'Active',
+          FOREIGN KEY (DeptID) REFERENCES Department(DeptID)
+          );</div>
+      </section>
+
+      <section id="views">
+        <h2>9. Views</h2>
+
+        <p>
+          <strong>View</strong> एक virtual table-like result representation है जो एक SQL query
+          पर आधारित होती है। View में सामान्यतः actual data की अलग physical copy रखने के
+          बजाय underlying tables से query result expose किया जाता है। Views security,
+          simplification और customized data presentation के लिए useful हैं।
+        </p>
+
+        <h3>Create a View</h3>
+        <div class="code">CREATE VIEW PGDCA_Students AS
+          SELECT StudentID, Name, Course
+          FROM Student
+          WHERE Course = 'PGDCA';</div>
+
+        <h3>Use the View</h3>
+        <div class="code">SELECT * FROM PGDCA_Students;</div>
+
+        <h3>Remove a View</h3>
+        <div class="code">DROP VIEW PGDCA_Students;</div>
+
+        <h3>Advantages of Views</h3>
+        <ul>
+          <li>Complex queries को reusable बनाया जा सकता है।</li>
+          <li>Users को customized subset of data दिया जा सकता है।</li>
+          <li>Sensitive columns को direct exposure से बचाने में सहायता मिल सकती है।</li>
+          <li>Query readability improve हो सकती है।</li>
+        </ul>
+      </section>
+
+      <section id="indexes">
+        <h2>10. Indexes</h2>
+
+        <p>
+          <strong>Index</strong> database object/data structure है जो columns पर data retrieval
+          को faster बनाने में सहायता कर सकता है। Index को book के index की तरह समझ सकते हैं:
+          पूरी table scan करने के बजाय DBMS appropriate index का उपयोग करके required rows
+          locate करने में सक्षम हो सकता है।
+        </p>
+
+        <h3>Create Index</h3>
+        <div class="code">CREATE INDEX idx_student_name
+          ON Student(Name);</div>
+
+        <h3>Unique Index</h3>
+        <div class="code">CREATE UNIQUE INDEX idx_student_email
+          ON Student(Email);</div>
+
+        <h3>Drop Index in MySQL</h3>
+        <div class="code">DROP INDEX idx_student_name ON Student;</div>
+
+        <h3>Advantages</h3>
+        <ul>
+          <li>Search/query performance improve हो सकती है।</li>
+          <li>WHERE, JOIN और ORDER BY जैसे operations में useful हो सकता है।</li>
+          <li>Large tables में data lookup efficient हो सकता है।</li>
+        </ul>
+
+        <h3>Disadvantages</h3>
+        <ul>
+          <li>Indexes additional storage लेते हैं।</li>
+          <li>INSERT, UPDATE और DELETE के दौरान indexes भी maintain करने पड़ते हैं।</li>
+          <li>हर column पर index बनाना जरूरी या beneficial नहीं होता।</li>
+        </ul>
+      </section>
+
+      <section id="describe">
+        <h2>11. DESCRIBE Command</h2>
+
+        <p>
+          <strong>DESCRIBE</strong> या <strong>DESC</strong> command table की structure देखने
+          के लिए use की जाती है। यह columns, data types, NULL information, keys और related
+          structural information देखने में useful है। citeturn0search3
+        </p>
+
+        <div class="code">DESCRIBE Student;
+
+          -- Short form
+          DESC Student;</div>
+
+        <p>यह command यह समझने में मदद करती है कि table में कौन-कौन से columns defined हैं।</p>
+      </section>
+
+      <section id="select">
+        <h2>12. SELECT Command</h2>
+
+        <p>
+          <strong>SELECT</strong> SQL की सबसे important query commands में से एक है। इसका
+          उपयोग database से required rows और columns retrieve करने के लिए किया जाता है।
+          SELECT one or more tables से result set return कर सकता है। citeturn0search7
+        </p>
+
+        <h3>Select All Columns</h3>
+        <div class="code">SELECT * FROM Student;</div>
+
+        <h3>Select Specific Columns</h3>
+        <div class="code">SELECT StudentID, Name, Course
+          FROM Student;</div>
+
+        <h3>Column Alias</h3>
+        <div class="code">SELECT Name AS StudentName,
+          Course AS Program
+          FROM Student;</div>
+
+        <h3>Basic SELECT Structure</h3>
+        <div class="flow">
+          SELECT columns
+          FROM table
+          WHERE condition
+          GROUP BY columns
+          HAVING condition
+          ORDER BY columns;
+        </div>
+      </section>
+
+      <section id="where">
+        <h2>13. WHERE Clause</h2>
+
+        <p>
+          <strong>WHERE</strong> clause result में आने वाली rows को condition के आधार पर
+          filter करता है। यह SELECT के साथ-साथ UPDATE और DELETE में भी specific rows target
+          करने के लिए important है। GFG के SQL command reference में WHERE को row filtering
+          clause बताया गया है। citeturn0search1turn0search11
+        </p>
+
+        <h3>Examples</h3>
+        <div class="code">SELECT *
+          FROM Student
+          WHERE Age &gt; 20;
+
+          SELECT Name, Course
+          FROM Student
+          WHERE Course = 'PGDCA';
+
+          SELECT *
+          FROM Student
+          WHERE Age BETWEEN 18 AND 25;</div>
+
+        <h3>LIKE</h3>
+        <div class="code">SELECT *
+          FROM Student
+          WHERE Name LIKE 'A%';</div>
+
+        <p><strong>A%</strong> का अर्थ है A से start होने वाला text pattern।</p>
+      </section>
+
+      <section id="distinct">
+        <h2>14. DISTINCT Clause</h2>
+
+        <p>
+          <strong>DISTINCT</strong> result set से duplicate rows/values को remove करके unique
+          results दिखाता है। citeturn0search1turn0search11
+        </p>
+
+        <div class="code">SELECT DISTINCT Course
+          FROM Student;</div>
+
+        <p>
+          यदि कई students एक ही Course में हैं, तो Course name result में केवल unique values
+          के रूप में दिखाई देगा।
+        </p>
+
+        <div class="exam"><b>Remember:</b> DISTINCT → Duplicate results हटाता है।</div>
+      </section>
+
+      <section id="orderby">
+        <h2>15. ORDER BY Clause</h2>
+
+        <p>
+          <strong>ORDER BY</strong> result set को specified column के आधार पर sort करता है।
+          Default ordering ascending होती है; <strong>DESC</strong> descending ordering के लिए
+          use किया जाता है। citeturn0search1turn0search6
+        </p>
+
+        <div class="code">SELECT Name, Age
+          FROM Student
+          ORDER BY Age ASC;
+
+          SELECT Name, Age
+          FROM Student
+          ORDER BY Age DESC;</div>
+
+        <h3>Multiple Columns</h3>
+        <div class="code">SELECT *
+          FROM Student
+          ORDER BY Course ASC, Age DESC;</div>
+      </section>
+
+      <section id="having">
+        <h2>16. HAVING Clause</h2>
+
+        <p>
+          <strong>HAVING</strong> grouped/aggregated results को filter करने के लिए use होता
+          है। इसे अक्सर GROUP BY के साथ use किया जाता है। WHERE individual rows को filter
+          करता है, जबकि HAVING groups को filter करता है। citeturn0search1
+        </p>
+
+        <div class="code">SELECT Course, COUNT(*) AS TotalStudents
+          FROM Student
+          GROUP BY Course
+          HAVING COUNT(*) &gt; 2;</div>
+
+        <table>
+          <tr>
+            <th>WHERE</th>
+            <th>HAVING</th>
+          </tr>
+          <tr>
+            <td>Rows filter करता है।</td>
+            <td>Groups/aggregated results filter करता है।</td>
+          </tr>
+          <tr>
+            <td>GROUP BY से पहले filtering conceptually होती है।</td>
+            <td>Grouping के बाद group condition apply होती है।</td>
+          </tr>
+          <tr>
+            <td>Example: Age &gt; 20</td>
+            <td>Example: COUNT(*) &gt; 2</td>
+          </tr>
+        </table>
+      </section>
+
+      <section id="logical">
+        <h2>17. Logical Operations</h2>
+
+        <p>
+          SQL conditions को combine करने के लिए logical operators use किए जाते हैं। Main
+          logical operators हैं <strong>AND, OR और NOT</strong>.
+        </p>
+
+        <h3>AND</h3>
+        <p>दोनों conditions true होनी चाहिए।</p>
+        <div class="code">SELECT *
+          FROM Student
+          WHERE Age &gt; 20 AND Course = 'PGDCA';</div>
+
+        <h3>OR</h3>
+        <p>कम से कम एक condition true होनी चाहिए।</p>
+        <div class="code">SELECT *
+          FROM Student
+          WHERE Course = 'PGDCA' OR Course = 'BCA';</div>
+
+        <h3>NOT</h3>
+        <p>Condition का logical opposite देता है।</p>
+        <div class="code">SELECT *
+          FROM Student
+          WHERE NOT Course = 'BCA';</div>
+
+        <h3>Parentheses</h3>
+        <div class="code">SELECT *
+          FROM Student
+          WHERE (Course = 'PGDCA' OR Course = 'BCA')
+          AND Age &gt;= 20;</div>
+
+        <p>Complex conditions में parentheses use करने से intended logic clear रहता है।</p>
+      </section>
+
+      <section id="operators">
+        <h2>18. SQL Operators</h2>
+
+        <h3>Arithmetic Operators</h3>
+        <table>
+          <tr>
+            <th>Operator</th>
+            <th>Meaning</th>
+            <th>Example</th>
+          </tr>
+          <tr>
+            <td>+</td>
+            <td>Addition</td>
+            <td>Salary + 1000</td>
+          </tr>
+          <tr>
+            <td>-</td>
+            <td>Subtraction</td>
+            <td>Salary - 500</td>
+          </tr>
+          <tr>
+            <td>*</td>
+            <td>Multiplication</td>
+            <td>Quantity * Price</td>
+          </tr>
+          <tr>
+            <td>/</td>
+            <td>Division</td>
+            <td>Marks / 5</td>
+          </tr>
+          <tr>
+            <td>%</td>
+            <td>Remainder/Modulo</td>
+            <td>Marks % 2</td>
+          </tr>
+        </table>
+
+        <h3>Comparison Operators</h3>
+        <table>
+          <tr>
+            <th>Operator</th>
+            <th>Meaning</th>
+          </tr>
+          <tr>
+            <td>=</td>
+            <td>Equal to</td>
+          </tr>
+          <tr>
+            <td>!= / &lt;&gt;</td>
+            <td>Not equal to</td>
+          </tr>
+          <tr>
+            <td>&gt;</td>
+            <td>Greater than</td>
+          </tr>
+          <tr>
+            <td>&lt;</td>
+            <td>Less than</td>
+          </tr>
+          <tr>
+            <td>&gt;=</td>
+            <td>Greater than or equal</td>
+          </tr>
+          <tr>
+            <td>&lt;=</td>
+            <td>Less than or equal</td>
+          </tr>
+        </table>
+
+        <h3>Special Operators</h3>
+        <table>
+          <tr>
+            <th>Operator</th>
+            <th>Use</th>
+            <th>Example</th>
+          </tr>
+          <tr>
+            <td>BETWEEN</td>
+            <td>Range check</td>
+            <td>Age BETWEEN 18 AND 25</td>
+          </tr>
+          <tr>
+            <td>IN</td>
+            <td>Multiple possible values check</td>
+            <td>Course IN ('BCA','PGDCA')</td>
+          </tr>
+          <tr>
+            <td>LIKE</td>
+            <td>Pattern matching</td>
+            <td>Name LIKE 'A%'</td>
+          </tr>
+          <tr>
+            <td>IS NULL</td>
+            <td>NULL check</td>
+            <td>Email IS NULL</td>
+          </tr>
+          <tr>
+            <td>IS NOT NULL</td>
+            <td>Non-NULL check</td>
+            <td>Email IS NOT NULL</td>
+          </tr>
+        </table>
+      </section>
+
+      <section id="joins">
+        <h2>19. JOIN</h2>
+
+        <p>
+          <strong>JOIN</strong> का उपयोग दो या अधिक related tables से data combine करने के
+          लिए किया जाता है। Tables के बीच relationship आमतौर पर common/key columns के
+          through establish होती है।
+        </p>
+
+        <h3>Example Tables</h3>
+        <div class="code">Student
+          ----------------------------
+          StudentID | Name | DeptID
+
+          Department
+          ----------------------------
+          DeptID | DeptName</div>
+
+        <h3>INNER JOIN</h3>
+        <p>केवल matching records return करता है।</p>
+        <div class="code">SELECT Student.Name, Department.DeptName
+          FROM Student
+          INNER JOIN Department
+          ON Student.DeptID = Department.DeptID;</div>
+
+        <h3>LEFT JOIN</h3>
+        <p>Left table के सभी records और matching right-table records return करता है।</p>
+        <div class="code">SELECT Student.Name, Department.DeptName
+          FROM Student
+          LEFT JOIN Department
+          ON Student.DeptID = Department.DeptID;</div>
+
+        <h3>RIGHT JOIN</h3>
+        <p>Right table के सभी records और matching left-table records return करता है।</p>
+        <div class="code">SELECT Student.Name, Department.DeptName
+          FROM Student
+          RIGHT JOIN Department
+          ON Student.DeptID = Department.DeptID;</div>
+
+        <h3>CROSS JOIN</h3>
+        <p>दो tables के rows के combinations produce करता है।</p>
+        <div class="code">SELECT Student.Name, Department.DeptName
+          FROM Student
+          CROSS JOIN Department;</div>
+
+        <table>
+          <tr>
+            <th>JOIN</th>
+            <th>Main Result</th>
+          </tr>
+          <tr>
+            <td>INNER JOIN</td>
+            <td>Only matching rows</td>
+          </tr>
+          <tr>
+            <td>LEFT JOIN</td>
+            <td>All left rows + matching right rows</td>
+          </tr>
+          <tr>
+            <td>RIGHT JOIN</td>
+            <td>All right rows + matching left rows</td>
+          </tr>
+          <tr>
+            <td>CROSS JOIN</td>
+            <td>Combinations of rows</td>
+          </tr>
+        </table>
+      </section>
+
+      <section id="aggregate">
+        <h2>20. Aggregate Functions</h2>
+
+        <p>
+          Aggregate functions multiple rows पर calculation करके एक summarized result देती हैं।
+          Common SQL aggregate functions में <strong>COUNT, SUM, AVG, MIN और MAX</strong>
+          शामिल हैं। citeturn0search4
+        </p>
+
+        <table>
+          <tr>
+            <th>Function</th>
+            <th>Purpose</th>
+            <th>Example</th>
+          </tr>
+          <tr>
+            <td>COUNT()</td>
+            <td>Rows/values count करना</td>
+            <td>COUNT(*)</td>
+          </tr>
+          <tr>
+            <td>SUM()</td>
+            <td>Numeric values का total</td>
+            <td>SUM(Salary)</td>
+          </tr>
+          <tr>
+            <td>AVG()</td>
+            <td>Average value</td>
+            <td>AVG(Marks)</td>
+          </tr>
+          <tr>
+            <td>MIN()</td>
+            <td>Smallest value</td>
+            <td>MIN(Marks)</td>
+          </tr>
+          <tr>
+            <td>MAX()</td>
+            <td>Largest value</td>
+            <td>MAX(Marks)</td>
+          </tr>
+        </table>
+
+        <h3>Examples</h3>
+        <div class="code">SELECT COUNT(*) AS TotalStudents
+          FROM Student;
+
+          SELECT AVG(Age) AS AverageAge
+          FROM Student;
+
+          SELECT MIN(Age) AS MinimumAge,
+          MAX(Age) AS MaximumAge
+          FROM Student;
+
+          SELECT Course, COUNT(*) AS Total
+          FROM Student
+          GROUP BY Course;</div>
+
+        <div class="note">
+          COUNT(*) सभी rows count करता है, जबकि COUNT(column) उस column की non-NULL values
+          count करता है। NULL handling aggregate functions के behavior को प्रभावित कर सकती है।
+        </div>
+      </section>
+
+      <section id="string">
+        <h2>21. String Functions</h2>
+
+        <p>
+          String functions text values को manipulate, format या analyze करने के लिए use होती हैं।
+        </p>
+
+        <table>
+          <tr>
+            <th>Function</th>
+            <th>Purpose</th>
+            <th>Example</th>
+          </tr>
+          <tr>
+            <td>UPPER()</td>
+            <td>Text को uppercase में बदलना</td>
+            <td>UPPER(Name)</td>
+          </tr>
+          <tr>
+            <td>LOWER()</td>
+            <td>Text को lowercase में बदलना</td>
+            <td>LOWER(Name)</td>
+          </tr>
+          <tr>
+            <td>CONCAT()</td>
+            <td>Strings combine करना</td>
+            <td>CONCAT(FirstName,' ',LastName)</td>
+          </tr>
+          <tr>
+            <td>LENGTH()</td>
+            <td>String length निकालना</td>
+            <td>LENGTH(Name)</td>
+          </tr>
+          <tr>
+            <td>SUBSTRING()</td>
+            <td>String का portion निकालना</td>
+            <td>SUBSTRING(Name,1,3)</td>
+          </tr>
+          <tr>
+            <td>TRIM()</td>
+            <td>Leading/trailing spaces remove करना</td>
+            <td>TRIM(Name)</td>
+          </tr>
+          <tr>
+            <td>REPLACE()</td>
+            <td>Text का part replace करना</td>
+            <td>REPLACE(Name,'a','@')</td>
+          </tr>
+        </table>
+
+        <h3>Examples</h3>
+        <div class="code">SELECT UPPER(Name) AS UpperName
+          FROM Student;
+
+          SELECT LOWER(Name) AS LowerName
+          FROM Student;
+
+          SELECT CONCAT(Name, ' - ', Course) AS StudentInfo
+          FROM Student;
+
+          SELECT LENGTH(Name) AS NameLength
+          FROM Student;</div>
+      </section>
+
+      <section id="datetime">
+        <h2>22. Date and Time Functions</h2>
+
+        <p>
+          MySQL date/time functions date और time values को retrieve, format, compare और
+          calculate करने में सहायता करती हैं।
+        </p>
+
+        <table>
+          <tr>
+            <th>Function</th>
+            <th>Purpose</th>
+            <th>Example</th>
+          </tr>
+          <tr>
+            <td>CURDATE()</td>
+            <td>Current date</td>
+            <td>SELECT CURDATE();</td>
+          </tr>
+          <tr>
+            <td>CURTIME()</td>
+            <td>Current time</td>
+            <td>SELECT CURTIME();</td>
+          </tr>
+          <tr>
+            <td>NOW()</td>
+            <td>Current date and time</td>
+            <td>SELECT NOW();</td>
+          </tr>
+          <tr>
+            <td>YEAR()</td>
+            <td>Date से year निकालना</td>
+            <td>YEAR(JoiningDate)</td>
+          </tr>
+          <tr>
+            <td>MONTH()</td>
+            <td>Month निकालना</td>
+            <td>MONTH(JoiningDate)</td>
+          </tr>
+          <tr>
+            <td>DAY()</td>
+            <td>Day निकालना</td>
+            <td>DAY(JoiningDate)</td>
+          </tr>
+          <tr>
+            <td>DATEDIFF()</td>
+            <td>दो dates के बीच days का difference</td>
+            <td>DATEDIFF(CURDATE(), JoiningDate)</td>
+          </tr>
+        </table>
+
+        <h3>Examples</h3>
+        <div class="code">SELECT CURDATE();
+
+          SELECT NOW();
+
+          SELECT Name, YEAR(JoiningDate) AS JoiningYear
+          FROM Employee;
+
+          SELECT Name,
+          DATEDIFF(CURDATE(), JoiningDate) AS DaysWorked
+          FROM Employee;</div>
+      </section>
+
+      <section id="null">
+        <h2>23. NULL Values</h2>
+
+        <p>
+          <strong>NULL</strong> का अर्थ generally missing, unknown या not available value
+          होता है। NULL को zero, empty string या ordinary value के बराबर नहीं समझना चाहिए।
+          GFG के MySQL reference के अनुसार NULL को check करने के लिए <strong>IS NULL</strong>
+          और <strong>IS NOT NULL</strong> use करना चाहिए; = या != के साथ NULL comparison
+          उचित नहीं है। citeturn0search0turn0search11
+        </p>
+
+        <h3>Checking NULL</h3>
+        <div class="code">SELECT *
+          FROM Employee
+          WHERE Email IS NULL;
+
+          SELECT *
+          FROM Employee
+          WHERE Email IS NOT NULL;</div>
+
+        <h3>Wrong Approach</h3>
+        <div class="code">-- Avoid:
+          WHERE Email = NULL;
+
+          -- Avoid:
+          WHERE Email != NULL;</div>
+
+        <h3>COALESCE()</h3>
+        <p>
+          COALESCE() arguments में से पहला non-NULL value return कर सकता है। इससे missing
+          value के लिए fallback value दिखाने में सहायता मिलती है। citeturn0search0
+        </p>
+
+        <div class="code">SELECT Name,
+          COALESCE(Email, 'Not Available') AS Email
+          FROM Employee;</div>
+
+        <h3>NULL and Aggregate Functions</h3>
+        <p>
+          COUNT(column), SUM(column) और AVG(column) जैसे functions सामान्यतः NULL values को
+          ignore करते हैं, जबकि COUNT(*) rows को count करता है। citeturn0search0
+        </p>
+
+        <div class="exam"><b>Remember:</b> NULL ≠ 0 and NULL ≠ empty string (''). Use IS NULL / IS NOT NULL for NULL
+          checks.</div>
+      </section>
+
+      <section id="workflow">
+        <h2>24. Complete SQL Practical Workflow</h2>
+
+        <p>
+          नीचे एक छोटा end-to-end example है जिसमें database creation से लेकर table,
+          constraints, insertion, query, grouping और ordering तक concepts connect होते हैं।
+        </p>
+
+        <div class="code">CREATE DATABASE CollegeDB;
+
+          USE CollegeDB;
+
+          CREATE TABLE Department (
+          DeptID INT PRIMARY KEY,
+          DeptName VARCHAR(50) NOT NULL UNIQUE
+          );
+
+          CREATE TABLE Student (
+          StudentID INT PRIMARY KEY,
+          Name VARCHAR(50) NOT NULL,
+          Age INT CHECK (Age >= 18),
+          DeptID INT,
+          Email VARCHAR(100) UNIQUE,
+          FOREIGN KEY (DeptID) REFERENCES Department(DeptID)
+          );
+
+          INSERT INTO Department VALUES
+          (1, 'Computer'),
+          (2, 'Management');
+
+          INSERT INTO Student
+          (StudentID, Name, Age, DeptID, Email)
+          VALUES
+          (101, 'Amit', 21, 1, 'amit@example.com'),
+          (102, 'Neha', 22, 1, 'neha@example.com'),
+          (103, 'Rahul', 20, 2, NULL);
+
+          DESCRIBE Student;
+
+          SELECT * FROM Student;
+
+          SELECT DISTINCT Age
+          FROM Student;
+
+          SELECT Name, Age
+          FROM Student
+          WHERE Age >= 21
+          ORDER BY Age DESC;
+
+          SELECT DeptID, COUNT(*) AS TotalStudents
+          FROM Student
+          GROUP BY DeptID
+          HAVING COUNT(*) >= 1;
+
+          SELECT Student.Name, Department.DeptName
+          FROM Student
+          INNER JOIN Department
+          ON Student.DeptID = Department.DeptID;</div>
+
+        <div class="flow">
+          CREATE → INSERT → DESCRIBE → SELECT
+          ↓
+          WHERE / DISTINCT
+          ↓
+          GROUP BY / HAVING
+          ↓
+          ORDER BY
+          ↓
+          JOIN
+        </div>
+      </section>
+
+      <section id="revision">
+        <h2>25. Quick Revision & Important Questions</h2>
+
+        <table>
+          <tr>
+            <th>Topic</th>
+            <th>Quick Revision</th>
+          </tr>
+          <tr>
+            <td>SQL</td>
+            <td>Relational databases के साथ interact करने की language।</td>
+          </tr>
+          <tr>
+            <td>MySQL</td>
+            <td>Popular relational database management system।</td>
+          </tr>
+          <tr>
+            <td>DDL</td>
+            <td>Database structure/schema define और modify करता है।</td>
+          </tr>
+          <tr>
+            <td>DML</td>
+            <td>Stored data को insert, update और delete करता है।</td>
+          </tr>
+          <tr>
+            <td>DQL</td>
+            <td>Data retrieval; main command SELECT।</td>
+          </tr>
+          <tr>
+            <td>Constraint</td>
+            <td>Data integrity के लिए rule।</td>
+          </tr>
+          <tr>
+            <td>View</td>
+            <td>SQL query based virtual table-like representation।</td>
+          </tr>
+          <tr>
+            <td>Index</td>
+            <td>Data retrieval को faster करने में मदद करने वाला structure।</td>
+          </tr>
+          <tr>
+            <td>DESCRIBE</td>
+            <td>Table structure देखने के लिए।</td>
+          </tr>
+          <tr>
+            <td>WHERE</td>
+            <td>Rows filter करने के लिए।</td>
+          </tr>
+          <tr>
+            <td>DISTINCT</td>
+            <td>Duplicate result values/rows हटाने के लिए।</td>
+          </tr>
+          <tr>
+            <td>ORDER BY</td>
+            <td>Result sort करने के लिए।</td>
+          </tr>
+          <tr>
+            <td>HAVING</td>
+            <td>Grouped/aggregate results filter करने के लिए।</td>
+          </tr>
+          <tr>
+            <td>JOIN</td>
+            <td>Related tables से data combine करने के लिए।</td>
+          </tr>
+          <tr>
+            <td>Aggregate Functions</td>
+            <td>COUNT, SUM, AVG, MIN, MAX।</td>
+          </tr>
+          <tr>
+            <td>String Functions</td>
+            <td>UPPER, LOWER, CONCAT, LENGTH, SUBSTRING आदि।</td>
+          </tr>
+          <tr>
+            <td>Date Functions</td>
+            <td>CURDATE, CURTIME, NOW, YEAR, MONTH, DAY आदि।</td>
+          </tr>
+          <tr>
+            <td>NULL</td>
+            <td>Missing/unknown value; IS NULL / IS NOT NULL use करें।</td>
+          </tr>
+        </table>
+
+        <div class="exam">
+          <b>Important Long-Answer Questions</b><br><br>
+          1. SQL क्या है? MySQL और SQL में अंतर समझाइए।<br>
+          2. DDL और DML क्या हैं? इनके commands examples सहित समझाइए।<br>
+          3. SQL में object naming conventions और guidelines समझाइए।<br>
+          4. MySQL के प्रमुख data types समझाइए।<br>
+          5. CREATE TABLE command को constraints सहित समझाइए।<br>
+          6. INSERT, UPDATE और DELETE commands examples सहित समझाइए।<br>
+          7. SQL constraints क्या हैं? सभी प्रमुख constraints समझाइए।<br>
+          8. View क्या है? View create और drop करने की commands लिखिए।<br>
+          9. Index क्या है? इसके advantages और disadvantages लिखिए।<br>
+          10. DESCRIBE command क्या है? इसका उपयोग समझाइए।<br>
+          11. SELECT, WHERE, DISTINCT और ORDER BY clauses examples सहित समझाइए।<br>
+          12. WHERE और HAVING में अंतर लिखिए।<br>
+          13. SQL logical और comparison operators examples सहित समझाइए।<br>
+          14. JOIN क्या है? INNER, LEFT, RIGHT और CROSS JOIN समझाइए।<br>
+          15. Aggregate functions क्या हैं? COUNT, SUM, AVG, MIN और MAX समझाइए।<br>
+          16. String functions और Date/Time functions examples सहित समझाइए।<br>
+          17. SQL में NULL क्या है? IS NULL, IS NOT NULL और COALESCE समझाइए।
+        </div>
+
+        <div class="note">
+          <b>Exam Writing Pattern:</b><br>
+          हर SQL theory answer में <strong>Definition → Purpose → Syntax → Example → Explanation →
+            Difference/Advantages</strong>
+          का format रखें। Query-based question में query के बाद expected result/working को भी explain करें।
+        </div>
+
+        <p>
+          <strong>Reference basis:</strong> इस chapter की terminology और examples को GFG के
+          SQL commands, CREATE/ALTER, DESCRIBE, SELECT, constraints, MySQL NULL और related
+          SQL references से cross-check करके तैयार किया गया है।
+          citeturn0search1turn0search2turn0search3turn0search0turn0search7
+        </p>
+
+      </section>
+    </main>
+  </div>
+</body>
+
+</html>

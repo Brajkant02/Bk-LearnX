@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FB7SX0P0D3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-FB7SX0P0D3');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Blogging & Social Networking Web Designing</title>
+    <style>
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            margin: 0;
+            background: #f3f6fa;
+            color: #1f2937;
+            font-family: "Segoe UI", Arial, sans-serif;
+            line-height: 1.8
+        }
+
+        .layout {
+            max-width: 1550px;
+            margin: auto;
+            padding: 14px;
+            display: grid;
+            grid-template-columns: 290px 1fr;
+            gap: 18px
+        }
+
+        aside {
+            position: sticky;
+            top: 14px;
+            height: calc(100vh - 28px);
+            overflow: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 18px;
+            box-shadow: 0 5px 22px #0001
+        }
+
+        aside h2 {
+            margin: 0 0 12px;
+            color: #111827
+        }
+
+        aside a {
+            display: block;
+            padding: 7px 9px;
+            margin: 3px 0;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #374151;
+            font-size: 14px
+        }
+
+        aside a:hover {
+            background: #e0e7ff;
+            color: #1d4ed8
+        }
+
+        main {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 5px 22px #0001;
+            overflow: hidden
+        }
+
+        .hero {
+            padding: 34px;
+            background: linear-gradient(135deg, #dbeafe, #eef2ff, #f8fafc)
+        }
+
+        .hero h1 {
+            margin: 0 0 8px;
+            font-size: 36px;
+            color: #111827
+        }
+
+        .hero p {
+            margin: 5px 0;
+            color: #475569
+        }
+
+        section {
+            padding: 28px 30px;
+            border-bottom: 1px solid #e5e7eb
+        }
+
+        section:last-child {
+            border: 0
+        }
+
+        h2 {
+            font-size: 28px;
+            color: #172554;
+            border-left: 5px solid #2563eb;
+            padding-left: 12px;
+            margin: 0 0 18px
+        }
+
+        h3 {
+            font-size: 21px;
+            color: #1e3a8a;
+            margin: 24px 0 8px
+        }
+
+        h4 {
+            font-size: 18px;
+            color: #334155;
+            margin: 18px 0 6px
+        }
+
+        p {
+            font-size: 16.5px;
+            margin: 10px 0
+        }
+
+        li {
+            font-size: 16px;
+            margin: 7px 0
+        }
+
+        .note,
+        .exam,
+        .important {
+            padding: 16px 18px;
+            border-radius: 12px;
+            margin: 18px 0
+        }
+
+        .note {
+            background: #eff6ff;
+            border-left: 5px solid #3b82f6
+        }
+
+        .exam {
+            background: #ecfdf5;
+            border-left: 5px solid #10b981
+        }
+
+        .important {
+            background: #fff7ed;
+            border-left: 5px solid #f97316
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 18px 0
+        }
+
+        .card {
+            background: #f8fafc;
+            border: 1px solid #dbe3ef;
+            border-radius: 14px;
+            padding: 17px
+        }
+
+        .card h4 {
+            margin-top: 0;
+            color: #1d4ed8
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 18px 0;
+            font-size: 15px
+        }
+
+        th,
+        td {
+            border: 1px solid #cbd5e1;
+            padding: 11px;
+            vertical-align: top;
+            text-align: left
+        }
+
+        th {
+            background: #eef2ff;
+            color: #111827
+        }
+
+        .flow {
+            background: #09090b;
+            color: #f8fafc;
+            padding: 20px;
+            border-radius: 14px;
+            text-align: center;
+            font-family: Consolas, monospace;
+            overflow: auto;
+            margin: 18px 0
+        }
+
+        .code {
+            background: #09090b;
+            color: #e5e7eb;
+            padding: 18px;
+            border-radius: 13px;
+            overflow: auto;
+            font-family: Consolas, monospace;
+            white-space: pre
+        }
+
+        .badge {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700
+        }
+
+        @media(max-width:900px) {
+            .layout {
+                display: block;
+                padding: 5px
+            }
+
+            aside {
+                display: none
+            }
+
+            .hero {
+                padding: 24px 18px
+            }
+
+            .hero h1 {
+                font-size: 28px
+            }
+
+            section {
+                padding: 22px 18px
+            }
+
+            h2 {
+                font-size: 23px
+            }
+
+            .grid {
+                grid-template-columns: 1fr
+            }
+
+            p,
+            li {
+                font-size: 15px
+            }
+
+            table {
+                display: block;
+                overflow-x: auto
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="layout">
+
+        <aside>
+            <h2>Topics</h2>
+            <a href="#intro">1. Introduction</a>
+            <a href="#blogging">2. Blogging</a>
+            <a href="#advantages">3. Advantages of Blogging</a>
+            <a href="#webdesign">4. Blogging Web Designing</a>
+            <a href="#wordpress">5. WordPress</a>
+            <a href="#ghost">6. Ghost</a>
+            <a href="#anchor">7. Anchor CMS</a>
+            <a href="#spark">8. Adobe Spark</a>
+            <a href="#googlesites">9. Google Sites</a>
+            <a href="#comparison">10. Tool Comparison</a>
+            <a href="#social">11. Social Networking Website</a>
+            <a href="#principles">12. Design Principles</a>
+            <a href="#workflow">13. Complete Workflow</a>
+            <a href="#revision">14. Revision & Questions</a>
+        </aside>
+
+        <main>
+
+            <div class="hero">
+                
+                <h1>3. Blogging &amp; Social Networking Web Designing</h1>
+               
+            </div>
+
+            <section id="intro">
+                <h2>1. Introduction</h2>
+
+                <p>
+                    <strong>Blogging &amp; Social Networking Web Designing</strong> web development का
+                    एक important area है जिसमें online content publish करने, users के साथ interaction
+                    करने और communities build करने के लिए websites design की जाती हैं।
+                </p>
+
+                <p>
+                    <strong>Blog</strong> एक website या web page का प्रकार है जहाँ articles, opinions,
+                    tutorials, news, experiences, reviews या अन्य digital content regularly publish
+                    किया जा सकता है। दूसरी ओर, <strong>Social Networking Website</strong> ऐसी website
+                    होती है जहाँ users profiles create कर सकते हैं, content share कर सकते हैं और
+                    दूसरे users के साथ communication या interaction कर सकते हैं।
+                </p>
+
+                <div class="flow">
+                    Content / Idea
+                    ↓
+                    Blog / Website
+                    ↓
+                    Publish Content
+                    ↓
+                    Users Visit
+                    ↓
+                    Read / Interact / Share
+                    ↓
+                    Community / Audience
+                </div>
+
+                <h3>Blogging और Social Networking का Relationship</h3>
+                <p>
+                    Blogging में मुख्य focus content publishing होता है, जबकि social networking में
+                    मुख्य focus users, interaction और community होता है। दोनों को combine करके
+                    content को publish भी किया जा सकता है और users को engage भी किया जा सकता है।
+                </p>
+
+                <div class="exam"><b>Exam Definition:</b> Blogging is the process of creating and publishing regularly
+                    updated content on the web, while social networking web design focuses on creating websites that
+                    support user profiles, communication, sharing and interaction.</div>
+            </section>
+
+            <section id="blogging">
+                <h2>2. Blogging</h2>
+
+                <p>
+                    <strong>Blogging</strong> का अर्थ blog पर content create, publish और manage करने
+                    की process से है। Blog में content generally posts के रूप में organize किया जाता
+                    है। Posts में text के साथ images, videos, links और other media भी include किए जा
+                    सकते हैं।
+                </p>
+
+                <h3>Blog के प्रमुख Components</h3>
+                <table>
+                    <tr>
+                        <th>Component</th>
+                        <th>Purpose</th>
+                    </tr>
+                    <tr>
+                        <td>Header</td>
+                        <td>Website/blog identity, logo और primary navigation display करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Navigation Menu</td>
+                        <td>Different pages या categories तक पहुँच provide करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Blog Post</td>
+                        <td>Main article/content जिसे user पढ़ता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Categories</td>
+                        <td>Related posts को logical groups में organize करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Tags</td>
+                        <td>Posts के topics/keywords को identify और organize करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Sidebar</td>
+                        <td>Search, recent posts, categories या additional widgets दिखा सकता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Comments</td>
+                        <td>Users को content पर प्रतिक्रिया/interactions का option देना।</td>
+                    </tr>
+                    <tr>
+                        <td>Footer</td>
+                        <td>Copyright, links, contact और other secondary information।</td>
+                    </tr>
+                </table>
+
+                <h3>Typical Blog Structure</h3>
+                <div class="flow">
+                    ┌───────────────────────────────────────┐
+                    │ HEADER │
+                    │ Logo | Navigation | Search │
+                    ├─────────────────────────┬─────────────┤
+                    │ │ │
+                    │ BLOG POSTS │ SIDEBAR │
+                    │ │ Categories │
+                    │ Post 1 │ Recent │
+                    │ Post 2 │ Search │
+                    │ Post 3 │ │
+                    ├─────────────────────────┴─────────────┤
+                    │ FOOTER │
+                    └───────────────────────────────────────┘
+                </div>
+
+                <h3>Basic Blogging Process</h3>
+                <ol>
+                    <li>Blog topic और target audience decide करें।</li>
+                    <li>Blog platform/tool choose करें।</li>
+                    <li>Website/blog structure और theme select करें।</li>
+                    <li>Content create करें।</li>
+                    <li>Images/media add करें।</li>
+                    <li>Categories और tags organize करें।</li>
+                    <li>Content preview करें।</li>
+                    <li>Publish करें।</li>
+                    <li>Comments और audience interaction manage करें।</li>
+                </ol>
+            </section>
+
+            <section id="advantages">
+                <h2>3. Advantages of Blogging</h2>
+
+                <div class="grid">
+                    <div class="card">
+                        <h4>1. Easy Content Publishing</h4>
+                        <p>Regular articles और updates online publish करना आसान होता है।</p>
+                    </div>
+                    <div class="card">
+                        <h4>2. Knowledge Sharing</h4>
+                        <p>Tutorials, educational notes और experiences share किए जा सकते हैं।</p>
+                    </div>
+                    <div class="card">
+                        <h4>3. Audience Building</h4>
+                        <p>Consistent content से readers और audience develop की जा सकती है।</p>
+                    </div>
+                    <div class="card">
+                        <h4>4. Communication</h4>
+                        <p>Comments और other interaction mechanisms के माध्यम से readers से connect किया जा सकता है।</p>
+                    </div>
+                    <div class="card">
+                        <h4>5. Online Presence</h4>
+                        <p>Individual, organization या brand की web presence establish की जा सकती है।</p>
+                    </div>
+                    <div class="card">
+                        <h4>6. Marketing</h4>
+                        <p>Products, services, projects और ideas को promote करने में blogging useful हो सकती है।</p>
+                    </div>
+                    <div class="card">
+                        <h4>7. Portfolio</h4>
+                        <p>Skills, projects और professional knowledge showcase करने के लिए blog useful हो सकता है।</p>
+                    </div>
+                    <div class="card">
+                        <h4>8. Search Visibility</h4>
+                        <p>Well-structured useful content search engines से discover किया जा सकता है।</p>
+                    </div>
+                </div>
+
+                <div class="note"><b>Important:</b> Blog की success केवल platform पर depend नहीं करती। Content quality,
+                    consistency, usability और audience needs भी important हैं।</div>
+            </section>
+
+            <section id="webdesign">
+                <h2>4. Blogging Web Designing</h2>
+
+                <p>
+                    Blogging web designing का उद्देश्य ऐसी website बनाना है जिसमें content readable,
+                    organized, attractive और easy to navigate हो। Blog design में visual appearance
+                    के साथ usability और responsive behavior पर भी ध्यान देना चाहिए।
+                </p>
+
+                <h3>Important Design Elements</h3>
+                <ul>
+                    <li>Clear header और website identity।</li>
+                    <li>Simple और understandable navigation.</li>
+                    <li>Readable typography और appropriate font sizes।</li>
+                    <li>Proper spacing और content hierarchy।</li>
+                    <li>Images और media का optimized use।</li>
+                    <li>Responsive layout for mobile, tablet and desktop।</li>
+                    <li>Search और category organization।</li>
+                    <li>Clear links और buttons।</li>
+                    <li>Fast-loading pages।</li>
+                    <li>Accessible and consistent design।</li>
+                </ul>
+
+                <h3>Content Hierarchy</h3>
+                <p>
+                    Content hierarchy का अर्थ information को importance के अनुसार headings, subheadings,
+                    paragraphs, lists और visual emphasis के माध्यम से organize करना है।
+                </p>
+
+                <div class="flow">
+                    H1 → Main Blog Topic
+                    ↓
+                    H2 → Major Section
+                    ↓
+                    H3 → Sub-section
+                    ↓
+                    Paragraph / List / Image
+                    ↓
+                    Call to Action / Related Content
+                </div>
+            </section>
+
+            <section id="wordpress">
+                <h2>5. Creating a Blog using WordPress</h2>
+
+                <p>
+                    <strong>WordPress</strong> एक widely used open-source content management system
+                    (CMS) है जिसका उपयोग blogs और कई प्रकार की websites create और manage करने के लिए
+                    किया जाता है। WordPress में themes, plugins और content management features के
+                    द्वारा website को customize किया जा सकता है।
+                </p>
+
+                <h3>WordPress Blog बनाने की General Process</h3>
+                <ol>
+                    <li>WordPress installation/setup करें।</li>
+                    <li>Website का basic name और settings configure करें।</li>
+                    <li>Suitable theme select करें।</li>
+                    <li>Navigation/menu configure करें।</li>
+                    <li>Required pages जैसे Home, About और Contact create करें।</li>
+                    <li>Blog categories create करें।</li>
+                    <li>New Post create करें।</li>
+                    <li>Title, content, images और other media add करें।</li>
+                    <li>Post preview करें।</li>
+                    <li>Publish करें।</li>
+                </ol>
+
+                <div class="flow">
+                    WordPress Setup
+                    ↓
+                    Theme
+                    ↓
+                    Pages + Menu
+                    ↓
+                    Categories
+                    ↓
+                    Blog Post
+                    ↓
+                    Media
+                    ↓
+                    Preview
+                    ↓
+                    Publish
+                </div>
+
+                <h3>WordPress के Important Features</h3>
+                <ul>
+                    <li>Open-source CMS.</li>
+                    <li>Themes के माध्यम से visual design customization।</li>
+                    <li>Plugins के माध्यम से additional functionality।</li>
+                    <li>Posts और pages manage करने की सुविधा।</li>
+                    <li>Media management।</li>
+                    <li>Categories और tags।</li>
+                    <li>Comments management।</li>
+                </ul>
+            </section>
+
+            <section id="ghost">
+                <h2>6. Creating a Blog using Ghost</h2>
+
+                <p>
+                    <strong>Ghost</strong> एक open-source publishing platform है जो publishing और
+                    blogging-focused websites बनाने के लिए designed है। इसका focus clean writing,
+                    publishing और content management experience पर रहता है।
+                </p>
+
+                <h3>Ghost Blog की General Process</h3>
+                <ol>
+                    <li>Ghost platform को supported environment में install/setup करें।</li>
+                    <li>Basic site settings configure करें।</li>
+                    <li>Theme/design select या customize करें।</li>
+                    <li>Navigation और site structure configure करें।</li>
+                    <li>New post create करें।</li>
+                    <li>Article content और media add करें।</li>
+                    <li>Preview/check करें।</li>
+                    <li>Publish करें।</li>
+                </ol>
+
+                <h3>Ghost के Uses</h3>
+                <ul>
+                    <li>Blogs और online publications।</li>
+                    <li>Editorial content publishing।</li>
+                    <li>Writer-focused websites।</li>
+                    <li>Newsletters और audience-oriented publishing workflows, supported setup/features के अनुसार।</li>
+                </ul>
+
+                <div class="note"><b>Exam Point:</b> Ghost को primarily publishing-focused open-source platform के रूप
+                    में याद रखें।</div>
+            </section>
+
+            <section id="anchor">
+                <h2>7. Creating a Blog using Anchor CMS</h2>
+
+                <p>
+                    <strong>Anchor CMS</strong> एक lightweight, open-source blogging/content management
+                    system के रूप में जाना जाता है। इसका उद्देश्य simple और minimal blogging experience
+                    provide करना था।
+                </p>
+
+                <h3>Anchor CMS की General Process</h3>
+                <ol>
+                    <li>Supported server/environment पर CMS setup करें।</li>
+                    <li>Database और required configuration complete करें, यदि installation setup में required हो।</li>
+                    <li>Admin area access करें।</li>
+                    <li>Theme या design configure करें।</li>
+                    <li>Pages और navigation arrange करें।</li>
+                    <li>Blog post create करें।</li>
+                    <li>Content format और media add करें।</li>
+                    <li>Post save और publish करें।</li>
+                </ol>
+
+                <h3>Features / Characteristics</h3>
+                <ul>
+                    <li>Lightweight blogging approach।</li>
+                    <li>Simple content publishing।</li>
+                    <li>Open-source nature।</li>
+                    <li>Basic blog management और customization capabilities।</li>
+                </ul>
+
+                <div class="important"><b>Note:</b> Anchor CMS का historical context ध्यान रखें; modern project में
+                    platform selection करते समय current maintenance, security और compatibility जरूर check करनी चाहिए।
+                </div>
+            </section>
+
+            <section id="spark">
+                <h2>8. Adobe Spark</h2>
+
+                <p>
+                    <strong>Adobe Spark</strong> Adobe का content creation tool/product family था जिसे
+                    visual posts, graphics, pages और short videos जैसे content create करने के लिए
+                    use किया जाता था। इसका current product branding Adobe Express के साथ associated
+                    है। Syllabus में Adobe Spark नाम दिया गया है, इसलिए exam में इसे Adobe Spark के
+                    नाम से explain किया जा सकता है।
+                </p>
+
+                <h3>Adobe Spark के Uses</h3>
+                <ul>
+                    <li>Visual web pages/content create करना।</li>
+                    <li>Social media graphics बनाना।</li>
+                    <li>Short visual stories और presentations तैयार करना।</li>
+                    <li>Templates के आधार पर visual content design करना।</li>
+                </ul>
+
+                <h3>General Content Creation Process</h3>
+                <div class="flow">
+                    Choose Template / Start Project
+                    ↓
+                    Add Text
+                    ↓
+                    Add Images / Media
+                    ↓
+                    Customize Design
+                    ↓
+                    Preview
+                    ↓
+                    Share / Publish
+                </div>
+            </section>
+
+            <section id="googlesites">
+                <h2>9. Google Sites</h2>
+
+                <p>
+                    <strong>Google Sites</strong> एक website creation tool है जिसका उपयोग relatively
+                    simple websites और information pages बनाने के लिए किया जा सकता है। इसका interface
+                    beginner-friendly website creation के लिए designed है।
+                </p>
+
+                <h3>Google Sites से Website बनाने के General Steps</h3>
+                <ol>
+                    <li>Google Sites open करें और new site create करें।</li>
+                    <li>Site name/title set करें।</li>
+                    <li>Theme और visual style choose करें।</li>
+                    <li>Pages create करें।</li>
+                    <li>Text, images, buttons और other supported content add करें।</li>
+                    <li>Navigation arrange करें।</li>
+                    <li>Preview में desktop/mobile views check करें।</li>
+                    <li>Publish करें और required web address/settings configure करें।</li>
+                </ol>
+
+                <h3>Google Sites के Advantages</h3>
+                <ul>
+                    <li>Beginner-friendly website creation।</li>
+                    <li>Google ecosystem के साथ convenient integration।</li>
+                    <li>Basic websites जल्दी create की जा सकती हैं।</li>
+                    <li>Content और pages organize करना आसान।</li>
+                </ul>
+            </section>
+
+            <section id="comparison">
+                <h2>10. Blogging Tools - Comparison</h2>
+
+                <table>
+                    <tr>
+                        <th>Tool</th>
+                        <th>Nature</th>
+                        <th>Primary Use</th>
+                        <th>Key Point</th>
+                    </tr>
+                    <tr>
+                        <td>WordPress</td>
+                        <td>Open-source CMS</td>
+                        <td>Blogs और many types of websites</td>
+                        <td>Themes + plugins + content management</td>
+                    </tr>
+                    <tr>
+                        <td>Ghost</td>
+                        <td>Open-source publishing platform</td>
+                        <td>Publishing / blogging</td>
+                        <td>Writing and publishing focused</td>
+                    </tr>
+                    <tr>
+                        <td>Anchor CMS</td>
+                        <td>Lightweight open-source blogging CMS</td>
+                        <td>Simple blogging</td>
+                        <td>Minimal blogging approach</td>
+                    </tr>
+                    <tr>
+                        <td>Adobe Spark</td>
+                        <td>Visual content creation tool/product family</td>
+                        <td>Visual stories, graphics and pages</td>
+                        <td>Template-based visual content creation</td>
+                    </tr>
+                    <tr>
+                        <td>Google Sites</td>
+                        <td>Website creation tool</td>
+                        <td>Simple websites/information pages</td>
+                        <td>Beginner-friendly site building</td>
+                    </tr>
+                </table>
+
+                <div class="exam"><b>Exam Tip:</b> WordPress = CMS, Ghost = Publishing, Anchor CMS = Lightweight
+                    Blogging, Adobe Spark = Visual Content, Google Sites = Simple Website Creation.</div>
+            </section>
+
+            <section id="social">
+                <h2>11. Social Networking Website</h2>
+
+                <p>
+                    <strong>Social Networking Website</strong> ऐसी web application/website होती है जहाँ
+                    users digital profiles बना सकते हैं, connections establish कर सकते हैं, content
+                    share कर सकते हैं और दूसरे users के साथ interact कर सकते हैं।
+                </p>
+
+                <h3>Common Features</h3>
+                <div class="grid">
+                    <div class="card">
+                        <h4>User Registration</h4>
+                        <p>New users account create कर सकते हैं।</p>
+                    </div>
+                    <div class="card">
+                        <h4>User Profile</h4>
+                        <p>Name, photo, bio और other profile information display की जा सकती है।</p>
+                    </div>
+                    <div class="card">
+                        <h4>Connections</h4>
+                        <p>Users friends/followers/connections बना सकते हैं।</p>
+                    </div>
+                    <div class="card">
+                        <h4>Posts</h4>
+                        <p>Text, images, videos और other content share किया जा सकता है।</p>
+                    </div>
+                    <div class="card">
+                        <h4>Comments</h4>
+                        <p>Users posts पर responses/interactions कर सकते हैं।</p>
+                    </div>
+                    <div class="card">
+                        <h4>Likes/Reactions</h4>
+                        <p>Content के प्रति user response indicate किया जा सकता है।</p>
+                    </div>
+                    <div class="card">
+                        <h4>Messaging</h4>
+                        <p>Users के बीच private communication feature हो सकता है।</p>
+                    </div>
+                    <div class="card">
+                        <h4>Notifications</h4>
+                        <p>User को relevant activities की information दी जा सकती है।</p>
+                    </div>
+                </div>
+
+                <div class="flow">
+                    Register
+                    ↓
+                    Profile
+                    ↓
+                    Connect / Follow
+                    ↓
+                    Create / Share Content
+                    ↓
+                    Like / Comment / Message
+                    ↓
+                    Community Interaction
+                </div>
+            </section>
+
+            <section id="principles">
+                <h2>12. Principles for Designing a Social Networking Website</h2>
+
+                <p>
+                    Social networking website design करते समय केवल attractive interface बनाना पर्याप्त
+                    नहीं है। User experience, privacy, accessibility, security, performance और clear
+                    information architecture को भी ध्यान में रखना चाहिए।
+                </p>
+
+                <h3>1. Simple and Clear Interface</h3>
+                <p>
+                    Interface clean और understandable होना चाहिए। Users को common actions जैसे post,
+                    profile, search और messages आसानी से मिल जाने चाहिए।
+                </p>
+
+                <h3>2. Easy Navigation</h3>
+                <p>
+                    Navigation logical और consistent होनी चाहिए। Main sections को clear menu या
+                    navigation system के माध्यम से access किया जा सके।
+                </p>
+
+                <h3>3. User-Centered Design</h3>
+                <p>
+                    Design decisions target users की needs और behavior को ध्यान में रखकर किए जाने
+                    चाहिए। Unnecessary complexity avoid करनी चाहिए।
+                </p>
+
+                <h3>4. Responsive Design</h3>
+                <p>
+                    Website desktop, tablet और mobile screens पर properly adapt होनी चाहिए। Social
+                    network users frequently mobile devices का उपयोग कर सकते हैं।
+                </p>
+
+                <h3>5. Privacy</h3>
+                <p>
+                    User profile और shared information के लिए appropriate privacy controls provide
+                    करना important है। Users को यह समझ आना चाहिए कि उनकी information कौन देख सकता है।
+                </p>
+
+                <h3>6. Security</h3>
+                <p>
+                    Authentication, authorization, secure data handling और abuse protection जैसे
+                    security considerations social networking systems में essential हैं।
+                </p>
+
+                <h3>7. Accessibility</h3>
+                <p>
+                    Website को different users के लिए usable बनाने के लिए readable text, sufficient
+                    contrast, keyboard accessibility और meaningful labels जैसे accessibility principles
+                    follow करने चाहिए।
+                </p>
+
+                <h3>8. Fast Performance</h3>
+                <p>
+                    Large images और unnecessary scripts page loading को slow कर सकते हैं। Images और
+                    assets optimize करके performance improve की जा सकती है।
+                </p>
+
+                <h3>9. Consistent Visual Design</h3>
+                <p>
+                    Colors, typography, buttons, cards और spacing पूरे website में consistent होने
+                    चाहिए। इससे interface professional और predictable लगता है।
+                </p>
+
+                <h3>10. Meaningful User Interaction</h3>
+                <p>
+                    Likes, comments, sharing, following और messaging जैसे interactions simple और clear
+                    होने चाहिए। User को action के result का understandable feedback मिलना चाहिए।
+                </p>
+
+                <h3>11. Search and Discoverability</h3>
+                <p>
+                    Large social platforms में users, posts, topics और communities खोजने के लिए
+                    effective search और discovery mechanisms useful होते हैं।
+                </p>
+
+                <h3>12. Content Moderation</h3>
+                <p>
+                    User-generated content वाली websites में reporting, moderation और abuse-prevention
+                    mechanisms की आवश्यकता हो सकती है ताकि platform safer और usable रहे।
+                </p>
+
+                <h3>13. Scalable Design</h3>
+                <p>
+                    Design architecture को future users, content और features बढ़ने की संभावना को
+                    ध्यान में रखकर बनाया जाना चाहिए।
+                </p>
+
+                <h3>14. Clear Feedback</h3>
+                <p>
+                    Login, post publishing, upload, errors और other actions के बाद user को clear
+                    feedback मिलना चाहिए।
+                </p>
+
+                <div class="important"><b>Golden Rule:</b> Social networking website का design केवल “सुंदर” नहीं, बल्कि
+                    <strong>simple + responsive + accessible + secure + privacy-aware + fast + user-friendly</strong>
+                    होना चाहिए।</div>
+            </section>
+
+            <section id="workflow">
+                <h2>13. Complete Web Designing Workflow</h2>
+
+                <div class="flow">
+                    Requirement Analysis
+                    ↓
+                    Target Audience
+                    ↓
+                    Content Planning
+                    ↓
+                    Information Architecture
+                    ↓
+                    Choose Platform / Tool
+                    ↓
+                    UI / Theme Design
+                    ↓
+                    Pages + Navigation
+                    ↓
+                    Content Creation
+                    ↓
+                    Responsive Design
+                    ↓
+                    Security + Privacy
+                    ↓
+                    Testing
+                    ↓
+                    Publish
+                    ↓
+                    Maintenance / Updates
+                </div>
+
+                <h3>Example: Educational Blogging Website</h3>
+                <ol>
+                    <li>Target audience: students decide करें।</li>
+                    <li>Subjects/categories define करें।</li>
+                    <li>Home, About, Contact और Blog pages create करें।</li>
+                    <li>Navigation menu design करें।</li>
+                    <li>Blog posts को categories/tags के साथ organize करें।</li>
+                    <li>Images और educational resources add करें।</li>
+                    <li>Mobile responsive design check करें।</li>
+                    <li>Search और readable typography implement करें।</li>
+                    <li>Website test करें और publish करें।</li>
+                    <li>Regularly content update करें।</li>
+                </ol>
+
+                <h3>Example: Social Networking Website Structure</h3>
+                <div class="flow">
+                    Home Feed
+                    ├── Posts
+                    ├── Stories / Media
+                    ├── Likes & Comments
+                    └── Share
+
+                    Profile
+                    ├── Photo
+                    ├── Bio
+                    ├── Posts
+                    └── Connections
+
+                    Messages
+                    └── Conversations
+
+                    Notifications
+                    └── Activity Updates
+
+                    Search
+                    ├── Users
+                    ├── Posts
+                    └── Topics
+                </div>
+            </section>
+
+            <section id="revision">
+                <h2>14. Quick Revision & Important Questions</h2>
+
+                <table>
+                    <tr>
+                        <th>Topic</th>
+                        <th>One-Line Revision</th>
+                    </tr>
+                    <tr>
+                        <td>Blogging</td>
+                        <td>Web पर regularly content create और publish करने की process।</td>
+                    </tr>
+                    <tr>
+                        <td>Blog Post</td>
+                        <td>Blog पर published individual article/content item।</td>
+                    </tr>
+                    <tr>
+                        <td>WordPress</td>
+                        <td>Open-source CMS for blogs and websites।</td>
+                    </tr>
+                    <tr>
+                        <td>Ghost</td>
+                        <td>Open-source publishing/blogging-focused platform।</td>
+                    </tr>
+                    <tr>
+                        <td>Anchor CMS</td>
+                        <td>Lightweight open-source blogging CMS।</td>
+                    </tr>
+                    <tr>
+                        <td>Adobe Spark</td>
+                        <td>Visual content creation tool/product family।</td>
+                    </tr>
+                    <tr>
+                        <td>Google Sites</td>
+                        <td>Simple website creation tool।</td>
+                    </tr>
+                    <tr>
+                        <td>Social Networking Website</td>
+                        <td>Users को profiles, connections, sharing और interaction provide करने वाली
+                            website/application।</td>
+                    </tr>
+                    <tr>
+                        <td>Responsive Design</td>
+                        <td>Different screen sizes के अनुसार layout adapt करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Privacy</td>
+                        <td>User information की visibility/control को manage करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Accessibility</td>
+                        <td>Website को diverse users के लिए usable बनाना।</td>
+                    </tr>
+                </table>
+
+                <div class="exam">
+                    <b>Important Long-Answer Questions</b><br><br>
+                    1. Blogging क्या है? इसके advantages विस्तार से समझाइए।<br>
+                    2. Blog के major components को diagram सहित समझाइए।<br>
+                    3. Blogging web designing के important principles लिखिए।<br>
+                    4. WordPress क्या है? WordPress में blog create करने की प्रक्रिया समझाइए।<br>
+                    5. Ghost क्या है? इसका blogging/publishing में उपयोग समझाइए।<br>
+                    6. Anchor CMS क्या है? इसका उपयोग blog बनाने में कैसे किया जाता है?<br>
+                    7. Adobe Spark क्या है? इसके uses समझाइए।<br>
+                    8. Google Sites क्या है? इससे website बनाने की general process लिखिए।<br>
+                    9. WordPress, Ghost, Anchor CMS, Adobe Spark और Google Sites की तुलना कीजिए।<br>
+                    10. Social Networking Website क्या है? इसके प्रमुख features लिखिए।<br>
+                    11. Social networking website designing के principles विस्तार से समझाइए।<br>
+                    12. Social networking website में privacy और security क्यों important हैं?<br>
+                    13. Responsive design और accessibility का social networking website में महत्व समझाइए।<br>
+                    14. एक blogging या social networking website का complete design workflow समझाइए।
+                </div>
+
+                <div class="note">
+                    <b>Exam Writing Pattern:</b><br>
+                    इस unit के long answers में
+                    <strong>Definition → Components → Features → Advantages → Tool/Platform → Steps → Design Principles
+                        → Example → Conclusion</strong>
+                    का sequence रखें।
+                </div>
+
+                <h3>Conclusion</h3>
+                <p>
+                    Blogging और social networking web designing modern web communication के important
+                    areas हैं। Blogging users और organizations को content publish करने का माध्यम देता
+                    है, जबकि social networking websites users को profiles, connections, communication
+                    और content sharing की सुविधा देती हैं। WordPress, Ghost और Anchor CMS जैसे
+                    publishing tools तथा Adobe Spark और Google Sites जैसे content/site creation tools
+                    different requirements के अनुसार useful हो सकते हैं। एक successful social
+                    networking website के लिए usability के साथ responsive design, accessibility,
+                    privacy, security, performance और clear interaction design पर विशेष ध्यान देना
+                    चाहिए।
+                </p>
+
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>

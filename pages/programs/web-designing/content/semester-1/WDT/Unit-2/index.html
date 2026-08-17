@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FB7SX0P0D3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-FB7SX0P0D3');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Animation Tools</title>
+    <style>
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            margin: 0;
+            background: #f3f6fa;
+            color: #1f2937;
+            font-family: "Segoe UI", Arial, sans-serif;
+            line-height: 1.8
+        }
+
+        .layout {
+            max-width: 1550px;
+            margin: auto;
+            padding: 14px;
+            display: grid;
+            grid-template-columns: 290px 1fr;
+            gap: 18px
+        }
+
+        aside {
+            position: sticky;
+            top: 14px;
+            height: calc(100vh - 28px);
+            overflow: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 18px;
+            box-shadow: 0 5px 22px #0001
+        }
+
+        aside h2 {
+            margin: 0 0 12px;
+            color: #111827
+        }
+
+        aside a {
+            display: block;
+            padding: 7px 9px;
+            margin: 3px 0;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #374151;
+            font-size: 14px
+        }
+
+        aside a:hover {
+            background: #e0e7ff;
+            color: #1d4ed8
+        }
+
+        main {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 5px 22px #0001;
+            overflow: hidden
+        }
+
+        .hero {
+            padding: 34px;
+            background: linear-gradient(135deg, #dbeafe, #eef2ff, #f8fafc)
+        }
+
+        .hero h1 {
+            margin: 0 0 8px;
+            font-size: 36px;
+            color: #111827
+        }
+
+        .hero p {
+            margin: 5px 0;
+            color: #475569
+        }
+
+        section {
+            padding: 28px 30px;
+            border-bottom: 1px solid #e5e7eb
+        }
+
+        section:last-child {
+            border: 0
+        }
+
+        h2 {
+            font-size: 28px;
+            color: #172554;
+            border-left: 5px solid #2563eb;
+            padding-left: 12px;
+            margin: 0 0 18px
+        }
+
+        h3 {
+            font-size: 21px;
+            color: #1e3a8a;
+            margin: 24px 0 8px
+        }
+
+        h4 {
+            font-size: 18px;
+            color: #334155;
+            margin: 18px 0 6px
+        }
+
+        p {
+            font-size: 16.5px;
+            margin: 10px 0
+        }
+
+        li {
+            font-size: 16px;
+            margin: 7px 0
+        }
+
+        .note,
+        .exam,
+        .important {
+            padding: 16px 18px;
+            border-radius: 12px;
+            margin: 18px 0
+        }
+
+        .note {
+            background: #eff6ff;
+            border-left: 5px solid #3b82f6
+        }
+
+        .exam {
+            background: #ecfdf5;
+            border-left: 5px solid #10b981
+        }
+
+        .important {
+            background: #fff7ed;
+            border-left: 5px solid #f97316
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 18px 0
+        }
+
+        .card {
+            background: #f8fafc;
+            border: 1px solid #dbe3ef;
+            border-radius: 14px;
+            padding: 17px
+        }
+
+        .card h4 {
+            margin-top: 0;
+            color: #1d4ed8
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 18px 0;
+            font-size: 15px
+        }
+
+        th,
+        td {
+            border: 1px solid #cbd5e1;
+            padding: 11px;
+            vertical-align: top;
+            text-align: left
+        }
+
+        th {
+            background: #eef2ff;
+            color: #111827
+        }
+
+        .flow {
+            background: #09090b;
+            color: #f8fafc;
+            padding: 20px;
+            border-radius: 14px;
+            text-align: center;
+            font-family: Consolas, monospace;
+            overflow: auto;
+            margin: 18px 0
+        }
+
+        .badge {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700
+        }
+
+        @media(max-width:900px) {
+            .layout {
+                display: block;
+                padding: 5px
+            }
+
+            aside {
+                display: none
+            }
+
+            .hero {
+                padding: 24px 18px
+            }
+
+            .hero h1 {
+                font-size: 28px
+            }
+
+            section {
+                padding: 22px 18px
+            }
+
+            h2 {
+                font-size: 23px
+            }
+
+            .grid {
+                grid-template-columns: 1fr
+            }
+
+            p,
+            li {
+                font-size: 15px
+            }
+
+            table {
+                display: block;
+                overflow-x: auto
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="layout">
+
+        <aside>
+            <h2>Topics</h2>
+            <a href="#intro">1. Introduction to Animation Tools</a>
+            <a href="#timeline">2. Concept of Timeline</a>
+            <a href="#2d">3. 2D Animation</a>
+            <a href="#3d">4. 3D Animation</a>
+            <a href="#comparison">5. 2D vs 3D Animation</a>
+            <a href="#morphing">6. Morphing</a>
+            <a href="#texteffects">7. Text Effects</a>
+            <a href="#gif">8. Creating GIF Animation</a>
+            <a href="#slideshow">9. Website Slideshows</a>
+            <a href="#workflow">10. Complete Animation Workflow</a>
+            <a href="#revision">11. Revision & Questions</a>
+        </aside>
+
+        <main>
+
+            <div class="hero">
+                
+                <h1>Animation Tools</h1>
+             
+            </div>
+
+            <section id="intro">
+                <h2>1. Introduction to Animation Tools</h2>
+
+                <p>
+                    <strong>Animation</strong> एक ऐसी technique है जिसमें images, objects, text या
+                    graphics को समय के साथ अलग-अलग positions, appearances या states में display किया
+                    जाता है, जिससे movement या visual change का illusion दिखाई देता है।
+                </p>
+
+                <p>
+                    Animation tools ऐसे software या features हैं जिनकी सहायता से animated graphics,
+                    text effects, GIFs, presentations और website visual effects बनाए जा सकते हैं।
+                    Animation में individual images/frames, keyframes, timing और transitions का
+                    important role होता है।
+                </p>
+
+                <h3>Animation के Common Uses</h3>
+                <div class="grid">
+                    <div class="card">
+                        <h4>Websites</h4>
+                        <p>Hero animations, banners, loaders, sliders और interactive effects के लिए।</p>
+                    </div>
+                    <div class="card">
+                        <h4>Advertising</h4>
+                        <p>Digital advertisements और promotional graphics में attention attract करने के लिए।</p>
+                    </div>
+                    <div class="card">
+                        <h4>Education</h4>
+                        <p>Complex concepts को visual movement के माध्यम से समझाने के लिए।</p>
+                    </div>
+                    <div class="card">
+                        <h4>Entertainment</h4>
+                        <p>Movies, games, cartoons और digital content में।</p>
+                    </div>
+                    <div class="card">
+                        <h4>Social Media</h4>
+                        <p>Animated posts, stories और promotional content बनाने के लिए।</p>
+                    </div>
+                    <div class="card">
+                        <h4>Presentations</h4>
+                        <p>Slides में objects और text को visually introduce करने के लिए।</p>
+                    </div>
+                </div>
+
+                <div class="exam"><b>Exam Definition:</b> Animation is the technique of creating an illusion of movement
+                    or change by displaying visual elements in a sequence over time.</div>
+            </section>
+
+            <section id="timeline">
+                <h2>2. Concept of Timeline</h2>
+
+                <p>
+                    <strong>Timeline</strong> animation software का वह area है जहाँ animation के
+                    different frames, keyframes, objects और उनके timing को arrange और control किया
+                    जाता है। Timeline यह बताती है कि animation में कौन-सा element किस समय दिखाई देगा
+                    और उसमें क्या change होगा।
+                </p>
+
+                <div class="flow">
+                    TIME →
+                    0s 1s 2s 3s 4s
+                    │ │ │ │ │
+                    Frame Frame Key Frame End
+                    → Frame
+                    Movement / Change
+                </div>
+
+                <h3>Frame</h3>
+                <p>
+                    <strong>Frame</strong> animation का एक individual visual state है। कई frames को
+                    sequence में दिखाने से movement का illusion create हो सकता है।
+                </p>
+
+                <h3>Keyframe</h3>
+                <p>
+                    <strong>Keyframe</strong> वह important frame है जहाँ किसी object's property,
+                    position, size, rotation, visibility या appearance में significant state define की
+                    जाती है। Software intermediate states automatically generate कर सकता है, यदि
+                    appropriate interpolation/tweening feature available हो।
+                </p>
+
+                <h3>Timeline के Main Elements</h3>
+                <table>
+                    <tr>
+                        <th>Element</th>
+                        <th>Meaning</th>
+                    </tr>
+                    <tr>
+                        <td>Frame</td>
+                        <td>Animation का individual time position/state।</td>
+                    </tr>
+                    <tr>
+                        <td>Keyframe</td>
+                        <td>Important state या change define करने वाला frame।</td>
+                    </tr>
+                    <tr>
+                        <td>Layer/Track</td>
+                        <td>Animation elements को अलग-अलग organize करने की जगह।</td>
+                    </tr>
+                    <tr>
+                        <td>Playhead</td>
+                        <td>Current time/frame position indicate करने वाला marker।</td>
+                    </tr>
+                    <tr>
+                        <td>Duration</td>
+                        <td>Animation कितनी देर तक चलेगी।</td>
+                    </tr>
+                    <tr>
+                        <td>FPS</td>
+                        <td>Frames Per Second; एक second में display होने वाले frames की संख्या।</td>
+                    </tr>
+                </table>
+
+                <h3>Timeline का Example</h3>
+                <p>
+                    मान लीजिए एक ball को left से right move करना है। Start पर ball की position
+                    left होगी और end keyframe पर position right होगी। Software की animation feature
+                    intermediate movement create कर सकती है।
+                </p>
+
+                <div class="flow">
+                    Keyframe 1 Keyframe 2
+                    Ball ● ● Ball
+                    LEFT ───────────── Movement ─────────────→ RIGHT
+                    0 sec 2 sec
+                </div>
+
+                <div class="note"><b>Important:</b> Timeline animation का time-control structure है। इससे timing,
+                    sequence, duration और object changes को organize किया जाता है।</div>
+            </section>
+
+            <section id="2d">
+                <h2>3. 2D Animation</h2>
+
+                <p>
+                    <strong>2D Animation</strong> में objects को two-dimensional space यानी
+                    <strong>height और width</strong> के आधार पर animate किया जाता है। इसमें depth का
+                    visual effect बनाया जा सकता है, लेकिन basic object representation 2D plane पर
+                    होती है।
+                </p>
+
+                <h3>Examples</h3>
+                <ul>
+                    <li>Cartoon animation</li>
+                    <li>Animated banners</li>
+                    <li>2D games</li>
+                    <li>Animated educational diagrams</li>
+                    <li>Motion graphics</li>
+                    <li>Animated website illustrations</li>
+                </ul>
+
+                <h3>2D Animation कैसे काम करती है?</h3>
+                <p>
+                    2D animation में object की position, size, rotation, shape या appearance को
+                    different frames/keyframes पर change किया जा सकता है।
+                </p>
+
+                <div class="flow">
+                    Frame 1 → Object at Left
+                    ↓
+                    Frame 2 → Object in Center
+                    ↓
+                    Frame 3 → Object at Right
+                    ↓
+                    Result → Moving Object
+                </div>
+
+                <h3>2D Animation की विशेषताएँ</h3>
+                <ul>
+                    <li>Width और height based visual space।</li>
+                    <li>Characters और graphics relatively simple तरीके से create किए जा सकते हैं।</li>
+                    <li>Web banners और educational graphics में useful।</li>
+                    <li>Traditional frame-by-frame और keyframe-based techniques दोनों possible हैं।</li>
+                </ul>
+            </section>
+
+            <section id="3d">
+                <h2>4. 3D Animation</h2>
+
+                <p>
+                    <strong>3D Animation</strong> में objects को three-dimensional space में animate
+                    किया जाता है। इसमें <strong>width, height और depth</strong> तीनों dimensions
+                    consider की जाती हैं।
+                </p>
+
+                <h3>3D Animation के Components</h3>
+                <div class="grid">
+                    <div class="card">
+                        <h4>3D Model</h4>
+                        <p>Object या character का three-dimensional representation।</p>
+                    </div>
+                    <div class="card">
+                        <h4>Texture</h4>
+                        <p>Object की surface पर visual appearance या image information।</p>
+                    </div>
+                    <div class="card">
+                        <h4>Lighting</h4>
+                        <p>Scene में light sources और shadows create करना।</p>
+                    </div>
+                    <div class="card">
+                        <h4>Camera</h4>
+                        <p>Scene को किस angle और position से देखा जाएगा, यह control करना।</p>
+                    </div>
+                    <div class="card">
+                        <h4>Animation</h4>
+                        <p>Object position, rotation, scale या अन्य properties में time-based changes।</p>
+                    </div>
+                    <div class="card">
+                        <h4>Rendering</h4>
+                        <p>Scene को final visual frames/images में generate करना।</p>
+                    </div>
+                </div>
+
+                <h3>3D Animation के Uses</h3>
+                <ul>
+                    <li>Movies और visual effects</li>
+                    <li>3D games</li>
+                    <li>Architecture visualization</li>
+                    <li>Product visualization</li>
+                    <li>Engineering simulations</li>
+                    <li>Scientific visualization</li>
+                </ul>
+
+                <div class="flow">
+                    3D Model
+                    ↓
+                    Texture + Materials
+                    ↓
+                    Lighting + Camera
+                    ↓
+                    Animation
+                    ↓
+                    Rendering
+                    ↓
+                    Final 3D Animation
+                </div>
+            </section>
+
+            <section id="comparison">
+                <h2>5. 2D vs 3D Animation</h2>
+
+                <table>
+                    <tr>
+                        <th>Feature</th>
+                        <th>2D Animation</th>
+                        <th>3D Animation</th>
+                    </tr>
+                    <tr>
+                        <td>Dimensions</td>
+                        <td>Primarily width + height</td>
+                        <td>Width + height + depth</td>
+                    </tr>
+                    <tr>
+                        <td>Objects</td>
+                        <td>2D drawings/graphics</td>
+                        <td>3D models</td>
+                    </tr>
+                    <tr>
+                        <td>Depth</td>
+                        <td>Can be visually simulated</td>
+                        <td>Actual 3D scene depth is represented</td>
+                    </tr>
+                    <tr>
+                        <td>Camera</td>
+                        <td>Usually simpler</td>
+                        <td>3D position, angle और perspective control important</td>
+                    </tr>
+                    <tr>
+                        <td>Lighting</td>
+                        <td>May be simulated/stylized</td>
+                        <td>Lighting and shadows are commonly important</td>
+                    </tr>
+                    <tr>
+                        <td>Common Uses</td>
+                        <td>Cartoons, web graphics, banners</td>
+                        <td>Movies, games, product visualization</td>
+                    </tr>
+                </table>
+
+                <div class="exam"><b>Exam Tip:</b> 2D = Width + Height | 3D = Width + Height + Depth.</div>
+            </section>
+
+            <section id="morphing">
+                <h2>6. Morphing</h2>
+
+                <p>
+                    <strong>Morphing</strong> एक animation technique है जिसमें एक image, shape या object
+                    को gradually दूसरे image, shape या object में transform किया जाता है। इस process
+                    में beginning और ending states के बीच intermediate visual states generate किए जा
+                    सकते हैं।
+                </p>
+
+                <div class="flow">
+                    Object A
+                    ↓
+                    Intermediate Shape 1
+                    ↓
+                    Intermediate Shape 2
+                    ↓
+                    Intermediate Shape 3
+                    ↓
+                    Object B
+                </div>
+
+                <h3>Simple Example</h3>
+                <p>
+                    यदि एक circle को square में transform करना हो, तो animation की शुरुआत circle से
+                    और ending square से की जा सकती है। Software supported morphing/interpolation
+                    features के आधार पर बीच के shapes create कर सकता है।
+                </p>
+
+                <h3>Morphing के Uses</h3>
+                <ul>
+                    <li>Logo transformation</li>
+                    <li>Special effects</li>
+                    <li>Presentation effects</li>
+                    <li>Advertising graphics</li>
+                    <li>Creative web animations</li>
+                    <li>Film and multimedia effects</li>
+                </ul>
+
+                <h3>Morphing के Basic Steps</h3>
+                <ol>
+                    <li>Starting object/image select करें।</li>
+                    <li>Ending object/image define करें।</li>
+                    <li>Timeline में starting और ending states set करें।</li>
+                    <li>Required duration choose करें।</li>
+                    <li>Software की morph/interpolation feature apply करें, यदि available हो।</li>
+                    <li>Preview करके transition smoothness check करें।</li>
+                    <li>Final animation export करें।</li>
+                </ol>
+
+                <div class="note"><b>Important:</b> Morphing और simple movement अलग concepts हैं। Movement में object एक
+                    position से दूसरी position पर जाता है, जबकि morphing में object की shape/appearance भी transform
+                    होती है।</div>
+            </section>
+
+            <section id="texteffects">
+                <h2>7. Text Effects</h2>
+
+                <p>
+                    <strong>Text Effects</strong> का उपयोग text को visually attractive और animated बनाने
+                    के लिए किया जाता है। Text में color, size, position, opacity, rotation और other
+                    visual properties change करके different effects create किए जा सकते हैं।
+                </p>
+
+                <h3>Common Text Effects</h3>
+                <table>
+                    <tr>
+                        <th>Effect</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>Fade In</td>
+                        <td>Text धीरे-धीरे visible होता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Fade Out</td>
+                        <td>Text धीरे-धीरे disappear होता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Slide In</td>
+                        <td>Text किसी direction से move होकर आता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Slide Out</td>
+                        <td>Text किसी direction में move होकर बाहर जाता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Zoom</td>
+                        <td>Text size gradually increase/decrease होता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Rotate</td>
+                        <td>Text rotate होता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Color Change</td>
+                        <td>Text का color time के साथ change होता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Typewriter</td>
+                        <td>Text characters sequence में appear होते हैं।</td>
+                    </tr>
+                </table>
+
+                <h3>Example: Fade-In Text</h3>
+
+                <div class="flow">
+                    0 sec 1 sec 2 sec
+                    Text hidden → Faint text → Fully visible
+                </div>
+
+                <h3>Text Effect बनाने का General Process</h3>
+                <ol>
+                    <li>Text tool से text create करें।</li>
+                    <li>Text को अलग layer/object पर रखें यदि software support करता है।</li>
+                    <li>Timeline में starting state define करें।</li>
+                    <li>Ending keyframe create करें।</li>
+                    <li>Opacity, position, scale या color जैसी property बदलें।</li>
+                    <li>Preview करें और timing adjust करें।</li>
+                </ol>
+
+                <div class="important"><b>Design Tip:</b> Text effects का purpose readability को improve करना और
+                    attention guide करना होना चाहिए। बहुत ज्यादा effects readability और user experience को खराब कर सकते
+                    हैं।</div>
+            </section>
+
+            <section id="gif">
+                <h2>8. Creating GIF Animation</h2>
+
+                <p>
+                    <strong>GIF (Graphics Interchange Format)</strong> एक image format है जो multiple
+                    frames को sequence में display करके simple animations create कर सकता है। Animated
+                    GIF में प्रत्येक frame एक image state represent करता है।
+                </p>
+
+                <h3>Animated GIF का Basic Structure</h3>
+
+                <div class="flow">
+                    Frame 1 → Frame 2 → Frame 3 → Frame 4
+                    ↓ ↓ ↓ ↓
+                    Animation playback at selected timing
+                </div>
+
+                <h3>GIF Animation बनाने के General Steps</h3>
+                <ol>
+                    <li>Image editing/animation software open करें।</li>
+                    <li>Required images या frames prepare करें।</li>
+                    <li>हर frame को appropriate layer/frame पर रखें।</li>
+                    <li>Frames का order set करें।</li>
+                    <li>Frame duration/timing configure करें।</li>
+                    <li>Animation preview करें।</li>
+                    <li>Looping option की आवश्यकता हो तो configure करें।</li>
+                    <li>Animated GIF format में export/save करें।</li>
+                </ol>
+
+                <h3>Simple Example</h3>
+                <p>
+                    एक blinking text GIF के लिए अलग-अलग frames बनाए जा सकते हैं:
+                </p>
+
+                <table>
+                    <tr>
+                        <th>Frame</th>
+                        <th>Content</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>“WELCOME” visible</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>“WELCOME” less visible / hidden</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>“WELCOME” visible</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>“WELCOME” less visible / hidden</td>
+                    </tr>
+                </table>
+
+                <p>
+                    इन frames को sequence में play करने पर blinking text का effect दिखाई देगा।
+                </p>
+
+                <h3>Animated GIF के Advantages</h3>
+                <ul>
+                    <li>Simple animations को compact format में share किया जा सकता है।</li>
+                    <li>Web और messaging contexts में widely supported।</li>
+                    <li>Basic motion graphics के लिए easy format।</li>
+                </ul>
+
+                <h3>Limitations</h3>
+                <ul>
+                    <li>Color palette और compression characteristics के कारण complex photographic animation के लिए ideal
+                        नहीं हो सकता।</li>
+                    <li>Large animated GIFs का file size काफी बढ़ सकता है।</li>
+                    <li>Modern web projects में कई situations में video या other animation formats अधिक suitable हो सकते
+                        हैं।</li>
+                </ul>
+            </section>
+
+            <section id="slideshow">
+                <h2>9. Creating Slideshows for Websites</h2>
+
+                <p>
+                    <strong>Website Slideshow</strong> एक web component है जिसमें multiple images,
+                    banners या content items को sequence में display किया जाता है। Slides manually
+                    या automatically change हो सकती हैं।
+                </p>
+
+                <h3>Basic Slideshow Structure</h3>
+
+                <div class="flow">
+                    Slide 1
+                    ↓
+                    Delay / Transition
+                    ↓
+                    Slide 2
+                    ↓
+                    Delay / Transition
+                    ↓
+                    Slide 3
+                    ↓
+                    Repeat / Navigation
+                </div>
+
+                <h3>Website Slideshow के Common Elements</h3>
+
+                <table>
+                    <tr>
+                        <th>Element</th>
+                        <th>Purpose</th>
+                    </tr>
+                    <tr>
+                        <td>Slides</td>
+                        <td>Images/content items जिन्हें display करना है।</td>
+                    </tr>
+                    <tr>
+                        <td>Transition</td>
+                        <td>एक slide से दूसरी slide में visual change।</td>
+                    </tr>
+                    <tr>
+                        <td>Duration</td>
+                        <td>एक slide कितनी देर visible रहेगी।</td>
+                    </tr>
+                    <tr>
+                        <td>Navigation Arrows</td>
+                        <td>Previous/Next slide manually control करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Indicators</td>
+                        <td>Current slide और total slides indicate करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Auto Play</td>
+                        <td>Slides को automatically change करना।</td>
+                    </tr>
+                </table>
+
+                <h3>Website Slideshow बनाने के Steps</h3>
+                <ol>
+                    <li>Required images prepare और optimize करें।</li>
+                    <li>Images को appropriate dimensions/aspect ratio में रखें।</li>
+                    <li>HTML में slideshow container और slides create करें।</li>
+                    <li>CSS से layout, size और transition appearance design करें।</li>
+                    <li>JavaScript से slide switching और controls implement करें, यदि required हो।</li>
+                    <li>Auto-play timing configure करें।</li>
+                    <li>Previous/Next buttons और indicators add करें।</li>
+                    <li>Mobile/responsive behavior test करें।</li>
+                    <li>Final website पर publish करके सभी slides check करें।</li>
+                </ol>
+
+                <h3>Simple Conceptual Example</h3>
+
+                <div class="flow">
+                    [ ← ] IMAGE 1 [ → ]
+                    ● ○ ○
+
+                    After time:
+                    [ ← ] IMAGE 2 [ → ]
+                    ○ ● ○
+
+                    After time:
+                    [ ← ] IMAGE 3 [ → ]
+                    ○ ○ ●
+                </div>
+
+                <div class="note"><b>Responsive Design:</b> Website slideshow को different screen sizes—mobile, tablet
+                    और desktop—पर properly fit होना चाहिए। Images को unnecessarily huge रखने से page loading slow हो
+                    सकती है।</div>
+            </section>
+
+            <section id="workflow">
+                <h2>10. Complete Animation Workflow</h2>
+
+                <p>
+                    Animation project बनाने के लिए concepts को एक sequence में समझना useful है।
+                </p>
+
+                <div class="flow">
+                    Idea / Story
+                    ↓
+                    Prepare Images / Objects
+                    ↓
+                    Choose Animation Type
+                    ↓
+                    Create Timeline
+                    ↓
+                    Set Frames / Keyframes
+                    ↓
+                    Apply Movement / Morphing / Text Effects
+                    ↓
+                    Set Timing
+                    ↓
+                    Preview
+                    ↓
+                    Correct / Optimize
+                    ↓
+                    Export
+                    ↓
+                    Use on Website / Presentation / Media
+                </div>
+
+                <h3>Example: Animated Website Banner</h3>
+                <ol>
+                    <li>Banner का size और purpose decide करें।</li>
+                    <li>Background image और text prepare करें।</li>
+                    <li>Timeline में elements को अलग tracks/layers पर organize करें।</li>
+                    <li>Text के लिए fade-in effect apply करें।</li>
+                    <li>Image के लिए slide/movement effect apply करें।</li>
+                    <li>Required duration set करें।</li>
+                    <li>Preview करके readability और timing check करें।</li>
+                    <li>Website-compatible output format में export करें।</li>
+                    <li>Website में responsive तरीके से integrate करें।</li>
+                </ol>
+            </section>
+
+            <section id="revision">
+                <h2>11. Quick Revision & Important Questions</h2>
+
+                <table>
+                    <tr>
+                        <th>Topic</th>
+                        <th>One-Line Revision</th>
+                    </tr>
+                    <tr>
+                        <td>Animation</td>
+                        <td>Time के साथ visual elements को change करके movement/change का illusion create करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Timeline</td>
+                        <td>Animation के frames, keyframes और timing को organize करने वाला area।</td>
+                    </tr>
+                    <tr>
+                        <td>Frame</td>
+                        <td>Animation का individual visual state।</td>
+                    </tr>
+                    <tr>
+                        <td>Keyframe</td>
+                        <td>Important state/change define करने वाला frame।</td>
+                    </tr>
+                    <tr>
+                        <td>2D Animation</td>
+                        <td>Primarily width और height based animation।</td>
+                    </tr>
+                    <tr>
+                        <td>3D Animation</td>
+                        <td>Width, height और depth based animation।</td>
+                    </tr>
+                    <tr>
+                        <td>Morphing</td>
+                        <td>एक shape/image/object को दूसरे में gradually transform करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Text Effects</td>
+                        <td>Text की visual properties को animate करना।</td>
+                    </tr>
+                    <tr>
+                        <td>GIF Animation</td>
+                        <td>Multiple frames को sequence में display करके animation बनाना।</td>
+                    </tr>
+                    <tr>
+                        <td>Website Slideshow</td>
+                        <td>Multiple images/content slides को sequence में display करना।</td>
+                    </tr>
+                    <tr>
+                        <td>FPS</td>
+                        <td>Frames Per Second; one second में displayed frames की संख्या।</td>
+                    </tr>
+                </table>
+
+                <div class="exam">
+                    <b>Important Long-Answer Questions</b><br><br>
+                    1. Animation क्या है? Animation tools के uses समझाइए।<br>
+                    2. Timeline क्या है? Frame और Keyframe को example सहित समझाइए।<br>
+                    3. 2D Animation क्या है? इसकी characteristics और uses लिखिए।<br>
+                    4. 3D Animation क्या है? इसके प्रमुख components समझाइए।<br>
+                    5. 2D और 3D Animation में अंतर लिखिए।<br>
+                    6. Morphing क्या है? इसके uses और basic steps समझाइए।<br>
+                    7. Text Effects क्या हैं? विभिन्न text effects examples सहित समझाइए।<br>
+                    8. GIF Animation क्या है? Animated GIF बनाने की प्रक्रिया लिखिए।<br>
+                    9. Website Slideshow क्या है? इसे बनाने के steps समझाइए।<br>
+                    10. Animation में Timeline, Frames और Keyframes की भूमिका समझाइए।<br>
+                    11. Website के लिए slideshow बनाते समय responsive design क्यों important है?<br>
+                    12. एक animated website banner बनाने का complete workflow समझाइए।
+                </div>
+
+                <div class="note">
+                    <b>Exam Writing Pattern:</b><br>
+                    इस unit के answers में
+                    <strong>Definition → Concept → Components/Types → Working → Steps → Example → Uses →
+                        Advantages/Limitations</strong>
+                    का sequence रखें। Practical answer में Timeline और frame sequence का diagram जरूर बनाएं।
+                </div>
+
+                <h3>Conclusion</h3>
+                <p>
+                    Animation tools digital content को dynamic और engaging बनाने में important role
+                    play करते हैं। Timeline और keyframes animation की timing और sequence control करते
+                    हैं, 2D और 3D अलग-अलग dimensional approaches provide करते हैं, morphing objects
+                    की transformation create करता है, text effects information को visually attractive
+                    बनाते हैं, GIF simple frame-based animation provide करता है और website slideshows
+                    multiple images या content को organized sequence में display करते हैं।
+                </p>
+
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>

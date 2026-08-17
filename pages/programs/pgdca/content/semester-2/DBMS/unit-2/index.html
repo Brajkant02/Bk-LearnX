@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FB7SX0P0D3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-FB7SX0P0D3');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Model</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+      line-height: 1.75
+    }
+
+    .page {
+      display: grid;
+      grid-template-columns: 290px 1fr;
+      gap: 20px;
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      padding: 10px
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 10px;
+      height: calc(100vh - 20px);
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
+      align-self: start
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #111827
+    }
+
+    .sidebar a {
+      display: block;
+      text-decoration: none;
+      color: #374151;
+      padding: 8px 10px;
+      border-radius: 10px;
+      margin-bottom: 4px;
+      font-size: 14.5px
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+      color: #1d4ed8
+    }
+
+    .content {
+      background: #fff;
+      border-radius: 18px;
+      padding: 10px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08)
+    }
+
+    .hero {
+      padding: 30px 20px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #eef2ff, #f8fafc);
+      margin-bottom: 18px
+    }
+
+    .hero h1 {
+      font-size: 34px;
+      color: #111827;
+      margin-bottom: 10px
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #374151
+    }
+
+    section {
+      padding: 22px 10px;
+      border-bottom: 1px solid #e5e7eb
+    }
+
+    section:last-child {
+      border-bottom: none
+    }
+
+    h2 {
+      font-size: 27px;
+      color: #111827;
+      margin-bottom: 12px;
+      border-left: 5px solid #2563eb;
+      padding-left: 12px
+    }
+
+    h3 {
+      font-size: 22px;
+      color: #1f2937;
+      margin: 18px 0 8px
+    }
+
+    h4 {
+      font-size: 18px;
+      color: #111827;
+      margin: 14px 0 6px
+    }
+
+    p {
+      margin: 10px 0;
+      font-size: 17px
+    }
+
+    ul,
+    ol {
+      margin-left: 24px;
+      margin-top: 8px
+    }
+
+    li {
+      margin: 7px 0;
+      font-size: 16.5px
+    }
+
+    strong {
+      color: #111827
+    }
+
+    .image-icon {
+      min-height: 180px;
+      border: 2px dashed #94a3b8;
+      border-radius: 16px;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      margin: 18px 0;
+      color: #475569;
+      font-weight: 600;
+      flex-direction: column;
+      gap: 8px
+    }
+
+    .image-icon img {
+      max-width: 100%;
+      height: auto
+    }
+
+    .note-box {
+      background: #f0fdf4;
+      border-left: 5px solid #22c55e;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .info-box {
+      background: #ecfeff;
+      border-left: 5px solid #06b6d4;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .remember-box {
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      font-size: 15.3px
+    }
+
+    th,
+    td {
+      border: 1px solid #d1d5db;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top
+    }
+
+    th {
+      background: #eef2ff;
+      color: #111827
+    }
+
+    pre {
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 14px;
+      padding: 16px;
+      margin: 16px 0;
+      overflow-x: auto;
+      font-family: Consolas, monospace;
+      line-height: 1.6
+    }
+
+    @media(max-width:900px) {
+      .page {
+        grid-template-columns: 1fr
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto
+      }
+
+      .hero h1 {
+        font-size: 27px
+      }
+
+      h2 {
+        font-size: 24px
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <h2>Topics</h2><a href="#intro">Introduction to Data Model</a>
+      <a href="#definition">Meaning and Characteristics of Data Model</a>
+      <a href="#types">Major Types of Data Models</a>
+      <a href="#hierarchical">Hierarchical Data Model</a>
+      <a href="#network">Network Data Model</a>
+      <a href="#er-intro">Introduction to E-R Model</a>
+      <a href="#comparison">Comparison of Data Models</a>
+      <a href="#entity">Entity and Entity Set</a>
+      <a href="#relationship">Relationship and Relationship Set</a>
+      <a href="#attributes">Attributes</a>
+      <a href="#super-key">Super Key</a>
+      <a href="#candidate-key">Candidate Key</a>
+      <a href="#primary-key">Primary Key</a>
+      <a href="#unique-key">Unique Key</a>
+      <a href="#degree">Degree of Relationship</a>
+      <a href="#mapping">Mapping Constraints</a>
+      <a href="#participation">Participation Constraint</a>
+      <a href="#strong">Strong Entity Set</a>
+      <a href="#weak">Weak Entity Set</a>
+      <a href="#er-diagram">E-R Diagram</a>
+      <a href="#notations">E-R Diagram Notations</a>
+      <a href="#student">Student Management ER Diagram</a>
+      <a href="#library">Library Management ER Diagram</a>
+      <a href="#hospital">Hospital Management ER Diagram</a>
+      <a href="#banking">Banking ER Diagram</a>
+      <a href="#conversion">Converting ER Model to Relational Tables</a>
+      <a href="#mistakes">Common ER Design Mistakes</a>
+
+    </aside>
+    <main class="content">
+      <div class="hero">
+        <h1>Data Model</h1>
+
+      </div>
+      <section id="intro">
+        <h2>Introduction to Data Model</h2>
+        <p><strong>Data Model</strong> database में data की structure, relationships, constraints और operations को
+          represent करने का formal तरीका है। यह बताता है कि data कैसे organize होगा, different records एक-दूसरे से कैसे
+          जुड़े होंगे और users data पर कौन-कौन से operations perform कर सकेंगे।</p>
+        <div class="image-icon"><img src="" alt="Data Model Overview">
+          <p>Image Placeholder: Data Model Overview</p>
+        </div>
+        <h4>Need of Data Model</h4>
+        <ul>
+          <li>Database structure को clearly define करना।</li>
+          <li>Entities और relationships identify करना।</li>
+          <li>Database design को simple बनाना।</li>
+          <li>Data redundancy कम करना।</li>
+          <li>Developers और users के बीच common understanding बनाना।</li>
+        </ul>
+        <div class="remember-box"><b>Remember:</b><br>Data model database का blueprint होता है।</div>
+      </section>
+      <section id="definition">
+        <h2>Meaning and Characteristics of Data Model</h2>
+        <p>Data model rules, concepts और symbols का collection होता है जिसकी सहायता से real-world information को
+          database structure में represent किया जाता है।</p>
+        <h4>Characteristics</h4>
+        <ul>
+          <li>Data structure define करता है।</li>
+          <li>Relationships specify करता है।</li>
+          <li>Constraints enforce करता है।</li>
+          <li>Data manipulation operations support करता है।</li>
+          <li>Logical और physical design के बीच bridge बनाता है।</li>
+        </ul>
+      </section>
+      <section id="types">
+        <h2>Major Types of Data Models</h2>
+        <table>
+          <tr>
+            <th>Model</th>
+            <th>Structure</th>
+            <th>Main Use</th>
+          </tr>
+          <tr>
+            <td>Hierarchical Model</td>
+            <td>Tree structure</td>
+            <td>Parent-child data</td>
+          </tr>
+          <tr>
+            <td>Network Model</td>
+            <td>Graph structure</td>
+            <td>Many-to-many links</td>
+          </tr>
+          <tr>
+            <td>Relational Model</td>
+            <td>Tables</td>
+            <td>General database systems</td>
+          </tr>
+          <tr>
+            <td>E-R Model</td>
+            <td>Entities and relationships</td>
+            <td>Conceptual database design</td>
+          </tr>
+        </table>
+      </section>
+      <section id="hierarchical">
+        <h2>Hierarchical Data Model</h2>
+        <p><strong>Hierarchical Model</strong> data को tree structure में organize करता है। इसमें एक root record होता है
+          और हर child का केवल एक parent होता है।</p>
+        <div class="image-icon"><img src="" alt="Hierarchical Model">
+          <p>Image Placeholder: Hierarchical Tree Structure</p>
+        </div>
+        <h4>Example</h4>
+        <pre>College
+ ├── Department
+ │    ├── Teacher
+ │    └── Student
+ └── Library</pre>
+        <h4>Advantages</h4>
+        <ul>
+          <li>Simple tree structure।</li>
+          <li>Fast navigation in fixed relationships।</li>
+          <li>Parent-child data के लिए useful।</li>
+          <li>Security hierarchy implement करना आसान।</li>
+        </ul>
+        <h4>Disadvantages</h4>
+        <ul>
+          <li>Many-to-many relationship difficult।</li>
+          <li>Structure rigid होती है।</li>
+          <li>Data duplication हो सकती है।</li>
+          <li>Changes करना complex हो सकता है।</li>
+        </ul>
+      </section>
+      <section id="network">
+        <h2>Network Data Model</h2>
+        <p><strong>Network Model</strong> records को graph structure में organize करता है। इसमें एक child के multiple
+          parents हो सकते हैं और many-to-many relationships represent की जा सकती हैं।</p>
+        <div class="image-icon"><img src="" alt="Network Model">
+          <p>Image Placeholder: Network Model Graph</p>
+        </div>
+        <h4>Example</h4>
+        <p>एक student multiple courses join कर सकता है और एक course में multiple students हो सकते हैं।</p>
+        <h4>Advantages</h4>
+        <ul>
+          <li>Many-to-many relationship support।</li>
+          <li>Flexible connections।</li>
+          <li>Complex relationships efficiently represent करता है।</li>
+          <li>Fast navigational access।</li>
+        </ul>
+        <h4>Disadvantages</h4>
+        <ul>
+          <li>Design complex हो सकता है।</li>
+          <li>Maintenance difficult।</li>
+          <li>Structure-dependent programming।</li>
+          <li>Casual users के लिए समझना कठिन।</li>
+        </ul>
+      </section>
+      <section id="er-intro">
+        <h2>Introduction to E-R Model</h2>
+        <p><strong>E-R Model</strong> का full form Entity-Relationship Model है। यह database design का conceptual model
+          है जिसमें real-world objects को entities और उनके connections को relationships के रूप में represent किया जाता
+          है।</p>
+        <div class="image-icon"><img src="" alt="ER Model">
+          <p>Image Placeholder: Basic Entity Relationship Model</p>
+        </div>
+        <h4>Main Components</h4>
+        <ul>
+          <li>Entity</li>
+          <li>Entity Set</li>
+          <li>Attribute</li>
+          <li>Relationship</li>
+          <li>Relationship Set</li>
+          <li>Keys</li>
+          <li>Constraints</li>
+        </ul>
+        <h4>Advantages</h4>
+        <ul>
+          <li>Database design visually clear होता है।</li>
+          <li>Real-world system easy to represent होता है।</li>
+          <li>Developers और users दोनों समझ सकते हैं।</li>
+          <li>Relational schema बनाने में help करता है।</li>
+        </ul>
+        <h4>Disadvantages</h4>
+        <ul>
+          <li>Very large systems में diagram complex हो सकता है।</li>
+          <li>Physical implementation details show नहीं करता।</li>
+          <li>Some advanced constraints represent करना difficult हो सकता है।</li>
+        </ul>
+      </section>
+      <section id="comparison">
+        <h2>Comparison of Data Models</h2>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>Hierarchical</th>
+            <th>Network</th>
+            <th>E-R</th>
+          </tr>
+          <tr>
+            <td>Structure</td>
+            <td>Tree</td>
+            <td>Graph</td>
+            <td>Diagram</td>
+          </tr>
+          <tr>
+            <td>Relationship</td>
+            <td>One-to-many</td>
+            <td>Many-to-many</td>
+            <td>All conceptual types</td>
+          </tr>
+          <tr>
+            <td>Flexibility</td>
+            <td>Low</td>
+            <td>High</td>
+            <td>High at design level</td>
+          </tr>
+          <tr>
+            <td>Complexity</td>
+            <td>Low</td>
+            <td>High</td>
+            <td>Moderate</td>
+          </tr>
+          <tr>
+            <td>Best Use</td>
+            <td>Fixed hierarchy</td>
+            <td>Complex linked data</td>
+            <td>Database planning</td>
+          </tr>
+        </table>
+      </section>
+      <section id="entity">
+        <h2>Entity and Entity Set</h2>
+        <p><strong>Entity</strong> real-world object, person, place, event या concept होता है जिसे uniquely identify
+          किया जा सके।</p>
+        <p><strong>Entity Set</strong> same type की entities का collection होता है।</p>
+        <h4>Example</h4>
+        <ul>
+          <li>Student एक entity है।</li>
+          <li>All students का collection Student Entity Set है।</li>
+        </ul>
+        <div class="image-icon"><img src="" alt="Entity and Entity Set">
+          <p>Image Placeholder: Entity and Entity Set</p>
+        </div>
+      </section>
+      <section id="relationship">
+        <h2>Relationship and Relationship Set</h2>
+        <p><strong>Relationship</strong> दो या अधिक entities के बीच association है।</p>
+        <p><strong>Relationship Set</strong> same type के relationships का collection है।</p>
+        <h4>Example</h4>
+        <p>Student <b>enrolls in</b> Course. यहाँ enrolls relationship है।</p>
+        <div class="image-icon"><img src="" alt="Relationship Set">
+          <p>Image Placeholder: Student-Course Relationship</p>
+        </div>
+      </section>
+      <section id="attributes">
+        <h2>Attributes</h2>
+        <p><strong>Attribute</strong> entity की property या characteristic होती है।</p>
+        <table>
+          <tr>
+            <th>Attribute Type</th>
+            <th>Meaning</th>
+            <th>Example</th>
+          </tr>
+          <tr>
+            <td>Simple</td>
+            <td>Further divide नहीं होता</td>
+            <td>Age</td>
+          </tr>
+          <tr>
+            <td>Composite</td>
+            <td>Subparts में divide होता है</td>
+            <td>Name, Address</td>
+          </tr>
+          <tr>
+            <td>Single-valued</td>
+            <td>One value</td>
+            <td>Date of Birth</td>
+          </tr>
+          <tr>
+            <td>Multi-valued</td>
+            <td>Multiple values</td>
+            <td>Phone Numbers</td>
+          </tr>
+          <tr>
+            <td>Derived</td>
+            <td>Calculated value</td>
+            <td>Age from DOB</td>
+          </tr>
+          <tr>
+            <td>Key Attribute</td>
+            <td>Entity identify करता है</td>
+            <td>Student_ID</td>
+          </tr>
+        </table>
+        <div class="image-icon"><img src="" alt="Attribute Types">
+          <p>Image Placeholder: Types of Attributes</p>
+        </div>
+      </section>
+      <section id="super-key">
+        <h2>Super Key</h2>
+        <p><strong>Super Key</strong> one or more attributes का set होता है जो entity को uniquely identify कर सकता है।
+          इसमें unnecessary attributes भी included हो सकते हैं।</p>
+        <h4>Example</h4>
+        <p>Student table में Student_ID और Student_ID + Name दोनों super keys हो सकते हैं।</p>
+      </section>
+      <section id="candidate-key">
+        <h2>Candidate Key</h2>
+        <p><strong>Candidate Key</strong> minimal super key होती है। इसमें कोई unnecessary attribute नहीं होता।</p>
+        <h4>Example</h4>
+        <p>Student_ID और Email दोनों candidate keys हो सकते हैं, यदि दोनों unique हैं।</p>
+      </section>
+      <section id="primary-key">
+        <h2>Primary Key</h2>
+        <p><strong>Primary Key</strong> candidate keys में से selected key होती है जो entity को uniquely identify करती
+          है। इसकी value unique और non-null होती है।</p>
+        <h4>Example</h4>
+        <p>Student_ID को primary key select किया जा सकता है।</p>
+      </section>
+      <section id="unique-key">
+        <h2>Unique Key</h2>
+        <p><strong>Unique Key</strong> attribute की values को unique बनाती है। कुछ DBMS में unique key null value allow
+          कर सकती है, जबकि primary key null नहीं होती।</p>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>Primary Key</th>
+            <th>Unique Key</th>
+          </tr>
+          <tr>
+            <td>Uniqueness</td>
+            <td>Required</td>
+            <td>Required</td>
+          </tr>
+          <tr>
+            <td>Null</td>
+            <td>Not allowed</td>
+            <td>DBMS-dependent</td>
+          </tr>
+          <tr>
+            <td>Count per Table</td>
+            <td>One</td>
+            <td>Multiple possible</td>
+          </tr>
+        </table>
+      </section>
+      <section id="degree">
+        <h2>Degree of Relationship</h2>
+        <table>
+          <tr>
+            <th>Degree</th>
+            <th>Description</th>
+            <th>Example</th>
+          </tr>
+          <tr>
+            <td>Unary</td>
+            <td>Same entity set relationship</td>
+            <td>Employee supervises Employee</td>
+          </tr>
+          <tr>
+            <td>Binary</td>
+            <td>Two entity sets</td>
+            <td>Student enrolls Course</td>
+          </tr>
+          <tr>
+            <td>Ternary</td>
+            <td>Three entity sets</td>
+            <td>Supplier supplies Part to Project</td>
+          </tr>
+        </table>
+      </section>
+      <section id="mapping">
+        <h2>Mapping Constraints</h2>
+        <p>Mapping constraints बताती हैं कि एक entity दूसरी entity से कितनी entities के साथ related हो सकती है।</p>
+        <div class="image-icon"><img src="" alt="Mapping Constraints">
+          <p>Image Placeholder: 1:1, 1:N, N:1, M:N</p>
+        </div>
+        <table>
+          <tr>
+            <th>Type</th>
+            <th>Meaning</th>
+            <th>Example</th>
+          </tr>
+          <tr>
+            <td>One-to-One</td>
+            <td>One entity to one entity</td>
+            <td>Person-Passport</td>
+          </tr>
+          <tr>
+            <td>One-to-Many</td>
+            <td>One entity to many entities</td>
+            <td>Department-Employees</td>
+          </tr>
+          <tr>
+            <td>Many-to-One</td>
+            <td>Many entities to one entity</td>
+            <td>Students-Department</td>
+          </tr>
+          <tr>
+            <td>Many-to-Many</td>
+            <td>Many entities to many entities</td>
+            <td>Students-Courses</td>
+          </tr>
+        </table>
+      </section>
+      <section id="participation">
+        <h2>Participation Constraint</h2>
+        <p>Participation constraint बताती है कि entity relationship में mandatory participate करती है या optional।</p>
+        <h4>Total Participation</h4>
+        <p>हर entity को relationship में participate करना आवश्यक है। इसे double line से show किया जाता है।</p>
+        <h4>Partial Participation</h4>
+        <p>कुछ entities participate कर सकती हैं और कुछ नहीं। इसे single line से show किया जाता है।</p>
+        <div class="image-icon"><img src="" alt="Participation Constraint">
+          <p>Image Placeholder: Total and Partial Participation</p>
+        </div>
+      </section>
+      <section id="strong">
+        <h2>Strong Entity Set</h2>
+        <p><strong>Strong Entity Set</strong> अपनी primary key रखता है और independently exist कर सकता है।</p>
+        <h4>Example</h4>
+        <p>Employee entity के पास Employee_ID है।</p>
+        <div class="image-icon"><img src="" alt="Strong Entity">
+          <p>Image Placeholder: Strong Entity Set</p>
+        </div>
+      </section>
+      <section id="weak">
+        <h2>Weak Entity Set</h2>
+        <p><strong>Weak Entity Set</strong> अपनी complete primary key नहीं रखता और strong entity पर depend करता है। इसे
+          identify करने के लिए owner entity की key और partial key use होती है।</p>
+        <h4>Example</h4>
+        <p>Employee का Dependent entity weak हो सकता है।</p>
+        <div class="image-icon"><img src="" alt="Weak Entity">
+          <p>Image Placeholder: Strong and Weak Entity Relationship</p>
+        </div>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>Strong Entity</th>
+            <th>Weak Entity</th>
+          </tr>
+          <tr>
+            <td>Primary Key</td>
+            <td>Own key</td>
+            <td>Depends on owner key</td>
+          </tr>
+          <tr>
+            <td>Existence</td>
+            <td>Independent</td>
+            <td>Dependent</td>
+          </tr>
+          <tr>
+            <td>Notation</td>
+            <td>Single rectangle</td>
+            <td>Double rectangle</td>
+          </tr>
+        </table>
+      </section>
+      <section id="er-diagram">
+        <h2>E-R Diagram</h2>
+        <p><strong>E-R Diagram</strong> entities, attributes, relationships और constraints का graphical representation
+          है। यह database design शुरू करने से पहले conceptual structure समझने में help करता है।</p>
+        <div class="image-icon"><img src="" alt="ER Diagram Overview">
+          <p>Image Placeholder: Complete ER Diagram</p>
+        </div>
+      </section>
+      <section id="notations">
+        <h2>E-R Diagram Notations</h2>
+        <table>
+          <tr>
+            <th>Symbol</th>
+            <th>Meaning</th>
+          </tr>
+          <tr>
+            <td>Rectangle</td>
+            <td>Strong Entity</td>
+          </tr>
+          <tr>
+            <td>Double Rectangle</td>
+            <td>Weak Entity</td>
+          </tr>
+          <tr>
+            <td>Diamond</td>
+            <td>Relationship</td>
+          </tr>
+          <tr>
+            <td>Double Diamond</td>
+            <td>Identifying Relationship</td>
+          </tr>
+          <tr>
+            <td>Oval</td>
+            <td>Attribute</td>
+          </tr>
+          <tr>
+            <td>Double Oval</td>
+            <td>Multi-valued Attribute</td>
+          </tr>
+          <tr>
+            <td>Dashed Oval</td>
+            <td>Derived Attribute</td>
+          </tr>
+          <tr>
+            <td>Underlined Attribute</td>
+            <td>Key Attribute</td>
+          </tr>
+          <tr>
+            <td>Double Line</td>
+            <td>Total Participation</td>
+          </tr>
+        </table>
+        <div class="image-icon"><img src="" alt="ER Symbols">
+          <p>Image Placeholder: ER Diagram Symbols and Notations</p>
+        </div>
+      </section>
+      <section id="student">
+        <h2>Student Management ER Diagram</h2>
+        <h4>Entities</h4>
+        <ul>
+          <li>Student</li>
+          <li>Course</li>
+          <li>Department</li>
+          <li>Teacher</li>
+        </ul>
+        <h4>Relationships</h4>
+        <ul>
+          <li>Student enrolls in Course</li>
+          <li>Course belongs to Department</li>
+          <li>Teacher teaches Course</li>
+        </ul>
+        <div class="image-icon"><img src="" alt="Student Management ER Diagram">
+          <p>Image Placeholder: Student Management ER Diagram</p>
+        </div>
+      </section>
+      <section id="library">
+        <h2>Library Management ER Diagram</h2>
+        <h4>Entities</h4>
+        <ul>
+          <li>Book</li>
+          <li>Member</li>
+          <li>Author</li>
+          <li>Issue</li>
+        </ul>
+        <h4>Relationships</h4>
+        <ul>
+          <li>Member borrows Book</li>
+          <li>Author writes Book</li>
+          <li>Issue records transaction</li>
+        </ul>
+        <div class="image-icon"><img src="" alt="Library ER Diagram">
+          <p>Image Placeholder: Library Management ER Diagram</p>
+        </div>
+      </section>
+      <section id="hospital">
+        <h2>Hospital Management ER Diagram</h2>
+        <h4>Entities</h4>
+        <ul>
+          <li>Patient</li>
+          <li>Doctor</li>
+          <li>Appointment</li>
+          <li>Department</li>
+        </ul>
+        <h4>Relationships</h4>
+        <ul>
+          <li>Patient books Appointment</li>
+          <li>Doctor attends Appointment</li>
+          <li>Doctor belongs to Department</li>
+        </ul>
+        <div class="image-icon"><img src="" alt="Hospital ER Diagram">
+          <p>Image Placeholder: Hospital Management ER Diagram</p>
+        </div>
+      </section>
+      <section id="banking">
+        <h2>Banking ER Diagram</h2>
+        <h4>Entities</h4>
+        <ul>
+          <li>Customer</li>
+          <li>Account</li>
+          <li>Branch</li>
+          <li>Transaction</li>
+        </ul>
+        <h4>Relationships</h4>
+        <ul>
+          <li>Customer owns Account</li>
+          <li>Account belongs to Branch</li>
+          <li>Account performs Transaction</li>
+        </ul>
+        <div class="image-icon"><img src="" alt="Banking ER Diagram">
+          <p>Image Placeholder: Banking System ER Diagram</p>
+        </div>
+      </section>
+      <section id="conversion">
+        <h2>Converting ER Model to Relational Tables</h2>
+        <h4>Basic Rules</h4>
+        <ul>
+          <li>Strong entity को table में convert करें।</li>
+          <li>Attributes को columns बनाएं।</li>
+          <li>Primary key select करें।</li>
+          <li>One-to-many relationship में foreign key add करें।</li>
+          <li>Many-to-many relationship के लिए separate table बनाएं।</li>
+          <li>Weak entity table में owner key include करें।</li>
+        </ul>
+        <pre>Student(Student_ID, Name)
+Course(Course_ID, Title)
+Enrollment(Student_ID, Course_ID)</pre>
+      </section>
+      <section id="mistakes">
+        <h2>Common ER Design Mistakes</h2>
+        <ul>
+          <li>Entity और attribute में confusion।</li>
+          <li>Primary key missing।</li>
+          <li>Wrong cardinality।</li>
+          <li>Many-to-many relationship को direct table में रखना।</li>
+          <li>Weak entity dependency ignore करना।</li>
+          <li>Derived attribute को unnecessarily store करना।</li>
+          <li>Duplicate entities बनाना।</li>
+        </ul>
+      </section>
+    </main>
+  </div>
+</body>
+
+</html>

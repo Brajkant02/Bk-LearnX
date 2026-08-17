@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+       <!-- Google tag (gtag.js) -->
+       <script async src="https://www.googletagmanager.com/gtag/js?id=G-FB7SX0P0D3"></script>
+       <script>
+              window.dataLayer = window.dataLayer || [];
+              function gtag() { dataLayer.push(arguments); }
+              gtag('js', new Date());
+
+              gtag('config', 'G-FB7SX0P0D3');
+       </script>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width,initial-scale=1">
+       <title>Database System Concept & Data Modeling</title>
+       <style>
+              * {
+                     box-sizing: border-box
+              }
+
+              html {
+                     scroll-behavior: smooth
+              }
+
+              body {
+                     margin: 0;
+                     background: #f3f6fa;
+                     color: #1f2937;
+                     font-family: "Segoe UI", Arial, sans-serif;
+                     line-height: 1.8
+              }
+
+              .layout {
+                     max-width: 1550px;
+                     margin: auto;
+                     padding: 14px;
+                     display: grid;
+                     grid-template-columns: 285px 1fr;
+                     gap: 18px
+              }
+
+              aside {
+                     position: sticky;
+                     top: 14px;
+                     height: calc(100vh - 28px);
+                     overflow: auto;
+                     background: #fff;
+                     padding: 20px;
+                     border-radius: 18px;
+                     box-shadow: 0 5px 22px #0001
+              }
+
+              aside h2 {
+                     margin: 0 0 12px;
+                     color: #111827
+              }
+
+              aside a {
+                     display: block;
+                     padding: 7px 9px;
+                     margin: 3px 0;
+                     border-radius: 8px;
+                     text-decoration: none;
+                     color: #374151;
+                     font-size: 14px
+              }
+
+              aside a:hover {
+                     background: #e0e7ff;
+                     color: #1d4ed8
+              }
+
+              main {
+                     background: #fff;
+                     border-radius: 20px;
+                     box-shadow: 0 5px 22px #0001;
+                     overflow: hidden
+              }
+
+              .hero {
+                     padding: 34px;
+                     background: linear-gradient(135deg, #dbeafe, #eef2ff, #f8fafc)
+              }
+
+              .hero h1 {
+                     margin: 0 0 8px;
+                     font-size: 36px;
+                     color: #111827
+              }
+
+              .hero p {
+                     margin: 5px 0;
+                     color: #475569
+              }
+
+              section {
+                     padding: 28px 30px;
+                     border-bottom: 1px solid #e5e7eb
+              }
+
+              section:last-child {
+                     border: 0
+              }
+
+              h2 {
+                     font-size: 28px;
+                     color: #172554;
+                     border-left: 5px solid #2563eb;
+                     padding-left: 12px;
+                     margin: 0 0 18px
+              }
+
+              h3 {
+                     font-size: 21px;
+                     color: #1e3a8a;
+                     margin: 24px 0 8px
+              }
+
+              h4 {
+                     font-size: 18px;
+                     color: #334155;
+                     margin: 18px 0 5px
+              }
+
+              p {
+                     font-size: 16.5px;
+                     margin: 10px 0
+              }
+
+              li {
+                     font-size: 16px;
+                     margin: 7px 0
+              }
+
+              .note,
+              .exam,
+              .important {
+                     padding: 16px 18px;
+                     border-radius: 12px;
+                     margin: 18px 0
+              }
+
+              .note {
+                     background: #eff6ff;
+                     border-left: 5px solid #3b82f6
+              }
+
+              .exam {
+                     background: #ecfdf5;
+                     border-left: 5px solid #10b981
+              }
+
+              .important {
+                     background: #fff7ed;
+                     border-left: 5px solid #f97316
+              }
+
+              .grid {
+                     display: grid;
+                     grid-template-columns: repeat(2, 1fr);
+                     gap: 15px;
+                     margin: 18px 0
+              }
+
+              .card {
+                     background: #f8fafc;
+                     border: 1px solid #dbe3ef;
+                     border-radius: 14px;
+                     padding: 17px
+              }
+
+              .card h4 {
+                     margin-top: 0;
+                     color: #1d4ed8
+              }
+
+              table {
+                     width: 100%;
+                     border-collapse: collapse;
+                     margin: 18px 0;
+                     font-size: 15px
+              }
+
+              th,
+              td {
+                     border: 1px solid #cbd5e1;
+                     padding: 11px;
+                     vertical-align: top;
+                     text-align: left
+              }
+
+              th {
+                     background: #eef2ff;
+                     color: #111827
+              }
+
+              .flow {
+                     background: #09090b;
+                     color: #f8fafc;
+                     padding: 20px;
+                     border-radius: 14px;
+                     text-align: center;
+                     font-family: Consolas, monospace;
+                     overflow: auto;
+                     margin: 18px 0
+              }
+
+              .diagram {
+                     background: #f8fafc;
+                     border: 2px dashed #94a3b8;
+                     border-radius: 15px;
+                     padding: 22px;
+                     text-align: center;
+                     margin: 18px 0
+              }
+
+              .code {
+                     background: #0b0b0b;
+                     color: #e5e7eb;
+                     border-radius: 12px;
+                     padding: 18px;
+                     overflow: auto;
+                     font-family: Consolas, monospace
+              }
+
+              @media(max-width:900px) {
+                     .layout {
+                            display: block;
+                            padding: 5px
+                     }
+
+                     aside {
+                            display: none
+                     }
+
+                     .hero {
+                            padding: 24px 18px
+                     }
+
+                     .hero h1 {
+                            font-size: 28px
+                     }
+
+                     section {
+                            padding: 22px 18px
+                     }
+
+                     h2 {
+                            font-size: 23px
+                     }
+
+                     .grid {
+                            grid-template-columns: 1fr
+                     }
+
+                     p,
+                     li {
+                            font-size: 15px
+                     }
+
+                     table {
+                            display: block;
+                            overflow-x: auto
+                     }
+              }
+       </style>
+</head>
+
+<body>
+       <div class="layout">
+              <aside>
+                     <h2>Topics</h2>
+                     <a href="#basic">1. Basic Concepts</a>
+                     <a href="#need">2. Need for DBMS</a>
+                     <a href="#file">3. DBMS vs File Processing</a>
+                     <a href="#abstraction">4. Data Abstraction</a>
+                     <a href="#languages">5. Database Languages</a>
+                     <a href="#independence">6. Data Independence</a>
+                     <a href="#components">7. DBMS Components</a>
+                     <a href="#structure">8. Overall DBMS Structure</a>
+                     <a href="#views">9. Three Views of Data</a>
+                     <a href="#architecture">10. Three-Level Architecture</a>
+                     <a href="#schema">11. Schema & Instance</a>
+                     <a href="#client">12. Client-Server Architecture</a>
+                     <a href="#comparison">13. Important Comparisons</a>
+                     <a href="#revision">14. Revision & Questions</a>
+              </aside>
+
+              <main>
+                     <div class="hero">
+                            <h1>Database System Concept & Data Modeling</h1>
+                            <p><strong>10 Periods</strong> • PGDCA • Detailed Exam-Oriented Notes</p>
+                            <p>Hindi + English mixed theory with definitions, explanations, examples, tables and
+                                   diagrams.</p>
+                     </div>
+
+                     <section id="basic">
+                            <h2>1. Basic Concepts of Database System</h2>
+                            <p>
+                                   आज के समय में लगभग हर organization large amount of data generate और use करती है।
+                                   College में students, courses, attendance और marks का data, bank में customers,
+                                   accounts और transactions का data तथा e-commerce में products, customers और orders
+                                   का data maintain किया जाता है। यदि यह data व्यवस्थित तरीके से manage न किया जाए,
+                                   तो information को ढूँढना, update करना और सुरक्षित रखना कठिन हो जाता है।
+                            </p>
+                            <p>
+                                   <strong>Database</strong> related data का एक organized collection है। Database का
+                                   उद्देश्य data को इस प्रकार व्यवस्थित रखना है कि आवश्यक information को आसानी से
+                                   store, retrieve, update और manage किया जा सके।
+                            </p>
+                            <p>
+                                   <strong>DBMS (Database Management System)</strong> एक software system है जो users
+                                   और database के बीच interface provide करता है। यह database को define, create,
+                                   store, manipulate, retrieve और control करने में सहायता करता है। Modern DBMS का
+                                   मुख्य उद्देश्य large volumes of data को efficiently manage करना और users/applications
+                                   को controlled access देना है। citeturn0search13turn0search9
+                            </p>
+
+                            <h3>Database System क्या होता है?</h3>
+                            <p>
+                                   Database system केवल database तक सीमित नहीं होता। इसमें database, DBMS software,
+                                   applications, users और supporting hardware/software environment मिलकर काम करते हैं।
+                                   जब user कोई query या operation करता है, DBMS उस request को process करके database
+                                   से appropriate result देता है।
+                            </p>
+
+                            <div class="flow">
+                                   Users / Applications → DBMS → Database
+                                   ← Result / Response ←
+                            </div>
+
+                            <h3>Database के Basic Terms</h3>
+                            <table>
+                                   <tr>
+                                          <th>Term</th>
+                                          <th>Detailed Meaning</th>
+                                   </tr>
+                                   <tr>
+                                          <td>Data</td>
+                                          <td>Raw facts or values, जैसे Student Name, Roll Number, Age और Marks।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Information</td>
+                                          <td>Processed और meaningful data जिसे decision making में उपयोग किया जा सकता
+                                                 है।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Database</td>
+                                          <td>Related data का structured और organized collection।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>DBMS</td>
+                                          <td>Database को define, store, retrieve, update और control करने वाला software।
+                                          </td>
+                                   </tr>
+                                   <tr>
+                                          <td>Table</td>
+                                          <td>Relational database में rows और columns में data रखने की logical
+                                                 structure।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Record / Tuple</td>
+                                          <td>Table की एक complete row जो किसी entity instance की information रखती है।
+                                          </td>
+                                   </tr>
+                                   <tr>
+                                          <td>Field / Attribute</td>
+                                          <td>किसी record की एक property, जैसे Name, Age या RollNo।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Database Schema</td>
+                                          <td>Database की structure/blueprint जिसमें tables, attributes और relationships
+                                                 का description होता है।</td>
+                                   </tr>
+                            </table>
+
+                            <div class="exam"><b>Exam Definition:</b> DBMS is a software system that provides an
+                                   interface for defining, creating, maintaining and controlling access to a database.
+                            </div>
+                     </section>
+
+                     <section id="need">
+                            <h2>2. Need and Importance of DBMS</h2>
+                            <p>
+                                   File-based systems में अलग-अलग applications अपनी files maintain कर सकती हैं।
+                                   जैसे college में admission department की एक file, examination department की दूसरी
+                                   file और accounts department की तीसरी file हो सकती है। जैसे-जैसे organization
+                                   बड़ी होती है, duplicate data, inconsistent data, difficult sharing और security
+                                   problems बढ़ सकती हैं।
+                            </p>
+                            <p>
+                                   DBMS का database approach इन समस्याओं को centralized और systematic तरीके से handle
+                                   करने का प्रयास करता है। DBMS data sharing, controlled access, data abstraction,
+                                   backup/recovery और data independence जैसी facilities provide करता है।
+                            </p>
+
+                            <h3>Major Reasons for Using DBMS</h3>
+                            <ol>
+                                   <li><strong>Controlled Data Storage:</strong> Data को organized database structure
+                                          में manage किया जा सकता है।</li>
+                                   <li><strong>Data Sharing:</strong> Authorized multiple users एक ही database से
+                                          information access कर सकते हैं।</li>
+                                   <li><strong>Reduced Redundancy:</strong> Unnecessary duplicate data को reduce करने
+                                          में सहायता मिलती है।</li>
+                                   <li><strong>Improved Consistency:</strong> Centralized control के कारण conflicting
+                                          copies की समस्या कम की जा सकती है।</li>
+                                   <li><strong>Security:</strong> User permissions और authorization के द्वारा access
+                                          control किया जा सकता है।</li>
+                                   <li><strong>Backup and Recovery:</strong> System failure के बाद data recovery
+                                          mechanisms उपयोग किए जा सकते हैं।</li>
+                                   <li><strong>Data Independence:</strong> Storage या logical structure में कुछ changes
+                                          applications को प्रभावित किए बिना किए जा सकते हैं।</li>
+                                   <li><strong>Concurrent Access:</strong> कई users के simultaneous operations को manage
+                                          किया जा सकता है।</li>
+                            </ol>
+                     </section>
+
+                     <section id="file">
+                            <h2>3. Advantages of DBMS over File Processing System</h2>
+                            <p>
+                                   Traditional file processing में application programs data files के format और
+                                   storage details पर अधिक dependent हो सकते हैं। एक ही information अलग-अलग files
+                                   में duplicate हो सकती है। DBMS database को centrally manage करके इन समस्याओं को
+                                   कम करने के लिए mechanisms provide करता है।
+                            </p>
+
+                            <table>
+                                   <tr>
+                                          <th>Basis</th>
+                                          <th>File Processing System</th>
+                                          <th>DBMS</th>
+                                   </tr>
+                                   <tr>
+                                          <td>Data Redundancy</td>
+                                          <td>Same data multiple files में repeat हो सकता है।</td>
+                                          <td>Centralized database और design techniques redundancy को reduce कर सकती
+                                                 हैं।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Data Consistency</td>
+                                          <td>Multiple copies update न होने पर inconsistent values हो सकती हैं।</td>
+                                          <td>Controlled updates consistency maintain करने में मदद करते हैं।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Data Sharing</td>
+                                          <td>Different applications के बीच sharing कठिन हो सकती है।</td>
+                                          <td>Authorized users/applications database share कर सकते हैं।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Security</td>
+                                          <td>Security अक्सर individual applications/files पर dependent होती है।</td>
+                                          <td>Centralized authorization और access control facilities मिलती हैं।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Data Independence</td>
+                                          <td>Programs और file structures में strong dependence हो सकती है।</td>
+                                          <td>Schema levels के कारण data independence support होती है।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Backup & Recovery</td>
+                                          <td>System/application dependent।</td>
+                                          <td>DBMS recovery and backup mechanisms support कर सकता है।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Concurrent Access</td>
+                                          <td>Multiple users के simultaneous updates manage करना difficult हो सकता है।
+                                          </td>
+                                          <td>Concurrency control mechanisms available होते हैं।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Querying</td>
+                                          <td>हर task के लिए अलग application/program की आवश्यकता हो सकती है।</td>
+                                          <td>Database query languages के माध्यम से flexible retrieval possible है।</td>
+                                   </tr>
+                            </table>
+
+                            <div class="important"><b>Exam Point:</b> DBMS के प्रमुख advantages हैं: reduced redundancy,
+                                   improved consistency, data sharing, security, backup/recovery, concurrency control और
+                                   data independence.</div>
+                     </section>
+
+                     <section id="abstraction">
+                            <h2>4. Data Abstraction</h2>
+                            <p>
+                                   Database systems internally complex होते हैं। Data को disk पर किस location पर
+                                   store किया गया है, कौन-सा index use हुआ है या कौन-से blocks involved हैं—इन details
+                                   की सामान्य user को आवश्यकता नहीं होती। <strong>Data Abstraction</strong> unnecessary
+                                   और irrelevant implementation details को hide करके user को केवल required information
+                                   provide करने की concept है। citeturn0search1turn0search5
+                            </p>
+
+                            <h3>Objectives of Data Abstraction</h3>
+                            <ul>
+                                   <li>Database की complexity को कम करना।</li>
+                                   <li>Users को simple logical view provide करना।</li>
+                                   <li>Storage details को hide करना।</li>
+                                   <li>Different users को अलग-अलग views देना।</li>
+                                   <li>Data independence प्राप्त करने में सहायता करना।</li>
+                            </ul>
+
+                            <h3>Three Levels of Data Abstraction</h3>
+                            <div class="grid">
+                                   <div class="card">
+                                          <h4>1. Physical / Internal Level</h4>
+                                          <p>यह lowest level है। यह बताता है कि data वास्तव में secondary storage पर
+                                                 कैसे
+                                                 organized और stored है। File organization, indexes, access paths,
+                                                 blocks आदि
+                                                 physical details इस level से संबंधित हो सकते हैं।</p>
+                                   </div>
+                                   <div class="card">
+                                          <h4>2. Logical / Conceptual Level</h4>
+                                          <p>यह बताता है कि database में कौन-सा data stored है और entities, attributes
+                                                 तथा
+                                                 relationships किस प्रकार organized हैं। User को physical storage
+                                                 details जानने की
+                                                 आवश्यकता नहीं होती।</p>
+                                   </div>
+                                   <div class="card">
+                                          <h4>3. View / External Level</h4>
+                                          <p>यह highest level है। अलग-अलग users/applications को उनके requirement के
+                                                 अनुसार
+                                                 database का relevant subset दिखाया जाता है।</p>
+                                   </div>
+                            </div>
+
+                            <div class="flow">
+                                   External / View Level
+                                   ↓
+                                   Conceptual / Logical Level
+                                   ↓
+                                   Internal / Physical Level
+                                   ↓
+                                   Physical Storage
+                            </div>
+
+                            <div class="note"><b>Example:</b> Bank customer को केवल account balance और transaction
+                                   history दिखाई जा सकती है। DBMS के internal storage blocks, indexes या file locations
+                                   customer को दिखाई नहीं देते।</div>
+                     </section>
+
+                     <section id="languages">
+                            <h2>5. Database Languages</h2>
+                            <p>
+                                   Database languages specialized languages/commands हैं जिनका उपयोग database के
+                                   structure को define करने, data को manipulate करने, permissions control करने और
+                                   transactions manage करने के लिए किया जाता है। GeeksforGeeks के DBMS/SQL references
+                                   में DDL, DML, DCL और TCL को प्रमुख categories के रूप में explain किया गया है।
+                                   citeturn0search3turn0search11
+                            </p>
+
+                            <h3>1. DDL — Data Definition Language</h3>
+                            <p>
+                                   DDL का उपयोग database schema या structure को define और modify करने के लिए किया जाता
+                                   है।
+                                   Tables, views, indexes जैसे schema objects create या modify किए जा सकते हैं।
+                            </p>
+                            <table>
+                                   <tr>
+                                          <th>Command</th>
+                                          <th>Use</th>
+                                   </tr>
+                                   <tr>
+                                          <td>CREATE</td>
+                                          <td>New database object/table आदि create करना।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>ALTER</td>
+                                          <td>Existing structure में modification करना।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>DROP</td>
+                                          <td>Database object को remove करना।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>TRUNCATE</td>
+                                          <td>Table के records remove करना जबकि table structure बना रहता है।</td>
+                                   </tr>
+                            </table>
+
+                            <h3>2. DML — Data Manipulation Language</h3>
+                            <p>
+                                   DML का उपयोग stored data को insert, update, delete और manipulate करने के लिए किया
+                                   जाता है। Modern SQL usage में SELECT को data retrieval के लिए अलग DQL category में
+                                   भी बताया जाता है। citeturn0search13turn0search7
+                            </p>
+                            <table>
+                                   <tr>
+                                          <th>Command</th>
+                                          <th>Use</th>
+                                   </tr>
+                                   <tr>
+                                          <td>INSERT</td>
+                                          <td>New records add करना।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>UPDATE</td>
+                                          <td>Existing records modify करना।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>DELETE</td>
+                                          <td>Records remove करना।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>SELECT</td>
+                                          <td>Data retrieve करना; कई syllabi में इसे DQL कहा जाता है।</td>
+                                   </tr>
+                            </table>
+
+                            <h3>3. DCL — Data Control Language</h3>
+                            <p>DCL database access permissions और privileges control करने के लिए use होती है।</p>
+                            <ul>
+                                   <li><strong>GRANT:</strong> User को privileges देना।</li>
+                                   <li><strong>REVOKE:</strong> Previously granted privileges हटाना।</li>
+                            </ul>
+
+                            <h3>4. TCL — Transaction Control Language</h3>
+                            <p>
+                                   TCL database transactions को control करने के लिए use होती है। <strong>COMMIT</strong>
+                                   changes को save करता है, जबकि <strong>ROLLBACK</strong> transaction changes को
+                                   previous committed state की ओर वापस ले जाने में सहायता करता है।
+                                   citeturn0search3turn0search7
+                            </p>
+
+                            <h3>Example</h3>
+                            <div class="code">
+                                   CREATE TABLE Student (
+                                   RollNo INT,
+                                   Name VARCHAR(50),
+                                   Marks INT
+                                   );
+
+                                   INSERT INTO Student VALUES (101, 'Amit', 78);
+
+                                   SELECT * FROM Student;
+
+                                   UPDATE Student SET Marks = 82 WHERE RollNo = 101;
+
+                                   COMMIT;
+                            </div>
+                     </section>
+
+                     <section id="independence">
+                            <h2>6. Data Independence</h2>
+                            <p>
+                                   <strong>Data Independence</strong> DBMS की वह property है जिसमें database schema के
+                                   एक level पर changes करने पर higher level schema या application programs पर unwanted
+                                   effect न पड़े। इसका उद्देश्य database को flexible और maintainable बनाना है।
+                                   citeturn0search0turn0search4
+                            </p>
+
+                            <h3>Why Data Independence is Important?</h3>
+                            <ul>
+                                   <li>Application programs को बार-बार modify करने की आवश्यकता कम होती है।</li>
+                                   <li>Database को performance और storage requirements के अनुसार reorganize किया जा सकता
+                                          है।</li>
+                                   <li>System maintenance आसान होता है।</li>
+                                   <li>Long-term database evolution आसान होती है।</li>
+                            </ul>
+
+                            <h3>1. Physical Data Independence</h3>
+                            <p>
+                                   Physical data independence का अर्थ है internal/physical level में changes करने की
+                                   ability बिना conceptual/logical schema को प्रभावित किए। उदाहरण के लिए file
+                                   organization
+                                   method बदलना, नया index add करना या storage device बदलना logical structure को change
+                                   किए बिना किया जा सकता है। citeturn0search0turn0search1
+                            </p>
+
+                            <h3>2. Logical Data Independence</h3>
+                            <p>
+                                   Logical data independence का अर्थ है conceptual schema में changes करने की ability
+                                   बिना external views और application programs को अनावश्यक रूप से प्रभावित किए।
+                                   उदाहरण के लिए existing table में नया attribute add करना, यदि existing user view को
+                                   उस attribute की आवश्यकता नहीं है। citeturn0search0turn0search4
+                            </p>
+
+                            <table>
+                                   <tr>
+                                          <th>Feature</th>
+                                          <th>Physical Independence</th>
+                                          <th>Logical Independence</th>
+                                   </tr>
+                                   <tr>
+                                          <td>Change</td>
+                                          <td>Physical storage/internal structure</td>
+                                          <td>Logical/conceptual structure</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Should not affect</td>
+                                          <td>Conceptual level</td>
+                                          <td>External views/applications</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Example</td>
+                                          <td>Index/file organization बदलना</td>
+                                          <td>New attribute add करना</td>
+                                   </tr>
+                            </table>
+                     </section>
+
+                     <section id="components">
+                            <h2>7. Components of a DBMS</h2>
+                            <p>
+                                   DBMS एक single simple program नहीं है; इसमें कई subsystems मिलकर database operations
+                                   perform करते हैं। Exact internal implementation DBMS product के अनुसार अलग हो सकती
+                                   है, लेकिन conceptually query processing, storage management, transaction/recovery और
+                                   catalog/authorization जैसी responsibilities महत्वपूर्ण होती हैं।
+                            </p>
+
+                            <h3>Major Components</h3>
+                            <table>
+                                   <tr>
+                                          <th>Component</th>
+                                          <th>Detailed Function</th>
+                                   </tr>
+                                   <tr>
+                                          <td>Query Processor</td>
+                                          <td>User queries को parse, validate, optimize और execute करने में सहायता करता
+                                                 है।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Storage Manager</td>
+                                          <td>Disk storage, files, indexes, buffers और data access को manage करता है।
+                                          </td>
+                                   </tr>
+                                   <tr>
+                                          <td>Transaction Manager</td>
+                                          <td>Transactions के execution और concurrent operations को coordinate करता है।
+                                          </td>
+                                   </tr>
+                                   <tr>
+                                          <td>Recovery Manager</td>
+                                          <td>System failures के बाद database को consistent state में recover करने में
+                                                 सहायता करता है।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Authorization Manager</td>
+                                          <td>Users की permissions और access rights को control करने में सहायता करता है।
+                                          </td>
+                                   </tr>
+                                   <tr>
+                                          <td>Integrity Manager</td>
+                                          <td>Database constraints और integrity rules को maintain करने में सहायता करता
+                                                 है।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Buffer Manager</td>
+                                          <td>Disk और main memory के बीच data pages/blocks के movement को manage करता
+                                                 है।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Data Dictionary / Catalog</td>
+                                          <td>Tables, attributes, constraints, indexes आदि के बारे में metadata रखता है।
+                                          </td>
+                                   </tr>
+                            </table>
+
+                            <h3>Database Administrator (DBA) की भूमिका</h3>
+                            <p>
+                                   DBA database system की administration, security, authorization, backup/recovery,
+                                   performance monitoring और schema-related management जैसी activities में महत्वपूर्ण
+                                   भूमिका निभाता है।
+                            </p>
+                     </section>
+
+                     <section id="structure">
+                            <h2>8. Overall Structure of a DBMS</h2>
+                            <p>
+                                   DBMS structure को broadly user/application layer, query processing layer, storage
+                                   management layer और actual database storage के रूप में समझा जा सकता है।
+                            </p>
+
+                            <div class="flow">
+                                   Users / Application Programs
+                                   ↓
+                                   SQL / Query
+                                   ↓
+                                   Query Processor
+                                   (Parsing + Optimization + Execution)
+                                   ↓
+                                   Storage Manager
+                                   ↓
+                                   ┌──────────┼───────────┐
+                                   ↓ ↓ ↓
+                                   Data Files Indexes Catalog
+                                   ↓
+                                   Physical Storage
+                            </div>
+
+                            <h3>Working Explanation</h3>
+                            <ol>
+                                   <li>User application या SQL interface के माध्यम से request देता है।</li>
+                                   <li>Query processor query की syntax और meaning check करता है।</li>
+                                   <li>Query optimization process suitable execution strategy choose करने में मदद करती
+                                          है।</li>
+                                   <li>Storage manager required records/pages को storage से access करता है।</li>
+                                   <li>Database operation perform होता है।</li>
+                                   <li>Result वापस application/user को दिया जाता है।</li>
+                            </ol>
+
+                            <div class="note">
+                                   DBMS architecture का exact internal design DBMS implementation पर depend करता है,
+                                   लेकिन exam में Query Processor, Storage Manager, Database, Catalog और
+                                   transaction/recovery
+                                   responsibilities को explain करना useful है।
+                            </div>
+                     </section>
+
+                     <section id="views">
+                            <h2>9. Three Views of Data</h2>
+                            <p>
+                                   एक ही database को अलग-अलग users अलग तरीके से देख सकते हैं। DBMS तीन-level schema
+                                   approach के द्वारा user-specific views और complete logical/physical representation
+                                   को अलग रखता है। ANSI-SPARC architecture में External, Conceptual और Internal levels
+                                   describe किए जाते हैं। citeturn0search6turn0search1
+                            </p>
+
+                            <h3>External View</h3>
+                            <p>
+                                   External view सबसे user-oriented level है। इसमें केवल वही entities, attributes और
+                                   relationships दिखाई जाती हैं जो किसी particular user/application के लिए relevant हैं।
+                                   एक database की कई external views हो सकती हैं।
+                            </p>
+                            <p><strong>Example:</strong> Student portal में student को Name, RollNo, Course और Marks
+                                   दिख सकते हैं; accounts staff को Fees और Payment Status का view दिया जा सकता है।
+                            </p>
+
+                            <h3>Conceptual View</h3>
+                            <p>
+                                   Conceptual view organization/community level पर पूरे database का logical
+                                   representation
+                                   देता है। इसमें यह बताया जाता है कि कौन-सा data stored है और entities के बीच
+                                   relationships
+                                   क्या हैं। यह physical storage considerations से independent logical structure provide
+                                   करता है। citeturn0search6
+                            </p>
+
+                            <h3>Internal View</h3>
+                            <p>
+                                   Internal view lowest level है। यह database के physical implementation को describe
+                                   करता
+                                   है—data storage, file organization, indexes और access paths जैसी implementation
+                                   details
+                                   इस level से संबंधित हो सकती हैं। citeturn0search6
+                            </p>
+
+                            <table>
+                                   <tr>
+                                          <th>View</th>
+                                          <th>Level</th>
+                                          <th>Main Focus</th>
+                                          <th>Example</th>
+                                   </tr>
+                                   <tr>
+                                          <td>External</td>
+                                          <td>Highest</td>
+                                          <td>User-specific information</td>
+                                          <td>Student portal view</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Conceptual</td>
+                                          <td>Middle</td>
+                                          <td>Complete logical database</td>
+                                          <td>Student, Course, Fee entities & relationships</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Internal</td>
+                                          <td>Lowest</td>
+                                          <td>Physical storage</td>
+                                          <td>Files, indexes, storage blocks</td>
+                                   </tr>
+                            </table>
+                     </section>
+
+                     <section id="architecture">
+                            <h2>10. Three-Level Architecture of DBMS</h2>
+                            <p>
+                                   Three-level architecture database system में user views को logical database structure
+                                   और physical storage से अलग करती है। इसका प्रमुख उद्देश्य abstraction और data
+                                   independence support करना है। citeturn0search6turn0search0
+                            </p>
+
+                            <div class="diagram">
+                                   <strong>EXTERNAL LEVEL</strong><br>
+                                   View 1 • View 2 • View 3 • ... • View n
+                                   <br><br>↓<br><br>
+                                   <strong>CONCEPTUAL LEVEL</strong><br>
+                                   Complete Logical Database Schema
+                                   <br><br>↓<br><br>
+                                   <strong>INTERNAL LEVEL</strong><br>
+                                   Physical Database Storage
+                            </div>
+
+                            <h3>External Level</h3>
+                            <p>
+                                   यह highest abstraction level है। अलग-अलग users को database का customized view
+                                   दिया जाता है। Security और simplicity के लिए user को unnecessary information
+                                   hide की जा सकती है।
+                            </p>
+
+                            <h3>Conceptual Level</h3>
+                            <p>
+                                   यह middle level है और पूरे database की logical structure describe करता है। इसमें
+                                   entities, attributes, relationships और constraints का logical description शामिल
+                                   हो सकता है। यह level physical storage details से independent होता है।
+                            </p>
+
+                            <h3>Internal Level</h3>
+                            <p>
+                                   यह lowest level है और actual physical storage representation से संबंधित है। DBMS
+                                   यहाँ storage structures और access mechanisms के माध्यम से data को efficiently
+                                   store/retrieve करता है।
+                            </p>
+
+                            <h3>Advantages of Three-Level Architecture</h3>
+                            <ol>
+                                   <li>Different users को customized views मिलते हैं।</li>
+                                   <li>Physical storage details users से hidden रहती हैं।</li>
+                                   <li>Data abstraction improve होती है।</li>
+                                   <li>Physical और logical data independence support होती है।</li>
+                                   <li>Database maintenance और evolution comparatively आसान होती है।</li>
+                            </ol>
+                     </section>
+
+                     <section id="schema">
+                            <h2>11. Schema and Instance</h2>
+                            <p>
+                                   <strong>Schema</strong> database की overall logical structure या blueprint है। यह
+                                   बताता है कि database में कौन-सी tables/entities, attributes और relationships
+                                   defined हैं। Schema relatively stable होता है और database design को represent करता
+                                   है।
+                            </p>
+                            <p>
+                                   <strong>Instance</strong> किसी particular time पर database में stored actual data
+                                   का current state है। जब records insert, update या delete होते हैं, database instance
+                                   change हो सकता है, जबकि schema जरूरी नहीं कि हर data change पर बदले।
+                            </p>
+
+                            <table>
+                                   <tr>
+                                          <th>Schema</th>
+                                          <th>Instance</th>
+                                   </tr>
+                                   <tr>
+                                          <td>Database structure/blueprint</td>
+                                          <td>Particular time पर actual stored data</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Comparatively stable</td>
+                                          <td>Frequently change हो सकता है</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Tables, attributes, relationships describe करता है</td>
+                                          <td>उन tables में current records represent करता है</td>
+                                   </tr>
+                            </table>
+                     </section>
+
+                     <section id="client">
+                            <h2>12. Client-Server Architecture</h2>
+                            <p>
+                                   Client-server architecture में client application server से services या data के लिए
+                                   request करती है और server request process करके response देता है। DBMS में client
+                                   side पर user interface/application हो सकता है और server side पर database management
+                                   services तथा database मौजूद हो सकते हैं। GeeksforGeeks के DBMS architecture reference
+                                   के अनुसार two-tier architecture basic client-server model की तरह काम करता है, जहाँ
+                                   client application database server से directly communicate कर सकती है।
+                                   citeturn0search12turn0search10
+                            </p>
+
+                            <h3>Two-Tier Client-Server Model</h3>
+                            <div class="flow">
+                                   Client / User Interface
+                                   │
+                                   │ Request / SQL
+                                   ↓
+                                   Database Server / DBMS
+                                   │
+                                   ↓
+                                   Database
+                                   │
+                                   └──── Response → Client
+                            </div>
+
+                            <h3>Client</h3>
+                            <p>
+                                   Client वह system/application है जो user interaction handle करता है और server को
+                                   database requests भेजता है। Desktop application, web application का client part
+                                   या other software client की भूमिका निभा सकता है।
+                            </p>
+
+                            <h3>Server</h3>
+                            <p>
+                                   Server database services provide करता है। यह queries execute कर सकता है, transactions
+                                   manage कर सकता है, security rules apply कर सकता है और database से result return कर
+                                   सकता है।
+                            </p>
+
+                            <h3>Working</h3>
+                            <ol>
+                                   <li>User client application में request enter करता है।</li>
+                                   <li>Client request को server/database service तक भेजता है।</li>
+                                   <li>Server request को process करता है।</li>
+                                   <li>DBMS required data retrieve/update करता है।</li>
+                                   <li>Server result client को return करता है।</li>
+                                   <li>Client result user को display करता है।</li>
+                            </ol>
+
+                            <h3>Advantages</h3>
+                            <ul>
+                                   <li>Centralized data management।</li>
+                                   <li>Multiple clients database access कर सकते हैं।</li>
+                                   <li>Database security और authorization centralized हो सकते हैं।</li>
+                                   <li>Data sharing आसान होती है।</li>
+                                   <li>Backup और maintenance centralized हो सकते हैं।</li>
+                            </ul>
+
+                            <h3>Three-Tier Extension</h3>
+                            <p>
+                                   Large web applications में client और database के बीच एक application/middle tier
+                                   हो सकता है। इस architecture में presentation tier, application/business logic tier
+                                   और database tier अलग होते हैं। इससे scalability, maintainability और security improve
+                                   हो सकती है। citeturn0search2turn0search8
+                            </p>
+
+                            <div class="flow">
+                                   Presentation / Client Tier
+                                   ↓
+                                   Application / Business Logic Tier
+                                   ↓
+                                   Database / Data Management Tier
+                            </div>
+                     </section>
+
+                     <section id="comparison">
+                            <h2>13. Important Comparisons</h2>
+
+                            <h3>Data Abstraction vs Data Independence</h3>
+                            <table>
+                                   <tr>
+                                          <th>Data Abstraction</th>
+                                          <th>Data Independence</th>
+                                   </tr>
+                                   <tr>
+                                          <td>Unnecessary details hide करके complexity reduce करती है।</td>
+                                          <td>एक level के schema changes का दूसरे level पर impact reduce करती है।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Focus: simplicity and hiding details।</td>
+                                          <td>Focus: flexibility and change isolation।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Three abstraction levels से related।</td>
+                                          <td>Physical और Logical types होते हैं।</td>
+                                   </tr>
+                            </table>
+
+                            <h3>External, Conceptual and Internal Levels</h3>
+                            <table>
+                                   <tr>
+                                          <th>External</th>
+                                          <th>Conceptual</th>
+                                          <th>Internal</th>
+                                   </tr>
+                                   <tr>
+                                          <td>User-specific view</td>
+                                          <td>Complete logical database</td>
+                                          <td>Physical storage</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Highest</td>
+                                          <td>Middle</td>
+                                          <td>Lowest</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Security/customization important</td>
+                                          <td>Relationships and logical structure</td>
+                                          <td>Files, indexes, storage details</td>
+                                   </tr>
+                            </table>
+
+                            <h3>Two-Tier vs Three-Tier</h3>
+                            <table>
+                                   <tr>
+                                          <th>Two-Tier</th>
+                                          <th>Three-Tier</th>
+                                   </tr>
+                                   <tr>
+                                          <td>Client directly communicates with database server.</td>
+                                          <td>Client communicates through an application/middle tier.</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Simple applications में useful।</td>
+                                          <td>Large web/enterprise applications में useful।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Business logic client/server पर placed हो सकती है।</td>
+                                          <td>Business logic middle/application tier में separate होती है।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Smaller systems के लिए comparatively simple।</td>
+                                          <td>Scalability, security और maintenance में advantages।</td>
+                                   </tr>
+                            </table>
+                     </section>
+
+                     <section id="revision">
+                            <h2>14. Quick Revision & Important Questions</h2>
+
+                            <table>
+                                   <tr>
+                                          <th>Topic</th>
+                                          <th>Quick Revision</th>
+                                   </tr>
+                                   <tr>
+                                          <td>Database</td>
+                                          <td>Organized collection of related data।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>DBMS</td>
+                                          <td>Database को manage करने वाला software system।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Data Abstraction</td>
+                                          <td>Unnecessary details hide करके relevant information दिखाना।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Database Languages</td>
+                                          <td>DDL, DML, DCL, TCL; DQL को कई references में SELECT retrieval के लिए अलग
+                                                 category माना जाता है।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Data Independence</td>
+                                          <td>Schema level changes का higher level पर minimum impact।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Physical Independence</td>
+                                          <td>Internal storage changes without affecting conceptual level।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Logical Independence</td>
+                                          <td>Conceptual changes without affecting external views/applications।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>External View</td>
+                                          <td>User-specific database view।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Conceptual View</td>
+                                          <td>Complete logical structure।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Internal View</td>
+                                          <td>Physical storage representation।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Client-Server</td>
+                                          <td>Client request करता है और server database service provide करता है।</td>
+                                   </tr>
+                            </table>
+
+                            <div class="exam">
+                                   <b>Important Long-Answer Questions</b><br><br>
+                                   1. DBMS क्या है? इसकी आवश्यकता और advantages विस्तार से समझाइए।<br>
+                                   2. DBMS और File Processing System के बीच अंतर table सहित समझाइए।<br>
+                                   3. Data Abstraction क्या है? इसके तीन levels diagram सहित समझाइए।<br>
+                                   4. Database Languages क्या हैं? DDL, DML, DCL और TCL को examples सहित समझाइए।<br>
+                                   5. Data Independence क्या है? Physical और Logical Data Independence को examples सहित
+                                   समझाइए।<br>
+                                   6. DBMS के major components और उनके functions विस्तार से लिखिए।<br>
+                                   7. DBMS की overall structure को suitable diagram के साथ समझाइए।<br>
+                                   8. Three Views of Data क्या हैं? External, Conceptual और Internal views explain
+                                   कीजिए।<br>
+                                   9. Three-Level Architecture of DBMS को diagram सहित समझाइए और इसके advantages
+                                   लिखिए।<br>
+                                   10. Client-Server Architecture क्या है? Two-tier और Three-tier architecture
+                                   समझाइए।<br>
+                                   11. Schema और Instance में अंतर समझाइए।<br>
+                                   12. Data Abstraction और Data Independence में अंतर लिखिए।
+                            </div>
+
+                            <div class="note">
+                                   <b>Study Tip:</b> Exam में केवल definition याद न करें। Long answer में
+                                   <strong>Definition → Explanation → Types/Components → Example → Diagram/Table →
+                                          Advantages → Conclusion</strong>
+                                   का structure रखें। इससे answer ज्यादा complete और exam-oriented बनेगा।
+                            </div>
+
+                            <p><strong>Reference basis:</strong> इस expanded version में DBMS concepts, data
+                                   abstraction,
+                                   three-level architecture, data independence, database languages और client-server
+                                   architecture के लिए GeeksforGeeks की current explanatory material को reference basis
+                                   बनाया गया है। citeturn0search1turn0search3turn0search6turn0search12</p>
+                     </section>
+              </main>
+       </div>
+</body>
+
+</html>

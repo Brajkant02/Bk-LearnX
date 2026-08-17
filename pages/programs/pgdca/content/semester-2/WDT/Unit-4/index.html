@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FB7SX0P0D3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-FB7SX0P0D3');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Presentation Tools </title>
+    <style>
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            margin: 0;
+            background: #f3f6fa;
+            color: #1f2937;
+            font-family: "Segoe UI", Arial, sans-serif;
+            line-height: 1.8
+        }
+
+        .layout {
+            max-width: 1550px;
+            margin: auto;
+            padding: 14px;
+            display: grid;
+            grid-template-columns: 290px 1fr;
+            gap: 18px
+        }
+
+        aside {
+            position: sticky;
+            top: 14px;
+            height: calc(100vh - 28px);
+            overflow: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 18px;
+            box-shadow: 0 5px 22px #0001
+        }
+
+        aside h2 {
+            margin: 0 0 12px;
+            color: #111827
+        }
+
+        aside a {
+            display: block;
+            padding: 7px 9px;
+            margin: 3px 0;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #374151;
+            font-size: 14px
+        }
+
+        aside a:hover {
+            background: #e0e7ff;
+            color: #1d4ed8
+        }
+
+        main {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 5px 22px #0001;
+            overflow: hidden
+        }
+
+        .hero {
+            padding: 34px;
+            background: linear-gradient(135deg, #dbeafe, #eef2ff, #f8fafc)
+        }
+
+        .hero h1 {
+            margin: 0 0 8px;
+            font-size: 36px;
+            color: #111827
+        }
+
+        .hero p {
+            margin: 5px 0;
+            color: #475569
+        }
+
+        section {
+            padding: 28px 30px;
+            border-bottom: 1px solid #e5e7eb
+        }
+
+        section:last-child {
+            border: 0
+        }
+
+        h2 {
+            font-size: 28px;
+            color: #172554;
+            border-left: 5px solid #2563eb;
+            padding-left: 12px;
+            margin: 0 0 18px
+        }
+
+        h3 {
+            font-size: 21px;
+            color: #1e3a8a;
+            margin: 24px 0 8px
+        }
+
+        h4 {
+            font-size: 18px;
+            color: #334155;
+            margin: 18px 0 6px
+        }
+
+        p {
+            font-size: 16.5px;
+            margin: 10px 0
+        }
+
+        li {
+            font-size: 16px;
+            margin: 7px 0
+        }
+
+        .note,
+        .exam,
+        .important {
+            padding: 16px 18px;
+            border-radius: 12px;
+            margin: 18px 0
+        }
+
+        .note {
+            background: #eff6ff;
+            border-left: 5px solid #3b82f6
+        }
+
+        .exam {
+            background: #ecfdf5;
+            border-left: 5px solid #10b981
+        }
+
+        .important {
+            background: #fff7ed;
+            border-left: 5px solid #f97316
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 18px 0
+        }
+
+        .card {
+            background: #f8fafc;
+            border: 1px solid #dbe3ef;
+            border-radius: 14px;
+            padding: 17px
+        }
+
+        .card h4 {
+            margin-top: 0;
+            color: #1d4ed8
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 18px 0;
+            font-size: 15px
+        }
+
+        th,
+        td {
+            border: 1px solid #cbd5e1;
+            padding: 11px;
+            vertical-align: top;
+            text-align: left
+        }
+
+        th {
+            background: #eef2ff;
+            color: #111827
+        }
+
+        .flow {
+            background: #09090b;
+            color: #f8fafc;
+            padding: 20px;
+            border-radius: 14px;
+            text-align: center;
+            font-family: Consolas, monospace;
+            overflow: auto;
+            margin: 18px 0
+        }
+
+        .badge {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700
+        }
+
+        @media(max-width:900px) {
+            .layout {
+                display: block;
+                padding: 5px
+            }
+
+            aside {
+                display: none
+            }
+
+            .hero {
+                padding: 24px 18px
+            }
+
+            .hero h1 {
+                font-size: 28px
+            }
+
+            section {
+                padding: 22px 18px
+            }
+
+            h2 {
+                font-size: 23px
+            }
+
+            .grid {
+                grid-template-columns: 1fr
+            }
+
+            p,
+            li {
+                font-size: 15px
+            }
+
+            table {
+                display: block;
+                overflow-x: auto
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="layout">
+        <aside>
+            <h2>Topics</h2>
+            <a href="#concept">1. Presentation Concept</a>
+            <a href="#create">2. Create, Open & Save</a>
+            <a href="#views">3. Different Views</a>
+            <a href="#slides">4. Working with Slides</a>
+            <a href="#text">5. Text & Paragraph Formatting</a>
+            <a href="#spelling">6. Spelling & Typing Mistakes</a>
+            <a href="#notes">7. Notes Pages & Handouts</a>
+            <a href="#objects">8. Drawing & Objects</a>
+            <a href="#pictures">9. Clip Art & Pictures</a>
+            <a href="#templates">10. Templates & Slide Design</a>
+            <a href="#rehearse">11. Rehearse Timing</a>
+            <a href="#narration">12. Narration</a>
+            <a href="#transitions">13. Slide Transitions</a>
+            <a href="#animation">14. Animate Slide Content</a>
+            <a href="#media">15. Insert & Format Media</a>
+            <a href="#password">16. Password Encryption</a>
+            <a href="#show">17. Running & Controlling Slide Show</a>
+            <a href="#print">18. Printing Presentations</a>
+            <a href="#webslides">19. Web-Based Slides</a>
+            <a href="#google">20. Google Slides</a>
+            <a href="#prezi">21. Prezi & Open Source Tools</a>
+            <a href="#comparison">22. Tool Comparison</a>
+            <a href="#workflow">23. Complete Workflow</a>
+            <a href="#revision">24. Revision & Questions</a>
+        </aside>
+
+        <main>
+            <div class="hero">
+               
+                <h1>Presentation Tools</h1>
+               
+            </div>
+
+            <section id="concept">
+                <h2>1. Presentation Concept</h2>
+                <p><strong>Presentation</strong> एक structured visual communication document है जिसमें information को
+                    slides के माध्यम से audience के सामने प्रस्तुत किया जाता है। Presentation में text, images, charts,
+                    diagrams, audio, video, animations और transitions का उपयोग किया जा सकता है।</p>
+                <p>Presentation tools ऐसे software applications हैं जिनकी सहायता से slides create, edit, format,
+                    arrange, present और print की जा सकती हैं। Microsoft PowerPoint, Google Slides और Prezi presentation
+                    tools के examples हैं।</p>
+
+                <div class="flow">
+                    Idea / Information
+                    ↓
+                    Slide Structure
+                    ↓
+                    Text + Images + Charts
+                    ↓
+                    Design + Formatting
+                    ↓
+                    Animation / Transition
+                    ↓
+                    Rehearse
+                    ↓
+                    Slide Show
+                    ↓
+                    Audience
+                </div>
+
+                <h3>Good Presentation की विशेषताएँ</h3>
+                <div class="grid">
+                    <div class="card">
+                        <h4>Clear Content</h4>
+                        <p>Information concise, relevant और logically arranged होनी चाहिए।</p>
+                    </div>
+                    <div class="card">
+                        <h4>Readable Design</h4>
+                        <p>Text size, contrast और spacing audience के लिए readable होने चाहिए।</p>
+                    </div>
+                    <div class="card">
+                        <h4>Visual Support</h4>
+                        <p>Images, charts और diagrams concepts को समझने में सहायता करते हैं।</p>
+                    </div>
+                    <div class="card">
+                        <h4>Consistent Style</h4>
+                        <p>Slides में fonts, colors और layout consistent रखना चाहिए।</p>
+                    </div>
+                    <div class="card">
+                        <h4>Controlled Animation</h4>
+                        <p>Animations और transitions purposefully use करने चाहिए।</p>
+                    </div>
+                    <div class="card">
+                        <h4>Audience Focus</h4>
+                        <p>Presentation का design audience और presentation objective के अनुसार होना चाहिए।</p>
+                    </div>
+                </div>
+                <div class="exam"><b>Exam Definition:</b> A presentation is an organized collection of slides used to
+                    communicate information, ideas or data to an audience using text, graphics and multimedia.</div>
+            </section>
+
+            <section id="create">
+                <h2>2. Creating, Opening and Saving Presentations</h2>
+                <h3>Creating a Presentation</h3>
+                <ol>
+                    <li>Presentation software open करें।</li>
+                    <li>New/Blank Presentation select करें या template choose करें।</li>
+                    <li>Title slide पर presentation title और required subtitle enter करें।</li>
+                    <li>नई slides add करें।</li>
+                    <li>Content, images और other objects insert करें।</li>
+                    <li>Theme/layout के अनुसार design apply करें।</li>
+                </ol>
+
+                <h3>Opening an Existing Presentation</h3>
+                <ol>
+                    <li>File → Open command select करें।</li>
+                    <li>Required presentation file locate करें।</li>
+                    <li>File select करके Open करें।</li>
+                </ol>
+
+                <h3>Saving a Presentation</h3>
+                <p>Presentation में किए गए changes को सुरक्षित रखने के लिए Save command use किया जाता है। पहली बार save
+                    करते समय file name और location select करनी पड़ सकती है।</p>
+                <div class="flow">Create → Edit → Save → Continue Editing → Save Again → Final Presentation</div>
+                <p><strong>Save As</strong> का उपयोग presentation को अलग name, location या supported format में save
+                    करने के लिए किया जा सकता है।</p>
+                <div class="note"><b>Best Practice:</b> Important presentation को regular intervals पर save करें और
+                    editable source file की backup copy रखें।</div>
+            </section>
+
+            <section id="views">
+                <h2>3. Working in Different Views</h2>
+                <p>Presentation software में अलग-अलग views का उद्देश्य presentation को create, organize, edit और present
+                    करने के अलग-अलग कामों को आसान बनाना है।</p>
+                <table>
+                    <tr>
+                        <th>View</th>
+                        <th>Purpose</th>
+                    </tr>
+                    <tr>
+                        <td>Normal View</td>
+                        <td>Individual slide को create और edit करने के लिए।</td>
+                    </tr>
+                    <tr>
+                        <td>Slide Sorter View</td>
+                        <td>पूरी presentation की slides को thumbnails के रूप में देखना और reorder करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Reading / Preview View</td>
+                        <td>Presentation को windowed viewing mode में check करना, software support के अनुसार।</td>
+                    </tr>
+                    <tr>
+                        <td>Slide Show View</td>
+                        <td>Audience के सामने full-screen presentation चलाने के लिए।</td>
+                    </tr>
+                    <tr>
+                        <td>Notes View / Notes Page</td>
+                        <td>Presenter notes तैयार और review करने के लिए।</td>
+                    </tr>
+                </table>
+                <div class="flow">Edit Slide → Normal View<br>Organize Slides → Slide Sorter<br>Presenter Notes → Notes
+                    Page<br>Final Delivery → Slide Show</div>
+            </section>
+
+            <section id="slides">
+                <h2>4. Working with Slides</h2>
+                <p>Slides presentation की basic units हैं। प्रत्येक slide में title, text, images, charts, tables,
+                    shapes और multimedia जैसे elements रखे जा सकते हैं।</p>
+                <h3>Common Slide Operations</h3>
+                <table>
+                    <tr>
+                        <th>Operation</th>
+                        <th>Purpose</th>
+                    </tr>
+                    <tr>
+                        <td>New Slide</td>
+                        <td>नई slide add करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Duplicate Slide</td>
+                        <td>Existing slide की copy बनाना।</td>
+                    </tr>
+                    <tr>
+                        <td>Delete Slide</td>
+                        <td>Unwanted slide remove करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Move/Reorder</td>
+                        <td>Slides का sequence बदलना।</td>
+                    </tr>
+                    <tr>
+                        <td>Layout</td>
+                        <td>Title, content और other placeholders की arrangement select करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Section</td>
+                        <td>Large presentation को logical groups में organize करने में सहायता।</td>
+                    </tr>
+                </table>
+                <h3>Logical Slide Sequence</h3>
+                <div class="flow">Title → Introduction → Main Content → Examples/Data → Summary → Conclusion / Q&A</div>
+            </section>
+
+            <section id="text">
+                <h2>5. Adding and Formatting Text</h2>
+                <p>Text presentation में concepts, headings, explanations और data communicate करने का मुख्य माध्यम है।
+                    Text box या placeholders में text add किया जा सकता है।</p>
+                <h3>Text Formatting</h3>
+                <ul>
+                    <li>Font family और font size बदलना।</li>
+                    <li>Bold, Italic और Underline apply करना।</li>
+                    <li>Font color change करना।</li>
+                    <li>Text alignment set करना।</li>
+                    <li>Bullets और numbering use करना।</li>
+                    <li>Line spacing और paragraph spacing adjust करना।</li>
+                    <li>Text box की position और size बदलना।</li>
+                </ul>
+                <h3>Good Text Design</h3>
+                <p>Slides में बहुत ज्यादा paragraph text भरने की बजाय headings, bullets और short statements use करना
+                    generally अधिक readable होता है। Important keywords को visual emphasis दिया जा सकता है।</p>
+            </section>
+
+            <section id="spelling">
+                <h2>6. Checking Spelling and Correcting Typing Mistakes</h2>
+                <p>Presentation में spelling और typing errors audience के लिए distracting हो सकते हैं। Presentation
+                    software में spell-checking tools common errors identify करने में सहायता करते हैं।</p>
+                <h3>General Process</h3>
+                <ol>
+                    <li>Review/Spelling command open करें, software के अनुसार।</li>
+                    <li>Software द्वारा identified word check करें।</li>
+                    <li>Suggested correction select करें या manually correct करें।</li>
+                    <li>पूरी presentation review करें।</li>
+                    <li>Final Slide Show से पहले text proofread करें।</li>
+                </ol>
+                <div class="important"><b>Important:</b> Spell checker हर context या factual mistake को detect नहीं
+                    करता। Final proofreading manually भी करें।</div>
+            </section>
+
+            <section id="notes">
+                <h2>7. Making Notes Pages and Handouts</h2>
+                <h3>Notes Pages</h3>
+                <p><strong>Notes Page</strong> presenter के लिए additional speaking notes रखने का माध्यम है। इसमें slide
+                    के साथ explanation, reminders या speaking points लिखे जा सकते हैं। ये audience को दिखाए बिना
+                    presenter की सहायता कर सकते हैं।</p>
+                <h3>Handouts</h3>
+                <p><strong>Handouts</strong> presentation slides की printed या distributed copies होती हैं जिन्हें
+                    audience reference के रूप में use कर सकती है। Software में एक page पर multiple slides print करने के
+                    options हो सकते हैं।</p>
+                <table>
+                    <tr>
+                        <th>Notes Pages</th>
+                        <th>Handouts</th>
+                    </tr>
+                    <tr>
+                        <td>Presenter-focused.</td>
+                        <td>Audience-focused.</td>
+                    </tr>
+                    <tr>
+                        <td>Speaking notes और reminders के लिए।</td>
+                        <td>Slides/reference material distribute करने के लिए।</td>
+                    </tr>
+                </table>
+            </section>
+
+            <section id="objects">
+                <h2>8. Drawing and Working with Objects</h2>
+                <p>Presentation slides में shapes, lines, arrows, text boxes, diagrams और other objects add किए जा सकते
+                    हैं।</p>
+                <h3>Common Object Operations</h3>
+                <ul>
+                    <li>Insert करना।</li>
+                    <li>Move और resize करना।</li>
+                    <li>Rotate करना।</li>
+                    <li>Fill और outline format करना।</li>
+                    <li>Objects को align करना।</li>
+                    <li>Group और ungroup करना, software support के अनुसार।</li>
+                    <li>Arrange करके front/back order बदलना।</li>
+                    <li>Copy, duplicate और delete करना।</li>
+                </ul>
+                <div class="flow">Insert Object → Resize → Position → Format → Align → Arrange → Group → Animate (if
+                    required)</div>
+            </section>
+
+            <section id="pictures">
+                <h2>9. Adding Clip Art and Other Pictures</h2>
+                <p>Images presentation को visually engaging बनाती हैं और concepts को explain करने में सहायता करती हैं।
+                    Images local computer, supported online sources, screenshots या other media sources से insert की जा
+                    सकती हैं, tool capabilities के अनुसार।</p>
+                <h3>Image Operations</h3>
+                <table>
+                    <tr>
+                        <th>Operation</th>
+                        <th>Purpose</th>
+                    </tr>
+                    <tr>
+                        <td>Insert</td>
+                        <td>Slide में picture add करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Crop</td>
+                        <td>Unwanted image area remove करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Resize</td>
+                        <td>Image dimensions बदलना।</td>
+                    </tr>
+                    <tr>
+                        <td>Rotate</td>
+                        <td>Image angle बदलना।</td>
+                    </tr>
+                    <tr>
+                        <td>Position</td>
+                        <td>Slide पर image location set करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Format</td>
+                        <td>Border, effects और other supported visual properties adjust करना।</td>
+                    </tr>
+                </table>
+                <div class="note"><b>Design Tip:</b> Image को stretch करके aspect ratio खराब न करें। High-resolution but
+                    unnecessarily huge images presentation file size बढ़ा सकती हैं।</div>
+            </section>
+
+            <section id="templates">
+                <h2>10. Designing Slide Shows Using Templates</h2>
+                <p><strong>Template</strong> एक predefined presentation design structure है जिसमें theme, colors, fonts,
+                    layouts और visual styling पहले से arranged हो सकती है।</p>
+                <h3>Templates के Advantages</h3>
+                <ul>
+                    <li>Presentation जल्दी design की जा सकती है।</li>
+                    <li>Slides में visual consistency maintain होती है।</li>
+                    <li>Professional-looking layout बनाने में सहायता।</li>
+                    <li>Manual formatting का time कम होता है।</li>
+                </ul>
+                <h3>General Process</h3>
+                <ol>
+                    <li>New Presentation create करें।</li>
+                    <li>Suitable template/theme choose करें।</li>
+                    <li>Required slide layouts select करें।</li>
+                    <li>अपना text और media add करें।</li>
+                    <li>Theme consistency check करें।</li>
+                    <li>Final presentation preview करें।</li>
+                </ol>
+            </section>
+
+            <section id="rehearse">
+                <h2>11. Rehearse Timing</h2>
+                <p><strong>Rehearse Timing</strong> feature presenter को practice करते समय प्रत्येक slide पर लगने वाला
+                    time record करने में सहायता करता है। इससे presentation की total duration और slide progression plan
+                    की जा सकती है।</p>
+                <div class="flow">Start Rehearsal → Present Slide → Record Time → Next Slide → Continue → Save Timings
+                </div>
+                <h3>Benefits</h3>
+                <ul>
+                    <li>Presentation निर्धारित time limit में रखने में सहायता।</li>
+                    <li>Slides के बीच appropriate pacing develop करना।</li>
+                    <li>Automatic slide progression के लिए timings set करने में सहायता।</li>
+                    <li>Presenter को practice करने का opportunity।</li>
+                </ul>
+            </section>
+
+            <section id="narration">
+                <h2>12. Narration</h2>
+                <p><strong>Narration</strong> presentation slides के साथ recorded voice/audio explanation को include
+                    करने की technique है। Narration का उपयोग self-running presentations, tutorials और recorded
+                    presentations में किया जा सकता है।</p>
+                <h3>General Process</h3>
+                <ol>
+                    <li>Microphone और audio settings check करें।</li>
+                    <li>Presentation में narration/record feature open करें।</li>
+                    <li>Slide-by-slide explanation record करें।</li>
+                    <li>Required slide timings record करें, यदि feature support करता है।</li>
+                    <li>Recording preview करें।</li>
+                    <li>Audio levels और synchronization check करें।</li>
+                    <li>Final presentation save करें।</li>
+                </ol>
+                <div class="important"><b>Best Practice:</b> Narration clear, concise और slide content के synchronized
+                    होनी चाहिए। Background noise कम रखें।</div>
+            </section>
+
+            <section id="transitions">
+                <h2>13. Apply Transitions Between Slides</h2>
+                <p><strong>Slide Transition</strong> वह visual effect है जो एक slide से दूसरी slide में जाते समय दिखाई
+                    देता है। Transition पूरे slide के change को affect करती है।</p>
+                <h3>Common Transition Concepts</h3>
+                <ul>
+                    <li>Fade</li>
+                    <li>Push</li>
+                    <li>Wipe</li>
+                    <li>Split</li>
+                    <li>Morph-like transitions, software availability के अनुसार</li>
+                </ul>
+                <h3>General Steps</h3>
+                <ol>
+                    <li>Slide select करें।</li>
+                    <li>Transitions panel/tab open करें।</li>
+                    <li>Required transition choose करें।</li>
+                    <li>Duration set करें।</li>
+                    <li>Sound की आवश्यकता हो तो carefully select करें।</li>
+                    <li>Apply to selected slides या all slides, आवश्यकता के अनुसार।</li>
+                    <li>Preview करें।</li>
+                </ol>
+                <div class="note"><b>Difference:</b> Transition = slide-to-slide change. Animation = slide के अंदर
+                    object/content movement or effect.</div>
+            </section>
+
+            <section id="animation">
+                <h2>14. Animate Slide Content</h2>
+                <p><strong>Animation</strong> का उपयोग slide के अंदर मौजूद text, image, shape या other object को appear,
+                    move, emphasize या disappear कराने के लिए किया जाता है।</p>
+                <table>
+                    <tr>
+                        <th>Animation Type</th>
+                        <th>Purpose</th>
+                    </tr>
+                    <tr>
+                        <td>Entrance</td>
+                        <td>Object को slide पर appear कराना।</td>
+                    </tr>
+                    <tr>
+                        <td>Emphasis</td>
+                        <td>Existing object को visually highlight करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Exit</td>
+                        <td>Object को slide से remove/disappear कराना।</td>
+                    </tr>
+                    <tr>
+                        <td>Motion Path</td>
+                        <td>Object को specified path पर move करना, software support के अनुसार।</td>
+                    </tr>
+                </table>
+                <h3>Animation Workflow</h3>
+                <div class="flow">Select Object → Add Animation → Set Order → Set Duration/Delay → Preview → Adjust
+                </div>
+            </section>
+
+            <section id="media">
+                <h2>15. Insert and Format Media</h2>
+                <p>Presentation में multimedia effects के लिए audio और video जैसे media insert किए जा सकते हैं। इससे
+                    demonstrations, tutorials और visual explanations अधिक effective हो सकते हैं।</p>
+                <h3>Media Formatting / Controls</h3>
+                <ul>
+                    <li>Media insert करना।</li>
+                    <li>Size और position adjust करना।</li>
+                    <li>Playback options set करना, software support के अनुसार।</li>
+                    <li>Start mode choose करना, जैसे on click/automatic, जहाँ available हो।</li>
+                    <li>Volume और trimming जैसे supported options use करना।</li>
+                    <li>Video/audio को preview करके synchronization check करना।</li>
+                </ul>
+                <div class="important"><b>File Compatibility:</b> Presentation share करने से पहले दूसरे computer/device
+                    पर media playback test करें क्योंकि codecs और supported formats अलग हो सकते हैं।</div>
+            </section>
+
+            <section id="password">
+                <h2>16. Encrypting Presentations with a Password</h2>
+                <p><strong>Password encryption</strong> presentation file को unauthorized access से protect करने के लिए
+                    password-based security mechanism है। Supported office software में password to open या similar
+                    protection options उपलब्ध हो सकते हैं।</p>
+                <h3>General Process</h3>
+                <ol>
+                    <li>File/Info या security settings open करें।</li>
+                    <li>Password protection/encryption option select करें।</li>
+                    <li>Strong password enter करें।</li>
+                    <li>Password confirm करें।</li>
+                    <li>Presentation save करें।</li>
+                </ol>
+                <div class="note"><b>Security Tip:</b> Password किसी trusted secure place पर रखें। भूल जाने पर recovery
+                    options software/version के अनुसार limited हो सकते हैं।</div>
+            </section>
+
+            <section id="show">
+                <h2>17. Running and Controlling a Slide Show</h2>
+                <p><strong>Slide Show</strong> presentation को audience के लिए presentation mode में display करता है।
+                    Presenter keyboard, mouse या remote controls के माध्यम से slides control कर सकता है।</p>
+                <h3>Common Controls</h3>
+                <table>
+                    <tr>
+                        <th>Action</th>
+                        <th>Typical Control</th>
+                    </tr>
+                    <tr>
+                        <td>Next Slide</td>
+                        <td>Mouse click / Right Arrow / Page Down, software के अनुसार</td>
+                    </tr>
+                    <tr>
+                        <td>Previous Slide</td>
+                        <td>Left Arrow / Page Up</td>
+                    </tr>
+                    <tr>
+                        <td>End Show</td>
+                        <td>Esc</td>
+                    </tr>
+                    <tr>
+                        <td>Pause / Blank Screen</td>
+                        <td>Software-specific controls</td>
+                    </tr>
+                    <tr>
+                        <td>Jump to Slide</td>
+                        <td>Slide navigation features</td>
+                    </tr>
+                </table>
+                <h3>Before Running</h3>
+                <ul>
+                    <li>Spelling check करें।</li>
+                    <li>Animations और transitions test करें।</li>
+                    <li>Audio/video playback check करें।</li>
+                    <li>Timings verify करें।</li>
+                    <li>Display/projector resolution check करें।</li>
+                </ul>
+            </section>
+
+            <section id="print">
+                <h2>18. Printing Presentations</h2>
+                <p>Presentation को paper या PDF output के रूप में print किया जा सकता है, software और printer options के
+                    अनुसार। Different print layouts audience handouts या presenter notes के लिए useful हो सकते हैं।</p>
+                <table>
+                    <tr>
+                        <th>Print Type</th>
+                        <th>Use</th>
+                    </tr>
+                    <tr>
+                        <td>Full Slides</td>
+                        <td>एक page पर एक slide के लिए।</td>
+                    </tr>
+                    <tr>
+                        <td>Handouts</td>
+                        <td>एक page पर multiple slides के लिए।</td>
+                    </tr>
+                    <tr>
+                        <td>Notes Pages</td>
+                        <td>Slide के साथ presenter notes print करने के लिए।</td>
+                    </tr>
+                    <tr>
+                        <td>Outline</td>
+                        <td>Presentation text structure को print करने के लिए, software support के अनुसार।</td>
+                    </tr>
+                </table>
+                <h3>General Printing Steps</h3>
+                <ol>
+                    <li>File → Print open करें।</li>
+                    <li>Printer select करें।</li>
+                    <li>Slides/range select करें।</li>
+                    <li>Required layout choose करें।</li>
+                    <li>Copies और page settings set करें।</li>
+                    <li>Preview करें।</li>
+                    <li>Print करें।</li>
+                </ol>
+            </section>
+
+            <section id="webslides">
+                <h2>19. Designing Slides: Web-Based Slides</h2>
+                <p><strong>Web-based presentation tools</strong> browser के माध्यम से presentations create, edit, store
+                    और share करने की सुविधा देते हैं। इनमें local desktop installation पर dependency कम हो सकती है और
+                    collaborative editing useful हो सकती है।</p>
+                <h3>General Features</h3>
+                <ul>
+                    <li>Browser-based editing।</li>
+                    <li>Cloud storage या online document management।</li>
+                    <li>Sharing through links/permissions।</li>
+                    <li>Real-time collaboration, tool support के अनुसार।</li>
+                    <li>Templates और themes।</li>
+                    <li>Images, videos और other media insertion।</li>
+                </ul>
+                <div class="flow">Browser → Create Presentation → Edit → Share → Collaborate → Present</div>
+            </section>
+
+            <section id="google">
+                <h2>20. Google Slides</h2>
+                <p><strong>Google Slides</strong> एक web-based presentation application है जिसका उपयोग presentations
+                    create, edit, share और collaborate करने के लिए किया जाता है। यह Google Workspace ecosystem का हिस्सा
+                    है।</p>
+                <h3>Google Slides में Presentation बनाने के General Steps</h3>
+                <ol>
+                    <li>Google Slides open करें।</li>
+                    <li>Blank presentation या template select करें।</li>
+                    <li>Title slide और required layouts choose करें।</li>
+                    <li>Text, images, shapes, charts और media add करें।</li>
+                    <li>Theme और formatting apply करें।</li>
+                    <li>Slides को reorder करें।</li>
+                    <li>Sharing permissions set करें।</li>
+                    <li>Collaborators को access दें, यदि required हो।</li>
+                    <li>Presentation mode में preview/run करें।</li>
+                </ol>
+                <h3>Google Slides के Advantages</h3>
+                <div class="grid">
+                    <div class="card">
+                        <h4>Online Access</h4>
+                        <p>Browser के माध्यम से supported devices से access किया जा सकता है।</p>
+                    </div>
+                    <div class="card">
+                        <h4>Collaboration</h4>
+                        <p>Multiple users एक presentation पर work कर सकते हैं, permissions के अनुसार।</p>
+                    </div>
+                    <div class="card">
+                        <h4>Sharing</h4>
+                        <p>Access permissions के साथ presentation share की जा सकती है।</p>
+                    </div>
+                    <div class="card">
+                        <h4>Templates</h4>
+                        <p>Ready-made presentation designs available होते हैं।</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="prezi">
+                <h2>21. Prezi or Other Open Source Tools</h2>
+                <h3>Prezi</h3>
+                <p><strong>Prezi</strong> एक presentation platform है जो traditional slide-by-slide approach के अलावा
+                    zoomable canvas style presentations के लिए जाना जाता है। इसमें content को एक large visual canvas पर
+                    arrange करके zoom और movement based presentation बनाई जा सकती है।</p>
+                <div class="flow">Overview Canvas → Topic → Zoom In → Detail → Zoom Out → Next Topic</div>
+                <h3>Prezi की Characteristics</h3>
+                <ul>
+                    <li>Zoom-based visual presentation style।</li>
+                    <li>Large canvas पर content organization।</li>
+                    <li>Visual storytelling के लिए useful।</li>
+                    <li>Traditional linear slides से अलग presentation approach।</li>
+                </ul>
+
+                <h3>Other Open-Source / Alternative Tools</h3>
+                <p>Open-source presentation ecosystem में अलग-अलग tools available हो सकते हैं, जैसे LibreOffice Impress।
+                    Tool choose करते समय features, file compatibility, collaboration needs और operating system support
+                    को ध्यान में रखना चाहिए।</p>
+            </section>
+
+            <section id="comparison">
+                <h2>22. Presentation Tools Comparison</h2>
+                <table>
+                    <tr>
+                        <th>Tool</th>
+                        <th>Type</th>
+                        <th>Important Characteristic</th>
+                        <th>Common Use</th>
+                    </tr>
+                    <tr>
+                        <td>Microsoft PowerPoint</td>
+                        <td>Desktop/Office presentation tool</td>
+                        <td>Rich slide, animation, transition and multimedia features</td>
+                        <td>Academic, business and professional presentations</td>
+                    </tr>
+                    <tr>
+                        <td>Google Slides</td>
+                        <td>Web-based</td>
+                        <td>Online editing, sharing and collaboration</td>
+                        <td>Collaborative presentations</td>
+                    </tr>
+                    <tr>
+                        <td>Prezi</td>
+                        <td>Presentation platform</td>
+                        <td>Zoomable canvas style</td>
+                        <td>Visual storytelling</td>
+                    </tr>
+                    <tr>
+                        <td>LibreOffice Impress</td>
+                        <td>Open-source office suite presentation tool</td>
+                        <td>Desktop presentation creation</td>
+                        <td>Office/academic presentations</td>
+                    </tr>
+                </table>
+            </section>
+
+            <section id="workflow">
+                <h2>23. Complete Presentation Workflow</h2>
+                <div class="flow">
+                    Topic / Objective
+                    ↓
+                    Audience Analysis
+                    ↓
+                    Create Presentation
+                    ↓
+                    Choose Theme / Template
+                    ↓
+                    Add & Format Slides
+                    ↓
+                    Insert Images / Objects
+                    ↓
+                    Add Audio / Video
+                    ↓
+                    Transitions
+                    ↓
+                    Animations
+                    ↓
+                    Narration / Timings
+                    ↓
+                    Spell Check
+                    ↓
+                    Rehearse
+                    ↓
+                    Preview Slide Show
+                    ↓
+                    Password Protection (if needed)
+                    ↓
+                    Print / Share / Present
+                </div>
+
+                <h3>Example: College Seminar Presentation</h3>
+                <ol>
+                    <li>Topic और learning objective define करें।</li>
+                    <li>Audience के knowledge level के अनुसार content plan करें।</li>
+                    <li>Title और agenda slides तैयार करें।</li>
+                    <li>Main topics को separate sections में divide करें।</li>
+                    <li>Diagrams, images और charts add करें।</li>
+                    <li>Important points को bullets में लिखें।</li>
+                    <li>Consistent template/theme use करें।</li>
+                    <li>Necessary transitions और limited animations apply करें।</li>
+                    <li>Speaker notes/narration prepare करें।</li>
+                    <li>Rehearse timing करें।</li>
+                    <li>Final proofread और multimedia testing करें।</li>
+                    <li>Presentation mode में deliver करें।</li>
+                </ol>
+            </section>
+
+            <section id="revision">
+                <h2>24. Quick Revision & Important Questions</h2>
+                <table>
+                    <tr>
+                        <th>Topic</th>
+                        <th>One-Line Revision</th>
+                    </tr>
+                    <tr>
+                        <td>Presentation</td>
+                        <td>Slides के माध्यम से information/ideas communicate करने का structured visual medium।</td>
+                    </tr>
+                    <tr>
+                        <td>Normal View</td>
+                        <td>Individual slide editing के लिए।</td>
+                    </tr>
+                    <tr>
+                        <td>Slide Sorter</td>
+                        <td>Slides को organize/reorder करने के लिए।</td>
+                    </tr>
+                    <tr>
+                        <td>Notes Page</td>
+                        <td>Presenter speaking notes के लिए।</td>
+                    </tr>
+                    <tr>
+                        <td>Handout</td>
+                        <td>Audience को reference के लिए slides distribute करने का format।</td>
+                    </tr>
+                    <tr>
+                        <td>Template</td>
+                        <td>Predefined presentation design structure।</td>
+                    </tr>
+                    <tr>
+                        <td>Transition</td>
+                        <td>एक slide से दूसरी slide के बीच visual effect।</td>
+                    </tr>
+                    <tr>
+                        <td>Animation</td>
+                        <td>Slide के अंदर object/content का visual effect या movement।</td>
+                    </tr>
+                    <tr>
+                        <td>Rehearse Timing</td>
+                        <td>Presentation timing practice और recording के लिए।</td>
+                    </tr>
+                    <tr>
+                        <td>Narration</td>
+                        <td>Slides के साथ recorded voice explanation।</td>
+                    </tr>
+                    <tr>
+                        <td>Encryption</td>
+                        <td>Password-based protection से presentation को secure करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Google Slides</td>
+                        <td>Web-based presentation and collaboration tool।</td>
+                    </tr>
+                    <tr>
+                        <td>Prezi</td>
+                        <td>Zoomable canvas-based presentation platform।</td>
+                    </tr>
+                    <tr>
+                        <td>LibreOffice Impress</td>
+                        <td>Open-source office suite का presentation application।</td>
+                    </tr>
+                </table>
+
+                <div class="exam">
+                    <b>Important Long-Answer Questions</b><br><br>
+                    1. Presentation क्या है? Presentation tools के advantages और uses समझाइए।<br>
+                    2. Presentation create, open और save करने की प्रक्रिया समझाइए।<br>
+                    3. Presentation में different views कौन-कौन से हैं? उनके uses लिखिए।<br>
+                    4. Slides के साथ कौन-कौन से operations perform किए जा सकते हैं?<br>
+                    5. Text और paragraphs को presentation में कैसे format किया जाता है?<br>
+                    6. Spelling check और typing mistakes correction की प्रक्रिया समझाइए।<br>
+                    7. Notes Pages और Handouts क्या हैं? दोनों में अंतर लिखिए।<br>
+                    8. Presentation में objects, clip art और pictures कैसे add और format किए जाते हैं?<br>
+                    9. Templates का उपयोग करके slide show design करने की प्रक्रिया समझाइए।<br>
+                    10. Rehearse Timing और Narration क्या हैं? इनके uses समझाइए।<br>
+                    11. Slide Transition और Animation में अंतर लिखिए।<br>
+                    12. Slides के बीच transitions apply करने और content animate करने की प्रक्रिया लिखिए।<br>
+                    13. Presentation में audio/video insert और format करने के steps समझाइए।<br>
+                    14. Presentation को password से encrypt करने की आवश्यकता और प्रक्रिया समझाइए।<br>
+                    15. Slide Show को run और control करने की प्रक्रिया समझाइए।<br>
+                    16. Presentation printing के विभिन्न options समझाइए।<br>
+                    17. Web-based presentations क्या हैं? Google Slides के features समझाइए।<br>
+                    18. Prezi क्या है? Traditional slide presentation से यह कैसे अलग है?<br>
+                    19. Google Slides और desktop presentation tools की तुलना कीजिए।<br>
+                    20. एक complete professional presentation बनाने का workflow समझाइए।
+                </div>
+
+                <div class="note">
+                    <b>Exam Writing Pattern:</b><br>
+                    इस unit के answers में
+                    <strong>Definition → Purpose → Features → Steps → Example → Advantages → Difference →
+                        Conclusion</strong>
+                    का sequence रखें। Practical question में numbered steps और जहाँ suitable हो वहाँ flow diagram जरूर
+                    use करें।
+                </div>
+
+                <h3>Conclusion</h3>
+                <p>
+                    Presentation tools information को structured और visually effective तरीके से communicate
+                    करने में important role निभाते हैं। Slides create और format करने के साथ-साथ views,
+                    notes, handouts, objects, pictures, templates, timing, narration, transitions,
+                    animations, multimedia, password protection, slide-show controls और printing जैसे
+                    features एक complete presentation workflow बनाते हैं। Web-based tools जैसे Google
+                    Slides collaboration और online access provide करते हैं, जबकि Prezi अलग zoom-based
+                    visual storytelling approach देता है। सही presentation tool का selection audience,
+                    purpose, content और collaboration requirements के अनुसार करना चाहिए।
+                </p>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>

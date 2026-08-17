@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-FB7SX0P0D3"></script>
+        <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag() { dataLayer.push(arguments); }
+                gtag('js', new Date());
+
+                gtag('config', 'G-FB7SX0P0D3');
+        </script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>CMS & LMS</title>
+        <style>
+                * {
+                        box-sizing: border-box
+                }
+
+                html {
+                        scroll-behavior: smooth
+                }
+
+                body {
+                        margin: 0;
+                        background: #f3f6fa;
+                        color: #1f2937;
+                        font-family: "Segoe UI", Arial, sans-serif;
+                        line-height: 1.8
+                }
+
+                .layout {
+                        max-width: 1550px;
+                        margin: auto;
+                        padding: 14px;
+                        display: grid;
+                        grid-template-columns: 300px 1fr;
+                        gap: 18px
+                }
+
+                aside {
+                        position: sticky;
+                        top: 14px;
+                        height: calc(100vh - 28px);
+                        overflow: auto;
+                        background: #fff;
+                        padding: 20px;
+                        border-radius: 18px;
+                        box-shadow: 0 5px 22px #0001
+                }
+
+                aside h2 {
+                        margin: 0 0 12px;
+                        color: #111827
+                }
+
+                aside a {
+                        display: block;
+                        padding: 7px 9px;
+                        margin: 3px 0;
+                        border-radius: 8px;
+                        text-decoration: none;
+                        color: #374151;
+                        font-size: 14px
+                }
+
+                aside a:hover {
+                        background: #e0e7ff;
+                        color: #1d4ed8
+                }
+
+                main {
+                        background: #fff;
+                        border-radius: 20px;
+                        box-shadow: 0 5px 22px #0001;
+                        overflow: hidden
+                }
+
+                .hero {
+                        padding: 34px;
+                        background: linear-gradient(135deg, #dbeafe, #eef2ff, #f8fafc)
+                }
+
+                .hero h1 {
+                        margin: 0 0 8px;
+                        font-size: 36px;
+                        color: #111827
+                }
+
+                .hero p {
+                        margin: 5px 0;
+                        color: #475569
+                }
+
+                section {
+                        padding: 28px 30px;
+                        border-bottom: 1px solid #e5e7eb
+                }
+
+                section:last-child {
+                        border: 0
+                }
+
+                h2 {
+                        font-size: 28px;
+                        color: #172554;
+                        border-left: 5px solid #2563eb;
+                        padding-left: 12px;
+                        margin: 0 0 18px
+                }
+
+                h3 {
+                        font-size: 21px;
+                        color: #1e3a8a;
+                        margin: 24px 0 8px
+                }
+
+                h4 {
+                        font-size: 18px;
+                        color: #334155;
+                        margin: 18px 0 6px
+                }
+
+                p {
+                        font-size: 16.5px;
+                        margin: 10px 0
+                }
+
+                li {
+                        font-size: 16px;
+                        margin: 7px 0
+                }
+
+                .note,
+                .exam,
+                .important {
+                        padding: 16px 18px;
+                        border-radius: 12px;
+                        margin: 18px 0
+                }
+
+                .note {
+                        background: #eff6ff;
+                        border-left: 5px solid #3b82f6
+                }
+
+                .exam {
+                        background: #ecfdf5;
+                        border-left: 5px solid #10b981
+                }
+
+                .important {
+                        background: #fff7ed;
+                        border-left: 5px solid #f97316
+                }
+
+                .grid {
+                        display: grid;
+                        grid-template-columns: repeat(2, 1fr);
+                        gap: 15px;
+                        margin: 18px 0
+                }
+
+                .card {
+                        background: #f8fafc;
+                        border: 1px solid #dbe3ef;
+                        border-radius: 14px;
+                        padding: 17px
+                }
+
+                .card h4 {
+                        margin-top: 0;
+                        color: #1d4ed8
+                }
+
+                table {
+                        width: 100%;
+                        border-collapse: collapse;
+                        margin: 18px 0;
+                        font-size: 15px
+                }
+
+                th,
+                td {
+                        border: 1px solid #cbd5e1;
+                        padding: 11px;
+                        vertical-align: top;
+                        text-align: left
+                }
+
+                th {
+                        background: #eef2ff;
+                        color: #111827
+                }
+
+                .flow {
+                        background: #09090b;
+                        color: #f8fafc;
+                        padding: 20px;
+                        border-radius: 14px;
+                        text-align: center;
+                        font-family: Consolas, monospace;
+                        overflow: auto;
+                        margin: 18px 0
+                }
+
+                .badge {
+                        display: inline-block;
+                        background: #dbeafe;
+                        color: #1e40af;
+                        padding: 3px 10px;
+                        border-radius: 20px;
+                        font-size: 12px;
+                        font-weight: 700
+                }
+
+                @media(max-width:900px) {
+                        .layout {
+                                display: block;
+                                padding: 5px
+                        }
+
+                        aside {
+                                display: none
+                        }
+
+                        .hero {
+                                padding: 24px 18px
+                        }
+
+                        .hero h1 {
+                                font-size: 28px
+                        }
+
+                        section {
+                                padding: 22px 18px
+                        }
+
+                        h2 {
+                                font-size: 23px
+                        }
+
+                        .grid {
+                                grid-template-columns: 1fr
+                        }
+
+                        p,
+                        li {
+                                font-size: 15px
+                        }
+
+                        table {
+                                display: block;
+                                overflow-x: auto
+                        }
+                }
+        </style>
+</head>
+
+<body>
+        <div class="layout">
+                <aside>
+                        <h2>Topics</h2>
+                        <a href="#intro">Introduction</a>
+                        <a href="#difference">CMS vs LMS</a>
+                        <a href="#applications">Applications & Advantages</a>
+                        <a href="#drupal-intro">Drupal Introduction</a>
+                        <a href="#drupal-install">Drupal Installation</a>
+                        <a href="#drupal-architecture">Drupal Architecture</a>
+                        <a href="#drupal-ui">Drupal User Interface</a>
+                        <a href="#drupal-themes">Themes Management</a>
+                        <a href="#drupal-subtheme">Creating a Sub-theme</a>
+                        <a href="#drupal-modules">Modules Management</a>
+                        <a href="#drupal-blocks">Blocks</a>
+                        <a href="#drupal-menu">Menu Management</a>
+                        <a href="#drupal-users">User Management</a>
+                        <a href="#drupal-home">Home Page</a>
+                        <a href="#drupal-css">CSS in Drupal</a>
+                        <a href="#drupal-backup">Backup & Upgradation</a>
+                        <a href="#moodle-intro">Moodle Introduction</a>
+                        <a href="#moodle-install">Moodle Installation</a>
+                        <a href="#moodle-architecture">Moodle Architecture</a>
+                        <a href="#moodle-ui">Moodle User Interface</a>
+                        <a href="#moodle-themes">Themes Management</a>
+                        <a href="#moodle-courses">Courses & Categories</a>
+                        <a href="#moodle-activities">Activities</a>
+                        <a href="#moodle-resources">Resources & Blocks</a>
+                        <a href="#moodle-users">User Management</a>
+                        <a href="#moodle-files">File Management</a>
+                        <a href="#moodle-home">Home Page</a>
+                        <a href="#moodle-roles">Roles & Permissions</a>
+                        <a href="#moodle-security">Security</a>
+                        <a href="#moodle-performance">Performance & Backup</a>
+                        <a href="#moodle-server">Server Settings</a>
+                        <a href="#comparison">Final Comparison</a>
+                        <a href="#revision">Revision & Questions</a>
+                </aside>
+
+                <main>
+                        <div class="hero">
+                               
+                                <h1>CMS &amp; LMS</h1>
+                               
+                        </div>
+
+                        <section id="intro">
+                                <h2>Introduction</h2>
+                                <p><strong>CMS (Content Management System)</strong> एक software system है जिसकी सहायता
+                                        से users website का digital content create, edit, organize, publish और manage कर
+                                        सकते हैं, बिना हर page को manually code करने की आवश्यकता के।</p>
+                                <p><strong>LMS (Learning Management System)</strong> एक software platform है जिसे
+                                        educational और training environments में courses, learners, instructors,
+                                        learning resources, activities, assessments और user progress को manage करने के
+                                        लिए बनाया जाता है।</p>
+
+                                <div class="flow">
+                                        CMS
+                                        ↓
+                                        Create → Manage → Organize → Publish
+                                        ↓
+                                        Website Content
+
+                                        LMS
+                                        ↓
+                                        Create Course → Enroll Users → Learning Activities
+                                        ↓
+                                        Resources → Assessment → Progress
+                                </div>
+
+                                <h3>CMS की आवश्यकता</h3>
+                                <ul>
+                                        <li>Website content को centralized तरीके से manage करना।</li>
+                                        <li>Non-technical users को content update करने की सुविधा देना।</li>
+                                        <li>Pages, media और navigation को organize करना।</li>
+                                        <li>Multiple users को अलग-अलग permissions के साथ content management में शामिल
+                                                करना।</li>
+                                </ul>
+
+                                <h3>LMS की आवश्यकता</h3>
+                                <ul>
+                                        <li>Courses और categories organize करना।</li>
+                                        <li>Learners को enroll और manage करना।</li>
+                                        <li>Learning resources और activities provide करना।</li>
+                                        <li>Roles, permissions और learning-related access control manage करना।</li>
+                                        <li>Learning environment को centrally administer करना।</li>
+                                </ul>
+
+                                <div class="exam"><b>Exam Definition:</b> CMS is a system used to create and manage
+                                        digital website content, whereas LMS is a system used to manage and deliver
+                                        learning, courses, users and educational activities.</div>
+                        </section>
+
+                        <section id="difference">
+                                <h2>Difference Between CMS &amp; LMS</h2>
+                                <table>
+                                        <tr>
+                                                <th>Basis</th>
+                                                <th>CMS</th>
+                                                <th>LMS</th>
+                                        </tr>
+                                        <tr>
+                                                <td>Full Form</td>
+                                                <td>Content Management System</td>
+                                                <td>Learning Management System</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Main Purpose</td>
+                                                <td>Digital/web content management</td>
+                                                <td>Learning and training management</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Main Users</td>
+                                                <td>Website administrators, editors, authors</td>
+                                                <td>Administrators, teachers/trainers, students/learners</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Content</td>
+                                                <td>Pages, posts, images, documents, media</td>
+                                                <td>Courses, lessons, resources, activities and assessments</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Structure</td>
+                                                <td>Pages, menus, content types and categories</td>
+                                                <td>Courses, categories, activities, resources and enrollments</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Progress Tracking</td>
+                                                <td>Usually not the primary purpose</td>
+                                                <td>Learning progress and completion can be managed/tracked</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Typical Example</td>
+                                                <td>Drupal</td>
+                                                <td>Moodle</td>
+                                        </tr>
+                                </table>
+
+                                <div class="important"><b>Easy Memory Trick:</b> <strong>CMS = Content Manage</strong>
+                                        और <strong>LMS = Learning Manage</strong>.</div>
+                        </section>
+
+                        <section id="applications">
+                                <h2>Applications and Advantages of CMS &amp; LMS</h2>
+
+                                <h3>Applications of CMS</h3>
+                                <div class="grid">
+                                        <div class="card">
+                                                <h4>Business Websites</h4>
+                                                <p>Company information, services, products और announcements manage करने
+                                                        के लिए।</p>
+                                        </div>
+                                        <div class="card">
+                                                <h4>Blogs</h4>
+                                                <p>Articles, posts, categories और media publish करने के लिए।</p>
+                                        </div>
+                                        <div class="card">
+                                                <h4>News Portals</h4>
+                                                <p>News articles और multimedia content organize करने के लिए।</p>
+                                        </div>
+                                        <div class="card">
+                                                <h4>Educational Websites</h4>
+                                                <p>Notes, information, notices और learning-related pages publish करने के
+                                                        लिए।</p>
+                                        </div>
+                                        <div class="card">
+                                                <h4>Community Websites</h4>
+                                                <p>User-generated content और community information manage करने के लिए।
+                                                </p>
+                                        </div>
+                                        <div class="card">
+                                                <h4>Government/Organization Sites</h4>
+                                                <p>Public information और departmental content publish/manage करने के
+                                                        लिए।</p>
+                                        </div>
+                                </div>
+
+                                <h3>Applications of LMS</h3>
+                                <ul>
+                                        <li>Schools, colleges और universities।</li>
+                                        <li>Corporate employee training।</li>
+                                        <li>Online courses और distance learning।</li>
+                                        <li>Professional certification/training programs।</li>
+                                        <li>Instructor-led और self-paced learning environments।</li>
+                                </ul>
+
+                                <h3>Advantages of CMS</h3>
+                                <ol>
+                                        <li>Content management relatively easy बनता है।</li>
+                                        <li>Content updates जल्दी किए जा सकते हैं।</li>
+                                        <li>Multiple users और roles manage किए जा सकते हैं।</li>
+                                        <li>Templates/themes से consistent website design maintain किया जा सकता है।</li>
+                                        <li>Media और documents organize किए जा सकते हैं।</li>
+                                        <li>Extensions/modules/plugins से functionality बढ़ाई जा सकती है।</li>
+                                </ol>
+
+                                <h3>Advantages of LMS</h3>
+                                <ol>
+                                        <li>Courses और learning materials centralized तरीके से manage होते हैं।</li>
+                                        <li>Learners और instructors को organized learning environment मिलता है।</li>
+                                        <li>Enrollment और authentication manage किए जा सकते हैं।</li>
+                                        <li>Activities और resources एक जगह उपलब्ध होते हैं।</li>
+                                        <li>Roles और permissions के द्वारा controlled access दिया जा सकता है।</li>
+                                        <li>Learning administration और course delivery आसान होती है।</li>
+                                </ol>
+                        </section>
+
+                        <section id="drupal-intro">
+                                <h2>Drupal – An Open Source Content Management System</h2>
+                                <p><strong>Drupal</strong> एक open-source Content Management System और web platform है
+                                        जिसका उपयोग structured content और complex websites बनाने तथा manage करने के लिए
+                                        किया जाता है। Drupal में core functionality के साथ modules, themes, blocks,
+                                        menus और user roles जैसे concepts महत्वपूर्ण हैं।</p>
+
+                                <h3>Drupal के Major Components</h3>
+                                <div class="grid">
+                                        <div class="card">
+                                                <h4>Core</h4>
+                                                <p>Drupal की basic/core functionality provide करता है।</p>
+                                        </div>
+                                        <div class="card">
+                                                <h4>Modules</h4>
+                                                <p>Website में functionality add या extend करते हैं।</p>
+                                        </div>
+                                        <div class="card">
+                                                <h4>Themes</h4>
+                                                <p>Website का visual presentation और appearance control करते हैं।</p>
+                                        </div>
+                                        <div class="card">
+                                                <h4>Blocks</h4>
+                                                <p>Reusable content/functionality को page regions में place करने के लिए।
+                                                </p>
+                                        </div>
+                                        <div class="card">
+                                                <h4>Menus</h4>
+                                                <p>Navigation structure और links manage करने के लिए।</p>
+                                        </div>
+                                        <div class="card">
+                                                <h4>Users & Roles</h4>
+                                                <p>Users और उनके permissions manage करने के लिए।</p>
+                                        </div>
+                                </div>
+
+                                <div class="flow">
+                                        Drupal Site
+                                        ├── Core
+                                        ├── Modules
+                                        ├── Themes
+                                        ├── Blocks
+                                        ├── Menus
+                                        ├── Content
+                                        └── Users / Permissions
+                                </div>
+                        </section>
+
+                        <section id="drupal-install">
+                                <h2>Drupal Installation</h2>
+                                <p>Drupal installation का उद्देश्य server environment पर Drupal को configure करके usable
+                                        website instance तैयार करना है। Exact installation steps Drupal version और
+                                        hosting environment के अनुसार अलग हो सकते हैं।</p>
+                                <h3>General Requirements</h3>
+                                <ul>
+                                        <li>Web server environment.</li>
+                                        <li>Supported PHP/runtime environment.</li>
+                                        <li>Supported database system.</li>
+                                        <li>Drupal package/source files.</li>
+                                        <li>Database और file-system permissions का appropriate configuration.</li>
+                                </ul>
+                                <h3>General Installation Steps</h3>
+                                <ol>
+                                        <li>Supported server environment prepare करें।</li>
+                                        <li>Drupal files server/web root में place करें।</li>
+                                        <li>Required database create/configure करें।</li>
+                                        <li>Browser से Drupal installation process start करें।</li>
+                                        <li>Language और installation profile select करें, जहाँ applicable हो।</li>
+                                        <li>Database details enter करें।</li>
+                                        <li>Site name और administrator account configure करें।</li>
+                                        <li>Installation complete करें।</li>
+                                        <li>Admin login करके basic settings verify करें।</li>
+                                </ol>
+                                <div class="note"><b>Practical Point:</b> Production installation से पहले supported
+                                        Drupal version, PHP/database requirements और server compatibility verify करना
+                                        जरूरी है।</div>
+                        </section>
+
+                        <section id="drupal-architecture">
+                                <h2>Drupal Architecture</h2>
+                                <p>Drupal architecture modular approach पर आधारित है। Core system basic capabilities
+                                        provide करता है और modules तथा configuration के माध्यम से functionality extend
+                                        की जा सकती है। Themes presentation layer को control करती हैं।</p>
+                                <div class="flow">
+                                        User / Browser
+                                        ↓
+                                        Drupal Web Application
+                                        ↓
+                                        Core + Modules
+                                        ↓
+                                        Content / Configuration
+                                        ↓
+                                        Database + File Storage
+                                        ↓
+                                        Rendered Page
+                                </div>
+                                <h3>Architecture के Important Parts</h3>
+                                <ul>
+                                        <li><strong>Core:</strong> Fundamental Drupal functionality.</li>
+                                        <li><strong>Modules:</strong> Additional or extended functionality.</li>
+                                        <li><strong>Theme:</strong> Visual presentation.</li>
+                                        <li><strong>Database:</strong> Structured content/configuration data का storage,
+                                                setup के अनुसार।</li>
+                                        <li><strong>Files:</strong> Uploaded media और other required files का storage।
+                                        </li>
+                                        <li><strong>User/Permission System:</strong> Access control manage करता है।</li>
+                                </ul>
+                        </section>
+
+                        <section id="drupal-ui">
+                                <h2>Drupal User Interface</h2>
+                                <p>Drupal का administrative interface website content और configuration manage करने के
+                                        लिए use किया जाता है। UI में different administrative sections available हो सकते
+                                        हैं, जो version और enabled modules के अनुसार vary कर सकते हैं।</p>
+                                <table>
+                                        <tr>
+                                                <th>Area</th>
+                                                <th>Purpose</th>
+                                        </tr>
+                                        <tr>
+                                                <td>Content</td>
+                                                <td>Content create, edit और manage करना।</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Structure</td>
+                                                <td>Blocks, menus और other structural elements manage करना।</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Appearance</td>
+                                                <td>Themes और visual settings manage करना।</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Extend</td>
+                                                <td>Modules enable/install/manage करना।</td>
+                                        </tr>
+                                        <tr>
+                                                <td>People</td>
+                                                <td>Users, roles और permissions manage करना।</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Configuration</td>
+                                                <td>Site-wide settings और configuration manage करना।</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Reports</td>
+                                                <td>Available system reports/status information review करना।</td>
+                                        </tr>
+                                </table>
+                        </section>
+
+                        <section id="drupal-themes">
+                                <h2>Drupal Themes Management</h2>
+                                <p><strong>Theme</strong> Drupal website के visual appearance को control करती है। इसमें
+                                        layout, typography, colors, templates और other presentation-related elements
+                                        शामिल हो सकते हैं।</p>
+                                <h3>Theme Management Tasks</h3>
+                                <ul>
+                                        <li>Available themes देखना।</li>
+                                        <li>Theme install करना, जहाँ supported workflow available हो।</li>
+                                        <li>Theme को default/active theme बनाना।</li>
+                                        <li>Theme settings configure करना।</li>
+                                        <li>Theme को disable/uninstall करना, जहाँ applicable हो।</li>
+                                </ul>
+                                <div class="flow">Choose Theme → Install → Configure → Activate → Preview → Customize
+                                </div>
+                        </section>
+
+                        <section id="drupal-subtheme">
+                                <h2>Creating a Sub-theme</h2>
+                                <p><strong>Sub-theme</strong> एक existing base/parent theme से relationship रखने वाली
+                                        theme होती है। इसका उपयोग parent theme की functionality/style को reuse करते हुए
+                                        controlled customization करने के लिए किया जा सकता है।</p>
+                                <h3>General Concept</h3>
+                                <div class="flow">
+                                        Parent Theme
+                                        ↓
+                                        Sub-theme
+                                        ↓
+                                        Custom CSS / Templates / Settings
+                                        ↓
+                                        Customized Website Appearance
+                                </div>
+                                <h3>General Steps</h3>
+                                <ol>
+                                        <li>Suitable base/parent theme choose करें।</li>
+                                        <li>Sub-theme की required structure/configuration prepare करें।</li>
+                                        <li>Parent theme reference configure करें।</li>
+                                        <li>Custom styles/templates की आवश्यकता के अनुसार add करें।</li>
+                                        <li>Sub-theme को install/enable करें।</li>
+                                        <li>Sub-theme को active/default theme बनाएं और test करें।</li>
+                                </ol>
+                                <div class="note"><b>Advantage:</b> Directly core/parent theme files बदलने की बजाय
+                                        sub-theme approach customizations को better organized रखने में मदद कर सकती है।
+                                </div>
+                        </section>
+
+                        <section id="drupal-modules">
+                                <h2>Drupal Modules – Activate, Deactivate, Install & Configure</h2>
+                                <p><strong>Module</strong> Drupal में functionality provide या extend करने वाला
+                                        component है। Drupal core में कुछ modules available होते हैं और additional
+                                        contributed/custom modules भी use किए जा सकते हैं, supported setup के अनुसार।
+                                </p>
+                                <h3>Default Modules</h3>
+                                <p>Admin interface से available modules को enable या disable किया जा सकता है। किसी
+                                        module को disable करने से उसकी functionality unavailable हो सकती है और
+                                        dependencies भी matter कर सकती हैं।</p>
+                                <h3>New Module Install करने की General Process</h3>
+                                <ol>
+                                        <li>Required compatible module identify करें।</li>
+                                        <li>Module package/source obtain करें।</li>
+                                        <li>Drupal में module install करें, supported installation method के अनुसार।
+                                        </li>
+                                        <li>Module enable करें।</li>
+                                        <li>Module की configuration settings open करें।</li>
+                                        <li>Required permissions/configuration set करें।</li>
+                                        <li>Website functionality test करें।</li>
+                                </ol>
+                                <div class="important"><b>Important:</b> Module install करने से पहले Drupal version
+                                        compatibility और dependencies check करें।</div>
+                        </section>
+
+                        <section id="drupal-blocks">
+                                <h2>Drupal Blocks</h2>
+                                <p><strong>Block</strong> Drupal में reusable content या functionality का component है
+                                        जिसे website के defined regions/areas में place किया जा सकता है। Examples में
+                                        menus, search, login-related content या custom text blocks हो सकते हैं।</p>
+                                <h3>Existing Blocks Manage करना</h3>
+                                <ol>
+                                        <li>Block management area open करें।</li>
+                                        <li>Available blocks list review करें।</li>
+                                        <li>Required block को desired region में place करें।</li>
+                                        <li>Visibility conditions/configuration set करें, जहाँ available हों।</li>
+                                        <li>Save configuration करें।</li>
+                                </ol>
+                                <h3>New Custom Block</h3>
+                                <ol>
+                                        <li>Custom block creation option open करें।</li>
+                                        <li>Block title/label enter करें।</li>
+                                        <li>Required content add करें।</li>
+                                        <li>Save करें।</li>
+                                        <li>Block placement configure करें।</li>
+                                </ol>
+                        </section>
+
+                        <section id="drupal-menu">
+                                <h2>Drupal Menu Management</h2>
+                                <p><strong>Menu</strong> website navigation का important part है। Drupal में menu links
+                                        को pages, sections या other destinations तक users को guide करने के लिए organize
+                                        किया जाता है।</p>
+                                <h3>Menu Management Tasks</h3>
+                                <ul>
+                                        <li>Menu create/manage करना।</li>
+                                        <li>Menu links add करना।</li>
+                                        <li>Link title और destination configure करना।</li>
+                                        <li>Links का order बदलना।</li>
+                                        <li>Nested/child links create करना, जहाँ supported हो।</li>
+                                        <li>Menu को appropriate region/block में display करना।</li>
+                                </ul>
+                                <div class="flow">Home → About → Courses → Blog → Contact</div>
+                        </section>
+
+                        <section id="drupal-users">
+                                <h2>Drupal User Management</h2>
+                                <p>Drupal user management system users, roles और permissions के माध्यम से access control
+                                        provide करता है।</p>
+                                <h3>Important Concepts</h3>
+                                <table>
+                                        <tr>
+                                                <th>Concept</th>
+                                                <th>Meaning</th>
+                                        </tr>
+                                        <tr>
+                                                <td>User</td>
+                                                <td>Website पर registered account रखने वाला व्यक्ति/system identity।
+                                                </td>
+                                        </tr>
+                                        <tr>
+                                                <td>Role</td>
+                                                <td>Permissions का logical group।</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Permission</td>
+                                                <td>किस action की अनुमति user/role को है।</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Administrator</td>
+                                                <td>High-level site management capabilities वाला role, configuration के
+                                                        अनुसार।</td>
+                                        </tr>
+                                </table>
+                                <h3>Common User Management Tasks</h3>
+                                <ul>
+                                        <li>Users create/edit करना।</li>
+                                        <li>User status manage करना।</li>
+                                        <li>Roles assign करना।</li>
+                                        <li>Permissions configure करना।</li>
+                                        <li>Password/account-related administration करना।</li>
+                                </ul>
+                        </section>
+
+                        <section id="drupal-home">
+                                <h2>Setting Up the Home Page in Drupal</h2>
+                                <p>Drupal में home page website का primary landing page होता है। इसे suitable content और
+                                        navigation के साथ configure किया जा सकता है।</p>
+                                <h3>General Steps</h3>
+                                <ol>
+                                        <li>Required homepage content create करें।</li>
+                                        <li>Homepage route/path identify करें।</li>
+                                        <li>Site configuration में front page setting locate करें।</li>
+                                        <li>Required page/path को default front page set करें।</li>
+                                        <li>Blocks/menu placement check करें।</li>
+                                        <li>Anonymous और authenticated users के लिए visibility test करें।</li>
+                                </ol>
+                        </section>
+
+                        <section id="drupal-css">
+                                <h2>Working with CSS in Drupal</h2>
+                                <p><strong>CSS (Cascading Style Sheets)</strong> website की presentation और visual
+                                        styling control करती है। Drupal themes के माध्यम से CSS files load और manage की
+                                        जा सकती हैं।</p>
+                                <h3>CSS का उपयोग</h3>
+                                <ul>
+                                        <li>Colors और backgrounds change करना।</li>
+                                        <li>Fonts और typography customize करना।</li>
+                                        <li>Spacing, margins और padding control करना।</li>
+                                        <li>Layout और responsive styling improve करना।</li>
+                                        <li>Buttons, menus और content elements style करना।</li>
+                                </ul>
+                                <div class="flow">Drupal Theme → CSS Files → Selectors → Properties → Styled Web Page
+                                </div>
+                                <div class="note"><b>Best Practice:</b> Theme customization को organized रखें और
+                                        unnecessary direct changes से बचें; sub-theme/custom theme approach suitable
+                                        cases में बेहतर maintainability दे सकती है।</div>
+                        </section>
+
+                        <section id="drupal-backup">
+                                <h2>Drupal Website Backup & Upgradation</h2>
+                                <h3>Backup</h3>
+                                <p>Website backup का उद्देश्य website को recover करने के लिए आवश्यक data और files की
+                                        सुरक्षित copy रखना है। Drupal website में database और relevant site files दोनों
+                                        important हो सकते हैं।</p>
+                                <h3>General Backup Components</h3>
+                                <ul>
+                                        <li>Database backup।</li>
+                                        <li>Uploaded files/media backup।</li>
+                                        <li>Custom theme/module code backup।</li>
+                                        <li>Required configuration/project files backup।</li>
+                                </ul>
+                                <h3>Upgradation</h3>
+                                <p>Upgradation का अर्थ Drupal core, modules, themes या dependencies को newer supported
+                                        versions पर update करना हो सकता है।</p>
+                                <ol>
+                                        <li>Current website का full backup लें।</li>
+                                        <li>Compatibility requirements check करें।</li>
+                                        <li>Updates के release notes/requirements review करें।</li>
+                                        <li>Testing/staging environment में update test करें, जहाँ possible हो।</li>
+                                        <li>Required updates apply करें।</li>
+                                        <li>Database updates/run update process complete करें, जहाँ required हो।</li>
+                                        <li>Website functionality और modules/themes test करें।</li>
+                                </ol>
+                                <div class="important"><b>Golden Rule:</b> Major upgrade से पहले backup और compatibility
+                                        testing को skip नहीं करना चाहिए।</div>
+                        </section>
+
+                        <section id="moodle-intro">
+                                <h2>Moodle – An Open Source Learning Management System</h2>
+                                <p><strong>Moodle</strong> एक open-source Learning Management System है जिसका उपयोग
+                                        educational institutions, teachers/trainers और learners के लिए online learning
+                                        environments बनाने और manage करने में किया जाता है।</p>
+                                <h3>Moodle के Major Areas</h3>
+                                <div class="grid">
+                                        <div class="card">
+                                                <h4>Courses</h4>
+                                                <p>Learning content को courses में organize करना।</p>
+                                        </div>
+                                        <div class="card">
+                                                <h4>Activities</h4>
+                                                <p>Learning interactions और tasks manage करना।</p>
+                                        </div>
+                                        <div class="card">
+                                                <h4>Resources</h4>
+                                                <p>Learning materials और files provide करना।</p>
+                                        </div>
+                                        <div class="card">
+                                                <h4>Users</h4>
+                                                <p>Students, teachers और administrators manage करना।</p>
+                                        </div>
+                                        <div class="card">
+                                                <h4>Roles</h4>
+                                                <p>Different users के access और responsibilities define करना।</p>
+                                        </div>
+                                        <div class="card">
+                                                <h4>Enrollment</h4>
+                                                <p>Learners को courses में enroll/manage करना।</p>
+                                        </div>
+                                </div>
+                        </section>
+
+                        <section id="moodle-install">
+                                <h2>Moodle Installation</h2>
+                                <p>Moodle installation में server environment तैयार करके Moodle application, database और
+                                        configuration setup करना शामिल होता है। Exact requirements Moodle version और
+                                        deployment environment के अनुसार vary कर सकती हैं।</p>
+                                <h3>General Requirements</h3>
+                                <ul>
+                                        <li>Supported web server environment.</li>
+                                        <li>Supported PHP version/runtime.</li>
+                                        <li>Supported database system.</li>
+                                        <li>Moodle source/package files.</li>
+                                        <li>Required file-system permissions.</li>
+                                </ul>
+                                <h3>General Installation Steps</h3>
+                                <ol>
+                                        <li>Server environment prepare करें।</li>
+                                        <li>Moodle files place करें।</li>
+                                        <li>Moodle data directory appropriate location पर configure करें।</li>
+                                        <li>Database create/configure करें।</li>
+                                        <li>Browser से Moodle installer run करें।</li>
+                                        <li>Database details enter करें।</li>
+                                        <li>Administrator account create करें।</li>
+                                        <li>Site name, language और basic settings configure करें।</li>
+                                        <li>Installation complete करके admin dashboard verify करें।</li>
+                                </ol>
+                        </section>
+
+                        <section id="moodle-architecture">
+                                <h2>Moodle Architecture</h2>
+                                <p>Moodle architecture learning platform के different layers/components को organize करती
+                                        है। इसमें web interface, application logic, plugins/modules, course data, users
+                                        और database/file storage शामिल होते हैं।</p>
+                                <div class="flow">
+                                        Learner / Teacher / Admin
+                                        ↓
+                                        Web Browser
+                                        ↓
+                                        Moodle Interface
+                                        ↓
+                                        Core + Plugins / Activities
+                                        ↓
+                                        Courses + Users + Configuration
+                                        ↓
+                                        Database + File Storage
+                                </div>
+                                <h3>Important Components</h3>
+                                <ul>
+                                        <li><strong>Core:</strong> Moodle की base functionality।</li>
+                                        <li><strong>Plugins:</strong> Additional activities, authentication, enrollment
+                                                और other functionality extend कर सकते हैं।</li>
+                                        <li><strong>Course Layer:</strong> Courses, categories, activities और resources
+                                                organize करता है।</li>
+                                        <li><strong>User Layer:</strong> Users, roles, permissions और enrollment manage
+                                                करता है।</li>
+                                        <li><strong>Database:</strong> Structured application/course/user data store
+                                                करती है।</li>
+                                        <li><strong>File Storage:</strong> Learning resources और uploaded files को
+                                                support करता है।</li>
+                                </ul>
+                        </section>
+
+                        <section id="moodle-ui">
+                                <h2>Moodle User Interface</h2>
+                                <p>Moodle user interface users को courses, activities, resources, navigation और
+                                        profile-related features तक access प्रदान करता है। UI user role के अनुसार अलग
+                                        दिखाई दे सकता है।</p>
+                                <table>
+                                        <tr>
+                                                <th>Area</th>
+                                                <th>Purpose</th>
+                                        </tr>
+                                        <tr>
+                                                <td>Dashboard</td>
+                                                <td>User के courses और relevant learning information का overview।</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Course Page</td>
+                                                <td>Course topics, activities और resources access करना।</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Navigation</td>
+                                                <td>Site/course sections तक जाने में सहायता।</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Profile</td>
+                                                <td>User account/profile information manage करना।</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Administration</td>
+                                                <td>Authorized users के लिए settings और management।</td>
+                                        </tr>
+                                </table>
+                        </section>
+
+                        <section id="moodle-themes">
+                                <h2>Moodle Themes Management</h2>
+                                <p><strong>Moodle Theme</strong> platform के visual appearance और user interface
+                                        presentation को customize करने में मदद करती है।</p>
+                                <h3>Theme Management</h3>
+                                <ul>
+                                        <li>Available theme select करना।</li>
+                                        <li>Theme settings configure करना।</li>
+                                        <li>Branding और visual elements customize करना, theme capabilities के अनुसार।
+                                        </li>
+                                        <li>Theme change के बाद different pages पर UI test करना।</li>
+                                </ul>
+                                <div class="note"><b>Design Goal:</b> Moodle theme readable, responsive और
+                                        learning-focused interface provide करे।</div>
+                        </section>
+
+                        <section id="moodle-courses">
+                                <h2>Managing Courses & Categories</h2>
+                                <p><strong>Course</strong> Moodle में learning content और activities का organized
+                                        container है। Multiple courses को categories के अंदर group किया जा सकता है।</p>
+                                <h3>Course Category</h3>
+                                <p>Category related courses को logical group में organize करने के लिए use होती है।
+                                        Example: Computer Science category के अंदर Python, Database और Web Development
+                                        courses हो सकते हैं।</p>
+                                <div class="flow">
+                                        Course Category
+                                        ├── Course 1
+                                        ├── Course 2
+                                        └── Course 3
+                                </div>
+                                <h3>Course Management Steps</h3>
+                                <ol>
+                                        <li>Required category create/select करें।</li>
+                                        <li>New course create करें।</li>
+                                        <li>Course name, description और basic settings configure करें।</li>
+                                        <li>Course format/sections organize करें।</li>
+                                        <li>Activities और resources add करें।</li>
+                                        <li>Users/enrollment configure करें।</li>
+                                        <li>Course visibility और access settings verify करें।</li>
+                                </ol>
+                        </section>
+
+                        <section id="moodle-activities">
+                                <h2>Moodle Activities</h2>
+                                <p><strong>Activities</strong> learning interaction और learner participation के लिए
+                                        Moodle course में add किए जाने वाले components हैं।</p>
+                                <h3>Common Activity Examples</h3>
+                                <ul>
+                                        <li>Assignment</li>
+                                        <li>Quiz</li>
+                                        <li>Forum</li>
+                                        <li>Choice</li>
+                                        <li>Lesson</li>
+                                        <li>Database/other supported activities</li>
+                                </ul>
+                                <p>Activity का selection learning objective के अनुसार किया जाता है। उदाहरण के लिए,
+                                        assignment written work submit करने के लिए और quiz assessment के लिए useful हो
+                                        सकता है।</p>
+                        </section>
+
+                        <section id="moodle-resources">
+                                <h2>Moodle Resources & Blocks</h2>
+                                <h3>Resources</h3>
+                                <p><strong>Resources</strong> course में learning material provide करने के लिए use किए
+                                        जाते हैं। इनमें files, pages, URLs और other supported content types शामिल हो
+                                        सकते हैं।</p>
+                                <h3>Blocks</h3>
+                                <p><strong>Blocks</strong> Moodle pages के different regions में additional information,
+                                        navigation या functionality display करने वाले components हैं।</p>
+                                <table>
+                                        <tr>
+                                                <th>Resource</th>
+                                                <th>Purpose</th>
+                                        </tr>
+                                        <tr>
+                                                <td>File</td>
+                                                <td>PDF, document, image या other supported file share करना।</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Page</td>
+                                                <td>Web page style learning content display करना।</td>
+                                        </tr>
+                                        <tr>
+                                                <td>URL</td>
+                                                <td>External/internal web resource का link देना।</td>
+                                        </tr>
+                                </table>
+                        </section>
+
+                        <section id="moodle-users">
+                                <h2>User Management: Authentication & Enrollment</h2>
+                                <h3>Authentication</h3>
+                                <p><strong>Authentication</strong> यह verify करने की process है कि user कौन है। Moodle
+                                        में authentication method configuration और deployment के अनुसार अलग हो सकती है।
+                                </p>
+                                <h3>Enrollment</h3>
+                                <p><strong>Enrollment</strong> learner को किसी particular course में
+                                        participation/access प्रदान करने की process है।</p>
+                                <div class="flow">
+                                        User
+                                        ↓
+                                        Authentication
+                                        ↓
+                                        Valid Account
+                                        ↓
+                                        Enrollment
+                                        ↓
+                                        Course Access
+                                        ↓
+                                        Activities / Resources
+                                </div>
+                                <h3>User Management Tasks</h3>
+                                <ul>
+                                        <li>User accounts create/manage करना।</li>
+                                        <li>Authentication settings configure करना।</li>
+                                        <li>Users को courses में enroll करना।</li>
+                                        <li>Course-level roles assign करना।</li>
+                                        <li>Access और permissions review करना।</li>
+                                </ul>
+                        </section>
+
+                        <section id="moodle-files">
+                                <h2>File Management</h2>
+                                <p>Moodle में files learning resources के रूप में use की जा सकती हैं।
+                                        Teachers/instructors course में documents, presentations, images, PDFs और other
+                                        supported materials provide कर सकते हैं।</p>
+                                <h3>Basic File Management Tasks</h3>
+                                <ul>
+                                        <li>File upload करना।</li>
+                                        <li>File name और location organize करना।</li>
+                                        <li>File को course resource के रूप में add करना।</li>
+                                        <li>Unwanted files remove/update करना।</li>
+                                        <li>Access permissions और visibility check करना।</li>
+                                </ul>
+                                <div class="note"><b>Best Practice:</b> Course files को logical naming और
+                                        folder/resource organization के साथ maintain करने से students के लिए navigation
+                                        आसान होती है।</div>
+                        </section>
+
+                        <section id="moodle-home">
+                                <h2>Setting Up the Moodle Home Page</h2>
+                                <p>Moodle home/front page learners और visitors के लिए platform का primary entry point हो
+                                        सकता है। इसमें site information, course categories, announcements और other
+                                        configured blocks display किए जा सकते हैं।</p>
+                                <h3>General Steps</h3>
+                                <ol>
+                                        <li>Site administration area open करें।</li>
+                                        <li>Front page/home page settings locate करें।</li>
+                                        <li>Required site title/description और display options configure करें।</li>
+                                        <li>Course categories या required blocks add/configure करें।</li>
+                                        <li>Theme और navigation check करें।</li>
+                                        <li>Different user roles के साथ front page test करें।</li>
+                                </ol>
+                        </section>
+
+                        <section id="moodle-roles">
+                                <h2>Roles & Permissions</h2>
+                                <p><strong>Role</strong> permissions का predefined/assigned set होता है जो user को
+                                        Moodle में specific capabilities provide करता है। <strong>Permission</strong> यह
+                                        निर्धारित करती है कि user कोई particular action कर सकता है या नहीं।</p>
+                                <table>
+                                        <tr>
+                                                <th>Role Example</th>
+                                                <th>Typical Purpose</th>
+                                        </tr>
+                                        <tr>
+                                                <td>Administrator</td>
+                                                <td>Site-wide administration and configuration, according to assigned
+                                                        permissions.</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Teacher</td>
+                                                <td>Course content और activities manage करने के लिए।</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Student</td>
+                                                <td>Course resources और activities access/participate करने के लिए।</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Guest</td>
+                                                <td>Limited access, configuration के अनुसार।</td>
+                                        </tr>
+                                </table>
+                                <div class="important"><b>Principle of Least Privilege:</b> User को केवल वही permissions
+                                        देना बेहतर security practice है जिनकी उसे अपने काम के लिए आवश्यकता है।</div>
+                        </section>
+
+                        <section id="moodle-security">
+                                <h2>Security in Moodle</h2>
+                                <p>Moodle security का उद्देश्य platform, user accounts, course data और learning content
+                                        को unauthorized access, misuse और other threats से protect करना है।</p>
+                                <h3>Important Security Practices</h3>
+                                <ul>
+                                        <li>Strong administrator passwords use करना।</li>
+                                        <li>Moodle और supported components को maintained versions पर रखना।</li>
+                                        <li>Appropriate roles और permissions assign करना।</li>
+                                        <li>HTTPS और secure server configuration का उपयोग करना।</li>
+                                        <li>Unused accounts, plugins और configurations review करना।</li>
+                                        <li>Regular backups maintain करना।</li>
+                                        <li>Server और application logs/status information monitor करना।</li>
+                                        <li>Security updates को समय पर apply करना।</li>
+                                </ul>
+                        </section>
+
+                        <section id="moodle-performance">
+                                <h2>Performance & Backup</h2>
+                                <h3>Moodle Performance</h3>
+                                <p>Performance का अर्थ platform का pages, courses और activities को users के requests के
+                                        अनुसार efficiently serve करना है। Large user base और course content में
+                                        performance management अधिक important हो सकता है।</p>
+                                <h3>Performance Improvement Areas</h3>
+                                <ul>
+                                        <li>Suitable server resources maintain करना।</li>
+                                        <li>Database और application configuration optimize करना।</li>
+                                        <li>Cache mechanisms का appropriate use करना।</li>
+                                        <li>Unnecessary plugins और heavy content review करना।</li>
+                                        <li>Media/file sizes optimize करना।</li>
+                                        <li>Server monitoring और logs review करना।</li>
+                                </ul>
+                                <h3>Moodle Backup</h3>
+                                <p>Backup का उद्देश्य course data, user-related data और site configuration को recovery
+                                        के लिए सुरक्षित रखना है। Backup strategy में Moodle data, database और required
+                                        files को consider करना चाहिए।</p>
+                                <div class="flow">
+                                        Regular Backup
+                                        ↓
+                                        Secure Storage
+                                        ↓
+                                        Test Restore
+                                        ↓
+                                        Recovery When Needed
+                                </div>
+                        </section>
+
+                        <section id="moodle-server">
+                                <h2>Server Settings</h2>
+                                <p>Moodle का proper operation server environment की configuration पर depend करता है।
+                                        Server settings में web server, PHP/runtime, database, file permissions,
+                                        scheduled tasks और security-related configuration जैसे areas शामिल हो सकते हैं।
+                                        Exact requirements installed Moodle version के अनुसार verify करनी चाहिए।</p>
+                                <h3>Important Server Areas</h3>
+                                <table>
+                                        <tr>
+                                                <th>Area</th>
+                                                <th>Purpose</th>
+                                        </tr>
+                                        <tr>
+                                                <td>Web Server</td>
+                                                <td>Moodle requests और web pages serve करना।</td>
+                                        </tr>
+                                        <tr>
+                                                <td>PHP/Runtime</td>
+                                                <td>Moodle application को execute करने के लिए supported runtime provide
+                                                        करना।</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Database</td>
+                                                <td>Application, user, course और configuration data store करना।</td>
+                                        </tr>
+                                        <tr>
+                                                <td>File System</td>
+                                                <td>Application files और Moodle data को securely store करना।</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Cron/Scheduled Tasks</td>
+                                                <td>Background/scheduled Moodle tasks execute करना।</td>
+                                        </tr>
+                                        <tr>
+                                                <td>HTTPS</td>
+                                                <td>Secure communication provide करना।</td>
+                                        </tr>
+                                </table>
+                                <div class="note"><b>Important:</b> Server configuration हमेशा installed Moodle version
+                                        और official requirements के अनुसार verify करनी चाहिए।</div>
+                        </section>
+
+                        <section id="comparison">
+                                <h2>Final Comparison: Drupal vs Moodle</h2>
+                                <table>
+                                        <tr>
+                                                <th>Basis</th>
+                                                <th>Drupal</th>
+                                                <th>Moodle</th>
+                                        </tr>
+                                        <tr>
+                                                <td>Type</td>
+                                                <td>CMS / Web platform</td>
+                                                <td>LMS</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Main Focus</td>
+                                                <td>Website content and structure management</td>
+                                                <td>Online learning and course management</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Main Structure</td>
+                                                <td>Content, menus, blocks, modules, themes</td>
+                                                <td>Courses, categories, activities, resources, users</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Users</td>
+                                                <td>Administrators, editors, authors and other configured roles</td>
+                                                <td>Administrators, teachers, students and other configured roles</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Theme</td>
+                                                <td>Website appearance</td>
+                                                <td>Learning platform appearance</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Modules/Plugins</td>
+                                                <td>Extend website functionality</td>
+                                                <td>Extend learning/platform functionality</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Primary Example</td>
+                                                <td>Business, content, community and information websites</td>
+                                                <td>Education, training and online courses</td>
+                                        </tr>
+                                </table>
+
+                                <div class="flow">
+                                        Drupal
+                                        → Content Management
+                                        → Website
+                                        → Pages + Menus + Blocks + Modules
+
+                                        Moodle
+                                        → Learning Management
+                                        → Education Platform
+                                        → Courses + Activities + Resources + Users
+                                </div>
+                        </section>
+
+                        <section id="revision">
+                                <h2>Revision & Important Questions</h2>
+                                <table>
+                                        <tr>
+                                                <th>Topic</th>
+                                                <th>One-Line Revision</th>
+                                        </tr>
+                                        <tr>
+                                                <td>CMS</td>
+                                                <td>Digital/web content create, manage, organize और publish करने वाला
+                                                        system।</td>
+                                        </tr>
+                                        <tr>
+                                                <td>LMS</td>
+                                                <td>Learning, courses, learners और educational activities manage करने
+                                                        वाला system।</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Drupal</td>
+                                                <td>Open-source CMS/web platform।</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Moodle</td>
+                                                <td>Open-source Learning Management System।</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Drupal Module</td>
+                                                <td>Drupal functionality extend करने वाला component।</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Drupal Theme</td>
+                                                <td>Website का visual presentation control करने वाला component।</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Drupal Block</td>
+                                                <td>Page regions में reusable content/functionality display करने वाला
+                                                        component।</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Moodle Course</td>
+                                                <td>Learning content, activities और resources का organized container।
+                                                </td>
+                                        </tr>
+                                        <tr>
+                                                <td>Moodle Activity</td>
+                                                <td>Learner participation/interactivity के लिए course component।</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Moodle Resource</td>
+                                                <td>Learning material provide करने वाला content type।</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Authentication</td>
+                                                <td>User identity verify करने की process।</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Enrollment</td>
+                                                <td>User को course access/participation देना।</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Role</td>
+                                                <td>Permissions का logical group।</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Backup</td>
+                                                <td>Recovery के लिए data/files की सुरक्षित copy।</td>
+                                        </tr>
+                                </table>
+
+                                <div class="exam">
+                                        <b>Important Long-Answer Questions</b><br><br>
+                                        1. CMS क्या है? इसकी आवश्यकता और advantages समझाइए।<br>
+                                        2. LMS क्या है? इसकी आवश्यकता और applications समझाइए।<br>
+                                        3. CMS और LMS में अंतर table के माध्यम से समझाइए।<br>
+                                        4. Drupal क्या है? इसके major components समझाइए।<br>
+                                        5. Drupal installation की general process समझाइए।<br>
+                                        6. Drupal architecture को diagram सहित समझाइए।<br>
+                                        7. Drupal user interface के प्रमुख sections समझाइए।<br>
+                                        8. Drupal themes क्या हैं? Theme management और sub-theme concept समझाइए।<br>
+                                        9. Drupal modules क्या हैं? Default modules activate/deactivate और new modules
+                                        install/configure करने की प्रक्रिया लिखिए।<br>
+                                        10. Drupal blocks क्या हैं? Existing blocks manage और new blocks create करने की
+                                        प्रक्रिया समझाइए।<br>
+                                        11. Drupal menu management और user management समझाइए।<br>
+                                        12. Drupal में home page और CSS कैसे manage किए जाते हैं?<br>
+                                        13. Drupal website backup और upgradation की आवश्यकता तथा प्रक्रिया समझाइए।<br>
+                                        14. Moodle क्या है? इसके प्रमुख components और applications समझाइए।<br>
+                                        15. Moodle installation और architecture समझाइए।<br>
+                                        16. Moodle user interface और theme management समझाइए।<br>
+                                        17. Moodle में courses और categories कैसे manage किए जाते हैं?<br>
+                                        18. Moodle activities, resources और blocks को examples सहित समझाइए।<br>
+                                        19. Moodle में authentication और enrollment क्या हैं?<br>
+                                        20. Moodle roles और permissions समझाइए।<br>
+                                        21. Moodle file management और home page setup समझाइए।<br>
+                                        22. Moodle security के important practices लिखिए।<br>
+                                        23. Moodle performance और backup समझाइए।<br>
+                                        24. Moodle server settings के important areas समझाइए।<br>
+                                        25. Drupal और Moodle में difference लिखिए।
+                                </div>
+
+                                <div class="note">
+                                        <b>Exam Writing Pattern:</b><br>
+                                        इस unit के long answers में
+                                        <strong>Definition → Need → Components → Features → Working → Steps → Example →
+                                                Advantages → Security/Backup → Conclusion</strong>
+                                        का sequence रखें। Architecture वाले questions में flow diagram जरूर बनाएं।
+                                </div>
+
+                                <h3>Unit Summary</h3>
+                                <p>
+                                        CMS और LMS दोनों web-based management systems हैं, लेकिन उनका primary purpose
+                                        अलग है। CMS website content को create और manage करने पर focus करता है, जबकि LMS
+                                        learning और training environment को manage करता है। Drupal एक open-source
+                                        CMS/web
+                                        platform है जिसमें themes, modules, blocks, menus और user management महत्वपूर्ण
+                                        concepts हैं। Moodle एक open-source LMS है जिसमें courses, categories,
+                                        activities,
+                                        resources, users, enrollment, roles, permissions, security, performance और
+                                        backup
+                                        important areas हैं। दोनों systems में proper installation, configuration,
+                                        security,
+                                        backup और regular maintenance बहुत महत्वपूर्ण हैं।
+                                </p>
+                        </section>
+                </main>
+        </div>
+</body>
+
+</html>

@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FB7SX0P0D3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-FB7SX0P0D3');
+    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>NoSQL </title>
+  <style>
+    * {
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      margin: 0;
+      background: #f3f6fa;
+      color: #1f2937;
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.8
+    }
+
+    .layout {
+      max-width: 1550px;
+      margin: auto;
+      padding: 14px;
+      display: grid;
+      grid-template-columns: 290px 1fr;
+      gap: 18px
+    }
+
+    aside {
+      position: sticky;
+      top: 14px;
+      height: calc(100vh - 28px);
+      overflow: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 18px;
+      box-shadow: 0 5px 22px #0001
+    }
+
+    aside h2 {
+      margin: 0 0 12px;
+      color: #111827
+    }
+
+    aside a {
+      display: block;
+      padding: 7px 9px;
+      margin: 3px 0;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #374151;
+      font-size: 14px
+    }
+
+    aside a:hover {
+      background: #e0e7ff;
+      color: #1d4ed8
+    }
+
+    main {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 5px 22px #0001;
+      overflow: hidden
+    }
+
+    .hero {
+      padding: 34px;
+      background: linear-gradient(135deg, #dbeafe, #eef2ff, #f8fafc)
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: 36px;
+      color: #111827
+    }
+
+    .hero p {
+      margin: 5px 0;
+      color: #475569
+    }
+
+    section {
+      padding: 28px 30px;
+      border-bottom: 1px solid #e5e7eb
+    }
+
+    section:last-child {
+      border: 0
+    }
+
+    h2 {
+      font-size: 28px;
+      color: #172554;
+      border-left: 5px solid #2563eb;
+      padding-left: 12px;
+      margin: 0 0 18px
+    }
+
+    h3 {
+      font-size: 21px;
+      color: #1e3a8a;
+      margin: 24px 0 8px
+    }
+
+    p {
+      font-size: 16.5px;
+      margin: 10px 0
+    }
+
+    li {
+      font-size: 16px;
+      margin: 7px 0
+    }
+
+    .note,
+    .exam,
+    .important {
+      padding: 16px 18px;
+      border-radius: 12px;
+      margin: 18px 0
+    }
+
+    .note {
+      background: #eff6ff;
+      border-left: 5px solid #3b82f6
+    }
+
+    .exam {
+      background: #ecfdf5;
+      border-left: 5px solid #10b981
+    }
+
+    .important {
+      background: #fff7ed;
+      border-left: 5px solid #f97316
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin: 18px 0
+    }
+
+    .card {
+      background: #f8fafc;
+      border: 1px solid #dbe3ef;
+      border-radius: 14px;
+      padding: 17px
+    }
+
+    .card h4 {
+      margin-top: 0;
+      color: #1d4ed8
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 18px 0;
+      font-size: 15px
+    }
+
+    th,
+    td {
+      border: 1px solid #cbd5e1;
+      padding: 11px;
+      vertical-align: top;
+      text-align: left
+    }
+
+    th {
+      background: #eef2ff;
+      color: #111827
+    }
+
+    .flow {
+      background: #09090b;
+      color: #f8fafc;
+      padding: 20px;
+      border-radius: 14px;
+      text-align: center;
+      font-family: Consolas, monospace;
+      overflow: auto;
+      margin: 18px 0
+    }
+
+    .code {
+      background: #09090b;
+      color: #e5e7eb;
+      padding: 18px;
+      border-radius: 13px;
+      overflow: auto;
+      font-family: Consolas, monospace;
+      white-space: pre
+    }
+
+    .badge {
+      display: inline-block;
+      background: #dbeafe;
+      color: #1e40af;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700
+    }
+
+    @media(max-width:900px) {
+      .layout {
+        display: block;
+        padding: 5px
+      }
+
+      aside {
+        display: none
+      }
+
+      .hero {
+        padding: 24px 18px
+      }
+
+      .hero h1 {
+        font-size: 28px
+      }
+
+      section {
+        padding: 22px 18px
+      }
+
+      h2 {
+        font-size: 23px
+      }
+
+      .grid {
+        grid-template-columns: 1fr
+      }
+
+      p,
+      li {
+        font-size: 15px
+      }
+
+      table {
+        display: block;
+        overflow-x: auto
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="layout">
+
+    <aside>
+      <h2>Topics</h2>
+      <a href="#intro">1. Introduction to NoSQL</a>
+      <a href="#meaning">2. Meaning of NoSQL</a>
+      <a href="#need">3. Need for NoSQL</a>
+      <a href="#features">4. Characteristics</a>
+      <a href="#types">5. Types of NoSQL Databases</a>
+      <a href="#models">6. NoSQL Data Models</a>
+      <a href="#usages">7. Usages of NoSQL</a>
+      <a href="#applications">8. Applications of NoSQL</a>
+      <a href="#sqlnosql">9. SQL vs NoSQL</a>
+      <a href="#advantages">10. Advantages & Limitations</a>
+      <a href="#examples">11. Popular NoSQL Databases</a>
+      <a href="#revision">12. Revision & Questions</a>
+    </aside>
+
+    <main>
+
+      <div class="hero">
+        <h1>7. NO-SQL</h1>
+      </div>
+
+      <section id="intro">
+        <h2>1. Introduction to NoSQL</h2>
+
+        <p>
+          <strong>NoSQL</strong> databases ऐसे database systems हैं जिन्हें traditional
+          relational database model के अलावा या उससे अलग data models को support करने के लिए
+          design किया गया है। NoSQL का उपयोग विशेष रूप से ऐसे applications में किया जाता है
+          जहाँ data बहुत large scale पर generate होता है, data structure frequently change
+          हो सकता है और high scalability तथा availability की आवश्यकता होती है।
+        </p>
+
+        <p>
+          Traditional relational databases में data सामान्यतः rows और columns वाली tables
+          में store किया जाता है तथा schema पहले define किया जाता है। इसके विपरीत NoSQL
+          databases document, key-value, wide-column और graph जैसे अलग-अलग models का उपयोग
+          कर सकते हैं।
+        </p>
+
+        <div class="flow">
+          Traditional RDBMS
+          Tables → Rows → Columns → Fixed/Structured Schema
+
+          VS
+
+          NoSQL
+          Document / Key-Value / Wide-Column / Graph
+          → Flexible Data Model
+          → Large-Scale Applications
+        </div>
+
+        <div class="exam">
+          <b>Exam Definition:</b> NoSQL is a category of non-relational database systems
+          designed to store and process data using flexible data models and to support
+          scalable, high-performance applications.
+        </div>
+      </section>
+
+      <section id="meaning">
+        <h2>2. Meaning of NoSQL</h2>
+
+        <p>
+          <strong>NoSQL</strong> को commonly “Not Only SQL” के रूप में explain किया जाता है।
+          इसका उद्देश्य SQL को completely replace करना नहीं है। इसका main idea यह है कि
+          हर type के application के लिए relational tables ही एकमात्र suitable data model
+          नहीं हैं।
+        </p>
+
+        <p>
+          NoSQL systems में data को application की आवश्यकता के अनुसार different structures
+          में store किया जा सकता है। उदाहरण के लिए, एक document database में पूरा customer
+          record एक document के रूप में store किया जा सकता है।
+        </p>
+
+        <h3>Simple Example</h3>
+
+        <p>Relational database में customer information इस प्रकार हो सकती है:</p>
+
+        <table>
+          <tr>
+            <th>CustomerID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>City</th>
+          </tr>
+          <tr>
+            <td>101</td>
+            <td>Amit</td>
+            <td>amit@example.com</td>
+            <td>Kanpur</td>
+          </tr>
+        </table>
+
+        <p>
+          NoSQL document database में वही information एक document के रूप में represent हो
+          सकती है:
+        </p>
+
+        <div class="code">{
+          "customerId": 101,
+          "name": "Amit",
+          "email": "amit@example.com",
+          "city": "Kanpur"
+          }</div>
+
+        <p>
+          इस तरह document-oriented NoSQL system में related information को एक logical
+          document में रखा जा सकता है।
+        </p>
+      </section>
+
+      <section id="need">
+        <h2>3. Need for NoSQL</h2>
+
+        <p>
+          Modern applications जैसे social media platforms, e-commerce systems, streaming
+          services, IoT platforms और real-time applications बहुत बड़ी मात्रा में data
+          generate करते हैं। इस data का structure हमेशा fixed नहीं होता और traffic भी
+          तेजी से बदल सकता है। ऐसे scenarios में flexible और scalable database architecture
+          की आवश्यकता होती है।
+        </p>
+
+        <h3>NoSQL की आवश्यकता के प्रमुख कारण</h3>
+
+        <div class="grid">
+          <div class="card">
+            <h4>1. Large Volume of Data</h4>
+            <p>जब application बहुत बड़ी मात्रा में data generate और store करता है, तब scalable
+              database architecture useful होता है।</p>
+          </div>
+
+          <div class="card">
+            <h4>2. Variety of Data</h4>
+            <p>Text, JSON-like documents, logs, sensor data, relationships आदि को अलग-अलग
+              models में represent किया जा सकता है।</p>
+          </div>
+
+          <div class="card">
+            <h4>3. Flexible Schema</h4>
+            <p>ऐसे applications में जहाँ records की structure समय के साथ बदल सकती है,
+              flexible data model useful होता है।</p>
+          </div>
+
+          <div class="card">
+            <h4>4. High Traffic</h4>
+            <p>Large number of users और frequent read/write operations वाले systems के लिए
+              distributed database architecture उपयोगी हो सकता है।</p>
+          </div>
+
+          <div class="card">
+            <h4>5. Horizontal Scaling</h4>
+            <p>Workload बढ़ने पर additional machines/nodes जोड़कर system को scale किया जा सकता है।</p>
+          </div>
+
+          <div class="card">
+            <h4>6. Real-Time Applications</h4>
+            <p>Fast-changing data और real-time workloads के लिए NoSQL systems का उपयोग किया जा सकता है।</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="features">
+        <h2>4. Characteristics of NoSQL Databases</h2>
+
+        <h3>1. Non-Relational Data Model</h3>
+        <p>
+          NoSQL databases traditional relational tables पर dependent नहीं होते। वे document,
+          key-value, wide-column या graph model का उपयोग कर सकते हैं।
+        </p>
+
+        <h3>2. Flexible Schema</h3>
+        <p>
+          कई NoSQL databases में हर record/document का structure relational database की
+          तरह strictly identical होना आवश्यक नहीं होता। इससे changing application
+          requirements को handle करना आसान हो सकता है।
+        </p>
+
+        <h3>3. Horizontal Scalability</h3>
+        <p>
+          Horizontal scaling का अर्थ additional servers/nodes जोड़कर workload capacity
+          बढ़ाना है। Distributed NoSQL systems इस approach के लिए commonly designed होते हैं।
+        </p>
+
+        <h3>4. Distributed Architecture</h3>
+        <p>
+          Data को multiple nodes पर distribute किया जा सकता है। इससे large-scale systems
+          में availability और scalability के लिए architecture बनाया जा सकता है।
+        </p>
+
+        <h3>5. High Performance</h3>
+        <p>
+          Specific workload के लिए suitable data model और distributed architecture के कारण
+          NoSQL database high-throughput applications के लिए useful हो सकता है।
+        </p>
+
+        <h3>6. Schema Flexibility</h3>
+        <p>
+          Application requirements बदलने पर data model को relational fixed schema की तुलना
+          में अधिक flexible तरीके से evolve किया जा सकता है।
+        </p>
+
+        <h3>7. Large-Scale Data Handling</h3>
+        <p>
+          NoSQL databases को big data और high-volume applications में use किया जाता है,
+          जहाँ data लगातार generate और process होता है।
+        </p>
+
+        <div class="note">
+          <b>Important:</b> हर NoSQL database की architecture और consistency behavior समान नहीं
+          होती। NoSQL एक single database product नहीं बल्कि database systems की एक broad
+          category है।
+        </div>
+      </section>
+
+      <section id="types">
+        <h2>5. Types of NoSQL Databases</h2>
+
+        <p>
+          NoSQL databases को उनके data model के आधार पर मुख्यतः चार categories में समझाया
+          जाता है।
+        </p>
+
+        <table>
+          <tr>
+            <th>Type</th>
+            <th>Data Structure</th>
+            <th>Common Use</th>
+          </tr>
+          <tr>
+            <td><strong>Key-Value</strong></td>
+            <td>Key → Value pairs</td>
+            <td>Caching, sessions, fast lookups</td>
+          </tr>
+          <tr>
+            <td><strong>Document</strong></td>
+            <td>Documents, often JSON-like structures</td>
+            <td>Content, product catalogs, web applications</td>
+          </tr>
+          <tr>
+            <td><strong>Wide-Column</strong></td>
+            <td>Column families / wide rows</td>
+            <td>Large distributed datasets</td>
+          </tr>
+          <tr>
+            <td><strong>Graph</strong></td>
+            <td>Nodes + relationships/edges</td>
+            <td>Social networks, recommendation and relationship data</td>
+          </tr>
+        </table>
+
+        <h3>A. Key-Value Database</h3>
+        <p>
+          Key-value database data को key और associated value के pair के रूप में store करता है।
+          Key unique identifier की तरह काम करती है।
+        </p>
+
+        <div class="code">"user:101" → "Amit"
+          "session:5501" → "LoggedIn"</div>
+
+        <p>
+          यह model simple lookups और caching जैसे workloads में useful है।
+        </p>
+
+        <h3>B. Document Database</h3>
+        <p>
+          Document database में data documents के रूप में store होता है। Document में nested
+          objects और arrays जैसी structures भी represent की जा सकती हैं।
+        </p>
+
+        <div class="code">{
+          "name": "Amit",
+          "course": "PGDCA",
+          "skills": ["HTML", "CSS", "JavaScript"]
+          }</div>
+
+        <h3>C. Wide-Column Database</h3>
+        <p>
+          Wide-column databases data को column families या wide-row structures में organize
+          करते हैं। ये distributed large-scale workloads में उपयोगी हो सकते हैं।
+        </p>
+
+        <h3>D. Graph Database</h3>
+        <p>
+          Graph databases relationships को first-class data के रूप में represent करते हैं।
+          इनमें nodes entities को और edges relationships को represent करती हैं।
+        </p>
+
+        <div class="flow">
+          Graph:
+          Student ──ENROLLED IN──> Course
+          │
+          └──FOLLOWS──> Student
+        </div>
+
+        <p>
+          इस प्रकार relationship-heavy data को graph model में naturally represent किया जा सकता है।
+        </p>
+      </section>
+
+      <section id="models">
+        <h2>6. NoSQL Data Models</h2>
+
+        <h3>1. Key-Value Model</h3>
+        <p>
+          सबसे simple NoSQL model जिसमें प्रत्येक key के साथ एक value associated होती है।
+        </p>
+
+        <div class="code">Key Value
+          -----------------------------------------
+          user_101 Amit
+          user_102 Neha
+          user_103 Rahul</div>
+
+        <h3>2. Document Model</h3>
+        <p>
+          Related data को एक document में store किया जा सकता है।
+        </p>
+
+        <div class="code">{
+          "studentId": 101,
+          "name": "Amit",
+          "course": "PGDCA",
+          "address": {
+          "city": "Kanpur",
+          "state": "Uttar Pradesh"
+          }
+          }</div>
+
+        <h3>3. Wide-Column Model</h3>
+        <p>
+          Data को flexible columns और column families के साथ represent किया जा सकता है।
+          यह large distributed datasets के लिए useful model है।
+        </p>
+
+        <h3>4. Graph Model</h3>
+        <p>
+          Nodes entities और edges relationships को represent करती हैं। Complex relationships
+          को query करने वाले applications में यह model useful होता है।
+        </p>
+      </section>
+
+      <section id="usages">
+        <h2>7. Usages of NoSQL</h2>
+
+        <p>
+          NoSQL का उपयोग उन situations में किया जाता है जहाँ flexible data structure,
+          large-scale storage, distributed processing, high traffic या specialized data
+          relationships की आवश्यकता होती है।
+        </p>
+
+        <h3>Major Usages</h3>
+
+        <ol>
+          <li>
+            <strong>Web Applications:</strong> Dynamic web applications में user profiles,
+            content और application data store करने के लिए।
+          </li>
+
+          <li>
+            <strong>Mobile Applications:</strong> Mobile applications के rapidly changing
+            data और user-generated information को manage करने के लिए।
+          </li>
+
+          <li>
+            <strong>Big Data:</strong> Large datasets को distributed architecture में store
+            और process करने के लिए।
+          </li>
+
+          <li>
+            <strong>Caching:</strong> Frequently accessed data को fast retrieval के लिए cache
+            करने में key-value databases useful होते हैं।
+          </li>
+
+          <li>
+            <strong>Real-Time Systems:</strong> Live feeds, online activity, monitoring और
+            rapidly changing information वाले systems में।
+          </li>
+
+          <li>
+            <strong>Content Management:</strong> Articles, posts, media metadata और flexible
+            content structures को store करने के लिए।
+          </li>
+
+          <li>
+            <strong>IoT Data:</strong> Sensors और connected devices से continuously आने वाले
+            data को handle करने के लिए।
+          </li>
+
+          <li>
+            <strong>Social Networks:</strong> User connections, followers, likes और relationships
+            को represent करने के लिए graph databases useful हो सकते हैं।
+          </li>
+
+          <li>
+            <strong>Analytics:</strong> Large-scale semi-structured datasets को store करके
+            analytics workloads support करने के लिए।
+          </li>
+
+          <li>
+            <strong>Session Management:</strong> User sessions और temporary application state
+            store करने के लिए key-value systems useful हो सकते हैं।
+          </li>
+        </ol>
+      </section>
+
+      <section id="applications">
+        <h2>8. Applications of NoSQL</h2>
+
+        <h3>1. E-Commerce</h3>
+        <p>
+          E-commerce applications में products की properties हमेशा समान नहीं होतीं। उदाहरण
+          के लिए mobile phone में RAM, storage और camera specifications हो सकती हैं, जबकि
+          clothing product में size, material और color जैसी properties हो सकती हैं। Document
+          model ऐसी varying product structures के लिए useful हो सकता है।
+        </p>
+
+        <h3>2. Social Media</h3>
+        <p>
+          Social media platforms में users, followers, likes, comments, posts और relationships
+          का large-scale data होता है। Graph और document models अलग-अलग workloads के लिए
+          useful हो सकते हैं।
+        </p>
+
+        <h3>3. Internet of Things (IoT)</h3>
+        <p>
+          IoT devices लगातार sensor readings generate करते हैं। Temperature, humidity,
+          location और device status जैसे data को large scale पर store करने के लिए NoSQL
+          systems उपयोग किए जा सकते हैं।
+        </p>
+
+        <h3>4. Real-Time Analytics</h3>
+        <p>
+          Real-time applications में continuously changing data को quickly store और process
+          करना पड़ता है। NoSQL architecture ऐसे high-throughput workloads में उपयोगी हो सकती है।
+        </p>
+
+        <h3>5. Content Management Systems</h3>
+        <p>
+          Blogs, news portals और digital content platforms में content structure अलग-अलग
+          हो सकता है। Document databases flexible content models provide कर सकते हैं।
+        </p>
+
+        <h3>6. Gaming Applications</h3>
+        <p>
+          Online games में player profiles, scores, inventories, sessions और game events का
+          large amount of data generate होता है। NoSQL systems ऐसे high-volume workloads
+          में उपयोगी हो सकते हैं।
+        </p>
+
+        <h3>7. Recommendation Systems</h3>
+        <p>
+          Users और products/movies/content के बीच relationships को analyze करने वाले systems
+          में graph databases उपयोगी हो सकते हैं।
+        </p>
+
+        <h3>8. Logging and Monitoring</h3>
+        <p>
+          Servers, applications और devices बहुत बड़ी मात्रा में logs generate कर सकते हैं।
+          NoSQL systems log/event data को distributed manner में store करने के लिए उपयोगी हो सकते हैं।
+        </p>
+
+        <h3>9. Personalization</h3>
+        <p>
+          Websites और applications user preferences, browsing behavior और interaction data
+          के आधार पर personalized experiences बनाने के लिए NoSQL data stores का उपयोग कर सकती हैं।
+        </p>
+
+        <h3>10. Cloud Applications</h3>
+        <p>
+          Cloud-native applications में distributed architecture और elastic scaling की
+          आवश्यकता हो सकती है। NoSQL databases ऐसे architectures में commonly considered
+          database options हैं।
+        </p>
+      </section>
+
+      <section id="sqlnosql">
+        <h2>9. SQL vs NoSQL</h2>
+
+        <table>
+          <tr>
+            <th>Feature</th>
+            <th>SQL / Relational</th>
+            <th>NoSQL</th>
+          </tr>
+          <tr>
+            <td>Data Model</td>
+            <td>Tables, rows और columns</td>
+            <td>Document, key-value, wide-column या graph</td>
+          </tr>
+          <tr>
+            <td>Schema</td>
+            <td>Generally predefined/structured</td>
+            <td>Often more flexible</td>
+          </tr>
+          <tr>
+            <td>Relationships</td>
+            <td>Relations, keys और JOINs के माध्यम से</td>
+            <td>Model-dependent; embedding या application-specific relationships हो सकते हैं</td>
+          </tr>
+          <tr>
+            <td>Scaling</td>
+            <td>Traditionally vertical scaling common; distributed approaches भी possible</td>
+            <td>Horizontal/distributed scaling commonly emphasized</td>
+          </tr>
+          <tr>
+            <td>Data Structure</td>
+            <td>Highly structured tabular data के लिए strong fit</td>
+            <td>Unstructured/semi-structured और varying data models के लिए useful</td>
+          </tr>
+          <tr>
+            <td>Typical Use</td>
+            <td>Banking, ERP, transactional systems</td>
+            <td>Big data, real-time, content, IoT, social workloads</td>
+          </tr>
+        </table>
+
+        <div class="important">
+          <b>Important:</b> इसका अर्थ यह नहीं है कि SQL databases scalable नहीं होते या NoSQL
+          हर situation में बेहतर होता है। Database selection application requirements,
+          consistency needs, query patterns और workload पर depend करता है।
+        </div>
+      </section>
+
+      <section id="advantages">
+        <h2>10. Advantages and Limitations of NoSQL</h2>
+
+        <h3>Advantages</h3>
+        <div class="grid">
+          <div class="card">
+            <h4>Flexible Schema</h4>
+            <p>Changing data structures को handle करना comparatively आसान हो सकता है।</p>
+          </div>
+          <div class="card">
+            <h4>Scalability</h4>
+            <p>Distributed architecture के कारण horizontal scaling support किया जा सकता है।</p>
+          </div>
+          <div class="card">
+            <h4>High Throughput</h4>
+            <p>Specific workloads में large numbers of read/write operations efficiently handle किए जा सकते हैं।</p>
+          </div>
+          <div class="card">
+            <h4>Multiple Data Models</h4>
+            <p>Document, key-value, wide-column और graph जैसे models उपलब्ध हैं।</p>
+          </div>
+          <div class="card">
+            <h4>Big Data Support</h4>
+            <p>Large-volume datasets और distributed workloads में useful हो सकता है।</p>
+          </div>
+          <div class="card">
+            <h4>Developer Flexibility</h4>
+            <p>Application objects और documents को naturally represent करना कुछ use cases में आसान हो सकता है।</p>
+          </div>
+        </div>
+
+        <h3>Limitations / Challenges</h3>
+        <ul>
+          <li>हर NoSQL database relational JOIN और complex relational querying के लिए suitable नहीं होता।</li>
+          <li>Different NoSQL products के concepts और query languages अलग हो सकते हैं।</li>
+          <li>Consistency behavior database और configuration पर depend करता है।</li>
+          <li>Complex transactional requirements के लिए relational databases कई cases में अधिक natural choice हो सकते
+            हैं।</li>
+          <li>Flexible schema होने के कारण application-level data validation की आवश्यकता बढ़ सकती है।</li>
+          <li>Database selection और data modeling workload-specific होना चाहिए।</li>
+        </ul>
+      </section>
+
+      <section id="examples">
+        <h2>11. Popular NoSQL Database Examples</h2>
+
+        <table>
+          <tr>
+            <th>Database</th>
+            <th>Model / Category</th>
+            <th>Common Association</th>
+          </tr>
+          <tr>
+            <td><strong>MongoDB</strong></td>
+            <td>Document Database</td>
+            <td>JSON-like/BSON documents, web applications, content and flexible data</td>
+          </tr>
+          <tr>
+            <td><strong>Redis</strong></td>
+            <td>Key-Value / in-memory data store</td>
+            <td>Caching, sessions, fast data access</td>
+          </tr>
+          <tr>
+            <td><strong>Apache Cassandra</strong></td>
+            <td>Wide-Column</td>
+            <td>Distributed large-scale workloads</td>
+          </tr>
+          <tr>
+            <td><strong>Neo4j</strong></td>
+            <td>Graph Database</td>
+            <td>Relationships, networks and graph-based applications</td>
+          </tr>
+        </table>
+
+        <div class="note">
+          <b>Exam Tip:</b> Examples को याद रखने के लिए: MongoDB → Document,
+          Redis → Key-Value, Cassandra → Wide-Column, Neo4j → Graph.
+        </div>
+      </section>
+
+      <section id="revision">
+        <h2>12. Quick Revision & Important Questions</h2>
+
+        <table>
+          <tr>
+            <th>Topic</th>
+            <th>One-Line Revision</th>
+          </tr>
+          <tr>
+            <td>NoSQL</td>
+            <td>Non-relational database systems की broad category।</td>
+          </tr>
+          <tr>
+            <td>Meaning</td>
+            <td>Commonly explained as “Not Only SQL”.</td>
+          </tr>
+          <tr>
+            <td>Main Need</td>
+            <td>Flexible data, scalability, large volume और distributed workloads।</td>
+          </tr>
+          <tr>
+            <td>Key-Value</td>
+            <td>Key → Value model।</td>
+          </tr>
+          <tr>
+            <td>Document</td>
+            <td>Document-based data storage।</td>
+          </tr>
+          <tr>
+            <td>Wide-Column</td>
+            <td>Column-family / wide-row based model।</td>
+          </tr>
+          <tr>
+            <td>Graph</td>
+            <td>Nodes + relationships/edges।</td>
+          </tr>
+          <tr>
+            <td>Major Usage</td>
+            <td>Web, mobile, IoT, big data, real-time systems, caching आदि।</td>
+          </tr>
+          <tr>
+            <td>Applications</td>
+            <td>E-commerce, social media, gaming, CMS, analytics, monitoring आदि।</td>
+          </tr>
+          <tr>
+            <td>Scaling</td>
+            <td>Horizontal/distributed scaling commonly emphasized।</td>
+          </tr>
+        </table>
+
+        <div class="exam">
+          <b>Important Long-Answer Questions</b><br><br>
+          1. NoSQL क्या है? इसकी आवश्यकता और importance समझाइए।<br>
+          2. NoSQL को “Not Only SQL” क्यों कहा जाता है?<br>
+          3. NoSQL databases की प्रमुख characteristics समझाइए।<br>
+          4. NoSQL databases के विभिन्न types समझाइए।<br>
+          5. Key-Value, Document, Wide-Column और Graph databases को examples सहित समझाइए।<br>
+          6. NoSQL के usages लिखिए।<br>
+          7. NoSQL के applications को detail में समझाइए।<br>
+          8. SQL और NoSQL में अंतर लिखिए।<br>
+          9. NoSQL के advantages और limitations समझाइए।<br>
+          10. E-Commerce और IoT में NoSQL का उपयोग समझाइए।<br>
+          11. Social Media applications में NoSQL क्यों useful है?<br>
+          12. Big Data applications में NoSQL की भूमिका समझाइए।
+        </div>
+
+        <div class="note">
+          <b>Exam Writing Pattern:</b><br>
+          इस topic के long answer में
+          <strong>Definition → Need → Characteristics → Types → Usages → Applications → Advantages → SQL vs NoSQL →
+            Conclusion</strong>
+          का sequence use करने पर answer systematic और complete रहेगा।
+        </div>
+
+        <h3>Conclusion</h3>
+        <p>
+          NoSQL modern database technology का एक important approach है। इसका मुख्य focus
+          flexible data models, distributed architecture, scalability और high-volume
+          applications पर होता है। NoSQL को SQL का direct replacement मानने के बजाय एक
+          alternative database approach के रूप में समझना चाहिए, जिसे application की
+          requirements के अनुसार select किया जाता है।
+        </p>
+
+      </section>
+    </main>
+  </div>
+</body>
+
+</html>

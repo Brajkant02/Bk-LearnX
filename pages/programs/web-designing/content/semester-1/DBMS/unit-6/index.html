@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FB7SX0P0D3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-FB7SX0P0D3');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>PL/SQL - Expanded Notes</title>
+    <style>
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            margin: 0;
+            background: #f3f6fa;
+            color: #1f2937;
+            font-family: "Segoe UI", Arial, sans-serif;
+            line-height: 1.8
+        }
+
+        .layout {
+            max-width: 1550px;
+            margin: auto;
+            padding: 14px;
+            display: grid;
+            grid-template-columns: 290px 1fr;
+            gap: 18px
+        }
+
+        aside {
+            position: sticky;
+            top: 14px;
+            height: calc(100vh - 28px);
+            overflow: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 18px;
+            box-shadow: 0 5px 22px #0001
+        }
+
+        aside h2 {
+            margin: 0 0 12px;
+            color: #111827
+        }
+
+        aside a {
+            display: block;
+            padding: 7px 9px;
+            margin: 3px 0;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #374151;
+            font-size: 14px
+        }
+
+        aside a:hover {
+            background: #e0e7ff;
+            color: #1d4ed8
+        }
+
+        main {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 5px 22px #0001;
+            overflow: hidden
+        }
+
+        .hero {
+            padding: 34px;
+            background: linear-gradient(135deg, #dbeafe, #eef2ff, #f8fafc)
+        }
+
+        .hero h1 {
+            margin: 0 0 8px;
+            font-size: 36px;
+            color: #111827
+        }
+
+        .hero p {
+            margin: 5px 0;
+            color: #475569
+        }
+
+        section {
+            padding: 28px 30px;
+            border-bottom: 1px solid #e5e7eb
+        }
+
+        section:last-child {
+            border: 0
+        }
+
+        h2 {
+            font-size: 28px;
+            color: #172554;
+            border-left: 5px solid #2563eb;
+            padding-left: 12px;
+            margin: 0 0 18px
+        }
+
+        h3 {
+            font-size: 21px;
+            color: #1e3a8a;
+            margin: 24px 0 8px
+        }
+
+        h4 {
+            font-size: 18px;
+            color: #334155;
+            margin: 18px 0 5px
+        }
+
+        p {
+            font-size: 16.5px;
+            margin: 10px 0
+        }
+
+        li {
+            font-size: 16px;
+            margin: 7px 0
+        }
+
+        .note,
+        .exam,
+        .important {
+            padding: 16px 18px;
+            border-radius: 12px;
+            margin: 18px 0
+        }
+
+        .note {
+            background: #eff6ff;
+            border-left: 5px solid #3b82f6
+        }
+
+        .exam {
+            background: #ecfdf5;
+            border-left: 5px solid #10b981
+        }
+
+        .important {
+            background: #fff7ed;
+            border-left: 5px solid #f97316
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 18px 0
+        }
+
+        .card {
+            background: #f8fafc;
+            border: 1px solid #dbe3ef;
+            border-radius: 14px;
+            padding: 17px
+        }
+
+        .card h4 {
+            margin-top: 0;
+            color: #1d4ed8
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 18px 0;
+            font-size: 15px
+        }
+
+        th,
+        td {
+            border: 1px solid #cbd5e1;
+            padding: 11px;
+            vertical-align: top;
+            text-align: left
+        }
+
+        th {
+            background: #eef2ff;
+            color: #111827
+        }
+
+        .flow {
+            background: #09090b;
+            color: #f8fafc;
+            padding: 20px;
+            border-radius: 14px;
+            text-align: center;
+            font-family: Consolas, monospace;
+            overflow: auto;
+            margin: 18px 0
+        }
+
+        .code {
+            background: #09090b;
+            color: #e5e7eb;
+            padding: 18px;
+            border-radius: 13px;
+            overflow: auto;
+            font-family: Consolas, monospace;
+            white-space: pre
+        }
+
+        .badge {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700
+        }
+
+        @media(max-width:900px) {
+            .layout {
+                display: block;
+                padding: 5px
+            }
+
+            aside {
+                display: none
+            }
+
+            .hero {
+                padding: 24px 18px
+            }
+
+            .hero h1 {
+                font-size: 28px
+            }
+
+            section {
+                padding: 22px 18px
+            }
+
+            h2 {
+                font-size: 23px
+            }
+
+            .grid {
+                grid-template-columns: 1fr
+            }
+
+            p,
+            li {
+                font-size: 15px
+            }
+
+            table {
+                display: block;
+                overflow-x: auto
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="layout">
+
+        <aside>
+            <h2>Topics</h2>
+            <a href="#intro">1. Introduction to PL/SQL</a>
+            <a href="#block">2. PL/SQL Block Structure</a>
+            <a href="#function">3. User Defined Functions</a>
+            <a href="#control">4. Control Flow Statements</a>
+            <a href="#procedure">5. Procedures / Stored Procedures</a>
+            <a href="#transaction">6. Transactions</a>
+            <a href="#trigger">7. Triggers</a>
+            <a href="#cursor">8. Cursors</a>
+            <a href="#grant">9. GRANT</a>
+            <a href="#revoke">10. REVOKE</a>
+            <a href="#comparison">11. Function vs Procedure vs Trigger</a>
+            <a href="#workflow">12. Complete PL/SQL Workflow</a>
+            <a href="#revision">13. Revision & Questions</a>
+        </aside>
+
+        <main>
+
+            <div class="hero">
+               
+                <h1>PL/SQL</h1>
+              
+            </div>
+
+            <section id="intro">
+                <h2>1. Introduction to PL/SQL</h2>
+
+                <p>
+                    <strong>PL/SQL</strong> का full form <strong>Procedural Language/Structured Query Language</strong>
+                    है। यह SQL को procedural programming features के साथ combine करता है। इसके माध्यम
+                    से SQL statements के साथ variables, conditions, loops, functions, procedures,
+                    cursors, triggers और exception handling जैसे programming constructs का उपयोग किया
+                    जा सकता है। citeturn0search0turn0search4
+                </p>
+
+                <p>
+                    PL/SQL विशेष रूप से Oracle database environment से closely associated है। यह database
+                    के अंदर procedural logic execute करने और reusable database programs बनाने के लिए
+                    use होता है। PL/SQL programs blocks में organized होते हैं और blocks nested भी हो
+                    सकते हैं। citeturn0search5
+                </p>
+
+                <h3>SQL और PL/SQL में अंतर</h3>
+                <table>
+                    <tr>
+                        <th>SQL</th>
+                        <th>PL/SQL</th>
+                    </tr>
+                    <tr>
+                        <td>मुख्यतः declarative/query language है।</td>
+                        <td>SQL के ऊपर procedural programming features provide करता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Individual SQL statements execute करता है।</td>
+                        <td>एक block में multiple SQL statements और programming logic रख सकता है।</td>
+                    </tr>
+                    <tr>
+                        <td>IF/LOOP जैसे procedural constructs मूल SQL का हिस्सा नहीं हैं।</td>
+                        <td>IF, CASE, loops आदि support करता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Query/data manipulation पर focus।</td>
+                        <td>Database-side business logic और reusable programs पर focus।</td>
+                    </tr>
+                </table>
+
+                <h3>PL/SQL की प्रमुख विशेषताएँ</h3>
+                <ul>
+                    <li><strong>Block Structure:</strong> Program logical blocks में organized होता है।</li>
+                    <li><strong>Procedural Constructs:</strong> Decision making और iteration support करता है।</li>
+                    <li><strong>SQL Integration:</strong> SQL queries और DML statements को procedural code में use किया
+                        जा सकता है।</li>
+                    <li><strong>Reusability:</strong> Functions, procedures, triggers आदि database में reusable program
+                        units बन सकते हैं।</li>
+                    <li><strong>Exception Handling:</strong> Runtime errors को handle करने के लिए exception section
+                        available है।</li>
+                    <li><strong>Cursors:</strong> Query result set को row-by-row process करने में सहायता करते हैं।</li>
+                    <li><strong>Reduced Network Traffic:</strong> Multiple statements को database side पर block के रूप
+                        में execute करने से communication overhead कम हो सकता है।</li>
+                </ul>
+
+                <div class="exam"><b>Exam Definition:</b> PL/SQL is a procedural extension of SQL that combines SQL data
+                    manipulation with procedural programming constructs for database programming.</div>
+            </section>
+
+            <section id="block">
+                <h2>2. PL/SQL Block Structure</h2>
+
+                <p>
+                    PL/SQL का basic unit एक <strong>block</strong> है। सामान्य PL/SQL block में declaration,
+                    executable और exception-handling parts हो सकते हैं। Declaration और exception
+                    sections optional हैं, जबकि executable section <strong>BEGIN ... END</strong> के
+                    बीच लिखा जाता है। citeturn0search0turn0search2
+                </p>
+
+                <div class="flow">
+                    DECLARE
+                    Declaration Section
+                    ↓
+                    BEGIN
+                    Executable Section
+                    ↓
+                    EXCEPTION
+                    Exception Handling Section
+                    END;
+                </div>
+
+                <h3>Basic Example</h3>
+                <div class="code">DECLARE
+                    v_name VARCHAR2(50) := 'Amit';
+                    BEGIN
+                    DBMS_OUTPUT.PUT_LINE('Student: ' || v_name);
+                    EXCEPTION
+                    WHEN OTHERS THEN
+                    DBMS_OUTPUT.PUT_LINE('An error occurred');
+                    END;
+                    /</div>
+
+                <h3>Three Main Sections</h3>
+                <table>
+                    <tr>
+                        <th>Section</th>
+                        <th>Purpose</th>
+                    </tr>
+                    <tr>
+                        <td>DECLARE</td>
+                        <td>Variables, constants, cursors और local declarations define करने के लिए।</td>
+                    </tr>
+                    <tr>
+                        <td>BEGIN ... END</td>
+                        <td>Executable statements और main program logic के लिए।</td>
+                    </tr>
+                    <tr>
+                        <td>EXCEPTION</td>
+                        <td>Errors/exceptions handle करने के लिए।</td>
+                    </tr>
+                </table>
+
+                <div class="note">
+                    <b>Note:</b> DECLARE और EXCEPTION sections optional हो सकते हैं, लेकिन PL/SQL block का executable
+                    part BEGIN और END के बीच रहता है। citeturn0search5
+                </div>
+            </section>
+
+            <section id="function">
+                <h2>3. User Defined Functions</h2>
+
+                <p>
+                    <strong>User Defined Function (UDF)</strong> programmer द्वारा create किया गया reusable
+                    PL/SQL program unit है जो किसी specific task को perform करता है और <strong>एक
+                        value return करता है</strong>। Functions calculations या value-generation के लिए
+                    विशेष रूप से useful हैं। citeturn0search6
+                </p>
+
+                <h3>Function के मुख्य भाग</h3>
+                <ul>
+                    <li><strong>Function Name:</strong> Function की पहचान।</li>
+                    <li><strong>Parameters:</strong> Input values receive करने के लिए optional parameters।</li>
+                    <li><strong>RETURN Type:</strong> Function किस data type की value return करेगी।</li>
+                    <li><strong>Function Body:</strong> Actual logic।</li>
+                    <li><strong>RETURN Statement:</strong> Result वापस करने के लिए required।</li>
+                </ul>
+
+                <h3>Syntax</h3>
+                <div class="code">CREATE OR REPLACE FUNCTION function_name
+                    (
+                    parameter_name IN datatype
+                    )
+                    RETURN return_datatype
+                    IS
+                    -- declarations
+                    BEGIN
+                    -- statements
+                    RETURN value;
+                    EXCEPTION
+                    -- exception handling
+                    END function_name;
+                    /</div>
+
+                <h3>Example: Square Function</h3>
+                <div class="code">CREATE OR REPLACE FUNCTION square_num
+                    (
+                    p_num IN NUMBER
+                    )
+                    RETURN NUMBER
+                    IS
+                    BEGIN
+                    RETURN p_num * p_num;
+                    END square_num;
+                    /</div>
+
+                <h3>Calling the Function</h3>
+                <div class="code">SELECT square_num(5) AS Result
+                    FROM dual;</div>
+
+                <p><strong>Expected result:</strong> 25</p>
+
+                <h3>Another Example: Employee Bonus</h3>
+                <div class="code">CREATE OR REPLACE FUNCTION calculate_bonus
+                    (
+                    p_salary IN NUMBER
+                    )
+                    RETURN NUMBER
+                    IS
+                    BEGIN
+                    RETURN p_salary * 0.10;
+                    END calculate_bonus;
+                    /</div>
+
+                <div class="code">SELECT calculate_bonus(50000) AS Bonus
+                    FROM dual;</div>
+
+                <p><strong>Expected result:</strong> 5000</p>
+
+                <h3>Advantages of Functions</h3>
+                <ul>
+                    <li>Code reusability बढ़ती है।</li>
+                    <li>Complex calculation को एक reusable unit में रखा जा सकता है।</li>
+                    <li>Application code को simpler बनाया जा सकता है।</li>
+                    <li>Same calculation को multiple places पर reuse किया जा सकता है।</li>
+                    <li>Database-side logic centralized हो सकती है।</li>
+                </ul>
+
+                <div class="exam"><b>One-Line Rule:</b> Function performs a task and must return a value.
+                    citeturn0search6turn0search7</div>
+            </section>
+
+            <section id="control">
+                <h2>4. Control of Flow Statements in PL/SQL</h2>
+
+                <p>
+                    <strong>Control flow</strong> यह determine करता है कि PL/SQL program में statements
+                    किस order में execute होंगे। PL/SQL में decision-making और looping constructs
+                    available हैं। GFG के PL/SQL tutorial में IF/THEN, CASE और loop-based control flow
+                    को प्रमुख concepts के रूप में cover किया गया है। citeturn0search4
+                </p>
+
+                <h3>A. IF-THEN</h3>
+                <p>Condition true होने पर statements execute होते हैं।</p>
+                <div class="code">DECLARE
+                    v_marks NUMBER := 75;
+                    BEGIN
+                    IF v_marks >= 40 THEN
+                    DBMS_OUTPUT.PUT_LINE('Pass');
+                    END IF;
+                    END;
+                    /</div>
+
+                <h3>B. IF-THEN-ELSE</h3>
+                <div class="code">DECLARE
+                    v_marks NUMBER := 35;
+                    BEGIN
+                    IF v_marks >= 40 THEN
+                    DBMS_OUTPUT.PUT_LINE('Pass');
+                    ELSE
+                    DBMS_OUTPUT.PUT_LINE('Fail');
+                    END IF;
+                    END;
+                    /</div>
+
+                <h3>C. ELSIF</h3>
+                <div class="code">DECLARE
+                    v_marks NUMBER := 82;
+                    BEGIN
+                    IF v_marks >= 75 THEN
+                    DBMS_OUTPUT.PUT_LINE('Distinction');
+                    ELSIF v_marks >= 60 THEN
+                    DBMS_OUTPUT.PUT_LINE('First Division');
+                    ELSIF v_marks >= 40 THEN
+                    DBMS_OUTPUT.PUT_LINE('Pass');
+                    ELSE
+                    DBMS_OUTPUT.PUT_LINE('Fail');
+                    END IF;
+                    END;
+                    /</div>
+
+                <h3>D. CASE Statement</h3>
+                <div class="code">DECLARE
+                    v_grade CHAR(1) := 'A';
+                    BEGIN
+                    CASE v_grade
+                    WHEN 'A' THEN DBMS_OUTPUT.PUT_LINE('Excellent');
+                    WHEN 'B' THEN DBMS_OUTPUT.PUT_LINE('Good');
+                    WHEN 'C' THEN DBMS_OUTPUT.PUT_LINE('Average');
+                    ELSE DBMS_OUTPUT.PUT_LINE('Needs Improvement');
+                    END CASE;
+                    END;
+                    /</div>
+
+                <h3>E. Simple LOOP</h3>
+                <div class="code">DECLARE
+                    i NUMBER := 1;
+                    BEGIN
+                    LOOP
+                    DBMS_OUTPUT.PUT_LINE(i);
+                    i := i + 1;
+                    EXIT WHEN i > 5;
+                    END LOOP;
+                    END;
+                    /</div>
+
+                <h3>F. WHILE LOOP</h3>
+                <div class="code">DECLARE
+                    i NUMBER := 1;
+                    BEGIN
+                    WHILE i <= 5 LOOP DBMS_OUTPUT.PUT_LINE(i); i :=i + 1; END LOOP; END; /</div>
+
+                        <h3>G. FOR LOOP</h3>
+                        <div class="code">BEGIN
+                            FOR i IN 1..5 LOOP
+                            DBMS_OUTPUT.PUT_LINE(i);
+                            END LOOP;
+                            END;
+                            /</div>
+
+                        <table>
+                            <tr>
+                                <th>Control Structure</th>
+                                <th>Use</th>
+                            </tr>
+                            <tr>
+                                <td>IF</td>
+                                <td>Condition based decision</td>
+                            </tr>
+                            <tr>
+                                <td>ELSIF</td>
+                                <td>Multiple conditions</td>
+                            </tr>
+                            <tr>
+                                <td>CASE</td>
+                                <td>Multiple alternatives/choices</td>
+                            </tr>
+                            <tr>
+                                <td>LOOP</td>
+                                <td>Repeated execution</td>
+                            </tr>
+                            <tr>
+                                <td>WHILE LOOP</td>
+                                <td>Condition-based repetition</td>
+                            </tr>
+                            <tr>
+                                <td>FOR LOOP</td>
+                                <td>Known range/iteration count के लिए convenient loop</td>
+                            </tr>
+                            <tr>
+                                <td>EXIT</td>
+                                <td>Loop से बाहर निकलने के लिए</td>
+                            </tr>
+                        </table>
+            </section>
+
+            <section id="procedure">
+                <h2>5. Procedures / Stored Procedures</h2>
+
+                <p>
+                    <strong>Procedure</strong> एक reusable named PL/SQL program unit है जो किसी specific
+                    task या business logic को perform करता है। जब procedure database में stored होता
+                    है तो उसे stored procedure कहा जाता है। Procedures database में logic encapsulate
+                    करने और repeated execution के लिए useful हैं। citeturn0search3turn0search8
+                </p>
+
+                <h3>Procedure के मुख्य parts</h3>
+                <ul>
+                    <li><strong>Procedure Header:</strong> Name और optional parameters define करता है।</li>
+                    <li><strong>Procedure Body:</strong> Actual executable logic contain करता है।</li>
+                    <li><strong>Parameters:</strong> IN, OUT और IN OUT modes के साथ values pass/return की जा सकती हैं।
+                    </li>
+                </ul>
+
+                <h3>Parameter Modes</h3>
+                <table>
+                    <tr>
+                        <th>Mode</th>
+                        <th>Purpose</th>
+                    </tr>
+                    <tr>
+                        <td>IN</td>
+                        <td>Caller से value procedure में pass करता है।</td>
+                    </tr>
+                    <tr>
+                        <td>OUT</td>
+                        <td>Procedure से value caller को return करने के लिए।</td>
+                    </tr>
+                    <tr>
+                        <td>IN OUT</td>
+                        <td>Value procedure में आती भी है और modified होकर वापस भी जा सकती है।</td>
+                    </tr>
+                </table>
+
+                <h3>Syntax</h3>
+                <div class="code">CREATE OR REPLACE PROCEDURE procedure_name
+                    (
+                    p_parameter IN datatype
+                    )
+                    IS
+                    BEGIN
+                    -- procedure logic
+                    END procedure_name;
+                    /</div>
+
+                <h3>Example</h3>
+                <div class="code">CREATE OR REPLACE PROCEDURE show_student
+                    (
+                    p_id IN NUMBER
+                    )
+                    IS
+                    v_name VARCHAR2(50);
+                    BEGIN
+                    SELECT Name
+                    INTO v_name
+                    FROM Student
+                    WHERE StudentID = p_id;
+
+                    DBMS_OUTPUT.PUT_LINE('Student: ' || v_name);
+                    END show_student;
+                    /</div>
+
+                <h3>Calling Procedure</h3>
+                <div class="code">EXEC show_student(101);</div>
+
+                <h3>OUT Parameter Example</h3>
+                <div class="code">CREATE OR REPLACE PROCEDURE get_square
+                    (
+                    p_num IN NUMBER,
+                    p_result OUT NUMBER
+                    )
+                    IS
+                    BEGIN
+                    p_result := p_num * p_num;
+                    END;
+                    /</div>
+
+                <div class="important">
+                    <b>Function vs Procedure:</b> Function must return a value, जबकि procedure मुख्यतः
+                    एक task/action perform करने के लिए होती है और function की तरह mandatory RETURN value
+                    नहीं होती। citeturn0search6turn0search7
+                </div>
+
+                <h3>Advantages of Stored Procedures</h3>
+                <ul>
+                    <li>Code reusability।</li>
+                    <li>Business logic centralization।</li>
+                    <li>Repeated SQL code को avoid करना।</li>
+                    <li>Applications और database के बीच standardized interface provide करना।</li>
+                    <li>Complex database operations को एक call में encapsulate करना।</li>
+                </ul>
+            </section>
+
+            <section id="transaction">
+                <h2>6. Transactions in PL/SQL</h2>
+
+                <p>
+                    <strong>Transaction</strong> database operations का logical unit है। इसमें एक या
+                    अधिक operations हो सकते हैं जिन्हें collectively complete या undo किया जाता है।
+                    Transaction management database consistency और reliability के लिए important है।
+                </p>
+
+                <h3>Important Transaction Commands</h3>
+                <table>
+                    <tr>
+                        <th>Command</th>
+                        <th>Purpose</th>
+                    </tr>
+                    <tr>
+                        <td>COMMIT</td>
+                        <td>Current transaction के changes permanently save करता है।</td>
+                    </tr>
+                    <tr>
+                        <td>ROLLBACK</td>
+                        <td>Uncommitted changes को undo करता है।</td>
+                    </tr>
+                    <tr>
+                        <td>SAVEPOINT</td>
+                        <td>Transaction के अंदर intermediate point create करता है।</td>
+                    </tr>
+                    <tr>
+                        <td>ROLLBACK TO SAVEPOINT</td>
+                        <td>Specific savepoint तक changes undo करता है।</td>
+                    </tr>
+                </table>
+
+                <p>
+                    GFG के transaction reference में COMMIT, ROLLBACK और SAVEPOINT को transaction
+                    control के प्रमुख commands बताया गया है। citeturn0search1
+                </p>
+
+                <h3>COMMIT Example</h3>
+                <div class="code">UPDATE Employee
+                    SET Salary = Salary + 5000
+                    WHERE EmpID = 101;
+
+                    COMMIT;</div>
+
+                <h3>ROLLBACK Example</h3>
+                <div class="code">UPDATE Employee
+                    SET Salary = Salary + 5000
+                    WHERE EmpID = 101;
+
+                    ROLLBACK;</div>
+
+                <p>
+                    ROLLBACK के बाद uncommitted change undo हो जाता है।</p>
+
+                <h3>SAVEPOINT Example</h3>
+                <div class="code">UPDATE Employee
+                    SET Salary = Salary + 1000
+                    WHERE EmpID = 101;
+
+                    SAVEPOINT sp1;
+
+                    UPDATE Employee
+                    SET Salary = Salary + 2000
+                    WHERE EmpID = 102;
+
+                    ROLLBACK TO sp1;
+
+                    COMMIT;</div>
+
+                <div class="flow">
+                    Transaction Start
+                    ↓
+                    SQL Operations
+                    ↓
+                    SAVEPOINT (optional)
+                    ↓
+                    Success? ─── YES → COMMIT
+                    │
+                    NO
+                    ↓
+                    ROLLBACK
+                </div>
+            </section>
+
+            <section id="trigger">
+                <h2>7. Triggers</h2>
+
+                <p>
+                    <strong>Trigger</strong> एक stored database program/block है जो किसी specified
+                    database event के होने पर automatically execute होता है। Trigger को user सामान्य
+                    procedure की तरह manually call नहीं करता; triggering event होने पर database engine
+                    उसे fire करता है। citeturn0search2turn0search14
+                </p>
+
+                <h3>Common Trigger Events</h3>
+                <ul>
+                    <li>INSERT</li>
+                    <li>UPDATE</li>
+                    <li>DELETE</li>
+                </ul>
+
+                <h3>Trigger Timing</h3>
+                <table>
+                    <tr>
+                        <th>Timing</th>
+                        <th>Meaning</th>
+                    </tr>
+                    <tr>
+                        <td>BEFORE</td>
+                        <td>Event operation से पहले trigger action execute होता है।</td>
+                    </tr>
+                    <tr>
+                        <td>AFTER</td>
+                        <td>Event operation के बाद trigger action execute होता है।</td>
+                    </tr>
+                </table>
+
+                <h3>Row-Level Trigger</h3>
+                <p>
+                    यदि trigger प्रत्येक affected row के लिए execute होना है, तो <strong>FOR EACH ROW</strong>
+                    का उपयोग किया जा सकता है। GFG trigger material में statement-level और row-level
+                    triggers दोनों concepts covered हैं। citeturn0search2turn0search4
+                </p>
+
+                <h3>Example: Audit Trigger</h3>
+                <div class="code">CREATE OR REPLACE TRIGGER trg_student_insert
+                    AFTER INSERT ON Student
+                    FOR EACH ROW
+                    BEGIN
+                    DBMS_OUTPUT.PUT_LINE('New student inserted: ' || :NEW.StudentID);
+                    END;
+                    /</div>
+
+                <h3>:NEW और :OLD</h3>
+                <p>
+                    Row-level DML triggers में <strong>:NEW</strong> और <strong>:OLD</strong> pseudorecord
+                    values current/new और previous/old row values को reference करने के लिए use किए
+                    जा सकते हैं। citeturn0search1
+                </p>
+
+                <table>
+                    <tr>
+                        <th>Operation</th>
+                        <th>:OLD</th>
+                        <th>:NEW</th>
+                    </tr>
+                    <tr>
+                        <td>INSERT</td>
+                        <td>Generally available नहीं</td>
+                        <td>New row values</td>
+                    </tr>
+                    <tr>
+                        <td>UPDATE</td>
+                        <td>Old values</td>
+                        <td>New values</td>
+                    </tr>
+                    <tr>
+                        <td>DELETE</td>
+                        <td>Old values</td>
+                        <td>Generally available नहीं</td>
+                    </tr>
+                </table>
+
+                <h3>Uses of Triggers</h3>
+                <ul>
+                    <li>Auditing और change tracking।</li>
+                    <li>Complex business rules enforce करना।</li>
+                    <li>Automatic actions perform करना।</li>
+                    <li>Database changes पर related logic execute करना।</li>
+                    <li>कुछ integrity/security requirements implement करना।</li>
+                </ul>
+
+                <div class="important">
+                    <b>Remember:</b> Procedure = explicitly invoked; Trigger = event के response में automatically
+                    invoked. citeturn0search14
+                </div>
+            </section>
+
+            <section id="cursor">
+                <h2>8. Cursors</h2>
+
+                <p>
+                    <strong>Cursor</strong> PL/SQL में query के result set को access और process करने का
+                    mechanism है। इसे query result के context area की ओर pointer की तरह समझ सकते हैं।
+                    Cursor का उपयोग result set की rows को one-by-one process करने के लिए किया जा सकता है।
+                    citeturn0search15
+                </p>
+
+                <h3>Why Cursors?</h3>
+                <p>
+                    Normal SQL statement कई rows पर एक साथ operate कर सकता है, लेकिन कुछ procedural
+                    logic में हमें प्रत्येक row को individually process करना होता है। ऐसे cases में
+                    cursor useful होता है।
+                </p>
+
+                <h3>Cursor के Main Steps</h3>
+                <div class="flow">
+                    DECLARE Cursor
+                    ↓
+                    OPEN Cursor
+                    ↓
+                    FETCH Row
+                    ↓
+                    Process Row
+                    ↓
+                    Repeat
+                    ↓
+                    CLOSE Cursor
+                </div>
+
+                <p>GFG के अनुसार cursor के basic actions Declare, Open और Fetch हैं; processing के बाद cursor close किया
+                    जाता है। citeturn0search15</p>
+
+                <h3>Types of Cursors</h3>
+                <table>
+                    <tr>
+                        <th>Type</th>
+                        <th>Explanation</th>
+                    </tr>
+                    <tr>
+                        <td>Implicit Cursor</td>
+                        <td>Oracle/PLSQL engine द्वारा automatically created for certain SQL statements।</td>
+                    </tr>
+                    <tr>
+                        <td>Explicit Cursor</td>
+                        <td>Programmer द्वारा declare किया जाता है जब result set को explicitly control करना हो।</td>
+                    </tr>
+                </table>
+
+                <h3>Explicit Cursor Example</h3>
+                <div class="code">DECLARE
+                    CURSOR c_students IS
+                    SELECT StudentID, Name
+                    FROM Student;
+
+                    v_id Student.StudentID%TYPE;
+                    v_name Student.Name%TYPE;
+                    BEGIN
+                    OPEN c_students;
+
+                    LOOP
+                    FETCH c_students INTO v_id, v_name;
+                    EXIT WHEN c_students%NOTFOUND;
+
+                    DBMS_OUTPUT.PUT_LINE(
+                    v_id || ' - ' || v_name
+                    );
+                    END LOOP;
+
+                    CLOSE c_students;
+                    END;
+                    /</div>
+
+                <h3>Cursor Attributes</h3>
+                <table>
+                    <tr>
+                        <th>Attribute</th>
+                        <th>Meaning</th>
+                    </tr>
+                    <tr>
+                        <td>%FOUND</td>
+                        <td>Latest FETCH/operation ने row पाया या नहीं।</td>
+                    </tr>
+                    <tr>
+                        <td>%NOTFOUND</td>
+                        <td>Latest FETCH में row नहीं मिली।</td>
+                    </tr>
+                    <tr>
+                        <td>%ROWCOUNT</td>
+                        <td>अब तक processed/fetched rows की count।</td>
+                    </tr>
+                    <tr>
+                        <td>%ISOPEN</td>
+                        <td>Cursor open है या नहीं।</td>
+                    </tr>
+                </table>
+
+                <div class="note"><b>Easy Memory:</b> Cursor = Query result को row-by-row process करने का mechanism.
+                </div>
+            </section>
+
+            <section id="grant">
+                <h2>9. GRANT Command</h2>
+
+                <p>
+                    <strong>GRANT</strong> command database objects पर users/roles को privileges
+                    देने के लिए use होती है। यह database security और access control का important part
+                    है। GFG के SQL command reference में GRANT को DCL command के रूप में बताया गया है।
+                    citeturn0search11turn0search12
+                </p>
+
+                <h3>Common Privileges</h3>
+                <ul>
+                    <li>SELECT</li>
+                    <li>INSERT</li>
+                    <li>UPDATE</li>
+                    <li>DELETE</li>
+                    <li>EXECUTE</li>
+                </ul>
+
+                <h3>Syntax</h3>
+                <div class="code">GRANT privilege
+                    ON object
+                    TO user_or_role;</div>
+
+                <h3>Example</h3>
+                <div class="code">GRANT SELECT
+                    ON Student
+                    TO user1;</div>
+
+                <p>अब user1 को Student object पर SELECT privilege दिया जा सकता है।</p>
+
+                <h3>Multiple Privileges</h3>
+                <div class="code">GRANT SELECT, INSERT, UPDATE
+                    ON Student
+                    TO user1;</div>
+
+                <div class="exam"><b>GRANT = Permission देना.</b></div>
+            </section>
+
+            <section id="revoke">
+                <h2>10. REVOKE Command</h2>
+
+                <p>
+                    <strong>REVOKE</strong> पहले दिए गए privileges को वापस लेने के लिए use होता है।
+                    यह भी Data Control Language (DCL) से associated command है। citeturn0search11turn0search12
+                </p>
+
+                <h3>Syntax</h3>
+                <div class="code">REVOKE privilege
+                    ON object
+                    FROM user_or_role;</div>
+
+                <h3>Example</h3>
+                <div class="code">REVOKE INSERT
+                    ON Student
+                    FROM user1;</div>
+
+                <h3>Multiple Privileges</h3>
+                <div class="code">REVOKE SELECT, UPDATE
+                    ON Student
+                    FROM user1;</div>
+
+                <table>
+                    <tr>
+                        <th>GRANT</th>
+                        <th>REVOKE</th>
+                    </tr>
+                    <tr>
+                        <td>Permission देता है।</td>
+                        <td>Permission वापस लेता है।</td>
+                    </tr>
+                    <tr>
+                        <td>DCL</td>
+                        <td>DCL</td>
+                    </tr>
+                    <tr>
+                        <td>GRANT SELECT ON Student TO user1;</td>
+                        <td>REVOKE SELECT ON Student FROM user1;</td>
+                    </tr>
+                </table>
+
+                <div class="exam"><b>GRANT = Give privilege | REVOKE = Remove privilege</b></div>
+            </section>
+
+            <section id="comparison">
+                <h2>11. Function vs Procedure vs Trigger</h2>
+
+                <table>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Function</th>
+                        <th>Procedure</th>
+                        <th>Trigger</th>
+                    </tr>
+                    <tr>
+                        <td>Purpose</td>
+                        <td>Value/result calculate करना</td>
+                        <td>Specific task/business logic execute करना</td>
+                        <td>Event के response में automatic action</td>
+                    </tr>
+                    <tr>
+                        <td>Invocation</td>
+                        <td>Call/query expression से</td>
+                        <td>Explicitly call किया जाता है</td>
+                        <td>Event होने पर automatically fire</td>
+                    </tr>
+                    <tr>
+                        <td>Return</td>
+                        <td>Must return a value</td>
+                        <td>Mandatory single return value नहीं</td>
+                        <td>Return value concept नहीं</td>
+                    </tr>
+                    <tr>
+                        <td>Parameters</td>
+                        <td>Parameters हो सकते हैं</td>
+                        <td>IN/OUT/IN OUT parameters हो सकते हैं</td>
+                        <td>Normal procedure-style parameters नहीं</td>
+                    </tr>
+                    <tr>
+                        <td>Typical use</td>
+                        <td>Calculation</td>
+                        <td>Reusable database operation</td>
+                        <td>Audit, automatic validation/action</td>
+                    </tr>
+                </table>
+
+                <p>
+                    GFG के references में function को value-returning reusable block, procedure को
+                    reusable task-oriented block और trigger को event-driven automatic database program
+                    के रूप में distinguish किया गया है। citeturn0search6turn0search8turn0search14
+                </p>
+            </section>
+
+            <section id="workflow">
+                <h2>12. Complete PL/SQL Workflow</h2>
+
+                <p>
+                    नीचे syllabus के major concepts को एक logical workflow में connect करके समझें:
+                </p>
+
+                <div class="flow">
+                    SQL Data
+                    ↓
+                    PL/SQL Block
+                    ↓
+                    Variables + Control Flow
+                    ↓
+                    Functions / Procedures
+                    ↓
+                    Cursors → Row-by-Row Processing
+                    ↓
+                    Transactions → COMMIT / ROLLBACK
+                    ↓
+                    Triggers → Automatic Event Response
+                    ↓
+                    GRANT / REVOKE → Access Control
+                </div>
+
+                <h3>Mini Integrated Example</h3>
+                <div class="code">DECLARE
+                    v_count NUMBER;
+                    BEGIN
+                    SELECT COUNT(*)
+                    INTO v_count
+                    FROM Student;
+
+                    IF v_count > 0 THEN
+                    DBMS_OUTPUT.PUT_LINE(
+                    'Total Students = ' || v_count
+                    );
+                    ELSE
+                    DBMS_OUTPUT.PUT_LINE(
+                    'No students found'
+                    );
+                    END IF;
+                    END;
+                    /</div>
+
+                <p>
+                    इस example में PL/SQL block, variable, SELECT INTO और IF-ELSE control flow एक साथ
+                    use हुए हैं। इसी प्रकार आगे functions, procedures, cursors और triggers को reusable
+                    database programs के रूप में organize किया जा सकता है।
+                </p>
+            </section>
+
+            <section id="revision">
+                <h2>13. Quick Revision & Important Questions</h2>
+
+                <table>
+                    <tr>
+                        <th>Topic</th>
+                        <th>One-Line Revision</th>
+                    </tr>
+                    <tr>
+                        <td>PL/SQL</td>
+                        <td>SQL + procedural programming features।</td>
+                    </tr>
+                    <tr>
+                        <td>Block</td>
+                        <td>DECLARE → BEGIN → EXCEPTION → END structure।</td>
+                    </tr>
+                    <tr>
+                        <td>User Defined Function</td>
+                        <td>Reusable program unit जो value return करता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Control Flow</td>
+                        <td>IF, ELSIF, CASE और loops के द्वारा execution control।</td>
+                    </tr>
+                    <tr>
+                        <td>Procedure</td>
+                        <td>Reusable task-oriented database program।</td>
+                    </tr>
+                    <tr>
+                        <td>Transaction</td>
+                        <td>Logical unit of database operations।</td>
+                    </tr>
+                    <tr>
+                        <td>COMMIT</td>
+                        <td>Changes permanently save करता है।</td>
+                    </tr>
+                    <tr>
+                        <td>ROLLBACK</td>
+                        <td>Uncommitted changes undo करता है।</td>
+                    </tr>
+                    <tr>
+                        <td>SAVEPOINT</td>
+                        <td>Transaction के अंदर rollback point बनाता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Trigger</td>
+                        <td>Specified event पर automatically execute होता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Cursor</td>
+                        <td>Query result को row-by-row process करने में मदद करता है।</td>
+                    </tr>
+                    <tr>
+                        <td>GRANT</td>
+                        <td>Privileges देता है।</td>
+                    </tr>
+                    <tr>
+                        <td>REVOKE</td>
+                        <td>Privileges वापस लेता है।</td>
+                    </tr>
+                </table>
+
+                <div class="exam">
+                    <b>Important Long-Answer Questions</b><br><br>
+                    1. PL/SQL क्या है? इसकी features और advantages समझाइए।<br>
+                    2. PL/SQL block structure को diagram और example सहित समझाइए।<br>
+                    3. User Defined Function क्या है? Syntax और example लिखिए।<br>
+                    4. Function और Procedure में अंतर लिखिए।<br>
+                    5. PL/SQL के control flow statements IF, ELSIF, CASE और loops समझाइए।<br>
+                    6. Procedure/Stored Procedure क्या है? इसके parameters और advantages समझाइए।<br>
+                    7. Transaction क्या है? COMMIT, ROLLBACK और SAVEPOINT समझाइए।<br>
+                    8. Trigger क्या है? BEFORE और AFTER trigger समझाइए।<br>
+                    9. Trigger और Procedure में अंतर लिखिए।<br>
+                    10. Cursor क्या है? इसके types और working steps समझाइए।<br>
+                    11. Explicit cursor का example लिखिए।<br>
+                    12. GRANT और REVOKE commands को examples सहित समझाइए।<br>
+                    13. Function, Procedure और Trigger में तुलना कीजिए।<br>
+                    14. PL/SQL में cursor और transaction का उपयोग समझाइए।
+                </div>
+
+                <div class="note">
+                    <b>Exam Writing Pattern:</b><br>
+                    हर theory answer में <strong>Definition → Need/Purpose → Syntax/Structure → Example → Explanation →
+                        Advantages → Difference</strong>
+                    का format रखें। PL/SQL program में code के साथ expected output/working भी लिखना best रहेगा।
+                </div>
+
+                <p>
+                    <strong>Reference basis:</strong> इस chapter की terminology और conceptual structure
+                    को GeeksforGeeks के PL/SQL introduction, control flow, functions, procedures,
+                    transactions, triggers, cursors तथा DCL references से cross-check किया गया है।
+                    citeturn0search4turn0search5turn0search6turn0search3turn0search2turn0search15turn0search11
+                </p>
+
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>

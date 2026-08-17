@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FB7SX0P0D3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-FB7SX0P0D3');
+    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Security - Authorization, Views, Integrity Constraints & Encryption</title>
+  <style>
+    * {
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      margin: 0;
+      background: #f3f6fa;
+      color: #1f2937;
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.8
+    }
+
+    .layout {
+      max-width: 1550px;
+      margin: auto;
+      padding: 14px;
+      display: grid;
+      grid-template-columns: 290px 1fr;
+      gap: 18px
+    }
+
+    aside {
+      position: sticky;
+      top: 14px;
+      height: calc(100vh - 28px);
+      overflow: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 18px;
+      box-shadow: 0 5px 22px #0001
+    }
+
+    aside h2 {
+      margin: 0 0 12px;
+      color: #111827
+    }
+
+    aside a {
+      display: block;
+      padding: 7px 9px;
+      margin: 3px 0;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #374151;
+      font-size: 14px
+    }
+
+    aside a:hover {
+      background: #e0e7ff;
+      color: #1d4ed8
+    }
+
+    main {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 5px 22px #0001;
+      overflow: hidden
+    }
+
+    .hero {
+      padding: 34px;
+      background: linear-gradient(135deg, #dbeafe, #eef2ff, #f8fafc)
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: 36px;
+      color: #111827
+    }
+
+    .hero p {
+      margin: 5px 0;
+      color: #475569
+    }
+
+    section {
+      padding: 28px 30px;
+      border-bottom: 1px solid #e5e7eb
+    }
+
+    section:last-child {
+      border: 0
+    }
+
+    h2 {
+      font-size: 28px;
+      color: #172554;
+      border-left: 5px solid #2563eb;
+      padding-left: 12px;
+      margin: 0 0 18px
+    }
+
+    h3 {
+      font-size: 21px;
+      color: #1e3a8a;
+      margin: 24px 0 8px
+    }
+
+    p {
+      font-size: 16.5px;
+      margin: 10px 0
+    }
+
+    li {
+      font-size: 16px;
+      margin: 7px 0
+    }
+
+    .note,
+    .exam,
+    .important {
+      padding: 16px 18px;
+      border-radius: 12px;
+      margin: 18px 0
+    }
+
+    .note {
+      background: #eff6ff;
+      border-left: 5px solid #3b82f6
+    }
+
+    .exam {
+      background: #ecfdf5;
+      border-left: 5px solid #10b981
+    }
+
+    .important {
+      background: #fff7ed;
+      border-left: 5px solid #f97316
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin: 18px 0
+    }
+
+    .card {
+      background: #f8fafc;
+      border: 1px solid #dbe3ef;
+      border-radius: 14px;
+      padding: 17px
+    }
+
+    .card h4 {
+      margin-top: 0;
+      color: #1d4ed8
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 18px 0;
+      font-size: 15px
+    }
+
+    th,
+    td {
+      border: 1px solid #cbd5e1;
+      padding: 11px;
+      vertical-align: top;
+      text-align: left
+    }
+
+    th {
+      background: #eef2ff;
+      color: #111827
+    }
+
+    .flow {
+      background: #09090b;
+      color: #f8fafc;
+      padding: 20px;
+      border-radius: 14px;
+      text-align: center;
+      font-family: Consolas, monospace;
+      overflow: auto;
+      margin: 18px 0
+    }
+
+    .code {
+      background: #09090b;
+      color: #e5e7eb;
+      padding: 18px;
+      border-radius: 13px;
+      overflow: auto;
+      font-family: Consolas, monospace;
+      white-space: pre
+    }
+
+    .badge {
+      display: inline-block;
+      background: #dbeafe;
+      color: #1e40af;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700
+    }
+
+    @media(max-width:900px) {
+      .layout {
+        display: block;
+        padding: 5px
+      }
+
+      aside {
+        display: none
+      }
+
+      .hero {
+        padding: 24px 18px
+      }
+
+      .hero h1 {
+        font-size: 28px
+      }
+
+      section {
+        padding: 22px 18px
+      }
+
+      h2 {
+        font-size: 23px
+      }
+
+      .grid {
+        grid-template-columns: 1fr
+      }
+
+      p,
+      li {
+        font-size: 15px
+      }
+
+      table {
+        display: block;
+        overflow-x: auto
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="layout">
+
+    <aside>
+      <h2>Topics</h2>
+      <a href="#intro">1. Introduction to Database Security</a>
+      <a href="#authorization">2. Authorization</a>
+      <a href="#views">3. Security Through Views</a>
+      <a href="#securityconstraints">4. Security Constraints</a>
+      <a href="#integrity">5. Integrity Constraints</a>
+      <a href="#encryption">6. Encryption</a>
+      <a href="#comparison">7. Security Techniques Comparison</a>
+      <a href="#workflow">8. Database Security Workflow</a>
+      <a href="#revision">9. Quick Revision & Questions</a>
+    </aside>
+
+    <main>
+
+      <div class="hero">
+        
+        <h1>SECURITY</h1>
+        <p><strong>Authorization and View • Security Constraints • Integrity Constraints • Encryption</strong></p>
+        
+      </div>
+
+      <section id="intro">
+        <h2>1. Introduction to Database Security</h2>
+
+        <p>
+          <strong>Database Security</strong> का उद्देश्य database में stored information को
+          unauthorized access, unauthorized modification, accidental loss और misuse से
+          protect करना है। Database security में users की identity और permissions manage
+          करने के साथ-साथ data integrity और confidentiality maintain करने के लिए कई
+          techniques का उपयोग किया जाता है।
+        </p>
+
+        <p>
+          एक database में student records, employee information, financial data, customer
+          details और अन्य sensitive information हो सकती है। इसलिए यह जरूरी है कि प्रत्येक
+          user को केवल वही operations और data access मिले जिसकी उसे आवश्यकता है।
+        </p>
+
+        <div class="flow">
+          User
+          ↓
+          Authentication
+          ↓
+          Authorization
+          ↓
+          Allowed Operations
+          ↓
+          Views / Constraints / Encryption
+          ↓
+          Protected Database
+        </div>
+
+        <h3>Database Security के मुख्य Objectives</h3>
+
+        <div class="grid">
+          <div class="card">
+            <h4>Confidentiality</h4>
+            <p>Unauthorized users को sensitive information देखने से रोकना।</p>
+          </div>
+
+          <div class="card">
+            <h4>Integrity</h4>
+            <p>Data को accurate, valid और consistent बनाए रखना।</p>
+          </div>
+
+          <div class="card">
+            <h4>Availability</h4>
+            <p>Authorized users को आवश्यकता के समय data उपलब्ध कराना।</p>
+          </div>
+
+          <div class="card">
+            <h4>Controlled Access</h4>
+            <p>Users को उनके roles और responsibilities के अनुसार permissions देना।</p>
+          </div>
+        </div>
+
+        <div class="exam">
+          <b>Exam Definition:</b> Database security is the collection of mechanisms and
+          controls used to protect database data from unauthorized access, modification,
+          disclosure and misuse.
+        </div>
+      </section>
+
+      <section id="authorization">
+        <h2>2. Authorization</h2>
+
+        <p>
+          <strong>Authorization</strong> वह process है जिसमें यह निर्धारित किया जाता है कि
+          authenticated user database में कौन-कौन से resources और operations access कर सकता है।
+          इसमें user को privileges या permissions प्रदान की जाती हैं।
+        </p>
+
+        <p>
+          उदाहरण के लिए, एक college database में administrator को student records insert,
+          update और delete करने की permission हो सकती है, जबकि सामान्य teacher को केवल
+          student information देखने की permission दी जा सकती है।
+        </p>
+
+        <h3>Authorization और Authentication में अंतर</h3>
+
+        <table>
+          <tr>
+            <th>Authentication</th>
+            <th>Authorization</th>
+          </tr>
+          <tr>
+            <td>User की identity verify करता है।</td>
+            <td>Verified user की permissions determine करता है।</td>
+          </tr>
+          <tr>
+            <td>Question: “आप कौन हैं?”</td>
+            <td>Question: “आप क्या कर सकते हैं?”</td>
+          </tr>
+          <tr>
+            <td>Login/password आदि से associated।</td>
+            <td>Privileges, roles और access rules से associated।</td>
+          </tr>
+        </table>
+
+        <h3>Database Privileges</h3>
+
+        <p>
+          Common database privileges में SELECT, INSERT, UPDATE, DELETE और कुछ systems में
+          EXECUTE जैसे privileges शामिल हो सकते हैं।
+        </p>
+
+        <h3>GRANT</h3>
+        <p>
+          GRANT command के द्वारा authorized user या role को privilege दिया जा सकता है।
+        </p>
+
+        <div class="code">GRANT SELECT
+          ON Student
+          TO teacher1;</div>
+
+        <p>
+          ऊपर example में <strong>teacher1</strong> को Student object पर SELECT privilege
+          देने का उद्देश्य दिखाया गया है।
+        </p>
+
+        <h3>Multiple Privileges</h3>
+
+        <div class="code">GRANT SELECT, INSERT, UPDATE
+          ON Student
+          TO teacher1;</div>
+
+        <h3>REVOKE</h3>
+        <p>
+          REVOKE command के द्वारा पहले दिए गए privilege को वापस लिया जा सकता है।
+        </p>
+
+        <div class="code">REVOKE INSERT
+          ON Student
+          FROM teacher1;</div>
+
+        <div class="note">
+          <b>Remember:</b> GRANT = Permission देना &nbsp; | &nbsp; REVOKE = Permission वापस लेना
+        </div>
+      </section>
+
+      <section id="views">
+        <h2>3. Security Through Views</h2>
+
+        <p>
+          <strong>View</strong> एक virtual table-like representation है जो एक SQL query पर
+          based होती है। Views का उपयोग केवल convenience के लिए नहीं बल्कि database
+          security में भी किया जा सकता है। View के द्वारा user को पूरी table की बजाय
+          required rows या columns का limited subset दिखाया जा सकता है।
+        </p>
+
+        <h3>Example: Employee Table</h3>
+
+        <div class="code">Employee
+          ------------------------------------------
+          EmpID | Name | Salary | Department | Phone</div>
+
+        <p>
+          मान लीजिए सामान्य employee को salary और phone information नहीं दिखानी है। इसके
+          लिए limited columns वाली view बनाई जा सकती है।
+        </p>
+
+        <div class="code">CREATE VIEW Employee_Public AS
+          SELECT EmpID, Name, Department
+          FROM Employee;</div>
+
+        <p>अब authorized user को:</p>
+
+        <div class="code">SELECT *
+          FROM Employee_Public;</div>
+
+        <p>
+          से केवल selected columns दिखाई जा सकती हैं। इस तरह view sensitive columns की
+          direct exposure कम करने में सहायता कर सकती है।
+        </p>
+
+        <h3>Row-Level Restriction Example</h3>
+
+        <p>
+          View के द्वारा rows भी filter की जा सकती हैं।
+        </p>
+
+        <div class="code">CREATE VIEW PGDCA_Students AS
+          SELECT StudentID, Name, Course
+          FROM Student
+          WHERE Course = 'PGDCA';</div>
+
+        <p>
+          इस view के माध्यम से केवल PGDCA course के students का selected data expose किया
+          जा सकता है।
+        </p>
+
+        <h3>Views के Security Benefits</h3>
+        <ul>
+          <li>Sensitive columns को hide करने में सहायता।</li>
+          <li>Specific rows तक access limit करने में सहायता।</li>
+          <li>Users को simplified interface देना।</li>
+          <li>Underlying tables का direct access कम करने में सहायता।</li>
+          <li>Role-based data exposure implement करने में useful।</li>
+        </ul>
+
+        <div class="important">
+          <b>Important:</b> View security का एक layer है। केवल view बनाना complete database
+          security solution नहीं है; privileges और अन्य security controls भी properly configure
+          करने चाहिए।
+        </div>
+      </section>
+
+      <section id="securityconstraints">
+        <h2>4. Security Constraints</h2>
+
+        <p>
+          <strong>Security constraints</strong> वे rules और controls हैं जो database resources
+          तक access को restrict और regulate करते हैं। इनका उद्देश्य यह सुनिश्चित करना है कि
+          केवल authorized users ही specified data या operations perform कर सकें।
+        </p>
+
+        <h3>मुख्य Security Controls</h3>
+
+        <table>
+          <tr>
+            <th>Control</th>
+            <th>Purpose</th>
+          </tr>
+          <tr>
+            <td>Authentication</td>
+            <td>User की identity verify करना।</td>
+          </tr>
+          <tr>
+            <td>Authorization</td>
+            <td>User की permissions define करना।</td>
+          </tr>
+          <tr>
+            <td>Privileges</td>
+            <td>Specific operations जैसे SELECT/INSERT आदि को control करना।</td>
+          </tr>
+          <tr>
+            <td>Roles</td>
+            <td>Multiple privileges को logical group में manage करना।</td>
+          </tr>
+          <tr>
+            <td>Views</td>
+            <td>Users को selected rows/columns expose करना।</td>
+          </tr>
+          <tr>
+            <td>Encryption</td>
+            <td>Data को protected form में encode करना।</td>
+          </tr>
+          <tr>
+            <td>Auditing</td>
+            <td>Database activities और access events को track करने में सहायता।</td>
+          </tr>
+        </table>
+
+        <h3>Role-Based Authorization</h3>
+
+        <p>
+          बड़े systems में individual users को अलग-अलग privileges देने के बजाय roles
+          बनाकर permissions manage करना आसान हो सकता है।
+        </p>
+
+        <div class="flow">
+          User
+          ↓
+          Role
+          ↓
+          Privileges
+          ↓
+          Database Objects
+        </div>
+
+        <p>
+          उदाहरण: <strong>Teacher</strong> role को Student table पर SELECT privilege दिया जा
+          सकता है, जबकि <strong>Admin</strong> role को SELECT, INSERT, UPDATE और DELETE जैसे
+          additional privileges दिए जा सकते हैं।
+        </p>
+
+        <h3>Principle of Least Privilege</h3>
+
+        <p>
+          <strong>Least Privilege</strong> का अर्थ है user को केवल उतनी permissions देना
+          जितनी उसके काम के लिए आवश्यक हैं। इससे unauthorized modification या accidental
+          misuse का risk कम करने में सहायता मिलती है।
+        </p>
+
+        <div class="exam">
+          <b>Exam Point:</b> Security constraints access control को enforce करते हैं ताकि
+          unauthorized users database resources को freely access या modify न कर सकें।
+        </div>
+      </section>
+
+      <section id="integrity">
+        <h2>5. Integrity Constraints</h2>
+
+        <p>
+          <strong>Integrity Constraints</strong> database में data की correctness, validity
+          और consistency बनाए रखने के लिए लगाए गए rules हैं। ये ensure करते हैं कि invalid
+          या logically inconsistent data database में enter न हो।
+        </p>
+
+        <h3>Integrity और Security का संबंध</h3>
+
+        <p>
+          Security मुख्यतः यह control करती है कि <strong>कौन data access या modify कर सकता है</strong>,
+          जबकि integrity constraints यह control करते हैं कि <strong>database में किस प्रकार
+            का valid data store किया जा सकता है</strong>।
+        </p>
+
+        <h3>Major Integrity Constraints</h3>
+
+        <table>
+          <tr>
+            <th>Constraint</th>
+            <th>Purpose</th>
+            <th>Example</th>
+          </tr>
+          <tr>
+            <td>NOT NULL</td>
+            <td>Column में NULL value को prevent करता है।</td>
+            <td>Name VARCHAR(50) NOT NULL</td>
+          </tr>
+          <tr>
+            <td>UNIQUE</td>
+            <td>Duplicate values को restrict करता है।</td>
+            <td>Email VARCHAR(100) UNIQUE</td>
+          </tr>
+          <tr>
+            <td>PRIMARY KEY</td>
+            <td>प्रत्येक row को uniquely identify करता है।</td>
+            <td>StudentID INT PRIMARY KEY</td>
+          </tr>
+          <tr>
+            <td>FOREIGN KEY</td>
+            <td>Related tables के बीच referential integrity maintain करता है।</td>
+            <td>FOREIGN KEY (DeptID) REFERENCES Department(DeptID)</td>
+          </tr>
+          <tr>
+            <td>CHECK</td>
+            <td>Column values पर condition enforce करता है।</td>
+            <td>Age INT CHECK (Age &gt;= 18)</td>
+          </tr>
+          <tr>
+            <td>DEFAULT</td>
+            <td>Value न दिए जाने पर default value provide करता है।</td>
+            <td>Status VARCHAR(20) DEFAULT 'Active'</td>
+          </tr>
+        </table>
+
+        <h3>Primary Key Example</h3>
+
+        <div class="code">CREATE TABLE Student (
+          StudentID INT PRIMARY KEY,
+          Name VARCHAR(50) NOT NULL
+          );</div>
+
+        <p>
+          StudentID को primary key बनाने से प्रत्येक student record की unique identification
+          maintain करने में सहायता मिलती है।
+        </p>
+
+        <h3>Foreign Key Example</h3>
+
+        <div class="code">CREATE TABLE Department (
+          DeptID INT PRIMARY KEY,
+          DeptName VARCHAR(50)
+          );
+
+          CREATE TABLE Employee (
+          EmpID INT PRIMARY KEY,
+          Name VARCHAR(50),
+          DeptID INT,
+          FOREIGN KEY (DeptID)
+          REFERENCES Department(DeptID)
+          );</div>
+
+        <p>
+          Foreign key यह ensure करने में सहायता करती है कि Employee में दिया गया DeptID
+          referenced Department table में valid department को refer करे।
+        </p>
+
+        <h3>CHECK Constraint Example</h3>
+
+        <div class="code">CREATE TABLE Employee (
+          EmpID INT PRIMARY KEY,
+          Age INT CHECK (Age >= 18)
+          );</div>
+
+        <p>
+          इससे age के लिए specified condition enforce की जा सकती है।
+        </p>
+
+        <h3>Types of Integrity</h3>
+
+        <div class="grid">
+          <div class="card">
+            <h4>Entity Integrity</h4>
+            <p>Primary key unique और appropriate identification provide करे तथा key value
+              NULL न हो।</p>
+          </div>
+
+          <div class="card">
+            <h4>Referential Integrity</h4>
+            <p>Foreign key relationships को valid referenced records के साथ consistent रखना।</p>
+          </div>
+
+          <div class="card">
+            <h4>Domain Integrity</h4>
+            <p>Column में valid data type और allowed value range/condition maintain करना।</p>
+          </div>
+
+          <div class="card">
+            <h4>User-Defined Integrity</h4>
+            <p>Application-specific business rules को enforce करना।</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="encryption">
+        <h2>6. Encryption</h2>
+
+        <p>
+          <strong>Encryption</strong> एक security technique है जिसमें readable data
+          (<strong>plaintext</strong>) को algorithm और key की सहायता से ऐसी protected form
+          (<strong>ciphertext</strong>) में transform किया जाता है जिसे unauthorized person
+          के लिए समझना कठिन हो।
+        </p>
+
+        <div class="flow">
+          Plaintext
+          ↓
+          Encryption Algorithm + Key
+          ↓
+          Ciphertext
+          ↓
+          Decryption + Key
+          ↓
+          Plaintext
+        </div>
+
+        <h3>Example Concept</h3>
+
+        <div class="code">Plaintext:
+          "Student Data"
+
+          ↓ Encryption
+
+          Ciphertext:
+          "Encrypted / Protected Data"
+
+          ↓ Decryption
+
+          Plaintext:
+          "Student Data"</div>
+
+        <p>
+          Real encryption में ciphertext algorithm और cryptographic key के आधार पर generate
+          होता है। ऊपर केवल concept समझाने के लिए simplified representation है।
+        </p>
+
+        <h3>Encryption के प्रमुख Types</h3>
+
+        <h4>1. Symmetric Encryption</h4>
+        <p>
+          Symmetric encryption में encryption और decryption के लिए same secret key का उपयोग
+          होता है। इसलिए sender और receiver को key securely share/manage करनी होती है।
+        </p>
+
+        <div class="flow">
+          Same Secret Key
+          ↓ ↑
+          Plaintext → Encryption → Ciphertext
+          Ciphertext → Decryption → Plaintext
+        </div>
+
+        <p>
+          Symmetric encryption large amounts of data को efficiently protect करने के लिए
+          commonly used approach है।
+        </p>
+
+        <h4>2. Asymmetric Encryption</h4>
+        <p>
+          Asymmetric encryption में key pair होता है: <strong>public key</strong> और
+          <strong>private key</strong>। दोनों keys का अलग-अलग role होता है।
+        </p>
+
+        <div class="flow">
+          Public Key → Encryption
+          Private Key → Decryption
+        </div>
+
+        <p>
+          Asymmetric cryptography secure communication और key exchange जैसे use cases में
+          important भूमिका निभाती है।
+        </p>
+
+        <h3>Encryption at Rest</h3>
+
+        <p>
+          जब database files या stored data disk/storage पर पड़ा होता है, उस data को protect
+          करने के लिए encryption-at-rest techniques का उपयोग किया जा सकता है।
+        </p>
+
+        <h3>Encryption in Transit</h3>
+
+        <p>
+          जब data network के माध्यम से application और database के बीच travel कर रहा हो,
+          तो secure communication mechanisms के द्वारा उसे protect किया जा सकता है।
+        </p>
+
+        <h3>Encryption के Benefits</h3>
+        <ul>
+          <li>Sensitive data की confidentiality बढ़ती है।</li>
+          <li>Unauthorized disclosure का risk कम करने में सहायता।</li>
+          <li>Stored data और transmitted data को protect किया जा सकता है।</li>
+          <li>Security और privacy requirements को support किया जा सकता है।</li>
+        </ul>
+
+        <div class="important">
+          <b>Important:</b> Encryption access control का replacement नहीं है। Strong database
+          security के लिए authorization, least privilege, integrity controls और encryption
+          जैसे multiple layers को appropriately combine करना चाहिए।
+        </div>
+      </section>
+
+      <section id="comparison">
+        <h2>7. Security Techniques Comparison</h2>
+
+        <table>
+          <tr>
+            <th>Technique</th>
+            <th>Main Question / Purpose</th>
+            <th>Example</th>
+          </tr>
+          <tr>
+            <td>Authentication</td>
+            <td>Who are you?</td>
+            <td>Login credentials</td>
+          </tr>
+          <tr>
+            <td>Authorization</td>
+            <td>What are you allowed to do?</td>
+            <td>SELECT privilege</td>
+          </tr>
+          <tr>
+            <td>View</td>
+            <td>What subset of data should be exposed?</td>
+            <td>View hiding Salary column</td>
+          </tr>
+          <tr>
+            <td>Integrity Constraint</td>
+            <td>Is the stored data valid and consistent?</td>
+            <td>PRIMARY KEY, FOREIGN KEY, CHECK</td>
+          </tr>
+          <tr>
+            <td>Encryption</td>
+            <td>How can data be protected from unauthorized disclosure?</td>
+            <td>Encrypted stored/transmitted data</td>
+          </tr>
+        </table>
+
+        <div class="flow">
+          Authentication
+          ↓
+          Authorization
+          ↓
+          Limited Data Access
+          ↓
+          Integrity Constraints
+          ↓
+          Encryption
+          ↓
+          Secure Database Environment
+        </div>
+      </section>
+
+      <section id="workflow">
+        <h2>8. Database Security Workflow</h2>
+
+        <h3>Example Scenario</h3>
+
+        <p>
+          मान लीजिए एक college database में Student और Employee information stored है।
+          एक secure design में अलग-अलग security mechanisms को combine किया जा सकता है।
+        </p>
+
+        <ol>
+          <li>User पहले authenticate होता है।</li>
+          <li>User को उसके role के आधार पर authorization दी जाती है।</li>
+          <li>View के माध्यम से केवल required columns/rows expose किए जाते हैं।</li>
+          <li>Integrity constraints invalid data को रोकते हैं।</li>
+          <li>Sensitive stored/transmitted data को encryption से protect किया जा सकता है।</li>
+          <li>Least privilege principle के अनुसार unnecessary permissions नहीं दी जातीं।</li>
+        </ol>
+
+        <div class="code">-- Example: Limited view
+          CREATE VIEW Student_Public AS
+          SELECT StudentID, Name, Course
+          FROM Student;
+
+          -- Example: Access permission
+          GRANT SELECT
+          ON Student_Public
+          TO teacher1;</div>
+
+        <p>
+          इस design में teacher को complete Student table की बजाय public view का access
+          दिया जा सकता है। यह example concept demonstration के लिए है; actual DBMS में
+          privilege syntax और security architecture product-specific हो सकते हैं।
+        </p>
+      </section>
+
+      <section id="revision">
+        <h2>9. Quick Revision & Important Questions</h2>
+
+        <table>
+          <tr>
+            <th>Topic</th>
+            <th>One-Line Revision</th>
+          </tr>
+          <tr>
+            <td>Database Security</td>
+            <td>Database को unauthorized access, modification और disclosure से protect करना।</td>
+          </tr>
+          <tr>
+            <td>Authorization</td>
+            <td>Authenticated user की allowed permissions determine करना।</td>
+          </tr>
+          <tr>
+            <td>GRANT</td>
+            <td>Privileges देना।</td>
+          </tr>
+          <tr>
+            <td>REVOKE</td>
+            <td>Privileges वापस लेना।</td>
+          </tr>
+          <tr>
+            <td>View Security</td>
+            <td>Selected rows/columns expose करके data access limit करना।</td>
+          </tr>
+          <tr>
+            <td>Security Constraints</td>
+            <td>Database access और operations को control करने वाले rules।</td>
+          </tr>
+          <tr>
+            <td>Integrity Constraints</td>
+            <td>Data validity और consistency maintain करने वाले rules।</td>
+          </tr>
+          <tr>
+            <td>Primary Key</td>
+            <td>Record को uniquely identify करती है।</td>
+          </tr>
+          <tr>
+            <td>Foreign Key</td>
+            <td>Related tables के बीच referential integrity maintain करती है।</td>
+          </tr>
+          <tr>
+            <td>Encryption</td>
+            <td>Plaintext को protected ciphertext में transform करना।</td>
+          </tr>
+          <tr>
+            <td>Symmetric Encryption</td>
+            <td>Same secret key for encryption/decryption।</td>
+          </tr>
+          <tr>
+            <td>Asymmetric Encryption</td>
+            <td>Public/private key pair का उपयोग।</td>
+          </tr>
+        </table>
+
+        <div class="exam">
+          <b>Important Long-Answer Questions</b><br><br>
+          1. Database Security क्या है? इसके objectives समझाइए।<br>
+          2. Authorization क्या है? Authentication और Authorization में अंतर लिखिए।<br>
+          3. GRANT और REVOKE commands को examples सहित समझाइए।<br>
+          4. Database security में Views का क्या महत्व है? Example सहित समझाइए।<br>
+          5. Security Constraints क्या हैं? प्रमुख security controls समझाइए।<br>
+          6. Integrity Constraints क्या हैं? विभिन्न integrity constraints समझाइए।<br>
+          7. Primary Key और Foreign Key database integrity में कैसे सहायता करते हैं?<br>
+          8. Entity Integrity, Referential Integrity और Domain Integrity समझाइए।<br>
+          9. Encryption क्या है? इसके working को diagram सहित समझाइए।<br>
+          10. Symmetric और Asymmetric Encryption में अंतर लिखिए।<br>
+          11. Encryption at Rest और Encryption in Transit समझाइए।<br>
+          12. Authorization, Views, Integrity Constraints और Encryption मिलकर database security कैसे improve करते हैं?
+        </div>
+
+        <div class="note">
+          <b>Exam Writing Pattern:</b><br>
+          इस chapter के answer में
+          <strong>Definition → Need → Working → Types → Example → Advantages → Difference → Conclusion</strong>
+          का sequence रखें। Security topic में practical SQL examples के साथ concept explain
+          करना answer को अधिक clear बनाता है।
+        </div>
+
+        <h3>Conclusion</h3>
+        <p>
+          Database security एक single technique पर depend नहीं करती। Authorization यह control
+          करता है कि user क्या access कर सकता है, views selected data expose करने में मदद
+          करते हैं, integrity constraints data को valid और consistent रखने में सहायता करते
+          हैं, जबकि encryption sensitive information की confidentiality protect करने में
+          महत्वपूर्ण भूमिका निभाती है। इन controls को सही तरीके से combine करके एक मजबूत
+          database security architecture बनाया जा सकता है।
+        </p>
+
+      </section>
+    </main>
+  </div>
+</body>
+
+</html>

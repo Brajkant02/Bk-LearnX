@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+       <!-- Google tag (gtag.js) -->
+       <script async src="https://www.googletagmanager.com/gtag/js?id=G-FB7SX0P0D3"></script>
+       <script>
+              window.dataLayer = window.dataLayer || [];
+              function gtag() { dataLayer.push(arguments); }
+              gtag('js', new Date());
+
+              gtag('config', 'G-FB7SX0P0D3');
+       </script>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width,initial-scale=1">
+       <title>Relational Database Design - Normalization</title>
+       <style>
+              * {
+                     box-sizing: border-box
+              }
+
+              html {
+                     scroll-behavior: smooth
+              }
+
+              body {
+                     margin: 0;
+                     background: #f3f6fa;
+                     color: #1f2937;
+                     font-family: "Segoe UI", Arial, sans-serif;
+                     line-height: 1.8
+              }
+
+              .layout {
+                     max-width: 1550px;
+                     margin: auto;
+                     padding: 14px;
+                     display: grid;
+                     grid-template-columns: 290px 1fr;
+                     gap: 18px
+              }
+
+              aside {
+                     position: sticky;
+                     top: 14px;
+                     height: calc(100vh - 28px);
+                     overflow: auto;
+                     background: #fff;
+                     padding: 20px;
+                     border-radius: 18px;
+                     box-shadow: 0 5px 22px #0001
+              }
+
+              aside h2 {
+                     margin: 0 0 12px;
+                     color: #111827
+              }
+
+              aside a {
+                     display: block;
+                     padding: 7px 9px;
+                     margin: 3px 0;
+                     border-radius: 8px;
+                     text-decoration: none;
+                     color: #374151;
+                     font-size: 14px
+              }
+
+              aside a:hover {
+                     background: #e0e7ff;
+                     color: #1d4ed8
+              }
+
+              main {
+                     background: #fff;
+                     border-radius: 20px;
+                     box-shadow: 0 5px 22px #0001;
+                     overflow: hidden
+              }
+
+              .hero {
+                     padding: 34px;
+                     background: linear-gradient(135deg, #dbeafe, #eef2ff, #f8fafc)
+              }
+
+              .hero h1 {
+                     margin: 0 0 8px;
+                     font-size: 36px;
+                     color: #111827
+              }
+
+              .hero p {
+                     margin: 5px 0;
+                     color: #475569
+              }
+
+              section {
+                     padding: 28px 30px;
+                     border-bottom: 1px solid #e5e7eb
+              }
+
+              section:last-child {
+                     border: 0
+              }
+
+              h2 {
+                     font-size: 28px;
+                     color: #172554;
+                     border-left: 5px solid #2563eb;
+                     padding-left: 12px;
+                     margin: 0 0 18px
+              }
+
+              h3 {
+                     font-size: 21px;
+                     color: #1e3a8a;
+                     margin: 24px 0 8px
+              }
+
+              h4 {
+                     font-size: 18px;
+                     color: #334155;
+                     margin: 18px 0 5px
+              }
+
+              p {
+                     font-size: 16.5px;
+                     margin: 10px 0
+              }
+
+              li {
+                     font-size: 16px;
+                     margin: 7px 0
+              }
+
+              .note,
+              .exam,
+              .important {
+                     padding: 16px 18px;
+                     border-radius: 12px;
+                     margin: 18px 0
+              }
+
+              .note {
+                     background: #eff6ff;
+                     border-left: 5px solid #3b82f6
+              }
+
+              .exam {
+                     background: #ecfdf5;
+                     border-left: 5px solid #10b981
+              }
+
+              .important {
+                     background: #fff7ed;
+                     border-left: 5px solid #f97316
+              }
+
+              .grid {
+                     display: grid;
+                     grid-template-columns: repeat(2, 1fr);
+                     gap: 15px;
+                     margin: 18px 0
+              }
+
+              .card {
+                     background: #f8fafc;
+                     border: 1px solid #dbe3ef;
+                     border-radius: 14px;
+                     padding: 17px
+              }
+
+              .card h4 {
+                     margin-top: 0;
+                     color: #1d4ed8
+              }
+
+              table {
+                     width: 100%;
+                     border-collapse: collapse;
+                     margin: 18px 0;
+                     font-size: 15px
+              }
+
+              th,
+              td {
+                     border: 1px solid #cbd5e1;
+                     padding: 11px;
+                     vertical-align: top;
+                     text-align: left
+              }
+
+              th {
+                     background: #eef2ff;
+                     color: #111827
+              }
+
+              .flow {
+                     background: #09090b;
+                     color: #f8fafc;
+                     padding: 20px;
+                     border-radius: 14px;
+                     text-align: center;
+                     font-family: Consolas, monospace;
+                     overflow: auto;
+                     margin: 18px 0
+              }
+
+              .diagram {
+                     background: #f8fafc;
+                     border: 2px dashed #94a3b8;
+                     border-radius: 15px;
+                     padding: 22px;
+                     text-align: center;
+                     margin: 18px 0
+              }
+
+              .code {
+                     background: #0b0b0b;
+                     color: #e5e7eb;
+                     border-radius: 12px;
+                     padding: 18px;
+                     overflow: auto;
+                     font-family: Consolas, monospace
+              }
+
+              .badge {
+                     display: inline-block;
+                     background: #dbeafe;
+                     color: #1e40af;
+                     padding: 3px 10px;
+                     border-radius: 20px;
+                     font-size: 12px;
+                     font-weight: 700
+              }
+
+              @media(max-width:900px) {
+                     .layout {
+                            display: block;
+                            padding: 5px
+                     }
+
+                     aside {
+                            display: none
+                     }
+
+                     .hero {
+                            padding: 24px 18px
+                     }
+
+                     .hero h1 {
+                            font-size: 28px
+                     }
+
+                     section {
+                            padding: 22px 18px
+                     }
+
+                     h2 {
+                            font-size: 23px
+                     }
+
+                     .grid {
+                            grid-template-columns: 1fr
+                     }
+
+                     p,
+                     li {
+                            font-size: 15px
+                     }
+
+                     table {
+                            display: block;
+                            overflow-x: auto
+                     }
+              }
+       </style>
+</head>
+
+<body>
+       <div class="layout">
+
+              <aside>
+                     <h2>Topics</h2>
+                     <a href="#intro">1. Relational Database Design</a>
+                     <a href="#normalization">2. Normalization</a>
+                     <a href="#purpose">3. Purpose of Normalization</a>
+                     <a href="#redundancy">4. Data Redundancy</a>
+                     <a href="#anomalies">5. Updating Anomalies</a>
+                     <a href="#fd">6. Functional Dependencies</a>
+                     <a href="#decomposition">7. Decomposition</a>
+                     <a href="#1nf">8. First Normal Form</a>
+                     <a href="#2nf">9. Second Normal Form</a>
+                     <a href="#3nf">10. Third Normal Form</a>
+                     <a href="#bcnf">11. BCNF</a>
+                     <a href="#mvd">12. Multivalued Dependencies</a>
+                     <a href="#4nf">13. Fourth Normal Form</a>
+                     <a href="#5nf">14. Fifth Normal Form</a>
+                     <a href="#process">15. Normalization Process</a>
+                     <a href="#comparison">16. Normal Forms Comparison</a>
+                     <a href="#revision">17. Revision & Questions</a>
+              </aside>
+
+              <main>
+
+                     <div class="hero">
+                            <h1>Relational Database Design</h1>
+                     </div>
+
+                     <section id="intro">
+                            <h2>1. Relational Database Design</h2>
+
+                            <p>
+                                   <strong>Relational Database Design</strong> का अर्थ है database की tables,
+                                   attributes,
+                                   keys और relationships को इस प्रकार design करना कि data accurate, consistent,
+                                   efficient और easy to maintain रहे। एक अच्छे relational design में information को
+                                   logical relations/tables में organize किया जाता है और unnecessary duplication को
+                                   कम किया जाता है।
+                            </p>
+
+                            <p>
+                                   अगर एक ही table में बहुत अलग-अलग प्रकार की information store कर दी जाए, तो same
+                                   information बार-बार repeat हो सकती है। इससे storage waste होने के साथ-साथ insertion,
+                                   update और deletion के समय problems उत्पन्न हो सकती हैं। इन्हीं problems को कम करने
+                                   के लिए <strong>Normalization</strong> का उपयोग किया जाता है।
+                            </p>
+
+                            <div class="flow">
+                                   Poorly Designed Relation
+                                   ↓
+                                   Redundancy + Dependencies
+                                   ↓
+                                   Insertion / Update / Deletion Anomalies
+                                   ↓
+                                   Normalization + Decomposition
+                                   ↓
+                                   Better Relational Design
+                            </div>
+
+                            <div class="exam">
+                                   <b>Exam Definition:</b><br>
+                                   Relational database design is the process of organizing data into related tables
+                                   with appropriate keys, dependencies and constraints to reduce redundancy and
+                                   maintain data integrity.
+                            </div>
+                     </section>
+
+                     <section id="normalization">
+                            <h2>2. What is Normalization?</h2>
+
+                            <p>
+                                   <strong>Normalization</strong> relational database को व्यवस्थित करने की एक systematic
+                                   process है जिसमें tables को ऐसे structure में transform किया जाता है जिससे
+                                   unnecessary data redundancy और undesirable dependencies कम हों तथा data integrity
+                                   बेहतर हो। GeeksforGeeks के अनुसार normalization का मुख्य उद्देश्य redundancy को
+                                   reduce/eliminate करना और insertion, update तथा deletion anomalies को avoid करना है।
+                            </p>
+
+                            <p>
+                                   Normalization में अक्सर एक बड़ी relation को smaller related relations में
+                                   <strong>decompose</strong> किया जाता है। Decomposed tables को keys के माध्यम से
+                                   आपस में relate किया जाता है। इससे प्रत्येक table एक specific fact या subject को
+                                   represent करने के करीब आ जाता है।
+                            </p>
+
+                            <h3>Normal Forms का क्रम</h3>
+                            <div class="flow">
+                                   1NF → 2NF → 3NF → BCNF → 4NF → 5NF
+                            </div>
+
+                            <p>
+                                   हर higher normal form पहले वाले normal form की conditions को satisfy करती है और
+                                   उसके ऊपर additional restrictions लगाती है। सामान्य progression में 1NF atomic
+                                   values पर focus करता है, 2NF partial dependency हटाता है, 3NF transitive dependency
+                                   को address करता है, BCNF determinants को superkeys बनाता है, 4NF multivalued
+                                   dependencies और 5NF join dependencies को address करता है।
+                            </p>
+
+                            <div class="note">
+                                   <b>Important:</b> Normalization का उद्देश्य केवल "ज्यादा tables बनाना" नहीं है।
+                                   मुख्य उद्देश्य logical structure improve करना, redundancy/anomalies reduce करना
+                                   और data dependencies को properly represent करना है।
+                            </div>
+                     </section>
+
+                     <section id="purpose">
+                            <h2>3. Purpose of Normalization</h2>
+
+                            <p>
+                                   Normalization database design की quality improve करने के लिए किया जाता है। जब
+                                   same fact कई rows में repeated होता है, तो future updates में inconsistency की
+                                   possibility बढ़ती है। Normalization related facts को appropriate relations में
+                                   separate करने में सहायता करता है।
+                            </p>
+
+                            <h3>Major Objectives</h3>
+                            <ol>
+                                   <li><strong>Reduce Data Redundancy:</strong> Same information को unnecessary तरीके से
+                                          बार-बार store करने से बचना।</li>
+                                   <li><strong>Prevent Update Anomalies:</strong> एक fact बदलने पर multiple rows में
+                                          manual changes की आवश्यकता कम करना।</li>
+                                   <li><strong>Prevent Insertion Anomalies:</strong> किसी independent fact को store करने
+                                          के लिए unrelated data की आवश्यकता न पड़े।</li>
+                                   <li><strong>Prevent Deletion Anomalies:</strong> एक record delete करने पर unrelated
+                                          useful information accidentally delete न हो।</li>
+                                   <li><strong>Improve Data Integrity:</strong> प्रत्येक fact को appropriate place पर
+                                          maintain करना।</li>
+                                   <li><strong>Improve Maintainability:</strong> Database structure को understand और
+                                          maintain करना आसान बनाना।</li>
+                                   <li><strong>Reduce Inconsistency:</strong> Duplicate copies के बीच conflicting values
+                                          की possibility कम करना।</li>
+                                   <li><strong>Create Logical Relationships:</strong> Tables के बीच proper keys और
+                                          dependencies establish करना।</li>
+                            </ol>
+
+                            <div class="exam">
+                                   <b>Exam Line:</b> Normalization is used to reduce redundancy, eliminate undesirable
+                                   dependencies and prevent insertion, update and deletion anomalies.
+                            </div>
+                     </section>
+
+                     <section id="redundancy">
+                            <h2>4. Data Redundancy</h2>
+
+                            <p>
+                                   <strong>Data Redundancy</strong> का अर्थ है same piece of information का database में
+                                   unnecessarily multiple times stored होना। थोड़ी controlled redundancy कभी-कभी
+                                   performance या business requirements के लिए intentionally रखी जा सकती है, लेकिन
+                                   unnecessary redundancy database design problem बन सकती है।
+                            </p>
+
+                            <h3>Example</h3>
+
+                            <table>
+                                   <tr>
+                                          <th>StudentID</th>
+                                          <th>StudentName</th>
+                                          <th>CourseID</th>
+                                          <th>CourseName</th>
+                                          <th>Teacher</th>
+                                   </tr>
+                                   <tr>
+                                          <td>101</td>
+                                          <td>Amit</td>
+                                          <td>C01</td>
+                                          <td>DBMS</td>
+                                          <td>Dr. Rao</td>
+                                   </tr>
+                                   <tr>
+                                          <td>102</td>
+                                          <td>Neha</td>
+                                          <td>C01</td>
+                                          <td>DBMS</td>
+                                          <td>Dr. Rao</td>
+                                   </tr>
+                                   <tr>
+                                          <td>103</td>
+                                          <td>Rahul</td>
+                                          <td>C01</td>
+                                          <td>DBMS</td>
+                                          <td>Dr. Rao</td>
+                                   </tr>
+                            </table>
+
+                            <p>
+                                   ऊपर CourseName और Teacher की information प्रत्येक student row में repeat हो रही है।
+                                   अगर C01 में 500 students हैं, तो वही course-related information 500 rows में
+                                   repeat हो सकती है। यही redundancy का example है।
+                            </p>
+
+                            <h3>Problems Caused by Redundancy</h3>
+                            <ul>
+                                   <li>Extra storage requirement।</li>
+                                   <li>Update के समय multiple rows change करनी पड़ सकती हैं।</li>
+                                   <li>एक row update और दूसरी row unchanged रहने पर inconsistency हो सकती है।</li>
+                                   <li>Insertion और deletion operations unnecessarily difficult हो सकते हैं।</li>
+                                   <li>Database maintenance complex हो सकती है।</li>
+                            </ul>
+
+                            <div class="important">
+                                   <b>Key Idea:</b> यदि एक fact database में कई places पर stored है, तो उस fact को
+                                   update करते समय सभी copies correctly update करना जरूरी हो जाता है।
+                            </div>
+                     </section>
+
+                     <section id="anomalies">
+                            <h2>5. Updating Anomalies</h2>
+
+                            <p>
+                                   Poor relational design और excessive redundancy से <strong>data anomalies</strong>
+                                   हो सकती हैं। Anomaly का अर्थ है database operation के दौरान unwanted inconsistency,
+                                   data loss या unexpected restriction उत्पन्न होना। मुख्य तीन anomalies हैं:
+                                   <strong>Insertion, Update और Deletion Anomaly</strong>.
+                            </p>
+
+                            <h3>1. Insertion Anomaly</h3>
+                            <p>
+                                   जब किसी independent information को insert करना संभव नहीं होता क्योंकि table में
+                                   किसी unrelated information की भी आवश्यकता पड़ती है, तो इसे insertion anomaly कहते
+                                   हैं।
+                            </p>
+
+                            <p>
+                                   <strong>Example:</strong> यदि CourseID और CourseName को StudentEnrollment table में
+                                   ही रखा गया है, तो नया course तब तक add करना difficult हो सकता है जब तक कोई student
+                                   उस course में enroll न हो।
+                            </p>
+
+                            <h3>2. Update Anomaly</h3>
+                            <p>
+                                   जब एक fact multiple rows में repeated हो और उसे update करने के लिए कई rows बदलनी
+                                   पड़ें, तो update anomaly हो सकती है। यदि कुछ rows update हो जाएँ और कुछ नहीं, तो
+                                   database inconsistent हो सकता है।
+                            </p>
+
+                            <p>
+                                   <strong>Example:</strong> किसी course के instructor का नाम 100 rows में stored है।
+                                   Instructor का नाम बदलने पर सभी 100 rows update करनी पड़ सकती हैं।
+                            </p>
+
+                            <h3>3. Deletion Anomaly</h3>
+                            <p>
+                                   जब किसी record को delete करने पर उस record के साथ unrelated but important information
+                                   भी खो जाए, तो deletion anomaly कहलाती है।
+                            </p>
+
+                            <p>
+                                   <strong>Example:</strong> यदि किसी course की information केवल उसके last enrolled
+                                   student के row में stored है और उस student को delete कर दिया जाए, तो course की
+                                   information भी accidentally lost हो सकती है।
+                            </p>
+
+                            <table>
+                                   <tr>
+                                          <th>Anomaly</th>
+                                          <th>Meaning</th>
+                                          <th>Typical Problem</th>
+                                   </tr>
+                                   <tr>
+                                          <td>Insertion</td>
+                                          <td>New fact insert करना difficult</td>
+                                          <td>Unrelated data required</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Update</td>
+                                          <td>Same fact कई places पर update करना</td>
+                                          <td>Inconsistent copies</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Deletion</td>
+                                          <td>Data delete करते समय useful fact भी lost होना</td>
+                                          <td>Unintended information loss</td>
+                                   </tr>
+                            </table>
+
+                            <div class="exam">
+                                   <b>Remember:</b> Normalization anomalies को reduce करने का primary database-design
+                                   technique है।
+                            </div>
+                     </section>
+
+                     <section id="fd">
+                            <h2>6. Functional Dependencies</h2>
+
+                            <p>
+                                   <strong>Functional Dependency (FD)</strong> relation के attributes के बीच एक
+                                   constraint
+                                   है। यदि attribute/set of attributes <strong>X</strong> की value किसी attribute/set
+                                   of attributes <strong>Y</strong> की value को uniquely determine करती है, तो हम लिखते
+                                   हैं:
+                            </p>
+
+                            <div class="flow">
+                                   X → Y
+                            </div>
+
+                            <p>
+                                   इसे पढ़ते हैं: <strong>"X functionally determines Y"</strong>. X को determinant
+                                   कहा जाता है और Y dependent attribute कहलाता है।
+                            </p>
+
+                            <h3>Simple Example</h3>
+                            <p>
+                                   मान लें StudentID हर student के लिए unique है:
+                            </p>
+
+                            <div class="flow">
+                                   StudentID → StudentName
+                                   StudentID → Course
+                            </div>
+
+                            <p>
+                                   यदि StudentID = 101 है, तो उस ID से associated StudentName और Course uniquely
+                                   determine किए जा सकते हैं।
+                            </p>
+
+                            <h3>Types of Functional Dependency</h3>
+
+                            <div class="grid">
+                                   <div class="card">
+                                          <h4>Trivial FD</h4>
+                                          <p>जब Y, X का subset हो, जैसे {StudentID, Name} → Name।</p>
+                                   </div>
+                                   <div class="card">
+                                          <h4>Non-Trivial FD</h4>
+                                          <p>जब Y, X का subset न हो, जैसे StudentID → StudentName।</p>
+                                   </div>
+                                   <div class="card">
+                                          <h4>Full Functional Dependency</h4>
+                                          <p>Y पूरी composite key X पर depend करता है और X के किसी proper subset पर
+                                                 depend नहीं करता।</p>
+                                   </div>
+                                   <div class="card">
+                                          <h4>Partial Dependency</h4>
+                                          <p>Composite key के केवल एक proper subset से non-key attribute determine हो
+                                                 जाए। यह 2NF में allowed नहीं है।</p>
+                                   </div>
+                                   <div class="card">
+                                          <h4>Transitive Dependency</h4>
+                                          <p>जब X → Y और Y → Z होने के कारण X → Z indirectly प्राप्त होता है। 3NF का
+                                                 प्रमुख focus इसे remove करना है।</p>
+                                   </div>
+                            </div>
+
+                            <h3>Candidate Key और Prime Attribute</h3>
+                            <p>
+                                   Normalization समझने के लिए <strong>candidate key</strong> और <strong>prime
+                                          attribute</strong>
+                                   महत्वपूर्ण हैं। Candidate key वह minimal attribute set है जो relation के प्रत्येक
+                                   tuple को uniquely identify कर सकता है। किसी candidate key का हिस्सा prime attribute
+                                   कहलाता है। Candidate key का हिस्सा न होने वाला attribute non-prime attribute कहलाता
+                                   है।
+                            </p>
+
+                            <div class="note">
+                                   <b>Normalization Connection:</b><br>
+                                   2NF → Partial dependency नहीं<br>
+                                   3NF → Transitive dependency नहीं<br>
+                                   BCNF → हर determinant superkey होना चाहिए
+                            </div>
+                     </section>
+
+                     <section id="decomposition">
+                            <h2>7. Decomposition</h2>
+
+                            <p>
+                                   <strong>Decomposition</strong> का अर्थ है एक large relation को दो या अधिक smaller
+                                   relations में divide करना ताकि redundancy और undesirable dependencies को reduce किया
+                                   जा सके। Normalization में decomposition एक fundamental operation है।
+                            </p>
+
+                            <h3>Example</h3>
+                            <p>मान लें:</p>
+
+                            <div class="flow">
+                                   ENROLLMENT(StudentID, StudentName, CourseID, CourseName, Instructor)
+                            </div>
+
+                            <p>अगर dependencies हैं:</p>
+
+                            <div class="flow">
+                                   StudentID → StudentName
+                                   CourseID → CourseName, Instructor
+                            </div>
+
+                            <p>तो relation को logically split किया जा सकता है:</p>
+
+                            <div class="flow">
+                                   STUDENT(StudentID, StudentName)
+
+                                   COURSE(CourseID, CourseName, Instructor)
+
+                                   ENROLLMENT(StudentID, CourseID)
+                            </div>
+
+                            <p>
+                                   अब Student information और Course information एक ही बात को बार-बार store नहीं करतीं।
+                                   Tables को keys के माध्यम से join करके combined information प्राप्त की जा सकती है।
+                            </p>
+
+                            <h3>Good Decomposition की Properties</h3>
+                            <ol>
+                                   <li><strong>Lossless Join:</strong> Decomposed relations को join करने पर original
+                                          information recover हो सके और spurious/lost information न आए।</li>
+                                   <li><strong>Dependency Preservation:</strong> Original functional dependencies को
+                                          decomposed relations पर enforce करना possible हो।</li>
+                                   <li><strong>Reduced Redundancy:</strong> Repeated facts को appropriate relations में
+                                          separate करना।</li>
+                                   <li><strong>Improved Integrity:</strong> Dependencies और constraints को clearer
+                                          बनाना।</li>
+                            </ol>
+
+                            <div class="important">
+                                   <b>Exam Point:</b> Normalization में decomposition करते समय केवल tables split करना
+                                   पर्याप्त नहीं है;
+                                   lossless join और dependency preservation जैसी properties भी important हैं।
+                            </div>
+                     </section>
+
+                     <section id="1nf">
+                            <h2>8. First Normal Form (1NF)</h2>
+
+                            <p>
+                                   <strong>1NF</strong> normalization का पहला level है। किसी relation को 1NF में होने के
+                                   लिए प्रत्येक attribute में <strong>atomic (single-valued) value</strong> होनी चाहिए।
+                                   Repeating groups, arrays या multiple values एक ही cell में नहीं होने चाहिए।
+                                   GeeksforGeeks के अनुसार 1NF में columns atomic values रखते हैं और repeating groups
+                                   नहीं होने चाहिए।
+                            </p>
+
+                            <h3>Rules of 1NF</h3>
+                            <ol>
+                                   <li>Each cell should contain a single value.</li>
+                                   <li>Repeating groups नहीं होने चाहिए।</li>
+                                   <li>Multi-valued attributes को अलग rows/relations में represent करना चाहिए।</li>
+                                   <li>Rows को identify करने के लिए appropriate key होना चाहिए।</li>
+                            </ol>
+
+                            <h3>Not in 1NF</h3>
+                            <table>
+                                   <tr>
+                                          <th>StudentID</th>
+                                          <th>Name</th>
+                                          <th>PhoneNumbers</th>
+                                   </tr>
+                                   <tr>
+                                          <td>101</td>
+                                          <td>Amit</td>
+                                          <td>9876..., 8765...</td>
+                                   </tr>
+                            </table>
+
+                            <p>एक cell में दो phone numbers हैं, इसलिए यह atomic-value rule violate करता है।</p>
+
+                            <h3>Convert to 1NF</h3>
+                            <table>
+                                   <tr>
+                                          <th>StudentID</th>
+                                          <th>Name</th>
+                                          <th>PhoneNumber</th>
+                                   </tr>
+                                   <tr>
+                                          <td>101</td>
+                                          <td>Amit</td>
+                                          <td>9876...</td>
+                                   </tr>
+                                   <tr>
+                                          <td>101</td>
+                                          <td>Amit</td>
+                                          <td>8765...</td>
+                                   </tr>
+                            </table>
+
+                            <p>
+                                   या practical relational design में Student और StudentPhone जैसी separate relations
+                                   बनाई जा सकती हैं, depending on keys and requirements.
+                            </p>
+
+                            <div class="exam">
+                                   <b>One-Line Rule:</b> <strong>1NF = Atomic values + No repeating groups.</strong>
+                            </div>
+                     </section>
+
+                     <section id="2nf">
+                            <h2>9. Second Normal Form (2NF)</h2>
+
+                            <p>
+                                   किसी relation के 2NF में होने के लिए वह पहले 1NF में होना चाहिए और कोई non-prime
+                                   attribute composite candidate key के केवल एक proper subset पर depend नहीं होना चाहिए।
+                                   इसे <strong>no partial dependency</strong> के रूप में याद किया जाता है।
+                            </p>
+
+                            <h3>Example</h3>
+                            <p>Relation:</p>
+                            <div class="flow">
+                                   ENROLLMENT(StudentID, CourseID, StudentName, CourseName, Marks)
+                                   Key = (StudentID, CourseID)
+                            </div>
+
+                            <p>Functional dependencies:</p>
+                            <div class="flow">
+                                   StudentID → StudentName
+                                   CourseID → CourseName
+                                   (StudentID, CourseID) → Marks
+                            </div>
+
+                            <p>
+                                   StudentName केवल StudentID पर depend कर रहा है, जबकि StudentID composite key का
+                                   एक हिस्सा है। इसी प्रकार CourseName केवल CourseID पर depend कर रहा है। इसलिए
+                                   partial dependencies मौजूद हैं और relation 2NF में नहीं है।
+                            </p>
+
+                            <h3>Decomposition</h3>
+                            <div class="flow">
+                                   STUDENT(StudentID, StudentName)
+
+                                   COURSE(CourseID, CourseName)
+
+                                   ENROLLMENT(StudentID, CourseID, Marks)
+                            </div>
+
+                            <p>
+                                   अब StudentName StudentID पर depend करता है, CourseName CourseID पर depend करता है,
+                                   और Marks पूरी composite key (StudentID, CourseID) पर depend करता है।
+                            </p>
+
+                            <div class="exam">
+                                   <b>One-Line Rule:</b> <strong>2NF = 1NF + No Partial Dependency.</strong>
+                            </div>
+                     </section>
+
+                     <section id="3nf">
+                            <h2>10. Third Normal Form (3NF)</h2>
+
+                            <p>
+                                   3NF में relation को 2NF में होना चाहिए और non-prime attributes में undesirable
+                                   <strong>transitive dependency</strong> नहीं होनी चाहिए। Standard 3NF condition को
+                                   functional dependency X → Y के लिए इस प्रकार समझा जाता है: X superkey हो या Y prime
+                                   attribute हो। citeturn0search2turn0search6
+                            </p>
+
+                            <h3>Transitive Dependency</h3>
+                            <p>मान लें:</p>
+                            <div class="flow">
+                                   StudentID → DepartmentID
+                                   DepartmentID → DepartmentName
+
+                                   Therefore:
+                                   StudentID → DepartmentName
+                            </div>
+
+                            <p>
+                                   यहाँ DepartmentName directly StudentID की property नहीं है; वह DepartmentID के
+                                   through determine हो रहा है। यही transitive dependency का example है।
+                            </p>
+
+                            <h3>Decomposition</h3>
+                            <div class="flow">
+                                   STUDENT(StudentID, StudentName, DepartmentID)
+
+                                   DEPARTMENT(DepartmentID, DepartmentName)
+                            </div>
+
+                            <p>
+                                   अब DepartmentName केवल Department table में stored है। Student table DepartmentID
+                                   के माध्यम से Department से related है।
+                            </p>
+
+                            <div class="exam">
+                                   <b>One-Line Rule:</b> <strong>3NF = 2NF + No Transitive Dependency for non-prime
+                                          attributes.</strong>
+                            </div>
+                     </section>
+
+                     <section id="bcnf">
+                            <h2>11. Boyce-Codd Normal Form (BCNF)</h2>
+
+                            <p>
+                                   <strong>BCNF (Boyce-Codd Normal Form)</strong> 3NF से stricter normal form है।
+                                   BCNF में प्रत्येक non-trivial functional dependency <strong>X → Y</strong> के लिए
+                                   X का superkey होना आवश्यक है। GeeksforGeeks के अनुसार BCNF का key test यही है कि
+                                   हर determinant superkey होना चाहिए। citeturn0search5turn0search3
+                            </p>
+
+                            <h3>BCNF Rule</h3>
+                            <div class="flow">
+                                   For every non-trivial FD X → Y:
+                                   X must be a Superkey
+                            </div>
+
+                            <p>
+                                   BCNF उन cases में useful है जहाँ relation 3NF में होने के बावजूद कुछ redundancy
+                                   functional dependencies के कारण बच सकती है, विशेषकर multiple candidate keys वाले
+                                   complex designs में।
+                            </p>
+
+                            <h3>3NF vs BCNF</h3>
+                            <table>
+                                   <tr>
+                                          <th>3NF</th>
+                                          <th>BCNF</th>
+                                   </tr>
+                                   <tr>
+                                          <td>हर FD में X superkey हो सकता है या Y prime attribute हो सकता है।</td>
+                                          <td>हर non-trivial FD में X superkey होना चाहिए।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Less strict</td>
+                                          <td>More strict</td>
+                                   </tr>
+                                   <tr>
+                                          <td>कुछ special redundancy cases allow कर सकता है।</td>
+                                          <td>Functional dependencies से होने वाली additional redundancy को अधिक
+                                                 strictly remove करता है।</td>
+                                   </tr>
+                            </table>
+
+                            <div class="exam">
+                                   <b>One-Line Rule:</b> <strong>BCNF = For every FD, determinant must be a
+                                          superkey.</strong>
+                            </div>
+                     </section>
+
+                     <section id="mvd">
+                            <h2>12. Multivalued Dependencies (MVD)</h2>
+
+                            <p>
+                                   <strong>Multivalued Dependency (MVD)</strong> तब होती है जब एक attribute/set of
+                                   attributes किसी दूसरे attribute के लिए multiple independent values determine करता
+                                   है। इसे functional dependency से अलग समझना जरूरी है।
+                            </p>
+
+                            <p>Notation:</p>
+                            <div class="flow">
+                                   X →→ Y
+                            </div>
+
+                            <h3>Example: Student, Hobby and Skill</h3>
+                            <p>
+                                   मान लें एक student की multiple hobbies और multiple skills हैं और hobbies तथा skills
+                                   एक-दूसरे से independent हैं। यदि दोनों को एक ही relation में रखा जाए:
+                            </p>
+
+                            <div class="flow">
+                                   STUDENT_INFO(StudentID, Hobby, Skill)
+                            </div>
+
+                            <p>
+                                   एक student की 2 hobbies और 3 skills होने पर combinations की multiple rows बन सकती
+                                   हैं।
+                                   इससे unnecessary repetition होती है।
+                            </p>
+
+                            <table>
+                                   <tr>
+                                          <th>StudentID</th>
+                                          <th>Hobby</th>
+                                          <th>Skill</th>
+                                   </tr>
+                                   <tr>
+                                          <td>101</td>
+                                          <td>Cricket</td>
+                                          <td>Python</td>
+                                   </tr>
+                                   <tr>
+                                          <td>101</td>
+                                          <td>Cricket</td>
+                                          <td>SQL</td>
+                                   </tr>
+                                   <tr>
+                                          <td>101</td>
+                                          <td>Cricket</td>
+                                          <td>HTML</td>
+                                   </tr>
+                                   <tr>
+                                          <td>101</td>
+                                          <td>Music</td>
+                                          <td>Python</td>
+                                   </tr>
+                                   <tr>
+                                          <td>101</td>
+                                          <td>Music</td>
+                                          <td>SQL</td>
+                                   </tr>
+                                   <tr>
+                                          <td>101</td>
+                                          <td>Music</td>
+                                          <td>HTML</td>
+                                   </tr>
+                            </table>
+
+                            <p>
+                                   यहाँ independent multi-valued facts एक ही relation में combine होने के कारण
+                                   redundant combinations बन रहे हैं। ऐसे cases को 4NF decomposition से address किया
+                                   जाता है। citeturn0search0turn0search4
+                            </p>
+
+                            <h3>Decomposition</h3>
+                            <div class="flow">
+                                   STUDENT_HOBBY(StudentID, Hobby)
+
+                                   STUDENT_SKILL(StudentID, Skill)
+                            </div>
+
+                            <div class="exam">
+                                   <b>Remember:</b> Functional Dependency → X → Y<br>
+                                   Multivalued Dependency → X →→ Y
+                            </div>
+                     </section>
+
+                     <section id="4nf">
+                            <h2>13. Fourth Normal Form (4NF)</h2>
+
+                            <p>
+                                   <strong>4NF</strong> BCNF के बाद का normal form है और मुख्य रूप से
+                                   <strong>Multivalued Dependencies</strong> से उत्पन्न redundancy को remove करने
+                                   के लिए use किया जाता है। A relation 4NF में तब होती है जब वह BCNF में हो और उसमें
+                                   कोई non-trivial multivalued dependency ऐसी न हो जिसका determinant superkey न हो।
+                                   GeeksforGeeks 4NF को BCNF की extension के रूप में describe करता है जो independent
+                                   one-to-many relationships की redundancy को address करता है।
+                                   citeturn0search4turn0search3
+                            </p>
+
+                            <h3>4NF का Basic Rule</h3>
+                            <div class="flow">
+                                   For every non-trivial MVD X →→ Y,
+                                   X must be a Superkey
+                            </div>
+
+                            <h3>Example</h3>
+                            <p>
+                                   Course के multiple instructors और multiple textbook authors हो सकते हैं और दोनों
+                                   independent facts हैं:
+                            </p>
+
+                            <div class="flow">
+                                   COURSE(CourseID, Instructor, TextbookAuthor)
+
+                                   CourseID →→ Instructor
+                                   CourseID →→ TextbookAuthor
+                            </div>
+
+                            <p>
+                                   एक ही table में दोनों independent multi-valued relationships रखने पर
+                                   instructor-author
+                                   combinations repeat हो सकती हैं।
+                            </p>
+
+                            <h3>4NF Decomposition</h3>
+                            <div class="flow">
+                                   COURSE_INSTRUCTOR(CourseID, Instructor)
+
+                                   COURSE_AUTHOR(CourseID, TextbookAuthor)
+                            </div>
+
+                            <p>
+                                   अब प्रत्येक table एक independent multi-valued relationship को represent करती है और
+                                   unnecessary combinations avoid होते हैं।
+                            </p>
+
+                            <div class="exam">
+                                   <b>One-Line Rule:</b> <strong>4NF = BCNF + No problematic non-trivial Multivalued
+                                          Dependency.</strong>
+                            </div>
+                     </section>
+
+                     <section id="5nf">
+                            <h2>14. Fifth Normal Form (5NF)</h2>
+
+                            <p>
+                                   <strong>5NF (Fifth Normal Form)</strong>, जिसे Project-Join Normal Form (PJ/NF) भी
+                                   कहा जाता है, normalization का अधिक advanced level है। इसका उद्देश्य ऐसी
+                                   <strong>join dependencies</strong> से उत्पन्न redundancy को address करना है जहाँ
+                                   relation को कई smaller relations में decompose करके ही proper structure प्राप्त
+                                   होता है।
+                            </p>
+
+                            <p>
+                                   5NF में relation को ऐसी proper decomposition में further split नहीं किया जा सकता
+                                   जिससे information loss के बिना join करके original relation recover न हो सके। GFG
+                                   के normal forms reference में 5NF के लिए 4NF होना और further non-loss decomposition
+                                   (join dependency) न होना key condition के रूप में दिया गया है।
+                                   citeturn0search2turn0search6
+                            </p>
+
+                            <h3>Join Dependency का Concept</h3>
+                            <p>
+                                   Join dependency का मतलब है कि किसी relation को कई projections/relations में split
+                                   करने के बाद उन relations का natural join original relation को exactly reconstruct
+                                   कर सके। यह concept complex many-to-many relationship designs में important हो सकता
+                                   है।
+                            </p>
+
+                            <h3>General Example</h3>
+                            <p>
+                                   मान लें किसी business relation में <strong>Supplier, Part और Project</strong> के बीच
+                                   complex relationship है। यदि business rules यह बताते हैं कि valid combinations
+                                   कुछ independent pairwise relationships से derive किए जा सकते हैं, तो single large
+                                   relation में unnecessary combinations store हो सकती हैं। ऐसे case में appropriate
+                                   decomposition करके Supplier-Part, Supplier-Project और Part-Project जैसे relations
+                                   consider किए जा सकते हैं—लेकिन decomposition तभी सही है जब actual business rules
+                                   उस join dependency को support करें।
+                            </p>
+
+                            <div class="important">
+                                   <b>Important:</b> 5NF को केवल "table को और छोटे tables में तोड़ना" नहीं समझना चाहिए।
+                                   यह join dependency और lossless reconstruction से संबंधित advanced normalization
+                                   concept है।
+                            </div>
+
+                            <div class="exam">
+                                   <b>One-Line Rule:</b> <strong>5NF = 4NF + no further non-loss decomposition caused by
+                                          join dependencies.</strong>
+                            </div>
+                     </section>
+
+                     <section id="process">
+                            <h2>15. Complete Normalization Process — Step by Step</h2>
+
+                            <p>
+                                   किसी relation को normalize करते समय normal forms को क्रम से check किया जाता है।
+                                   GeeksforGeeks के normalization guidance के अनुसार highest normal form determine
+                                   करते समय 1NF → 2NF → 3NF → BCNF sequence में dependencies और keys check करना useful
+                                   approach है। citeturn0search9
+                            </p>
+
+                            <h3>Step 1 — Identify Attributes and Keys</h3>
+                            <p>
+                                   Relation के सभी attributes identify करें और candidate keys/primary key determine
+                                   करें।
+                                   Prime और non-prime attributes भी identify करना useful है।
+                            </p>
+
+                            <h3>Step 2 — Check 1NF</h3>
+                            <p>
+                                   Check करें कि प्रत्येक cell atomic है या नहीं। Repeating groups और multi-valued
+                                   attributes को remove करें।
+                            </p>
+
+                            <h3>Step 3 — Check 2NF</h3>
+                            <p>
+                                   अगर key composite है, तो देखें कि कोई non-prime attribute key के केवल एक part पर
+                                   depend तो नहीं कर रहा। यदि है, तो partial dependency remove करके decomposition करें।
+                            </p>
+
+                            <h3>Step 4 — Check 3NF</h3>
+                            <p>
+                                   Transitive dependencies identify करें। Non-prime attribute किसी दूसरे non-key
+                                   attribute के through determine हो रहा हो तो appropriate decomposition करें।
+                            </p>
+
+                            <h3>Step 5 — Check BCNF</h3>
+                            <p>
+                                   हर non-trivial FD X → Y के लिए check करें कि X superkey है या नहीं। यदि determinant
+                                   superkey नहीं है, तो BCNF violation है और decomposition की आवश्यकता हो सकती है।
+                            </p>
+
+                            <h3>Step 6 — Check Multivalued Dependencies</h3>
+                            <p>
+                                   Independent multi-valued relationships identify करें। यदि problematic MVD है, तो
+                                   4NF decomposition consider करें।
+                            </p>
+
+                            <h3>Step 7 — Check Join Dependencies</h3>
+                            <p>
+                                   Advanced designs में check करें कि relation को further lossless decomposition की
+                                   आवश्यकता है या नहीं। यदि join dependency के कारण redundancy बची है, तो 5NF consider
+                                   किया जा सकता है।
+                            </p>
+
+                            <div class="flow">
+                                   Identify Keys & FDs
+                                   ↓
+                                   Check 1NF
+                                   ↓
+                                   Remove Partial Dependencies → 2NF
+                                   ↓
+                                   Remove Transitive Dependencies → 3NF
+                                   ↓
+                                   Check Determinants → BCNF
+                                   ↓
+                                   Check MVDs → 4NF
+                                   ↓
+                                   Check Join Dependencies → 5NF
+                            </div>
+
+                            <h3>Mini Worked Example</h3>
+                            <p>Initial relation:</p>
+                            <div class="flow">
+                                   ENROLLMENT(StudentID, StudentName, CourseID, CourseName, Instructor, Marks)
+                            </div>
+
+                            <p>Dependencies:</p>
+                            <div class="flow">
+                                   StudentID → StudentName
+                                   CourseID → CourseName, Instructor
+                                   (StudentID, CourseID) → Marks
+                            </div>
+
+                            <p><strong>Step A:</strong> Composite key = (StudentID, CourseID)</p>
+                            <p><strong>Step B:</strong> StudentName depends only on StudentID → partial dependency.</p>
+                            <p><strong>Step C:</strong> CourseName and Instructor depend only on CourseID → partial
+                                   dependency.</p>
+
+                            <p>Decompose:</p>
+                            <div class="flow">
+                                   STUDENT(StudentID, StudentName)
+
+                                   COURSE(CourseID, CourseName, Instructor)
+
+                                   ENROLLMENT(StudentID, CourseID, Marks)
+                            </div>
+
+                            <p>
+                                   अब each fact को appropriate relation में रखा गया है। Further normalization check
+                                   करने के बाद यदि कोई transitive dependency या other violation नहीं है, तो design
+                                   higher normal forms तक जा सकता है।
+                            </p>
+                     </section>
+
+                     <section id="comparison">
+                            <h2>16. Normal Forms — Complete Comparison</h2>
+
+                            <table>
+                                   <tr>
+                                          <th>Normal Form</th>
+                                          <th>Main Condition</th>
+                                          <th>Primary Problem Addressed</th>
+                                   </tr>
+                                   <tr>
+                                          <td>1NF</td>
+                                          <td>Atomic/single-valued attributes; no repeating groups</td>
+                                          <td>Repeating/multi-valued data</td>
+                                   </tr>
+                                   <tr>
+                                          <td>2NF</td>
+                                          <td>1NF + no partial dependency of non-prime attributes on part of a candidate
+                                                 key</td>
+                                          <td>Partial dependency</td>
+                                   </tr>
+                                   <tr>
+                                          <td>3NF</td>
+                                          <td>2NF + no problematic transitive dependency; X superkey or Y prime for
+                                                 every non-trivial FD</td>
+                                          <td>Transitive dependency</td>
+                                   </tr>
+                                   <tr>
+                                          <td>BCNF</td>
+                                          <td>Every non-trivial FD determinant is a superkey</td>
+                                          <td>Remaining FD-based redundancy</td>
+                                   </tr>
+                                   <tr>
+                                          <td>4NF</td>
+                                          <td>BCNF + no problematic non-trivial MVD with non-superkey determinant</td>
+                                          <td>Multivalued dependency</td>
+                                   </tr>
+                                   <tr>
+                                          <td>5NF</td>
+                                          <td>4NF + no further non-loss decomposition caused by join dependencies</td>
+                                          <td>Join dependency</td>
+                                   </tr>
+                            </table>
+
+                            <h3>Easy Memory Trick</h3>
+                            <div class="flow">
+                                   1NF → Atomic
+                                   2NF → Partial Dependency Removed
+                                   3NF → Transitive Dependency Removed
+                                   BCNF → Determinant = Superkey
+                                   4NF → MVD Removed
+                                   5NF → Join Dependency
+                            </div>
+
+                            <h3>Normalization vs Denormalization</h3>
+                            <p>
+                                   Normalization redundancy और anomalies reduce करने के लिए tables को logically
+                                   decompose करती है। इसके opposite, <strong>denormalization</strong>, कुछ cases में
+                                   performance/read efficiency के लिए intentionally redundancy introduce कर सकती है।
+                                   इसलिए real-world design में normalization और performance requirements के बीच balance
+                                   करना पड़ सकता है।
+                            </p>
+                     </section>
+
+                     <section id="revision">
+                            <h2>17. Quick Revision & Important Questions</h2>
+
+                            <h3>Quick Revision Table</h3>
+                            <table>
+                                   <tr>
+                                          <th>Topic</th>
+                                          <th>One-Line Revision</th>
+                                   </tr>
+                                   <tr>
+                                          <td>Normalization</td>
+                                          <td>Database tables को organize करके redundancy और anomalies reduce करने की
+                                                 process।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Redundancy</td>
+                                          <td>Same information का unnecessary repetition।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Insertion Anomaly</td>
+                                          <td>New independent data insert करना difficult होना।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Update Anomaly</td>
+                                          <td>Repeated information को कई rows में update करना पड़ना।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Deletion Anomaly</td>
+                                          <td>Unrelated useful information का accidentally delete होना।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>FD</td>
+                                          <td>X → Y: X determines Y।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>Decomposition</td>
+                                          <td>Large relation को smaller related relations में split करना।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>1NF</td>
+                                          <td>Atomic values, no repeating groups।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>2NF</td>
+                                          <td>No partial dependency।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>3NF</td>
+                                          <td>No problematic transitive dependency।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>BCNF</td>
+                                          <td>Every determinant must be a superkey।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>MVD</td>
+                                          <td>X →→ Y: independent multi-valued dependency।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>4NF</td>
+                                          <td>BCNF + problematic non-trivial MVD removed।</td>
+                                   </tr>
+                                   <tr>
+                                          <td>5NF</td>
+                                          <td>4NF + join dependency based further non-loss decomposition not required।
+                                          </td>
+                                   </tr>
+                            </table>
+
+                            <div class="exam">
+                                   <b>Important Long-Answer Questions</b><br><br>
+                                   1. Normalization क्या है? इसके purpose और advantages विस्तार से समझाइए।<br>
+                                   2. Data redundancy क्या है? इसके कारण होने वाली anomalies समझाइए।<br>
+                                   3. Insertion, Update और Deletion Anomaly को examples सहित समझाइए।<br>
+                                   4. Functional Dependency क्या है? इसके types समझाइए।<br>
+                                   5. Decomposition क्या है? Lossless Join और Dependency Preservation समझाइए।<br>
+                                   6. 1NF क्या है? Example के साथ समझाइए।<br>
+                                   7. 2NF क्या है? Partial dependency को example सहित समझाइए।<br>
+                                   8. 3NF क्या है? Transitive dependency और decomposition समझाइए।<br>
+                                   9. BCNF क्या है? 3NF और BCNF में अंतर लिखिए।<br>
+                                   10. Multivalued Dependency क्या है? Example सहित समझाइए।<br>
+                                   11. 4NF क्या है? BCNF से इसका relation समझाइए।<br>
+                                   12. 5NF क्या है? Join Dependency के concept को समझाइए।<br>
+                                   13. 1NF, 2NF, 3NF, BCNF, 4NF और 5NF की तुलना कीजिए।<br>
+                                   14. किसी relation को 1NF से 5NF तक normalize करने की step-by-step process समझाइए।
+                            </div>
+
+                            <div class="note">
+                                   <b>Exam Writing Pattern:</b><br>
+                                   Long answer में <strong>Definition → Need/Purpose → Rule/Condition → Detailed
+                                          Explanation → Example/Table → Decomposition/Diagram → Advantages →
+                                          Conclusion</strong> का structure रखें।
+                            </div>
+
+                            <h3>Reference Basis</h3>
+                            <p>
+                                   इस chapter की expanded theory और normal-form conditions को cross-check करने के लिए
+                                   GeeksforGeeks के normalization, normal forms, functional dependency, BCNF,
+                                   4NF/5NF और decomposition references को reference basis बनाया गया है।
+                            </p>
+                            <ul>
+                                   <li>Introduction to Database Normalization</li>
+                                   <li>Normal Forms in DBMS</li>
+                                   <li>First Normal Form (1NF)</li>
+                                   <li>Boyce-Codd Normal Form (BCNF)</li>
+                                   <li>Fourth and Fifth Normal Form</li>
+                                   <li>Properties of Relational Decomposition</li>
+                            </ul>
+                     </section>
+
+              </main>
+       </div>
+</body>
+
+</html>

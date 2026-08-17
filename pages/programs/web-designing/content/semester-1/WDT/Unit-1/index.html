@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 
 <head>
     <!-- Google tag (gtag.js) -->
@@ -11,954 +11,1228 @@
 
       gtag('config', 'G-FB7SX0P0D3');
     </script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Image Editing Tools Premium Notes</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Image Editing Tools</title>
+    <style>
+        * {
+            box-sizing: border-box
+        }
 
-    html {
-      scroll-behavior: smooth
-    }
+        html {
+            scroll-behavior: smooth
+        }
 
-    body {
-      font-family: "Segoe UI", Arial, sans-serif;
-      background: #f5f7fb;
-      color: #1f2937;
-      line-height: 1.75
-    }
+        body {
+            margin: 0;
+            background: #f3f6fa;
+            color: #1f2937;
+            font-family: "Segoe UI", Arial, sans-serif;
+            line-height: 1.8
+        }
 
-    .page {
-      display: grid;
-      grid-template-columns: 295px 1fr;
-      gap: 20px;
-      width: 100%;
-      max-width: none;
-      margin: 0;
-      padding: 10px
-    }
+        .layout {
+            max-width: 1550px;
+            margin: auto;
+            padding: 14px;
+            display: grid;
+            grid-template-columns: 290px 1fr;
+            gap: 18px
+        }
 
-    .sidebar {
-      position: sticky;
-      top: 10px;
-      height: calc(100vh - 20px);
-      overflow-y: auto;
-      background: #fff;
-      border-radius: 16px;
-      padding: 18px;
-      box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
-      align-self: start
-    }
+        aside {
+            position: sticky;
+            top: 14px;
+            height: calc(100vh - 28px);
+            overflow: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 18px;
+            box-shadow: 0 5px 22px #0001
+        }
 
-    .sidebar h2 {
-      font-size: 20px;
-      margin-bottom: 12px;
-      color: #111827
-    }
+        aside h2 {
+            margin: 0 0 12px;
+            color: #111827
+        }
 
-    .sidebar a {
-      display: block;
-      text-decoration: none;
-      color: #374151;
-      padding: 8px 10px;
-      border-radius: 10px;
-      margin-bottom: 4px;
-      font-size: 14.4px
-    }
+        aside a {
+            display: block;
+            padding: 7px 9px;
+            margin: 3px 0;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #374151;
+            font-size: 14px
+        }
 
-    .sidebar a:hover {
-      background: #eef2ff;
-      color: #1d4ed8
-    }
+        aside a:hover {
+            background: #e0e7ff;
+            color: #1d4ed8
+        }
 
-    .content {
-      background: #fff;
-      border-radius: 18px;
-      padding: 10px;
-      box-shadow: 0 4px 18px rgba(0, 0, 0, .08)
-    }
+        main {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 5px 22px #0001;
+            overflow: hidden
+        }
 
-    .hero {
-      padding: 30px 20px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, #eef2ff, #f8fafc);
-      margin-bottom: 18px
-    }
+        .hero {
+            padding: 34px;
+            background: linear-gradient(135deg, #dbeafe, #eef2ff, #f8fafc)
+        }
 
-    .hero h1 {
-      font-size: 34px;
-      color: #111827;
-      margin-bottom: 10px
-    }
+        .hero h1 {
+            margin: 0 0 8px;
+            font-size: 36px;
+            color: #111827
+        }
 
-    .hero p {
-      font-size: 18px;
-      color: #374151
-    }
+        .hero p {
+            margin: 5px 0;
+            color: #475569
+        }
 
-    section {
-      padding: 22px 10px;
-      border-bottom: 1px solid #e5e7eb
-    }
+        section {
+            padding: 28px 30px;
+            border-bottom: 1px solid #e5e7eb
+        }
 
-    section:last-child {
-      border-bottom: none
-    }
+        section:last-child {
+            border: 0
+        }
 
-    h2 {
-      font-size: 27px;
-      color: #111827;
-      margin-bottom: 12px;
-      border-left: 5px solid #2563eb;
-      padding-left: 12px
-    }
+        h2 {
+            font-size: 28px;
+            color: #172554;
+            border-left: 5px solid #2563eb;
+            padding-left: 12px;
+            margin: 0 0 18px
+        }
 
-    h3 {
-      font-size: 22px;
-      color: #1f2937;
-      margin: 18px 0 8px
-    }
+        h3 {
+            font-size: 21px;
+            color: #1e3a8a;
+            margin: 24px 0 8px
+        }
 
-    h4 {
-      font-size: 18px;
-      color: #111827;
-      margin: 14px 0 6px
-    }
+        h4 {
+            font-size: 18px;
+            color: #334155;
+            margin: 18px 0 6px
+        }
 
-    p {
-      margin: 10px 0;
-      font-size: 17px
-    }
+        p {
+            font-size: 16.5px;
+            margin: 10px 0
+        }
 
-    ul,
-    ol {
-      margin-left: 24px;
-      margin-top: 8px
-    }
+        li {
+            font-size: 16px;
+            margin: 7px 0
+        }
 
-    li {
-      margin: 7px 0;
-      font-size: 16.5px
-    }
+        .note,
+        .exam,
+        .important {
+            padding: 16px 18px;
+            border-radius: 12px;
+            margin: 18px 0
+        }
 
-    strong {
-      color: #111827
-    }
+        .note {
+            background: #eff6ff;
+            border-left: 5px solid #3b82f6
+        }
 
-    .image-icon {
-      min-height: 180px;
-      border: 2px dashed #94a3b8;
-      border-radius: 16px;
-      background: #f8fafc;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 20px;
-      margin: 18px 0;
-      color: #475569;
-      font-weight: 600;
-      flex-direction: column;
-      gap: 8px
-    }
+        .exam {
+            background: #ecfdf5;
+            border-left: 5px solid #10b981
+        }
 
-    .image-icon img {
-      max-width: 100%;
-      height: auto
-    }
+        .important {
+            background: #fff7ed;
+            border-left: 5px solid #f97316
+        }
 
-    .note-box {
-      background: #f0fdf4;
-      border-left: 5px solid #22c55e;
-      border-radius: 14px;
-      padding: 14px 16px;
-      margin: 16px 0
-    }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 18px 0
+        }
 
-    .info-box {
-      background: #ecfeff;
-      border-left: 5px solid #06b6d4;
-      border-radius: 14px;
-      padding: 14px 16px;
-      margin: 16px 0
-    }
+        .card {
+            background: #f8fafc;
+            border: 1px solid #dbe3ef;
+            border-radius: 14px;
+            padding: 17px
+        }
 
-    .remember-box {
-      background: #fff7ed;
-      border-left: 5px solid #f97316;
-      border-radius: 14px;
-      padding: 14px 16px;
-      margin: 16px 0
-    }
+        .card h4 {
+            margin-top: 0;
+            color: #1d4ed8
+        }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 16px 0;
-      border-radius: 12px;
-      overflow: hidden;
-      font-size: 15.3px
-    }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 18px 0;
+            font-size: 15px
+        }
 
-    th,
-    td {
-      border: 1px solid #d1d5db;
-      padding: 10px;
-      text-align: left;
-      vertical-align: top
-    }
+        th,
+        td {
+            border: 1px solid #cbd5e1;
+            padding: 11px;
+            vertical-align: top;
+            text-align: left
+        }
 
-    th {
-      background: #eef2ff;
-      color: #111827
-    }
+        th {
+            background: #eef2ff;
+            color: #111827
+        }
 
-    code {
-      background: #111827;
-      color: #f9fafb;
-      padding: 2px 6px;
-      border-radius: 6px;
-      font-family: Consolas, monospace;
-      font-size: 15px
-    }
+        .flow {
+            background: #09090b;
+            color: #f8fafc;
+            padding: 20px;
+            border-radius: 14px;
+            text-align: center;
+            font-family: Consolas, monospace;
+            overflow: auto;
+            margin: 18px 0
+        }
 
-    pre {
-      background: #0f172a;
-      color: #e5e7eb;
-      border-radius: 14px;
-      padding: 16px;
-      margin: 16px 0;
-      overflow-x: auto;
-      font-family: Consolas, monospace;
-      line-height: 1.6
-    }
+        .code {
+            background: #09090b;
+            color: #e5e7eb;
+            padding: 18px;
+            border-radius: 13px;
+            overflow: auto;
+            font-family: Consolas, monospace;
+            white-space: pre
+        }
 
-    @media(max-width:900px) {
-      .page {
-        grid-template-columns: 1fr
-      }
+        .badge {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700
+        }
 
-      .sidebar {
-        position: relative;
-        height: auto
-      }
+        @media(max-width:900px) {
+            .layout {
+                display: block;
+                padding: 5px
+            }
 
-      .hero h1 {
-        font-size: 27px
-      }
+            aside {
+                display: none
+            }
 
-      h2 {
-        font-size: 24px
-      }
-    }
-  </style>
+            .hero {
+                padding: 24px 18px
+            }
+
+            .hero h1 {
+                font-size: 28px
+            }
+
+            section {
+                padding: 22px 18px
+            }
+
+            h2 {
+                font-size: 23px
+            }
+
+            .grid {
+                grid-template-columns: 1fr
+            }
+
+            p,
+            li {
+                font-size: 15px
+            }
+
+            table {
+                display: block;
+                overflow-x: auto
+            }
+        }
+    </style>
 </head>
 
 <body>
-  <div class="page">
-    <aside class="sidebar">
-      <h2>Topics</h2>
-      <a href="#intro">Introduction to Image Editing Tools</a>
-      <a href="#formats">Image File Formats</a>
-      <a href="#raster-vector">Raster vs Vector Images</a>
-      <a href="#workspace">Overview of Work Area</a>
-      <a href="#menus">Overview of Menus</a>
-      <a href="#toolbars">Toolbars and Tool Box Usages</a>
-      <a href="#new-open">Starting and Opening a Document</a>
-      <a href="#getting-image">Getting an Image</a>
-      <a href="#palettes">Palettes and Panels</a>
-      <a href="#context-menu">Using Context Menu</a>
-      <a href="#rulers-guides">Rulers and Guidelines</a>
-      <a href="#color-modes">Color Modes of Images</a>
-      <a href="#layers">Working with Layers</a>
-      <a href="#transparency">Transparency</a>
-      <a href="#closing">Closing Files and Quitting</a>
-      <a href="#workflow">Basic Image Editing Workflow</a>
-    </aside>
-    <main class="content">
-      <div class="hero">
-        <h1>Image Editing Tools</h1>
-        <p>इस chapter में file formats, raster और vector images, menus, work area, toolbars, toolbox, new/open document,
-          image importing, palettes, context menu, rulers, guides, color modes, layers और transparency को deep premium
-          exam-oriented format में समझाया गया है।</p>
-      </div>
-      <section id="intro">
-        <h2>Introduction to Image Editing Tools</h2>
-        <p><strong>Image Editing Tools</strong> ऐसे software applications होते हैं जिनकी सहायता से digital images को
-          create, modify, enhance, resize, crop, color-correct और combine किया जाता है। इन tools का use photo editing,
-          web designing, advertisement creation, social media posts, logo design, digital painting और printing industry
-          में किया जाता है।</p>
+    <div class="layout">
 
-        <p>Popular image editing tools में Adobe Photoshop, GIMP, Corel PHOTO-PAINT, Krita, Paint.NET और online editors
-          शामिल हैं। Different tools अलग features देते हैं, लेकिन basic concepts जैसे file formats, layers,
-          transparency, color modes, rulers, guides और tool box लगभग सभी में मिलते हैं।</p>
+        <aside>
+            <h2>Topics</h2>
+            <a href="#intro">1. Introduction to Image Editing</a>
+            <a href="#formats">2. File Formats</a>
+            <a href="#rastervector">3. Raster vs Vector</a>
+            <a href="#interface">4. Menus & Work Area</a>
+            <a href="#toolbar">5. Toolbars & Toolbox</a>
+            <a href="#document">6. Starting & Opening Documents</a>
+            <a href="#getting">7. Getting / Importing Images</a>
+            <a href="#palettes">8. Palettes & Basic Features</a>
+            <a href="#context">9. Context Menu</a>
+            <a href="#rulers">10. Rulers & Guidelines</a>
+            <a href="#closing">11. Closing Files & Quitting</a>
+            <a href="#colormodes">12. Color Modes</a>
+            <a href="#layers">13. Layers</a>
+            <a href="#transparency">14. Transparency</a>
+            <a href="#workflow">15. Complete Editing Workflow</a>
+            <a href="#revision">16. Revision & Questions</a>
+        </aside>
 
-        <div class="image-icon">
-          <img src="" alt="Image Editing Software Interface">
-          <p>Image Placeholder: Image Editing Software Interface</p>
-        </div>
+        <main>
 
-        <h4>Main Uses</h4>
-        <ul>
-          <li>Photographs को improve और correct करना।</li>
-          <li>Background remove या replace करना।</li>
-          <li>Text और graphics add करना।</li>
-          <li>Web banners, posters और advertisements बनाना।</li>
-          <li>Old photographs restore करना।</li>
-          <li>Image size और resolution change करना।</li>
-        </ul>
+            <div class="hero">
+               
+                <h1>1. Image Editing Tools</h1>
+               
+            </div>
 
-        <div class="remember-box"><b>Remember:</b><br>Image editing tool केवल photo beautify नहीं करता; यह complete
-          visual design और digital image production के लिए use होता है।</div>
-      </section>
-      <section id="formats">
-        <h2>Image File Formats</h2>
-        <p>Image file format यह तय करता है कि image data किस तरह store होगा, file size कितना होगा, transparency support
-          होगी या नहीं और image print/web में कैसे use होगी।</p>
+            <section id="intro">
+                <h2>1. Introduction to Image Editing Tools</h2>
 
-        <div class="image-icon">
-          <img src="" alt="Image File Formats">
-          <p>Image Placeholder: JPEG, PNG, GIF, TIFF, BMP, SVG, PSD</p>
-        </div>
+                <p>
+                    <strong>Image Editing Tools</strong> ऐसे software applications हैं जिनकी सहायता से
+                    digital images को create, open, modify, enhance, organize और export किया जा सकता है।
+                    इनका उपयोग photographs, graphics, posters, banners, web images, advertisements और
+                    digital artwork तैयार करने के लिए किया जाता है।
+                </p>
 
-        <table>
-          <tr>
-            <th>Format</th>
-            <th>Main Features</th>
-            <th>Common Use</th>
-          </tr>
-          <tr>
-            <td>JPEG / JPG</td>
-            <td>Compressed, small size, no transparency</td>
-            <td>Photographs and web images</td>
-          </tr>
-          <tr>
-            <td>PNG</td>
-            <td>Lossless, transparency support</td>
-            <td>Logos, web graphics, screenshots</td>
-          </tr>
-          <tr>
-            <td>GIF</td>
-            <td>Limited colors, animation support</td>
-            <td>Simple animations and web graphics</td>
-          </tr>
-          <tr>
-            <td>BMP</td>
-            <td>Large uncompressed raster format</td>
-            <td>Basic Windows images</td>
-          </tr>
-          <tr>
-            <td>TIFF</td>
-            <td>High quality, print and scanning</td>
-            <td>Publishing and professional printing</td>
-          </tr>
-          <tr>
-            <td>PSD</td>
-            <td>Photoshop project with layers</td>
-            <td>Editable design files</td>
-          </tr>
-          <tr>
-            <td>XCF</td>
-            <td>GIMP project format</td>
-            <td>Editable GIMP files</td>
-          </tr>
-          <tr>
-            <td>SVG</td>
-            <td>Vector-based scalable format</td>
-            <td>Icons, logos, web graphics</td>
-          </tr>
-          <tr>
-            <td>WEBP</td>
-            <td>Modern compression and transparency</td>
-            <td>Websites and web applications</td>
-          </tr>
-        </table>
+                <p>
+                    Image editing software में अलग-अलग tools और panels उपलब्ध होते हैं जिनकी सहायता
+                    से image को crop, resize, select, paint, adjust, organize और visually modify किया
+                    जा सकता है। Software के अनुसार interface और exact tool names अलग हो सकते हैं,
+                    लेकिन basic concepts काफी similar होते हैं।
+                </p>
 
-        <h4>Lossy and Lossless Compression</h4>
-        <p><strong>Lossy compression</strong> file size reduce करने के लिए कुछ image data remove करती है। JPEG इसका
-          example है। <strong>Lossless compression</strong> quality maintain रखते हुए file size reduce करती है। PNG इसका
-          example है।</p>
+                <h3>Common Image Editing Operations</h3>
+                <div class="grid">
+                    <div class="card">
+                        <h4>Crop</h4>
+                        <p>Image के unwanted हिस्से को हटाना।</p>
+                    </div>
+                    <div class="card">
+                        <h4>Resize</h4>
+                        <p>Image की dimensions बदलना।</p>
+                    </div>
+                    <div class="card">
+                        <h4>Color Adjustment</h4>
+                        <p>Brightness, contrast और colors को adjust करना।</p>
+                    </div>
+                    <div class="card">
+                        <h4>Selection</h4>
+                        <p>Image के किसी specific area को select करके उस पर operation करना।</p>
+                    </div>
+                    <div class="card">
+                        <h4>Layers</h4>
+                        <p>Image elements को अलग-अलग editable layers में organize करना।</p>
+                    </div>
+                    <div class="card">
+                        <h4>Transparency</h4>
+                        <p>Image या layer के कुछ हिस्सों को transparent बनाना।</p>
+                    </div>
+                </div>
 
-        <div class="note-box"><b>Practical Tip:</b><br>Photographs के लिए JPEG, transparent graphics के लिए PNG और
-          editable project के लिए PSD/XCF use करना useful रहता है।</div>
-      </section>
-      <section id="raster-vector">
-        <h2>Raster vs Vector Images</h2>
-        <p><strong>Raster image</strong> pixels से मिलकर बनती है, जबकि <strong>Vector image</strong> mathematical paths,
-          points, lines और shapes से बनती है।</p>
+                <div class="exam"><b>Exam Definition:</b> Image editing tools are software tools used to create, modify,
+                    enhance, organize and export digital images.</div>
+            </section>
 
-        <div class="image-icon">
-          <img src="" alt="Raster vs Vector">
-          <p>Image Placeholder: Raster Pixels vs Vector Paths</p>
-        </div>
+            <section id="formats">
+                <h2>2. File Formats</h2>
 
-        <table>
-          <tr>
-            <th>Basis</th>
-            <th>Raster Image</th>
-            <th>Vector Image</th>
-          </tr>
-          <tr>
-            <td>Structure</td>
-            <td>Pixels</td>
-            <td>Paths and shapes</td>
-          </tr>
-          <tr>
-            <td>Scaling</td>
-            <td>Zoom करने पर pixelated हो सकती है।</td>
-            <td>Quality loss के बिना scale होती है।</td>
-          </tr>
-          <tr>
-            <td>Best For</td>
-            <td>Photos and detailed images</td>
-            <td>Logos, icons, diagrams</td>
-          </tr>
-          <tr>
-            <td>File Formats</td>
-            <td>JPG, PNG, BMP, TIFF</td>
-            <td>SVG, AI, EPS, CDR</td>
-          </tr>
-          <tr>
-            <td>Editing Tools</td>
-            <td>Photoshop, GIMP</td>
-            <td>Illustrator, CorelDRAW, Inkscape</td>
-          </tr>
-        </table>
+                <p>
+                    Image file format यह निर्धारित करता है कि digital image किस प्रकार store और
+                    represent की जाएगी। अलग-अलग formats के compression, quality, transparency और
+                    editing capabilities अलग हो सकते हैं।
+                </p>
 
-        <h4>Raster Image</h4>
-        <p>Raster image में हर pixel का अपना color value होता है। High-resolution raster image में अधिक pixels होते हैं,
-          इसलिए detail ज्यादा होती है लेकिन file size भी बढ़ सकती है।</p>
+                <table>
+                    <tr>
+                        <th>Format</th>
+                        <th>Type / Feature</th>
+                        <th>Common Use</th>
+                    </tr>
+                    <tr>
+                        <td>JPEG / JPG</td>
+                        <td>Raster, lossy compression</td>
+                        <td>Photographs, web images</td>
+                    </tr>
+                    <tr>
+                        <td>PNG</td>
+                        <td>Raster, lossless compression, transparency support</td>
+                        <td>Web graphics, logos, transparent images</td>
+                    </tr>
+                    <tr>
+                        <td>GIF</td>
+                        <td>Raster, limited color palette, animation support</td>
+                        <td>Simple animations and web graphics</td>
+                    </tr>
+                    <tr>
+                        <td>TIFF</td>
+                        <td>High-quality raster format</td>
+                        <td>Printing, scanning and image workflows</td>
+                    </tr>
+                    <tr>
+                        <td>BMP</td>
+                        <td>Raster bitmap format</td>
+                        <td>Basic bitmap storage</td>
+                    </tr>
+                    <tr>
+                        <td>SVG</td>
+                        <td>Vector format</td>
+                        <td>Logos, icons and scalable graphics</td>
+                    </tr>
+                    <tr>
+                        <td>PSD</td>
+                        <td>Layered editing format associated with Adobe Photoshop</td>
+                        <td>Editable Photoshop projects</td>
+                    </tr>
+                </table>
 
-        <h4>Vector Image</h4>
-        <p>Vector image objects, curves और mathematical coordinates पर based होती है। इसलिए logo और illustration को किसी
-          भी size में enlarge करने पर quality maintain रहती है।</p>
+                <h3>Lossy vs Lossless Compression</h3>
 
-        <div class="remember-box"><b>Remember:</b><br>Photos raster होती हैं, जबकि logos और icons vector format में अधिक
-          useful होते हैं।</div>
-      </section>
-      <section id="workspace">
-        <h2>Overview of Work Area</h2>
-        <p>Image editing software का <strong>work area</strong> वह complete interface होता है जहाँ image open, edit और
-          manage की जाती है।</p>
+                <p>
+                    <strong>Lossy compression</strong> file size reduce करने के लिए कुछ image information
+                    discard कर सकती है। JPEG इसका common example है।
+                </p>
 
-        <div class="image-icon">
-          <img src="" alt="Image Editor Workspace">
-          <p>Image Placeholder: Menu Bar, Toolbar, Toolbox, Canvas and Palettes</p>
-        </div>
+                <p>
+                    <strong>Lossless compression</strong> image information को इस प्रकार compress करती है
+                    कि decompression के बाद original data को preserve किया जा सके। PNG इसका common
+                    example है।
+                </p>
 
-        <h4>Main Parts of Work Area</h4>
-        <table>
-          <tr>
-            <th>Part</th>
-            <th>Function</th>
-          </tr>
-          <tr>
-            <td>Menu Bar</td>
-            <td>Commands और features access करना।</td>
-          </tr>
-          <tr>
-            <td>Tool Options Bar</td>
-            <td>Selected tool की settings बदलना।</td>
-          </tr>
-          <tr>
-            <td>Toolbox</td>
-            <td>Selection, painting, cropping और retouching tools।</td>
-          </tr>
-          <tr>
-            <td>Canvas / Document Window</td>
-            <td>Image display और editing area।</td>
-          </tr>
-          <tr>
-            <td>Palettes / Panels</td>
-            <td>Layers, colors, history, channels आदि manage करना।</td>
-          </tr>
-          <tr>
-            <td>Status Bar</td>
-            <td>Zoom, file size और document information।</td>
-          </tr>
-          <tr>
-            <td>Rulers</td>
-            <td>Measurement और alignment।</td>
-          </tr>
-          <tr>
-            <td>Scroll Bars</td>
-            <td>Large image में navigation।</td>
-          </tr>
-        </table>
-      </section>
-      <section id="menus">
-        <h2>Overview of Menus</h2>
-        <p>Menus में software की major commands organized होती हैं। Exact names software के अनुसार थोड़े अलग हो सकते
-          हैं।</p>
+                <div class="note"><b>Exam Tip:</b> JPEG → photographs, PNG → transparency/web graphics, SVG → vector
+                    graphics, PSD → layered editing project.</div>
+            </section>
 
-        <table>
-          <tr>
-            <th>Menu</th>
-            <th>Main Commands</th>
-          </tr>
-          <tr>
-            <td>File</td>
-            <td>New, Open, Save, Export, Print, Close</td>
-          </tr>
-          <tr>
-            <td>Edit</td>
-            <td>Undo, Redo, Cut, Copy, Paste, Preferences</td>
-          </tr>
-          <tr>
-            <td>Image</td>
-            <td>Image Size, Canvas Size, Mode, Adjustments</td>
-          </tr>
-          <tr>
-            <td>Layer</td>
-            <td>New Layer, Duplicate, Merge, Mask, Transparency</td>
-          </tr>
-          <tr>
-            <td>Select</td>
-            <td>Select All, Deselect, Invert, Feather</td>
-          </tr>
-          <tr>
-            <td>Filter</td>
-            <td>Blur, Sharpen, Noise, Distort, Artistic effects</td>
-          </tr>
-          <tr>
-            <td>View</td>
-            <td>Zoom, Rulers, Guides, Grid, Full Screen</td>
-          </tr>
-          <tr>
-            <td>Window</td>
-            <td>Panels और workspace manage करना।</td>
-          </tr>
-          <tr>
-            <td>Help</td>
-            <td>Documentation and software help</td>
-          </tr>
-        </table>
+            <section id="rastervector">
+                <h2>3. Raster vs Vector Images</h2>
 
-        <div class="image-icon">
-          <img src="" alt="Image Editor Menus">
-          <p>Image Placeholder: File, Edit, Image, Layer and Filter Menus</p>
-        </div>
-      </section>
-      <section id="toolbars">
-        <h2>Toolbars and Tool Box Usages</h2>
-        <p><strong>Toolbar</strong> frequently used commands तक quick access देता है, जबकि <strong>Toolbox</strong>
-          image editing tools का collection होता है।</p>
+                <p>
+                    Digital graphics को broadly <strong>Raster</strong> और <strong>Vector</strong>
+                    categories में समझा जाता है।
+                </p>
 
-        <div class="image-icon">
-          <img src="" alt="Image Editing Toolbox">
-          <p>Image Placeholder: Selection, Crop, Brush, Eraser, Text and Zoom Tools</p>
-        </div>
+                <h3>Raster Images</h3>
+                <p>
+                    Raster image छोटे-छोटे <strong>pixels</strong> से बनी होती है। प्रत्येक pixel में
+                    color information होती है। Photographs सामान्यतः raster images होती हैं।
+                </p>
 
-        <table>
-          <tr>
-            <th>Tool</th>
-            <th>Use</th>
-          </tr>
-          <tr>
-            <td>Move Tool</td>
-            <td>Layer या selected object move करना।</td>
-          </tr>
-          <tr>
-            <td>Marquee Tool</td>
-            <td>Rectangular/elliptical selection बनाना।</td>
-          </tr>
-          <tr>
-            <td>Lasso Tool</td>
-            <td>Freehand selection बनाना।</td>
-          </tr>
-          <tr>
-            <td>Magic Wand</td>
-            <td>Similar colors select करना।</td>
-          </tr>
-          <tr>
-            <td>Crop Tool</td>
-            <td>Unwanted area remove और framing improve करना।</td>
-          </tr>
-          <tr>
-            <td>Brush Tool</td>
-            <td>Painting और digital drawing।</td>
-          </tr>
-          <tr>
-            <td>Pencil Tool</td>
-            <td>Hard-edge freehand drawing।</td>
-          </tr>
-          <tr>
-            <td>Eraser Tool</td>
-            <td>Pixels remove करना।</td>
-          </tr>
-          <tr>
-            <td>Clone Stamp</td>
-            <td>Image area copy करके retouch करना।</td>
-          </tr>
-          <tr>
-            <td>Healing Tool</td>
-            <td>Spots और imperfections remove करना।</td>
-          </tr>
-          <tr>
-            <td>Gradient Tool</td>
-            <td>Smooth color transition create करना।</td>
-          </tr>
-          <tr>
-            <td>Text Tool</td>
-            <td>Image पर text add करना।</td>
-          </tr>
-          <tr>
-            <td>Eyedropper Tool</td>
-            <td>Image से color sample लेना।</td>
-          </tr>
-          <tr>
-            <td>Zoom Tool</td>
-            <td>Image magnify/reduce करना।</td>
-          </tr>
-          <tr>
-            <td>Hand Tool</td>
-            <td>Canvas navigate करना।</td>
-          </tr>
-        </table>
-      </section>
-      <section id="new-open">
-        <h2>Starting and Opening a Document</h2>
-        <h4>Starting a New Document</h4>
-        <ol>
-          <li>File menu से New command choose करें।</li>
-          <li>Width और Height set करें।</li>
-          <li>Resolution choose करें।</li>
-          <li>Color mode select करें।</li>
-          <li>Background type choose करें।</li>
-          <li>Create/OK पर click करें।</li>
-        </ol>
+                <div class="flow">
+                    Raster Image
+                    ┌───┬───┬───┬───┐
+                    │ ■ │ ■ │ ■ │ ■ │
+                    ├───┼───┼───┼───┤
+                    │ ■ │ ■ │ ■ │ ■ │
+                    ├───┼───┼───┼───┤
+                    │ ■ │ ■ │ ■ │ ■ │
+                    └───┴───┴───┴───┘
+                    Pixels
+                </div>
 
-        <h4>Opening an Existing Document</h4>
-        <ol>
-          <li>File → Open choose करें।</li>
-          <li>Required image file locate करें।</li>
-          <li>File select करके Open करें।</li>
-          <li>Image document window में open होगी।</li>
-        </ol>
+                <h3>Vector Images</h3>
+                <p>
+                    Vector graphics mathematical paths, points, lines, curves और shapes के आधार पर
+                    बनी होती हैं। इन्हें size बढ़ाने या घटाने पर quality सामान्यतः raster की तरह
+                    pixelate नहीं होती।
+                </p>
 
-        <div class="image-icon">
-          <img src="" alt="New Document Dialog">
-          <p>Image Placeholder: New Document and Open File Dialog</p>
-        </div>
+                <table>
+                    <tr>
+                        <th>Raster</th>
+                        <th>Vector</th>
+                    </tr>
+                    <tr>
+                        <td>Pixels पर आधारित।</td>
+                        <td>Paths और mathematical shapes पर आधारित।</td>
+                    </tr>
+                    <tr>
+                        <td>Photographs के लिए suitable।</td>
+                        <td>Logos, icons और illustrations के लिए suitable।</td>
+                    </tr>
+                    <tr>
+                        <td>बहुत ज्यादा enlarge करने पर pixelation हो सकती है।</td>
+                        <td>Scale करने पर sharpness maintain रहती है।</td>
+                    </tr>
+                    <tr>
+                        <td>JPEG, PNG, TIFF आदि common formats।</td>
+                        <td>SVG जैसे formats common हैं।</td>
+                    </tr>
+                </table>
 
-        <h4>Important New Document Settings</h4>
-        <table>
-          <tr>
-            <th>Setting</th>
-            <th>Meaning</th>
-          </tr>
-          <tr>
-            <td>Width and Height</td>
-            <td>Document dimensions</td>
-          </tr>
-          <tr>
-            <td>Resolution</td>
-            <td>Pixels per inch</td>
-          </tr>
-          <tr>
-            <td>Color Mode</td>
-            <td>RGB, CMYK, Grayscale</td>
-          </tr>
-          <tr>
-            <td>Background</td>
-            <td>White, color or transparent</td>
-          </tr>
-        </table>
-      </section>
-      <section id="getting-image">
-        <h2>Getting an Image</h2>
-        <p>Image editing software में image कई sources से प्राप्त की जा सकती है।</p>
+                <div class="exam"><b>Important:</b> Photo editing में raster graphics important हैं, जबकि logos और
+                    scalable illustrations के लिए vector graphics useful होती हैं।</div>
+            </section>
 
-        <h4>Common Sources</h4>
-        <ul>
-          <li>Digital camera या mobile phone से।</li>
-          <li>Scanner से।</li>
-          <li>Screenshot से।</li>
-          <li>Internet से legally downloaded image।</li>
-          <li>Clipboard से copy-paste।</li>
-          <li>Stock image library से।</li>
-          <li>Existing local storage file से।</li>
-        </ul>
+            <section id="interface">
+                <h2>4. Overview of Menus and Work Area</h2>
 
-        <div class="image-icon">
-          <img src="" alt="Getting Images from Camera Scanner and Internet">
-          <p>Image Placeholder: Camera, Scanner, Screenshot and Import</p>
-        </div>
+                <p>
+                    Image editing software का <strong>Work Area</strong> वह complete interface है जहाँ
+                    user image open करके editing operations perform करता है। इसमें menus, toolbar,
+                    toolbox, canvas, palettes/panels, rulers और status information जैसे elements हो सकते हैं।
+                </p>
 
-        <h4>Import and Place</h4>
-        <p>कुछ software में image को directly open करने के बजाय <strong>Place</strong> या <strong>Import</strong>
-          command से current document में add किया जाता है। इससे image अलग layer या smart object के रूप में add हो सकती
-          है।</p>
-      </section>
-      <section id="palettes">
-        <h2>Palettes and Panels</h2>
-        <p><strong>Palettes</strong> या <strong>Panels</strong> image editing के controls और information दिखाते हैं।
-          इन्हें move, resize, dock और hide किया जा सकता है।</p>
+                <h3>Typical Work Area</h3>
 
-        <div class="image-icon">
-          <img src="" alt="Image Editing Palettes">
-          <p>Image Placeholder: Layers, Colors, History and Navigator Panels</p>
-        </div>
+                <div class="flow">
+                    ┌──────────────────────────────────────────────┐
+                    │ MENU BAR │
+                    ├──────────────────────────────────────────────┤
+                    │ TOOLBAR / OPTIONS │
+                    ├───────────┬──────────────────────┬───────────┤
+                    │ TOOLBOX │ CANVAS │ PALETTES │
+                    │ │ / IMAGE │ / PANELS │
+                    │ │ │ │
+                    ├───────────┴──────────────────────┴───────────┤
+                    │ STATUS / INFORMATION BAR │
+                    └──────────────────────────────────────────────┘
+                </div>
 
-        <table>
-          <tr>
-            <th>Panel</th>
-            <th>Use</th>
-          </tr>
-          <tr>
-            <td>Layers Panel</td>
-            <td>Layers create, select और arrange करना।</td>
-          </tr>
-          <tr>
-            <td>Color Panel</td>
-            <td>Foreground/background colors choose करना।</td>
-          </tr>
-          <tr>
-            <td>Swatches Panel</td>
-            <td>Saved colors access करना।</td>
-          </tr>
-          <tr>
-            <td>History Panel</td>
-            <td>Previous editing steps देखना और undo करना।</td>
-          </tr>
-          <tr>
-            <td>Navigator Panel</td>
-            <td>Image zoom और navigation।</td>
-          </tr>
-          <tr>
-            <td>Channels Panel</td>
-            <td>Color channels manage करना।</td>
-          </tr>
-          <tr>
-            <td>Paths Panel</td>
-            <td>Vector paths manage करना।</td>
-          </tr>
-          <tr>
-            <td>Properties Panel</td>
-            <td>Selected object/layer properties edit करना।</td>
-          </tr>
-        </table>
-      </section>
-      <section id="context-menu">
-        <h2>Using Context Menu</h2>
-        <p><strong>Context menu</strong> right-click करने पर open होने वाला menu है। यह current selection, layer, tool
-          या object के अनुसार relevant commands दिखाता है।</p>
+                <h3>Menu Bar</h3>
+                <p>
+                    Menu bar में software के commands categories के रूप में organized होते हैं। Common
+                    menus में File, Edit, Image, Layer, Select, Filter, View, Window आदि हो सकते हैं।
+                    Exact menu names software पर depend करते हैं।
+                </p>
 
-        <h4>Examples</h4>
-        <ul>
-          <li>Layer पर right-click करके duplicate, merge या delete करना।</li>
-          <li>Selection पर right-click करके feather, transform या fill करना।</li>
-          <li>Text layer पर right-click करके rasterize या convert करना।</li>
-          <li>Canvas पर right-click करके brush size या zoom change करना।</li>
-        </ul>
+                <h3>Common Menu Functions</h3>
+                <table>
+                    <tr>
+                        <th>Menu</th>
+                        <th>Typical Functions</th>
+                    </tr>
+                    <tr>
+                        <td>File</td>
+                        <td>New, Open, Save, Save As, Export, Close, Print आदि।</td>
+                    </tr>
+                    <tr>
+                        <td>Edit</td>
+                        <td>Undo, Redo, Cut, Copy, Paste आदि।</td>
+                    </tr>
+                    <tr>
+                        <td>Image</td>
+                        <td>Image size, canvas size, color adjustments आदि।</td>
+                    </tr>
+                    <tr>
+                        <td>Layer</td>
+                        <td>New layer, duplicate, merge, layer properties आदि।</td>
+                    </tr>
+                    <tr>
+                        <td>Select</td>
+                        <td>Selection create, modify, invert आदि।</td>
+                    </tr>
+                    <tr>
+                        <td>View</td>
+                        <td>Zoom, rulers, guides और display options आदि।</td>
+                    </tr>
+                    <tr>
+                        <td>Filter</td>
+                        <td>Visual effects और image processing operations।</td>
+                    </tr>
+                </table>
+            </section>
 
-        <div class="note-box"><b>Practical Benefit:</b><br>Context menu frequently used commands तक fast access देता है
-          और editing speed improve करता है।</div>
-      </section>
-      <section id="rulers-guides">
-        <h2>Rulers and Guidelines</h2>
-        <p><strong>Rulers</strong> image के horizontal और vertical dimensions measure करने के लिए use होते हैं।
-          <strong>Guides</strong> non-printing alignment lines होती हैं जो objects को properly position करने में help
-          करती हैं।</p>
+            <section id="toolbar">
+                <h2>5. Toolbars and Toolbox Usages</h2>
 
-        <div class="image-icon">
-          <img src="" alt="Rulers and Guides">
-          <p>Image Placeholder: Horizontal Ruler, Vertical Ruler and Guides</p>
-        </div>
+                <p>
+                    <strong>Toolbar</strong> commonly used commands या options तक quick access देती है,
+                    जबकि <strong>Toolbox</strong> में image editing और drawing के लिए अलग-अलग tools
+                    available होते हैं।
+                </p>
 
-        <h4>Uses of Rulers</h4>
-        <ul>
-          <li>Object size measure करना।</li>
-          <li>Exact position identify करना।</li>
-          <li>Guides create करना।</li>
-          <li>Print layout prepare करना।</li>
-        </ul>
+                <h3>Common Tools</h3>
 
-        <h4>Uses of Guides</h4>
-        <ul>
-          <li>Text और image align करना।</li>
-          <li>Margins maintain करना।</li>
-          <li>Poster या social post layout बनाना।</li>
-          <li>Symmetrical design तैयार करना।</li>
-        </ul>
+                <table>
+                    <tr>
+                        <th>Tool</th>
+                        <th>Purpose</th>
+                    </tr>
+                    <tr>
+                        <td>Selection Tool</td>
+                        <td>Image के specific area को select करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Move Tool</td>
+                        <td>Selected object/layer को move करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Crop Tool</td>
+                        <td>Image का required area retain करके बाकी भाग हटाना।</td>
+                    </tr>
+                    <tr>
+                        <td>Brush Tool</td>
+                        <td>Painting या freehand drawing करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Eraser Tool</td>
+                        <td>Image/layer के pixels erase करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Fill Tool</td>
+                        <td>Selected area को color/pattern से fill करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Text Tool</td>
+                        <td>Image में text add करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Shape Tools</td>
+                        <td>Rectangle, ellipse आदि shapes create करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Zoom Tool</td>
+                        <td>Image को zoom in/out करके देखना।</td>
+                    </tr>
+                    <tr>
+                        <td>Eyedropper</td>
+                        <td>Image से color sample करना।</td>
+                    </tr>
+                </table>
 
-        <h4>Grid</h4>
-        <p>Grid evenly spaced lines का pattern होता है। यह pixel-level और geometric alignment के लिए useful है।</p>
-      </section>
-      <section id="color-modes">
-        <h2>Color Modes of Images</h2>
-        <p>Color mode यह define करता है कि image में colors किस system से represent होंगे।</p>
+                <h3>Toolbox का महत्व</h3>
+                <ul>
+                    <li>Frequently used editing tools तक fast access देता है।</li>
+                    <li>Drawing और selection operations को आसान बनाता है।</li>
+                    <li>Different tools के options toolbar/options area में बदल सकते हैं।</li>
+                    <li>Professional image editing workflow को faster बनाता है।</li>
+                </ul>
 
-        <div class="image-icon">
-          <img src="" alt="Image Color Modes">
-          <p>Image Placeholder: RGB, CMYK, Grayscale and Bitmap Modes</p>
-        </div>
+                <div class="note"><b>Note:</b> Different image editors में toolbox की appearance और exact tools अलग हो
+                    सकते हैं, लेकिन selection, move, crop, paint, erase और text जैसे basic functions commonly मिलते हैं।
+                </div>
+            </section>
 
-        <table>
-          <tr>
-            <th>Color Mode</th>
-            <th>Use</th>
-          </tr>
-          <tr>
-            <td>RGB</td>
-            <td>Screen, web और digital media</td>
-          </tr>
-          <tr>
-            <td>CMYK</td>
-            <td>Professional printing</td>
-          </tr>
-          <tr>
-            <td>Grayscale</td>
-            <td>Black, white और gray shades</td>
-          </tr>
-          <tr>
-            <td>Bitmap</td>
-            <td>Only black and white pixels</td>
-          </tr>
-          <tr>
-            <td>Indexed Color</td>
-            <td>Limited color palette, GIF graphics</td>
-          </tr>
-          <tr>
-            <td>Lab Color</td>
-            <td>Device-independent professional color model</td>
-          </tr>
-        </table>
+            <section id="document">
+                <h2>6. Starting and Opening a Document</h2>
 
-        <h4>RGB Mode</h4>
-        <p>RGB में Red, Green और Blue light combine होकर colors बनाती हैं। यह screens के लिए suitable है।</p>
+                <h3>New Document Create करना</h3>
 
-        <h4>CMYK Mode</h4>
-        <p>CMYK में Cyan, Magenta, Yellow और Black inks use होती हैं। यह printing के लिए suitable है।</p>
+                <p>General steps:</p>
+                <ol>
+                    <li>Image editing software open करें।</li>
+                    <li><strong>File → New</strong> command select करें।</li>
+                    <li>Required width और height set करें।</li>
+                    <li>Resolution आवश्यकता के अनुसार choose करें।</li>
+                    <li>Color mode और background settings select करें।</li>
+                    <li>Create/New button select करें।</li>
+                </ol>
 
-        <div class="remember-box"><b>Remember:</b><br>Screen work के लिए RGB और commercial printing के लिए CMYK commonly
-          use होता है।</div>
-      </section>
-      <section id="layers">
-        <h2>Working with Layers</h2>
-        <p><strong>Layer</strong> transparent sheet की तरह होती है जिस पर image, text या effects independently रखे जा
-          सकते हैं। Layers non-destructive editing की foundation हैं।</p>
+                <div class="flow">
+                    File → New
+                    ↓
+                    Width / Height
+                    ↓
+                    Resolution
+                    ↓
+                    Color Mode
+                    ↓
+                    Background
+                    ↓
+                    Create
+                </div>
 
-        <div class="image-icon">
-          <img src="" alt="Layers in Image Editing">
-          <p>Image Placeholder: Layer Stack</p>
-        </div>
+                <h3>Existing Document Open करना</h3>
 
-        <h4>Layer Operations</h4>
-        <ul>
-          <li>New layer create करना।</li>
-          <li>Layer rename करना।</li>
-          <li>Layer duplicate करना।</li>
-          <li>Layer order change करना।</li>
-          <li>Layer hide/show करना।</li>
-          <li>Layer lock करना।</li>
-          <li>Layer merge करना।</li>
-          <li>Layer group बनाना।</li>
-          <li>Opacity change करना।</li>
-          <li>Blend mode apply करना।</li>
-        </ul>
+                <ol>
+                    <li><strong>File → Open</strong> select करें।</li>
+                    <li>Computer में required image file locate करें।</li>
+                    <li>File select करें।</li>
+                    <li>Open button click करें।</li>
+                    <li>Image work area में दिखाई देगी।</li>
+                </ol>
 
-        <h4>Layer Order</h4>
-        <p>Top layer नीचे की layers को cover कर सकती है। Layer order change करके design composition control की जाती है।
-        </p>
+                <h3>Open Shortcut</h3>
+                <p>Many applications में <strong>Ctrl + O</strong> Open command के लिए commonly used shortcut है।</p>
+            </section>
 
-        <h4>Layer Mask</h4>
-        <p>Layer mask pixels permanently delete किए बिना image area hide/show करती है। यह non-destructive editing के लिए
-          बहुत useful है।</p>
+            <section id="getting">
+                <h2>7. Getting / Importing an Image</h2>
 
-        <h4>Adjustment Layer</h4>
-        <p>Adjustment layer brightness, contrast, color balance जैसे changes बिना original image permanently modify किए
-          apply करती है।</p>
+                <p>
+                    Image editing workflow में image कई sources से प्राप्त की जा सकती है, जैसे local
+                    storage, scanner, camera, screenshot या अन्य application/document।
+                </p>
 
-        <div class="note-box"><b>Professional Tip:</b><br>हर major object और text को अलग layer पर रखें, ताकि बाद में
-          edit करना आसान रहे।</div>
-      </section>
-      <section id="transparency">
-        <h2>Transparency</h2>
-        <p><strong>Transparency</strong> image या layer के transparent होने की property है। Transparent area के पीछे की
-          layer visible रहती है।</p>
+                <h3>Local File से Image लेना</h3>
+                <ol>
+                    <li>File → Open पर जाएँ।</li>
+                    <li>Image file locate करें।</li>
+                    <li>Open करें।</li>
+                </ol>
 
-        <div class="image-icon">
-          <img src="" alt="Transparency Checkerboard">
-          <p>Image Placeholder: Transparent Background and Checkerboard Pattern</p>
-        </div>
+                <h3>Import Concept</h3>
+                <p>
+                    कुछ applications में external image को current document में import/place किया जा
+                    सकता है। इससे image को existing project में एक अलग layer/object के रूप में add
+                    करना possible हो सकता है।
+                </p>
 
-        <h4>Opacity</h4>
-        <p>Opacity 100% होने पर layer fully visible होती है। Opacity reduce करने पर layer semi-transparent हो जाती है।
-        </p>
+                <h3>Scanner / Camera</h3>
+                <p>
+                    कुछ image editing environments scanners या cameras जैसे external sources से image
+                    acquire करने की सुविधा provide कर सकते हैं। Actual procedure software और device
+                    support पर depend करता है।
+                </p>
 
-        <h4>Alpha Channel</h4>
-        <p>Alpha channel transparency information store करता है। PNG और some professional formats transparency support
-          करते हैं।</p>
+                <div class="important"><b>Best Practice:</b> Original image की backup copy रखें और editing के लिए
+                    duplicate/project copy पर काम करें।</div>
+            </section>
 
-        <h4>Uses</h4>
-        <ul>
-          <li>Background remove करना।</li>
-          <li>Logo transparent बनाना।</li>
-          <li>Watermark create करना।</li>
-          <li>Layer blending effect बनाना।</li>
-          <li>Web graphics तैयार करना।</li>
-        </ul>
+            <section id="palettes">
+                <h2>8. Exploring Basic Features Like Palettes</h2>
 
-        <div class="remember-box"><b>Remember:</b><br>Transparent image save करने के लिए ऐसा format चुनें जो alpha
-          transparency support करता हो, जैसे PNG।</div>
-      </section>
-      <section id="closing">
-        <h2>Closing Files and Quitting</h2>
-        <h4>Closing a File</h4>
-        <ol>
-          <li>File → Close command choose करें।</li>
-          <li>Unsaved changes होने पर save prompt आएगा।</li>
-          <li>Save, Don't Save या Cancel option choose करें।</li>
-        </ol>
+                <p>
+                    <strong>Palettes</strong> या <strong>Panels</strong> software interface के छोटे
+                    windows/sections होते हैं जो colors, layers, brushes, history, properties और अन्य
+                    settings को manage करने में सहायता करते हैं।
+                </p>
 
-        <h4>Saving Before Closing</h4>
-        <p>Editable project को PSD/XCF जैसे native format में save करें और final output को JPG/PNG/TIFF में export करें।
-        </p>
+                <h3>Common Palettes / Panels</h3>
 
-        <h4>Quitting the Application</h4>
-        <p>File → Exit/Quit command use करें। Multiple unsaved documents होने पर software save confirmation दे सकता है।
-        </p>
+                <table>
+                    <tr>
+                        <th>Palette / Panel</th>
+                        <th>Purpose</th>
+                    </tr>
+                    <tr>
+                        <td>Color Palette</td>
+                        <td>Colors select और manage करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Layers Panel</td>
+                        <td>Layers create, delete, reorder, hide और modify करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Brush Panel</td>
+                        <td>Brush types, size और settings manage करना।</td>
+                    </tr>
+                    <tr>
+                        <td>History Panel</td>
+                        <td>Previous editing actions review/undo करने में सहायता।</td>
+                    </tr>
+                    <tr>
+                        <td>Properties Panel</td>
+                        <td>Selected object/tool की properties adjust करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Navigator</td>
+                        <td>Large image में navigation और zoom control।</td>
+                    </tr>
+                </table>
 
-        <div class="note-box"><b>Safe Practice:</b><br>काम के दौरान frequently save करें और original image की duplicate
-          copy पर editing करें।</div>
-      </section>
-      <section id="workflow">
-        <h2>Basic Image Editing Workflow</h2>
-        <pre>Open / Import Image
-        ↓
-Duplicate Original Layer
-        ↓
-Crop and Straighten
-        ↓
-Resize if Required
-        ↓
-Correct Brightness and Color
-        ↓
-Retouch / Remove Unwanted Areas
-        ↓
-Add Text, Graphics and Effects
-        ↓
-Check Layers and Transparency
-        ↓
-Save Editable Project
-        ↓
-Export Final Image</pre>
+                <h3>Palette का उपयोग क्यों?</h3>
+                <ul>
+                    <li>Important options एक जगह उपलब्ध होते हैं।</li>
+                    <li>Editing workflow faster होता है।</li>
+                    <li>Layers और colors जैसे elements को easily manage किया जा सकता है।</li>
+                    <li>Workspace को user की आवश्यकता के अनुसार organize किया जा सकता है।</li>
+                </ul>
+            </section>
 
-        <div class="image-icon">
-          <img src="" alt="Image Editing Workflow">
-          <p>Image Placeholder: Complete Image Editing Workflow</p>
-        </div>
+            <section id="context">
+                <h2>9. Using Context Menu</h2>
 
-        <div class="remember-box"><b>Remember:</b><br>Editable project और final exported image को अलग-अलग save करना
-          professional workflow का important part है।</div>
-      </section>
-    </main>
-  </div>
+                <p>
+                    <strong>Context Menu</strong> वह menu है जो किसी selected object, layer, file या
+                    work area के specific context के अनुसार options provide करता है। इसे सामान्यतः
+                    right-click करने पर open किया जाता है।
+                </p>
+
+                <h3>Example</h3>
+                <p>
+                    यदि Layers panel में किसी layer पर right-click किया जाए, तो software के अनुसार
+                    Duplicate, Delete, Rename, Merge आदि options दिखाई दे सकते हैं।
+                </p>
+
+                <div class="flow">
+                    Right Click
+                    ↓
+                    Context Menu
+                    ↓
+                    Context-Specific Options
+                    ↓
+                    Select Required Command
+                </div>
+
+                <h3>Advantages</h3>
+                <ul>
+                    <li>Relevant commands तक quick access।</li>
+                    <li>Workflow faster बनता है।</li>
+                    <li>Selected item के अनुसार options बदलते हैं।</li>
+                </ul>
+
+                <div class="note"><b>Remember:</b> Context menu हमेशा current selection/location के context के अनुसार
+                    options दिखाता है।</div>
+            </section>
+
+            <section id="rulers">
+                <h2>10. Rulers and Guidelines</h2>
+
+                <h3>Rulers</h3>
+                <p>
+                    <strong>Rulers</strong> work area में horizontal और vertical measurement references
+                    provide करते हैं। इनकी सहायता से object/image placement और approximate dimensions
+                    को understand किया जा सकता है।
+                </p>
+
+                <h3>Guidelines</h3>
+                <p>
+                    <strong>Guidelines</strong> non-printing visual reference lines होती हैं जिनका उपयोग
+                    objects को align करने और layout accurately arrange करने के लिए किया जाता है।
+                </p>
+
+                <div class="flow">
+                    Horizontal Ruler
+                    ─────────────────────────────
+                    │ │
+                    │ Image │
+                    │ │
+                    ────────┼───────┼─────────────
+                    │ │
+                    Vertical Guide
+                </div>
+
+                <h3>Rulers के Uses</h3>
+                <ul>
+                    <li>Object positioning।</li>
+                    <li>Layout alignment।</li>
+                    <li>Approximate measurement।</li>
+                    <li>Document structure समझना।</li>
+                </ul>
+
+                <h3>Guidelines के Uses</h3>
+                <ul>
+                    <li>Text और images align करना।</li>
+                    <li>Margins और layout planning।</li>
+                    <li>Multiple objects को consistent position पर रखना।</li>
+                    <li>Design में visual accuracy improve करना।</li>
+                </ul>
+
+                <div class="important"><b>Important:</b> Guidelines सामान्यतः final image में दिखाई देने वाली printed
+                    content नहीं होतीं; वे editing सहायता के लिए होती हैं।</div>
+            </section>
+
+            <section id="closing">
+                <h2>11. Closing Files and Quitting</h2>
+
+                <h3>File Close करना</h3>
+                <ol>
+                    <li>Current document select करें।</li>
+                    <li><strong>File → Close</strong> command use करें।</li>
+                    <li>यदि unsaved changes हों तो software save करने के लिए पूछ सकता है।</li>
+                    <li>Save करना हो तो Save चुनें; नहीं तो appropriate discard option चुनें।</li>
+                </ol>
+
+                <h3>Application Quit करना</h3>
+                <ol>
+                    <li>Application के Exit/Quit command को select करें।</li>
+                    <li>Unsaved documents होने पर save confirmation दिखाई दे सकती है।</li>
+                    <li>Required files save करने के बाद application बंद करें।</li>
+                </ol>
+
+                <table>
+                    <tr>
+                        <th>Action</th>
+                        <th>Meaning</th>
+                    </tr>
+                    <tr>
+                        <td>Close</td>
+                        <td>Current document/file को बंद करता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Quit / Exit</td>
+                        <td>पूरी image editing application को बंद करता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Save</td>
+                        <td>Changes को file में store करता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Save As</td>
+                        <td>File को नए name/location/format के साथ save करने की सुविधा देता है।</td>
+                    </tr>
+                </table>
+            </section>
+
+            <section id="colormodes">
+                <h2>12. Color Modes of Images</h2>
+
+                <p>
+                    <strong>Color Mode</strong> यह define करता है कि image में colors किस प्रकार
+                    represent और store किए जाएंगे। अलग-अलग output requirements के लिए अलग color modes
+                    use किए जा सकते हैं।
+                </p>
+
+                <h3>RGB</h3>
+                <p>
+                    <strong>RGB = Red, Green, Blue.</strong> यह screen-based graphics, websites,
+                    mobile devices और digital displays के लिए commonly used color model है।
+                </p>
+
+                <div class="flow">
+                    RGB
+                    ├── Red
+                    ├── Green
+                    └── Blue
+                </div>
+
+                <h3>CMYK</h3>
+                <p>
+                    <strong>CMYK = Cyan, Magenta, Yellow, Key (Black).</strong> यह printing workflows
+                    में commonly used color model है।
+                </p>
+
+                <div class="flow">
+                    CMYK
+                    ├── Cyan
+                    ├── Magenta
+                    ├── Yellow
+                    └── Key / Black
+                </div>
+
+                <h3>Grayscale</h3>
+                <p>
+                    Grayscale images में colors की जगह shades of gray use किए जाते हैं। यह black,
+                    white और intermediate gray tones को represent कर सकता है।
+                </p>
+
+                <h3>Bitmap / Indexed Color</h3>
+                <p>
+                    कुछ software environments limited color palettes या indexed-color modes भी
+                    support करते हैं। Exact features software पर depend करती हैं।
+                </p>
+
+                <table>
+                    <tr>
+                        <th>Color Mode</th>
+                        <th>Common Use</th>
+                    </tr>
+                    <tr>
+                        <td>RGB</td>
+                        <td>Digital screens, web, mobile and general digital graphics</td>
+                    </tr>
+                    <tr>
+                        <td>CMYK</td>
+                        <td>Printing</td>
+                    </tr>
+                    <tr>
+                        <td>Grayscale</td>
+                        <td>Black-and-white / gray-tone images</td>
+                    </tr>
+                    <tr>
+                        <td>Indexed Color</td>
+                        <td>Limited-color graphics and specific file/workflow requirements</td>
+                    </tr>
+                </table>
+
+                <div class="note"><b>Exam Tip:</b> Screen → RGB | Print → CMYK | Black & White → Grayscale.</div>
+            </section>
+
+            <section id="layers">
+                <h2>13. Working with Layers</h2>
+
+                <p>
+                    <strong>Layer</strong> image project का एक separate editable level है। Layers की
+                    सहायता से image के अलग-अलग elements को independently edit, move, hide, duplicate
+                    और organize किया जा सकता है।
+                </p>
+
+                <div class="flow">
+                    Layer 3 → Text
+                    Layer 2 → Logo
+                    Layer 1 → Photo
+                    Layer 0 → Background
+                </div>
+
+                <h3>Layer Operations</h3>
+
+                <table>
+                    <tr>
+                        <th>Operation</th>
+                        <th>Purpose</th>
+                    </tr>
+                    <tr>
+                        <td>New Layer</td>
+                        <td>New editable layer create करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Duplicate</td>
+                        <td>Existing layer की copy बनाना।</td>
+                    </tr>
+                    <tr>
+                        <td>Rename</td>
+                        <td>Layer को meaningful name देना।</td>
+                    </tr>
+                    <tr>
+                        <td>Hide/Show</td>
+                        <td>Layer को temporarily visible या invisible करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Reorder</td>
+                        <td>Layer stacking order बदलना।</td>
+                    </tr>
+                    <tr>
+                        <td>Delete</td>
+                        <td>Unwanted layer remove करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Merge</td>
+                        <td>Selected layers को combine करना, software support के अनुसार।</td>
+                    </tr>
+                </table>
+
+                <h3>Layer Order</h3>
+                <p>
+                    Layers का order यह determine करता है कि कौन-सा element दूसरे element के ऊपर
+                    दिखेगा। ऊपर वाली layer सामान्यतः नीचे वाली layer के content को cover कर सकती है,
+                    जब तक transparency या blending behavior उसे अलग न बनाए।
+                </p>
+
+                <h3>Advantages of Layers</h3>
+                <ul>
+                    <li>Non-destructive और organized editing workflow में सहायता।</li>
+                    <li>एक element को दूसरे elements को disturb किए बिना edit किया जा सकता है।</li>
+                    <li>Design के अलग-अलग components को manage करना आसान।</li>
+                    <li>Complex projects को logically organize किया जा सकता है।</li>
+                </ul>
+
+                <div class="exam"><b>Exam Definition:</b> A layer is an independent editable level in an image document
+                    used to organize and modify individual elements of a design.</div>
+            </section>
+
+            <section id="transparency">
+                <h2>14. Transparency</h2>
+
+                <p>
+                    <strong>Transparency</strong> का अर्थ image या layer के किसी area में background या
+                    underlying content को दिखाई देने देना है। Transparent area में कोई solid color
+                    present नहीं होता।
+                </p>
+
+                <h3>Transparency के Uses</h3>
+                <ul>
+                    <li>Logo को background के बिना use करना।</li>
+                    <li>Web graphics में transparent background बनाना।</li>
+                    <li>Different layers को combine करना।</li>
+                    <li>Design elements के आसपास unwanted background remove करना।</li>
+                    <li>Overlay और compositing effects create करना।</li>
+                </ul>
+
+                <h3>Alpha Channel</h3>
+                <p>
+                    कई image formats और editing systems में transparency information को
+                    <strong>alpha channel</strong> के माध्यम से represent किया जा सकता है।
+                </p>
+
+                <div class="flow">
+                    Image Pixel
+                    ↓
+                    Color Information
+                    +
+                    Alpha Information
+                    ↓
+                    Opacity / Transparency
+                </div>
+
+                <h3>Opacity vs Transparency</h3>
+
+                <table>
+                    <tr>
+                        <th>Term</th>
+                        <th>Meaning</th>
+                    </tr>
+                    <tr>
+                        <td>Opacity</td>
+                        <td>किसी layer/object की visibility/solidness की degree।</td>
+                    </tr>
+                    <tr>
+                        <td>Transparency</td>
+                        <td>Underlying background/content कितना दिखाई दे रहा है।</td>
+                    </tr>
+                </table>
+
+                <h3>Example</h3>
+                <p>
+                    यदि किसी logo layer की opacity कम की जाती है, तो उसके नीचे का background अधिक
+                    visible हो सकता है। इसी concept का उपयोग overlays और visual effects में किया जाता है।
+                </p>
+
+                <div class="important"><b>Format Tip:</b> Transparency की आवश्यकता होने पर ऐसा file format/workflow
+                    चुनें जो required transparency information preserve कर सके, जैसे PNG में transparent backgrounds
+                    commonly supported होते हैं।</div>
+            </section>
+
+            <section id="workflow">
+                <h2>15. Complete Image Editing Workflow</h2>
+
+                <p>
+                    अब पूरे unit के concepts को एक practical workflow में समझें:
+                </p>
+
+                <div class="flow">
+                    Start Image Editor
+                    ↓
+                    Create New / Open Document
+                    ↓
+                    Select File Format / Image
+                    ↓
+                    Set Color Mode
+                    ↓
+                    Import / Get Image
+                    ↓
+                    Use Toolbox & Menus
+                    ↓
+                    Use Rulers & Guidelines
+                    ↓
+                    Organize with Layers
+                    ↓
+                    Adjust Transparency
+                    ↓
+                    Edit / Enhance Image
+                    ↓
+                    Save Project
+                    ↓
+                    Export Required Format
+                    ↓
+                    Close File / Quit
+                </div>
+
+                <h3>Example: Simple Poster Creation</h3>
+
+                <ol>
+                    <li>New document create करें।</li>
+                    <li>Required dimensions और RGB color mode choose करें यदि output digital है।</li>
+                    <li>Background image import करें।</li>
+                    <li>Image को separate layer में रखें।</li>
+                    <li>Guidelines की सहायता से layout align करें।</li>
+                    <li>Text और logo के लिए separate layers create करें।</li>
+                    <li>Required layer opacity/transparency adjust करें।</li>
+                    <li>Final design check करें।</li>
+                    <li>Editable project format में save करें।</li>
+                    <li>Final use के अनुसार JPEG/PNG आदि format में export करें।</li>
+                </ol>
+            </section>
+
+            <section id="revision">
+                <h2>16. Quick Revision & Important Questions</h2>
+
+                <table>
+                    <tr>
+                        <th>Topic</th>
+                        <th>One-Line Revision</th>
+                    </tr>
+                    <tr>
+                        <td>Image Editing Tool</td>
+                        <td>Digital images create, modify और enhance करने का software/tool.</td>
+                    </tr>
+                    <tr>
+                        <td>File Format</td>
+                        <td>Image data को store करने का defined format.</td>
+                    </tr>
+                    <tr>
+                        <td>Raster</td>
+                        <td>Pixels पर आधारित image.</td>
+                    </tr>
+                    <tr>
+                        <td>Vector</td>
+                        <td>Paths और mathematical shapes पर आधारित graphic.</td>
+                    </tr>
+                    <tr>
+                        <td>Work Area</td>
+                        <td>Editing software का complete working interface.</td>
+                    </tr>
+                    <tr>
+                        <td>Toolbox</td>
+                        <td>Editing/drawing tools का collection.</td>
+                    </tr>
+                    <tr>
+                        <td>Palette/Panel</td>
+                        <td>Colors, layers, brushes और properties manage करने वाला interface section.</td>
+                    </tr>
+                    <tr>
+                        <td>Context Menu</td>
+                        <td>Context-specific options वाला menu, commonly right-click से open होता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Rulers</td>
+                        <td>Measurement/positioning reference देते हैं।</td>
+                    </tr>
+                    <tr>
+                        <td>Guidelines</td>
+                        <td>Alignment के लिए visual reference lines.</td>
+                    </tr>
+                    <tr>
+                        <td>RGB</td>
+                        <td>Red, Green, Blue; screen-oriented color model.</td>
+                    </tr>
+                    <tr>
+                        <td>CMYK</td>
+                        <td>Cyan, Magenta, Yellow, Black; printing-oriented color model.</td>
+                    </tr>
+                    <tr>
+                        <td>Layer</td>
+                        <td>Independent editable level.</td>
+                    </tr>
+                    <tr>
+                        <td>Transparency</td>
+                        <td>Underlying content को visible बनाने वाली image property.</td>
+                    </tr>
+                </table>
+
+                <div class="exam">
+                    <b>Important Long-Answer Questions</b><br><br>
+                    1. Image Editing Tools क्या हैं? इनके प्रमुख uses समझाइए।<br>
+                    2. विभिन्न image file formats को examples सहित समझाइए।<br>
+                    3. Raster और Vector images में अंतर लिखिए।<br>
+                    4. Image editing software के work area और menus को समझाइए।<br>
+                    5. Toolbar और Toolbox क्या हैं? इनके प्रमुख tools के uses लिखिए।<br>
+                    6. New document create करने और existing image open करने की प्रक्रिया समझाइए।<br>
+                    7. Image को import/get करने के विभिन्न तरीकों को समझाइए।<br>
+                    8. Palettes/Panels क्या हैं? इनके uses लिखिए।<br>
+                    9. Context Menu क्या है? इसका उपयोग समझाइए।<br>
+                    10. Rulers और Guidelines क्या हैं? इनके uses समझाइए।<br>
+                    11. RGB, CMYK और Grayscale color modes समझाइए।<br>
+                    12. Layers क्या हैं? Layer operations और advantages समझाइए।<br>
+                    13. Transparency क्या है? Alpha channel और opacity समझाइए।<br>
+                    14. Image editing का complete workflow step-by-step समझाइए।
+                </div>
+
+                <div class="note">
+                    <b>Exam Writing Pattern:</b><br>
+                    इस unit के answer में
+                    <strong>Definition → Purpose → Types/Features → Steps → Example → Advantages → Difference</strong>
+                    का sequence रखें। Practical question में steps को numbered format में लिखना सबसे clear रहेगा।
+                </div>
+
+                <h3>Conclusion</h3>
+                <p>
+                    Image editing tools digital graphics के creation और modification के लिए important
+                    हैं। इस unit में file formats, raster और vector graphics, work area, menus,
+                    toolbars, toolbox, palettes, context menus, rulers, guidelines, color modes,
+                    layers और transparency जैसे concepts image editing workflow की foundation तैयार
+                    करते हैं। इन concepts की अच्छी understanding से किसी भी image editing software
+                    का interface सीखना और practical editing tasks perform करना आसान हो जाता है।
+                </p>
+
+            </section>
+        </main>
+    </div>
 </body>
 
 </html>
