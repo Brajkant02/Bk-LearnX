@@ -5,11 +5,11 @@
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FB7SX0P0D3"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-      gtag('config', 'G-FB7SX0P0D3');
+        gtag('config', 'G-FB7SX0P0D3');
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,8 +23,8 @@
         <aside class="sidebar">
             <h2>Topics</h2>
             <a href="#intro">Introduction to Motherboard</a>
-            <a href="#bus">Computer BUS</a>
             <a href="#components">Motherboard Components</a>
+            <a href="#bus">Computer BUS</a>
             <a href="#chipset">Chipset: Northbridge and Southbridge</a>
             <a href="#types">Types of Motherboard</a>
             <a href="#battery">CMOS Battery</a>
@@ -53,8 +53,8 @@
                 <p>Motherboard सभी components के बीच electrical connection और data communication path provide करती है।
                     यह तय करती है कि कौन-सा processor, कितनी RAM, किस type का storage और कौन-सी expansion cards system
                     में use की जा सकती हैं।</p>
-                <div class="image-icon"><img src="" alt="Motherboard Overview">
-                    <p>Image Placeholder: Complete Motherboard Overview</p>
+                <div class="image-icon"><img src="../images/motherboard.webp" alt="Motherboard Overview">
+
                 </div>
                 <h4>Main Functions</h4>
                 <ul>
@@ -67,64 +67,12 @@
                 <div class="remember-box"><b>Remember:</b><br>Motherboard computer के सभी major components को physically
                     और logically connect करती है।</div>
             </section>
-            <section id="bus">
-                <h2>Computer BUS</h2>
-                <p><strong>BUS</strong> electrical pathways का group होता है जिसके through computer के components data,
-                    addresses और control signals exchange करते हैं। BUS को road system की तरह समझा जा सकता है, जहाँ
-                    अलग-अलग प्रकार की information अलग lanes से travel करती है।</p>
-                <div class="image-icon"><img src="" alt="System Bus Diagram">
-                    <p>Image Placeholder: Data Bus, Address Bus and Control Bus</p>
-                </div>
-                <h4>Data Bus</h4>
-                <p>Data bus actual data transfer करती है। यह CPU, RAM और I/O devices के बीच binary data carry करती है।
-                    Data bus generally bidirectional होती है।</p>
-                <h4>Address Bus</h4>
-                <p>Address bus यह बताती है कि data किस memory location या device तक जाना है। Address bus usually
-                    unidirectional होती है और CPU से बाहर की ओर signal भेजती है।</p>
-                <h4>Control Bus</h4>
-                <p>Control bus read, write, interrupt, clock और reset जैसे control signals carry करती है।</p>
-                <h4>System Bus</h4>
-                <p>Data bus, address bus और control bus together system bus कहलाती हैं।</p>
-                <h4>Expansion Bus</h4>
-                <p>Expansion bus motherboard और expansion cards के बीच communication provide करती है। PCI, PCIe, AGP और
-                    ISA इसके examples हैं।</p>
-                <table>
-                    <tr>
-                        <th>Bus Type</th>
-                        <th>Purpose</th>
-                        <th>Direction</th>
-                    </tr>
-                    <tr>
-                        <td>Data Bus</td>
-                        <td>Actual data transfer</td>
-                        <td>Bidirectional</td>
-                    </tr>
-                    <tr>
-                        <td>Address Bus</td>
-                        <td>Memory/device address</td>
-                        <td>Mostly unidirectional</td>
-                    </tr>
-                    <tr>
-                        <td>Control Bus</td>
-                        <td>Control and timing signals</td>
-                        <td>Both directions possible</td>
-                    </tr>
-                    <tr>
-                        <td>Expansion Bus</td>
-                        <td>Expansion cards communication</td>
-                        <td>Bidirectional</td>
-                    </tr>
-                </table>
-                <div class="note-box"><b>Real Life Example:</b><br>Data bus truck की तरह data ले जाती है, address bus
-                    destination बताती है और control bus traffic signals की तरह movement control करती है।</div>
-            </section>
             <section id="components">
                 <h2>Motherboard Components</h2>
                 <p>Motherboard पर बहुत से components और connectors होते हैं। हर component की अपनी specific
                     responsibility होती है।</p>
-                <div class="image-icon"><img src="" alt="Motherboard Components">
-                    <p>Image Placeholder: Labeled Motherboard Components</p>
-                </div>
+
+
                 <h4>CPU Socket</h4>
                 <p>CPU socket processor को motherboard पर hold और electrically connect करता है। Different processors
                     different socket types use करते हैं।</p>
@@ -154,13 +102,87 @@
                     <li>RGB/ARGB headers</li>
                 </ul>
             </section>
+            <section id="bus">
+                <h2>Computer BUS</h2>
+                <p><strong>BUS</strong> electrical pathways का group होता है जिसके through computer के components data,
+                    addresses और control signals exchange करते हैं। BUS को road system की तरह समझा जा सकता है, जहाँ
+                    अलग-अलग प्रकार की information अलग lanes से travel करती है।</p>
+                <div class="image-icon"><img src="../images/system bus diagram.webp" alt="System Bus Diagram">
+                    <p>Image Placeholder: Data Bus, Address Bus and Control Bus</p>
+                </div>
+                <h4>Data Bus</h4>
+                <p>Data Bus computer के विभिन्न components जैसे CPU, Memory और Input/Output devices के बीच data को
+                    transfer करने
+                    का काम करता है।</p>
+                <ul>
+                    <li>यह सामान्यतः Bidirectional होता है।</li>
+                    <li>CPU इससे data को memory से read या memory में write करता है।</li>
+                    <li>इसकी width 8-bit, 16-bit, 32-bit, 64-bit आदि हो सकती है।</li>
+                    <li>Data Bus की width जितनी अधिक होगी, एक समय में उतना अधिक data transfer किया जा सकता है।</li>
+                </ul>
+                <p><strong>Example:</strong><br>32-bit Data Bus एक समय में 32 bits data transfer कर सकता है।</p>
+                <h4>Address Bus</h4>
+                <p>Address bus यह बताती है कि data किस memory location या device तक जाना है। Address bus usually
+                    unidirectional होती है और CPU से बाहर की ओर signal भेजती है।</p>
+                <ul>
+                    <li>Address Bus की width determine करती है कि system कितनी memory address कर सकता है।</li>
+                    <li>CPU address भेजता है और Memory उस address पर मौजूद data को access करती है।</li>
+                    <li>इसकी width computer की addressable memory capacity को determine करती है।</li>
+                </ul>
+                <p><strong>Example:</strong><br>20-bit Address Bus 2^20 = 1,048,576 (1 MB) unique memory locations
+                    address कर
+                    सकता है।</p>
+
+                <h4>Control Bus</h4>
+                <p>Control Bus CPU और अन्य components के बीच control signals और commands को transfer करता है। यह
+                    computer के
+                    विभिन्न operations को control और coordinate करता है।</p>
+                <ul>
+                    <p>इसके द्वारा कई signals भेजे जाते हैं, जैसे:</p>
+                    <li><strong>Read Signal - </strong>Data read करने के लिए।</li>
+                    <li><strong>Write Signal - </strong>Data write करने के लिए।</li>
+                    <li><strong>Clock Signal - </strong>Operations को synchronize करने के लिए।</li>
+                    <li><strong>Reset Signal - </strong>System को reset करने के लिए।</li>
+                </ul>
+                <p><Strong>Example:</Strong><br>जब CPU को Memory से data पढ़ना होता है, तो Control Bus के माध्यम से Read
+                    signal
+                    भेजा जाता है।</p>
+
+                <table>
+                    <tr>
+                        <th>Bus Type</th>
+                        <th>Purpose</th>
+                        <th>Direction</th>
+                    </tr>
+                    <tr>
+                        <td>Data Bus</td>
+                        <td>Actual data transfer</td>
+                        <td>Bidirectional</td>
+                    </tr>
+                    <tr>
+                        <td>Address Bus</td>
+                        <td>Memory/device address</td>
+                        <td>Mostly unidirectional</td>
+                    </tr>
+                    <tr>
+                        <td>Control Bus</td>
+                        <td>Control and timing signals</td>
+                        <td>Both directions possible</td>
+                    </tr>
+
+                </table>
+                <div class="note-box"><b>Real Life Example:</b><br>Data bus truck की तरह data ले जाती है, address bus
+                    destination बताती है और control bus traffic signals की तरह movement control करती है।</div>
+            </section>
+
             <section id="chipset">
                 <h2>Chipset: Northbridge and Southbridge</h2>
                 <p>Older motherboard architecture में chipset दो main parts में divided था: Northbridge और Southbridge।
                     Modern systems में Northbridge के कई functions CPU में integrate हो गए हैं और remaining functions
                     Platform Controller Hub (PCH) handle करता है।</p>
-                <div class="image-icon"><img src="" alt="Northbridge Southbridge Architecture">
-                    <p>Image Placeholder: Old vs Modern Chipset Architecture</p>
+                <div class="image-icon"><img src="../images/n-s bridge architecture.webp"
+                        alt="Northbridge Southbridge Architecture">
+
                 </div>
                 <table>
                     <tr>
@@ -188,8 +210,8 @@
                 <h2>Types of Motherboard</h2>
                 <p>Motherboards को form factor के basis पर classify किया जाता है। Form factor board size, mounting
                     holes, power connectors और expansion capacity define करता है।</p>
-                <div class="image-icon"><img src="" alt="Motherboard Form Factors">
-                    <p>Image Placeholder: ATX, Micro-ATX, Mini-ITX Comparison</p>
+                <div class="image-icon"><img src="../images/types of motherboard.webp" alt="Motherboard Form Factors">
+
                 </div>
                 <table>
                     <tr>
@@ -231,20 +253,27 @@
                 <h4>ATX</h4>
                 <p>ATX widely used standard form factor है। इसमें good expansion support, multiple RAM slots और standard
                     power connectors होते हैं।</p>
+                <div class="image-icon"><img src="../images/ATX motherboard.webp" alt="ATX Motherboard ">
+                </div>
                 <h4>Micro-ATX</h4>
                 <p>Micro-ATX compact और cost-effective होता है, लेकिन expansion slots कम हो सकते हैं।</p>
+                <div class="image-icon"><img src="../images/micro-ATX motherboard.webp" alt=" micro-ATX Motherboard">
+                </div>
                 <h4>Mini-ITX</h4>
                 <p>Mini-ITX छोटे computers के लिए useful है, पर ports और expansion limited हो सकते हैं।</p>
-                <div class="remember-box"><b>Remember:</b><br>Motherboard form factor cabinet compatibility और expansion
-                    capacity decide करता है।</div>
+                <div class="image-icon"><img src="../images/mini-ITX motherboard.webp" alt="mini-ITX Motherboard">
+                    <div class="remember-box"><b>Remember:</b><br>Motherboard form factor cabinet compatibility और
+                        expansion
+                        capacity decide करता है।</div>
+                </div>
             </section>
             <section id="battery">
                 <h2>CMOS Battery</h2>
                 <p><strong>CMOS battery</strong> motherboard पर लगी coin-cell battery होती है। यह real-time clock और
                     BIOS/UEFI settings को power supply करती है जब computer switched off होता है। Commonly CR2032 battery
                     use होती है।</p>
-                <div class="image-icon"><img src="" alt="CMOS Battery">
-                    <p>Image Placeholder: CMOS Battery Location</p>
+                <div class="image-icon"><img src="../images/cmos battery.webp" alt="CMOS Battery">
+
                 </div>
                 <h4>Functions</h4>
                 <ul>
@@ -320,8 +349,8 @@
                 <h2>Connections on the Motherboard</h2>
                 <p>Motherboard पर internal और external दोनों प्रकार के connections होते हैं। सही connection system
                     stability और hardware safety के लिए बहुत important है।</p>
-                <div class="image-icon"><img src="" alt="Motherboard Connections">
-                    <p>Image Placeholder: Complete Motherboard Connection Diagram</p>
+                <div class="image-icon"><img src="../images/motherboard connections.webp" alt="Motherboard Connections">
+
                 </div>
                 <h4>CPU Connection</h4>
                 <p>Processor CPU socket में correct orientation के साथ install होता है। Locking mechanism और socket
@@ -375,9 +404,8 @@
                 <h2>Motherboard Power Connections</h2>
                 <p>SMPS motherboard और CPU को अलग power connectors के through power देता है। Incorrect या loose power
                     connection से system start नहीं होगा।</p>
-                <div class="image-icon"><img src="" alt="Motherboard Power Connectors">
-                    <p>Image Placeholder: 24-pin ATX and 8-pin CPU Power</p>
-                </div>
+
+
                 <table>
                     <tr>
                         <th>Connector</th>
@@ -408,20 +436,32 @@
                 <h2>Keeping CPU Cool</h2>
                 <p>CPU instructions execute करते समय heat generate करता है। Excess heat performance reduce कर सकती है,
                     system shutdown करा सकती है और hardware life कम कर सकती है। इसलिए proper cooling essential है।</p>
-                <div class="image-icon"><img src="" alt="CPU Cooling System">
-                    <p>Image Placeholder: CPU, Thermal Paste, Heat Sink and Fan</p>
-                </div>
                 <h4>Heat Sink</h4>
                 <p>Metal fins CPU heat absorb करके air में transfer करती हैं।</p>
+                <div class="image-icon"><img src="../images/heat sink.webp" alt="CPU Cooling System">
+
+                </div>
                 <h4>Cooling Fan</h4>
                 <p>Fan heat sink से गर्म air हटाकर cooling improve करता है।</p>
+                <div class="image-icon"><img src="../images/cooling fan.webp" alt="CPU Cooling System">
+
+                </div>
                 <h4>Thermal Paste</h4>
                 <p>CPU और heat sink के बीच microscopic gaps fill करके heat transfer improve करती है।</p>
+                <div class="image-icon"><img src="../images/thermal paste.webp" alt="CPU Cooling System">
+
+                </div>
                 <h4>Air Cooling</h4>
                 <p>Heat sink और fan based cooling most common और cost-effective है।</p>
+                <div class="image-icon"><img src="../images/air cooling.webp" alt="CPU Cooling System">
+
+                </div>
                 <h4>Liquid Cooling</h4>
                 <p>Coolant, pump, water block और radiator use करके heat remove करती है। High-performance systems में
                     useful है।</p>
+                <div class="image-icon"><img src="../images/liquid cooling.webp" alt="CPU Cooling System">
+
+                </div>
                 <h4>Cabinet Airflow</h4>
                 <ul>
                     <li>Front/bottom से cool air intake।</li>
@@ -436,8 +476,8 @@
                 <h2>BIOS and UEFI</h2>
                 <p><strong>BIOS</strong> और <strong>UEFI</strong> firmware interfaces हैं जो hardware initialize करते
                     हैं और operating system boot process start करते हैं।</p>
-                <div class="image-icon"><img src="" alt="BIOS UEFI">
-                    <p>Image Placeholder: BIOS vs UEFI Interface</p>
+                <div class="image-icon"><img src="../images/bios vs uefi.webp" alt="BIOS UEFI">
+                  
                 </div>
                 <table>
                     <tr>
@@ -487,8 +527,8 @@
                 <p><strong>POST</strong> का full form Power-On Self-Test है। Computer start होने पर motherboard basic
                     hardware test करती है। अगर problem मिले तो beep codes, debug LEDs या on-screen error show हो सकता
                     है।</p>
-                <div class="image-icon"><img src="" alt="POST Beep Codes">
-                    <p>Image Placeholder: POST and Diagnostic Indicators</p>
+                <div class="image-icon"><img src="../images/post beep codes.webp" alt="POST Beep Codes">
+                    
                 </div>
                 <h4>POST Checks</h4>
                 <ul>
@@ -528,8 +568,8 @@
                 <h2>Motherboard Troubleshooting</h2>
                 <p>Motherboard troubleshooting systematic तरीके से करनी चाहिए। Randomly components बदलने के बजाय power,
                     connections, POST indicators और minimal hardware configuration check करें।</p>
-                <div class="image-icon"><img src="" alt="Motherboard Troubleshooting Flowchart">
-                    <p>Image Placeholder: Motherboard Troubleshooting Flowchart</p>
+                <div class="image-icon"><img src="../images/motherboard troubleshooting flowchart.webp" alt="Motherboard Troubleshooting Flowchart">
+                  
                 </div>
                 <h4>Computer Not Powering On</h4>
                 <ul>
@@ -566,8 +606,8 @@
                 <h2>Minimal Boot Testing</h2>
                 <p>Minimal boot testing में system को केवल essential components के साथ start किया जाता है। इससे faulty
                     component isolate करना आसान होता है।</p>
-                <div class="image-icon"><img src="" alt="Minimal Boot Setup">
-                    <p>Image Placeholder: Minimal Hardware Boot Test</p>
+                <div class="image-icon"><img src="../images/minimal boot setup.webp" alt="Minimal Boot Setup">
+                   
                 </div>
                 <h4>Required Components</h4>
                 <ul>
