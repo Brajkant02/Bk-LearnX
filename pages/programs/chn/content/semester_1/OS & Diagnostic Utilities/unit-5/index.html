@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CMOS Setup & Password Setting</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:#eef2f7;color:#202938;font-family:Segoe UI,Arial,sans-serif;line-height:1.9}
+.layout{max-width:1550px;margin:auto;padding:15px;display:grid;grid-template-columns:305px 1fr;gap:18px}
+aside{position:sticky;top:15px;height:calc(100vh - 30px);overflow:auto;background:#fff;border-radius:18px;padding:20px;box-shadow:0 6px 25px #0001}
+aside h2{color:#075985;border-left:5px solid #0284c7;padding-left:10px}
+aside a{display:block;text-decoration:none;color:#374151;padding:7px 10px;border-radius:8px;font-size:14px}
+aside a:hover{background:#e0f2fe;color:#0369a1}
+main{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 6px 25px #0001}
+.hero{padding:42px;background:linear-gradient(135deg,#dbeafe,#e0f2fe,#f8fafc)}
+.hero h1{margin:7px 0;color:#075985;font-size:36px;line-height:1.3}
+section{padding:32px;border-bottom:1px solid #e5e7eb}
+h2{font-size:29px;color:#075985;border-left:5px solid #0284c7;padding-left:13px}
+h3{font-size:22px;color:#0c4a6e;margin-top:27px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{padding:19px;background:#f0f9ff;border:1px solid #bae6fd;border-radius:14px}
+.note,.important,.exam{padding:18px 20px;border-radius:12px;margin:19px 0}
+.note{background:#eff6ff;border-left:5px solid #3b82f6}
+.important{background:#fff7ed;border-left:5px solid #f97316}
+.exam{background:#ecfdf5;border-left:5px solid #10b981}
+table{width:100%;border-collapse:collapse;margin:20px 0}
+th,td{border:1px solid #cbd5e1;padding:12px;text-align:left;vertical-align:top}
+th{background:#e0f2fe;color:#075985}
+.code{background:#090b0f;color:#e5e7eb;border-radius:14px;padding:20px 24px;overflow:auto;font-family:Consolas,monospace;white-space:pre;line-height:1.55}
+.diagram{background:#090b0f;color:#e5e7eb;border-radius:15px;padding:25px;overflow:auto;font-family:Consolas,monospace;white-space:pre;line-height:1.5}
+.step{padding:14px 16px;background:#f8fafc;border-radius:10px;margin:9px 0;border-left:4px solid #0284c7}
+.badge{display:inline-block;background:#bae6fd;color:#075985;padding:4px 11px;border-radius:20px;font-size:12px;font-weight:bold}
+@media(max-width:900px){.layout{display:block;padding:5px}aside{display:none}.hero{padding:28px 18px}.hero h1{font-size:28px}section{padding:24px 18px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside>
+<h2>Topics</h2>
+<a href="#intro">1. CMOS Introduction</a>
+<a href="#bios">2. BIOS, CMOS & UEFI</a>
+<a href="#access">3. Entering CMOS Setup</a>
+<a href="#main">4. Main Settings</a>
+<a href="#advanced">5. Advanced Settings</a>
+<a href="#power">6. Power Management</a>
+<a href="#security">7. Security Settings</a>
+<a href="#password">8. CMOS Password Setting</a>
+<a href="#save">9. Save & Exit</a>
+<a href="#comparison">10. Important Settings Table</a>
+<a href="#exam">11. Exam Questions</a>
+</aside>
+
+<main>
+<div class="hero">
+<span class="badge">BCIT • HARDWARE & SYSTEM CONFIGURATION</span>
+<h1>Detailed Description of CMOS Setup & CMOS Password Setting</h1>
+<p><strong>CMOS Setup • BIOS/UEFI • System Settings • Boot Priority • Hardware Configuration • Security Password</strong></p>
+</div>
+
+<section id="intro">
+<h2>1. CMOS Setup का परिचय</h2>
+<p><strong>CMOS Setup</strong> एक firmware configuration interface है जिसका उपयोग computer के hardware और startup से संबंधित विभिन्न settings को configure करने के लिए किया जाता है। पुराने PC systems में इन settings को अक्सर CMOS memory में store किया जाता था, इसलिए इसे commonly <strong>CMOS Setup</strong> कहा जाता है। Modern computers में configuration data सामान्यतः non-volatile firmware storage में रखा जाता है, फिर भी “CMOS Setup” नाम आज भी widely used है।</p>
+
+<div class="important"><b>Exam Definition:</b> CMOS Setup एक system configuration utility है जिसके माध्यम से computer के hardware, boot sequence, date/time, storage devices, security और power management जैसी settings को configure किया जाता है।</div>
+
+<h3>CMOS का Meaning</h3>
+<p><strong>CMOS</strong> का traditional full form <strong>Complementary Metal-Oxide-Semiconductor</strong> है। पुराने personal computers में CMOS technology पर आधारित low-power memory area का उपयोग BIOS configuration settings को store करने के लिए किया जाता था। Motherboard की छोटी battery इस memory/real-time clock को power maintain करने में सहायता करती थी।</p>
+
+<h3>CMOS Battery का कार्य</h3>
+<ul>
+<li>Traditional systems में BIOS/CMOS settings को retain करने में सहायता करना।</li>
+<li>Real-Time Clock (RTC) को power provide करना।</li>
+<li>Computer बंद होने पर भी date और time maintain करने में सहायता करना।</li>
+</ul>
+
+<div class="diagram">
+              MOTHERBOARD
+                   │
+       ┌───────────┴───────────┐
+       │                       │
+   BIOS / UEFI            CMOS / NVRAM
+       │                       │
+       └───────────┬───────────┘
+                   │
+            Hardware Settings
+                   │
+          ┌────────┼────────┐
+          ▼        ▼        ▼
+       Boot      Date     Security
+       Order     /Time    Settings
+</div>
+</section>
+
+<section id="bios">
+<h2>2. BIOS, CMOS और UEFI का संबंध</h2>
+<p>CMOS Setup को समझने के लिए BIOS और UEFI का concept समझना आवश्यक है।</p>
+
+<div class="grid">
+<div class="card">
+<h3>BIOS</h3>
+<p><strong>BIOS (Basic Input/Output System)</strong> traditional firmware है जो system startup पर hardware initialization, POST और boot process में महत्वपूर्ण भूमिका निभाता है।</p>
+</div>
+<div class="card">
+<h3>UEFI</h3>
+<p><strong>UEFI (Unified Extensible Firmware Interface)</strong> modern firmware interface है जो traditional BIOS के स्थान पर modern computers में commonly उपयोग होता है और advanced configuration तथा secure boot जैसी सुविधाएँ प्रदान कर सकता है।</p>
+</div>
+</div>
+
+<table>
+<tr><th>Term</th><th>Meaning / Role</th></tr>
+<tr><td>CMOS</td><td>Traditional term for low-power configuration storage technology/area associated with PC settings.</td></tr>
+<tr><td>BIOS</td><td>Traditional firmware responsible for hardware initialization and boot process.</td></tr>
+<tr><td>UEFI</td><td>Modern firmware interface that replaces traditional BIOS on many systems.</td></tr>
+<tr><td>CMOS Setup</td><td>Firmware configuration interface through which hardware/system settings are changed.</td></tr>
+</table>
+</section>
+
+<section id="access">
+<h2>3. CMOS Setup में प्रवेश करने की प्रक्रिया</h2>
+<p>CMOS Setup खोलने के लिए computer start या restart करते समय manufacturer-specific key press की जाती है। Exact key motherboard/laptop manufacturer पर depend करती है। Common keys में <strong>Delete, F2, F10, F12, Esc</strong> आदि शामिल हो सकती हैं।</p>
+
+<h3>Step-by-Step Process</h3>
+<div class="step"><b>Step 1:</b> Computer को completely shut down या restart करें।</div>
+<div class="step"><b>Step 2:</b> Power ON करते समय screen पर दिखाई देने वाले firmware setup instruction को देखें।</div>
+<div class="step"><b>Step 3:</b> Manufacturer द्वारा बताई गई key, जैसे <strong>F2</strong> या <strong>Delete</strong>, repeatedly press करें।</div>
+<div class="step"><b>Step 4:</b> Firmware Setup Utility / UEFI Setup screen open होगी।</div>
+<div class="step"><b>Step 5:</b> Keyboard या graphical interface से required settings configure करें।</div>
+
+<div class="code">Power ON
+   ↓
+POST / Hardware Initialization
+   ↓
+Press Setup Key
+(F2 / DEL / F10 / etc.)
+   ↓
+BIOS / UEFI Setup
+   ↓
+Change Settings
+   ↓
+Save & Exit
+   ↓
+System Restart</div>
+
+<div class="note"><b>Note:</b> Setup key universal नहीं है। अलग-अलग motherboard, laptop और firmware versions में key अलग हो सकती है।</div>
+</section>
+
+<section id="main">
+<h2>4. CMOS Setup की Main Settings</h2>
+
+<h3>4.1 Date and Time</h3>
+<p>System date और time को configure करने के लिए Date/Time setting का उपयोग किया जाता है। Operating system और applications सही timestamps के लिए system clock पर depend कर सकते हैं।</p>
+
+<h3>4.2 Storage / Drive Information</h3>
+<p>Setup में installed storage devices जैसे HDD, SSD या अन्य supported drives की information दिखाई जा सकती है। कुछ firmware versions में storage controller modes और related options भी उपलब्ध होते हैं।</p>
+
+<h3>4.3 Boot Sequence / Boot Priority</h3>
+<p>Boot order यह निर्धारित करता है कि computer startup पर किस device से operating system खोजेगा। उदाहरण के लिए SSD/HDD, USB drive या network boot device को priority दी जा सकती है।</p>
+
+<div class="code">Example Boot Priority:
+
+1. SSD / HDD
+2. USB Storage
+3. DVD / Optical Drive
+4. Network Boot</div>
+
+<h3>4.4 Memory Information</h3>
+<p>Firmware setup installed RAM की capacity और कुछ systems में memory-related configuration information display कर सकता है। Advanced systems में memory profile या frequency-related settings भी उपलब्ध हो सकती हैं।</p>
+
+<h3>4.5 CPU Information</h3>
+<p>Processor model, speed और supported configuration information firmware interface में दिखाई दे सकती है। Advanced settings में CPU-related options भी हो सकते हैं, लेकिन इन्हें बिना knowledge के बदलना उचित नहीं है।</p>
+</section>
+
+<section id="advanced">
+<h2>5. Advanced CMOS / Firmware Settings</h2>
+
+<table>
+<tr><th>Setting</th><th>Meaning</th><th>Purpose</th></tr>
+<tr><td>Boot Priority</td><td>Boot devices का order</td><td>किस device से OS boot होगा यह निर्धारित करना</td></tr>
+<tr><td>Storage Configuration</td><td>Storage controller/device settings</td><td>Drives और storage interface configuration</td></tr>
+<tr><td>Integrated Peripherals</td><td>Built-in hardware controllers</td><td>USB, audio, network आदि onboard devices configure करना</td></tr>
+<tr><td>USB Configuration</td><td>USB controller/ports settings</td><td>USB functionality configure करना</td></tr>
+<tr><td>Network / LAN</td><td>Onboard network controller</td><td>Integrated LAN enable/disable करना</td></tr>
+<tr><td>Virtualization</td><td>CPU virtualization support</td><td>Virtual machine software के लिए hardware virtualization enable करना</td></tr>
+<tr><td>Secure Boot</td><td>Boot integrity feature</td><td>Trusted boot software को verify करने में सहायता</td></tr>
+<tr><td>TPM / Security Device</td><td>Hardware security support</td><td>Security-related functions में सहायता</td></tr>
+</table>
+
+<div class="important"><b>Important:</b> Advanced settings जैसे CPU voltage, memory timings या storage controller mode को बिना आवश्यकता और proper knowledge के बदलने से boot या stability problems हो सकती हैं।</div>
+</section>
+
+<section id="power">
+<h2>6. Power Management Settings</h2>
+<p>Firmware setup में power management options computer के power behavior को configure करने के लिए दिए जा सकते हैं। Modern systems में ACPI-based power management महत्वपूर्ण भूमिका निभाता है।</p>
+
+<ul>
+<li><strong>Power on after AC loss:</strong> Power वापस आने पर system automatically start हो या नहीं।</li>
+<li><strong>Wake on LAN:</strong> Network signal के माध्यम से system wake करने की सुविधा, supported hardware/configuration में।</li>
+<li><strong>Wake by USB/Keyboard:</strong> Supported systems में USB device से wake-up behavior configure करना।</li>
+<li><strong>Sleep/Power states:</strong> System power states से संबंधित options, firmware/OS support के अनुसार।</li>
+</ul>
+</section>
+
+<section id="security">
+<h2>7. Security Settings</h2>
+<p>Firmware security settings का उपयोग unauthorized users को firmware configuration बदलने से रोकने और supported systems में boot security improve करने के लिए किया जा सकता है।</p>
+
+<h3>Common Security Options</h3>
+<ul>
+<li>Setup/Administrator password</li>
+<li>User password</li>
+<li>Boot password, supported firmware में</li>
+<li>Secure Boot</li>
+<li>TPM/Security Device configuration</li>
+</ul>
+
+<div class="note"><b>Difference:</b> Firmware/Setup password का मुख्य उद्देश्य setup configuration को protect करना है। यह जरूरी नहीं कि operating system के Windows login password के समान हो।</div>
+</section>
+
+<section id="password">
+<h2>8. CMOS Password Setting</h2>
+<p><strong>CMOS Password</strong> या firmware password का उपयोग BIOS/UEFI Setup को unauthorized access से protect करने के लिए किया जा सकता है। Password set होने के बाद firmware setup खोलते समय authentication मांगी जा सकती है। कुछ systems में अलग boot password option भी उपलब्ध होता है।</p>
+
+<h3>Password Set करने की General Process</h3>
+<div class="step"><b>Step 1:</b> Computer restart करें और firmware setup में प्रवेश करें।</div>
+<div class="step"><b>Step 2:</b> <strong>Security</strong> या <strong>Password</strong> section खोलें।</div>
+<div class="step"><b>Step 3:</b> <strong>Administrator/Supervisor Password</strong> या similar option select करें।</div>
+<div class="step"><b>Step 4:</b> Strong password enter करें।</div>
+<div class="step"><b>Step 5:</b> Password दोबारा enter करके confirm करें।</div>
+<div class="step"><b>Step 6:</b> Changes को <strong>Save & Exit</strong> करें।</div>
+<div class="step"><b>Step 7:</b> System restart होने पर configured security behavior को verify करें।</div>
+
+<div class="code">Firmware Setup
+      │
+      ▼
+Security
+      │
+      ▼
+Administrator / Supervisor Password
+      │
+      ▼
+Enter Password
+      │
+      ▼
+Confirm Password
+      │
+      ▼
+Save Changes
+      │
+      ▼
+Restart</div>
+
+<h3>Password Types</h3>
+<table>
+<tr><th>Password Type</th><th>Purpose</th></tr>
+<tr><td>Administrator / Supervisor Password</td><td>Firmware setup settings को unauthorized modification से protect करना।</td></tr>
+<tr><td>User Password</td><td>कुछ firmware में limited user access या authentication के लिए।</td></tr>
+<tr><td>Boot / Power-on Password</td><td>कुछ systems में operating system boot से पहले authentication require करना।</td></tr>
+</table>
+
+<h3>Password Setting में सावधानियाँ</h3>
+<ul>
+<li>Password को सुरक्षित स्थान पर रखें।</li>
+<li>ऐसा password चुनें जिसे authorized user याद रख सके लेकिन दूसरे आसानी से guess न कर सकें।</li>
+<li>Password भूलने पर motherboard/laptop manufacturer की official recovery procedure follow करें।</li>
+<li>CMOS battery निकालने या hardware reset जैसे उपायों से पहले manufacturer documentation देखें; modern systems में firmware security settings अलग तरीके से protected हो सकती हैं।</li>
+</ul>
+
+<div class="important"><b>Exam Point:</b> CMOS/firmware password operating system login password से अलग security layer हो सकता है। इसका उपयोग firmware settings या boot access को protect करने के लिए किया जाता है, system design पर depend करते हुए।</div>
+</section>
+
+<section id="save">
+<h2>9. Save & Exit Options</h2>
+<p>CMOS/UEFI Setup में changes करने के बाद उन्हें सही तरीके से save करना आवश्यक है। सामान्यतः firmware में निम्न प्रकार के options दिखाई दे सकते हैं:</p>
+
+<table>
+<tr><th>Option</th><th>Meaning</th></tr>
+<tr><td>Save Changes and Exit</td><td>Changes save करके setup से बाहर निकलना।</td></tr>
+<tr><td>Discard Changes and Exit</td><td>Current changes को discard करके बाहर निकलना।</td></tr>
+<tr><td>Load Optimized/Setup Defaults</td><td>Firmware द्वारा दिए गए default settings load करना।</td></tr>
+<tr><td>Save Changes</td><td>Changes save करना और setup में बने रहना, यदि supported हो।</td></tr>
+</table>
+
+<div class="code">CHANGE SETTING
+      ↓
+REVIEW SETTING
+      ↓
+SAVE CHANGES
+      ↓
+EXIT
+      ↓
+RESTART
+</div>
+</section>
+
+<section id="comparison">
+<h2>10. Important CMOS Settings – Quick Table</h2>
+<table>
+<tr><th>Setting</th><th>Meaning</th><th>Use</th></tr>
+<tr><td>Date & Time</td><td>System clock configuration</td><td>Correct system date/time</td></tr>
+<tr><td>Boot Order</td><td>Boot device priority</td><td>OS boot source select करना</td></tr>
+<tr><td>Storage</td><td>Drive/controller information</td><td>Storage configuration</td></tr>
+<tr><td>Memory</td><td>RAM information/configuration</td><td>Memory setup</td></tr>
+<tr><td>CPU</td><td>Processor information/options</td><td>Processor-related configuration</td></tr>
+<tr><td>Power</td><td>Power management</td><td>Startup/wake behavior</td></tr>
+<tr><td>Security</td><td>Password and security options</td><td>Unauthorized access protection</td></tr>
+<tr><td>Secure Boot</td><td>Boot integrity mechanism</td><td>Trusted boot software verification</td></tr>
+</table>
+</section>
+
+<section id="exam">
+<h2>11. Important Exam Questions</h2>
+<div class="exam">
+<b>Long Answer Questions</b><br><br>
+1. CMOS Setup क्या है? इसके विभिन्न settings का detailed description दीजिए।<br>
+2. CMOS, BIOS और UEFI में संबंध और अंतर समझाइए।<br>
+3. CMOS Setup में प्रवेश करने की प्रक्रिया step-by-step समझाइए।<br>
+4. CMOS Setup की Boot Priority, Date/Time, Storage और Power Management settings को समझाइए।<br>
+5. CMOS Password क्या है? इसे set करने की general procedure समझाइए।<br>
+6. Administrator/Supervisor Password और User/Boot Password में अंतर समझाइए।<br>
+7. Firmware security settings computer security में किस प्रकार सहायता करती हैं?
+</div>
+
+<h3>Short Questions</h3>
+<ul>
+<li>CMOS का full form क्या है?</li>
+<li>CMOS Setup क्या है?</li>
+<li>BIOS क्या है?</li>
+<li>UEFI क्या है?</li>
+<li>CMOS battery का क्या कार्य है?</li>
+<li>Boot Priority क्या है?</li>
+<li>Firmware password क्या है?</li>
+<li>Secure Boot क्या है?</li>
+<li>Save & Exit option का क्या उपयोग है?</li>
+<li>CMOS password और Windows login password में क्या अंतर है?</li>
+</ul>
+
+<div class="important">
+<b>Quick Revision:</b><br>
+<strong>CMOS Setup → Hardware & Firmware Configuration</strong><br>
+<strong>BIOS/UEFI → Firmware Interface</strong><br>
+<strong>Date/Time → System Clock</strong><br>
+<strong>Boot Priority → Boot Device Order</strong><br>
+<strong>Storage → Drive/Controller Configuration</strong><br>
+<strong>Power Management → Power/Wake Behavior</strong><br>
+<strong>Security → Password & Boot Security</strong><br>
+<strong>CMOS Password → Firmware Setup/Boot Protection</strong>
+</div>
+</section>
+</main>
+</div>
+</body>
+</html>

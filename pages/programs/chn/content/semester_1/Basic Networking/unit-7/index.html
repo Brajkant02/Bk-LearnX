@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Presentation and Session Layer - PGDCA Notes</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#eef3f8;color:#202936;font-family:Segoe UI,Arial,sans-serif;line-height:1.9}
+.wrap{max-width:1500px;margin:auto;padding:15px;display:grid;grid-template-columns:285px 1fr;gap:18px}
+aside{position:sticky;top:15px;height:calc(100vh - 30px);overflow:auto;background:#fff;padding:20px;border-radius:18px;box-shadow:0 8px 28px #0001}
+aside h2{color:#075985;border-left:5px solid #0284c7;padding-left:10px}
+aside a{display:block;padding:7px 10px;color:#374151;text-decoration:none;border-radius:8px;font-size:14px}
+aside a:hover{background:#e0f2fe;color:#0369a1}
+main{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 8px 28px #0001}
+.hero{padding:42px;background:linear-gradient(135deg,#dbeafe,#e0f2fe,#f8fafc)}
+.hero h1{font-size:38px;color:#075985;margin:8px 0;line-height:1.3}
+.badge{display:inline-block;background:#bae6fd;color:#075985;padding:4px 13px;border-radius:20px;font-size:12px;font-weight:700}
+section{padding:32px;border-bottom:1px solid #e5e7eb}
+h2{font-size:29px;color:#075985;border-left:5px solid #0284c7;padding-left:13px}
+h3{font-size:22px;color:#0c4a6e;margin-top:27px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{background:#f0f9ff;border:1px solid #bae6fd;padding:18px;border-radius:14px}
+.note,.important,.exam{padding:18px 20px;border-radius:12px;margin:19px 0}
+.note{background:#eff6ff;border-left:5px solid #3b82f6}
+.important{background:#fff7ed;border-left:5px solid #f97316}
+.exam{background:#ecfdf5;border-left:5px solid #10b981}
+table{width:100%;border-collapse:collapse;margin:20px 0}
+th,td{border:1px solid #cbd5e1;padding:12px;text-align:left;vertical-align:top}
+th{background:#e0f2fe;color:#075985}
+.diagram{background:#090b0f;color:#e5e7eb;border-radius:14px;padding:22px;overflow:auto;font-family:Consolas,monospace;white-space:pre;line-height:1.5}
+.step{padding:14px 16px;background:#f8fafc;border-radius:10px;margin:9px 0;border-left:4px solid #0284c7}
+@media(max-width:900px){.wrap{display:block;padding:5px}aside{display:none}.hero{padding:28px 18px}.hero h1{font-size:29px}section{padding:24px 18px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<aside>
+<h2>Contents</h2>
+<a href="#intro">1. Introduction</a>
+<a href="#session">2. Session Layer</a>
+<a href="#functions">3. Session Functions</a>
+<a href="#dialog">4. Dialog Control</a>
+<a href="#sync">5. Synchronization</a>
+<a href="#token">6. Token Management</a>
+<a href="#protocols">7. Session Protocols</a>
+<a href="#presentation">8. Presentation Layer</a>
+<a href="#pfunctions">9. Presentation Functions</a>
+<a href="#translation">10. Translation</a>
+<a href="#encryption">11. Encryption & Compression</a>
+<a href="#pprotocols">12. Presentation Protocols</a>
+<a href="#comparison">13. Session vs Presentation</a>
+<a href="#flow">14. Data Flow</a>
+<a href="#exam">15. Exam Questions</a>
+</aside>
+
+<main>
+<div class="hero">
+<span class="badge">DCCN • PGDCA • 10 PERIODS</span>
+<h1>7. Presentation and Session Layer</h1>
+<p><strong>Session Layer Functions • Token Management • Session Layer Protocols • Presentation Layer Functions • Presentation Layer Protocols</strong></p>
+</div>
+
+<section id="intro">
+<h2>1. Introduction</h2>
+<p>OSI (Open Systems Interconnection) model में <strong>Session Layer</strong> और <strong>Presentation Layer</strong> Application Layer के नीचे स्थित होती हैं। Session Layer मुख्य रूप से दो communicating applications के बीच session establish, manage और terminate करने से संबंधित है, जबकि Presentation Layer data के <strong>format, translation, encryption और compression</strong> जैसी representation-related services पर focus करती है।</p>
+
+<div class="diagram">
+OSI MODEL
+
+7  Application
+6  Presentation   ← Data Representation
+5  Session        ← Communication Session Management
+4  Transport
+3  Network
+2  Data Link
+1  Physical
+</div>
+
+<div class="important"><b>Exam Definition:</b> Session Layer communication session को establish, manage और terminate करती है तथा dialog control, synchronization और token management जैसी services provide कर सकती है। Presentation Layer sender और receiver के बीच data representation को compatible बनाने के लिए translation, formatting, encryption/decryption और compression/decompression जैसी functions से संबंधित है।</div>
+</section>
+
+<section id="session">
+<h2>2. Session Layer</h2>
+<p><strong>Session Layer</strong> OSI model की <strong>Layer 5</strong> है। इसका primary purpose communicating applications के बीच logical session को establish और manage करना है। यह यह सुनिश्चित करने में सहायता करती है कि communication session properly organized हो और आवश्यकता पड़ने पर synchronized manner में continue या recover किया जा सके।</p>
+
+<h3>Session क्या है?</h3>
+<p><strong>Session</strong> दो applications/processes के बीच communication का logical period है। उदाहरण के लिए, जब कोई application दूसरे system की application के साथ communication शुरू करती है, तो उस communication को एक session के रूप में manage किया जा सकता है।</p>
+
+<div class="diagram">
+Application A                         Application B
+     │                                      │
+     ▼                                      ▼
+┌────────────── SESSION LAYER ──────────────┐
+│ Establish Session                         │
+│ Manage Dialog                             │
+│ Synchronization                           │
+│ Token Management                          │
+│ Terminate Session                         │
+└───────────────────────────────────────────┘
+</div>
+</section>
+
+<section id="functions">
+<h2>3. Functions of Session Layer</h2>
+
+<div class="grid">
+<div class="card"><h3>1. Session Establishment</h3><p>Communication शुरू होने पर applications के बीच session establish करने में सहायता करती है।</p></div>
+<div class="card"><h3>2. Session Maintenance</h3><p>Communication के दौरान session को manage और maintain करने में सहायता करती है।</p></div>
+<div class="card"><h3>3. Session Termination</h3><p>Communication complete होने पर session को properly terminate करने में सहायता करती है।</p></div>
+<div class="card"><h3>4. Dialog Control</h3><p>Communication में कौन-सा side कब transmit करेगा, इसे organize करने में सहायता करता है।</p></div>
+<div class="card"><h3>5. Synchronization</h3><p>Long communication को synchronization points/checkpoints के माध्यम से organize करने में सहायता करता है।</p></div>
+<div class="card"><h3>6. Token Management</h3><p>कुछ communication situations में critical operations पर control/token किस participant के पास होगा, इसे manage करने की concept provide करता है।</p></div>
+</div>
+
+<h3>Session Establishment → Data Transfer → Termination</h3>
+<div class="step"><b>Step 1:</b> Session establish किया जाता है।</div>
+<div class="step"><b>Step 2:</b> Applications के बीच data exchange होता है।</div>
+<div class="step"><b>Step 3:</b> Dialog और synchronization को manage किया जाता है।</div>
+<div class="step"><b>Step 4:</b> Communication complete होने पर session terminate किया जाता है।</div>
+</section>
+
+<section id="dialog">
+<h2>4. Dialog Control</h2>
+<p><strong>Dialog Control</strong> Session Layer की important functionality है। इसका उद्देश्य communication के दौरान data exchange का coordination करना है। यह determine करने में सहायता करता है कि communication <strong>half-duplex</strong> या <strong>full-duplex</strong> style में किस प्रकार proceed करेगा।</p>
+
+<h3>Half-Duplex</h3>
+<p>Half-duplex communication में दोनों sides communicate कर सकती हैं, लेकिन एक समय पर communication primarily एक direction में होता है। Turn बदलने के बाद दूसरी side transmit करती है।</p>
+
+<div class="diagram">
+Device A  ─────────────►  Device B
+         transmission
+
+Device A  ◄─────────────  Device B
+         next turn
+</div>
+
+<h3>Full-Duplex</h3>
+<p>Full-duplex communication में दोनों sides simultaneously data transmit और receive कर सकती हैं।</p>
+
+<div class="diagram">
+Device A  ◄══════════════►  Device B
+          simultaneous
+          communication
+</div>
+
+<div class="note"><b>Exam Point:</b> Dialog control communication session में data exchange के direction/turn को organize करने की concept है।</div>
+</section>
+
+<section id="sync">
+<h2>5. Synchronization</h2>
+<p>Large data transfer या long communication session में यदि communication बीच में interrupt हो जाए तो पूरे transfer को शुरुआत से दोबारा करना inefficient हो सकता है। Session Layer की synchronization concept communication में <strong>checkpoints</strong> establish करने में सहायता करती है।</p>
+
+<h3>Checkpoint Concept</h3>
+<div class="diagram">
+DATA TRANSFER
+
+Start
+  │
+  ▼
+Part 1 ─── Checkpoint 1
+  │
+  ▼
+Part 2 ─── Checkpoint 2
+  │
+  ▼
+Part 3 ─── Checkpoint 3
+  │
+  ▼
+Part 4
+  │
+  ▼
+Complete
+</div>
+
+<p>यदि transfer में failure होता है, तो synchronization mechanism के concept के अनुसार communication को last valid checkpoint के आसपास resume करने का advantage मिल सकता है, बजाय पूरे process को unnecessarily repeat करने के।</p>
+</section>
+
+<section id="token">
+<h2>6. Token Management</h2>
+<p><strong>Token Management</strong> Session Layer से associated एक concept है जिसमें communication के दौरान certain critical activity पर control किस participant के पास होगा, इसे coordinate किया जाता है। Token को एक logical permission की तरह समझ सकते हैं। जिस participant के पास token होता है, उसे specific operation perform करने की अनुमति मिलती है।</p>
+
+<h3>Token की आवश्यकता क्यों?</h3>
+<ul>
+<li>Simultaneous access से होने वाले conflicts को reduce करने के लिए।</li>
+<li>Shared operation को coordinate करने के लिए।</li>
+<li>Dialog में controlled access maintain करने के लिए।</li>
+<li>Communication participants के बीच turn/permission manage करने के लिए।</li>
+</ul>
+
+<div class="diagram">
+          TOKEN
+            │
+            ▼
+       ┌─────────┐
+       │ Device A│
+       └────┬────┘
+            │ token transfer
+            ▼
+       ┌─────────┐
+       │ Device B│
+       └────┬────┘
+            │ token transfer
+            ▼
+       ┌─────────┐
+       │ Device C│
+       └─────────┘
+</div>
+
+<div class="important"><b>Simple Definition:</b> Token management communication session में permission/control token को manage करके participants के access और dialog को coordinate करने की concept है।</div>
+</section>
+
+<section id="protocols">
+<h2>7. Session Layer Protocols</h2>
+<p>Session Layer के नाम से पढ़ाए जाने वाले protocols/services historical OSI context में session establishment, dialog management और synchronization जैसी functionality से संबंधित रहे हैं। Practical networking में कई session-related functions application और transport protocols द्वारा भी implement हो सकते हैं।</p>
+
+<h3>RPC – Remote Procedure Call</h3>
+<p><strong>RPC</strong> एक mechanism है जिसमें application किसी remote system पर available procedure/function को इस तरह invoke कर सकती है जैसे वह local call हो। इसके पीछे communication, request और response का coordination होता है।</p>
+
+<h3>NetBIOS</h3>
+<p><strong>NetBIOS (Network Basic Input/Output System)</strong> एक historical networking interface/service है जो network applications के बीच communication और session-oriented services provide करने के लिए उपयोग हुआ है।</p>
+
+<h3>ZIP और NCP</h3>
+<p>OSI/session-layer discussions में <strong>ZIP (Zone Information Protocol)</strong> और कुछ historical protocol stacks में session-related services के examples मिलते हैं। Protocol mapping हमेशा exact one-to-one नहीं होती; modern TCP/IP architecture में OSI की upper-layer responsibilities कई बार combined application protocols में दिखाई देती हैं।</p>
+
+<table>
+<tr><th>Protocol / Mechanism</th><th>Basic Purpose</th></tr>
+<tr><td>RPC</td><td>Remote procedure/function invocation</td></tr>
+<tr><td>NetBIOS</td><td>Network application/session-oriented communication services</td></tr>
+<tr><td>Historical OSI session services</td><td>Session establishment, dialog and synchronization support</td></tr>
+</table>
+
+<div class="note"><b>Exam Tip:</b> अगर question में “Session Layer Protocols” पूछा जाए, तो protocol का नाम लिखने के साथ उसका basic purpose भी जरूर लिखें।</div>
+</section>
+
+<section id="presentation">
+<h2>8. Presentation Layer</h2>
+<p><strong>Presentation Layer</strong> OSI model की <strong>Layer 6</strong> है। इसका primary focus data को ऐसे format में represent करना है जिसे communicating systems correctly understand और process कर सकें। इसलिए इसे अक्सर <strong>Translation Layer</strong> भी कहा जाता है।</p>
+
+<h3>Presentation Layer की आवश्यकता</h3>
+<p>Different computer systems data को internally अलग-अलग formats में represent कर सकते हैं। Presentation Layer का purpose data representation को compatible बनाना है ताकि sender द्वारा भेजा गया information receiver के लिए meaningful form में उपलब्ध हो।</p>
+
+<div class="diagram">
+Sender Application
+       │
+       ▼
+Presentation Layer
+┌───────────────────────────────┐
+│ Translation / Formatting      │
+│ Encryption / Decryption       │
+│ Compression / Decompression   │
+└───────────────────────────────┘
+       │
+       ▼
+     Network
+       │
+       ▼
+Presentation Layer
+       │
+       ▼
+Receiver Application
+</div>
+</section>
+
+<section id="pfunctions">
+<h2>9. Functions of Presentation Layer</h2>
+
+<div class="grid">
+<div class="card"><h3>1. Data Translation</h3><p>Different data representation formats के बीच conversion/translation में सहायता।</p></div>
+<div class="card"><h3>2. Data Formatting</h3><p>Data को agreed representation और syntax के अनुसार organize करना।</p></div>
+<div class="card"><h3>3. Encryption</h3><p>Confidentiality के लिए data को encoded/encrypted representation में transform करने की functionality से संबंधित।</p></div>
+<div class="card"><h3>4. Decryption</h3><p>Receiver side पर encrypted data को readable/original representation में transform करने में सहायता।</p></div>
+<div class="card"><h3>5. Compression</h3><p>Data size reduce करने में सहायता ताकि transmission/storage efficiency improve हो सके।</p></div>
+<div class="card"><h3>6. Decompression</h3><p>Compressed data को receiver side पर usable form में restore करने की प्रक्रिया।</p></div>
+</div>
+
+<h3>Presentation Layer के तीन सबसे important concepts</h3>
+<table>
+<tr><th>Function</th><th>Meaning</th></tr>
+<tr><td>Translation</td><td>Data representation/format conversion</td></tr>
+<tr><td>Encryption</td><td>Data को secure representation में transform करना</td></tr>
+<tr><td>Compression</td><td>Data size reduce करना</td></tr>
+</table>
+</section>
+
+<section id="translation">
+<h2>10. Data Translation and Representation</h2>
+<p>Different systems में character encoding, numeric representation और data structures अलग हो सकते हैं। Presentation layer conceptually data को common/compatible representation में translate करने की भूमिका निभाती है।</p>
+
+<h3>Example</h3>
+<p>मान लें sender system किसी text को एक particular character encoding में represent करता है और receiver system दूसरी encoding use करता है। Communication architecture में representation conversion की आवश्यकता हो सकती है ताकि receiver उस text को correctly interpret कर सके।</p>
+
+<div class="diagram">
+SENDER FORMAT
+      │
+      ▼
+TRANSLATION / ENCODING
+      │
+      ▼
+COMMON REPRESENTATION
+      │
+      ▼
+TRANSMISSION
+      │
+      ▼
+DECODING / TRANSLATION
+      │
+      ▼
+RECEIVER FORMAT
+</div>
+
+<h3>Common Representation Examples</h3>
+<ul>
+<li>Character encoding जैसे ASCII और Unicode families।</li>
+<li>Structured data representation जैसे XML/JSON application-level examples।</li>
+<li>Image/audio/video data के standardized formats।</li>
+</ul>
+
+<div class="note"><b>Important:</b> Modern TCP/IP systems में data representation अक्सर application protocols और libraries के द्वारा handled होती है; OSI Presentation Layer एक conceptual layer है।</div>
+</section>
+
+<section id="encryption">
+<h2>11. Encryption, Decryption, Compression और Decompression</h2>
+
+<h3>Encryption</h3>
+<p><strong>Encryption</strong> में readable/plain information को an encoded form में transform किया जाता है ताकि unauthorized party के लिए information को directly समझना कठिन हो। Receiver appropriate key/mechanism का उपयोग करके उसे decrypt कर सकता है।</p>
+
+<div class="diagram">
+Plain Data
+   │
+   ▼
+Encryption + Key
+   │
+   ▼
+Cipher/Encrypted Data
+   │
+   ▼
+Network
+   │
+   ▼
+Decryption + Key
+   │
+   ▼
+Original/Readable Data
+</div>
+
+<h3>Compression</h3>
+<p><strong>Compression</strong> data representation को अधिक compact बनाकर size reduce करने की technique है। इससे storage और transmission efficiency improve हो सकती है।</p>
+
+<h3>Compression के Types</h3>
+<table>
+<tr><th>Type</th><th>Meaning</th><th>Example Concept</th></tr>
+<tr><td>Lossless</td><td>Original data को exactly recover किया जा सकता है</td><td>ZIP, PNG</td></tr>
+<tr><td>Lossy</td><td>कुछ information discard करके size significantly reduce किया जाता है</td><td>JPEG, common multimedia compression</td></tr>
+</table>
+
+<div class="important"><b>Remember:</b> Encryption का main goal security/confidentiality से related है, जबकि Compression का main goal data size reduce करना है।</div>
+</section>
+
+<section id="pprotocols">
+<h2>12. Presentation Layer Protocols</h2>
+<p>OSI Presentation Layer के protocols/services data representation, encoding, encryption, compression या structured data interchange से संबंधित हो सकते हैं। Modern networks में ये responsibilities अक्सर application-layer protocols और formats में combined मिलती हैं।</p>
+
+<h3>TLS/SSL – Security and Representation Context</h3>
+<p><strong>TLS</strong> secure communication के लिए cryptographic protection provide करता है। इसे strict OSI mapping में pure Presentation Layer protocol कहना उचित नहीं है; practical TCP/IP architecture में TLS application और transport के बीच security layer की तरह काम करता है।</p>
+
+<h3>MIME</h3>
+<p><strong>MIME (Multipurpose Internet Mail Extensions)</strong> electronic messages में different content types और media representations identify करने के लिए विकसित हुआ। यह application-level technology है, लेकिन data representation के context में Presentation Layer concepts से commonly associated किया जा सकता है।</p>
+
+<h3>ASN.1</h3>
+<p><strong>ASN.1 (Abstract Syntax Notation One)</strong> data structures को machine-independent तरीके से describe करने का standardized notation है। इसके साथ encoding rules data को transmission representation में encode करने में सहायता करते हैं।</p>
+
+<h3>XDR</h3>
+<p><strong>XDR (External Data Representation)</strong> एक standard data representation mechanism है जो different systems के बीच structured data को machine-independent representation में encode करने के लिए उपयोग होता है। RPC systems में इसका उपयोग जाना जाता है।</p>
+
+<table>
+<tr><th>Technology</th><th>Role / Use</th></tr>
+<tr><td>ASN.1</td><td>Abstract data structure representation</td></tr>
+<tr><td>XDR</td><td>Machine-independent external data representation</td></tr>
+<tr><td>MIME</td><td>Content type/media representation in Internet messaging</td></tr>
+<tr><td>TLS</td><td>Cryptographic protection for network communication; not a strict OSI Layer-6-only protocol</td></tr>
+</table>
+
+<div class="note"><b>Exam Note:</b> OSI layers और real-world TCP/IP protocol mapping exact one-to-one नहीं है। इसलिए “Presentation Layer Protocols” के answer में protocol का practical role और उसका actual architecture context लिखना answer को अधिक accurate बनाता है।</div>
+</section>
+
+<section id="comparison">
+<h2>13. Session Layer vs Presentation Layer</h2>
+<table>
+<tr><th>Basis</th><th>Session Layer</th><th>Presentation Layer</th></tr>
+<tr><td>OSI Layer</td><td>Layer 5</td><td>Layer 6</td></tr>
+<tr><td>Main Focus</td><td>Communication session management</td><td>Data representation</td></tr>
+<tr><td>Major Functions</td><td>Session establishment, dialog control, synchronization, token management, termination</td><td>Translation, formatting, encryption/decryption, compression/decompression</td></tr>
+<tr><td>Communication</td><td>Session coordination</td><td>Data format/representation coordination</td></tr>
+<tr><td>Simple Keyword</td><td>“Session को manage करना”</td><td>“Data को understandable बनाना”</td></tr>
+</table>
+
+<div class="important"><b>Easy Trick:</b> <strong>Session = बातचीत का management</strong> और <strong>Presentation = data की presentation/representation</strong>.</div>
+</section>
+
+<section id="flow">
+<h2>14. Combined Working of Session & Presentation Layers</h2>
+<div class="diagram">
+SENDER APPLICATION
+       │
+       ▼
+┌───────────────────────────┐
+│ PRESENTATION LAYER        │
+│ Translation               │
+│ Encryption               │
+│ Compression               │
+└─────────────┬─────────────┘
+              │
+              ▼
+┌───────────────────────────┐
+│ SESSION LAYER             │
+│ Establish / Manage        │
+│ Dialog / Token / Sync     │
+│ Terminate                 │
+└─────────────┬─────────────┘
+              │
+              ▼
+        TRANSPORT LAYER
+              │
+              ▼
+          NETWORK
+              │
+              ▼
+        RECEIVER SIDE
+              │
+              ▼
+       SESSION MANAGEMENT
+              │
+              ▼
+       DATA PRESENTATION
+              │
+              ▼
+       RECEIVER APPLICATION
+</div>
+
+<p>इस flow से याद रखें कि Session Layer communication <strong>conversation/session</strong> को manage करती है, जबकि Presentation Layer communication में जाने वाले <strong>data के representation</strong> को manage करने की concept रखती है।</p>
+</section>
+
+<section id="exam">
+<h2>15. Important Exam Questions</h2>
+
+<div class="exam">
+<b>Long Answer Questions</b><br><br>
+1. Session Layer क्या है? इसके functions को विस्तार से समझाइए।<br>
+2. Session Layer में Dialog Control क्या है? Half-duplex और Full-duplex समझाइए।<br>
+3. Session Layer में Synchronization और Checkpoints को समझाइए।<br>
+4. Token Management क्या है? इसकी आवश्यकता और working समझाइए।<br>
+5. Session Layer के protocols/mechanisms को समझाइए।<br>
+6. Presentation Layer क्या है? इसके प्रमुख functions को detail में समझाइए।<br>
+7. Data Translation, Encryption और Compression को समझाइए।<br>
+8. Presentation Layer में Encryption और Decryption की working समझाइए।<br>
+9. Lossless और Lossy Compression में अंतर लिखिए।<br>
+10. Presentation Layer protocols/technologies को examples सहित समझाइए।<br>
+11. Session Layer और Presentation Layer में अंतर लिखिए।
+</div>
+
+<h3>Short Answer Questions</h3>
+<ul>
+<li>Session Layer OSI model की कौन-सी layer है?</li>
+<li>Presentation Layer OSI model की कौन-सी layer है?</li>
+<li>Session क्या है?</li>
+<li>Session Layer का मुख्य कार्य क्या है?</li>
+<li>Dialog Control क्या है?</li>
+<li>Token Management क्या है?</li>
+<li>Synchronization क्या है?</li>
+<li>Checkpoint का क्या उपयोग है?</li>
+<li>Presentation Layer को Translation Layer क्यों कहा जाता है?</li>
+<li>Encryption क्या है?</li>
+<li>Decryption क्या है?</li>
+<li>Compression क्या है?</li>
+<li>Lossless और Lossy compression क्या हैं?</li>
+<li>ASN.1 क्या है?</li>
+<li>XDR क्या है?</li>
+<li>MIME क्या है?</li>
+</ul>
+
+<div class="important">
+<b>One-Minute Revision:</b><br><br>
+<strong>Session Layer = Layer 5</strong><br>
+Session establish + manage + terminate<br>
+Dialog Control + Synchronization + Token Management<br><br>
+<strong>Presentation Layer = Layer 6</strong><br>
+Translation + Formatting + Encryption/Decryption + Compression/Decompression<br><br>
+<strong>Easy Memory:</strong><br>
+Layer 5 → <b>“Conversation Management”</b><br>
+Layer 6 → <b>“Data Representation”</b>
+</div>
+</section>
+
+</main>
+</div>
+</body>
+</html>

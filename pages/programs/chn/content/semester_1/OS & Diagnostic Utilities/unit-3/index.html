@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>DOS Booting Process, AUTOEXEC.BAT, CONFIG.SYS & Commands</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:#eef2f7;color:#202938;font-family:Segoe UI,Arial,sans-serif;line-height:1.9}
+.layout{max-width:1550px;margin:auto;padding:15px;display:grid;grid-template-columns:305px 1fr;gap:18px}
+aside{position:sticky;top:15px;height:calc(100vh - 30px);overflow:auto;background:#fff;border-radius:18px;padding:20px;box-shadow:0 6px 25px #0001}
+aside h2{color:#075985;border-left:5px solid #0284c7;padding-left:10px}
+aside a{display:block;text-decoration:none;color:#374151;padding:7px 10px;border-radius:8px;font-size:14px}
+aside a:hover{background:#e0f2fe;color:#0369a1}
+main{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 6px 25px #0001}
+.hero{padding:42px;background:linear-gradient(135deg,#dbeafe,#e0f2fe,#f8fafc)}
+.hero h1{margin:7px 0;color:#075985;font-size:36px;line-height:1.3}
+section{padding:32px;border-bottom:1px solid #e5e7eb}
+h2{font-size:29px;color:#075985;border-left:5px solid #0284c7;padding-left:13px}
+h3{font-size:22px;color:#0c4a6e;margin-top:27px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{padding:19px;background:#f0f9ff;border:1px solid #bae6fd;border-radius:14px}
+.note,.important,.exam{padding:18px 20px;border-radius:12px;margin:19px 0}
+.note{background:#eff6ff;border-left:5px solid #3b82f6}
+.important{background:#fff7ed;border-left:5px solid #f97316}
+.exam{background:#ecfdf5;border-left:5px solid #10b981}
+table{width:100%;border-collapse:collapse;margin:20px 0}
+th,td{border:1px solid #cbd5e1;padding:12px;text-align:left;vertical-align:top}
+th{background:#e0f2fe;color:#075985}
+.code{background:#090b0f;color:#e5e7eb;border-radius:14px;padding:20px 24px;overflow:auto;font-family:Consolas,monospace;white-space:pre;line-height:1.55}
+.diagram{background:#090b0f;color:#e5e7eb;border-radius:15px;padding:25px;overflow:auto;font-family:Consolas,monospace;white-space:pre;line-height:1.5}
+.step{padding:14px 16px;background:#f8fafc;border-radius:10px;margin:9px 0;border-left:4px solid #0284c7}
+.badge{display:inline-block;background:#bae6fd;color:#075985;padding:4px 11px;border-radius:20px;font-size:12px;font-weight:bold}
+@media(max-width:900px){.layout{display:block;padding:5px}aside{display:none}.hero{padding:28px 18px}.hero h1{font-size:28px}section{padding:24px 18px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside>
+<h2>Topics</h2>
+<a href="#boot">1. Booting Process</a>
+<a href="#files">2. CONFIG.SYS & AUTOEXEC.BAT</a>
+<a href="#memory">3. DOS Memory Usage</a>
+<a href="#commands">4. DOS Commands</a>
+<a href="#internal">5. Internal Commands</a>
+<a href="#external">6. External Commands</a>
+<a href="#filescmd">7. Basic File Commands</a>
+<a href="#dirs">8. Directory Commands</a>
+<a href="#examples">9. Command Examples</a>
+<a href="#exam">10. Exam Questions</a>
+</aside>
+
+<main>
+<div class="hero">
+<span class="badge">DOS • SYSTEM SOFTWARE • EXAM ORIENTED</span>
+<h1>Booting Process & DOS Environment</h1>
+<p><strong>Booting Steps • AUTOEXEC.BAT • CONFIG.SYS • Memory Usage • Basic DOS Commands • Internal & External Commands • File Commands</strong></p>
+</div>
+
+<section id="boot">
+<h2>1. Steps in the Booting Process</h2>
+<p><strong>Booting</strong> वह process है जिसमें computer को power on या restart करने के बाद system hardware initialize होता है और operating system को memory में load करके computer को usable state में लाया जाता है। DOS environment के संदर्भ में boot process में system files, configuration और startup commands का विशेष महत्व था।</p>
+<div class="important"><b>Exam Definition:</b> Booting वह प्रक्रिया है जिसमें computer start होने पर firmware द्वारा hardware initialization के बाद operating system की आवश्यक files को memory में load किया जाता है ताकि system user commands accept कर सके।</div>
+
+<h3>DOS Booting Process – Step by Step</h3>
+<div class="step"><b>Step 1 – Power ON:</b> Computer को power supply मिलती है और processor startup sequence शुरू करता है।</div>
+<div class="step"><b>Step 2 – BIOS/ROM Firmware:</b> Traditional PC में BIOS basic hardware initialization और startup checks perform करता है।</div>
+<div class="step"><b>Step 3 – Boot Device Search:</b> Firmware configured boot sequence के अनुसार bootable storage device खोजता है।</div>
+<div class="step"><b>Step 4 – Boot Sector:</b> Bootable disk का boot sector execute होता है और DOS startup process आगे बढ़ता है।</div>
+<div class="step"><b>Step 5 – IO.SYS:</b> Traditional MS-DOS systems में <strong>IO.SYS</strong> essential DOS startup components और basic I/O initialization में भूमिका निभाता है।</div>
+<div class="step"><b>Step 6 – MSDOS.SYS:</b> Traditional DOS में <strong>MSDOS.SYS</strong> DOS kernel/system services से संबंधित core functionality provide करता है।</div>
+<div class="step"><b>Step 7 – CONFIG.SYS:</b> यदि मौजूद हो तो DOS configuration file process की जाती है। इसमें device drivers और system configuration commands हो सकते हैं।</div>
+<div class="step"><b>Step 8 – COMMAND.COM:</b> DOS command interpreter load होता है और user commands process करने की सुविधा देता है।</div>
+<div class="step"><b>Step 9 – AUTOEXEC.BAT:</b> यदि मौजूद हो तो startup batch commands automatically execute होती हैं।</div>
+<div class="step"><b>Step 10 – DOS Prompt:</b> System command prompt display करता है, जैसे <strong>C:\&gt;</strong>, और user commands के लिए ready हो जाता है।</div>
+
+<div class="diagram">
+                  POWER ON
+                     │
+                     ▼
+                BIOS / FIRMWARE
+                     │
+                     ▼
+             BOOTABLE DISK FOUND
+                     │
+                     ▼
+                 BOOT SECTOR
+                     │
+                     ▼
+                  IO.SYS
+                     │
+                     ▼
+                 MSDOS.SYS
+                     │
+                     ▼
+                 CONFIG.SYS
+                     │
+                     ▼
+                 COMMAND.COM
+                     │
+                     ▼
+                AUTOEXEC.BAT
+                     │
+                     ▼
+                 DOS PROMPT
+                  C:\>
+</div>
+
+<div class="note"><b>Historical Note:</b> ऊपर दिया गया flow traditional MS-DOS style boot process को समझाने के लिए है। Modern Windows systems का boot architecture इससे अलग है।</div>
+</section>
+
+<section id="files">
+<h2>2. CONFIG.SYS और AUTOEXEC.BAT Files</h2>
+<p>Traditional DOS में <strong>CONFIG.SYS</strong> और <strong>AUTOEXEC.BAT</strong> important startup files थीं। इनका उपयोग system configuration और automatic startup commands के लिए किया जाता था।</p>
+
+<div class="grid">
+<div class="card">
+<h3>CONFIG.SYS</h3>
+<p>CONFIG.SYS एक configuration file थी जिसमें DOS startup के समय system configuration से संबंधित commands और device-driver loading instructions रखे जा सकते थे।</p>
+<p><b>Common examples:</b> <code>DEVICE=</code>, <code>FILES=</code>, <code>BUFFERS=</code>, <code>LASTDRIVE=</code> आदि।</p>
+</div>
+<div class="card">
+<h3>AUTOEXEC.BAT</h3>
+<p>AUTOEXEC.BAT एक batch file थी जिसमें ऐसे commands रखे जाते थे जिन्हें DOS startup के बाद automatically execute करना होता था।</p>
+<p><b>Examples:</b> <code>PATH</code> सेट करना, environment variables set करना, startup programs/commands run करना आदि।</p>
+</div>
+</div>
+
+<h3>CONFIG.SYS Example</h3>
+<div class="code">DEVICE=HIMEM.SYS
+FILES=40
+BUFFERS=20
+LASTDRIVE=Z</div>
+
+<h3>AUTOEXEC.BAT Example</h3>
+<div class="code">@ECHO OFF
+PATH C:\DOS;C:\UTIL
+SET TEMP=C:\TEMP
+PROMPT $P$G</div>
+
+<table>
+<tr><th>Basis</th><th>CONFIG.SYS</th><th>AUTOEXEC.BAT</th></tr>
+<tr><td>Purpose</td><td>System configuration और driver/settings initialization</td><td>Automatic startup commands execute करना</td></tr>
+<tr><td>Typical Content</td><td>Configuration directives, device drivers</td><td>Batch commands, environment settings, startup programs</td></tr>
+<tr><td>Nature</td><td>Configuration file</td><td>Batch command file</td></tr>
+<tr><td>Example</td><td>DEVICE=, FILES=, BUFFERS=</td><td>PATH, SET, PROMPT, application commands</td></tr>
+</table>
+</section>
+
+<section id="memory">
+<h2>3. Memory Usage in the DOS Environment</h2>
+<p>Traditional DOS systems में memory management आज के modern operating systems से काफी अलग था। Classic DOS environment में <strong>640 KB conventional memory</strong> का concept बहुत महत्वपूर्ण था। DOS और applications के लिए conventional memory के साथ upper memory और extended/expanded memory technologies भी उपयोग की जाती थीं।</p>
+
+<h3>Conventional Memory</h3>
+<p>Traditional IBM PC memory map में lower 1 MB address space के पहले 640 KB को conventional memory कहा जाता था। DOS operating system, device drivers और applications इसी area का उपयोग करते थे। उपलब्ध conventional memory limited होने के कारण memory optimization important थी।</p>
+
+<h3>Upper Memory Area (UMA)</h3>
+<p>640 KB से 1 MB के बीच का address space <strong>Upper Memory Area</strong> कहलाता है। इसमें hardware-related reserved areas के साथ कुछ memory regions ऐसे हो सकते थे जिनका उपयोग memory management techniques के माध्यम से किया जा सकता था।</p>
+
+<h3>Extended Memory</h3>
+<p>1 MB से ऊपर की physical memory को extended memory कहा जाता था। विशेष memory managers और processor modes की सहायता से DOS applications इस memory का उपयोग कर सकती थीं। <strong>HIMEM.SYS</strong> extended memory access में महत्वपूर्ण था।</p>
+
+<h3>Expanded Memory</h3>
+<p>Expanded Memory एक अलग memory expansion technique थी जिसमें EMS specification के माध्यम से applications को additional memory access उपलब्ध कराया जाता था।</p>
+
+<div class="diagram">
+        TRADITIONAL PC MEMORY CONCEPT
+
+        ┌─────────────────────────────┐
+        │      Extended Memory        │
+        │          > 1 MB             │
+        ├─────────────────────────────┤
+        │      Upper Memory Area      │
+        │       640 KB – 1 MB         │
+        ├─────────────────────────────┤
+        │     Conventional Memory     │
+        │          0 – 640 KB         │
+        │     DOS + Drivers + Apps    │
+        └─────────────────────────────┘
+</div>
+
+<div class="important"><b>Exam Point:</b> DOS environment में conventional memory की limitation एक major issue थी। इसलिए memory managers, device-driver optimization और upper/extended memory techniques का उपयोग memory availability improve करने के लिए किया जाता था।</div>
+</section>
+
+<section id="commands">
+<h2>4. Basic DOS Commands</h2>
+<p><strong>DOS commands</strong> वे instructions हैं जिन्हें user command prompt पर type करके files, directories, disks और system environment से संबंधित operations perform कर सकता है।</p>
+<div class="grid">
+<div class="card"><h3>Internal Commands</h3><p>ये commands command interpreter, traditionally <strong>COMMAND.COM</strong>, के साथ available रहती थीं और सामान्यतः अलग executable file की आवश्यकता नहीं होती थी।</p></div>
+<div class="card"><h3>External Commands</h3><p>ये अलग program files के रूप में disk पर stored होती थीं और आवश्यकता के अनुसार load होकर execute होती थीं।</p></div>
+</div>
+</section>
+
+<section id="internal">
+<h2>5. Internal DOS Commands</h2>
+<p>Internal commands DOS command interpreter का हिस्सा होती थीं। इसलिए इन्हें execute करने के लिए अलग external program file की आवश्यकता नहीं होती थी।</p>
+<table>
+<tr><th>Command</th><th>Purpose</th><th>Example</th></tr>
+<tr><td>DIR</td><td>Directory में files और folders की list दिखाता है।</td><td><code>DIR</code></td></tr>
+<tr><td>CD / CHDIR</td><td>Current directory बदलता है।</td><td><code>CD DOS</code></td></tr>
+<tr><td>MD / MKDIR</td><td>New directory बनाता है।</td><td><code>MD DATA</code></td></tr>
+<tr><td>RD / RMDIR</td><td>Directory remove करता है।</td><td><code>RD DATA</code></td></tr>
+<tr><td>COPY</td><td>Files की copy बनाता है।</td><td><code>COPY A.TXT B.TXT</code></td></tr>
+<tr><td>DEL / ERASE</td><td>File delete करता है।</td><td><code>DEL A.TXT</code></td></tr>
+<tr><td>REN / RENAME</td><td>File का नाम बदलता है।</td><td><code>REN OLD.TXT NEW.TXT</code></td></tr>
+<tr><td>TYPE</td><td>Text file का content display करता है।</td><td><code>TYPE A.TXT</code></td></tr>
+<tr><td>CLS</td><td>Screen clear करता है।</td><td><code>CLS</code></td></tr>
+<tr><td>DATE</td><td>System date display/change करने के लिए उपयोग होता है।</td><td><code>DATE</code></td></tr>
+<tr><td>TIME</td><td>System time display/change करने के लिए उपयोग होता है।</td><td><code>TIME</code></td></tr>
+<tr><td>VER</td><td>DOS version display करता है।</td><td><code>VER</code></td></tr>
+<tr><td>PATH</td><td>Executable files खोजने के लिए directories की search path define करता है।</td><td><code>PATH C:\DOS</code></td></tr>
+<tr><td>SET</td><td>Environment variables set/display करता है।</td><td><code>SET TEMP=C:\TEMP</code></td></tr>
+</table>
+</section>
+
+<section id="external">
+<h2>6. External DOS Commands</h2>
+<p>External commands अलग executable files के रूप में disk पर stored होती थीं। Traditional DOS में इनमें कई <strong>.EXE</strong> या <strong>.COM</strong> programs शामिल हो सकते थे। Exact command availability DOS version पर depend कर सकती है।</p>
+<table>
+<tr><th>Command</th><th>Purpose</th><th>Example</th></tr>
+<tr><td>FORMAT</td><td>Disk/drive को specified file-system format में तैयार करता है।</td><td><code>FORMAT A:</code></td></tr>
+<tr><td>CHKDSK</td><td>Disk और file-system related information/errors check करने के लिए।</td><td><code>CHKDSK C:</code></td></tr>
+<tr><td>DISKCOPY</td><td>Compatible floppy disks की complete copy बनाने के लिए traditional DOS में उपयोग।</td><td><code>DISKCOPY A: A:</code></td></tr>
+<tr><td>XCOPY</td><td>Files और directory structures को copy करने के लिए advanced copy command।</td><td><code>XCOPY C:\DATA D:\DATA /S</code></td></tr>
+<tr><td>TREE</td><td>Directory structure को tree form में display करता है।</td><td><code>TREE C:</code></td></tr>
+<tr><td>ATTRIB</td><td>File attributes जैसे Read-only, Hidden, System आदि display/change करता है।</td><td><code>ATTRIB A.TXT</code></td></tr>
+<tr><td>EDIT</td><td>कुछ DOS versions में text files edit करने के लिए text editor उपलब्ध कराता था।</td><td><code>EDIT A.TXT</code></td></tr>
+</table>
+<div class="note"><b>Note:</b> External command की availability और exact syntax DOS version के अनुसार बदल सकती है।</div>
+</section>
+
+<section id="filescmd">
+<h2>7. Basic File Commands</h2>
+<p>DOS में file management के लिए कई basic commands उपयोग होती थीं। इन commands से file list देखना, copy करना, rename करना, delete करना और text content display करना संभव था।</p>
+
+<h3>DIR – Files की List</h3>
+<div class="code">C:\&gt;DIR</div>
+<p>यह current directory की files और directories display करता है।</p>
+
+<h3>COPY – File Copy करना</h3>
+<div class="code">C:\&gt;COPY REPORT.TXT BACKUP.TXT</div>
+<p>यह REPORT.TXT की एक copy BACKUP.TXT नाम से बनाता है।</p>
+
+<h3>REN – File Rename करना</h3>
+<div class="code">C:\&gt;REN OLD.TXT NEW.TXT</div>
+<p>File का नाम OLD.TXT से NEW.TXT हो जाएगा।</p>
+
+<h3>DEL – File Delete करना</h3>
+<div class="code">C:\&gt;DEL TEMP.TXT</div>
+<p>यह TEMP.TXT को delete करने का command है। Wildcards के साथ delete करते समय विशेष सावधानी आवश्यक है।</p>
+
+<h3>TYPE – File Content देखना</h3>
+<div class="code">C:\&gt;TYPE NOTES.TXT</div>
+<p>Text file का content command screen पर display करता है।</p>
+
+<h3>ATTRIB – File Attributes</h3>
+<div class="code">C:\&gt;ATTRIB NOTES.TXT</div>
+<p>File के attributes display किए जा सकते हैं। Traditional DOS attributes में Read-only, Archive, System और Hidden जैसे flags शामिल थे।</p>
+</section>
+
+<section id="dirs">
+<h2>8. Basic Directory Commands</h2>
+<table>
+<tr><th>Command</th><th>Function</th><th>Example</th></tr>
+<tr><td>MD / MKDIR</td><td>New directory create करना</td><td><code>MD STUDY</code></td></tr>
+<tr><td>CD / CHDIR</td><td>Directory change करना</td><td><code>CD STUDY</code></td></tr>
+<tr><td>CD \</td><td>Root directory पर जाना</td><td><code>CD \</code></td></tr>
+<tr><td>CD ..</td><td>Parent directory पर जाना</td><td><code>CD ..</code></td></tr>
+<tr><td>RD / RMDIR</td><td>Empty directory remove करना</td><td><code>RD STUDY</code></td></tr>
+<tr><td>DIR</td><td>Directory contents देखना</td><td><code>DIR</code></td></tr>
+<tr><td>TREE</td><td>Directory hierarchy देखना</td><td><code>TREE</code></td></tr>
+</table>
+
+<div class="diagram">
+C:\
+│
+├── DOS
+│   ├── COMMAND.COM
+│   └── ...
+│
+├── STUDY
+│   ├── NOTES.TXT
+│   └── DATA.TXT
+│
+└── BACKUP
+    └── REPORT.TXT
+</div>
+</section>
+
+<section id="examples">
+<h2>9. Complete Basic DOS Command Example</h2>
+<div class="code">C:\&gt;MD STUDY
+C:\&gt;CD STUDY
+C:\STUDY&gt;COPY C:\NOTES.TXT .
+C:\STUDY&gt;DIR
+C:\STUDY&gt;REN NOTES.TXT DOSNOTES.TXT
+C:\STUDY&gt;TYPE DOSNOTES.TXT
+C:\STUDY&gt;DEL DOSNOTES.TXT
+C:\STUDY&gt;CD ..
+C:\&gt;RD STUDY</div>
+
+<div class="note"><b>Meaning:</b> इस example में directory create की जाती है, उसमें जाना, file copy करना, directory listing देखना, file rename करना, text display करना, file delete करना और अंत में directory remove करना दिखाया गया है।</div>
+</section>
+
+<section id="exam">
+<h2>10. Important Exam Questions</h2>
+<div class="exam">
+<b>Long Answer Questions</b><br><br>
+1. DOS booting process को step-by-step diagram सहित समझाइए।<br>
+2. CONFIG.SYS और AUTOEXEC.BAT files क्या हैं? इनके functions और examples समझाइए।<br>
+3. DOS environment में memory usage को Conventional, Upper, Extended और Expanded Memory के संदर्भ में समझाइए।<br>
+4. DOS commands क्या हैं? Internal और External commands में अंतर उदाहरण सहित लिखिए।<br>
+5. Basic DOS file commands को examples सहित समझाइए।<br>
+6. Internal और External DOS commands की सूची बनाकर उनके functions लिखिए।
+</div>
+
+<h3>Short Questions</h3>
+<ul>
+<li>Booting क्या है?</li>
+<li>CONFIG.SYS क्या है?</li>
+<li>AUTOEXEC.BAT क्या है?</li>
+<li>COMMAND.COM क्या है?</li>
+<li>Conventional memory क्या है?</li>
+<li>Internal command क्या है?</li>
+<li>External command क्या है?</li>
+<li>DIR command का क्या उपयोग है?</li>
+<li>COPY और REN commands का उपयोग क्या है?</li>
+<li>DEL command क्या करता है?</li>
+<li>FORMAT और CHKDSK किस प्रकार की commands हैं?</li>
+<li>PATH command का क्या उपयोग है?</li>
+</ul>
+
+<div class="important">
+<b>Quick Revision:</b><br>
+<strong>Boot Flow → BIOS → Boot Sector → IO.SYS → MSDOS.SYS → CONFIG.SYS → COMMAND.COM → AUTOEXEC.BAT → Prompt</strong><br>
+<strong>CONFIG.SYS → Configuration / Drivers</strong><br>
+<strong>AUTOEXEC.BAT → Automatic Startup Commands</strong><br>
+<strong>Internal → Command Interpreter के साथ available</strong><br>
+<strong>External → Separate program file</strong><br>
+<strong>File Commands → DIR, COPY, DEL, REN, TYPE, ATTRIB</strong>
+</div>
+</section>
+</main>
+</div>
+</body>
+</html>

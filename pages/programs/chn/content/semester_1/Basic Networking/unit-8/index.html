@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Application Layer - DCCN PGDCA Notes</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#eef3f8;color:#202936;font-family:Segoe UI,Arial,sans-serif;line-height:1.9}
+.wrap{max-width:1500px;margin:auto;padding:15px;display:grid;grid-template-columns:285px 1fr;gap:18px}
+aside{position:sticky;top:15px;height:calc(100vh - 30px);overflow:auto;background:#fff;padding:20px;border-radius:18px;box-shadow:0 8px 28px #0001}
+aside h2{color:#075985;border-left:5px solid #0284c7;padding-left:10px}
+aside a{display:block;padding:7px 10px;color:#374151;text-decoration:none;border-radius:8px;font-size:14px}
+aside a:hover{background:#e0f2fe;color:#0369a1}
+main{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 8px 28px #0001}
+.hero{padding:42px;background:linear-gradient(135deg,#dbeafe,#e0f2fe,#f8fafc)}
+.hero h1{font-size:38px;color:#075985;margin:8px 0;line-height:1.3}
+.badge{display:inline-block;background:#bae6fd;color:#075985;padding:4px 13px;border-radius:20px;font-size:12px;font-weight:700}
+section{padding:32px;border-bottom:1px solid #e5e7eb}
+h2{font-size:29px;color:#075985;border-left:5px solid #0284c7;padding-left:13px}
+h3{font-size:22px;color:#0c4a6e;margin-top:27px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{background:#f0f9ff;border:1px solid #bae6fd;padding:18px;border-radius:14px}
+.note,.important,.exam{padding:18px 20px;border-radius:12px;margin:19px 0}
+.note{background:#eff6ff;border-left:5px solid #3b82f6}
+.important{background:#fff7ed;border-left:5px solid #f97316}
+.exam{background:#ecfdf5;border-left:5px solid #10b981}
+table{width:100%;border-collapse:collapse;margin:20px 0}
+th,td{border:1px solid #cbd5e1;padding:12px;text-align:left;vertical-align:top}
+th{background:#e0f2fe;color:#075985}
+.diagram{background:#090b0f;color:#e5e7eb;border-radius:14px;padding:22px;overflow:auto;font-family:Consolas,monospace;white-space:pre;line-height:1.5}
+.step{padding:14px 16px;background:#f8fafc;border-radius:10px;margin:9px 0;border-left:4px solid #0284c7}
+@media(max-width:900px){.wrap{display:block;padding:5px}aside{display:none}.hero{padding:28px 18px}.hero h1{font-size:29px}section{padding:24px 18px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<aside>
+<h2>Contents</h2>
+<a href="#intro">1. Introduction</a>
+<a href="#role">2. Role of Application Layer</a>
+<a href="#protocols">3. Application Protocols</a>
+<a href="#dns">4. DNS</a>
+<a href="#email">5. Electronic Mail</a>
+<a href="#www">6. World Wide Web</a>
+<a href="#ftp">7. FTP</a>
+<a href="#telnet">8. Telnet</a>
+<a href="#http">9. HTTP</a>
+<a href="#dhcp">10. DHCP</a>
+<a href="#comparison">11. Protocol Comparison</a>
+<a href="#flow">12. Working Flow</a>
+<a href="#exam">13. Exam Questions</a>
+</aside>
+
+<main>
+<div class="hero">
+<span class="badge">DCCN • PGDCA • 08 PERIODS</span>
+<h1>8. Application Layer</h1>
+<p><strong>Application Layer Protocols • DNS • Electronic Mail • WWW • FTP • Telnet • HTTP • DHCP</strong></p>
+</div>
+
+<section id="intro">
+<h2>1. Introduction to Application Layer</h2>
+<p><strong>Application Layer</strong> OSI model की सबसे ऊपर वाली <strong>Layer 7</strong> है। यह end-user applications और network services के बीच interface provide करती है। इसका उद्देश्य applications को network पर communication और different network services का उपयोग करने की सुविधा देना है।</p>
+
+<p>जब हम web browser से website खोलते हैं, e-mail भेजते हैं, किसी FTP server से file transfer करते हैं, domain name को IP address में resolve करते हैं या network से automatically IP configuration प्राप्त करते हैं, तब अलग-अलग application-layer protocols की आवश्यकता होती है।</p>
+
+<div class="diagram">
+OSI MODEL
+
+7  APPLICATION  ← User/Application Network Services
+6  PRESENTATION
+5  SESSION
+4  TRANSPORT
+3  NETWORK
+2  DATA LINK
+1  PHYSICAL
+</div>
+
+<div class="important"><b>Exam Definition:</b> Application Layer OSI model की Layer 7 है जो network applications को communication और network services उपलब्ध कराने के लिए application-level protocols का उपयोग करती है।</div>
+</section>
+
+<section id="role">
+<h2>2. Role of Application Layer</h2>
+<p>Application Layer स्वयं कोई single application नहीं है। यह विभिन्न network applications के लिए protocols और services का framework provide करती है। Different applications के लिए अलग-अलग protocols designed होते हैं।</p>
+
+<div class="grid">
+<div class="card"><h3>1. Network Services</h3><p>Web browsing, e-mail, file transfer, remote access और name resolution जैसी services के लिए protocols provide करती है।</p></div>
+<div class="card"><h3>2. User Interaction</h3><p>End-user applications को network communication capabilities उपलब्ध कराने में सहायता करती है।</p></div>
+<div class="card"><h3>3. Resource Access</h3><p>Remote files, websites, mail servers और अन्य network resources access करने में मदद करती है।</p></div>
+<div class="card"><h3>4. Application Communication</h3><p>Applications के बीच messages और requests/responses के exchange के लिए rules define करती है।</p></div>
+</div>
+
+<h3>Application Layer Protocol क्या है?</h3>
+<p><strong>Application Layer Protocol</strong> ऐसे rules और message formats का set है जो network applications के बीच communication को define करता है। उदाहरण के लिए HTTP web communication के लिए, FTP file transfer के लिए और DNS name resolution के लिए उपयोग होता है।</p>
+</section>
+
+<section id="protocols">
+<h2>3. Important Application Layer Protocols</h2>
+<table>
+<tr><th>Protocol / Service</th><th>मुख्य कार्य</th><th>Common Port</th></tr>
+<tr><td><strong>DNS</strong></td><td>Domain name को IP address से resolve करना</td><td>53</td></tr>
+<tr><td><strong>HTTP</strong></td><td>Web resources और web pages transfer करना</td><td>80</td></tr>
+<tr><td><strong>FTP</strong></td><td>Files transfer करना</td><td>21 (control)</td></tr>
+<tr><td><strong>Telnet</strong></td><td>Remote terminal/login access</td><td>23</td></tr>
+<tr><td><strong>DHCP</strong></td><td>Automatically IP configuration provide करना</td><td>67/68</td></tr>
+<tr><td><strong>SMTP</strong></td><td>E-mail भेजने के लिए commonly used protocol</td><td>25 / 587</td></tr>
+<tr><td><strong>POP3</strong></td><td>Mail retrieval/download</td><td>110</td></tr>
+<tr><td><strong>IMAP</strong></td><td>Mail access और synchronization</td><td>143</td></tr>
+</table>
+
+<div class="note"><b>Note:</b> Port numbers protocol usage का common reference हैं। Actual secure variants और configurations में अलग ports हो सकते हैं।</div>
+</section>
+
+<section id="dns">
+<h2>4. Domain Name System (DNS)</h2>
+<p><strong>DNS (Domain Name System)</strong> एक distributed naming system है जो human-readable domain names को corresponding IP addresses में resolve करने की सुविधा देता है। Humans के लिए <strong>example.com</strong> जैसा नाम याद रखना आसान है, जबकि network communication के लिए IP address आवश्यक होता है।</p>
+
+<h3>DNS की आवश्यकता</h3>
+<ul>
+<li>Domain names को याद रखना IP addresses की तुलना में आसान है।</li>
+<li>Users को numeric IP address manually याद रखने की आवश्यकता नहीं होती।</li>
+<li>DNS distributed और hierarchical naming system provide करता है।</li>
+<li>एक domain की service infrastructure change होने पर users वही domain name use कर सकते हैं।</li>
+</ul>
+
+<h3>DNS Working</h3>
+<div class="diagram">
+User enters: www.example.com
+             │
+             ▼
+       DNS Resolver
+             │
+             ▼
+     DNS Server hierarchy
+             │
+             ▼
+      IP Address found
+             │
+             ▼
+      Browser connects
+             │
+             ▼
+       Web Server
+</div>
+
+<h3>DNS Hierarchy</h3>
+<p>DNS hierarchical structure follow करता है। इसके top level पर <strong>Root</strong>, उसके नीचे <strong>Top-Level Domains (TLDs)</strong> जैसे .com, .org, .in आदि और उसके नीचे authoritative domain information होती है।</p>
+
+<h3>Important DNS Terms</h3>
+<div class="grid">
+<div class="card"><b>Domain Name:</b><br>Human-readable network name, जैसे example.com.</div>
+<div class="card"><b>DNS Resolver:</b><br>Client की ओर से DNS lookup perform करने वाला component/service.</div>
+<div class="card"><b>Root Server:</b><br>DNS hierarchy के root level पर queries को appropriate TLD की ओर direct करने में सहायता करता है।</div>
+<div class="card"><b>Authoritative DNS Server:</b><br>किसी domain के लिए authoritative DNS records provide करता है।</div>
+</div>
+
+<div class="important"><b>Remember:</b> DNS का main काम <strong>name resolution</strong> है — Domain Name → IP Address.</div>
+</section>
+
+<section id="email">
+<h2>5. Electronic Mail (E-Mail)</h2>
+<p><strong>Electronic Mail</strong> internet/network के माध्यम से electronic messages भेजने और प्राप्त करने की service है। E-mail system में sender, recipient, mail client और mail servers शामिल हो सकते हैं।</p>
+
+<h3>E-Mail के Major Components</h3>
+<ul>
+<li><strong>Mail User Agent (MUA):</strong> User द्वारा mail compose, send और read करने के लिए application.</li>
+<li><strong>Mail Server:</strong> E-mail messages को receive, store और forward करने वाला server.</li>
+<li><strong>SMTP:</strong> Mail भेजने/relay करने के लिए commonly used protocol.</li>
+<li><strong>POP3:</strong> Mailbox से messages download/retrieve करने के लिए protocol.</li>
+<li><strong>IMAP:</strong> Server-side mailbox को access और synchronize करने के लिए protocol.</li>
+</ul>
+
+<h3>E-Mail Working</h3>
+<div class="diagram">
+Sender
+  │
+  ▼
+Mail Client
+  │
+  │ SMTP
+  ▼
+Sender Mail Server
+  │
+  │ SMTP / Mail Routing
+  ▼
+Receiver Mail Server
+  │
+  │ IMAP / POP3
+  ▼
+Receiver Mail Client
+</div>
+
+<h3>SMTP vs POP3 vs IMAP</h3>
+<table>
+<tr><th>Protocol</th><th>Purpose</th></tr>
+<tr><td>SMTP</td><td>Mail submission/transfer</td></tr>
+<tr><td>POP3</td><td>Mail retrieve/download करने के लिए</td></tr>
+<tr><td>IMAP</td><td>Server पर stored mail को access और synchronize करने के लिए</td></tr>
+</table>
+</section>
+
+<section id="www">
+<h2>6. World Wide Web (WWW)</h2>
+<p><strong>World Wide Web</strong> interconnected web resources का system है जिन्हें Internet के माध्यम से access किया जाता है। Web pages और resources generally URLs द्वारा identified होते हैं और browsers HTTP/HTTPS जैसे protocols के माध्यम से servers से resources request करते हैं।</p>
+
+<h3>WWW के Main Components</h3>
+<div class="grid">
+<div class="card"><b>Web Browser</b><p>User की तरफ से web resources request और display करता है।</p></div>
+<div class="card"><b>Web Server</b><p>Web pages और अन्य web resources provide करता है।</p></div>
+<div class="card"><b>URL</b><p>Web resource का address/location identify करता है।</p></div>
+<div class="card"><b>HTTP/HTTPS</b><p>Browser और web server के बीच web communication के लिए protocol.</p></div>
+</div>
+
+<h3>Web Browsing Flow</h3>
+<div class="diagram">
+User enters URL
+      │
+      ▼
+DNS resolves domain
+      │
+      ▼
+Browser connects to server
+      │
+      ▼
+HTTP Request
+      │
+      ▼
+Web Server
+      │
+      ▼
+HTTP Response
+      │
+      ▼
+Browser renders webpage
+</div>
+
+<div class="note"><b>Important:</b> Internet और WWW same नहीं हैं। Internet एक global network infrastructure है, जबकि WWW उस infrastructure पर चलने वाली प्रमुख information service है।</div>
+</section>
+
+<section id="ftp">
+<h2>7. File Transfer Protocol (FTP)</h2>
+<p><strong>FTP</strong> का पूरा नाम <strong>File Transfer Protocol</strong> है। इसका उपयोग client और server के बीच files को upload और download करने के लिए किया जाता है। FTP traditional client-server architecture पर आधारित है।</p>
+
+<h3>FTP के प्रमुख Operations</h3>
+<ul>
+<li>File upload करना</li>
+<li>File download करना</li>
+<li>Remote directory listing देखना</li>
+<li>Directories में navigation</li>
+<li>File management operations, server permissions के अनुसार</li>
+</ul>
+
+<h3>FTP Connections</h3>
+<p>Traditional FTP में control और data communication के लिए अलग logical connections का concept होता है। Control connection सामान्यतः <strong>TCP port 21</strong> से associated होती है। Data transfer के लिए FTP active/passive modes का उपयोग कर सकता है।</p>
+
+<div class="diagram">
+FTP Client
+    │
+    ├──────── Control Connection ───────► FTP Server
+    │                Port 21
+    │
+    └────────── Data Transfer ──────────► FTP Server
+</div>
+
+<div class="important"><b>Exam Point:</b> FTP का main purpose <strong>file transfer</strong> है। यह सामान्य web browsing protocol नहीं है।</div>
+</section>
+
+<section id="telnet">
+<h2>8. Telnet</h2>
+<p><strong>Telnet</strong> एक network protocol है जिसका उपयोग remote computer/server पर terminal-like access के लिए historically किया जाता रहा है। इसमें user remote machine पर commands execute करने जैसी activities कर सकता है, provided appropriate account and permissions available हों।</p>
+
+<h3>Telnet की Working</h3>
+<div class="diagram">
+Local Computer
+      │
+      │ Telnet connection
+      │ TCP Port 23
+      ▼
+Remote Computer
+      │
+      ▼
+Remote Terminal Session
+</div>
+
+<h3>Telnet की Limitation</h3>
+<p>Traditional Telnet communication में credentials और data secure encryption के बिना transmit हो सकते हैं। इसलिए modern secure remote administration में <strong>SSH</strong> को prefer किया जाता है।</p>
+
+<div class="important"><b>Remember:</b> Telnet = Remote terminal access. Common port = <strong>23</strong>.</div>
+</section>
+
+<section id="http">
+<h2>9. HTTP</h2>
+<p><strong>HTTP (Hypertext Transfer Protocol)</strong> Web के लिए fundamental application-layer protocol है। Browser और web server के बीच request और response messages के exchange के लिए HTTP का उपयोग होता है।</p>
+
+<h3>HTTP Request-Response Model</h3>
+<div class="diagram">
+Client / Browser
+      │
+      │ HTTP Request
+      │ GET /index.html
+      ▼
+Web Server
+      │
+      │ HTTP Response
+      │ 200 OK + Content
+      ▼
+Client / Browser
+</div>
+
+<h3>Common HTTP Methods</h3>
+<table>
+<tr><th>Method</th><th>Basic Purpose</th></tr>
+<tr><td>GET</td><td>Resource retrieve करना</td></tr>
+<tr><td>POST</td><td>Server को data submit करना / resource creation के लिए commonly used</td></tr>
+<tr><td>PUT</td><td>Resource को create/replace करने के लिए commonly used</td></tr>
+<tr><td>PATCH</td><td>Resource के partial modification के लिए</td></tr>
+<tr><td>DELETE</td><td>Resource delete करने के लिए</td></tr>
+</table>
+
+<h3>Common HTTP Status Codes</h3>
+<table>
+<tr><th>Code</th><th>Meaning</th></tr>
+<tr><td>200</td><td>OK / Request successful</td></tr>
+<tr><td>301/302</td><td>Redirection</td></tr>
+<tr><td>400</td><td>Bad Request</td></tr>
+<tr><td>401</td><td>Authentication required / unauthorized response context</td></tr>
+<tr><td>403</td><td>Forbidden</td></tr>
+<tr><td>404</td><td>Not Found</td></tr>
+<tr><td>500</td><td>Internal Server Error</td></tr>
+</table>
+
+<h3>HTTP और HTTPS</h3>
+<p><strong>HTTPS</strong> HTTP को TLS-based security के साथ use करता है, जिससे communication में encryption और server authentication जैसी security properties उपलब्ध हो सकती हैं।</p>
+
+<div class="note"><b>Common Port:</b> HTTP → 80, HTTPS → 443.</div>
+</section>
+
+<section id="dhcp">
+<h2>10. DHCP</h2>
+<p><strong>DHCP (Dynamic Host Configuration Protocol)</strong> network devices को automatically IP configuration provide करने के लिए उपयोग किया जाता है। इससे administrator को हर client machine पर IP address manually configure करने की आवश्यकता कम हो जाती है।</p>
+
+<h3>DHCP से मिलने वाली Information</h3>
+<ul>
+<li>IP Address</li>
+<li>Subnet Mask</li>
+<li>Default Gateway</li>
+<li>DNS Server information</li>
+<li>Lease-related configuration</li>
+</ul>
+
+<h3>DORA Process</h3>
+<p>DHCP का सबसे important exam topic <strong>DORA</strong> process है:</p>
+
+<div class="diagram">
+D = DISCOVER
+Client ─────────────► DHCP Server(s)
+
+O = OFFER
+Client ◄───────────── DHCP Server
+
+R = REQUEST
+Client ─────────────► Selected DHCP Server
+
+A = ACKNOWLEDGEMENT
+Client ◄───────────── DHCP Server
+</div>
+
+<div class="step"><b>1. DHCP Discover:</b> Client available DHCP server को खोजने के लिए message भेजता है।</div>
+<div class="step"><b>2. DHCP Offer:</b> Server client को IP configuration offer करता है।</div>
+<div class="step"><b>3. DHCP Request:</b> Client offered configuration को request करता है।</div>
+<div class="step"><b>4. DHCP ACK:</b> Server configuration को acknowledge और assign करता है।</div>
+
+<h3>DHCP Ports</h3>
+<p>DHCP commonly <strong>UDP port 67</strong> (server) और <strong>UDP port 68</strong> (client) use करता है।</p>
+
+<div class="important"><b>Easy Trick:</b> <strong>DORA = Discover → Offer → Request → Acknowledge</strong></div>
+</section>
+
+<section id="comparison">
+<h2>11. Application Protocol Comparison</h2>
+<table>
+<tr><th>Protocol</th><th>Full Form</th><th>Main Use</th><th>Common Port</th></tr>
+<tr><td>DNS</td><td>Domain Name System</td><td>Name resolution</td><td>53</td></tr>
+<tr><td>HTTP</td><td>Hypertext Transfer Protocol</td><td>Web communication</td><td>80</td></tr>
+<tr><td>FTP</td><td>File Transfer Protocol</td><td>File transfer</td><td>21 control</td></tr>
+<tr><td>Telnet</td><td>Telecommunication Network</td><td>Remote terminal access</td><td>23</td></tr>
+<tr><td>DHCP</td><td>Dynamic Host Configuration Protocol</td><td>Automatic IP configuration</td><td>67/68</td></tr>
+<tr><td>SMTP</td><td>Simple Mail Transfer Protocol</td><td>E-mail sending/transfer</td><td>25 / 587</td></tr>
+<tr><td>POP3</td><td>Post Office Protocol v3</td><td>E-mail retrieval</td><td>110</td></tr>
+<tr><td>IMAP</td><td>Internet Message Access Protocol</td><td>E-mail access/synchronization</td><td>143</td></tr>
+</table>
+</section>
+
+<section id="flow">
+<h2>12. Combined Application Layer Working</h2>
+<div class="diagram">
+                    APPLICATION LAYER
+                           │
+       ┌───────────────────┼────────────────────┐
+       │                   │                    │
+      DNS                 HTTP                 FTP
+ Name Resolution       Web Access          File Transfer
+       │                   │                    │
+       └───────────────────┼────────────────────┘
+                           │
+                     Other Services
+                           │
+             ┌─────────────┴─────────────┐
+             │                           │
+           E-MAIL                      DHCP
+       SMTP/POP3/IMAP          IP Configuration
+             │                           │
+             └─────────────┬─────────────┘
+                           ▼
+                    TRANSPORT LAYER
+                           │
+                           ▼
+                    NETWORK LAYER
+</div>
+
+<p>Practical Internet usage में ये protocols अलग-अलग problems solve करते हैं। Browser को website खोलने के लिए DNS से name resolution और HTTP/HTTPS से web communication की आवश्यकता हो सकती है। किसी network में device को address प्राप्त करने के लिए DHCP का उपयोग हो सकता है, जबकि e-mail के लिए SMTP/IMAP/POP3 जैसे protocols काम करते हैं।</p>
+</section>
+
+<section id="exam">
+<h2>13. Important Exam Questions</h2>
+
+<div class="exam">
+<b>Long Answer Questions</b><br><br>
+1. Application Layer क्या है? इसके role और functions को विस्तार से समझाइए।<br>
+2. Application Layer Protocol क्या है? इसके महत्व को समझाइए।<br>
+3. DNS क्या है? इसकी आवश्यकता और working diagram सहित समझाइए।<br>
+4. Electronic Mail क्या है? SMTP, POP3 और IMAP को समझाइए।<br>
+5. World Wide Web क्या है? इसके components और working समझाइए।<br>
+6. FTP क्या है? इसके working और uses समझाइए।<br>
+7. Telnet क्या है? इसकी working और limitations समझाइए।<br>
+8. HTTP क्या है? Request-Response model और common methods समझाइए।<br>
+9. DHCP क्या है? DORA process को diagram सहित समझाइए।<br>
+10. DNS, HTTP, FTP, Telnet और DHCP में अंतर लिखिए।
+</div>
+
+<h3>Short Answer Questions</h3>
+<ul>
+<li>Application Layer OSI model की कौन-सी layer है?</li>
+<li>Application Layer का मुख्य role क्या है?</li>
+<li>DNS का full form क्या है?</li>
+<li>DNS का मुख्य कार्य क्या है?</li>
+<li>DNS का common port number क्या है?</li>
+<li>WWW क्या है?</li>
+<li>HTTP का full form क्या है?</li>
+<li>HTTP और HTTPS में क्या difference है?</li>
+<li>FTP का उपयोग किसलिए होता है?</li>
+<li>Telnet क्या है?</li>
+<li>Telnet का common port क्या है?</li>
+<li>DHCP का full form क्या है?</li>
+<li>DHCP DORA process क्या है?</li>
+<li>SMTP का क्या उपयोग है?</li>
+<li>POP3 और IMAP किसलिए उपयोग होते हैं?</li>
+</ul>
+
+<div class="important">
+<b>One-Minute Revision:</b><br><br>
+<strong>Application Layer = OSI Layer 7</strong><br><br>
+DNS → Domain Name → IP Address<br>
+E-Mail → SMTP / POP3 / IMAP<br>
+WWW → Web resources<br>
+FTP → File Transfer<br>
+Telnet → Remote Terminal<br>
+HTTP → Web Request/Response<br>
+DHCP → Automatic IP Configuration<br><br>
+<strong>DORA:</strong> Discover → Offer → Request → Acknowledge
+</div>
+</section>
+</main>
+</div>
+</body>
+</html>

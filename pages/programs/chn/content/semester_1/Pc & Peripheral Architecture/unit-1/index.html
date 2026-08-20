@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Basic Building Blocks of a Computer System</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:#eef2f7;color:#202938;font-family:Segoe UI,Arial,sans-serif;line-height:1.9}
+.layout{max-width:1550px;margin:auto;padding:15px;display:grid;grid-template-columns:305px 1fr;gap:18px}
+aside{position:sticky;top:15px;height:calc(100vh - 30px);overflow:auto;background:#fff;border-radius:18px;padding:20px;box-shadow:0 6px 25px #0001}
+aside h2{margin-top:0;color:#075985;border-left:5px solid #0284c7;padding-left:10px}
+aside a{display:block;text-decoration:none;color:#374151;padding:7px 10px;border-radius:8px;font-size:14px}
+aside a:hover{background:#e0f2fe;color:#0369a1}
+main{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 6px 25px #0001}
+.hero{padding:42px;background:linear-gradient(135deg,#dbeafe,#e0f2fe,#f8fafc)}
+.hero h1{margin:5px 0;color:#075985;font-size:37px;line-height:1.3}.hero p{margin:6px 0;color:#475569}
+section{padding:32px;border-bottom:1px solid #e5e7eb}
+h2{font-size:29px;color:#075985;border-left:5px solid #0284c7;padding-left:13px}
+h3{font-size:22px;color:#0c4a6e;margin-top:27px}
+p,li{font-size:16px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{padding:19px;background:#f0f9ff;border:1px solid #bae6fd;border-radius:14px}
+.note,.exam,.important{padding:18px 20px;border-radius:12px;margin:19px 0}
+.note{background:#eff6ff;border-left:5px solid #3b82f6}
+.exam{background:#ecfdf5;border-left:5px solid #10b981}
+.important{background:#fff7ed;border-left:5px solid #f97316}
+table{width:100%;border-collapse:collapse;margin:20px 0}
+th,td{border:1px solid #cbd5e1;padding:12px;text-align:left;vertical-align:top}
+th{background:#e0f2fe;color:#075985}
+.diagram{background:#090b0f;color:#e5e7eb;border-radius:15px;padding:25px;overflow:auto;font-family:Consolas,monospace;text-align:center;white-space:pre}
+.flow{background:#08090b;color:#f8fafc;border-radius:13px;padding:20px;margin:20px 0;font-family:Consolas,monospace;overflow:auto}
+.badge{display:inline-block;background:#bae6fd;color:#075985;padding:4px 11px;border-radius:20px;font-size:12px;font-weight:bold}
+.step{counter-increment:step;position:relative;padding:14px 16px 14px 48px;background:#f8fafc;border-radius:10px;margin:9px 0}
+.steps{counter-reset:step}.step:before{content:counter(step);position:absolute;left:14px;top:12px;background:#0284c7;color:#fff;width:25px;height:25px;border-radius:50%;text-align:center;line-height:25px;font-weight:bold}
+code{background:#111827;color:#fff;padding:2px 6px;border-radius:5px}
+@media(max-width:900px){.layout{display:block;padding:5px}aside{display:none}.hero{padding:28px 18px}.hero h1{font-size:29px}section{padding:24px 18px}.grid{grid-template-columns:1fr}p,li{font-size:15px}.diagram{font-size:12px;text-align:left}table{display:block;overflow-x:auto}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside>
+<h2>Topics</h2>
+<a href="#intro">1. Introduction</a>
+<a href="#block">2. Block Diagram</a>
+<a href="#input">3. Input Unit</a>
+<a href="#output">4. Output Unit</a>
+<a href="#cpu">5. CPU</a>
+<a href="#cu">6. Control Unit</a>
+<a href="#alu">7. ALU</a>
+<a href="#memory">8. Memory</a>
+<a href="#primary">9. Primary Memory</a>
+<a href="#secondary">10. Secondary Memory</a>
+<a href="#hierarchy">11. Memory Hierarchy</a>
+<a href="#working">12. Working of Computer</a>
+<a href="#example">13. Real Example</a>
+<a href="#comparison">14. Comparisons</a>
+<a href="#exam">15. Important Questions</a>
+</aside>
+
+<main>
+<div class="hero">
+<span class="badge">BASIC COMPUTER FUNDAMENTALS • 03 PERIODS</span>
+<h1>Basic Building Blocks of a Computer System</h1>
+<p><strong>Block Diagram • Input & Output Devices • CPU • ALU • Memory & Types</strong></p>
+<p>Detailed PGDCA Notes | Hindi + English | Exam-Oriented</p>
+</div>
+
+<section id="intro">
+<h2>1. Introduction to Computer System</h2>
+<p><strong>Computer</strong> एक electronic programmable machine है जो user द्वारा दिए गए data और instructions को accept करता है, उन्हें process करता है, required information produce करता है और data/results को आवश्यकता के अनुसार store भी कर सकता है। Computer system का basic working pattern <strong>Input → Processing → Output</strong> है, जबकि storage और control पूरी प्रक्रिया को support करते हैं।</p>
+<p>एक complete computer system में केवल CPU ही नहीं होता। इसमें input devices, output devices, memory/storage और communication paths भी महत्वपूर्ण होते हैं। Modern computer architecture में CPU memory और I/O devices के साथ मिलकर instructions execute करता है और data को process करता है।</p>
+<p>Computer fundamentals के अनुसार मुख्य functional activities हैं: <strong>input लेना, data store करना, data process करना, output देना और पूरे workflow को control करना</strong>। citeturn0search3turn0search5</p>
+
+<div class="grid">
+<div class="card"><h3>Input</h3><p>User या external device से raw data और instructions computer में enter किए जाते हैं।</p></div>
+<div class="card"><h3>Processing</h3><p>CPU instructions के अनुसार data पर arithmetic और logical operations perform करता है।</p></div>
+<div class="card"><h3>Storage</h3><p>Data, instructions, intermediate results और final results को temporary या permanently store किया जाता है।</p></div>
+<div class="card"><h3>Output</h3><p>Processed result को monitor, printer, speaker आदि के माध्यम से user तक पहुँचाया जाता है।</p></div>
+</div>
+
+<div class="exam"><b>Exam Definition:</b> A computer system is an electronic system consisting of input, processing, storage and output components that works together under the control of instructions to convert data into useful information.</div>
+</section>
+
+<section id="block">
+<h2>2. Block Diagram of a Computer</h2>
+<p>Computer का <strong>block diagram</strong> उसके major functional units और उनके बीच data/instruction flow को graphical form में दिखाता है। Basic structure में Input Unit, Memory, CPU और Output Unit मुख्य parts होते हैं। CPU के अंदर Control Unit और ALU जैसे processing/control components होते हैं। citeturn0search0turn0search1</p>
+
+<div class="diagram">
+┌──────────────────┐
+│    INPUT UNIT    │
+│ Keyboard, Mouse, │
+│ Scanner, Mic...  │
+└────────┬─────────┘
+         │ Data / Instructions
+         ▼
+┌───────────────────────────────────────────┐
+│                  COMPUTER                 │
+│                                           │
+│  ┌──────────────────┐   ┌──────────────┐ │
+│  │   MEMORY UNIT    │◄─►│     CPU      │ │
+│  │ RAM / ROM /      │   │ ┌──────────┐ │ │
+│  │ Cache / Storage  │   │ │    CU    │ │ │
+│  └──────────────────┘   │ ├──────────┤ │ │
+│                         │ │   ALU    │ │ │
+│                         │ ├──────────┤ │ │
+│                         │ │Registers │ │ │
+│                         │ └──────────┘ │ │
+│                         └──────────────┘ │
+└───────────────────────┬──────────────────┘
+                        │ Processed Result
+                        ▼
+               ┌──────────────────┐
+               │   OUTPUT UNIT    │
+               │ Monitor, Printer │
+               │ Speaker, Project.│
+               └──────────────────┘
+</div>
+
+<h3>Block Diagram के Major Units</h3>
+<table>
+<tr><th>Unit</th><th>Main Function</th></tr>
+<tr><td>Input Unit</td><td>User से data/instructions लेकर computer-readable form में system को उपलब्ध कराता है।</td></tr>
+<tr><td>Memory Unit</td><td>Instructions, data, intermediate results और required information store करता है।</td></tr>
+<tr><td>CPU</td><td>Instructions execute करता है और computer operations को control/process करता है।</td></tr>
+<tr><td>ALU</td><td>Arithmetic तथा logical operations perform करता है।</td></tr>
+<tr><td>Control Unit</td><td>Instructions को fetch/decode करके system components के operations coordinate करती है।</td></tr>
+<tr><td>Output Unit</td><td>Processed information को human-understandable form में प्रस्तुत करता है।</td></tr>
+</table>
+</section>
+
+<section id="input">
+<h2>3. Input Unit & Input Devices</h2>
+<p><strong>Input Unit</strong> computer system का वह functional part है जिसके द्वारा user data और instructions computer को देता है। Input device user की information को ऐसे signals/data representation में convert करता है जिसे computer system process कर सके। Keyboard, mouse, scanner, microphone और barcode reader इसके common examples हैं। citeturn0search3turn0search10</p>
+
+<h3>Functions of Input Unit</h3>
+<ul>
+<li>User से data और instructions accept करना।</li>
+<li>Input data को computer के लिए suitable form में convert करना।</li>
+<li>Data/instructions को processing system तक भेजना।</li>
+<li>Input और computer processing के बीच communication link बनाना।</li>
+</ul>
+
+<h3>Important Input Devices</h3>
+<table>
+<tr><th>Device</th><th>Use</th></tr>
+<tr><td>Keyboard</td><td>Text, numbers, commands और special characters enter करने के लिए।</td></tr>
+<tr><td>Mouse</td><td>Pointing, selecting, clicking, dragging और graphical interface control के लिए।</td></tr>
+<tr><td>Scanner</td><td>Printed documents/photos को digital form में convert करने के लिए।</td></tr>
+<tr><td>Microphone</td><td>Voice और sound input के लिए।</td></tr>
+<tr><td>Webcam</td><td>Images/video input के लिए।</td></tr>
+<tr><td>Joystick</td><td>Games और control applications में directional input के लिए।</td></tr>
+<tr><td>Barcode Reader</td><td>Barcodes को scan करके encoded information read करने के लिए।</td></tr>
+<tr><td>OCR</td><td>Printed/typed characters को machine-readable text में पहचानने के लिए।</td></tr>
+<tr><td>OMR</td><td>Marked areas/answers को read करने के लिए, जैसे objective answer sheets।</td></tr>
+<tr><td>MICR</td><td>Magnetic ink characters को read करने के लिए, विशेषकर banking applications में।</td></tr>
+</table>
+
+<div class="note"><b>Example:</b> यदि student keyboard से <code>25 + 15</code> type करता है, तो keyboard input unit के माध्यम से यह data computer system को उपलब्ध कराता है। आगे CPU instruction/data process करके result तैयार करता है।</div>
+</section>
+
+<section id="output">
+<h2>4. Output Unit & Output Devices</h2>
+<p><strong>Output Unit</strong> computer system के processed result को user के लिए understandable form में प्रस्तुत करती है। Output visual, printed या audio form में हो सकता है। Monitor, printer, speaker और projector common output devices हैं। citeturn0search3turn0search9</p>
+
+<h3>Functions</h3>
+<ul>
+<li>CPU/processing system से result receive करना।</li>
+<li>Computer-readable result को suitable human-readable form में convert/present करना।</li>
+<li>Information को display, print या play करना।</li>
+</ul>
+
+<table>
+<tr><th>Output Device</th><th>Output Type</th><th>Example</th></tr>
+<tr><td>Monitor</td><td>Soft Copy / Visual</td><td>Text, images, videos</td></tr>
+<tr><td>Printer</td><td>Hard Copy</td><td>Printed report</td></tr>
+<tr><td>Speaker</td><td>Audio</td><td>Music, alerts, voice</td></tr>
+<tr><td>Projector</td><td>Large Visual Display</td><td>Classroom presentation</td></tr>
+<tr><td>Plotter</td><td>Large-format graphical output</td><td>Engineering drawings</td></tr>
+</table>
+
+<h3>Soft Copy vs Hard Copy</h3>
+<p><strong>Soft Copy</strong> electronic form में दिखाई देने वाली information है, जैसे monitor पर document। <strong>Hard Copy</strong> physical printed form है, जैसे printer से निकला document।</p>
+</section>
+
+<section id="cpu">
+<h2>5. Central Processing Unit (CPU)</h2>
+<p><strong>CPU (Central Processing Unit)</strong> computer का primary processing component है। इसे सामान्यतः computer का <strong>“brain”</strong> कहा जाता है क्योंकि यह instructions execute करता है, calculations करता है और system के विभिन्न components के operations को coordinate करता है। citeturn0search2turn0search8</p>
+
+<p>जब कोई program run होता है, CPU memory से instructions fetch करता है, उन्हें decode करता है और फिर required operation execute करता है। Processing के दौरान CPU memory तथा input/output devices के साथ data exchange करता है। यह basic <strong>fetch → decode → execute</strong> cycle के द्वारा instructions process करता है। citeturn0search6</p>
+
+<h3>CPU के Main Components</h3>
+<div class="grid">
+<div class="card"><h3>Control Unit (CU)</h3><p>Instructions को fetch/decode करके computer components की activities को coordinate और control करती है।</p></div>
+<div class="card"><h3>ALU</h3><p>Arithmetic calculations और logical/comparison operations perform करता है।</p></div>
+<div class="card"><h3>Registers</h3><p>CPU के अंदर बहुत fast temporary storage locations हैं जिनमें processing के दौरान data/instructions/addresses रखे जा सकते हैं।</p></div>
+<div class="card"><h3>Cache</h3><p>High-speed memory layer जो frequently needed data/instructions तक CPU की access को तेज करने में मदद करती है।</p></div>
+</div>
+
+<div class="exam"><b>Exam Point:</b> CPU अकेले केवल calculation unit नहीं है; इसमें control, execution और fast temporary data handling के लिए अलग-अलग functional components होते हैं।</div>
+</section>
+
+<section id="cu">
+<h2>6. Control Unit (CU)</h2>
+<p><strong>Control Unit</strong> CPU का वह component है जो computer system में instructions और data movement को coordinate करता है। यह memory से instructions प्राप्त करता है, उन्हें interpret/decode करता है और appropriate control signals के माध्यम से required operations करवाता है। citeturn0search2turn0search24</p>
+
+<h3>Functions of Control Unit</h3>
+<ul>
+<li>Memory से instruction fetch करना।</li>
+<li>Fetched instruction को decode/interpret करना।</li>
+<li>ALU को required operation perform करने के लिए control करना।</li>
+<li>Registers और memory के बीच data movement coordinate करना।</li>
+<li>Input/output devices के साथ data transfer को manage करना।</li>
+<li>Computer system के different units के बीच timing और control signals coordinate करना।</li>
+</ul>
+
+<h3>Fetch–Decode–Execute Cycle</h3>
+<div class="flow">
+FETCH
+  ↓
+Memory से Instruction प्राप्त
+  ↓
+DECODE
+  ↓
+Instruction का अर्थ/operation determine
+  ↓
+EXECUTE
+  ↓
+ALU / Registers / Memory / I-O required action
+  ↓
+RESULT
+  ↓
+Next Instruction
+</div>
+</section>
+
+<section id="alu">
+<h2>7. Arithmetic & Logic Unit (ALU)</h2>
+<p><strong>ALU (Arithmetic Logic Unit)</strong> CPU का वह component है जो arithmetic तथा logical operations perform करता है। Arithmetic section addition, subtraction, multiplication और division जैसे calculations करता है; logic section comparison और logical decision operations करता है। citeturn0search12turn0search3</p>
+
+<h3>A. Arithmetic Operations</h3>
+<ul>
+<li>Addition (+)</li>
+<li>Subtraction (−)</li>
+<li>Multiplication (×)</li>
+<li>Division (÷)</li>
+<li>Increment और decrement जैसे operations, architecture के अनुसार।</li>
+</ul>
+
+<h3>B. Logical / Comparison Operations</h3>
+<ul>
+<li>Equal to (=)</li>
+<li>Greater than (&gt;)</li>
+<li>Less than (&lt;)</li>
+<li>AND, OR, NOT, XOR जैसे logical operations</li>
+<li>Bit shifting जैसी operations, architecture के अनुसार।</li>
+</ul>
+
+<h3>ALU Example</h3>
+<p>यदि computer को <strong>25 + 15</strong> calculate करना है, तो required operands processing path के माध्यम से ALU तक पहुँचते हैं। ALU addition operation perform करता है और result <strong>40</strong> तैयार होता है। इसी तरह यदि <strong>75 &gt; 50</strong> check करना है, तो ALU comparison करके logical result produce कर सकता है।</p>
+
+<div class="important"><b>Important:</b> ALU का मुख्य काम data पर arithmetic और logical processing करना है; instructions की overall control/coordination की responsibility Control Unit की होती है।</div>
+</section>
+
+<section id="memory">
+<h2>8. Memory Unit</h2>
+<p><strong>Memory</strong> computer system का वह hardware component है जिसका उपयोग data, program instructions और processing results को store करने के लिए किया जाता है। Processing के दौरान CPU को instructions और data तक fast access चाहिए, इसलिए memory system computer performance का अत्यंत महत्वपूर्ण हिस्सा है। citeturn0search2turn0search3</p>
+
+<p>Memory को broadly <strong>Primary Memory</strong> और <strong>Secondary Memory/Storage</strong> के रूप में समझा जाता है। Primary memory CPU के active processing environment के बहुत करीब होती है, जबकि secondary storage large-capacity, long-term data storage के लिए उपयोग होती है।</p>
+
+<h3>Memory के Main Functions</h3>
+<ul>
+<li>Program instructions store करना।</li>
+<li>Input data को processing के लिए hold करना।</li>
+<li>Intermediate results store करना।</li>
+<li>Final results को temporarily hold करना।</li>
+<li>CPU को required data/instructions उपलब्ध कराना।</li>
+</ul>
+
+<h3>Basic Memory Units</h3>
+<table>
+<tr><th>Unit</th><th>Meaning</th></tr>
+<tr><td>Bit</td><td>Binary digit; सामान्यतः 0 या 1 को represent करता है।</td></tr>
+<tr><td>Byte</td><td>8 bits का समूह।</td></tr>
+<tr><td>KB</td><td>Storage measurement unit; exact decimal/binary interpretation context पर निर्भर कर सकती है।</td></tr>
+<tr><td>MB</td><td>Megabyte</td></tr>
+<tr><td>GB</td><td>Gigabyte</td></tr>
+<tr><td>TB</td><td>Terabyte</td></tr>
+</table>
+</section>
+
+<section id="primary">
+<h2>9. Primary Memory</h2>
+<p><strong>Primary Memory</strong> या main memory वह memory है जिसका उपयोग CPU के active processing के दौरान instructions और data को readily accessible form में रखने के लिए किया जाता है। RAM और ROM इसके important examples हैं। citeturn0search2turn0search3</p>
+
+<h3>9.1 RAM (Random Access Memory)</h3>
+<p><strong>RAM</strong> computer की मुख्य volatile working memory है। Programs और data जब actively use हो रहे होते हैं, तब RAM में रखा जा सकता है। Power बंद होने पर सामान्य RAM का stored content retain नहीं रहता। citeturn0search2</p>
+
+<h4>RAM की Characteristics</h4>
+<ul>
+<li>Volatile memory.</li>
+<li>Read/write operations support करती है।</li>
+<li>Active programs के execution में महत्वपूर्ण भूमिका।</li>
+<li>CPU के लिए frequently accessed working data रखने में उपयोगी।</li>
+</ul>
+
+<h4>RAM के Common Types</h4>
+<table>
+<tr><th>Type</th><th>General Description</th></tr>
+<tr><td>SRAM</td><td>Static RAM; fast और comparatively expensive, cache-related applications में commonly used.</td></tr>
+<tr><td>DRAM</td><td>Dynamic RAM; comparatively high density और main memory में widely used.</td></tr>
+</table>
+
+<h3>9.2 ROM (Read Only Memory)</h3>
+<p><strong>ROM</strong> non-volatile memory category है जिसका data power off होने के बाद भी retain रहता है। इसका उपयोग firmware या relatively permanent instructions रखने के लिए किया जा सकता है।</p>
+
+<table>
+<tr><th>ROM Type</th><th>Meaning / Feature</th></tr>
+<tr><td>PROM</td><td>Programmable Read-Only Memory; सामान्यतः एक बार program करने के लिए।</td></tr>
+<tr><td>EPROM</td><td>Erasable Programmable ROM; suitable process के द्वारा erase/reprogram किया जा सकता है।</td></tr>
+<tr><td>EEPROM</td><td>Electrically Erasable Programmable ROM; electrical method से erase/reprogram किया जा सकता है।</td></tr>
+</table>
+
+<h3>9.3 Cache Memory</h3>
+<p><strong>Cache</strong> एक high-speed memory layer है जो CPU और main memory के बीच access latency कम करने में सहायता करती है। Frequently used instructions/data के लिए cache useful होती है। CPU architecture में अलग-अलग cache levels जैसे L1, L2 और L3 हो सकते हैं।</p>
+</section>
+
+<section id="secondary">
+<h2>10. Secondary Memory / Storage</h2>
+<p><strong>Secondary storage</strong> का उपयोग data और files को long-term/permanent storage के लिए किया जाता है। Primary memory की तुलना में यह generally large capacity प्रदान करती है और non-volatile होती है। Common examples में HDD, SSD, USB flash drive और memory card शामिल हैं।</p>
+
+<table>
+<tr><th>Storage</th><th>Major Feature</th><th>Example Use</th></tr>
+<tr><td>HDD</td><td>Magnetic storage; large capacity</td><td>Desktop/laptop storage</td></tr>
+<tr><td>SSD</td><td>Solid-state storage; no moving disk mechanism</td><td>Fast system/application storage</td></tr>
+<tr><td>USB Flash Drive</td><td>Portable solid-state storage</td><td>File transfer/backup</td></tr>
+<tr><td>Memory Card</td><td>Small removable flash storage</td><td>Camera/mobile devices</td></tr>
+<tr><td>Optical Disc</td><td>Laser-based removable media</td><td>CD/DVD applications</td></tr>
+</table>
+
+<div class="note"><b>Difference:</b> RAM active working data के लिए fast temporary memory है, जबकि SSD/HDD जैसे secondary storage devices files और programs को long-term रखने के लिए उपयोग किए जाते हैं।</div>
+</section>
+
+<section id="hierarchy">
+<h2>11. Memory Hierarchy</h2>
+<p>Computer में सभी memories की speed, cost और capacity समान नहीं होती। इसलिए memories को hierarchy में समझा जाता है। सामान्यतः CPU के सबसे पास वाली memory तेज और छोटी होती है, जबकि large-capacity storage comparatively slower होती है।</p>
+
+<div class="diagram">
+FASTEST / SMALLEST
+       ▲
+       │
+   CPU REGISTERS
+       │
+     CACHE
+       │
+   MAIN MEMORY
+     (RAM)
+       │
+ SECONDARY STORAGE
+   SSD / HDD
+       │
+LARGE ARCHIVAL STORAGE
+       ▼
+SLOWER / LARGER
+</div>
+
+<p>यह hierarchy performance और cost के बीच balance बनाने में मदद करती है। CPU registers और cache बहुत fast access provide करते हैं, जबकि secondary storage अधिक data capacity provide करता है।</p>
+</section>
+
+<section id="working">
+<h2>12. Working of a Computer System</h2>
+<p>Computer का working process एक continuous cycle की तरह समझा जा सकता है जिसमें user input देता है, system data को memory में रखता है, CPU instructions execute करता है और result output के रूप में मिलता है।</p>
+
+<div class="flow">
+USER
+  ↓
+INPUT DEVICE
+  ↓
+INPUT DATA / INSTRUCTIONS
+  ↓
+MEMORY
+  ↓
+CONTROL UNIT → Instruction Fetch & Decode
+  ↓
+ALU / CPU REGISTERS → Processing
+  ↓
+MEMORY
+  ↓
+OUTPUT UNIT
+  ↓
+USER
+</div>
+
+<h3>Step-by-Step Explanation</h3>
+<div class="steps">
+<div class="step"><b>Input:</b> User keyboard, mouse, scanner आदि से data/instructions देता है।</div>
+<div class="step"><b>Storage:</b> Required data/instructions memory में available होते हैं।</div>
+<div class="step"><b>Fetch:</b> CPU memory से instruction प्राप्त करता है।</div>
+<div class="step"><b>Decode:</b> Control Unit instruction को interpret करती है।</div>
+<div class="step"><b>Execute:</b> Required arithmetic/logical operation ALU और अन्य CPU components perform करते हैं।</div>
+<div class="step"><b>Store:</b> Result temporary memory या required storage location में रखा जा सकता है।</div>
+<div class="step"><b>Output:</b> Result monitor, printer, speaker आदि output device के माध्यम से user तक पहुँचता है।</div>
+</div>
+</section>
+
+<section id="example">
+<h2>13. Real-Life Example: Student Marks Calculation</h2>
+<p>मान लीजिए student के तीन marks हैं: <strong>70, 80 और 90</strong> और computer को total तथा average निकालना है।</p>
+
+<div class="steps">
+<div class="step"><b>Input:</b> Keyboard से 70, 80 और 90 enter किए जाते हैं।</div>
+<div class="step"><b>Memory:</b> Entered values और required program instructions memory में available रहते हैं।</div>
+<div class="step"><b>Control:</b> Control Unit required instructions को fetch और coordinate करती है।</div>
+<div class="step"><b>ALU:</b> ALU addition करके 70 + 80 + 90 = 240 calculate करता है।</div>
+<div class="step"><b>ALU:</b> Average के लिए 240 ÷ 3 = 80 calculate किया जाता है।</div>
+<div class="step"><b>Output:</b> Monitor पर Total = 240 और Average = 80 display किया जाता है।</div>
+</div>
+
+<div class="exam"><b>Concept:</b> इस example में Keyboard = Input, RAM = working memory, CPU/CU = control, ALU = calculation और Monitor = Output का role समझा जा सकता है।</div>
+</section>
+
+<section id="comparison">
+<h2>14. Important Comparisons</h2>
+
+<h3>Input Device vs Output Device</h3>
+<table>
+<tr><th>Input Device</th><th>Output Device</th></tr>
+<tr><td>Computer को data/instructions provide करता है।</td><td>Computer से processed information प्राप्त करता है।</td></tr>
+<tr><td>User से system की ओर information flow.</td><td>System से user की ओर information flow.</td></tr>
+<tr><td>Keyboard, mouse, scanner.</td><td>Monitor, printer, speaker.</td></tr>
+</table>
+
+<h3>RAM vs ROM</h3>
+<table>
+<tr><th>RAM</th><th>ROM</th></tr>
+<tr><td>Generally volatile.</td><td>Non-volatile.</td></tr>
+<tr><td>Active programs/data के लिए working memory.</td><td>Permanent/firmware-type instructions के लिए उपयोगी।</td></tr>
+<tr><td>Read/write operations.</td><td>ROM family में programming/reprogramming capabilities type पर depend करती हैं।</td></tr>
+</table>
+
+<h3>Primary Memory vs Secondary Storage</h3>
+<table>
+<tr><th>Primary Memory</th><th>Secondary Storage</th></tr>
+<tr><td>CPU के active processing environment में important.</td><td>Long-term data storage के लिए।</td></tr>
+<tr><td>Generally faster.</td><td>Generally slower than primary working memory.</td></tr>
+<tr><td>Capacity comparatively limited.</td><td>Large storage capacity available.</td></tr>
+<tr><td>RAM/ROM examples.</td><td>SSD/HDD/USB examples.</td></tr>
+</table>
+
+<h3>CU vs ALU</h3>
+<table>
+<tr><th>Control Unit</th><th>ALU</th></tr>
+<tr><td>Operations को control और coordinate करती है।</td><td>Arithmetic और logical operations perform करता है।</td></tr>
+<tr><td>Instructions fetch/decode करती है।</td><td>Given operation execute करता है।</td></tr>
+<tr><td>Control signals generate/manage करती है।</td><td>Calculations और comparisons करता है।</td></tr>
+</table>
+</section>
+
+<section id="exam">
+<h2>15. Important Exam Questions</h2>
+<div class="exam">
+<b>Long Answer Questions</b><br><br>
+1. Computer system के basic building blocks को diagram सहित समझाइए।<br>
+2. Computer का block diagram बनाकर उसके प्रत्येक unit को विस्तार से समझाइए।<br>
+3. Input Unit क्या है? इसके functions और प्रमुख input devices समझाइए।<br>
+4. Output Unit क्या है? इसके functions और प्रमुख output devices समझाइए।<br>
+5. CPU क्या है? इसके प्रमुख components को विस्तार से समझाइए।<br>
+6. Control Unit की definition, functions और working समझाइए।<br>
+7. ALU क्या है? इसके arithmetic और logical operations उदाहरण सहित समझाइए।<br>
+8. Computer memory क्या है? इसके विभिन्न प्रकारों को समझाइए।<br>
+9. Primary Memory और Secondary Memory में अंतर लिखिए।<br>
+10. RAM क्या है? इसके characteristics और types समझाइए।<br>
+11. ROM क्या है? PROM, EPROM और EEPROM को समझाइए।<br>
+12. Cache Memory क्या है और इसका महत्व क्या है?<br>
+13. Memory hierarchy को diagram सहित समझाइए।<br>
+14. Computer में Input से Output तक data processing की पूरी प्रक्रिया उदाहरण सहित समझाइए।
+</div>
+
+<h3>Very Short Questions</h3>
+<ul>
+<li>CPU का full form क्या है?</li>
+<li>ALU का full form क्या है?</li>
+<li>Computer को “brain” क्यों कहा जाता है?</li>
+<li>दो input devices के नाम लिखिए।</li>
+<li>दो output devices के नाम लिखिए।</li>
+<li>RAM volatile क्यों कहलाती है?</li>
+<li>ROM किस प्रकार की memory है?</li>
+<li>ALU के दो मुख्य कार्य क्या हैं?</li>
+<li>CU का मुख्य कार्य क्या है?</li>
+<li>Byte में कितने bits होते हैं?</li>
+</ul>
+
+<div class="important">
+<b>Exam Revision Formula:</b><br>
+<strong>Input → Memory → CPU (CU + ALU + Registers) → Memory → Output</strong><br><br>
+याद रखें: <strong>Input data देता है, Memory data/instructions रखती है, CU control करती है, ALU processing करता है और Output result दिखाता है।</strong>
+</div>
+
+<h3>Reference-Based Study Note</h3>
+<p>इस chapter को expand करते समय computer fundamentals, CPU, ALU, input/output और memory के लिए <strong>GeeksforGeeks</strong> तथा <strong>TutorialsPoint</strong> जैसे online educational references की terminology और conceptual coverage को आधार बनाया गया है। citeturn0search0turn0search2turn0search3turn0search12</p>
+</section>
+</main>
+</div>
+</body>
+</html>

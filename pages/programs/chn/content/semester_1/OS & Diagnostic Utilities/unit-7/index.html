@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Back-Up Procedure & Disaster Prevention</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#eef2f7;color:#202938;font-family:Segoe UI,Arial,sans-serif;line-height:1.9}
+.layout{max-width:1500px;margin:auto;padding:15px;display:grid;grid-template-columns:290px 1fr;gap:18px}
+aside{position:sticky;top:15px;height:calc(100vh - 30px);overflow:auto;background:#fff;border-radius:18px;padding:20px;box-shadow:0 6px 25px #0001}
+aside h2{color:#075985;border-left:5px solid #0284c7;padding-left:10px}aside a{display:block;text-decoration:none;color:#374151;padding:7px 10px;border-radius:8px;font-size:14px}aside a:hover{background:#e0f2fe;color:#0369a1}
+main{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 6px 25px #0001}.hero{padding:42px;background:linear-gradient(135deg,#dbeafe,#e0f2fe,#f8fafc)}
+.hero h1{margin:7px 0;color:#075985;font-size:36px;line-height:1.3}section{padding:32px;border-bottom:1px solid #e5e7eb}
+h2{font-size:29px;color:#075985;border-left:5px solid #0284c7;padding-left:13px}h3{font-size:22px;color:#0c4a6e;margin-top:27px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.card{padding:19px;background:#f0f9ff;border:1px solid #bae6fd;border-radius:14px}
+.note,.important,.exam,.warning{padding:18px 20px;border-radius:12px;margin:19px 0}.note{background:#eff6ff;border-left:5px solid #3b82f6}.important{background:#fff7ed;border-left:5px solid #f97316}.exam{background:#ecfdf5;border-left:5px solid #10b981}.warning{background:#fef2f2;border-left:5px solid #ef4444}
+table{width:100%;border-collapse:collapse;margin:20px 0}th,td{border:1px solid #cbd5e1;padding:12px;text-align:left;vertical-align:top}th{background:#e0f2fe;color:#075985}
+.code,.diagram{background:#090b0f;color:#e5e7eb;border-radius:14px;padding:20px 24px;overflow:auto;font-family:Consolas,monospace;white-space:pre;line-height:1.55}
+.step{padding:14px 16px;background:#f8fafc;border-radius:10px;margin:9px 0;border-left:4px solid #0284c7}.badge{display:inline-block;background:#bae6fd;color:#075985;padding:4px 11px;border-radius:20px;font-size:12px;font-weight:bold}
+@media(max-width:900px){.layout{display:block;padding:5px}aside{display:none}.hero{padding:28px 18px}.hero h1{font-size:28px}section{padding:24px 18px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside>
+<h2>Topics</h2>
+<a href="#intro">1. Backup Introduction</a><a href="#restore">2. Backup & Restore</a><a href="#types">3. Types of Backup</a>
+<a href="#media">4. Backup Media</a><a href="#raid">5. RAID Systems</a><a href="#bootable">6. Bootable CD</a>
+<a href="#crontab">7. crontab Automated Backup</a><a href="#plan">8. Disaster Prevention Plan</a><a href="#exam">9. Exam Questions</a>
+</aside>
+<main>
+<div class="hero">
+<span class="badge">BACKUP • RECOVERY • DISASTER PREVENTION</span>
+<h1>Back-Up Procedure & Disaster Prevention</h1>
+<p><strong>Backup & Restore • Backup Types • Backup Media • RAID • Bootable CD • Linux crontab Automation</strong></p>
+</div>
+
+<section id="intro">
+<h2>1. Backup क्या है?</h2>
+<p><strong>Backup</strong> किसी महत्वपूर्ण data की अतिरिक्त copy बनाने की प्रक्रिया है, ताकि original data खो जाने, corrupt होने, accidentally delete होने, hardware failure, malware या किसी अन्य disaster की स्थिति में data को restore किया जा सके। Backup केवल copy बनाना नहीं है; एक useful backup strategy में backup की location, frequency, retention और restore testing भी महत्वपूर्ण होते हैं।</p>
+<div class="important"><b>Exam Definition:</b> Backup वह प्रक्रिया है जिसमें महत्वपूर्ण files, databases, configurations या अन्य digital data की सुरक्षित अतिरिक्त copy बनाई जाती है, ताकि आवश्यकता पड़ने पर उसे restore किया जा सके।</div>
+
+<h3>Backup की आवश्यकता</h3>
+<ul>
+<li>Accidental file deletion से recovery के लिए।</li>
+<li>Hard disk/SSD failure की स्थिति में data बचाने के लिए।</li>
+<li>Operating system या software failure के बाद recovery में सहायता के लिए।</li>
+<li>Malware/ransomware जैसी घटनाओं के प्रभाव को कम करने के लिए।</li>
+<li>Important documents और business data की continuity बनाए रखने के लिए।</li>
+</ul>
+
+<div class="diagram">
+NORMAL DATA
+     │
+     ├──────────────► BACKUP COPY
+     │                     │
+     ▼                     ▼
+Daily Work            Safe Location
+                           │
+                     Disaster / Loss
+                           │
+                           ▼
+                     RESTORE DATA
+</div>
+</section>
+
+<section id="restore">
+<h2>2. Backup & Restore Procedures</h2>
+<h3>Backup Procedure</h3>
+<p>Backup procedure में पहले identify किया जाता है कि कौन-सा data महत्वपूर्ण है, फिर suitable backup method और destination चुना जाता है। Backup complete होने के बाद उसकी integrity verify करना और recovery के लिए उपलब्ध रखना आवश्यक है।</p>
+<div class="step"><b>Step 1:</b> Important files, folders, databases और configurations identify करें।</div>
+<div class="step"><b>Step 2:</b> Backup frequency तय करें—जैसे daily, weekly या आवश्यकता के अनुसार।</div>
+<div class="step"><b>Step 3:</b> Backup type चुनें—Full, Incremental या Differential आदि।</div>
+<div class="step"><b>Step 4:</b> Suitable backup media/location चुनें।</div>
+<div class="step"><b>Step 5:</b> Backup execute करें।</div>
+<div class="step"><b>Step 6:</b> Backup completion और files की availability/integrity verify करें।</div>
+<div class="step"><b>Step 7:</b> Backup को सुरक्षित और, जहाँ संभव हो, original system से अलग location पर रखें।</div>
+
+<h3>Restore Procedure</h3>
+<p><strong>Restore</strong> backup copy से data को वापस usable location या system में लाने की प्रक्रिया है। Restore करते समय correct backup version और destination चुनना जरूरी है।</p>
+<div class="step"><b>Step 1:</b> Data loss/failure का कारण identify करें और recovery environment तैयार करें।</div>
+<div class="step"><b>Step 2:</b> Required backup set और restore point identify करें।</div>
+<div class="step"><b>Step 3:</b> Backup data को verify करें।</div>
+<div class="step"><b>Step 4:</b> Files/system data को selected destination पर restore करें।</div>
+<div class="step"><b>Step 5:</b> Restored data की correctness और usability check करें।</div>
+<div class="step"><b>Step 6:</b> System को normal operation में वापस लाएँ और backup strategy review करें।</div>
+
+<div class="warning"><b>Important:</b> Backup बना होना पर्याप्त नहीं है। Restore process को समय-समय पर test करना चाहिए, क्योंकि unusable या corrupted backup disaster के समय काम नहीं आएगा।</div>
+</section>
+
+<section id="types">
+<h2>3. Types of Backup</h2>
+<table>
+<tr><th>Backup Type</th><th>क्या backup होता है?</th><th>Advantages</th><th>Limitations</th></tr>
+<tr><td><strong>Full Backup</strong></td><td>Selected data की पूरी copy।</td><td>Restore comparatively simple और complete set available।</td><td>अधिक storage और time लग सकता है।</td></tr>
+<tr><td><strong>Incremental Backup</strong></td><td>Last backup के बाद बदला/नया data।</td><td>कम storage और faster backup।</td><td>Full restore में multiple backup sets की आवश्यकता हो सकती है।</td></tr>
+<tr><td><strong>Differential Backup</strong></td><td>Last full backup के बाद बदला/नया data।</td><td>Restore में सामान्यतः full + latest differential set चाहिए।</td><td>समय के साथ differential size बढ़ सकता है।</td></tr>
+<tr><td><strong>Mirror Backup</strong></td><td>Source का mirror-like copy structure।</td><td>Current data की accessible duplicate copy।</td><td>Deleted/corrupted changes भी mirror में reflect हो सकते हैं यदि versioning न हो।</td></tr>
+</table>
+
+<div class="grid">
+<div class="card"><h3>Full</h3><p>Example: रविवार को पूरा 100 GB data backup।</p></div>
+<div class="card"><h3>Incremental</h3><p>Monday को केवल Monday के बाद बदला data, फिर Tuesday को Monday backup के बाद नया बदला data।</p></div>
+<div class="card"><h3>Differential</h3><p>Monday full के बाद Tuesday का accumulated changed data, फिर Wednesday को Monday full के बाद हुए सभी changes।</p></div>
+<div class="card"><h3>Best Practice</h3><p>Critical data के लिए backup schedule और retention policy पहले से define करना चाहिए।</p></div>
+</div>
+</section>
+
+<section id="media">
+<h2>4. Media for Backup</h2>
+<p>Backup media वह storage medium है जिसमें backup data रखा जाता है। Media का चयन data size, cost, speed, portability, durability और recovery requirements के अनुसार किया जाता है।</p>
+<table>
+<tr><th>Media</th><th>मुख्य उपयोग</th><th>Advantages</th></tr>
+<tr><td>External HDD/SSD</td><td>Personal और organizational backups</td><td>Convenient, reusable और comparatively high capacity।</td></tr>
+<tr><td>USB Flash Drive</td><td>Small/portable backups</td><td>Portable और easy to use।</td></tr>
+<tr><td>Optical Disc</td><td>CD/DVD based archival या boot media</td><td>Offline physical medium; bootable media के लिए useful।</td></tr>
+<tr><td>Magnetic Tape</td><td>Large-scale archival/enterprise backup</td><td>High-capacity long-term backup scenarios में उपयोगी।</td></tr>
+<tr><td>Network Storage</td><td>Centralized backup</td><td>Multiple systems से centralized access।</td></tr>
+<tr><td>Cloud Storage</td><td>Off-site backup</td><td>Remote access और geographic separation का लाभ।</td></tr>
+</table>
+<div class="note"><b>Important:</b> Critical backup को केवल उसी computer के internal drive पर रखना ideal नहीं है, क्योंकि वही hardware failure disaster में original और backup दोनों को प्रभावित कर सकता है।</div>
+</section>
+
+<section id="raid">
+<h2>5. RAID Systems</h2>
+<p><strong>RAID (Redundant Array of Independent Disks)</strong> multiple physical disks को एक logical storage arrangement में organize करने की technology है। RAID का उद्देश्य configuration के अनुसार performance, redundancy या दोनों को improve करना हो सकता है।</p>
+
+<div class="grid">
+<div class="card"><h3>RAID 0 — Striping</h3><p>Data multiple disks पर stripes में distribute होता है। Performance improve हो सकती है, लेकिन redundancy नहीं होती। एक disk failure से array का data unavailable हो सकता है।</p></div>
+<div class="card"><h3>RAID 1 — Mirroring</h3><p>Data की copy दूसरे disk पर mirror की जाती है। एक disk fail होने पर दूसरे disk से data उपलब्ध रह सकता है।</p></div>
+<div class="card"><h3>RAID 5</h3><p>Striping के साथ distributed parity का उपयोग करता है। Typical implementation में एक disk failure के बाद data recover किया जा सकता है।</p></div>
+<div class="card"><h3>RAID 6</h3><p>Dual distributed parity के कारण RAID 5 की तुलना में अधिक disk-failure tolerance देता है, सामान्यतः दो disk failures तक।</p></div>
+<div class="card"><h3>RAID 10</h3><p>Mirroring और striping का combination है। Performance और redundancy दोनों के लिए उपयोगी, लेकिन अधिक disks की आवश्यकता होती है।</p></div>
+</div>
+
+<table>
+<tr><th>RAID</th><th>Main Technique</th><th>Redundancy</th><th>मुख्य उद्देश्य</th></tr>
+<tr><td>0</td><td>Striping</td><td>नहीं</td><td>Performance</td></tr>
+<tr><td>1</td><td>Mirroring</td><td>हाँ</td><td>Redundancy</td></tr>
+<tr><td>5</td><td>Striping + Parity</td><td>हाँ</td><td>Balance of storage/performance/redundancy</td></tr>
+<tr><td>6</td><td>Striping + Dual Parity</td><td>हाँ</td><td>Higher fault tolerance</td></tr>
+<tr><td>10</td><td>Mirror + Stripe</td><td>हाँ</td><td>Performance + redundancy</td></tr>
+</table>
+
+<div class="warning"><b>Exam Point:</b> RAID को complete backup का replacement नहीं माना जाना चाहिए। RAID primarily storage availability/redundancy प्रदान करता है; accidental deletion, malware या logical corruption से अलग backup की आवश्यकता रह सकती है।</div>
+</section>
+
+<section id="bootable">
+<h2>6. Preparation of Bootable CD</h2>
+<p><strong>Bootable CD</strong> ऐसी optical disc है जिसमें bootable image/files होते हैं और computer उस disc से operating system installer या recovery environment start कर सकता है। आज USB boot media अधिक common है, लेकिन syllabus में bootable CD एक महत्वपूर्ण concept है।</p>
+
+<h3>Bootable CD तैयार करने के Basic Steps</h3>
+<div class="step"><b>Step 1:</b> Required operating system/recovery ISO image प्राप्त करें।</div>
+<div class="step"><b>Step 2:</b> CD/DVD writing software खोलें जो ISO image को bootable disc के रूप में burn कर सके।</div>
+<div class="step"><b>Step 3:</b> <strong>Burn/Write Image</strong> option select करें; ISO को केवल normal data file की तरह copy न करें।</div>
+<div class="step"><b>Step 4:</b> Suitable blank CD/DVD insert करें।</div>
+<div class="step"><b>Step 5:</b> Write speed और disc settings select करके burning process शुरू करें।</div>
+<div class="step"><b>Step 6:</b> Burning complete होने के बाद disc verify करें।</div>
+<div class="step"><b>Step 7:</b> Test के लिए system को disc से boot करें और आवश्यकता होने पर boot order में optical drive को enable/select करें।</div>
+
+<div class="important"><b>Note:</b> Modern systems में UEFI और USB boot media के कारण bootable USB आमतौर पर CD की तुलना में अधिक practical है।</div>
+</section>
+
+<section id="crontab">
+<h2>7. Linux में crontab द्वारा Automated Backup</h2>
+<p><strong>cron</strong> Linux/Unix-like systems में scheduled jobs automatically execute करने की सुविधा देता है। <strong>crontab</strong> user की scheduled cron jobs को define करने के लिए उपयोग किया जाता है। इसके माध्यम से backup command को daily, weekly या किसी निर्धारित schedule पर automatically run कराया जा सकता है।</p>
+
+<h3>Crontab खोलना</h3>
+<div class="code">$ crontab -e</div>
+
+<h3>Crontab Format</h3>
+<div class="code">minute   hour   day-of-month   month   day-of-week   command
+
+*        *      *              *       *              command</div>
+
+<table>
+<tr><th>Field</th><th>Range / Meaning</th></tr>
+<tr><td>Minute</td><td>0–59</td></tr>
+<tr><td>Hour</td><td>0–23</td></tr>
+<tr><td>Day of Month</td><td>1–31</td></tr>
+<tr><td>Month</td><td>1–12</td></tr>
+<tr><td>Day of Week</td><td>0–7, implementation में Sunday के लिए 0 या 7 commonly used</td></tr>
+</table>
+
+<h3>Simple Daily Backup Example</h3>
+<p>मान लें user के home directory का backup <code>/backup</code> directory में रखना है। एक simple archive command:</p>
+<div class="code">tar -czf /backup/home-backup.tar.gz /home/student</div>
+
+<p>इसे रोज रात 11:00 बजे चलाने के लिए crontab entry का example:</p>
+<div class="code">0 23 * * * tar -czf /backup/home-backup.tar.gz /home/student</div>
+
+<h3>Backup Script के साथ crontab</h3>
+<p>Real-world setup में backup commands को एक script में रखना अधिक manageable हो सकता है।</p>
+<div class="code">#!/bin/bash
+
+SOURCE="/home/student"
+DEST="/backup"
+DATE=$(date +%Y-%m-%d)
+
+tar -czf "$DEST/home-$DATE.tar.gz" "$SOURCE"</div>
+
+<p>मान लें script <code>/home/student/backup.sh</code> पर है। इसे executable बनाने के बाद:</p>
+<div class="code">$ chmod +x /home/student/backup.sh
+$ crontab -e</div>
+
+<p>Daily 11:00 PM:</p>
+<div class="code">0 23 * * * /home/student/backup.sh</div>
+
+<h3>Crontab Management Commands</h3>
+<div class="code">$ crontab -e     # Edit jobs
+$ crontab -l     # List current jobs
+$ crontab -r     # Remove current user's crontab</div>
+
+<div class="warning"><b>Practical Caution:</b> Automated backup में destination path, permissions, available storage, log handling और restore testing carefully configure करें। Important backup को केवल उसी disk/partition पर रखना hardware failure के विरुद्ध पर्याप्त protection नहीं देता।</div>
+</section>
+
+<section id="plan">
+<h2>8. Disaster Prevention & Backup Planning</h2>
+<p><strong>Disaster Prevention</strong> का उद्देश्य data loss और system downtime के impact को पहले से कम करना है। Backup strategy इसका एक महत्वपूर्ण भाग है, लेकिन इसके साथ preventive controls और recovery planning भी आवश्यक हैं।</p>
+
+<h3>Basic Disaster Prevention Plan</h3>
+<div class="step"><b>1. Identify:</b> Critical data और systems identify करें।</div>
+<div class="step"><b>2. Schedule:</b> Regular backup schedule तय करें।</div>
+<div class="step"><b>3. Separate:</b> Backup की एक copy अलग storage/location पर रखें।</div>
+<div class="step"><b>4. Protect:</b> Backup access को unauthorized users से protect करें।</div>
+<div class="step"><b>5. Verify:</b> Backup jobs और backup files verify करें।</div>
+<div class="step"><b>6. Test Restore:</b> समय-समय पर restore करके recovery process test करें।</div>
+<div class="step"><b>7. Document:</b> Backup location, schedule और restore procedure document करें।</div>
+
+<div class="diagram">
+IMPORTANT DATA
+     │
+     ▼
+REGULAR BACKUP
+     │
+ ┌───┴──────────────┐
+ ▼                  ▼
+LOCAL COPY       OFF-SITE COPY
+ │                  │
+ └────────┬─────────┘
+          ▼
+     DISASTER OCCURS
+          │
+          ▼
+      RESTORE DATA
+          │
+          ▼
+    NORMAL OPERATION
+</div>
+</section>
+
+<section id="exam">
+<h2>9. Important Exam Questions</h2>
+<div class="exam">
+<b>Long Answer Questions</b><br><br>
+1. Backup क्या है? Backup और Restore procedures को विस्तार से समझाइए।<br>
+2. Full, Incremental और Differential backup में अंतर समझाइए।<br>
+3. विभिन्न backup media को उदाहरण सहित समझाइए।<br>
+4. RAID क्या है? RAID 0, RAID 1, RAID 5, RAID 6 और RAID 10 को समझाइए।<br>
+5. Bootable CD क्या है? इसे तैयार करने की प्रक्रिया समझाइए।<br>
+6. Linux में crontab क्या है? इसका उपयोग automated backup के लिए कैसे किया जाता है?<br>
+7. Disaster Prevention में backup strategy का महत्व समझाइए।
+</div>
+
+<h3>Short Questions</h3>
+<ul>
+<li>Backup क्या है?</li><li>Restore का क्या अर्थ है?</li><li>Full Backup क्या है?</li><li>Incremental Backup क्या है?</li>
+<li>Differential Backup क्या है?</li><li>RAID का full form क्या है?</li><li>RAID 0 और RAID 1 में अंतर क्या है?</li>
+<li>Bootable CD क्या है?</li><li>crontab क्या है?</li><li><code>crontab -e</code> और <code>crontab -l</code> में क्या अंतर है?</li>
+<li>RAID को backup का replacement क्यों नहीं माना जाता?</li>
+</ul>
+
+<div class="important">
+<b>Quick Revision:</b><br>
+<strong>Backup → Data की अतिरिक्त सुरक्षित copy</strong><br>
+<strong>Restore → Backup से data वापस लाना</strong><br>
+<strong>Full → पूरा selected data</strong><br>
+<strong>Incremental → Last backup के बाद changes</strong><br>
+<strong>Differential → Last full backup के बाद changes</strong><br>
+<strong>RAID 0 → Striping, No Redundancy</strong><br>
+<strong>RAID 1 → Mirroring</strong><br>
+<strong>RAID 5 → Distributed Parity</strong><br>
+<strong>RAID 6 → Dual Parity</strong><br>
+<strong>RAID 10 → Mirroring + Striping</strong><br>
+<strong>crontab → Scheduled Linux Jobs</strong>
+</div>
+</section>
+</main>
+</div>
+</body>
+</html>

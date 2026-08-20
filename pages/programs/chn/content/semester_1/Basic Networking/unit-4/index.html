@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Network Model - OSI & TCP/IP Model</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#eef3f8;color:#202936;font-family:Segoe UI,Arial,sans-serif;line-height:1.9}
+.container{max-width:1500px;margin:auto;padding:16px;display:grid;grid-template-columns:285px 1fr;gap:18px}
+.sidebar{position:sticky;top:15px;height:calc(100vh - 30px);overflow:auto;background:#fff;padding:20px;border-radius:18px;box-shadow:0 8px 28px #0001}
+.sidebar h2{color:#075985;border-left:5px solid #0284c7;padding-left:10px}
+.sidebar a{display:block;text-decoration:none;color:#374151;padding:7px 10px;border-radius:8px;font-size:14px}
+.sidebar a:hover{background:#e0f2fe;color:#0369a1}
+main{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 8px 28px #0001}
+.hero{padding:42px;background:linear-gradient(135deg,#dbeafe,#e0f2fe,#f8fafc)}
+.hero h1{font-size:38px;line-height:1.3;color:#075985;margin:8px 0}
+.badge{display:inline-block;background:#bae6fd;color:#075985;border-radius:20px;padding:4px 13px;font-size:12px;font-weight:700}
+section{padding:32px;border-bottom:1px solid #e5e7eb}
+h2{font-size:29px;color:#075985;border-left:5px solid #0284c7;padding-left:13px}
+h3{font-size:22px;color:#0c4a6e;margin-top:28px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{background:#f0f9ff;border:1px solid #bae6fd;padding:18px;border-radius:14px}
+.note,.important,.exam{padding:18px 20px;border-radius:12px;margin:19px 0}
+.note{background:#eff6ff;border-left:5px solid #3b82f6}
+.important{background:#fff7ed;border-left:5px solid #f97316}
+.exam{background:#ecfdf5;border-left:5px solid #10b981}
+table{width:100%;border-collapse:collapse;margin:20px 0}
+th,td{border:1px solid #cbd5e1;padding:12px;text-align:left;vertical-align:top}
+th{background:#e0f2fe;color:#075985}
+.diagram{background:#090b0f;color:#e5e7eb;border-radius:14px;padding:22px;overflow:auto;font-family:Consolas,monospace;white-space:pre;line-height:1.5}
+.layer{background:#f8fafc;border:1px solid #dbeafe;border-left:6px solid #0284c7;border-radius:12px;padding:18px;margin:13px 0}
+.num{display:inline-block;background:#075985;color:#fff;border-radius:50%;width:30px;height:30px;text-align:center;line-height:30px;margin-right:8px}
+@media(max-width:900px){.container{display:block;padding:5px}.sidebar{display:none}.hero{padding:28px 18px}.hero h1{font-size:29px}section{padding:24px 18px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="container">
+<aside class="sidebar">
+<h2>Contents</h2>
+<a href="#intro">1. Network Model Introduction</a>
+<a href="#osi">2. OSI Model</a>
+<a href="#l7">Layer 7 – Application</a>
+<a href="#l6">Layer 6 – Presentation</a>
+<a href="#l5">Layer 5 – Session</a>
+<a href="#l4">Layer 4 – Transport</a>
+<a href="#l3">Layer 3 – Network</a>
+<a href="#l2">Layer 2 – Data Link</a>
+<a href="#l1">Layer 1 – Physical</a>
+<a href="#tcpip">3. TCP/IP Model</a>
+<a href="#comparison">4. OSI vs TCP/IP</a>
+<a href="#encap">5. Encapsulation</a>
+<a href="#exam">6. Exam Questions</a>
+</aside>
+
+<main>
+<div class="hero">
+<span class="badge">DCCN • PGDCA • 10 PERIODS</span>
+<h1>4. Network Model</h1>
+<p><strong>OSI Model • TCP/IP Model • Comparison of OSI & TCP/IP</strong></p>
+</div>
+
+<section id="intro">
+<h2>1. Network Model का Introduction</h2>
+<p>Computer network में अलग-अलग computers, servers, mobile devices और networking devices को आपस में communicate करना होता है। यदि communication के लिए कोई common structure या standard approach न हो, तो अलग-अलग manufacturers और technologies के devices के बीच communication difficult हो सकता है। इसी समस्या को व्यवस्थित करने के लिए <strong>Network Models</strong> का उपयोग किया जाता है।</p>
+
+<p>Network model communication process को अलग-अलग <strong>layers</strong> में divide करता है। प्रत्येक layer का अपना specific काम होता है और वह ऊपर तथा नीचे वाली layer के साथ interaction करती है। Layered approach से networking concepts को समझना, design करना, troubleshoot करना और standardize करना आसान होता है।</p>
+
+<div class="important"><b>Definition:</b> Network Model एक conceptual framework है जो network communication की विभिन्न activities और functions को अलग-अलग layers में व्यवस्थित करता है।</div>
+
+<h3>इस Chapter के मुख्य Models</h3>
+<div class="grid">
+<div class="card"><h3>OSI Model</h3><p>Open Systems Interconnection model में <strong>7 layers</strong> होती हैं। यह networking concepts को समझने और standardize करने के लिए reference model के रूप में बहुत महत्वपूर्ण है।</p></div>
+<div class="card"><h3>TCP/IP Model</h3><p>Internet communication में widely used protocol architecture है। इसमें commonly <strong>4 layers</strong> का model बताया जाता है।</p></div>
+</div>
+
+<div class="diagram">
+OSI MODEL                         TCP/IP MODEL
+──────────                         ─────────────
+7 Application  ────────────────┐
+6 Presentation ────────────────┤
+5 Session      ────────────────┤──► Application
+4 Transport    ────────────────┼──► Transport
+3 Network      ────────────────┼──► Internet
+2 Data Link    ────────────────┤
+1 Physical     ────────────────┴──► Network Access
+</div>
+</section>
+
+<section id="osi">
+<h2>2. OSI Model – Open Systems Interconnection</h2>
+<p><strong>OSI (Open Systems Interconnection)</strong> model को networking communication को सात अलग-अलग layers में समझाने के लिए बनाया गया था। प्रत्येक layer communication process के एक specific aspect को handle करती है। OSI model को एक <strong>reference model</strong> के रूप में समझना सबसे उचित है; यह स्वयं Internet पर चलने वाला single protocol नहीं है।</p>
+
+<h3>OSI की 7 Layers</h3>
+<div class="diagram">
+        ┌─────────────────────────┐
+  7     │ APPLICATION             │
+        ├─────────────────────────┤
+  6     │ PRESENTATION            │
+        ├─────────────────────────┤
+  5     │ SESSION                 │
+        ├─────────────────────────┤
+  4     │ TRANSPORT               │
+        ├─────────────────────────┤
+  3     │ NETWORK                 │
+        ├─────────────────────────┤
+  2     │ DATA LINK               │
+        ├─────────────────────────┤
+  1     │ PHYSICAL                │
+        └─────────────────────────┘
+
+Data Flow:
+Application → Presentation → Session → Transport
+→ Network → Data Link → Physical
+</div>
+
+<div class="note"><b>Memory Trick:</b> ऊपर से नीचे: <strong>All People Seem To Need Data Processing</strong> — Application, Presentation, Session, Transport, Network, Data Link, Physical.</div>
+</section>
+
+<section id="l7">
+<h2><span class="num">7</span>Application Layer</h2>
+<p>Application Layer OSI model की सबसे ऊपर वाली layer है। यह network services के सबसे करीब होती है और applications को network communication के लिए required services उपलब्ध कराती है। यह सीधे user application को network से connect करने वाली layer के रूप में समझी जाती है, हालांकि actual application स्वयं layer का हिस्सा नहीं होती।</p>
+<h3>मुख्य कार्य</h3>
+<ul>
+<li>Network services को applications के लिए उपलब्ध कराना।</li>
+<li>Network resource या remote service access में सहायता करना।</li>
+<li>Web, email, file transfer और name/service related communication के लिए application-level protocols provide करना।</li>
+<li>User-level network communication के लिए interface प्रदान करना।</li>
+</ul>
+<h3>Examples</h3>
+<p><strong>HTTP/HTTPS, FTP, SMTP, DNS</strong> आदि application-level protocols के examples हैं।</p>
+<div class="important"><b>Exam Point:</b> Application Layer user-facing network services से सबसे अधिक संबंधित OSI layer है।</div>
+</section>
+
+<section id="l6">
+<h2><span class="num">6</span>Presentation Layer</h2>
+<p>Presentation Layer का काम data को एक suitable format में represent करना है ताकि sender और receiver systems data को सही तरीके से interpret कर सकें। इसे data representation, translation और formatting से associated layer माना जाता है।</p>
+<h3>मुख्य कार्य</h3>
+<ul>
+<li>Data format/translation में सहायता।</li>
+<li>Character encoding और data representation का handling।</li>
+<li>Encryption और decryption जैसे presentation-related functions की conceptual responsibility।</li>
+<li>Compression और decompression में सहायता।</li>
+</ul>
+<p>उदाहरण के लिए अलग-अलग systems में character representation या data encoding अलग हो सकती है; presentation functions communication के लिए compatible representation में सहायता करते हैं।</p>
+</section>
+
+<section id="l5">
+<h2><span class="num">5</span>Session Layer</h2>
+<p>Session Layer दो communicating applications के बीच session को establish, manage और terminate करने की concept से संबंधित है। यह communication dialog को organize करने और session के दौरान synchronization में सहायता करती है।</p>
+<h3>मुख्य कार्य</h3>
+<ul>
+<li>Session establishment.</li>
+<li>Session management.</li>
+<li>Session termination.</li>
+<li>Dialog control में सहायता।</li>
+<li>Long communication में synchronization/checkpointing की conceptual सुविधा।</li>
+</ul>
+<div class="note"><b>Easy Meaning:</b> Session Layer को याद रखें — <strong>“Communication session को start, manage और end करना.”</strong></div>
+</section>
+
+<section id="l4">
+<h2><span class="num">4</span>Transport Layer</h2>
+<p>Transport Layer end-to-end communication के लिए responsible होती है। यह source application से destination application तक data delivery के लिए transport services provide करती है। यह reliability, flow control और segmentation जैसे functions की concept से जुड़ी है।</p>
+<h3>मुख्य कार्य</h3>
+<ul>
+<li>Data को smaller segments में divide करना।</li>
+<li>Destination पर data reassembly में सहायता।</li>
+<li>End-to-end delivery।</li>
+<li>Flow control।</li>
+<li>Reliable delivery के लिए error recovery mechanisms, protocol पर depend करते हुए।</li>
+<li>Port numbers के माध्यम से applications/processes की पहचान।</li>
+</ul>
+<h3>Important Protocols</h3>
+<table>
+<tr><th>Protocol</th><th>Basic Characteristic</th></tr>
+<tr><td>TCP</td><td>Connection-oriented, reliable and ordered transport service प्रदान करता है।</td></tr>
+<tr><td>UDP</td><td>Connectionless, lightweight datagram transport service प्रदान करता है; reliability application पर depend कर सकती है।</td></tr>
+</table>
+<div class="important"><b>PDU:</b> Transport layer पर commonly <strong>Segment</strong> (TCP) या <strong>Datagram</strong> (UDP) terminology का उपयोग किया जाता है।</div>
+</section>
+
+<section id="l3">
+<h2><span class="num">3</span>Network Layer</h2>
+<p>Network Layer logical addressing और routing से संबंधित है। यह packets को source network से destination network तक पहुँचाने के लिए route selection और forwarding की concept provide करती है।</p>
+<h3>मुख्य कार्य</h3>
+<ul>
+<li>Logical addressing, जैसे IP addressing।</li>
+<li>Routing और path selection।</li>
+<li>Packets को different networks के बीच forward करना।</li>
+<li>Internetwork communication में सहायता।</li>
+</ul>
+<h3>Important Device</h3>
+<p><strong>Router</strong> Network Layer का प्रमुख example है। यह destination IP address और routing information का उपयोग करके packet forwarding करता है।</p>
+<div class="important"><b>PDU:</b> Network Layer पर data को सामान्यतः <strong>Packet</strong> कहा जाता है।</div>
+</section>
+
+<section id="l2">
+<h2><span class="num">2</span>Data Link Layer</h2>
+<p>Data Link Layer directly connected network nodes के बीच reliable frame delivery के लिए functions provide करती है। यह physical medium पर transmitted bits को frames में organize करती है और local network communication में addressing तथा error detection जैसी facilities देती है।</p>
+<h3>मुख्य कार्य</h3>
+<ul>
+<li>Framing.</li>
+<li>MAC addressing.</li>
+<li>Error detection.</li>
+<li>Medium access control.</li>
+<li>Local link पर frame delivery में सहायता।</li>
+</ul>
+<h3>Sub-layers</h3>
+<p>IEEE 802 networking context में Data Link Layer को commonly दो sublayers में describe किया जाता है:</p>
+<div class="grid">
+<div class="card"><strong>LLC – Logical Link Control</strong><br>Logical link control से संबंधित functions provide करता है।</div>
+<div class="card"><strong>MAC – Media Access Control</strong><br>Media access और MAC addressing से संबंधित functions handle करता है।</div>
+</div>
+<p><strong>Switch</strong> और <strong>Bridge</strong> को सामान्यतः Data Link Layer devices के examples के रूप में पढ़ाया जाता है।</p>
+<div class="important"><b>PDU:</b> Data Link Layer पर data को <strong>Frame</strong> कहा जाता है।</div>
+</section>
+
+<section id="l1">
+<h2><span class="num">1</span>Physical Layer</h2>
+<p>Physical Layer OSI model की सबसे नीचे वाली layer है। यह raw bits को physical medium के माध्यम से transmit करने से संबंधित है। इसमें electrical, optical या radio signals और physical characteristics शामिल होते हैं।</p>
+<h3>मुख्य कार्य</h3>
+<ul>
+<li>Bits का physical transmission।</li>
+<li>Electrical/optical/radio signaling।</li>
+<li>Cables, connectors और interfaces की physical characteristics।</li>
+<li>Data rate और signal characteristics से संबंधित specifications।</li>
+<li>Physical network topology के implementation में सहायता।</li>
+</ul>
+<h3>Examples</h3>
+<p>Twisted-pair cable, coaxial cable, optical fibre, connectors और physical signaling technologies Physical Layer concepts से associated हैं।</p>
+<div class="important"><b>PDU:</b> Physical Layer पर data को <strong>Bits</strong> के रूप में देखा जाता है।</div>
+</section>
+
+<section id="tcpip">
+<h2>3. TCP/IP Model</h2>
+<p><strong>TCP/IP (Transmission Control Protocol/Internet Protocol)</strong> architecture Internet और interconnected networks की communication technologies का foundation है। TCP/IP model को commonly <strong>4-layer model</strong> के रूप में पढ़ाया जाता है। कुछ books में इसकी layers को अलग naming या 5-layer teaching model के साथ भी दिखाया जाता है, लेकिन इस syllabus में OSI से comparison के लिए 4-layer TCP/IP model उपयोगी है।</p>
+
+<div class="diagram">
+       TCP/IP MODEL
+
+┌─────────────────────────┐
+│ 4. APPLICATION          │
+├─────────────────────────┤
+│ 3. TRANSPORT            │
+├─────────────────────────┤
+│ 2. INTERNET             │
+├─────────────────────────┤
+│ 1. NETWORK ACCESS       │
+└─────────────────────────┘
+</div>
+
+<h3>TCP/IP की Layers</h3>
+<div class="layer">
+<h3>4. Application Layer</h3>
+<p>यह OSI की Application, Presentation और Session layers के functions को broadly cover करती है। HTTP/HTTPS, DNS, FTP, SMTP जैसे application-level protocols इसी broad layer में रखे जाते हैं।</p>
+</div>
+
+<div class="layer">
+<h3>3. Transport Layer</h3>
+<p>End-to-end process communication provide करती है। <strong>TCP</strong> और <strong>UDP</strong> इसके प्रमुख protocols हैं।</p>
+</div>
+
+<div class="layer">
+<h3>2. Internet Layer</h3>
+<p>Logical addressing, packet forwarding और routing से संबंधित है। <strong>IP</strong> इसका मुख्य protocol family member है। ICMP भी Internet-layer functions से associated है।</p>
+</div>
+
+<div class="layer">
+<h3>1. Network Access Layer</h3>
+<p>Local network communication और physical transmission से संबंधित functions को cover करती है। यह OSI की Data Link और Physical layers के functions को broadly combine करती है। Ethernet और Wi-Fi जैसी technologies इस level पर relevant हैं।</p>
+</div>
+
+<div class="note"><b>TCP/IP Memory Trick:</b> <strong>Application → Transport → Internet → Network Access</strong></div>
+</section>
+
+<section id="comparison">
+<h2>4. OSI Model और TCP/IP Model में Comparison</h2>
+<table>
+<tr>
+<th>Basis</th>
+<th>OSI Model</th>
+<th>TCP/IP Model</th>
+</tr>
+<tr><td>Full Form</td><td>Open Systems Interconnection</td><td>Transmission Control Protocol / Internet Protocol</td></tr>
+<tr><td>Number of Layers</td><td>7 layers</td><td>Commonly 4 layers</td></tr>
+<tr><td>Nature</td><td>Reference/conceptual model</td><td>Protocol architecture/suite से closely associated model</td></tr>
+<tr><td>Upper Layers</td><td>Application, Presentation, Session अलग-अलग</td><td>इन functions को broadly Application layer में combine किया जाता है</td></tr>
+<tr><td>Lower Layers</td><td>Data Link और Physical अलग-अलग</td><td>Network Access layer में broadly combine</td></tr>
+<tr><td>Transport</td><td>Separate Transport layer</td><td>Separate Transport layer</td></tr>
+<tr><td>Network/Internet</td><td>Network layer</td><td>Internet layer</td></tr>
+<tr><td>Common Protocol Examples</td><td>Model itself protocols का single suite नहीं है</td><td>IP, TCP, UDP, HTTP आदि TCP/IP architecture से associated हैं</td></tr>
+<tr><td>Usage</td><td>Learning, design, standardization और troubleshooting में बहुत useful</td><td>Internet और practical network communication में widely used architecture</td></tr>
+</table>
+
+<h3>Layer Mapping</h3>
+<table>
+<tr><th>OSI</th><th>TCP/IP</th></tr>
+<tr><td>Application</td><td rowspan="3">Application</td></tr>
+<tr><td>Presentation</td></tr>
+<tr><td>Session</td></tr>
+<tr><td>Transport</td><td>Transport</td></tr>
+<tr><td>Network</td><td>Internet</td></tr>
+<tr><td>Data Link</td><td rowspan="2">Network Access</td></tr>
+<tr><td>Physical</td></tr>
+</table>
+
+<div class="diagram">
+OSI                     TCP/IP
+
+Application ───────┐
+Presentation ──────┼──► Application
+Session ───────────┘
+
+Transport ─────────────► Transport
+
+Network ───────────────► Internet
+
+Data Link ──────────┐
+Physical ───────────┴──► Network Access
+</div>
+
+<h3>मुख्य Similarities</h3>
+<ul>
+<li>दोनों layered architecture का उपयोग करते हैं।</li>
+<li>दोनों communication functions को अलग-अलग responsibilities में divide करते हैं।</li>
+<li>दोनों में Transport और Network/Internet related layers मौजूद हैं।</li>
+<li>दोनों network communication को समझने और organize करने में सहायता करते हैं।</li>
+</ul>
+
+<h3>मुख्य Differences</h3>
+<ul>
+<li>OSI में 7 layers हैं, जबकि common TCP/IP model में 4 layers हैं।</li>
+<li>OSI में Presentation और Session अलग layers हैं; TCP/IP में ये functions Application layer में broadly शामिल होते हैं।</li>
+<li>OSI में Data Link और Physical अलग layers हैं; TCP/IP में इन्हें Network Access layer में broadly combine किया जाता है।</li>
+<li>TCP/IP practical Internet protocols के साथ directly associated architecture है, जबकि OSI मुख्यतः reference model के रूप में उपयोगी है।</li>
+</ul>
+</section>
+
+<section id="encap">
+<h2>5. Data Encapsulation और Decapsulation</h2>
+<p>जब sender computer application data भेजता है, data नीचे की ओर layers से गुजरते समय प्रत्येक relevant layer पर control information जोड़ सकता है। इस process को <strong>Encapsulation</strong> कहते हैं। Receiver side पर reverse process होता है, जिसे <strong>Decapsulation</strong> कहा जाता है।</p>
+
+<div class="diagram">
+SENDER                                  RECEIVER
+
+Application Data
+      │
+      ▼
+Transport + Header
+      │        Segment
+      ▼
+Network + Header
+      │        Packet
+      ▼
+Data Link + Header/Trailer
+      │        Frame
+      ▼
+Physical → Bits → Network → Bits
+                                  │
+                                  ▼
+                              Frame
+                                  │
+                                  ▼
+                              Packet
+                                  │
+                                  ▼
+                              Segment
+                                  │
+                                  ▼
+                           Application Data
+</div>
+
+<table>
+<tr><th>Layer</th><th>Common PDU</th></tr>
+<tr><td>Application</td><td>Data / Message</td></tr>
+<tr><td>Transport</td><td>Segment (TCP) / Datagram (UDP)</td></tr>
+<tr><td>Network</td><td>Packet</td></tr>
+<tr><td>Data Link</td><td>Frame</td></tr>
+<tr><td>Physical</td><td>Bits</td></tr>
+</table>
+
+<div class="important"><b>Quick Revision:</b> <strong>Data → Segment → Packet → Frame → Bits</strong></div>
+</section>
+
+<section id="exam">
+<h2>6. Important Exam Questions</h2>
+
+<div class="exam">
+<b>Long Answer Questions</b><br><br>
+1. Network Model क्या है? Layered architecture की आवश्यकता समझाइए।<br>
+2. OSI Model को diagram सहित detail में समझाइए।<br>
+3. OSI Model की सभी सात layers के functions और examples समझाइए।<br>
+4. TCP/IP Model क्या है? इसकी चार layers को detail में समझाइए।<br>
+5. OSI और TCP/IP Model में similarities तथा differences समझाइए।<br>
+6. OSI और TCP/IP layers का mapping diagram सहित समझाइए।<br>
+7. Encapsulation और Decapsulation क्या हैं? उदाहरण सहित समझाइए।
+</div>
+
+<h3>Short Questions</h3>
+<ul>
+<li>OSI का full form क्या है?</li>
+<li>OSI Model में कितनी layers होती हैं?</li>
+<li>OSI की सबसे ऊपर वाली layer कौन-सी है?</li>
+<li>OSI की सबसे नीचे वाली layer कौन-सी है?</li>
+<li>Which OSI layer is responsible for routing?</li>
+<li>Data Link Layer का PDU क्या है?</li>
+<li>Network Layer का PDU क्या है?</li>
+<li>Transport Layer के दो प्रमुख protocols कौन-से हैं?</li>
+<li>TCP/IP model में कितनी commonly taught layers होती हैं?</li>
+<li>TCP/IP की Internet Layer किस OSI layer से broadly correspond करती है?</li>
+<li>OSI की Presentation और Session layers TCP/IP में broadly किस layer में combine होती हैं?</li>
+<li>Encapsulation क्या है?</li>
+<li>Decapsulation क्या है?</li>
+</ul>
+
+<div class="important">
+<b>One-Minute Revision:</b><br><br>
+<strong>OSI:</strong> Application → Presentation → Session → Transport → Network → Data Link → Physical<br><br>
+<strong>TCP/IP:</strong> Application → Transport → Internet → Network Access<br><br>
+<strong>OSI 7, TCP/IP 4</strong><br>
+<strong>Network → Routing/IP</strong><br>
+<strong>Transport → End-to-End / TCP / UDP</strong><br>
+<strong>Data Link → Frames / MAC</strong><br>
+<strong>Physical → Bits / Signals</strong>
+</div>
+</section>
+</main>
+</div>
+</body>
+</html>

@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Network and Transport Layer - PGDCA Notes</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#eef3f8;color:#202936;font-family:Segoe UI,Arial,sans-serif;line-height:1.9}
+.wrap{max-width:1500px;margin:auto;padding:15px;display:grid;grid-template-columns:285px 1fr;gap:18px}
+aside{position:sticky;top:15px;height:calc(100vh - 30px);overflow:auto;background:#fff;padding:20px;border-radius:18px;box-shadow:0 8px 28px #0001}
+aside h2{color:#075985;border-left:5px solid #0284c7;padding-left:10px}
+aside a{display:block;padding:7px 10px;color:#374151;text-decoration:none;border-radius:8px;font-size:14px}
+aside a:hover{background:#e0f2fe;color:#0369a1}
+main{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 8px 28px #0001}
+.hero{padding:42px;background:linear-gradient(135deg,#dbeafe,#e0f2fe,#f8fafc)}
+.hero h1{font-size:38px;color:#075985;margin:8px 0;line-height:1.3}
+.badge{display:inline-block;background:#bae6fd;color:#075985;padding:4px 13px;border-radius:20px;font-size:12px;font-weight:700}
+section{padding:32px;border-bottom:1px solid #e5e7eb}
+h2{font-size:29px;color:#075985;border-left:5px solid #0284c7;padding-left:13px}
+h3{font-size:22px;color:#0c4a6e;margin-top:27px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{background:#f0f9ff;border:1px solid #bae6fd;padding:18px;border-radius:14px}
+.note,.important,.exam{padding:18px 20px;border-radius:12px;margin:19px 0}
+.note{background:#eff6ff;border-left:5px solid #3b82f6}
+.important{background:#fff7ed;border-left:5px solid #f97316}
+.exam{background:#ecfdf5;border-left:5px solid #10b981}
+table{width:100%;border-collapse:collapse;margin:20px 0}
+th,td{border:1px solid #cbd5e1;padding:12px;text-align:left;vertical-align:top}
+th{background:#e0f2fe;color:#075985}
+.diagram{background:#090b0f;color:#e5e7eb;border-radius:14px;padding:22px;overflow:auto;font-family:Consolas,monospace;white-space:pre;line-height:1.5}
+.step{padding:14px 16px;background:#f8fafc;border-radius:10px;margin:9px 0;border-left:4px solid #0284c7}
+code{background:#f1f5f9;padding:2px 6px;border-radius:5px}
+@media(max-width:900px){.wrap{display:block;padding:5px}aside{display:none}.hero{padding:28px 18px}.hero h1{font-size:29px}section{padding:24px 18px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<aside>
+<h2>Contents</h2>
+<a href="#intro">1. Introduction</a>
+<a href="#network">2. Network Layer</a>
+<a href="#role">3. Role of Network Layer</a>
+<a href="#packet">4. Packet & Datagram</a>
+<a href="#vc">5. Virtual Circuit</a>
+<a href="#routing">6. Types of Routing</a>
+<a href="#ip">7. IP Address</a>
+<a href="#classes">8. IP Address Classes</a>
+<a href="#subnet">9. Subnetting</a>
+<a href="#mask">10. Subnet Masking</a>
+<a href="#icmp">11. ICMP</a>
+<a href="#transport">12. Transport Layer</a>
+<a href="#tcp">13. TCP</a>
+<a href="#udp">14. UDP</a>
+<a href="#comparison">15. TCP vs UDP</a>
+<a href="#flow">16. Complete Data Flow</a>
+<a href="#exam">17. Exam Questions</a>
+</aside>
+
+<main>
+<div class="hero">
+<span class="badge">DCCN • PGDCA • 12 PERIODS</span>
+<h1>6. Network and Transport Layer</h1>
+<p><strong>Network Layer • Virtual Circuits • Datagram • Routing • ICMP • IP Address • Classes • Subnetting • Subnet Masking • TCP • UDP</strong></p>
+</div>
+
+<section id="intro">
+<h2>1. Introduction</h2>
+<p>Computer network में data को source device से destination device तक पहुँचाने के लिए कई networking layers मिलकर काम करती हैं। <strong>Network Layer</strong> मुख्य रूप से different networks के बीच packets को पहुँचाने, logical addressing और routing से संबंधित होती है। इसके ऊपर <strong>Transport Layer</strong> end-to-end communication और applications/processes के बीच data delivery की services प्रदान करती है।</p>
+
+<p>इस chapter में हम Network Layer के role, packet और datagram, virtual circuit, routing के types, ICMP, IP addressing, IP address classes, subnetting तथा subnet masking के साथ Transport Layer, TCP और UDP protocols को detail में समझेंगे।</p>
+
+<div class="important"><b>Exam Definition:</b> Network Layer logical addressing और routing के माध्यम से packets को source network से destination network तक पहुँचाने में सहायता करती है, जबकि Transport Layer end-to-end process communication के लिए transport services प्रदान करती है।</div>
+
+<div class="diagram">
+APPLICATION
+     │
+     ▼
+TRANSPORT LAYER
+ TCP / UDP
+     │
+     ▼
+NETWORK LAYER
+ IP / Routing / ICMP
+     │
+     ▼
+DATA LINK
+     │
+     ▼
+PHYSICAL
+</div>
+</section>
+
+<section id="network">
+<h2>2. Network Layer</h2>
+<p><strong>Network Layer</strong> OSI Model की Layer 3 है। इसका primary purpose packets को एक network से दूसरे network तक पहुँचाने के लिए logical addressing और routing का उपयोग करना है। यह local link तक सीमित Data Link Layer से आगे जाकर <strong>internetwork communication</strong> को support करती है।</p>
+
+<h3>मुख्य Functions</h3>
+<div class="grid">
+<div class="card"><strong>Logical Addressing</strong><p>Devices/interfaces को IP addresses के माध्यम से logically identify करना।</p></div>
+<div class="card"><strong>Routing</strong><p>Source से destination तक suitable path select करने में सहायता।</p></div>
+<div class="card"><strong>Packet Forwarding</strong><p>Router द्वारा packets को appropriate next hop की ओर भेजना।</p></div>
+<div class="card"><strong>Internetworking</strong><p>Multiple interconnected networks के बीच communication enable करना।</p></div>
+</div>
+
+<div class="note"><b>PDU:</b> Network Layer पर data को सामान्यतः <strong>Packet</strong> कहा जाता है।</div>
+</section>
+
+<section id="role">
+<h2>3. Role of Network Layer</h2>
+<p>Network Layer का सबसे important role है कि वह packets को logical network addresses के आधार पर destination network की दिशा में आगे भेजने में सहायता करे। Internet जैसे large network में sender और receiver अक्सर एक ही local network में नहीं होते। इसलिए packet को कई routers से होकर गुजरना पड़ सकता है।</p>
+
+<h3>Network Layer के प्रमुख roles</h3>
+<ul>
+<li><strong>Addressing:</strong> IP address के माध्यम से logical identification।</li>
+<li><strong>Routing:</strong> Destination तक जाने वाले path का determination।</li>
+<li><strong>Forwarding:</strong> Router के द्वारा packet को next hop की ओर भेजना।</li>
+<li><strong>Internetwork Communication:</strong> Different networks के बीच packet communication।</li>
+<li><strong>Fragmentation/handling:</strong> कुछ IP versions और परिस्थितियों में packet size से related handling।</li>
+<li><strong>Error/Diagnostic Messaging:</strong> ICMP जैसे protocols के माध्यम से network-related diagnostic information।</li>
+</ul>
+
+<div class="diagram">
+SOURCE
+  │
+  ▼
+Router 1
+  │
+  ▼
+Router 2
+  │
+  ▼
+Router 3
+  │
+  ▼
+DESTINATION
+
+Network Layer:
+IP Address + Routing + Forwarding
+</div>
+</section>
+
+<section id="packet">
+<h2>4. Packet और Datagram</h2>
+<h3>Packet</h3>
+<p><strong>Packet</strong> Network Layer पर data unit है। इसमें upper-layer data के साथ network-layer header information होती है, जिसमें source और destination IP addresses जैसी information शामिल होती है।</p>
+
+<h3>Datagram</h3>
+<p><strong>Datagram</strong> एक self-contained packet को refer करता है जिसे independently route किया जा सकता है। IP networking में IP datagrams connectionless packet delivery concept से closely associated हैं। हर datagram में destination information होती है, इसलिए network इसे independently forward कर सकता है।</p>
+
+<table>
+<tr><th>Point</th><th>Packet</th><th>Datagram</th></tr>
+<tr><td>Meaning</td><td>Network Layer का general data unit</td><td>Independent, connectionless packet</td></tr>
+<tr><td>Routing</td><td>Network routing के through forwarded</td><td>प्रत्येक datagram independently route हो सकता है</td></tr>
+<tr><td>Example</td><td>IP packet</td><td>IP datagram</td></tr>
+</table>
+
+<div class="note"><b>Exam Tip:</b> “Packet” broad term है, जबकि “datagram” connectionless communication में independently handled packet को emphasize करता है।</div>
+</section>
+
+<section id="vc">
+<h2>5. Virtual Circuit</h2>
+<p><strong>Virtual Circuit (VC)</strong> packet-switched network में logical communication path का concept है। इसमें data transfer से पहले logical path establish किया जा सकता है। Packets उस established logical connection से associated state/context के अनुसार आगे भेजे जाते हैं।</p>
+
+<h3>Virtual Circuit की Working</h3>
+<div class="step"><b>Step 1 – Setup:</b> Source और destination के बीच logical path establish किया जाता है।</div>
+<div class="step"><b>Step 2 – Data Transfer:</b> Data packets established virtual circuit के अनुसार forward होते हैं।</div>
+<div class="step"><b>Step 3 – Termination:</b> Communication complete होने पर virtual circuit release किया जा सकता है।</div>
+
+<div class="diagram">
+SOURCE
+  │
+  ▼
+Router A ===== Router B ===== Router C
+        LOGICAL VIRTUAL CIRCUIT
+                              │
+                              ▼
+                         DESTINATION
+</div>
+
+<h3>Virtual Circuit vs Datagram</h3>
+<table>
+<tr><th>Basis</th><th>Virtual Circuit</th><th>Datagram</th></tr>
+<tr><td>Setup</td><td>Logical connection/path setup हो सकता है</td><td>Prior connection setup आवश्यक नहीं</td></tr>
+<tr><td>Path</td><td>Packets established logical path से associated रहते हैं</td><td>Each datagram independently routed हो सकता है</td></tr>
+<tr><td>State</td><td>Network में circuit-related state maintain हो सकती है</td><td>Connection-specific state की आवश्यकता नहीं</td></tr>
+<tr><td>Example Concept</td><td>Connection-oriented packet switching</td><td>IP-style connectionless delivery</td></tr>
+</table>
+</section>
+
+<section id="routing">
+<h2>6. Types of Routing</h2>
+<p><strong>Routing</strong> वह process है जिसमें network traffic/packets के लिए source से destination तक suitable path determine किया जाता है। Routers routing information का उपयोग करके packets को next hop की ओर forward करते हैं।</p>
+
+<h3>1. Static Routing</h3>
+<p>Static routing में routes administrator द्वारा manually configure किए जाते हैं। Network topology stable और small होने पर यह useful हो सकता है। इसका advantage यह है कि route behavior predictable रहता है, लेकिन topology change होने पर manual modification की आवश्यकता पड़ सकती है।</p>
+
+<h3>2. Dynamic Routing</h3>
+<p>Dynamic routing में routing protocols routers को network routes discover और update करने में सहायता करते हैं। Network changes के अनुसार routing information automatically adapt हो सकती है।</p>
+
+<div class="grid">
+<div class="card"><strong>Distance Vector</strong><p>Routers destination तक distance/metric और direction/next hop जैसी information exchange करते हैं। <strong>RIP</strong> इसका classic example है।</p></div>
+<div class="card"><strong>Link State</strong><p>Routers network topology की information build करते हैं और shortest-path calculation करते हैं। <strong>OSPF</strong> इसका प्रमुख example है।</p></div>
+<div class="card"><strong>Path Vector</strong><p>Route के साथ path information maintain करने की approach। <strong>BGP</strong> इसका प्रमुख example है।</p></div>
+<div class="card"><strong>Default Route</strong><p>जब कोई more-specific route available न हो, traffic को default next hop की ओर भेजा जा सकता है।</p></div>
+</div>
+
+<table>
+<tr><th>Routing Type</th><th>Main Idea</th><th>Example</th></tr>
+<tr><td>Static</td><td>Manually configured</td><td>Administrator-defined route</td></tr>
+<tr><td>Dynamic – Distance Vector</td><td>Distance/metric based route exchange</td><td>RIP</td></tr>
+<tr><td>Dynamic – Link State</td><td>Topology information + shortest path</td><td>OSPF</td></tr>
+<tr><td>Path Vector</td><td>Path information based inter-domain routing</td><td>BGP</td></tr>
+</table>
+</section>
+
+<section id="ip">
+<h2>7. IP Address</h2>
+<p><strong>IP Address</strong> एक logical network-layer address है जिसका उपयोग network interfaces/hosts की identification और packet delivery में किया जाता है। IPv4 और IPv6 दो प्रमुख Internet Protocol versions हैं। इस syllabus के IP classes और subnetting topics मुख्यतः <strong>IPv4</strong> से संबंधित हैं।</p>
+
+<h3>IPv4 Address</h3>
+<p>IPv4 address <strong>32 bits</strong> का होता है। इसे 4 octets में divide करके dotted-decimal notation में लिखा जाता है। प्रत्येक octet 8 bits का होता है और सामान्यतः 0 से 255 तक value रख सकता है।</p>
+
+<div class="diagram">
+IPv4 = 32 bits = 4 × 8 bits
+
+11000000 . 10101000 . 00000001 . 00001010
+    │          │          │          │
+   192        168          1         10
+
+Dotted Decimal:
+192.168.1.10
+</div>
+
+<h3>Network Part और Host Part</h3>
+<p>IPv4 address में कुछ bits network को identify करती हैं और बाकी bits host/interface को identify करती हैं। यह division subnet mask या prefix length से determine होता है।</p>
+
+<div class="important"><b>Example:</b> <code>192.168.1.10/24</code> में <code>/24</code> का अर्थ है कि first 24 bits network prefix के लिए हैं और remaining 8 bits host portion के लिए हैं।</div>
+</section>
+
+<section id="classes">
+<h2>8. IP Address Classes</h2>
+<p>Traditional IPv4 <strong>classful addressing</strong> में addresses को Class A, B, C, D और E में divide किया गया था। Modern networks में CIDR/classless addressing अधिक practical है, लेकिन IP classes examination के लिए महत्वपूर्ण concept हैं।</p>
+
+<table>
+<tr><th>Class</th><th>First Octet Range</th><th>Default Mask</th><th>Traditional Use</th></tr>
+<tr><td>A</td><td>1 – 126</td><td>255.0.0.0 (/8)</td><td>Very large networks</td></tr>
+<tr><td>B</td><td>128 – 191</td><td>255.255.0.0 (/16)</td><td>Medium-size networks</td></tr>
+<tr><td>C</td><td>192 – 223</td><td>255.255.255.0 (/24)</td><td>Smaller networks</td></tr>
+<tr><td>D</td><td>224 – 239</td><td>Not a normal host class</td><td>Multicast</td></tr>
+<tr><td>E</td><td>240 – 255</td><td>Not a normal host class</td><td>Experimental/reserved</td></tr>
+</table>
+
+<h3>Class A</h3>
+<p>Class A में first octet network identification के लिए और remaining three octets traditional classful host addressing के लिए उपयोग होते थे। Default mask <strong>/8</strong> है।</p>
+
+<h3>Class B</h3>
+<p>Class B में first two octets network part और remaining two octets host part के लिए होते थे। Default mask <strong>/16</strong> है।</p>
+
+<h3>Class C</h3>
+<p>Class C में first three octets network part और last octet host part के लिए होता था। Default mask <strong>/24</strong> है।</p>
+
+<h3>Class D और E</h3>
+<p>Class D multicast addressing के लिए और Class E historically experimental/reserved purposes के लिए defined किया गया था।</p>
+
+<div class="note"><b>Important:</b> <code>127.0.0.0/8</code> range traditional Class A range में होने के बावजूद loopback के लिए reserved है; इसे सामान्य host network assignment की तरह नहीं माना जाता।</div>
+</section>
+
+<section id="subnet">
+<h2>9. Basics of Subnetting</h2>
+<p><strong>Subnetting</strong> एक IP network को smaller logical subnetworks में divide करने की technique है। इसमें host portion की कुछ bits को borrow करके additional network/subnet bits बनाई जाती हैं। इससे address space को organized तरीके से allocate करना और network management improve करना संभव होता है।</p>
+
+<h3>Subnetting की आवश्यकता</h3>
+<ul>
+<li>Large network को smaller networks में divide करना।</li>
+<li>Network management को improve करना।</li>
+<li>Broadcast domain size को reduce करने में सहायता।</li>
+<li>Address space को organization की requirement के अनुसार allocate करना।</li>
+<li>Different departments/locations के लिए separate subnets बनाना।</li>
+</ul>
+
+<h3>Basic Formula</h3>
+<div class="card">
+<p><strong>Borrowed bits = n</strong></p>
+<p>Traditional subnet calculation में number of subnets = <strong>2<sup>n</sup></strong></p>
+<p>Remaining host bits = <strong>h</strong></p>
+<p>Traditional usable hosts per subnet = <strong>2<sup>h</sup> − 2</strong></p>
+</div>
+
+<h3>Example: /24 को /26 में Subnet करना</h3>
+<p>मान लें network है <strong>192.168.1.0/24</strong> और हमें इसे <strong>/26</strong> करना है। /24 से /26 करने पर 2 host bits borrow होती हैं।</p>
+
+<div class="diagram">
+Original:
+192.168.1.0/24
+Network bits = 24
+Host bits    = 8
+
+New:
+192.168.1.0/26
+Network bits = 26
+Host bits    = 6
+
+Number of subnets = 2² = 4
+Addresses/subnet = 2⁶ = 64
+Traditional usable hosts = 64 - 2 = 62
+</div>
+
+<table>
+<tr><th>Subnet</th><th>Network Address</th><th>Usable Host Range</th><th>Broadcast</th></tr>
+<tr><td>1</td><td>192.168.1.0</td><td>192.168.1.1 – 192.168.1.62</td><td>192.168.1.63</td></tr>
+<tr><td>2</td><td>192.168.1.64</td><td>192.168.1.65 – 192.168.1.126</td><td>192.168.1.127</td></tr>
+<tr><td>3</td><td>192.168.1.128</td><td>192.168.1.129 – 192.168.1.190</td><td>192.168.1.191</td></tr>
+<tr><td>4</td><td>192.168.1.192</td><td>192.168.1.193 – 192.168.1.254</td><td>192.168.1.255</td></tr>
+</table>
+</section>
+
+<section id="mask">
+<h2>10. Subnet Masking</h2>
+<p><strong>Subnet Mask</strong> IPv4 address के network portion और host portion को distinguish करने के लिए उपयोग होती है। Mask में network bits को <strong>1</strong> और host bits को <strong>0</strong> के रूप में represent किया जाता है।</p>
+
+<h3>Common Subnet Masks</h3>
+<table>
+<tr><th>CIDR</th><th>Subnet Mask</th><th>Host Bits</th></tr>
+<tr><td>/8</td><td>255.0.0.0</td><td>24</td></tr>
+<tr><td>/16</td><td>255.255.0.0</td><td>16</td></tr>
+<tr><td>/24</td><td>255.255.255.0</td><td>8</td></tr>
+<tr><td>/25</td><td>255.255.255.128</td><td>7</td></tr>
+<tr><td>/26</td><td>255.255.255.192</td><td>6</td></tr>
+<tr><td>/27</td><td>255.255.255.224</td><td>5</td></tr>
+<tr><td>/28</td><td>255.255.255.240</td><td>4</td></tr>
+<tr><td>/30</td><td>255.255.255.252</td><td>2</td></tr>
+</table>
+
+<h3>Subnet Mask का Example</h3>
+<div class="diagram">
+IP Address : 192.168.1.10
+Mask       : 255.255.255.0
+
+Binary IP:
+11000000.10101000.00000001.00001010
+
+Mask:
+11111111.11111111.11111111.00000000
+
+Network part = first 24 bits
+Host part    = last 8 bits
+
+Network Address = 192.168.1.0
+</div>
+
+<h3>AND Operation से Network Address</h3>
+<p>IP address और subnet mask का binary <strong>AND operation</strong> करके network address प्राप्त किया जा सकता है।</p>
+
+<table>
+<tr><th>Bit</th><th>IP</th><th>Mask</th><th>AND Result</th></tr>
+<tr><td>Network bit</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td>Network bit</td><td>0</td><td>1</td><td>0</td></tr>
+<tr><td>Host bit</td><td>1</td><td>0</td><td>0</td></tr>
+<tr><td>Host bit</td><td>0</td><td>0</td><td>0</td></tr>
+</table>
+
+<div class="important"><b>Remember:</b> <strong>IP Address + Subnet Mask → Network Address</strong></div>
+</section>
+
+<section id="icmp">
+<h2>11. ICMP</h2>
+<p><strong>ICMP (Internet Control Message Protocol)</strong> IP networks में error reporting, diagnostics और control-related messaging के लिए उपयोग होता है। यह सामान्य application data transport करने के लिए TCP या UDP का replacement नहीं है।</p>
+
+<h3>ICMP के Uses</h3>
+<ul>
+<li>Destination unreachable जैसी error information report करना।</li>
+<li>Network diagnostic और troubleshooting में सहायता।</li>
+<li>Echo Request और Echo Reply messages के माध्यम से reachability testing।</li>
+<li>Network conditions से संबंधित control/diagnostic messages।</li>
+</ul>
+
+<h3>Ping और ICMP</h3>
+<p><strong>Ping</strong> सामान्यतः ICMP Echo Request भेजकर destination host की reachability test करता है। Destination available होने पर ICMP Echo Reply प्राप्त हो सकता है।</p>
+
+<div class="diagram">
+Computer A                         Computer B
+   │                                  │
+   │ ---- ICMP Echo Request --------► │
+   │                                  │
+   │ ◄---- ICMP Echo Reply ---------- │
+   │                                  │
+
+        "Is the host reachable?"
+</div>
+
+<h3>Traceroute/Tracert Concept</h3>
+<p>Network path troubleshooting में traceroute/tracert techniques routers/hops की information identify करने के लिए IP/ICMP related responses और TTL behavior का उपयोग कर सकती हैं।</p>
+
+<div class="note"><b>Important:</b> ICMP का primary role <strong>diagnostic और error/control messaging</strong> है।</div>
+</section>
+
+<section id="transport">
+<h2>12. Transport Layer</h2>
+<p><strong>Transport Layer</strong> OSI Model की Layer 4 है। इसका मुख्य focus end-to-end communication और applications/processes के बीच transport services provide करना है। Network Layer packet को destination host तक पहुँचाने पर focus करती है, जबकि Transport Layer destination host के अंदर appropriate application/process तक communication को support करती है।</p>
+
+<h3>मुख्य Functions</h3>
+<ul>
+<li>End-to-end delivery।</li>
+<li>Process-to-process communication।</li>
+<li>Segmentation और reassembly।</li>
+<li>Port numbers के माध्यम से application/process identification।</li>
+<li>Flow control और reliability, protocol के अनुसार।</li>
+<li>Connection management, protocol के अनुसार।</li>
+</ul>
+
+<div class="diagram">
+Application A                         Application B
+     │                                      ▲
+     ▼                                      │
+Transport Layer                        Transport Layer
+ TCP / UDP                              TCP / UDP
+     │                                      ▲
+     ▼                                      │
+Network Layer  ───── IP Network ───── Network Layer
+</div>
+
+<h3>Major Transport Protocols</h3>
+<div class="grid">
+<div class="card"><strong>TCP</strong><p>Reliable, connection-oriented, ordered byte-stream transport service।</p></div>
+<div class="card"><strong>UDP</strong><p>Connectionless, lightweight datagram transport service।</p></div>
+</div>
+</section>
+
+<section id="tcp">
+<h2>13. TCP – Transmission Control Protocol</h2>
+<p><strong>TCP (Transmission Control Protocol)</strong> एक connection-oriented transport protocol है। यह applications को reliable और ordered byte-stream communication प्रदान करता है। TCP connection establish करके data exchange करता है और acknowledgements, sequencing तथा retransmission जैसी mechanisms के माध्यम से reliable delivery support करता है।</p>
+
+<h3>TCP की मुख्य विशेषताएँ</h3>
+<ul>
+<li><strong>Connection-oriented:</strong> Data transfer से पहले connection establish किया जाता है।</li>
+<li><strong>Reliable:</strong> Lost/corrupted data के recovery के लिए mechanisms।</li>
+<li><strong>Ordered:</strong> Data को sequence के अनुसार deliver करने में सहायता।</li>
+<li><strong>Flow Control:</strong> Receiver की capacity के अनुसार sending rate manage करता है।</li>
+<li><strong>Congestion Control:</strong> Network congestion के अनुसार transmission behavior adjust करता है।</li>
+<li><strong>Full-duplex:</strong> दोनों directions में communication support करता है।</li>
+<li><strong>Port Numbers:</strong> Source और destination applications/processes identify करने में सहायता।</li>
+</ul>
+
+<h3>TCP Three-Way Handshake</h3>
+<p>TCP connection establishment के लिए commonly three-way handshake use किया जाता है:</p>
+
+<div class="diagram">
+Client                         Server
+
+   │ -------- SYN -----------> │
+   │ <----- SYN + ACK -------- │
+   │ -------- ACK -----------> │
+   │                            │
+   │     TCP Connection Ready  │
+</div>
+
+<div class="step"><b>1. SYN:</b> Client connection initiate करने के लिए SYN भेजता है।</div>
+<div class="step"><b>2. SYN-ACK:</b> Server SYN को acknowledge करके SYN-ACK भेजता है।</div>
+<div class="step"><b>3. ACK:</b> Client final ACK भेजता है और connection establish हो जाता है।</div>
+
+<h3>TCP के Uses</h3>
+<p>जहाँ reliable and ordered delivery important है वहाँ TCP useful है, जैसे web traffic के कई traditional applications, file transfer और email-related protocols।</p>
+</section>
+
+<section id="udp">
+<h2>14. UDP – User Datagram Protocol</h2>
+<p><strong>UDP (User Datagram Protocol)</strong> एक connectionless transport protocol है। यह lightweight datagram service प्रदान करता है और TCP की तरह connection establishment, acknowledgements और retransmission की built-in reliability provide नहीं करता।</p>
+
+<h3>UDP की मुख्य विशेषताएँ</h3>
+<ul>
+<li>Connectionless communication।</li>
+<li>Low protocol overhead।</li>
+<li>Fast/simple transmission model।</li>
+<li>Delivery, ordering और duplicate protection की reliability application को implement करनी पड़ सकती है।</li>
+<li>Real-time या latency-sensitive applications में useful हो सकता है, जहाँ application अपनी requirements के अनुसार loss handling कर सकती है।</li>
+</ul>
+
+<h3>UDP Header का Basic Concept</h3>
+<div class="diagram">
+┌─────────────────────┬─────────────────────┐
+│ Source Port         │ Destination Port    │
+├─────────────────────┼─────────────────────┤
+│ Length              │ Checksum            │
+├─────────────────────┴─────────────────────┤
+│                 DATA                      │
+└───────────────────────────────────────────┘
+</div>
+
+<h3>UDP के Uses</h3>
+<ul>
+<li>DNS queries जैसे request/response applications।</li>
+<li>Streaming और real-time communication scenarios में।</li>
+<li>Online gaming और latency-sensitive traffic के कुछ cases में।</li>
+<li>ऐसे applications जहाँ application-level protocol स्वयं reliability/control implement कर सकता है।</li>
+</ul>
+</section>
+
+<section id="comparison">
+<h2>15. TCP और UDP में Comparison</h2>
+<table>
+<tr><th>Basis</th><th>TCP</th><th>UDP</th></tr>
+<tr><td>Full Form</td><td>Transmission Control Protocol</td><td>User Datagram Protocol</td></tr>
+<tr><td>Connection</td><td>Connection-oriented</td><td>Connectionless</td></tr>
+<tr><td>Reliability</td><td>Reliable delivery mechanisms</td><td>Built-in reliable delivery नहीं</td></tr>
+<tr><td>Ordering</td><td>Ordered byte stream</td><td>Ordering guarantee नहीं</td></tr>
+<tr><td>Acknowledgement</td><td>Uses acknowledgements</td><td>Built-in ACK mechanism नहीं</td></tr>
+<tr><td>Retransmission</td><td>Supports retransmission mechanisms</td><td>Built-in retransmission नहीं</td></tr>
+<tr><td>Flow Control</td><td>Yes</td><td>TCP जैसा built-in flow control नहीं</td></tr>
+<tr><td>Congestion Control</td><td>Yes</td><td>TCP जैसा built-in congestion control नहीं</td></tr>
+<tr><td>Overhead</td><td>Higher</td><td>Lower</td></tr>
+<tr><td>Data Model</td><td>Byte stream</td><td>Datagram/message oriented</td></tr>
+<tr><td>Typical Preference</td><td>Reliability और ordering important होने पर</td><td>Low overhead/latency और application-managed delivery requirements में</td></tr>
+</table>
+
+<div class="important"><b>Memory Trick:</b> <strong>TCP = Trust, Control, Precision</strong> और <strong>UDP = Uncomplicated, Direct, Quick</strong> — exam में इसे mnemonic की तरह याद कर सकते हैं, लेकिन actual protocol properties ऊपर वाली table से पढ़ें।</div>
+</section>
+
+<section id="flow">
+<h2>16. Complete Data Flow: Application से Network तक</h2>
+<p>जब कोई application data भेजती है, Transport Layer उसे TCP segment या UDP datagram में organize करती है। Network Layer source और destination IP information के साथ packet/datagram तैयार करती है। इसके बाद Data Link Layer frame बनाकर local network पर transmit करती है। Receiver side पर reverse process होता है।</p>
+
+<div class="diagram">
+SENDER
+
+Application Data
+       │
+       ▼
+TCP Segment / UDP Datagram
+       │
+       ▼
+IP Packet / Datagram
+       │
+       ▼
+Data Link Frame
+       │
+       ▼
+Bits / Signals
+       │
+       ▼
+──────────── NETWORK ────────────
+       │
+       ▼
+Receiver reverses the process
+</div>
+
+<table>
+<tr><th>Layer</th><th>Main Data Unit</th><th>Important Concepts</th></tr>
+<tr><td>Transport</td><td>Segment / UDP Datagram</td><td>TCP, UDP, Ports, Reliability</td></tr>
+<tr><td>Network</td><td>Packet / IP Datagram</td><td>IP, Routing, Forwarding, ICMP</td></tr>
+<tr><td>Data Link</td><td>Frame</td><td>MAC, Framing, Error Detection</td></tr>
+<tr><td>Physical</td><td>Bits</td><td>Signals, Media, Transmission</td></tr>
+</table>
+</section>
+
+<section id="exam">
+<h2>17. Important Exam Questions</h2>
+
+<div class="exam">
+<b>Long Answer Questions</b><br><br>
+1. Network Layer क्या है? इसके प्रमुख functions और role समझाइए।<br>
+2. Virtual Circuit और Datagram network में अंतर समझाइए।<br>
+3. Packet और Datagram को detail में समझाइए।<br>
+4. Routing क्या है? Static और Dynamic Routing समझाइए।<br>
+5. Distance Vector, Link State और Path Vector routing समझाइए।<br>
+6. IP Address क्या है? IPv4 address structure समझाइए।<br>
+7. IPv4 की Class A, B, C, D और E classes समझाइए।<br>
+8. Subnetting क्या है? इसके advantages और example समझाइए।<br>
+9. Subnet Mask क्या है? Binary AND से network address निकालना समझाइए।<br>
+10. ICMP क्या है? Ping और diagnostic functions समझाइए।<br>
+11. Transport Layer के functions समझाइए।<br>
+12. TCP protocol की features और three-way handshake समझाइए।<br>
+13. UDP protocol क्या है? इसकी features और uses समझाइए।<br>
+14. TCP और UDP में विस्तृत अंतर लिखिए।
+</div>
+
+<h3>Numerical / Practical Questions</h3>
+<ul>
+<li>192.168.1.0/24 को /26 में subnet कीजिए।</li>
+<li>192.168.1.0/24 को /27 में divide करके subnets और usable hosts निकालिए।</li>
+<li>192.168.1.10/24 का network address निकालिए।</li>
+<li>255.255.255.192 को CIDR notation में लिखिए।</li>
+<li>/28 subnet में total addresses और traditional usable host addresses निकालिए।</li>
+</ul>
+
+<h3>Short Questions</h3>
+<ul>
+<li>Network Layer कौन-सी OSI layer है?</li>
+<li>Network Layer का PDU क्या है?</li>
+<li>Routing क्या है?</li>
+<li>Virtual Circuit क्या है?</li>
+<li>Datagram क्या है?</li>
+<li>ICMP का full form क्या है?</li>
+<li>IPv4 address कितने bits का होता है?</li>
+<li>Class C का default subnet mask क्या है?</li>
+<li>Subnetting क्या है?</li>
+<li>Subnet Mask का क्या उपयोग है?</li>
+<li>TCP का full form क्या है?</li>
+<li>UDP का full form क्या है?</li>
+<li>TCP connection establish करने के लिए कौन-सा handshake use होता है?</li>
+<li>TCP और UDP में एक मुख्य difference लिखिए।</li>
+<li>Port number का क्या उपयोग है?</li>
+</ul>
+
+<div class="important">
+<b>One-Minute Revision:</b><br><br>
+<strong>Network Layer:</strong> IP + Routing + Forwarding + ICMP<br>
+<strong>Packet:</strong> Network Layer data unit<br>
+<strong>Virtual Circuit:</strong> Logical path/connection-oriented packet switching concept<br>
+<strong>Datagram:</strong> Independently routed connectionless packet<br>
+<strong>IPv4:</strong> 32 bits<br>
+<strong>Class A:</strong> /8<br>
+<strong>Class B:</strong> /16<br>
+<strong>Class C:</strong> /24<br>
+<strong>Subnetting:</strong> One network → smaller subnets<br>
+<strong>Subnet Mask:</strong> Network bits + Host bits identify करना<br>
+<strong>TCP:</strong> Reliable + Connection-oriented + Ordered<br>
+<strong>UDP:</strong> Connectionless + Lightweight + No built-in reliability<br>
+<strong>ICMP:</strong> Error + Diagnostic messaging
+</div>
+</section>
+</main>
+</div>
+</body>
+</html>

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assembly & Disassembly of PC - Notes</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#eef2f7;color:#202938;font-family:Segoe UI,Arial,sans-serif;line-height:1.9}
+.layout{max-width:1500px;margin:auto;padding:15px;display:grid;grid-template-columns:290px 1fr;gap:18px}
+aside{position:sticky;top:15px;height:calc(100vh - 30px);overflow:auto;background:#fff;border-radius:18px;padding:20px;box-shadow:0 6px 25px #0001}
+aside h2{color:#075985;border-left:5px solid #0284c7;padding-left:10px}
+aside a{display:block;text-decoration:none;color:#374151;padding:7px 10px;border-radius:8px;font-size:14px}
+aside a:hover{background:#e0f2fe;color:#0369a1}
+main{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 6px 25px #0001}
+.hero{padding:42px;background:linear-gradient(135deg,#dbeafe,#e0f2fe,#f8fafc)}
+.hero h1{margin:7px 0;color:#075985;font-size:36px;line-height:1.3}
+section{padding:32px;border-bottom:1px solid #e5e7eb}
+h2{font-size:29px;color:#075985;border-left:5px solid #0284c7;padding-left:13px}
+h3{font-size:22px;color:#0c4a6e;margin-top:27px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{padding:19px;background:#f0f9ff;border:1px solid #bae6fd;border-radius:14px}
+.note,.important,.exam,.warning{padding:18px 20px;border-radius:12px;margin:19px 0}
+.note{background:#eff6ff;border-left:5px solid #3b82f6}.important{background:#fff7ed;border-left:5px solid #f97316}
+.exam{background:#ecfdf5;border-left:5px solid #10b981}.warning{background:#fef2f2;border-left:5px solid #ef4444}
+table{width:100%;border-collapse:collapse;margin:20px 0}th,td{border:1px solid #cbd5e1;padding:12px;text-align:left;vertical-align:top}
+th{background:#e0f2fe;color:#075985}
+.code,.diagram{background:#090b0f;color:#e5e7eb;border-radius:14px;padding:20px 24px;overflow:auto;font-family:Consolas,monospace;white-space:pre;line-height:1.55}
+.step{padding:14px 16px;background:#f8fafc;border-radius:10px;margin:9px 0;border-left:4px solid #0284c7}
+.badge{display:inline-block;background:#bae6fd;color:#075985;padding:4px 11px;border-radius:20px;font-size:12px;font-weight:bold}
+@media(max-width:900px){.layout{display:block;padding:5px}aside{display:none}.hero{padding:28px 18px}.hero h1{font-size:28px}section{padding:24px 18px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside>
+<h2>Topics</h2>
+<a href="#intro">1. Introduction</a>
+<a href="#tools">2. Tools & Safety</a>
+<a href="#disassembly">3. Disassembly</a>
+<a href="#assembly">4. Assembly</a>
+<a href="#startup">5. Startup Problems</a>
+<a href="#run">6. Run Problems</a>
+<a href="#keyboard">7. Keyboard</a>
+<a href="#display">8. Display</a>
+<a href="#printer">9. Printer</a>
+<a href="#drives">10. FDD/HDD/CDD</a>
+<a href="#smps">11. SMPS</a>
+<a href="#motherboard">12. Motherboard</a>
+<a href="#ups">13. UPS Maintenance</a>
+<a href="#flow">14. Troubleshooting Flow</a>
+<a href="#exam">15. Exam Questions</a>
+</aside>
+
+<main>
+<div class="hero">
+<span class="badge">PRACTICAL • HARDWARE • TROUBLESHOOTING • MAINTENANCE</span>
+<h1>Assembly and Disassembly of PC</h1>
+<p><strong>PC Parts • Startup Problems • Run Problems • Keyboard • Display • Printer • FDD/HDD/CDD • SMPS • Motherboard • UPS Maintenance</strong></p>
+</div>
+
+<section id="intro">
+<h2>1. Assembly & Disassembly का Introduction</h2>
+<p><strong>PC Assembly</strong> का अर्थ computer के विभिन्न hardware components को सही sequence, compatibility और safety के साथ जोड़कर एक complete working system तैयार करना है। इसमें motherboard, CPU, RAM, storage, SMPS, expansion cards, cooling system और external peripherals को properly connect किया जाता है।</p>
+<p><strong>PC Disassembly</strong> का अर्थ troubleshooting, cleaning, replacement या maintenance के लिए computer के components को सुरक्षित तरीके से अलग करना है। Disassembly करते समय component और connectors की position याद रखना तथा screws/cables को व्यवस्थित रखना महत्वपूर्ण है।</p>
+
+<div class="important"><b>Exam Definition:</b> PC Assembly वह प्रक्रिया है जिसमें computer के विभिन्न hardware parts को compatible configuration में जोड़कर working computer system बनाया जाता है, जबकि Disassembly में maintenance या repair के लिए इन्हीं components को सुरक्षित रूप से अलग किया जाता है।</div>
+
+<div class="grid">
+<div class="card"><h3>Assembly</h3><p>Components को install, connect और test करना।</p></div>
+<div class="card"><h3>Disassembly</h3><p>Components को safely remove और separate करना।</p></div>
+<div class="card"><h3>Identification</h3><p>Fault के symptoms से defective component को identify करना।</p></div>
+<div class="card"><h3>Remedy</h3><p>Fault को repair, replace या reconfigure करके system को working condition में लाना।</p></div>
+</div>
+</section>
+
+<section id="tools">
+<h2>2. Assembly/Disassembly के Tools & Safety</h2>
+<table>
+<tr><th>Tool</th><th>Use</th></tr>
+<tr><td>Screwdriver Set</td><td>Case, drives, PSU और expansion components के screws खोलने/लगाने के लिए।</td></tr>
+<tr><td>Anti-static Wrist Strap</td><td>Electrostatic discharge (ESD) के risk को कम करने के लिए।</td></tr>
+<tr><td>Anti-static Surface</td><td>Sensitive electronic components को safe handling environment देने के लिए।</td></tr>
+<tr><td>Soft Brush / Air Blower</td><td>Dust cleaning के लिए।</td></tr>
+<tr><td>Flashlight</td><td>Case के अंदर connectors और labels देखने में सहायता।</td></tr>
+</table>
+
+<h3>Important Safety Rules</h3>
+<div class="step"><b>1.</b> PC को shut down करें और AC power cable disconnect करें।</div>
+<div class="step"><b>2.</b> PSU के अंदर के components को खोलकर service न करें; उसमें dangerous stored electrical energy हो सकती है।</div>
+<div class="step"><b>3.</b> Components को edges से handle करें और contacts/pins को unnecessarily touch न करें।</div>
+<div class="step"><b>4.</b> ESD precautions अपनाएँ।</div>
+<div class="step"><b>5.</b> Screws और cables को label/organize करें।</div>
+<div class="step"><b>6.</b> Force लगाकर connector न निकालें; locking mechanism check करें।</div>
+
+<div class="warning"><b>Safety First:</b> Mains-powered equipment और SMPS के internal circuitry पर काम trained technician द्वारा appropriate safety procedures के साथ ही किया जाना चाहिए।</div>
+</section>
+
+<section id="disassembly">
+<h2>3. PC Disassembly – Step by Step</h2>
+<div class="step"><b>Step 1:</b> Operating system से proper shutdown करें।</div>
+<div class="step"><b>Step 2:</b> Monitor, keyboard, mouse, network और अन्य external cables disconnect करें।</div>
+<div class="step"><b>Step 3:</b> Power cable निकालें और system को suitable work surface पर रखें।</div>
+<div class="step"><b>Step 4:</b> Cabinet side panel remove करें।</div>
+<div class="step"><b>Step 5:</b> Internal cable connections की photographs/labels बना लें, ताकि reassembly आसान हो।</div>
+<div class="step"><b>Step 6:</b> Storage drives और optical drive के data/power cables disconnect करें।</div>
+<div class="step"><b>Step 7:</b> Expansion cards को उनके retaining screws/locks release करके carefully remove करें।</div>
+<div class="step"><b>Step 8:</b> RAM modules को slot locks खोलकर remove करें।</div>
+<div class="step"><b>Step 9:</b> आवश्यक होने पर CPU cooling assembly को manufacturer procedure के अनुसार remove करें।</div>
+<div class="step"><b>Step 10:</b> Motherboard power connectors और other headers carefully disconnect करें।</div>
+<div class="step"><b>Step 11:</b> Motherboard mounting screws remove करके board को safely lift करें।</div>
+<div class="step"><b>Step 12:</b> Removed components को anti-static surface/container में रखें और parts inventory check करें।</div>
+
+<div class="note"><b>Best Practice:</b> Disassembly के दौरान हर cable और connector की position photograph या label करने से गलत connection की संभावना काफी कम होती है।</div>
+</section>
+
+<section id="assembly">
+<h2>4. PC Assembly – Step by Step</h2>
+<div class="step"><b>Step 1:</b> Compatible motherboard, CPU, RAM, storage, PSU, case और required components तैयार करें।</div>
+<div class="step"><b>Step 2:</b> CPU को motherboard socket में manufacturer markings के अनुसार install करें।</div>
+<div class="step"><b>Step 3:</b> Appropriate CPU cooling solution install करें।</div>
+<div class="step"><b>Step 4:</b> RAM modules को correct slots में properly seat करें।</div>
+<div class="step"><b>Step 5:</b> Motherboard को case के compatible standoffs पर install करें।</div>
+<div class="step"><b>Step 6:</b> Storage drive और optical drive, यदि उपलब्ध हों, install करें।</div>
+<div class="step"><b>Step 7:</b> PSU को case में install करें।</div>
+<div class="step"><b>Step 8:</b> Motherboard main power और CPU power connectors connect करें।</div>
+<div class="step"><b>Step 9:</b> Storage data/power cables और required front-panel connectors connect करें।</div>
+<div class="step"><b>Step 10:</b> Graphics/LAN/Sound जैसी required expansion cards install करें।</div>
+<div class="step"><b>Step 11:</b> सभी connections और component seating को दोबारा verify करें।</div>
+<div class="step"><b>Step 12:</b> Monitor और basic keyboard/mouse connect करके system power-on करें।</div>
+<div class="step"><b>Step 13:</b> POST/BIOS/UEFI screen check करें।</div>
+<div class="step"><b>Step 14:</b> Storage detection, memory और CPU information verify करें।</div>
+<div class="step"><b>Step 15:</b> Operating system boot करके device/driver status test करें।</div>
+
+<div class="diagram">
+             PC ASSEMBLY
+                  │
+     ┌────────────┴────────────┐
+     ▼                         ▼
+Motherboard                Case + PSU
+     │                         │
+ CPU + Cooler             Storage Drives
+     │                         │
+    RAM                Expansion Cards
+     │                         │
+     └────────────┬────────────┘
+                  ▼
+          CABLE CONNECTIONS
+                  │
+                  ▼
+              POWER ON
+                  │
+                  ▼
+             POST / BIOS
+                  │
+                  ▼
+             OS BOOT TEST
+</div>
+</section>
+
+<section id="startup">
+<h2>5. Startup Problems – Identification & Remedy</h2>
+<table>
+<tr><th>Problem</th><th>Possible Cause</th><th>Identification</th><th>Remedy</th></tr>
+<tr><td>PC बिल्कुल start नहीं होता</td><td>Power source, cable, PSU, switch</td><td>No fan/LED/response</td><td>Power outlet, cable, UPS और PSU connections check करें।</td></tr>
+<tr><td>Power ON लेकिन display नहीं</td><td>RAM, GPU, monitor/cable, POST issue</td><td>Fans चल सकते हैं लेकिन screen blank</td><td>Monitor input/cable, RAM seating और graphics output check करें।</td></tr>
+<tr><td>Beep/POST error</td><td>Hardware initialization issue</td><td>Startup पर beep/error indicator</td><td>Motherboard/firmware documentation के अनुसार code interpret करें।</td></tr>
+<tr><td>Boot device not found</td><td>Drive, cable, boot order या OS issue</td><td>Firmware में drive absent या boot error</td><td>Drive detection, cables और boot configuration check करें।</td></tr>
+<tr><td>Repeated restart</td><td>Overheating, RAM, PSU, driver/OS</td><td>System boot cycle में repeat होता है</td><td>Hardware temperature/memory और OS recovery checks करें।</td></tr>
+</table>
+</section>
+
+<section id="run">
+<h2>6. Run Problems – Identification & Remedy</h2>
+<p>Run-time problems वे समस्याएँ हैं जो system successfully start होने के बाद operation के दौरान दिखाई देती हैं।</p>
+
+<table>
+<tr><th>Run Problem</th><th>Possible Cause</th><th>Remedy</th></tr>
+<tr><td>System slow</td><td>Low resources, startup programs, storage, malware</td><td>Task Manager, storage और security status check करें।</td></tr>
+<tr><td>System hangs/freezes</td><td>RAM, overheating, driver, software</td><td>Temperature, memory, drivers और event logs check करें।</td></tr>
+<tr><td>Random shutdown</td><td>Overheating, PSU/power issue</td><td>Cooling और power system inspect करें।</td></tr>
+<tr><td>Application crash</td><td>Corrupt/incompatible software</td><td>Update, repair/reinstall और logs check करें।</td></tr>
+<tr><td>Blue Screen</td><td>Driver, hardware, OS/system file issue</td><td>Recent change identify करें और diagnostics/recovery tools use करें।</td></tr>
+</table>
+</section>
+
+<section id="keyboard">
+<h2>7. Keyboard Problems – Identification & Remedy</h2>
+<table>
+<tr><th>Problem</th><th>Identification</th><th>Possible Remedy</th></tr>
+<tr><td>Keyboard not responding</td><td>Keys input नहीं दे रही</td><td>USB/PS/2 connection, another port और another keyboard test करें।</td></tr>
+<tr><td>Some keys not working</td><td>Specific keys inactive</td><td>Physical cleaning/inspection और alternate keyboard test करें।</td></tr>
+<tr><td>Wrong characters</td><td>Pressed key से different character</td><td>Keyboard layout/language settings check करें।</td></tr>
+<tr><td>Wireless keyboard issue</td><td>Intermittent/no input</td><td>Battery, receiver connection और pairing check करें।</td></tr>
+</table>
+</section>
+
+<section id="display">
+<h2>8. Display Problems – Identification & Remedy</h2>
+<table>
+<tr><th>Problem</th><th>Possible Cause</th><th>Remedy</th></tr>
+<tr><td>No display</td><td>Power, cable, GPU, RAM, monitor</td><td>Power/input/cable और hardware seating check करें।</td></tr>
+<tr><td>Flickering</td><td>Cable, refresh setting, monitor/GPU</td><td>Cable और display settings check करें।</td></tr>
+<tr><td>Distorted image</td><td>GPU/driver/cable/monitor</td><td>Driver update और alternate display/cable से isolate करें।</td></tr>
+<tr><td>Low/incorrect resolution</td><td>Driver/settings</td><td>Recommended display driver/settings apply करें।</td></tr>
+</table>
+</section>
+
+<section id="printer">
+<h2>9. Printer Problems – Identification & Remedy</h2>
+<table>
+<tr><th>Problem</th><th>Possible Cause</th><th>Remedy</th></tr>
+<tr><td>Printer not detected</td><td>USB/network connection, driver</td><td>Power, cable/network और printer driver check करें।</td></tr>
+<tr><td>Print job stuck</td><td>Print queue/spooler</td><td>Queue check/clear और printer service status verify करें।</td></tr>
+<tr><td>Paper jam</td><td>Improper paper path/roller issue</td><td>Printer को safe state में रखकर manufacturer procedure से jam remove करें।</td></tr>
+<tr><td>Poor print quality</td><td>Ink/toner, print head/drum, settings</td><td>Consumables और printer maintenance options check करें।</td></tr>
+</table>
+</section>
+
+<section id="drives">
+<h2>10. FDD, HDD और CDD Problems</h2>
+<h3>FDD (Floppy Disk Drive)</h3>
+<p>FDD एक legacy storage device है। इसके problems में disk not detected, read/write error और damaged media जैसी समस्याएँ शामिल हो सकती हैं।</p>
+
+<h3>HDD (Hard Disk Drive)</h3>
+<table>
+<tr><th>Symptom</th><th>Possible Cause</th><th>Remedy</th></tr>
+<tr><td>Drive not detected</td><td>Power/data cable, port, firmware या drive failure</td><td>Connections और firmware detection check करें।</td></tr>
+<tr><td>Slow read/write</td><td>Heavy workload, low free space, health issue</td><td>Free space और drive health check करें।</td></tr>
+<tr><td>Read/write errors</td><td>File-system or hardware issue</td><td>Important data backup करके diagnostic tools use करें।</td></tr>
+</table>
+
+<h3>CDD / CD/DVD Drive</h3>
+<p>Optical drive problems में disc not detected, read errors, tray issue और incompatible/dirty media शामिल हो सकते हैं। दूसरी known-good disc से testing करने पर media और drive fault को isolate करने में सहायता मिलती है।</p>
+
+<div class="note"><b>Identification Principle:</b> यदि known-good media भी दूसरे compatible drive में काम करती है लेकिन original drive में नहीं, तो drive-side problem की संभावना बढ़ जाती है।</div>
+</section>
+
+<section id="smps">
+<h2>11. SMPS Problems – Identification & Remedy</h2>
+<p><strong>SMPS (Switch Mode Power Supply)</strong> computer को AC input से required DC power rails प्रदान करता है। PSU problem से no power, random restart, shutdown या unstable operation हो सकता है।</p>
+
+<table>
+<tr><th>Symptom</th><th>Possible Cause</th><th>Safe Action</th></tr>
+<tr><td>No power</td><td>Power cable, PSU switch, PSU fault</td><td>External power path check करें; PSU replacement/test qualified technician से कराएँ।</td></tr>
+<tr><td>Random restart</td><td>Unstable power/overload/other hardware</td><td>Power connections, system load और cooling isolate करें।</td></tr>
+<tr><td>Burning smell/noise</td><td>Internal PSU fault</td><td>Immediately power disconnect करें और PSU service/replace कराएँ।</td></tr>
+</table>
+
+<div class="warning"><b>Critical Safety:</b> SMPS को खोलकर internal capacitors/circuitry पर direct repair या probing बिना appropriate training और safety equipment के नहीं करनी चाहिए। PSU replace करना सामान्य PC troubleshooting में safer approach है।</div>
+</section>
+
+<section id="motherboard">
+<h2>12. Motherboard Problems – Identification & Remedy</h2>
+<table>
+<tr><th>Problem</th><th>Identification</th><th>Possible Remedy</th></tr>
+<tr><td>No POST</td><td>System power-on लेकिन firmware initialization नहीं</td><td>RAM, CPU power, graphics, CMOS/firmware indicators और connections check करें।</td></tr>
+<tr><td>USB ports not working</td><td>Multiple devices fail on same ports</td><td>Different ports/devices test करें और driver/device status check करें।</td></tr>
+<tr><td>Random instability</td><td>Crashes/restarts/freezes</td><td>RAM, power, temperature और firmware/settings isolate करें।</td></tr>
+<tr><td>Expansion device not detected</td><td>PCIe/device absent</td><td>Device seating, slot और firmware/OS detection check करें।</td></tr>
+</table>
+
+<h3>Motherboard Inspection Checklist</h3>
+<ul>
+<li>Burn marks या physical damage</li>
+<li>Loose connectors</li>
+<li>Incorrectly seated RAM</li>
+<li>CPU power connector</li>
+<li>Motherboard main power connector</li>
+<li>Expansion card seating</li>
+<li>CMOS/firmware settings</li>
+<li>POST diagnostic LEDs/beeps, यदि available हों</li>
+</ul>
+</section>
+
+<section id="ups">
+<h2>13. UPS Maintenance</h2>
+<p><strong>UPS (Uninterruptible Power Supply)</strong> computer और power source के बीच backup/protection device की तरह काम करता है। UPS maintenance का उद्देश्य reliable backup, battery performance और safe operation बनाए रखना है।</p>
+
+<h3>UPS Maintenance Steps</h3>
+<div class="step"><b>Step 1:</b> UPS को dry, ventilated और suitable environment में रखें।</div>
+<div class="step"><b>Step 2:</b> Power cable और connected load की condition inspect करें।</div>
+<div class="step"><b>Step 3:</b> UPS indicators, alarms और self-test status observe करें।</div>
+<div class="step"><b>Step 4:</b> Battery health/age को manufacturer recommendations के अनुसार monitor करें।</div>
+<div class="step"><b>Step 5:</b> UPS को overload न करें; rated capacity के अनुसार load रखें।</div>
+<div class="step"><b>Step 6:</b> Ventilation openings dust-free रखें।</div>
+<div class="step"><b>Step 7:</b> Battery replacement केवल appropriate procedure और compatible battery specification के अनुसार करें।</div>
+<div class="step"><b>Step 8:</b> Periodically controlled backup test करें और critical equipment के लिए shutdown strategy रखें।</div>
+
+<div class="important"><b>Why UPS Maintenance?</b> Poor battery condition या overload के कारण backup time कम हो सकता है और power interruption के समय connected PC properly protected/kept running न रह पाए।</div>
+</section>
+
+<section id="flow">
+<h2>14. Complete Identification & Remedy Flow</h2>
+<div class="diagram">
+PROBLEM OCCURS
+      │
+      ▼
+OBSERVE SYMPTOMS
+      │
+      ▼
+CHECK POWER / CABLES
+      │
+      ▼
+STARTUP OR RUN-TIME?
+   ┌───┴────┐
+STARTUP   RUN-TIME
+   │          │
+   ▼          ▼
+POST /      OS / DRIVER /
+BIOS        APPLICATION
+   │          │
+   └────┬─────┘
+        ▼
+ISOLATE HARDWARE
+        │
+ ┌──────┼─────────────┐
+ ▼      ▼      ▼      ▼
+RAM   STORAGE DISPLAY PERIPHERAL
+ │      │       │       │
+ └──────┴───────┴───────┘
+             │
+             ▼
+        APPLY REMEDY
+             │
+             ▼
+          TEST PC
+             │
+             ▼
+       DOCUMENT RESULT
+</div>
+</section>
+
+<section id="exam">
+<h2>15. Important Exam Questions</h2>
+<div class="exam">
+<b>Long Answer Questions</b><br><br>
+1. PC Assembly और Disassembly क्या है? दोनों की step-by-step procedure समझाइए।<br>
+2. PC assembly में आवश्यक components और tools का वर्णन कीजिए।<br>
+3. Computer के startup problems की पहचान और remedy समझाइए।<br>
+4. Run-time problems क्या हैं? इनके common causes और remedies समझाइए।<br>
+5. Keyboard और display की common problems तथा उनके solutions लिखिए।<br>
+6. Printer, FDD, HDD और CDD की common problems की identification और remedy समझाइए।<br>
+7. SMPS और motherboard की common problems को समझाइए।<br>
+8. UPS क्या है? इसकी maintenance procedure विस्तार से समझाइए।
+</div>
+
+<h3>Short Questions</h3>
+<ul>
+<li>PC Assembly की definition दीजिए।</li>
+<li>PC Disassembly क्या है?</li>
+<li>ESD क्या है?</li>
+<li>PC assembly में anti-static wrist strap का क्या उपयोग है?</li>
+<li>POST का क्या महत्व है?</li>
+<li>No-display problem के दो कारण लिखिए।</li>
+<li>SMPS का full form लिखिए।</li>
+<li>UPS का full form और उपयोग लिखिए।</li>
+<li>HDD और CDD में अंतर लिखिए।</li>
+<li>Motherboard की दो common problems लिखिए।</li>
+<li>Printer troubleshooting में print queue क्या है?</li>
+<li>Run-time problem क्या होती है?</li>
+</ul>
+
+<div class="important">
+<b>Quick Revision:</b><br>
+<strong>Assembly → Install → Connect → Verify → POST → OS Test</strong><br>
+<strong>Disassembly → Shutdown → Disconnect → Label → Remove → Store Safely</strong><br>
+<strong>Startup → Power → POST → RAM → Display → Storage → Boot</strong><br>
+<strong>Run Problem → OS → Driver → Hardware → Temperature → Application</strong><br>
+<strong>Keyboard → Cable/Port/Driver/Input</strong><br>
+<strong>Display → Power/Input/Cable/GPU/RAM</strong><br>
+<strong>HDD → Detection/Cable/Health/Backup</strong><br>
+<strong>SMPS → External Power Check; Internal Repair = Trained Technician</strong><br>
+<strong>Motherboard → POST/Connections/RAM/CPU Power/Slots</strong><br>
+<strong>UPS → Load/Battery/Ventilation/Self-Test</strong>
+</div>
+</section>
+
+</main>
+</div>
+</body>
+</html>

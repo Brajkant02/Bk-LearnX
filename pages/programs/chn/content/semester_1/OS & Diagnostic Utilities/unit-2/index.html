@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Operating System Concepts & Types</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:#eef2f7;color:#202938;font-family:Segoe UI,Arial,sans-serif;line-height:1.9}
+.layout{max-width:1550px;margin:auto;padding:15px;display:grid;grid-template-columns:305px 1fr;gap:18px}
+aside{position:sticky;top:15px;height:calc(100vh - 30px);overflow:auto;background:#fff;border-radius:18px;padding:20px;box-shadow:0 6px 25px #0001}
+aside h2{color:#075985;border-left:5px solid #0284c7;padding-left:10px}
+aside a{display:block;text-decoration:none;color:#374151;padding:7px 10px;border-radius:8px;font-size:14px}
+aside a:hover{background:#e0f2fe;color:#0369a1}
+main{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 6px 25px #0001}
+.hero{padding:42px;background:linear-gradient(135deg,#dbeafe,#e0f2fe,#f8fafc)}
+.hero h1{margin:7px 0;color:#075985;font-size:36px;line-height:1.3}
+section{padding:32px;border-bottom:1px solid #e5e7eb}
+h2{font-size:29px;color:#075985;border-left:5px solid #0284c7;padding-left:13px}
+h3{font-size:22px;color:#0c4a6e;margin-top:27px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{padding:19px;background:#f0f9ff;border:1px solid #bae6fd;border-radius:14px}
+.note,.important,.exam{padding:18px 20px;border-radius:12px;margin:19px 0}
+.note{background:#eff6ff;border-left:5px solid #3b82f6}
+.important{background:#fff7ed;border-left:5px solid #f97316}
+.exam{background:#ecfdf5;border-left:5px solid #10b981}
+table{width:100%;border-collapse:collapse;margin:20px 0}
+th,td{border:1px solid #cbd5e1;padding:12px;text-align:left;vertical-align:top}
+th{background:#e0f2fe;color:#075985}
+.diagram{background:#090b0f;color:#e5e7eb;border-radius:15px;padding:25px;overflow:auto;font-family:Consolas,monospace;white-space:pre;line-height:1.5}
+.step{padding:14px 16px;background:#f8fafc;border-radius:10px;margin:9px 0;border-left:4px solid #0284c7}
+.badge{display:inline-block;background:#bae6fd;color:#075985;padding:4px 11px;border-radius:20px;font-size:12px;font-weight:bold}
+@media(max-width:900px){.layout{display:block;padding:5px}aside{display:none}.hero{padding:28px 18px}.hero h1{font-size:28px}section{padding:24px 18px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside>
+<h2>Topics</h2>
+<a href="#intro">1. Operating System Introduction</a>
+<a href="#definition">2. Definition</a>
+<a href="#need">3. Need & Importance</a>
+<a href="#functions">4. Functions of OS</a>
+<a href="#batch">5. Batch Processing</a>
+<a href="#timeshare">6. Time Sharing</a>
+<a href="#realtime">7. Real-Time OS</a>
+<a href="#multitask">8. Multitasking</a>
+<a href="#multiprogram">9. Multiprogramming</a>
+<a href="#comparison">10. Comparison</a>
+<a href="#exam">11. Exam Questions</a>
+</aside>
+
+<main>
+<div class="hero">
+<span class="badge">OPERATING SYSTEM • EXAM ORIENTED</span>
+<h1>Operating System Concepts & Types</h1>
+<p><strong>Definition • Batch Processing • Time Sharing • Real Time • Multitasking • Multiprogramming</strong></p>
+</div>
+
+<section id="intro">
+<h2>1. Operating System – Introduction</h2>
+<p><strong>Operating System (OS)</strong> computer system का सबसे important system software है। यह user, application programs और computer hardware के बीच एक interface के रूप में काम करता है। Computer के processor, memory, storage, input/output devices और अन्य resources को manage करने का प्रमुख कार्य operating system करता है।</p>
+<p>जब हम किसी computer या mobile device पर कोई application चलाते हैं, file create करते हैं, keyboard से input देते हैं या printer से document print करते हैं, तो इन activities के पीछे operating system विभिन्न hardware और software resources को coordinate करता है।</p>
+<div class="important"><b>Exam Definition:</b> Operating System एक system software है जो computer hardware और user/application software के बीच interface प्रदान करता है तथा CPU, memory, files, storage और I/O devices जैसे system resources को manage करता है।</div>
+</section>
+
+<section id="definition">
+<h2>2. Operating System की Definition</h2>
+<p>Operating System को केवल एक interface मानना पर्याप्त नहीं है। यह एक <strong>resource manager</strong> और <strong>control program</strong> भी है। यह decide करता है कि कौन-सा program कब CPU का उपयोग करेगा, कितनी memory allocate होगी, files कहाँ store होंगी और input/output devices किस process को service देंगे।</p>
+<div class="grid">
+<div class="card"><h3>Interface</h3><p>OS user और applications को computer hardware के साथ interact करने का convenient environment देता है।</p></div>
+<div class="card"><h3>Resource Manager</h3><p>CPU, RAM, storage और I/O devices जैसे resources का allocation और management करता है।</p></div>
+<div class="card"><h3>Control Program</h3><p>System activities को control करता है और programs के execution को coordinate करता है।</p></div>
+<div class="card"><h3>System Software</h3><p>Operating System application software के नीचे system level पर कार्य करता है और applications को required services देता है।</p></div>
+</div>
+</section>
+
+<section id="need">
+<h2>3. Need and Importance of Operating System</h2>
+<p>यदि computer में operating system न हो, तो user के लिए hardware resources को directly control करना बहुत difficult होगा। OS hardware की complexity को hide करके applications को standardized services प्रदान करता है।</p>
+<ul>
+<li><strong>Hardware Management:</strong> CPU, memory, storage और peripheral devices manage करता है।</li>
+<li><strong>Program Execution:</strong> Applications को load और execute करने में सहायता करता है।</li>
+<li><strong>File Management:</strong> Files और directories को organize, store और access करने की सुविधा देता है।</li>
+<li><strong>Memory Management:</strong> Processes को memory allocate और release करता है।</li>
+<li><strong>Device Management:</strong> Keyboard, mouse, display, printer, disk आदि devices के साथ communication coordinate करता है।</li>
+<li><strong>Security:</strong> Authentication, permissions और access control जैसी facilities provide कर सकता है।</li>
+<li><strong>User Interface:</strong> GUI या command-line interface के माध्यम से interaction provide करता है।</li>
+<li><strong>Error Handling:</strong> Hardware/software errors को detect और handle करने में सहायता करता है।</li>
+</ul>
+</section>
+
+<section id="functions">
+<h2>4. Major Functions of Operating System</h2>
+<div class="diagram">
+              USER / APPLICATIONS
+                      │
+                      ▼
+             ┌─────────────────┐
+             │ OPERATING SYSTEM│
+             └───────┬─────────┘
+                     │
+     ┌───────────────┼────────────────┐
+     ▼               ▼                ▼
+ PROCESS          MEMORY            FILE
+ MANAGEMENT       MANAGEMENT        MANAGEMENT
+     │               │                │
+     └───────────────┼────────────────┘
+                     ▼
+              DEVICE / I/O
+               MANAGEMENT
+                     │
+                     ▼
+             COMPUTER HARDWARE
+</div>
+<div class="grid">
+<div class="card"><h3>Process Management</h3><p>Running programs/processes को manage करता है और CPU scheduling के माध्यम से execution coordinate करता है।</p></div>
+<div class="card"><h3>Memory Management</h3><p>RAM में processes के लिए space allocate और deallocate करता है तथा memory utilization को manage करता है।</p></div>
+<div class="card"><h3>File Management</h3><p>Files, folders, permissions और storage organization को manage करता है।</p></div>
+<div class="card"><h3>I/O Management</h3><p>Input और output devices के साथ data transfer को coordinate करता है।</p></div>
+<div class="card"><h3>Security Management</h3><p>Users और resources के access को control करने में सहायता करता है।</p></div>
+<div class="card"><h3>Resource Allocation</h3><p>Available hardware resources को different processes और applications के बीच allocate करता है।</p></div>
+</div>
+</section>
+
+<section id="batch">
+<h2>5. Batch Processing Operating System</h2>
+<p><strong>Batch Processing</strong> में similar या related jobs को collect करके एक batch के रूप में process किया जाता है। User सामान्यतः हर job के execution के दौरान system के साथ continuously interact नहीं करता। Jobs को पहले submit किया जाता है और OS उन्हें निर्धारित order/policy के अनुसार execute करता है।</p>
+<h3>Working</h3>
+<div class="step"><b>Step 1:</b> Users अपनी jobs/programs और required input prepare करते हैं।</div>
+<div class="step"><b>Step 2:</b> Similar jobs को एक batch में collect किया जाता है।</div>
+<div class="step"><b>Step 3:</b> Jobs को processing system में submit किया जाता है।</div>
+<div class="step"><b>Step 4:</b> OS/monitor program jobs को क्रम से execute करता है।</div>
+<div class="step"><b>Step 5:</b> Processing complete होने के बाद output/results उपलब्ध होते हैं।</div>
+<div class="note"><b>Example:</b> Large-scale payroll processing, billing या periodic report generation जैसे workloads batch-oriented processing के लिए suitable हो सकते हैं।</div>
+<h3>Advantages</h3>
+<ul><li>Large number of similar jobs efficiently process हो सकती हैं।</li><li>Repeated jobs के लिए automation useful होता है।</li><li>Operator intervention कम हो सकती है।</li></ul>
+<h3>Limitations</h3>
+<ul><li>Immediate user interaction कम या unavailable होती है।</li><li>Output प्राप्त करने में waiting time हो सकता है।</li><li>एक problematic job के कारण processing flow प्रभावित हो सकता है, implementation पर depend करता है।</li></ul>
+</section>
+
+<section id="timeshare">
+<h2>6. Time Sharing Operating System</h2>
+<p><strong>Time Sharing</strong> system में CPU time को छोटे-छोटे time slices या quanta में divide करके multiple users/processes को दिया जाता है। इससे users को ऐसा अनुभव होता है कि system एक साथ सभी users के commands पर respond कर रहा है।</p>
+<p>Time-sharing systems interactive computing के लिए designed होते हैं। OS rapid context switching के द्वारा different processes/users को CPU service देता है।</p>
+<div class="diagram">
+              CPU
+               │
+       ┌───────┼────────┐
+       ▼       ▼        ▼
+     User A  User B   User C
+       │       │        │
+     Time 1   Time 2   Time 3
+       │       │        │
+       └───────┴────────┘
+          Rapid Switching
+</div>
+<h3>Advantages</h3>
+<ul>
+<li>Interactive response प्रदान करता है।</li>
+<li>Multiple users को system resources share करने की सुविधा देता है।</li>
+<li>CPU utilization improve हो सकता है।</li>
+</ul>
+<h3>Limitation</h3>
+<p>बहुत अधिक users/processes होने पर response time बढ़ सकता है। System को efficient scheduling और resource management की आवश्यकता होती है।</p>
+</section>
+
+<section id="realtime">
+<h2>7. Real-Time Operating System (RTOS)</h2>
+<p><strong>Real-Time Operating System</strong> ऐसा operating system है जिसे ऐसे applications के लिए design किया जाता है जहाँ tasks को specified timing constraints के भीतर execute करना महत्वपूर्ण होता है। यहाँ correctness केवल result पर नहीं बल्कि <strong>result कब उपलब्ध हुआ</strong> इस पर भी depend कर सकती है।</p>
+<h3>Types of Real-Time Systems</h3>
+<div class="grid">
+<div class="card"><h3>Hard Real-Time</h3><p>Critical deadline miss होना unacceptable या potentially serious consequence वाला हो सकता है। Example: कुछ industrial control और safety-critical systems.</p></div>
+<div class="card"><h3>Soft Real-Time</h3><p>Deadline important होती है लेकिन occasional delay system को necessarily fail नहीं करता। Multimedia और interactive systems में real-time characteristics मिल सकती हैं।</p></div>
+</div>
+<h3>Characteristics</h3>
+<ul>
+<li>Predictable response time</li>
+<li>Priority-based scheduling का उपयोग</li>
+<li>Low and controlled latency</li>
+<li>Timing constraints को importance</li>
+<li>Reliable interrupt and task handling</li>
+</ul>
+</section>
+
+<section id="multitask">
+<h2>8. Multitasking Operating System</h2>
+<p><strong>Multitasking</strong> का अर्थ है कि operating system एक समय में multiple tasks/processes को manage और execute करता है। Single-core CPU में processes वास्तव में rapidly switch हो सकती हैं, जबकि multi-core systems में multiple tasks parallel cores पर simultaneously execute भी हो सकती हैं।</p>
+<div class="diagram">
+        MULTITASKING
+             │
+    ┌────────┼────────┐
+    ▼        ▼        ▼
+ Browser   Music    Editor
+    │        │        │
+    └────────┼────────┘
+             ▼
+      OPERATING SYSTEM
+             │
+             ▼
+      CPU / CPU CORES
+</div>
+<h3>Examples</h3>
+<p>एक user browser में webpage देख रहा हो, साथ में music चल रही हो और background में file download हो रही हो—OS इन tasks को manage करता है।</p>
+<h3>Types</h3>
+<ul>
+<li><strong>Preemptive Multitasking:</strong> OS आवश्यकता अनुसार running process से CPU control लेकर दूसरे process को दे सकता है।</li>
+<li><strong>Cooperative Multitasking:</strong> Tasks स्वयं control relinquish करती हैं; इसका behavior implementation पर depend करता है।</li>
+</ul>
+</section>
+
+<section id="multiprogram">
+<h2>9. Multiprogramming Operating System</h2>
+<p><strong>Multiprogramming</strong> में main memory में multiple programs/jobs रखे जाते हैं ताकि CPU को idle रहने से बचाया जा सके। जब एक program I/O operation के कारण wait करता है, OS CPU को किसी दूसरे ready program को दे सकता है।</p>
+<div class="diagram">
+                 MAIN MEMORY
+       ┌────────────────────────┐
+       │ Program A              │
+       ├────────────────────────┤
+       │ Program B              │
+       ├────────────────────────┤
+       │ Program C              │
+       └────────────────────────┘
+                  │
+                  ▼
+                 CPU
+                  │
+       A waits for I/O
+                  │
+                  ▼
+       CPU executes Program B
+                  │
+                  ▼
+       CPU utilization ↑
+</div>
+<h3>Main Objective</h3>
+<p>Multiprogramming का मुख्य उद्देश्य <strong>CPU utilization बढ़ाना</strong> है। CPU को idle रहने के बजाय ready queue में उपलब्ध दूसरे program को execute कराया जा सकता है।</p>
+<div class="note"><b>Important Difference:</b> Multiprogramming का primary focus CPU को busy रखना है, जबकि time sharing का primary focus interactive users/processes को responsive CPU time देना है।</div>
+</section>
+
+<section id="comparison">
+<h2>10. Comparison of Operating System Concepts</h2>
+<table>
+<tr><th>Feature</th><th>Batch</th><th>Time Sharing</th><th>Real Time</th><th>Multitasking</th><th>Multiprogramming</th></tr>
+<tr><td>Main Focus</td><td>Jobs को batches में process करना</td><td>Interactive CPU sharing</td><td>Timing/deadline requirements</td><td>Multiple tasks manage/execute करना</td><td>CPU utilization improve करना</td></tr>
+<tr><td>User Interaction</td><td>Low</td><td>High</td><td>Application dependent</td><td>Generally interactive</td><td>Usually limited in classic concept</td></tr>
+<tr><td>CPU Sharing</td><td>Job-oriented</td><td>Time slices/quanta</td><td>Priority/timing oriented</td><td>Scheduling/context switching</td><td>Ready programs के बीच</td></tr>
+<tr><td>Key Characteristic</td><td>Sequential/queued jobs</td><td>Quick response</td><td>Predictable timing</td><td>Concurrent task management</td><td>CPU idle time कम करना</td></tr>
+<tr><td>Typical Use</td><td>Payroll, billing, reports</td><td>Interactive multi-user systems</td><td>Control/embedded systems</td><td>Desktop/mobile systems</td><td>Systems needing high CPU utilization</td></tr>
+</table>
+</section>
+
+<section id="exam">
+<h2>11. Important Exam Questions</h2>
+<div class="exam">
+<b>Long Answer Questions</b><br><br>
+1. Operating System क्या है? इसके functions और importance को विस्तार से समझाइए।<br>
+2. Batch Processing Operating System क्या है? इसकी working, advantages और limitations समझाइए।<br>
+3. Time Sharing Operating System क्या है? इसके working principle को diagram सहित समझाइए।<br>
+4. Real-Time Operating System क्या है? Hard और Soft Real-Time systems को समझाइए।<br>
+5. Multitasking Operating System क्या है? इसके types और examples समझाइए।<br>
+6. Multiprogramming क्या है? इसका मुख्य उद्देश्य और working समझाइए।<br>
+7. Batch Processing, Time Sharing, Real Time, Multitasking और Multiprogramming में अंतर लिखिए।
+</div>
+
+<h3>Short Questions</h3>
+<ul>
+<li>Operating System की definition दीजिए।</li>
+<li>OS को Resource Manager क्यों कहा जाता है?</li>
+<li>Batch processing क्या है?</li>
+<li>Time sharing क्या है?</li>
+<li>Real-time OS क्या है?</li>
+<li>Hard real-time और soft real-time में अंतर क्या है?</li>
+<li>Multitasking क्या है?</li>
+<li>Multiprogramming का मुख्य उद्देश्य क्या है?</li>
+<li>Time slice क्या है?</li>
+<li>CPU utilization से क्या समझते हैं?</li>
+</ul>
+
+<div class="important">
+<b>Quick Revision:</b><br>
+<strong>OS → User + Applications + Hardware के बीच Interface</strong><br>
+<strong>Batch → Jobs को Batch में Process करना</strong><br>
+<strong>Time Sharing → CPU Time को छोटे Time Slices में Share करना</strong><br>
+<strong>Real Time → Timing/Deadline Important</strong><br>
+<strong>Multitasking → Multiple Tasks को Manage/Execute करना</strong><br>
+<strong>Multiprogramming → Memory में Multiple Programs, CPU को Busy रखना</strong>
+</div>
+</section>
+</main>
+</div>
+</body>
+</html>

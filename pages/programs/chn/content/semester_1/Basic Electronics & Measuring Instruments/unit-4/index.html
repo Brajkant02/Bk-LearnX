@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Regulated Power Supply - PGDCA Notes</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#eef3f8;color:#202936;font-family:Segoe UI,Arial,sans-serif;line-height:1.9}
+.wrap{max-width:1500px;margin:auto;padding:15px;display:grid;grid-template-columns:285px 1fr;gap:18px}
+aside{position:sticky;top:15px;height:calc(100vh - 30px);overflow:auto;background:#fff;padding:20px;border-radius:18px;box-shadow:0 8px 28px #0001}
+aside h2{color:#075985;border-left:5px solid #0284c7;padding-left:10px}aside a{display:block;padding:7px 10px;color:#374151;text-decoration:none;border-radius:8px;font-size:14px}aside a:hover{background:#e0f2fe;color:#0369a1}
+main{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 8px 28px #0001}.hero{padding:42px;background:linear-gradient(135deg,#dbeafe,#e0f2fe,#f8fafc)}
+.hero h1{font-size:38px;color:#075985;margin:8px 0;line-height:1.3}.badge{display:inline-block;background:#bae6fd;color:#075985;padding:4px 13px;border-radius:20px;font-size:12px;font-weight:700}
+section{padding:32px;border-bottom:1px solid #e5e7eb}h2{font-size:29px;color:#075985;border-left:5px solid #0284c7;padding-left:13px}h3{font-size:22px;color:#0c4a6e;margin-top:27px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.card{background:#f0f9ff;border:1px solid #bae6fd;padding:18px;border-radius:14px}
+.note,.important,.exam{padding:18px 20px;border-radius:12px;margin:19px 0}.note{background:#eff6ff;border-left:5px solid #3b82f6}.important{background:#fff7ed;border-left:5px solid #f97316}.exam{background:#ecfdf5;border-left:5px solid #10b981}
+.formula{background:#f8fafc;border:1px dashed #94a3b8;padding:18px;border-radius:12px;font-family:Consolas,monospace}
+.diagram{background:#090b0f;color:#e5e7eb;border-radius:14px;padding:22px;overflow:auto;font-family:Consolas,monospace;white-space:pre;line-height:1.5}
+table{width:100%;border-collapse:collapse;margin:20px 0}th,td{border:1px solid #cbd5e1;padding:12px;text-align:left;vertical-align:top}th{background:#e0f2fe;color:#075985}
+@media(max-width:900px){.wrap{display:block;padding:5px}aside{display:none}.hero{padding:28px 18px}.hero h1{font-size:29px}section{padding:24px 18px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<aside>
+<h2>Contents</h2>
+<a href="#intro">1. Introduction</a>
+<a href="#basic">2. Regulated Power Supply</a>
+<a href="#zener">3. Zener Diode Supply</a>
+<a href="#ic">4. IC-Based Power Supply</a>
+<a href="#smps">5. SMPS</a>
+<a href="#ups">6. UPS</a>
+<a href="#compare">7. Comparison</a>
+<a href="#exam">8. Exam Questions</a>
+</aside>
+
+<main>
+<div class="hero">
+<span class="badge">ELECTRONICS • 08 PERIODS</span>
+<h1>4. Regulated Power Supply</h1>
+<p><strong>Zener Diode Regulator • IC-Based Power Supply • SMPS • UPS</strong></p>
+</div>
+
+<section id="intro">
+<h2>1. Introduction</h2>
+<p>Electronic circuits को operate करने के लिए stable और suitable DC voltage की आवश्यकता होती है। Mains supply सामान्यतः AC होती है, जबकि computers, microcontrollers, communication circuits और अनेक electronic devices के internal circuits को regulated DC supply चाहिए। इसलिए power supply system का काम electrical input को required form, voltage और current में convert करना होता है।</p>
+
+<p><strong>Regulated Power Supply</strong> ऐसा power supply system है जो input voltage, load या operating conditions में बदलाव के बावजूद output voltage को निर्धारित सीमा के अंदर relatively constant रखने का प्रयास करता है। Regulation के कारण sensitive electronic components को stable supply मिलती है और circuit performance improve होती है।</p>
+
+<div class="grid">
+<div class="card"><h3>Unregulated Supply</h3><p>Load या input voltage बदलने पर output voltage में noticeable variation हो सकता है।</p></div>
+<div class="card"><h3>Regulated Supply</h3><p>Regulator stage feedback/control के द्वारा output को desired level के आसपास maintain करता है।</p></div>
+</div>
+</section>
+
+<section id="basic">
+<h2>2. Basic Regulated Power Supply</h2>
+<p>एक conventional linear regulated power supply में AC input को पहले transformer से suitable level पर लाया जाता है, फिर rectifier AC को pulsating DC में बदलता है। Filter capacitor output ripple को reduce करता है और regulator stage relatively stable DC output provide करती है।</p>
+
+<div class="diagram">
+AC MAINS
+   │
+   ▼
+┌──────────────┐
+│ TRANSFORMER  │
+└──────┬───────┘
+       │ Low/High AC
+       ▼
+┌──────────────┐
+│  RECTIFIER   │
+└──────┬───────┘
+       │ Pulsating DC
+       ▼
+┌──────────────┐
+│    FILTER    │
+└──────┬───────┘
+       │ Filtered DC
+       ▼
+┌──────────────┐
+│   REGULATOR  │
+└──────┬───────┘
+       │ Stable DC
+       ▼
+      LOAD
+</div>
+
+<h3>Main Stages</h3>
+<table>
+<tr><th>Stage</th><th>Function</th></tr>
+<tr><td>Transformer</td><td>AC voltage को required level पर step-up/step-down करता है और suitable designs में isolation provide कर सकता है।</td></tr>
+<tr><td>Rectifier</td><td>AC को pulsating DC में convert करता है।</td></tr>
+<tr><td>Filter</td><td>Rectified output के AC ripple component को reduce करता है।</td></tr>
+<tr><td>Regulator</td><td>Output voltage को desired level के आसपास stable रखने में मदद करता है।</td></tr>
+<tr><td>Load</td><td>Regulated electrical power consume करने वाला circuit/device.</td></tr>
+</table>
+</section>
+
+<section id="zener">
+<h2>3. Basic Regulated Power Supply Using Zener Diode</h2>
+<p><strong>Zener diode regulator</strong> एक simple voltage regulation circuit है जिसमें Zener diode को reverse-bias breakdown region में operate कराया जाता है। Suitable current range में Zener voltage relatively constant रहता है और इसी property का उपयोग load को comparatively stable voltage provide करने के लिए किया जाता है।</p>
+
+<div class="diagram">
+              Rs
+Vin ────────/\/\/\─────┬──── Vout
+                       │
+                      ┌┴┐
+                      │Z│  Zener
+                      └┬┘
+                       │
+                      GND
+                       │
+                       └── RL ── GND
+</div>
+
+<h3>Working</h3>
+<div class="step"><b>Step 1:</b> Input DC voltage series resistor <strong>Rs</strong> के through circuit में आता है।</div>
+<div class="step"><b>Step 2:</b> Zener diode reverse bias में connected होता है।</div>
+<div class="step"><b>Step 3:</b> जब operating condition Zener breakdown region में हो, diode के across voltage approximately Zener voltage <strong>Vz</strong> के आसपास रहता है।</div>
+<div class="step"><b>Step 4:</b> Load को output voltage approximately Vz के आसपास मिलता है, provided current और power limits के अंदर हों।</div>
+
+<div class="formula">
+Approx. Vout ≈ Vz
+
+Series current:
+Iₛ = (Vᵢₙ - Vz) / Rs
+
+Load current:
+Iₗ = Vz / Rₗ
+
+Zener current:
+Iz = Iₛ - Iₗ
+</div>
+
+<h3>Series Resistor का महत्व</h3>
+<p>Rs input से आने वाले current को limit करता है। यदि current limiting उचित न हो तो Zener diode excessive power dissipate कर सकता है और damage हो सकता है। इसलिए resistor value और Zener power rating का selection important है।</p>
+
+<h3>Advantages</h3>
+<ul>
+<li>Simple circuit design.</li>
+<li>Low component count.</li>
+<li>Small-load voltage regulation applications में useful.</li>
+<li>Voltage reference और basic protection circuits में उपयोग किया जा सकता है।</li>
+</ul>
+
+<h3>Limitations</h3>
+<ul>
+<li>High-current applications के लिए efficient solution नहीं हो सकता।</li>
+<li>Series resistor में power loss होता है।</li>
+<li>Input और load variations के साथ regulation limited हो सकती है।</li>
+<li>Zener power और current ratings का ध्यान रखना आवश्यक है।</li>
+</ul>
+</section>
+
+<section id="ic">
+<h2>4. Block Diagram of IC-Based Power Supply</h2>
+<p><strong>IC-based power supply</strong> में voltage regulator IC का उपयोग output voltage को controlled और stable रखने के लिए किया जाता है। Common linear regulator families में fixed positive regulators जैसे 78xx और fixed negative regulators जैसे 79xx शामिल हैं; exact IC selection required output voltage/current और application पर depend करता है।</p>
+
+<div class="diagram">
+AC INPUT
+   │
+   ▼
+┌───────────────┐
+│ TRANSFORMER   │
+└───────┬───────┘
+        ▼
+┌───────────────┐
+│ BRIDGE        │
+│ RECTIFIER     │
+└───────┬───────┘
+        ▼
+┌───────────────┐
+│ FILTER        │
+│ CAPACITOR     │
+└───────┬───────┘
+        ▼
+┌───────────────┐
+│ VOLTAGE       │
+│ REGULATOR IC  │
+└───────┬───────┘
+        ▼
+   STABLE DC
+        │
+        ▼
+       LOAD
+</div>
+
+<h3>Regulator IC के Functions</h3>
+<ul>
+<li>Specified output voltage maintain करना।</li>
+<li>Input voltage variation के प्रभाव को reduce करना।</li>
+<li>Load variation के दौरान output stability improve करना।</li>
+<li>कुछ ICs में thermal और current protection features उपलब्ध हो सकते हैं।</li>
+</ul>
+
+<div class="note"><b>Example:</b> 7805 एक commonly known fixed positive linear regulator IC है जो suitable input conditions में approximately 5 V regulated output के लिए designed है। Actual operating limits के लिए specific datasheet देखना आवश्यक है।</div>
+
+<h3>Linear IC Supply की Basic Working</h3>
+<p>Transformer और rectifier के बाद filter capacitor pulsating DC को smoother बनाता है। Regulator IC input DC को process करके controlled output voltage देता है। Excess voltage का एक हिस्सा linear regulator में heat के रूप में dissipate हो सकता है, इसलिए high input-output voltage difference पर efficiency concern हो सकता है।</p>
+</section>
+
+<section id="smps">
+<h2>5. Basic Switch Mode Power Supply (SMPS)</h2>
+<p><strong>SMPS (Switch Mode Power Supply)</strong> एक power supply architecture है जिसमें semiconductor switching devices high frequency पर operate करके electrical energy को efficiently transfer और regulate करते हैं। SMPS computers, televisions, adapters, networking devices और कई other electronic systems में widely used है।</p>
+
+<div class="diagram">
+AC INPUT
+   │
+   ▼
+┌────────────────┐
+│ RECTIFIER &    │
+│ INPUT FILTER   │
+└───────┬────────┘
+        ▼
+   HIGH-VOLTAGE DC
+        │
+        ▼
+┌────────────────┐
+│ HIGH-FREQUENCY │
+│ SWITCH         │
+└───────┬────────┘
+        ▼
+┌────────────────┐
+│ HF TRANSFORMER │
+│ / INDUCTOR     │
+└───────┬────────┘
+        ▼
+┌────────────────┐
+│ OUTPUT         │
+│ RECTIFIER      │
+└───────┬────────┘
+        ▼
+┌────────────────┐
+│ OUTPUT FILTER  │
+└───────┬────────┘
+        ▼
+    DC OUTPUT
+        ▲
+        │
+┌───────┴────────┐
+│ FEEDBACK &     │
+│ CONTROL        │
+└────────────────┘
+</div>
+
+<h3>SMPS Working – Basic Steps</h3>
+<div class="step"><b>1. Input Rectification:</b> AC input को rectifier और filter stage द्वारा DC bus में convert किया जा सकता है।</div>
+<div class="step"><b>2. Switching:</b> Power semiconductor switch high frequency पर rapidly ON/OFF होता है।</div>
+<div class="step"><b>3. Energy Transfer:</b> Switching waveform transformer/inductor के माध्यम से energy transfer को control करता है।</div>
+<div class="step"><b>4. Output Rectification:</b> Secondary/output side पर high-frequency waveform को rectified किया जाता है।</div>
+<div class="step"><b>5. Filtering:</b> Capacitor और inductor जैसे components output ripple reduce करते हैं।</div>
+<div class="step"><b>6. Feedback:</b> Output को sense करके controller switching duty/frequency आदि को adjust कर सकता है, जिससे regulated output maintain करने में मदद मिलती है।</div>
+
+<h3>SMPS के Advantages</h3>
+<ul>
+<li>Linear supplies की तुलना में many applications में higher efficiency.</li>
+<li>High-frequency operation के कारण transformer/inductor size कम किया जा सकता है।</li>
+<li>Wide input/output conversion requirements के लिए suitable designs उपलब्ध हैं।</li>
+<li>Computers और compact electronic devices में practical और widely used.</li>
+</ul>
+
+<h3>Limitations</h3>
+<ul>
+<li>Circuit design comparatively complex होता है।</li>
+<li>High-frequency switching के कारण EMI/noise management आवश्यक हो सकता है।</li>
+<li>Troubleshooting में switching devices, controller, feedback और protection circuits को समझना पड़ता है।</li>
+</ul>
+</section>
+
+<section id="ups">
+<h2>6. Basic Uninterruptible Power Supply (UPS)</h2>
+<p><strong>UPS (Uninterruptible Power Supply)</strong> ऐसा system है जो mains power fail या unacceptable होने पर connected equipment को battery-backed power provide करता है। UPS computers, servers, networking equipment और other critical loads के लिए useful है।</p>
+
+<div class="diagram">
+             AC MAINS
+                │
+                ▼
+        ┌──────────────┐
+        │ UPS CHARGER  │
+        └──────┬───────┘
+               │
+             BATTERY
+               │
+               ▼
+        ┌──────────────┐
+        │ INVERTER     │
+        └──────┬───────┘
+               │
+               ▼
+             LOAD
+
+Normal Mains → Load + Battery Charging
+Power Failure → Battery → Inverter → Load
+</div>
+
+<h3>UPS के Basic Functions</h3>
+<ul>
+<li>Mains उपलब्ध होने पर battery को charge करना।</li>
+<li>Power failure के दौरान battery energy से load को power देना।</li>
+<li>कुछ UPS designs voltage fluctuations और power-quality problems से additional protection दे सकते हैं।</li>
+<li>Critical equipment को abrupt power interruption से बचाने में मदद करना।</li>
+</ul>
+
+<h3>Basic UPS Types</h3>
+<table>
+<tr><th>Type</th><th>Basic Idea</th></tr>
+<tr><td>Offline / Standby UPS</td><td>Normal condition में load mains से चलता है; failure पर inverter/battery path active होता है।</td></tr>
+<tr><td>Line-Interactive UPS</td><td>Battery backup के साथ voltage regulation का additional mechanism होता है।</td></tr>
+<tr><td>Online / Double-Conversion UPS</td><td>Load को continuously conditioned power देने के लिए rectifier-inverter path का उपयोग करता है; critical applications में useful.</td></tr>
+</table>
+
+<h3>UPS में Battery का Role</h3>
+<p>Battery electrical energy को stored form में रखती है। Mains failure पर battery inverter को DC energy provide करती है और inverter उसे suitable AC output में convert करता है, जिससे AC loads continue operate कर सकते हैं। Backup time battery capacity, load power और UPS efficiency जैसे factors पर depend करता है।</p>
+</section>
+
+<section id="compare">
+<h2>7. Power Supply Comparison</h2>
+<table>
+<tr><th>Feature</th><th>Zener Regulator</th><th>IC Linear Supply</th><th>SMPS</th><th>UPS</th></tr>
+<tr><td>Main Purpose</td><td>Simple voltage regulation</td><td>Stable regulated DC output</td><td>Efficient power conversion/regulation</td><td>Power backup + conditioning</td></tr>
+<tr><td>Main Principle</td><td>Zener breakdown</td><td>Linear regulation</td><td>High-frequency switching</td><td>Battery + inverter based backup</td></tr>
+<tr><td>Complexity</td><td>Low</td><td>Low to medium</td><td>Higher</td><td>Medium to high</td></tr>
+<tr><td>Typical Use</td><td>Low-power/reference circuits</td><td>Electronic circuits</td><td>Computer/adapters/equipment</td><td>PC/server/critical loads</td></tr>
+</table>
+
+<h3>Important Terms</h3>
+<div class="grid">
+<div class="card"><b>Ripple</b><p>DC output में बचा हुआ unwanted AC component.</p></div>
+<div class="card"><b>Regulation</b><p>Input या load changes के बावजूद output को stable रखने की capability.</p></div>
+<div class="card"><b>Efficiency</b><p>Useful output power और input power का ratio.</p></div>
+<div class="card"><b>Inverter</b><p>DC electrical energy को AC output में convert करने वाला power electronic circuit.</p></div>
+</div>
+</section>
+
+<section id="exam">
+<h2>8. Important Exam Questions</h2>
+<div class="exam">
+<b>Long Answer Questions</b><br><br>
+1. Regulated Power Supply क्या है? इसके basic block diagram को समझाइए।<br>
+2. Zener diode का उपयोग करके basic regulated power supply का circuit और working समझाइए।<br>
+3. Zener voltage regulator में series resistor का क्या कार्य है?<br>
+4. IC-based power supply का block diagram बनाकर प्रत्येक stage का कार्य समझाइए।<br>
+5. SMPS क्या है? इसका block diagram और working समझाइए।<br>
+6. SMPS के advantages और limitations लिखिए।<br>
+7. UPS क्या है? इसका basic block diagram और working समझाइए।<br>
+8. Offline, Line-Interactive और Online UPS में अंतर लिखिए।<br>
+9. Zener regulator, IC linear power supply और SMPS की तुलना कीजिए।<br>
+10. Power supply में transformer, rectifier, filter और regulator की भूमिका समझाइए।
+</div>
+
+<h3>Short Answer Questions</h3>
+<ul>
+<li>Regulated power supply क्या है?</li>
+<li>Zener diode regulator किस region में operate किया जाता है?</li>
+<li>Zener regulator में series resistor क्यों लगाया जाता है?</li>
+<li>Rectifier का क्या कार्य है?</li>
+<li>Filter capacitor का क्या कार्य है?</li>
+<li>IC-based regulator का एक example लिखिए।</li>
+<li>SMPS का full form क्या है?</li>
+<li>SMPS में switching का क्या महत्व है?</li>
+<li>UPS का full form क्या है?</li>
+<li>UPS में battery का क्या कार्य है?</li>
+<li>Inverter क्या करता है?</li>
+<li>UPS के तीन basic types कौन से हैं?</li>
+</ul>
+
+<div class="important">
+<b>One-Minute Revision:</b><br><br>
+Basic Supply → Transformer → Rectifier → Filter → Regulator → Load<br>
+Zener Regulator → Zener breakdown region → लगभग constant Vout<br>
+IC Supply → Rectifier + Filter + Regulator IC → Stable DC<br>
+SMPS → High-frequency switching → Efficient conversion/regulation<br>
+UPS → Mains + Battery + Inverter → Power backup<br>
+Power Failure → Battery → Inverter → Load
+</div>
+</section>
+</main>
+</div>
+</body>
+</html>

@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Spreadsheet – MS Excel Expanded Notes</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:#f3f6fa;color:#1f2937;font-family:Segoe UI,Arial,sans-serif;line-height:1.8}
+.layout{max-width:1550px;margin:auto;padding:14px;display:grid;grid-template-columns:300px 1fr;gap:18px}
+aside{position:sticky;top:14px;height:calc(100vh - 28px);overflow:auto;background:#fff;padding:20px;border-radius:18px;box-shadow:0 5px 22px #0001}
+aside h2{margin:0 0 12px;color:#172554;border-left:5px solid #2563eb;padding-left:10px}
+aside a{display:block;padding:7px 9px;margin:3px 0;border-radius:8px;text-decoration:none;color:#374151;font-size:14px}
+aside a:hover{background:#e0e7ff;color:#1d4ed8}
+main{background:#fff;border-radius:20px;box-shadow:0 5px 22px #0001;overflow:hidden}
+.hero{padding:34px;background:linear-gradient(135deg,#dcfce7,#dbeafe,#f8fafc)}
+.hero h1{margin:0 0 8px;font-size:36px;color:#14532d}.hero p{margin:5px 0;color:#475569}
+section{padding:28px 30px;border-bottom:1px solid #e5e7eb}
+h2{font-size:28px;color:#172554;border-left:5px solid #2563eb;padding-left:12px;margin:0 0 18px}
+h3{font-size:21px;color:#1e3a8a;margin:24px 0 8px}
+p{font-size:16.5px;margin:10px 0}li{font-size:16px;margin:7px 0}
+.note,.exam,.important{padding:16px 18px;border-radius:12px;margin:18px 0}
+.note{background:#eff6ff;border-left:5px solid #3b82f6}
+.exam{background:#ecfdf5;border-left:5px solid #10b981}
+.important{background:#fff7ed;border-left:5px solid #f97316}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px;margin:18px 0}
+.card{background:#f8fafc;border:1px solid #dbe3ef;border-radius:14px;padding:17px}
+.card h4{margin-top:0;color:#1d4ed8}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:15px}
+th,td{border:1px solid #cbd5e1;padding:11px;vertical-align:top;text-align:left}
+th{background:#eef2ff}
+.flow{background:#09090b;color:#f8fafc;padding:20px;border-radius:14px;text-align:center;font-family:Consolas,monospace;overflow:auto;margin:18px 0}
+.code{background:#09090b;color:#e5e7eb;padding:18px;border-radius:14px;font-family:Consolas,monospace;white-space:pre-wrap;overflow:auto;margin:18px 0}
+.badge{display:inline-block;background:#dcfce7;color:#166534;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700}
+kbd{background:#111827;color:#fff;padding:2px 6px;border-radius:4px;font-family:Consolas,monospace}
+.formula{background:#f1f5f9;border:1px dashed #94a3b8;padding:12px 15px;border-radius:10px;font-family:Consolas,monospace;margin:12px 0}
+@media(max-width:900px){.layout{display:block;padding:5px}aside{display:none}.hero{padding:24px 18px}.hero h1{font-size:28px}section{padding:22px 18px}h2{font-size:23px}.grid{grid-template-columns:1fr}p,li{font-size:15px}table{display:block;overflow-x:auto}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside>
+<h2>Topics</h2>
+<a href="#intro">1. Introduction to Spreadsheet</a>
+<a href="#create">2. Creating Workbook</a>
+<a href="#save">3. Saving & Closing</a>
+<a href="#edit">4. Editing Workbook</a>
+<a href="#sheets">5. Worksheets</a>
+<a href="#data">6. Entering Data</a>
+<a href="#copy">7. Copying & Moving Cells</a>
+<a href="#formula">8. Formulas</a>
+<a href="#operators">9. Operators in Formula</a>
+<a href="#math">10. Mathematical Functions</a>
+<a href="#logical">11. Logical Functions</a>
+<a href="#statistical">12. Statistical Functions</a>
+<a href="#text">13. Text Functions</a>
+<a href="#financial">14. Financial Functions</a>
+<a href="#date">15. Date & Time Functions</a>
+<a href="#wizard">16. Function Wizard</a>
+<a href="#format">17. Worksheet Formatting</a>
+<a href="#alignment">18. Data Alignment</a>
+<a href="#number">19. Number/Date/Currency Formats</a>
+<a href="#font">20. Font, Borders & Colors</a>
+<a href="#print">21. Printing Worksheets</a>
+<a href="#charts">22. Charts & Graphs</a>
+<a href="#lookup">23. LOOKUP / VLOOKUP</a>
+<a href="#revision">24. Revision & Questions</a>
+</aside>
+
+<main>
+<div class="hero">
+<span class="badge">SPREADSHEET • MS EXCEL</span>
+<h1>Spreadsheet – MS Excel Concepts</h1>
+<p><strong>Detailed PGDCA Notes</strong> • Hindi + English • Exam-Oriented Theory + Practical Steps</p>
+<p>Workbook • Worksheets • Data • Formulas • Functions • Formatting • Printing • Charts • LOOKUP/VLOOKUP</p>
+</div>
+
+<section id="intro">
+<h2>1. Introduction to Spreadsheet</h2>
+<p><strong>Spreadsheet</strong> एक electronic worksheet है जिसमें data को rows और columns के रूप में व्यवस्थित करके store, calculate, analyze और present किया जाता है। <strong>MS Excel</strong> Microsoft का spreadsheet application है। इसका उपयोग numerical calculations, data organization, reports, tables, charts और financial calculations के लिए किया जाता है।</p>
+<div class="grid">
+<div class="card"><h3>Workbook</h3><p>Excel की पूरी file को Workbook कहा जाता है। इसमें एक या अधिक worksheets हो सकती हैं।</p></div>
+<div class="card"><h3>Worksheet</h3><p>Workbook के अंदर working sheet होती है जिसमें rows, columns और cells होते हैं।</p></div>
+<div class="card"><h3>Cell</h3><p>Row और column का intersection cell कहलाता है, जैसे A1, B5.</p></div>
+<div class="card"><h3>Formula</h3><p>Calculation करने के लिए expression, जो सामान्यतः <strong>=</strong> से शुरू होता है।</p></div>
+</div>
+<div class="exam"><b>Exam Definition:</b> MS Excel is a spreadsheet application used to enter, organize, calculate, analyze and present data in tabular form.</div>
+</section>
+
+<section id="create">
+<h2>2. Creating a Workbook</h2>
+<p>Workbook Excel की primary file structure है। नया workbook blank workbook या template से बनाया जा सकता है।</p>
+<ol>
+<li>Microsoft Excel open करें।</li>
+<li><strong>File → New</strong> पर जाएँ।</li>
+<li><strong>Blank Workbook</strong> select करें।</li>
+<li>नई workbook screen पर दिखाई देगी।</li>
+<li>अब cells में data enter किया जा सकता है।</li>
+</ol>
+<div class="flow">MS Excel → File → New → Blank Workbook → Enter Data → Format → Save</div>
+</section>
+
+<section id="save">
+<h2>3. Saving and Closing a Workbook</h2>
+<h3>Saving</h3>
+<p>Workbook को permanent storage में रखने के लिए Save command का उपयोग किया जाता है।</p>
+<ol>
+<li><strong>File → Save</strong> या <kbd>Ctrl + S</kbd> दबाएँ।</li>
+<li>File location select करें।</li>
+<li>Workbook का name enter करें।</li>
+<li>Required Excel format चुनें, यदि आवश्यक हो।</li>
+<li><strong>Save</strong> click करें।</li>
+</ol>
+<h3>Closing</h3>
+<ol>
+<li>Pending changes save करें।</li>
+<li><strong>File → Close</strong> चुनें या window close करें।</li>
+</ol>
+<div class="note"><b>Save vs Save As:</b> Save current workbook के changes store करता है, जबकि Save As नई file name/location/format में copy save करने के लिए उपयोग होता है।</div>
+</section>
+
+<section id="edit">
+<h2>4. Editing a Workbook</h2>
+<p>Editing का अर्थ workbook में existing data या structure को modify करना है। इसमें data बदलना, delete करना, insert करना, formatting करना और formulas update करना शामिल हो सकता है।</p>
+<ul>
+<li>Cell select करके नया data type करना।</li>
+<li>Cell पर double-click करके existing content edit करना।</li>
+<li>Formula bar से content modify करना।</li>
+<li>Cut, Copy और Paste का उपयोग करना।</li>
+<li>Rows/columns insert या delete करना।</li>
+<li>Worksheets add, remove या rename करना।</li>
+</ul>
+</section>
+
+<section id="sheets">
+<h2>5. Inserting and Deleting Worksheets</h2>
+<h3>Insert Worksheet</h3>
+<ol>
+<li>Workbook के नीचे worksheet tabs देखें।</li>
+<li><strong>+</strong> button click करें या Insert Sheet option use करें।</li>
+<li>नई worksheet create हो जाएगी।</li>
+</ol>
+<h3>Delete Worksheet</h3>
+<ol>
+<li>जिस sheet को हटाना है उसकी tab पर right-click करें।</li>
+<li><strong>Delete</strong> select करें।</li>
+<li>यदि confirmation आए तो confirm करें।</li>
+</ol>
+<div class="important">Worksheet delete करने से उस sheet का data हट सकता है, इसलिए important data पहले save/check करें।</div>
+</section>
+
+<section id="data">
+<h2>6. Entering Data in a Cell</h2>
+<p>Excel worksheet में information cells में enter की जाती है। Data के common forms हैं: text, numbers, dates और formulas.</p>
+<table>
+<tr><th>Data Type</th><th>Example</th><th>Use</th></tr>
+<tr><td>Text</td><td>Student Name</td><td>Names/labels</td></tr>
+<tr><td>Number</td><td>85</td><td>Marks/quantity</td></tr>
+<tr><td>Date</td><td>20-08-2026</td><td>Date records</td></tr>
+<tr><td>Formula</td><td>=A1+B1</td><td>Calculation</td></tr>
+</table>
+<ol>
+<li>Required cell select करें।</li>
+<li>Data type करें।</li>
+<li><kbd>Enter</kbd> दबाएँ।</li>
+</ol>
+</section>
+
+<section id="copy">
+<h2>7. Copying and Moving Data from Selected Cells</h2>
+<h3>Copy</h3>
+<p>Copy selected content की duplicate copy बनाता है, जबकि original data अपनी जगह रहता है।</p>
+<ol><li>Cells select करें।</li><li><kbd>Ctrl+C</kbd> दबाएँ।</li><li>Destination cell select करें।</li><li><kbd>Ctrl+V</kbd> दबाएँ।</li></ol>
+<h3>Move</h3>
+<p>Move में content को एक location से दूसरी location पर transfer किया जाता है।</p>
+<ol><li>Cells select करें।</li><li><kbd>Ctrl+X</kbd> दबाएँ।</li><li>Destination cell select करें।</li><li><kbd>Ctrl+V</kbd> दबाएँ।</li></ol>
+<table><tr><th>Operation</th><th>Shortcut</th><th>Result</th></tr><tr><td>Copy</td><td>Ctrl+C</td><td>Original + duplicate</td></tr><tr><td>Move</td><td>Ctrl+X, Ctrl+V</td><td>Original location से हटकर नई location</td></tr></table>
+</section>
+
+<section id="formula">
+<h2>8. Entering Formula</h2>
+<p><strong>Formula</strong> एक expression है जो Excel को calculation करने का instruction देता है। Formula सामान्यतः <strong>=</strong> sign से शुरू होता है।</p>
+<div class="formula">=A1+B1<br>=A2-B2<br>=A3*B3<br>=A4/B4</div>
+<h3>Formula Enter करने के Steps</h3>
+<ol>
+<li>Result वाली cell select करें।</li>
+<li><strong>=</strong> type करें।</li>
+<li>Cell references/operators enter करें।</li>
+<li><kbd>Enter</kbd> दबाएँ।</li>
+</ol>
+<p>यदि A1 में 20 और B1 में 30 है, तो <strong>=A1+B1</strong> का result 50 होगा।</p>
+</section>
+
+<section id="operators">
+<h2>9. Handling Operators in Formula</h2>
+<p>Operators values और cell references के बीच calculation या comparison करते हैं।</p>
+<table>
+<tr><th>Category</th><th>Operators</th><th>Example</th></tr>
+<tr><td>Arithmetic</td><td>+ − * / ^ %</td><td>=A1+B1</td></tr>
+<tr><td>Comparison</td><td>=, &gt;, &lt;, &gt;=, &lt;=, &lt;&gt;</td><td>=A1&gt;50</td></tr>
+<tr><td>Text</td><td>&amp;</td><td>=A1&amp;" "&amp;B1</td></tr>
+</table>
+<h3>Operator Precedence</h3>
+<p>Formula में operators की precedence result को प्रभावित कर सकती है। आवश्यकता होने पर parentheses <strong>( )</strong> का उपयोग करके calculation order स्पष्ट करें।</p>
+<div class="formula">=(A1+B1)*C1</div>
+</section>
+
+<section id="math">
+<h2>10. Mathematical Functions</h2>
+<p>Mathematical functions numerical data पर calculations को आसान बनाती हैं।</p>
+<table>
+<tr><th>Function</th><th>Purpose</th><th>Example</th></tr>
+<tr><td>SUM</td><td>Values का total</td><td>=SUM(A1:A10)</td></tr>
+<tr><td>PRODUCT</td><td>Values का product</td><td>=PRODUCT(A1:A5)</td></tr>
+<tr><td>ABS</td><td>Absolute value</td><td>=ABS(A1)</td></tr>
+<tr><td>ROUND</td><td>Number round करना</td><td>=ROUND(A1,2)</td></tr>
+<tr><td>MAX</td><td>Largest value</td><td>=MAX(A1:A10)</td></tr>
+<tr><td>MIN</td><td>Smallest value</td><td>=MIN(A1:A10)</td></tr>
+</table>
+<div class="note">Function में range जैसे <strong>A1:A10</strong> का अर्थ A1 से A10 तक cells हैं।</div>
+</section>
+
+<section id="logical">
+<h2>11. Logical Functions</h2>
+<p>Logical functions conditions test करने और condition के आधार पर result देने के लिए उपयोग होती हैं।</p>
+<h3>IF Function</h3>
+<div class="formula">=IF(A1&gt;=40,"Pass","Fail")</div>
+<p>यदि A1 की value 40 या उससे अधिक है तो Pass, अन्यथा Fail result मिलेगा।</p>
+<h3>AND</h3>
+<div class="formula">=AND(A1&gt;=40,B1&gt;=40)</div>
+<p>सभी specified conditions TRUE होने पर TRUE देता है।</p>
+<h3>OR</h3>
+<div class="formula">=OR(A1&gt;=40,B1&gt;=40)</div>
+<p>कम-से-कम एक condition TRUE होने पर TRUE देता है।</p>
+</section>
+
+<section id="statistical">
+<h2>12. Statistical Functions</h2>
+<p>Statistical functions data का summary और analysis करने में मदद करती हैं।</p>
+<table>
+<tr><th>Function</th><th>Purpose</th><th>Example</th></tr>
+<tr><td>AVERAGE</td><td>Average निकालना</td><td>=AVERAGE(A1:A10)</td></tr>
+<tr><td>COUNT</td><td>Numeric cells count करना</td><td>=COUNT(A1:A10)</td></tr>
+<tr><td>COUNTA</td><td>Non-empty cells count करना</td><td>=COUNTA(A1:A10)</td></tr>
+<tr><td>COUNTIF</td><td>Condition के आधार पर count</td><td>=COUNTIF(A1:A10,">=40")</td></tr>
+<tr><td>MEDIAN</td><td>Middle value</td><td>=MEDIAN(A1:A10)</td></tr>
+<tr><td>MODE</td><td>Most frequently occurring value</td><td>=MODE.SNGL(A1:A10)</td></tr>
+</table>
+</section>
+
+<section id="text">
+<h2>13. Text Functions</h2>
+<p>Text functions names, codes, addresses और अन्य textual data को manipulate करने के लिए उपयोग होती हैं।</p>
+<table>
+<tr><th>Function</th><th>Purpose</th><th>Example</th></tr>
+<tr><td>LEFT</td><td>Left side से characters लेना</td><td>=LEFT(A1,3)</td></tr>
+<tr><td>RIGHT</td><td>Right side से characters लेना</td><td>=RIGHT(A1,3)</td></tr>
+<tr><td>MID</td><td>Middle से characters लेना</td><td>=MID(A1,2,4)</td></tr>
+<tr><td>LEN</td><td>Characters की संख्या</td><td>=LEN(A1)</td></tr>
+<tr><td>UPPER</td><td>Uppercase text</td><td>=UPPER(A1)</td></tr>
+<tr><td>LOWER</td><td>Lowercase text</td><td>=LOWER(A1)</td></tr>
+<tr><td>TRIM</td><td>Extra spaces remove करना</td><td>=TRIM(A1)</td></tr>
+<tr><td>CONCAT</td><td>Text combine करना</td><td>=CONCAT(A1,B1)</td></tr>
+</table>
+</section>
+
+<section id="financial">
+<h2>14. Financial Functions</h2>
+<p>Financial functions loans, investments और financial planning से जुड़े calculations में उपयोग होती हैं।</p>
+<table>
+<tr><th>Function</th><th>Purpose</th><th>Example</th></tr>
+<tr><td>PMT</td><td>Loan/payment amount calculate करना</td><td>=PMT(rate,nper,pv)</td></tr>
+<tr><td>FV</td><td>Future value calculate करना</td><td>=FV(rate,nper,pmt,pv)</td></tr>
+<tr><td>PV</td><td>Present value calculate करना</td><td>=PV(rate,nper,pmt)</td></tr>
+<tr><td>NPV</td><td>Net present value calculation</td><td>=NPV(rate,value1,value2,...)</td></tr>
+</table>
+<div class="exam"><b>Exam Point:</b> Financial functions का प्रमुख उपयोग loans, investments, cash flows और financial decision-making में होता है।</div>
+</section>
+
+<section id="date">
+<h2>15. Date and Time Functions</h2>
+<p>Date और time functions dates/times को create, calculate और analyze करने के लिए उपयोग होती हैं।</p>
+<table>
+<tr><th>Function</th><th>Purpose</th><th>Example</th></tr>
+<tr><td>TODAY</td><td>Current date</td><td>=TODAY()</td></tr>
+<tr><td>NOW</td><td>Current date and time</td><td>=NOW()</td></tr>
+<tr><td>DATE</td><td>Date create करना</td><td>=DATE(2026,8,20)</td></tr>
+<tr><td>DAY</td><td>Date से day निकालना</td><td>=DAY(A1)</td></tr>
+<tr><td>MONTH</td><td>Month निकालना</td><td>=MONTH(A1)</td></tr>
+<tr><td>YEAR</td><td>Year निकालना</td><td>=YEAR(A1)</td></tr>
+</table>
+</section>
+
+<section id="wizard">
+<h2>16. Using Function Wizard</h2>
+<p><strong>Function Wizard</strong function select करने और उसके arguments enter करने में सहायता करने वाला interface है। इससे complex functions को manually याद करके type करने की आवश्यकता कम होती है।</p>
+<h3>General Steps</h3>
+<ol>
+<li>Result वाली cell select करें।</li>
+<li>Formula/Function insertion option open करें।</li>
+<li>Required function search/select करें।</li>
+<li>Function arguments या cell ranges provide करें।</li>
+<li>Result preview/check करें।</li>
+<li>Function apply करें।</li>
+</ol>
+<div class="flow">Select Cell → Insert Function → Select Function → Enter Arguments → Check Result → Apply</div>
+</section>
+
+<section id="format">
+<h2>17. Formatting a Worksheet</h2>
+<p>Worksheet formatting का उद्देश्य data को readable, organized और professional बनाना है। Formatting cell, row, column और complete worksheet level पर की जा सकती है।</p>
+<div class="grid">
+<div class="card"><h3>Cell Formatting</h3><p>Alignment, font, number format, borders और colors.</p></div>
+<div class="card"><h3>Row/Column</h3><p>Width, height और visibility manage करना।</p></div>
+<div class="card"><h3>Data Format</h3><p>Number, date, percentage और currency format.</p></div>
+<div class="card"><h3>Visual Formatting</h3><p>Fonts, fills, borders और colors.</p></div>
+</div>
+</section>
+
+<section id="alignment">
+<h2>18. Changing Data Alignment</h2>
+<p>Alignment cell के अंदर content की position निर्धारित करता है।</p>
+<table>
+<tr><th>Alignment</th><th>Meaning</th></tr>
+<tr><td>Left</td><td>Content को left side रखना।</td></tr>
+<tr><td>Center</td><td>Content को center में रखना।</td></tr>
+<tr><td>Right</td><td>Content को right side रखना।</td></tr>
+<tr><td>Vertical Alignment</td><td>Top, middle या bottom position.</td></tr>
+</table>
+<ol><li>Cells select करें।</li><li>Home tab में Alignment group open करें।</li><li>Required horizontal/vertical alignment choose करें।</li></ol>
+</section>
+
+<section id="number">
+<h2>19. Date, Number, Character and Currency Format</h2>
+<p>Cell values को सही display करने के लिए appropriate number format select किया जाता है।</p>
+<table>
+<tr><th>Format</th><th>Example</th><th>Use</th></tr>
+<tr><td>Number</td><td>1,250.50</td><td>Numerical values</td></tr>
+<tr><td>Date</td><td>20-08-2026</td><td>Date values</td></tr>
+<tr><td>Currency</td><td>₹ 25,000</td><td>Money values</td></tr>
+<tr><td>Percentage</td><td>75%</td><td>Rates/percentages</td></tr>
+<tr><td>Text</td><td>00125</td><td>Codes/identifiers जिन्हें text के रूप में रखना हो</td></tr>
+</table>
+<ol><li>Cells select करें।</li><li>Number Format options खोलें।</li><li>Required category select करें।</li><li>Decimals/symbol/date style आवश्यकता के अनुसार set करें।</li></ol>
+</section>
+
+<section id="font">
+<h2>20. Changing Font, Adding Borders and Colors</h2>
+<h3>Font</h3>
+<p>Font formatting में font family, size, bold, italic, underline और font color शामिल हैं।</p>
+<h3>Borders</h3>
+<p>Borders cells/table के boundaries को visually separate करते हैं।</p>
+<h3>Colors</h3>
+<p>Fill color या font color का उपयोग headings, totals और important data को highlight करने के लिए किया जा सकता है।</p>
+<ol>
+<li>Required cells select करें।</li>
+<li>Home tab में Font options use करें।</li>
+<li>Font family और size select करें।</li>
+<li>Font Color या Fill Color चुनें।</li>
+<li>Borders option से suitable border apply करें।</li>
+</ol>
+</section>
+
+<section id="print">
+<h2>21. Printing Worksheets</h2>
+<p>Excel worksheet को paper/hard copy में print करने से पहले print area, orientation, scaling और page layout check करना महत्वपूर्ण है।</p>
+<ol>
+<li>Worksheet open करें।</li>
+<li><strong>File → Print</strong> या <kbd>Ctrl+P</kbd> दबाएँ।</li>
+<li>Printer select करें।</li>
+<li>Print settings में active sheet/selection/workbook option check करें।</li>
+<li>Copies और page range set करें।</li>
+<li>Orientation और paper size verify करें।</li>
+<li>Print Preview देखें।</li>
+<li><strong>Print</strong> click करें।</li>
+</ol>
+<div class="note"><b>Print Preview:</b> Printing से पहले worksheet pages में कैसी दिखाई देगी, यह check करने के लिए उपयोग होता है।</div>
+</section>
+
+<section id="charts">
+<h2>22. Charts and Graphs</h2>
+<p><strong>Chart</strong> data का graphical representation है। Charts complex numerical information को visually समझने और compare करने में सहायता करते हैं।</p>
+<div class="grid">
+<div class="card"><h3>Column Chart</h3><p>Categories की values compare करने के लिए।</p></div>
+<div class="card"><h3>Bar Chart</h3><p>Horizontal comparison के लिए।</p></div>
+<div class="card"><h3>Line Chart</h3><p>Time या continuous trend दिखाने के लिए।</p></div>
+<div class="card"><h3>Pie Chart</h3><p>Total में individual parts का proportion दिखाने के लिए।</p></div>
+<div class="card"><h3>Scatter Chart</h3><p>Two numerical variables के relationship को visualize करने के लिए।</p></div>
+</div>
+<h3>Creating a Chart</h3>
+<ol>
+<li>Data range select करें।</li>
+<li><strong>Insert → Charts</strong> खोलें।</li>
+<li>Required chart type select करें।</li>
+<li>Chart worksheet में insert करें।</li>
+</ol>
+<h3>Previewing a Chart</h3>
+<p>Chart insert करने के बाद उसकी size, position, labels, title और data representation को review करें। Print Preview में document के साथ final appearance भी check किया जा सकता है।</p>
+<h3>Modifying a Chart</h3>
+<ul>
+<li>Chart title change करना।</li>
+<li>Data series add/remove करना।</li>
+<li>Chart type बदलना।</li>
+<li>Legend और data labels adjust करना।</li>
+<li>Size और position बदलना।</li>
+</ul>
+<div class="flow">Select Data → Insert Chart → Choose Type → Add Title/Labels → Modify → Preview → Final Output</div>
+</section>
+
+<section id="lookup">
+<h2>23. LOOKUP / VLOOKUP</h2>
+<p><strong>LOOKUP</strong> और <strong>VLOOKUP</strong> functions table से related information खोजने के लिए उपयोग होती हैं। VLOOKUP का उपयोग विशेष रूप से तब किया जाता है जब lookup value table की first column में हो और required result किसी दूसरी column से लेना हो।</p>
+<h3>VLOOKUP Syntax</h3>
+<div class="formula">=VLOOKUP(lookup_value, table_array, col_index_num, [range_lookup])</div>
+<table>
+<tr><th>Argument</th><th>Meaning</th></tr>
+<tr><td>lookup_value</td><td>जिस value को search करना है।</td></tr>
+<tr><td>table_array</td><td>वह table/range जिसमें search और result data है।</td></tr>
+<tr><td>col_index_num</td><td>Result वाली column की position.</td></tr>
+<tr><td>range_lookup</td><td>Approximate या exact matching specify करता है।</td></tr>
+</table>
+<h3>Example</h3>
+<p>मान लें table में Student ID, Name और Marks हैं:</p>
+<table>
+<tr><th>A: ID</th><th>B: Name</th><th>C: Marks</th></tr>
+<tr><td>101</td><td>Ravi</td><td>78</td></tr>
+<tr><td>102</td><td>Neha</td><td>85</td></tr>
+<tr><td>103</td><td>Aman</td><td>91</td></tr>
+</table>
+<p>यदि E2 में <strong>102</strong> है और उसका Name निकालना है:</p>
+<div class="formula">=VLOOKUP(E2,A2:C4,2,FALSE)</div>
+<p>Result: <strong>Neha</strong></p>
+<p>यदि उसी ID के Marks निकालने हैं:</p>
+<div class="formula">=VLOOKUP(E2,A2:C4,3,FALSE)</div>
+<p>Result: <strong>85</strong></p>
+<div class="important"><b>Important:</b> Exact match के लिए सामान्यतः <strong>FALSE</strong> या <strong>0</strong> use किया जाता है। VLOOKUP में lookup column selected table range की first column होती है।</div>
+<h3>VLOOKUP के Uses</h3>
+<ul>
+<li>Student record search करना।</li>
+<li>Employee information निकालना।</li>
+<li>Product price lookup करना।</li>
+<li>Inventory data से details प्राप्त करना।</li>
+<li>Large tables में matching records find करना।</li>
+</ul>
+<h3>LOOKUP और VLOOKUP में Basic Difference</h3>
+<table>
+<tr><th>LOOKUP</th><th>VLOOKUP</th></tr>
+<tr><td>Lookup operation के लिए general function.</td><td>Vertical table lookup के लिए specific function.</td></tr>
+<tr><td>Lookup/vector या array approach में use हो सकता है।</td><td>Table की first column में value खोजकर specified column से result देता है।</td></tr>
+</table>
+</section>
+
+<section id="revision">
+<h2>24. Complete Excel Workflow, Shortcuts & Important Questions</h2>
+<div class="flow">Create Workbook → Add Worksheets → Enter Data → Edit/Copy/Move → Formulas → Functions → Format Cells → Charts → LOOKUP/VLOOKUP → Preview → Save → Print</div>
+<table>
+<tr><th>Shortcut</th><th>Function</th></tr>
+<tr><td>Ctrl+N</td><td>New workbook</td></tr>
+<tr><td>Ctrl+O</td><td>Open workbook</td></tr>
+<tr><td>Ctrl+S</td><td>Save workbook</td></tr>
+<tr><td>Ctrl+P</td><td>Print</td></tr>
+<tr><td>Ctrl+C</td><td>Copy</td></tr>
+<tr><td>Ctrl+X</td><td>Cut/Move</td></tr>
+<tr><td>Ctrl+V</td><td>Paste</td></tr>
+<tr><td>Ctrl+Z</td><td>Undo</td></tr>
+<tr><td>Ctrl+Y</td><td>Redo</td></tr>
+<tr><td>Ctrl+F</td><td>Find</td></tr>
+</table>
+<div class="exam">
+<b>Important Long-Answer Questions</b><br><br>
+1. Spreadsheet क्या है? MS Excel की प्रमुख features समझाइए।<br>
+2. Workbook और Worksheet में अंतर समझाइए।<br>
+3. MS Excel में workbook create, save और close करने की प्रक्रिया लिखिए।<br>
+4. Worksheet insert और delete करने की प्रक्रिया समझाइए।<br>
+5. Cell में data enter करने की प्रक्रिया तथा data types समझाइए।<br>
+6. Selected cells को copy और move करने की प्रक्रिया लिखिए।<br>
+7. Formula क्या है? Excel में operators के साथ formula समझाइए।<br>
+8. Mathematical, Logical और Statistical functions examples सहित समझाइए।<br>
+9. Text, Financial तथा Date & Time functions समझाइए।<br>
+10. Function Wizard क्या है? इसका उपयोग समझाइए।<br>
+11. Worksheet formatting क्या है? Alignment, number format, font, border और color समझाइए।<br>
+12. Excel worksheet print करने की प्रक्रिया लिखिए।<br>
+13. Charts and Graphs क्या हैं? विभिन्न chart types और उनके uses समझाइए।<br>
+14. Chart create, preview और modify करने की प्रक्रिया लिखिए।<br>
+15. LOOKUP और VLOOKUP क्या हैं? VLOOKUP syntax और example समझाइए।
+</div>
+<div class="note"><b>Exam Answer Format:</b> Definition → Purpose → Features/Types → Syntax/Steps → Example → Advantages/Uses → Conclusion. Formula वाले questions में formula और उसका example जरूर लिखें।</div>
+<h3>Unit Summary</h3>
+<p>MS Excel एक powerful spreadsheet application है जो data entry, organization, calculation, analysis और presentation के लिए उपयोग होता है। इस unit में workbook और worksheet management, cell data entry, copying/moving, formulas, operators, mathematical, logical, statistical, text, financial और date-time functions, Function Wizard, worksheet formatting, printing, charts और LOOKUP/VLOOKUP को cover किया गया है।</p>
+</section>
+</main>
+</div>
+</body>
+</html>

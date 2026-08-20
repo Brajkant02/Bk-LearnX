@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Internet and its Service Providers - PGDCA Notes</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#eef3f8;color:#202936;font-family:Segoe UI,Arial,sans-serif;line-height:1.9}
+.wrap{max-width:1500px;margin:auto;padding:15px;display:grid;grid-template-columns:285px 1fr;gap:18px}
+aside{position:sticky;top:15px;height:calc(100vh - 30px);overflow:auto;background:#fff;padding:20px;border-radius:18px;box-shadow:0 8px 28px #0001}
+aside h2{color:#075985;border-left:5px solid #0284c7;padding-left:10px}aside a{display:block;padding:7px 10px;color:#374151;text-decoration:none;border-radius:8px;font-size:14px}aside a:hover{background:#e0f2fe;color:#0369a1}
+main{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 8px 28px #0001}.hero{padding:42px;background:linear-gradient(135deg,#dbeafe,#e0f2fe,#f8fafc)}
+.hero h1{font-size:38px;color:#075985;margin:8px 0;line-height:1.3}.badge{display:inline-block;background:#bae6fd;color:#075985;padding:4px 13px;border-radius:20px;font-size:12px;font-weight:700}
+section{padding:32px;border-bottom:1px solid #e5e7eb}h2{font-size:29px;color:#075985;border-left:5px solid #0284c7;padding-left:13px}h3{font-size:22px;color:#0c4a6e;margin-top:27px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.card{background:#f0f9ff;border:1px solid #bae6fd;padding:18px;border-radius:14px}
+.note,.important,.exam{padding:18px 20px;border-radius:12px;margin:19px 0}.note{background:#eff6ff;border-left:5px solid #3b82f6}.important{background:#fff7ed;border-left:5px solid #f97316}.exam{background:#ecfdf5;border-left:5px solid #10b981}
+table{width:100%;border-collapse:collapse;margin:20px 0}th,td{border:1px solid #cbd5e1;padding:12px;text-align:left;vertical-align:top}th{background:#e0f2fe;color:#075985}
+.diagram{background:#090b0f;color:#e5e7eb;border-radius:14px;padding:22px;overflow:auto;font-family:Consolas,monospace;white-space:pre;line-height:1.5}.step{padding:14px 16px;background:#f8fafc;border-radius:10px;margin:9px 0;border-left:4px solid #0284c7}
+@media(max-width:900px){.wrap{display:block;padding:5px}aside{display:none}.hero{padding:28px 18px}.hero h1{font-size:29px}section{padding:24px 18px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<aside>
+<h2>Contents</h2>
+<a href="#internet">1. Internet</a><a href="#connection">2. Connection Types</a><a href="#isp">3. ISP</a><a href="#hosting">4. Web Hosting</a>
+<a href="#companies">5. Top Hosting Companies</a><a href="#iana">6. IANA</a><a href="#root">7. Root Zone Database</a><a href="#numbers">8. IANA Number Resources</a>
+<a href="#registries">9. LIR, NIR & RIR</a><a href="#rirs">10. Five RIRs</a><a href="#domain">11. Domain Registration</a><a href="#registrars">12. Domain Registrars</a>
+<a href="#india">13. Indian Special Domains</a><a href="#comparison">14. Quick Comparison</a><a href="#exam">15. Exam Questions</a>
+</aside>
+<main>
+<div class="hero"><span class="badge">DCCN • PGDCA • 10 PERIODS</span><h1>9. Internet and its Service Providers</h1><p><strong>Internet • Connection Types • ISP • Web Hosting • IANA • RIR/LIR/NIR • Domain Registration • Indian Domain Registrars</strong></p></div>
+
+<section id="internet"><h2>1. Internet</h2>
+<p><strong>Internet</strong> एक worldwide interconnected network of networks है, जिसमें computers, mobile devices, servers, routers और अन्य network devices standard communication protocols के माध्यम से आपस में communicate करते हैं। Internet किसी एक company या एक single network का नाम नहीं है; यह अलग-अलग networks और organizations का interconnected system है।</p>
+<h3>Internet की प्रमुख विशेषताएँ</h3><div class="grid">
+<div class="card"><b>Global Connectivity</b><p>दुनिया के अलग-अलग locations में स्थित networks और users को connect करता है।</p></div>
+<div class="card"><b>Resource Sharing</b><p>Websites, files, applications, databases और अन्य services access की जा सकती हैं।</p></div>
+<div class="card"><b>Communication</b><p>E-mail, messaging, voice/video communication आदि संभव बनाता है।</p></div>
+<div class="card"><b>Information Access</b><p>WWW और अन्य Internet services के माध्यम से information उपलब्ध कराता है।</p></div>
+</div>
+<h3>Internet और WWW में अंतर</h3><table><tr><th>Internet</th><th>WWW</th></tr><tr><td>Global network infrastructure है।</td><td>Internet पर चलने वाली information service है।</td></tr><tr><td>Multiple services को support करता है।</td><td>Web pages/resources पर मुख्य focus है।</td></tr></table></section>
+
+<section id="connection"><h2>2. Internet Connection Types</h2>
+<p>Internet connection type उस technology को बताता है जिसके द्वारा user device या local network ISP के network से connect होता है।</p>
+<div class="grid">
+<div class="card"><h3>1. Dial-up</h3><p>Traditional telephone line का उपयोग करके Internet access किया जाता था। इसकी speed कम और connection establishment relatively slow होता था।</p></div>
+<div class="card"><h3>2. DSL</h3><p>Digital Subscriber Line telephone infrastructure का उपयोग करके broadband connectivity प्रदान करती है।</p></div>
+<div class="card"><h3>3. Cable Broadband</h3><p>Cable television infrastructure के माध्यम से Internet access प्रदान किया जा सकता है।</p></div>
+<div class="card"><h3>4. Fiber Optic</h3><p>Optical fibre के माध्यम से high-speed Internet connectivity मिलती है। FTTH में fibre सीधे premises तक आ सकती है।</p></div>
+<div class="card"><h3>5. Fixed Wireless</h3><p>Wireless radio link के माध्यम से fixed location को ISP network से connect किया जाता है।</p></div>
+<div class="card"><h3>6. Mobile Internet</h3><p>Cellular networks जैसे 4G/5G के माध्यम से mobile devices और routers Internet से connect हो सकते हैं।</p></div>
+<div class="card"><h3>7. Satellite</h3><p>Satellite communication के माध्यम से Internet connectivity दी जा सकती है, विशेषकर remote areas में।</p></div>
+<div class="card"><h3>8. Leased Line</h3><p>Organizations के लिए dedicated connectivity प्रदान करने वाला business-oriented connection type।</p></div>
+</div>
+<div class="important"><b>Exam Point:</b> Connection type और ISP अलग concepts हैं। Connection type technology/method है, जबकि ISP वह organization/provider है जो Internet access service देता है।</div></section>
+
+<section id="isp"><h2>3. Internet Service Provider (ISP)</h2>
+<p><strong>ISP (Internet Service Provider)</strong> वह organization/company है जो individuals, homes, businesses या institutions को Internet connectivity और related services provide करती है। ISP customer को network access देने के साथ कई additional services भी provide कर सकता है।</p>
+<h3>ISP की Services</h3><ul><li>Internet connectivity</li><li>IP address assignment</li><li>DNS-related services</li><li>Business connectivity और leased connections</li><li>Web hosting / e-mail जैसी additional services</li><li>Customer support और network maintenance</li></ul>
+<div class="diagram">USER DEVICE
+     │
+     ▼
+HOME / OFFICE ROUTER
+     │
+     ▼
+ISP ACCESS NETWORK
+     │
+     ▼
+ISP CORE NETWORK
+     │
+     ▼
+INTERNET
+     │
+     ▼
+WEB / MAIL / CLOUD SERVERS</div>
+<h3>ISP के Examples</h3><p>India में consumer/business Internet services अलग-अलग providers द्वारा उपलब्ध कराई जाती हैं। उदाहरण के रूप में Jio, Airtel, BSNL और अन्य regional/service providers अलग-अलग connectivity technologies और plans offer करते हैं।</p></section>
+
+<section id="hosting"><h2>4. Web Hosting</h2>
+<p><strong>Web Hosting</strong> वह service है जिसमें website की files, databases और related resources को Internet-connected server infrastructure पर store किया जाता है ताकि users browser के माध्यम से website access कर सकें।</p>
+<h3>Website को Online करने के लिए क्या चाहिए?</h3><div class="step"><b>1. Domain Name:</b> Website का human-readable address, जैसे example.com.</div>
+<div class="step"><b>2. Hosting:</b> Website files/app को server infrastructure पर रखने की service.</div>
+<div class="step"><b>3. DNS:</b> Domain को appropriate server/IP information से connect करने में सहायता।</div>
+<div class="step"><b>4. Website/Application:</b> HTML, CSS, JavaScript, backend code, database आदि।</div>
+<h3>Types of Web Hosting</h3><table><tr><th>Type</th><th>Description</th></tr><tr><td>Shared Hosting</td><td>Multiple websites एक server/resources share करती हैं।</td></tr><tr><td>VPS</td><td>Virtual private server environment में allocated resources और greater control मिलता है।</td></tr><tr><td>Dedicated Server</td><td>पूरी physical server resource एक customer के लिए dedicated होती है।</td></tr><tr><td>Cloud Hosting</td><td>Multiple interconnected computing resources पर scalable hosting infrastructure।</td></tr><tr><td>Managed Hosting</td><td>Provider server management, updates, monitoring आदि में additional support देता है।</td></tr></table></section>
+
+<section id="companies"><h2>5. Top Web Hosting Companies</h2>
+<p>“Top” hosting company चुनना requirements, country, pricing, performance, support और technology पर depend करता है। Commonly known hosting providers में निम्न नाम शामिल हैं:</p>
+<table><tr><th>Company</th><th>Common Offering / Strength</th></tr><tr><td>Hostinger</td><td>Shared/cloud hosting और beginner-friendly website hosting.</td></tr><tr><td>GoDaddy</td><td>Domain registration के साथ web hosting और website services.</td></tr><tr><td>SiteGround</td><td>Managed web hosting और performance-focused hosting.</td></tr><tr><td>HostGator</td><td>Shared/VPS/dedicated hosting options.</td></tr><tr><td>Bluehost</td><td>Web hosting और WordPress-oriented hosting.</td></tr><tr><td>A2 Hosting</td><td>Web hosting और performance-oriented plans.</td></tr></table>
+<div class="note"><b>Exam Note:</b> “Top” companies की ranking समय के साथ बदल सकती है। Exam answer में “examples of popular hosting providers” लिखना अधिक appropriate है।</div></section>
+
+<section id="iana"><h2>6. IANA</h2>
+<p><strong>IANA (Internet Assigned Numbers Authority)</strong> Internet के globally unique identifiers की coordination से संबंधित functions का नाम है। IANA functions DNS Root, IP addressing, Autonomous System Numbers और protocol registries जैसे resources की global coordination में महत्वपूर्ण भूमिका निभाते हैं। citeturn0search3turn0search4</p>
+<h3>IANA के प्रमुख क्षेत्र</h3><div class="grid">
+<div class="card"><b>DNS Root Zone</b><p>Top-level domains की root-zone delegation information coordinate करना।</p></div>
+<div class="card"><b>Number Resources</b><p>IPv4, IPv6 और Autonomous System Numbers के global coordination से संबंधित registries maintain करना।</p></div>
+<div class="card"><b>Protocol Registries</b><p>Internet protocols में उपयोग होने वाले कई protocol names/numbers की central registry maintain करना।</p></div>
+<div class="card"><b>Global Coordination</b><p>Internet के globally unique identifiers की coordinated administration में भूमिका।</p></div>
+</div>
+<div class="important"><b>Important:</b> IANA आम users को सीधे सामान्य IP addresses allocate नहीं करता। Large IP address blocks RIRs को allocate किए जाते हैं और आगे hierarchical system के माध्यम से distribute होते हैं। citeturn0search4</div></section>
+
+<section id="root"><h2>7. IANA Root Zone Database</h2>
+<p><strong>IANA Root Zone Database</strong> top-level domains की delegation details का authoritative record है। इसमें gTLDs और country-code TLDs सहित TLD managers तथा technical delegation information से संबंधित data मिलता है। citeturn0search0turn0search2</p>
+<h3>Root Zone क्या है?</h3><p>DNS hierarchy में <strong>Root Zone</strong> सबसे ऊपर का level है। इसके नीचे .com, .org, .in, .edu आदि top-level domains आते हैं। IANA root zone management में TLD managers की delegation और related technical information coordinate करती है। citeturn0search2</p>
+<div class="diagram">DNS HIERARCHY
+
+                 ROOT (.)
+                   │
+       ┌───────────┼───────────┐
+       ▼           ▼           ▼
+      .com        .org        .in
+       │                        │
+       ▼                        ▼
+ example.com                example.in</div>
+<p>Root Zone Database में TLD का type और उसका manager जैसी information उपलब्ध होती है। citeturn0search0</p></section>
+
+<section id="numbers"><h2>8. IANA Number Resources</h2>
+<p>IANA Internet number resources की global coordination में IPv4, IPv6 और Autonomous System Numbers (ASN) से संबंधित registries maintain करती है। citeturn0search1turn0search4</p>
+<table><tr><th>Resource</th><th>Description</th></tr><tr><td>IPv4 Address Space</td><td>IPv4 address space की top-level coordination/delegation information.</td></tr><tr><td>IPv6 Address Space</td><td>IPv6 address space की global coordination.</td></tr><tr><td>Autonomous System Numbers</td><td>Internet routing में autonomous systems की identification के लिए number resources.</td></tr></table>
+<p>IPv4 addresses 32-bit और IPv6 addresses 128-bit होते हैं। IANA large address pools primarily RIRs को allocate करती है; RIRs अपने regions में network operators/ISPs को resources allocate करते हैं। citeturn0search4turn0search16</p></section>
+
+<section id="registries"><h2>9. LIR, NIR और RIR</h2>
+<h3>LIR – Local Internet Registry</h3><p><strong>LIR</strong> एक organization/registry arrangement है जो अपने local service area में Internet number resources के allocation/assignment से संबंधित कार्य कर सकती है। कई मामलों में ISPs और network operators LIR framework के माध्यम से IP resources प्राप्त करते हैं।</p>
+<h3>NIR – National Internet Registry</h3><p><strong>NIR</strong> किसी देश या national framework के अंतर्गत Internet number resources को manage/distribute करने वाली registry होती है। IANA के अनुसार users को IP addresses hierarchical system के माध्यम से ISP/LIR/NIR/RIR structures से प्राप्त हो सकते हैं। citeturn0search4</p>
+<h3>RIR – Regional Internet Registry</h3><p><strong>RIR</strong> एक regional organization है जो अपने geographic region में Internet number resources की allocation/registration policy और distribution का कार्य करती है। IANA वर्तमान में पाँच RIRs को global IPv4/IPv6/ASN resource system में recognize करती है। citeturn0search4turn0search16</p>
+<div class="diagram">IANA
+ │
+ ├──► RIR
+ │      │
+ │      ├──► LIR / NIR / Network Operators
+ │      │             │
+ │      │             ▼
+ │      │            ISP
+ │      │             │
+ │      │             ▼
+ │      │           USERS
+ │      │
+ └── Global Coordination</div></section>
+
+<section id="rirs"><h2>10. Regional Internet Registries (RIRs)</h2>
+<table><tr><th>RIR</th><th>Full Name</th><th>Region</th></tr>
+<tr><td><strong>AFRINIC</strong></td><td>African Network Information Centre</td><td>Africa region</td></tr>
+<tr><td><strong>APNIC</strong></td><td>Asia Pacific Network Information Centre</td><td>Asia/Pacific region</td></tr>
+<tr><td><strong>ARIN</strong></td><td>American Registry for Internet Numbers</td><td>Canada, USA और कुछ Caribbean areas</td></tr>
+<tr><td><strong>LACNIC</strong></td><td>Latin America and Caribbean Internet Addresses Registry</td><td>Latin America और कुछ Caribbean areas</td></tr>
+<tr><td><strong>RIPE NCC</strong></td><td>Réseaux IP Européens Network Coordination Centre</td><td>Europe, Middle East और Central Asia</td></tr>
+</table>
+<p>यह regional coverage IANA की current number-resources documentation के अनुसार है। citeturn0search4</p>
+<div class="important"><b>Easy Trick:</b> <strong>A-A-A-L-R</strong> → AFRINIC, APNIC, ARIN, LACNIC, RIPE NCC.</div></section>
+
+<section id="domain"><h2>11. Registration of a Domain</h2>
+<p><strong>Domain Registration</strong> में user/organization किसी available domain name को किसी accredited registrar के माध्यम से register करता है। .IN Registry के अनुसार registry स्वयं सामान्य registrant से direct registration नहीं करती; registrations accredited registrars के माध्यम से किए जाते हैं। citeturn0search12</p>
+<h3>General Domain Registration Steps</h3>
+<div class="step"><b>Step 1 – Choose Name:</b> Desired domain name select करें, जैसे mysite.in.</div>
+<div class="step"><b>Step 2 – Availability Check:</b> Registrar के search tool से check करें कि domain available है या नहीं।</div>
+<div class="step"><b>Step 3 – Select Extension:</b> .com, .in, .org आदि appropriate extension चुनें।</div>
+<div class="step"><b>Step 4 – Provide Details:</b> Registrant/contact details और required information provide करें।</div>
+<div class="step"><b>Step 5 – Payment:</b> Registration fee pay करें।</div>
+<div class="step"><b>Step 6 – DNS/Nameservers:</b> Domain को hosting/server की ओर point करने के लिए nameservers या DNS records configure करें।</div>
+<div class="step"><b>Step 7 – Renewal:</b> Registration validity maintain करने के लिए समय पर renewal करें।</div>
+<div class="diagram">USER
+  │
+  ▼
+DOMAIN REGISTRAR
+  │
+  ▼
+DOMAIN REGISTRY
+  │
+  ▼
+DOMAIN RECORD
+  │
+  ▼
+DNS / NAMESERVER
+  │
+  ▼
+WEB SERVER / HOSTING</div></section>
+
+<section id="registrars"><h2>12. Top Domain Registrars</h2>
+<p>Domain registrar वह service provider है जिसके माध्यम से users domain names register/manage कर सकते हैं। Popular registrars में GoDaddy, Namecheap, NameSilo, Dynadot, Squarespace Domains आदि जैसे providers शामिल हो सकते हैं। Registrar चुनते समय price, renewal cost, privacy features, DNS management, support और extension availability देखना चाहिए। Current industry lists में GoDaddy और Namecheap जैसे providers frequently included होते हैं। citeturn0search13turn0search15</p>
+<table><tr><th>Registrar Example</th><th>Typical Role</th></tr><tr><td>GoDaddy</td><td>Domain registration, DNS और hosting-related services.</td></tr><tr><td>Namecheap</td><td>Domain registration और DNS/website services.</td></tr><tr><td>Dynadot</td><td>Domain registration और domain management.</td></tr><tr><td>NameSilo</td><td>Domain registration और management services.</td></tr><tr><td>Squarespace Domains</td><td>Domain registration/management services.</td></tr></table>
+<div class="note"><b>Exam Note:</b> “Top” registrar की ranking fixed नहीं होती; इसे examples के रूप में लिखें और current market ranking को absolute न मानें।</div></section>
+
+<section id="india"><h2>13. Registration for .EDU.IN, .RES.IN, .AC.IN, .GOV.IN in India</h2>
+<p>India के .IN domain ecosystem में specific restricted/special domain zones के लिए designated registrars हैं। Current .IN Registry information के अनुसार <strong>NIC</strong> <strong>gov.in</strong> और <strong>mil.in</strong> के लिए exclusive registrar है, जबकि <strong>ERNET</strong> <strong>ac.in, edu.in और res.in</strong> के लिए exclusive registrar है। citeturn0search6</p>
+<table><tr><th>Domain</th><th>India में Exclusive Registrar</th><th>General Purpose</th></tr>
+<tr><td><strong>.GOV.IN</strong></td><td>National Informatics Centre (NIC)</td><td>Government entities/services के लिए</td></tr>
+<tr><td><strong>.EDU.IN</strong></td><td>ERNET India</td><td>Educational institutions/education-related eligible entities</td></tr>
+<tr><td><strong>.AC.IN</strong></td><td>ERNET India</td><td>Academic institutions/eligible academic entities</td></tr>
+<tr><td><strong>.RES.IN</strong></td><td>ERNET India</td><td>Research-related eligible entities</td></tr>
+</table>
+<div class="important"><b>Very Important for Exam:</b><br>
+<strong>gov.in → NIC</strong><br>
+<strong>ac.in → ERNET</strong><br>
+<strong>edu.in → ERNET</strong><br>
+<strong>res.in → ERNET</strong>
+<br><br>यह current .IN Registry accredited-registrar information पर आधारित है। citeturn0search6
+</div>
+<h3>Registration के बारे में ध्यान रखें</h3><p>Restricted domains में सामान्य commercial domain की तरह simple public registration हमेशा applicable नहीं होता। Eligibility और supporting requirements संबंधित policy/registrar द्वारा निर्धारित हो सकती हैं। .IN Registry accredited registrar structure के माध्यम से registrations manage करती है। citeturn0search12</p></section>
+
+<section id="comparison"><h2>14. Quick Comparison</h2>
+<table><tr><th>Term</th><th>Meaning / Role</th></tr>
+<tr><td>Internet</td><td>Worldwide interconnected network of networks</td></tr>
+<tr><td>ISP</td><td>Internet access/service provider</td></tr>
+<tr><td>Web Hosting</td><td>Website/application resources को Internet-connected servers पर host करने की service</td></tr>
+<tr><td>IANA</td><td>Global Internet identifiers की coordination से संबंधित functions</td></tr>
+<tr><td>Root Zone Database</td><td>Top-level domain delegation information का authoritative record</td></tr>
+<tr><td>LIR</td><td>Local level पर Internet number resources से संबंधित registry</td></tr>
+<tr><td>NIR</td><td>National level Internet number resource registry</td></tr>
+<tr><td>RIR</td><td>Regional Internet number resource registry</td></tr>
+<tr><td>Registrar</td><td>Domain registration/management के लिए accredited service provider</td></tr>
+</table></section>
+
+<section id="exam"><h2>15. Important Exam Questions</h2>
+<div class="exam"><b>Long Answer Questions</b><br><br>
+1. Internet क्या है? इसकी प्रमुख विशेषताएँ समझाइए।<br>
+2. Internet connection के विभिन्न types को विस्तार से समझाइए।<br>
+3. ISP क्या है? ISP की services और working समझाइए।<br>
+4. Web Hosting क्या है? इसके विभिन्न types समझाइए।<br>
+5. IANA क्या है? इसके प्रमुख functions समझाइए।<br>
+6. IANA Root Zone Database क्या है? इसकी importance समझाइए।<br>
+7. IANA Number Resources क्या हैं? IPv4, IPv6 और ASN समझाइए।<br>
+8. LIR, NIR और RIR में अंतर समझाइए।<br>
+9. AFRINIC, APNIC, ARIN, LACNIC और RIPE NCC का वर्णन कीजिए।<br>
+10. Domain Registration की पूरी प्रक्रिया समझाइए।<br>
+11. Domain Registrar क्या है? कुछ प्रमुख domain registrars के नाम लिखिए।<br>
+12. भारत में .EDU.IN, .RES.IN, .AC.IN और .GOV.IN domains के registrars कौन हैं?
+</div>
+<h3>Short Answer Questions</h3><ul>
+<li>Internet क्या है?</li><li>ISP का full form क्या है?</li><li>Web Hosting क्या है?</li><li>IANA का full form क्या है?</li><li>Root Zone क्या है?</li><li>IANA Root Zone Database क्या record करती है?</li><li>IANA के तीन major resource areas कौन-से हैं?</li><li>LIR क्या है?</li><li>NIR क्या है?</li><li>RIR क्या है?</li><li>कुल कितने RIRs हैं?</li><li>APNIC का region कौन-सा है?</li><li>ARIN किन regions को serve करता है?</li><li>India किस RIR region में आता है?</li><li>Domain Registrar क्या करता है?</li><li>.GOV.IN का exclusive registrar कौन है?</li><li>.EDU.IN का exclusive registrar कौन है?</li><li>.AC.IN का exclusive registrar कौन है?</li><li>.RES.IN का exclusive registrar कौन है?</li>
+</ul>
+<div class="important"><b>One-Minute Revision:</b><br><br>
+Internet → Network of Networks<br>
+ISP → Internet Access Provider<br>
+Hosting → Website को server पर रखना<br>
+IANA → Global Internet identifiers coordination<br>
+Root Zone → DNS hierarchy का top level<br>
+Number Resources → IPv4 + IPv6 + ASN<br>
+RIR → Regional Internet Registry<br>
+AFRINIC → Africa<br>
+APNIC → Asia/Pacific<br>
+ARIN → North America + parts of Caribbean<br>
+LACNIC → Latin America + parts of Caribbean<br>
+RIPE NCC → Europe + Middle East + Central Asia<br>
+<br><strong>India Special Domains:</strong><br>
+.GOV.IN → NIC<br>
+.EDU.IN → ERNET<br>
+.AC.IN → ERNET<br>
+.RES.IN → ERNET
+</div>
+</section>
+</main></div>
+</body></html>

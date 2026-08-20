@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Electronics Components - PGDCA Notes</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#eef3f8;color:#202936;font-family:Segoe UI,Arial,sans-serif;line-height:1.9}
+.wrap{max-width:1500px;margin:auto;padding:15px;display:grid;grid-template-columns:285px 1fr;gap:18px}
+aside{position:sticky;top:15px;height:calc(100vh - 30px);overflow:auto;background:#fff;padding:20px;border-radius:18px;box-shadow:0 8px 28px #0001}
+aside h2{color:#075985;border-left:5px solid #0284c7;padding-left:10px}aside a{display:block;padding:7px 10px;color:#374151;text-decoration:none;border-radius:8px;font-size:14px}aside a:hover{background:#e0f2fe;color:#0369a1}
+main{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 8px 28px #0001}.hero{padding:42px;background:linear-gradient(135deg,#dbeafe,#e0f2fe,#f8fafc)}
+.hero h1{font-size:38px;color:#075985;margin:8px 0;line-height:1.3}.badge{display:inline-block;background:#bae6fd;color:#075985;padding:4px 13px;border-radius:20px;font-size:12px;font-weight:700}
+section{padding:32px;border-bottom:1px solid #e5e7eb}h2{font-size:29px;color:#075985;border-left:5px solid #0284c7;padding-left:13px}h3{font-size:22px;color:#0c4a6e;margin-top:27px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.card{background:#f0f9ff;border:1px solid #bae6fd;padding:18px;border-radius:14px}
+.note,.important,.exam{padding:18px 20px;border-radius:12px;margin:19px 0}.note{background:#eff6ff;border-left:5px solid #3b82f6}.important{background:#fff7ed;border-left:5px solid #f97316}.exam{background:#ecfdf5;border-left:5px solid #10b981}
+.formula{background:#f8fafc;border:1px dashed #94a3b8;padding:18px;border-radius:12px;font-family:Consolas,monospace}
+.diagram{background:#090b0f;color:#e5e7eb;border-radius:14px;padding:22px;overflow:auto;font-family:Consolas,monospace;white-space:pre;line-height:1.5}
+table{width:100%;border-collapse:collapse;margin:20px 0}th,td{border:1px solid #cbd5e1;padding:12px;text-align:left;vertical-align:top}th{background:#e0f2fe;color:#075985}
+@media(max-width:900px){.wrap{display:block;padding:5px}aside{display:none}.hero{padding:28px 18px}.hero h1{font-size:29px}section{padding:24px 18px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<aside>
+<h2>Contents</h2>
+<a href="#intro">1. Introduction</a><a href="#resistor">2. Resistors</a><a href="#capacitor">3. Capacitors</a>
+<a href="#inductor">4. Inductors</a><a href="#transformer">5. Transformer</a><a href="#sources">6. Voltage & Current Sources</a>
+<a href="#diode">7. Diode</a><a href="#zener">8. Zener Diode</a><a href="#photo">9. Photodiode</a><a href="#led">10. LED</a>
+<a href="#transistor">11. Transistors</a><a href="#npnpnp">12. NPN & PNP</a><a href="#fet">13. FET</a><a href="#phototransistor">14. Phototransistor</a>
+<a href="#comparison">15. Comparison</a><a href="#exam">16. Exam Questions</a>
+</aside>
+<main>
+<div class="hero"><span class="badge">ELECTRONICS • 08 PERIODS</span>
+<h1>2. Electronics Components</h1>
+<p><strong>Resistors • Capacitors • Inductors • Transformers • Sources • Diodes • LEDs • Transistors • FET • Phototransistor</strong></p>
+</div>
+
+<section id="intro"><h2>1. Introduction to Electronic Components</h2>
+<p><strong>Electronic components</strong> वे electrical/electronic elements हैं जिनका उपयोग circuits में voltage और current को control, store, switch, rectify, amplify या convert करने के लिए किया जाता है। Computer motherboard, power supply, charger, mobile phone, television, router और अन्य electronic equipment में अनेक components मिलकर complete circuit बनाते हैं।</p>
+<p>Broadly components को <strong>passive</strong> और <strong>active</strong> categories में समझा जा सकता है। Resistor, capacitor और inductor सामान्यतः passive components हैं, जबकि diode और transistor semiconductor/active-device family के important components हैं। Transformer electromagnetic induction पर काम करने वाला passive magnetic component है।</p>
+<div class="grid">
+<div class="card"><h3>Passive Components</h3><p>Generally signal को generate नहीं करते; energy dissipate या store करते हैं। Examples: resistor, capacitor, inductor, transformer.</p></div>
+<div class="card"><h3>Semiconductor Components</h3><p>Semiconductor material से बने devices जिनके electrical behavior को circuit में useful functions के लिए नियंत्रित किया जाता है। Examples: diode, transistor, FET.</p></div>
+</div>
+</section>
+
+<section id="resistor"><h2>2. Resistor</h2>
+<p><strong>Resistor</strong> एक passive electronic component है जो electric current के flow का opposition करता है। इसका primary purpose current को limit/control करना, voltage division करना और circuit में desired resistance provide करना है। Resistance को <strong>R</strong> से represent किया जाता है और SI unit <strong>Ohm (Ω)</strong> है।</p>
+<div class="formula">Ohm's Law: V = I × R
+I = V / R
+R = V / I</div>
+<h3>Resistor के मुख्य कार्य</h3><ul><li>Current limiting</li><li>Voltage division</li><li>Biasing circuits</li><li>Pull-up और pull-down networks</li><li>Signal conditioning</li><li>Load या termination resistance provide करना</li></ul>
+<h3>Types of Resistors</h3>
+<table><tr><th>Type</th><th>Description / Use</th></tr>
+<tr><td>Fixed Resistor</td><td>एक fixed resistance value provide करता है।</td></tr>
+<tr><td>Variable Resistor</td><td>Resistance को adjust किया जा सकता है। Potentiometer इसका common example है।</td></tr>
+<tr><td>Thermistor</td><td>Temperature के साथ resistance change करता है।</td></tr>
+<tr><td>LDR</td><td>Light intensity के अनुसार resistance बदलता है।</td></tr>
+</table>
+<div class="note"><b>Power Rating:</b> Resistor की power rating बताती है कि वह कितनी electrical power safely dissipate कर सकता है। Common relation P = VI = I²R = V²/R है।</div>
+</section>
+
+<section id="capacitor"><h2>3. Capacitor</h2>
+<p><strong>Capacitor</strong> एक passive component है जो electrical charge और energy को electric field के रूप में store करता है। इसमें सामान्यतः दो conducting plates और उनके बीच dielectric material होता है। Capacitance को <strong>C</strong> और इसकी SI unit <strong>Farad (F)</strong> है।</p>
+<div class="formula">Q = C × V
+C = Q / V
+Energy stored = ½ C V²</div>
+<h3>Capacitor की Working</h3><p>जब capacitor को voltage source से connect किया जाता है, plates पर opposite charges accumulate होते हैं और dielectric के across electric field establish होता है। Discharge path मिलने पर stored energy circuit को वापस दी जा सकती है।</p>
+<h3>Types</h3><ul><li>Ceramic capacitor</li><li>Electrolytic capacitor</li><li>Film capacitor</li><li>Tantalum capacitor</li><li>Variable capacitor</li></ul>
+<h3>Uses</h3><p>Filtering, coupling/decoupling, timing circuits, energy storage, power-supply smoothing और signal processing में capacitors का उपयोग होता है।</p>
+</section>
+
+<section id="inductor"><h2>4. Inductor</h2>
+<p><strong>Inductor</strong> एक passive component है जो current के कारण उत्पन्न magnetic field में energy store करता है। इसका मुख्य property <strong>inductance</strong> है और इसकी SI unit <strong>Henry (H)</strong> है।</p>
+<div class="formula">V = L (di/dt)
+Energy stored = ½ L I²</div>
+<p>Inductor current में sudden change का oppose करता है। इसकी construction में wire को coil के रूप में wind किया जाता है; core air, ferrite या अन्य magnetic material का हो सकता है।</p>
+<h3>Applications</h3><ul><li>Filters</li><li>Power supplies और DC-DC converters</li><li>Chokes</li><li>Oscillator circuits</li><li>Radio-frequency circuits</li><li>Transformers में magnetic coupling के साथ related applications</li></ul>
+</section>
+
+<section id="transformer"><h2>5. Transformer</h2>
+<p><strong>Transformer</strong> एक static electromagnetic device है जो <strong>electromagnetic induction</strong> के principle पर AC electrical energy को एक circuit से दूसरे circuit में transfer करता है और voltage/current level को step-up या step-down कर सकता है।</p>
+<div class="diagram">
+AC INPUT
+   │
+   ▼
+┌───────────────┐
+│ PRIMARY COIL  │
+└──────┬────────┘
+       │
+   MAGNETIC CORE
+       │
+┌──────▼────────┐
+│ SECONDARY COIL│
+└──────┬────────┘
+       │
+       ▼
+AC OUTPUT
+</div>
+<div class="formula">Ideal transformer:
+V₂ / V₁ = N₂ / N₁
+V₁I₁ ≈ V₂I₂
+
+N = Number of turns</div>
+<h3>Types</h3><table><tr><th>Type</th><th>Purpose</th></tr>
+<tr><td>Step-up Transformer</td><td>Output voltage को input से higher level पर transform करता है।</td></tr>
+<tr><td>Step-down Transformer</td><td>Output voltage को lower level पर transform करता है।</td></tr>
+<tr><td>Isolation Transformer</td><td>Electrical isolation provide करने के लिए use होता है; ideal turns ratio सामान्यतः 1:1 होता है।</td></tr></table>
+<div class="important"><b>Important:</b> Conventional transformer steady DC पर normal transformer action के लिए designed नहीं होता; transformer action changing magnetic flux से associated है, इसलिए सामान्य operation AC में होता है।</div>
+</section>
+
+<section id="sources"><h2>6. Voltage and Current Sources</h2>
+<h3>Voltage Source</h3><p>Voltage source ऐसा source है जो circuit को specified potential difference provide करता है। Ideal voltage source का terminal voltage load current से independent माना जाता है। Practical voltage sources में internal resistance/impedance होती है। Examples: battery, regulated power supply, generator output.</p>
+<h3>Current Source</h3><p>Current source ऐसा source है जो circuit में specified current maintain करने का प्रयास करता है। Ideal current source का current load voltage से independent माना जाता है। Practical current sources में finite output resistance होती है।</p>
+<table><tr><th>Feature</th><th>Voltage Source</th><th>Current Source</th></tr>
+<tr><td>Controlled quantity</td><td>Voltage</td><td>Current</td></tr>
+<tr><td>Ideal internal resistance</td><td>0 Ω</td><td>Infinite</td></tr>
+<tr><td>Symbol concept</td><td>Voltage source symbol</td><td>Current source symbol</td></tr>
+</table>
+</section>
+
+<section id="diode"><h2>7. Diode</h2>
+<p><strong>Diode</strong> एक two-terminal semiconductor device है जो current को मुख्यतः एक direction में conduct करने और opposite direction में strongly oppose करने की property रखता है। इसका operation <strong>PN junction</strong> behavior पर आधारित हो सकता है। Terminals को <strong>Anode</strong> और <strong>Cathode</strong> कहा जाता है।</p>
+<h3>Forward Bias</h3><p>PN junction diode को forward bias करने पर depletion region reduce होता है और suitable voltage के बाद current significantly flow कर सकता है।</p>
+<h3>Reverse Bias</h3><p>Reverse bias में depletion region बढ़ती है और सामान्य operating region में केवल small leakage current flow करता है। बहुत अधिक reverse voltage पर breakdown हो सकता है।</p>
+<h3>Applications</h3><ul><li>AC to DC rectification</li><li>Protection circuits</li><li>Switching</li><li>Signal detection</li><li>Clipping और clamping circuits</li></ul>
+</section>
+
+<section id="zener"><h2>8. Zener Diode</h2>
+<p><strong>Zener diode</strong> एक specially designed diode है जिसे reverse-bias breakdown region में controlled voltage regulation/reference के लिए operate किया जाता है। इसका important property यह है कि suitable current range में voltage approximately stable रह सकता है।</p>
+<h3>Uses</h3><ul><li>Voltage regulation</li><li>Voltage reference</li><li>Over-voltage protection</li><li>Clamping circuits</li></ul>
+<div class="note"><b>Exam Point:</b> सामान्य diode का reverse breakdown undesirable operating condition हो सकता है, जबकि Zener diode को controlled breakdown operation के लिए specifically designed किया जाता है।</div>
+</section>
+
+<section id="photo"><h2>9. Photodiode</h2>
+<p><strong>Photodiode</strong> light-sensitive semiconductor device है। यह incident light को electrical current में convert करने के लिए उपयोग किया जाता है। Photodiode commonly reverse bias में operate की जाती है, जहाँ incident light के कारण photocurrent में परिवर्तन detect किया जाता है।</p>
+<h3>Applications</h3><ul><li>Light sensors</li><li>Optical communication receivers</li><li>Barcode/scanning systems</li><li>Remote sensing</li><li>Automatic light-control systems</li></ul>
+</section>
+
+<section id="led"><h2>10. Light Emitting Diode (LED)</h2>
+<p><strong>LED</strong> एक semiconductor diode है जो forward bias में current flow होने पर light emit करता है। इसका प्रकाश <strong>electroluminescence</strong> phenomenon से संबंधित है। LED में semiconductor material की properties के आधार पर different colors की light प्राप्त की जा सकती है।</p>
+<h3>Advantages</h3><ul><li>Low power consumption</li><li>Long operating life</li><li>Fast switching</li><li>Small size</li><li>High reliability</li></ul>
+<h3>Applications</h3><p>Indicators, displays, lighting, traffic signals, optical communication और electronic equipment में LEDs widely used हैं।</p>
+</section>
+
+<section id="transistor"><h2>11. Transistor</h2>
+<p><strong>Transistor</strong> semiconductor device है जिसका उपयोग <strong>amplification</strong>, <strong>switching</strong>, signal processing और control applications में किया जाता है। BJT (Bipolar Junction Transistor) के तीन terminals होते हैं: <strong>Emitter, Base और Collector</strong>.</p>
+<p>BJT में दो main types होते हैं: <strong>NPN</strong> और <strong>PNP</strong>। इनके operation में electrons और holes दोनों carrier types contribute कर सकते हैं, इसलिए इन्हें bipolar devices कहा जाता है।</p>
+<h3>BJT के मुख्य regions</h3><table><tr><th>Region</th><th>Typical Function</th></tr>
+<tr><td>Cut-off</td><td>Transistor largely OFF; switching applications में useful.</td></tr>
+<tr><td>Active</td><td>Amplification operation के लिए important region.</td></tr>
+<tr><td>Saturation</td><td>Transistor strongly ON; switching applications में important.</td></tr></table>
+</section>
+
+<section id="npnpnp"><h2>12. NPN और PNP Transistors</h2>
+<div class="grid">
+<div class="card"><h3>NPN</h3><p>Structure N-P-N होती है। Conventional transistor operation में base-emitter junction को forward bias और collector-base junction को appropriate reverse bias देकर active operation प्राप्त किया जाता है। NPN में electrons important majority carriers हैं।</p></div>
+<div class="card"><h3>PNP</h3><p>Structure P-N-P होती है। इसका biasing polarity NPN के complementary arrangement के रूप में समझी जाती है। PNP operation में holes important majority carriers हैं।</p></div>
+</div>
+<table><tr><th>Point</th><th>NPN</th><th>PNP</th></tr>
+<tr><td>Structure</td><td>N-P-N</td><td>P-N-P</td></tr>
+<tr><td>Majority carrier</td><td>Electrons</td><td>Holes</td></tr>
+<tr><td>Typical active-mode base-emitter relation</td><td>Base approximately emitter से positive</td><td>Base approximately emitter से negative</td></tr>
+<tr><td>Uses</td><td>Switching, amplification, digital circuits</td><td>Switching, amplification, complementary circuits</td></tr></table>
+<h3>Transistor के Uses</h3><ul><li>Audio और signal amplifiers</li><li>Electronic switching</li><li>Oscillators</li><li>Logic circuits</li><li>Voltage/current control</li><li>Signal conditioning</li></ul>
+</section>
+
+<section id="fet"><h2>13. Field Effect Transistor (FET)</h2>
+<p><strong>FET</strong> एक voltage-controlled semiconductor device है जिसमें electric field के माध्यम से channel conductivity को control किया जाता है। इसके main terminals commonly <strong>Gate, Source और Drain</strong> होते हैं। FET devices को high input impedance के लिए जाना जाता है।</p>
+<h3>Major FET Families</h3><ul><li><strong>JFET:</strong> Junction Field Effect Transistor.</li><li><strong>MOSFET:</strong> Metal-Oxide-Semiconductor Field Effect Transistor.</li></ul>
+<h3>FET के Advantages / Features</h3><ul><li>High input impedance</li><li>Voltage-controlled operation</li><li>Low input current</li><li>Switching और amplification में उपयोग</li><li>Integrated circuits में MOSFET का बहुत व्यापक उपयोग</li></ul>
+</section>
+
+<section id="phototransistor"><h2>14. Phototransistor</h2>
+<p><strong>Phototransistor</strong> एक light-sensitive transistor है जिसमें incident light transistor action को control करती है। यह photodiode की तरह light detect कर सकता है और transistor action के कारण output current में amplification effect मिल सकता है।</p>
+<h3>Applications</h3><ul><li>Light detection</li><li>Object detection</li><li>Optical switching</li><li>Encoder systems</li><li>Alarm और sensing circuits</li><li>Optocoupler/isolated signal applications के related systems</li></ul>
+</section>
+
+<section id="comparison"><h2>15. Important Comparison</h2>
+<table>
+<tr><th>Component</th><th>Main Property</th><th>Primary Function</th></tr>
+<tr><td>Resistor</td><td>Resistance</td><td>Current limiting / voltage division</td></tr>
+<tr><td>Capacitor</td><td>Capacitance</td><td>Electric-field energy storage / filtering</td></tr>
+<tr><td>Inductor</td><td>Inductance</td><td>Magnetic-field energy storage / filtering</td></tr>
+<tr><td>Transformer</td><td>Mutual electromagnetic induction</td><td>AC voltage/current transformation and isolation</td></tr>
+<tr><td>Diode</td><td>One-direction conduction</td><td>Rectification / switching / protection</td></tr>
+<tr><td>Zener Diode</td><td>Controlled reverse breakdown</td><td>Voltage regulation/reference</td></tr>
+<tr><td>Photodiode</td><td>Light-sensitive junction</td><td>Light detection</td></tr>
+<tr><td>LED</td><td>Electroluminescence</td><td>Light emission</td></tr>
+<tr><td>BJT</td><td>Current-controlled transistor action</td><td>Amplification / switching</td></tr>
+<tr><td>FET</td><td>Electric-field controlled channel</td><td>Amplification / switching</td></tr>
+<tr><td>Phototransistor</td><td>Light-controlled transistor action</td><td>Light sensing / switching</td></tr>
+</table>
+</section>
+
+<section id="exam"><h2>16. Important Exam Questions</h2>
+<div class="exam"><b>Long Answer Questions</b><br><br>
+1. Resistor क्या है? इसके types, properties और applications समझाइए।<br>
+2. Capacitor की construction, working, types और uses समझाइए।<br>
+3. Inductor क्या है? इसका working principle, properties और applications लिखिए।<br>
+4. Transformer क्या है? इसके working principle और step-up/step-down types को समझाइए।<br>
+5. Voltage source और current source में अंतर समझाइए।<br>
+6. Diode की construction, working और applications समझाइए।<br>
+7. Zener diode क्या है? Voltage regulation में इसका उपयोग समझाइए।<br>
+8. Photodiode और LED को working तथा applications सहित समझाइए।<br>
+9. Transistor क्या है? NPN और PNP transistor की characteristics और uses समझाइए।<br>
+10. Field Effect Transistor (FET) क्या है? इसकी terminals, working और applications समझाइए।<br>
+11. Phototransistor क्या है? Photodiode से इसकी तुलना कीजिए।</div>
+
+<h3>Short Answer Revision</h3>
+<ul>
+<li>Resistor की unit क्या है? — Ohm (Ω)</li><li>Capacitance की unit क्या है? — Farad (F)</li>
+<li>Inductance की unit क्या है? — Henry (H)</li><li>Diode के दो terminals कौन से हैं? — Anode और Cathode</li>
+<li>BJT के तीन terminals कौन से हैं? — Emitter, Base, Collector</li><li>FET के main terminals कौन से हैं? — Gate, Source, Drain</li>
+<li>LED का full form क्या है? — Light Emitting Diode</li><li>FET का full form क्या है? — Field Effect Transistor</li>
+<li>BJT के दो types कौन से हैं? — NPN और PNP</li><li>Photodiode का मुख्य काम क्या है? — Light detection</li>
+<li>Zener diode का मुख्य उपयोग क्या है? — Voltage regulation/reference</li><li>Transformer किस principle पर काम करता है? — Electromagnetic induction</li>
+</ul>
+
+<div class="important"><b>Quick Revision:</b><br><br>
+Resistor → Current को oppose/control करता है<br>
+Capacitor → Electric field में energy store करता है<br>
+Inductor → Magnetic field में energy store करता है<br>
+Transformer → AC voltage/current level transform करता है<br>
+Diode → Mainly one-direction current conduction<br>
+Zener → Voltage regulation/reference<br>
+Photodiode → Light → Electrical response<br>
+LED → Electrical energy → Light<br>
+Transistor → Amplification + Switching<br>
+FET → Voltage-controlled device<br>
+Phototransistor → Light-controlled transistor
+</div>
+</section>
+</main>
+</div>
+</body>
+</html>

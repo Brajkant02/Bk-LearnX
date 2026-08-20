@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Basic Measuring Instruments - PGDCA Notes</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#eef3f8;color:#202936;font-family:Segoe UI,Arial,sans-serif;line-height:1.9}
+.wrap{max-width:1500px;margin:auto;padding:15px;display:grid;grid-template-columns:285px 1fr;gap:18px}
+aside{position:sticky;top:15px;height:calc(100vh - 30px);overflow:auto;background:#fff;padding:20px;border-radius:18px;box-shadow:0 8px 28px #0001}
+aside h2{color:#075985;border-left:5px solid #0284c7;padding-left:10px}
+aside a{display:block;padding:7px 10px;color:#374151;text-decoration:none;border-radius:8px;font-size:14px}
+aside a:hover{background:#e0f2fe;color:#0369a1}
+main{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 8px 28px #0001}
+.hero{padding:42px;background:linear-gradient(135deg,#dbeafe,#e0f2fe,#f8fafc)}
+.hero h1{font-size:38px;color:#075985;margin:8px 0;line-height:1.3}
+.badge{display:inline-block;background:#bae6fd;color:#075985;padding:4px 13px;border-radius:20px;font-size:12px;font-weight:700}
+section{padding:32px;border-bottom:1px solid #e5e7eb}
+h2{font-size:29px;color:#075985;border-left:5px solid #0284c7;padding-left:13px}
+h3{font-size:22px;color:#0c4a6e;margin-top:27px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{background:#f0f9ff;border:1px solid #bae6fd;padding:18px;border-radius:14px}
+.note,.important,.exam{padding:18px 20px;border-radius:12px;margin:19px 0}
+.note{background:#eff6ff;border-left:5px solid #3b82f6}
+.important{background:#fff7ed;border-left:5px solid #f97316}
+.exam{background:#ecfdf5;border-left:5px solid #10b981}
+.formula{background:#f8fafc;border:1px dashed #94a3b8;padding:18px;border-radius:12px;font-family:Consolas,monospace}
+.diagram{background:#090b0f;color:#e5e7eb;border-radius:14px;padding:22px;overflow:auto;font-family:Consolas,monospace;white-space:pre;line-height:1.5}
+table{width:100%;border-collapse:collapse;margin:20px 0}
+th,td{border:1px solid #cbd5e1;padding:12px;text-align:left;vertical-align:top}
+th{background:#e0f2fe;color:#075985}
+@media(max-width:900px){.wrap{display:block;padding:5px}aside{display:none}.hero{padding:28px 18px}.hero h1{font-size:29px}section{padding:24px 18px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<aside>
+<h2>Contents</h2>
+<a href="#intro">1. Introduction</a>
+<a href="#multimeter">2. Multimeter</a>
+<a href="#analog">3. Electronic/Analog Multimeter</a>
+<a href="#digital">4. Digital Multimeter</a>
+<a href="#cro">5. CRO</a>
+<a href="#croblock">6. CRO Block Diagram</a>
+<a href="#crowork">7. CRO Working</a>
+<a href="#crouses">8. Uses of CRO</a>
+<a href="#lcr">9. LCR Meter</a>
+<a href="#qmeter">10. Q Meter</a>
+<a href="#measurement">11. Measurements</a>
+<a href="#comparison">12. Comparison</a>
+<a href="#exam">13. Exam Questions</a>
+</aside>
+
+<main>
+<div class="hero">
+<span class="badge">ELECTRONICS • 10 PERIODS</span>
+<h1>5. Basic Measuring Instruments</h1>
+<p><strong>Multimeters • Cathode Ray Oscilloscope (CRO) • LCR Meter • Q Meter • Measurement</strong></p>
+</div>
+
+<section id="intro">
+<h2>1. Introduction to Measuring Instruments</h2>
+<p>Electronic circuits में केवल components को connect करना पर्याप्त नहीं होता। Circuit के voltage, current, resistance, frequency, waveform और component values को check करने के लिए <strong>measuring instruments</strong> की आवश्यकता होती है। Measuring instruments technician, student और engineer को circuit की actual electrical condition समझने में मदद करते हैं।</p>
+
+<p><strong>Basic Measuring Instruments</strong> वे instruments हैं जिनका उपयोग common electrical और electronic quantities की measurement, testing तथा troubleshooting के लिए किया जाता है। इस topic में मुख्य रूप से <strong>Multimeter, CRO, LCR Meter और Q Meter</strong> का अध्ययन किया जाता है।</p>
+
+<div class="grid">
+<div class="card"><h3>Multimeter</h3><p>Voltage, current, resistance और कई models में अन्य electrical quantities measure करने वाला general-purpose instrument.</p></div>
+<div class="card"><h3>CRO</h3><p>Electrical signal की voltage-versus-time waveform को screen पर observe और measure करने वाला instrument.</p></div>
+<div class="card"><h3>LCR Meter</h3><p>Inductance (L), capacitance (C) और resistance (R) जैसे component parameters measure करने के लिए।</p></div>
+<div class="card"><h3>Q Meter</h3><p>Coils/circuits के quality factor (Q) जैसे high-frequency characteristics के measurement में उपयोगी।</p></div>
+</div>
+</section>
+
+<section id="multimeter">
+<h2>2. Multimeter</h2>
+<p><strong>Multimeter</strong> एक versatile electronic measuring instrument है जिसका उपयोग एक ही instrument से कई electrical quantities measure करने के लिए किया जाता है। Basic multimeter में voltage, current और resistance measurement common functions हैं। Advanced models में continuity, diode test, capacitance, frequency, temperature आदि सुविधाएँ भी हो सकती हैं।</p>
+
+<h3>Multimeter के मुख्य Functions</h3>
+<table>
+<tr><th>Quantity</th><th>Meaning</th><th>Typical Use</th></tr>
+<tr><td>Voltage (V)</td><td>दो points के बीच potential difference.</td><td>Supply voltage और circuit voltage check करना।</td></tr>
+<tr><td>Current (A)</td><td>Circuit में flowing electric current.</td><td>Load या branch current measure करना।</td></tr>
+<tr><td>Resistance (Ω)</td><td>Current flow का opposition.</td><td>Resistor और continuity testing.</td></tr>
+<tr><td>Continuity</td><td>Electrical path continuous है या नहीं।</td><td>Wire, fuse और PCB track checking.</td></tr>
+<tr><td>Diode Test</td><td>Diode junction की forward behavior check करना।</td><td>Diode troubleshooting.</td></tr>
+</table>
+
+<h3>Multimeter के Basic Parts</h3>
+<ul>
+<li><strong>Display:</strong> measured value दिखाता है; analog instrument में pointer और scale होते हैं।</li>
+<li><strong>Selector/Range Switch:</strong> quantity और measurement range select करने के लिए।</li>
+<li><strong>Input Terminals:</strong> test leads connect करने के लिए।</li>
+<li><strong>Test Leads/Probes:</strong> circuit के points तक electrical connection provide करते हैं।</li>
+<li><strong>Function Controls:</strong> AC/DC, range या अन्य functions select करने के लिए model-dependent controls.</li>
+</ul>
+
+<div class="important"><b>Safety Point:</b> Current measurement करते समय multimeter को circuit के across voltage mode में नहीं लगाना चाहिए। सही terminal और range select करना आवश्यक है, क्योंकि गलत connection instrument या circuit को damage कर सकता है।</div>
+</section>
+
+<section id="analog">
+<h2>3. Electronic / Analog Multimeter</h2>
+<p><strong>Analog multimeter</strong> measured quantity को moving pointer और calibrated scale के माध्यम से display करता है। Traditional analog meters में measurement system pointer movement produce करता है और user scale से reading observe करता है।</p>
+
+<h3>Working का Basic Idea</h3>
+<p>Electrical quantity को internal measurement circuit suitable meter movement के लिए convert करता है। Meter movement pointer को deflect करता है और pointer की position corresponding scale पर value indicate करती है। Different ranges के लिए internal resistors/shunts या suitable circuits का उपयोग किया जा सकता है।</p>
+
+<h3>Advantages</h3>
+<ul>
+<li>Changing/Fluctuating signals की trend और variation visually observe करना आसान हो सकता है।</li>
+<li>Pointer movement से continuous change का intuitive indication मिलता है।</li>
+</ul>
+
+<h3>Limitations</h3>
+<ul>
+<li>Reading में parallax error हो सकता है।</li>
+<li>Small readings को accurately read करना comparatively difficult हो सकता है।</li>
+<li>Digital instruments की तरह direct numerical display नहीं होता।</li>
+</ul>
+</section>
+
+<section id="digital">
+<h2>4. Digital Multimeter (DMM)</h2>
+<p><strong>Digital Multimeter (DMM)</strong> measurement result को numerical digital display पर show करता है। Modern electronics labs और troubleshooting में DMM बहुत common instrument है।</p>
+
+<div class="diagram">
+        ┌───────────────────────┐
+PROBE ─►│ INPUT / PROTECTION    │
+        └──────────┬────────────┘
+                   ▼
+        ┌───────────────────────┐
+        │ RANGE / SIGNAL        │
+        │ CONDITIONING          │
+        └──────────┬────────────┘
+                   ▼
+        ┌───────────────────────┐
+        │ A/D CONVERSION &      │
+        │ MEASUREMENT CIRCUIT   │
+        └──────────┬────────────┘
+                   ▼
+        ┌───────────────────────┐
+        │ DIGITAL DISPLAY       │
+        └───────────────────────┘
+</div>
+
+<p>DMM input electrical signal को internal circuitry द्वारा process करता है। Voltage measurement में analog quantity को suitable electronic circuit और analog-to-digital conversion के माध्यम से digital representation में बदला जा सकता है। Display उस measured value को digits में show करता है।</p>
+
+<h3>Analog और Digital Multimeter में अंतर</h3>
+<table>
+<tr><th>Basis</th><th>Analog Multimeter</th><th>Digital Multimeter</th></tr>
+<tr><td>Display</td><td>Pointer और scale</td><td>Numerical digital display</td></tr>
+<tr><td>Reading</td><td>Scale reading करनी होती है</td><td>Direct numerical reading</td></tr>
+<tr><td>Parallax</td><td>Possible</td><td>Generally not applicable to digital display</td></tr>
+<tr><td>Common Modern Use</td><td>Basic/trend applications</td><td>General electronics testing</td></tr>
+</table>
+</section>
+
+<section id="cro">
+<h2>5. Cathode Ray Oscilloscope (CRO)</h2>
+<p><strong>CRO (Cathode Ray Oscilloscope)</strong> एक electronic test instrument है जिसका उपयोग electrical signals को visual waveform के रूप में observe करने के लिए किया जाता है। Traditional CRO में cathode ray tube (CRT) screen पर electron beam को control करके waveform display की जाती है।</p>
+
+<p>CRO के द्वारा signal का <strong>amplitude, time period, frequency, phase difference</strong> और waveform shape जैसी quantities को appropriate controls और graticule के माध्यम से analyze किया जा सकता है।</p>
+
+<h3>CRO का Basic Principle</h3>
+<p>Input signal को vertical deflection system में दिया जाता है। यह electron beam को vertical direction में deflect करता है। Time-base system horizontal movement provide करता है। दोनों movements के combination से screen पर signal की waveform दिखाई देती है।</p>
+</section>
+
+<section id="croblock">
+<h2>6. CRO Block Diagram</h2>
+
+<div class="diagram">
+INPUT SIGNAL
+     │
+     ▼
+┌──────────────┐
+│ ATTENUATOR / │
+│ VERTICAL AMP │
+└──────┬───────┘
+       │
+       ▼
+ VERTICAL DEFLECTION
+       │
+       ▼
+   ┌─────────┐
+   │   CRT   │──────────► SCREEN
+   └────┬────┘
+        ▲
+        │
+HORIZONTAL DEFLECTION
+        ▲
+        │
+┌───────┴────────┐
+│ TIME BASE      │
+│ GENERATOR      │
+└───────┬────────┘
+        ▲
+        │
+┌───────┴────────┐
+│ TRIGGER /      │
+│ SYNCHRONIZATION│
+└────────────────┘
+</div>
+
+<h3>CRO के Major Blocks</h3>
+<table>
+<tr><th>Block</th><th>Function</th></tr>
+<tr><td>Input/Attenuator</td><td>Input signal level को suitable range में bring करने में मदद करता है।</td></tr>
+<tr><td>Vertical Amplifier</td><td>Input signal को amplify करके vertical deflection system तक पहुंचाता है।</td></tr>
+<tr><td>Time Base Generator</td><td>Horizontal sweep signal generate करता है, जिससे time axis establish होती है।</td></tr>
+<tr><td>Trigger/Synchronization</td><td>Waveform को stable display के लिए sweep को input signal के साथ synchronize करने में मदद करता है।</td></tr>
+<tr><td>Horizontal Amplifier</td><td>Time-base/sweep signal को horizontal deflection system के लिए suitable बनाता है।</td></tr>
+<tr><td>CRT</td><td>Electron beam को deflect करके screen पर visible waveform display करता है।</td></tr>
+<tr><td>Power Supply</td><td>Instrument के अलग-अलग electronic sections को required operating voltages provide करता है।</td></tr>
+</table>
+</section>
+
+<section id="crowork">
+<h2>7. Basic Working of CRO</h2>
+
+<div class="step"><b>Step 1 – Signal Input:</b> जिस electrical signal को observe करना है उसे CRO के input channel में connect किया जाता है।</div>
+<div class="step"><b>Step 2 – Vertical Processing:</b> Input signal attenuation और amplification के बाद vertical deflection system को control करता है।</div>
+<div class="step"><b>Step 3 – Time Base:</b> Sweep generator horizontal direction में beam movement के लिए time reference provide करता है।</div>
+<div class="step"><b>Step 4 – Triggering:</b> Trigger system waveform को stable position पर display करने में सहायता करता है।</div>
+<div class="step"><b>Step 5 – Beam Deflection:</b> Vertical और horizontal deflections मिलकर signal की shape screen पर draw करते हैं।</div>
+<div class="step"><b>Step 6 – Display:</b> Traditional CRO में CRT screen पर waveform visible होती है और graticule divisions के आधार पर measurements की जा सकती हैं।</div>
+
+<h3>CRO से Basic Measurement</h3>
+<div class="formula">
+Voltage measurement:
+V ≈ Vertical divisions × Volts/Division
+
+Time measurement:
+T ≈ Horizontal divisions × Time/Division
+
+Frequency:
+f = 1/T
+</div>
+
+<div class="note"><b>Example:</b> यदि waveform की vertical height 4 divisions है और setting 2 V/div है, तो displayed voltage difference लगभग 8 V होगा। Exact peak-to-peak, peak या RMS interpretation इस बात पर depend करेगी कि कौन सा voltage interval measure किया गया है।</div>
+</section>
+
+<section id="crouses">
+<h2>8. Different Uses of CRO</h2>
+<ul>
+<li><strong>Waveform Observation:</strong> Sine, square, triangular और अन्य signals की shape observe करना।</li>
+<li><strong>Voltage Measurement:</strong> Screen divisions के आधार पर signal amplitude या voltage difference estimate करना।</li>
+<li><strong>Time Period Measurement:</strong> एक complete cycle के horizontal divisions measure करना।</li>
+<li><strong>Frequency Measurement:</strong> Time period से frequency calculate करना।</li>
+<li><strong>Phase Difference:</strong> Two-channel measurements में appropriate methods से signals के phase relationship का अध्ययन करना।</li>
+<li><strong>Pulse Analysis:</strong> Pulse width और timing characteristics observe करना।</li>
+<li><strong>Noise Detection:</strong> Signal में unwanted variations/noise identify करना।</li>
+<li><strong>Electronic Troubleshooting:</strong> Amplifier, oscillator, power supply और communication circuits में signal path verify करना।</li>
+<li><strong>Transient Observation:</strong> Signal में short-duration changes को observe करना।</li>
+</ul>
+
+<div class="important"><b>Modern Note:</b> आज practical labs में Digital Storage Oscilloscopes (DSOs) बहुत common हैं। वे CRO जैसे waveform-display functions के साथ digital storage, automatic measurements और advanced analysis सुविधाएँ भी दे सकते हैं।</div>
+</section>
+
+<section id="lcr">
+<h2>9. LCR Meter</h2>
+<p><strong>LCR Meter</strong> एक measuring instrument है जिसका मुख्य उपयोग passive components के electrical parameters को measure करने के लिए किया जाता है। L, C और R क्रमशः <strong>Inductance, Capacitance और Resistance</strong> को represent करते हैं।</p>
+
+<div class="grid">
+<div class="card"><h3>L – Inductance</h3><p>Coil/inductor की inductive property को Henry (H) और उसके submultiples में express किया जाता है।</p></div>
+<div class="card"><h3>C – Capacitance</h3><p>Capacitor की charge-storage property को Farad (F) और उसके submultiples में express किया जाता है।</p></div>
+<div class="card"><h3>R – Resistance</h3><p>Resistor या component का opposition to current, Ohm (Ω) में measured.</p></div>
+</div>
+
+<h3>LCR Meter का Basic Working</h3>
+<p>LCR meter test component पर suitable AC test signal apply करके voltage/current response और phase relationship को analyze कर सकता है। Internal measurement electronics इन characteristics से component parameter calculate करके display करती है। Different instruments अलग frequencies, equivalent-circuit models और measurement methods support कर सकते हैं।</p>
+
+<h3>LCR Meter के Uses</h3>
+<ul>
+<li>Resistors की resistance measurement.</li>
+<li>Capacitors की capacitance measurement.</li>
+<li>Inductors/coils की inductance measurement.</li>
+<li>Component tolerance और quality checking.</li>
+<li>Electronic circuit troubleshooting.</li>
+<li>Unknown passive component की value identify करना।</li>
+</ul>
+</section>
+
+<section id="qmeter">
+<h2>10. Q Meter</h2>
+<p><strong>Q Meter</strong> एक instrument है जिसका उपयोग electrical circuits और components के <strong>Quality Factor (Q)</strong> को measure करने के लिए किया जाता है। इसका उपयोग विशेष रूप से coils, inductors और resonant circuits के high-frequency behavior के अध्ययन में किया जा सकता है।</p>
+
+<div class="formula">
+Q = Reactive effect / Resistive loss
+
+For an idealized series coil:
+Q = Xₗ / R
+
+where:
+Xₗ = Inductive reactance
+R = Effective series resistance
+</div>
+
+<p>High Q सामान्यतः low relative energy loss और sharper resonance behavior को indicate करता है। Q measurement RF coils, inductors और tuned circuits की quality evaluate करने में useful हो सकती है।</p>
+
+<h3>Q Meter के Uses</h3>
+<ul>
+<li>Inductor/coil का Q factor determine करना।</li>
+<li>Resonant circuit की quality analyze करना।</li>
+<li>Coil losses का study करना।</li>
+<li>RF और tuned circuits में component testing.</li>
+</ul>
+</section>
+
+<section id="measurement">
+<h2>11. Basic Measurement Procedure</h2>
+
+<h3>Multimeter से Voltage Measurement</h3>
+<ol>
+<li>Required AC या DC voltage mode select करें।</li>
+<li>Suitable voltage range select करें; unknown value होने पर safe higher range से शुरू करना practical approach है।</li>
+<li>Probes को correct terminals में connect करें।</li>
+<li>Voltage measure करने के लिए probes को circuit/component के across connect करें।</li>
+<li>Reading observe करें और आवश्यकता अनुसार range adjust करें।</li>
+</ol>
+
+<h3>Resistance Measurement</h3>
+<ol>
+<li>Circuit को power OFF करें।</li>
+<li>Component को isolate करना बेहतर है, विशेषकर जब parallel paths reading को affect कर सकते हों।</li>
+<li>Ω mode select करें।</li>
+<li>Probes component के दोनों terminals पर लगाएँ।</li>
+<li>Display reading observe करें।</li>
+</ol>
+
+<h3>CRO Measurement</h3>
+<ol>
+<li>Probe को input channel से connect करें।</li>
+<li>Vertical volts/div और horizontal time/div set करें।</li>
+<li>Trigger को stable waveform के लिए adjust करें।</li>
+<li>Waveform की vertical और horizontal divisions count करें।</li>
+<li>Voltage/time तथा frequency के लिए appropriate formulas apply करें।</li>
+</ol>
+</section>
+
+<section id="comparison">
+<h2>12. Measuring Instruments – Comparison</h2>
+<table>
+<tr><th>Instrument</th><th>Main Measurement</th><th>Main Purpose</th></tr>
+<tr><td>Analog Multimeter</td><td>V, I, R आदि</td><td>General electrical measurement और signal trend.</td></tr>
+<tr><td>Digital Multimeter</td><td>V, I, R और model-dependent functions</td><td>Accurate general-purpose electronic testing.</td></tr>
+<tr><td>CRO</td><td>Waveform, voltage/time, frequency आदि</td><td>Signal visualization और waveform analysis.</td></tr>
+<tr><td>LCR Meter</td><td>L, C, R</td><td>Passive component parameter measurement.</td></tr>
+<tr><td>Q Meter</td><td>Quality Factor (Q)</td><td>Coils और resonant circuits की quality/high-frequency characteristics.</td></tr>
+</table>
+</section>
+
+<section id="exam">
+<h2>13. Important Exam Questions</h2>
+
+<div class="exam">
+<b>Long Answer Questions</b><br><br>
+1. Multimeter क्या है? इसके functions और major parts को विस्तार से समझाइए।<br>
+2. Analog और Digital Multimeter में अंतर लिखिए।<br>
+3. Digital Multimeter का block diagram बनाकर basic working समझाइए।<br>
+4. CRO क्या है? इसका principle और basic working समझाइए।<br>
+5. CRO का block diagram बनाकर प्रत्येक block का कार्य समझाइए।<br>
+6. CRO के विभिन्न uses को विस्तार से लिखिए।<br>
+7. CRO की सहायता से voltage, time period और frequency measurement कैसे की जाती है?<br>
+8. LCR Meter क्या है? L, C और R measurements को समझाइए।<br>
+9. Q Meter क्या है? Quality Factor क्या होता है और इसका measurement कहाँ useful है?<br>
+10. Multimeter, CRO, LCR Meter और Q Meter की तुलना कीजिए।
+</div>
+
+<h3>Short Answer Questions</h3>
+<ul>
+<li>Multimeter क्या है?</li>
+<li>DMM का full form क्या है?</li>
+<li>Multimeter में Ω range किस measurement के लिए होती है?</li>
+<li>CRO का full form क्या है?</li>
+<li>CRO में time-base का क्या कार्य है?</li>
+<li>Triggering का क्या purpose है?</li>
+<li>CRO से frequency कैसे calculate करते हैं?</li>
+<li>LCR में L, C और R किसे represent करते हैं?</li>
+<li>LCR Meter का मुख्य उपयोग क्या है?</li>
+<li>Q Factor क्या है?</li>
+<li>Q Meter का उपयोग किस प्रकार के components/circuits में होता है?</li>
+<li>Resistance measure करते समय circuit को power OFF क्यों करना चाहिए?</li>
+</ul>
+
+<div class="important">
+<b>One-Minute Revision:</b><br><br>
+Multimeter → Voltage + Current + Resistance + other model-dependent tests<br>
+Analog Meter → Pointer + Scale<br>
+DMM → Digital Numerical Display<br>
+CRO → Waveform Display + Voltage/Time/Frequency Analysis<br>
+V ≈ divisions × V/div<br>
+T ≈ divisions × time/div<br>
+f = 1/T<br>
+LCR → Inductance + Capacitance + Resistance<br>
+Q Meter → Quality Factor of coils/resonant circuits
+</div>
+</section>
+</main>
+</div>
+</body>
+</html>

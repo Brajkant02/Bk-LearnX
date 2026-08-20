@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MS Access Concepts - Expanded Notes</title>
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#f3f6fa;color:#1f2937;font-family:Segoe UI,Arial,sans-serif;line-height:1.85}
+.layout{max-width:1550px;margin:auto;padding:15px;display:grid;grid-template-columns:300px 1fr;gap:18px}
+aside{position:sticky;top:15px;height:calc(100vh - 30px);overflow:auto;background:#fff;border-radius:18px;padding:20px;box-shadow:0 5px 22px #0001}
+aside h2{margin-top:0;color:#075985;border-left:5px solid #0284c7;padding-left:10px}
+aside a{display:block;text-decoration:none;color:#374151;padding:7px 10px;border-radius:8px;font-size:14px}
+aside a:hover{background:#e0f2fe;color:#0369a1}
+main{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 5px 22px #0001}
+.hero{padding:36px;background:linear-gradient(135deg,#e0f2fe,#dbeafe,#f8fafc)}
+.hero h1{margin:0;color:#075985;font-size:36px}
+.hero p{margin:6px 0;color:#475569}
+section{padding:30px 32px;border-bottom:1px solid #e5e7eb}
+h2{font-size:28px;color:#075985;border-left:5px solid #0284c7;padding-left:12px}
+h3{font-size:21px;color:#0c4a6e;margin-top:25px}
+p,li{font-size:16px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+.card{padding:18px;background:#f0f9ff;border:1px solid #bae6fd;border-radius:14px}
+.note,.exam,.important{padding:17px 19px;border-radius:12px;margin:18px 0}
+.note{background:#eff6ff;border-left:5px solid #3b82f6}
+.exam{background:#ecfdf5;border-left:5px solid #10b981}
+.important{background:#fff7ed;border-left:5px solid #f97316}
+table{width:100%;border-collapse:collapse;margin:18px 0}
+th,td{border:1px solid #cbd5e1;padding:11px;text-align:left;vertical-align:top}
+th{background:#e0f2fe;color:#075985}
+.flow,.code{background:#08090b;color:#f8fafc;border-radius:13px;padding:19px;margin:18px 0;font-family:Consolas,monospace;overflow:auto}
+.badge{display:inline-block;background:#bae6fd;color:#075985;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:bold}
+kbd{background:#111827;color:#fff;padding:2px 6px;border-radius:4px}
+.schema{background:#f8fafc;border:1px dashed #94a3b8;padding:15px;border-radius:12px;font-family:Consolas,monospace;overflow:auto}
+@media(max-width:900px){
+.layout{display:block;padding:5px}aside{display:none}.hero{padding:25px 18px}.hero h1{font-size:28px}
+section{padding:23px 18px}.grid{grid-template-columns:1fr}p,li{font-size:15px}table{display:block;overflow-x:auto}
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<aside>
+<h2>Topics</h2>
+<a href="#intro">1. Introduction to MS Access</a>
+<a href="#database">2. Database</a>
+<a href="#relational">3. Relational Database</a>
+<a href="#integrity">4. Data Integrity</a>
+<a href="#access">5. MS Access Interface</a>
+<a href="#create-db">6. Creating a Database</a>
+<a href="#table">7. Creating Tables</a>
+<a href="#structure">8. Table Structure</a>
+<a href="#drop">9. Dropping/Deleting Tables</a>
+<a href="#manipulate">10. Manipulating Table Structure</a>
+<a href="#data">11. Data Manipulation</a>
+<a href="#query">12. Query</a>
+<a href="#query-types">13. Types of Queries</a>
+<a href="#forms">14. Data Entry Forms</a>
+<a href="#reports">15. Reports</a>
+<a href="#relationship">16. Table Relationships</a>
+<a href="#workflow">17. Complete Database Workflow</a>
+<a href="#advantages">18. Advantages of MS Access</a>
+<a href="#exam">19. Important Exam Questions</a>
+</aside>
+
+<main>
+
+<div class="hero">
+<span class="badge">DATABASE • MS ACCESS</span>
+<h1>MS Access Concepts</h1>
+<p><strong>Detailed PGDCA Notes</strong> • Hindi + English • Theory + Practical Steps • Exam-Oriented</p>
+<p>Database → Relational Database → Integrity → Tables → Queries → Forms → Reports</p>
+</div>
+
+<section id="intro">
+<h2>1. Introduction to MS Access</h2>
+<p><strong>Microsoft Access</strong> एक database management application है जिसका उपयोग structured data को store, organize, manage, retrieve और present करने के लिए किया जाता है। इसमें tables में data store किया जाता है तथा queries, forms और reports की सहायता से data के साथ काम किया जाता है।</p>
+
+<div class="grid">
+<div class="card">
+<h3>Tables</h3>
+<p>Tables database में actual records/data store करने के लिए उपयोग होती हैं।</p>
+</div>
+<div class="card">
+<h3>Queries</h3>
+<p>Queries का उपयोग required records को search, filter, sort और analyze करने के लिए किया जाता है।</p>
+</div>
+<div class="card">
+<h3>Forms</h3>
+<p>Forms data entry और user-friendly interaction के लिए interface provide करते हैं।</p>
+</div>
+<div class="card">
+<h3>Reports</h3>
+<p>Reports database information को organized और printable format में present करने के लिए उपयोग होती हैं।</p>
+</div>
+</div>
+
+<div class="exam"><b>Exam Definition:</b> MS Access is a database management application used to create and manage databases, tables, queries, forms and reports.</div>
+</section>
+
+<section id="database">
+<h2>2. Database</h2>
+<p><strong>Database</strong> related data का एक organized collection है जिसे इस प्रकार व्यवस्थित किया जाता है कि data को आसानी से store, access, update और manage किया जा सके।</p>
+
+<h3>Example</h3>
+<p>एक college student database में students की ID, Name, Course, Semester, Marks और Contact information store की जा सकती है।</p>
+
+<table>
+<tr><th>Student_ID</th><th>Name</th><th>Course</th><th>Semester</th><th>Marks</th></tr>
+<tr><td>101</td><td>Ravi</td><td>PGDCA</td><td>1</td><td>78</td></tr>
+<tr><td>102</td><td>Neha</td><td>PGDCA</td><td>1</td><td>85</td></tr>
+<tr><td>103</td><td>Aman</td><td>PGDCA</td><td>2</td><td>91</td></tr>
+</table>
+
+<h3>Database की आवश्यकता</h3>
+<ul>
+<li>Large amount of data को व्यवस्थित रखने के लिए।</li>
+<li>Data को जल्दी search और retrieve करने के लिए।</li>
+<li>Records को update और delete करने के लिए।</li>
+<li>Duplicate और inconsistent data को कम करने के लिए।</li>
+<li>Reports और useful information तैयार करने के लिए।</li>
+</ul>
+
+<div class="note"><b>Simple Idea:</b> Database को एक organized digital storage system की तरह समझ सकते हैं जिसमें related information structured form में रखी जाती है।</div>
+</section>
+
+<section id="relational">
+<h2>3. Relational Database</h2>
+<p><strong>Relational Database</strong> वह database है जिसमें data को tables के रूप में organize किया जाता है और tables के बीच relationships establish की जा सकती हैं। प्रत्येक table में rows और columns होते हैं।</p>
+
+<h3>Important Terms</h3>
+<table>
+<tr><th>Term</th><th>Meaning</th></tr>
+<tr><td>Table</td><td>Related records का collection.</td></tr>
+<tr><td>Row / Record</td><td>एक complete data entry.</td></tr>
+<tr><td>Column / Field</td><td>किसी specific attribute की information.</td></tr>
+<tr><td>Primary Key</td><td>ऐसा field जो प्रत्येक record को uniquely identify करता है।</td></tr>
+<tr><td>Foreign Key</td><td>ऐसा field जो दूसरी table की key से relationship establish करने में सहायता करता है।</td></tr>
+</table>
+
+<h3>Example of Relationship</h3>
+<p>मान लें दो tables हैं:</p>
+<ul>
+<li><strong>Students:</strong> Student_ID, Student_Name, Course_ID</li>
+<li><strong>Courses:</strong> Course_ID, Course_Name</li>
+</ul>
+<p>यहाँ <strong>Course_ID</strong> के माध्यम से Students और Courses tables के बीच relationship बनाया जा सकता है।</p>
+
+<div class="flow">Students Table ─── Course_ID ───► Courses Table</div>
+
+<div class="exam"><b>Exam Point:</b> Relational database का मुख्य लाभ यह है कि related data को separate tables में रखकर relationships के माध्यम से meaningful information प्राप्त की जा सकती है।</div>
+</section>
+
+<section id="integrity">
+<h2>4. Data Integrity</h2>
+<p><strong>Data Integrity</strong> का अर्थ database में stored data की accuracy, consistency, validity और reliability को बनाए रखना है। Database में data सही और logically valid होना चाहिए।</p>
+
+<h3>Types / Examples of Integrity</h3>
+<div class="grid">
+<div class="card">
+<h3>Entity Integrity</h3>
+<p>Primary key की value unique और valid होनी चाहिए तथा सामान्यतः NULL नहीं होनी चाहिए।</p>
+</div>
+<div class="card">
+<h3>Referential Integrity</h3>
+<p>Related tables के बीच foreign key references valid होने चाहिए।</p>
+</div>
+<div class="card">
+<h3>Domain Integrity</h3>
+<p>Field में allowed data type, range और format के अनुसार valid data होना चाहिए।</p>
+</div>
+<div class="card">
+<h3>Validation</h3>
+<p>Input data को defined rules के अनुसार check किया जाता है।</p>
+</div>
+</div>
+
+<h3>Example</h3>
+<p>यदि Student_ID primary key है तो दो students का same Student_ID नहीं होना चाहिए। इसी प्रकार यदि Course_ID किसी दूसरे table को reference करता है तो वह valid course से संबंधित होना चाहिए।</p>
+</section>
+
+<section id="access">
+<h2>5. MS Access Interface and Main Objects</h2>
+<p>MS Access में database के साथ काम करने के लिए कई database objects होते हैं। इनके माध्यम से data storage से लेकर reporting तक का काम किया जाता है।</p>
+
+<table>
+<tr><th>Object</th><th>Main Purpose</th></tr>
+<tr><td>Table</td><td>Data store करना।</td></tr>
+<tr><td>Query</td><td>Data search, filter, sort और retrieve करना।</td></tr>
+<tr><td>Form</td><td>Data entry और user interaction.</td></tr>
+<tr><td>Report</td><td>Data को formatted/printable output में present करना।</td></tr>
+</table>
+
+<h3>Database Navigation</h3>
+<p>Access database में created objects को navigation area के माध्यम से देखा और open किया जा सकता है। इससे tables, queries, forms और reports को manage करना आसान होता है।</p>
+</section>
+
+<section id="create-db">
+<h2>6. Creating a Database</h2>
+<p>Database create करना MS Access में database development का पहला major step है।</p>
+
+<h3>Step-by-Step Procedure</h3>
+<ol>
+<li>MS Access open करें।</li>
+<li><strong>Blank Database</strong> option select करें।</li>
+<li>Database का suitable name enter करें।</li>
+<li>Storage location select करें।</li>
+<li><strong>Create</strong> button click करें।</li>
+<li>नई database file open हो जाएगी।</li>
+<li>अब tables और अन्य database objects create किए जा सकते हैं।</li>
+</ol>
+
+<div class="flow">MS Access → Blank Database → Database Name → Location → Create → Tables/Queries/Forms/Reports</div>
+
+<div class="important"><b>Good Practice:</b> Database का name ऐसा रखें जिससे उसके purpose की पहचान आसानी से हो सके, जैसे <strong>College_Student_DB</strong> या <strong>Library_DB</strong>.</div>
+</section>
+
+<section id="table">
+<h2>7. Creating Tables</h2>
+<p><strong>Table</strong> database का मुख्य data-storage object है। इसमें fields columns के रूप में और records rows के रूप में stored होते हैं।</p>
+
+<h3>Table Design करते समय</h3>
+<ul>
+<li>Table का purpose determine करें।</li>
+<li>Required fields identify करें।</li>
+<li>हर field के लिए suitable data type choose करें।</li>
+<li>Primary key decide करें।</li>
+<li>Required validation/constraints apply करें।</li>
+</ul>
+
+<h3>Example: Student Table</h3>
+<table>
+<tr><th>Field Name</th><th>Possible Data Type</th><th>Purpose</th></tr>
+<tr><td>Student_ID</td><td>Number / suitable identifier type</td><td>Unique student identification</td></tr>
+<tr><td>Student_Name</td><td>Short Text</td><td>Student name</td></tr>
+<tr><td>Course</td><td>Short Text</td><td>Course name</td></tr>
+<tr><td>Semester</td><td>Number</td><td>Semester number</td></tr>
+<tr><td>Marks</td><td>Number</td><td>Marks obtained</td></tr>
+</table>
+
+<h3>Steps</h3>
+<ol>
+<li>Database open करें।</li>
+<li>Table creation/design option choose करें।</li>
+<li>Field names enter करें।</li>
+<li>Data types select करें।</li>
+<li>Primary key set करें, यदि required हो।</li>
+<li>Table save करें।</li>
+</ol>
+</section>
+
+<section id="structure">
+<h2>8. Table Structure</h2>
+<p><strong>Table Structure</strong> यह बताता है कि table में कौन-कौन से fields हैं, उनका data type क्या है और उनके rules/constraints क्या हैं।</p>
+
+<table>
+<tr><th>Component</th><th>Description</th></tr>
+<tr><td>Field Name</td><td>Column का नाम।</td></tr>
+<tr><td>Data Type</td><td>Field में किस प्रकार का data रखा जाएगा।</td></tr>
+<tr><td>Field Properties</td><td>Size, format, default value, validation आदि settings.</td></tr>
+<tr><td>Primary Key</td><td>Unique record identification.</td></tr>
+<tr><td>Required</td><td>Field में value required है या नहीं।</td></tr>
+</table>
+
+<div class="note"><b>Example:</b> Marks field को numeric data type देना अधिक appropriate है, जबकि Student_Name के लिए text type suitable है।</div>
+</section>
+
+<section id="drop">
+<h2>9. Dropping / Deleting Tables</h2>
+<p>Database में किसी table की आवश्यकता न रहने पर उसे delete किया जा सकता है। Database terminology में table को permanently remove करने की प्रक्रिया को <strong>dropping/deleting a table</strong> कहा जा सकता है।</p>
+
+<h3>MS Access में General Steps</h3>
+<ol>
+<li>Database open करें।</li>
+<li>Navigation area में required table select करें।</li>
+<li>Right-click करें।</li>
+<li><strong>Delete</strong> option select करें।</li>
+<li>Confirmation आने पर carefully confirm करें।</li>
+</ol>
+
+<div class="important"><b>Warning:</b> Table delete करने से उसमें stored records भी हट सकते हैं। इसलिए deletion से पहले backup या data requirement verify करना चाहिए। Related objects भी प्रभावित हो सकते हैं।</div>
+</section>
+
+<section id="manipulate">
+<h2>10. Manipulating Table Structure</h2>
+<p>Table structure manipulation का अर्थ existing table के design को आवश्यकता के अनुसार बदलना है।</p>
+
+<h3>Common Operations</h3>
+<ul>
+<li>New field add करना।</li>
+<li>Existing field delete करना।</li>
+<li>Field name बदलना।</li>
+<li>Data type बदलना।</li>
+<li>Field size या properties modify करना।</li>
+<li>Primary key set/change करना।</li>
+<li>Validation rules define करना।</li>
+</ul>
+
+<h3>Procedure</h3>
+<ol>
+<li>Required table select/open करें।</li>
+<li>Design View में जाएँ।</li>
+<li>Required field add या modify करें।</li>
+<li>Data type और properties adjust करें।</li>
+<li>Required key/constraint set करें।</li>
+<li>Changes save करें।</li>
+</ol>
+
+<div class="flow">Open Table → Design View → Add/Modify Field → Set Data Type/Properties → Set Key → Save</div>
+</section>
+
+<section id="data">
+<h2>11. Manipulation of Data</h2>
+<p><strong>Data Manipulation</strong> का अर्थ database में stored records के साथ operations करना है। इसमें records को add, edit, delete और retrieve करना शामिल हो सकता है।</p>
+
+<table>
+<tr><th>Operation</th><th>Meaning</th></tr>
+<tr><td>Insert / Add</td><td>New record database में enter करना।</td></tr>
+<tr><td>Update / Edit</td><td>Existing record की information बदलना।</td></tr>
+<tr><td>Delete</td><td>Unwanted record remove करना।</td></tr>
+<tr><td>Retrieve</td><td>Required records को search करके प्राप्त करना।</td></tr>
+</table>
+
+<h3>Example</h3>
+<p>Student table में नए student का record add करना <strong>Insert</strong> है, marks बदलना <strong>Update</strong> है और withdrawn student का record remove करना <strong>Delete</strong> है।</p>
+</section>
+
+<section id="query">
+<h2>12. Query</h2>
+<p><strong>Query</strong> database से specific information प्राप्त करने या data पर operation करने के लिए दिया गया request/instruction है। Queries large data collections में से required records को quickly identify करने में मदद करती हैं।</p>
+
+<h3>Query के मुख्य Uses</h3>
+<ul>
+<li>Specific records search करना।</li>
+<li>Conditions के आधार पर records filter करना।</li>
+<li>Data को sort करना।</li>
+<li>Selected fields display करना।</li>
+<li>Calculated/summary information प्राप्त करना।</li>
+<li>कुछ query types के माध्यम से data modify करना।</li>
+</ul>
+
+<h3>Simple Example</h3>
+<p>यदि Student table में बहुत सारे records हैं और केवल ऐसे students चाहिए जिनके marks 80 से अधिक हैं, तो query में marks की condition लगाई जा सकती है।</p>
+
+<div class="schema">Student Table
+        ↓
+Query Condition: Marks > 80
+        ↓
+Only matching student records
+</div>
+
+<h3>Query बनाने के General Steps</h3>
+<ol>
+<li>Database open करें।</li>
+<li>Query creation option choose करें।</li>
+<li>Required table/table(s) select करें।</li>
+<li>Required fields add करें।</li>
+<li>Criteria/conditions define करें।</li>
+<li>Query run करें।</li>
+<li>Result check करें।</li>
+<li>Query को meaningful name से save करें।</li>
+</ol>
+</section>
+
+<section id="query-types">
+<h2>13. Types of Queries</h2>
+<p>MS Access में अलग-अलग requirements के लिए अलग प्रकार की queries उपयोग की जा सकती हैं।</p>
+
+<table>
+<tr><th>Query Type</th><th>Purpose</th></tr>
+<tr><td>Select Query</td><td>Required records को display/retrieve करने के लिए।</td></tr>
+<tr><td>Parameter Query</td><td>User से input लेकर उसके आधार पर result देने के लिए।</td></tr>
+<tr><td>Action Query</td><td>Data में changes करने वाले operations के लिए, जैसे update/delete आदि।</td></tr>
+<tr><td>Totals Query</td><td>Summary और aggregate calculations के लिए।</td></tr>
+<tr><td>Crosstab Query</td><td>Data को summarized row-column format में analyze करने के लिए।</td></tr>
+</table>
+
+<h3>Select Query Example</h3>
+<p>मान लें Student table में Student_ID, Name और Marks हैं। यदि केवल Name और Marks display करने हैं, तो query में उन्हीं fields को select किया जा सकता है।</p>
+
+<div class="flow">Student Table → Select Query → Choose Fields → Set Criteria → Run → Result</div>
+</section>
+
+<section id="forms">
+<h2>14. Data Entry Form</h2>
+<p><strong>Data Entry Form</strong> database में records enter और edit करने के लिए बनाया गया user-friendly interface है। सीधे table में data भरने की तुलना में form structured input experience दे सकता है।</p>
+
+<h3>Forms की आवश्यकता</h3>
+<ul>
+<li>User-friendly data entry.</li>
+<li>Required fields को organized layout में दिखाना।</li>
+<li>Data entry errors को कम करने में सहायता।</li>
+<li>Existing records को view/edit करना।</li>
+<li>Database users के लिए सरल interface provide करना।</li>
+</ul>
+
+<h3>Data Entry Form बनाने के Steps</h3>
+<ol>
+<li>Database open करें।</li>
+<li>Required table/query select करें।</li>
+<li>Form creation option choose करें।</li>
+<li>Available fields select करें।</li>
+<li>Form layout/design adjust करें।</li>
+<li>Form save करें।</li>
+<li>Form open करके records enter करें।</li>
+</ol>
+
+<h3>Example</h3>
+<table>
+<tr><th>Form Field</th><th>Sample Entry</th></tr>
+<tr><td>Student ID</td><td>104</td></tr>
+<tr><td>Name</td><td>Rahul</td></tr>
+<tr><td>Course</td><td>PGDCA</td></tr>
+<tr><td>Semester</td><td>2</td></tr>
+<tr><td>Marks</td><td>88</td></tr>
+</table>
+
+<div class="note"><b>Form vs Table:</b> Table data को directly store करती है, जबकि Form data entry और interaction के लिए user-friendly interface provide करता है।</div>
+</section>
+
+<section id="reports">
+<h2>15. Reports</h2>
+<p><strong>Report</strong> database information को organized, formatted और often printable form में प्रस्तुत करने के लिए उपयोग किया जाने वाला object है।</p>
+
+<h3>Reports के Uses</h3>
+<ul>
+<li>Data का formatted presentation.</li>
+<li>Summary information दिखाना।</li>
+<li>Records को print-ready form में प्रस्तुत करना।</li>
+<li>Management/academic reports बनाना।</li>
+<li>Categories या groups के अनुसार information organize करना।</li>
+</ul>
+
+<h3>Report बनाने के General Steps</h3>
+<ol>
+<li>Database open करें।</li>
+<li>Required table या query select करें।</li>
+<li>Report creation option choose करें।</li>
+<li>Required fields select करें।</li>
+<li>Grouping/sorting की आवश्यकता हो तो set करें।</li>
+<li>Report layout और formatting adjust करें।</li>
+<li>Preview करें।</li>
+<li>Report save करें।</li>
+</ol>
+
+<h3>Example</h3>
+<p>College database से सभी students के नाम, course और marks को formatted pages में दिखाने वाली output एक <strong>Student Marks Report</strong> हो सकती है।</p>
+
+<div class="flow">Database → Table/Query → Report → Group/Sort → Format → Preview → Print</div>
+</section>
+
+<section id="relationship">
+<h2>16. Table Relationships</h2>
+<p>जब database में multiple tables हों, तो related information को connect करने के लिए relationships का उपयोग किया जाता है। इससे duplicate data को कम करने और related records के साथ काम करने में मदद मिलती है।</p>
+
+<h3>Common Relationship Types</h3>
+<table>
+<tr><th>Type</th><th>Meaning</th><th>Example</th></tr>
+<tr><td>One-to-One</td><td>एक record का एक related record.</td><td>Person ↔ Passport</td></tr>
+<tr><td>One-to-Many</td><td>एक record के कई related records.</td><td>One Course → Many Students</td></tr>
+<tr><td>Many-to-Many</td><td>दोनों sides पर multiple relationships; अक्सर intermediate/junction table की आवश्यकता होती है।</td><td>Students ↔ Subjects</td></tr>
+</table>
+
+<div class="important"><b>Exam Connection:</b> Relational database में relationships establish करने के लिए primary key और foreign key concepts महत्वपूर्ण होते हैं।</div>
+</section>
+
+<section id="workflow">
+<h2>17. Complete MS Access Database Workflow</h2>
+<div class="flow">
+Create Database
+      ↓
+Design Tables
+      ↓
+Define Fields & Data Types
+      ↓
+Set Primary Key / Integrity Rules
+      ↓
+Enter Data
+      ↓
+Create Relationships
+      ↓
+Create Queries
+      ↓
+Create Data Entry Forms
+      ↓
+Generate Reports
+      ↓
+Review / Print / Manage
+</div>
+
+<h3>Practical Example: College Student Database</h3>
+<p>मान लें हमें college students की information manage करनी है।</p>
+
+<table>
+<tr><th>Stage</th><th>Work</th></tr>
+<tr><td>Database</td><td>College_Student_DB create करना।</td></tr>
+<tr><td>Table</td><td>Students table बनाना।</td></tr>
+<tr><td>Fields</td><td>ID, Name, Course, Semester, Marks.</td></tr>
+<tr><td>Primary Key</td><td>Student_ID.</td></tr>
+<tr><td>Data Entry</td><td>Student records enter करना।</td></tr>
+<tr><td>Query</td><td>Marks &gt; 80 वाले students find करना।</td></tr>
+<tr><td>Form</td><td>New student entry form बनाना।</td></tr>
+<tr><td>Report</td><td>Student marks report generate करना।</td></tr>
+</table>
+</section>
+
+<section id="advantages">
+<h2>18. Advantages of MS Access</h2>
+<ul>
+<li>Database create और manage करना आसान है।</li>
+<li>Tables के माध्यम से structured data storage मिलता है।</li>
+<li>Queries से required information quickly retrieve की जा सकती है।</li>
+<li>Forms user-friendly data entry provide करते हैं।</li>
+<li>Reports formatted output बनाने में मदद करती हैं।</li>
+<li>Small और medium-scale database applications के लिए उपयोगी हो सकता है।</li>
+<li>Data organization और basic analysis को आसान बनाता है।</li>
+<li>Multiple database objects को एक database file में organize किया जा सकता है।</li>
+</ul>
+
+<div class="exam"><b>Short Conclusion:</b> MS Access database को create, organize, manipulate और present करने के लिए tables, queries, forms और reports जैसे integrated objects provide करता है।</div>
+</section>
+
+<section id="exam">
+<h2>19. Important Exam Questions</h2>
+
+<div class="exam">
+<b>Long Answer Questions</b><br><br>
+1. Database क्या है? इसकी आवश्यकता और प्रमुख विशेषताएँ समझाइए।<br>
+2. Relational Database क्या है? इसके important components समझाइए।<br>
+3. Data Integrity क्या है? इसके विभिन्न aspects उदाहरण सहित समझाइए।<br>
+4. MS Access क्या है? इसके प्रमुख database objects समझाइए।<br>
+5. MS Access में नया database create करने की step-by-step procedure लिखिए।<br>
+6. MS Access में table क्या है? Table create करने की प्रक्रिया समझाइए।<br>
+7. Table structure क्या है? Fields, data types और primary key को समझाइए।<br>
+8. Table को delete/drop करने की प्रक्रिया और precautions लिखिए।<br>
+9. MS Access में table structure manipulate करने के विभिन्न operations समझाइए।<br>
+10. Data Manipulation क्या है? Insert, Update, Delete और Retrieve operations समझाइए।<br>
+11. Query क्या है? MS Access में query बनाने की प्रक्रिया लिखिए।<br>
+12. Select Query, Parameter Query और Action Query को समझाइए।<br>
+13. Data Entry Form क्या है? इसे बनाने की प्रक्रिया और advantages समझाइए।<br>
+14. Report क्या है? MS Access में report बनाने की प्रक्रिया समझाइए।<br>
+15. Table और Form में अंतर समझाइए।<br>
+16. Query और Report में अंतर समझाइए।<br>
+17. MS Access database का complete workflow example सहित समझाइए।
+</div>
+
+<h3>Important Differences</h3>
+<table>
+<tr><th>Table</th><th>Form</th></tr>
+<tr><td>Data store करती है।</td><td>Data entry/view के लिए interface देती है।</td></tr>
+<tr><td>Rows और columns में data रखती है।</td><td>User-friendly layout provide करती है।</td></tr>
+
+<tr><th>Query</th><th>Report</th></tr>
+<tr><td>Data retrieve/filter/analyze करती है।</td><td>Data को formatted output में present करती है।</td></tr>
+<tr><td>Specific information खोजने में useful.</td><td>Presentation/printing में useful.</td></tr>
+</table>
+
+<div class="note"><b>Exam Answer Format:</b> Definition → Need/Purpose → Components/Types → Step-by-Step Procedure → Example → Advantages/Uses → Conclusion.</div>
+
+<h3>Unit Summary</h3>
+<p>MS Access एक database management application है जिसमें data को tables में store किया जाता है। Relational database में tables के बीच relationships establish की जा सकती हैं। Data integrity database की accuracy और consistency बनाए रखने में महत्वपूर्ण है। MS Access में tables create और modify किए जा सकते हैं, data manipulate किया जा सकता है, queries के माध्यम से required information प्राप्त की जा सकती है, forms के माध्यम से user-friendly data entry की जा सकती है और reports के माध्यम से organized तथा printable information तैयार की जा सकती है।</p>
+
+</section>
+</main>
+</div>
+</body>
+</html>

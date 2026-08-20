@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Digital and Integrated Circuits - PGDCA Notes</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#eef3f8;color:#202936;font-family:Segoe UI,Arial,sans-serif;line-height:1.9}
+.wrap{max-width:1500px;margin:auto;padding:15px;display:grid;grid-template-columns:285px 1fr;gap:18px}
+aside{position:sticky;top:15px;height:calc(100vh - 30px);overflow:auto;background:#fff;padding:20px;border-radius:18px;box-shadow:0 8px 28px #0001}
+aside h2{color:#075985;border-left:5px solid #0284c7;padding-left:10px}
+aside a{display:block;padding:7px 10px;color:#374151;text-decoration:none;border-radius:8px;font-size:14px}
+aside a:hover{background:#e0f2fe;color:#0369a1}
+main{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 8px 28px #0001}
+.hero{padding:42px;background:linear-gradient(135deg,#dbeafe,#e0f2fe,#f8fafc)}
+.hero h1{font-size:38px;color:#075985;margin:8px 0;line-height:1.3}
+.badge{display:inline-block;background:#bae6fd;color:#075985;padding:4px 13px;border-radius:20px;font-size:12px;font-weight:700}
+section{padding:32px;border-bottom:1px solid #e5e7eb}
+h2{font-size:29px;color:#075985;border-left:5px solid #0284c7;padding-left:13px}
+h3{font-size:22px;color:#0c4a6e;margin-top:27px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{background:#f0f9ff;border:1px solid #bae6fd;padding:18px;border-radius:14px}
+.note,.important,.exam{padding:18px 20px;border-radius:12px;margin:19px 0}
+.note{background:#eff6ff;border-left:5px solid #3b82f6}
+.important{background:#fff7ed;border-left:5px solid #f97316}
+.exam{background:#ecfdf5;border-left:5px solid #10b981}
+.formula{background:#f8fafc;border:1px dashed #94a3b8;padding:18px;border-radius:12px;font-family:Consolas,monospace}
+.diagram{background:#090b0f;color:#e5e7eb;border-radius:14px;padding:22px;overflow:auto;font-family:Consolas,monospace;white-space:pre;line-height:1.5}
+table{width:100%;border-collapse:collapse;margin:20px 0}th,td{border:1px solid #cbd5e1;padding:11px;text-align:left;vertical-align:top}
+th{background:#e0f2fe;color:#075985}
+.gate{font-family:Consolas,monospace;background:#f8fafc;border:1px solid #dbeafe;padding:16px;border-radius:12px;overflow:auto}
+@media(max-width:900px){.wrap{display:block;padding:5px}aside{display:none}.hero{padding:28px 18px}.hero h1{font-size:29px}section{padding:24px 18px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<aside>
+<h2>Contents</h2>
+<a href="#intro">1. Introduction</a>
+<a href="#logic">2. Logic Levels & Gates</a>
+<a href="#gates">3. Logic Gates</a>
+<a href="#latches">4. Latches & Buffers</a>
+<a href="#clock">5. Clock Generators</a>
+<a href="#ff">6. Flip-Flops</a>
+<a href="#registers">7. Registers</a>
+<a href="#counters">8. Counters</a>
+<a href="#mux">9. Multiplexer & Demultiplexer</a>
+<a href="#families">10. Logic Families</a>
+<a href="#bipolar">11. Bipolar Logic</a>
+<a href="#unipolar">12. Unipolar Logic</a>
+<a href="#packaging">13. IC Packaging Trends</a>
+<a href="#memory">14. Semiconductor Memories</a>
+<a href="#hierarchy">15. Memory Hierarchy</a>
+<a href="#classification">16. Memory Classification</a>
+<a href="#pcmemory">17. PC Memory Modules</a>
+<a href="#exam">18. Exam Questions</a>
+</aside>
+
+<main>
+<div class="hero">
+<span class="badge">DIGITAL ELECTRONICS • 14 PERIODS</span>
+<h1>6. Digital and Integrated Circuits</h1>
+<p><strong>Logic Gates • Sequential Circuits • Logic Families • IC Packaging • Semiconductor Memories</strong></p>
+</div>
+
+<section id="intro">
+<h2>1. Introduction to Digital & Integrated Circuits</h2>
+<p><strong>Digital circuits</strong> वे electronic circuits हैं जो discrete logic states के साथ information process करते हैं। सामान्यतः binary digital systems में दो logic states को <strong>0 और 1</strong> से represent किया जाता है। इन states के आधार पर computers, calculators, communication systems और embedded devices में data processing होती है।</p>
+
+<p><strong>Integrated Circuit (IC)</strong> एक semiconductor chip है जिसमें अनेक electronic components और interconnections को एक छोटे physical package में integrate किया जाता है। Logic gates, flip-flops, counters, memory devices और processors सभी integrated-circuit technology पर आधारित हो सकते हैं।</p>
+
+<div class="grid">
+<div class="card"><h3>Combinational Circuit</h3><p>Output मुख्यतः present input combination पर depend करता है। उदाहरण: gates, multiplexers, demultiplexers.</p></div>
+<div class="card"><h3>Sequential Circuit</h3><p>Output present input के साथ previous state पर भी depend करता है। उदाहरण: latches, flip-flops, registers और counters.</p></div>
+</div>
+</section>
+
+<section id="logic">
+<h2>2. Logic Levels & Logic Gates</h2>
+<p>Digital systems में binary information को electrical voltage/current levels के रूप में represent किया जाता है। एक logic family में <strong>LOW</strong> state को सामान्यतः logic 0 और <strong>HIGH</strong> state को logic 1 कहा जाता है। Exact voltage ranges technology और device family पर depend करते हैं।</p>
+
+<div class="note"><b>Important:</b> Logic 0 का मतलब हमेशा exactly 0 volts और logic 1 का मतलब हमेशा exactly 5 volts नहीं होता। Actual HIGH/LOW voltage limits specific logic family/device datasheet से निर्धारित होते हैं।</div>
+
+<h3>Logic Gate क्या है?</h3>
+<p><strong>Logic gate</strong> एक digital circuit है जो one or more binary inputs को process करके एक binary output देता है। प्रत्येक gate एक specific Boolean operation perform करता है।</p>
+</section>
+
+<section id="gates">
+<h2>3. Definition, Symbols, Truth Tables & Functions of Logic Gates</h2>
+
+<h3>3.1 NOT Gate</h3>
+<p>NOT gate input का logical complement देता है। यदि input 1 है तो output 0 और input 0 है तो output 1 होता है। इसे <strong>Inverter</strong> भी कहा जाता है।</p>
+<div class="gate">A ───► [ NOT ] ───► Y
+Y = Ā</div>
+<table><tr><th>A</th><th>Y = NOT A</th></tr><tr><td>0</td><td>1</td></tr><tr><td>1</td><td>0</td></tr></table>
+
+<h3>3.2 AND Gate</h3>
+<p>AND gate का output 1 तभी होता है जब <strong>सभी inputs 1</strong> हों।</p>
+<div class="gate">A ──┐
+    ├──► [ AND ] ───► Y
+B ──┘
+Y = A · B</div>
+<table><tr><th>A</th><th>B</th><th>Y</th></tr><tr><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>0</td></tr><tr><td>1</td><td>0</td><td>0</td></tr><tr><td>1</td><td>1</td><td>1</td></tr></table>
+
+<h3>3.3 OR Gate</h3>
+<p>OR gate का output 1 तब होता है जब <strong>कम से कम एक input 1</strong> हो।</p>
+<div class="gate">A ──┐
+    ├──► [ OR ] ───► Y
+B ──┘
+Y = A + B</div>
+<table><tr><th>A</th><th>B</th><th>Y</th></tr><tr><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>1</td></tr><tr><td>1</td><td>0</td><td>1</td></tr><tr><td>1</td><td>1</td><td>1</td></tr></table>
+
+<h3>3.4 NAND Gate</h3>
+<p>NAND = NOT + AND. इसका output AND gate के output का complement होता है। NAND को <strong>Universal Gate</strong> कहा जाता है क्योंकि suitable connections द्वारा इससे अन्य basic gates implement किए जा सकते हैं।</p>
+<div class="gate">Y = (A · B)̅</div>
+<table><tr><th>A</th><th>B</th><th>Y</th></tr><tr><td>0</td><td>0</td><td>1</td></tr><tr><td>0</td><td>1</td><td>1</td></tr><tr><td>1</td><td>0</td><td>1</td></tr><tr><td>1</td><td>1</td><td>0</td></tr></table>
+
+<h3>3.5 NOR Gate</h3>
+<p>NOR = NOT + OR. इसका output OR gate के output का complement होता है। NOR भी एक <strong>Universal Gate</strong> है।</p>
+<div class="gate">Y = (A + B)̅</div>
+<table><tr><th>A</th><th>B</th><th>Y</th></tr><tr><td>0</td><td>0</td><td>1</td></tr><tr><td>0</td><td>1</td><td>0</td></tr><tr><td>1</td><td>0</td><td>0</td></tr><tr><td>1</td><td>1</td><td>0</td></tr></table>
+
+<h3>3.6 EX-OR (XOR) Gate</h3>
+<p>XOR gate का output 1 तब होता है जब inputs <strong>different</strong> हों। Two-input XOR में 00 और 11 पर output 0, जबकि 01 और 10 पर output 1 होता है।</p>
+<div class="gate">Y = A ⊕ B</div>
+<table><tr><th>A</th><th>B</th><th>Y</th></tr><tr><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>1</td></tr><tr><td>1</td><td>0</td><td>1</td></tr><tr><td>1</td><td>1</td><td>0</td></tr></table>
+
+<h3>Gate Comparison</h3>
+<table>
+<tr><th>Gate</th><th>Boolean Expression</th><th>Output 1 कब?</th></tr>
+<tr><td>NOT</td><td>Y = Ā</td><td>Input 0 होने पर</td></tr>
+<tr><td>AND</td><td>Y = A·B</td><td>All inputs 1</td></tr>
+<tr><td>OR</td><td>Y = A+B</td><td>At least one input 1</td></tr>
+<tr><td>NAND</td><td>Y = (A·B)̅</td><td>AND condition false होने पर</td></tr>
+<tr><td>NOR</td><td>Y = (A+B)̅</td><td>All inputs 0</td></tr>
+<tr><td>XOR</td><td>Y = A⊕B</td><td>Inputs different</td></tr>
+</table>
+</section>
+
+<section id="latches">
+<h2>4. Latches & Buffers</h2>
+<h3>Latch</h3>
+<p><strong>Latch</strong> एक basic sequential storage circuit है जो binary information का एक bit state hold कर सकता है। Latch generally level-sensitive होता है, अर्थात control/enable condition के आधार पर input state को accept करके stored state maintain कर सकता है।</p>
+
+<h3>Unidirectional Buffer</h3>
+<p>Buffer signal को एक direction में pass/drive करता है। इसका उद्देश्य signal isolation, driving capability या logic interfacing में सहायता करना हो सकता है।</p>
+
+<div class="gate">INPUT ─────► [ BUFFER ] ─────► OUTPUT</div>
+
+<h3>Bi-directional Buffer</h3>
+<p><strong>Bidirectional buffer</strong> controlled direction में data को दोनों दिशाओं में transfer करने की सुविधा देता है। यह shared data buses और digital interfaces में useful होता है।</p>
+
+<div class="gate">          ┌─────────────┐
+A ─────────►│             │────────► B
+            │ BI-DIRECTION│
+B ◄─────────│   BUFFER    │◄──────── A
+            └─────────────┘
+               DIR / EN</div>
+
+<h3>Tri-State Device</h3>
+<p>Tri-state device output को तीन possible electrical states में रख सकता है: <strong>Logic 0, Logic 1 और High-Impedance (Z)</strong>। High-impedance state में output effectively disconnected जैसा behave करता है, जिससे multiple devices shared bus पर controlled तरीके से connect हो सकते हैं।</p>
+
+<div class="grid">
+<div class="card"><b>0</b><p>Logic LOW output.</p></div>
+<div class="card"><b>1</b><p>Logic HIGH output.</p></div>
+<div class="card"><b>Z</b><p>High-impedance state; output driver disabled.</p></div>
+</div>
+</section>
+
+<section id="clock">
+<h2>5. Clock Generators</h2>
+<p>Sequential digital circuits में operations को synchronize करने के लिए <strong>clock signal</strong> का उपयोग किया जाता है। Clock सामान्यतः periodic digital waveform होती है जिसमें HIGH और LOW states alternate होती हैं।</p>
+
+<div class="diagram">Clock:
+HIGH ──┐    ┌────┐    ┌────┐
+       │    │    │    │    │
+LOW  ──└────┘    └────┘    └────→ Time</div>
+
+<p>Clock generator oscillator या अन्य timing circuitry से periodic signal produce कर सकता है। Clock की <strong>frequency</strong> और <strong>period</strong> digital system की timing को प्रभावित करते हैं।</p>
+
+<div class="formula">f = 1 / T
+
+f = Frequency
+T = Time Period</div>
+</section>
+
+<section id="ff">
+<h2>6. Flip-Flops</h2>
+<p><strong>Flip-flop</strong> एक basic bistable sequential circuit है जो सामान्यतः <strong>one bit</strong> information store करता है। इसका state clock signal या control inputs के अनुसार change होता है। Flip-flops registers, counters और memory/control circuits के important building blocks हैं।</p>
+
+<h3>Common Types</h3>
+<table>
+<tr><th>Type</th><th>Main Idea</th></tr>
+<tr><td>SR Flip-Flop</td><td>Set और Reset inputs के आधार पर state control.</td></tr>
+<tr><td>JK Flip-Flop</td><td>SR behavior का improved form; J=K=1 condition में toggle operation.</td></tr>
+<tr><td>D Flip-Flop</td><td>Clock event पर D input की value को store करने के लिए widely used.</td></tr>
+<tr><td>T Flip-Flop</td><td>Toggle operation के लिए useful; T active होने पर state change कर सकता है।</td></tr>
+</table>
+
+<div class="note"><b>Key Point:</b> Latch और flip-flop दोनों storage elements हैं, लेकिन latch सामान्यतः level-sensitive होता है जबकि flip-flop को commonly edge-triggered storage element के रूप में use किया जाता है।</div>
+</section>
+
+<section id="registers">
+<h2>7. Registers</h2>
+<p><strong>Register</strong> कई flip-flops का group होता है जो multiple bits of binary data store कर सकता है। उदाहरण के लिए 8-bit register में सामान्यतः 8 storage elements होते हैं।</p>
+
+<h3>Types / Operations</h3>
+<ul>
+<li><strong>Parallel Register:</strong> Multiple bits को parallel form में load/store कर सकता है।</li>
+<li><strong>Shift Register:</strong> Data को clock pulses के साथ left या right shift कर सकता है।</li>
+<li><strong>SISO:</strong> Serial-In Serial-Out.</li>
+<li><strong>SIPO:</strong> Serial-In Parallel-Out.</li>
+<li><strong>PISO:</strong> Parallel-In Serial-Out.</li>
+<li><strong>PIPO:</strong> Parallel-In Parallel-Out.</li>
+</ul>
+
+<div class="diagram">Serial Input → [FF] → [FF] → [FF] → [FF] → Serial Output
+                  ↑      ↑      ↑      ↑
+                 Clock / Common Timing</div>
+</section>
+
+<section id="counters">
+<h2>8. Counters</h2>
+<p><strong>Counter</strong> एक sequential digital circuit है जो clock pulses को count करके predefined sequence में states change करता है। Counters digital clocks, frequency measurement, timers और control systems में widely used हैं।</p>
+
+<h3>Common Counter Types</h3>
+<div class="grid">
+<div class="card"><h3>Asynchronous / Ripple Counter</h3><p>Flip-flops एक cascading manner में trigger होते हैं; propagation delay accumulate हो सकता है।</p></div>
+<div class="card"><h3>Synchronous Counter</h3><p>Multiple flip-flops को common clock मिलता है, जिससे timing control बेहतर हो सकता है।</p></div>
+<div class="card"><h3>Up Counter</h3><p>Count sequence increasing order में चलता है।</p></div>
+<div class="card"><h3>Down Counter</h3><p>Count sequence decreasing order में चलता है।</p></div>
+</div>
+
+<div class="formula">n flip-flops → maximum 2ⁿ distinct binary states (for a full binary counter).</div>
+</section>
+
+<section id="mux">
+<h2>9. Multiplexer & Demultiplexer</h2>
+<h3>Multiplexer (MUX)</h3>
+<p><strong>Multiplexer</strong> एक digital data selector है जो multiple input lines में से selected input को एक output line पर route करता है। Selection lines यह decide करती हैं कि कौन सा input output पर पहुंचेगा।</p>
+
+<div class="diagram">I0 ─┐
+I1 ─┤
+I2 ─┤──► [  MUX  ] ───► Y
+I3 ─┘       ▲
+            │
+         Select</div>
+
+<p>यदि MUX में <strong>n select lines</strong> हैं, तो theoretically <strong>2ⁿ input lines</strong> select की जा सकती हैं, typical binary selection arrangement में।</p>
+
+<h3>Demultiplexer (DEMUX)</h3>
+<p><strong>Demultiplexer</strong> एक input signal को selected output line पर route करता है। यह MUX का functional opposite माना जाता है।</p>
+
+<div class="diagram">             ┌─────────┐
+Input ──────►│  DEMUX  │──► Y0
+             │         │──► Y1
+             │         │──► Y2
+             │         │──► Y3
+             └────▲────┘
+                  │
+                Select</div>
+
+<table>
+<tr><th>Basis</th><th>Multiplexer</th><th>Demultiplexer</th></tr>
+<tr><td>Basic Function</td><td>Many-to-One</td><td>One-to-Many</td></tr>
+<tr><td>Input</td><td>Multiple data inputs</td><td>One data input</td></tr>
+<tr><td>Output</td><td>One selected output</td><td>Selected output among multiple lines</td></tr>
+<tr><td>Use</td><td>Data selection/routing</td><td>Data distribution/routing</td></tr>
+</table>
+</section>
+
+<section id="families">
+<h2>10. Logic Families & Their Characteristics</h2>
+<p><strong>Logic family</strong> digital ICs का ऐसा group है जो similar circuit technology और electrical characteristics का उपयोग करता है। Logic family का selection speed, power consumption, noise margin, supply voltage, fan-out और switching characteristics जैसे factors पर depend कर सकता है।</p>
+
+<table>
+<tr><th>Characteristic</th><th>Meaning</th></tr>
+<tr><td>Propagation Delay</td><td>Input change के बाद output को corresponding state तक पहुंचने में लगने वाला delay.</td></tr>
+<tr><td>Power Dissipation</td><td>IC द्वारा consumed electrical power.</td></tr>
+<tr><td>Fan-out</td><td>एक output कितने compatible logic inputs को reliably drive कर सकता है।</td></tr>
+<tr><td>Noise Margin</td><td>Noise के बावजूद valid logic level maintain करने की tolerance.</td></tr>
+<tr><td>Speed</td><td>Logic transitions कितनी तेजी से occur कर सकती हैं।</td></tr>
+<tr><td>Supply Voltage</td><td>Required operating voltage range.</td></tr>
+</table>
+</section>
+
+<section id="bipolar">
+<h2>11. Bipolar Logic Family</h2>
+<p><strong>Bipolar logic families</strong> semiconductor devices में bipolar junction transistor (BJT) based logic technology का उपयोग करती हैं। Traditional bipolar families में <strong>RTL, DTL और TTL</strong> जैसे examples study किए जाते हैं।</p>
+
+<h3>TTL – Transistor-Transistor Logic</h3>
+<p>TTL एक well-known bipolar logic family है जिसमें transistors logic operations perform करने के लिए प्रमुख role निभाते हैं। TTL historically digital systems में widely used रहा है।</p>
+
+<h3>Bipolar Logic की General Characteristics</h3>
+<ul>
+<li>Transistor-based logic implementation.</li>
+<li>Traditional families में comparatively higher power consumption हो सकता है।</li>
+<li>High-speed switching के लिए कई bipolar technologies विकसित की गईं।</li>
+<li>Fan-out, propagation delay और noise margin family-specific parameters हैं।</li>
+</ul>
+</section>
+
+<section id="unipolar">
+<h2>12. Unipolar Logic Families</h2>
+<p><strong>Unipolar logic</strong> families field-effect transistor technology, विशेष रूप से MOS-based devices, पर आधारित होती हैं। Major examples में <strong>PMOS, NMOS और CMOS</strong> technologies शामिल हैं।</p>
+
+<h3>CMOS – Complementary MOS</h3>
+<p>CMOS technology complementary MOSFET devices का उपयोग करती है। CMOS की प्रमुख विशेषताओं में low static power consumption और high integration density शामिल हैं। Modern digital ICs, processors और memory devices में CMOS technology का बहुत व्यापक उपयोग है।</p>
+
+<table>
+<tr><th>Family/Technology</th><th>Basic Device Technology</th><th>General Feature</th></tr>
+<tr><td>TTL</td><td>BJT</td><td>Traditional bipolar logic; established digital logic family.</td></tr>
+<tr><td>PMOS</td><td>MOSFET</td><td>Older unipolar logic technology.</td></tr>
+<tr><td>NMOS</td><td>MOSFET</td><td>Historically important MOS logic technology.</td></tr>
+<tr><td>CMOS</td><td>Complementary MOSFETs</td><td>Low static power और high integration के कारण widely used.</td></tr>
+</table>
+</section>
+
+<section id="packaging">
+<h2>13. Latest Trends in IC Packaging</h2>
+<p>IC packaging का उद्देश्य semiconductor die को mechanical protection, electrical connections, thermal management और system-level integration provide करना है। जैसे-जैसे IC density बढ़ी है, packaging technology भी अधिक compact और high-performance हुई है।</p>
+
+<h3>Important Packaging Trends</h3>
+<ul>
+<li><strong>Miniaturization:</strong> Smaller package footprints और compact electronics.</li>
+<li><strong>Higher Pin/Contact Density:</strong> अधिक electrical connections के लिए advanced package structures.</li>
+<li><strong>Surface-Mount Packaging:</strong> PCB पर compact mounting के लिए widely used package styles.</li>
+<li><strong>BGA (Ball Grid Array):</strong> Package underside पर solder balls के array द्वारा high-density connections.</li>
+<li><strong>QFN:</strong> Compact surface-mount package family with low profile.</li>
+<li><strong>Multi-Chip / Advanced Integration:</strong> Multiple dies/components को एक package या package-level system में integrate करना।</li>
+<li><strong>Thermal Management:</strong> High-performance chips के लिए improved heat dissipation techniques.</li>
+<li><strong>Chiplet-Based Packaging:</strong> Large monolithic die के बजाय multiple functional chiplets को advanced package/interconnect technology से integrate करने का trend.</li>
+</ul>
+
+<div class="note"><b>Exam Point:</b> Packaging केवल IC को cover करने के लिए नहीं है; यह electrical interconnection, physical protection और heat management में भी important role निभाता है।</div>
+</section>
+
+<section id="memory">
+<h2>14. Semiconductor Memories</h2>
+<p><strong>Semiconductor memory</strong> ऐसी memory है जो semiconductor integrated circuits का उपयोग करके binary data store करती है। Computer systems में memory का उपयोग instructions, programs और data को temporarily या permanently store करने के लिए किया जाता है, depending on memory type.</p>
+
+<h3>RAM और ROM</h3>
+<div class="grid">
+<div class="card"><h3>RAM</h3><p><strong>Random Access Memory</strong> सामान्यतः volatile main memory होती है। Power remove होने पर stored contents lost हो जाते हैं।</p></div>
+<div class="card"><h3>ROM / Non-Volatile Memory</h3><p>Non-volatile semiconductor memories power off के बाद भी data retain कर सकती हैं। ROM family में PROM, EPROM और EEPROM जैसे historical forms तथा modern flash-based memories शामिल हैं।</p></div>
+</div>
+
+<h3>RAM के Common Types</h3>
+<ul>
+<li><strong>SRAM:</strong> Flip-flop based storage cells; fast और typically more expensive per bit.</li>
+<li><strong>DRAM:</strong> Capacitor-based storage cells; high density और main memory systems में widely used.</li>
+</ul>
+
+<h3>Non-Volatile Semiconductor Memory</h3>
+<ul>
+<li>PROM</li>
+<li>EPROM</li>
+<li>EEPROM</li>
+<li>Flash Memory</li>
+</ul>
+</section>
+
+<section id="hierarchy">
+<h2>15. Hierarchy of Memories Used in a Computer</h2>
+<p>Computer memory hierarchy speed, capacity और cost के बीच balance provide करती है। Processor के पास बहुत fast लेकिन relatively small memories होती हैं, जबकि lower levels पर storage capacity बहुत अधिक लेकिन access comparatively slower हो सकती है।</p>
+
+<div class="diagram">
+        FASTEST / SMALLEST
+              ▲
+              │
+        ┌─────────────┐
+        │ CPU Registers│
+        ├─────────────┤
+        │ Cache        │
+        ├─────────────┤
+        │ Main Memory  │
+        │ RAM          │
+        ├─────────────┤
+        │ SSD / HDD    │
+        ├─────────────┤
+        │ Backup /     │
+        │ External     │
+        │ Storage      │
+        └─────────────┘
+              │
+              ▼
+       SLOWER / LARGER
+</div>
+
+<table>
+<tr><th>Level</th><th>Speed</th><th>Capacity</th><th>Typical Example</th></tr>
+<tr><td>Registers</td><td>Very high</td><td>Very small</td><td>CPU registers</td></tr>
+<tr><td>Cache</td><td>Very high</td><td>Small</td><td>L1, L2, L3 cache</td></tr>
+<tr><td>Main Memory</td><td>High</td><td>Moderate/large</td><td>DRAM</td></tr>
+<tr><td>Secondary Storage</td><td>Lower</td><td>Large</td><td>SSD/HDD</td></tr>
+<tr><td>External/Backup</td><td>Generally lower</td><td>Very large</td><td>External drives/backup media</td></tr>
+</table>
+</section>
+
+<section id="classification">
+<h2>16. Classification of Memories</h2>
+<table>
+<tr><th>Classification</th><th>Types</th><th>Explanation</th></tr>
+<tr><td>Volatility</td><td>Volatile / Non-volatile</td><td>Volatile memory loses data without power; non-volatile memory retains data.</td></tr>
+<tr><td>Read/Write Behavior</td><td>RAM / ROM-family</td><td>RAM is designed for frequent read/write operations; ROM-family includes non-volatile storage technologies with different programming/rewrite methods.</td></tr>
+<tr><td>RAM</td><td>SRAM / DRAM</td><td>SRAM uses bistable storage cells; DRAM uses capacitor-based cells and requires refresh.</td></tr>
+<tr><td>Non-volatile</td><td>PROM / EPROM / EEPROM / Flash</td><td>Different technologies for programming, erasing and retaining stored information.</td></tr>
+</table>
+
+<h3>SRAM vs DRAM</h3>
+<table>
+<tr><th>Feature</th><th>SRAM</th><th>DRAM</th></tr>
+<tr><td>Storage Cell</td><td>Typically flip-flop based</td><td>Typically capacitor based</td></tr>
+<tr><td>Refresh</td><td>Does not require periodic refresh like DRAM</td><td>Requires periodic refresh</td></tr>
+<tr><td>Speed</td><td>Generally faster</td><td>Generally slower than SRAM</td></tr>
+<tr><td>Density</td><td>Lower</td><td>Higher</td></tr>
+<tr><td>Cost per Bit</td><td>Higher</td><td>Lower</td></tr>
+<tr><td>Typical Use</td><td>Cache and high-speed buffers</td><td>Main system memory</td></tr>
+</table>
+</section>
+
+<section id="pcmemory">
+<h2>17. Trends in PC Memory Modules</h2>
+<p>PC memory modules समय के साथ higher capacity, higher data-transfer rates, better power efficiency और improved reliability की दिशा में विकसित हुए हैं। Desktop और laptop systems में memory modules का physical form factor अलग हो सकता है।</p>
+
+<h3>Common Module Concepts</h3>
+<ul>
+<li><strong>DIMM:</strong> Desktop/server systems में commonly used memory module form factor.</li>
+<li><strong>SO-DIMM:</strong> Compact module form factor, commonly associated with laptops और small systems.</li>
+<li><strong>DDR Memory:</strong> DDR generations ने data-transfer technology को successive generations में improve किया है।</li>
+<li><strong>Higher Density:</strong> Modern modules अधिक memory capacity provide कर सकते हैं।</li>
+<li><strong>Improved Efficiency:</strong> Newer memory generations generally power efficiency और signaling improvements introduce करती हैं।</li>
+</ul>
+
+<h3>PC Memory Selection में Important Factors</h3>
+<div class="grid">
+<div class="card"><b>Capacity</b><p>Total RAM कितनी है, जैसे GB में।</p></div>
+<div class="card"><b>Speed / Data Rate</b><p>Memory कितनी तेजी से data transfer कर सकती है।</p></div>
+<div class="card"><b>Form Factor</b><p>DIMM, SO-DIMM आदि physical module type.</p></div>
+<div class="card"><b>Compatibility</b><p>Motherboard/CPU द्वारा supported memory technology, capacity और configuration.</p></div>
+</div>
+</section>
+
+<section id="exam">
+<h2>18. Important Exam Questions</h2>
+
+<div class="exam">
+<b>Long Answer Questions</b><br><br>
+1. Digital circuits क्या हैं? Logic levels और logic gates को समझाइए।<br>
+2. NOT, AND, OR, NAND, NOR और EX-OR gates की definition, symbols, Boolean expressions और truth tables समझाइए।<br>
+3. NAND और NOR को universal gates क्यों कहा जाता है?<br>
+4. Latch, buffer और tri-state device को विस्तार से समझाइए।<br>
+5. Clock generator क्या है? Digital sequential circuits में clock का महत्व समझाइए।<br>
+6. Flip-flop क्या है? SR, JK, D और T flip-flops का संक्षिप्त वर्णन कीजिए।<br>
+7. Register क्या है? Shift registers और उनके types समझाइए।<br>
+8. Counter क्या है? Synchronous और asynchronous counters में अंतर लिखिए।<br>
+9. Multiplexer और Demultiplexer को diagram सहित समझाइए और दोनों में अंतर लिखिए।<br>
+10. Logic family क्या है? इसकी प्रमुख characteristics समझाइए।<br>
+11. Bipolar और Unipolar logic families को examples सहित समझाइए।<br>
+12. IC packaging की latest trends को समझाइए।<br>
+13. Semiconductor memory क्या है? RAM और ROM की classification समझाइए।<br>
+14. Computer memory hierarchy को diagram सहित समझाइए।<br>
+15. SRAM और DRAM में अंतर लिखिए।<br>
+16. PC memory modules के trends और important characteristics समझाइए।
+</div>
+
+<h3>Short Answer Questions</h3>
+<ul>
+<li>Logic level क्या है?</li>
+<li>Logic gate क्या है?</li>
+<li>NOT gate को inverter क्यों कहते हैं?</li>
+<li>NAND और NOR को universal gates क्यों कहते हैं?</li>
+<li>XOR gate का output कब 1 होता है?</li>
+<li>Latch क्या है?</li>
+<li>Tri-state output में Z का क्या अर्थ है?</li>
+<li>Clock signal क्या है?</li>
+<li>Flip-flop कितने bits store कर सकता है?</li>
+<li>Register क्या है?</li>
+<li>Counter का क्या कार्य है?</li>
+<li>MUX का basic function क्या है?</li>
+<li>DEMUX का basic function क्या है?</li>
+<li>TTL का full form क्या है?</li>
+<li>CMOS का full form क्या है?</li>
+<li>Fan-out क्या है?</li>
+<li>Propagation delay क्या है?</li>
+<li>Semiconductor memory क्या है?</li>
+<li>SRAM और DRAM में एक मुख्य अंतर लिखिए।</li>
+<li>DIMM और SO-DIMM क्या हैं?</li>
+</ul>
+
+<div class="important">
+<b>One-Minute Revision:</b><br><br>
+Logic Gates → NOT, AND, OR, NAND, NOR, XOR<br>
+NAND/NOR → Universal Gates<br>
+Latch → Level-sensitive storage<br>
+Tri-State → 0, 1, Z<br>
+Clock → Sequential circuits synchronization<br>
+Flip-Flop → 1-bit storage element<br>
+Register → Group of flip-flops for multi-bit storage<br>
+Counter → Clock pulses count करता है<br>
+MUX → Many-to-One<br>
+DEMUX → One-to-Many<br>
+Bipolar → BJT-based logic, e.g. TTL<br>
+Unipolar → MOS-based logic, e.g. CMOS<br>
+Memory → Registers → Cache → RAM → Secondary Storage<br>
+SRAM → Fast, no periodic DRAM-style refresh<br>
+DRAM → Dense, refresh required
+</div>
+</section>
+</main>
+</div>
+</body>
+</html>

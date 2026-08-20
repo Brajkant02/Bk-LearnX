@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Windows Console, Disk Utilities & INI Files</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:#eef2f7;color:#202938;font-family:Segoe UI,Arial,sans-serif;line-height:1.9}
+.layout{max-width:1550px;margin:auto;padding:15px;display:grid;grid-template-columns:305px 1fr;gap:18px}
+aside{position:sticky;top:15px;height:calc(100vh - 30px);overflow:auto;background:#fff;border-radius:18px;padding:20px;box-shadow:0 6px 25px #0001}
+aside h2{color:#075985;border-left:5px solid #0284c7;padding-left:10px}
+aside a{display:block;text-decoration:none;color:#374151;padding:7px 10px;border-radius:8px;font-size:14px}
+aside a:hover{background:#e0f2fe;color:#0369a1}
+main{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 6px 25px #0001}
+.hero{padding:42px;background:linear-gradient(135deg,#dbeafe,#e0f2fe,#f8fafc)}
+.hero h1{margin:7px 0;color:#075985;font-size:36px;line-height:1.3}
+section{padding:32px;border-bottom:1px solid #e5e7eb}
+h2{font-size:29px;color:#075985;border-left:5px solid #0284c7;padding-left:13px}
+h3{font-size:22px;color:#0c4a6e;margin-top:27px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{padding:19px;background:#f0f9ff;border:1px solid #bae6fd;border-radius:14px}
+.note,.important,.exam{padding:18px 20px;border-radius:12px;margin:19px 0}
+.note{background:#eff6ff;border-left:5px solid #3b82f6}
+.important{background:#fff7ed;border-left:5px solid #f97316}
+.exam{background:#ecfdf5;border-left:5px solid #10b981}
+table{width:100%;border-collapse:collapse;margin:20px 0}
+th,td{border:1px solid #cbd5e1;padding:12px;text-align:left;vertical-align:top}
+th{background:#e0f2fe;color:#075985}
+.code{background:#090b0f;color:#e5e7eb;border-radius:14px;padding:20px 24px;overflow:auto;font-family:Consolas,monospace;white-space:pre;line-height:1.55}
+.diagram{background:#090b0f;color:#e5e7eb;border-radius:15px;padding:25px;overflow:auto;font-family:Consolas,monospace;white-space:pre;line-height:1.5}
+.step{padding:14px 16px;background:#f8fafc;border-radius:10px;margin:9px 0;border-left:4px solid #0284c7}
+.badge{display:inline-block;background:#bae6fd;color:#075985;padding:4px 11px;border-radius:20px;font-size:12px;font-weight:bold}
+@media(max-width:900px){.layout{display:block;padding:5px}aside{display:none}.hero{padding:28px 18px}.hero h1{font-size:28px}section{padding:24px 18px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside>
+<h2>Topics</h2>
+<a href="#console">1. Windows Console</a>
+<a href="#directory">2. Directory Operations</a>
+<a href="#files">3. File Operations</a>
+<a href="#fdisk">4. FDISK</a>
+<a href="#format">5. FORMAT</a>
+<a href="#defrag">6. DEFRAG</a>
+<a href="#scandisk">7. SCANDISK</a>
+<a href="#emm">8. EMM386 & Memory</a>
+<a href="#ini">9. Windows .INI Files</a>
+<a href="#comparison">10. Comparison</a>
+<a href="#exam">11. Exam Questions</a>
+</aside>
+
+<main>
+<div class="hero">
+<span class="badge">WINDOWS / DOS UTILITIES • EXAM ORIENTED</span>
+<h1>Windows Console, Disk Utilities & INI Files</h1>
+<p><strong>Directory Management • File Operations • FDISK • FORMAT • DEFRAG • SCANDISK • EMM386 • .INI Files</strong></p>
+</div>
+
+<section id="console">
+<h2>1. Making and Accessing Directory from Windows Console</h2>
+<p><strong>Windows Console</strong> से command-line interface को समझा जा सकता है, जहाँ commands type करके files, directories और system resources पर operations perform किए जाते हैं। Traditional Windows/DOS environments में यह काम DOS prompt से किया जाता था; modern Windows में Command Prompt और अन्य shells उपलब्ध हैं।</p>
+
+<h3>Directory क्या है?</h3>
+<p>Directory एक logical container है जिसमें files और अन्य directories को organize करके रखा जाता है। Windows में इसे सामान्यतः <strong>folder</strong> कहा जाता है। Directory structure की सहायता से files को category और hierarchy के अनुसार manage किया जा सकता है।</p>
+
+<h3>Directory Create करना – MD / MKDIR</h3>
+<div class="code">C:\&gt;MD STUDY</div>
+<p>यह current location में <strong>STUDY</strong> नाम की directory create करता है। <code>MKDIR</code> भी इसी purpose के लिए उपयोग किया जा सकता है।</p>
+
+<h3>Directory Access करना – CD</h3>
+<div class="code">C:\&gt;CD STUDY
+C:\STUDY&gt;</div>
+<p><strong>CD (Change Directory)</strong> command current directory बदलने के लिए उपयोग होती है।</p>
+
+<h3>Parent Directory पर जाना</h3>
+<div class="code">C:\STUDY&gt;CD ..
+C:\&gt;</div>
+
+<h3>Root Directory पर जाना</h3>
+<div class="code">C:\STUDY\NOTES&gt;CD \</div>
+
+<h3>Directory की Contents देखना – DIR</h3>
+<div class="code">C:\STUDY&gt;DIR</div>
+
+<div class="diagram">
+C:\
+│
+├── STUDY
+│   ├── NOTES
+│   ├── ASSIGNMENT
+│   └── PRACTICAL
+│
+└── BACKUP
+    └── DATA
+</div>
+</section>
+
+<section id="directory">
+<h2>2. Directory Operations – Step by Step</h2>
+<div class="step"><b>Step 1:</b> Command Prompt / Windows Console खोलें।</div>
+<div class="step"><b>Step 2:</b> <code>DIR</code> command से current directory की contents देखें।</div>
+<div class="step"><b>Step 3:</b> <code>MD STUDY</code> से नई directory बनाएं।</div>
+<div class="step"><b>Step 4:</b> <code>CD STUDY</code> से नई directory में जाएँ।</div>
+<div class="step"><b>Step 5:</b> <code>MD NOTES</code> से subdirectory बनाएं।</div>
+<div class="step"><b>Step 6:</b> <code>CD NOTES</code> से subdirectory access करें।</div>
+<div class="step"><b>Step 7:</b> <code>CD ..</code> से parent directory में वापस आएँ।</div>
+<div class="step"><b>Step 8:</b> Empty directory हटाने के लिए traditional DOS में <code>RD</code>/<code>RMDIR</code> का उपयोग किया जा सकता है।</div>
+
+<div class="code">C:\&gt;MD STUDY
+C:\&gt;CD STUDY
+C:\STUDY&gt;MD NOTES
+C:\STUDY&gt;CD NOTES
+C:\STUDY\NOTES&gt;CD ..
+C:\STUDY&gt;DIR</div>
+</section>
+
+<section id="files">
+<h2>3. Operations Performed on Files</h2>
+<p>File operations का अर्थ files पर किए जाने वाले basic management tasks से है। इनमें file create करना, copy करना, move करना, rename करना, display करना और delete करना प्रमुख हैं।</p>
+
+<table>
+<tr><th>Operation</th><th>Command / Method</th><th>Purpose</th></tr>
+<tr><td>List</td><td><code>DIR</code></td><td>Files और directories की list देखना</td></tr>
+<tr><td>Copy</td><td><code>COPY</code></td><td>एक location से दूसरी location पर file की copy बनाना</td></tr>
+<tr><td>Rename</td><td><code>REN</code></td><td>File का नाम बदलना</td></tr>
+<tr><td>Delete</td><td><code>DEL</code></td><td>File delete करना</td></tr>
+<tr><td>Display</td><td><code>TYPE</code></td><td>Text file का content देखना</td></tr>
+<tr><td>Attributes</td><td><code>ATTRIB</code></td><td>File attributes देखना/बदलना</td></tr>
+</table>
+
+<h3>Examples</h3>
+<div class="code">C:\&gt;COPY NOTES.TXT D:\BACKUP\NOTES.TXT
+C:\&gt;REN OLD.TXT NEW.TXT
+C:\&gt;TYPE NOTES.TXT
+C:\&gt;DEL TEMP.TXT
+C:\&gt;ATTRIB NOTES.TXT</div>
+
+<div class="important"><b>Important:</b> Delete, format या partition-related commands का उपयोग करते समय target drive/path verify करना आवश्यक है क्योंकि गलत command से data loss हो सकता है।</div>
+</section>
+
+<section id="fdisk">
+<h2>4. FDISK</h2>
+<p><strong>FDISK</strong> traditional DOS/Windows environments में hard disk की <strong>partitioning</strong> के लिए उपयोग किया जाने वाला disk utility program था। Partitioning का अर्थ physical disk को logical partitions में divide करना है, जैसे traditional systems में C:, D: आदि logical drive structures।</p>
+
+<h3>FDISK के प्रमुख कार्य</h3>
+<ul>
+<li>Primary partition create करना</li>
+<li>Extended partition create करना</li>
+<li>Logical drives create करना</li>
+<li>Partition information देखना</li>
+<li>Partition को active mark करना, supported configuration में</li>
+<li>Existing partitions को delete करना</li>
+</ul>
+
+<h3>Traditional FDISK Workflow</h3>
+<div class="step">1. Important data का backup लें।</div>
+<div class="step">2. FDISK utility start करें।</div>
+<div class="step">3. Existing partition information carefully check करें।</div>
+<div class="step">4. आवश्यकता अनुसार partition create/delete करें।</div>
+<div class="step">5. Required partition को active set करें, जहाँ applicable हो।</div>
+<div class="step">6. Changes apply करके system restart करें।</div>
+<div class="note"><b>Historical Note:</b> FDISK traditional BIOS/MBR-era partitioning environments से associated utility है। Modern Windows systems में Disk Management और अन्य tools commonly used होते हैं।</div>
+</section>
+
+<section id="format">
+<h2>5. FORMAT Command</h2>
+<p><strong>FORMAT</strong> command किसी disk/partition को filesystem के लिए तैयार करने के लिए उपयोग की जाती थी। Formatting में file-system structures बनाए जाते हैं ताकि storage medium पर files store और manage की जा सकें।</p>
+
+<h3>Basic Syntax</h3>
+<div class="code">FORMAT drive:</div>
+
+<h3>Example</h3>
+<div class="code">C:\&gt;FORMAT A:</div>
+
+<p>Traditional systems में floppy disk जैसे removable media को format करने के लिए FORMAT command commonly used थी। Modern systems में formatting tools और filesystem options environment के अनुसार अलग हो सकते हैं।</p>
+
+<div class="important"><b>Warning:</b> Formatting existing data को inaccessible या erased कर सकती है। इसलिए किसी drive को format करने से पहले drive letter और backup को verify करना बहुत जरूरी है।</div>
+</section>
+
+<section id="defrag">
+<h2>6. DEFRAG</h2>
+<p><strong>Disk Defragmentation</strong> का उद्देश्य fragmented files के data blocks को अधिक व्यवस्थित तरीके से arrange करना है। Traditional magnetic hard disks में repeated file creation, modification और deletion के कारण file fragments अलग-अलग disk locations पर spread हो सकते थे।</p>
+
+<h3>Fragmentation क्या है?</h3>
+<p>जब किसी file का data disk पर एक continuous area में न रहकर अलग-अलग locations पर fragments के रूप में store हो जाता है, तो इसे <strong>fragmentation</strong> कहा जाता है।</p>
+
+<div class="diagram">
+BEFORE DEFRAGMENTATION
+
+[File A][Free][A][File B][A][Free][B][Free][B]
+
+             ↓ DEFRAG
+
+AFTER DEFRAGMENTATION
+
+[File A A A][File B B B][Free Free Free]
+</div>
+
+<h3>DEFRAG के Benefits</h3>
+<ul>
+<li>Traditional HDD पर sequential file access improve हो सकता है।</li>
+<li>File fragments को व्यवस्थित करने में सहायता करता है।</li>
+<li>Disk access efficiency improve हो सकती है।</li>
+</ul>
+
+<div class="note"><b>Important:</b> Defragmentation का concept mainly traditional magnetic HDDs के लिए महत्वपूर्ण है। SSDs के लिए traditional defragmentation strategy लागू नहीं करनी चाहिए; modern operating systems SSDs के लिए अलग optimization mechanisms use करते हैं।</div>
+</section>
+
+<section id="scandisk">
+<h2>7. SCANDISK</h2>
+<p><strong>SCANDISK</strong> traditional DOS/Windows systems में disk और filesystem की problems detect करने के लिए उपयोग की जाने वाली utility थी। यह logical file-system errors और कुछ disk-related problems की जांच कर सकती थी।</p>
+
+<h3>SCANDISK के प्रमुख उद्देश्य</h3>
+<ul>
+<li>File-system errors detect करना</li>
+<li>Directory structure की consistency check करना</li>
+<li>Disk surface-related problems की जांच करना, supported modes में</li>
+<li>कुछ errors को repair करने में सहायता करना</li>
+</ul>
+
+<h3>Example</h3>
+<div class="code">C:\&gt;SCANDISK</div>
+
+<div class="important"><b>Concept:</b> SCANDISK का मुख्य उद्देश्य <strong>disk checking and error detection</strong> था, जबकि DEFRAG का मुख्य उद्देश्य <strong>fragmentation management</strong> था।</div>
+</section>
+
+<section id="emm">
+<h2>8. EMM386 / Memory Optimization</h2>
+<p>Syllabus में दिया गया <strong>EMMAKER</strong> term traditional DOS memory-management context में commonly discussed <strong>EMM386</strong> utility से related माना जाता है। EMM386 एक DOS memory manager था जो processor के memory-management capabilities का उपयोग करके upper memory area और expanded-memory related services उपलब्ध कराने में सहायता करता था।</p>
+
+<div class="important"><b>Note:</b> यदि आपके official syllabus/notes में exact utility का नाम “EMMAKER” दिया है, तो exam में वही terminology लिखें। Technical context में <strong>EMM386</strong> एक well-known DOS memory manager था।</div>
+
+<h3>EMM386 का उद्देश्य</h3>
+<ul>
+<li>Expanded Memory Specification (EMS) support provide करना, configured system में।</li>
+<li>Upper Memory Blocks (UMBs) का उपयोग संभव बनाना।</li>
+<li>कुछ DOS components/device drivers को conventional memory से बाहर shift करने में सहायता करना।</li>
+<li>Available conventional memory को applications के लिए बढ़ाने में सहायता करना।</li>
+</ul>
+
+<h3>Example CONFIG.SYS Entry</h3>
+<div class="code">DEVICE=C:\DOS\EMM386.EXE RAM</div>
+
+<p>यह traditional DOS configuration में EMM386 को load करने का एक example है। Actual syntax और options system configuration तथा DOS version पर depend कर सकते हैं।</p>
+
+<h3>Memory Optimization Concept</h3>
+<div class="diagram">
+CONVENTIONAL MEMORY
+        │
+        │ Move suitable drivers/components
+        ▼
+UPPER MEMORY / UMB
+        │
+        ▼
+More Conventional Memory
+available for DOS Applications
+</div>
+</section>
+
+<section id="ini">
+<h2>9. Understanding .INI Files in Windows</h2>
+<p><strong>.INI</strong> का अर्थ सामान्यतः <strong>Initialization</strong> file से है। Traditional Windows applications और system components में INI files configuration information store करने के लिए widely used थीं। इनमें program startup और settings से संबंधित values रखी जा सकती थीं।</p>
+
+<h3>INI File का Basic Structure</h3>
+<p>एक typical INI file में <strong>sections</strong>, <strong>keys</strong> और <strong>values</strong> होते हैं। Section square brackets में लिखा जाता है और setting सामान्यतः <code>key=value</code> format में होती है।</p>
+
+<div class="code">[Application]
+Name=MyProgram
+Mode=Normal
+
+[Display]
+Width=800
+Height=600
+FullScreen=No</div>
+
+<h3>Components</h3>
+<div class="grid">
+<div class="card"><h3>Section</h3><p><code>[Display]</code> जैसे heading से related settings का group define होता है।</p></div>
+<div class="card"><h3>Key</h3><p><code>Width</code> या <code>FullScreen</code> जैसे setting names को key कहा जाता है।</p></div>
+<div class="card"><h3>Value</h3><p><code>800</code>, <code>600</code> या <code>No</code> जैसे data setting का value होता है।</p></div>
+<div class="card"><h3>Comment</h3><p>Traditional INI formats में comments के लिए अक्सर semicolon <code>;</code> का उपयोग किया जाता था, application support पर depend करता है।</p></div>
+</div>
+
+<h3>INI File का Example</h3>
+<div class="code">; Application configuration
+
+[General]
+Language=English
+AutoStart=Yes
+
+[Window]
+Width=1024
+Height=768
+Maximized=No</div>
+
+<h3>INI Files के Uses</h3>
+<ul>
+<li>Application settings store करना</li>
+<li>Startup/configuration preferences रखना</li>
+<li>Display और interface settings store करना</li>
+<li>Default options define करना</li>
+<li>कुछ traditional Windows components की configuration रखना</li>
+</ul>
+
+<div class="note"><b>Modern Windows Note:</b> Modern Windows applications में configuration के लिए Registry, XML, JSON, YAML और application-specific configuration systems भी commonly used होते हैं। इसलिए .INI files को मुख्यतः historical/traditional Windows configuration concept के रूप में समझना उपयोगी है।</div>
+</section>
+
+<section id="comparison">
+<h2>10. Important Utilities – Comparison</h2>
+<table>
+<tr><th>Utility</th><th>Main Purpose</th><th>Category</th></tr>
+<tr><td>FDISK</td><td>Disk partitioning</td><td>Disk Management</td></tr>
+<tr><td>FORMAT</td><td>File system के लिए disk/partition तैयार करना</td><td>Disk Preparation</td></tr>
+<tr><td>DEFRAG</td><td>File fragmentation को organize करना</td><td>Disk Optimization</td></tr>
+<tr><td>SCANDISK</td><td>Disk/filesystem errors detect/check करना</td><td>Disk Checking</td></tr>
+<tr><td>EMM386</td><td>Memory management और UMB/EMS support में सहायता</td><td>Memory Management</td></tr>
+<tr><td>.INI</td><td>Configuration/initialization settings store करना</td><td>Configuration</td></tr>
+</table>
+</section>
+
+<section id="exam">
+<h2>11. Important Exam Questions</h2>
+<div class="exam">
+<b>Long Answer Questions</b><br><br>
+1. Windows Console से directory बनाने और access करने की प्रक्रिया commands सहित समझाइए।<br>
+2. Files पर किए जाने वाले विभिन्न operations को examples सहित समझाइए।<br>
+3. FDISK क्या है? इसके उद्देश्य और partitioning process को समझाइए।<br>
+4. FORMAT command क्या है? इसका उपयोग और सावधानियां लिखिए।<br>
+5. DEFRAG और SCANDISK क्या हैं? दोनों के functions में अंतर समझाइए।<br>
+6. EMM386 क्या है? DOS environment में memory optimization में इसकी भूमिका समझाइए।<br>
+7. Windows की .INI files क्या हैं? Section, Key और Value को example सहित समझाइए।
+</div>
+
+<h3>Short Questions</h3>
+<ul>
+<li>Directory क्या है?</li>
+<li>MD और CD commands का क्या उपयोग है?</li>
+<li>FDISK का क्या उपयोग है?</li>
+<li>FORMAT command क्या करती है?</li>
+<li>Disk fragmentation क्या है?</li>
+<li>DEFRAG utility का क्या उद्देश्य है?</li>
+<li>SCANDISK किसलिए उपयोग होती थी?</li>
+<li>EMM386 क्या है?</li>
+<li>INI का full form क्या है?</li>
+<li>INI file में Section और Key क्या होते हैं?</li>
+</ul>
+
+<div class="important">
+<b>Quick Revision:</b><br>
+<strong>MD/MKDIR → Directory Create</strong><br>
+<strong>CD → Directory Access/Change</strong><br>
+<strong>DIR → Contents List</strong><br>
+<strong>FDISK → Partitioning</strong><br>
+<strong>FORMAT → Disk/File-System Preparation</strong><br>
+<strong>DEFRAG → Fragmentation Management</strong><br>
+<strong>SCANDISK → Disk/File-System Checking</strong><br>
+<strong>EMM386 → DOS Memory Management</strong><br>
+<strong>.INI → Configuration / Initialization Settings</strong>
+</div>
+</section>
+</main>
+</div>
+</body>
+</html>

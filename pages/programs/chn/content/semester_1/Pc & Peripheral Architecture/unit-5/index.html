@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Switch Mode Power Supply (SMPS)</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:#eef2f7;color:#202938;font-family:Segoe UI,Arial,sans-serif;line-height:1.9}
+.layout{max-width:1550px;margin:auto;padding:15px;display:grid;grid-template-columns:305px 1fr;gap:18px}
+aside{position:sticky;top:15px;height:calc(100vh - 30px);overflow:auto;background:#fff;border-radius:18px;padding:20px;box-shadow:0 6px 25px #0001}
+aside h2{color:#075985;border-left:5px solid #0284c7;padding-left:10px}
+aside a{display:block;text-decoration:none;color:#374151;padding:7px 10px;border-radius:8px;font-size:14px}
+aside a:hover{background:#e0f2fe;color:#0369a1}
+main{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 6px 25px #0001}
+.hero{padding:42px;background:linear-gradient(135deg,#dbeafe,#e0f2fe,#f8fafc)}
+.hero h1{margin:7px 0;color:#075985;font-size:36px;line-height:1.3}
+.hero p{color:#475569}
+section{padding:32px;border-bottom:1px solid #e5e7eb}
+h2{font-size:29px;color:#075985;border-left:5px solid #0284c7;padding-left:13px}
+h3{font-size:22px;color:#0c4a6e;margin-top:27px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{padding:19px;background:#f0f9ff;border:1px solid #bae6fd;border-radius:14px}
+.note,.exam,.important{padding:18px 20px;border-radius:12px;margin:19px 0}
+.note{background:#eff6ff;border-left:5px solid #3b82f6}
+.exam{background:#ecfdf5;border-left:5px solid #10b981}
+.important{background:#fff7ed;border-left:5px solid #f97316}
+table{width:100%;border-collapse:collapse;margin:20px 0}
+th,td{border:1px solid #cbd5e1;padding:12px;text-align:left;vertical-align:top}
+th{background:#e0f2fe;color:#075985}
+.diagram{background:#090b0f;color:#e5e7eb;border-radius:15px;padding:25px;overflow:auto;font-family:Consolas,monospace;white-space:pre}
+.step{position:relative;padding:14px 16px 14px 48px;background:#f8fafc;border-radius:10px;margin:9px 0}
+.step b{color:#075985}
+.badge{display:inline-block;background:#bae6fd;color:#075985;padding:4px 11px;border-radius:20px;font-size:12px;font-weight:bold}
+@media(max-width:900px){.layout{display:block;padding:5px}aside{display:none}.hero{padding:28px 18px}.hero h1{font-size:28px}section{padding:24px 18px}.grid{grid-template-columns:1fr}p,li{font-size:15px}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside>
+<h2>Topics</h2>
+<a href="#intro">1. Introduction</a>
+<a href="#components">2. Discrete Components</a>
+<a href="#principle">3. Principle of Operation</a>
+<a href="#working">4. SMPS Working</a>
+<a href="#blocks">5. Block Diagram</a>
+<a href="#topologies">6. Converter Topologies</a>
+<a href="#pwm">7. PWM ICs</a>
+<a href="#feedback">8. Feedback & Regulation</a>
+<a href="#case">9. Case Study</a>
+<a href="#advantages">10. Advantages & Limitations</a>
+<a href="#comparison">11. SMPS vs Linear Supply</a>
+<a href="#exam">12. Exam Questions</a>
+</aside>
+
+<main>
+<div class="hero">
+<span class="badge">POWER ELECTRONICS • EXAM ORIENTED</span>
+<h1>Switch Mode Power Supply (SMPS)</h1>
+<p><strong>Discrete Components • Principle of Operation • Converter Topologies • PWM ICs • Case Study</strong></p>
+</div>
+
+<section id="intro">
+<h2>1. Introduction to SMPS</h2>
+<p><strong>SMPS (Switch Mode Power Supply)</strong> एक electronic power supply है जो electrical power को एक voltage/current level से दूसरे required level पर efficiently convert करती है। इसमें power semiconductor devices को high-speed switching mode में operate कराया जाता है। Switching और energy-storage components की सहायता से required regulated DC output प्राप्त किया जाता है।</p>
+<p>Computer power supplies, televisions, monitors, adapters, printers, networking equipment और अनेक electronic systems में SMPS का व्यापक उपयोग होता है। Traditional linear power supply की तुलना में SMPS सामान्यतः अधिक efficiency और compact size provide कर सकती है।</p>
+<div class="important"><b>Exam Definition:</b> SMPS एक regulated power supply है जिसमें switching devices को high frequency पर ON/OFF करके input electrical energy को efficiently process और required regulated output voltage में convert किया जाता है।</div>
+</section>
+
+<section id="components">
+<h2>2. Discrete Components Used in SMPS</h2>
+<p>SMPS में integrated circuits के साथ कई <strong>discrete electronic components</strong> उपयोग होते हैं। ये components switching, rectification, filtering, energy storage, isolation और output regulation में अलग-अलग roles निभाते हैं।</p>
+<div class="grid">
+<div class="card"><h3>1. Diode</h3><p>Diode current को मुख्यतः एक direction में flow करने देता है। Rectifier और output rectification stages में इसका उपयोग होता है। High-frequency SMPS में suitable fast/recovery diodes महत्वपूर्ण होते हैं।</p></div>
+<div class="card"><h3>2. MOSFET</h3><p>Power MOSFET एक fast electronic switching device है। Controller के PWM signal के अनुसार यह ON/OFF होकर transformer/inductor में energy transfer को control करता है।</p></div>
+<div class="card"><h3>3. Capacitor</h3><p>Capacitor electrical energy store करता है और filtering/ripple reduction में उपयोग होता है। Input और output दोनों sides पर capacitors लगाए जा सकते हैं।</p></div>
+<div class="card"><h3>4. Inductor</h3><p>Inductor magnetic field में energy store करता है। Buck, boost और अन्य converter circuits में current smoothing और energy transfer के लिए उपयोग होता है।</p></div>
+<div class="card"><h3>5. Transformer</h3><p>Isolated SMPS designs में transformer voltage conversion और electrical isolation provide करता है। High-frequency operation के कारण transformer compact बनाया जा सकता है।</p></div>
+<div class="card"><h3>6. Resistor</h3><p>Resistors current limiting, voltage sensing, biasing, startup networks और feedback circuits में उपयोग होते हैं।</p></div>
+<div class="card"><h3>7. Fuse</h3><p>Excess current की स्थिति में circuit protection के लिए fuse उपयोग किया जाता है। Fault होने पर यह circuit को disconnect करके damage risk कम करता है।</p></div>
+<div class="card"><h3>8. Optocoupler</h3><p>Feedback signal को electrical isolation maintain करते हुए primary और secondary sides के बीच transfer करने के लिए optocoupler उपयोग किया जा सकता है।</p></div>
+</div>
+</section>
+
+<section id="principle">
+<h2>3. Principle of Operation of SMPS</h2>
+<p>SMPS का basic principle <strong>high-frequency switching + energy storage + filtering + feedback control</strong> पर आधारित है। Input power को पहले suitable form में convert किया जाता है। फिर switching transistor/MOSFET को high frequency पर operate कराया जाता है। ON/OFF switching के कारण energy inductor/transformer में transfer होती है। Output rectifier और filter इस switched waveform को usable DC output में बदलते हैं।</p>
+<h3>Duty Cycle</h3>
+<p>Switching waveform में switch कितने समय तक ON रहता है, इसे duty cycle से express किया जाता है:</p>
+<div class="diagram">Duty Cycle (D) = TON / T × 100%</div>
+<p>जहाँ <strong>T</strong> switching period है और <strong>TON</strong> वह समय है जब switch ON रहता है। Converter topology के अनुसार output voltage duty cycle के साथ अलग relationship रखता है। Controller duty cycle को adjust करके output voltage regulate करता है।</p>
+</section>
+
+<section id="working">
+<h2>4. SMPS Working – Step by Step</h2>
+<div class="step"><b>Step 1 – Input:</b> AC mains या DC source SMPS को input देता है।</div>
+<div class="step"><b>Step 2 – Protection & EMI Filtering:</b> Fuse और filter unwanted noise तथा abnormal current से protection देते हैं।</div>
+<div class="step"><b>Step 3 – Rectification:</b> AC input को rectifier circuit द्वारा pulsating DC में convert किया जाता है।</div>
+<div class="step"><b>Step 4 – DC Filtering:</b> Capacitor DC bus को smooth करता है।</div>
+<div class="step"><b>Step 5 – High-Frequency Switching:</b> PWM controller MOSFET/transistor को high frequency पर switch करता है।</div>
+<div class="step"><b>Step 6 – Energy Transfer:</b> Transformer/inductor के माध्यम से energy required form में transfer होती है।</div>
+<div class="step"><b>Step 7 – Output Rectification:</b> Secondary/output side पर diode या synchronous rectification से suitable DC प्राप्त होता है।</div>
+<div class="step"><b>Step 8 – Output Filtering:</b> Inductor और capacitor output ripple को reduce करते हैं।</div>
+<div class="step"><b>Step 9 – Feedback:</b> Output voltage sense करके controller को feedback दिया जाता है।</div>
+<div class="step"><b>Step 10 – Regulation:</b> Controller PWM duty cycle/frequency को adjust करके output को desired value के आसपास maintain करता है।</div>
+</section>
+
+<section id="blocks">
+<h2>5. Basic SMPS Block Diagram</h2>
+<div class="diagram">
+ AC INPUT
+    │
+    ▼
+┌───────────────┐
+│ Fuse / EMI    │
+│ Filter        │
+└───────┬───────┘
+        │
+        ▼
+┌───────────────┐
+│ Rectifier +   │
+│ DC Filter     │
+└───────┬───────┘
+        │ DC
+        ▼
+┌────────────────────┐
+│ PWM Controller +   │◄──────────── Feedback
+│ Switching MOSFET   │
+└─────────┬──────────┘
+          │ High Frequency
+          ▼
+┌────────────────────┐
+│ Transformer /      │
+│ Inductor Network   │
+└─────────┬──────────┘
+          ▼
+┌────────────────────┐
+│ Output Rectifier   │
+│ + Filter           │
+└─────────┬──────────┘
+          │
+          ▼
+     REGULATED DC
+          │
+          └──────────► Load
+</div>
+<p>इस block diagram में controller सबसे महत्वपूर्ण control element है। यह output feedback के आधार पर switching को नियंत्रित करता है।</p>
+</section>
+
+<section id="topologies">
+<h2>6. Converter Topologies</h2>
+<p><strong>Converter topology</strong> से आशय switching devices, inductors, capacitors, diodes और transformer को arrange करने के circuit structure से है। अलग topology अलग voltage-conversion और power requirements के लिए उपयोग की जाती है।</p>
+<h3>6.1 Buck Converter</h3>
+<p>Buck converter input voltage को कम करके lower DC output प्रदान करता है। Ideal continuous-conduction case में output voltage approximately <strong>Vout = D × Vin</strong> होता है।</p>
+<div class="diagram">VIN → Switch → Inductor → Load
+             │          │
+            Diode      Capacitor
+             │          │
+            GND        GND</div>
+
+<h3>6.2 Boost Converter</h3>
+<p>Boost converter input से higher DC output voltage generate करता है। Ideal continuous-conduction case में relationship approximately <strong>Vout = Vin / (1-D)</strong> होती है।</p>
+
+<h3>6.3 Buck-Boost Converter</h3>
+<p>Buck-boost topology suitable configuration में input से lower या higher magnitude का output provide कर सकती है। कुछ basic configurations में output polarity inverted भी हो सकती है।</p>
+
+<h3>6.4 Flyback Converter</h3>
+<p>Flyback converter low-to-moderate power isolated SMPS applications में common topology है। इसमें transformer-like coupled inductor energy को store और transfer करता है। यह adapters, auxiliary supplies और compact power supplies में उपयोगी है।</p>
+
+<h3>6.5 Forward Converter</h3>
+<p>Forward converter में switch ON रहने के दौरान transformer के माध्यम से energy सीधे output side की ओर transfer होती है। यह suitable power ranges में isolated regulated supply के लिए उपयोग होता है।</p>
+
+<h3>6.6 Push-Pull, Half-Bridge और Full-Bridge</h3>
+<p>Higher-power applications में push-pull, half-bridge और full-bridge topologies उपयोग की जा सकती हैं। इनमें transformer primary को switching pattern के अनुसार drive किया जाता है।</p>
+
+<table>
+<tr><th>Topology</th><th>Basic Purpose</th><th>Typical Concept</th></tr>
+<tr><td>Buck</td><td>Voltage step-down</td><td>Lower DC output</td></tr>
+<tr><td>Boost</td><td>Voltage step-up</td><td>Higher DC output</td></tr>
+<tr><td>Buck-Boost</td><td>Step-up/step-down</td><td>Output magnitude controlled by duty cycle</td></tr>
+<tr><td>Flyback</td><td>Isolated conversion</td><td>Energy stored then transferred</td></tr>
+<tr><td>Forward</td><td>Isolated conversion</td><td>Energy transferred while switch is ON</td></tr>
+<tr><td>Half/Full Bridge</td><td>Higher power conversion</td><td>Transformer-driven switching stages</td></tr>
+</table>
+</section>
+
+<section id="pwm">
+<h2>7. PWM ICs</h2>
+<p><strong>PWM (Pulse Width Modulation)</strong> technique में switching pulses की width/duty cycle को control करके converter की energy transfer और output regulation control की जाती है। SMPS controller IC इस काम को feedback, oscillator, protection और gate-drive functions के साथ coordinate कर सकती है।</p>
+<h3>PWM Controller के सामान्य Functions</h3>
+<ul>
+<li>Oscillator द्वारा switching timing generate करना।</li>
+<li>Feedback signal को process करना।</li>
+<li>PWM duty cycle control करना।</li>
+<li>Power switch के लिए drive signal देना।</li>
+<li>Over-current/under-voltage जैसी protection features support करना।</li>
+<li>Soft-start और shutdown जैसी control सुविधाएँ provide करना, जहाँ supported हों।</li>
+</ul>
+<h3>Common PWM Controller IC Examples</h3>
+<table>
+<tr><th>IC Family / Example</th><th>General Use</th></tr>
+<tr><td>UC3842 / UC3843</td><td>Current-mode PWM control, offline/adapter और converter applications में widely known.</td></tr>
+<tr><td>TL494</td><td>PWM control applications; dual error amplifiers और adjustable control features के लिए जाना जाता है।</td></tr>
+<tr><td>SG3525</td><td>Push-pull/bridge और other switching power applications में PWM control.</td></tr>
+<tr><td>UC384x Family</td><td>Different variants के साथ current-mode switching controllers.</td></tr>
+</table>
+<div class="note"><b>Important:</b> किसी specific SMPS design में controller IC का exact selection input voltage, output power, topology, switching frequency, isolation और protection requirements पर depend करता है।</div>
+</section>
+
+<section id="feedback">
+<h2>8. Feedback and Output Regulation</h2>
+<p>SMPS में load या input voltage बदलने पर output voltage भी बदल सकता है। इसे correct करने के लिए <strong>feedback loop</strong> का उपयोग किया जाता है। Output को sense किया जाता है और error signal controller तक पहुँचता है। Controller PWM duty cycle या switching behavior adjust करता है।</p>
+<div class="diagram">
+OUTPUT VOLTAGE
+      │
+      ▼
+┌──────────────┐
+│ Voltage      │
+│ Sensing      │
+└──────┬───────┘
+       ▼
+┌──────────────┐
+│ Error /      │
+│ Feedback     │
+└──────┬───────┘
+       ▼
+┌──────────────┐
+│ PWM          │
+│ Controller   │
+└──────┬───────┘
+       ▼
+  SWITCHING MOSFET
+       │
+       ▼
+POWER CONVERTER ─────► OUTPUT
+</div>
+<p>Isolated SMPS में feedback signal को primary और secondary sides के बीच safely transfer करने के लिए optocoupler और reference circuit का उपयोग किया जा सकता है।</p>
+</section>
+
+<section id="case">
+<h2>9. Case Study – Computer ATX SMPS</h2>
+<p>Computer का <strong>ATX power supply</strong> SMPS technology का एक practical example है। यह mains AC input को computer components के लिए required regulated DC rails में convert करता है। Modern designs में efficiency, protection, standby power और power-factor requirements को ध्यान में रखा जाता है।</p>
+<h3>Basic Working</h3>
+<div class="step"><b>1.</b> AC mains input power supply में enter होती है।</div>
+<div class="step"><b>2.</b> Input fuse और EMI filtering protection/noise control provide करते हैं।</div>
+<div class="step"><b>3.</b> Rectifier और bulk capacitor high-voltage DC bus बनाते हैं।</div>
+<div class="step"><b>4.</b> Switching stage high-frequency waveform create करता है।</div>
+<div class="step"><b>5.</b> High-frequency transformer isolation और voltage conversion provide करता है।</div>
+<div class="step"><b>6.</b> Secondary rectification और filtering से regulated DC outputs बनते हैं।</div>
+<div class="step"><b>7.</b> Feedback circuit output को monitor करता है और PWM controller switching को adjust करता है।</div>
+<div class="step"><b>8.</b> Protection circuits over-current, over-voltage, short-circuit और thermal fault जैसी conditions में supply को protect/shutdown कर सकती हैं।</div>
+<div class="important"><b>Safety:</b> SMPS के primary side पर dangerous mains voltage और charged capacitors हो सकते हैं। Practical repair/testing केवल appropriate safety procedures और trained personnel के द्वारा किया जाना चाहिए।</div>
+</section>
+
+<section id="advantages">
+<h2>10. Advantages and Limitations of SMPS</h2>
+<div class="grid">
+<div class="card"><h3>Advantages</h3><ul><li>High efficiency</li><li>Compact size</li><li>Lower heat generation at comparable power levels</li><li>Wide input/output regulation possibilities</li><li>High-frequency transformer से smaller magnetic components possible</li><li>Multiple output rails design किए जा सकते हैं</li></ul></div>
+<div class="card"><h3>Limitations</h3><ul><li>Circuit design comparatively complex</li><li>Switching noise/EMI generate हो सकती है</li><li>Repair और troubleshooting में skill की आवश्यकता</li><li>High-voltage sections safety risk create करते हैं</li><li>Control loop और component selection careful design मांगते हैं</li></ul></div>
+</div>
+</section>
+
+<section id="comparison">
+<h2>11. SMPS vs Linear Power Supply</h2>
+<table>
+<tr><th>Feature</th><th>SMPS</th><th>Linear Power Supply</th></tr>
+<tr><td>Working principle</td><td>High-frequency switching</td><td>Linear regulation</td></tr>
+<tr><td>Efficiency</td><td>Generally high</td><td>Generally lower when voltage drop is large</td></tr>
+<tr><td>Size</td><td>Usually compact</td><td>Often larger at higher power/frequency constraints</td></tr>
+<tr><td>Heat</td><td>Generally lower for same conversion task</td><td>More heat can be dissipated in regulator</td></tr>
+<tr><td>Noise</td><td>Switching EMI/ripple needs filtering</td><td>Generally low switching noise</td></tr>
+<tr><td>Complexity</td><td>Higher</td><td>Lower in basic designs</td></tr>
+</table>
+</section>
+
+<section id="exam">
+<h2>12. Important Exam Questions</h2>
+<div class="exam">
+<b>Long Answer Questions</b><br><br>
+1. SMPS क्या है? इसका principle of operation विस्तार से समझाइए।<br>
+2. SMPS के प्रमुख discrete components और उनके functions समझाइए।<br>
+3. SMPS का block diagram बनाकर उसकी working समझाइए।<br>
+4. Converter topology क्या है? Buck, Boost, Buck-Boost और Flyback converters समझाइए।<br>
+5. PWM क्या है? SMPS में PWM controller IC की भूमिका समझाइए।<br>
+6. Feedback system SMPS में output regulation कैसे करता है?<br>
+7. Computer ATX SMPS का case study समझाइए।<br>
+8. SMPS और Linear Power Supply में अंतर लिखिए।<br>
+9. SMPS के advantages और limitations समझाइए।
+</div>
+<h3>Short Questions</h3>
+<ul>
+<li>SMPS का full form क्या है?</li>
+<li>PWM का full form क्या है?</li>
+<li>Duty cycle क्या है?</li>
+<li>MOSFET का SMPS में क्या कार्य है?</li>
+<li>SMPS में capacitor क्यों लगाया जाता है?</li>
+<li>Inductor का क्या उपयोग है?</li>
+<li>Flyback converter क्या है?</li>
+<li>Buck converter का मुख्य कार्य क्या है?</li>
+<li>Boost converter क्या करता है?</li>
+<li>Feedback loop क्यों आवश्यक है?</li>
+<li>Optocoupler का SMPS में क्या उपयोग है?</li>
+<li>ATX SMPS क्या है?</li>
+</ul>
+<div class="important"><b>Quick Revision:</b><br>
+<strong>SMPS → Switching + Energy Storage + Filtering + Feedback</strong><br>
+<strong>MOSFET → High-speed switch</strong><br>
+<strong>PWM → Duty-cycle based control</strong><br>
+<strong>Buck → Step-down</strong><br>
+<strong>Boost → Step-up</strong><br>
+<strong>Flyback → Isolated energy-storage topology</strong><br>
+<strong>Feedback → Output regulation</strong><br>
+<strong>ATX PSU → Computer power-supply application</strong>
+</div>
+</section>
+</main>
+</div>
+</body>
+</html>

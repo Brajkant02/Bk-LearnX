@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Networking Devices - PGDCA Notes</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#eef2f7;color:#202938;font-family:Segoe UI,Arial,sans-serif;line-height:1.9}
+.wrap{max-width:1500px;margin:auto;padding:15px;display:grid;grid-template-columns:285px 1fr;gap:18px}
+aside{position:sticky;top:15px;height:calc(100vh - 30px);overflow:auto;background:#fff;padding:20px;border-radius:18px;box-shadow:0 7px 25px #0001}
+aside h2{color:#075985;border-left:5px solid #0284c7;padding-left:10px}aside a{display:block;padding:7px 10px;color:#374151;text-decoration:none;border-radius:8px;font-size:14px}aside a:hover{background:#e0f2fe;color:#0369a1}
+main{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 7px 25px #0001}.hero{padding:42px;background:linear-gradient(135deg,#dbeafe,#e0f2fe,#f8fafc)}
+.hero h1{font-size:38px;color:#075985;margin:8px 0;line-height:1.3}.badge{display:inline-block;background:#bae6fd;color:#075985;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:700}
+section{padding:32px;border-bottom:1px solid #e5e7eb}h2{font-size:29px;color:#075985;border-left:5px solid #0284c7;padding-left:13px}h3{font-size:22px;color:#0c4a6e;margin-top:27px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.card{background:#f0f9ff;border:1px solid #bae6fd;padding:18px;border-radius:14px}
+.note,.important,.exam{padding:18px 20px;border-radius:12px;margin:19px 0}.note{background:#eff6ff;border-left:5px solid #3b82f6}.important{background:#fff7ed;border-left:5px solid #f97316}.exam{background:#ecfdf5;border-left:5px solid #10b981}
+table{width:100%;border-collapse:collapse;margin:20px 0}th,td{border:1px solid #cbd5e1;padding:12px;text-align:left;vertical-align:top}th{background:#e0f2fe;color:#075985}
+.diagram{background:#090b0f;color:#e5e7eb;border-radius:14px;padding:22px;overflow:auto;font-family:Consolas,monospace;white-space:pre;line-height:1.5}
+.step{padding:14px 16px;background:#f8fafc;border-radius:10px;margin:9px 0;border-left:4px solid #0284c7}
+@media(max-width:900px){.wrap{display:block;padding:5px}aside{display:none}.hero{padding:28px 18px}.hero h1{font-size:29px}section{padding:24px 18px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<aside>
+<h2>Contents</h2>
+<a href="#intro">1. Introduction</a>
+<a href="#nic">2. NIC</a>
+<a href="#repeater">3. Repeater</a>
+<a href="#hub">4. Hub</a>
+<a href="#bridge">5. Bridge</a>
+<a href="#switch">6. Switch</a>
+<a href="#router">7. Router</a>
+<a href="#compare">8. Comparison</a>
+<a href="#selection">9. Device Selection</a>
+<a href="#exam">10. Exam Questions</a>
+</aside>
+
+<main>
+<div class="hero">
+<span class="badge">DCCN • PGDCA • 08 PERIODS</span>
+<h1>3. Networking Devices</h1>
+<p><strong>NIC • Repeater • Hub • Bridge • Switch • Router</strong></p>
+</div>
+
+<section id="intro">
+<h2>1. Introduction to Networking Devices</h2>
+<p>Computer network में केवल cables या wireless media ही पर्याप्त नहीं होते। Different devices को connect करने, signals को regenerate करने, frames को forward करने, network segments को separate करने और different networks के बीच packets को route करने के लिए <strong>Networking Devices</strong> का उपयोग किया जाता है।</p>
+
+<p>Networking device का काम उसके operating layer, addressing method और forwarding technique पर depend करता है। उदाहरण के लिए <strong>NIC</strong> किसी computer को network से जोड़ता है, <strong>Repeater</strong> signal को regenerate करता है, <strong>Hub</strong> incoming signal को multiple ports पर repeat करता है, <strong>Bridge</strong> network segments को MAC address के आधार पर connect/filter करता है, <strong>Switch</strong> frames को specific port की ओर forward करता है और <strong>Router</strong> different IP networks के बीच packets को route करता है।</p>
+
+<div class="important"><b>Definition:</b> Networking Devices वे hardware components हैं जो computers, network segments या different networks के बीच communication को establish, control, extend या manage करने में सहायता करते हैं।</div>
+
+<div class="diagram">
+Typical Network
+
+PC ── NIC ── Switch ── Router ── Internet
+             │
+             ├── PC
+             ├── Printer
+             └── Access/Other Network
+</div>
+</section>
+
+<section id="nic">
+<h2>2. NIC – Network Interface Card</h2>
+<p><strong>NIC (Network Interface Card)</strong> एक hardware interface है जो computer या अन्य host device को network medium से connect करता है। NIC motherboard में integrated हो सकता है या expansion/adapter के रूप में लगाया जा सकता है। Wired Ethernet NIC cable के माध्यम से network से जुड़ता है, जबकि wireless NIC radio communication का उपयोग कर सकता है।</p>
+
+<h3>NIC के मुख्य कार्य</h3>
+<ul>
+<li>Computer को network connectivity प्रदान करना।</li>
+<li>Data को network transmission के suitable signals/frames में interface करना।</li>
+<li>Ethernet जैसे LAN technologies के साथ communication करना।</li>
+<li>MAC address के माध्यम से network interface की पहचान में सहायता करना।</li>
+<li>Frame transmission और reception में सहायता करना।</li>
+<li>Network driver/software के साथ hardware communication उपलब्ध कराना।</li>
+</ul>
+
+<h3>NIC का Basic Diagram</h3>
+<div class="diagram">
+        COMPUTER / HOST
+┌───────────────────────────┐
+│ CPU / Memory / OS         │
+│          │                │
+│          ▼                │
+│      ┌─────────┐          │
+│      │   NIC   │          │
+│      └────┬────┘          │
+└───────────┼───────────────┘
+            │
+        Network Cable
+            │
+            ▼
+      Switch / Network
+</div>
+
+<h3>NIC के प्रकार</h3>
+<table>
+<tr><th>Type</th><th>Description</th></tr>
+<tr><td>Wired NIC</td><td>Ethernet cable के माध्यम से network connectivity देता है।</td></tr>
+<tr><td>Wireless NIC</td><td>Wi-Fi जैसे wireless standards के माध्यम से network से connect करता है।</td></tr>
+<tr><td>Integrated NIC</td><td>Motherboard पर built-in network interface।</td></tr>
+<tr><td>Expansion NIC</td><td>Separate adapter/card के रूप में install किया जा सकता है।</td></tr>
+</table>
+
+<div class="note"><b>Key Point:</b> NIC host/device और network के बीच interface का काम करता है।</div>
+</section>
+
+<section id="repeater">
+<h2>3. Repeater</h2>
+<p><strong>Repeater</strong> एक network device है जो कमजोर या degraded signal को receive करके उसे regenerate/reshape करके आगे transmit करता है। इसका primary purpose communication distance को extend करने में सहायता करना है। यह सामान्यतः physical layer concept से associated device है।</p>
+
+<div class="diagram">
+Signal becomes weak
+
+Source ──────── weak signal ────────► Repeater
+                                      │
+                                      ▼
+                              Regenerated Signal
+                                      │
+                                      ▼
+                              ───────────────► Destination
+</div>
+
+<h3>Repeater के Functions</h3>
+<ul>
+<li>Weak signal को receive करना।</li>
+<li>Signal को regenerate करना।</li>
+<li>Transmission distance extend करने में सहायता करना।</li>
+<li>Physical layer level पर signal propagation में सहायता करना।</li>
+</ul>
+
+<h3>Advantages</h3>
+<ul>
+<li>Network segment की effective reach बढ़ाने में मदद करता है।</li>
+<li>Signal degradation के प्रभाव को कम करने में सहायता करता है।</li>
+<li>Simple network extension scenarios में useful है।</li>
+</ul>
+
+<h3>Limitations</h3>
+<ul>
+<li>यह normally traffic filtering या intelligent forwarding नहीं करता।</li>
+<li>Network congestion को solve करने के लिए designed नहीं है।</li>
+<li>Modern LANs में switches ने कई traditional repeater/hub use cases को replace कर दिया है।</li>
+</ul>
+</section>
+
+<section id="hub">
+<h2>4. Hub</h2>
+<p><strong>Hub</strong> एक multi-port networking device है जो incoming signal/data को receive करके उसे अपने दूसरे ports पर repeat करता है। Traditional Ethernet hubs physical layer devices माने जाते हैं और destination के आधार पर intelligent frame forwarding नहीं करते।</p>
+
+<div class="diagram">
+                 ┌──── PC 1
+                 │
+                 ├──── PC 2
+             ┌───┴───┐
+             │  HUB  │
+             └───┬───┘
+                 │
+                 ├──── PC 3
+                 │
+                 └──── PC 4
+
+Incoming transmission → shared to other ports
+</div>
+
+<h3>Hub कैसे काम करता है?</h3>
+<p>जब किसी connected device से signal hub पर आता है, hub उसे receive करके अन्य relevant ports पर repeat करता है। Hub destination MAC address देखकर specific port choose नहीं करता। इसलिए traditional hub-based Ethernet में multiple devices shared collision domain में operate करते थे।</p>
+
+<h3>Hub के Types</h3>
+<table>
+<tr><th>Type</th><th>Description</th></tr>
+<tr><td>Passive Hub</td><td>Signal को amplify/regenerate किए बिना simple connection/distribution function प्रदान करने की traditional concept।</td></tr>
+<tr><td>Active Hub</td><td>Incoming signal को regenerate करके आगे distribute करता है; repeater hub के रूप में भी describe किया जाता है।</td></tr>
+<tr><td>Intelligent Hub</td><td>Management/monitoring capabilities वाली hub category की historical concept।</td></tr>
+</table>
+
+<h3>Hub के Disadvantages</h3>
+<ul>
+<li>Intelligent MAC-based forwarding नहीं करता।</li>
+<li>Unnecessary traffic multiple ports पर भेजता है।</li>
+<li>Traditional shared Ethernet में collisions अधिक हो सकती हैं।</li>
+<li>Modern switched Ethernet में सामान्य LAN access के लिए largely obsolete है।</li>
+</ul>
+
+<div class="important"><b>Exam Point:</b> Hub को simple multi-port repeater के रूप में याद किया जा सकता है।</div>
+</section>
+
+<section id="bridge">
+<h2>5. Bridge</h2>
+<p><strong>Bridge</strong> एक networking device है जो two or more LAN segments को connect करता है और frames को <strong>MAC addresses</strong> के आधार पर forward या filter कर सकता है। Traditional bridges data-link layer (Layer 2) concept से associated हैं।</p>
+
+<div class="diagram">
+ LAN Segment A                         LAN Segment B
+┌──────────────┐                   ┌──────────────┐
+│ PC  PC  PC   │                   │ PC  PC  PC   │
+└──────┬───────┘                   └──────┬───────┘
+       │                                  │
+       └───────────┌────────┐─────────────┘
+                   │ BRIDGE │
+                   └────────┘
+                 MAC Filtering
+</div>
+
+<h3>Bridge के Functions</h3>
+<ul>
+<li>LAN segments को connect करना।</li>
+<li>MAC address information के आधार पर frames forward/filter करना।</li>
+<li>Unnecessary traffic को दूसरे segment तक जाने से रोकने में सहायता करना।</li>
+<li>Network segmentation में सहायता करना।</li>
+</ul>
+
+<h3>Bridges के Types</h3>
+<table>
+<tr><th>Type</th><th>Meaning</th></tr>
+<tr><td>Transparent Bridge</td><td>End devices को bridge की presence की विशेष configuration आवश्यकता नहीं होती; bridge forwarding decisions transparently करता है।</td></tr>
+<tr><td>Source Routing Bridge</td><td>Source station route information specify करती है; यह concept विशेष रूप से Token Ring environments से associated था।</td></tr>
+<tr><td>Translational Bridge</td><td>Different LAN technologies के बीच frame format/operation translation में सहायता करने के लिए historical design।</td></tr>
+</table>
+
+<div class="note"><b>Key Point:</b> Bridge MAC addresses का उपयोग करके traffic को filter/forward करता है, जबकि repeater signal level पर काम करता है।</div>
+</section>
+
+<section id="switch">
+<h2>6. Switch</h2>
+<p><strong>Switch</strong> एक multi-port network device है जो generally data-link layer पर Ethernet frames को MAC address के आधार पर appropriate port की ओर forward करता है। Modern switches कई advanced features जैसे VLAN, STP, link aggregation, QoS और management capabilities भी provide कर सकते हैं, model पर depend करता है।</p>
+
+<div class="diagram">
+                  ┌───────────┐
+PC 1 ─────────────│           │──────────── PC 3
+PC 2 ─────────────│  SWITCH   │──────────── PC 4
+Printer ──────────│           │──────────── Server
+                  └───────────┘
+
+Switch learns MAC addresses
+and forwards frames to the
+appropriate port.
+</div>
+
+<h3>Switch कैसे काम करता है?</h3>
+<div class="step"><b>Step 1:</b> Switch incoming Ethernet frame receive करता है।</div>
+<div class="step"><b>Step 2:</b> Source MAC address और incoming port को MAC address table में learn कर सकता है।</div>
+<div class="step"><b>Step 3:</b> Destination MAC address को table में search किया जाता है।</div>
+<div class="step"><b>Step 4:</b> Destination known होने पर frame संबंधित port की ओर forward किया जाता है।</div>
+<div class="step"><b>Step 5:</b> Destination unknown होने पर frame को appropriate flooding behavior के अनुसार अन्य ports पर भेजा जा सकता है, source port को छोड़कर।</div>
+
+<h3>Switch के Types</h3>
+<table>
+<tr><th>Type</th><th>Description</th></tr>
+<tr><td>Unmanaged Switch</td><td>Basic plug-and-play switching; manual configuration options बहुत limited होते हैं।</td></tr>
+<tr><td>Managed Switch</td><td>Configuration और monitoring features जैसे VLAN, STP, QoS आदि उपलब्ध हो सकते हैं।</td></tr>
+<tr><td>Layer 2 Switch</td><td>Primarily MAC addresses और Layer 2 frames पर forwarding करता है।</td></tr>
+<tr><td>Layer 3 Switch</td><td>Switching के साथ IP routing capabilities भी प्रदान कर सकता है।</td></tr>
+</table>
+
+<h3>Switch के Advantages</h3>
+<ul>
+<li>Frames को destination port की ओर intelligently forward करता है।</li>
+<li>Unnecessary traffic को कम करने में सहायता करता है।</li>
+<li>Modern Ethernet LANs में high-performance connectivity प्रदान करता है।</li>
+<li>Full-duplex Ethernet और VLAN जैसी technologies support कर सकता है, device पर depend करता है।</li>
+</ul>
+</section>
+
+<section id="router">
+<h2>7. Router</h2>
+<p><strong>Router</strong> एक Layer 3 networking device है जो different IP networks या subnets के बीच packets को forward करता है। Router destination IP address और routing table के आधार पर best available route select करता है।</p>
+
+<div class="diagram">
+ LAN A                         Router                       LAN B
+192.168.1.0/24             ┌───────────┐               192.168.2.0/24
+PC ────────────────►       │  ROUTER   │       ───────────────► PC
+                           │           │
+                           └─────┬─────┘
+                                 │
+                           Routing Table
+                                 │
+                                 ▼
+                         Next-hop / Interface
+</div>
+
+<h3>Router के मुख्य कार्य</h3>
+<ul>
+<li>Different networks के बीच packet forwarding।</li>
+<li>Destination IP address के आधार पर route selection।</li>
+<li>Routing table maintain/use करना।</li>
+<li>Network-to-network communication enable करना।</li>
+<li>Broadcast domains को separate करना।</li>
+<li>कुछ routers NAT, DHCP, firewall/VPN जैसी additional services भी provide कर सकते हैं।</li>
+</ul>
+
+<h3>Routing के Basic Concepts</h3>
+<p>Router के पास connected और learned routes की information होती है। जब packet आता है, router destination IP को routing table में match करता है और सबसे specific applicable route के आधार पर next hop/interface चुनता है। अगर suitable route available नहीं है, packet drop हो सकता है या default route के अनुसार आगे भेजा जा सकता है।</p>
+
+<h3>Router के Types</h3>
+<table>
+<tr><th>Type</th><th>Description</th></tr>
+<tr><td>Wired Router</td><td>Ethernet interfaces के माध्यम से networks connect करता है।</td></tr>
+<tr><td>Wireless Router</td><td>Routing के साथ wireless LAN access भी provide कर सकता है।</td></tr>
+<tr><td>Core/Enterprise Router</td><td>Large network environments में high-capacity routing के लिए design किया जाता है।</td></tr>
+<tr><td>SOHO Router</td><td>Small Office/Home Office environments के लिए integrated networking functions वाला router।</td></tr>
+</table>
+
+<div class="important"><b>Exam Definition:</b> Router वह Layer 3 device है जो IP address के आधार पर packets को एक network से दूसरे network तक forward करता है।</div>
+</section>
+
+<section id="compare">
+<h2>8. Networking Devices Comparison</h2>
+<table>
+<tr><th>Device</th><th>Main Layer/Concept</th><th>Address/Signal Used</th><th>Main Function</th></tr>
+<tr><td>NIC</td><td>Network interface</td><td>MAC/interface addressing</td><td>Host को network से connect करना</td></tr>
+<tr><td>Repeater</td><td>Layer 1</td><td>Signal</td><td>Signal regenerate/extend करना</td></tr>
+<tr><td>Hub</td><td>Layer 1</td><td>Signal</td><td>Incoming signal को multiple ports पर repeat करना</td></tr>
+<tr><td>Bridge</td><td>Layer 2</td><td>MAC</td><td>LAN segments connect और filter करना</td></tr>
+<tr><td>Switch</td><td>Layer 2 primarily</td><td>MAC</td><td>Frames को appropriate port पर forward करना</td></tr>
+<tr><td>Router</td><td>Layer 3</td><td>IP</td><td>Different networks के बीच packets route करना</td></tr>
+</table>
+
+<h3>Bridge और Switch में अंतर</h3>
+<table>
+<tr><th>Bridge</th><th>Switch</th></tr>
+<tr><td>Traditional bridge generally fewer ports वाला device था।</td><td>Switch typically multi-port high-speed bridge की तरह काम करता है।</td></tr>
+<tr><td>LAN segments connect/filter करता है।</td><td>Large number of hosts को efficient switched LAN connectivity देता है।</td></tr>
+<tr><td>Historical/legacy networking concept में common।</td><td>Modern Ethernet LANs में widely used।</td></tr>
+</table>
+
+<h3>Hub और Switch में अंतर</h3>
+<table>
+<tr><th>Hub</th><th>Switch</th></tr>
+<tr><td>Incoming signal को multiple ports पर repeat करता है।</td><td>Destination MAC के आधार पर frame forwarding करता है।</td></tr>
+<tr><td>Traditional shared collision domain।</td><td>Each switch port typically separate collision domain होता है।</td></tr>
+<tr><td>Less efficient.</td><td>More efficient and scalable.</td></tr>
+</table>
+
+<h3>Switch और Router में अंतर</h3>
+<table>
+<tr><th>Switch</th><th>Router</th></tr>
+<tr><td>Primarily same LAN/network के devices को connect करता है।</td><td>Different IP networks/subnets को connect करता है।</td></tr>
+<tr><td>MAC address based forwarding.</td><td>IP address based routing.</td></tr>
+<tr><td>Primarily Layer 2.</td><td>Layer 3.</td></tr>
+<tr><td>VLANs के साथ LAN segmentation कर सकता है।</td><td>Networks/subnets के बीच routing करता है।</td></tr>
+</table>
+</section>
+
+<section id="selection">
+<h2>9. कौन-सा Networking Device कब Use करें?</h2>
+<div class="grid">
+<div class="card"><h3>NIC</h3><p>जब किसी computer/device को network connection देना हो।</p></div>
+<div class="card"><h3>Repeater</h3><p>जब physical signal reach extend/regenerate करनी हो।</p></div>
+<div class="card"><h3>Hub</h3><p>Historical/simple shared LAN environments में signal distribution के लिए; modern LANs में switch preferred है।</p></div>
+<div class="card"><h3>Bridge</h3><p>LAN segments को Layer 2 MAC filtering के साथ connect करने के लिए।</p></div>
+<div class="card"><h3>Switch</h3><p>Modern LAN में multiple devices को efficiently connect करने के लिए।</p></div>
+<div class="card"><h3>Router</h3><p>Different IP networks/subnets के बीच communication और route selection के लिए।</p></div>
+</div>
+
+<div class="diagram">
+Easy Memory Trick
+
+NIC     → Connects Host
+Repeater→ Regenerates Signal
+Hub     → Repeats to Ports
+Bridge  → Filters by MAC
+Switch  → Forwards by MAC
+Router  → Routes by IP
+</div>
+</section>
+
+<section id="exam">
+<h2>10. Important Exam Questions</h2>
+<div class="exam">
+<b>Long Answer Questions</b><br><br>
+1. Networking Devices क्या हैं? इनके प्रमुख प्रकारों को समझाइए।<br>
+2. NIC क्या है? इसके functions और types समझाइए।<br>
+3. Repeater क्या है? इसका working principle और limitations लिखिए।<br>
+4. Hub क्या है? Hub के types और disadvantages समझाइए।<br>
+5. Bridge क्या है? इसके types और functions समझाइए।<br>
+6. Switch क्या है? यह MAC address table की सहायता से frame forwarding कैसे करता है?<br>
+7. Router क्या है? इसके functions और working को diagram सहित समझाइए।<br>
+8. Hub और Switch में अंतर स्पष्ट कीजिए।<br>
+9. Bridge और Switch में अंतर लिखिए।<br>
+10. Switch और Router में अंतर लिखिए।
+</div>
+
+<h3>Short Questions</h3>
+<ul>
+<li>NIC का full form क्या है?</li>
+<li>Repeater किस layer से associated है?</li>
+<li>Hub क्या करता है?</li>
+<li>Bridge किस address का उपयोग करता है?</li>
+<li>Switch किस address के आधार पर forwarding करता है?</li>
+<li>Router किस address के आधार पर routing करता है?</li>
+<li>Hub और switch में एक अंतर लिखिए।</li>
+<li>Router का मुख्य कार्य क्या है?</li>
+<li>MAC address क्या है?</li>
+<li>Routing table क्या होती है?</li>
+<li>Layer 2 switch क्या है?</li>
+<li>Layer 3 switch क्या है?</li>
+</ul>
+
+<div class="important">
+<b>Quick Revision:</b><br>
+<strong>NIC → Host को Network से जोड़ता है</strong><br>
+<strong>Repeater → Weak signal को regenerate करता है</strong><br>
+<strong>Hub → Signal को multiple ports पर repeat करता है</strong><br>
+<strong>Bridge → MAC के आधार पर segments को filter/connect करता है</strong><br>
+<strong>Switch → MAC के आधार पर frames को specific port पर forward करता है</strong><br>
+<strong>Router → IP के आधार पर networks के बीच packets route करता है</strong>
+</div>
+</section>
+</main>
+</div>
+</body>
+</html>

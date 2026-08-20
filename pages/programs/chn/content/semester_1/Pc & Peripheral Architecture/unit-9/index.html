@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Printer - Types, Components, Working & Maintenance</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:#eef2f7;color:#202938;font-family:Segoe UI,Arial,sans-serif;line-height:1.9}
+.layout{max-width:1550px;margin:auto;padding:15px;display:grid;grid-template-columns:305px 1fr;gap:18px}
+aside{position:sticky;top:15px;height:calc(100vh - 30px);overflow:auto;background:#fff;border-radius:18px;padding:20px;box-shadow:0 6px 25px #0001}
+aside h2{color:#075985;border-left:5px solid #0284c7;padding-left:10px}
+aside a{display:block;text-decoration:none;color:#374151;padding:7px 10px;border-radius:8px;font-size:14px}
+aside a:hover{background:#e0f2fe;color:#0369a1}
+main{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 6px 25px #0001}
+.hero{padding:42px;background:linear-gradient(135deg,#dbeafe,#e0f2fe,#f8fafc)}
+.hero h1{margin:7px 0;color:#075985;font-size:36px;line-height:1.3}
+section{padding:32px;border-bottom:1px solid #e5e7eb}
+h2{font-size:29px;color:#075985;border-left:5px solid #0284c7;padding-left:13px}
+h3{font-size:22px;color:#0c4a6e;margin-top:27px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{padding:19px;background:#f0f9ff;border:1px solid #bae6fd;border-radius:14px}
+.note,.important,.exam{padding:18px 20px;border-radius:12px;margin:19px 0}
+.note{background:#eff6ff;border-left:5px solid #3b82f6}
+.important{background:#fff7ed;border-left:5px solid #f97316}
+.exam{background:#ecfdf5;border-left:5px solid #10b981}
+table{width:100%;border-collapse:collapse;margin:20px 0}
+th,td{border:1px solid #cbd5e1;padding:12px;text-align:left;vertical-align:top}
+th{background:#e0f2fe;color:#075985}
+.diagram{background:#090b0f;color:#e5e7eb;border-radius:15px;padding:25px;overflow:auto;font-family:Consolas,monospace;white-space:pre;line-height:1.5}
+.step{padding:14px 16px;background:#f8fafc;border-radius:10px;margin:9px 0;border-left:4px solid #0284c7}
+.badge{display:inline-block;background:#bae6fd;color:#075985;padding:4px 11px;border-radius:20px;font-size:12px;font-weight:bold}
+@media(max-width:900px){.layout{display:block;padding:5px}aside{display:none}.hero{padding:28px 18px}.hero h1{font-size:28px}section{padding:24px 18px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside>
+<h2>Topics</h2>
+<a href="#intro">1. Printer Introduction</a>
+<a href="#types">2. Types of Printers</a>
+<a href="#components">3. Printer Components</a>
+<a href="#interface">4. Printer Interface</a>
+<a href="#block">5. Function Block Diagram</a>
+<a href="#laser">6. Laser Printer Working</a>
+<a href="#inkjet">7. Inkjet Printer Working</a>
+<a href="#mechanical">8. Mechanical Sub-Assemblies</a>
+<a href="#comparison">9. Laser vs Inkjet</a>
+<a href="#maintenance">10. General Maintenance</a>
+<a href="#troubleshooting">11. Troubleshooting</a>
+<a href="#exam">12. Exam Questions</a>
+</aside>
+
+<main>
+<div class="hero">
+<span class="badge">OUTPUT DEVICE • EXAM ORIENTED</span>
+<h1>Printer</h1>
+<p><strong>Types • Components • Computer Interface • Function Block Diagram • Laser & Inkjet Working • Mechanical Sub-Assemblies • Maintenance</strong></p>
+</div>
+
+<section id="intro">
+<h2>1. Printer Introduction</h2>
+<p><strong>Printer</strong> एक output device है जिसका उपयोग computer में stored digital information को physical form में paper या अन्य printable media पर produce करने के लिए किया जाता है। Printer text, graphics, photographs, diagrams और अन्य documents को print कर सकता है।</p>
+<p>Printer computer से प्राप्त data को process करके appropriate printing mechanism के माध्यम से paper पर characters या images बनाता है। अलग-अलग printers में printing technology अलग होती है, जैसे impact printing, inkjet printing और laser printing।</p>
+<div class="important"><b>Exam Definition:</b> Printer एक computer output device है जो digital data को paper या अन्य suitable media पर readable text, graphics या images के रूप में reproduce करता है।</div>
+</section>
+
+<section id="types">
+<h2>2. Types of Printers</h2>
+<p>Printers को उनकी printing mechanism के आधार पर मुख्य रूप से <strong>Impact</strong> और <strong>Non-Impact</strong> categories में रखा जाता है।</p>
+<div class="grid">
+<div class="card"><h3>Impact Printers</h3><p>इनमें printing mechanism physical impact के द्वारा ribbon और paper पर character/image बनाता है। उदाहरण: Dot Matrix Printer, Daisy Wheel Printer और Line Printer.</p></div>
+<div class="card"><h3>Non-Impact Printers</h3><p>इनमें paper पर print करने के लिए mechanical striking mechanism की आवश्यकता नहीं होती। Inkjet और Laser printers इसके common examples हैं।</p></div>
+<div class="card"><h3>Dot Matrix Printer</h3><p>Print head में pins होते हैं जो ink ribbon पर impact करके dots बनाते हैं। Dots के combination से characters और graphics बनते हैं।</p></div>
+<div class="card"><h3>Inkjet Printer</h3><p>Very small ink droplets को paper पर accurately place करके text और images create करता है।</p></div>
+<div class="card"><h3>Laser Printer</h3><p>Electrophotographic process, laser/scanning system, toner और fuser की सहायता से high-quality printing करता है।</p></div>
+<div class="card"><h3>Multifunction Printer</h3><p>एक ही device में printing के साथ scanning, copying और कई models में fax जैसी सुविधाएँ भी हो सकती हैं।</p></div>
+</div>
+</section>
+
+<section id="components">
+<h2>3. Main Components of Printer</h2>
+<div class="grid">
+<div class="card"><h3>1. Printer Controller</h3><p>Computer से प्राप्त print data को receive और process करता है तथा printer के विभिन्न sections को control करता है।</p></div>
+<div class="card"><h3>2. Input / Interface Section</h3><p>USB, network या अन्य supported interface के माध्यम से computer/host से print job receive करता है।</p></div>
+<div class="card"><h3>3. Power Supply</h3><p>Printer के electronic circuits, motors, sensors और printing mechanism को required electrical power provide करता है।</p></div>
+<div class="card"><h3>4. Paper Tray</h3><p>Blank paper या printable media को hold करता है।</p></div>
+<div class="card"><h3>5. Pickup & Feed Mechanism</h3><p>Paper tray से sheet को pick करके printer के internal paper path में आगे move करता है।</p></div>
+<div class="card"><h3>6. Print Mechanism</h3><p>Technology के अनुसार ink droplets, toner या impact pins के माध्यम से paper पर image create करता है।</p></div>
+<div class="card"><h3>7. Drive Motors</h3><p>Paper feed, rollers, print head या अन्य mechanical components को move करने के लिए motors उपयोग किए जाते हैं।</p></div>
+<div class="card"><h3>8. Sensors</h3><p>Paper presence, paper position, cover status, carriage position और अन्य conditions detect करने में सहायता करते हैं।</p></div>
+<div class="card"><h3>9. Output Tray</h3><p>Printed pages को collect करता है।</p></div>
+<div class="card"><h3>10. User Control Panel</h3><p>Buttons, display और indicator LEDs के माध्यम से printer status और basic controls provide करता है।</p></div>
+</div>
+</section>
+
+<section id="interface">
+<h2>4. Printer Interface with Computer</h2>
+<p>Printer interface वह communication path है जिसके माध्यम से computer या अन्य host device printer को print data और control information भेजता है। Modern printers में USB और network interfaces बहुत common हैं।</p>
+<table>
+<tr><th>Interface</th><th>Description</th></tr>
+<tr><td>USB</td><td>Direct wired connection के लिए widely used interface। एक computer और printer के बीच convenient local connection provide करता है।</td></tr>
+<tr><td>Ethernet</td><td>Wired network connection। Network में connected multiple computers printer को share कर सकते हैं।</td></tr>
+<tr><td>Wi-Fi</td><td>Wireless network के माध्यम से printing allow करता है, जब printer और network compatible हों।</td></tr>
+<tr><td>Bluetooth</td><td>कुछ printers short-range wireless printing के लिए Bluetooth support करते हैं।</td></tr>
+<tr><td>Legacy Parallel Port</td><td>पुराने PCs और printers में parallel printer port widely used था; modern systems में इसका उपयोग बहुत कम है।</td></tr>
+</table>
+<div class="diagram">
+       COMPUTER / HOST
+              │
+              │ Print Data
+              ▼
+      ┌─────────────────┐
+      │ PRINTER INTERFACE│
+      │ USB / NETWORK    │
+      │ / WIRELESS       │
+      └────────┬────────┘
+               │
+               ▼
+       PRINTER CONTROLLER
+</div>
+</section>
+
+<section id="block">
+<h2>5. Function Block Diagram of Printer</h2>
+<p>Printer के अंदर कई sub-assemblies मिलकर complete printing system बनाते हैं। नीचे एक generalized functional block diagram दिया गया है।</p>
+<div class="diagram">
+                 GENERAL PRINTER BLOCK DIAGRAM
+
+ ┌──────────────────────┐
+ │   COMPUTER / HOST    │
+ └──────────┬───────────┘
+            │
+            ▼
+ ┌──────────────────────┐
+ │ COMMUNICATION        │
+ │ INTERFACE            │
+ │ USB / LAN / Wi-Fi    │
+ └──────────┬───────────┘
+            │
+            ▼
+ ┌──────────────────────┐
+ │ PRINTER CONTROLLER   │
+ │ CPU / Firmware       │
+ │ Buffer / Processing  │
+ └───────┬───────┬──────┘
+         │       │
+         │       └──────────────────┐
+         ▼                          ▼
+ ┌───────────────┐          ┌────────────────┐
+ │ PAPER CONTROL │          │ PRINT ENGINE   │
+ │ Pickup/Feed   │          │ Laser/Inkjet/  │
+ │ Rollers       │          │ Impact System  │
+ └───────┬───────┘          └───────┬────────┘
+         │                          │
+         └──────────┬───────────────┘
+                    ▼
+             ┌──────────────┐
+             │ PAPER / MEDIA│
+             └──────┬───────┘
+                    ▼
+             ┌──────────────┐
+             │ OUTPUT TRAY  │
+             └──────────────┘
+
+       POWER SUPPLY → CONTROLLER + MOTORS + SENSORS
+       SENSORS → FEEDBACK TO CONTROLLER
+</div>
+<h3>Major Sub-Assemblies</h3>
+<ul>
+<li><strong>Controller Assembly:</strong> Data processing और control.</li>
+<li><strong>Paper Feed Assembly:</strong> Paper pickup, transport और positioning.</li>
+<li><strong>Printing Assembly:</strong> Actual image/character formation.</li>
+<li><strong>Drive Assembly:</strong> Motors और gears के द्वारा movement.</li>
+<li><strong>Sensor Assembly:</strong> Position और status feedback.</li>
+<li><strong>Fuser Assembly:</strong> Laser printer में toner को paper पर permanently fix करने के लिए heating/pressure mechanism.</li>
+<li><strong>Output Assembly:</strong> Printed sheet को output tray तक पहुँचाना.</li>
+</ul>
+</section>
+
+<section id="laser">
+<h2>6. Principle of Operation of Laser Printer</h2>
+<p>Laser printer एक <strong>electrophotographic</strong> printing process का उपयोग करता है। इसमें toner powder को electrically controlled process के द्वारा photosensitive drum पर pattern के अनुसार attract किया जाता है और फिर paper पर transfer करके heat और pressure से fix किया जाता है।</p>
+<h3>Laser Printer Working — Step by Step</h3>
+<div class="step"><b>Step 1 – Data Processing:</b> Computer से print job printer controller तक पहुँचती है और print image/data process होता है।</div>
+<div class="step"><b>Step 2 – Charging:</b> Photosensitive drum की surface को एक controlled electrical charge दिया जाता है।</div>
+<div class="step"><b>Step 3 – Exposure:</b> Laser/scanning system drum पर image pattern के अनुसार selected areas को expose करता है।</div>
+<div class="step"><b>Step 4 – Developing:</b> Toner particles electrically charged image pattern के अनुसार drum के appropriate areas पर attach होते हैं।</div>
+<div class="step"><b>Step 5 – Paper Feed:</b> Paper feed mechanism sheet को printing path में move करता है।</div>
+<div class="step"><b>Step 6 – Transfer:</b> Toner image drum से paper पर transfer होती है।</div>
+<div class="step"><b>Step 7 – Fusing:</b> Fuser assembly heat और pressure की सहायता से toner को paper surface पर permanently fix करती है।</div>
+<div class="step"><b>Step 8 – Output:</b> Printed page output tray में पहुँच जाती है।</div>
+<div class="diagram">
+ COMPUTER
+    │
+    ▼
+ CONTROLLER
+    │
+    ▼
+ CHARGING → LASER EXPOSURE → TONER DEVELOPING
+    │                         │
+    │                         ▼
+    └──────────────→ DRUM → TONER IMAGE
+                              │
+                              ▼
+                         PAPER TRANSFER
+                              │
+                              ▼
+                         FUSER UNIT
+                        HEAT + PRESSURE
+                              │
+                              ▼
+                         PRINTED PAGE
+</div>
+<h3>Major Laser Printer Parts</h3>
+<table>
+<tr><th>Part</th><th>Function</th></tr>
+<tr><td>Toner Cartridge</td><td>Toner powder supply करता है।</td></tr>
+<tr><td>Photosensitive Drum</td><td>Electrostatic image pattern develop करने के लिए surface provide करता है।</td></tr>
+<tr><td>Laser/Scanner Unit</td><td>Drum पर required image pattern create करने में सहायता करता है।</td></tr>
+<tr><td>Transfer Mechanism</td><td>Toner image को drum से paper पर transfer करता है।</td></tr>
+<tr><td>Fuser</td><td>Heat और pressure से toner को paper पर fix करता है।</td></tr>
+<tr><td>Paper Feed Rollers</td><td>Paper को सही path में move करते हैं।</td></tr>
+</table>
+</section>
+
+<section id="inkjet">
+<h2>7. Principle of Operation of Inkjet Printer</h2>
+<p>Inkjet printer paper पर बहुत छोटे ink droplets को controlled positions पर deposit करके text और images बनाता है। Print head में microscopic nozzles होते हैं जो required amount में ink droplets eject करते हैं।</p>
+<h3>Inkjet Printer Working — Step by Step</h3>
+<div class="step"><b>Step 1 – Data Processing:</b> Computer से प्राप्त print data को printer controller process करता है।</div>
+<div class="step"><b>Step 2 – Paper Feeding:</b> Feed rollers paper को print position में लाते हैं।</div>
+<div class="step"><b>Step 3 – Ink Supply:</b> Ink cartridge/reservoir से print head को ink supply होती है।</div>
+<div class="step"><b>Step 4 – Droplet Generation:</b> Print head के nozzles controlled ink droplets eject करते हैं। Technology के अनुसार thermal या piezoelectric mechanisms उपयोग हो सकते हैं।</div>
+<div class="step"><b>Step 5 – Head Movement:</b> Print head paper के across move करता है या printer architecture के अनुसार suitable scanning/printing motion perform करता है।</div>
+<div class="step"><b>Step 6 – Image Formation:</b> Different color droplets सही positions पर place होकर characters, graphics और photographs create करते हैं।</div>
+<div class="step"><b>Step 7 – Paper Advance:</b> Paper next printing position पर advance होता है।</div>
+<div class="step"><b>Step 8 – Output:</b> Completed page output tray में आती है।</div>
+<div class="diagram">
+ COMPUTER
+    │
+    ▼
+ CONTROLLER
+    │
+    ├──────────────► PAPER FEED MOTOR
+    │
+    ▼
+ INK CARTRIDGE
+    │
+    ▼
+ PRINT HEAD / NOZZLES
+    │
+    │  Tiny Ink Droplets
+    ▼
+ ┌─────────────────────────┐
+ │         PAPER           │
+ │  • • • • • • • • •      │
+ │  •  IMAGE / TEXT  •     │
+ └─────────────────────────┘
+    │
+    ▼
+ PRINTED OUTPUT
+</div>
+<h3>Major Inkjet Parts</h3>
+<table>
+<tr><th>Part</th><th>Function</th></tr>
+<tr><td>Ink Cartridge</td><td>Ink store करता है।</td></tr>
+<tr><td>Print Head</td><td>Fine ink droplets को paper पर eject करता है।</td></tr>
+<tr><td>Nozzles</td><td>Very small openings जिनसे controlled ink droplets निकलती हैं।</td></tr>
+<tr><td>Carriage</td><td>कुछ inkjet designs में print head/cartridges को move करता है।</td></tr>
+<tr><td>Paper Feed Rollers</td><td>Paper को printer path में आगे move करते हैं।</td></tr>
+<tr><td>Maintenance Station</td><td>कुछ printers में print head cleaning/capping जैसे functions में सहायता करता है।</td></tr>
+</table>
+</section>
+
+<section id="mechanical">
+<h2>8. Various Mechanical Sub-Assemblies</h2>
+<p>Printer में mechanical sub-assemblies paper को accurately move करने और printing mechanism को required position पर operate करने के लिए महत्वपूर्ण हैं।</p>
+<div class="grid">
+<div class="card"><h3>Paper Pickup Assembly</h3><p>Paper tray से top sheet pick करने के लिए pickup roller और related mechanism का उपयोग करता है।</p></div>
+<div class="card"><h3>Paper Feed Assembly</h3><p>Paper को controlled speed और position के साथ internal path में transport करता है।</p></div>
+<div class="card"><h3>Paper Separation Mechanism</h3><p>Multiple sheets एक साथ feed होने से रोकने में सहायता करता है।</p></div>
+<div class="card"><h3>Transport Rollers</h3><p>Paper को printer के विभिन्न stages से आगे ले जाते हैं।</p></div>
+<div class="card"><h3>Print Head Carriage</h3><p>Inkjet printers में print head को horizontal direction में move करने वाला mechanism हो सकता है।</p></div>
+<div class="card"><h3>Drive Motor & Gears</h3><p>Motor power को gears/belts के माध्यम से rollers और other moving assemblies तक transfer करते हैं।</p></div>
+<div class="card"><h3>Fuser Assembly</h3><p>Laser printers में toner को paper पर heat और pressure से fix करती है।</p></div>
+<div class="card"><h3>Output Roller Assembly</h3><p>Printed sheet को final output tray की ओर transport करती है।</p></div>
+</div>
+</section>
+
+<section id="comparison">
+<h2>9. Laser Printer vs Inkjet Printer</h2>
+<table>
+<tr><th>Feature</th><th>Laser Printer</th><th>Inkjet Printer</th></tr>
+<tr><td>Printing material</td><td>Toner powder</td><td>Liquid ink droplets</td></tr>
+<tr><td>Basic technology</td><td>Electrophotographic process</td><td>Droplet-based ink deposition</td></tr>
+<tr><td>Major imaging part</td><td>Photosensitive drum</td><td>Print head/nozzles</td></tr>
+<tr><td>Fuser</td><td>Normally required to fix toner</td><td>Not used as laser-style toner fuser</td></tr>
+<tr><td>Typical strength</td><td>Fast text/document printing और high-volume workloads में strong</td><td>Color/photo-oriented printing में commonly useful</td></tr>
+<tr><td>Consumable</td><td>Toner cartridge</td><td>Ink cartridge/tank</td></tr>
+</table>
+</section>
+
+<section id="maintenance">
+<h2>10. General Maintenance Aspects</h2>
+<p>Printer की proper maintenance से print quality, reliability और usable life को improve करने में सहायता मिलती है। Maintenance procedure printer technology और manufacturer instructions पर depend करती है।</p>
+<div class="step"><b>1. Regular Cleaning:</b> External surfaces और accessible areas को appropriate cleaning method से clean रखें।</div>
+<div class="step"><b>2. Paper Path Check:</b> Dust, torn paper और foreign objects paper path में जमा न होने दें।</div>
+<div class="step"><b>3. Rollers:</b> Feed/pickup rollers की condition check करें; worn या contaminated rollers paper feeding problems पैदा कर सकते हैं।</div>
+<div class="step"><b>4. Inkjet Head Maintenance:</b> Print quality खराब होने पर supported head-cleaning/nozzle-check procedure use करें।</div>
+<div class="step"><b>5. Laser Maintenance:</b> Toner cartridge, drum और fuser-related maintenance manufacturer guidelines के अनुसार करें।</div>
+<div class="step"><b>6. Correct Paper:</b> Printer specification के अनुसार appropriate paper size/type उपयोग करें।</div>
+<div class="step"><b>7. Ventilation:</b> Printer को proper ventilation और suitable environment में रखें।</div>
+<div class="step"><b>8. Driver/Firmware:</b> Compatible driver और manufacturer-supported firmware updates आवश्यकता अनुसार maintain करें।</div>
+<div class="step"><b>9. Power Protection:</b> Sudden power issues से बचने के लिए suitable electrical protection उपयोग करना useful हो सकता है।</div>
+<div class="important"><b>Safety:</b> Laser printer के अंदर fuser बहुत गर्म हो सकता है। Maintenance से पहले printer को manufacturer procedure के अनुसार power off और cool down होने दें। Internal high-voltage sections को बिना proper technical training के touch नहीं करना चाहिए।</div>
+</section>
+
+<section id="troubleshooting">
+<h2>11. Basic Printer Troubleshooting</h2>
+<table>
+<tr><th>Problem</th><th>Possible Checks</th></tr>
+<tr><td>Printer not detected</td><td>USB/network connection, power, driver, printer status और selected printer check करें।</td></tr>
+<tr><td>Paper jam</td><td>Printer को safe state में रखकर manufacturer procedure के अनुसार jammed paper remove करें और paper path check करें।</td></tr>
+<tr><td>Blank print</td><td>Ink/toner level, cartridge installation, print head/nozzle condition या print settings check करें।</td></tr>
+<tr><td>Light/faded print</td><td>Ink/toner, print density settings, cartridge/drum condition check करें।</td></tr>
+<tr><td>Paper feeding problem</td><td>Paper size/type, tray loading और pickup/feed rollers check करें।</td></tr>
+<tr><td>Lines/spots on print</td><td>Inkjet में nozzle/head condition; laser में drum/toner/fuser related causes check करें।</td></tr>
+</table>
+</section>
+
+<section id="exam">
+<h2>12. Important Exam Questions</h2>
+<div class="exam">
+<b>Long Answer Questions</b><br><br>
+1. Printer क्या है? Printers के विभिन्न types को समझाइए।<br>
+2. Printer के प्रमुख components और उनके functions लिखिए।<br>
+3. Printer और computer के बीच interface को समझाइए।<br>
+4. Printer का generalized function block diagram बनाकर समझाइए।<br>
+5. Laser printer का principle of operation step-by-step समझाइए।<br>
+6. Inkjet printer का principle of operation step-by-step समझाइए।<br>
+7. Printer की various mechanical sub-assemblies का वर्णन कीजिए।<br>
+8. Laser और Inkjet printer में अंतर लिखिए।<br>
+9. Printer की general maintenance procedure समझाइए।<br>
+10. Printer के common problems और उनके troubleshooting methods लिखिए।
+</div>
+<h3>Short Questions</h3>
+<ul>
+<li>Printer क्या है?</li>
+<li>Impact और Non-impact printer क्या हैं?</li>
+<li>Laser printer में toner क्या है?</li>
+<li>Inkjet printer में print head क्या करता है?</li>
+<li>Fuser का क्या कार्य है?</li>
+<li>Photosensitive drum क्या है?</li>
+<li>Printer controller क्या करता है?</li>
+<li>Paper pickup roller का क्या कार्य है?</li>
+<li>USB printer interface क्या है?</li>
+<li>Printer maintenance क्यों आवश्यक है?</li>
+</ul>
+<div class="important">
+<b>Quick Revision:</b><br>
+<strong>Printer → Output Device</strong><br>
+<strong>Two Main Categories → Impact + Non-Impact</strong><br>
+<strong>Laser → Drum + Laser + Toner + Transfer + Fuser</strong><br>
+<strong>Inkjet → Ink Cartridge + Print Head + Nozzles + Paper Feed</strong><br>
+<strong>Basic Flow → Computer → Interface → Controller → Paper/Print Mechanism → Output</strong>
+</div>
+</section>
+</main>
+</div>
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Hard Disk Drive (HDD)</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:#eef2f7;color:#202938;font-family:Segoe UI,Arial,sans-serif;line-height:1.9}
+.layout{max-width:1550px;margin:auto;padding:15px;display:grid;grid-template-columns:305px 1fr;gap:18px}
+aside{position:sticky;top:15px;height:calc(100vh - 30px);overflow:auto;background:#fff;border-radius:18px;padding:20px;box-shadow:0 6px 25px #0001}
+aside h2{color:#075985;border-left:5px solid #0284c7;padding-left:10px}
+aside a{display:block;text-decoration:none;color:#374151;padding:7px 10px;border-radius:8px;font-size:14px}
+aside a:hover{background:#e0f2fe;color:#0369a1}
+main{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 6px 25px #0001}
+.hero{padding:42px;background:linear-gradient(135deg,#dbeafe,#e0f2fe,#f8fafc)}
+.hero h1{margin:7px 0;color:#075985;font-size:36px;line-height:1.3}
+.hero p{color:#475569}
+section{padding:32px;border-bottom:1px solid #e5e7eb}
+h2{font-size:29px;color:#075985;border-left:5px solid #0284c7;padding-left:13px}
+h3{font-size:22px;color:#0c4a6e;margin-top:27px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{padding:19px;background:#f0f9ff;border:1px solid #bae6fd;border-radius:14px}
+.note,.exam,.important{padding:18px 20px;border-radius:12px;margin:19px 0}
+.note{background:#eff6ff;border-left:5px solid #3b82f6}
+.exam{background:#ecfdf5;border-left:5px solid #10b981}
+.important{background:#fff7ed;border-left:5px solid #f97316}
+table{width:100%;border-collapse:collapse;margin:20px 0}
+th,td{border:1px solid #cbd5e1;padding:12px;text-align:left;vertical-align:top}
+th{background:#e0f2fe;color:#075985}
+.diagram{background:#090b0f;color:#e5e7eb;border-radius:15px;padding:25px;overflow:auto;font-family:Consolas,monospace;white-space:pre}
+.step{padding:14px 16px;background:#f8fafc;border-radius:10px;margin:9px 0;border-left:4px solid #0284c7}
+.badge{display:inline-block;background:#bae6fd;color:#075985;padding:4px 11px;border-radius:20px;font-size:12px;font-weight:bold}
+@media(max-width:900px){.layout{display:block;padding:5px}aside{display:none}.hero{padding:28px 18px}.hero h1{font-size:28px}section{padding:24px 18px}.grid{grid-template-columns:1fr}p,li{font-size:15px}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside>
+<h2>Topics</h2>
+<a href="#intro">1. Introduction</a>
+<a href="#construction">2. HDD Construction</a>
+<a href="#principle">3. Working Principle</a>
+<a href="#components">4. Internal Components</a>
+<a href="#types">5. Disk Drive Types</a>
+<a href="#installation">6. Installation</a>
+<a href="#cables">7. Cables & Connectors</a>
+<a href="#jumpers">8. Jumper Details</a>
+<a href="#formatting">9. Formatting</a>
+<a href="#management">10. HDD Management</a>
+<a href="#interfaces">11. Interface Standards</a>
+<a href="#comparison">12. Interface Comparison</a>
+<a href="#troubleshooting">13. Basic Troubleshooting</a>
+<a href="#exam">14. Exam Questions</a>
+</aside>
+
+<main>
+<div class="hero">
+<span class="badge">STORAGE DEVICES • EXAM ORIENTED</span>
+<h1>Hard Disk Drive (HDD)</h1>
+<p><strong>Construction • Working Principle • Types • Installation • Cables • Connectors • Jumpers • Formatting • Management • Interface Standards</strong></p>
+</div>
+
+<section id="intro">
+<h2>1. Introduction to Hard Disk Drive</h2>
+<p><strong>Hard Disk Drive (HDD)</strong> एक non-volatile secondary storage device है जिसका उपयोग computer में operating system, applications, documents, images, videos और अन्य digital data को लंबे समय तक store करने के लिए किया जाता है। Non-volatile होने के कारण power off होने के बाद भी stored data सामान्यतः बना रहता है।</p>
+<p>HDD में data को magnetic platters पर store किया जाता है। Platters high speed पर rotate करते हैं और read/write heads magnetic surface के ऊपर move करके data access करते हैं। HDD की capacity सामान्यतः GB या TB में express की जाती है।</p>
+<div class="important"><b>Exam Definition:</b> Hard Disk Drive एक non-volatile magnetic storage device है जिसमें rotating magnetic platters और read/write heads की सहायता से digital data को store और retrieve किया जाता है।</div>
+</section>
+
+<section id="construction">
+<h2>2. Construction of Hard Disk Drive</h2>
+<p>एक HDD के अंदर mechanical और electronic दोनों प्रकार के components होते हैं। Mechanical assembly data को physically store/access करती है, जबकि controller electronics drive और computer के बीच communication तथा internal operations को control करती है।</p>
+<div class="grid">
+<div class="card"><h3>1. Platters</h3><p>Platters circular disks होते हैं जिनकी surface पर magnetic material की coating होती है। इन्हीं surfaces पर data magnetic patterns के रूप में store किया जाता है।</p></div>
+<div class="card"><h3>2. Spindle Motor</h3><p>Spindle motor platters को high speed पर rotate करता है। Rotation की stability data access के लिए बहुत महत्वपूर्ण है।</p></div>
+<div class="card"><h3>3. Read/Write Heads</h3><p>Read/write heads platter surface के बहुत पास रहकर data को read या write करते हैं। प्रत्येक recording surface के लिए corresponding head हो सकता है।</p></div>
+<div class="card"><h3>4. Actuator Arm</h3><p>Actuator arm heads को platter के अलग-अलग radial positions तक move करता है ताकि required data location access की जा सके।</p></div>
+<div class="card"><h3>5. Voice Coil Actuator</h3><p>Voice coil mechanism actuator arm की precise movement control करता है।</p></div>
+<div class="card"><h3>6. PCB / Controller Board</h3><p>Drive के नीचे लगा electronics board motor control, data processing, interface communication और अन्य control functions संभालता है।</p></div>
+<div class="card"><h3>7. Firmware</h3><p>Drive firmware internal control logic provide करता है और drive के mechanical तथा electronic operations को coordinate करता है।</p></div>
+<div class="card"><h3>8. Enclosure</h3><p>Metal enclosure internal components को physical protection देता है और controlled internal environment बनाए रखने में मदद करता है।</p></div>
+</div>
+<div class="diagram">
+                  HARD DISK DRIVE - INTERNAL VIEW
+
+        ┌────────────────────────────────────────┐
+        │              TOP COVER                 │
+        │                                        │
+        │      ┌──────────────────────┐          │
+        │      │      PLATTERS        │          │
+        │      │   ╔════════════╗     │          │
+        │      │   ║            ║     │          │
+        │      │   ║  SPINDLE   ║     │          │
+        │      │   ║   MOTOR    ║     │          │
+        │      │   ╚════════════╝     │          │
+        │      └──────────────────────┘          │
+        │              ↑                         │
+        │        READ/WRITE HEADS                │
+        │              ↑                         │
+        │       ACTUATOR ARM                    │
+        │              │                         │
+        │       VOICE COIL ACTUATOR             │
+        │                                        │
+        ├────────────────────────────────────────┤
+        │ PCB / CONTROLLER BOARD                 │
+        │ Power + Interface + Control Electronics│
+        └────────────────────────────────────────┘
+</div>
+</section>
+
+<section id="principle">
+<h2>3. Basic Principle of Operation</h2>
+<p>HDD का basic operating principle <strong>magnetic data storage</strong> पर आधारित है। Platter की magnetic surface को बहुत छोटे areas में organize किया जाता है। Writing के समय write head magnetic state को बदलता है और reading के समय read sensor stored magnetic transitions को detect करके electronic data में convert करता है।</p>
+<h3>Read Operation</h3>
+<div class="step"><b>Step 1:</b> Computer storage controller HDD को required logical block address देता है।</div>
+<div class="step"><b>Step 2:</b> Drive controller requested location को identify करता है।</div>
+<div class="step"><b>Step 3:</b> Spindle platters को rotate करता है और actuator arm head को correct position पर move करता है।</div>
+<div class="step"><b>Step 4:</b> Read head magnetic information detect करता है।</div>
+<div class="step"><b>Step 5:</b> Drive electronics signal को process करके data interface के माध्यम से computer को भेजते हैं।</div>
+<h3>Write Operation</h3>
+<div class="step"><b>Step 1:</b> Computer data को HDD तक भेजता है।</div>
+<div class="step"><b>Step 2:</b> Controller data और target location process करता है।</div>
+<div class="step"><b>Step 3:</b> Actuator arm write head को required position तक ले जाता है।</div>
+<div class="step"><b>Step 4:</b> Write head magnetic surface पर required magnetic patterns create करता है।</div>
+<div class="step"><b>Step 5:</b> Drive verifies/handles the write operation according to its internal control and error-management mechanisms.</div>
+</section>
+
+<section id="components">
+<h2>4. Important Internal Components</h2>
+<table>
+<tr><th>Component</th><th>Function</th></tr>
+<tr><td>Platter</td><td>Magnetic surface पर data store करता है।</td></tr>
+<tr><td>Spindle Motor</td><td>Platters को rotate करता है।</td></tr>
+<tr><td>Read/Write Head</td><td>Magnetic data को read/write करता है।</td></tr>
+<tr><td>Actuator Arm</td><td>Head को required track position पर move करता है।</td></tr>
+<tr><td>Voice Coil</td><td>Actuator arm की precise movement control करता है।</td></tr>
+<tr><td>Controller PCB</td><td>Drive electronics, interface communication और motor/head control संभालता है।</td></tr>
+<tr><td>Cache/Buffer</td><td>Frequently/temporarily handled data के लिए high-speed memory area provide करता है।</td></tr>
+<tr><td>Firmware</td><td>Drive के internal operations और control logic को manage करता है।</td></tr>
+</table>
+</section>
+
+<section id="types">
+<h2>5. Disk Drive Types</h2>
+<div class="grid">
+<div class="card"><h3>Desktop HDD</h3><p>Desktop computers में commonly उपयोग होने वाले HDDs generally larger form factor और higher capacity options provide करते हैं।</p></div>
+<div class="card"><h3>Laptop HDD</h3><p>Laptops और compact systems के लिए smaller physical form factor वाले HDDs बनाए गए।</p></div>
+<div class="card"><h3>Internal HDD</h3><p>Computer cabinet के अंदर permanently/semipermanently installed storage drive को internal HDD कहा जाता है।</p></div>
+<div class="card"><h3>External HDD</h3><p>External enclosure में mounted HDD को USB जैसे external interface के माध्यम से computer से connect किया जाता है।</p></div>
+<div class="card"><h3>Enterprise HDD</h3><p>Servers और data-center environments के लिए designed drives workload, reliability और workload-specific requirements को ध्यान में रखकर बनाए जाते हैं।</p></div>
+<div class="card"><h3>Surveillance HDD</h3><p>Continuous video-recording workloads के लिए optimized HDD categories उपलब्ध हैं।</p></div>
+</div>
+<div class="note"><b>Form Factor:</b> Common HDD form factors में desktop-class 3.5-inch और laptop-class 2.5-inch drives historically बहुत common रहे हैं।</div>
+</section>
+
+<section id="installation">
+<h2>6. HDD Installation</h2>
+<p>Internal HDD install करते समय drive को appropriate bay में securely mount करके power और data connections attach किए जाते हैं। Modern SATA HDD के लिए installation comparatively simple है।</p>
+<div class="step"><b>Step 1 – Power Off:</b> Computer shut down करें और AC power disconnect करें।</div>
+<div class="step"><b>Step 2 – Open Cabinet:</b> Cabinet का side panel खोलें और suitable drive bay identify करें।</div>
+<div class="step"><b>Step 3 – Mount Drive:</b> HDD को 3.5-inch/appropriate bay में रखें और screws या tool-less mechanism से secure करें।</div>
+<div class="step"><b>Step 4 – Connect Power:</b> SATA power connector को drive के power port में लगाएँ।</div>
+<div class="step"><b>Step 5 – Connect Data:</b> SATA data cable को HDD और motherboard के SATA port के बीच connect करें।</div>
+<div class="step"><b>Step 6 – Check Connections:</b> Connectors properly seated हैं या नहीं verify करें।</div>
+<div class="step"><b>Step 7 – Close Cabinet:</b> Panel replace करके system power on करें।</div>
+<div class="step"><b>Step 8 – Initialize/Partition:</b> New disk को operating system के disk-management utility से initialize, partition और format किया जा सकता है।</div>
+<div class="important"><b>Safety:</b> Installation से पहले system power completely disconnect करें। HDD को unnecessarily open न करें; sealed drive को खोलना contamination और permanent damage का कारण बन सकता है।</div>
+</section>
+
+<section id="cables">
+<h2>7. HDD Cables and Connectors</h2>
+<h3>SATA HDD Connectors</h3>
+<p>Modern internal SATA HDD में सामान्यतः दो separate connectors होते हैं:</p>
+<div class="grid">
+<div class="card"><h3>SATA Data Connector</h3><p>Motherboard/controller और HDD के बीच data transfer के लिए उपयोग होता है। Standard SATA data connector commonly 7-pin interface होता है।</p></div>
+<div class="card"><h3>SATA Power Connector</h3><p>Power supply unit से HDD को electrical power देने के लिए उपयोग होता है। Standard SATA power connector commonly 15-pin होता है।</p></div>
+</div>
+<div class="diagram">
+        MOTHERBOARD                       HDD
+     ┌─────────────┐                 ┌─────────────┐
+     │ SATA DATA   │=================│ SATA DATA   │
+     │   PORT      │   7-pin cable   │   PORT      │
+     └─────────────┘                 └─────────────┘
+
+        POWER SUPPLY                     HDD
+     ┌─────────────┐                 ┌─────────────┐
+     │ SATA POWER  │=================│ SATA POWER  │
+     │   CABLE     │                 │   PORT      │
+     └─────────────┘                 └─────────────┘
+</div>
+<h3>Legacy IDE/PATA</h3>
+<p>Older Parallel ATA (IDE/PATA) drives में wide ribbon cable और separate 4-pin peripheral/Molex-style power connector का उपयोग होता था। PATA cable पर multiple drives connect किए जा सकते थे, जिनके लिए master/slave/cable-select configuration relevant हो सकती थी।</p>
+</section>
+
+<section id="jumpers">
+<h2>8. Jumper Details</h2>
+<p><strong>Jumper</strong> एक छोटा removable electrical connector है जो pins के बीच connection बनाकर hardware configuration select कर सकता है। पुराने IDE/PATA HDDs में jumpers का विशेष महत्व था।</p>
+<h3>IDE/PATA Drive Jumper Settings</h3>
+<table>
+<tr><th>Setting</th><th>Meaning</th></tr>
+<tr><td>Master</td><td>Drive को PATA channel पर primary/master device के रूप में configure करता था।</td></tr>
+<tr><td>Slave</td><td>Drive को same channel पर secondary/slave device के रूप में configure करता था।</td></tr>
+<tr><td>Cable Select (CS)</td><td>Drive role को cable/position-based configuration के अनुसार select करने देता था, जब system और cable इस mode को support करते हों।</td></tr>
+</table>
+<div class="note"><b>Important:</b> Jumper positions universal नहीं होतीं। किसी particular HDD model के लिए jumper diagram/label को drive manufacturer documentation के अनुसार follow करना चाहिए। SATA HDDs में traditional Master/Slave jumper configuration generally required नहीं होती।</div>
+</section>
+
+<section id="formatting">
+<h2>9. Formatting Hard Disk Drive</h2>
+<p><strong>Formatting</strong> storage volume को किसी filesystem के लिए तैयार करने की process है। Operating system के अनुसार NTFS, exFAT, FAT32 आदि filesystem formats available हो सकते हैं। Formatting से उस volume पर मौजूद existing data हट सकता है, इसलिए important data का backup पहले लेना चाहिए।</p>
+<h3>Windows में Basic Disk Management Process</h3>
+<div class="step"><b>Step 1:</b> Windows में <strong>Disk Management</strong> utility खोलें।</div>
+<div class="step"><b>Step 2:</b> Required disk/volume को carefully identify करें।</div>
+<div class="step"><b>Step 3:</b> यदि नया disk है, तो system के अनुसार disk initialize करने की आवश्यकता हो सकती है।</div>
+<div class="step"><b>Step 4:</b> Unallocated space से नया volume create करें या existing volume को appropriate operation दें।</div>
+<div class="step"><b>Step 5:</b> File system और volume label select करें।</div>
+<div class="step"><b>Step 6:</b> Format operation confirm करें।</div>
+<div class="important"><b>Warning:</b> गलत disk/partition को format करने से data loss हो सकता है। Format करने से पहले drive name, capacity और partition carefully verify करें तथा required data का backup रखें।</div>
+</section>
+
+<section id="management">
+<h2>10. Managing Hard Disk Drive</h2>
+<p>Disk management में केवल formatting ही नहीं, बल्कि partitioning, drive-letter assignment, storage-space monitoring, error checking और backup जैसे tasks भी शामिल हैं।</p>
+<div class="grid">
+<div class="card"><h3>Partitioning</h3><p>एक physical disk को अलग logical volumes/partitions में organize किया जा सकता है।</p></div>
+<div class="card"><h3>Formatting</h3><p>Partition/volume को selected filesystem के साथ usable बनाना।</p></div>
+<div class="card"><h3>Drive Letter</h3><p>Windows में volumes को C:, D:, E: जैसे drive letters assign किए जा सकते हैं।</p></div>
+<div class="card"><h3>Disk Checking</h3><p>Operating system की disk utilities filesystem errors और related issues identify/repair करने में सहायता कर सकती हैं।</p></div>
+<div class="card"><h3>Backup</h3><p>Important data की separate copy रखना drive failure या accidental deletion के risk को reduce करता है।</p></div>
+<div class="card"><h3>Health Monitoring</h3><p>SMART जैसे drive health information mechanisms supported systems में drive condition के संकेत दे सकते हैं।</p></div>
+</div>
+</section>
+
+<section id="interfaces">
+<h2>11. Various HDD Interface Standards</h2>
+<p>HDD को computer से communicate करने के लिए अलग-अलग interface standards विकसित हुए हैं। समय के साथ PATA/IDE से SATA और enterprise environments में SCSI/SAS जैसी technologies का उपयोग बढ़ा।</p>
+<table>
+<tr><th>Interface</th><th>Full Form / Meaning</th><th>Key Characteristics</th></tr>
+<tr><td>IDE / PATA</td><td>Integrated Drive Electronics / Parallel ATA</td><td>Older parallel interface; ribbon cable; Master/Slave or Cable Select configuration.</td></tr>
+<tr><td>SATA</td><td>Serial ATA</td><td>Serial interface; separate data and power connectors; widely used for consumer internal HDDs.</td></tr>
+<tr><td>SCSI</td><td>Small Computer System Interface</td><td>Family of storage/peripheral interfaces; historically important in workstations and servers.</td></tr>
+<tr><td>SAS</td><td>Serial Attached SCSI</td><td>Enterprise-oriented serial storage interface; used with compatible controllers/backplanes.</td></tr>
+<tr><td>USB</td><td>Universal Serial Bus</td><td>External HDD enclosures/drives में common external connection.</td></tr>
+</table>
+<h3>SATA Generations</h3>
+<p>SATA standard की अलग generations रही हैं। Textbook context में SATA I, SATA II और SATA III names commonly मिलते हैं। इनके nominal interface speeds क्रमशः लगभग 1.5 Gb/s, 3 Gb/s और 6 Gb/s के रूप में specified रहे हैं। Actual HDD performance mechanical limitations के कारण interface maximum से काफी कम हो सकती है।</p>
+</section>
+
+<section id="comparison">
+<h2>12. HDD Interface Comparison</h2>
+<table>
+<tr><th>Feature</th><th>IDE/PATA</th><th>SATA</th><th>SCSI</th><th>SAS</th></tr>
+<tr><td>Signal type</td><td>Parallel</td><td>Serial</td><td>Historically parallel variants</td><td>Serial</td></tr>
+<tr><td>Typical use</td><td>Legacy PCs</td><td>Consumer PCs</td><td>Workstations/servers, historically</td><td>Enterprise servers/storage</td></tr>
+<tr><td>Drive configuration</td><td>Master/Slave/CS relevant</td><td>Point-to-point style ports</td><td>Depends on SCSI implementation</td><td>Enterprise controller/backplane environment</td></tr>
+<tr><td>Connector/cabling</td><td>Wide ribbon cable</td><td>Separate data/power</td><td>Varies by generation</td><td>Varies by SAS generation/system</td></tr>
+</table>
+</section>
+
+<section id="troubleshooting">
+<h2>13. Basic HDD Troubleshooting</h2>
+<div class="step"><b>Drive not detected:</b> Power cable, data cable, motherboard/controller port और BIOS/UEFI detection check करें।</div>
+<div class="step"><b>Slow performance:</b> Drive health, available free space, workload और mechanical condition check करें।</div>
+<div class="step"><b>Clicking/unusual noise:</b> Important data का backup priority दें; unusual mechanical sounds possible hardware failure का warning हो सकते हैं।</div>
+<div class="step"><b>File-system errors:</b> Operating system की supported disk-checking utility use करें और पहले important data backup रखें।</div>
+<div class="step"><b>Full disk:</b> Unnecessary data remove/archive करें या additional storage add करें।</div>
+<div class="important"><b>Golden Rule:</b> HDD में important data हो तो failure symptoms दिखने पर repair experiment से पहले backup लेना सबसे जरूरी step है।</div>
+</section>
+
+<section id="exam">
+<h2>14. Important Exam Questions</h2>
+<div class="exam">
+<b>Long Answer Questions</b><br><br>
+1. Hard Disk Drive क्या है? इसकी construction diagram सहित समझाइए।<br>
+2. HDD के basic principle of operation को read और write operations के साथ समझाइए।<br>
+3. Hard Disk Drive के internal components और उनके functions लिखिए।<br>
+4. HDD के विभिन्न types समझाइए।<br>
+5. Internal HDD installation की procedure step-by-step समझाइए।<br>
+6. SATA HDD के cables और connectors का वर्णन कीजिए।<br>
+7. IDE/PATA HDD में jumper settings Master, Slave और Cable Select समझाइए।<br>
+8. Hard Disk formatting और management की process समझाइए।<br>
+9. HDD के विभिन्न interface standards — IDE/PATA, SATA, SCSI, SAS और USB समझाइए।<br>
+10. SATA और IDE/PATA interface में अंतर लिखिए।
+</div>
+<h3>Short Questions</h3>
+<ul>
+<li>HDD का full form क्या है?</li>
+<li>HDD किस प्रकार की storage है?</li>
+<li>HDD में data किस principle पर store होता है?</li>
+<li>Platter क्या है?</li>
+<li>Spindle motor का क्या कार्य है?</li>
+<li>Read/write head क्या करता है?</li>
+<li>Actuator arm क्या है?</li>
+<li>SATA data connector में कितने pins होते हैं?</li>
+<li>SATA power connector में कितने pins होते हैं?</li>
+<li>IDE/PATA में Master और Slave क्या हैं?</li>
+<li>Cable Select क्या है?</li>
+<li>Formatting क्या है?</li>
+<li>Partition क्या है?</li>
+<li>SMART का उपयोग किस लिए होता है?</li>
+<li>SATA का full form क्या है?</li>
+<li>SCSI और SAS क्या हैं?</li>
+</ul>
+<div class="important"><b>Quick Revision:</b><br>
+<strong>HDD → Non-volatile magnetic storage</strong><br>
+<strong>Platter → Magnetic data storage surface</strong><br>
+<strong>Spindle → Platter rotation</strong><br>
+<strong>Head → Read/Write data</strong><br>
+<strong>Actuator → Head positioning</strong><br>
+<strong>SATA → Serial ATA</strong><br>
+<strong>PATA/IDE → Parallel ATA, legacy interface</strong><br>
+<strong>Jumpers → Mainly legacy IDE configuration</strong><br>
+<strong>Formatting → Volume को filesystem के लिए prepare करना</strong>
+</div>
+</section>
+</main>
+</div>
+</body>
+</html>

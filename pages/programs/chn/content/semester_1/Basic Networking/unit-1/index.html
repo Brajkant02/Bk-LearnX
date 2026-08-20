@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Introduction to Networks - PGDCA Notes</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#eef2f7;color:#202938;font-family:Segoe UI,Arial,sans-serif;line-height:1.9}
+.layout{max-width:1500px;margin:auto;padding:15px;display:grid;grid-template-columns:285px 1fr;gap:18px}
+aside{position:sticky;top:15px;height:calc(100vh - 30px);overflow:auto;background:#fff;border-radius:18px;padding:20px;box-shadow:0 6px 25px #0001}
+aside h2{color:#075985;border-left:5px solid #0284c7;padding-left:10px}
+aside a{display:block;text-decoration:none;color:#374151;padding:7px 10px;border-radius:8px;font-size:14px}
+aside a:hover{background:#e0f2fe;color:#0369a1}
+main{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 6px 25px #0001}
+.hero{padding:42px;background:linear-gradient(135deg,#dbeafe,#e0f2fe,#f8fafc)}
+.hero h1{margin:8px 0;color:#075985;font-size:37px;line-height:1.3}
+section{padding:32px;border-bottom:1px solid #e5e7eb}
+h2{font-size:29px;color:#075985;border-left:5px solid #0284c7;padding-left:13px}
+h3{font-size:22px;color:#0c4a6e;margin-top:27px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{padding:19px;background:#f0f9ff;border:1px solid #bae6fd;border-radius:14px}
+.note,.important,.exam{padding:18px 20px;border-radius:12px;margin:19px 0}
+.note{background:#eff6ff;border-left:5px solid #3b82f6}
+.important{background:#fff7ed;border-left:5px solid #f97316}
+.exam{background:#ecfdf5;border-left:5px solid #10b981}
+table{width:100%;border-collapse:collapse;margin:20px 0}
+th,td{border:1px solid #cbd5e1;padding:12px;text-align:left;vertical-align:top}
+th{background:#e0f2fe;color:#075985}
+.diagram{background:#090b0f;color:#e5e7eb;border-radius:14px;padding:22px;overflow:auto;font-family:Consolas,monospace;white-space:pre;line-height:1.5}
+.step{padding:14px 16px;background:#f8fafc;border-radius:10px;margin:9px 0;border-left:4px solid #0284c7}
+.badge{display:inline-block;background:#bae6fd;color:#075985;padding:4px 11px;border-radius:20px;font-size:12px;font-weight:bold}
+@media(max-width:900px){.layout{display:block;padding:5px}aside{display:none}.hero{padding:28px 18px}.hero h1{font-size:28px}section{padding:24px 18px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside>
+<h2>Contents</h2>
+<a href="#intro">1. Computer Network Introduction</a>
+<a href="#need">2. Need & Uses of Networks</a>
+<a href="#elements">3. Elements of Networks</a>
+<a href="#types">4. Types of Networks</a>
+<a href="#topology">5. Network Topology</a>
+<a href="#bus">6. Bus Topology</a>
+<a href="#star">7. Star Topology</a>
+<a href="#mesh">8. Mesh Topology</a>
+<a href="#ring">9. Ring Topology</a>
+<a href="#compare">10. Comparison</a>
+<a href="#selection">11. Topology Selection</a>
+<a href="#exam">12. Exam Questions</a>
+</aside>
+
+<main>
+<div class="hero">
+<span class="badge">DCCN • PGDCA • 06 PERIODS</span>
+<h1>1. Introduction to Networks</h1>
+<p><strong>Computer Networks • Elements of Networks • Types of Networks • Network Topologies</strong></p>
+</div>
+
+<section id="intro">
+<h2>1. Introduction to Computer Networks</h2>
+<p><strong>Computer Network</strong> computers और अन्य digital devices का ऐसा interconnected system है जिसमें devices communication links और networking protocols की सहायता से आपस में data, information और resources का आदान-प्रदान करते हैं। Network में connected devices एक-दूसरे से communicate कर सकते हैं और आवश्यकता के अनुसार files, printers, applications, Internet connection तथा अन्य resources share कर सकते हैं।</p>
+
+<div class="important"><b>Exam Definition:</b> Computer Network दो या दो से अधिक computers/devices का ऐसा समूह है जो communication medium और suitable protocols के माध्यम से connected होकर data तथा resources को share करता है।</div>
+
+<h3>Network के मुख्य उद्देश्य</h3>
+<ul>
+<li>एक computer से दूसरे computer तक data transfer करना।</li>
+<li>Files और information को share करना।</li>
+<li>Printers और अन्य hardware resources को share करना।</li>
+<li>Internet या अन्य network services को multiple users तक पहुँचाना।</li>
+<li>Communication को fast, reliable और organized बनाना।</li>
+<li>Centralized या distributed applications को support करना।</li>
+</ul>
+
+<div class="grid">
+<div class="card"><h3>Data Sharing</h3><p>Network users एक-दूसरे के साथ documents, images, databases और अन्य digital data exchange कर सकते हैं।</p></div>
+<div class="card"><h3>Resource Sharing</h3><p>Printer, storage और network services जैसे resources को multiple users share कर सकते हैं।</p></div>
+<div class="card"><h3>Communication</h3><p>Email, messaging, video conferencing और अन्य communication applications networks पर काम करते हैं।</p></div>
+<div class="card"><h3>Centralized Management</h3><p>Organization में users, devices, data और security policies को centrally manage किया जा सकता है।</p></div>
+</div>
+</section>
+
+<section id="need">
+<h2>2. Need & Uses of Computer Networks</h2>
+<p>आज के computing environment में individual computers के साथ-साथ connected systems की आवश्यकता होती है। Network users और organizations को information तथा resources तक controlled और efficient access प्रदान करता है।</p>
+
+<table>
+<tr><th>Use</th><th>Explanation</th></tr>
+<tr><td>File Sharing</td><td>एक system पर उपलब्ध files को authorized network users के साथ share किया जा सकता है।</td></tr>
+<tr><td>Hardware Sharing</td><td>एक printer या अन्य network device को multiple computers से use किया जा सकता है।</td></tr>
+<tr><td>Communication</td><td>Email, chat, voice और video communication network connectivity पर निर्भर करते हैं।</td></tr>
+<tr><td>Internet Access</td><td>एक network connection को कई devices तक distribute किया जा सकता है।</td></tr>
+<tr><td>Data Management</td><td>Servers और databases के माध्यम से organizational information को manage किया जा सकता है।</td></tr>
+<tr><td>Remote Access</td><td>Authorized users network के माध्यम से दूर स्थित resources तक access कर सकते हैं।</td></tr>
+</table>
+</section>
+
+<section id="elements">
+<h2>3. Elements of a Computer Network</h2>
+<p>एक network केवल computers को cable से जोड़ने का नाम नहीं है। Effective communication के लिए hardware, software, communication media और protocols सभी की आवश्यकता होती है।</p>
+
+<h3>1. Sender / Source</h3>
+<p>Sender वह device है जो data या message को network पर भेजता है। उदाहरण: computer, smartphone या server।</p>
+
+<h3>2. Receiver / Destination</h3>
+<p>Receiver वह device है जो transmitted data को प्राप्त करता है।</p>
+
+<h3>3. Network Devices</h3>
+<p>Network communication को connect और manage करने के लिए switches, routers, access points, modems आदि devices उपयोग किए जाते हैं।</p>
+
+<h3>4. Transmission Medium</h3>
+<p>Data जिस path से travel करता है उसे transmission medium कहते हैं। यह wired या wireless हो सकता है। Wired examples में twisted-pair और fiber-optic cable आते हैं; wireless में radio-based communication शामिल है।</p>
+
+<h3>5. Network Interface</h3>
+<p>Network Interface Card/NIC या built-in network interface device को computer को network से connect करने में उपयोग किया जाता है।</p>
+
+<h3>6. Protocols</h3>
+<p>Protocols communication के rules और conventions होते हैं जो यह निर्धारित करते हैं कि devices data को कैसे format, address, transmit और interpret करेंगे।</p>
+
+<h3>7. Network Software</h3>
+<p>Operating system networking components और network applications communication, resource access तथा network management में सहायता करते हैं।</p>
+
+<div class="diagram">
+        ┌────────────── COMPUTER NETWORK ──────────────┐
+        │                                               │
+        │  Sender → Medium → Network Device → Receiver │
+        │              │                                │
+        │              ├── Network Interface           │
+        │              ├── Protocols                    │
+        │              └── Network Software             │
+        └───────────────────────────────────────────────┘
+</div>
+</section>
+
+<section id="types">
+<h2>4. Types of Computer Networks</h2>
+<p>Networks को उनके geographical coverage, size और purpose के आधार पर अलग-अलग categories में classify किया जा सकता है।</p>
+
+<table>
+<tr><th>Type</th><th>Full Form</th><th>Coverage / Description</th><th>Example</th></tr>
+<tr><td>PAN</td><td>Personal Area Network</td><td>एक व्यक्ति के आसपास बहुत छोटी range का network।</td><td>Phone + Bluetooth earbuds</td></tr>
+<tr><td>LAN</td><td>Local Area Network</td><td>Limited area जैसे room, office, lab या building।</td><td>Computer lab network</td></tr>
+<tr><td>MAN</td><td>Metropolitan Area Network</td><td>एक city/metropolitan area के स्तर पर बड़ा network।</td><td>City-wide institutional network</td></tr>
+<tr><td>WAN</td><td>Wide Area Network</td><td>Large geographical area, cities/countries तक।</td><td>Internet / enterprise WAN</td></tr>
+</table>
+
+<h3>LAN</h3>
+<p>LAN relatively small geographical area में computers और devices को connect करता है। Offices, schools, laboratories और homes में LAN commonly used होता है।</p>
+
+<h3>WAN</h3>
+<p>WAN large geographical distance पर networks को interconnect करता है। WAN में अलग-अलग locations के networks communication links के माध्यम से connect हो सकते हैं।</p>
+
+<div class="note"><b>Exam Tip:</b> Basic classification याद रखने के लिए: <strong>PAN → Personal, LAN → Local, MAN → Metropolitan, WAN → Wide</strong>.</div>
+</section>
+
+<section id="topology">
+<h2>5. Network Topology</h2>
+<p><strong>Network Topology</strong> network में computers, network devices और communication links की physical या logical arrangement को कहा जाता है। दूसरे शब्दों में, topology यह बताती है कि network nodes किस प्रकार एक-दूसरे से connected और arranged हैं।</p>
+
+<div class="important"><b>Important:</b> इस syllabus में मुख्य topologies हैं — <strong>Bus, Star, Mesh और Ring</strong>.</div>
+
+<h3>Topology के आधार पर विचार</h3>
+<ul>
+<li>Nodes के बीच connection pattern</li>
+<li>Communication path</li>
+<li>Network expansion की सुविधा</li>
+<li>Failure का effect</li>
+<li>Cost और cabling requirement</li>
+<li>Maintenance और troubleshooting</li>
+</ul>
+</section>
+
+<section id="bus">
+<h2>6. Bus Topology</h2>
+<p><strong>Bus Topology</strong> में सभी network devices एक common backbone cable से connected होते हैं। Data इस shared communication medium पर travel करता है और appropriate destination device उसे receive/process करता है। Traditional bus networks में backbone के ends पर termination का उपयोग किया जाता था।</p>
+
+<div class="diagram">
+[Terminator]══════ Backbone Cable ═══════════[Terminator]
+                    │        │        │
+                   PC1      PC2      PC3
+                    │        │        │
+                   PC4      PC5      PC6
+</div>
+
+<h3>Bus Topology के Advantages</h3>
+<ul>
+<li>Simple network layout।</li>
+<li>कम cable की आवश्यकता हो सकती है।</li>
+<li>Small/simple networks के लिए initial installation comparatively simple हो सकती है।</li>
+<li>एक common communication backbone का उपयोग होता है।</li>
+</ul>
+
+<h3>Bus Topology के Disadvantages</h3>
+<ul>
+<li>Backbone failure network communication को प्रभावित कर सकता है।</li>
+<li>Network में devices बढ़ने पर performance और troubleshooting complexity बढ़ सकती है।</li>
+<li>Fault location identify करना difficult हो सकता है।</li>
+<li>Shared medium होने के कारण simultaneous communication manage करना पड़ता है।</li>
+</ul>
+
+<div class="note"><b>Key Point:</b> Bus topology का सबसे important concept है <strong>single shared backbone cable</strong>.</div>
+</section>
+
+<section id="star">
+<h2>7. Star Topology</h2>
+<p><strong>Star Topology</strong> में प्रत्येक node एक central networking device से separately connected होता है। Modern Ethernet LANs में central device के रूप में switch commonly used होता है।</p>
+
+<div class="diagram">
+                 PC1
+                  │
+                  │
+        PC2 ─── [ SWITCH ] ─── PC3
+                  │
+                  │
+                 PC4
+                  │
+                 PC5
+</div>
+
+<h3>Working</h3>
+<p>जब एक computer data भेजता है, तो वह data central switch/device तक जाता है। Central device network rules और destination information के अनुसार frame को appropriate port/device की ओर forward करता है।</p>
+
+<h3>Advantages</h3>
+<ul>
+<li>Individual node connection को manage करना comparatively आसान होता है।</li>
+<li>एक cable/device link fail होने पर सामान्यतः बाकी nodes connected रह सकते हैं।</li>
+<li>Fault isolation आसान होता है।</li>
+<li>Network को expand करना comparatively convenient है।</li>
+<li>Modern switched Ethernet networks के लिए suitable topology है।</li>
+</ul>
+
+<h3>Disadvantages</h3>
+<ul>
+<li>Central device की आवश्यकता होती है।</li>
+<li>Central switch/device failure से उससे जुड़े पूरे network segment की connectivity प्रभावित हो सकती है।</li>
+<li>Bus की तुलना में अधिक individual cable runs की आवश्यकता हो सकती है।</li>
+</ul>
+
+<div class="important"><b>Key Point:</b> Star topology की पहचान है <strong>central connecting device</strong>.</div>
+</section>
+
+<section id="mesh">
+<h2>8. Mesh Topology</h2>
+<p><strong>Mesh Topology</strong> में nodes के बीच multiple direct links हो सकते हैं। <strong>Full Mesh</strong> में प्रत्येक node बाकी सभी nodes से directly connected होता है। Mesh topology का major advantage redundancy और alternate communication paths हैं।</p>
+
+<div class="diagram">
+             A
+           / | \
+          /  |  \
+         B---|---C
+          \  |  /
+           \ | /
+             D
+
+Full Mesh concept:
+हर node → बाकी सभी nodes से direct link
+</div>
+
+<h3>Types of Mesh</h3>
+<div class="grid">
+<div class="card"><h3>Full Mesh</h3><p>हर node प्रत्येक दूसरे node से directly connected होता है।</p></div>
+<div class="card"><h3>Partial Mesh</h3><p>कुछ important nodes multiple connections रखते हैं, जबकि सभी nodes fully interconnected नहीं होते।</p></div>
+</div>
+
+<h3>Advantages</h3>
+<ul>
+<li>Multiple communication paths उपलब्ध हो सकते हैं।</li>
+<li>Link failure की स्थिति में alternate path उपलब्ध हो सकता है।</li>
+<li>High redundancy और reliability प्रदान कर सकती है।</li>
+</ul>
+
+<h3>Disadvantages</h3>
+<ul>
+<li>Full mesh में बहुत अधिक links/cabling की आवश्यकता होती है।</li>
+<li>Installation और maintenance complex हो सकते हैं।</li>
+<li>Cost अन्य simple topologies की तुलना में अधिक हो सकती है।</li>
+</ul>
+
+<div class="note"><b>Key Point:</b> Mesh topology का main concept है <strong>multiple interconnections and redundancy</strong>.</div>
+</section>
+
+<section id="ring">
+<h2>9. Ring Topology</h2>
+<p><strong>Ring Topology</strong> में network nodes circular arrangement में connected होते हैं, जिससे प्रत्येक node अपने neighboring nodes से जुड़ा रहता है। इस arrangement से एक logical ring path बनता है।</p>
+
+<div class="diagram">
+             [PC1]
+            /     \
+        [PC2]     [PC5]
+         |           |
+        [PC3]──────[PC4]
+
+      Circular / Ring Arrangement
+</div>
+
+<h3>Working</h3>
+<p>Ring-based systems में data communication ring के path के अनुसार आगे बढ़ सकती है। Particular implementation में transmission direction और access method अलग हो सकते हैं। इसलिए ring topology की working को केवल एक fixed direction से define नहीं करना चाहिए।</p>
+
+<h3>Advantages</h3>
+<ul>
+<li>Organized circular communication path।</li>
+<li>Network access को controlled तरीके से manage किया जा सकता है, depending on implementation।</li>
+<li>कुछ implementations में predictable access behavior मिल सकता है।</li>
+</ul>
+
+<h3>Disadvantages</h3>
+<ul>
+<li>एक link/node failure network communication को प्रभावित कर सकता है यदि alternate path/redundancy मौजूद न हो।</li>
+<li>Adding/removing nodes network design पर प्रभाव डाल सकता है।</li>
+<li>Fault isolation simple star network की तुलना में difficult हो सकती है।</li>
+</ul>
+
+<div class="important"><b>Key Point:</b> Ring topology की पहचान है <strong>circular connection of nodes</strong>.</div>
+</section>
+
+<section id="compare">
+<h2>10. Bus vs Star vs Mesh vs Ring</h2>
+<table>
+<tr>
+<th>Feature</th><th>Bus</th><th>Star</th><th>Mesh</th><th>Ring</th>
+</tr>
+<tr><td>Basic Structure</td><td>Common backbone</td><td>Central device</td><td>Multiple direct links</td><td>Circular path</td></tr>
+<tr><td>Cabling</td><td>Comparatively less for simple networks</td><td>Individual links to center</td><td>Very high in full mesh</td><td>Node-to-node ring links</td></tr>
+<tr><td>Central Device</td><td>Not required</td><td>Required</td><td>Not necessarily</td><td>Not necessarily</td></tr>
+<tr><td>Fault Isolation</td><td>Comparatively difficult</td><td>Easy</td><td>Complex but alternate paths help</td><td>Can be difficult</td></tr>
+<tr><td>Redundancy</td><td>Low</td><td>Central dependency</td><td>High</td><td>Depends on implementation</td></tr>
+<tr><td>Expansion</td><td>Can affect shared backbone</td><td>Comparatively easy</td><td>Complex</td><td>May require ring changes</td></tr>
+<tr><td>Main Feature</td><td>Shared cable</td><td>Central switch/device</td><td>Multiple paths</td><td>Circular connection</td></tr>
+</table>
+</section>
+
+<section id="selection">
+<h2>11. Which Topology कब उपयोगी हो सकती है?</h2>
+<table>
+<tr><th>Situation</th><th>Suitable Concept</th><th>Reason</th></tr>
+<tr><td>Simple shared-medium concept समझाना</td><td>Bus</td><td>Single backbone arrangement easy to visualize है।</td></tr>
+<tr><td>Modern office Ethernet LAN</td><td>Star</td><td>Central switch-based connection practical और manageable है।</td></tr>
+<tr><td>High redundancy requirement</td><td>Mesh</td><td>Multiple paths failure tolerance में मदद कर सकते हैं।</td></tr>
+<tr><td>Circular network arrangement</td><td>Ring</td><td>Nodes logical/physical ring में arranged होते हैं।</td></tr>
+</table>
+
+<div class="note"><b>Exam Tip:</b> यदि question में diagram पूछा जाए तो topology का नाम लिखने के साथ उसकी <strong>structure + working + advantages + disadvantages</strong> भी लिखें। इससे answer ज्यादा complete बनता है।</div>
+</section>
+
+<section id="exam">
+<h2>12. Important Exam Questions</h2>
+<div class="exam">
+<b>Long Answer Questions</b><br><br>
+1. Computer Network क्या है? इसके objectives और uses विस्तार से समझाइए।<br>
+2. Computer Network के विभिन्न elements को diagram के साथ समझाइए।<br>
+3. Computer Networks के types समझाइए तथा LAN, MAN और WAN में अंतर लिखिए।<br>
+4. Network Topology क्या है? Bus, Star, Mesh और Ring Topology को diagrams सहित समझाइए।<br>
+5. Bus Topology के advantages और disadvantages समझाइए।<br>
+6. Star Topology की working, advantages और disadvantages समझाइए।<br>
+7. Mesh Topology क्या है? Full Mesh और Partial Mesh को समझाइए।<br>
+8. Ring Topology की working तथा advantages/disadvantages समझाइए।<br>
+9. Bus, Star, Mesh और Ring topology में comparison कीजिए।
+</div>
+
+<h3>Short Questions</h3>
+<ul>
+<li>Computer Network की definition लिखिए।</li>
+<li>Network के कोई चार elements लिखिए।</li>
+<li>Protocol क्या है?</li>
+<li>Transmission medium क्या है?</li>
+<li>LAN का full form लिखिए।</li>
+<li>WAN का full form लिखिए।</li>
+<li>Network Topology क्या है?</li>
+<li>Bus Topology क्या है?</li>
+<li>Star Topology में central device का क्या role है?</li>
+<li>Mesh Topology की मुख्य विशेषता क्या है?</li>
+<li>Ring Topology को define कीजिए।</li>
+<li>किस topology में central switch/device commonly used होता है?</li>
+<li>किस topology में multiple direct paths उपलब्ध हो सकते हैं?</li>
+</ul>
+
+<div class="important">
+<b>Quick Revision:</b><br>
+<strong>Network → Connected devices + Communication + Resource/Data Sharing</strong><br>
+<strong>Elements → Sender + Receiver + Medium + Devices + NIC + Protocols + Software</strong><br>
+<strong>Types → PAN + LAN + MAN + WAN</strong><br>
+<strong>Topology → Arrangement of network nodes/links</strong><br>
+<strong>Bus → Single Backbone</strong><br>
+<strong>Star → Central Device</strong><br>
+<strong>Mesh → Multiple Direct Links / Redundancy</strong><br>
+<strong>Ring → Circular Connection</strong>
+</div>
+</section>
+</main>
+</div>
+</body>
+</html>

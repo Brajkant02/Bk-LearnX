@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>BIOS & POST - Error Codes and Interpretation</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:#eef2f7;color:#202938;font-family:Segoe UI,Arial,sans-serif;line-height:1.9}
+.layout{max-width:1550px;margin:auto;padding:15px;display:grid;grid-template-columns:305px 1fr;gap:18px}
+aside{position:sticky;top:15px;height:calc(100vh - 30px);overflow:auto;background:#fff;border-radius:18px;padding:20px;box-shadow:0 6px 25px #0001}
+aside h2{color:#075985;border-left:5px solid #0284c7;padding-left:10px}
+aside a{display:block;text-decoration:none;color:#374151;padding:7px 10px;border-radius:8px;font-size:14px}
+aside a:hover{background:#e0f2fe;color:#0369a1}
+main{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 6px 25px #0001}
+.hero{padding:42px;background:linear-gradient(135deg,#dbeafe,#e0f2fe,#f8fafc)}
+.hero h1{margin:7px 0;color:#075985;font-size:36px;line-height:1.3}
+section{padding:32px;border-bottom:1px solid #e5e7eb}
+h2{font-size:29px;color:#075985;border-left:5px solid #0284c7;padding-left:13px}
+h3{font-size:22px;color:#0c4a6e;margin-top:27px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{padding:19px;background:#f0f9ff;border:1px solid #bae6fd;border-radius:14px}
+.note,.important,.exam{padding:18px 20px;border-radius:12px;margin:19px 0}
+.note{background:#eff6ff;border-left:5px solid #3b82f6}
+.important{background:#fff7ed;border-left:5px solid #f97316}
+.exam{background:#ecfdf5;border-left:5px solid #10b981}
+table{width:100%;border-collapse:collapse;margin:20px 0}
+th,td{border:1px solid #cbd5e1;padding:12px;text-align:left;vertical-align:top}
+th{background:#e0f2fe;color:#075985}
+.diagram{background:#090b0f;color:#e5e7eb;border-radius:15px;padding:25px;overflow:auto;font-family:Consolas,monospace;white-space:pre;line-height:1.5}
+.step{padding:14px 16px;background:#f8fafc;border-radius:10px;margin:9px 0;border-left:4px solid #0284c7}
+.badge{display:inline-block;background:#bae6fd;color:#075985;padding:4px 11px;border-radius:20px;font-size:12px;font-weight:bold}
+@media(max-width:900px){.layout{display:block;padding:5px}aside{display:none}.hero{padding:28px 18px}.hero h1{font-size:28px}section{padding:24px 18px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside>
+<h2>Topics</h2>
+<a href="#bios">1. BIOS Introduction</a>
+<a href="#functions">2. Functions of BIOS</a>
+<a href="#post">3. POST Introduction</a>
+<a href="#process">4. POST Process</a>
+<a href="#codes">5. POST Error Codes</a>
+<a href="#beeps">6. Beep Codes</a>
+<a href="#interpretation">7. Interpretation</a>
+<a href="#troubleshoot">8. Troubleshooting</a>
+<a href="#comparison">9. BIOS vs POST</a>
+<a href="#exam">10. Exam Questions</a>
+</aside>
+
+<main>
+<div class="hero">
+<span class="badge">SYSTEM SOFTWARE • HARDWARE DIAGNOSTICS</span>
+<h1>Concept of BIOS & POST</h1>
+<p><strong>BIOS • POST • Boot Process • Error Codes • Beep Codes • Interpretation & Troubleshooting</strong></p>
+</div>
+
+<section id="bios">
+<h2>1. BIOS – Introduction</h2>
+<p><strong>BIOS</strong> का full form <strong>Basic Input/Output System</strong> है। Traditional PC architecture में BIOS motherboard पर stored firmware होता है जो computer को power-on होने के बाद शुरुआती hardware initialization और boot process शुरू करने में सहायता करता है।</p>
+<p>BIOS computer के hardware और operating system के बीच शुरुआती software-level interface की भूमिका निभाता है। यह processor, memory, storage और basic input/output devices जैसी hardware components को initialize और check करने में सहायता करता है तथा available boot device से operating system loader को शुरू करने की प्रक्रिया initiate करता है।</p>
+<div class="important"><b>Exam Definition:</b> BIOS एक firmware program है जो computer start होने पर basic hardware initialization करता है, POST run करता है और boot device से operating system को load करने की प्रक्रिया शुरू करता है।</div>
+
+<h3>BIOS कहाँ Stored होता है?</h3>
+<p>Traditional systems में BIOS firmware motherboard पर non-volatile memory chip में stored रहता है, इसलिए computer बंद होने पर भी firmware information बनी रहती है। Modern PCs में traditional BIOS की जगह अक्सर <strong>UEFI firmware</strong> उपयोग होता है, लेकिन basic startup/firmware initialization concepts को समझने के लिए BIOS terminology अभी भी commonly पढ़ाई जाती है।</p>
+</section>
+
+<section id="functions">
+<h2>2. Functions of BIOS</h2>
+<div class="grid">
+<div class="card"><h3>1. Hardware Initialization</h3><p>Power-on के बाद essential hardware components को initialize करने में सहायता करता है।</p></div>
+<div class="card"><h3>2. POST</h3><p>Power-On Self-Test शुरू करता है ताकि basic hardware की startup condition check की जा सके।</p></div>
+<div class="card"><h3>3. Boot Support</h3><p>Bootable device खोजने और operating system loader को start करने की प्रक्रिया में सहायता करता है।</p></div>
+<div class="card"><h3>4. BIOS Setup</h3><p>System configuration settings जैसे boot order और hardware-related options को configure करने का interface provide कर सकता है।</p></div>
+<div class="card"><h3>5. Basic I/O Services</h3><p>Traditional BIOS environment में basic input/output services उपलब्ध कराता है।</p></div>
+<div class="card"><h3>6. Error Reporting</h3><p>Startup hardware problems की स्थिति में screen messages, beep patterns या अन्य diagnostic indicators के माध्यम से information दे सकता है।</p></div>
+</div>
+</section>
+
+<section id="post">
+<h2>3. POST – Power-On Self-Test</h2>
+<p><strong>POST</strong> का full form <strong>Power-On Self-Test</strong> है। यह startup के दौरान firmware द्वारा performed diagnostic checks का एक sequence है। इसका उद्देश्य यह verify करना है कि computer के आवश्यक hardware components initialization के लिए पर्याप्त रूप से available और functional हैं।</p>
+<p>POST में memory, processor-related initialization, display initialization और अन्य essential hardware checks शामिल हो सकते हैं। Exact tests system firmware और motherboard manufacturer के अनुसार अलग हो सकते हैं।</p>
+<div class="note"><b>Simple Meaning:</b> POST को ऐसे समझ सकते हैं जैसे computer start होते समय अपना basic hardware check करता है और problem मिलने पर diagnostic signal देता है।</div>
+</section>
+
+<section id="process">
+<h2>4. POST Process – Step by Step</h2>
+<div class="step"><b>Step 1 – Power ON:</b> Computer को power मिलती है और processor startup/reset state से firmware execution शुरू करता है।</div>
+<div class="step"><b>Step 2 – Firmware Execution:</b> BIOS/UEFI firmware का startup code execute होता है।</div>
+<div class="step"><b>Step 3 – CPU Initialization:</b> Processor और जरूरी system-level initialization perform होता है।</div>
+<div class="step"><b>Step 4 – Memory Check:</b> System memory को initialize/check किया जाता है।</div>
+<div class="step"><b>Step 5 – Basic Hardware Detection:</b> Display, keyboard, storage/controller और अन्य required hardware components detect/initialize किए जा सकते हैं।</div>
+<div class="step"><b>Step 6 – Error Reporting:</b> यदि critical problem मिलती है तो firmware diagnostic message, beep pattern या code के माध्यम से संकेत दे सकता है।</div>
+<div class="step"><b>Step 7 – Boot Device Selection:</b> यदि POST/startup checks सफल हों, firmware configured boot order के अनुसार bootable device खोजता है।</div>
+<div class="step"><b>Step 8 – Operating System Start:</b> Bootloader/OS startup process को control transfer किया जाता है।</div>
+
+<div class="diagram">
+             COMPUTER POWER ON
+                     │
+                     ▼
+              BIOS / UEFI START
+                     │
+                     ▼
+                 POST RUN
+                     │
+          ┌──────────┴──────────┐
+          │                     │
+       ERROR?                  OK
+          │                     │
+       YES ▼                    ▼
+   ERROR CODE / BEEP       HARDWARE READY
+          │                     │
+          ▼                     ▼
+   TROUBLESHOOTING        BOOT DEVICE SEARCH
+                                │
+                                ▼
+                         OS / BOOTLOADER
+</div>
+</section>
+
+<section id="codes">
+<h2>5. POST Error Codes</h2>
+<p>POST error reporting के कई forms हो सकते हैं। System के firmware implementation के अनुसार errors को <strong>screen messages, numeric/hexadecimal POST codes, beep patterns, diagnostic LEDs या motherboard displays</strong> के द्वारा report किया जा सकता है।</p>
+
+<h3>POST Code क्या है?</h3>
+<p>POST code एक diagnostic value है जो startup के दौरान firmware द्वारा किसी particular initialization/test stage को indicate कर सकती है। कुछ motherboards पर dedicated two-digit या multi-digit diagnostic display के माध्यम से code दिखाई देता है।</p>
+
+<div class="important"><b>Important:</b> POST codes universal नहीं होते। एक ही code का अर्थ अलग BIOS/UEFI firmware, motherboard manufacturer या diagnostic implementation में अलग हो सकता है। इसलिए exact interpretation के लिए motherboard/firmware manual को प्राथमिक reference माना जाना चाहिए।</div>
+
+<h3>Common Diagnostic Categories</h3>
+<table>
+<tr><th>Symptom / Category</th><th>Possible Area to Check</th></tr>
+<tr><td>Memory initialization failure</td><td>RAM module seating, compatible memory, memory slot और motherboard.</td></tr>
+<tr><td>Display initialization failure</td><td>Graphics card, display connection, GPU seating और display hardware.</td></tr>
+<tr><td>CPU initialization problem</td><td>Processor seating, power connection, CPU compatibility और motherboard.</td></tr>
+<tr><td>Keyboard/Input initialization problem</td><td>Keyboard connection, port/device और firmware settings.</td></tr>
+<tr><td>Storage/Boot device problem</td><td>Drive connection, storage device, boot order और bootable media.</td></tr>
+<tr><td>Firmware/CMOS configuration issue</td><td>Firmware settings, CMOS-related configuration और supported reset procedure.</td></tr>
+</table>
+</section>
+
+<section id="beeps">
+<h2>6. POST Beep Codes</h2>
+<p>कुछ systems में display successfully initialize होने से पहले भी firmware speaker/buzzer के माध्यम से beep pattern दे सकता है। Beep pattern को सुनकर technician hardware problem की category identify करने का प्रयास कर सकता है।</p>
+
+<table>
+<tr><th>Beep Pattern</th><th>Interpretation</th><th>Typical Area to Check</th></tr>
+<tr><td>Single short beep</td><td>कई traditional PC systems में successful POST का indication हो सकता है।</td><td>यदि system normally boots, सामान्य startup माना जा सकता है।</td></tr>
+<tr><td>Repeated beeps</td><td>Hardware initialization problem का संकेत हो सकता है।</td><td>RAM, power या motherboard documentation check करें।</td></tr>
+<tr><td>Continuous beep</td><td>Hardware fault का संकेत हो सकता है; exact meaning firmware-specific है।</td><td>RAM, power, motherboard और component seating check करें।</td></tr>
+<tr><td>Long/short combination</td><td>Specific hardware diagnostic condition indicate कर सकती है।</td><td>Motherboard/BIOS manual के beep-code table से exact meaning देखें।</td></tr>
+</table>
+
+<div class="note"><b>Note:</b> ऊपर दिए गए patterns केवल general interpretation हैं। Beep codes को universal मानना सही नहीं है। Exact beep-code meaning motherboard के BIOS/UEFI vendor और model पर depend करता है।</div>
+</section>
+
+<section id="interpretation">
+<h2>7. Error Code Interpretation</h2>
+<p>POST error code की interpretation करते समय केवल code को देखकर component replace नहीं करना चाहिए। पहले यह identify करना जरूरी है कि code किस firmware और motherboard model से संबंधित है।</p>
+<div class="step"><b>Step 1:</b> Motherboard का manufacturer और exact model identify करें।</div>
+<div class="step"><b>Step 2:</b> BIOS/UEFI manufacturer और firmware version check करें, यदि available हो।</div>
+<div class="step"><b>Step 3:</b> Motherboard manual में दिए गए POST code/beep-code table को देखें।</div>
+<div class="step"><b>Step 4:</b> Code किस startup stage से related है, यह identify करें।</div>
+<div class="step"><b>Step 5:</b> Related hardware connections और component seating check करें।</div>
+<div class="step"><b>Step 6:</b> Minimal hardware configuration के साथ startup test किया जा सकता है, यदि technician procedure इसकी अनुमति देता हो।</div>
+<div class="step"><b>Step 7:</b> समस्या isolate होने के बाद manufacturer-recommended repair/replacement procedure follow करें।</div>
+
+<div class="diagram">
+ POST CODE / BEEP
+       │
+       ▼
+IDENTIFY MOTHERBOARD MODEL
+       │
+       ▼
+CHECK BIOS/UEFI DOCUMENTATION
+       │
+       ▼
+IDENTIFY ERROR CATEGORY
+       │
+       ▼
+CHECK RELATED HARDWARE
+       │
+       ├── RAM
+       ├── CPU
+       ├── GPU / DISPLAY
+       ├── POWER
+       ├── STORAGE
+       └── MOTHERBOARD
+       │
+       ▼
+ISOLATE FAULT
+       │
+       ▼
+REPAIR / RESEAT / REPLACE
+</div>
+</section>
+
+<section id="troubleshoot">
+<h2>8. Basic POST Troubleshooting</h2>
+<div class="grid">
+<div class="card"><h3>RAM Problem</h3><p>System power off करके RAM modules की proper seating और supported configuration check करें।</p></div>
+<div class="card"><h3>Display Problem</h3><p>Monitor connection, display cable और graphics hardware की seating check करें।</p></div>
+<div class="card"><h3>Power Problem</h3><p>Power supply connections और motherboard/CPU power connectors की स्थिति check करें।</p></div>
+<div class="card"><h3>Boot Device Problem</h3><p>Storage drive connection, boot order और bootable device की availability check करें।</p></div>
+<div class="card"><h3>CMOS/Firmware Settings</h3><p>Incorrect firmware settings की स्थिति में manufacturer-supported default/reset procedure उपयोग किया जा सकता है।</p></div>
+<div class="card"><h3>Motherboard Diagnostic LEDs</h3><p>यदि motherboard पर CPU/DRAM/VGA/BOOT जैसी diagnostic LEDs उपलब्ध हों, तो उनकी indication को manual के अनुसार interpret करें।</p></div>
+</div>
+<div class="important"><b>Safety:</b> Hardware reseating या internal inspection से पहले computer को completely power off करें और appropriate electrical/static precautions follow करें।</div>
+</section>
+
+<section id="comparison">
+<h2>9. BIOS और POST में अंतर</h2>
+<table>
+<tr><th>Basis</th><th>BIOS</th><th>POST</th></tr>
+<tr><td>Meaning</td><td>Basic Input/Output System; traditional PC firmware concept.</td><td>Power-On Self-Test; startup diagnostic process.</td></tr>
+<tr><td>Nature</td><td>Firmware/software layer.</td><td>Firmware द्वारा performed startup test sequence.</td></tr>
+<tr><td>Purpose</td><td>Hardware initialization, configuration और boot support.</td><td>Basic hardware initialization/checking और error detection.</td></tr>
+<tr><td>Error Reporting</td><td>BIOS firmware diagnostic information provide कर सकता है।</td><td>POST errors codes, messages, beeps या indicators के रूप में report हो सकते हैं।</td></tr>
+<tr><td>Relation</td><td>BIOS POST को execute/start कर सकता है।</td><td>POST BIOS/UEFI startup process का एक हिस्सा/चरण है।</td></tr>
+</table>
+</section>
+
+<section id="exam">
+<h2>10. Important Exam Questions</h2>
+<div class="exam">
+<b>Long Answer Questions</b><br><br>
+1. BIOS क्या है? इसके functions को विस्तार से समझाइए।<br>
+2. POST क्या है? इसका full form और उद्देश्य समझाइए।<br>
+3. POST की working को step-by-step समझाइए।<br>
+4. BIOS और POST में अंतर लिखिए।<br>
+5. POST error codes क्या होते हैं? उनकी interpretation कैसे की जाती है?<br>
+6. POST beep codes क्या हैं? Hardware troubleshooting में इनका क्या महत्व है?<br>
+7. BIOS/POST के माध्यम से computer startup में hardware diagnosis कैसे किया जाता है?
+</div>
+
+<h3>Short Questions</h3>
+<ul>
+<li>BIOS का full form क्या है?</li>
+<li>POST का full form क्या है?</li>
+<li>BIOS क्या है?</li>
+<li>POST का मुख्य उद्देश्य क्या है?</li>
+<li>POST code क्या है?</li>
+<li>Beep code क्या है?</li>
+<li>BIOS कहाँ stored होता है?</li>
+<li>Boot device क्या है?</li>
+<li>BIOS और UEFI में basic relation क्या है?</li>
+<li>POST error मिलने पर पहला practical step क्या होना चाहिए?</li>
+</ul>
+
+<div class="important">
+<b>Quick Revision:</b><br>
+<strong>BIOS → Basic Input/Output System</strong><br>
+<strong>POST → Power-On Self-Test</strong><br>
+<strong>Startup Flow → Power ON → BIOS/UEFI → POST → Hardware Initialization → Boot Device → OS</strong><br>
+<strong>Error Reporting → Screen Message / POST Code / Beep / Diagnostic LED</strong><br>
+<strong>Important Rule → Exact error-code meaning हमेशा motherboard/firmware documentation से verify करें।</strong>
+</div>
+</section>
+</main>
+</div>
+</body>
+</html>

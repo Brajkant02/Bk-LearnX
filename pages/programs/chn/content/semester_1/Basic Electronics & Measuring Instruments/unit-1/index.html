@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Basic Electricity and Conducting Material - PGDCA Notes</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#eef3f8;color:#202936;font-family:Segoe UI,Arial,sans-serif;line-height:1.9}
+.wrap{max-width:1500px;margin:auto;padding:15px;display:grid;grid-template-columns:285px 1fr;gap:18px}
+aside{position:sticky;top:15px;height:calc(100vh - 30px);overflow:auto;background:#fff;padding:20px;border-radius:18px;box-shadow:0 8px 28px #0001}
+aside h2{color:#075985;border-left:5px solid #0284c7;padding-left:10px}
+aside a{display:block;padding:7px 10px;color:#374151;text-decoration:none;border-radius:8px;font-size:14px}
+aside a:hover{background:#e0f2fe;color:#0369a1}
+main{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 8px 28px #0001}
+.hero{padding:42px;background:linear-gradient(135deg,#dbeafe,#e0f2fe,#f8fafc)}
+.hero h1{font-size:38px;color:#075985;margin:8px 0;line-height:1.3}
+.badge{display:inline-block;background:#bae6fd;color:#075985;padding:4px 13px;border-radius:20px;font-size:12px;font-weight:700}
+section{padding:32px;border-bottom:1px solid #e5e7eb}
+h2{font-size:29px;color:#075985;border-left:5px solid #0284c7;padding-left:13px}
+h3{font-size:22px;color:#0c4a6e;margin-top:27px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{background:#f0f9ff;border:1px solid #bae6fd;padding:18px;border-radius:14px}
+.note,.important,.exam{padding:18px 20px;border-radius:12px;margin:19px 0}
+.note{background:#eff6ff;border-left:5px solid #3b82f6}
+.important{background:#fff7ed;border-left:5px solid #f97316}
+.exam{background:#ecfdf5;border-left:5px solid #10b981}
+.formula{background:#f8fafc;border:1px dashed #94a3b8;padding:18px;border-radius:12px;font-family:Consolas,monospace}
+.diagram{background:#090b0f;color:#e5e7eb;border-radius:14px;padding:22px;overflow:auto;font-family:Consolas,monospace;white-space:pre;line-height:1.5}
+.step{padding:14px 16px;background:#f8fafc;border-radius:10px;margin:9px 0;border-left:4px solid #0284c7}
+table{width:100%;border-collapse:collapse;margin:20px 0}
+th,td{border:1px solid #cbd5e1;padding:12px;text-align:left;vertical-align:top}
+th{background:#e0f2fe;color:#075985}
+@media(max-width:900px){
+.wrap{display:block;padding:5px}aside{display:none}
+.hero{padding:28px 18px}.hero h1{font-size:29px}
+section{padding:24px 18px}.grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<aside>
+<h2>Contents</h2>
+<a href="#intro">1. Introduction</a>
+<a href="#current">2. Electric Current</a>
+<a href="#voltage">3. Voltage</a>
+<a href="#emf">4. EMF</a>
+<a href="#power">5. Electric Power</a>
+<a href="#generation">6. Power Generation System</a>
+<a href="#wiring">7. Switch-Plug Wiring</a>
+<a href="#conductivity">8. Conductivity</a>
+<a href="#conductors">9. Types of Conductors</a>
+<a href="#semiconductors">10. Semiconductors</a>
+<a href="#silicon">11. Silicon</a>
+<a href="#germanium">12. Germanium</a>
+<a href="#comparison">13. Comparison Table</a>
+<a href="#exam">14. Exam Questions</a>
+</aside>
+
+<main>
+<div class="hero">
+<span class="badge">ELECTRICAL & ELECTRONICS • 08 PERIODS</span>
+<h1>1. Basic Electricity and Conducting Material</h1>
+<p><strong>Introduction • Current • Voltage • EMF • Power Generation • Switch-Plug Wiring • Conductivity • Conductors • Silicon • Germanium</strong></p>
+</div>
+
+<section id="intro">
+<h2>1. Introduction to Electricity</h2>
+<p><strong>Electricity</strong> ऊर्जा का एक रूप है जो electric charge की presence और movement से संबंधित है। आधुनिक computers, communication systems, networking equipment, printers, monitors और लगभग सभी electronic devices के operation के लिए electrical energy आवश्यक होती है।</p>
+
+<p>जब electric charges किसी suitable conducting path में move करते हैं तो <strong>electric current</strong> flow करता है। Current के flow के लिए potential difference की आवश्यकता होती है। Battery, generator या power supply जैसे sources electrical energy provide कर सकते हैं।</p>
+
+<div class="grid">
+<div class="card"><h3>Electric Charge</h3><p>Charge matter की एक electrical property है। इसे सामान्यतः <strong>Q</strong> से represent किया जाता है और इसका SI unit <strong>Coulomb (C)</strong> है।</p></div>
+<div class="card"><h3>Electric Current</h3><p>किसी conductor के cross-section से electric charge के flow की rate को current कहते हैं। Unit Ampere है।</p></div>
+<div class="card"><h3>Potential Difference</h3><p>दो points के बीच electric potential का difference voltage कहलाता है। Unit Volt है।</p></div>
+<div class="card"><h3>Electrical Power</h3><p>Electrical energy के उपयोग या transfer की rate को electric power कहते हैं। Unit Watt है।</p></div>
+</div>
+
+<div class="important"><b>Exam Definition:</b> Electricity is a form of energy associated with electric charges and their movement. Electrical energy can be generated, transmitted, distributed and converted into useful forms such as light, heat and mechanical energy.</div>
+</section>
+
+<section id="current">
+<h2>2. Electric Current</h2>
+<p><strong>Electric Current</strong> electric charge के flow की rate है। यदि किसी conductor के cross-section से समय <strong>t</strong> में charge <strong>Q</strong> pass होता है, तो current को निम्न formula से express किया जाता है:</p>
+
+<div class="formula">I = Q / t
+
+I = Electric Current in Ampere (A)
+Q = Electric Charge in Coulomb (C)
+t = Time in seconds (s)</div>
+
+<p>Current का SI unit <strong>Ampere (A)</strong> है। Conventional current की direction positive terminal से negative terminal की ओर मानी जाती है, जबकि metallic conductor में electrons opposite direction में move करते हैं।</p>
+
+<h3>Types of Current</h3>
+<div class="grid">
+<div class="card"><h3>DC – Direct Current</h3><p>DC में current की direction सामान्यतः constant रहती है। Cells, batteries और many electronic power supplies DC provide करते हैं।</p></div>
+<div class="card"><h3>AC – Alternating Current</h3><p>AC में current की magnitude और direction समय के साथ periodically change होती है। Household electrical supply AC का common example है।</p></div>
+</div>
+
+<div class="note"><b>Example:</b> यदि 10 Coulomb charge 2 seconds में flow करता है, तो I = Q/t = 10/2 = <strong>5 A</strong>.</div>
+</section>
+
+<section id="voltage">
+<h2>3. Voltage / Potential Difference</h2>
+<p><strong>Voltage</strong> दो points के बीच electric potential difference है। यह electric charges को circuit में move कराने के लिए energy per unit charge का measure है। Voltage को सामान्यतः <strong>V</strong> से represent किया जाता है और इसका SI unit <strong>Volt (V)</strong> है।</p>
+
+<div class="formula">V = W / Q
+
+V = Voltage in Volt
+W = Work/Energy in Joule
+Q = Charge in Coulomb</div>
+
+<p>Voltage को सरल भाषा में electrical “push” के रूप में समझा जा सकता है। जैसे water pressure water को pipe में flow कराने में मदद करता है, वैसे ही potential difference circuit में charge movement को drive करता है। यह केवल analogy है; electrical और hydraulic systems physically identical नहीं हैं।</p>
+
+<h3>Voltage Sources</h3>
+<ul>
+<li>Cell और Battery</li>
+<li>Generator</li>
+<li>Power Supply</li>
+<li>Solar Cell / Photovoltaic System</li>
+<li>Alternator</li>
+</ul>
+</section>
+
+<section id="emf">
+<h2>4. EMF – Electromotive Force</h2>
+<p><strong>EMF (Electromotive Force)</strong> किसी electrical source द्वारा supplied energy per unit charge को describe करता है। EMF को <strong>E</strong> से represent किया जाता है और इसका unit भी <strong>Volt</strong> है।</p>
+
+<div class="formula">E = W / Q
+
+E = EMF in Volt
+W = Energy supplied by source in Joule
+Q = Charge in Coulomb</div>
+
+<p>नाम में “force” शब्द होने के बावजूद EMF mechanical force नहीं है। यह source की वह क्षमता है जिसके द्वारा वह charges को move कराने के लिए energy provide करता है। Battery का nominal voltage उसके EMF से closely related हो सकता है, लेकिन actual loaded terminal voltage internal resistance और load conditions के कारण अलग हो सकता है।</p>
+
+<h3>EMF और Voltage में Basic Difference</h3>
+<table>
+<tr><th>EMF</th><th>Voltage</th></tr>
+<tr><td>Source द्वारा प्रति unit charge supplied energy को describe करता है।</td><td>दो points के बीच potential difference को describe करता है।</td></tr>
+<tr><td>Source की energy-providing capability से associated है।</td><td>Circuit के किसी भी दो points के बीच measure किया जा सकता है।</td></tr>
+<tr><td>Symbol E से represent किया जा सकता है।</td><td>Symbol V से represent किया जाता है।</td></tr>
+<tr><td>Unit Volt है।</td><td>Unit Volt है।</td></tr>
+</table>
+</section>
+
+<section id="power">
+<h2>5. Electric Power</h2>
+<p><strong>Electric Power</strong> electrical energy के consumption, conversion या transfer की rate है। इसका SI unit <strong>Watt (W)</strong> है। Electrical power को <strong>P</strong> से represent किया जाता है।</p>
+
+<div class="formula">P = V × I
+
+P = Power in Watt
+V = Voltage in Volt
+I = Current in Ampere</div>
+
+<p>Ohm's law <strong>V = IR</strong> का उपयोग करके power के अन्य forms भी लिखे जा सकते हैं:</p>
+
+<div class="formula">P = VI
+P = I²R
+P = V²/R</div>
+
+<h3>Electrical Energy</h3>
+<p>Electrical energy वह total energy है जो electrical system द्वारा किसी समय interval में consumed या supplied होती है। Commercial electricity consumption को commonly <strong>kilowatt-hour (kWh)</strong> में express किया जाता है।</p>
+
+<div class="note"><b>Example:</b> 230 V पर कोई device 2 A current consume करता है, तो idealized electrical power P = 230 × 2 = <strong>460 W</strong>.</div>
+</section>
+
+<section id="generation">
+<h2>6. Power Generation System</h2>
+<p><strong>Power Generation System</strong> वह system है जिसमें primary energy sources को electrical energy में convert किया जाता है। Generated electricity को transmission और distribution networks के माध्यम से consumers तक पहुंचाया जाता है।</p>
+
+<h3>Basic Power System Flow</h3>
+<div class="diagram">
+ENERGY SOURCE
+    │
+    ▼
+POWER GENERATION
+    │
+    ▼
+STEP-UP TRANSFORMER
+    │
+    ▼
+HIGH VOLTAGE TRANSMISSION
+    │
+    ▼
+SUBSTATION
+    │
+    ▼
+DISTRIBUTION NETWORK
+    │
+    ▼
+SERVICE CONNECTION
+    │
+    ▼
+HOME / INDUSTRY / COMPUTER SYSTEM
+</div>
+
+<h3>Major Methods of Power Generation</h3>
+<table>
+<tr><th>Method</th><th>Primary Energy Source</th><th>Basic Idea</th></tr>
+<tr><td>Thermal</td><td>Coal, gas, oil etc.</td><td>Heat energy से steam/working fluid बनाकर turbine-generator system drive किया जाता है।</td></tr>
+<tr><td>Hydroelectric</td><td>Water</td><td>Flowing/falling water turbine को rotate करता है और generator electrical energy produce करता है।</td></tr>
+<tr><td>Nuclear</td><td>Nuclear fuel</td><td>Nuclear energy से heat generate करके turbine-generator system operate किया जाता है।</td></tr>
+<tr><td>Solar</td><td>Sunlight</td><td>Photovoltaic cells sunlight को directly electrical energy में convert कर सकते हैं।</td></tr>
+<tr><td>Wind</td><td>Wind</td><td>Wind turbine की mechanical rotation generator को drive करती है।</td></tr>
+</table>
+
+<h3>Transmission और Distribution</h3>
+<p>Generation station पर produced electrical power को suitable voltage level पर transform करके transmission network में भेजा जाता है। Substations पर voltage transformation के बाद distribution system के माध्यम से homes, offices और industries तक supply पहुंचती है।</p>
+</section>
+
+<section id="wiring">
+<h2>7. Switch-Plug Wiring</h2>
+<p>Switch-plug wiring में electrical supply को switch और socket outlet तक safe और correct connection के साथ पहुंचाया जाता है। Practical electrical wiring में safety बहुत महत्वपूर्ण है। Mains wiring केवल trained/qualified person द्वारा applicable electrical standards और local regulations के अनुसार की जानी चाहिए।</p>
+
+<h3>Basic Conductors</h3>
+<table>
+<tr><th>Conductor</th><th>General Role</th></tr>
+<tr><td><strong>Live / Phase (L)</strong></td><td>Supply voltage carry करता है।</td></tr>
+<tr><td><strong>Neutral (N)</strong></td><td>Normal circuit return path provide करता है।</td></tr>
+<tr><td><strong>Earth / Protective Conductor (PE)</strong></td><td>Fault conditions में protective path provide करने और shock risk कम करने के लिए उपयोग होता है।</td></tr>
+</table>
+
+<h3>Basic Switch-Controlled Socket Concept</h3>
+<div class="diagram">
+SUPPLY
+  │
+  ├── LIVE ──► SWITCH ──► SOCKET (L)
+  │
+  ├── NEUTRAL ───────────► SOCKET (N)
+  │
+  └── EARTH ─────────────► SOCKET (E/PE)
+
+            ┌─────────────┐
+            │   SOCKET    │
+            │ L   N   PE  │
+            └─────────────┘
+</div>
+
+<div class="important"><b>Safety:</b> Live mains circuits में exposed conductors को touch न करें। Supply isolate करके, correct protective devices के साथ और applicable wiring standards के अनुसार ही electrical work किया जाना चाहिए।</div>
+
+<h3>Switch का उद्देश्य</h3>
+<p>Switch circuit को open या close करके connected load को control करता है। सामान्य wiring practice में switching arrangement ऐसा होना चाहिए कि load को disconnect करते समय live supply appropriately isolated हो।</p>
+</section>
+
+<section id="conductivity">
+<h2>8. Analyzing Conductivity of Elements</h2>
+<p><strong>Electrical Conductivity</strong> किसी material की electric current conduct करने की ability का measure है। Conductivity को सामान्यतः <strong>σ (sigma)</strong> से represent किया जाता है। इसकी SI unit <strong>Siemens per metre (S/m)</strong> है।</p>
+
+<div class="formula">σ = 1 / ρ
+
+σ = Conductivity
+ρ = Resistivity</div>
+
+<p><strong>Resistivity</strong> material की intrinsic property है जो current flow के opposition को characterize करती है। Resistivity की SI unit <strong>Ohm-metre (Ω·m)</strong> है।</p>
+
+<h3>Conductivity को प्रभावित करने वाले Factors</h3>
+<ul>
+<li>Material का atomic structure</li>
+<li>Free charge carriers की availability</li>
+<li>Temperature</li>
+<li>Impurities / doping</li>
+<li>Material की physical properties</li>
+</ul>
+
+<h3>Material Classification</h3>
+<div class="grid">
+<div class="card"><h3>Good Conductors</h3><p>इनमें charge carriers आसानी से move कर सकते हैं और resistivity relatively low होती है।</p></div>
+<div class="card"><h3>Semiconductors</h3><p>इनकी conductivity conductors और insulators के बीच होती है और temperature/doping से significantly control की जा सकती है।</p></div>
+<div class="card"><h3>Insulators</h3><p>इनमें free charge carriers बहुत कम होते हैं और current flow strongly resisted होता है।</p></div>
+</div>
+</section>
+
+<section id="conductors">
+<h2>9. Types of Conductors</h2>
+<p><strong>Conductor</strong> ऐसा material है जिसमें electric charges comparatively आसानी से move कर सकते हैं। Conductors electrical wiring, connectors, contacts, PCB tracks और power transmission systems में extensively उपयोग होते हैं।</p>
+
+<h3>Common Conducting Materials</h3>
+<table>
+<tr><th>Material</th><th>Characteristics / Uses</th></tr>
+<tr><td><strong>Copper</strong></td><td>High electrical conductivity, good ductility और comparatively easy processing के कारण wiring और cables में widely used.</td></tr>
+<tr><td><strong>Aluminium</strong></td><td>Low density और good conductivity के कारण overhead transmission lines में commonly used.</td></tr>
+<tr><td><strong>Silver</strong></td><td>Very high electrical conductivity वाला metal, लेकिन cost high होने के कारण general wiring में limited use.</td></tr>
+<tr><td><strong>Gold</strong></td><td>Good conductivity और corrosion resistance; specialized electrical contacts में उपयोग हो सकता है।</td></tr>
+</table>
+
+<h3>Good Conductor की Properties</h3>
+<ul>
+<li>Low electrical resistance / resistivity</li>
+<li>High electrical conductivity</li>
+<li>Current carrying capability</li>
+<li>Suitable mechanical strength</li>
+<li>Practical applications के लिए suitable cost और manufacturability</li>
+</ul>
+
+<div class="note"><b>Exam Point:</b> Copper और aluminium practical electrical applications में बहुत important conducting materials हैं। Silver की conductivity बहुत high है, लेकिन high cost उसके widespread use को limit करती है।</div>
+</section>
+
+<section id="semiconductors">
+<h2>10. Semiconductors</h2>
+<p><strong>Semiconductor</strong> ऐसा material है जिसकी electrical conductivity सामान्यतः conductors और insulators के बीच होती है। Semiconductor की conductivity temperature, impurities और controlled doping जैसे factors से significantly बदली जा सकती है।</p>
+
+<p>Semiconductors modern electronics की foundation हैं। Diodes, transistors, integrated circuits, microprocessors, memory devices और कई sensors semiconductor technology पर आधारित हैं।</p>
+
+<h3>Important Characteristics</h3>
+<ul>
+<li>Conductivity conductors की तुलना में lower और insulators की तुलना में higher होती है।</li>
+<li>Temperature बढ़ने पर intrinsic semiconductor की conductivity सामान्यतः बढ़ती है।</li>
+<li>Controlled impurities add करके conductivity को modify किया जा सकता है। इस process को <strong>doping</strong> कहते हैं।</li>
+<li>Semiconductors से <strong>n-type</strong> और <strong>p-type</strong> materials तैयार किए जा सकते हैं।</li>
+</ul>
+
+<h3>Intrinsic और Extrinsic Semiconductor</h3>
+<table>
+<tr><th>Type</th><th>Meaning</th></tr>
+<tr><td>Intrinsic</td><td>Relatively pure semiconductor जिसमें intentional impurity doping नहीं की गई होती।</td></tr>
+<tr><td>Extrinsic</td><td>Controlled impurity/dopant add करके electrical properties modify किया गया semiconductor।</td></tr>
+</table>
+
+<h3>N-Type और P-Type</h3>
+<div class="grid">
+<div class="card"><h3>N-Type</h3><p>Donor impurities add करके electrons की concentration बढ़ाई जाती है। Electrons majority carriers होते हैं।</p></div>
+<div class="card"><h3>P-Type</h3><p>Acceptor impurities add करके holes की concentration बढ़ाई जाती है। Holes majority carriers होते हैं।</p></div>
+</div>
+</section>
+
+<section id="silicon">
+<h2>11. Silicon (Si)</h2>
+<p><strong>Silicon</strong> एक important semiconductor material है और modern electronics में इसका सबसे व्यापक उपयोग होने वाले semiconductor materials में से एक है। Silicon की atomic structure में चार valence electrons होते हैं। Crystal structure में atoms covalent bonds बनाते हैं।</p>
+
+<h3>Silicon की विशेषताएँ</h3>
+<ul>
+<li>Semiconductor material है।</li>
+<li>Four valence electrons होते हैं।</li>
+<li>Controlled doping द्वारा electrical characteristics बदली जा सकती हैं।</li>
+<li>Silicon dioxide (SiO₂) का high-quality insulating oxide semiconductor devices में बहुत useful है।</li>
+<li>Integrated circuits और electronic components के manufacturing में extensively used है।</li>
+</ul>
+
+<h3>Silicon के Applications</h3>
+<div class="grid">
+<div class="card"><b>Diodes</b><p>Rectification और signal processing applications.</p></div>
+<div class="card"><b>Transistors</b><p>Switching और amplification circuits.</p></div>
+<div class="card"><b>Integrated Circuits</b><p>Processors, memory और controllers जैसे complex electronic circuits.</p></div>
+<div class="card"><b>Solar Cells</b><p>Photovoltaic energy conversion में silicon widely used है।</p></div>
+</div>
+</section>
+
+<section id="germanium">
+<h2>12. Germanium (Ge)</h2>
+<p><strong>Germanium</strong> भी एक semiconductor element है। इसके चार valence electrons होते हैं और इसका crystal structure silicon की तरह covalent bonding पर आधारित है। Germanium का historical importance early semiconductor devices में काफी रहा है।</p>
+
+<h3>Germanium की विशेषताएँ</h3>
+<ul>
+<li>Semiconductor material है।</li>
+<li>Four valence electrons होते हैं।</li>
+<li>Silicon की तुलना में इसका band gap lower होता है।</li>
+<li>Temperature effects के कारण practical applications में silicon कई general-purpose semiconductor applications के लिए अधिक preferred है।</li>
+<li>कुछ specialized electronic और sensing applications में germanium का उपयोग होता है।</li>
+</ul>
+
+<h3>Silicon vs Germanium</h3>
+<table>
+<tr><th>Property</th><th>Silicon</th><th>Germanium</th></tr>
+<tr><td>Symbol</td><td>Si</td><td>Ge</td></tr>
+<tr><td>Valence Electrons</td><td>4</td><td>4</td></tr>
+<tr><td>Category</td><td>Semiconductor</td><td>Semiconductor</td></tr>
+<tr><td>Band Gap at room temperature</td><td>लगभग 1.12 eV</td><td>लगभग 0.66 eV</td></tr>
+<tr><td>General Electronics</td><td>Very widely used</td><td>More specialized / historical importance</td></tr>
+<tr><td>Temperature behavior</td><td>Many general-purpose devices के लिए favorable</td><td>Temperature sensitivity comparatively greater</td></tr>
+</table>
+</section>
+
+<section id="comparison">
+<h2>13. Quick Comparison</h2>
+<table>
+<tr><th>Term</th><th>Meaning</th><th>Unit / Symbol</th></tr>
+<tr><td>Current</td><td>Rate of flow of electric charge</td><td>Ampere (A), I</td></tr>
+<tr><td>Voltage</td><td>Potential difference between two points</td><td>Volt (V), V</td></tr>
+<tr><td>EMF</td><td>Energy supplied by source per unit charge</td><td>Volt (V), E</td></tr>
+<tr><td>Power</td><td>Rate of electrical energy transfer/consumption</td><td>Watt (W), P</td></tr>
+<tr><td>Conductivity</td><td>Ability of a material to conduct electric current</td><td>S/m, σ</td></tr>
+<tr><td>Resistivity</td><td>Material property opposing current flow</td><td>Ω·m, ρ</td></tr>
+<tr><td>Conductor</td><td>Material allowing comparatively easy charge movement</td><td>Low resistivity</td></tr>
+<tr><td>Semiconductor</td><td>Material with controllable intermediate conductivity</td><td>Si, Ge examples</td></tr>
+</table>
+
+<div class="important"><b>Formula Revision:</b><br>
+I = Q/t &nbsp;&nbsp; | &nbsp;&nbsp; V = W/Q &nbsp;&nbsp; | &nbsp;&nbsp; P = VI &nbsp;&nbsp; | &nbsp;&nbsp; σ = 1/ρ
+</div>
+</section>
+
+<section id="exam">
+<h2>14. Important Exam Questions</h2>
+<div class="exam">
+<b>Long Answer Questions</b><br><br>
+1. Electricity क्या है? Electric current और voltage को विस्तार से समझाइए।<br>
+2. Electric current की definition, formula, unit और types समझाइए।<br>
+3. Voltage क्या है? Potential difference को example सहित समझाइए।<br>
+4. EMF क्या है? EMF और voltage में अंतर लिखिए।<br>
+5. Electrical power क्या है? इसके formulas और unit समझाइए।<br>
+6. Power generation system का block diagram बनाकर समझाइए।<br>
+7. Switch-plug wiring का basic concept समझाइए तथा Live, Neutral और Earth conductors का कार्य लिखिए।<br>
+8. Electrical conductivity क्या है? Conductivity और resistivity के बीच संबंध समझाइए।<br>
+9. Conductors क्या हैं? विभिन्न conducting materials और उनके applications समझाइए।<br>
+10. Semiconductor क्या है? इसके characteristics और types समझाइए।<br>
+11. Silicon और Germanium को semiconductor materials के रूप में समझाइए।<br>
+12. Silicon और Germanium में अंतर लिखिए।
+</div>
+
+<h3>Short Answer Questions</h3>
+<ul>
+<li>Electricity क्या है?</li>
+<li>Electric current का SI unit क्या है?</li>
+<li>Voltage का SI unit क्या है?</li>
+<li>EMF का full form क्या है?</li>
+<li>Power का formula क्या है?</li>
+<li>Conductivity का SI unit क्या है?</li>
+<li>Resistivity का SI unit क्या है?</li>
+<li>दो अच्छे conductors के नाम लिखिए।</li>
+<li>Semiconductor क्या है?</li>
+<li>Silicon का chemical symbol क्या है?</li>
+<li>Germanium का chemical symbol क्या है?</li>
+<li>Silicon और Germanium में कितने valence electrons होते हैं?</li>
+<li>N-type semiconductor में majority carriers कौन होते हैं?</li>
+<li>P-type semiconductor में majority carriers कौन होते हैं?</li>
+<li>Doping क्या है?</li>
+<li>AC और DC में क्या अंतर है?</li>
+</ul>
+
+<div class="important">
+<b>One-Minute Revision:</b><br><br>
+Current → Charge का flow rate → Ampere<br>
+Voltage → Potential Difference → Volt<br>
+EMF → Source द्वारा energy per charge → Volt<br>
+Power → Energy transfer rate → Watt<br>
+Conductivity → Current conduct करने की ability → S/m<br>
+Conductor → Low resistivity<br>
+Semiconductor → Controlled/intermediate conductivity<br>
+Silicon → Si → 4 valence electrons<br>
+Germanium → Ge → 4 valence electrons<br>
+DORA नहीं — इस chapter का key flow: <strong>Generation → Transmission → Distribution → Consumer</strong>
+</div>
+</section>
+
+</main>
+</div>
+</body>
+</html>

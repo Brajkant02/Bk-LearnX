@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Electronics Circuits - PGDCA Notes</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#eef3f8;color:#202936;font-family:Segoe UI,Arial,sans-serif;line-height:1.9}
+.wrap{max-width:1500px;margin:auto;padding:15px;display:grid;grid-template-columns:285px 1fr;gap:18px}
+aside{position:sticky;top:15px;height:calc(100vh - 30px);overflow:auto;background:#fff;padding:20px;border-radius:18px;box-shadow:0 8px 28px #0001}
+aside h2{color:#075985;border-left:5px solid #0284c7;padding-left:10px}
+aside a{display:block;padding:7px 10px;color:#374151;text-decoration:none;border-radius:8px;font-size:14px}
+aside a:hover{background:#e0f2fe;color:#0369a1}
+main{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 8px 28px #0001}
+.hero{padding:42px;background:linear-gradient(135deg,#dbeafe,#e0f2fe,#f8fafc)}
+.hero h1{font-size:38px;color:#075985;margin:8px 0;line-height:1.3}
+.badge{display:inline-block;background:#bae6fd;color:#075985;padding:4px 13px;border-radius:20px;font-size:12px;font-weight:700}
+section{padding:32px;border-bottom:1px solid #e5e7eb}
+h2{font-size:29px;color:#075985;border-left:5px solid #0284c7;padding-left:13px}
+h3{font-size:22px;color:#0c4a6e;margin-top:27px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{background:#f0f9ff;border:1px solid #bae6fd;padding:18px;border-radius:14px}
+.note,.important,.exam{padding:18px 20px;border-radius:12px;margin:19px 0}
+.note{background:#eff6ff;border-left:5px solid #3b82f6}
+.important{background:#fff7ed;border-left:5px solid #f97316}
+.exam{background:#ecfdf5;border-left:5px solid #10b981}
+.formula{background:#f8fafc;border:1px dashed #94a3b8;padding:18px;border-radius:12px;font-family:Consolas,monospace}
+.diagram{background:#090b0f;color:#e5e7eb;border-radius:14px;padding:22px;overflow:auto;font-family:Consolas,monospace;white-space:pre;line-height:1.5}
+table{width:100%;border-collapse:collapse;margin:20px 0}
+th,td{border:1px solid #cbd5e1;padding:12px;text-align:left;vertical-align:top}
+th{background:#e0f2fe;color:#075985}
+@media(max-width:900px){.wrap{display:block;padding:5px}aside{display:none}.hero{padding:28px 18px}.hero h1{font-size:29px}section{padding:24px 18px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<aside>
+<h2>Contents</h2>
+<a href="#intro">1. Introduction</a>
+<a href="#ac">2. AC Fundamentals</a>
+<a href="#ohm">3. Ohm's Law</a>
+<a href="#seriesres">4. Series Resistors</a>
+<a href="#parallelres">5. Parallel Resistors</a>
+<a href="#seriescap">6. Series Capacitors</a>
+<a href="#parallelcap">7. Parallel Capacitors</a>
+<a href="#rectifier">8. Rectifier</a>
+<a href="#half">9. Half-Wave Rectifier</a>
+<a href="#full">10. Full-Wave Rectifier</a>
+<a href="#bridge">11. Bridge Rectifier</a>
+<a href="#comparison">12. Comparison</a>
+<a href="#exam">13. Exam Questions</a>
+</aside>
+
+<main>
+<div class="hero">
+<span class="badge">ELECTRONICS CIRCUITS • 08 PERIODS</span>
+<h1>3. Electronics Circuits</h1>
+<p><strong>AC Fundamentals • Ohm's Law • Series/Parallel Resistors & Capacitors • Half-Wave • Full-Wave • Bridge Rectifier</strong></p>
+</div>
+
+<section id="intro">
+<h2>1. Introduction to Electronic Circuits</h2>
+<p><strong>Electronic circuit</strong> electrical और electronic components का ऐसा interconnected arrangement है जिसमें current और voltage के controlled behavior के द्वारा कोई specific function perform किया जाता है। Resistors, capacitors, inductors, diodes, transistors और power sources मिलकर अलग-अलग प्रकार के circuits बनाते हैं।</p>
+<p>इस chapter में basic circuit analysis के लिए <strong>AC fundamentals</strong> और <strong>Ohm's Law</strong> को समझना जरूरी है। इसके बाद resistors और capacitors के series तथा parallel combinations का अध्ययन किया जाता है। अंत में diode-based rectifier circuits समझे जाते हैं, जो AC voltage को pulsating DC में convert करने के लिए उपयोग किए जाते हैं।</p>
+<div class="grid">
+<div class="card"><h3>Basic Circuit</h3><p>Source, conducting path और load/components मिलकर electrical circuit बना सकते हैं।</p></div>
+<div class="card"><h3>Rectifier Circuit</h3><p>Diodes का उपयोग करके AC input को unidirectional/pulsating DC output में convert करने वाला circuit.</p></div>
+</div>
+</section>
+
+<section id="ac">
+<h2>2. AC Fundamentals</h2>
+<p><strong>AC (Alternating Current)</strong> ऐसा electric current है जिसकी magnitude और direction समय के साथ periodically change होती है। Household mains supply AC का common example है।</p>
+<p>AC waveform को कई forms में represent किया जा सकता है, लेकिन basic electrical circuits में <strong>sinusoidal AC</strong> सबसे common waveform है।</p>
+
+<div class="formula">
+v(t) = Vₘ sin(ωt + φ)
+
+Vₘ = Peak voltage
+ω = Angular frequency
+φ = Phase angle
+t = Time
+</div>
+
+<h3>Important AC Terms</h3>
+<table>
+<tr><th>Term</th><th>Meaning</th></tr>
+<tr><td>Cycle</td><td>AC waveform का एक complete positive और negative variation.</td></tr>
+<tr><td>Time Period (T)</td><td>एक complete cycle complete होने में लगने वाला time.</td></tr>
+<tr><td>Frequency (f)</td><td>एक second में complete cycles की संख्या; unit Hertz (Hz).</td></tr>
+<tr><td>Amplitude / Peak Value</td><td>Waveform की maximum instantaneous value.</td></tr>
+<tr><td>RMS Value</td><td>AC voltage/current की effective value; resistive load में equivalent heating effect से related.</td></tr>
+<tr><td>Phase</td><td>Waveform की timing position को दूसरे waveform के reference में describe करता है.</td></tr>
+</table>
+
+<div class="formula">
+f = 1/T
+ω = 2πf
+
+For a sinusoidal waveform:
+Vᵣₘₛ = Vₘ / √2
+Iᵣₘₛ = Iₘ / √2
+</div>
+
+<h3>AC और DC में अंतर</h3>
+<table>
+<tr><th>AC</th><th>DC</th></tr>
+<tr><td>Direction periodically change होती है।</td><td>Direction generally constant रहती है।</td></tr>
+<tr><td>Alternating waveform हो सकती है।</td><td>Steady DC का polarity relationship constant रहता है।</td></tr>
+<tr><td>Power distribution में widely used.</td><td>Batteries और electronic circuits में widely used.</td></tr>
+</table>
+</section>
+
+<section id="ohm">
+<h2>3. Ohm's Law</h2>
+<p><strong>Ohm's Law</strong> के अनुसार, constant physical conditions में किसी conductor के across potential difference उसके through flowing current के proportional होता है।</p>
+
+<div class="formula">
+V = I × R
+I = V / R
+R = V / I
+
+V = Voltage (Volt)
+I = Current (Ampere)
+R = Resistance (Ohm)
+</div>
+
+<h3>Ohm's Law का महत्व</h3>
+<ul>
+<li>Circuit में current calculate करने के लिए।</li>
+<li>Unknown resistance determine करने के लिए।</li>
+<li>Voltage drop calculate करने के लिए।</li>
+<li>Series और parallel circuits के analysis में।</li>
+<li>Electronic component selection और basic troubleshooting में।</li>
+</ul>
+
+<div class="note"><b>Example:</b> यदि किसी resistor का resistance 10 Ω और applied voltage 20 V है, तो current I = V/R = 20/10 = <strong>2 A</strong>.</div>
+</section>
+
+<section id="seriesres">
+<h2>4. Resistors in Series</h2>
+<p>जब दो या अधिक resistors इस प्रकार connected हों कि current के लिए एक ही continuous path हो, तो उन्हें <strong>series connection</strong> कहा जाता है। Series circuit में प्रत्येक resistor से same current flow करता है।</p>
+
+<div class="diagram">
+      R₁          R₂          R₃
+ + ──/\/\/───┬──/\/\/───┬──/\/\/─── -
+             │           │
+             └───────────┴────────────
+                 SERIES PATH
+</div>
+
+<div class="formula">
+R(total) = R₁ + R₂ + R₃ + ... + Rₙ
+
+I(total) = same through all series resistors
+
+V(total) = V₁ + V₂ + V₃ + ...
+</div>
+
+<h3>Properties</h3>
+<ul>
+<li>Current सभी series resistors में same होता है।</li>
+<li>Total resistance individual resistances के sum के बराबर होती है।</li>
+<li>Voltage resistors में उनकी resistance के अनुसार divide होता है।</li>
+<li>एक resistor open हो जाए तो complete series path interrupt हो सकता है।</li>
+</ul>
+
+<div class="note"><b>Example:</b> 2 Ω, 3 Ω और 5 Ω resistors series में हों तो equivalent resistance = 2 + 3 + 5 = <strong>10 Ω</strong>.</div>
+</section>
+
+<section id="parallelres">
+<h2>5. Resistors in Parallel</h2>
+<p>जब resistors के दोनों terminals common points से connected हों, तो वे <strong>parallel connection</strong> में होते हैं। Parallel circuit में प्रत्येक branch के across voltage same होता है।</p>
+
+<div class="diagram">
+          ┌──/\/\/── R₁ ──┐
+     + ───┤               ├─── -
+          ├──/\/\/── R₂ ──┤
+          │               │
+          └──/\/\/── R₃ ──┘
+             PARALLEL
+</div>
+
+<div class="formula">
+1/R(total) = 1/R₁ + 1/R₂ + 1/R₃ + ...
+
+For two resistors:
+R(total) = (R₁ × R₂)/(R₁ + R₂)
+</div>
+
+<h3>Properties</h3>
+<ul>
+<li>सभी parallel branches के across voltage same होता है।</li>
+<li>Total current branches में divide होता है।</li>
+<li>Equivalent resistance किसी individual resistor की smallest resistance से भी कम हो सकती है।</li>
+<li>एक branch open होने पर बाकी branches operate कर सकती हैं, यदि source/path available हो।</li>
+</ul>
+</section>
+
+<section id="seriescap">
+<h2>6. Capacitors in Series</h2>
+<p>Series connection में capacitors एक path में connected होते हैं। Ideal capacitors के series combination में equivalent capacitance individual capacitances से smaller होती है।</p>
+
+<div class="formula">
+1/C(total) = 1/C₁ + 1/C₂ + 1/C₃ + ...
+
+For two capacitors:
+C(total) = (C₁ × C₂)/(C₁ + C₂)
+</div>
+
+<h3>Important Points</h3>
+<ul>
+<li>Series capacitors में ideal steady-state charge magnitude equal होती है।</li>
+<li>Total voltage individual capacitors में divide होता है।</li>
+<li>Equivalent capacitance smallest individual capacitance से कम होती है।</li>
+</ul>
+
+<div class="note"><b>Example:</b> 6 μF और 3 μF capacitors series में हों: C = (6×3)/(6+3) = <strong>2 μF</strong>.</div>
+</section>
+
+<section id="parallelcap">
+<h2>7. Capacitors in Parallel</h2>
+<p>Parallel capacitors के corresponding terminals common nodes से connected होते हैं। Parallel combination में सभी capacitors के across same voltage होता है और total capacitance add होती है।</p>
+
+<div class="formula">
+C(total) = C₁ + C₂ + C₃ + ...
+
+Q(total) = Q₁ + Q₂ + Q₃ + ...
+</div>
+
+<h3>Properties</h3>
+<ul>
+<li>सभी capacitors के across voltage same होता है।</li>
+<li>Equivalent capacitance individual capacitances का sum होती है।</li>
+<li>Parallel connection total charge-storage capability बढ़ाता है।</li>
+</ul>
+</section>
+
+<section id="rectifier">
+<h2>8. Rectifier</h2>
+<p><strong>Rectifier</strong> एक electronic circuit है जो alternating current/voltage को unidirectional या pulsating DC form में convert करता है। Rectification में diode की one-direction conduction property का उपयोग किया जाता है।</p>
+
+<div class="diagram">
+AC SOURCE
+    │
+    ▼
+┌─────────────┐
+│  RECTIFIER  │
+│   DIODES    │
+└──────┬──────┘
+       │
+       ▼
+PULSATING DC
+       │
+       ▼
+FILTER / REGULATOR
+       │
+       ▼
+SMOOTH DC OUTPUT
+</div>
+
+<h3>Main Types</h3>
+<ul>
+<li>Half-Wave Rectifier</li>
+<li>Full-Wave Rectifier</li>
+<li>Bridge Rectifier</li>
+</ul>
+</section>
+
+<section id="half">
+<h2>9. Half-Wave Rectifier</h2>
+<p><strong>Half-wave rectifier</strong> AC input के केवल एक half-cycle को load तक pass करता है और दूसरे half-cycle को block करता है। Basic half-wave circuit में सामान्यतः एक diode use होता है।</p>
+
+<div class="diagram">
+        D
+AC ─────|>|───── RL ─────┐
+│                        │
+└────────────────────────┘
+
+Positive half-cycle → Diode ON → Output
+Negative half-cycle → Diode OFF → No output
+</div>
+
+<h3>Working</h3>
+<div class="step"><b>1. Positive Half Cycle:</b> यदि diode forward biased होता है, तो current load के through flow करता है और output pulse प्राप्त होता है।</div>
+<div class="step"><b>2. Negative Half Cycle:</b> Diode reverse biased हो जाता है और current flow strongly blocked होता है।</div>
+<div class="step"><b>3. Output:</b> केवल एक half-cycle की pulses मिलती हैं, इसलिए output pulsating DC होता है।</div>
+
+<h3>Advantages</h3><ul><li>Simple circuit</li><li>Low component count</li><li>Easy to understand and implement</li></ul>
+<h3>Limitations</h3><ul><li>Only half input waveform utilized</li><li>Higher ripple</li><li>Lower average DC output compared with full-wave methods for same idealized input</li><li>Power utilization comparatively poor</li></ul>
+</section>
+
+<section id="full">
+<h2>10. Full-Wave Rectifier</h2>
+<p><strong>Full-wave rectifier</strong> AC input के दोनों half-cycles का उपयोग करके load में current को same direction में maintain करता है। इसलिए half-wave की तुलना में output frequency और average DC utilization बेहतर होती है।</p>
+
+<h3>Center-Tapped Full-Wave Rectifier</h3>
+<p>Traditional center-tapped full-wave rectifier में center-tapped transformer secondary और दो diodes का उपयोग किया जाता है। प्रत्येक half-cycle में alternate diode conduct करता है और load current की direction same रहती है।</p>
+
+<div class="diagram">
+             D₁
+Secondary ──|>|────┐
+   CT ──────────────┼── RL ──┐
+Secondary ──|>|────┘        │
+             D₂              │
+                             └── Return
+</div>
+
+<div class="step"><b>Positive half-cycle:</b> एक diode forward biased होकर load current provide करता है।</div>
+<div class="step"><b>Negative half-cycle:</b> दूसरा diode conduct करता है और load current की direction load में same रहती है।</div>
+
+<h3>Advantages</h3>
+<ul><li>Both half-cycles utilized</li><li>Half-wave से higher average DC output</li><li>Ripple frequency input frequency की तुलना में higher होती है</li></ul>
+</section>
+
+<section id="bridge">
+<h2>11. Bridge Rectifier</h2>
+<p><strong>Bridge rectifier</strong> full-wave rectifier का widely used arrangement है जिसमें सामान्यतः <strong>चार diodes</strong> bridge configuration में connected होते हैं। इसमें center-tapped transformer secondary की आवश्यकता नहीं होती।</p>
+
+<div class="diagram">
+                 D₁          D₂
+AC ~ ────────────|>|────┬────|<|──────── ~ AC
+                         │
+                         RL
+                         │
+AC ~ ────────────|<|────┴────|>|──────── ~ AC
+                 D₃          D₄
+
+          FOUR-DIODE BRIDGE
+</div>
+
+<h3>Working</h3>
+<div class="step"><b>Positive Half-Cycle:</b> Diodes की एक pair conduct करती है और load में current एक particular direction में flow करता है।</div>
+<div class="step"><b>Negative Half-Cycle:</b> दूसरी diagonal pair conduct करती है, लेकिन load current की direction वही रहती है।</div>
+
+<h3>Advantages</h3>
+<ul>
+<li>Full AC cycle utilized.</li>
+<li>Center-tapped transformer generally required नहीं होता।</li>
+<li>Transformer utilization अच्छा होता है।</li>
+<li>Power supplies में बहुत common configuration है।</li>
+</ul>
+
+<h3>Applications</h3>
+<p>DC power supplies, battery chargers, adapters और electronic equipment के rectifier stages में bridge rectifier widely used है। Practical power supply में bridge rectifier के बाद filter capacitor और voltage regulator stage भी लगाया जा सकता है ताकि smoother DC प्राप्त हो।</p>
+</section>
+
+<section id="comparison">
+<h2>12. Rectifier Comparison</h2>
+<table>
+<tr><th>Feature</th><th>Half-Wave</th><th>Full-Wave</th><th>Bridge</th></tr>
+<tr><td>Diodes</td><td>1</td><td>2 in center-tapped arrangement</td><td>4</td></tr>
+<tr><td>Input half-cycles used</td><td>One</td><td>Both</td><td>Both</td></tr>
+<tr><td>Transformer center tap</td><td>Not required</td><td>Required in center-tapped type</td><td>Not required</td></tr>
+<tr><td>Output</td><td>Pulsating DC</td><td>Full-wave pulsating DC</td><td>Full-wave pulsating DC</td></tr>
+<tr><td>Ripple frequency</td><td>f</td><td>2f</td><td>2f</td></tr>
+<tr><td>General efficiency</td><td>Lower</td><td>Higher than half-wave</td><td>Higher than half-wave</td></tr>
+<tr><td>Common use</td><td>Simple/low-power circuits</td><td>Traditional full-wave supplies</td><td>Common DC power supplies</td></tr>
+</table>
+
+<h3>Resistor और Capacitor Connection – Quick Revision</h3>
+<table>
+<tr><th>Component</th><th>Series</th><th>Parallel</th></tr>
+<tr><td>Resistor</td><td>Rₜ = R₁ + R₂ + ...</td><td>1/Rₜ = 1/R₁ + 1/R₂ + ...</td></tr>
+<tr><td>Capacitor</td><td>1/Cₜ = 1/C₁ + 1/C₂ + ...</td><td>Cₜ = C₁ + C₂ + ...</td></tr>
+</table>
+</section>
+
+<section id="exam">
+<h2>13. Important Exam Questions</h2>
+<div class="exam">
+<b>Long Answer Questions</b><br><br>
+1. AC क्या है? AC fundamentals के important terms को विस्तार से समझाइए।<br>
+2. Ohm's Law को statement, formula और example सहित समझाइए।<br>
+3. Resistors के series connection की working, properties और formula समझाइए।<br>
+4. Resistors के parallel connection की working, properties और formula समझाइए।<br>
+5. Capacitors के series और parallel connections को विस्तार से समझाइए।<br>
+6. Rectifier क्या है? इसके प्रमुख types समझाइए।<br>
+7. Half-wave rectifier का circuit diagram बनाकर working, advantages और limitations समझाइए।<br>
+8. Full-wave rectifier का working principle समझाइए।<br>
+9. Bridge rectifier का circuit diagram और working समझाइए।<br>
+10. Half-wave, full-wave और bridge rectifier में अंतर लिखिए।
+</div>
+
+<h3>Short Answer Questions</h3>
+<ul>
+<li>AC का full form क्या है?</li>
+<li>Frequency की unit क्या है?</li>
+<li>Time period और frequency में क्या relation है?</li>
+<li>Ohm's Law का formula क्या है?</li>
+<li>Series resistors में current कैसा होता है?</li>
+<li>Parallel resistors में voltage कैसा होता है?</li>
+<li>Series capacitors का equivalent capacitance कैसे calculate करते हैं?</li>
+<li>Parallel capacitors का equivalent capacitance कैसे calculate करते हैं?</li>
+<li>Rectifier क्या है?</li>
+<li>Half-wave rectifier में कितने diode होते हैं?</li>
+<li>Bridge rectifier में सामान्यतः कितने diodes होते हैं?</li>
+<li>Full-wave rectifier में कितने half-cycles utilize होते हैं?</li>
+<li>Bridge rectifier में center-tapped transformer क्यों generally required नहीं होता?</li>
+<li>Rectifier output को smoother DC बनाने के लिए कौन सा component commonly use किया जाता है?</li>
+</ul>
+
+<div class="important">
+<b>One-Minute Revision:</b><br><br>
+AC → Magnitude और direction periodically change<br>
+f = 1/T<br>
+Ohm's Law → V = IR<br>
+Series Resistor → Resistances add<br>
+Parallel Resistor → Reciprocals add<br>
+Series Capacitor → Reciprocals add<br>
+Parallel Capacitor → Capacitances add<br>
+Half-Wave → One half-cycle + 1 diode<br>
+Full-Wave → Both half-cycles<br>
+Bridge → Full-wave + 4 diodes + no center tap generally<br>
+Rectifier → AC → Pulsating DC
+</div>
+</section>
+</main>
+</div>
+</body>
+</html>

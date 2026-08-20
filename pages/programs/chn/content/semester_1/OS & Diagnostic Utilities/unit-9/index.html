@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Troubleshooting PC Hardware & OS</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#eef2f7;color:#202938;font-family:Segoe UI,Arial,sans-serif;line-height:1.9}
+.layout{max-width:1500px;margin:auto;padding:15px;display:grid;grid-template-columns:290px 1fr;gap:18px}
+aside{position:sticky;top:15px;height:calc(100vh - 30px);overflow:auto;background:#fff;border-radius:18px;padding:20px;box-shadow:0 6px 25px #0001}
+aside h2{color:#075985;border-left:5px solid #0284c7;padding-left:10px}
+aside a{display:block;text-decoration:none;color:#374151;padding:7px 10px;border-radius:8px;font-size:14px}
+aside a:hover{background:#e0f2fe;color:#0369a1}
+main{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 6px 25px #0001}
+.hero{padding:42px;background:linear-gradient(135deg,#dbeafe,#e0f2fe,#f8fafc)}
+.hero h1{margin:7px 0;color:#075985;font-size:36px;line-height:1.3}
+section{padding:32px;border-bottom:1px solid #e5e7eb}
+h2{font-size:29px;color:#075985;border-left:5px solid #0284c7;padding-left:13px}
+h3{font-size:22px;color:#0c4a6e;margin-top:27px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{padding:19px;background:#f0f9ff;border:1px solid #bae6fd;border-radius:14px}
+.note,.important,.exam,.warning{padding:18px 20px;border-radius:12px;margin:19px 0}
+.note{background:#eff6ff;border-left:5px solid #3b82f6}
+.important{background:#fff7ed;border-left:5px solid #f97316}
+.exam{background:#ecfdf5;border-left:5px solid #10b981}
+.warning{background:#fef2f2;border-left:5px solid #ef4444}
+table{width:100%;border-collapse:collapse;margin:20px 0}
+th,td{border:1px solid #cbd5e1;padding:12px;text-align:left;vertical-align:top}
+th{background:#e0f2fe;color:#075985}
+.code,.diagram{background:#090b0f;color:#e5e7eb;border-radius:14px;padding:20px 24px;overflow:auto;font-family:Consolas,monospace;white-space:pre;line-height:1.55}
+.step{padding:14px 16px;background:#f8fafc;border-radius:10px;margin:9px 0;border-left:4px solid #0284c7}
+.badge{display:inline-block;background:#bae6fd;color:#075985;padding:4px 11px;border-radius:20px;font-size:12px;font-weight:bold}
+@media(max-width:900px){.layout{display:block;padding:5px}aside{display:none}.hero{padding:28px 18px}.hero h1{font-size:28px}section{padding:24px 18px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside>
+<h2>Topics</h2>
+<a href="#intro">1. Troubleshooting Introduction</a>
+<a href="#method">2. Troubleshooting Method</a>
+<a href="#power">3. Power & Boot Problems</a>
+<a href="#display">4. Display Problems</a>
+<a href="#ram">5. RAM Problems</a>
+<a href="#storage">6. HDD/SSD Problems</a>
+<a href="#cpu">7. CPU & Overheating</a>
+<a href="#peripheral">8. Keyboard/Mouse/USB</a>
+<a href="#network">9. Network Problems</a>
+<a href="#os">10. O/S Troubleshooting</a>
+<a href="#windows">11. Windows Tools & Commands</a>
+<a href="#flow">12. Troubleshooting Flowchart</a>
+<a href="#exam">13. Exam Questions</a>
+</aside>
+
+<main>
+<div class="hero">
+<span class="badge">PC HARDWARE • OPERATING SYSTEM • TROUBLESHOOTING</span>
+<h1>Troubleshooting PC Hardware & O/S</h1>
+<p><strong>Hardware Faults • Boot Problems • Display • RAM • Storage • CPU • Peripherals • Windows/O/S Issues</strong></p>
+</div>
+
+<section id="intro">
+<h2>1. Troubleshooting क्या है?</h2>
+<p><strong>Troubleshooting</strong> computer system में आने वाली समस्या का systematic तरीके से पता लगाने, उसके possible causes को test करने और appropriate solution लागू करने की प्रक्रिया है। इसमें केवल component बदलना ही शामिल नहीं है; technician पहले symptoms observe करता है, फिर simplest और safest checks से शुरुआत करता है और धीरे-धीरे detailed diagnosis करता है।</p>
+
+<div class="important"><b>Exam Definition:</b> Troubleshooting वह systematic process है जिसमें computer hardware या operating system की समस्या को identify, diagnose और correct किया जाता है ताकि system normal working condition में वापस आ सके।</div>
+
+<h3>Troubleshooting के Objectives</h3>
+<ul>
+<li>Problem का actual cause identify करना।</li>
+<li>Hardware और software fault को अलग-अलग करना।</li>
+<li>Data को सुरक्षित रखते हुए fault resolve करना।</li>
+<li>Unnecessary component replacement से बचना।</li>
+<li>System को stable और reliable condition में वापस लाना।</li>
+<li>Future में same problem repeat होने की संभावना कम करना।</li>
+</ul>
+
+<div class="grid">
+<div class="card"><h3>Hardware Troubleshooting</h3><p>RAM, CPU, motherboard, PSU, storage, display, keyboard, mouse, printer आदि physical components की problems का diagnosis।</p></div>
+<div class="card"><h3>O/S Troubleshooting</h3><p>Operating system boot, drivers, updates, system files, applications, services और configuration से जुड़ी problems का diagnosis।</p></div>
+</div>
+</section>
+
+<section id="method">
+<h2>2. Basic Troubleshooting Method</h2>
+<p>Good troubleshooting हमेशा logical sequence में की जाती है। सबसे पहले obvious और low-risk causes check किए जाते हैं। उसके बाद ही advanced repair steps लिए जाते हैं।</p>
+
+<div class="step"><b>Step 1 — Identify:</b> User से symptoms पूछें और problem को clearly define करें।</div>
+<div class="step"><b>Step 2 — Observe:</b> Error message, beep, LED, unusual sound, smell, overheating या system behavior note करें।</div>
+<div class="step"><b>Step 3 — Check Basics:</b> Power, cables, connections, switches और external devices check करें।</div>
+<div class="step"><b>Step 4 — Reproduce:</b> यदि safe हो तो problem को reproduce करके conditions note करें।</div>
+<div class="step"><b>Step 5 — Isolate:</b> Hardware और software causes को अलग-अलग test करें।</div>
+<div class="step"><b>Step 6 — Correct:</b> Appropriate repair/configuration/update/part replacement करें।</div>
+<div class="step"><b>Step 7 — Test:</b> System को restart और normal workload के साथ test करें।</div>
+<div class="step"><b>Step 8 — Document:</b> Problem, cause और solution को record करें।</div>
+
+<div class="note"><b>Golden Rule:</b> पहले simple checks → फिर software checks → फिर component-level diagnosis। बिना diagnosis के random parts replace करना troubleshooting नहीं है।</div>
+</section>
+
+<section id="power">
+<h2>3. Power & Boot Problems</h2>
+<table>
+<tr><th>Problem</th><th>Possible Causes</th><th>Troubleshooting</th></tr>
+<tr><td>PC बिल्कुल ON नहीं हो रहा</td><td>Power cable, switch, PSU, UPS, motherboard या power connection</td><td>Wall power, cable, PSU switch, UPS और internal power connectors check करें।</td></tr>
+<tr><td>PC ON होकर तुरंत OFF</td><td>Overheating, PSU issue, short circuit या hardware fault</td><td>Cooling/fans, CPU temperature, PSU और hardware connections check करें।</td></tr>
+<tr><td>Power है लेकिन boot नहीं</td><td>RAM, storage, BIOS/UEFI या boot device issue</td><td>Display/POST indicators देखें और RAM/storage/boot settings check करें।</td></tr>
+<tr><td>Repeated restart</td><td>Driver, overheating, PSU, RAM या OS problem</td><td>Safe Mode/logs/temperature/memory diagnostics से isolate करें।</td></tr>
+</table>
+
+<h3>Basic Power Check</h3>
+<div class="step"><b>1.</b> Power outlet और UPS को check करें।</div>
+<div class="step"><b>2.</b> Power cable properly connected है या नहीं देखें।</div>
+<div class="step"><b>3.</b> Desktop PSU का rear switch सही position में है या नहीं देखें।</div>
+<div class="step"><b>4.</b> Internal connectors केवल power disconnected होने पर check करें।</div>
+<div class="step"><b>5.</b> System start करके POST behavior observe करें।</div>
+</section>
+
+<section id="display">
+<h2>4. Display / Monitor Problems</h2>
+<p>Display problem में पहले यह determine करना चाहिए कि computer वास्तव में boot हो रहा है या पूरी machine ही start नहीं हो रही। Monitor का black screen होना हमेशा monitor fault का मतलब नहीं होता।</p>
+
+<table>
+<tr><th>Symptom</th><th>Possible Cause</th><th>Solution/Check</th></tr>
+<tr><td>No display</td><td>Monitor power, video cable, GPU, RAM, input source</td><td>Monitor power/input, cable और correct display output check करें।</td></tr>
+<tr><td>Display flickering</td><td>Cable, refresh setting, monitor/GPU issue</td><td>Cable replace/test और display settings check करें।</td></tr>
+<tr><td>Wrong resolution</td><td>Driver/settings</td><td>Display driver और recommended resolution check करें।</td></tr>
+<tr><td>Artifacts/lines</td><td>GPU, cable या monitor</td><td>Different cable/display से isolate करें।</td></tr>
+</table>
+
+<div class="important"><b>Practical Tip:</b> No-display case में एक-एक करके monitor, cable, RAM और graphics output को isolate करना useful होता है।</div>
+</section>
+
+<section id="ram">
+<h2>5. RAM Troubleshooting</h2>
+<p>RAM fault से system boot failure, random crashes, freezes, application errors और unexpected restarts हो सकते हैं। RAM troubleshooting में physical connection और memory testing दोनों important हैं।</p>
+
+<div class="step"><b>Step 1:</b> System shutdown करके power disconnect करें।</div>
+<div class="step"><b>Step 2:</b> RAM modules की seating और slot condition inspect करें।</div>
+<div class="step"><b>Step 3:</b> यदि multiple modules हैं तो controlled testing से एक-एक module test करें।</div>
+<div class="step"><b>Step 4:</b> Operating system का memory diagnostic tool run करें।</div>
+<div class="step"><b>Step 5:</b> Repeated errors मिलने पर compatible replacement/test module से confirm करें।</div>
+
+<div class="code">Windows Memory Diagnostic
+Run dialog / Start menu:
+mdsched.exe</div>
+
+<div class="warning"><b>Safety:</b> RAM को handle करने से पहले power completely disconnect करें और ESD precautions अपनाएँ।</div>
+</section>
+
+<section id="storage">
+<h2>6. HDD / SSD Troubleshooting</h2>
+<p>Storage problems के कारण slow performance, boot failure, missing files, file-system errors और data-access issues हो सकते हैं। Storage diagnosis में backup और data safety को priority देनी चाहिए।</p>
+
+<table>
+<tr><th>Symptom</th><th>Possible Cause</th><th>Check</th></tr>
+<tr><td>Drive दिखाई नहीं दे रही</td><td>Cable, port, power, BIOS/UEFI या drive fault</td><td>Connections, BIOS/UEFI detection और another port/system test करें।</td></tr>
+<tr><td>System बहुत slow</td><td>Full storage, background activity, drive health issue</td><td>Free space, Task Manager और storage health check करें।</td></tr>
+<tr><td>File-system errors</td><td>Improper shutdown/corruption</td><td>Backup first; suitable disk-check tools use करें।</td></tr>
+<tr><td>Boot device not found</td><td>Drive detection/boot order/OS problem</td><td>BIOS/UEFI boot settings और OS recovery options check करें।</td></tr>
+</table>
+
+<div class="code">:: Windows disk checking example
+chkdsk C: /scan
+
+:: System file check
+sfc /scannow</div>
+
+<div class="warning"><b>Important:</b> यदि drive physical failure के संकेत दे रही हो या valuable data inaccessible हो, repeated repair attempts से पहले backup/data recovery priority होनी चाहिए।</div>
+</section>
+
+<section id="cpu">
+<h2>7. CPU & Overheating Problems</h2>
+<p>CPU को proper cooling की आवश्यकता होती है। Overheating से system performance reduce हो सकती है, crashes/restarts हो सकते हैं और long-term hardware reliability प्रभावित हो सकती है।</p>
+
+<h3>Overheating के कारण</h3>
+<ul>
+<li>CPU fan failure</li>
+<li>Dust-clogged heatsink/air vents</li>
+<li>Poor cabinet airflow</li>
+<li>Improper thermal interface</li>
+<li>High ambient temperature</li>
+<li>Heavy sustained workload</li>
+</ul>
+
+<h3>Overheating Troubleshooting</h3>
+<div class="step"><b>1.</b> System shutdown करके cooling fans और vents inspect करें।</div>
+<div class="step"><b>2.</b> Dust buildup clean करें।</div>
+<div class="step"><b>3.</b> CPU fan और other cooling fans functioning check करें।</div>
+<div class="step"><b>4.</b> Cabinet airflow और cable arrangement improve करें।</div>
+<div class="step"><b>5.</b> Software monitoring tools से temperature behavior observe करें।</div>
+<div class="step"><b>6.</b> Persistent overheating में qualified technician से cooling assembly inspect करवाएँ।</div>
+</section>
+
+<section id="peripheral">
+<h2>8. Keyboard, Mouse & USB Problems</h2>
+<table>
+<tr><th>Problem</th><th>Possible Cause</th><th>Solution</th></tr>
+<tr><td>Keyboard not working</td><td>Loose cable, USB port, driver या keyboard fault</td><td>Different port/system पर test करें और device status check करें।</td></tr>
+<tr><td>Mouse not working</td><td>Port, battery, cable, driver</td><td>Another port/system पर test करें।</td></tr>
+<tr><td>USB device not detected</td><td>Port, driver, power या device fault</td><td>Different USB port और computer पर test करें।</td></tr>
+<tr><td>Printer not responding</td><td>Connection, driver, queue या network issue</td><td>Power, cable/network, driver और print queue check करें।</td></tr>
+</table>
+
+<div class="note"><b>Isolation Technique:</b> यदि device दूसरे computer पर correctly काम करता है, तो original computer की port, driver या configuration पर focus करें।</div>
+</section>
+
+<section id="network">
+<h2>9. Network Troubleshooting</h2>
+<p>Network problem में पहले यह identify करें कि problem केवल एक computer में है या पूरे network में। फिर physical connection से शुरू करके IP configuration और connectivity test करें।</p>
+
+<h3>Useful Windows Commands</h3>
+<div class="code">ipconfig
+ipconfig /all
+
+ping 127.0.0.1
+ping 8.8.8.8
+
+nslookup example.com
+
+tracert example.com</div>
+
+<table>
+<tr><th>Command</th><th>Purpose</th></tr>
+<tr><td><code>ipconfig</code></td><td>IP configuration देखने के लिए।</td></tr>
+<tr><td><code>ping</code></td><td>Basic network reachability test करने के लिए।</td></tr>
+<tr><td><code>nslookup</code></td><td>DNS name resolution test करने के लिए।</td></tr>
+<tr><td><code>tracert</code></td><td>Destination तक network path देखने के लिए।</td></tr>
+</table>
+</section>
+
+<section id="os">
+<h2>10. Operating System Troubleshooting Issues</h2>
+<p><strong>Operating System Troubleshooting</strong> में OS booting, system files, drivers, updates, applications, services, user profiles, storage और configuration से संबंधित problems को identify और resolve किया जाता है।</p>
+
+<h3>Common O/S Troubleshooting Issues</h3>
+<table>
+<tr><th>Issue</th><th>Possible Causes</th><th>General Troubleshooting</th></tr>
+<tr><td>OS boot नहीं हो रहा</td><td>Boot files, storage, boot order, update failure</td><td>Boot/recovery environment, startup repair और storage checks use करें।</td></tr>
+<tr><td>Blue Screen / System Crash</td><td>Driver, hardware, OS files, memory</td><td>Recent changes identify करें, logs/minidumps और hardware diagnostics check करें।</td></tr>
+<tr><td>OS बहुत slow</td><td>Startup programs, low resources, storage, malware</td><td>Task Manager, startup apps, storage और security scan check करें।</td></tr>
+<tr><td>Application crash</td><td>Corrupt files, incompatible version, dependencies</td><td>Update/repair/reinstall application और event logs check करें।</td></tr>
+<tr><td>Driver problem</td><td>Incorrect/corrupt/outdated driver</td><td>Device Manager से device status और driver version check करें।</td></tr>
+<tr><td>Update failure</td><td>Storage, corrupted update components, connectivity</td><td>Free space, restart, update troubleshooting और system integrity checks करें।</td></tr>
+<tr><td>Login/Profile issue</td><td>Profile corruption, credentials/configuration</td><td>Safe/recovery options और separate test account से isolate करें।</td></tr>
+<tr><td>Missing system files</td><td>Corruption or improper changes</td><td>System file repair utilities use करें।</td></tr>
+</table>
+</section>
+
+<section id="windows">
+<h2>11. Windows Diagnostic Tools & Commands</h2>
+
+<h3>1. Task Manager</h3>
+<p>Task Manager CPU, memory, disk, network usage, running processes और startup applications की जानकारी देता है। Slow computer की initial diagnosis में यह बहुत useful है।</p>
+
+<h3>2. Device Manager</h3>
+<p>Device Manager hardware devices की list, driver status और device errors देखने में सहायता करता है। Yellow warning icon driver/device problem का संकेत हो सकता है।</p>
+
+<h3>3. Event Viewer</h3>
+<p>Windows Event Viewer system, application और security events को record करता है। Repeated errors और system failures की diagnosis में logs useful हो सकते हैं।</p>
+
+<h3>4. System File Checker</h3>
+<div class="code">sfc /scannow</div>
+<p>यह command protected Windows system files की integrity check करती है और supported cases में corrupted files को repair करने का प्रयास करती है।</p>
+
+<h3>5. DISM</h3>
+<div class="code">DISM /Online /Cleanup-Image /RestoreHealth</div>
+<p>Windows component store/image से संबंधित corruption को repair करने में सहायता कर सकता है।</p>
+
+<h3>6. CHKDSK</h3>
+<div class="code">chkdsk C: /scan</div>
+<p>File-system और disk-related issues की checking के लिए उपयोग किया जा सकता है। Repair options use करने से पहले important data backup रखना बेहतर है।</p>
+
+<h3>7. Safe Mode</h3>
+<p>Safe Mode Windows को limited drivers/services के साथ start करता है। यदि problem Safe Mode में नहीं आती, तो third-party driver, startup software या service के involved होने की संभावना investigate की जा सकती है।</p>
+</section>
+
+<section id="flow">
+<h2>12. Complete Troubleshooting Flowchart</h2>
+
+<div class="diagram">
+USER REPORTS PROBLEM
+        │
+        ▼
+OBSERVE SYMPTOMS / ERROR
+        │
+        ▼
+IS POWER AVAILABLE?
+   ┌────┴────┐
+  NO         YES
+  │           │
+CHECK       CHECK POST /
+POWER       DISPLAY
+              │
+              ▼
+      HARDWARE OR O/S?
+        ┌─────┴─────┐
+     HARDWARE       O/S
+        │             │
+        ▼             ▼
+ CHECK RAM/CPU/     CHECK BOOT,
+ STORAGE/PSU       DRIVERS, FILES,
+ DISPLAY/PORTS     UPDATES, LOGS
+        │             │
+        └──────┬──────┘
+               ▼
+        APPLY SAFE FIX
+               │
+               ▼
+          TEST SYSTEM
+               │
+        ┌──────┴──────┐
+       PASS          FAIL
+        │              │
+   DOCUMENT       DEEPER DIAGNOSIS /
+   SOLUTION       PROFESSIONAL REPAIR
+</div>
+
+<h3>Important Troubleshooting Principles</h3>
+<ul>
+<li><strong>Start simple:</strong> Power और cable checks पहले करें।</li>
+<li><strong>One change at a time:</strong> एक साथ कई changes न करें, वरना root cause identify करना कठिन हो सकता है।</li>
+<li><strong>Protect data:</strong> Repair से पहले important data का backup consider करें।</li>
+<li><strong>Use logs:</strong> Error messages और event logs को ignore न करें।</li>
+<li><strong>Test after repair:</strong> Fix के बाद complete functionality verify करें।</li>
+<li><strong>Document:</strong> Future reference के लिए solution record करें।</li>
+</ul>
+</section>
+
+<section id="exam">
+<h2>13. Important Exam Questions</h2>
+
+<div class="exam">
+<b>Long Answer Questions</b><br><br>
+1. Troubleshooting क्या है? Computer troubleshooting की complete procedure समझाइए।<br>
+2. PC hardware troubleshooting से आप क्या समझते हैं? इसके विभिन्न steps समझाइए।<br>
+3. Computer के power और boot problems के कारण एवं troubleshooting methods समझाइए।<br>
+4. RAM, HDD/SSD और CPU overheating की troubleshooting समझाइए।<br>
+5. Operating System troubleshooting क्या है? इसके common issues और solutions समझाइए।<br>
+6. Windows में Task Manager, Device Manager, Event Viewer और diagnostic commands का उपयोग समझाइए।<br>
+7. Network और peripheral troubleshooting के basic steps समझाइए।
+</div>
+
+<h3>Short Questions</h3>
+<ul>
+<li>Troubleshooting की definition लिखिए।</li>
+<li>Hardware troubleshooting क्या है?</li>
+<li>O/S troubleshooting क्या है?</li>
+<li>POST का troubleshooting में क्या महत्व है?</li>
+<li>RAM failure के दो symptoms लिखिए।</li>
+<li>Overheating के दो कारण लिखिए।</li>
+<li>Device Manager का उपयोग क्या है?</li>
+<li>Task Manager किस काम आता है?</li>
+<li>Event Viewer क्या है?</li>
+<li><code>sfc /scannow</code> का उपयोग क्या है?</li>
+<li><code>chkdsk</code> का उपयोग क्या है?</li>
+<li>Safe Mode क्या है?</li>
+<li><code>ping</code> command का उपयोग क्या है?</li>
+</ul>
+
+<div class="important">
+<b>Quick Revision:</b><br>
+<strong>Troubleshooting → Identify → Isolate → Fix → Test</strong><br>
+<strong>Power Problem → Outlet → Cable → PSU → Connections</strong><br>
+<strong>No Display → Monitor → Cable → RAM → GPU/Output</strong><br>
+<strong>RAM Problem → Seating → Individual Module Test → Memory Diagnostic</strong><br>
+<strong>Storage → Detection → Backup → File-system/Health Check</strong><br>
+<strong>O/S → Boot → Drivers → System Files → Updates → Logs</strong><br>
+<strong>SFC → Windows system file integrity</strong><br>
+<strong>DISM → Windows image/component repair</strong><br>
+<strong>CHKDSK → File-system/disk checking</strong><br>
+<strong>Task Manager → Processes & Resources</strong><br>
+<strong>Device Manager → Hardware & Drivers</strong><br>
+<strong>Event Viewer → System/Application Logs</strong>
+</div>
+</section>
+
+</main>
+</div>
+</body>
+</html>

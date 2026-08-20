@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Google Office Tools - Expanded Notes</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:#f3f6fa;color:#1f2937;font-family:Segoe UI,Arial,sans-serif;line-height:1.85}
+.layout{max-width:1550px;margin:auto;padding:15px;display:grid;grid-template-columns:300px 1fr;gap:18px}
+aside{position:sticky;top:15px;height:calc(100vh - 30px);overflow:auto;background:#fff;border-radius:18px;padding:20px;box-shadow:0 5px 22px #0001}
+aside h2{margin-top:0;color:#075985;border-left:5px solid #0284c7;padding-left:10px}
+aside a{display:block;text-decoration:none;color:#374151;padding:7px 10px;border-radius:8px;font-size:14px}
+aside a:hover{background:#e0f2fe;color:#0369a1}
+main{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 5px 22px #0001}
+.hero{padding:38px;background:linear-gradient(135deg,#e0f2fe,#dbeafe,#f8fafc)}
+.hero h1{margin:0;color:#075985;font-size:36px}.hero p{margin:6px 0;color:#475569}
+section{padding:30px 32px;border-bottom:1px solid #e5e7eb}
+h2{font-size:28px;color:#075985;border-left:5px solid #0284c7;padding-left:12px}
+h3{font-size:21px;color:#0c4a6e;margin-top:25px}
+p,li{font-size:16px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+.card{padding:18px;background:#f0f9ff;border:1px solid #bae6fd;border-radius:14px}
+.note,.exam,.important{padding:17px 19px;border-radius:12px;margin:18px 0}
+.note{background:#eff6ff;border-left:5px solid #3b82f6}
+.exam{background:#ecfdf5;border-left:5px solid #10b981}
+.important{background:#fff7ed;border-left:5px solid #f97316}
+table{width:100%;border-collapse:collapse;margin:18px 0}
+th,td{border:1px solid #cbd5e1;padding:11px;text-align:left;vertical-align:top}
+th{background:#e0f2fe;color:#075985}
+.flow{background:#08090b;color:#f8fafc;border-radius:13px;padding:19px;margin:18px 0;font-family:Consolas,monospace;overflow:auto}
+.badge{display:inline-block;background:#bae6fd;color:#075985;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:bold}
+.step{counter-increment:step;position:relative;padding:14px 16px 14px 48px;background:#f8fafc;border-radius:10px;margin:9px 0}
+.steps{counter-reset:step}.step:before{content:counter(step);position:absolute;left:14px;top:12px;background:#0284c7;color:#fff;width:25px;height:25px;border-radius:50%;text-align:center;line-height:25px;font-weight:bold}
+@media(max-width:900px){.layout{display:block;padding:5px}aside{display:none}.hero{padding:25px 18px}.hero h1{font-size:28px}section{padding:23px 18px}.grid{grid-template-columns:1fr}p,li{font-size:15px}table{display:block;overflow-x:auto}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside>
+<h2>Topics</h2>
+<a href="#intro">1. Introduction</a>
+<a href="#drive">2. Google Drive</a>
+<a href="#files">3. Files & Folders</a>
+<a href="#sharing">4. Sharing & Permissions</a>
+<a href="#docs">5. Google Docs</a>
+<a href="#docshare">6. Sharing Google Docs</a>
+<a href="#docimport">7. Import & Export Docs</a>
+<a href="#sheets">8. Google Sheets</a>
+<a href="#sheetshare">9. Sharing Google Sheets</a>
+<a href="#sheetimport">10. Import & Export Sheets</a>
+<a href="#forms">11. Google Forms</a>
+<a href="#responses">12. Form Responses</a>
+<a href="#slides">13. Google Slides</a>
+<a href="#slidepresent">14. Presenting Ideas</a>
+<a href="#workflow">15. Complete Workflow</a>
+<a href="#difference">16. Quick Comparison</a>
+<a href="#exam">17. Important Questions</a>
+</aside>
+
+<main>
+<div class="hero">
+<span class="badge">GOOGLE OFFICE TOOLS</span>
+<h1>Google Office Tools</h1>
+<p><strong>Detailed PGDCA Notes</strong> • Hindi + English • Theory + Practical Steps • Exam-Oriented</p>
+<p>Google Drive → Docs → Sheets → Forms → Slides</p>
+</div>
+
+<section id="intro">
+<h2>1. Introduction to Google Office Tools</h2>
+<p><strong>Google Office Tools</strong> से सामान्यतः Google के cloud-based productivity applications का संदर्भ लिया जाता है। इनके माध्यम से users documents, spreadsheets, forms और presentations create, edit, store, share और collaborate कर सकते हैं। इनके files को Google Drive के माध्यम से organize किया जा सकता है।</p>
+<div class="grid">
+<div class="card"><h3>Google Drive</h3><p>Files और folders को cloud में store, organize और share करने के लिए।</p></div>
+<div class="card"><h3>Google Docs</h3><p>Online text documents create और edit करने के लिए।</p></div>
+<div class="card"><h3>Google Sheets</h3><p>Spreadsheet, calculations और tabular data के लिए।</p></div>
+<div class="card"><h3>Google Forms</h3><p>Online forms और responses collect करने के लिए।</p></div>
+<div class="card"><h3>Google Slides</h3><p>Presentations create और present करने के लिए।</p></div>
+</div>
+<div class="exam"><b>Exam Definition:</b> Google Office Tools are cloud-based productivity tools used to create, store, edit, share and collaborate on documents, spreadsheets, forms and presentations.</div>
+</section>
+
+<section id="drive">
+<h2>2. Google Drive</h2>
+<p><strong>Google Drive</strong> एक cloud storage service है जिसका उपयोग digital files और folders को online store तथा organize करने के लिए किया जाता है। इसमें stored files को compatible Google applications के साथ work किया जा सकता है।</p>
+<h3>Major Uses</h3>
+<ul>
+<li>Files को online store करना।</li>
+<li>Folders बनाकर files organize करना।</li>
+<li>Files और folders share करना।</li>
+<li>Shared files पर collaborative work करना।</li>
+<li>Files को download करना।</li>
+<li>Google Docs, Sheets और Slides files manage करना।</li>
+</ul>
+<h3>Google Drive खोलने के General Steps</h3>
+<div class="steps">
+<div class="step">Browser खोलें और Google account में sign in करें।</div>
+<div class="step">Google Drive खोलें।</div>
+<div class="step">Drive का main interface दिखाई देगा।</div>
+<div class="step">My Drive में folders और files को manage करें।</div>
+</div>
+</section>
+
+<section id="files">
+<h2>3. Creating, Saving, Downloading Files/Folders</h2>
+<h3>New Folder Create करना</h3>
+<div class="steps">
+<div class="step"><strong>New</strong> option select करें।</div>
+<div class="step"><strong>New Folder</strong> choose करें।</div>
+<div class="step">Folder का suitable name enter करें।</div>
+<div class="step">Create करके folder को open करें।</div>
+</div>
+
+<h3>File Upload करना</h3>
+<div class="steps">
+<div class="step">Drive में required folder open करें।</div>
+<div class="step"><strong>New → File upload</strong> choose करें।</div>
+<div class="step">Computer से required file select करें।</div>
+<div class="step">Upload complete होने तक wait करें।</div>
+</div>
+
+<h3>Folder Upload</h3>
+<p><strong>New → Folder upload</strong> के माध्यम से computer से पूरा folder Drive में upload किया जा सकता है, जहाँ supported environment में उसका internal structure maintain रहता है।</p>
+
+<h3>Download करना</h3>
+<div class="steps">
+<div class="step">Required file या folder पर right-click करें।</div>
+<div class="step"><strong>Download</strong> option select करें।</div>
+<div class="step">File download process complete होने दें।</div>
+</div>
+
+<div class="note"><b>Important:</b> Google Drive में files cloud में stored रहती हैं, इसलिए उन्हें अलग-अलग devices से access और share किया जा सकता है, provided account/access permissions available हों।</div>
+</section>
+
+<section id="sharing">
+<h2>4. Sharing Files/Folders</h2>
+<p>Google Drive की sharing facility से किसी file या folder को specific people के साथ या configured link access के माध्यम से share किया जा सकता है। Access level आवश्यकता के अनुसार तय किया जाता है।</p>
+<h3>Common Permission Levels</h3>
+<table>
+<tr><th>Permission</th><th>Meaning</th></tr>
+<tr><td>Viewer</td><td>Content को देख सकता है।</td></tr>
+<tr><td>Commenter</td><td>Content देख सकता है और comments दे सकता है, जहाँ supported हो।</td></tr>
+<tr><td>Editor</td><td>Content में changes कर सकता है।</td></tr>
+</table>
+<h3>Sharing Procedure</h3>
+<div class="steps">
+<div class="step">File/folder select करें।</div>
+<div class="step"><strong>Share</strong> option choose करें।</div>
+<div class="step">Person का email address enter करें या available general access option choose करें।</div>
+<div class="step">Required permission select करें।</div>
+<div class="step">Share/Send action complete करें।</div>
+</div>
+<div class="important"><b>Security Point:</b> Sensitive files को share करते समय सही users और सही permission level चुनना चाहिए।</div>
+</section>
+
+<section id="docs">
+<h2>5. Google Docs</h2>
+<p><strong>Google Docs</strong> एक online word-processing tool है। इसका उपयोग text documents create, edit, format, share और collaborate करने के लिए किया जाता है।</p>
+<h3>Google Docs में Basic Work</h3>
+<ul>
+<li>Text type और edit करना।</li>
+<li>Fonts, size, alignment और paragraph formatting.</li>
+<li>Headings और lists का उपयोग।</li>
+<li>Tables और other supported elements insert करना।</li>
+<li>Document को share करना।</li>
+<li>Document की copy/download बनाना।</li>
+<li>Multiple users के साथ collaborative editing.</li>
+</ul>
+<h3>Document Create करने के Steps</h3>
+<div class="steps">
+<div class="step">Google Drive या Google Docs खोलें।</div>
+<div class="step">New/Blank document option choose करें।</div>
+<div class="step">Document का title set करें।</div>
+<div class="step">Required text type और format करें।</div>
+<div class="step">Document automatically cloud में save होता रहता है।</div>
+</div>
+</section>
+
+<section id="docshare">
+<h2>6. Creating and Sharing Google Docs</h2>
+<p>Google Docs का एक प्रमुख advantage real-time collaboration है। एक document को authorized users के साथ share करके वे permissions के अनुसार document देख, comment या edit कर सकते हैं।</p>
+<h3>Sharing Steps</h3>
+<div class="steps">
+<div class="step">Google Docs document open करें।</div>
+<div class="step">ऊपर <strong>Share</strong> button select करें।</div>
+<div class="step">Required email addresses enter करें।</div>
+<div class="step">Viewer, Commenter या Editor permission choose करें।</div>
+<div class="step">Share/Send करें।</div>
+</div>
+<div class="exam"><b>Example:</b> Teacher assignment document share कर सकता है और students को required access देकर उसमें work submit/collaborate कराया जा सकता है।</div>
+</section>
+
+<section id="docimport">
+<h2>7. Import and Export Google Docs</h2>
+<p><strong>Import</strong> का अर्थ external document/file को Google Docs environment में लाकर उसके साथ work करना है। <strong>Export/Download</strong> का अर्थ Google document की copy को available file formats में computer पर save करना है।</p>
+<h3>Import</h3>
+<div class="steps">
+<div class="step">Google Drive में file upload करें या supported document open करें।</div>
+<div class="step">File को Google Docs-compatible editing environment में open करें।</div>
+<div class="step">Content को review और edit करें।</div>
+</div>
+<h3>Export / Download</h3>
+<div class="steps">
+<div class="step">Google Docs document open करें।</div>
+<div class="step"><strong>File</strong> menu खोलें।</div>
+<div class="step"><strong>Download</strong> option choose करें।</div>
+<div class="step">Required available format select करें।</div>
+<div class="step">File local computer पर save हो जाएगी।</div>
+</div>
+</section>
+
+<section id="sheets">
+<h2>8. Google Sheets</h2>
+<p><strong>Google Sheets</strong> एक cloud-based spreadsheet application है जिसका उपयोग tabular data enter, organize, calculate, analyze और share करने के लिए किया जाता है।</p>
+<h3>Main Features</h3>
+<ul>
+<li>Rows और columns में data entry.</li>
+<li>Formulas और functions का उपयोग।</li>
+<li>Data sorting और filtering.</li>
+<li>Charts और visual representation.</li>
+<li>Multiple sheets का उपयोग।</li>
+<li>Real-time collaboration और sharing.</li>
+</ul>
+<h3>Creating a Google Sheet</h3>
+<div class="steps">
+<div class="step">Google Drive खोलें।</div>
+<div class="step"><strong>New → Google Sheets</strong> choose करें।</div>
+<div class="step">Blank spreadsheet open करें।</div>
+<div class="step">Cells में data enter करें।</div>
+<div class="step">Required formatting/formulas apply करें।</div>
+<div class="step">Sheet का title set करें और work continue करें।</div>
+</div>
+
+<table>
+<tr><th>Roll No.</th><th>Name</th><th>Marks</th></tr>
+<tr><td>101</td><td>Ravi</td><td>78</td></tr>
+<tr><td>102</td><td>Neha</td><td>85</td></tr>
+<tr><td>103</td><td>Aman</td><td>91</td></tr>
+</table>
+</section>
+
+<section id="sheetshare">
+<h2>9. Creating and Sharing Google Sheets</h2>
+<p>Google Sheets को individuals या groups के साथ share करके collaborative data entry और analysis किया जा सकता है।</p>
+<div class="steps">
+<div class="step">Spreadsheet open करें।</div>
+<div class="step"><strong>Share</strong> button click करें।</div>
+<div class="step">Users/emails add करें या configured access option choose करें।</div>
+<div class="step">Required permission set करें।</div>
+<div class="step">Share/Send करें।</div>
+</div>
+<div class="note"><b>Example:</b> एक team shared expense sheet में अलग-अलग members अपने expenses enter कर सकते हैं और authorized users same spreadsheet पर work कर सकते हैं।</div>
+</section>
+
+<section id="sheetimport">
+<h2>10. Import and Export Google Sheets</h2>
+<h3>Importing Data</h3>
+<p>External spreadsheet data को Google Sheets environment में import करके उसमें editing, calculation और analysis किया जा सकता है।</p>
+<div class="steps">
+<div class="step">Google Sheets open करें।</div>
+<div class="step">Required import/open option choose करें।</div>
+<div class="step">External spreadsheet file select करें।</div>
+<div class="step">Import settings available हों तो required option choose करें।</div>
+<div class="step">Data को review करें और continue editing करें।</div>
+</div>
+<h3>Exporting</h3>
+<div class="steps">
+<div class="step">Spreadsheet open करें।</div>
+<div class="step"><strong>File → Download</strong> option choose करें।</div>
+<div class="step">Required available spreadsheet/file format select करें।</div>
+<div class="step">Downloaded file computer पर save करें।</div>
+</div>
+</section>
+
+<section id="forms">
+<h2>11. Google Forms</h2>
+<p><strong>Google Forms</strong> एक online form creation tool है जिसका उपयोग information, feedback, survey, registration, quiz या अन्य structured responses collect करने के लिए किया जाता है।</p>
+<h3>Common Uses</h3>
+<ul>
+<li>Student registration.</li>
+<li>Online feedback.</li>
+<li>Survey.</li>
+<li>Event registration.</li>
+<li>Questionnaire.</li>
+<li>Quiz और response collection.</li>
+</ul>
+<h3>Form Create करने के Steps</h3>
+<div class="steps">
+<div class="step">Google Forms खोलें।</div>
+<div class="step">Blank form choose करें।</div>
+<div class="step">Form title और description add करें।</div>
+<div class="step">Questions add करें।</div>
+<div class="step">Question type और required settings configure करें।</div>
+<div class="step">Form preview करके check करें।</div>
+<div class="step">Form share/send करें।</div>
+</div>
+<h3>Example Questions</h3>
+<table>
+<tr><th>Question</th><th>Possible Type</th></tr>
+<tr><td>Student Name</td><td>Short Answer</td></tr>
+<tr><td>Course</td><td>Dropdown / Multiple Choice</td></tr>
+<tr><td>Feedback</td><td>Paragraph</td></tr>
+<tr><td>Subjects</td><td>Checkboxes</td></tr>
+</table>
+</section>
+
+<section id="responses">
+<h2>12. Google Forms and Form Responses</h2>
+<p>जब users Google Form submit करते हैं, तो उनके responses को form के response section में review किया जा सकता है। Responses को spreadsheet के साथ connect करके tabular analysis भी किया जा सकता है, जहाँ available functionality इसका support करती हो।</p>
+<h3>Responses देखने के Steps</h3>
+<div class="steps">
+<div class="step">Google Form open करें।</div>
+<div class="step"><strong>Responses</strong> section open करें।</div>
+<div class="step">Submitted responses review करें।</div>
+<div class="step">Available response summary/data view को analyze करें।</div>
+<div class="step">Required हो तो responses को linked spreadsheet में organize करें।</div>
+</div>
+<div class="flow">Create Form → Share Form → User Submits Response → Responses Collected → Review / Analyze</div>
+<div class="exam"><b>Example:</b> College feedback form में students अपने responses submit करते हैं। Faculty responses को review करके common feedback identify कर सकती है।</div>
+</section>
+
+<section id="slides">
+<h2>13. Google Slides</h2>
+<p><strong>Google Slides</strong> एक online presentation tool है जिसका उपयोग slides create, edit, design, share और present करने के लिए किया जाता है।</p>
+<h3>Basic Components</h3>
+<ul>
+<li>Title and content slides.</li>
+<li>Text formatting.</li>
+<li>Images and graphics.</li>
+<li>Shapes and other supported objects.</li>
+<li>Themes and layouts.</li>
+<li>Transitions/animations where required.</li>
+<li>Sharing and collaboration.</li>
+</ul>
+<h3>Presentation Create करने के Steps</h3>
+<div class="steps">
+<div class="step">Google Drive में जाएँ।</div>
+<div class="step"><strong>New → Google Slides</strong> choose करें।</div>
+<div class="step">Blank presentation या available template choose करें।</div>
+<div class="step">Title slide तैयार करें।</div>
+<div class="step">नई slides add करें।</div>
+<div class="step">Text, images और other elements insert करें।</div>
+<div class="step">Theme/layout के अनुसार presentation format करें।</div>
+<div class="step">Presentation को save और share करें।</div>
+</div>
+</section>
+
+<section id="slidepresent">
+<h2>14. Creating Slides to Present Your Ideas</h2>
+<p>Presentation का उद्देश्य information को logical और visually understandable sequence में present करना होता है। अच्छी presentation में content को छोटे और meaningful sections में divide किया जाता है।</p>
+<h3>Recommended Slide Structure</h3>
+<table>
+<tr><th>Slide</th><th>Content</th></tr>
+<tr><td>1. Title</td><td>Topic name, presenter details.</td></tr>
+<tr><td>2. Introduction</td><td>Topic का short introduction.</td></tr>
+<tr><td>3. Main Concept</td><td>Important definition/concept.</td></tr>
+<tr><td>4. Details</td><td>Key points, examples, data.</td></tr>
+<tr><td>5. Visuals</td><td>Images, charts या diagrams जहाँ useful हों।</td></tr>
+<tr><td>6. Conclusion</td><td>Main findings/summary.</td></tr>
+<tr><td>7. Thank You</td><td>Closing slide.</td></tr>
+</table>
+
+<h3>Presentation Tips</h3>
+<ul>
+<li>एक slide पर बहुत ज्यादा text avoid करें।</li>
+<li>Clear headings और readable fonts रखें।</li>
+<li>Important information को bullets में रखें।</li>
+<li>Relevant visuals का उपयोग करें।</li>
+<li>Slides का sequence logical रखें।</li>
+<li>Presentation से पहले slideshow preview करें।</li>
+</ul>
+</section>
+
+<section id="workflow">
+<h2>15. Complete Google Office Workflow</h2>
+<div class="flow">
+Google Drive
+   ↓
+Create Folder
+   ↓
+Create / Upload File
+   ↓
+Docs / Sheets / Forms / Slides
+   ↓
+Edit & Format
+   ↓
+Share
+   ↓
+Collaborate
+   ↓
+Download / Export / Present
+</div>
+
+<h3>Example: College Project</h3>
+<ol>
+<li>Drive में <strong>College Project</strong> folder create करें।</li>
+<li>Project report के लिए Google Docs create करें।</li>
+<li>Data analysis के लिए Google Sheets create करें।</li>
+<li>Feedback collection के लिए Google Form create करें।</li>
+<li>Final presentation के लिए Google Slides create करें।</li>
+<li>Required team members के साथ files/folder share करें।</li>
+<li>Final documents को review करके required format में download/export करें।</li>
+</ol>
+</section>
+
+<section id="difference">
+<h2>16. Quick Comparison</h2>
+<table>
+<tr><th>Tool</th><th>Main Purpose</th><th>Example Use</th></tr>
+<tr><td>Google Drive</td><td>Cloud storage & file management</td><td>Files/folders organize और share करना</td></tr>
+<tr><td>Google Docs</td><td>Word processing</td><td>Assignment/report बनाना</td></tr>
+<tr><td>Google Sheets</td><td>Spreadsheet</td><td>Marks/expense/data analysis</td></tr>
+<tr><td>Google Forms</td><td>Data collection</td><td>Survey/registration/feedback</td></tr>
+<tr><td>Google Slides</td><td>Presentation</td><td>Project presentation</td></tr>
+</table>
+
+<div class="note"><b>Remember:</b> Drive मुख्यतः storage/organization layer की तरह काम करता है, जबकि Docs, Sheets, Forms और Slides अलग-अलग productivity tasks के लिए उपयोग होते हैं।</div>
+</section>
+
+<section id="exam">
+<h2>17. Important Exam Questions</h2>
+<div class="exam">
+<b>Long Answer Questions</b><br><br>
+1. Google Drive क्या है? इसके प्रमुख uses समझाइए।<br>
+2. Google Drive में file और folder create, upload और download करने की प्रक्रिया लिखिए।<br>
+3. Google Drive में files/folders share करने की प्रक्रिया समझाइए।<br>
+4. Google Docs क्या है? Document create और share करने की प्रक्रिया लिखिए।<br>
+5. Google Docs में import और export का अर्थ समझाइए।<br>
+6. Google Sheets क्या है? इसके प्रमुख features और uses समझाइए।<br>
+7. Google Sheets create और share करने की step-by-step procedure लिखिए।<br>
+8. Google Sheets में import और export की प्रक्रिया समझाइए।<br>
+9. Google Forms क्या है? Form create करने की प्रक्रिया लिखिए।<br>
+10. Google Forms में responses कैसे प्राप्त और manage किए जाते हैं?<br>
+11. Google Slides क्या है? Presentation create करने की प्रक्रिया समझाइए।<br>
+12. Google Slides का उपयोग ideas present करने के लिए कैसे किया जाता है?<br>
+13. Google Drive, Docs, Sheets, Forms और Slides में अंतर समझाइए।<br>
+14. Google Office Tools के educational और collaborative uses समझाइए।
+</div>
+
+<h3>Short Notes</h3>
+<ul>
+<li>Google Drive</li>
+<li>Google Docs</li>
+<li>Google Sheets</li>
+<li>Google Forms</li>
+<li>Google Slides</li>
+<li>Cloud Storage</li>
+<li>File Sharing</li>
+<li>Real-Time Collaboration</li>
+<li>Form Responses</li>
+<li>Import and Export</li>
+</ul>
+
+<div class="exam"><b>Conclusion:</b> Google Office Tools cloud-based working को आसान बनाते हैं। Google Drive files और folders को store एवं organize करने में सहायता करता है, Docs documents के लिए, Sheets spreadsheets के लिए, Forms structured responses collect करने के लिए और Slides presentations बनाने के लिए उपयोग होता है। Sharing और collaboration इन tools को team और educational work के लिए विशेष रूप से useful बनाते हैं।</div>
+</section>
+
+</main>
+</div>
+</body>
+</html>

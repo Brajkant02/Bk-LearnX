@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Linux Complete Notes</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:#eef2f7;color:#202938;font-family:Segoe UI,Arial,sans-serif;line-height:1.9}
+.layout{max-width:1550px;margin:auto;padding:15px;display:grid;grid-template-columns:305px 1fr;gap:18px}
+aside{position:sticky;top:15px;height:calc(100vh - 30px);overflow:auto;background:#fff;border-radius:18px;padding:20px;box-shadow:0 6px 25px #0001}
+aside h2{color:#075985;border-left:5px solid #0284c7;padding-left:10px}
+aside a{display:block;text-decoration:none;color:#374151;padding:7px 10px;border-radius:8px;font-size:14px}
+aside a:hover{background:#e0f2fe;color:#0369a1}
+main{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 6px 25px #0001}
+.hero{padding:42px;background:linear-gradient(135deg,#dbeafe,#e0f2fe,#f8fafc)}
+.hero h1{margin:7px 0;color:#075985;font-size:36px;line-height:1.3}
+section{padding:32px;border-bottom:1px solid #e5e7eb}
+h2{font-size:29px;color:#075985;border-left:5px solid #0284c7;padding-left:13px}
+h3{font-size:22px;color:#0c4a6e;margin-top:27px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{padding:19px;background:#f0f9ff;border:1px solid #bae6fd;border-radius:14px}
+.note,.important,.exam{padding:18px 20px;border-radius:12px;margin:19px 0}
+.note{background:#eff6ff;border-left:5px solid #3b82f6}
+.important{background:#fff7ed;border-left:5px solid #f97316}
+.exam{background:#ecfdf5;border-left:5px solid #10b981}
+table{width:100%;border-collapse:collapse;margin:20px 0}
+th,td{border:1px solid #cbd5e1;padding:12px;text-align:left;vertical-align:top}
+th{background:#e0f2fe;color:#075985}
+.code{background:#090b0f;color:#e5e7eb;border-radius:14px;padding:20px 24px;overflow:auto;font-family:Consolas,monospace;white-space:pre;line-height:1.55}
+.diagram{background:#090b0f;color:#e5e7eb;border-radius:15px;padding:25px;overflow:auto;font-family:Consolas,monospace;white-space:pre;line-height:1.5}
+.step{padding:14px 16px;background:#f8fafc;border-radius:10px;margin:9px 0;border-left:4px solid #0284c7}
+.badge{display:inline-block;background:#bae6fd;color:#075985;padding:4px 11px;border-radius:20px;font-size:12px;font-weight:bold}
+@media(max-width:900px){.layout{display:block;padding:5px}aside{display:none}.hero{padding:28px 18px}.hero h1{font-size:28px}section{padding:24px 18px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside>
+<h2>Topics</h2>
+<a href="#intro">1. Linux Introduction & Structure</a>
+<a href="#kernel">2. Kernel and Shell</a>
+<a href="#commands">3. Basic Linux Commands</a>
+<a href="#files">4. File Concepts</a>
+<a href="#filesystem">5. File System & Structure</a>
+<a href="#directories">6. Directory Structure</a>
+<a href="#vi">7. VI Editor</a>
+<a href="#install">8. Linux Installation</a>
+<a href="#shell">9. Shell Scripting</a>
+<a href="#multiboot">10. Multi Boot OS</a>
+<a href="#users">11. User & Group Management</a>
+<a href="#superuser">12. Super User</a>
+<a href="#permissions">13. File Permissions</a>
+<a href="#exam">14. Exam Questions</a>
+</aside>
+
+<main>
+<div class="hero">
+<span class="badge">LINUX • OPERATING SYSTEM</span>
+<h1>Linux — Structure, Commands, File System, VI Editor & Administration</h1>
+<p><strong>Kernel • Shell • Commands • File System • VI Editor • Installation • Shell Scripting • Multi-Boot • Users & Groups • Root • Permissions</strong></p>
+</div>
+
+<section id="intro">
+<h2>1. Linux Introduction & Structure</h2>
+<p><strong>Linux</strong> एक open-source, Unix-like operating system kernel है। Linux-based operating systems में kernel के साथ system utilities, libraries, package managers, desktop environments और applications मिलकर complete operating system environment बनाते हैं। Ubuntu, Fedora, Debian और कई अन्य distributions Linux kernel पर आधारित हैं।</p>
+
+<div class="important"><b>Exam Definition:</b> Linux एक open-source, Unix-like operating system environment है जिसमें Linux kernel hardware resources को manage करता है और users/applications को system services उपलब्ध कराता है।</div>
+
+<h3>Linux की प्रमुख विशेषताएँ</h3>
+<ul>
+<li><strong>Open Source:</strong> इसका source code उपलब्ध होता है और license के अनुसार modify तथा distribute किया जा सकता है।</li>
+<li><strong>Multiuser:</strong> एक system पर multiple user accounts बनाए और manage किए जा सकते हैं।</li>
+<li><strong>Multitasking:</strong> एक समय में कई processes/tasks run कर सकता है।</li>
+<li><strong>Security:</strong> Users, groups और permissions के माध्यम से access control उपलब्ध होता है।</li>
+<li><strong>Stability:</strong> Servers और लंबे समय तक चलने वाले systems में widely used है।</li>
+<li><strong>Portability:</strong> विभिन्न hardware platforms के लिए Linux-based systems उपलब्ध हैं।</li>
+</ul>
+
+<h3>Linux System Structure</h3>
+<div class="diagram">
+                 USER
+                  │
+                  ▼
+        APPLICATION PROGRAMS
+                  │
+                  ▼
+             SHELL / GUI
+                  │
+                  ▼
+              SYSTEM CALLS
+                  │
+                  ▼
+              LINUX KERNEL
+        ┌─────────┼─────────┐
+        ▼         ▼         ▼
+   Process     Memory     Device
+   Management  Management  Drivers
+        │         │         │
+        └─────────┼─────────┘
+                  ▼
+               HARDWARE
+</div>
+</section>
+
+<section id="kernel">
+<h2>2. Kernel and Shell</h2>
+
+<h3>Kernel क्या है?</h3>
+<p><strong>Kernel</strong> operating system का core component है। यह applications और hardware के बीच interface की तरह काम करता है। Kernel CPU, memory, processes, devices और file systems जैसे resources को manage करता है।</p>
+
+<table>
+<tr><th>Kernel Function</th><th>Description</th></tr>
+<tr><td>Process Management</td><td>Processes create, schedule और terminate करने में सहायता।</td></tr>
+<tr><td>Memory Management</td><td>RAM allocation और memory usage manage करना।</td></tr>
+<tr><td>Device Management</td><td>Hardware devices और drivers के साथ communication।</td></tr>
+<tr><td>File System Management</td><td>Files और directories की access/management।</td></tr>
+<tr><td>Security & Access</td><td>Permissions और resource access controls में सहायता।</td></tr>
+</table>
+
+<h3>Shell क्या है?</h3>
+<p><strong>Shell</strong user और operating system के बीच command interface प्रदान करता है। User shell में commands लिखता है और shell उन commands को execute करने के लिए system services का उपयोग करता है। Common shells में Bash, Zsh और Fish शामिल हैं।</p>
+
+<div class="code">USER
+  ↓
+SHELL
+  ↓
+KERNEL
+  ↓
+HARDWARE</div>
+
+<div class="note"><b>Difference:</b> Kernel system का core है, जबकि Shell user द्वारा दिए गए commands को interpret/execute करने के लिए interface प्रदान करता है।</div>
+</section>
+
+<section id="commands">
+<h2>3. Basic Linux Commands</h2>
+<p>Linux में command-line interface बहुत powerful है। Commands के द्वारा files, directories, users, processes और system information को efficiently manage किया जा सकता है।</p>
+
+<table>
+<tr><th>Command</th><th>Purpose</th><th>Example</th></tr>
+<tr><td><code>pwd</code></td><td>Current working directory दिखाता है।</td><td><code>pwd</code></td></tr>
+<tr><td><code>ls</code></td><td>Files/directories की list दिखाता है।</td><td><code>ls -l</code></td></tr>
+<tr><td><code>cd</code></td><td>Directory change करता है।</td><td><code>cd Documents</code></td></tr>
+<tr><td><code>mkdir</code></td><td>नई directory बनाता है।</td><td><code>mkdir notes</code></td></tr>
+<tr><td><code>rmdir</code></td><td>Empty directory हटाता है।</td><td><code>rmdir notes</code></td></tr>
+<tr><td><code>touch</code></td><td>नई empty file create/update करता है।</td><td><code>touch file.txt</code></td></tr>
+<tr><td><code>cp</code></td><td>File/directory copy करता है।</td><td><code>cp a.txt b.txt</code></td></tr>
+<tr><td><code>mv</code></td><td>File move या rename करता है।</td><td><code>mv old.txt new.txt</code></td></tr>
+<tr><td><code>rm</code></td><td>File remove करता है।</td><td><code>rm test.txt</code></td></tr>
+<tr><td><code>cat</code></td><td>File content display करता है।</td><td><code>cat notes.txt</code></td></tr>
+<tr><td><code>clear</code></td><td>Terminal screen साफ करता है।</td><td><code>clear</code></td></tr>
+<tr><td><code>whoami</code></td><td>Current user name दिखाता है।</td><td><code>whoami</code></td></tr>
+<tr><td><code>date</code></td><td>System date/time display करता है।</td><td><code>date</code></td></tr>
+<tr><td><code>man</code></td><td>Command का manual/help खोलता है।</td><td><code>man ls</code></td></tr>
+</table>
+
+<h3>Basic Practical Example</h3>
+<div class="code">$ mkdir PGDCA
+$ cd PGDCA
+$ touch notes.txt
+$ ls
+notes.txt
+$ mv notes.txt linux.txt
+$ ls
+linux.txt
+$ cat linux.txt
+$ pwd</div>
+
+<div class="important"><b>Tip:</b> Linux commands case-sensitive होते हैं। <code>LS</code> और <code>ls</code> को same command नहीं माना जाता।</div>
+</section>
+
+<section id="files">
+<h2>4. Linux File Concepts</h2>
+<p>Linux में file केवल documents तक सीमित नहीं है। Linux के Unix-like design में devices और कई system resources को file-like interface के माध्यम से access किया जाता है।</p>
+
+<h3>Common File Types</h3>
+<table>
+<tr><th>Symbol</th><th>Type</th><th>Meaning</th></tr>
+<tr><td><code>-</code></td><td>Regular File</td><td>Text, image, program, document आदि।</td></tr>
+<tr><td><code>d</code></td><td>Directory</td><td>Files/directories का container।</td></tr>
+<tr><td><code>l</code></td><td>Symbolic Link</td><td>दूसरे file/path की reference।</td></tr>
+<tr><td><code>c</code></td><td>Character Device</td><td>Character-oriented device interface।</td></tr>
+<tr><td><code>b</code></td><td>Block Device</td><td>Block-oriented storage/device interface।</td></tr>
+</table>
+
+<h3>Hidden Files</h3>
+<p>Linux में dot (<code>.</code>) से शुरू होने वाली files सामान्य <code>ls</code> output में hidden रहती हैं। इन्हें देखने के लिए <code>ls -a</code> उपयोग किया जाता है।</p>
+
+<div class="code">$ ls -a
+.  ..  .bashrc  .profile  Documents  notes.txt</div>
+
+<h3>Absolute और Relative Path</h3>
+<div class="grid">
+<div class="card"><h3>Absolute Path</h3><p>Root <code>/</code> से शुरू होने वाला complete path।<br><code>/home/student/Documents</code></p></div>
+<div class="card"><h3>Relative Path</h3><p>Current working directory के reference से path।<br><code>Documents/notes.txt</code></p></div>
+</div>
+</section>
+
+<section id="filesystem">
+<h2>5. Linux File System & Structure</h2>
+<p>Linux file system एक hierarchical structure follow करता है। इसकी सबसे ऊपर की directory <strong>root directory (/)</strong> होती है। सभी files और directories किसी न किसी रूप में root hierarchy के अंतर्गत आती हैं।</p>
+
+<div class="diagram">
+/
+├── bin
+├── boot
+├── dev
+├── etc
+├── home
+├── lib
+├── media
+├── mnt
+├── opt
+├── proc
+├── root
+├── run
+├── sbin
+├── tmp
+├── usr
+└── var
+</div>
+
+<h3>File System का महत्व</h3>
+<ul>
+<li>Files को logical hierarchy में organize करता है।</li>
+<li>Users और applications को data access करने का structured तरीका देता है।</li>
+<li>System files और user files को अलग locations में organize करने में सहायता करता है।</li>
+<li>Permissions के माध्यम से access control लागू किया जा सकता है।</li>
+</ul>
+</section>
+
+<section id="directories">
+<h2>6. Linux Directory Structure</h2>
+<table>
+<tr><th>Directory</th><th>Purpose</th></tr>
+<tr><td><code>/</code></td><td>Root directory; complete hierarchy का starting point।</td></tr>
+<tr><td><code>/bin</code></td><td>Essential user command binaries; exact contents distribution पर depend कर सकते हैं।</td></tr>
+<tr><td><code>/boot</code></td><td>Boot process से संबंधित files, जैसे kernels/bootloader data।</td></tr>
+<tr><td><code>/dev</code></td><td>Device files।</td></tr>
+<tr><td><code>/etc</code></td><td>System-wide configuration files।</td></tr>
+<tr><td><code>/home</code></td><td>Normal users की home directories।</td></tr>
+<tr><td><code>/root</code></td><td>Root/superuser की home directory।</td></tr>
+<tr><td><code>/lib</code></td><td>Essential shared libraries और related components; layout distribution पर depend कर सकता है।</td></tr>
+<tr><td><code>/media</code></td><td>Removable media के mount points commonly यहाँ बनाए जाते हैं।</td></tr>
+<tr><td><code>/mnt</code></td><td>Temporary/manual mount points के लिए traditionally उपयोग।</td></tr>
+<tr><td><code>/opt</code></td><td>Optional/add-on software के लिए।</td></tr>
+<tr><td><code>/proc</code></td><td>Kernel/process information का virtual filesystem।</td></tr>
+<tr><td><code>/run</code></td><td>Runtime data।</td></tr>
+<tr><td><code>/sbin</code></td><td>System administration commands; modern distributions में merged layouts भी मिलते हैं।</td></tr>
+<tr><td><code>/tmp</code></td><td>Temporary files के लिए।</td></tr>
+<tr><td><code>/usr</code></td><td>Applications, libraries, documentation और कई user-space resources।</td></tr>
+<tr><td><code>/var</code></td><td>Variable data जैसे logs, caches और spool data।</td></tr>
+</table>
+</section>
+
+<section id="vi">
+<h2>7. VI Editor</h2>
+<p><strong>vi</strong> Unix/Linux का एक प्रसिद्ध text editor है। यह terminal में text files create और edit करने के लिए उपयोग किया जाता है। इसका मुख्य feature इसका <strong>mode-based operation</strong> है। Modern Linux systems में अक्सर Vim उपलब्ध होता है, जो vi का enhanced version है।</p>
+
+<h3>VI के मुख्य Modes</h3>
+<div class="grid">
+<div class="card"><h3>Command / Normal Mode</h3><p>Navigation, deletion, copying, searching आदि operations के लिए।</p></div>
+<div class="card"><h3>Insert Mode</h3><p>Text type/edit करने के लिए। <code>i</code> या अन्य insert commands से enter किया जा सकता है।</p></div>
+<div class="card"><h3>Command-line Mode</h3><p><code>:</code> दबाकर save, quit और अन्य commands चलाने के लिए।</p></div>
+</div>
+
+<h3>VI खोलना</h3>
+<div class="code">$ vi notes.txt</div>
+
+<h3>Basic VI Commands</h3>
+<table>
+<tr><th>Command</th><th>Purpose</th></tr>
+<tr><td><code>i</code></td><td>Insert mode में जाना।</td></tr>
+<tr><td><code>Esc</code></td><td>Insert mode से normal mode में वापस।</td></tr>
+<tr><td><code>:w</code></td><td>File save करना।</td></tr>
+<tr><td><code>:q</code></td><td>Editor से exit करना।</td></tr>
+<tr><td><code>:wq</code></td><td>Save करके exit करना।</td></tr>
+<tr><td><code>:q!</code></td><td>Changes discard करके exit करना।</td></tr>
+<tr><td><code>dd</code></td><td>Current line delete करना।</td></tr>
+<tr><td><code>yy</code></td><td>Current line copy/yank करना।</td></tr>
+<tr><td><code>p</code></td><td>Copied/yanked text paste करना।</td></tr>
+<tr><td><code>/word</code></td><td>Word search करना।</td></tr>
+</table>
+
+<h3>VI Practical Flow</h3>
+<div class="code">$ vi linux.txt
+# Press i
+Linux is an open-source operating system.
+This is a practical note.
+# Press Esc
+:wq</div>
+</section>
+
+<section id="install">
+<h2>8. Linux Installation</h2>
+<p>Linux installation के दौरान operating system files disk पर install की जाती हैं, boot configuration बनाई जाती है और आवश्यक user accounts तथा settings configure की जाती हैं। Exact screens distribution जैसे Ubuntu, Fedora, Debian आदि के अनुसार अलग हो सकती हैं।</p>
+
+<h3>Basic Requirements</h3>
+<ul>
+<li>Compatible computer/virtual machine</li>
+<li>Linux installation ISO/image</li>
+<li>Bootable USB/DVD या virtual ISO</li>
+<li>Required disk space</li>
+<li>Backup of important data</li>
+<li>Stable power supply</li>
+</ul>
+
+<h3>Installation Steps</h3>
+<div class="step"><b>Step 1:</b> Required Linux distribution की installation image प्राप्त करें।</div>
+<div class="step"><b>Step 2:</b> Bootable USB तैयार करें या virtual machine में ISO attach करें।</div>
+<div class="step"><b>Step 3:</b> System को installation media से boot करें।</div>
+<div class="step"><b>Step 4:</b> Language, keyboard और regional settings चुनें।</div>
+<div class="step"><b>Step 5:</b> Installation type और disk partitioning option select करें।</div>
+<div class="step"><b>Step 6:</b> User account और password create करें।</div>
+<div class="step"><b>Step 7:</b> Bootloader installation/configuration complete होने दें।</div>
+<div class="step"><b>Step 8:</b> Installation finish होने पर restart करें और installation media remove करें।</div>
+
+<div class="important"><b>Warning:</b> Manual partitioning करते समय गलत partition चुनने से existing data loss हो सकता है। Important data का backup पहले लेना चाहिए।</div>
+
+<h3>Common Linux Partitions / Mount Points</h3>
+<table>
+<tr><th>Mount Point</th><th>Purpose</th></tr>
+<tr><td><code>/</code></td><td>Main/root filesystem।</td></tr>
+<tr><td><code>/home</code></td><td>User data और personal files के लिए।</td></tr>
+<tr><td><code>/boot</code></td><td>Boot-related files के लिए, setup पर depend करता है।</td></tr>
+<tr><td>Swap</td><td>Disk space का उपयोग memory pressure के समय virtual memory mechanism में।</td></tr>
+</table>
+</section>
+
+<section id="shell">
+<h2>9. Shell Scripting</h2>
+<p><strong>Shell Script</strong commands का एक text file में organized sequence है जिसे shell interpret करके execute करता है। Shell scripting repetitive tasks को automate करने, files process करने और system administration tasks में उपयोगी है।</p>
+
+<h3>Basic Shell Script</h3>
+<div class="code">#!/bin/bash
+
+echo "Hello, Linux"
+echo "Welcome to Shell Scripting"</div>
+
+<h3>Output</h3>
+<div class="code">Hello, Linux
+Welcome to Shell Scripting</div>
+
+<h3>Variables</h3>
+<div class="code">#!/bin/bash
+
+name="Student"
+echo "Hello $name"</div>
+
+<h3>User Input</h3>
+<div class="code">#!/bin/bash
+
+echo "Enter your name:"
+read name
+echo "Welcome $name"</div>
+
+<h3>IF-ELSE</h3>
+<div class="code">#!/bin/bash
+
+read -p "Enter a number: " n
+
+if [ "$n" -gt 0 ]
+then
+    echo "Positive number"
+else
+    echo "Zero or negative number"
+fi</div>
+
+<h3>For Loop</h3>
+<div class="code">#!/bin/bash
+
+for i in 1 2 3 4 5
+do
+    echo "Number: $i"
+done</div>
+
+<h3>Script Run करने की Basic Process</h3>
+<div class="code">$ nano test.sh
+$ chmod +x test.sh
+$ ./test.sh</div>
+
+<div class="note"><b>Shebang:</b> <code>#!/bin/bash</code> script के लिए interpreter specify करने वाली commonly used first line है।</div>
+</section>
+
+<section id="multiboot">
+<h2>10. Multi-Boot Operating System</h2>
+<p><strong>Multi-Boot</strong system में एक computer पर दो या अधिक operating systems install किए जाते हैं और startup के समय user को desired operating system select करने का option मिलता है। उदाहरण के लिए Linux और Windows को एक system पर अलग partitions/boot configuration के साथ install किया जा सकता है।</p>
+
+<div class="diagram">
+              POWER ON
+                  │
+                  ▼
+          BOOTLOADER / UEFI
+                  │
+          ┌───────┴────────┐
+          ▼                ▼
+       Windows            Linux
+          │                │
+          ▼                ▼
+      Windows OS       Linux OS
+</div>
+
+<h3>Multi-Boot के Advantages</h3>
+<ul>
+<li>एक ही computer पर multiple operating systems का उपयोग।</li>
+<li>Different software environments test करने में सुविधा।</li>
+<li>Learning और development के लिए useful।</li>
+</ul>
+
+<h3>Limitations</h3>
+<ul>
+<li>Disk space multiple systems के लिए चाहिए।</li>
+<li>Partition और boot configuration carefully manage करनी होती है।</li>
+<li>Bootloader configuration में error होने पर boot problems आ सकती हैं।</li>
+</ul>
+</section>
+
+<section id="users">
+<h2>11. User and Group Management</h2>
+<p>Linux एक multiuser operating system है। इसलिए system में अलग-अलग users और groups बनाए जा सकते हैं। User account के साथ identity और permissions associated होती हैं, जबकि groups users को logically organize करने में सहायता करते हैं।</p>
+
+<h3>User Management Commands</h3>
+<table>
+<tr><th>Command</th><th>Purpose</th><th>Example</th></tr>
+<tr><td><code>whoami</code></td><td>Current user देखना।</td><td><code>whoami</code></td></tr>
+<tr><td><code>id</code></td><td>User और group IDs देखना।</td><td><code>id student</code></td></tr>
+<tr><td><code>useradd</code></td><td>New user create करना।</td><td><code>sudo useradd student</code></td></tr>
+<tr><td><code>passwd</code></td><td>User password set/change करना।</td><td><code>sudo passwd student</code></td></tr>
+<tr><td><code>usermod</code></td><td>User account modify करना।</td><td><code>sudo usermod ...</code></td></tr>
+<tr><td><code>userdel</code></td><td>User account delete करना।</td><td><code>sudo userdel student</code></td></tr>
+</table>
+
+<h3>Group Management</h3>
+<div class="code">sudo groupadd developers
+sudo usermod -aG developers student
+id student</div>
+
+<div class="important"><b>Important:</b> User/group management commands के लिए administrative privileges की आवश्यकता हो सकती है। Exact command options distribution पर depend कर सकते हैं।</div>
+</section>
+
+<section id="superuser">
+<h2>12. Super User / Root User</h2>
+<p><strong>Root</strong> Linux का privileged administrative account है। Root को system की बहुत सी files, services, users और configurations पर unrestricted administrative access प्राप्त होता है। इसी कारण root privileges का उपयोग carefully किया जाना चाहिए।</p>
+
+<h3>sudo क्या है?</h3>
+<p><strong>sudo</strong> command authorized users को किसी command को elevated privileges के साथ execute करने की सुविधा देती है, बिना सीधे root account में login किए।</p>
+
+<div class="code">$ sudo apt update
+$ sudo systemctl status ssh</div>
+
+<h3>Root और Normal User</h3>
+<table>
+<tr><th>Feature</th><th>Normal User</th><th>Root</th></tr>
+<tr><td>System files</td><td>Limited access</td><td>Extensive administrative access</td></tr>
+<tr><td>Software installation</td><td>Usually requires privileges</td><td>Can perform administrative installation</td></tr>
+<tr><td>User management</td><td>Limited</td><td>Administrative control</td></tr>
+<tr><td>Risk</td><td>Lower system-wide risk</td><td>Incorrect command can seriously affect system</td></tr>
+</table>
+</section>
+
+<section id="permissions">
+<h2>13. File Permissions</h2>
+<p>Linux file permissions determine करते हैं कि कौन file को <strong>read, write या execute</strong> कर सकता है। Permissions तीन main categories के लिए define होती हैं: <strong>User/Owner, Group और Others</strong>।</p>
+
+<h3>Permission Symbols</h3>
+<table>
+<tr><th>Symbol</th><th>Meaning</th><th>File पर Meaning</th></tr>
+<tr><td><code>r</code></td><td>Read</td><td>File content पढ़ना</td></tr>
+<tr><td><code>w</code></td><td>Write</td><td>File modify करना</td></tr>
+<tr><td><code>x</code></td><td>Execute</td><td>Executable file run करना</td></tr>
+<tr><td><code>-</code></td><td>No permission</td><td>उस permission का access नहीं</td></tr>
+</table>
+
+<h3>Permission Format</h3>
+<div class="code">-rwxr-xr--
+
+Owner   → rwx
+Group   → r-x
+Others  → r--</div>
+
+<h3>Permission Numeric Values</h3>
+<table>
+<tr><th>Permission</th><th>Value</th></tr>
+<tr><td>Read (r)</td><td>4</td></tr>
+<tr><td>Write (w)</td><td>2</td></tr>
+<tr><td>Execute (x)</td><td>1</td></tr>
+</table>
+
+<p>इन values को जोड़कर permission numbers बनाए जाते हैं। उदाहरण के लिए <strong>rwx = 4+2+1 = 7</strong>, <strong>r-x = 4+0+1 = 5</strong> और <strong>r-- = 4</strong>।</p>
+
+<h3>chmod Command</h3>
+<p><strong>chmod</strong> file permissions change करने के लिए उपयोग किया जाता है।</p>
+
+<div class="code">$ chmod 755 script.sh
+
+# Result concept:
+Owner  = 7 = rwx
+Group  = 5 = r-x
+Others = 5 = r-x</div>
+
+<h3>Symbolic Permission Example</h3>
+<div class="code">$ chmod u+x script.sh
+$ chmod g-w notes.txt
+$ chmod o+r notes.txt</div>
+
+<h3>Ownership Commands</h3>
+<div class="code">$ chown student notes.txt
+$ chgrp developers notes.txt</div>
+
+<div class="note"><b>Remember:</b> <code>chmod</code> permissions बदलता है, <code>chown</code> ownership बदलता है और <code>chgrp</code> group ownership बदलता है।</div>
+
+<h3>Permissions का Practical Importance</h3>
+<ul>
+<li>Unauthorized users को files modify करने से रोकना।</li>
+<li>Important system files को protect करना।</li>
+<li>Shared projects में controlled access देना।</li>
+<li>Executable scripts और programs के access को manage करना।</li>
+</ul>
+</section>
+
+<section id="exam">
+<h2>14. Important Exam Questions</h2>
+
+<div class="exam">
+<b>Long Answer Questions</b><br><br>
+1. Linux क्या है? इसकी प्रमुख विशेषताओं और system structure को समझाइए।<br>
+2. Linux Kernel और Shell को विस्तार से समझाइए तथा दोनों में अंतर लिखिए।<br>
+3. Linux के विभिन्न basic commands को examples सहित समझाइए।<br>
+4. Linux file system और directory structure को diagram सहित समझाइए।<br>
+5. VI Editor क्या है? इसके modes और प्रमुख commands समझाइए।<br>
+6. Linux installation की पूरी प्रक्रिया step-by-step समझाइए।<br>
+7. Shell scripting क्या है? Variables, input, conditional statements और loops को examples सहित समझाइए।<br>
+8. Multi-Boot Operating System क्या है? इसके advantages और limitations समझाइए।<br>
+9. Linux में user और group management को commands सहित समझाइए।<br>
+10. Super User/Root User क्या है? sudo का क्या उपयोग है?<br>
+11. Linux file permissions क्या हैं? r, w, x तथा chmod को examples सहित समझाइए।
+</div>
+
+<h3>Short Questions</h3>
+<ul>
+<li>Linux क्या है?</li>
+<li>Kernel क्या है?</li>
+<li>Shell क्या है?</li>
+<li><code>pwd</code> command का उपयोग क्या है?</li>
+<li><code>ls</code> और <code>cd</code> commands क्या करती हैं?</li>
+<li>Root directory क्या है?</li>
+<li><code>/etc</code> directory का क्या उपयोग है?</li>
+<li>VI Editor क्या है?</li>
+<li>Shell Script क्या है?</li>
+<li>Multi-Boot OS क्या है?</li>
+<li>Root user कौन होता है?</li>
+<li>sudo क्या है?</li>
+<li>Linux में <code>rwx</code> का क्या अर्थ है?</li>
+<li><code>chmod 755</code> का क्या अर्थ है?</li>
+<li><code>chown</code> command का क्या उपयोग है?</li>
+</ul>
+
+<div class="important">
+<b>Quick Revision:</b><br>
+<strong>Linux → Open-source Unix-like OS environment</strong><br>
+<strong>Kernel → Core / Hardware Resource Manager</strong><br>
+<strong>Shell → User Command Interface</strong><br>
+<strong>/ → Root Directory</strong><br>
+<strong>pwd → Current Directory</strong><br>
+<strong>ls → List</strong><br>
+<strong>cd → Change Directory</strong><br>
+<strong>mkdir → Create Directory</strong><br>
+<strong>cp → Copy</strong><br>
+<strong>mv → Move/Rename</strong><br>
+<strong>rm → Remove</strong><br>
+<strong>vi → Text Editor</strong><br>
+<strong>root → Super User</strong><br>
+<strong>sudo → Execute with Elevated Privileges</strong><br>
+<strong>chmod → Change Permissions</strong><br>
+<strong>chown → Change Owner</strong><br>
+<strong>chgrp → Change Group</strong><br>
+<strong>r=4, w=2, x=1</strong>
+</div>
+</section>
+</main>
+</div>
+</body>
+</html>

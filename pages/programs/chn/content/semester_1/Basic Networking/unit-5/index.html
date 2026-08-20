@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Physical and Data Link Layer - PGDCA Notes</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#eef3f8;color:#202936;font-family:Segoe UI,Arial,sans-serif;line-height:1.9}
+.wrap{max-width:1500px;margin:auto;padding:15px;display:grid;grid-template-columns:285px 1fr;gap:18px}
+aside{position:sticky;top:15px;height:calc(100vh - 30px);overflow:auto;background:#fff;padding:20px;border-radius:18px;box-shadow:0 8px 28px #0001}
+aside h2{color:#075985;border-left:5px solid #0284c7;padding-left:10px}
+aside a{display:block;padding:7px 10px;color:#374151;text-decoration:none;border-radius:8px;font-size:14px}
+aside a:hover{background:#e0f2fe;color:#0369a1}
+main{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 8px 28px #0001}
+.hero{padding:42px;background:linear-gradient(135deg,#dbeafe,#e0f2fe,#f8fafc)}
+.hero h1{font-size:38px;color:#075985;margin:8px 0;line-height:1.3}
+.badge{display:inline-block;background:#bae6fd;color:#075985;padding:4px 13px;border-radius:20px;font-size:12px;font-weight:700}
+section{padding:32px;border-bottom:1px solid #e5e7eb}
+h2{font-size:29px;color:#075985;border-left:5px solid #0284c7;padding-left:13px}
+h3{font-size:22px;color:#0c4a6e;margin-top:27px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{background:#f0f9ff;border:1px solid #bae6fd;padding:18px;border-radius:14px}
+.note,.important,.exam{padding:18px 20px;border-radius:12px;margin:19px 0}
+.note{background:#eff6ff;border-left:5px solid #3b82f6}
+.important{background:#fff7ed;border-left:5px solid #f97316}
+.exam{background:#ecfdf5;border-left:5px solid #10b981}
+table{width:100%;border-collapse:collapse;margin:20px 0}
+th,td{border:1px solid #cbd5e1;padding:12px;text-align:left;vertical-align:top}
+th{background:#e0f2fe;color:#075985}
+.diagram{background:#090b0f;color:#e5e7eb;border-radius:14px;padding:22px;overflow:auto;font-family:Consolas,monospace;white-space:pre;line-height:1.5}
+.step{padding:14px 16px;background:#f8fafc;border-radius:10px;margin:9px 0;border-left:4px solid #0284c7}
+@media(max-width:900px){.wrap{display:block;padding:5px}aside{display:none}.hero{padding:28px 18px}.hero h1{font-size:29px}section{padding:24px 18px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<aside>
+<h2>Contents</h2>
+<a href="#intro">1. Introduction</a>
+<a href="#physical">2. Physical Layer</a>
+<a href="#datalink">3. Data Link Layer</a>
+<a href="#mac">4. MAC Sub-layer</a>
+<a href="#llc">5. LLC</a>
+<a href="#macaddress">6. MAC Addressing</a>
+<a href="#framing">7. Framing</a>
+<a href="#error">8. Error Control</a>
+<a href="#flow">9. Flow Control</a>
+<a href="#token">10. Token Ring</a>
+<a href="#ethernet">11. Ethernet</a>
+<a href="#fddi">12. FDDI</a>
+<a href="#arp">13. Address Resolution Protocol</a>
+<a href="#comparison">14. Comparison</a>
+<a href="#exam">15. Exam Questions</a>
+</aside>
+
+<main>
+<div class="hero">
+<span class="badge">DCCN • PGDCA • 10 PERIODS</span>
+<h1>5. Physical and Data Link Layer</h1>
+<p><strong>MAC • LLC • MAC Addressing • Framing • Error Control • Flow Control • Token Ring • Ethernet • FDDI • ARP</strong></p>
+</div>
+
+<section id="intro">
+<h2>1. Introduction</h2>
+<p>Computer network में data को एक device से दूसरे device तक पहुँचाने के लिए अलग-अलग layers काम करती हैं। OSI Model में <strong>Physical Layer</strong> सबसे नीचे और <strong>Data Link Layer</strong> उसके ऊपर होती है। Physical Layer का मुख्य focus raw bits को physical medium पर transmit करना है, जबकि Data Link Layer directly connected nodes के बीच frames की delivery, MAC addressing, error detection और medium access जैसी responsibilities संभालती है।</p>
+
+<div class="important"><b>Exam Definition:</b> Physical Layer physical medium पर bits और signals के transmission से संबंधित होती है, जबकि Data Link Layer local link पर frames की delivery, addressing, error control और flow/medium access functions से संबंधित होती है।</div>
+
+<div class="diagram">
+                 OSI MODEL
+
+        ┌──────────────────────┐
+        │   Network Layer      │
+        ├──────────────────────┤
+        │   DATA LINK LAYER    │
+        │   ┌──────────────┐   │
+        │   │ LLC          │   │
+        │   ├──────────────┤   │
+        │   │ MAC          │   │
+        │   └──────────────┘   │
+        ├──────────────────────┤
+        │   PHYSICAL LAYER     │
+        └──────────────────────┘
+</div>
+</section>
+
+<section id="physical">
+<h2>2. Physical Layer</h2>
+<p><strong>Physical Layer</strong> OSI Model की Layer 1 है। यह data को raw bits के रूप में physical medium के माध्यम से transmit करने से संबंधित है। यह layer logical meaning of data को नहीं समझती; इसका focus signals, transmission medium और physical characteristics पर होता है।</p>
+
+<h3>मुख्य कार्य</h3>
+<ul>
+<li>Bits को electrical, optical या radio signals में represent/transmit करना।</li>
+<li>Physical transmission medium की characteristics define करना।</li>
+<li>Cables, connectors और physical interfaces से संबंधित specifications।</li>
+<li>Signal levels और timing जैसी physical characteristics को support करना।</li>
+<li>Transmission rate और bit transmission से संबंधित specifications में सहायता।</li>
+</ul>
+
+<h3>Physical Media के Examples</h3>
+<div class="grid">
+<div class="card"><strong>Twisted Pair</strong><p>UTP और STP जैसे copper cables LANs में commonly use होते हैं।</p></div>
+<div class="card"><strong>Coaxial Cable</strong><p>Central conductor और shielding वाला cable type।</p></div>
+<div class="card"><strong>Optical Fibre</strong><p>Light pulses के माध्यम से data transmit करता है।</p></div>
+<div class="card"><strong>Wireless Medium</strong><p>Radio waves आदि के माध्यम से transmission करता है।</p></div>
+</div>
+
+<div class="note"><b>PDU:</b> Physical Layer पर data को commonly <strong>Bits</strong> के रूप में represent किया जाता है।</div>
+</section>
+
+<section id="datalink">
+<h2>3. Data Link Layer</h2>
+<p><strong>Data Link Layer</strong> OSI Model की Layer 2 है। इसका primary purpose directly connected network nodes के बीच data transfer को organize करना है। यह network layer से प्राप्त packets को frames में encapsulate करती है और local link पर frame delivery के लिए आवश्यक functions provide करती है।</p>
+
+<h3>Data Link Layer के प्रमुख कार्य</h3>
+<ul>
+<li><strong>Framing:</strong> Network layer packets को frames में organize करना।</li>
+<li><strong>MAC Addressing:</strong> Local network interfaces की पहचान के लिए MAC addresses का उपयोग।</li>
+<li><strong>Error Control:</strong> Transmission errors को detect करने और कुछ protocols में recovery support करने की mechanisms।</li>
+<li><strong>Flow Control:</strong> Sender और receiver की speed के बीच coordination।</li>
+<li><strong>Medium Access Control:</strong> Shared medium पर transmission access को coordinate करना।</li>
+</ul>
+
+<div class="diagram">
+Network Layer
+     │
+     │ Packet
+     ▼
+┌─────────────────────┐
+│   DATA LINK LAYER   │
+│  Framing            │
+│  MAC Addressing     │
+│  Error Control      │
+│  Flow / MAC Control │
+└──────────┬──────────┘
+           │
+           │ Frame
+           ▼
+      Physical Layer
+           │
+           │ Bits / Signals
+           ▼
+        Medium
+</div>
+</section>
+
+<section id="mac">
+<h2>4. MAC Sub-layer</h2>
+<p><strong>MAC (Media Access Control)</strong> Data Link Layer का lower sub-layer है। यह local network medium तक access और frame transmission से संबंधित functions को handle करता है। विशेष रूप से shared communication medium में यह तय करने में सहायता करता है कि कौन-सा device कब transmit कर सकता है।</p>
+
+<h3>MAC Sub-layer के Functions</h3>
+<ul>
+<li>MAC addressing से संबंधित functions।</li>
+<li>Frame transmission और reception में सहायता।</li>
+<li>Shared medium access को control करना।</li>
+<li>Network technology के अनुसार access method लागू करना।</li>
+<li>Ethernet और अन्य LAN technologies के frame handling में भूमिका।</li>
+</ul>
+
+<div class="note"><b>Easy Memory:</b> <strong>MAC = Media Access Control</strong> → “Medium पर किस device को access मिलेगा और frame कैसे handle होगा।”</div>
+</section>
+
+<section id="llc">
+<h2>5. LLC – Logical Link Control</h2>
+<p><strong>LLC (Logical Link Control)</strong> Data Link Layer का upper sub-layer है। IEEE 802 architecture में LLC, network layer protocols और underlying MAC mechanisms के बीच logical link control functions provide करता है।</p>
+
+<h3>LLC के Functions</h3>
+<ul>
+<li>Network layer protocols के लिए logical interface provide करना।</li>
+<li>Data link communication को logically organize करना।</li>
+<li>Upper-layer protocols के multiplexing/identification में सहायता करना।</li>
+<li>कुछ implementations में flow और error-related link services provide करना।</li>
+</ul>
+
+<div class="diagram">
+        DATA LINK LAYER
+┌────────────────────────────┐
+│ LLC - Logical Link Control │  ← Upper
+├────────────────────────────┤
+│ MAC - Media Access Control │  ← Lower
+└────────────────────────────┘
+               │
+               ▼
+        Physical Layer
+</div>
+
+<table>
+<tr><th>LLC</th><th>MAC</th></tr>
+<tr><td>Upper sub-layer</td><td>Lower sub-layer</td></tr>
+<tr><td>Logical link control</td><td>Media access control</td></tr>
+<tr><td>Upper/network layer interface से संबंधित</td><td>MAC addressing और medium access से संबंधित</td></tr>
+</table>
+</section>
+
+<section id="macaddress">
+<h2>6. MAC Addressing</h2>
+<p><strong>MAC Address (Media Access Control Address)</strong> network interface की hardware-level identifier है। Ethernet और अन्य IEEE 802 networks में MAC address local network communication के लिए frame destination/source identification में उपयोग होता है।</p>
+
+<h3>MAC Address का सामान्य Format</h3>
+<p>Ethernet MAC address सामान्यतः <strong>48 bits (6 bytes)</strong> का होता है और hexadecimal notation में लिखा जाता है। उदाहरण:</p>
+
+<div class="diagram">
+00:1A:2B:3C:4D:5E
+
+48 bits = 6 bytes
+Each byte = 8 bits
+6 × 8 = 48 bits
+</div>
+
+<h3>MAC Address के मुख्य Concepts</h3>
+<ul>
+<li>MAC address network interface को identify करने में सहायता करता है।</li>
+<li>Frame में source और destination MAC addresses हो सकते हैं।</li>
+<li>Ethernet switches MAC address table के आधार पर forwarding decisions लेते हैं।</li>
+<li>MAC addressing local/link-level communication से संबंधित है।</li>
+</ul>
+
+<div class="important"><b>MAC vs IP:</b> MAC address Layer 2/link-level identification से संबंधित है, जबकि IP address Layer 3 logical addressing और routing के लिए उपयोग होता है।</div>
+</section>
+
+<section id="framing">
+<h2>7. Framing</h2>
+<p><strong>Framing</strong> Data Link Layer का important function है। Network Layer से प्राप्त packet को Data Link Layer एक frame के रूप में organize करती है। Frame में control information, addresses और error-detection information जैसी fields हो सकती हैं, जो particular data-link technology पर depend करती हैं।</p>
+
+<div class="diagram">
+Generic Data Link Frame
+
+┌─────────┬──────────────┬─────────────┬────────────┐
+│ Header  │   Payload    │ Error Check │  Trailer*  │
+└─────────┴──────────────┴─────────────┴────────────┘
+    ▲           ▲              ▲
+    │           │              │
+Addresses     Data        Error detection
+
+* Exact fields technology पर depend करती हैं।
+</div>
+
+<h3>Framing की आवश्यकता</h3>
+<ul>
+<li>Continuous bit stream को manageable data units में divide करना।</li>
+<li>Frame boundaries identify करना।</li>
+<li>Source/destination link-level addressing carry करना।</li>
+<li>Error detection information attach करना।</li>
+</ul>
+
+<h3>Framing के Common Approaches</h3>
+<table>
+<tr><th>Method</th><th>Basic Idea</th></tr>
+<tr><td>Character/Byte Count</td><td>Frame length/count information के आधार पर frame boundary determine करना।</td></tr>
+<tr><td>Byte Stuffing</td><td>Special delimiter bytes को data में appear होने पर escape/stuff करना।</td></tr>
+<tr><td>Bit Stuffing</td><td>Special bit pattern को preserve करने के लिए extra bits insert करना।</td></tr>
+<tr><td>Physical Layer Coding Violations</td><td>कुछ technologies special signal patterns का उपयोग frame boundary indication के लिए कर सकती हैं।</td></tr>
+</table>
+</section>
+
+<section id="error">
+<h2>8. Error Control</h2>
+<p>Data transmission के दौरान noise, interference, signal distortion या other physical conditions के कारण bits बदल सकते हैं। <strong>Error Control</strong> का उद्देश्य transmission errors को detect करना और protocol के अनुसार correction या retransmission में सहायता करना है।</p>
+
+<h3>Error Detection</h3>
+<p>Data Link Layer में error detection के लिए विभिन्न techniques use हो सकती हैं:</p>
+<div class="grid">
+<div class="card"><strong>Parity</strong><p>Additional parity bit के द्वारा simple error detection।</p></div>
+<div class="card"><strong>Checksum</strong><p>Data values से calculated checking value का उपयोग।</p></div>
+<div class="card"><strong>CRC</strong><p>Polynomial-based cyclic redundancy check; Ethernet frames में CRC/FCS आधारित error detection widely used है।</p></div>
+</div>
+
+<h3>Error Control की Basic Process</h3>
+<div class="step"><b>1.</b> Sender data/frame transmit करता है।</div>
+<div class="step"><b>2.</b> Receiver received frame को check करता है।</div>
+<div class="step"><b>3.</b> Error detected होने पर protocol के अनुसार frame discard, notification या retransmission mechanism हो सकता है।</div>
+<div class="step"><b>4.</b> Reliable protocols में corrupted/lost data को पुनः भेजा जा सकता है।</div>
+
+<div class="important"><b>Note:</b> Error detection और error correction अलग concepts हैं। हर Data Link protocol स्वयं corrupted frame को correct नहीं करता; कई systems detection के बाद retransmission का उपयोग करते हैं।</div>
+</section>
+
+<section id="flow">
+<h2>9. Flow Control</h2>
+<p><strong>Flow Control</strong> sender की transmission rate और receiver की processing/buffering capacity के बीच coordination करने की technique है। इसका उद्देश्य receiver को ऐसी speed से data receive करने से बचाना है जिससे उसके buffers overflow हो जाएँ।</p>
+
+<h3>मुख्य Techniques</h3>
+<table>
+<tr><th>Technique</th><th>Explanation</th></tr>
+<tr><td>Stop-and-Wait</td><td>Sender एक frame भेजकर acknowledgement या required response का wait करता है, फिर next frame भेजता है।</td></tr>
+<tr><td>Sliding Window</td><td>Sender acknowledgement का wait किए बिना allowed window के अंदर multiple frames भेज सकता है। इससे link utilization improve हो सकता है।</td></tr>
+</table>
+
+<div class="diagram">
+Stop-and-Wait
+
+Sender                         Receiver
+  │ -------- Frame 1 --------►   │
+  │ ◄------- ACK 1 -----------  │
+  │ -------- Frame 2 --------►   │
+  │ ◄------- ACK 2 -----------  │
+</div>
+
+<div class="note"><b>Easy Difference:</b> <strong>Flow Control = speed/manage receiver capacity</strong>; <strong>Error Control = transmission errors detect/recover</strong>.</div>
+</section>
+
+<section id="token">
+<h2>10. Token Ring</h2>
+<p><strong>Token Ring</strong> एक LAN technology थी जिसमें devices logical ring arrangement में communicate करते थे और transmission permission के लिए एक special frame जिसे <strong>token</strong> कहा जाता था, circulate करता था। जिस station के पास token होता था, उसे data transmit करने का अवसर मिलता था।</p>
+
+<div class="diagram">
+             ┌──────────┐
+             │ Station 1│
+             └────┬─────┘
+                  │
+        ┌─────────┘
+        ▼
+┌─────────────┐       ┌─────────────┐
+│ Station 4   │ ◄──── │ Station 2   │
+└──────┬──────┘       └──────┬──────┘
+       │                     │
+       └──────► Station 3 ◄─┘
+
+        TOKEN circulates around ring
+</div>
+
+<h3>Token Ring की विशेषताएँ</h3>
+<ul>
+<li>Logical ring based access mechanism।</li>
+<li>Token possession transmission permission देता था।</li>
+<li>Controlled access के कारण collisions को avoid करने का उद्देश्य।</li>
+<li>IEEE 802.5 से historically associated।</li>
+</ul>
+
+<h3>Advantages</h3>
+<ul>
+<li>Controlled access mechanism।</li>
+<li>Heavy traffic में predictable access behavior का advantage हो सकता था।</li>
+<li>Collision-based contention से अलग access approach।</li>
+</ul>
+
+<h3>Limitation</h3>
+<p>Modern Ethernet switching के widespread adoption के कारण Token Ring आज सामान्य enterprise LAN technology नहीं है; यह networking history और concepts समझने के लिए महत्वपूर्ण है।</p>
+</section>
+
+<section id="ethernet">
+<h2>11. Ethernet</h2>
+<p><strong>Ethernet</strong> IEEE 802.3 family से associated LAN technology है। यह wired local area networking में सबसे widely deployed technologies में से एक है। Traditional shared Ethernet में CSMA/CD mechanism relevant था, जबकि modern switched full-duplex Ethernet में collisions सामान्य operation का हिस्सा नहीं हैं और CSMA/CD की आवश्यकता नहीं होती।</p>
+
+<div class="diagram">
+Modern Ethernet LAN
+
+PC ───┐
+PC ───┼──── SWITCH ───── Router ───── Other Network
+PC ───┤
+Server┘
+
+Ethernet Frame
+┌──────┬────────┬──────────┬───────┐
+│ MAC  │ MAC    │ Payload  │ FCS   │
+│ Dest │ Source │  Data    │       │
+└──────┴────────┴──────────┴───────┘
+</div>
+
+<h3>Ethernet की प्रमुख विशेषताएँ</h3>
+<ul>
+<li>IEEE 802.3 standards family से संबंधित।</li>
+<li>MAC addressing का उपयोग।</li>
+<li>Ethernet frames में source और destination MAC addresses।</li>
+<li>Modern Ethernet में switches का widespread use।</li>
+<li>Different speeds और physical media के लिए अनेक standards उपलब्ध हैं।</li>
+</ul>
+
+<h3>Traditional CSMA/CD</h3>
+<p><strong>CSMA/CD (Carrier Sense Multiple Access with Collision Detection)</strong> traditional shared, half-duplex Ethernet networks में used access method था। Device transmit करने से पहले medium sense करता था और collision होने पर transmission को detect करके retry mechanism use किया जाता था।</p>
+
+<div class="note"><b>Exam Point:</b> CSMA/CD को traditional shared Ethernet से associate करें; modern full-duplex switched Ethernet में collisions नहीं होते, इसलिए CSMA/CD operational requirement नहीं है।</div>
+</section>
+
+<section id="fddi">
+<h2>12. FDDI</h2>
+<p><strong>FDDI (Fiber Distributed Data Interface)</strong> एक high-speed LAN technology थी जो primarily optical fibre और token-passing ring architecture का उपयोग करती थी। यह backbone और high-speed networking applications में historically important रही है।</p>
+
+<div class="diagram">
+          FDDI Dual Ring Concept
+
+       ┌─────────────────────────┐
+       │   Primary Ring          │
+       ▼                         │
+   [Node A] → [Node B] → [Node C]
+       ▲                         │
+       └─────────────────────────┘
+
+       Secondary Ring
+       ◄────────────────────────
+       Used for redundancy/fault tolerance
+</div>
+
+<h3>FDDI की विशेषताएँ</h3>
+<ul>
+<li>Fiber optic medium का उपयोग।</li>
+<li>Token-passing based ring architecture।</li>
+<li>Dual-ring design redundancy और fault tolerance के लिए उपयोग किया जा सकता था।</li>
+<li>Historically high-speed LAN/backbone environments में important।</li>
+</ul>
+
+<h3>FDDI के फायदे</h3>
+<ul>
+<li>Optical fibre के कारण high bandwidth और long-distance capability।</li>
+<li>Dual ring architecture से resilience में सहायता।</li>
+<li>Electromagnetic interference के प्रति fibre की immunity का benefit।</li>
+</ul>
+</section>
+
+<section id="arp">
+<h2>13. Address Resolution Protocol (ARP)</h2>
+<p><strong>ARP (Address Resolution Protocol)</strong> IPv4 networks में किसी known IP address के corresponding local network MAC address को determine करने के लिए उपयोग किया जाता है। यह तब useful होता है जब host को local Ethernet frame बनाने के लिए destination interface का MAC address चाहिए।</p>
+
+<div class="diagram">
+Host A
+IP: 192.168.1.10
+MAC: AA:AA:AA:AA:AA:AA
+
+        ARP Request
+        "Who has 192.168.1.20?"
+                 │
+                 ▼
+        ┌─────────────────┐
+        │ Local LAN       │
+        └─────────────────┘
+                 │
+                 ▼
+Host B
+IP: 192.168.1.20
+MAC: BB:BB:BB:BB:BB:BB
+
+        ARP Reply
+        "192.168.1.20 is
+         BB:BB:BB:BB:BB:BB"
+</div>
+
+<h3>ARP की Working</h3>
+<div class="step"><b>Step 1:</b> Sender के पास destination का IPv4 address होता है, लेकिन local destination का MAC address available नहीं होता।</div>
+<div class="step"><b>Step 2:</b> Sender local network पर ARP Request broadcast करता है।</div>
+<div class="step"><b>Step 3:</b> जिस host का IP address request में match करता है, वह ARP Reply के माध्यम से अपना MAC address बताता है।</div>
+<div class="step"><b>Step 4:</b> Sender प्राप्त mapping को ARP cache में temporarily store कर सकता है।</div>
+<div class="step"><b>Step 5:</b> Sender destination MAC address के साथ Ethernet frame भेज सकता है।</div>
+
+<h3>ARP का महत्व</h3>
+<ul>
+<li>IPv4 logical address को local link-layer address से map करने में सहायता।</li>
+<li>Ethernet जैसे LANs पर packet delivery के लिए MAC address determination।</li>
+<li>ARP cache repeated requests को कम करने में सहायता करती है।</li>
+</ul>
+
+<div class="important"><b>Important:</b> ARP का basic purpose <strong>IPv4 Address → MAC Address</strong> mapping है। इसे IP-to-MAC resolution के रूप में याद करें।</div>
+</section>
+
+<section id="comparison">
+<h2>14. Quick Comparison</h2>
+<table>
+<tr><th>Topic</th><th>Main Idea</th><th>Important Point</th></tr>
+<tr><td>Physical Layer</td><td>Bits और signals transmission</td><td>Layer 1</td></tr>
+<tr><td>Data Link Layer</td><td>Frames और local-link delivery</td><td>Layer 2</td></tr>
+<tr><td>MAC</td><td>Media access + MAC addressing</td><td>Data Link का lower sub-layer</td></tr>
+<tr><td>LLC</td><td>Logical link control</td><td>Data Link का upper sub-layer</td></tr>
+<tr><td>MAC Address</td><td>Link-level interface identification</td><td>Ethernet में commonly 48-bit</td></tr>
+<tr><td>Framing</td><td>Packets को frames में organize करना</td><td>Layer 2 function</td></tr>
+<tr><td>Error Control</td><td>Error detection/recovery</td><td>CRC/FCS आदि</td></tr>
+<tr><td>Flow Control</td><td>Sender/receiver rate coordination</td><td>Stop-and-Wait, Sliding Window</td></tr>
+<tr><td>Token Ring</td><td>Token-based LAN access</td><td>IEEE 802.5 history</td></tr>
+<tr><td>Ethernet</td><td>LAN technology</td><td>IEEE 802.3</td></tr>
+<tr><td>FDDI</td><td>Fibre/token ring LAN technology</td><td>Historically high-speed LAN</td></tr>
+<tr><td>ARP</td><td>IPv4 to MAC resolution</td><td>Local network mapping</td></tr>
+</table>
+
+<div class="diagram">
+QUICK MEMORY
+
+Physical → Bits
+Data Link → Frames
+MAC → Medium + MAC Address
+LLC → Logical Link Control
+Framing → Packet → Frame
+Error Control → Detect / Recover
+Flow Control → Sender ↔ Receiver Speed
+Token Ring → Token
+Ethernet → IEEE 802.3
+FDDI → Fibre + Dual Ring
+ARP → IPv4 → MAC
+</div>
+</section>
+
+<section id="exam">
+<h2>15. Important Exam Questions</h2>
+<div class="exam">
+<b>Long Answer Questions</b><br><br>
+1. Physical Layer और Data Link Layer को उनके functions सहित समझाइए।<br>
+2. Data Link Layer के MAC और LLC sub-layers को detail में समझाइए।<br>
+3. MAC addressing क्या है? MAC address का format और importance समझाइए।<br>
+4. Framing क्या है? इसकी आवश्यकता और methods समझाइए।<br>
+5. Error control क्या है? Error detection techniques समझाइए।<br>
+6. Flow control क्या है? Stop-and-Wait तथा Sliding Window समझाइए।<br>
+7. Token Ring architecture और working समझाइए।<br>
+8. Ethernet क्या है? इसकी features और traditional CSMA/CD समझाइए।<br>
+9. FDDI क्या है? इसकी architecture और features समझाइए।<br>
+10. ARP क्या है? ARP Request और ARP Reply की working diagram सहित समझाइए।
+</div>
+
+<h3>Short Questions</h3>
+<ul>
+<li>Physical Layer कौन-सी OSI layer है?</li>
+<li>Data Link Layer कौन-सी OSI layer है?</li>
+<li>MAC का full form क्या है?</li>
+<li>LLC का full form क्या है?</li>
+<li>Data Link Layer के दो sub-layers कौन-से हैं?</li>
+<li>MAC address क्या है?</li>
+<li>Ethernet MAC address सामान्यतः कितने bits का होता है?</li>
+<li>Framing क्या है?</li>
+<li>CRC का क्या उपयोग है?</li>
+<li>Flow control क्या है?</li>
+<li>Stop-and-Wait क्या है?</li>
+<li>Sliding Window क्या है?</li>
+<li>Token Ring क्या है?</li>
+<li>Ethernet किस IEEE standard family से associated है?</li>
+<li>FDDI का full form क्या है?</li>
+<li>ARP का full form क्या है?</li>
+<li>ARP किस mapping के लिए उपयोग होता है?</li>
+</ul>
+
+<div class="important">
+<b>One-Minute Revision:</b><br><br>
+<strong>Physical Layer:</strong> Bits + Signals + Media<br>
+<strong>Data Link:</strong> Frames + MAC + Error/Flow Control<br>
+<strong>MAC:</strong> Media Access Control<br>
+<strong>LLC:</strong> Logical Link Control<br>
+<strong>Ethernet:</strong> IEEE 802.3<br>
+<strong>Token Ring:</strong> Token-based access<br>
+<strong>FDDI:</strong> Fibre + Token Ring + Dual Ring<br>
+<strong>ARP:</strong> IPv4 Address → MAC Address
+</div>
+</section>
+</main>
+</div>
+</body>
+</html>

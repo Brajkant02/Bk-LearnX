@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>PC-AT/ATX, Processor, Motherboard, Chipset, BIOS & Boot Process</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#eef2f7;color:#202938;font-family:Segoe UI,Arial,sans-serif;line-height:1.9}.layout{max-width:1550px;margin:auto;padding:15px;display:grid;grid-template-columns:305px 1fr;gap:18px}aside{position:sticky;top:15px;height:calc(100vh - 30px);overflow:auto;background:#fff;border-radius:18px;padding:20px;box-shadow:0 6px 25px #0001}aside h2{color:#075985;border-left:5px solid #0284c7;padding-left:10px}aside a{display:block;text-decoration:none;color:#374151;padding:7px 10px;border-radius:8px;font-size:14px}aside a:hover{background:#e0f2fe;color:#0369a1}main{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 6px 25px #0001}.hero{padding:42px;background:linear-gradient(135deg,#dbeafe,#e0f2fe,#f8fafc)}.hero h1{margin:7px 0;color:#075985;font-size:36px;line-height:1.3}.hero p{color:#475569}section{padding:32px;border-bottom:1px solid #e5e7eb}h2{font-size:29px;color:#075985;border-left:5px solid #0284c7;padding-left:13px}h3{font-size:22px;color:#0c4a6e;margin-top:27px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.card{padding:19px;background:#f0f9ff;border:1px solid #bae6fd;border-radius:14px}.note,.exam,.important{padding:18px 20px;border-radius:12px;margin:19px 0}.note{background:#eff6ff;border-left:5px solid #3b82f6}.exam{background:#ecfdf5;border-left:5px solid #10b981}.important{background:#fff7ed;border-left:5px solid #f97316}table{width:100%;border-collapse:collapse;margin:20px 0}th,td{border:1px solid #cbd5e1;padding:12px;text-align:left;vertical-align:top}th{background:#e0f2fe;color:#075985}.diagram,.flow{background:#090b0f;color:#e5e7eb;border-radius:15px;padding:25px;overflow:auto;font-family:Consolas,monospace;white-space:pre}.steps{counter-reset:step}.step{counter-increment:step;position:relative;padding:14px 16px 14px 48px;background:#f8fafc;border-radius:10px;margin:9px 0}.step:before{content:counter(step);position:absolute;left:14px;top:12px;background:#0284c7;color:#fff;width:25px;height:25px;border-radius:50%;text-align:center;line-height:25px;font-weight:bold}.badge{display:inline-block;background:#bae6fd;color:#075985;padding:4px 11px;border-radius:20px;font-size:12px;font-weight:bold}code{background:#111827;color:#fff;padding:2px 6px;border-radius:5px}@media(max-width:900px){.layout{display:block;padding:5px}aside{display:none}.hero{padding:28px 18px}.hero h1{font-size:28px}section{padding:24px 18px}.grid{grid-template-columns:1fr}p,li{font-size:15px}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside><h2>Topics</h2>
+<a href="#intro">1. Introduction</a><a href="#pcat">2. PC-AT & PC-ATX</a><a href="#processor">3. Processor Basics</a><a href="#clock">4. CPU Clock</a><a href="#motherboard">5. Motherboard</a><a href="#chipset">6. Chipset & Controllers</a><a href="#bios">7. BIOS</a><a href="#boot">8. Boot Process</a><a href="#comparison">9. Quick Comparison</a><a href="#flow">10. Complete Flow</a><a href="#exam">11. Exam Questions</a></aside>
+<main>
+<div class="hero"><span class="badge">COMPUTER HARDWARE • EXAM ORIENTED</span><h1>Study of PC-AT/ATX System, Processor, Motherboard, Chipset, Controllers, BIOS & Boot Process</h1><p><strong>Detailed PGDCA Notes | Hindi + English | Concept + Diagram + Exam Questions</strong></p></div>
+
+<section id="intro"><h2>1. Introduction</h2>
+<p>एक personal computer कई hardware components का combination होता है। इन components में processor, motherboard, memory, storage, power supply, input/output devices और firmware प्रमुख हैं। Computer के अंदर सभी components independently काम नहीं करते; motherboard और उसके associated controllers/chipset communication और coordination में महत्वपूर्ण भूमिका निभाते हैं।</p>
+<p>PC hardware को समझने के लिए केवल individual parts के नाम जानना पर्याप्त नहीं है। यह समझना भी जरूरी है कि <strong>processor instructions कैसे execute करता है, CPU clock timing कैसे निर्धारित करती है, motherboard components को कैसे connect करता है, chipset/controllers data movement को कैसे support करते हैं और BIOS/firmware computer को startup पर operating system तक कैसे पहुँचाता है।</strong></p>
+<div class="important"><b>Exam Point:</b> PC system का basic startup sequence broadly <strong>Power ON → Firmware initialization → Hardware checks → Boot device selection → Bootloader → Operating System loading</strong> होता है।</div>
+</section>
+
+<section id="pcat"><h2>2. PC-AT और PC-ATX System</h2>
+<h3>2.1 PC-AT क्या है?</h3>
+<p><strong>PC-AT (Advanced Technology)</strong> IBM PC/AT family से जुड़ा एक historical PC hardware design/form factor concept है। इस architecture ने earlier PC design की तुलना में अधिक capable processor, memory expansion और hardware features को support किया। आज “AT” शब्द अक्सर पुराने motherboard/case/power-supply standards के संदर्भ में दिखाई देता है।</p>
+<p>AT-based systems में motherboard layout, power connectors और cabinet design modern ATX systems से अलग थे। इसलिए पुराने PC hardware को समझने के लिए AT architecture important historical concept है।</p>
+<h3>2.2 PC-ATX क्या है?</h3>
+<p><strong>ATX (Advanced Technology eXtended)</strong> Intel द्वारा विकसित motherboard और computer-case design specification है। इसका उद्देश्य motherboard layout, component placement, expansion slots, I/O arrangement और power connections को बेहतर बनाना था। Modern desktop PCs में ATX family के standards और उनके derivatives widely used रहे हैं।</p>
+<div class="grid"><div class="card"><h3>AT System</h3><ul><li>Older PC design.</li><li>Older motherboard/power arrangement.</li><li>Modern ATX से अलग connector/layout.</li><li>Historical importance अधिक।</li></ul></div><div class="card"><h3>ATX System</h3><ul><li>Improved motherboard layout.</li><li>Standardized rear I/O arrangement.</li><li>Modern power/connectivity design.</li><li>Better component placement और expandability.</li></ul></div></div>
+<table><tr><th>Feature</th><th>AT</th><th>ATX</th></tr><tr><td>Generation</td><td>Older PC standard.</td><td>Newer, improved standard.</td></tr><tr><td>Layout</td><td>Older arrangement.</td><td>More organized component/I/O placement.</td></tr><tr><td>Power design</td><td>Older power connector arrangement.</td><td>Improved standardized power connection approach.</td></tr><tr><td>Rear I/O</td><td>Older design.</td><td>Integrated standardized rear I/O area.</td></tr><tr><td>Use today</td><td>Mainly historical/legacy.</td><td>ATX family remains important in desktop PC design.</td></tr></table>
+</section>
+
+<section id="processor"><h2>3. Basics of Processor</h2>
+<p><strong>Processor</strong> या <strong>CPU (Central Processing Unit)</strong> computer का मुख्य processing component है। यह program instructions को fetch, decode और execute करता है तथा arithmetic, logical और control operations perform करता है। CPU को अक्सर computer का “brain” कहा जाता है, हालांकि modern systems में processing कई specialized units में distributed भी हो सकती है।</p>
+<h3>CPU के Major Parts</h3>
+<div class="grid"><div class="card"><b>ALU – Arithmetic Logic Unit</b><p>Addition, subtraction, comparison और logical operations जैसे calculations perform करता है।</p></div><div class="card"><b>Control Unit</b><p>Instructions की execution sequence को control करती है और CPU के different parts को coordinate करती है।</p></div><div class="card"><b>Registers</b><p>CPU के अंदर मौजूद बहुत fast small storage locations हैं जो temporary data, instructions और addresses hold करते हैं।</p></div><div class="card"><b>Cache</b><p>Frequently required data/instructions को processor के करीब रखकर access latency कम करने में सहायता करती है।</p></div></div>
+<h3>Instruction Cycle</h3>
+<div class="diagram">
+        CPU INSTRUCTION CYCLE
+
+          ┌──────────┐
+          │  FETCH   │
+          └────┬─────┘
+               ↓
+          ┌──────────┐
+          │  DECODE  │
+          └────┬─────┘
+               ↓
+          ┌──────────┐
+          │ EXECUTE  │
+          └────┬─────┘
+               ↓
+          ┌──────────┐
+          │  STORE   │
+          └────┬─────┘
+               ↓
+        NEXT INSTRUCTION
+</div>
+</section>
+
+<section id="clock"><h2>4. CPU Clock</h2>
+<p><strong>CPU Clock</strong> processor के operations के लिए timing reference प्रदान करने वाली periodic electronic signal है। Clock cycles में processor की activities synchronize होती हैं। Clock frequency को सामान्यतः <strong>Hertz (Hz)</strong> में measure किया जाता है; modern CPUs में MHz/GHz units common हैं।</p>
+<p>यदि किसी processor की clock frequency 3 GHz है, तो इसका अर्थ लगभग <strong>3 billion clock cycles per second</strong> की nominal clock rate है। लेकिन इसका यह अर्थ नहीं कि processor हर cycle में exactly एक instruction execute करता है। Modern CPU performance architecture, instruction complexity, cores, cache, pipeline, memory और कई अन्य factors पर depend करती है।</p>
+<h3>Clock Speed के Important Terms</h3>
+<ul><li><strong>Clock Cycle:</strong> Clock signal का एक basic timing interval.</li><li><strong>Frequency:</strong> प्रति second clock cycles की संख्या।</li><li><strong>MHz:</strong> Million cycles per second.</li><li><strong>GHz:</strong> Billion cycles per second.</li><li><strong>Core:</strong> CPU का independent processing unit जो instructions execute कर सकता है।</li><li><strong>Multicore CPU:</strong> एक processor package में multiple processing cores.</li></ul>
+<div class="note"><b>Important:</b> केवल GHz देखकर दो processors की performance decide नहीं करनी चाहिए। Architecture, IPC, core count, cache, workload और power/thermal limits भी performance को प्रभावित करते हैं।</div>
+</section>
+
+<section id="motherboard"><h2>5. Motherboard</h2>
+<p><strong>Motherboard</strong> computer का मुख्य printed circuit board (PCB) है जिस पर CPU socket, memory slots, expansion slots, firmware chip, connectors और अन्य system interfaces मौजूद होते हैं। यह अलग-अलग components को electrical और logical communication paths provide करता है।</p>
+<h3>Motherboard के Major Components</h3>
+<div class="grid"><div class="card"><b>CPU Socket</b><p>Processor को motherboard पर install करने का स्थान।</p></div><div class="card"><b>RAM Slots</b><p>Memory modules install करने के लिए slots.</p></div><div class="card"><b>Expansion Slots</b><p>Graphics/network/specialized expansion cards के लिए interfaces.</p></div><div class="card"><b>Storage Interfaces</b><p>SATA और अन्य storage interfaces के माध्यम से drives connect की जाती हैं।</p></div><div class="card"><b>Firmware</b><p>BIOS/UEFI firmware system startup और hardware initialization में महत्वपूर्ण है।</p></div><div class="card"><b>Power Connectors</b><p>Power supply से motherboard और processor को required power पहुँचाते हैं।</p></div><div class="card"><b>Rear I/O</b><p>USB, audio, networking, display और अन्य external ports provide कर सकता है।</p></div><div class="card"><b>Chipset/Platform Controllers</b><p>CPU, memory, storage, USB और अन्य devices के communication को support करते हैं।</p></div></div>
+<div class="diagram">
+                  MOTHERBOARD
+                       │
+        ┌──────────────┼──────────────┐
+        ↓              ↓              ↓
+      CPU            RAM        CHIPSET / CONTROLLERS
+        │                             │
+        ├──────────────┐      ┌───────┼────────┐
+        ↓              ↓      ↓       ↓        ↓
+   GPU/Display      Storage   USB   Network   Audio
+        │
+        ↓
+   Expansion Devices
+</div>
+</section>
+
+<section id="chipset"><h2>6. Chipset & Controllers</h2>
+<h3>Chipset</h3>
+<p><strong>Chipset</strong> motherboard/platform पर मौजूद controller logic का collection है जो processor और different system components के बीच communication और control functions provide करता है। Older PC architectures में chipset को commonly <strong>Northbridge और Southbridge</strong> जैसे parts में describe किया जाता था। Modern systems में कई traditional northbridge functions processor के अंदर integrate हो चुके हैं और platform controller hub जैसे designs use होते हैं।</p>
+<h3>Northbridge – Historical Concept</h3>
+<p>Traditional architecture में Northbridge high-speed components जैसे CPU, main memory और graphics interface के बीच communication handle करता था। यह modern systems में largely integrated functionality के रूप में बदल चुका है।</p>
+<h3>Southbridge – Historical Concept</h3>
+<p>Southbridge traditional architecture में comparatively slower I/O devices जैसे USB, storage interfaces, audio और other peripherals को manage करने से संबंधित था।</p>
+<h3>Controllers</h3>
+<p><strong>Controller</strong> hardware logic/device interface है जो किसी particular device या function को manage करने और system bus/CPU तथा peripheral के बीच communication support करने का काम करता है। Examples में storage controller, USB controller, network controller और display controller शामिल हो सकते हैं।</p>
+<table><tr><th>Component</th><th>Main Role</th></tr><tr><td>Chipset / Platform Controller</td><td>System components और I/O resources के बीच platform-level communication/control.</td></tr><tr><td>Storage Controller</td><td>Storage devices के communication और data transfer को support करना।</td></tr><tr><td>USB Controller</td><td>USB devices के communication को manage करना।</td></tr><tr><td>Network Controller</td><td>Network interface और data communication को support करना।</td></tr><tr><td>Display Controller</td><td>Display-related data processing/interface functions में सहायता।</td></tr></table>
+</section>
+
+<section id="bios"><h2>7. BIOS</h2>
+<p><strong>BIOS (Basic Input/Output System)</strong> traditional PC firmware है जो system के power-on/startup के समय hardware initialization और basic boot services provide करता है। BIOS motherboard के non-volatile firmware storage में रखा जाता है। Modern computers में traditional BIOS की जगह <strong>UEFI (Unified Extensible Firmware Interface)</strong> widely used है, लेकिन “BIOS” शब्द सामान्य conversation में firmware के लिए भी इस्तेमाल होता है।</p>
+<h3>BIOS के प्रमुख Functions</h3>
+<ul><li>Power-on के बाद basic hardware initialization करना।</li><li>System components की basic checking/diagnostics में सहायता करना।</li><li>Hardware configuration information maintain करना।</li><li>Boot device identify/select करने में सहायता करना।</li><li>Bootloader/operating system loading process को initiate करना।</li><li>Basic firmware-level setup interface provide करना।</li></ul>
+<h3>BIOS Setup में Common Settings</h3><ul><li>Boot order</li><li>Date and time</li><li>Storage/device configuration</li><li>CPU और memory related settings</li><li>Security/password settings</li><li>Peripheral enable/disable options</li></ul>
+<div class="important"><b>BIOS vs Operating System:</b> BIOS/UEFI firmware startup stage पर hardware initialize करके boot process शुरू करता है, जबकि Windows/Linux जैसे operating systems computer को normal runtime environment में manage करते हैं।</div>
+</section>
+
+<section id="boot"><h2>8. Boot Process</h2>
+<p><strong>Booting</strong> वह process है जिसमें computer power-on/reset के बाद hardware initialize करता है और अंततः operating system को memory में load करके उसे execution के लिए start करता है।</p>
+<h3>Boot Process – Step by Step</h3>
+<div class="steps">
+<div class="step"><b>Power On:</b> Power supply system को electrical power देती है और CPU reset/start state से operation begin करता है।</div>
+<div class="step"><b>Firmware Starts:</b> BIOS या UEFI firmware execute होता है और basic hardware initialization करता है।</div>
+<div class="step"><b>Hardware Check:</b> Firmware available hardware और required startup conditions की जांच करता है। Traditional systems में POST (Power-On Self-Test) इस stage से associated है।</div>
+<div class="step"><b>Hardware Initialization:</b> Memory, storage interfaces, display और अन्य essential devices initialize/configure किए जाते हैं।</div>
+<div class="step"><b>Boot Device Selection:</b> Firmware configured boot order के आधार पर bootable device तलाशता है।</div>
+<div class="step"><b>Bootloader:</b> Selected device से bootloader का code load और execute किया जाता है।</div>
+<div class="step"><b>Operating System Loading:</b> Bootloader operating system के required components/kernel को memory में load करता है।</div>
+<div class="step"><b>OS Initialization:</b> Operating system drivers, services, user interface और other runtime components initialize करता है।</div>
+<div class="step"><b>Login/Desktop:</b> System user interaction के लिए ready हो जाता है।</div>
+</div>
+<div class="flow">
+POWER ON
+   ↓
+BIOS / UEFI
+   ↓
+POST / HARDWARE INITIALIZATION
+   ↓
+BOOT DEVICE SELECTION
+   ↓
+BOOTLOADER
+   ↓
+OPERATING SYSTEM KERNEL
+   ↓
+DRIVERS + SERVICES
+   ↓
+LOGIN / DESKTOP
+</div>
+<h3>Cold Boot और Warm Boot</h3>
+<div class="grid"><div class="card"><b>Cold Boot</b><p>System को powered-off state से power on करके start करना।</p></div><div class="card"><b>Warm Boot</b><p>Already running system को restart/reboot करना, बिना complete power-off state से शुरू किए।</p></div></div>
+</section>
+
+<section id="comparison"><h2>9. Quick Comparison</h2>
+<table><tr><th>Topic</th><th>Meaning</th><th>Key Point</th></tr>
+<tr><td>PC-AT</td><td>Older PC hardware design family.</td><td>Historical/legacy architecture.</td></tr>
+<tr><td>ATX</td><td>Motherboard/system design specification.</td><td>Improved layout, I/O and power design.</td></tr>
+<tr><td>Processor</td><td>Main instruction-processing unit.</td><td>Fetches, decodes and executes instructions.</td></tr>
+<tr><td>CPU Clock</td><td>Timing reference signal.</td><td>Frequency measured in Hz/MHz/GHz.</td></tr>
+<tr><td>Motherboard</td><td>Main PCB of PC.</td><td>Connects and provides communication paths for components.</td></tr>
+<tr><td>Chipset</td><td>Platform controller logic.</td><td>Supports communication/control between CPU and I/O resources.</td></tr>
+<tr><td>Controller</td><td>Device/function control logic.</td><td>Manages communication with particular devices/functions.</td></tr>
+<tr><td>BIOS</td><td>Traditional PC firmware.</td><td>Initializes hardware and starts boot process.</td></tr>
+<tr><td>UEFI</td><td>Modern firmware interface.</td><td>Widely used replacement/evolution of traditional BIOS.</td></tr>
+<tr><td>Boot Process</td><td>Startup sequence.</td><td>Power-on → firmware → bootloader → OS.</td></tr></table>
+</section>
+
+<section id="flow"><h2>10. Complete System Flow</h2>
+<p>पूरे concept को एक single flow में समझें:</p>
+<div class="diagram">
+                   USER PRESSES POWER BUTTON
+                              │
+                              ↓
+                         POWER SUPPLY
+                              │
+                              ↓
+                    CPU STARTS EXECUTION
+                              │
+                              ↓
+                        BIOS / UEFI
+                              │
+                              ↓
+                   HARDWARE INITIALIZATION
+                              │
+                              ↓
+                    MEMORY / DEVICE CHECK
+                              │
+                              ↓
+                     BOOT DEVICE SEARCH
+                              │
+                              ↓
+                         BOOTLOADER
+                              │
+                              ↓
+                     OPERATING SYSTEM
+                              │
+                ┌─────────────┼─────────────┐
+                ↓             ↓             ↓
+             DRIVERS       SERVICES      USER INTERFACE
+                │             │             │
+                └─────────────┼─────────────┘
+                              ↓
+                         READY TO USE
+</div>
+<div class="note"><b>Concept Connection:</b> Motherboard components को connect करता है → chipset/controllers communication support करते हैं → CPU instructions execute करता है → CPU clock timing provide करती है → BIOS/UEFI startup initialization करता है → bootloader OS को load करता है → OS complete user environment provide करता है।</div>
+</section>
+
+<section id="exam"><h2>11. Important Exam Questions</h2>
+<div class="exam"><b>Long Answer Questions</b><br><br>
+1. PC-AT और ATX system क्या हैं? दोनों में अंतर समझाइए।<br>
+2. Processor क्या है? CPU के प्रमुख components और उनके functions समझाइए।<br>
+3. CPU Clock क्या है? Clock speed, Hz, MHz और GHz को उदाहरण सहित समझाइए।<br>
+4. Motherboard क्या है? इसके प्रमुख components को diagram सहित समझाइए।<br>
+5. Chipset क्या है? Traditional Northbridge और Southbridge architecture समझाइए।<br>
+6. Controller क्या है? Different hardware controllers के functions लिखिए।<br>
+7. BIOS क्या है? इसके प्रमुख functions समझाइए।<br>
+8. Boot Process को step-by-step diagram सहित समझाइए।<br>
+9. BIOS और Operating System में अंतर समझाइए।<br>
+10. Cold Boot और Warm Boot में अंतर लिखिए।<br>
+11. Motherboard, chipset, processor और BIOS एक-दूसरे के साथ कैसे काम करते हैं?<br>
+12. Computer को power ON करने से operating system start होने तक की पूरी process समझाइए।
+</div>
+<h3>Very Short Questions</h3>
+<ul><li>PC-AT का full form क्या है?</li><li>ATX का full form क्या है?</li><li>CPU का full form क्या है?</li><li>CPU clock frequency किस unit में measure होती है?</li><li>Motherboard क्या है?</li><li>Chipset क्या है?</li><li>Controller क्या करता है?</li><li>BIOS का full form क्या है?</li><li>UEFI क्या है?</li><li>Booting क्या है?</li><li>POST का full form क्या है?</li><li>Bootloader क्या करता है?</li></ul>
+<div class="important"><b>Quick Revision Formula:</b><br>
+<strong>AT = Older PC Design</strong> → <strong>ATX = Improved PC/Motherboard Design</strong><br>
+<strong>CPU = Instruction Processing</strong> → <strong>Clock = Timing</strong><br>
+<strong>Motherboard = Main Connection Board</strong> → <strong>Chipset/Controllers = Communication & Control</strong><br>
+<strong>BIOS/UEFI = Startup Firmware</strong> → <strong>Bootloader = OS Loading</strong> → <strong>OS = Runtime Environment</strong>
+</div>
+</section>
+</main></div>
+</body>
+</html>

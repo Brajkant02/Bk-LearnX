@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keyboard - Block Diagram of Keyboard Circuit</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:#eef2f7;color:#202938;font-family:Segoe UI,Arial,sans-serif;line-height:1.9}
+.layout{max-width:1550px;margin:auto;padding:15px;display:grid;grid-template-columns:300px 1fr;gap:18px}
+aside{position:sticky;top:15px;height:calc(100vh - 30px);overflow:auto;background:#fff;border-radius:18px;padding:20px;box-shadow:0 6px 25px #0001}
+aside h2{color:#075985;border-left:5px solid #0284c7;padding-left:10px}
+aside a{display:block;text-decoration:none;color:#374151;padding:7px 10px;border-radius:8px;font-size:14px}
+aside a:hover{background:#e0f2fe;color:#0369a1}
+main{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 6px 25px #0001}
+.hero{padding:42px;background:linear-gradient(135deg,#dbeafe,#e0f2fe,#f8fafc)}
+.hero h1{margin:7px 0;color:#075985;font-size:36px;line-height:1.3}
+section{padding:32px;border-bottom:1px solid #e5e7eb}
+h2{font-size:29px;color:#075985;border-left:5px solid #0284c7;padding-left:13px}
+h3{font-size:22px;color:#0c4a6e;margin-top:27px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{padding:19px;background:#f0f9ff;border:1px solid #bae6fd;border-radius:14px}
+.note,.important,.exam{padding:18px 20px;border-radius:12px;margin:19px 0}
+.note{background:#eff6ff;border-left:5px solid #3b82f6}
+.important{background:#fff7ed;border-left:5px solid #f97316}
+.exam{background:#ecfdf5;border-left:5px solid #10b981}
+table{width:100%;border-collapse:collapse;margin:20px 0}
+th,td{border:1px solid #cbd5e1;padding:12px;text-align:left;vertical-align:top}
+th{background:#e0f2fe;color:#075985}
+.diagram{background:#090b0f;color:#e5e7eb;border-radius:15px;padding:25px;overflow:auto;font-family:Consolas,monospace;white-space:pre;line-height:1.5}
+.step{padding:14px 16px;background:#f8fafc;border-radius:10px;margin:9px 0;border-left:4px solid #0284c7}
+.badge{display:inline-block;background:#bae6fd;color:#075985;padding:4px 11px;border-radius:20px;font-size:12px;font-weight:bold}
+@media(max-width:900px){.layout{display:block;padding:5px}aside{display:none}.hero{padding:28px 18px}.hero h1{font-size:28px}section{padding:24px 18px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside>
+<h2>Topics</h2>
+<a href="#intro">1. Keyboard Introduction</a>
+<a href="#circuit">2. Keyboard Circuit</a>
+<a href="#blocks">3. Block Diagram</a>
+<a href="#matrix">4. Key Matrix</a>
+<a href="#controller">5. Keyboard Controller</a>
+<a href="#working">6. Working</a>
+<a href="#interface">7. Computer Interface</a>
+<a href="#types">8. Keyboard Types</a>
+<a href="#troubleshoot">9. Troubleshooting</a>
+<a href="#exam">10. Exam Questions</a>
+</aside>
+
+<main>
+<div class="hero">
+<span class="badge">INPUT DEVICE • EXAM ORIENTED</span>
+<h1>Keyboard: Block Diagram of Keyboard Circuit</h1>
+<p>Keyboard construction, key matrix, controller, scanning, encoding, interface और complete working explanation.</p>
+</div>
+
+<section id="intro">
+<h2>1. Keyboard Introduction</h2>
+<p><strong>Keyboard</strong> एक input device है जिसका उपयोग computer में alphabets, numbers, symbols, commands और अन्य control information enter करने के लिए किया जाता है। Keyboard पर उपस्थित keys को press करने पर keyboard का internal electronic circuit उस key press को detect करता है और उसका corresponding signal computer तक भेजता है।</p>
+<p>Modern keyboards में individual keys सामान्यतः एक <strong>key matrix</strong> के रूप में electrically arranged होती हैं। Keyboard controller लगातार इस matrix को scan करता है। जब कोई key press होती है, controller उसके row और column की पहचान करके उस key का corresponding code तैयार करता है और interface के माध्यम से computer को भेजता है।</p>
+<div class="important"><b>Exam Definition:</b> Keyboard एक electronic input device है जो key press को detect करके उसे electrical/digital signals में convert करता है और computer को भेजता है।</div>
+</section>
+
+<section id="circuit">
+<h2>2. Keyboard Circuit</h2>
+<p>Keyboard circuit का मुख्य उद्देश्य किसी key के दबने की स्थिति को electrically detect करना और उसे पहचान योग्य digital information में convert करना है। इसके लिए keyboard में key switches, matrix lines, controller/processor, firmware और communication interface जैसे मुख्य parts होते हैं।</p>
+<div class="grid">
+<div class="card"><h3>Key Switches</h3><p>जब user किसी key को press करता है तो उसका switch circuit की corresponding row और column lines के बीच electrical connection बनाता या बदलता है।</p></div>
+<div class="card"><h3>Key Matrix</h3><p>Keys को rows और columns के arrangement में organize किया जाता है। इससे प्रत्येक key को कम number of electrical lines के द्वारा identify किया जा सकता है।</p></div>
+<div class="card"><h3>Keyboard Controller</h3><p>Controller matrix को scan करता है, key press/release detect करता है, debounce तथा key identification जैसे tasks संभालता है और output code generate करता है।</p></div>
+<div class="card"><h3>Firmware</h3><p>Controller में चलने वाला firmware key mapping, scanning और communication के rules को manage करता है।</p></div>
+<div class="card"><h3>Interface Circuit</h3><p>Controller से प्राप्त information को computer तक suitable communication protocol/interface के माध्यम से भेजता है।</p></div>
+<div class="card"><h3>Connector/Cable</h3><p>Wired keyboard में USB जैसे interface के माध्यम से keyboard और computer के बीच power तथा communication connection provide किया जाता है।</p></div>
+</div>
+</section>
+
+<section id="blocks">
+<h2>3. Block Diagram of Keyboard Circuit</h2>
+<p>Keyboard circuit का simplified block diagram नीचे दिया गया है। इसमें key press से लेकर computer तक signal जाने की पूरी basic flow दिखाई गई है।</p>
+<div class="diagram">
+                    KEYBOARD CIRCUIT
+
+ ┌───────────────────────┐
+ │      KEY SWITCHES     │
+ │  Alphabet / Number /  │
+ │  Function / Control   │
+ └───────────┬───────────┘
+             │
+             ▼
+ ┌───────────────────────┐
+ │      KEY MATRIX       │
+ │   ROWS × COLUMNS      │
+ └───────────┬───────────┘
+             │
+             ▼
+ ┌───────────────────────┐
+ │ KEYBOARD CONTROLLER   │
+ │ • Matrix Scanning     │
+ │ • Debouncing          │
+ │ • Key Identification  │
+ │ • Code Generation     │
+ └───────────┬───────────┘
+             │
+             ▼
+ ┌───────────────────────┐
+ │ INTERFACE / TRANSCEIVER│
+ │ USB / PS/2 / Wireless │
+ └───────────┬───────────┘
+             │
+             ▼
+ ┌───────────────────────┐
+ │       COMPUTER        │
+ │ OS / Keyboard Driver  │
+ │      / Application    │
+ └───────────────────────┘
+</div>
+
+<div class="note"><b>Block Diagram Flow:</b> Key Press → Key Matrix → Controller → Code/Communication → Computer → Operating System/Application</div>
+</section>
+
+<section id="matrix">
+<h2>4. Key Matrix</h2>
+<p><strong>Key Matrix</strong> keyboard circuit का important हिस्सा है। इसमें keys को rows और columns के intersection पर arrange किया जाता है। प्रत्येक key press एक particular row और column combination को identify करने में सहायता करता है।</p>
+<div class="diagram">
+             COLUMN LINES
+              C1   C2   C3   C4
+              │    │    │    │
+        R1 ───┼────●────┼────●───
+        R2 ───●────┼────●────┼───
+        R3 ───┼────●────┼────●───
+        R4 ───●────┼────●────┼───
+              │    │    │    │
+
+● = Key switch position
+R = Row line
+C = Column line
+</div>
+<p>Controller rows और columns को scan करके पता लगाता है कि कौन-सा switch active हुआ है। इस method से keyboard को प्रत्येक key के लिए अलग wire की आवश्यकता नहीं होती।</p>
+<h3>Matrix Scanning</h3>
+<div class="step"><b>1.</b> Controller एक या अधिक matrix lines को scan/drive करता है।</div>
+<div class="step"><b>2.</b> दूसरी lines की state read की जाती है।</div>
+<div class="step"><b>3.</b> यदि key press से electrical path change हुआ है, controller active row और column identify करता है।</div>
+<div class="step"><b>4.</b> Row-column combination को corresponding key position से map किया जाता है।</div>
+</section>
+
+<section id="controller">
+<h2>5. Keyboard Controller</h2>
+<p>Keyboard controller keyboard का central electronic control unit है। यह key matrix और computer interface के बीच मुख्य bridge का काम करता है।</p>
+<table>
+<tr><th>Function</th><th>Description</th></tr>
+<tr><td>Matrix Scanning</td><td>Rows और columns को scan करके pressed/released keys detect करना।</td></tr>
+<tr><td>Debouncing</td><td>Mechanical switch के contact bounce से आने वाले unwanted multiple transitions को filter करना।</td></tr>
+<tr><td>Key Identification</td><td>Detected row-column position को specific key से associate करना।</td></tr>
+<tr><td>Key Mapping</td><td>Physical key position को firmware-defined key code/action से map करना।</td></tr>
+<tr><td>Communication</td><td>Generated keyboard information को host computer तक भेजना।</td></tr>
+<tr><td>LED/Status Control</td><td>कुछ keyboards में Caps Lock, Num Lock आदि indicator LEDs को control करना।</td></tr>
+</table>
+<div class="important"><b>Note:</b> Keyboard controller का exact architecture keyboard model और protocol के अनुसार अलग हो सकता है।</div>
+</section>
+
+<section id="working">
+<h2>6. Keyboard Working — Step by Step</h2>
+<p>जब user keyboard की कोई key press करता है, तब keyboard circuit में कई electronic steps होते हैं।</p>
+<div class="step"><b>Step 1 – Key Press:</b> User किसी key को press करता है और उसका switch electrical state change करता है।</div>
+<div class="step"><b>Step 2 – Matrix Detection:</b> Key matrix में corresponding row और column के बीच connection detect होता है।</div>
+<div class="step"><b>Step 3 – Scanning:</b> Keyboard controller matrix को scan करके active row-column position identify करता है।</div>
+<div class="step"><b>Step 4 – Debouncing:</b> Controller short-duration unwanted switch transitions को filter करता है ताकि एक press को कई presses न माना जाए।</div>
+<div class="step"><b>Step 5 – Key Mapping:</b> Controller detected position को corresponding key identity/code से map करता है।</div>
+<div class="step"><b>Step 6 – Communication:</b> Keyboard generated information को USB, PS/2 या wireless mechanism के माध्यम से host तक भेजता है।</div>
+<div class="step"><b>Step 7 – OS Processing:</b> Operating system keyboard input को receive करके driver/input subsystem के माध्यम से application तक पहुंचाता है।</div>
+<div class="step"><b>Step 8 – Result:</b> Application उस input के अनुसार character, command या action perform करती है।</div>
+
+<div class="diagram">
+       USER PRESSES "A"
+              │
+              ▼
+       KEY SWITCH CHANGES
+              │
+              ▼
+        MATRIX SCANNING
+              │
+              ▼
+       ROW + COLUMN FOUND
+              │
+              ▼
+       CONTROLLER MAPS KEY
+              │
+              ▼
+       KEYBOARD DATA SENT
+              │
+              ▼
+          COMPUTER / OS
+              │
+              ▼
+       APPLICATION RECEIVES
+              │
+              ▼
+            "A"
+</div>
+</section>
+
+<section id="interface">
+<h2>7. Keyboard Interface</h2>
+<p>Keyboard controller द्वारा तैयार information host computer तक एक communication interface के माध्यम से भेजी जाती है। Wired keyboards में USB बहुत common है; older systems में PS/2 interface भी widely used था। Wireless keyboards radio-based communication के माध्यम से receiver/host से communicate कर सकते हैं।</p>
+<div class="grid">
+<div class="card"><h3>USB Keyboard</h3><p>Modern computers में common wired interface। यह data communication के साथ keyboard को power भी provide कर सकता है।</p></div>
+<div class="card"><h3>PS/2 Keyboard</h3><p>एक legacy keyboard interface है जो पुराने PCs और motherboards में common था।</p></div>
+<div class="card"><h3>Wireless Keyboard</h3><p>Physical data cable की जगह wireless radio communication और receiver/Bluetooth जैसी technology का उपयोग कर सकता है।</p></div>
+</div>
+</section>
+
+<section id="types">
+<h2>8. Common Keyboard Types</h2>
+<table>
+<tr><th>Type</th><th>Basic Description</th></tr>
+<tr><td>Membrane Keyboard</td><td>Keys एक membrane-based switching mechanism के साथ operate करती हैं।</td></tr>
+<tr><td>Mechanical Keyboard</td><td>Individual mechanical switches का उपयोग किया जाता है; अलग switch designs अलग feel और response दे सकते हैं।</td></tr>
+<tr><td>Scissor-Switch Keyboard</td><td>Low-profile keyboards, विशेषकर कई laptop-style designs में common mechanism।</td></tr>
+<tr><td>Ergonomic Keyboard</td><td>Typing posture और hand positioning को ध्यान में रखकर designed keyboard layout।</td></tr>
+<tr><td>Wireless Keyboard</td><td>Wireless communication के द्वारा host से connect होता है।</td></tr>
+</table>
+</section>
+
+<section id="troubleshoot">
+<h2>9. Basic Keyboard Troubleshooting</h2>
+<div class="step"><b>Keyboard not detected:</b> USB connection, port, wireless receiver/battery और system settings check करें।</div>
+<div class="step"><b>Some keys not working:</b> Key mechanism, dirt/debris, matrix line या controller-related issue हो सकता है।</div>
+<div class="step"><b>Repeated characters:</b> Key switch issue, debounce problem या software/input setting check करें।</div>
+<div class="step"><b>Wrong characters:</b> Operating system का keyboard layout/language setting verify करें।</div>
+<div class="step"><b>Wireless keyboard not responding:</b> Battery/charging, receiver pairing और wireless connection check करें।</div>
+</section>
+
+<section id="exam">
+<h2>10. Important Exam Questions</h2>
+<div class="exam">
+<b>Long Answer Questions</b><br><br>
+1. Keyboard क्या है? इसके circuit का block diagram बनाकर समझाइए।<br>
+2. Keyboard circuit के प्रमुख blocks और उनके functions समझाइए।<br>
+3. Key Matrix क्या है? इसका working और matrix scanning समझाइए।<br>
+4. Keyboard controller के प्रमुख functions लिखिए।<br>
+5. Keyboard के working को key press से computer तक step-by-step समझाइए।<br>
+6. Keyboard में debouncing क्या है और इसकी आवश्यकता क्यों होती है?<br>
+7. USB, PS/2 और wireless keyboard interfaces का संक्षिप्त वर्णन कीजिए।
+</div>
+
+<h3>Short Questions</h3>
+<ul>
+<li>Keyboard क्या है?</li>
+<li>Keyboard किस प्रकार का device है?</li>
+<li>Key Matrix क्या है?</li>
+<li>Keyboard controller का क्या कार्य है?</li>
+<li>Matrix scanning क्या है?</li>
+<li>Debouncing क्या है?</li>
+<li>Keyboard में row और column lines क्यों उपयोग की जाती हैं?</li>
+<li>USB keyboard क्या है?</li>
+<li>PS/2 keyboard interface क्या है?</li>
+<li>Wireless keyboard कैसे communicate करता है?</li>
+</ul>
+
+<div class="important">
+<b>Quick Revision:</b><br>
+<strong>Keyboard → Input Device</strong><br>
+<strong>Key Matrix → Rows + Columns</strong><br>
+<strong>Controller → Scan + Debounce + Identify + Communicate</strong><br>
+<strong>Flow → Key Press → Matrix → Controller → Interface → Computer</strong><br>
+<strong>Common Interfaces → USB, PS/2, Wireless</strong>
+</div>
+</section>
+</main>
+</div>
+</body>
+</html>

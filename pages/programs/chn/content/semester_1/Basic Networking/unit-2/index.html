@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Media and Connectors - PGDCA Notes</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#eef2f7;color:#202938;font-family:Segoe UI,Arial,sans-serif;line-height:1.9}
+.layout{max-width:1500px;margin:auto;padding:15px;display:grid;grid-template-columns:290px 1fr;gap:18px}
+aside{position:sticky;top:15px;height:calc(100vh - 30px);overflow:auto;background:#fff;border-radius:18px;padding:20px;box-shadow:0 6px 25px #0001}
+aside h2{color:#075985;border-left:5px solid #0284c7;padding-left:10px}
+aside a{display:block;text-decoration:none;color:#374151;padding:7px 10px;border-radius:8px;font-size:14px}
+aside a:hover{background:#e0f2fe;color:#0369a1}
+main{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 6px 25px #0001}
+.hero{padding:42px;background:linear-gradient(135deg,#dbeafe,#e0f2fe,#f8fafc)}
+.hero h1{margin:8px 0;color:#075985;font-size:37px;line-height:1.3}
+section{padding:32px;border-bottom:1px solid #e5e7eb}
+h2{font-size:29px;color:#075985;border-left:5px solid #0284c7;padding-left:13px}
+h3{font-size:22px;color:#0c4a6e;margin-top:27px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{padding:19px;background:#f0f9ff;border:1px solid #bae6fd;border-radius:14px}
+.note,.important,.exam,.warning{padding:18px 20px;border-radius:12px;margin:19px 0}
+.note{background:#eff6ff;border-left:5px solid #3b82f6}
+.important{background:#fff7ed;border-left:5px solid #f97316}
+.exam{background:#ecfdf5;border-left:5px solid #10b981}
+.warning{background:#fef2f2;border-left:5px solid #ef4444}
+table{width:100%;border-collapse:collapse;margin:20px 0}
+th,td{border:1px solid #cbd5e1;padding:12px;text-align:left;vertical-align:top}
+th{background:#e0f2fe;color:#075985}
+.code,.diagram{background:#090b0f;color:#e5e7eb;border-radius:14px;padding:22px;overflow:auto;font-family:Consolas,monospace;white-space:pre;line-height:1.55}
+.step{padding:14px 16px;background:#f8fafc;border-radius:10px;margin:9px 0;border-left:4px solid #0284c7}
+.badge{display:inline-block;background:#bae6fd;color:#075985;padding:4px 11px;border-radius:20px;font-size:12px;font-weight:bold}
+@media(max-width:900px){.layout{display:block;padding:5px}aside{display:none}.hero{padding:28px 18px}.hero h1{font-size:28px}section{padding:24px 18px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside>
+<h2>Contents</h2>
+<a href="#intro">1. Introduction</a>
+<a href="#media">2. Transmission Media</a>
+<a href="#utp">3. UTP Cable</a>
+<a href="#stp">4. STP Cable</a>
+<a href="#coax">5. Coaxial Cable</a>
+<a href="#fiber">6. Optical Fibre</a>
+<a href="#tia">7. TIA/EIA Standards</a>
+<a href="#tools">8. Cable Making Tools</a>
+<a href="#straight">9. Straight-through Cable</a>
+<a href="#cross">10. Crossover Cable</a>
+<a href="#testing">11. Cable Testing</a>
+<a href="#connectors">12. Connectors & Jacks</a>
+<a href="#patch">13. Patch Panels</a>
+<a href="#compare">14. Comparison</a>
+<a href="#exam">15. Exam Questions</a>
+</aside>
+
+<main>
+<div class="hero">
+<span class="badge">DCCN • PGDCA • 10 PERIODS</span>
+<h1>2. Media and Connectors</h1>
+<p><strong>STP • UTP • Coaxial • Optical Fibre • TIA/EIA • Cable Making & Testing • RJ-45 • Jacks • Patch Panels</strong></p>
+</div>
+
+<section id="intro">
+<h2>1. Introduction to Network Media and Connectors</h2>
+<p>Computer network में दो या दो से अधिक devices के बीच data transfer करने के लिए communication path की आवश्यकता होती है। इस communication path को <strong>Transmission Media</strong> कहा जाता है। Network media data को electrical signals, light signals या wireless radio signals के रूप में एक location से दूसरी location तक carry कर सकता है।</p>
+
+<p>इस unit में मुख्यतः wired LAN media का अध्ययन किया जाता है, जैसे <strong>UTP, STP, Coaxial Cable और Optical Fibre</strong>। इनके साथ cable termination, connectors, jacks और patch panels भी network installation का महत्वपूर्ण हिस्सा हैं।</p>
+
+<div class="important"><b>Exam Definition:</b> Transmission Media वह physical path या communication channel है जिसके माध्यम से network में data signals एक device से दूसरे device तक travel करते हैं।</div>
+
+<h3>Network Media की आवश्यकता</h3>
+<ul>
+<li>Network devices के बीच communication path उपलब्ध कराना।</li>
+<li>Data signals को source से destination तक carry करना।</li>
+<li>LAN infrastructure को establish करना।</li>
+<li>Reliable और organized cabling प्रदान करना।</li>
+<li>Network expansion और structured cabling में सहायता करना।</li>
+</ul>
+</section>
+
+<section id="media">
+<h2>2. Common LAN Media</h2>
+<table>
+<tr><th>Media</th><th>Basic Construction</th><th>Signal</th><th>Typical Feature</th></tr>
+<tr><td>UTP</td><td>Twisted copper wire pairs, usually unshielded</td><td>Electrical</td><td>Low cost, common Ethernet cabling</td></tr>
+<tr><td>STP</td><td>Twisted copper pairs with shielding</td><td>Electrical</td><td>Better protection from electromagnetic interference</td></tr>
+<tr><td>Coaxial</td><td>Central conductor + dielectric + shield + outer jacket</td><td>Electrical</td><td>Shielded construction</td></tr>
+<tr><td>Optical Fibre</td><td>Core + cladding + protective layers</td><td>Light</td><td>High bandwidth and long-distance capability</td></tr>
+</table>
+
+<div class="note"><b>Remember:</b> UTP/STP/Coaxial copper-based media electrical signals carry करते हैं, जबकि optical fibre light signals use करता है।</div>
+</section>
+
+<section id="utp">
+<h2>3. UTP – Unshielded Twisted Pair</h2>
+<p><strong>UTP (Unshielded Twisted Pair)</strong> cable में insulated copper conductors के pairs को आपस में twist किया जाता है। प्रत्येक pair की twisting unwanted electromagnetic interference और crosstalk को कम करने में मदद करती है। इसमें individual metallic shield नहीं होता, इसलिए इसे unshielded twisted pair कहा जाता है।</p>
+
+<h3>UTP की Construction</h3>
+<div class="diagram">
+UTP CABLE
+┌─────────────────────────────────────┐
+│ Outer Jacket                        │
+│   ┌──── Pair 1 ────┐                │
+│   ├──── Pair 2 ────┤                │
+│   ├──── Pair 3 ────┤                │
+│   └──── Pair 4 ────┘                │
+│   Twisted Copper Conductors         │
+└─────────────────────────────────────┘
+</div>
+
+<h3>UTP के Advantages</h3>
+<ul>
+<li>Generally inexpensive और widely available।</li>
+<li>Installation और termination relatively आसान।</li>
+<li>LAN/Ethernet cabling में extensively used।</li>
+<li>Lightweight और flexible होने के कारण cable management आसान।</li>
+<li>Suitable category के अनुसार different network speeds support कर सकता है।</li>
+</ul>
+
+<h3>UTP के Limitations</h3>
+<ul>
+<li>External electromagnetic interference से protection shielded cable की तुलना में कम होता है।</li>
+<li>Maximum supported distance और performance cable category तथा network standard पर depend करती है।</li>
+<li>Improper termination से crosstalk और connectivity problems हो सकती हैं।</li>
+</ul>
+
+<div class="important"><b>Full Form:</b> UTP = <strong>Unshielded Twisted Pair</strong></div>
+</section>
+
+<section id="stp">
+<h2>4. STP – Shielded Twisted Pair</h2>
+<p><strong>STP (Shielded Twisted Pair)</strong> twisted-pair copper cable का shielded form है। इसमें conductive shielding का उपयोग external electromagnetic interference को reduce करने के लिए किया जाता है। Shield की exact construction cable type के अनुसार अलग हो सकती है।</p>
+
+<div class="diagram">
+STP CABLE
+┌──────────────────────────────────────┐
+│ Outer Jacket                         │
+│ ┌──────────────────────────────────┐ │
+│ │ Metallic Shield                  │ │
+│ │   Twisted Copper Pairs           │ │
+│ │   Pair 1   Pair 2   Pair 3 Pair4│ │
+│ └──────────────────────────────────┘ │
+└──────────────────────────────────────┘
+</div>
+
+<h3>STP के Advantages</h3>
+<ul>
+<li>Shielding के कारण EMI/noise से protection बेहतर हो सकती है।</li>
+<li>Electrically noisy environments में useful हो सकता है।</li>
+<li>Twisted-pair construction के साथ interference reduction में सहायता करता है।</li>
+</ul>
+
+<h3>STP के Disadvantages</h3>
+<ul>
+<li>UTP की तुलना में generally अधिक costly हो सकता है।</li>
+<li>Cable installation और termination comparatively more demanding हो सकती है।</li>
+<li>Shielding को correctly implement/ground करना आवश्यक हो सकता है, depending on cable system.</li>
+</ul>
+
+<div class="important"><b>Full Form:</b> STP = <strong>Shielded Twisted Pair</strong></div>
+</section>
+
+<section id="coax">
+<h2>5. Coaxial Cable</h2>
+<p><strong>Coaxial Cable</strong> एक copper-based cable है जिसमें central conductor के चारों ओर insulating dielectric, metallic shielding और outer protective jacket होती है। इसका नाम “coaxial” इसलिए है क्योंकि central conductor और shield एक common axis share करते हैं।</p>
+
+<div class="diagram">
+       COAXIAL CABLE CROSS-SECTION
+
+     ┌──────────────────────────┐
+     │      Outer Jacket        │
+     │  ┌────────────────────┐  │
+     │  │ Metallic Shield    │  │
+     │  │ ┌────────────────┐ │  │
+     │  │ │ Dielectric     │ │  │
+     │  │ │    ┌──────┐    │ │  │
+     │  │ │    │Core  │    │ │  │
+     │  │ │    └──────┘    │ │  │
+     │  │ └────────────────┘ │  │
+     │  └────────────────────┘  │
+     └──────────────────────────┘
+</div>
+
+<h3>Coaxial Cable के Components</h3>
+<ol>
+<li><strong>Central Conductor:</strong> Electrical signal carry करता है।</li>
+<li><strong>Dielectric Insulator:</strong> Conductor और shield को electrically separate रखता है।</li>
+<li><strong>Metallic Shield:</strong> Interference reduction और return path में भूमिका निभा सकता है।</li>
+<li><strong>Outer Jacket:</strong> Cable को physical protection देता है।</li>
+</ol>
+
+<h3>Advantages</h3>
+<ul>
+<li>Shielding के कारण interference resistance अच्छी हो सकती है।</li>
+<li>Strong construction।</li>
+<li>Different communication applications में historically widely used रहा है।</li>
+</ul>
+
+<h3>Limitations</h3>
+<ul>
+<li>Modern structured Ethernet LANs में twisted-pair और fibre का उपयोग अधिक common है।</li>
+<li>Termination के लिए suitable coaxial connectors की आवश्यकता होती है।</li>
+</ul>
+</section>
+
+<section id="fiber">
+<h2>6. Optical Fibre</h2>
+<p><strong>Optical Fibre</strong> एक transmission medium है जिसमें data electrical signal की जगह light pulses के रूप में transmit किया जाता है। Fibre का मुख्य transmission region <strong>core</strong> होता है और उसके चारों ओर lower-refractive-index <strong>cladding</strong> होती है। Protective coating/jacket fibre को mechanical protection देती है।</p>
+
+<div class="diagram">
+             OPTICAL FIBRE
+┌──────────────────────────────────────────┐
+│ Protective Jacket                        │
+│   ┌────────────────────────────────────┐ │
+│   │ Cladding                           │ │
+│   │   ┌────────────────────────────┐   │ │
+│   │   │ Core                       │   │ │
+│   │   │  LIGHT ───────────────►    │   │ │
+│   │   └────────────────────────────┘   │ │
+│   └────────────────────────────────────┘ │
+└──────────────────────────────────────────┘
+</div>
+
+<h3>Working Principle</h3>
+<p>Optical fibre में information को light signals में convert करके fibre core के through transmit किया जाता है। Core और cladding की optical properties light को fibre के अंदर guide करने में सहायता करती हैं। Receiver side पर optical signal को वापस electrical/data representation में convert किया जाता है।</p>
+
+<h3>Optical Fibre के Advantages</h3>
+<ul>
+<li>High bandwidth capability।</li>
+<li>Long-distance communication के लिए highly suitable।</li>
+<li>Electromagnetic interference से immune होता है क्योंकि transmission light से होता है।</li>
+<li>Electrical isolation प्रदान करता है।</li>
+<li>High-speed backbone और inter-building links में useful।</li>
+</ul>
+
+<h3>Limitations</h3>
+<ul>
+<li>Installation और splicing के लिए specialized tools/skills की आवश्यकता हो सकती है।</li>
+<li>Fibre handling में bending और physical damage से बचना आवश्यक है।</li>
+<li>Transceivers/connectors की आवश्यकता होती है।</li>
+</ul>
+
+<div class="important"><b>Key Point:</b> Optical Fibre में data <strong>light</strong> के रूप में travel करता है, electrical current के रूप में नहीं।</div>
+</section>
+
+<section id="tia">
+<h2>7. TIA/EIA Standards</h2>
+<p><strong>TIA/EIA</strong> telecommunications और cabling standards से जुड़ा terminology है। Structured cabling में standards का उद्देश्य consistent cabling design, component performance, termination और installation practices के लिए guidelines उपलब्ध कराना है।</p>
+
+<p>Ethernet twisted-pair cabling में commonly referenced wiring schemes <strong>T568A</strong> और <strong>T568B</strong> हैं। ये RJ-45/8P8C style termination में conductor positions का color order define करते हैं।</p>
+
+<h3>T568A Color Order</h3>
+<div class="code">Pin 1  → White/Green
+Pin 2  → Green
+Pin 3  → White/Orange
+Pin 4  → Blue
+Pin 5  → White/Blue
+Pin 6  → Orange
+Pin 7  → White/Brown
+Pin 8  → Brown</div>
+
+<h3>T568B Color Order</h3>
+<div class="code">Pin 1  → White/Orange
+Pin 2  → Orange
+Pin 3  → White/Green
+Pin 4  → Blue
+Pin 5  → White/Blue
+Pin 6  → Green
+Pin 7  → White/Brown
+Pin 8  → Brown</div>
+
+<div class="note"><b>Exam Tip:</b> T568A और T568B में मुख्य difference orange और green pairs की position में है। Blue और brown pairs की positions same रहती हैं।</div>
+</section>
+
+<section id="tools">
+<h2>8. Cable Making के Tools</h2>
+<table>
+<tr><th>Tool</th><th>Purpose</th></tr>
+<tr><td>RJ-45/8P8C Plug</td><td>Twisted-pair Ethernet cable को terminate करने के लिए।</td></tr>
+<tr><td>Crimping Tool</td><td>Conductors को plug के contacts में properly terminate/crimp करने के लिए।</td></tr>
+<tr><td>Cable Stripper</td><td>Outer jacket को controlled तरीके से remove करने के लिए।</td></tr>
+<tr><td>Cable Tester</td><td>Continuity, pair mapping और wiring faults check करने के लिए।</td></tr>
+<tr><td>Wire Cutter</td><td>Conductors को required length पर cut करने के लिए।</td></tr>
+<tr><td>Keystone Jack / Punch-down Tool</td><td>Permanent horizontal cabling को jack में terminate करने के लिए।</td></tr>
+</table>
+
+<h3>Basic Cable Making Procedure</h3>
+<div class="step"><b>Step 1:</b> Required cable length measure करके cable cut करें।</div>
+<div class="step"><b>Step 2:</b> Outer jacket को carefully strip करें।</div>
+<div class="step"><b>Step 3:</b> Twisted pairs को separate करें और conductor sequence arrange करें।</div>
+<div class="step"><b>Step 4:</b> Selected T568A या T568B wiring scheme के अनुसार wires arrange करें।</div>
+<div class="step"><b>Step 5:</b> Conductors को equal length में trim करें।</div>
+<div class="step"><b>Step 6:</b> Wires को RJ-45/8P8C plug में correct order और full insertion के साथ place करें।</div>
+<div class="step"><b>Step 7:</b> Crimping tool से plug terminate करें।</div>
+<div class="step"><b>Step 8:</b> Cable के दूसरे end को required wiring type के अनुसार terminate करें।</div>
+<div class="step"><b>Step 9:</b> Cable tester से continuity और pin mapping verify करें।</div>
+</section>
+
+<section id="straight">
+<h2>9. Straight-through Cable</h2>
+<p><strong>Straight-through cable</strong> में दोनों ends पर same wiring standard लगाया जाता है। उदाहरण के लिए T568B–T568B या T568A–T568A।</p>
+
+<div class="diagram">
+STRAIGHT-THROUGH
+
+End A: T568B          End B: T568B
+
+1  W/O ─────────────── W/O  1
+2  O   ─────────────── O    2
+3  W/G ─────────────── W/G  3
+4  B   ─────────────── B    4
+5  W/B ─────────────── W/B  5
+6  G   ─────────────── G    6
+7  W/Br─────────────── W/Br 7
+8  Br  ─────────────── Br   8
+</div>
+
+<h3>Use</h3>
+<p>Traditional Ethernet teaching examples में straight-through cable को different device types, जैसे computer-to-switch, connect करने के लिए बताया जाता है। Modern Ethernet equipment में auto-negotiation/auto-MDI-X के कारण कई devices cable type को automatically accommodate कर सकते हैं।</p>
+
+<div class="important"><b>Rule:</b> Straight-through = <strong>Same standard on both ends</strong>.</div>
+</section>
+
+<section id="cross">
+<h2>10. Crossover Cable</h2>
+<p><strong>Crossover cable</strong> में एक end पर T568A और दूसरे end पर T568B wiring scheme लगाई जाती है। इससे relevant transmit और receive pairs cross होते हैं।</p>
+
+<div class="diagram">
+CROSSOVER
+
+End A: T568A             End B: T568B
+
+1  W/G ─────────────── W/O  1
+2  G   ─────────────── O    2
+3  W/O ─────────────── W/G  3
+4  B   ─────────────── B    4
+5  W/B ─────────────── W/B  5
+6  O   ─────────────── G    6
+7  W/Br─────────────── W/Br 7
+8  Br  ─────────────── Br   8
+</div>
+
+<h3>Traditional Use</h3>
+<p>Traditional Ethernet implementations में crossover cables similar device types को directly connect करने के लिए use किए जाते थे, जैसे computer-to-computer या switch-to-switch। लेकिन modern network interfaces में Auto-MDI/MDI-X support होने के कारण dedicated crossover cable की आवश्यकता कई situations में नहीं रहती।</p>
+
+<div class="important"><b>Rule:</b> Crossover = <strong>T568A on one end + T568B on the other end</strong>.</div>
+</section>
+
+<section id="testing">
+<h2>11. Cable Testing</h2>
+<p>Cable testing का उद्देश्य यह verify करना है कि cable सही तरीके से terminated है और सभी conductors सही pin mapping के साथ connected हैं।</p>
+
+<h3>Cable Tester से Basic Testing</h3>
+<div class="step"><b>Step 1:</b> Cable के दोनों ends को tester के main और remote units में connect करें।</div>
+<div class="step"><b>Step 2:</b> Tester को power on करें।</div>
+<div class="step"><b>Step 3:</b> LED/display sequence observe करें।</div>
+<div class="step"><b>Step 4:</b> Pin-to-pin continuity और correct pair mapping verify करें।</div>
+<div class="step"><b>Step 5:</b> Open, short, miswire या crossed pair indication हो तो termination दोबारा check करें।</div>
+
+<table>
+<tr><th>Fault</th><th>Meaning</th></tr>
+<tr><td>Open</td><td>किसी conductor में electrical continuity नहीं है।</td></tr>
+<tr><td>Short</td><td>दो conductors unintended तरीके से electrically connected हैं।</td></tr>
+<tr><td>Miswire</td><td>Conductor गलत pin पर terminated है।</td></tr>
+<tr><td>Reversed Pair / Pair Mapping Issue</td><td>Pair arrangement expected wiring से match नहीं करता।</td></tr>
+<tr><td>Correct</td><td>Expected pin mapping और continuity प्राप्त होती है।</td></tr>
+</table>
+</section>
+
+<section id="connectors">
+<h2>12. Connectors, Jacks और Network Termination</h2>
+<h3>RJ-45 / 8P8C Style Ethernet Plug</h3>
+<p>Ethernet twisted-pair patch cables में commonly 8-position modular plug का उपयोग होता है। Industry में इसे अक्सर RJ-45 कहा जाता है, जबकि connector का physical interface 8P8C configuration के रूप में describe किया जाता है।</p>
+
+<div class="diagram">
+     8P8C / RJ-45 STYLE PLUG
+
+     ┌─────────────────────┐
+     │ 1 2 3 4 5 6 7 8     │
+     │ ───────────────────  │
+     │   Gold Contacts      │
+     └─────────┬───────────┘
+               │
+            Cable
+</div>
+
+<h3>Network Jack / Keystone Jack</h3>
+<p>Network jack एक fixed termination point होता है जहाँ horizontal cable terminate की जाती है और patch cable के माध्यम से end device या patch panel से connection बनाया जाता है। Structured cabling में keystone-style jacks common हैं।</p>
+
+<h3>Connector और Jack में अंतर</h3>
+<table>
+<tr><th>Connector/Plug</th><th>Jack</th></tr>
+<tr><td>Generally cable के end पर लगाया जाता है।</td><td>Wall plate, patch panel या outlet में fixed termination हो सकता है।</td></tr>
+<tr><td>Patch cable को device से connect करने में उपयोग होता है।</td><td>Permanent cabling को accessible connection point में terminate करने में उपयोग होता है।</td></tr>
+</table>
+</section>
+
+<section id="patch">
+<h2>13. Patch Panels</h2>
+<p><strong>Patch Panel</strong> structured cabling system में एक centralized termination और cable-management component है। Building/office की permanent network cables को patch panel के rear side पर terminate किया जा सकता है और front side से short patch cords के माध्यम से switch या अन्य networking equipment से connections किए जाते हैं।</p>
+
+<div class="diagram">
+        PERMANENT CABLING
+              │
+              ▼
+     ┌──────────────────┐
+     │   PATCH PANEL    │
+     │  01 02 03 04 ... │
+     └──────────────────┘
+          │ │ │ │
+       Patch Cords
+          │ │ │ │
+          ▼ ▼ ▼ ▼
+     ┌──────────────────┐
+     │     SWITCH       │
+     └──────────────────┘
+</div>
+
+<h3>Patch Panel के Advantages</h3>
+<ul>
+<li>Cabling को organized और structured रखने में सहायता।</li>
+<li>Network changes और troubleshooting को easier बनाता है।</li>
+<li>Permanent cable और active network equipment के बीच manageable interface देता है।</li>
+<li>Cable labeling और port identification को आसान बनाता है।</li>
+<li>Rack-based network installations में cable management improve करता है।</li>
+</ul>
+
+<h3>Patch Panel का Basic Working</h3>
+<div class="step"><b>1.</b> Room/outlet से आने वाली permanent cable patch panel के पीछे terminate होती है।</div>
+<div class="step"><b>2.</b> Front ports को labels दिए जाते हैं।</div>
+<div class="step"><b>3.</b> Short patch cable से required patch-panel port को switch port से connect किया जाता है।</div>
+<div class="step"><b>4.</b> आवश्यकता के अनुसार patch cord बदलकर logical connection बदला जा सकता है, बिना permanent cable को दोबारा terminate किए।</div>
+</section>
+
+<section id="compare">
+<h2>14. Media Comparison</h2>
+<table>
+<tr><th>Feature</th><th>UTP</th><th>STP</th><th>Coaxial</th><th>Optical Fibre</th></tr>
+<tr><td>Material</td><td>Copper</td><td>Copper</td><td>Copper</td><td>Glass/plastic fibre</td></tr>
+<tr><td>Signal</td><td>Electrical</td><td>Electrical</td><td>Electrical</td><td>Light</td></tr>
+<tr><td>Shielding</td><td>Unshielded</td><td>Shielded</td><td>Metallic shield</td><td>Not affected by EMI</td></tr>
+<tr><td>Installation</td><td>Easy</td><td>More demanding</td><td>Moderate</td><td>Specialized skills may be needed</td></tr>
+<tr><td>Cost</td><td>Generally low</td><td>Generally higher than UTP</td><td>Varies</td><td>Generally higher infrastructure cost</td></tr>
+<tr><td>Typical Use</td><td>LAN/structured cabling</td><td>Noise-sensitive LAN environments</td><td>Specific legacy/broadband applications</td><td>Backbone/high-bandwidth/long-distance</td></tr>
+</table>
+
+<h2>15. Straight-through vs Crossover</h2>
+<table>
+<tr><th>Feature</th><th>Straight-through</th><th>Crossover</th></tr>
+<tr><td>End Standards</td><td>Same: A-A or B-B</td><td>Different: A-B</td></tr>
+<tr><td>Purpose</td><td>Traditional different-device connections</td><td>Traditional similar-device direct connections</td></tr>
+<tr><td>Modern Note</td><td>Most common patch-cable arrangement</td><td>Auto-MDI/MDI-X ने कई use cases में requirement कम कर दी है</td></tr>
+</table>
+</section>
+
+<section id="exam">
+<h2>16. Important Exam Questions</h2>
+<div class="exam">
+<b>Long Answer Questions</b><br><br>
+1. Transmission Media क्या है? Common LAN media को विस्तार से समझाइए।<br>
+2. UTP और STP cable की construction, advantages और disadvantages समझाइए।<br>
+3. Coaxial cable की construction और working समझाइए।<br>
+4. Optical Fibre क्या है? इसकी construction, working और advantages समझाइए।<br>
+5. T568A और T568B wiring standards को pin-wise समझाइए।<br>
+6. Straight-through और Crossover cable में अंतर समझाइए तथा diagrams बनाइए।<br>
+7. Ethernet cable बनाने की step-by-step procedure लिखिए।<br>
+8. Cable tester की सहायता से network cable को कैसे test किया जाता है?<br>
+9. Connectors, network jacks और patch panels को समझाइए।<br>
+10. UTP, STP, Coaxial और Optical Fibre में comparison कीजिए।
+</div>
+
+<h3>Short Questions</h3>
+<ul>
+<li>UTP का full form क्या है?</li>
+<li>STP का full form क्या है?</li>
+<li>Coaxial cable क्या है?</li>
+<li>Optical fibre में data किस form में travel करता है?</li>
+<li>T568A क्या है?</li>
+<li>T568B क्या है?</li>
+<li>Straight-through cable क्या है?</li>
+<li>Crossover cable क्या है?</li>
+<li>RJ-45/8P8C plug का उपयोग कहाँ होता है?</li>
+<li>Patch panel क्या है?</li>
+<li>Cable tester का क्या उपयोग है?</li>
+<li>Network jack क्या है?</li>
+<li>UTP और STP में मुख्य अंतर लिखिए।</li>
+<li>Optical fibre EMI से क्यों प्रभावित नहीं होता?</li>
+</ul>
+
+<div class="important">
+<b>Quick Revision:</b><br>
+<strong>UTP → Unshielded Twisted Pair → Copper → Electrical Signal</strong><br>
+<strong>STP → Shielded Twisted Pair → Copper + Shield</strong><br>
+<strong>Coaxial → Core + Dielectric + Shield + Jacket</strong><br>
+<strong>Fibre → Core + Cladding + Light Signal</strong><br>
+<strong>T568A → WG, G, WO, B, WB, O, WBr, Br</strong><br>
+<strong>T568B → WO, O, WG, B, WB, G, WBr, Br</strong><br>
+<strong>Straight → Same standard both ends</strong><br>
+<strong>Crossover → T568A one end + T568B other end</strong><br>
+<strong>Patch Panel → Centralized termination + cable management</strong>
+</div>
+</section>
+</main>
+</div>
+</body>
+</html>

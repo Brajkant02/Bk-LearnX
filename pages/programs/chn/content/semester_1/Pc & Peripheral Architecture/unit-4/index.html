@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>IDE and SATA Devices – Storage, Expansion Cards, Ports, Cables & Connectors</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#eef2f7;color:#202938;font-family:Segoe UI,Arial,sans-serif;line-height:1.9}.layout{max-width:1550px;margin:auto;padding:15px;display:grid;grid-template-columns:305px 1fr;gap:18px}aside{position:sticky;top:15px;height:calc(100vh - 30px);overflow:auto;background:#fff;border-radius:18px;padding:20px;box-shadow:0 6px 25px #0001}aside h2{color:#075985;border-left:5px solid #0284c7;padding-left:10px}aside a{display:block;text-decoration:none;color:#374151;padding:7px 10px;border-radius:8px;font-size:14px}aside a:hover{background:#e0f2fe;color:#0369a1}main{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 6px 25px #0001}.hero{padding:42px;background:linear-gradient(135deg,#dbeafe,#e0f2fe,#f8fafc)}.hero h1{margin:7px 0;color:#075985;font-size:36px;line-height:1.3}.hero p{color:#475569}section{padding:32px;border-bottom:1px solid #e5e7eb}h2{font-size:29px;color:#075985;border-left:5px solid #0284c7;padding-left:13px}h3{font-size:22px;color:#0c4a6e;margin-top:27px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.card{padding:19px;background:#f0f9ff;border:1px solid #bae6fd;border-radius:14px}.note,.exam,.important{padding:18px 20px;border-radius:12px;margin:19px 0}.note{background:#eff6ff;border-left:5px solid #3b82f6}.exam{background:#ecfdf5;border-left:5px solid #10b981}.important{background:#fff7ed;border-left:5px solid #f97316}table{width:100%;border-collapse:collapse;margin:20px 0}th,td{border:1px solid #cbd5e1;padding:12px;text-align:left;vertical-align:top}th{background:#e0f2fe;color:#075985}.diagram,.flow{background:#090b0f;color:#e5e7eb;border-radius:15px;padding:25px;overflow:auto;font-family:Consolas,monospace;white-space:pre}.steps{counter-reset:step}.step{counter-increment:step;position:relative;padding:14px 16px 14px 48px;background:#f8fafc;border-radius:10px;margin:9px 0}.step:before{content:counter(step);position:absolute;left:14px;top:12px;background:#0284c7;color:#fff;width:25px;height:25px;border-radius:50%;text-align:center;line-height:25px;font-weight:bold}.badge{display:inline-block;background:#bae6fd;color:#075985;padding:4px 11px;border-radius:20px;font-size:12px;font-weight:bold}code{background:#111827;color:#fff;padding:2px 6px;border-radius:5px}@media(max-width:900px){.layout{display:block;padding:5px}aside{display:none}.hero{padding:28px 18px}.hero h1{font-size:28px}section{padding:24px 18px}.grid{grid-template-columns:1fr}p,li{font-size:15px}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside><h2>Topics</h2>
+<a href="#intro">1. Introduction</a><a href="#ide">2. IDE Devices</a><a href="#sata">3. SATA Devices</a><a href="#hdd">4. Hard Disk Drive</a><a href="#optical">5. CD/DVD Drives</a><a href="#scsi">6. SCSI Devices</a><a href="#floppy">7. Floppy Disk</a><a href="#flash">8. Flash Drive</a><a href="#ssd">9. Solid State Drive</a><a href="#backup">10. Backup Drive</a><a href="#cards">11. Expansion Cards</a><a href="#ports">12. Internal Ports</a><a href="#cables">13. Cables & Connectors</a><a href="#comparison">14. Comparison</a><a href="#flow">15. Connection Flow</a><a href="#exam">16. Exam Questions</a></aside>
+<main>
+<div class="hero"><span class="badge">COMPUTER HARDWARE • EXAM ORIENTED</span><h1>IDE and SATA Devices, Storage Devices, Expansion Cards, Ports, Cables & Connectors</h1><p><strong>Detailed PGDCA Notes | Hindi + English | Definitions + Working + Comparisons + Diagrams</strong></p></div>
+
+<section id="intro"><h2>1. Introduction</h2>
+<p>Computer में data को store करने, transfer करने और different peripherals को connect करने के लिए कई प्रकार के <strong>storage interfaces, expansion cards, internal ports, cables और connectors</strong> उपयोग किए जाते हैं। IDE और SATA ऐसे interfaces हैं जिनका उपयोग मुख्यतः storage devices को computer motherboard से connect करने के लिए किया गया है।</p>
+<p>इसके अलावा HDD, optical drives, floppy disk, flash drive, SSD और backup drives अलग-अलग प्रकार की storage technologies हैं। Expansion cards computer की capabilities को बढ़ाने के लिए motherboard के expansion slots में install की जाती हैं, जैसे LAN Card, Sound Card, Video Card और Interface Cards.</p>
+<div class="important"><b>Exam Point:</b> <strong>Device</strong> वह hardware है जो कोई कार्य करता है, <strong>Interface</strong> devices के communication का standard/path है, <strong>Port/Connector</strong> physical connection point है और <strong>Cable</strong> दो devices/interfaces के बीच signal/data/power carry कर सकती है।</div>
+</section>
+
+<section id="ide"><h2>2. IDE Devices</h2>
+<h3>IDE क्या है?</h3>
+<p><strong>IDE (Integrated Drive Electronics)</strong> एक older storage interface technology है जिसे <strong>ATA (Advanced Technology Attachment)</strong> के नाम से भी जाना जाता है। IDE interface में drive controller electronics drive के साथ integrated होते थे। IDE का उपयोग पुराने desktop computers में hard disk drives और optical drives को connect करने के लिए किया जाता था।</p>
+<h3>IDE/PATA की विशेषताएँ</h3>
+<ul><li>यह parallel data transfer approach पर आधारित था, इसलिए इसे <strong>PATA (Parallel ATA)</strong> भी कहा जाता है।</li><li>Traditional IDE/PATA drives को motherboard से wide ribbon cable के माध्यम से connect किया जाता था।</li><li>एक channel पर multiple devices configure किए जा सकते थे, historically master/slave terminology का उपयोग किया जाता था।</li><li>IDE interfaces की speed और cable design modern SATA की तुलना में सीमित थी।</li><li>आज IDE/PATA मुख्यतः legacy systems में मिलता है।</li></ul>
+<div class="diagram">
+                 IDE / PATA CONNECTION
+
+        ┌──────────────────────┐
+        │      MOTHERBOARD     │
+        │      IDE HEADER      │
+        └──────────┬───────────┘
+                   │
+          40/80-wire ribbon cable
+                   │
+          ┌────────┴────────┐
+          ↓                 ↓
+      IDE HDD          IDE CD/DVD
+</div>
+<div class="note"><b>Note:</b> IDE, ATA और PATA terminology कई पुराने systems में overlapping रूप से दिखाई दे सकती है। Exam में IDE का full form और PATA का Parallel ATA याद रखना उपयोगी है।</div>
+</section>
+
+<section id="sata"><h2>3. SATA Devices</h2>
+<h3>SATA क्या है?</h3>
+<p><strong>SATA (Serial ATA – Serial Advanced Technology Attachment)</strong> storage devices को motherboard से connect करने के लिए widely used serial interface है। SATA ने traditional parallel ATA/IDE interface को replace करने में महत्वपूर्ण भूमिका निभाई। SATA HDDs, SATA SSDs और optical drives जैसे devices में उपयोग हुआ है।</p>
+<h3>SATA की विशेषताएँ</h3>
+<ul><li>Serial data transmission का उपयोग करता है।</li><li>IDE/PATA की तुलना में thinner cables के कारण cable management आसान होता है।</li><li>Point-to-point connection architecture का उपयोग करता है।</li><li>SATA के अलग generations में अलग maximum interface speeds रही हैं।</li><li>SATA data cable के साथ SATA power connector भी storage drive को power supply से जोड़ता है।</li></ul>
+<div class="diagram">
+                SATA CONNECTION
+
+      ┌──────────────────┐
+      │    MOTHERBOARD   │
+      │    SATA PORT     │
+      └────────┬─────────┘
+               │
+          SATA DATA CABLE
+               │
+               ↓
+        ┌──────────────┐
+        │ SATA HDD/SSD │
+        └──────┬───────┘
+               ↑
+        SATA POWER CABLE
+               │
+        ┌──────┴───────┐
+        │ POWER SUPPLY │
+        └──────────────┘
+</div>
+</section>
+
+<section id="hdd"><h2>4. Hard Disk Drive (HDD)</h2>
+<p><strong>Hard Disk Drive (HDD)</strong> एक magnetic storage device है जो data को rotating magnetic platters पर store करता है। इसमें platters, spindle motor, read/write heads और actuator mechanism जैसे मुख्य mechanical components होते हैं।</p>
+<h3>HDD के प्रमुख Components</h3>
+<div class="grid"><div class="card"><b>Platters</b><p>Magnetic surface वाले circular disks जिन पर data store होता है।</p></div><div class="card"><b>Spindle</b><p>Platters को rotate करने वाला mechanism.</p></div><div class="card"><b>Read/Write Head</b><p>Magnetic surface से data read और write करने के लिए उपयोग होता है।</p></div><div class="card"><b>Actuator Arm</b><p>Read/write head को platter के सही position तक move करता है।</p></div></div>
+<h3>HDD Working</h3>
+<p>जब data write किया जाता है, drive electronics और head magnetic platter पर corresponding magnetic patterns create करते हैं। Read operation में head magnetic information को sense करता है और electronics उसे digital data में process करते हैं।</p>
+<div class="note"><b>Advantages:</b> Large capacity, comparatively low cost per GB, mature technology.<br><b>Limitations:</b> Moving mechanical parts के कारण SSD की तुलना में latency अधिक और physical shock के प्रति अधिक संवेदनशील।</div>
+</section>
+
+<section id="optical"><h2>5. CD/DVD Drives</h2>
+<p><strong>Optical Disc Drive (ODD)</strong> laser technology का उपयोग करके optical discs से data read करता है और supported drives में data write भी कर सकता है। Common optical media में CD और DVD शामिल हैं।</p>
+<div class="grid"><div class="card"><b>CD</b><p>Compact Disc. सामान्यतः audio और data distribution के लिए उपयोग हुआ।</p></div><div class="card"><b>DVD</b><p>Digital Versatile Disc. CD की तुलना में अधिक storage capacity provide करता है और video/software distribution में widely used रहा।</p></div></div>
+<h3>Optical Drive Working</h3>
+<p>Drive का laser optical disc की surface पर information को read करता है। Disc की rotation और optical sensing mechanism के माध्यम से stored information recover की जाती है। Recordable/re-writable media में drive laser disc की recording layer में changes create कर सकता है।</p>
+</section>
+
+<section id="scsi"><h2>6. SCSI Devices</h2>
+<p><strong>SCSI (Small Computer System Interface)</strong> computers और peripheral devices के बीच communication के लिए developed interface family है। इसका उपयोग storage devices, scanners और professional/workstation/server environments के अन्य peripherals के साथ किया गया है।</p>
+<p>SCSI के विभिन्न generations में parallel और बाद के serial variants विकसित हुए। <strong>SAS (Serial Attached SCSI)</strong> modern enterprise storage environments में SCSI family की serial evolution के रूप में जाना जाता है।</p>
+<h3>SCSI की विशेषताएँ</h3><ul><li>Multiple peripheral devices को support करने की क्षमता।</li><li>Historically servers और workstations में इसका उपयोग।</li><li>High reliability और enterprise-oriented implementations.</li><li>Different generations में अलग speeds और physical interfaces.</li></ul>
+</section>
+
+<section id="floppy"><h2>7. Floppy Disk</h2>
+<p><strong>Floppy Disk</strong> एक removable magnetic storage medium था। इसका उपयोग छोटे amount के data को store और transfer करने के लिए पुराने computers में बहुत common था। बाद में USB flash drives, optical media और network/cloud storage के कारण इसका use लगभग समाप्त हो गया।</p>
+<h3>Common Floppy Formats</h3><ul><li>8-inch floppy – very early systems.</li><li>5.25-inch floppy – older PCs.</li><li>3.5-inch floppy – later and widely used format.</li></ul>
+<div class="important"><b>Limitation:</b> Floppy disk की storage capacity modern storage devices की तुलना में बहुत कम थी और magnetic media होने के कारण physical/media damage का risk भी था।</div>
+</section>
+
+<section id="flash"><h2>8. Flash Drive</h2>
+<p><strong>USB Flash Drive</strong> एक small removable storage device है जो non-volatile flash memory का उपयोग करता है। इसे USB port में plug करके files को read, write और transfer किया जा सकता है। इसमें moving mechanical parts नहीं होते।</p>
+<h3>Features</h3><ul><li>Portable और compact.</li><li>USB interface के माध्यम से easy connection.</li><li>Non-volatile memory – power off होने पर data retain रहता है।</li><li>File transfer और backup के लिए convenient.</li><li>Different capacities और USB generations में उपलब्ध।</li></ul>
+</section>
+
+<section id="ssd"><h2>9. Solid State Drive (SSD)</h2>
+<p><strong>SSD</strong> एक storage device है जो flash memory का उपयोग करके data store करता है। HDD की तरह इसमें spinning platters और mechanical read/write heads नहीं होते। इसी कारण SSD सामान्यतः fast random access, lower latency और better shock resistance provide करता है।</p>
+<div class="grid"><div class="card"><b>SATA SSD</b><p>SATA interface का उपयोग करता है। पुराने SATA-based systems में HDD upgrade के लिए common option.</p></div><div class="card"><b>NVMe SSD</b><p>PCIe-based interface/protocol ecosystem का उपयोग करता है और SATA SSD की तुलना में बहुत अधिक throughput दे सकता है।</p></div></div>
+<table><tr><th>Feature</th><th>HDD</th><th>SSD</th></tr><tr><td>Storage medium</td><td>Magnetic platters</td><td>Flash memory</td></tr><tr><td>Moving parts</td><td>Yes</td><td>No</td></tr><tr><td>Random access</td><td>Slower</td><td>Generally faster</td></tr><tr><td>Shock resistance</td><td>Lower</td><td>Generally higher</td></tr><tr><td>Noise</td><td>Mechanical noise possible</td><td>Silent operation</td></tr></table>
+</section>
+
+<section id="backup"><h2>10. Backup Drive</h2>
+<p><strong>Backup Drive</strong> वह storage device/media है जिसका उपयोग important files की additional copy रखने के लिए किया जाता है। Backup का उद्देश्य primary storage failure, accidental deletion, malware, corruption या अन्य data-loss situations में recovery की संभावना बढ़ाना है।</p>
+<p>Backup drive external HDD, external SSD या अन्य suitable storage media हो सकती है। Effective backup strategy में अलग location या offline copy रखना भी उपयोगी होता है।</p>
+<div class="note"><b>Basic Backup Principle:</b> Important data की केवल एक copy पर depend नहीं करना चाहिए। Multiple copies और अलग storage/location data protection को मजबूत करते हैं।</div>
+</section>
+
+<section id="cards"><h2>11. Expansion Cards</h2>
+<p><strong>Expansion Card</strong> एक circuit board है जिसे motherboard के expansion slot में install करके computer में नई functionality या additional interfaces जोड़े जाते हैं।</p>
+<h3>11.1 LAN Card / Network Interface Card</h3><p><strong>LAN Card</strong> computer को wired network से connect करने के लिए network interface provide करता है। Ethernet NIC में सामान्यतः RJ-45 network connector मिलता है।</p>
+<h3>11.2 IDE Card</h3><p><strong>IDE Card</strong> expansion card के रूप में additional IDE/PATA interfaces provide कर सकती है, विशेषकर पुराने या special-purpose systems में जहाँ motherboard पर required IDE interface उपलब्ध न हो।</p>
+<h3>11.3 VGA और SVGA Cards</h3><p>VGA/SVGA terminology पुराने display standards और graphics hardware से संबंधित है। Graphics/video card display signals generate/process करके monitor को output provide करता है। VGA और SVGA historical display standards/resolutions से जुड़े terms हैं।</p>
+<h3>11.4 Sound Card</h3><p><strong>Sound Card</strong> audio input/output और audio processing capabilities provide करती है। इसमें microphone input, speaker/headphone output और अन्य audio interfaces हो सकते हैं। Modern motherboards में audio functionality अक्सर onboard integrated होती है।</p>
+<h3>11.5 Interface Card</h3><p><strong>Interface Card</strong> किसी particular peripheral या communication standard के लिए additional interface provide करने वाली expansion card को broadly refer कर सकती है।</p>
+<h3>11.6 I/O Card</h3><p><strong>I/O (Input/Output) Card</strong> computer में additional input/output ports और device interfaces add कर सकती है।</p>
+<h3>11.7 Video Card</h3><p><strong>Video/Graphics Card</strong> graphics processing और display output के लिए उपयोग होती है। Modern discrete GPUs complex graphics workloads, gaming, rendering और compute tasks में भी उपयोग हो सकते हैं।</p>
+<h3>11.8 USB Card</h3><p><strong>USB Expansion Card</strong> motherboard में additional USB ports add करने के लिए उपयोग की जाती है। यह तब useful है जब existing USB ports पर्याप्त न हों।</p>
+<h3>11.9 FireWire Card</h3><p><strong>FireWire (IEEE 1394)</strong> एक high-speed serial interface technology थी जिसका उपयोग digital cameras, video equipment और external peripherals के साथ किया गया। आज यह USB और newer interfaces की तुलना में बहुत कम common है।</p>
+<table><tr><th>Card</th><th>Main Purpose</th></tr><tr><td>LAN Card</td><td>Network connectivity</td></tr><tr><td>Sound Card</td><td>Audio input/output</td></tr><tr><td>Video Card</td><td>Graphics processing/display output</td></tr><tr><td>USB Card</td><td>Additional USB ports</td></tr><tr><td>I/O Card</td><td>Additional input/output interfaces</td></tr><tr><td>FireWire Card</td><td>IEEE 1394 peripheral connectivity</td></tr></table>
+</section>
+
+<section id="ports"><h2>12. Internal Ports</h2>
+<p><strong>Internal Port/Connector</strong> motherboard या computer के अंदर मौजूद connection point है जिसका उपयोग internal devices, power cables या front-panel components को connect करने के लिए किया जाता है।</p>
+<div class="grid"><div class="card"><b>SATA Data Port</b><p>SATA storage devices को motherboard से connect करता है।</p></div><div class="card"><b>RAM Slot</b><p>Memory modules install करने के लिए।</p></div><div class="card"><b>PCIe Slot</b><p>Graphics cards और अन्य PCIe expansion cards के लिए।</p></div><div class="card"><b>M.2 Slot</b><p>Compatible M.2 storage और कुछ other modules के लिए।</p></div><div class="card"><b>CPU Fan Header</b><p>CPU cooling fan/pump को power/control signal provide करता है।</p></div><div class="card"><b>Front Panel Header</b><p>Power switch, reset switch, LEDs आदि case controls connect करने के लिए।</p></div><div class="card"><b>USB Header</b><p>Computer case के front USB ports को motherboard से connect करने के लिए।</p></div><div class="card"><b>Audio Header</b><p>Front-panel audio ports को motherboard audio circuitry से connect करता है।</p></div></div>
+</section>
+
+<section id="cables"><h2>13. Cables & Connector Types</h2>
+<h3>13.1 IDE Ribbon Cable</h3><p>Wide flat ribbon cable जो पुराने IDE/PATA drives को motherboard/controller से connect करती थी। 40-pin interface और later 80-conductor cable designs common थे।</p>
+<h3>13.2 SATA Data Cable</h3><p>Thin cable जो SATA drive और motherboard SATA port के बीच data transfer करती है। Data cable और power cable अलग होते हैं।</p>
+<h3>13.3 SATA Power Connector</h3><p>Power supply से SATA drive को electrical power provide करता है।</p>
+<h3>13.4 Molex Connector</h3><p>Older PCs में certain drives और peripherals को power देने के लिए 4-pin peripheral power connector commonly used हुआ।</p>
+<h3>13.5 USB Connector</h3><p>USB family में different connector types और generations हैं, जैसे USB Type-A और Type-C। USB data और, supported implementations में, power delivery दोनों provide कर सकता है।</p>
+<h3>13.6 VGA Connector</h3><p>VGA का traditional connector आमतौर पर 15-pin D-sub connector होता है और analog video signal के लिए historically widely used था।</p>
+<h3>13.7 RJ-45</h3><p>Ethernet networking में commonly used modular connector को आम तौर पर RJ-45 कहा जाता है। यह twisted-pair Ethernet cable के साथ network connectivity provide करता है।</p>
+<h3>13.8 FireWire Connector</h3><p>IEEE 1394 family में different connector types मौजूद थे, जिनका उपयोग compatible digital devices को connect करने के लिए किया गया।</p>
+<table><tr><th>Cable/Connector</th><th>Typical Use</th></tr><tr><td>IDE/PATA Ribbon</td><td>Legacy HDD/optical drives</td></tr><tr><td>SATA Data</td><td>SATA storage/optical devices</td></tr><tr><td>SATA Power</td><td>SATA drive power</td></tr><tr><td>Molex</td><td>Older internal peripheral power</td></tr><tr><td>USB</td><td>External peripherals/data/power</td></tr><tr><td>VGA</td><td>Legacy analog display</td></tr><tr><td>RJ-45</td><td>Ethernet network connection</td></tr><tr><td>FireWire</td><td>Legacy high-speed peripheral connection</td></tr></table>
+</section>
+
+<section id="comparison"><h2>14. Important Comparisons</h2>
+<h3>IDE vs SATA</h3>
+<table><tr><th>Feature</th><th>IDE/PATA</th><th>SATA</th></tr><tr><td>Transmission</td><td>Parallel</td><td>Serial</td></tr><tr><td>Cable</td><td>Wide ribbon cable</td><td>Thin serial cable</td></tr><tr><td>Device arrangement</td><td>Historically multiple devices/channel</td><td>Point-to-point</td></tr><tr><td>Current relevance</td><td>Legacy</td><td>Still common for SATA storage/interfaces</td></tr></table>
+<h3>HDD vs SSD vs Flash Drive</h3>
+<table><tr><th>Feature</th><th>HDD</th><th>SSD</th><th>Flash Drive</th></tr><tr><td>Technology</td><td>Magnetic</td><td>Flash</td><td>Flash</td></tr><tr><td>Portability</td><td>Low/medium</td><td>Medium</td><td>Very high</td></tr><tr><td>Moving parts</td><td>Yes</td><td>No</td><td>No</td></tr><tr><td>Typical role</td><td>Bulk storage</td><td>Fast primary storage</td><td>Portable transfer</td></tr></table>
+</section>
+
+<section id="flow"><h2>15. Complete Connection Flow</h2>
+<div class="diagram">
+                    COMPUTER SYSTEM
+                           │
+                    ┌──────┴──────┐
+                    │ MOTHERBOARD │
+                    └──────┬──────┘
+                           │
+        ┌──────────────────┼──────────────────┐
+        ↓                  ↓                  ↓
+     SATA PORT          PCIe SLOT        INTERNAL HEADERS
+        │                  │                  │
+   ┌────┼────┐        ┌────┼─────┐      ┌────┼─────┐
+   ↓         ↓        ↓          ↓      ↓          ↓
+  HDD       SSD    Video Card  LAN Card USB      Audio
+   │          │        │          │      │          │
+   └──────┬───┘        │          │      │          │
+          ↓             ↓          ↓      ↓          ↓
+       DATA STORAGE   DISPLAY    NETWORK  FRONT   SOUND
+                                         PANEL
+</div>
+<p>इस flow से यह समझ आता है कि motherboard केवल एक board नहीं बल्कि system के अलग-अलग devices को connect करने वाला central platform है। Storage devices interfaces के माध्यम से, expansion cards slots के माध्यम से और internal/front-panel devices headers/connectors के माध्यम से system से जुड़ते हैं।</p>
+</section>
+
+<section id="exam"><h2>16. Important Exam Questions</h2>
+<div class="exam"><b>Long Answer Questions</b><br><br>
+1. IDE क्या है? IDE/PATA interface की विशेषताएँ और working समझाइए।<br>
+2. SATA क्या है? SATA interface की features और connection diagram समझाइए।<br>
+3. IDE और SATA में अंतर लिखिए।<br>
+4. Hard Disk Drive की संरचना और working समझाइए।<br>
+5. CD/DVD drive क्या है? Optical storage की working समझाइए।<br>
+6. SCSI क्या है? इसके applications और features समझाइए।<br>
+7. Floppy Disk क्या है? इसके formats, advantages और limitations लिखिए।<br>
+8. Flash Drive और SSD को विस्तार से समझाइए।<br>
+9. Backup Drive क्या है और data backup क्यों आवश्यक है?<br>
+10. Expansion Card क्या है? LAN, Sound, Video, USB और FireWire cards समझाइए।<br>
+11. Internal ports और connectors क्या हैं? विभिन्न examples समझाइए।<br>
+12. IDE, SATA, USB, VGA और RJ-45 connectors का उपयोग समझाइए।<br>
+13. HDD और SSD में अंतर लिखिए।<br>
+14. Storage device को motherboard से connect करने की पूरी process diagram सहित समझाइए।
+</div>
+<h3>Very Short Questions</h3>
+<ul><li>IDE का full form क्या है?</li><li>SATA का full form क्या है?</li><li>HDD किस technology पर based है?</li><li>SSD में कौन-सी memory technology use होती है?</li><li>Flash Drive क्या है?</li><li>SCSI का full form क्या है?</li><li>LAN Card का क्या कार्य है?</li><li>Sound Card किसके लिए उपयोग होती है?</li><li>Video Card क्या करता है?</li><li>USB Card क्यों लगाया जाता है?</li><li>FireWire किस standard से related है?</li><li>RJ-45 connector कहाँ उपयोग होता है?</li><li>VGA connector किस प्रकार का signal traditionally carry करता है?</li><li>SATA data और SATA power cable में क्या अंतर है?</li></ul>
+<div class="important"><b>Quick Revision:</b><br>
+<strong>IDE/PATA → Parallel + Legacy Storage Interface</strong><br>
+<strong>SATA → Serial Storage Interface</strong><br>
+<strong>HDD → Magnetic + Mechanical</strong><br>
+<strong>SSD → Flash + No Moving Parts</strong><br>
+<strong>Flash Drive → Portable USB Storage</strong><br>
+<strong>Expansion Card → Additional Functionality</strong><br>
+<strong>Internal Port → Internal Connection Point</strong><br>
+<strong>Cable → Signal/Data/Power Path</strong><br>
+<strong>Connector → Physical Connection Interface</strong>
+</div>
+</section>
+</main></div>
+</body>
+</html>
