@@ -37,7 +37,7 @@
         </section>
         <section class="dashboard-grid">
             <div class="portal-card">
-                <h2>Students</h2>
+                <div class="section-title"><h2>Students</h2><input id="studentSearch" placeholder="Search name or email" style="max-width:240px;padding:10px;border:1px solid var(--bk-border);border-radius:10px"></div>
                 <div style="overflow:auto">
                     <table class="data-table">
                         <thead>
@@ -77,7 +77,7 @@
                 online.textContent = stats.onlineStudents ?? 0;
                 today.textContent = stats.loginsToday ?? 0;
                 completion.textContent = `${stats.averageCompletion ?? 0}%`;
-                students.innerHTML = studentsList.length ? studentsList.map(s => `<tr><td><strong>${s.name || 'Student'}</strong><br><span class="muted">${s.email || ''}</span></td><td>${s.branch || '—'}<br>${s.semester || '—'}</td><td><span class="badge ${s.online ? 'online' : 'offline'}">${s.online ? 'Online' : 'Logged out'}</span></td><td>${s.currentPage || '—'}<br><span class="muted">${s.lastActivity ? new Date(s.lastActivity).toLocaleString() : '—'}</span></td><td>${s.completion ?? 0}%</td></tr>`).join('') : '<tr><td colspan="5" class="empty-state">No students registered yet.</td></tr>';
+                renderStudents(studentsList);
                 activity.innerHTML = activityList.length ? activityList.map(a => `<div style="padding:9px 0;border-bottom:1px solid #e5e7eb"><strong>${a.studentName || 'Student'}</strong> — ${a.type || 'activity'}<br><span class="muted">${a.title || a.page || ''} · ${a.durationSeconds || 0}s</span></div>`).join('') : '<p class="empty-state">No activity yet.</p>';
             } catch (error) {
                 console.error(error);
@@ -85,7 +85,9 @@
             }
         }
 
-        logout.onclick = () => { localStorage.removeItem('bk_admin_token'); location.href = 'login.html' };
+        function renderStudents(list) { const query = (studentSearch.value || '').toLowerCase(); const filtered = list.filter(s => `${s.name || ''} ${s.email || ''} ${s.branch || ''}`.toLowerCase().includes(query)); students.innerHTML = filtered.length ? filtered.map(s => `<tr><td><strong>${s.name || 'Student'}</strong><br><span class="muted">${s.email || ''}</span></td><td>${s.branch || '—'}<br>${s.semester || '—'}</td><td><span class="badge ${s.online ? 'online' : 'offline'}">${s.online ? 'Online' : 'Logged out'}</span></td><td>${s.currentPage || '—'}<br><span class="muted">${s.lastActivity ? new Date(s.lastActivity).toLocaleString() : '—'}</span></td><td>${s.completion ?? 0}%</td></tr>`).join('') : '<tr><td colspan="5" class="empty-state">No matching students.</td></tr>'; }
+        studentSearch.addEventListener('input', () => load());
+        logout.onclick = async () => { try { await fetch(API + '/api/admin/logout', { method: 'POST', headers: { 'x-admin-token': token } }); } finally { localStorage.removeItem('bk_admin_token'); location.href = 'login.html'; } };
         load();
         setInterval(load, 15000);
     </script>

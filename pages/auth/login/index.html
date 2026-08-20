@@ -213,6 +213,7 @@
 
             <div class="separator"><span>or</span></div>
             <button type="button" class="google-btn" id="googleLoginBtn">Continue with Google</button>
+            <button type="button" class="google-btn" id="facebookLoginBtn">Continue with Facebook</button>
 
             <p id="loginMessage" style="margin-top: 1rem; font-size: 0.95rem;"></p>
         </form>
@@ -236,8 +237,8 @@
 
         const applyGoogleAuth = () => {
             const params = new URLSearchParams(window.location.search);
-            const googleError = params.get('google_error');
-            const googleAuth = params.get('google_auth');
+            const googleError = params.get('google_error') || params.get('oauth_error');
+            const googleAuth = params.get('google_auth') || params.get('oauth_auth');
             const token = params.get('token');
             const encodedUser = params.get('user');
 
@@ -299,6 +300,11 @@
         document.getElementById('googleLoginBtn').addEventListener('click', function () {
             const redirectUrl = encodeURIComponent(window.location.href);
             window.location.href = BK_CONFIG.API_BASE_URL + '/api/auth/google?redirect=' + redirectUrl;
+        });
+
+        document.getElementById('facebookLoginBtn').addEventListener('click', function () {
+            const redirectUrl = encodeURIComponent(window.location.href);
+            window.location.href = BK_CONFIG.API_BASE_URL + '/api/auth/facebook?redirect=' + redirectUrl;
         });
 
         applyGoogleAuth();

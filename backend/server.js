@@ -1,11 +1,12 @@
 require('dotenv').config();
 const express = require('express'), cors = require('cors'), bcrypt = require('bcryptjs'), fs = require('fs').promises, path = require('path'), crypto = require('crypto'), nodemailer = require('nodemailer');
 const app = express(), PORT = process.env.PORT || 3000, DATA = path.join(__dirname, 'data'); app.use(cors()); app.use(express.json({ limit: '3mb' }));
-const files = { users: 'users.json', activity: 'activity.json', progress: 'progress.json' }; const sessions = new Map(), adminSessions = new Map(), googleStates = new Map();
+const files = { users: 'users.json', activity: 'activity.json', progress: 'progress.json' }; const sessions = new Map(), adminSessions = new Map(), oauthStates = new Map();
 async function read(k) { try { return JSON.parse(await fs.readFile(path.join(DATA, files[k]), 'utf8')) } catch { return [] } } async function write(k, v) { await fs.mkdir(DATA, { recursive: true }); await fs.writeFile(path.join(DATA, files[k]), JSON.stringify(v, null, 2)) } const token = () => crypto.randomBytes(24).toString('hex');
-function createGoogleState(redirectUrl) { const state = crypto.randomBytes(16).toString('hex'); googleStates.set(state, { redirectUrl, createdAt: Date.now() }); return state; }
-function consumeGoogleState(state) { const entry = googleStates.get(state); if (entry) googleStates.delete(state); return entry; }
-async function auth(req, res, next) { const t = (req.headers.authorization || '').replace('Bearer ', ''); const s = sessions.get(t); if (!s) return res.status(401).json({ message: 'Please login again.' }); req.userId = s.userId; req.sessionToken = t; next() }
+const SESSION_TTL = 30 * 24 * 60 * 60 * 1000;
+function createOAuthState(provider, redirectUrl) { const state = crypto.randomBytes(16).toString('hex'); oauthStates.set(state, { provider, redirectUrl, createdAt: Date.now() }); return state; }
+function consumeOAuthState(state) { const entry = oauthStates.get(state); if (entry) oauthStates.delete(state); return entry; }
+async function auth(req, res, next) { const t = (req.headers.authorization || '').replace('Bearer ', ''); const s = sessions.get(t); if (!s || Date.now() - s.loginAt > SESSION_TTL) { sessions.delete(t); return res.status(401).json({ message: 'Please login again.' }); } s.lastSeen = Date.now(); req.userId = s.userId; req.sessionToken = t; next() }
 function admin(req, res, next) { const t = req.header('x-admin-token'); if (!adminSessions.has(t)) return res.status(401).json({ message: 'Unauthorized' }); next() }
 app.get('/api/health', (q, r) => r.json({ status: 'ok' }));
 app.get('/api/auth/google', (req, res) => {
@@ -17,7 +18,7 @@ app.get('/api/auth/google', (req, res) => {
     redirectTarget.searchParams.set('google_error', 'Google login is not configured on this server yet.');
     return res.redirect(redirectTarget.toString());
   }
-  const state = createGoogleState(redirectTarget.toString());
+  const state = createOAuthState('google', redirectTarget.toString());
   const redirectUri = process.env.GOOGLE_REDIRECT_URI || `${req.protocol}://${req.get('host')}/api/auth/google/callback`;
   const params = new URLSearchParams({
     client_id: clientId,
@@ -42,7 +43,7 @@ app.get('/api/auth/google/callback', async (req, res) => {
     errorTarget.searchParams.set('google_error', 'Google sign-in response was incomplete.');
     return res.redirect(errorTarget.toString());
   }
-  const savedState = consumeGoogleState(String(state));
+  const savedState = consumeOAuthState(String(state));
   if (!savedState) {
     errorTarget.searchParams.set('google_error', 'Google sign-in state expired. Please try again.');
     return res.redirect(errorTarget.toString());
@@ -110,8 +111,29 @@ app.get('/api/auth/google/callback', async (req, res) => {
     res.redirect(redirectTarget.toString());
   }
 });
-app.post('/api/register', async (req, res) => { const { name, email, branch, semester, password, confirmPassword } = req.body; if (!name || !email || !branch || !semester || !password) return res.status(400).json({ message: 'All fields required.' }); if (password !== confirmPassword) return res.status(400).json({ message: 'Passwords do not match.' }); const users = await read('users'); if (users.some(x => x.email.toLowerCase() === email.toLowerCase())) return res.status(409).json({ message: 'Email already registered.' }); const u = { id: crypto.randomUUID(), name, email, branch, semester, passwordHash: await bcrypt.hash(password, 10), registeredAt: new Date().toISOString(), lastLoginAt: null, lastLogoutAt: null, phone: '', college: '', photo: '' }; users.push(u); await write('users', users); res.status(201).json({ message: 'Registration successful.' }) });
-app.post('/api/login', async (req, res) => { const users = await read('users'), u = users.find(x => x.email.toLowerCase() === (req.body.email || '').toLowerCase()); if (!u || !await bcrypt.compare(req.body.password || '', u.passwordHash)) return res.status(401).json({ message: 'Invalid email or password.' }); u.lastLoginAt = new Date().toISOString(); await write('users', users); const t = token(); sessions.set(t, { userId: u.id, loginAt: Date.now(), lastSeen: Date.now(), currentPage: '' }); res.json({ token: t, user: safe(u) }) });
+app.get('/api/auth/facebook', (req, res) => {
+  const target = new URL(req.query.redirect || process.env.FRONTEND_URL || 'http://localhost:3000/pages/auth/login/index.html', `${req.protocol}://${req.get('host')}`);
+  if (!process.env.FACEBOOK_CLIENT_ID || !process.env.FACEBOOK_CLIENT_SECRET) { target.searchParams.set('oauth_error', 'Facebook login is not configured on this server yet.'); return res.redirect(target.toString()); }
+  const state = createOAuthState('facebook', target.toString()); const redirectUri = process.env.FACEBOOK_REDIRECT_URI || `${req.protocol}://${req.get('host')}/api/auth/facebook/callback`;
+  const params = new URLSearchParams({ client_id: process.env.FACEBOOK_CLIENT_ID, redirect_uri: redirectUri, state, response_type: 'code', scope: 'email,public_profile' });
+  res.redirect(`https://www.facebook.com/v20.0/dialog/oauth?${params.toString()}`);
+});
+app.get('/api/auth/facebook/callback', async (req, res) => {
+  const saved = consumeOAuthState(String(req.query.state || '')); const target = new URL(saved?.redirectUrl || process.env.FRONTEND_URL || 'http://localhost:3000/pages/auth/login/index.html', `${req.protocol}://${req.get('host')}`);
+  try {
+    if (!saved || !req.query.code) throw new Error('Social sign-in response was incomplete.');
+    const redirectUri = process.env.FACEBOOK_REDIRECT_URI || `${req.protocol}://${req.get('host')}/api/auth/facebook/callback`;
+    const exchange = await fetch('https://graph.facebook.com/v20.0/oauth/access_token', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams({ client_id: process.env.FACEBOOK_CLIENT_ID || '', client_secret: process.env.FACEBOOK_CLIENT_SECRET || '', redirect_uri: redirectUri, code: String(req.query.code) }) });
+    const access = await exchange.json(); if (!access.access_token) throw new Error('Facebook token exchange failed.');
+    const profile = await (await fetch(`https://graph.facebook.com/me?fields=id,name,email,picture&access_token=${encodeURIComponent(access.access_token)}`)).json(); if (!profile.email) throw new Error('Facebook email permission is required.');
+    const users = await read('users'); const email = profile.email.trim().toLowerCase(); let user = users.find(x => (x.email || '').toLowerCase() === email);
+    if (!user) { user = { id: crypto.randomUUID(), name: profile.name || email.split('@')[0], email, branch: '', semester: '', passwordHash: '', registeredAt: new Date().toISOString(), lastLoginAt: null, lastLogoutAt: null, phone: '', college: '', photo: profile.picture?.data?.url || '', provider: 'facebook' }; users.push(user); } else { user.provider = 'facebook'; user.photo = user.photo || profile.picture?.data?.url || ''; }
+    user.lastLoginAt = new Date().toISOString(); await write('users', users); const sessionToken = token(); sessions.set(sessionToken, { userId: user.id, loginAt: Date.now(), lastSeen: Date.now(), currentPage: '' }); target.searchParams.set('oauth_auth', '1'); target.searchParams.set('token', sessionToken); target.searchParams.set('user', encodeURIComponent(JSON.stringify(safe(user)))); res.redirect(target.toString());
+  } catch (error) { target.searchParams.set('oauth_error', error.message || 'Unable to sign in with Facebook.'); res.redirect(target.toString()); }
+});
+app.post('/api/register', async (req, res) => { const { name, email, branch, semester, password, confirmPassword } = req.body; if (!name || !email || !branch || !semester || !password) return res.status(400).json({ message: 'All fields required.' }); if (password !== confirmPassword) return res.status(400).json({ message: 'Passwords do not match.' }); const users = await read('users'); if (users.some(x => (x.email || '').toLowerCase() === email.toLowerCase())) return res.status(409).json({ message: 'Email already registered.' }); const u = { id: crypto.randomUUID(), name: name.trim(), email: email.trim().toLowerCase(), branch, semester, passwordHash: await bcrypt.hash(password, 10), registeredAt: new Date().toISOString(), lastLoginAt: null, lastLogoutAt: null, phone: '', college: '', photo: '', provider: 'password' }; users.push(u); await write('users', users); res.status(201).json({ message: 'Registration successful.' }) });
+app.post('/api/login', async (req, res) => { const users = await read('users'), u = users.find(x => (x.email || '').toLowerCase() === (req.body.email || '').trim().toLowerCase()); const validPassword = typeof u?.passwordHash === 'string' && u.passwordHash.startsWith('$2') ? await bcrypt.compare(req.body.password || '', u.passwordHash) : false; if (!u || !validPassword) return res.status(401).json({ message: u?.provider && u.provider !== 'password' ? `Please continue with ${u.provider} login.` : 'Invalid email or password.' }); u.lastLoginAt = new Date().toISOString(); await write('users', users); const t = token(); sessions.set(t, { userId: u.id, loginAt: Date.now(), lastSeen: Date.now(), currentPage: '' }); res.json({ token: t, user: safe(u) }) });
+app.post('/api/login', async (req, res) => { const users = await read('users'), u = users.find(x => (x.email || '').toLowerCase() === (req.body.email || '').trim().toLowerCase()); const validPassword = u?.passwordHash && /^4(?:a|b|y)4\d{2}4/.test(u.passwordHash) ? await bcrypt.compare(req.body.password || '', u.passwordHash) : false; if (!u || !validPassword) return res.status(401).json({ message: u?.provider && u.provider !== 'password' ? `Please continue with ${u.provider} login.` : 'Invalid email or password.' }); u.lastLoginAt = new Date().toISOString(); await write('users', users); const t = token(); sessions.set(t, { userId: u.id, loginAt: Date.now(), lastSeen: Date.now(), currentPage: '' }); res.json({ token: t, user: safe(u) }) });
 
 const otpHash = value => crypto.createHash('sha256').update(String(value)).digest('hex');
 function mailTransport() {
@@ -213,18 +235,20 @@ app.post('/api/reset-password', async (req, res) => {
   delete u.resetToken;
   delete u.resetExpiresAt;
   await write('users', users);
+  for (const [sessionToken, session] of sessions) if (session.userId === u.id) sessions.delete(sessionToken);
   res.json({ message: 'Password successfully update ho gaya.' });
 });
 
 app.post('/api/logout', auth, async (req, res) => { const users = await read('users'), u = users.find(x => x.id === req.userId); if (u) { u.lastLogoutAt = new Date().toISOString(); await write('users', users) } sessions.delete(req.sessionToken); res.json({ message: 'Logged out' }) });
 const safe = u => { const { passwordHash, ...x } = u; return x };
-app.get('/api/me', auth, async (req, res) => { const u = (await read('users')).find(x => x.id === req.userId); res.json({ user: safe(u) }) });
-app.put('/api/me', auth, async (req, res) => { const users = await read('users'), u = users.find(x => x.id === req.userId);['name', 'branch', 'semester', 'phone', 'college', 'photo'].forEach(k => { if (req.body[k] !== undefined) u[k] = req.body[k] }); await write('users', users); res.json({ user: safe(u) }) });
+app.get('/api/me', auth, async (req, res) => { const u = (await read('users')).find(x => x.id === req.userId); if (!u) return res.status(404).json({ message: 'Student profile not found.' }); res.json({ user: safe(u) }) });
+app.put('/api/me', auth, async (req, res) => { const users = await read('users'), u = users.find(x => x.id === req.userId); if (!u) return res.status(404).json({ message: 'Student profile not found.' });['name', 'branch', 'semester', 'phone', 'college', 'photo'].forEach(k => { if (req.body[k] !== undefined) u[k] = String(req.body[k]).trim() }); await write('users', users); res.json({ user: safe(u) }) });
 app.post('/api/activity', auth, async (req, res) => { const all = await read('activity'); const s = sessions.get(req.sessionToken); s.lastSeen = Date.now(); s.currentPage = req.body.page || s.currentPage; all.push({ id: crypto.randomUUID(), userId: req.userId, at: new Date().toISOString(), ...req.body }); if (all.length > 10000) all.splice(0, all.length - 10000); await write('activity', all); res.json({ ok: true }) });
 app.get('/api/progress', auth, async (req, res) => res.json({ progress: (await read('progress')).filter(x => x.userId === req.userId) }));
 app.post('/api/progress', auth, async (req, res) => { const all = await read('progress'); let x = all.find(p => p.userId === req.userId && p.page === req.body.page); if (!x) { x = { id: crypto.randomUUID(), userId: req.userId, page: req.body.page, title: req.body.title || '', subject: req.body.subject || infer(req.body.page), completed: false }; all.push(x) } x.completed = !!req.body.completed; x.updatedAt = new Date().toISOString(); await write('progress', all); res.json({ progress: x }) });
 function infer(p = '') { const m = p.match(/content\/[^/]+\/([^/]+)/); return m ? m[1].replace(/-hindi$/, '').toUpperCase() : 'Course' }
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin@bklearnx.local', ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'Admin@123';
 app.post('/api/admin/login', async (req, res) => { if ((req.body.email || '').toLowerCase() !== ADMIN_EMAIL.toLowerCase() || req.body.password !== ADMIN_PASSWORD) return res.status(401).json({ message: 'Invalid admin credentials.' }); const t = token(); adminSessions.set(t, { at: Date.now() }); res.json({ token: t }) });
+app.post('/api/admin/logout', admin, (req, res) => { adminSessions.delete(req.header('x-admin-token')); res.json({ message: 'Admin logged out.' }) });
 app.get('/api/admin/dashboard', admin, async (req, res) => { const [users, activity, progress] = await Promise.all([read('users'), read('activity'), read('progress')]); const now = Date.now(), day = new Date().toISOString().slice(0, 10); const rows = users.map(u => { const sess = [...sessions.values()].find(s => s.userId === u.id); const ps = progress.filter(p => p.userId === u.id); return { ...safe(u), online: !!sess && now - sess.lastSeen < 120000, currentPage: sess?.currentPage || '', lastActivity: sess ? new Date(sess.lastSeen).toISOString() : u.lastLogoutAt || u.lastLoginAt, completion: ps.length ? Math.round(ps.filter(x => x.completed).length / ps.length * 100) : 0 } }); res.json({ stats: { totalStudents: users.length, onlineStudents: rows.filter(x => x.online).length, loginsToday: users.filter(x => (x.lastLoginAt || '').startsWith(day)).length, averageCompletion: rows.length ? Math.round(rows.reduce((a, b) => a + b.completion, 0) / rows.length) : 0 }, students: rows, recentActivity: activity.slice(-30).reverse().map(a => ({ ...a, studentName: users.find(u => u.id === a.userId)?.name })) }) });
 app.listen(PORT, () => console.log(`BK LearnX backend: http://localhost:${PORT}`));

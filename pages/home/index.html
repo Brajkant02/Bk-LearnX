@@ -107,8 +107,11 @@
     <script src="../../assets/shared/config.js"></script>
     <script src="../../assets/shared/portal.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const u = BK.getUser();
+        document.addEventListener('DOMContentLoaded', async () => {
+            let u = BK.getUser();
+            if (BK.getToken()) {
+                try { u = (await BK.api('/api/me')).user; localStorage.setItem('bk_user', JSON.stringify(u)); } catch { localStorage.removeItem('bk_user'); localStorage.removeItem('bk_token'); u = null; }
+            }
             const accountLink = document.querySelector('[data-account-link]');
             const getStarted = document.querySelector('[data-get-started]');
 
@@ -131,12 +134,12 @@
             }
 
             const map = { 'PGDCA': 'dca', 'DSML': 'dsml', 'Cyber Security': 'cs', 'Web Designing': 'wd', 'IOT': 'iot', 'Drone Technology': 'dt', 'CHN': 'chn', 'PGDA': 'da' };
-            document.querySelectorAll('#dca,#dsml,#cs,#wd,#iot,#dt,#chn,#da').forEach(x => x.style.display = x.id === map[u.branch] ? '' : 'none');
+            if (map[u.branch]) document.querySelectorAll('#dca,#dsml,#cs,#wd,#iot,#dt,#chn,#da').forEach(x => x.style.display = x.id === map[u.branch] ? '' : 'none');
 
             const note = document.createElement('div');
             note.className = 'portal-card';
             note.style.margin = '12px';
-            note.innerHTML = `Welcome <strong>${u.name}</strong>! Aapko <strong>${u.branch} — ${u.semester}</strong> ka content dikh raha hai. <a href="../student/profile/index.html">Profile & progress</a>`;
+            note.innerHTML = u.branch ? `Welcome <strong>${u.name}</strong>! Aapko <strong>${u.branch} — ${u.semester}</strong> ka content dikh raha hai. <a href="../student/profile/index.html">Profile & progress</a>` : `Welcome <strong>${u.name}</strong>! Apni branch aur semester choose karne ke liye <a href="../student/profile/index.html">profile complete karein</a>`;
             document.body.prepend(note);
         });
     </script>
