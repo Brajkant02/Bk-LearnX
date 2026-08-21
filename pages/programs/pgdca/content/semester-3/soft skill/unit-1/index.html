@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FB7SX0P0D3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-FB7SX0P0D3');
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <title>Unit 1 - Basics of Communication</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+      line-height: 1.75
+    }
+
+    .page {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 20px;
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      padding: 10px
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 10px;
+      height: calc(100vh - 20px);
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08);
+      align-self: start
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #111827
+    }
+
+    .sidebar a {
+      display: block;
+      text-decoration: none;
+      color: #374151;
+      padding: 8px 10px;
+      border-radius: 10px;
+      margin-bottom: 4px;
+      font-size: 14.8px
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+      color: #1d4ed8
+    }
+
+    .content {
+      background: #fff;
+      border-radius: 18px;
+      padding: 10px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .08)
+    }
+
+    .hero {
+      padding: 28px 18px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #eef2ff, #f8fafc);
+      margin-bottom: 18px
+    }
+
+    .hero h1 {
+      font-size: 34px;
+      color: #111827;
+      margin-bottom: 10px
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #374151
+    }
+
+    section {
+      padding: 22px 10px;
+      border-bottom: 1px solid #e5e7eb
+    }
+
+    section:last-child {
+      border-bottom: none
+    }
+
+    h2 {
+      font-size: 27px;
+      color: #111827;
+      margin-bottom: 12px;
+      border-left: 5px solid #2563eb;
+      padding-left: 12px
+    }
+
+    h3 {
+      font-size: 22px;
+      color: #1f2937;
+      margin: 16px 0 8px
+    }
+
+    h4 {
+      font-size: 18px;
+      color: #111827;
+      margin: 14px 0 6px
+    }
+
+    p {
+      margin: 10px 0;
+      font-size: 17px
+    }
+
+    ul,
+    ol {
+      margin-left: 24px;
+      margin-top: 8px
+    }
+
+    li {
+      margin: 7px 0;
+      font-size: 16.5px
+    }
+
+    strong {
+      color: #111827
+    }
+
+    .image-icon {
+      min-height: 175px;
+      border: 2px dashed #94a3b8;
+      border-radius: 16px;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      margin: 18px 0;
+      color: #475569;
+      font-weight: 600
+    }
+
+    .image-icon img {
+      max-width: 100%;
+      height: auto
+    }
+
+    .note-box {
+      background: #f0fdf4;
+      border-left: 5px solid #22c55e;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    .info-box {
+      background: #ecfeff;
+      border-left: 5px solid #06b6d4;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 16px 0
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      font-size: 15.5px
+    }
+
+    th,
+    td {
+      border: 1px solid #d1d5db;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top
+    }
+
+    th {
+      background: #eef2ff;
+      color: #111827
+    }
+
+    code {
+      background: #111827;
+      color: #f9fafb;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-family: Consolas, monospace;
+      font-size: 15px
+    }
+
+    @media(max-width:900px) {
+      .page {
+        grid-template-columns: 1fr
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto
+      }
+
+      .hero h1 {
+        font-size: 27px
+      }
+
+      h2 {
+        font-size: 24px
+      }
+    }
+
+    /* Iframe content responsive fix */
+    html,
+    body {
+      width: 100%;
+      max-width: 100%;
+
+    }
+
+    .page,
+    .content,
+    section {
+      min-width: 0;
+      max-width: 100%;
+    }
+
+    img,
+    video,
+    svg,
+    canvas {
+      max-width: 100%;
+      height: auto;
+    }
+
+    table {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      overflow-x: auto;
+      overflow-y: hidden;
+      border-radius: 12px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    th,
+    td {
+      min-width: 110px;
+      overflow-wrap: break-word;
+      word-break: normal;
+    }
+
+    pre {
+      max-width: 100%;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    code {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    @media (max-width: 900px) {
+      .page {
+        display: block;
+        width: 100%;
+        padding: 5px;
+      }
+
+      .sidebar {
+        display: none;
+      }
+
+      .content {
+        width: 100%;
+        min-width: 0;
+        padding: 6px;
+        border-radius: 10px;
+      }
+
+      section {
+        width: 100%;
+        padding: 16px 6px;
+      }
+
+      .hero {
+        padding: 18px 10px;
+      }
+
+      .hero h1 {
+        font-size: 24px;
+      }
+
+      h2 {
+        font-size: 21px;
+      }
+
+      h3 {
+        font-size: 18px;
+      }
+
+      p,
+      li {
+        font-size: 15px;
+      }
+
+      .image-icon {
+        min-height: 130px;
+        padding: 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page">
+    <aside class="sidebar">
+      <h2>Topics</h2>
+      <a href="#communication">Communication</a>
+      <a href="#evolution">Evolution of Communication</a>
+      <a href="#process">Process of Communication</a>
+    </aside>
+    <main class="content">
+      <div class="hero">
+        <div class="badge">SOFT SKILL • UNIT 1 </div>
+        <h1>Basics of Communication</h1>
+        <p>Definition and Process of Communication </p>
+      </div>
+
+
+      <section id="communication">
+        <h2>Communication</h2>
+        <div class="definition"><b>Definition:</b> Communication is the process which connects people by enabling them
+          to
+          share information, whether personal, professional or social. It is a process of expressing and transferring
+          ideas, knowledge, information, feelings and thoughts through a common medium/channel.</div>
+        <p>Communication is an essential part of human life. It connects people, helps them share ideas and information,
+          and creates understanding between the sender and receiver.</p>
+      </section>
+      <section id="evolution">
+        <h3>Evolution of Communication</h3>
+        <p>According to the source, communication developed gradually:</p>
+        <div class="image-icon">
+          <img src="../images/evolution of communitcation.webp" alt="evolution of communitcation.webp">
+        </div>
+        <p>During the Stone Age, body language and sounds were used for communication. Later, signs, symbols, language,
+          speech and writing developed. Modern technology provided communication tools such as radio, TV, telephone,
+          mobile phones, computers, the internet, radar and satellites.</p>
+        <p><b>Interesting point:</b> According to the source, communication is not limited to humans; animals also use
+          sounds, expressions and behaviour to share warnings, information about food and water, and group information.
+        </p>
+      </section>
+
+      <section id="process">
+        <h2>Process of Communication</h2>
+        <p>Effective communication ke liye different skills required hoti hain:</p>
+        <ol>
+          <li><b>Intelligence</b> (subject competence)</li>
+          <li><b>Language skill</b></li>
+          <li><b>Organizational competence</b> — systematic and structured presentation</li>
+          <li><b>Awareness about channels and coordination</b></li>
+          <li><b>Updated knowledge</b> of transmission devices and methods</li>
+        </ol>
+        <h3>Essential Factors</h3>
+        <table>
+          <tr>
+            <th>Factor</th>
+            <th>Meaning</th>
+          </tr>
+          <tr>
+            <td><b>Sender</b></td>
+            <td>The source of the message. The sender develops the message using knowledge and skills.</td>
+          </tr>
+          <tr>
+            <td><b>Receiver</b></td>
+            <td>The end point of communication that receives and decodes the message and then provides feedback.</td>
+          </tr>
+          <tr>
+            <td><b>Message</b></td>
+            <td>The information or idea created by the sender and transmitted to the receiver.</td>
+          </tr>
+          <tr>
+            <td><b>Channel</b></td>
+            <td>The medium through which the message is passed or transmitted.</td>
+          </tr>
+        </table>
+        <p>Communication is not a passive or random process; the source describes it as a <b>two-dimensional, dynamic
+            and
+            interactive</b> process.</p>
+        <h3>Five Steps of Communication</h3>
+        <div class="image-icon">
+          <img src="../images/process of image.webp" alt="process of communitcation.webp">
+        </div>
+
+      <section class="card">
+        <h2>1. Ideation</h2>
+        <p>Ideation is the first step of communication. The sender forms or selects an idea to be transmitted as a
+          message. The sender's subject competence—knowledge, experience and thinking ability—is important for this
+          step.
+          Poor ideation can make communication ineffective from the very beginning.</p>
+      </section>
+
+      <section class="card">
+        <h2>2. Encoding</h2>
+        <p>Encoding means changing an idea into coded language. The language may be verbal or non-verbal. In this step,
+          the <b>type, style, tone and length</b> of the message are decided. Linguistic and organizational competence
+          are
+          important.</p>
+        <div class="exam"><b>Exam Point:</b> Source ke अनुसार message transmit hone ke baad sender usse change ya stop
+          nahi kar sakta.</div>
+      </section>
+
+      <section class="card">
+        <h2>3. Transmission</h2>
+        <p>Transmission means sending the message from the sender to the receiver. The sender selects a suitable method
+          from the available channels. Incorrect channel selection can break or distort communication.</p>
+        <p><b>Channels shown in source:</b> Face-to-Face, Mobile, Electronic, Written and Broadcast.</p>
+      </section>
+
+      <section class="card">
+        <h2>4. Decoding</h2>
+        <p>Decoding is the step where the receiver's involvement begins. The receiver analyses the received message and
+          understands its meaning.</p>
+        <p>For effective decoding, a similar or common medium should be available between the sender and receiver,
+          especially language and environment. Example: A person who understands Hindi cannot decode a Tamil message if
+          Tamil is not known to that person.</p>
+      </section>
+
+      <section class="card">
+        <h2>5. Response / Feedback</h2>
+        <p>Response or feedback is the last step of the communication process. It represents the receiver's reply or
+          response to the message. Feedback depends on the receiver's decoding.</p>
+        <div class="exam"><b>Key Idea:</b> If the receiver gives the desired response, communication can be considered
+          effective; otherwise, its effectiveness may be reduced.</div>
+      </section>
+
+      <section class="card">
+        <h2>Quick Revision</h2>
+        <table>
+          <tr>
+            <th>Step</th>
+            <th>One-Line Meaning</th>
+          </tr>
+          <tr>
+            <td>Ideation</td>
+            <td>Idea/message ko form ya select karna.</td>
+          </tr>
+          <tr>
+            <td>Encoding</td>
+            <td>Idea ko coded language/message mein convert karna.</td>
+          </tr>
+          <tr>
+            <td>Transmission</td>
+            <td>Message ko selected channel se bhejna.</td>
+          </tr>
+          <tr>
+            <td>Decoding</td>
+            <td>Receiver dwara message ka meaning samajhna.</td>
+          </tr>
+          <tr>
+            <td>Response/Feedback</td>
+            <td>Receiver ka reply/response.</td>
+          </tr>
+        </table>
+      </section>
+
+      <section class="card">
+        <h2>Important Exam Questions</h2>
+        <ul>
+          <li>Define communication and explain its importance.</li>
+          <li>Explain the evolution/development of communication.</li>
+          <li>What is the process of communication?</li>
+          <li>Explain the five steps of communication.</li>
+          <li>Define sender, receiver, message and channel.</li>
+          <li>Explain ideation, encoding, transmission, decoding and feedback.</li>
+        </ul>
+      </section>
+    
+    </main>
+  </div>
+</body>
+
+</html>
