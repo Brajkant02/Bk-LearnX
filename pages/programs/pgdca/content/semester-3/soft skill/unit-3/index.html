@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FB7SX0P0D3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-FB7SX0P0D3');
+  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writing Skill - BK LearnX Notes</title>
+    <style>
+        * {
+            box-sizing: border-box
+        }
+        html{
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: #eef4f8;
+            color: #1f2937;
+            font-family: Segoe UI, Arial, sans-serif;
+            line-height: 1.8
+        }
+
+        .container {
+            max-width: 1450px;
+            margin: auto;
+            padding: 16px;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 18px
+        }
+
+        .sidebar {
+            background: #fff;
+            border-radius: 18px;
+            padding: 20px;
+            position: sticky;
+            top: 16px;
+            height: calc(100vh - 32px);
+            overflow: auto;
+            box-shadow: 0 8px 28px #0001
+        }
+
+        .sidebar h2 {
+            color: #075985;
+            border-left: 5px solid #0284c7;
+            padding-left: 10px
+        }
+
+        .sidebar a {
+            display: block;
+            text-decoration: none;
+            color: #334155;
+            padding: 7px 10px;
+            border-radius: 8px
+        }
+
+        .sidebar a:hover {
+            background: #e0f2fe;
+            color: #0369a1
+        }
+
+        .main {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 28px #0001
+        }
+
+        .hero {
+            padding: 44px;
+            background: linear-gradient(135deg, #dbeafe, #e0f2fe, #f8fafc)
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            color: #075985;
+            margin: 8px 0
+        }
+
+        .badge {
+            display: inline-block;
+            background: #bae6fd;
+            color: #075985;
+            padding: 4px 13px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700
+        }
+
+        section {
+            padding: 32px;
+            border-bottom: 1px solid #e5e7eb
+        }
+
+        h2 {
+            color: #075985;
+            border-left: 5px solid #0284c7;
+            padding-left: 13px
+        }
+
+        h3 {
+            color: #0c4a6e;
+            margin-top: 26px
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px
+        }
+
+        .card {
+            background: #f0f9ff;
+            border: 1px solid #bae6fd;
+            border-radius: 14px;
+            padding: 18px
+        }
+
+        .note,
+        .important,
+        .exam {
+            padding: 18px 20px;
+            border-radius: 12px;
+            margin: 18px 0
+        }
+
+        .note {
+            background: #eff6ff;
+            border-left: 5px solid #3b82f6
+        }
+
+        .important {
+            background: #fff7ed;
+            border-left: 5px solid #f97316
+        }
+
+        .exam {
+            background: #ecfdf5;
+            border-left: 5px solid #10b981
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0
+        }
+
+        th,
+        td {
+            border: 1px solid #cbd5e1;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top
+        }
+
+        th {
+            background: #e0f2fe;
+            color: #075985
+        }
+
+        .sample {
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 14px;
+            padding: 20px;
+            margin: 18px 0
+        }
+
+        .notice {
+            max-width: 700px;
+            margin: 15px auto;
+            border: 2px solid #334155;
+            padding: 24px;
+            background: white;
+            text-align: center
+        }
+
+        .notice .body {
+            text-align: left;
+            margin-top: 18px
+        }
+
+        .tip {
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            padding: 15px
+        }
+
+        @media(max-width:850px) {
+            .container {
+                display: block;
+                padding: 5px
+            }
+
+            .sidebar {
+                display: none
+            }
+
+            .hero {
+                padding: 28px 18px
+            }
+
+            .hero h1 {
+                font-size: 30px
+            }
+
+            section {
+                padding: 23px 18px
+            }
+
+            .grid {
+                grid-template-columns: 1fr
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h2>Contents</h2>
+            <a href="#intro">1. Introduction</a>
+            <a href="#picture">2. Picture Composition</a>
+            <a href="#picture-method">3. Picture Observation Method</a>
+            <a href="#picture-format">4. Picture Composition Format</a>
+            <a href="#picture-examples">5. Picture Examples</a>
+            <a href="#paragraph">6. Paragraph Writing</a>
+            <a href="#paragraph-structure">7. Paragraph Structure</a>
+            <a href="#paragraph-rules">8. Rules & Techniques</a>
+            <a href="#paragraph-examples">9. Solved Paragraphs</a>
+            <a href="#notice">10. Notice Writing</a>
+            <a href="#notice-format">11. Notice Format</a>
+            <a href="#notice-rules">12. Rules & Do's/Don'ts</a>
+            <a href="#notice-examples">13. Solved Notices</a>
+            <a href="#practice">14. Practice Questions</a>
+            <a href="#revision">15. Quick Revision</a>
+        </aside>
+
+        <main class="main">
+            <div class="hero">
+                <span class="badge">ENGLISH • WRITING SKILL</span>
+                <h1>Writing Skill</h1>
+                <p><strong>Picture Composition • Paragraph Writing • Notice Writing</strong></p>
+                <p>Detailed, exam-oriented notes with formats, examples, rules and practice.</p>
+            </div>
+
+            <section id="intro">
+                <h2>1. Introduction to Writing Skill</h2>
+                <p><strong>Writing skill</strong> is the ability to express ideas, information, observations and
+                    messages clearly through written language. Good writing should be clear, organised, meaningful and
+                    appropriate to the purpose.</p>
+                <div class="grid">
+                    <div class="card">
+                        <h3>Picture Composition</h3>
+                        <p>Writing a meaningful description or short composition based on a picture.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Paragraph Writing</h3>
+                        <p>Developing one central idea in a connected group of sentences.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Notice Writing</h3>
+                        <p>Writing a short formal announcement to communicate important information.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Common Goal</h3>
+                        <p>Communicate information accurately, logically and effectively.</p>
+                    </div>
+                </div>
+                <div class="note"><strong>Exam Focus:</strong> Always pay attention to the given topic, word limit,
+                    format, sequence, grammar, spelling and relevance.</div>
+            </section>
+
+            <section id="picture">
+                <h2>2. Picture Composition</h2>
+                <p><strong>Picture composition</strong> is a form of writing in which a student observes a picture
+                    carefully and develops a meaningful description, story or short composition based on what is visible
+                    in the picture.</p>
+                <h3>Purpose</h3>
+                <ul>
+                    <li>Tests observation skills.</li>
+                    <li>Develops imagination and creativity.</li>
+                    <li>Tests vocabulary and sentence formation.</li>
+                    <li>Checks the ability to organise ideas.</li>
+                    <li>Encourages students to connect visual information with written language.</li>
+                </ul>
+                <h3>What Can Be Included?</h3>
+                <table>
+                    <tr>
+                        <th>Element</th>
+                        <th>What to Observe</th>
+                    </tr>
+                    <tr>
+                        <td>People</td>
+                        <td>Who is present? What are they doing?</td>
+                    </tr>
+                    <tr>
+                        <td>Place</td>
+                        <td>Where is the scene taking place?</td>
+                    </tr>
+                    <tr>
+                        <td>Objects</td>
+                        <td>Important things visible in the picture.</td>
+                    </tr>
+                    <tr>
+                        <td>Action</td>
+                        <td>What is happening?</td>
+                    </tr>
+                    <tr>
+                        <td>Time/Weather</td>
+                        <td>Morning, evening, rainy, sunny, etc., if visible.</td>
+                    </tr>
+                    <tr>
+                        <td>Relationship</td>
+                        <td>How are people or objects connected?</td>
+                    </tr>
+                    <tr>
+                        <td>Message</td>
+                        <td>What lesson or idea does the picture suggest?</td>
+                    </tr>
+                </table>
+            </section>
+
+            <section id="picture-method">
+                <h2>3. How to Observe a Picture</h2>
+                <ol>
+                    <li><strong>Look at the complete picture first.</strong> Understand the overall scene.</li>
+                    <li><strong>Identify the main subject.</strong> Decide what the picture mainly shows.</li>
+                    <li><strong>Observe the background.</strong> Note the place and surroundings.</li>
+                    <li><strong>Identify people and objects.</strong> Mention only details that are relevant.</li>
+                    <li><strong>Observe actions.</strong> Use suitable action verbs such as walking, playing, reading,
+                        helping, planting, working.</li>
+                    <li><strong>Arrange ideas logically.</strong> Move from general description to specific details.
+                    </li>
+                    <li><strong>Identify the possible message.</strong> If the picture has a social, environmental or
+                        moral theme, mention it.</li>
+                    <li><strong>Write in complete sentences.</strong> Avoid disconnected words and random observations.
+                    </li>
+                </ol>
+                <div class="important"><strong>Important:</strong> Do not invent too many details that cannot reasonably
+                    be understood from the picture. Build your composition from visible clues.</div>
+            </section>
+
+            <section id="picture-format">
+                <h2>4. Picture Composition – Suggested Format</h2>
+                <div class="sample">
+                    <p><strong>Title:</strong> A Clean and Green Environment</p>
+                    <p><strong>Opening:</strong> The picture shows a clean public park surrounded by green trees.</p>
+                    <p><strong>Main Description:</strong> Several people are walking and children are playing in the
+                        park. Some people are sitting on benches while others are enjoying the pleasant surroundings.
+                        Dustbins are placed at suitable points, and the area appears clean and well maintained.</p>
+                    <p><strong>Message/Conclusion:</strong> The picture gives the message that clean and green public
+                        places make our surroundings healthier and more pleasant. Everyone should help keep public
+                        places clean.</p>
+                </div>
+                <h3>Useful Sentence Starters</h3>
+                <ul>
+                    <li>The picture shows...</li>
+                    <li>The picture presents...</li>
+                    <li>In the foreground...</li>
+                    <li>In the background...</li>
+                    <li>We can see...</li>
+                    <li>There are...</li>
+                    <li>Some people are...</li>
+                    <li>The scene appears to be...</li>
+                    <li>The picture conveys the message that...</li>
+                    <li>Overall, the picture shows...</li>
+                </ul>
+            </section>
+
+            <section id="picture-examples">
+                <h2>5. Picture Composition – Solved Examples</h2>
+                <h3>Example 1: Tree Plantation</h3>
+                <div class="sample">
+                    <p><strong>Title: Plant Trees, Save the Future</strong></p>
+                    <p>The picture shows a group of students planting young trees in an open area. Some students are
+                        digging the soil while others are placing plants into the ground. A few students are watering
+                        the newly planted trees. The surroundings look clean and green. The activity shows the
+                        importance of protecting nature and increasing green cover. Tree plantation helps improve the
+                        environment and provides a better future for coming generations. The picture gives us the
+                        message that everyone should take responsibility for protecting trees and nature.</p>
+                </div>
+
+                <h3>Example 2: Road Safety</h3>
+                <div class="sample">
+                    <p><strong>Title: Road Safety Awareness</strong></p>
+                    <p>The picture presents a busy road where people are following traffic rules. A traffic signal is
+                        visible, and pedestrians are using a crossing. Vehicles are moving carefully and people appear
+                        to be respecting road signs. The scene highlights the importance of discipline and awareness
+                        while using roads. Following traffic rules can reduce accidents and protect lives. The picture
+                        gives the message that road safety is a shared responsibility.</p>
+                </div>
+
+                <h3>Example 3: Cleanliness</h3>
+                <div class="sample">
+                    <p><strong>Title: Keep Your Surroundings Clean</strong></p>
+                    <p>The picture shows people cleaning a public area. Some individuals are collecting waste while
+                        others are putting garbage into dustbins. The clean surroundings create a healthy and pleasant
+                        environment. The picture highlights that cleanliness cannot be maintained by one person alone.
+                        Citizens should avoid littering and should dispose of waste properly. The main message is that
+                        cleanliness is everyone's responsibility.</p>
+                </div>
+            </section>
+
+            <section id="paragraph">
+                <h2>6. Paragraph Writing</h2>
+                <p>A <strong>paragraph</strong> is a group of related sentences that develops one central idea. All
+                    sentences should be connected to the same topic.</p>
+                <h3>Characteristics of a Good Paragraph</h3>
+                <ul>
+                    <li><strong>Unity:</strong> All sentences focus on one main idea.</li>
+                    <li><strong>Coherence:</strong> Ideas are connected logically.</li>
+                    <li><strong>Clarity:</strong> The meaning is easy to understand.</li>
+                    <li><strong>Conciseness:</strong> Avoid unnecessary repetition.</li>
+                    <li><strong>Correctness:</strong> Use proper grammar, spelling and punctuation.</li>
+                    <li><strong>Organisation:</strong> Present ideas in a logical sequence.</li>
+                </ul>
+            </section>
+
+            <section id="paragraph-structure">
+                <h2>7. Structure of a Paragraph</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>1. Topic Sentence</h3>
+                        <p>Introduces the main idea of the paragraph.</p>
+                    </div>
+                    <div class="card">
+                        <h3>2. Supporting Sentences</h3>
+                        <p>Explain, describe or provide examples related to the topic.</p>
+                    </div>
+                    <div class="card">
+                        <h3>3. Concluding Sentence</h3>
+                        <p>Summarises the idea or gives a final thought.</p>
+                    </div>
+                </div>
+                <div class="sample">
+                    <p><strong>Topic:</strong> Importance of Education</p>
+                    <p><strong>Topic Sentence:</strong> Education plays an important role in the development of an
+                        individual and society.</p>
+                    <p><strong>Supporting Sentences:</strong> It provides knowledge, develops skills and improves
+                        decision-making ability. Education helps people understand their rights and responsibilities. It
+                        also increases opportunities for employment and personal growth.</p>
+                    <p><strong>Concluding Sentence:</strong> Therefore, quality education is essential for building a
+                        knowledgeable, skilled and responsible society.</p>
+                </div>
+            </section>
+
+            <section id="paragraph-rules">
+                <h2>8. Rules and Techniques for Paragraph Writing</h2>
+                <table>
+                    <tr>
+                        <th>Rule</th>
+                        <th>Explanation</th>
+                    </tr>
+                    <tr>
+                        <td>Understand the topic</td>
+                        <td>Know exactly what the paragraph is asking you to discuss.</td>
+                    </tr>
+                    <tr>
+                        <td>Stay on topic</td>
+                        <td>Do not introduce unrelated ideas.</td>
+                    </tr>
+                    <tr>
+                        <td>Use logical order</td>
+                        <td>Arrange ideas from introduction to explanation and conclusion.</td>
+                    </tr>
+                    <tr>
+                        <td>Use linking words</td>
+                        <td>Use words such as firstly, moreover, however, therefore, finally.</td>
+                    </tr>
+                    <tr>
+                        <td>Avoid repetition</td>
+                        <td>Express an idea once clearly rather than repeating it.</td>
+                    </tr>
+                    <tr>
+                        <td>Check grammar</td>
+                        <td>Use correct tense, subject-verb agreement and sentence structure.</td>
+                    </tr>
+                    <tr>
+                        <td>Check punctuation</td>
+                        <td>Use full stops, commas and other punctuation correctly.</td>
+                    </tr>
+                </table>
+                <h3>Useful Linking Words</h3>
+                <p><strong>Adding:</strong> moreover, furthermore, also, in addition</p>
+                <p><strong>Contrast:</strong> however, but, although, on the other hand</p>
+                <p><strong>Cause:</strong> because, since, due to</p>
+                <p><strong>Result:</strong> therefore, thus, hence, as a result</p>
+                <p><strong>Sequence:</strong> firstly, secondly, next, finally</p>
+            </section>
+
+            <section id="paragraph-examples">
+                <h2>9. Solved Paragraphs</h2>
+                <h3>A. Importance of Time</h3>
+                <div class="sample">
+                    <p>Time is one of the most valuable resources in human life. Unlike money or material things, lost
+                        time cannot be recovered. Proper time management helps students complete their studies,
+                        responsibilities and personal activities in an organised manner. A timetable can help a student
+                        divide time between study, rest and recreation. People who respect time are usually better
+                        prepared to achieve their goals. Therefore, everyone should understand the value of time and
+                        make productive use of every day.</p>
+                </div>
+
+                <h3>B. Importance of Computers</h3>
+                <div class="sample">
+                    <p>Computers have become an important part of modern life. They are used in education, business,
+                        banking, communication, healthcare and many other fields. Computers can process large amounts of
+                        information quickly and accurately. Students can use them to learn new skills, prepare
+                        assignments and access educational resources. However, computers should be used responsibly and
+                        safely. In conclusion, computers are powerful tools that can improve productivity and learning
+                        when used properly.</p>
+                </div>
+
+                <h3>C. Environmental Protection</h3>
+                <div class="sample">
+                    <p>Environmental protection is essential for the survival and well-being of living beings. Air
+                        pollution, water pollution, deforestation and excessive waste can damage natural resources.
+                        People can help protect the environment by planting trees, saving water, reducing unnecessary
+                        plastic use and disposing of waste responsibly. Industries and governments also have an
+                        important role in controlling pollution and conserving resources. A clean environment provides
+                        healthier living conditions. Therefore, environmental protection should be treated as a shared
+                        responsibility.</p>
+                </div>
+
+                <h3>D. Social Media</h3>
+                <div class="sample">
+                    <p>Social media has changed the way people communicate and share information. It allows users to
+                        connect with friends, communities and organisations quickly. Students can also use social
+                        platforms to discover educational content and exchange ideas. However, excessive or careless use
+                        may waste time and expose users to misinformation and privacy risks. People should therefore
+                        verify information, protect personal data and use social media responsibly. A balanced approach
+                        can help users gain benefits while reducing its disadvantages.</p>
+                </div>
+            </section>
+
+            <section id="notice">
+                <h2>10. Notice Writing</h2>
+                <p>A <strong>notice</strong> is a short formal written announcement used to communicate important
+                    information to a particular group of people.</p>
+                <h3>Common Purposes of Notices</h3>
+                <ul>
+                    <li>School or college events</li>
+                    <li>Competitions</li>
+                    <li>Meetings</li>
+                    <li>Workshops and seminars</li>
+                    <li>Lost and found information</li>
+                    <li>Sports activities</li>
+                    <li>Cultural programmes</li>
+                    <li>Important instructions or announcements</li>
+                    <li>Changes in schedule</li>
+                </ul>
+            </section>
+
+            <section id="notice-format">
+                <h2>11. Notice Writing Format</h2>
+                <div class="notice">
+                    <h2 style="border:0;padding:0;margin:0">ABC COLLEGE</h2>
+                    <h3 style="margin:4px 0">NOTICE</h3>
+                    <p><strong>Date: 21 August 2026</strong></p>
+                    <h3>INTER-COLLEGE QUIZ COMPETITION</h3>
+                    <div class="body">
+                        <p>All students are informed that an Inter-College Quiz Competition will be organised on 30
+                            August 2026 at 11:00 a.m. in the college seminar hall. Students interested in participating
+                            should register their names with the undersigned by 27 August 2026.</p>
+                        <p><strong>Brajkant Sharma</strong><br>Student Coordinator</p>
+                    </div>
+                </div>
+
+                <table>
+                    <tr>
+                        <th>Part</th>
+                        <th>Content</th>
+                    </tr>
+                    <tr>
+                        <td>Name of Institution</td>
+                        <td>Name of school, college, organisation or authority.</td>
+                    </tr>
+                    <tr>
+                        <td>NOTICE</td>
+                        <td>Clearly written heading.</td>
+                    </tr>
+                    <tr>
+                        <td>Date</td>
+                        <td>Date on which the notice is issued.</td>
+                    </tr>
+                    <tr>
+                        <td>Title</td>
+                        <td>Short and clear subject of the notice.</td>
+                    </tr>
+                    <tr>
+                        <td>Body</td>
+                        <td>What, when, where, who, instructions and other necessary details.</td>
+                    </tr>
+                    <tr>
+                        <td>Signature</td>
+                        <td>Name/signature of the issuing person.</td>
+                    </tr>
+                    <tr>
+                        <td>Designation</td>
+                        <td>Position of the person issuing the notice.</td>
+                    </tr>
+                </table>
+
+                <div class="important"><strong>5W + 1H:</strong> While writing a notice, try to cover <strong>What,
+                        When, Where, Who, Why</strong> and <strong>How</strong> whenever relevant.</div>
+            </section>
+
+            <section id="notice-rules">
+                <h2>12. Notice Writing Rules</h2>
+                <h3>Do's</h3>
+                <ul>
+                    <li>Use a clear heading.</li>
+                    <li>Write the date.</li>
+                    <li>Use concise and formal language.</li>
+                    <li>Include all essential information.</li>
+                    <li>Keep the notice brief and informative.</li>
+                    <li>Mention contact/registration details when necessary.</li>
+                    <li>End with the name and designation of the issuing authority.</li>
+                </ul>
+                <h3>Don'ts</h3>
+                <ul>
+                    <li>Do not write unnecessary background information.</li>
+                    <li>Do not use informal chat language.</li>
+                    <li>Do not leave out important dates, time or venue.</li>
+                    <li>Do not make the notice excessively long.</li>
+                    <li>Do not use confusing or ambiguous instructions.</li>
+                </ul>
+                <div class="note"><strong>Notice vs Paragraph:</strong> A paragraph develops an idea in detail, while a
+                    notice communicates specific information quickly and formally.</div>
+            </section>
+
+            <section id="notice-examples">
+                <h2>13. Solved Notice Writing Examples</h2>
+
+                <h3>Example 1 – Blood Donation Camp</h3>
+                <div class="notice">
+                    <h2 style="border:0;padding:0;margin:0">GOVERNMENT POLYTECHNIC COLLEGE</h2>
+                    <h3>NOTICE</h3>
+                    <p><b>21 August 2026</b></p>
+                    <h3>BLOOD DONATION CAMP</h3>
+                    <div class="body">
+                        <p>A blood donation camp will be organised in the college auditorium on 28 August 2026 from
+                            10:00 a.m. to 3:00 p.m. Students and staff who are eligible and willing to donate blood may
+                            register with the Student Welfare Committee by 26 August.</p>
+                        <p><b>Student Coordinator</b><br>Student Welfare Committee</p>
+                    </div>
+                </div>
+
+                <h3>Example 2 – Lost and Found</h3>
+                <div class="notice">
+                    <h2 style="border:0;padding:0;margin:0">ABC COLLEGE</h2>
+                    <h3>NOTICE</h3>
+                    <p><b>21 August 2026</b></p>
+                    <h3>LOST ID CARD</h3>
+                    <div class="body">
+                        <p>A student ID card has been found near the college library. The owner may collect it from the
+                            college office after providing appropriate identification details. Students are requested to
+                            contact the office if they have lost their ID card.</p>
+                        <p><b>Office In-charge</b></p>
+                    </div>
+                </div>
+
+                <h3>Example 3 – Workshop</h3>
+                <div class="notice">
+                    <h2 style="border:0;padding:0;margin:0">ABC INSTITUTE</h2>
+                    <h3>NOTICE</h3>
+                    <p><b>21 August 2026</b></p>
+                    <h3>WEB DEVELOPMENT WORKSHOP</h3>
+                    <div class="body">
+                        <p>A two-day workshop on Web Development will be conducted on 2 and 3 September in Lab-2 from
+                            10:00 a.m. to 2:00 p.m. Interested students should register with the department office
+                            before 29 August. Seats are limited.</p>
+                        <p><b>Head, Computer Department</b></p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="practice">
+                <h2>14. Practice Questions</h2>
+                <div class="exam">
+                    <h3>Picture Composition</h3>
+                    <ol>
+                        <li>Write a composition based on a picture showing students planting trees.</li>
+                        <li>Write a composition based on a picture showing a busy traffic crossing.</li>
+                        <li>Describe a picture showing cleanliness and waste management.</li>
+                        <li>Write a short composition on a picture showing students studying in a library.</li>
+                        <li>Describe a picture showing a village fair.</li>
+                    </ol>
+                    <h3>Paragraph Writing</h3>
+                    <ol>
+                        <li>Write a paragraph on “Importance of Education”.</li>
+                        <li>Write a paragraph on “Digital India”.</li>
+                        <li>Write a paragraph on “Value of Discipline”.</li>
+                        <li>Write a paragraph on “Healthy Lifestyle”.</li>
+                        <li>Write a paragraph on “Importance of Communication Skills”.</li>
+                    </ol>
+                    <h3>Notice Writing</h3>
+                    <ol>
+                        <li>Write a notice announcing a college cultural programme.</li>
+                        <li>Write a notice about an inter-college sports competition.</li>
+                        <li>Write a notice announcing a computer workshop.</li>
+                        <li>Write a notice about a lost mobile phone.</li>
+                        <li>Write a notice informing students about a change in examination schedule.</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="revision">
+                <h2>15. Quick Revision</h2>
+                <div class="note">
+                    <p><strong>Picture Composition:</strong> Observe → Identify → Organise → Describe → Conclude.</p>
+                    <p><strong>Paragraph:</strong> Topic Sentence → Supporting Ideas → Conclusion.</p>
+                    <p><strong>Notice:</strong> Institution → NOTICE → Date → Title → Body → Signature → Designation.
+                    </p>
+                    <p><strong>Picture Writing:</strong> Focus on visible details and the central message.</p>
+                    <p><strong>Paragraph Writing:</strong> Maintain unity, coherence, clarity and relevance.</p>
+                    <p><strong>Notice Writing:</strong> Be brief, formal, factual and complete.</p>
+                </div>
+                <div class="exam"><strong>Exam Mantra:</strong> Understand the question first. Follow the required
+                    format. Use simple and correct English. Keep ideas organised. Check spelling and punctuation before
+                    submitting.</div>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>

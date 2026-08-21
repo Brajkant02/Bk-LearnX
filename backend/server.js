@@ -2,6 +2,14 @@ require('dotenv').config();
 const express = require('express'), cors = require('cors'), bcrypt = require('bcryptjs'), fs = require('fs').promises, path = require('path'), crypto = require('crypto'), nodemailer = require('nodemailer');
 const app = express(), PORT = process.env.PORT || 3000, DATA = path.join(__dirname, 'data'); app.use(cors()); app.use(express.json({ limit: '3mb' }));
 const files = { users: 'users.json', activity: 'activity.json', progress: 'progress.json' }; const sessions = new Map(), adminSessions = new Map(), oauthStates = new Map();
+const LEARNING_CONFIG = Object.freeze({
+  inactivityTimeoutSeconds: Number(process.env.LEARNING_INACTIVITY_TIMEOUT || 45),
+  heartbeatIntervalSeconds: Number(process.env.LEARNING_HEARTBEAT_INTERVAL || 30),
+  minimumActiveTimeSeconds: Number(process.env.LEARNING_MIN_ACTIVE_SECONDS || 300),
+  minimumReadProgress: Number(process.env.LEARNING_MIN_READ_PROGRESS || 90),
+  minimumSectionsViewed: Number(process.env.LEARNING_MIN_SECTIONS_VIEWED || 90),
+  requireQuizIfAvailable: String(process.env.LEARNING_REQUIRE_QUIZ || 'true') !== 'false'
+});
 async function read(k) { try { return JSON.parse(await fs.readFile(path.join(DATA, files[k]), 'utf8')) } catch { return [] } } async function write(k, v) { await fs.mkdir(DATA, { recursive: true }); await fs.writeFile(path.join(DATA, files[k]), JSON.stringify(v, null, 2)) } const token = () => crypto.randomBytes(24).toString('hex');
 const SESSION_TTL = 30 * 24 * 60 * 60 * 1000;
 function createOAuthState(provider, redirectUrl) { const state = crypto.randomBytes(16).toString('hex'); oauthStates.set(state, { provider, redirectUrl, createdAt: Date.now() }); return state; }
@@ -132,9 +140,20 @@ app.get('/api/auth/facebook/callback', async (req, res) => {
   } catch (error) { target.searchParams.set('oauth_error', error.message || 'Unable to sign in with Facebook.'); res.redirect(target.toString()); }
 });
 app.post('/api/register', async (req, res) => { const { name, email, branch, semester, password, confirmPassword } = req.body; if (!name || !email || !branch || !semester || !password) return res.status(400).json({ message: 'All fields required.' }); if (password !== confirmPassword) return res.status(400).json({ message: 'Passwords do not match.' }); const users = await read('users'); if (users.some(x => (x.email || '').toLowerCase() === email.toLowerCase())) return res.status(409).json({ message: 'Email already registered.' }); const u = { id: crypto.randomUUID(), name: name.trim(), email: email.trim().toLowerCase(), branch, semester, passwordHash: await bcrypt.hash(password, 10), registeredAt: new Date().toISOString(), lastLoginAt: null, lastLogoutAt: null, phone: '', college: '', photo: '', provider: 'password' }; users.push(u); await write('users', users); res.status(201).json({ message: 'Registration successful.' }) });
-app.post('/api/login', async (req, res) => { const users = await read('users'), u = users.find(x => (x.email || '').toLowerCase() === (req.body.email || '').trim().toLowerCase()); const validPassword = typeof u?.passwordHash === 'string' && u.passwordHash.startsWith('$2') ? await bcrypt.compare(req.body.password || '', u.passwordHash) : false; if (!u || !validPassword) return res.status(401).json({ message: u?.provider && u.provider !== 'password' ? `Please continue with ${u.provider} login.` : 'Invalid email or password.' }); u.lastLoginAt = new Date().toISOString(); await write('users', users); const t = token(); sessions.set(t, { userId: u.id, loginAt: Date.now(), lastSeen: Date.now(), currentPage: '' }); res.json({ token: t, user: safe(u) }) });
-app.post('/api/login', async (req, res) => { const users = await read('users'), u = users.find(x => (x.email || '').toLowerCase() === (req.body.email || '').trim().toLowerCase()); const validPassword = u?.passwordHash && /^4(?:a|b|y)4\d{2}4/.test(u.passwordHash) ? await bcrypt.compare(req.body.password || '', u.passwordHash) : false; if (!u || !validPassword) return res.status(401).json({ message: u?.provider && u.provider !== 'password' ? `Please continue with ${u.provider} login.` : 'Invalid email or password.' }); u.lastLoginAt = new Date().toISOString(); await write('users', users); const t = token(); sessions.set(t, { userId: u.id, loginAt: Date.now(), lastSeen: Date.now(), currentPage: '' }); res.json({ token: t, user: safe(u) }) });
-
+app.post('/api/login', async (req, res) => {
+  const users = await read('users');
+  const u = users.find(x => (x.email || '').toLowerCase() === (req.body.email || '').trim().toLowerCase());
+  const password = String(req.body.password || '');
+  const isBcrypt = typeof u?.passwordHash === 'string' && u.passwordHash.startsWith('$2');
+  const validPassword = isBcrypt ? await bcrypt.compare(password, u.passwordHash) : u?.passwordHash === password;
+  if (!u || !validPassword) return res.status(401).json({ message: 'Invalid email or password.' });
+  if (!isBcrypt) u.passwordHash = await bcrypt.hash(password, 10);
+  u.provider = 'password';
+  u.lastLoginAt = new Date().toISOString();
+  await write('users', users);
+  const t = token(); sessions.set(t, { userId: u.id, loginAt: Date.now(), lastSeen: Date.now(), currentPage: '' });
+  res.json({ token: t, user: safe(u) });
+});
 const otpHash = value => crypto.createHash('sha256').update(String(value)).digest('hex');
 function mailTransport() {
   if (process.env.SMTP_HOST) {
@@ -246,9 +265,68 @@ app.put('/api/me', auth, async (req, res) => { const users = await read('users')
 app.post('/api/activity', auth, async (req, res) => { const all = await read('activity'); const s = sessions.get(req.sessionToken); s.lastSeen = Date.now(); s.currentPage = req.body.page || s.currentPage; all.push({ id: crypto.randomUUID(), userId: req.userId, at: new Date().toISOString(), ...req.body }); if (all.length > 10000) all.splice(0, all.length - 10000); await write('activity', all); res.json({ ok: true }) });
 app.get('/api/progress', auth, async (req, res) => res.json({ progress: (await read('progress')).filter(x => x.userId === req.userId) }));
 app.post('/api/progress', auth, async (req, res) => { const all = await read('progress'); let x = all.find(p => p.userId === req.userId && p.page === req.body.page); if (!x) { x = { id: crypto.randomUUID(), userId: req.userId, page: req.body.page, title: req.body.title || '', subject: req.body.subject || infer(req.body.page), completed: false }; all.push(x) } x.completed = !!req.body.completed; x.updatedAt = new Date().toISOString(); await write('progress', all); res.json({ progress: x }) });
+function learningStatus(record) {
+  if (record.status === 'COMPLETED' || record.manualConfirmed) return 'COMPLETED';
+  return record.startedAt ? 'IN_PROGRESS' : 'NOT_STARTED';
+}
+function meetsCompletionCriteria(record) {
+  const readOk = Number(record.maxScrollPercent || 0) >= LEARNING_CONFIG.minimumReadProgress;
+  const sectionPercent = record.totalSections ? Number(record.sectionsViewed || 0) / Number(record.totalSections) * 100 : 0;
+  const sectionsOk = sectionPercent >= LEARNING_CONFIG.minimumSectionsViewed;
+  const timeOk = Number(record.activeTimeSeconds || 0) >= LEARNING_CONFIG.minimumActiveTimeSeconds;
+  const quizOk = !record.quizAvailable || !LEARNING_CONFIG.requireQuizIfAvailable || !!record.quizCompleted;
+  return readOk && timeOk && sectionsOk && quizOk;
+}
+function normalizeLearning(body, previous = {}) {
+  const now = new Date().toISOString();
+  const record = {
+    ...previous,
+    type: 'learning',
+    page: String(body.page || previous.page || '').slice(0, 1000),
+    title: String(body.title || previous.title || '').slice(0, 300),
+    subjectId: String(body.subjectId || previous.subjectId || infer(body.page)).slice(0, 120),
+    unitId: String(body.unitId || previous.unitId || '').slice(0, 200),
+    chapterId: String(body.chapterId || previous.chapterId || body.page || '').slice(0, 300),
+    maxScrollPercent: Math.max(Number(previous.maxScrollPercent || 0), Math.min(100, Math.max(0, Number(body.maxScrollPercent || 0)))),
+    sectionsViewed: Math.max(Number(previous.sectionsViewed || 0), Math.max(0, Number(body.sectionsViewed || 0))),
+    totalSections: Math.max(Number(previous.totalSections || 0), Math.max(0, Number(body.totalSections || 0))),
+    currentSectionId: String(body.currentSectionId || previous.currentSectionId || '').slice(0, 200),
+    lastPosition: Math.max(0, Number(body.lastPosition ?? previous.lastPosition ?? 0)),
+    quizAvailable: Boolean(body.quizAvailable ?? previous.quizAvailable),
+    quizStarted: Boolean(body.quizStarted || previous.quizStarted),
+    quizCompleted: Boolean(body.quizCompleted || previous.quizCompleted),
+    quizScore: body.quizScore == null ? (previous.quizScore ?? null) : Math.min(100, Math.max(0, Number(body.quizScore))),
+    attempts: Math.max(Number(previous.attempts || 0), Number(body.attempts || 0)),
+    manualConfirmed: Boolean(body.manualConfirmed || previous.manualConfirmed),
+    activeTimeSeconds: Math.min(31536000, Math.max(0, Number(body.activeTimeSeconds ?? previous.activeTimeSeconds ?? 0))),
+    lastActiveAt: body.lastActiveAt || previous.lastActiveAt || now,
+    updatedAt: now
+  };
+  if (!record.startedAt) record.startedAt = previous.startedAt || now;
+  record.status = meetsCompletionCriteria(record) || record.manualConfirmed ? 'COMPLETED' : 'IN_PROGRESS';
+  record.completedAt = record.status === 'COMPLETED' ? (previous.completedAt || now) : null;
+  return record;
+}
+app.get('/api/learning/config', auth, (req, res) => res.json({ config: LEARNING_CONFIG }));
+app.get('/api/learning/progress', auth, async (req, res) => { const all = await read('progress'); res.json({ progress: all.filter(x => x.userId === req.userId && x.type === 'learning'), config: LEARNING_CONFIG }); });
+app.post('/api/learning/progress', auth, async (req, res) => {
+  if (!req.body.page) return res.status(400).json({ message: 'Chapter page is required.' });
+  const all = await read('progress');
+  const index = all.findIndex(x => x.userId === req.userId && x.type === 'learning' && x.page === req.body.page);
+  const previous = index >= 0 ? all[index] : { id: crypto.randomUUID(), userId: req.userId };
+  const record = normalizeLearning(req.body, previous);
+  if (index >= 0) all[index] = { ...previous, ...record }; else all.push({ ...previous, ...record });
+  const session = sessions.get(req.sessionToken); session.lastSeen = Date.now(); session.currentPage = record.page; session.learning = record;
+  await write('progress', all);
+  res.json({ progress: { ...record, status: learningStatus(record) }, config: LEARNING_CONFIG });
+});
+app.post('/api/learning/heartbeat', auth, async (req, res) => {
+  const session = sessions.get(req.sessionToken); session.lastSeen = Date.now(); session.currentPage = String(req.body.page || session.currentPage || '');
+  res.json({ ok: true, lastActiveAt: new Date(session.lastSeen).toISOString() });
+});
 function infer(p = '') { const m = p.match(/content\/[^/]+\/([^/]+)/); return m ? m[1].replace(/-hindi$/, '').toUpperCase() : 'Course' }
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin@bklearnx.local', ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'Admin@123';
 app.post('/api/admin/login', async (req, res) => { if ((req.body.email || '').toLowerCase() !== ADMIN_EMAIL.toLowerCase() || req.body.password !== ADMIN_PASSWORD) return res.status(401).json({ message: 'Invalid admin credentials.' }); const t = token(); adminSessions.set(t, { at: Date.now() }); res.json({ token: t }) });
 app.post('/api/admin/logout', admin, (req, res) => { adminSessions.delete(req.header('x-admin-token')); res.json({ message: 'Admin logged out.' }) });
-app.get('/api/admin/dashboard', admin, async (req, res) => { const [users, activity, progress] = await Promise.all([read('users'), read('activity'), read('progress')]); const now = Date.now(), day = new Date().toISOString().slice(0, 10); const rows = users.map(u => { const sess = [...sessions.values()].find(s => s.userId === u.id); const ps = progress.filter(p => p.userId === u.id); return { ...safe(u), online: !!sess && now - sess.lastSeen < 120000, currentPage: sess?.currentPage || '', lastActivity: sess ? new Date(sess.lastSeen).toISOString() : u.lastLogoutAt || u.lastLoginAt, completion: ps.length ? Math.round(ps.filter(x => x.completed).length / ps.length * 100) : 0 } }); res.json({ stats: { totalStudents: users.length, onlineStudents: rows.filter(x => x.online).length, loginsToday: users.filter(x => (x.lastLoginAt || '').startsWith(day)).length, averageCompletion: rows.length ? Math.round(rows.reduce((a, b) => a + b.completion, 0) / rows.length) : 0 }, students: rows, recentActivity: activity.slice(-30).reverse().map(a => ({ ...a, studentName: users.find(u => u.id === a.userId)?.name })) }) });
+app.get('/api/admin/dashboard', admin, async (req, res) => { const [users, activity, progress] = await Promise.all([read('users'), read('activity'), read('progress')]); const now = Date.now(), day = new Date().toISOString().slice(0, 10); const rows = users.map(u => { const sess = [...sessions.values()].find(s => s.userId === u.id); const ps = progress.filter(p => p.userId === u.id && p.type === 'learning'); const latest = ps.sort((a, b) => new Date(b.updatedAt || 0) - new Date(a.updatedAt || 0))[0]; const age = sess ? Math.floor((now - sess.lastSeen) / 1000) : Infinity; return { ...safe(u), online: age < 120, presence: age < 60 ? 'ONLINE' : age < 120 ? 'AWAY' : 'OFFLINE', currentPage: latest?.page || sess?.currentPage || '', currentSubject: latest?.subjectId || '', currentUnit: latest?.unitId || '', currentChapter: latest?.chapterId || '', currentSection: latest?.currentSectionId || '', readingProgress: latest?.maxScrollPercent || 0, activeTimeSeconds: latest?.activeTimeSeconds || 0, lastActivity: sess ? new Date(sess.lastSeen).toISOString() : latest?.lastActiveAt || u.lastLogoutAt || u.lastLoginAt, completion: ps.length ? Math.round(ps.reduce((sum, x) => sum + (x.maxScrollPercent || 0), 0) / ps.length) : 0 } }); res.json({ stats: { totalStudents: users.length, onlineStudents: rows.filter(x => x.presence === 'ONLINE').length, loginsToday: users.filter(x => (x.lastLoginAt || '').startsWith(day)).length, averageCompletion: rows.length ? Math.round(rows.reduce((a, b) => a + b.completion, 0) / rows.length) : 0 }, students: rows, recentActivity: activity.slice(-30).reverse().map(a => ({ ...a, studentName: users.find(u => u.id === a.userId)?.name })) }); });
 app.listen(PORT, () => console.log(`BK LearnX backend: http://localhost:${PORT}`));
