@@ -198,6 +198,13 @@
                 grid-template-columns: 1fr;
             }
         }
+        iframe{
+            width: 100vw;
+            height: 75vh;
+            border: none;
+            margin: 0;
+            padding: 0;
+        }
     </style>
 
     <link rel="stylesheet" href="../../../../../assets/shared/unit-enhancements.css">
@@ -390,6 +397,24 @@
                         <iframe src="./soft skill/unit-5/index.html" frameborder="0"></iframe>
                     </div>
 
+                    <!-- pyq -->
+                    <div class="unit-card" data-subject="pyq" data-unit="Java">
+                        <iframe src="../../../pyq and handwritten notes/Java/index.html" frameborder="0"></iframe>
+                    </div>
+                    <div class="unit-card" data-subject="pyq" data-unit="CHM">
+                        <iframe src="../../../pyq and handwritten notes/chm/index.html" frameborder="0"></iframe>
+                    </div>
+                    <div class="unit-card" data-subject="pyq" data-unit="IOT">
+                        <iframe src="../../../pyq and handwritten notes/IoT-dca/index.html" frameborder="0"></iframe>
+                    </div>
+                    <div class="unit-card" data-subject="pyq" data-unit="E-Commerce">
+                        <iframe src="../../../pyq and handwritten notes/ecom/index.html" frameborder="0"></iframe>
+                    </div>
+                    <div class="unit-card" data-subject="pyq" data-unit="Soft Skill">
+                        <iframe src="../../../pyq and handwritten notes/Soft Skill/index.html" frameborder="0"></iframe>
+                    </div>
+                   
+
                 </div>
             </section>
 
@@ -444,6 +469,10 @@
                     name: "Soft Skill",
                     units: ["Unit-1", "Unit-2", "Unit-3", "Unit-4", "Unit-5"]
                 },
+                pyq: {
+                    name: "PYQ and Handwritten notes",
+                    units: ["CHM", "IOT"]
+                },
 
             }
         };
@@ -493,7 +522,7 @@
             if (!unitValue) return "";
 
             const match = unitValue.toLowerCase().match(/unit-\d+/);
-            return match ? match[0] : "";
+            return match ? match[0] : unitValue;
         }
 
         function hideAllCards() {
