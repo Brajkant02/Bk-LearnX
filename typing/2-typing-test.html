@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FB7SX0P0D3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-FB7SX0P0D3');
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>BK Typing</title>
+  <meta name="description"
+    content="BK LearnX government exam typing practice with live Monkeytype-style character highlighting, WPM, accuracy and errors.">
+  <meta name="robots" content="index,follow">
+  <link rel="icon" type="image/jpeg" href="../assets/images/logo.jpeg"> <link>
+  <style>
+  :root {
+  --b: #0b63ce;
+  --l: #eef6ff;
+  --t: #102033;
+  --m: #8795a5;
+  --bd: #d8e5f2;
+  --correct: #16834b;
+  --wrong: #c62828
+  }
+
+  * {
+  box-sizing: border-box
+  }
+
+  body {
+  margin: 0;
+  background: #fff;
+  color: var(--t);
+  font-family: Arial, sans-serif
+  }
+
+  .top {
+  height: 64px;
+  border-bottom: 1px solid var(--bd);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px
+  }
+
+  .brand {
+  font-size: 22px;
+  font-weight: 900
+  }
+
+  .brand span,
+  .step,
+  .k {
+  color: var(--b)
+  }
+
+  .step {
+  font-size: 11px;
+  font-weight: 800
+  }
+
+  .wrap {
+  max-width: 1050px;
+  margin: auto;
+  padding: 30px 18px
+  }
+
+  .k {
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1.3px
+  }
+
+  h1 {
+  font-size: 42px;
+  line-height: 1.05;
+  margin: 8px 0 20px
+  }
+
+  .card {
+  border: 1px solid var(--bd);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 10px 30px #17528214
+  }
+
+  .typing {
+  display: grid;
+  grid-template-columns: 1fr 250px;
+  gap: 15px
+  }
+
+  .mode-box {
+  margin-bottom: 16px;
+  padding: 12px;
+  border: 1px solid var(--bd);
+  border-radius: 12px;
+  background: #f8fbff
+  }
+
+  .mode-title {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--m);
+  margin-bottom: 8px
+  }
+
+  .modes {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap
+  }
+
+  .mode-btn {
+  border: 1px solid var(--bd);
+  background: #fff;
+  color: var(--t);
+  border-radius: 9px;
+  padding: 9px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer
+  }
+
+  .mode-btn.active {
+  background: var(--b);
+  border-color: var(--b);
+  color: #fff
+  }
+
+  .mode-btn:disabled {
+  opacity: .45;
+  cursor: not-allowed
+  }
+
+  .lock-hint {
+  display: none;
+  margin-top: 9px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--wrong)
+  }
+
+  .lock-hint.show {
+  display: block
+  }
+
+  .legend {
+  margin-top: 9px;
+  font-size: 10px;
+  color: var(--m)
+  }
+
+  .typing-stage {
+  position: relative;
+  background: #f8fbff;
+  border: 1px solid var(--bd);
+  border-radius: 13px;
+  padding: 25px;
+  min-height: 300px;
+  cursor: text
+  }
+
+  .prompt {
+  font: 20px/1.9 "Courier New", monospace;
+  letter-spacing: .15px;
+  white-space: pre-wrap;
+  word-break: break-word
+  }
+
+  .prompt .pending {
+  color: #91a0af;
+  }
+
+  .prompt .correct {
+  color: var(--correct)
+  }
+
+  .prompt .wrong {
+  color: var(--wrong);
+  text-decoration: underline;
+  text-decoration-thickness: 2px
+  }
+
+  .prompt .caret {
+  border-left: 2px solid var(--b);
+  margin-left: -1px;
+  animation: blink 1s step-end infinite
+  }
+
+  @keyframes blink {
+  50% {
+  border-color: transparent
+  }
+  }
+
+  .capture {
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 1px !important;
+  height: 1px !important;
+  opacity: 0 !important;
+  border: 0 !important;
+  padding: 0 !important
+  }
+
+  .normal-input {
+  width: 100%;
+  min-height: 190px;
+  margin-top: 12px;
+  border: 1px solid var(--bd);
+  border-radius: 13px;
+  padding: 16px;
+  font: 16px/1.7 monospace;
+  outline: none
+  }
+
+  .timer {
+  font-size: 42px;
+  font-weight: 900;
+  color: var(--b)
+  }
+
+  .stat {
+  display: flex;
+  justify-content: space-between;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--bd);
+  font-size: 12px
+  }
+
+  .progress {
+  height: 6px;
+  background: #e6eef7;
+  margin-top: 16px;
+  border-radius: 20px;
+  overflow: hidden
+  }
+
+  .progress i {
+  display: block;
+  height: 100%;
+  background: var(--b)
+  }
+
+  .actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 18px
+  }
+
+  .btn {
+  border-radius: 10px;
+  padding: 12px 18px;
+  font-weight: 800;
+  cursor: pointer
+  }
+
+  .primary {
+  background: var(--b);
+  color: #fff;
+  border: 0
+  }
+
+  .secondary {
+  background: #fff;
+  color: var(--b);
+  border: 1px solid var(--b)
+  }
+
+  .hidden {
+  display: none !important
+  }
+
+  @media(max-width:760px) {
+  .typing {
+  grid-template-columns: 1fr
+  }
+
+  h1 {
+  font-size: 34px
+  }
+
+  .prompt {
+  font-size: 17px
+  }
+  }
+  </style>
+</head>
+
+<body>
+  <header class="top">
+    <div class="brand">BK <span>Typing</span></div>
+  </header>
+
+  <main class="wrap">
+    <div class="k" id="ename">TYPING TEST</div>
+    <h1>Type accurately.<br>Speed baad mein.</h1>
+
+    <div class="typing">
+      <section class="card">
+
+        <div class="mode-box">
+          <div class="mode-title">TYPING MODE SELECT KAREIN</div>
+          <div class="modes">
+            <button class="mode-btn" id="textareaMode" type="button">⌨ Text Area Typing</button>
+            <button class="mode-btn active" id="overlapMode" type="button">✍ Overlapping Typing</button>
+          </div>
+          <div class="legend">
+            <span style="color:var(--correct);font-weight:800">● Correct</span>
+            &nbsp;&nbsp;
+            <span style="color:var(--wrong);font-weight:800">● Wrong</span>
+            &nbsp;&nbsp;
+            <span style="color:var(--m)">| Current cursor</span>
+          </div>
+          <div class="lock-hint" id="lockHint">🔒 Test shuru ho chuka hai — ab typing mode change nahi kar sakte. Finish
+            ya time khatam hone tak isi mode mein rahein.</div>
+        </div>
+
+        <!-- Monkeytype-style live character display -->
+        <div class="typing-stage" id="typingStage" tabindex="0">
+          <div class="prompt" id="prompt"></div>
+          <textarea class="capture" id="capture" spellcheck="false" autocomplete="off"></textarea>
+        </div>
+
+        <textarea class="normal-input hidden" id="normalInput" spellcheck="false" autocomplete="off"
+          placeholder="Yahan typing start karein..."></textarea>
+
+        <div class="actions">
+          <button class="btn primary" id="finish">Finish Test</button>
+          <button class="btn secondary" onclick="location.href='1-exam-selection.html'">Change Exam</button>
+        </div>
+      </section>
+
+      <aside class="card">
+        <div class="timer" id="timer">10:00</div>
+        <div class="stat"><span>WPM</span><b id="wpm">0</b></div>
+        <div class="stat"><span>Accuracy</span><b id="acc">100%</b></div>
+        <div class="stat"><span>Errors</span><b id="err">0</b></div>
+        <div class="stat"><span>Typed</span><b id="typed">0</b></div>
+        <div class="progress"><i id="prog" style="width:0%"></i></div>
+      </aside>
+    </div>
+  </main>
+
+  <script>
+    const P = {
+      general: { name: 'General Typing', duration: 600, en: 35, hi: 30 },
+      'ssc-chsl': { name: 'SSC CHSL', duration: 600, en: 35, hi: 30 },
+      'ssc-cgl-dest': { name: 'SSC CGL DEST', duration: 900, en: 35, hi: 30, dest: true },
+      'rrb-ntpc': { name: 'RRB NTPC', duration: 600, en: 30, hi: 25 },
+      dsssb: { name: 'DSSSB', duration: 600, en: 35, hi: 30 },
+      'dda-jsa': { name: 'DDA JSA', duration: 600, en: 35, hi: 30 },
+      'allahabad-hc': { name: 'Allahabad High Court', duration: 600, en: 30, hi: 25 },
+      'up-clerical': { name: 'UP Clerk / JA', duration: 600, en: 30, hi: 25 },
+      'state-clerical': { name: 'State Govt Typing', duration: 600, en: 30, hi: 25 },
+      'court-typist': { name: 'Court Typist', duration: 600, en: 30, hi: 25 },
+      'central-ldc': { name: 'Central Govt LDC', duration: 600, en: 35, hi: 30 },
+      'hindi-typist': { name: 'Hindi Typing', duration: 600, en: 35, hi: 30 }
+    };
+
+    const A = {
+      en: [
+        'India is moving towards a digital and technology-driven economy. Government services, education, banking, transport and public administration increasingly depend on reliable digital systems. Candidates should develop both speed and accuracy because typing errors can reduce the final score.',
+        'Recent developments in space technology have increased opportunities for innovation and private participation. Start-ups, research institutions and government organisations are working together to expand India’s capabilities in advanced technology.'
+      ],
+      hi: [
+        'भारत तेजी से डिजिटल और तकनीक आधारित अर्थव्यवस्था की ओर बढ़ रहा है। सरकारी सेवाओं, शिक्षा, बैंकिंग, परिवहन और सार्वजनिक प्रशासन में डिजिटल प्रणालियों का उपयोग लगातार बढ़ रहा है। अभ्यर्थियों के लिए गति के साथ शुद्धता बनाए रखना आवश्यक है।',
+        'अंतरिक्ष तकनीक में हो रहे विकास से नवाचार और निजी भागीदारी के नए अवसर सामने आए हैं। स्टार्टअप, अनुसंधान संस्थान और सरकारी संगठन आधुनिक तकनीक की क्षमता बढ़ाने के लिए मिलकर काम कर रहे हैं।'
+      ]
+    };
+
+    const N = {
+      en: [
+        'India marked its 80th Independence Day on 15 August 2026. The national development agenda highlighted self-reliance, security, technology and the long-term vision of a Viksit Bharat. This passage is designed for typing practice using formal government vocabulary.',
+        'On 21 August 2026, the Prime Minister interacted with CEOs and founders of space start-ups. The discussion reflected the growing role of private enterprise, innovation and advanced technology in India’s space ecosystem.'
+      ],
+      hi: [
+        '15 अगस्त 2026 को भारत ने अपना 80वां स्वतंत्रता दिवस मनाया। राष्ट्रीय विकास के संदर्भ में आत्मनिर्भरता, सुरक्षा, तकनीक और विकसित भारत जैसे विषयों पर ध्यान दिया गया। यह अनुच्छेद सरकारी शब्दावली और विराम चिह्नों के साथ टंकण अभ्यास के लिए तैयार किया गया है।',
+        '21 अगस्त 2026 को प्रधानमंत्री ने अंतरिक्ष क्षेत्र से जुड़े स्टार्टअप के मुख्य कार्यकारी अधिकारियों और संस्थापकों के साथ संवाद किया। चर्चा में निजी क्षेत्र, नवाचार और आधुनिक तकनीक की भूमिका पर ध्यान दिया गया।'
+      ]
+    };
+
+    function getText(lang, source) {
+      const a = source === 'current' ? N[lang] : (source === 'mixed' ? A[lang].concat(N[lang]) : A[lang]);
+      return a[Math.floor(Math.random() * a.length)];
+    }
+
+    function safeGet(key, fallback) {
+      try {
+        const v = localStorage.getItem(key);
+        return v || fallback;
+      } catch (e) {
+        return fallback;
+      }
+    }
+
+    // explicit element lookups (do not rely on implicit id->global mapping)
+    const enameEl = document.getElementById('ename');
+    const promptEl = document.getElementById('prompt');
+    const captureEl = document.getElementById('capture');
+    const typingStageEl = document.getElementById('typingStage');
+    const normalInputEl = document.getElementById('normalInput');
+    const textareaModeEl = document.getElementById('textareaMode');
+    const overlapModeEl = document.getElementById('overlapMode');
+    const lockHintEl = document.getElementById('lockHint');
+    const finishEl = document.getElementById('finish');
+    const timerEl = document.getElementById('timer');
+    const wpmEl = document.getElementById('wpm');
+    const accEl = document.getElementById('acc');
+    const errEl = document.getElementById('err');
+    const typedEl = document.getElementById('typed');
+    const progEl = document.getElementById('prog');
+
+    const exam = safeGet('bkExam', 'general');
+    const lang = safeGet('bkLang', 'en');
+    const source = safeGet('bkSource', 'exam');
+    const durationOverride = parseInt(safeGet('bkDuration', ''), 10);
+    const p = Object.assign({}, P[exam] || P.general);
+    if (!isNaN(durationOverride) && durationOverride > 0) {
+      p.duration = durationOverride;
+    }
+    const text = getText(lang, source);
+
+    let value = '';
+    let mode = 'overlap';
+    let startTime = null;
+    let finished = false;
+
+    enameEl.textContent = p.name + ' · ' + (lang === 'en' ? 'English' : 'Hindi') + ' · ' + Math.round(p.duration / 60) + ' Min';
+
+    function esc(ch) {
+      return ch === '&' ? '&amp;' : ch === '<' ? '&lt;' : ch === '>' ? '&gt;' : ch === '"' ? '&quot;' : ch === "'" ? '&#39;' : ch;
+    }
+
+    function render() {
+      let html = '';
+      for (let i = 0; i < text.length; i++) {
+        const ch = text[i];
+        if (i < value.length) {
+          const typed = value[i];
+          html += '<span class="' + (typed === ch ? 'correct' : 'wrong') + '">' + esc(typed) + '</span>';
+        } else if (i === value.length) {
+          html += '<span class="caret"></span><span class="pending">' + esc(ch) + '</span>';
+        } else {
+          html += '<span class="pending">' + esc(ch) + '</span>';
+        }
+      }
+      if (value.length >= text.length) html += '<span class="caret"></span>';
+      promptEl.innerHTML = html;
+    }
+
+    function ensureStarted() {
+      if (startTime === null) {
+        startTime = Date.now();
+        textareaModeEl.disabled = true;
+        overlapModeEl.disabled = true;
+        lockHintEl.classList.add('show');
+      }
+    }
+
+    function elapsedSec() {
+      return startTime ? Math.max(1, (Date.now() - startTime) / 1000) : 1;
+    }
+
+    function calculate() {
+      const sec = elapsedSec();
+      const words = value.trim() ? value.trim().split(/\s+/).length : 0;
+      const gross = startTime ? Math.round(words / (sec / 60)) : 0;
+
+      let errors = 0;
+      for (let i = 0; i < value.length; i++) {
+        if (i >= text.length || value[i] !== text[i]) errors++;
+      }
+
+      const accuracy = value.length ? Math.max(0, Math.round((value.length - errors) / value.length * 100)) : 100;
+      wpmEl.textContent = gross;
+      accEl.textContent = accuracy + '%';
+      errEl.textContent = errors;
+      typedEl.textContent = value.length;
+      progEl.style.width = Math.min(100, value.length / text.length * 100) + '%';
+    }
+
+    function syncFromCapture() {
+      ensureStarted();
+      value = captureEl.value;
+      render();
+      calculate();
+    }
+
+    captureEl.addEventListener('input', syncFromCapture);
+
+    typingStageEl.addEventListener('click', () => {
+      if (mode === 'overlap') {
+        captureEl.focus();
+      }
+    });
+    typingStageEl.addEventListener('keydown', () => {
+      if (mode === 'overlap') captureEl.focus();
+    });
+
+    function setMode(newMode) {
+      if (startTime !== null) return; // typing already started — mode is locked
+      mode = newMode;
+      textareaModeEl.classList.toggle('active', mode === 'textarea');
+      overlapModeEl.classList.toggle('active', mode === 'overlap');
+
+      if (mode === 'overlap') {
+        normalInputEl.classList.add('hidden');
+        captureEl.value = value;
+        captureEl.focus();
+      } else {
+        normalInputEl.classList.remove('hidden');
+        normalInputEl.value = value;
+        normalInputEl.focus();
+      }
+      render();
+    }
+
+    textareaModeEl.onclick = () => setMode('textarea');
+    overlapModeEl.onclick = () => setMode('overlap');
+
+    normalInputEl.addEventListener('input', () => {
+      ensureStarted();
+      value = normalInputEl.value;
+      render();
+      calculate();
+    });
+
+    function finishTest() {
+      if (finished) return;
+      finished = true;
+
+      const sec = elapsedSec();
+      const words = value.trim() ? value.trim().split(/\s+/).length : 0;
+      const w = startTime ? Math.round(words / (sec / 60)) : 0;
+
+      let e = 0;
+      for (let i = 0; i < value.length; i++) {
+        if (i >= text.length || value[i] !== text[i]) e++;
+      }
+
+      const a = value.length ? Math.max(0, Math.round((value.length - e) / value.length * 100)) : 0;
+      const target = p.dest ? '2,000 key depressions' : (lang === 'en' ? p.en : p.hi) + ' WPM';
+      const pass = p.dest ? value.length >= 2000 : w >= (lang === 'en' ? p.en : p.hi);
+
+      try {
+        localStorage.setItem('bkResult', JSON.stringify({
+          exam, lang, wpm: w, acc: a, errors: e, chars: value.length, target, pass
+        }));
+      } catch (e2) { }
+
+      location.href = '3-result.html';
+    }
+
+    finishEl.onclick = finishTest;
+
+    function updateTimer() {
+      const elapsed = startTime ? Math.floor((Date.now() - startTime) / 1000) : 0;
+      const left = Math.max(0, p.duration - elapsed);
+      timerEl.textContent = String(Math.floor(left / 60)).padStart(2, '0') + ':' + String(left % 60).padStart(2, '0');
+      return left;
+    }
+
+    setInterval(() => {
+      if (finished) return;
+      calculate();
+      if (updateTimer() <= 0) finishTest();
+    }, 500);
+
+    render();
+    updateTimer();
+    setTimeout(() => captureEl.focus(), 50);
+  </script>
+</body>
+
+</html>

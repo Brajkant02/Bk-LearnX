@@ -1,0 +1,341 @@
+<!doctype html>
+<html>
+
+<head>
+     <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FB7SX0P0D3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-FB7SX0P0D3');
+    </script>
+    <meta charset=utf-8>
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <title>BK Typing</title>
+    <meta name=description content="View your BK LearnX typing result including WPM, accuracy, errors and exam target.">
+    <meta name=robots content="index,follow">
+    <link rel="icon" type="image/jpeg" href="../assets/images/logo.jpeg">
+    <style>
+        :root {
+            --b: #0b63ce;
+            --l: #eef6ff;
+            --t: #102033;
+            --m: #617286;
+            --bd: #d8e5f2
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            background: #fff;
+            color: var(--t);
+            font-family: Arial, sans-serif
+        }
+
+        .top {
+            height: 64px;
+            border-bottom: 1px solid var(--bd);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px
+        }
+
+        .brand {
+            font-size: 22px;
+            font-weight: 900
+        }
+
+        .brand span,
+        .step,
+        .k {
+            color: var(--b)
+        }
+
+        .step {
+            font-size: 11px;
+            font-weight: 800
+        }
+
+        .wrap {
+            max-width: 1050px;
+            margin: auto;
+            padding: 30px 18px
+        }
+
+        .k {
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 1.3px
+        }
+
+        h1 {
+            font-size: 44px;
+            line-height: 1.05
+        }
+
+        .sub {
+            color: var(--m);
+            line-height: 1.65
+        }
+
+        .card {
+            border: 1px solid var(--bd);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 10px 30px #17528214
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 13px
+        }
+
+        .option {
+            border: 1px solid var(--bd);
+            border-radius: 13px;
+            padding: 15px;
+            cursor: pointer
+        }
+
+        .option.selected,
+        .option:hover {
+            border-color: var(--b);
+            background: var(--l)
+        }
+
+        .option h3 {
+            margin: 0 0 5px
+        }
+
+        .option p {
+            margin: 0;
+            color: var(--m);
+            font-size: 12px
+        }
+
+        .chip {
+            display: inline-block;
+            margin-top: 9px;
+            background: #e4f0ff;
+            color: var(--b);
+            padding: 4px 7px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 800
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 18px
+        }
+
+        label {
+            display: block;
+            color: var(--m);
+            font-size: 11px;
+            font-weight: 800;
+            margin-bottom: 6px
+        }
+
+        select {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid var(--bd);
+            border-radius: 10px;
+            background: #fff
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 18px
+        }
+
+        .btn {
+            border-radius: 10px;
+            padding: 12px 18px;
+            font-weight: 800;
+            cursor: pointer
+        }
+
+        .primary {
+            background: var(--b);
+            color: #fff;
+            border: 0
+        }
+
+        .secondary {
+            background: #fff;
+            color: var(--b);
+            border: 1px solid var(--b)
+        }
+
+        .typing {
+            display: grid;
+            grid-template-columns: 1fr 250px;
+            gap: 15px
+        }
+
+        .passage {
+            background: #f7fbff;
+            border: 1px solid var(--bd);
+            border-radius: 13px;
+            padding: 21px;
+            font-size: 17px;
+            line-height: 1.85;
+            min-height: 260px
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 190px;
+            margin-top: 12px;
+            border: 1px solid var(--bd);
+            border-radius: 13px;
+            padding: 16px;
+            font: 16px/1.7 monospace;
+            outline: none
+        }
+
+        .timer {
+            font-size: 42px;
+            font-weight: 900;
+            color: var(--b)
+        }
+
+        .stat {
+            display: flex;
+            justify-content: space-between;
+            padding: 11px 0;
+            border-bottom: 1px solid var(--bd);
+            font-size: 12px
+        }
+
+        .progress {
+            height: 6px;
+            background: #e6eef7;
+            margin-top: 16px
+        }
+
+        .progress i {
+            display: block;
+            height: 100%;
+            background: var(--b)
+        }
+
+        .result {
+            text-align: center;
+            padding: 38px 20px
+        }
+
+        .icon {
+            font-size: 55px;
+            color: var(--b)
+        }
+
+        .result h2 {
+            font-size: 38px
+        }
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 25px 0
+        }
+
+        .box {
+            border: 1px solid var(--bd);
+            padding: 16px;
+            border-radius: 12px;
+            background: #f8fbff
+        }
+
+        .box strong {
+            display: block;
+            font-size: 25px;
+            color: var(--b)
+        }
+
+        .box span {
+            font-size: 10px;
+            color: var(--m)
+        }
+
+        .info {
+            margin-top: 25px;
+            padding: 14px;
+            background: var(--l);
+            border-left: 4px solid var(--b);
+            color: var(--m);
+            font-size: 12px;
+            line-height: 1.65
+        }
+
+        .result.pass .icon,
+        .result.pass h2 {
+            color: #16834b
+        }
+
+        .result.pass {
+            border-color: #16834b
+        }
+
+        .result.fail .icon,
+        .result.fail h2 {
+            color: #c62828
+        }
+
+        .result.fail {
+            border-color: #c62828
+        }
+
+        @media(max-width:760px) {
+
+            .grid,
+            .controls,
+            .typing,
+            .result-grid {
+                grid-template-columns: 1fr
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class=top>
+        <div class=brand>BK <span>Typing</span></div>
+    </header>
+    <main class=wrap>
+        <section class="card result" id=result>
+            <div class=icon id=icon>✓</div>
+            <div class=k>TEST COMPLETE</div>
+            <h2 id=title>Result</h2>
+            <p class=sub style="margin:auto" id=note></p>
+            <div class=result-grid>
+                <div class=box><strong id=wpm>0</strong><span>Net WPM</span></div>
+                <div class=box><strong id=acc>0%</strong><span>Accuracy</span></div>
+                <div class=box><strong id=errors>0</strong><span>Errors</span></div>
+                <div class=box><strong id=chars>0</strong><span>Characters</span></div>
+            </div>
+            <div class=actions style="justify-content:center"><button class="btn primary"
+                    onclick="location.href='2-typing-test.html'">Try Again</button><button class="btn secondary"
+                    onclick="location.href='1-exam-selection.html'">Choose Another Exam</button></div>
+        </section>
+        <div class=info><b>BK Typing Tip:</b> Accuracy first, then speed. Practise daily and use Current Affairs
+            passages to combine typing improvement with general-awareness revision.</div>
+    </main>
+    <script>let r = {}; try { r = JSON.parse(localStorage.getItem('bkResult') || '{}'); } catch (e) { r = {}; } result.classList.add(r.pass ? 'pass' : 'fail'); icon.textContent = r.pass ? '✓' : '×'; title.textContent = r.pass ? 'PASS' : 'KEEP PRACTISING'; note.textContent = (r.pass ? 'You reached the practice target. ' : 'Target not reached yet.') + ' Target: ' + (r.target || 'Official notification'); wpm.textContent = r.wpm || 0; acc.textContent = (r.acc || 0) + '%'; errors.textContent = r.errors || 0; chars.textContent = r.chars || 0;</script>
+</body>
+
+</html>

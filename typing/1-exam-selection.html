@@ -1,0 +1,414 @@
+<!doctype html>
+<html>
+
+<head>
+     <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FB7SX0P0D3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-FB7SX0P0D3');
+    </script>
+    <meta charset=utf-8>
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <title>BK Typing</title>
+    <meta name=description
+    content="Select SSC, RRB, DSSSB, DDA, High Court and other typing exam practice on BK LearnX.">
+    <meta name=robots content="index,follow">
+    <link rel="icon" type="image/jpeg" href="../assets/images/logo.jpeg">
+    <style>
+        :root {
+            --b: #0b63ce;
+            --l: #eef6ff;
+            --t: #102033;
+            --m: #617286;
+            --bd: #d8e5f2
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            background: #fff;
+            color: var(--t);
+            font-family: Arial, sans-serif
+        }
+
+        .top {
+            height: 64px;
+            border-bottom: 1px solid var(--bd);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px
+        }
+
+        .brand {
+            font-size: 22px;
+            font-weight: 900
+        }
+
+        .brand span,
+        .step,
+        .k {
+            color: var(--b)
+        }
+
+        .step {
+            font-size: 11px;
+            font-weight: 800
+        }
+
+        .wrap {
+            max-width: 1050px;
+            margin: auto;
+            padding: 30px 18px
+        }
+
+        .k {
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 1.3px
+        }
+
+        h1 {
+            font-size: 44px;
+            line-height: 1.05
+        }
+
+        .sub {
+            color: var(--m);
+            line-height: 1.65
+        }
+
+        .card {
+            border: 1px solid var(--bd);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 10px 30px #17528214
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 13px
+        }
+
+        .option {
+            border: 1px solid var(--bd);
+            border-radius: 13px;
+            padding: 15px;
+            cursor: pointer
+        }
+
+        .option.selected,
+        .option:hover {
+            border-color: var(--b);
+            background: var(--l)
+        }
+
+        .option h3 {
+            margin: 0 0 5px
+        }
+
+        .option p {
+            margin: 0;
+            color: var(--m);
+            font-size: 12px
+        }
+
+        .chip {
+            display: inline-block;
+            margin-top: 9px;
+            background: #e4f0ff;
+            color: var(--b);
+            padding: 4px 7px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 800
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 18px
+        }
+
+        label {
+            display: block;
+            color: var(--m);
+            font-size: 11px;
+            font-weight: 800;
+            margin-bottom: 6px
+        }
+
+        select {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid var(--bd);
+            border-radius: 10px;
+            background: #fff
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 18px
+        }
+
+        .btn {
+            border-radius: 10px;
+            padding: 12px 18px;
+            font-weight: 800;
+            cursor: pointer
+        }
+
+        .primary {
+            background: var(--b);
+            color: #fff;
+            border: 0
+        }
+
+        .secondary {
+            background: #fff;
+            color: var(--b);
+            border: 1px solid var(--b)
+        }
+
+        .typing {
+            display: grid;
+            grid-template-columns: 1fr 250px;
+            gap: 15px
+        }
+
+        .passage {
+            background: #f7fbff;
+            border: 1px solid var(--bd);
+            border-radius: 13px;
+            padding: 21px;
+            font-size: 17px;
+            line-height: 1.85;
+            min-height: 260px
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 190px;
+            margin-top: 12px;
+            border: 1px solid var(--bd);
+            border-radius: 13px;
+            padding: 16px;
+            font: 16px/1.7 monospace;
+            outline: none
+        }
+
+        .timer {
+            font-size: 42px;
+            font-weight: 900;
+            color: var(--b)
+        }
+
+        .stat {
+            display: flex;
+            justify-content: space-between;
+            padding: 11px 0;
+            border-bottom: 1px solid var(--bd);
+            font-size: 12px
+        }
+
+        .progress {
+            height: 6px;
+            background: #e6eef7;
+            margin-top: 16px
+        }
+
+        .progress i {
+            display: block;
+            height: 100%;
+            background: var(--b)
+        }
+
+        .result {
+            text-align: center;
+            padding: 38px 20px
+        }
+
+        .icon {
+            font-size: 55px;
+            color: var(--b)
+        }
+
+        .result h2 {
+            font-size: 38px
+        }
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 25px 0
+        }
+
+        .box {
+            border: 1px solid var(--bd);
+            padding: 16px;
+            border-radius: 12px;
+            background: #f8fbff
+        }
+
+        .box strong {
+            display: block;
+            font-size: 25px;
+            color: var(--b)
+        }
+
+        .box span {
+            font-size: 10px;
+            color: var(--m)
+        }
+
+        .info {
+            margin-top: 25px;
+            padding: 14px;
+            background: var(--l);
+            border-left: 4px solid var(--b);
+            color: var(--m);
+            font-size: 12px;
+            line-height: 1.65
+        }
+
+        @media(max-width:760px) {
+
+            .grid,
+            .controls,
+            .typing,
+            .result-grid {
+                grid-template-columns: 1fr
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class=top>
+        <div class=brand>BK <span>Typing</span></div>
+    </header>
+    <main class=wrap>
+        <div class=k>GOVERNMENT TYPING PRACTICE</div>
+        <h1>Apna exam select karo.<br>Practice shuru karo.</h1>
+        <p class=sub>SSC, RRB, DSSSB, DDA, High Court, UP aur other clerical typing patterns — English, Hindi aur
+            Current Affairs passages ke saath.</p>
+        <section class=card>
+            <div class=grid id=grid>
+                <div class="option selected" data-id="general">
+                    <h3>General Typing</h3>
+                    <p>Daily speed + accuracy</p><span class="chip">35 / 30 WPM</span>
+                </div>
+                <div class="option" data-id="ssc-chsl">
+                    <h3>SSC CHSL</h3>
+                    <p>LDC / JSA / PA-SA</p><span class="chip">35 / 30 WPM · 10 MIN</span>
+                </div>
+                <div class="option" data-id="ssc-cgl-dest">
+                    <h3>SSC CGL DEST</h3>
+                    <p>DEST key-depression practice</p><span class="chip">2,000 KDP · 15 MIN</span>
+                </div>
+                <div class="option" data-id="rrb-ntpc">
+                    <h3>RRB NTPC</h3>
+                    <p>JAA / Senior Clerk-cum-Typist</p><span class="chip">30 / 25 WPM</span>
+                </div>
+                <div class="option" data-id="dsssb">
+                    <h3>DSSSB</h3>
+                    <p>JA / LDC / Grade-IV / Typist</p><span class="chip">POST SPECIFIC</span>
+                </div>
+                <div class="option" data-id="dda-jsa">
+                    <h3>DDA JSA</h3>
+                    <p>Junior Secretariat Assistant</p><span class="chip">35 / 30 WPM</span>
+                </div>
+                <div class="option" data-id="allahabad-hc">
+                    <h3>High Court</h3>
+                    <p>Junior Assistant pattern</p><span class="chip">30 / 25 WPM</span>
+                </div>
+                <div class="option" data-id="up-clerical">
+                    <h3>UP Clerk / JA</h3>
+                    <p>UP-style clerical practice</p><span class="chip">30 / 25 WPM</span>
+                </div>
+                <div class="option" data-id="state-clerical">
+                    <h3>State Govt</h3>
+                    <p>LDC / JA / Typist</p><span class="chip">VARIES</span>
+                </div>
+                <div class="option" data-id="court-typist">
+                    <h3>Court Typist</h3>
+                    <p>Court vocabulary</p><span class="chip">VARIES</span>
+                </div>
+                <div class="option" data-id="central-ldc">
+                    <h3>Central Govt</h3>
+                    <p>LDC / Typist practice</p><span class="chip">35 / 30 WPM</span>
+                </div>
+                <div class="option" data-id="hindi-typist">
+                    <h3>Hindi Typing</h3>
+                    <p>Hindi-focused practice</p><span class="chip">25–30+ WPM</span>
+                </div>
+            </div>
+            <div class=controls>
+                <div><label>LANGUAGE</label><select id=lang>
+                        <option value=en>English</option>
+                        <option value=hi>Hindi</option>
+                    </select></div>
+                <div><label>PASSAGE</label><select id=source>
+                        <option value=exam>Exam Style</option>
+                        <option value=current>Current Affairs</option>
+                        <option value=mixed>Mixed</option>
+                    </select></div>
+                <div><label>TIME</label><select id=duration>
+                        <option value="">Exam Default</option>
+                        <option value="60">1 Minute</option>
+                        <option value="180">3 Minutes</option>
+                        <option value="300">5 Minutes</option>
+                        <option value="600">10 Minutes</option>
+                        <option value="900">15 Minutes</option>
+                        <option value="1200">20 Minutes</option>
+                    </select></div>
+                <div><label>DIFFICULTY</label><select id=difficulty>
+                        <option>Easy</option>
+                        <option selected>Medium</option>
+                        <option>Hard</option>
+                    </select></div>
+            </div>
+            <div class=actions><button class="btn primary" id=start>Start Typing Test →</button></div>
+        </section>
+        <div class=info><b>BK Typing:</b> India-focused typing practice. Exact speed, duration, font and error rules
+            always follow the latest official recruitment notification.</div>
+    </main>
+    <script>const P = { general: { name: 'General Typing', duration: 600, en: 35, hi: 30 }, 'ssc-chsl': { name: 'SSC CHSL', duration: 600, en: 35, hi: 30 }, 'ssc-cgl-dest': { name: 'SSC CGL DEST', duration: 900, en: 35, hi: 30, dest: true }, 'rrb-ntpc': { name: 'RRB NTPC', duration: 600, en: 30, hi: 25 }, dsssb: { name: 'DSSSB', duration: 600, en: 35, hi: 30 }, 'dda-jsa': { name: 'DDA JSA', duration: 600, en: 35, hi: 30 }, 'allahabad-hc': { name: 'Allahabad High Court', duration: 600, en: 30, hi: 25 }, 'up-clerical': { name: 'UP Clerk / JA', duration: 600, en: 30, hi: 25 }, 'state-clerical': { name: 'State Govt Typing', duration: 600, en: 30, hi: 25 }, 'court-typist': { name: 'Court Typist', duration: 600, en: 30, hi: 25 }, 'central-ldc': { name: 'Central Govt LDC', duration: 600, en: 35, hi: 30 }, 'hindi-typist': { name: 'Hindi Typing', duration: 600, en: 35, hi: 30 } };
+        const A = { en: ['India is moving towards a digital and technology-driven economy. Government services, education, banking, transport and public administration increasingly depend on reliable digital systems. Candidates should develop both speed and accuracy because typing errors can reduce the final score.', 'Recent developments in space technology have increased opportunities for innovation and private participation. Start-ups, research institutions and government organisations are working together to expand India’s capabilities in advanced technology.'], hi: ['भारत तेजी से डिजिटल और तकनीक आधारित अर्थव्यवस्था की ओर बढ़ रहा है। सरकारी सेवाओं, शिक्षा, बैंकिंग, परिवहन और सार्वजनिक प्रशासन में डिजिटल प्रणालियों का उपयोग लगातार बढ़ रहा है। अभ्यर्थियों के लिए गति के साथ शुद्धता बनाए रखना आवश्यक है।', 'अंतरिक्ष तकनीक में हो रहे विकास से नवाचार और निजी भागीदारी के नए अवसर सामने आए हैं। स्टार्टअप, अनुसंधान संस्थान और सरकारी संगठन आधुनिक तकनीक की क्षमता बढ़ाने के लिए मिलकर काम कर रहे हैं।'] };
+        const N = { en: ['India marked its 80th Independence Day on 15 August 2026. The national development agenda highlighted self-reliance, security, technology and the long-term vision of a Viksit Bharat. This passage is designed for typing practice using formal government vocabulary.', 'On 21 August 2026, the Prime Minister interacted with CEOs and founders of space start-ups. The discussion reflected the growing role of private enterprise, innovation and advanced technology in India’s space ecosystem.'], hi: ['15 अगस्त 2026 को भारत ने अपना 80वां स्वतंत्रता दिवस मनाया। राष्ट्रीय विकास के संदर्भ में आत्मनिर्भरता, सुरक्षा, तकनीक और विकसित भारत जैसे विषयों पर ध्यान दिया गया। यह अनुच्छेद सरकारी शब्दावली और विराम चिह्नों के साथ टंकण अभ्यास के लिए तैयार किया गया है।', '21 अगस्त 2026 को प्रधानमंत्री ने अंतरिक्ष क्षेत्र से जुड़े स्टार्टअप के मुख्य कार्यकारी अधिकारियों और संस्थापकों के साथ संवाद किया। चर्चा में निजी क्षेत्र, नवाचार और आधुनिक तकनीक की भूमिका पर ध्यान दिया गया।'] };
+        function getText(l, s) { let a = s === 'current' ? N[l] : s === 'mixed' ? A[l].concat(N[l]) : A[l]; return a[Math.floor(Math.random() * a.length)] }
+        let selected = 'general';
+        const langEl = document.getElementById('lang');
+        const sourceEl = document.getElementById('source');
+        const durationEl = document.getElementById('duration');
+        const startEl = document.getElementById('start');
+        document.querySelectorAll('.option').forEach(x => x.onclick = () => {
+            document.querySelectorAll('.option').forEach(y => y.classList.remove('selected'));
+            x.classList.add('selected');
+            selected = x.dataset.id;
+        });
+        startEl.onclick = () => {
+            try {
+                localStorage.setItem('bkExam', selected);
+                localStorage.setItem('bkLang', langEl.value);
+                localStorage.setItem('bkSource', sourceEl.value);
+                localStorage.setItem('bkDuration', durationEl.value);
+            } catch (e) { }
+            location.href = '2-typing-test.html';
+        };
+    </script>
+</body>
+
+</html>
