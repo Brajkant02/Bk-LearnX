@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FB7SX0P0D3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-FB7SX0P0D3');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motherboard</title>
+    <link rel="stylesheet" href="../../../semester-1/style.css">
+    <link rel="icon" href="../../../.././../../../assets/images/logo.jpeg">
+    <link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
+    <script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
+</head>
+
+<body>
+    <div class="page">
+        <aside class="sidebar">
+            <h2>Topics</h2>
+            <a href="#intro">Introduction to Motherboard</a>
+            <a href="#components">Motherboard Components</a>
+            <a href="#bus">Computer BUS</a>
+            <a href="#chipset">Chipset: Northbridge and Southbridge</a>
+            <a href="#types">Types of Motherboard</a>
+            <a href="#battery">CMOS Battery</a>
+            <a href="#modern-features">Modern Motherboard Features</a>
+            <a href="#connections">Connections on the Motherboard</a>
+            <a href="#power-connections">Motherboard Power Connections</a>
+            <a href="#cpu-cooling">Keeping CPU Cool</a>
+            <a href="#bios-uefi">BIOS and UEFI</a>
+            <a href="#post">POST and Beep Codes</a>
+            <a href="#troubleshooting">Motherboard Troubleshooting</a>
+            <a href="#minimal-boot">Minimal Boot Testing</a>
+            <a href="#cmos-reset">CMOS Reset</a>
+            <a href="#common-faults">Common Motherboard Faults</a>
+            <a href="#maintenance">Motherboard Maintenance and Safety</a>
+        </aside>
+        <main class="content">
+            <div class="hero">
+                <h1>Motherboard</h1>
+            </div>
+            <section id="intro">
+                <h2>Introduction to Motherboard</h2>
+                <p><strong>Motherboard</strong> computer à¤•à¥€ main printed circuit board à¤¹à¥‹à¤¤à¥€ à¤¹à¥ˆà¥¤ à¤‡à¤¸à¥‡ system board, main
+                    board à¤¯à¤¾ logic board à¤­à¥€ à¤•à¤¹à¤¾ à¤œà¤¾à¤¤à¤¾ à¤¹à¥ˆà¥¤ CPU, RAM, storage devices, expansion cards, BIOS/UEFI chip,
+                    power connectors à¤”à¤° input-output ports motherboard à¤¸à¥‡ à¤œà¥à¤¡à¤¼à¥‡ à¤¹à¥‹à¤¤à¥‡ à¤¹à¥ˆà¤‚à¥¤ à¤‡à¤¸à¥€ à¤•à¤¾à¤°à¤£ motherboard à¤•à¥‹
+                    computer system à¤•à¤¾ backbone à¤•à¤¹à¤¾ à¤œà¤¾à¤¤à¤¾ à¤¹à¥ˆà¥¤</p>
+                <p>Motherboard à¤¸à¤­à¥€ components à¤•à¥‡ à¤¬à¥€à¤š electrical connection à¤”à¤° data communication path provide à¤•à¤°à¤¤à¥€ à¤¹à¥ˆà¥¤
+                    à¤¯à¤¹ à¤¤à¤¯ à¤•à¤°à¤¤à¥€ à¤¹à¥ˆ à¤•à¤¿ à¤•à¥Œà¤¨-à¤¸à¤¾ processor, à¤•à¤¿à¤¤à¤¨à¥€ RAM, à¤•à¤¿à¤¸ type à¤•à¤¾ storage à¤”à¤° à¤•à¥Œà¤¨-à¤¸à¥€ expansion cards system
+                    à¤®à¥‡à¤‚ use à¤•à¥€ à¤œà¤¾ à¤¸à¤•à¤¤à¥€ à¤¹à¥ˆà¤‚à¥¤</p>
+                <div class="image-icon"><img src="../images/motherboard.webp" alt="Motherboard Overview">
+
+                </div>
+                <h4>Main Functions</h4>
+                <ul>
+                    <li>CPU, RAM à¤”à¤° storage devices à¤•à¥‹ connect à¤•à¤°à¤¨à¤¾à¥¤</li>
+                    <li>Components à¤•à¥‡ à¤¬à¥€à¤š data transfer à¤•à¤°à¤¾à¤¨à¤¾à¥¤</li>
+                    <li>Power distribution à¤•à¤°à¤¨à¤¾à¥¤</li>
+                    <li>Expansion cards à¤”à¤° peripherals support à¤•à¤°à¤¨à¤¾à¥¤</li>
+                    <li>BIOS/UEFI à¤•à¥‡ through startup à¤”à¤° hardware initialization à¤•à¤°à¤¨à¤¾à¥¤</li>
+                </ul>
+                <div class="remember-box"><b>Remember:</b><br>Motherboard computer à¤•à¥‡ à¤¸à¤­à¥€ major components à¤•à¥‹ physically
+                    à¤”à¤° logically connect à¤•à¤°à¤¤à¥€ à¤¹à¥ˆà¥¤</div>
+            </section>
+            <section id="components">
+                <h2>Motherboard Components</h2>
+                <p>Motherboard à¤ªà¤° à¤¬à¤¹à¥à¤¤ à¤¸à¥‡ components à¤”à¤° connectors à¤¹à¥‹à¤¤à¥‡ à¤¹à¥ˆà¤‚à¥¤ à¤¹à¤° component à¤•à¥€ à¤…à¤ªà¤¨à¥€ specific
+                    responsibility à¤¹à¥‹à¤¤à¥€ à¤¹à¥ˆà¥¤</p>
+
+
+                <h4>CPU Socket</h4>
+                <p>CPU socket processor à¤•à¥‹ motherboard à¤ªà¤° hold à¤”à¤° electrically connect à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤ Different processors
+                    different socket types use à¤•à¤°à¤¤à¥‡ à¤¹à¥ˆà¤‚à¥¤</p>
+                <h4>Chipset</h4>
+                <p>Chipset CPU, RAM, storage, USB à¤”à¤° expansion devices à¤•à¥‡ à¤¬à¥€à¤š communication manage à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤ Modern
+                    systems à¤®à¥‡à¤‚ à¤•à¤ˆ functions CPU à¤•à¥‡ à¤…à¤‚à¤¦à¤° integrated à¤¹à¥‹ à¤šà¥à¤•à¥‡ à¤¹à¥ˆà¤‚à¥¤</p>
+                <h4>RAM Slots</h4>
+                <p>DIMM slots à¤®à¥‡à¤‚ RAM modules install à¤¹à¥‹à¤¤à¥‡ à¤¹à¥ˆà¤‚à¥¤ Dual-channel support à¤•à¥‡ à¤²à¤¿à¤ correct slot pairing
+                    important à¤¹à¥‹ à¤¸à¤•à¤¤à¥€ à¤¹à¥ˆà¥¤</p>
+                <h4>BIOS/UEFI Chip</h4>
+                <p>Startup firmware store à¤•à¤°à¤¤à¥€ à¤¹à¥ˆ à¤”à¤° hardware initialization à¤¤à¤¥à¤¾ boot process control à¤•à¤°à¤¤à¥€ à¤¹à¥ˆà¥¤</p>
+                <h4>PCIe Slots</h4>
+                <p>Graphics card, network card, sound card à¤”à¤° other expansion cards install à¤•à¤°à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤à¥¤</p>
+                <h4>SATA Connectors</h4>
+                <p>HDD, SATA SSD à¤”à¤° optical drives connect à¤•à¤°à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤à¥¤</p>
+                <h4>M.2 Slot</h4>
+                <p>Compact SSD à¤”à¤° à¤•à¥à¤› wireless modules connect à¤•à¤°à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤à¥¤ NVMe SSD high-speed PCIe lanes use à¤•à¤° à¤¸à¤•à¤¤à¥€
+                    à¤¹à¥ˆà¥¤</p>
+                <h4>Power Connectors</h4>
+                <p>24-pin ATX connector motherboard à¤•à¥‹ à¤”à¤° 4/8-pin CPU connector processor à¤•à¥‹ power à¤¦à¥‡à¤¤à¤¾ à¤¹à¥ˆà¥¤</p>
+                <h4>Headers</h4>
+                <ul>
+                    <li>Front panel header</li>
+                    <li>USB headers</li>
+                    <li>Audio header</li>
+                    <li>Fan headers</li>
+                    <li>RGB/ARGB headers</li>
+                </ul>
+            </section>
+            <section id="bus">
+                <h2>Computer BUS</h2>
+                <p><strong>BUS</strong> electrical pathways à¤•à¤¾ group à¤¹à¥‹à¤¤à¤¾ à¤¹à¥ˆ à¤œà¤¿à¤¸à¤•à¥‡ through computer à¤•à¥‡ components data,
+                    addresses à¤”à¤° control signals exchange à¤•à¤°à¤¤à¥‡ à¤¹à¥ˆà¤‚à¥¤ BUS à¤•à¥‹ road system à¤•à¥€ à¤¤à¤°à¤¹ à¤¸à¤®à¤à¤¾ à¤œà¤¾ à¤¸à¤•à¤¤à¤¾ à¤¹à¥ˆ, à¤œà¤¹à¤¾à¤
+                    à¤…à¤²à¤—-à¤…à¤²à¤— à¤ªà¥à¤°à¤•à¤¾à¤° à¤•à¥€ information à¤…à¤²à¤— lanes à¤¸à¥‡ travel à¤•à¤°à¤¤à¥€ à¤¹à¥ˆà¥¤</p>
+                <div class="image-icon"><img src="../images/system bus diagram.webp" alt="System Bus Diagram">
+                    <p>Image Placeholder: Data Bus, Address Bus and Control Bus</p>
+                </div>
+                <h4>Data Bus</h4>
+                <p>Data Bus computer à¤•à¥‡ à¤µà¤¿à¤­à¤¿à¤¨à¥à¤¨ components à¤œà¥ˆà¤¸à¥‡ CPU, Memory à¤”à¤° Input/Output devices à¤•à¥‡ à¤¬à¥€à¤š data à¤•à¥‹
+                    transfer à¤•à¤°à¤¨à¥‡
+                    à¤•à¤¾ à¤•à¤¾à¤® à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</p>
+                <ul>
+                    <li>à¤¯à¤¹ à¤¸à¤¾à¤®à¤¾à¤¨à¥à¤¯à¤¤à¤ƒ Bidirectional à¤¹à¥‹à¤¤à¤¾ à¤¹à¥ˆà¥¤</li>
+                    <li>CPU à¤‡à¤¸à¤¸à¥‡ data à¤•à¥‹ memory à¤¸à¥‡ read à¤¯à¤¾ memory à¤®à¥‡à¤‚ write à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</li>
+                    <li>à¤‡à¤¸à¤•à¥€ width 8-bit, 16-bit, 32-bit, 64-bit à¤†à¤¦à¤¿ à¤¹à¥‹ à¤¸à¤•à¤¤à¥€ à¤¹à¥ˆà¥¤</li>
+                    <li>Data Bus à¤•à¥€ width à¤œà¤¿à¤¤à¤¨à¥€ à¤…à¤§à¤¿à¤• à¤¹à¥‹à¤—à¥€, à¤à¤• à¤¸à¤®à¤¯ à¤®à¥‡à¤‚ à¤‰à¤¤à¤¨à¤¾ à¤…à¤§à¤¿à¤• data transfer à¤•à¤¿à¤¯à¤¾ à¤œà¤¾ à¤¸à¤•à¤¤à¤¾ à¤¹à¥ˆà¥¤</li>
+                </ul>
+                <p><strong>Example:</strong><br>32-bit Data Bus à¤à¤• à¤¸à¤®à¤¯ à¤®à¥‡à¤‚ 32 bits data transfer à¤•à¤° à¤¸à¤•à¤¤à¤¾ à¤¹à¥ˆà¥¤</p>
+                <h4>Address Bus</h4>
+                <p>Address bus à¤¯à¤¹ à¤¬à¤¤à¤¾à¤¤à¥€ à¤¹à¥ˆ à¤•à¤¿ data à¤•à¤¿à¤¸ memory location à¤¯à¤¾ device à¤¤à¤• à¤œà¤¾à¤¨à¤¾ à¤¹à¥ˆà¥¤ Address bus usually
+                    unidirectional à¤¹à¥‹à¤¤à¥€ à¤¹à¥ˆ à¤”à¤° CPU à¤¸à¥‡ à¤¬à¤¾à¤¹à¤° à¤•à¥€ à¤“à¤° signal à¤­à¥‡à¤œà¤¤à¥€ à¤¹à¥ˆà¥¤</p>
+                <ul>
+                    <li>Address Bus à¤•à¥€ width determine à¤•à¤°à¤¤à¥€ à¤¹à¥ˆ à¤•à¤¿ system à¤•à¤¿à¤¤à¤¨à¥€ memory address à¤•à¤° à¤¸à¤•à¤¤à¤¾ à¤¹à¥ˆà¥¤</li>
+                    <li>CPU address à¤­à¥‡à¤œà¤¤à¤¾ à¤¹à¥ˆ à¤”à¤° Memory à¤‰à¤¸ address à¤ªà¤° à¤®à¥Œà¤œà¥‚à¤¦ data à¤•à¥‹ access à¤•à¤°à¤¤à¥€ à¤¹à¥ˆà¥¤</li>
+                    <li>à¤‡à¤¸à¤•à¥€ width computer à¤•à¥€ addressable memory capacity à¤•à¥‹ determine à¤•à¤°à¤¤à¥€ à¤¹à¥ˆà¥¤</li>
+                </ul>
+                <p><strong>Example:</strong><br>20-bit Address Bus 2^20 = 1,048,576 (1 MB) unique memory locations
+                    address à¤•à¤°
+                    à¤¸à¤•à¤¤à¤¾ à¤¹à¥ˆà¥¤</p>
+
+                <h4>Control Bus</h4>
+                <p>Control Bus CPU à¤”à¤° à¤…à¤¨à¥à¤¯ components à¤•à¥‡ à¤¬à¥€à¤š control signals à¤”à¤° commands à¤•à¥‹ transfer à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤¯à¤¹
+                    computer à¤•à¥‡
+                    à¤µà¤¿à¤­à¤¿à¤¨à¥à¤¨ operations à¤•à¥‹ control à¤”à¤° coordinate à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</p>
+                <ul>
+                    <p>à¤‡à¤¸à¤•à¥‡ à¤¦à¥à¤µà¤¾à¤°à¤¾ à¤•à¤ˆ signals à¤­à¥‡à¤œà¥‡ à¤œà¤¾à¤¤à¥‡ à¤¹à¥ˆà¤‚, à¤œà¥ˆà¤¸à¥‡:</p>
+                    <li><strong>Read Signal - </strong>Data read à¤•à¤°à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤à¥¤</li>
+                    <li><strong>Write Signal - </strong>Data write à¤•à¤°à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤à¥¤</li>
+                    <li><strong>Clock Signal - </strong>Operations à¤•à¥‹ synchronize à¤•à¤°à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤à¥¤</li>
+                    <li><strong>Reset Signal - </strong>System à¤•à¥‹ reset à¤•à¤°à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤à¥¤</li>
+                </ul>
+                <p><Strong>Example:</Strong><br>à¤œà¤¬ CPU à¤•à¥‹ Memory à¤¸à¥‡ data à¤ªà¤¢à¤¼à¤¨à¤¾ à¤¹à¥‹à¤¤à¤¾ à¤¹à¥ˆ, à¤¤à¥‹ Control Bus à¤•à¥‡ à¤®à¤¾à¤§à¥à¤¯à¤® à¤¸à¥‡ Read
+                    signal
+                    à¤­à¥‡à¤œà¤¾ à¤œà¤¾à¤¤à¤¾ à¤¹à¥ˆà¥¤</p>
+
+                <table>
+                    <tr>
+                        <th>Bus Type</th>
+                        <th>Purpose</th>
+                        <th>Direction</th>
+                    </tr>
+                    <tr>
+                        <td>Data Bus</td>
+                        <td>Actual data transfer</td>
+                        <td>Bidirectional</td>
+                    </tr>
+                    <tr>
+                        <td>Address Bus</td>
+                        <td>Memory/device address</td>
+                        <td>Mostly unidirectional</td>
+                    </tr>
+                    <tr>
+                        <td>Control Bus</td>
+                        <td>Control and timing signals</td>
+                        <td>Both directions possible</td>
+                    </tr>
+
+                </table>
+                <div class="note-box"><b>Real Life Example:</b><br>Data bus truck à¤•à¥€ à¤¤à¤°à¤¹ data à¤²à¥‡ à¤œà¤¾à¤¤à¥€ à¤¹à¥ˆ, address bus
+                    destination à¤¬à¤¤à¤¾à¤¤à¥€ à¤¹à¥ˆ à¤”à¤° control bus traffic signals à¤•à¥€ à¤¤à¤°à¤¹ movement control à¤•à¤°à¤¤à¥€ à¤¹à¥ˆà¥¤</div>
+            </section>
+
+            <section id="chipset">
+                <h2>Chipset: Northbridge and Southbridge</h2>
+                <p>Older motherboard architecture à¤®à¥‡à¤‚ chipset à¤¦à¥‹ main parts à¤®à¥‡à¤‚ divided à¤¥à¤¾: Northbridge à¤”à¤° Southbridgeà¥¤
+                    Modern systems à¤®à¥‡à¤‚ Northbridge à¤•à¥‡ à¤•à¤ˆ functions CPU à¤®à¥‡à¤‚ integrate à¤¹à¥‹ à¤—à¤ à¤¹à¥ˆà¤‚ à¤”à¤° remaining functions
+                    Platform Controller Hub (PCH) handle à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</p>
+                <div class="image-icon"><img src="../images/n-s bridge architecture.webp"
+                        alt="Northbridge Southbridge Architecture">
+
+                </div>
+                <table>
+                    <tr>
+                        <th>Part</th>
+                        <th>Main Role</th>
+                    </tr>
+                    <tr>
+                        <td>Northbridge</td>
+                        <td>CPU, RAM à¤”à¤° graphics communication</td>
+                    </tr>
+                    <tr>
+                        <td>Southbridge</td>
+                        <td>USB, SATA, audio, LAN à¤”à¤° slower I/O</td>
+                    </tr>
+                    <tr>
+                        <td>Modern PCH</td>
+                        <td>Most I/O functions handle à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</td>
+                    </tr>
+                </table>
+                <h4>Why Architecture Changed</h4>
+                <p>Memory controller à¤”à¤° high-speed PCIe functions CPU à¤®à¥‡à¤‚ integrate à¤•à¤°à¤¨à¥‡ à¤¸à¥‡ latency à¤•à¤® à¤¹à¥à¤ˆ à¤”à¤°
+                    performance improve à¤¹à¥à¤ˆà¥¤</p>
+            </section>
+            <section id="types">
+                <h2>Types of Motherboard</h2>
+                <p>Motherboards à¤•à¥‹ form factor à¤•à¥‡ basis à¤ªà¤° classify à¤•à¤¿à¤¯à¤¾ à¤œà¤¾à¤¤à¤¾ à¤¹à¥ˆà¥¤ Form factor board size, mounting
+                    holes, power connectors à¤”à¤° expansion capacity define à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</p>
+                <div class="image-icon"><img src="../images/types of motherboard.webp" alt="Motherboard Form Factors">
+
+                </div>
+                <table>
+                    <tr>
+                        <th>Type</th>
+                        <th>Features</th>
+                        <th>Common Use</th>
+                    </tr>
+                    <tr>
+                        <td>AT</td>
+                        <td>Old large design</td>
+                        <td>Early computers</td>
+                    </tr>
+                    <tr>
+                        <td>ATX</td>
+                        <td>Standard size, multiple slots</td>
+                        <td>Desktop computers</td>
+                    </tr>
+                    <tr>
+                        <td>Micro-ATX</td>
+                        <td>Smaller than ATX</td>
+                        <td>Budget/compact desktops</td>
+                    </tr>
+                    <tr>
+                        <td>Mini-ITX</td>
+                        <td>Very compact</td>
+                        <td>Small form factor PCs</td>
+                    </tr>
+                    <tr>
+                        <td>E-ATX</td>
+                        <td>Larger, more expansion and RAM slots</td>
+                        <td>Workstations/high-end PCs</td>
+                    </tr>
+                    <tr>
+                        <td>BTX</td>
+                        <td>Airflow-oriented design</td>
+                        <td>Limited adoption</td>
+                    </tr>
+                </table>
+                <h4>ATX</h4>
+                <p>ATX widely used standard form factor à¤¹à¥ˆà¥¤ à¤‡à¤¸à¤®à¥‡à¤‚ good expansion support, multiple RAM slots à¤”à¤° standard
+                    power connectors à¤¹à¥‹à¤¤à¥‡ à¤¹à¥ˆà¤‚à¥¤</p>
+                <div class="image-icon"><img src="../images/ATX motherboard.webp" alt="ATX Motherboard ">
+                </div>
+                <h4>Micro-ATX</h4>
+                <p>Micro-ATX compact à¤”à¤° cost-effective à¤¹à¥‹à¤¤à¤¾ à¤¹à¥ˆ, à¤²à¥‡à¤•à¤¿à¤¨ expansion slots à¤•à¤® à¤¹à¥‹ à¤¸à¤•à¤¤à¥‡ à¤¹à¥ˆà¤‚à¥¤</p>
+                <div class="image-icon"><img src="../images/micro-ATX motherboard.webp" alt=" micro-ATX Motherboard">
+                </div>
+                <h4>Mini-ITX</h4>
+                <p>Mini-ITX à¤›à¥‹à¤Ÿà¥‡ computers à¤•à¥‡ à¤²à¤¿à¤ useful à¤¹à¥ˆ, à¤ªà¤° ports à¤”à¤° expansion limited à¤¹à¥‹ à¤¸à¤•à¤¤à¥‡ à¤¹à¥ˆà¤‚à¥¤</p>
+                <div class="image-icon"><img src="../images/mini-ITX motherboard.webp" alt="mini-ITX Motherboard">
+                    <div class="remember-box"><b>Remember:</b><br>Motherboard form factor cabinet compatibility à¤”à¤°
+                        expansion
+                        capacity decide à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</div>
+                </div>
+            </section>
+            <section id="battery">
+                <h2>CMOS Battery</h2>
+                <p><strong>CMOS battery</strong> motherboard à¤ªà¤° à¤²à¤—à¥€ coin-cell battery à¤¹à¥‹à¤¤à¥€ à¤¹à¥ˆà¥¤ à¤¯à¤¹ real-time clock à¤”à¤°
+                    BIOS/UEFI settings à¤•à¥‹ power supply à¤•à¤°à¤¤à¥€ à¤¹à¥ˆ à¤œà¤¬ computer switched off à¤¹à¥‹à¤¤à¤¾ à¤¹à¥ˆà¥¤ Commonly CR2032 battery
+                    use à¤¹à¥‹à¤¤à¥€ à¤¹à¥ˆà¥¤</p>
+                <div class="image-icon"><img src="../images/cmos battery.webp" alt="CMOS Battery">
+
+                </div>
+                <h4>Functions</h4>
+                <ul>
+                    <li>Date and time maintain à¤•à¤°à¤¨à¤¾à¥¤</li>
+                    <li>BIOS/UEFI settings retain à¤•à¤°à¤¨à¤¾à¥¤</li>
+                    <li>Boot order à¤”à¤° hardware configuration save à¤°à¤–à¤¨à¤¾à¥¤</li>
+                </ul>
+                <h4>Failure Symptoms</h4>
+                <ul>
+                    <li>Date/time à¤¬à¤¾à¤°-à¤¬à¤¾à¤° reset à¤¹à¥‹à¤¨à¤¾à¥¤</li>
+                    <li>BIOS settings save à¤¨ à¤¹à¥‹à¤¨à¤¾à¥¤</li>
+                    <li>CMOS checksum errorà¥¤</li>
+                    <li>Boot configuration à¤¬à¤¾à¤°-à¤¬à¤¾à¤° change à¤¹à¥‹à¤¨à¤¾à¥¤</li>
+                </ul>
+                <h4>Replacement Steps</h4>
+                <ol>
+                    <li>Computer shutdown à¤”à¤° power disconnect à¤•à¤°à¥‡à¤‚à¥¤</li>
+                    <li>Cabinet open à¤•à¤°à¥‡à¤‚à¥¤</li>
+                    <li>Battery orientation note à¤•à¤°à¥‡à¤‚à¥¤</li>
+                    <li>Old battery remove à¤•à¤°à¥‡à¤‚à¥¤</li>
+                    <li>Same type à¤•à¥€ new battery install à¤•à¤°à¥‡à¤‚à¥¤</li>
+                    <li>BIOS date/time reset à¤•à¤°à¥‡à¤‚à¥¤</li>
+                </ol>
+                <div class="note-box"><b>Safety:</b><br>Battery replace à¤•à¤°à¤¤à¥‡ à¤¸à¤®à¤¯ static electricity à¤¸à¥‡ à¤¬à¤šà¥‡à¤‚ à¤”à¤°
+                    motherboard à¤•à¥‹ unnecessary touch à¤¨ à¤•à¤°à¥‡à¤‚à¥¤</div>
+            </section>
+            <section id="modern-features">
+                <h2>Modern Motherboard Features</h2>
+                <p>Modern motherboards performance, connectivity à¤”à¤° customization à¤•à¥‡ à¤²à¤¿à¤ advanced features provide à¤•à¤°à¤¤à¥€
+                    à¤¹à¥ˆà¤‚à¥¤</p>
+                <table>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Purpose</th>
+                    </tr>
+                    <tr>
+                        <td>UEFI Firmware</td>
+                        <td>Modern graphical firmware interface</td>
+                    </tr>
+                    <tr>
+                        <td>NVMe M.2 Support</td>
+                        <td>High-speed storage</td>
+                    </tr>
+                    <tr>
+                        <td>PCIe 4.0/5.0</td>
+                        <td>Higher bandwidth expansion</td>
+                    </tr>
+                    <tr>
+                        <td>DDR4/DDR5 Support</td>
+                        <td>Modern memory standards</td>
+                    </tr>
+                    <tr>
+                        <td>Wi-Fi/Bluetooth</td>
+                        <td>Built-in wireless connectivity</td>
+                    </tr>
+                    <tr>
+                        <td>RGB/ARGB Headers</td>
+                        <td>Lighting control</td>
+                    </tr>
+                    <tr>
+                        <td>Debug LEDs</td>
+                        <td>Hardware fault indication</td>
+                    </tr>
+                    <tr>
+                        <td>Multiple Fan Headers</td>
+                        <td>Cooling management</td>
+                    </tr>
+                </table>
+                <div class="remember-box"><b>Remember:</b><br>Modern motherboard à¤–à¤°à¥€à¤¦à¤¤à¥‡ à¤¸à¤®à¤¯ CPU socket, chipset, RAM
+                    type, storage support à¤”à¤° cabinet form factor match à¤•à¤°à¤¨à¤¾ à¤œà¤°à¥‚à¤°à¥€ à¤¹à¥ˆà¥¤</div>
+            </section>
+            <section id="connections">
+                <h2>Connections on the Motherboard</h2>
+                <p>Motherboard à¤ªà¤° internal à¤”à¤° external à¤¦à¥‹à¤¨à¥‹à¤‚ à¤ªà¥à¤°à¤•à¤¾à¤° à¤•à¥‡ connections à¤¹à¥‹à¤¤à¥‡ à¤¹à¥ˆà¤‚à¥¤ à¤¸à¤¹à¥€ connection system
+                    stability à¤”à¤° hardware safety à¤•à¥‡ à¤²à¤¿à¤ à¤¬à¤¹à¥à¤¤ important à¤¹à¥ˆà¥¤</p>
+                <div class="image-icon"><img src="../images/motherboard connections.webp" alt="Motherboard Connections">
+
+                </div>
+                <h4>CPU Connection</h4>
+                <p>Processor CPU socket à¤®à¥‡à¤‚ correct orientation à¤•à¥‡ à¤¸à¤¾à¤¥ install à¤¹à¥‹à¤¤à¤¾ à¤¹à¥ˆà¥¤ Locking mechanism à¤”à¤° socket
+                    marks follow à¤•à¤°à¤¨à¤¾ à¤œà¤°à¥‚à¤°à¥€ à¤¹à¥ˆà¥¤</p>
+                <h4>RAM Installation</h4>
+                <p>RAM module notch alignment à¤•à¥‡ à¤¸à¤¾à¤¥ DIMM slot à¤®à¥‡à¤‚ press à¤•à¤¿à¤¯à¤¾ à¤œà¤¾à¤¤à¤¾ à¤¹à¥ˆà¥¤ Dual-channel configuration à¤•à¥‡ à¤²à¤¿à¤
+                    manual à¤•à¥‡ à¤…à¤¨à¥à¤¸à¤¾à¤° slots select à¤•à¤°à¥‡à¤‚à¥¤</p>
+                <h4>Storage Connections</h4>
+                <ul>
+                    <li>SATA data cable motherboard à¤”à¤° drive à¤•à¥‡ à¤¬à¥€à¤šà¥¤</li>
+                    <li>SATA power cable SMPS à¤¸à¥‡ drive à¤¤à¤•à¥¤</li>
+                    <li>M.2 SSD direct M.2 slot à¤®à¥‡à¤‚à¥¤</li>
+                </ul>
+                <h4>GPU Connection</h4>
+                <p>Graphics card PCIe x16 slot à¤®à¥‡à¤‚ install à¤¹à¥‹à¤¤à¥€ à¤¹à¥ˆ à¤”à¤° powerful cards à¤•à¥‹ additional PCIe power cable à¤­à¥€
+                    à¤šà¤¾à¤¹à¤¿à¤à¥¤</p>
+                <h4>Front Panel Connections</h4>
+                <table>
+                    <tr>
+                        <th>Connector</th>
+                        <th>Purpose</th>
+                    </tr>
+                    <tr>
+                        <td>Power SW</td>
+                        <td>Power button</td>
+                    </tr>
+                    <tr>
+                        <td>Reset SW</td>
+                        <td>Reset button</td>
+                    </tr>
+                    <tr>
+                        <td>Power LED</td>
+                        <td>Power indicator</td>
+                    </tr>
+                    <tr>
+                        <td>HDD LED</td>
+                        <td>Storage activity indicator</td>
+                    </tr>
+                </table>
+                <h4>Other Headers</h4>
+                <ul>
+                    <li>USB 2.0/3.x headers</li>
+                    <li>Front audio header</li>
+                    <li>CPU_FAN and SYS_FAN headers</li>
+                    <li>RGB/ARGB headers</li>
+                </ul>
+                <div class="remember-box"><b>Remember:</b><br>Front panel connectors à¤•à¥€ polarity à¤”à¤° pin position
+                    motherboard manual à¤¸à¥‡ verify à¤•à¤°à¥‡à¤‚à¥¤</div>
+            </section>
+            <section id="power-connections">
+                <h2>Motherboard Power Connections</h2>
+                <p>SMPS motherboard à¤”à¤° CPU à¤•à¥‹ à¤…à¤²à¤— power connectors à¤•à¥‡ through power à¤¦à¥‡à¤¤à¤¾ à¤¹à¥ˆà¥¤ Incorrect à¤¯à¤¾ loose power
+                    connection à¤¸à¥‡ system start à¤¨à¤¹à¥€à¤‚ à¤¹à¥‹à¤—à¤¾à¥¤</p>
+
+
+                <table>
+                    <tr>
+                        <th>Connector</th>
+                        <th>Purpose</th>
+                    </tr>
+                    <tr>
+                        <td>24-pin ATX</td>
+                        <td>Main motherboard power</td>
+                    </tr>
+                    <tr>
+                        <td>4/8-pin EPS</td>
+                        <td>CPU power</td>
+                    </tr>
+                    <tr>
+                        <td>PCIe Power</td>
+                        <td>Dedicated graphics card power</td>
+                    </tr>
+                    <tr>
+                        <td>SATA Power</td>
+                        <td>Storage drives power</td>
+                    </tr>
+                </table>
+                <h4>Common Mistake</h4>
+                <p>24-pin connector à¤²à¤—à¤¾à¤¨à¥‡ à¤•à¥‡ à¤¬à¤¾à¤¦ CPU 4/8-pin power connector à¤­à¥‚à¤² à¤œà¤¾à¤¨à¤¾ no display à¤¯à¤¾ no boot problem à¤•à¤¾
+                    common reason à¤¹à¥ˆà¥¤</p>
+            </section>
+            <section id="cpu-cooling">
+                <h2>Keeping CPU Cool</h2>
+                <p>CPU instructions execute à¤•à¤°à¤¤à¥‡ à¤¸à¤®à¤¯ heat generate à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤ Excess heat performance reduce à¤•à¤° à¤¸à¤•à¤¤à¥€ à¤¹à¥ˆ,
+                    system shutdown à¤•à¤°à¤¾ à¤¸à¤•à¤¤à¥€ à¤¹à¥ˆ à¤”à¤° hardware life à¤•à¤® à¤•à¤° à¤¸à¤•à¤¤à¥€ à¤¹à¥ˆà¥¤ à¤‡à¤¸à¤²à¤¿à¤ proper cooling essential à¤¹à¥ˆà¥¤</p>
+                <h4>Heat Sink</h4>
+                <p>Metal fins CPU heat absorb à¤•à¤°à¤•à¥‡ air à¤®à¥‡à¤‚ transfer à¤•à¤°à¤¤à¥€ à¤¹à¥ˆà¤‚à¥¤</p>
+                <div class="image-icon"><img src="../images/heat sink.webp" alt="CPU Cooling System">
+
+                </div>
+                <h4>Cooling Fan</h4>
+                <p>Fan heat sink à¤¸à¥‡ à¤—à¤°à¥à¤® air à¤¹à¤Ÿà¤¾à¤•à¤° cooling improve à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</p>
+                <div class="image-icon"><img src="../images/cooling fan.webp" alt="CPU Cooling System">
+
+                </div>
+                <h4>Thermal Paste</h4>
+                <p>CPU à¤”à¤° heat sink à¤•à¥‡ à¤¬à¥€à¤š microscopic gaps fill à¤•à¤°à¤•à¥‡ heat transfer improve à¤•à¤°à¤¤à¥€ à¤¹à¥ˆà¥¤</p>
+                <div class="image-icon"><img src="../images/thermal paste.webp" alt="CPU Cooling System">
+
+                </div>
+                <h4>Air Cooling</h4>
+                <p>Heat sink à¤”à¤° fan based cooling most common à¤”à¤° cost-effective à¤¹à¥ˆà¥¤</p>
+                <div class="image-icon"><img src="../images/air cooling.webp" alt="CPU Cooling System">
+
+                </div>
+                <h4>Liquid Cooling</h4>
+                <p>Coolant, pump, water block à¤”à¤° radiator use à¤•à¤°à¤•à¥‡ heat remove à¤•à¤°à¤¤à¥€ à¤¹à¥ˆà¥¤ High-performance systems à¤®à¥‡à¤‚
+                    useful à¤¹à¥ˆà¥¤</p>
+                <div class="image-icon"><img src="../images/liquid cooling.webp" alt="CPU Cooling System">
+
+                </div>
+                <h4>Cabinet Airflow</h4>
+                <ul>
+                    <li>Front/bottom à¤¸à¥‡ cool air intakeà¥¤</li>
+                    <li>Rear/top à¤¸à¥‡ hot air exhaustà¥¤</li>
+                    <li>Cables organize à¤•à¤°à¤•à¥‡ airflow clear à¤°à¤–à¥‡à¤‚à¥¤</li>
+                    <li>Dust filters clean à¤•à¤°à¥‡à¤‚à¥¤</li>
+                </ul>
+                <div class="note-box"><b>Practical Tip:</b><br>CPU overheating à¤¹à¥‹ à¤¤à¥‹ fan rotation, thermal paste, dust
+                    à¤”à¤° heat sink fitting check à¤•à¤°à¥‡à¤‚à¥¤</div>
+            </section>
+            <section id="bios-uefi">
+                <h2>BIOS and UEFI</h2>
+                <p><strong>BIOS</strong> à¤”à¤° <strong>UEFI</strong> firmware interfaces à¤¹à¥ˆà¤‚ à¤œà¥‹ hardware initialize à¤•à¤°à¤¤à¥‡
+                    à¤¹à¥ˆà¤‚ à¤”à¤° operating system boot process start à¤•à¤°à¤¤à¥‡ à¤¹à¥ˆà¤‚à¥¤</p>
+                <div class="image-icon"><img src="../images/bios vs uefi.webp" alt="BIOS UEFI">
+                  
+                </div>
+                <table>
+                    <tr>
+                        <th>Basis</th>
+                        <th>BIOS</th>
+                        <th>UEFI</th>
+                    </tr>
+                    <tr>
+                        <td>Interface</td>
+                        <td>Text-based</td>
+                        <td>Graphical possible</td>
+                    </tr>
+                    <tr>
+                        <td>Boot Support</td>
+                        <td>Legacy</td>
+                        <td>Modern secure boot</td>
+                    </tr>
+                    <tr>
+                        <td>Large Drives</td>
+                        <td>Limited</td>
+                        <td>Better GPT support</td>
+                    </tr>
+                    <tr>
+                        <td>Speed</td>
+                        <td>Slower boot</td>
+                        <td>Faster boot possible</td>
+                    </tr>
+                    <tr>
+                        <td>Security</td>
+                        <td>Basic</td>
+                        <td>Secure Boot support</td>
+                    </tr>
+                </table>
+                <h4>Common Settings</h4>
+                <ul>
+                    <li>Boot order</li>
+                    <li>Date and time</li>
+                    <li>CPU/RAM information</li>
+                    <li>Fan control</li>
+                    <li>Virtualization</li>
+                    <li>Secure Boot</li>
+                    <li>Storage mode</li>
+                </ul>
+            </section>
+            <section id="post">
+                <h2>POST and Beep Codes</h2>
+                <p><strong>POST</strong> à¤•à¤¾ full form Power-On Self-Test à¤¹à¥ˆà¥¤ Computer start à¤¹à¥‹à¤¨à¥‡ à¤ªà¤° motherboard basic
+                    hardware test à¤•à¤°à¤¤à¥€ à¤¹à¥ˆà¥¤ à¤…à¤—à¤° problem à¤®à¤¿à¤²à¥‡ à¤¤à¥‹ beep codes, debug LEDs à¤¯à¤¾ on-screen error show à¤¹à¥‹ à¤¸à¤•à¤¤à¤¾
+                    à¤¹à¥ˆà¥¤</p>
+                <div class="image-icon"><img src="../images/post beep codes.webp" alt="POST Beep Codes">
+                    
+                </div>
+                <h4>POST Checks</h4>
+                <ul>
+                    <li>CPU detection</li>
+                    <li>RAM detection</li>
+                    <li>Graphics initialization</li>
+                    <li>Keyboard/basic I/O</li>
+                    <li>Storage boot device detection</li>
+                </ul>
+                <h4>Beep Codes</h4>
+                <p>Beep code meaning BIOS manufacturer à¤•à¥‡ à¤…à¤¨à¥à¤¸à¤¾à¤° change à¤¹à¥‹ à¤¸à¤•à¤¤à¤¾ à¤¹à¥ˆà¥¤ Exact meaning motherboard manual à¤¯à¤¾
+                    manufacturer documentation à¤¸à¥‡ verify à¤•à¤°à¤¨à¤¾ à¤šà¤¾à¤¹à¤¿à¤à¥¤</p>
+                <table>
+                    <tr>
+                        <th>Symptom</th>
+                        <th>Possible Area</th>
+                    </tr>
+                    <tr>
+                        <td>No beep, no power</td>
+                        <td>Power supply, board short, power switch</td>
+                    </tr>
+                    <tr>
+                        <td>Repeated memory beep</td>
+                        <td>RAM seating/failure</td>
+                    </tr>
+                    <tr>
+                        <td>Display-related beep</td>
+                        <td>GPU/display initialization</td>
+                    </tr>
+                    <tr>
+                        <td>CPU debug LED</td>
+                        <td>CPU power/socket/firmware issue</td>
+                    </tr>
+                </table>
+            </section>
+            <section id="troubleshooting">
+                <h2>Motherboard Troubleshooting</h2>
+                <p>Motherboard troubleshooting systematic à¤¤à¤°à¥€à¤•à¥‡ à¤¸à¥‡ à¤•à¤°à¤¨à¥€ à¤šà¤¾à¤¹à¤¿à¤à¥¤ Randomly components à¤¬à¤¦à¤²à¤¨à¥‡ à¤•à¥‡ à¤¬à¤œà¤¾à¤¯ power,
+                    connections, POST indicators à¤”à¤° minimal hardware configuration check à¤•à¤°à¥‡à¤‚à¥¤</p>
+                <div class="image-icon"><img src="../images/motherboard troubleshooting flowchart.webp" alt="Motherboard Troubleshooting Flowchart">
+                  
+                </div>
+                <h4>Computer Not Powering On</h4>
+                <ul>
+                    <li>Power cable à¤”à¤° wall socket check à¤•à¤°à¥‡à¤‚à¥¤</li>
+                    <li>SMPS switch ON à¤¹à¥ˆ à¤¯à¤¾ à¤¨à¤¹à¥€à¤‚ à¤¦à¥‡à¤–à¥‡à¤‚à¥¤</li>
+                    <li>24-pin à¤”à¤° CPU power connector check à¤•à¤°à¥‡à¤‚à¥¤</li>
+                    <li>Front panel Power SW connection verify à¤•à¤°à¥‡à¤‚à¥¤</li>
+                    <li>Motherboard short circuit check à¤•à¤°à¥‡à¤‚à¥¤</li>
+                </ul>
+                <h4>No Display</h4>
+                <ul>
+                    <li>Monitor cable à¤”à¤° input source check à¤•à¤°à¥‡à¤‚à¥¤</li>
+                    <li>RAM reseat à¤•à¤°à¥‡à¤‚à¥¤</li>
+                    <li>GPU à¤”à¤° GPU power connector check à¤•à¤°à¥‡à¤‚à¥¤</li>
+                    <li>Integrated graphics availability verify à¤•à¤°à¥‡à¤‚à¥¤</li>
+                    <li>CMOS reset à¤•à¤°à¥‡à¤‚à¥¤</li>
+                </ul>
+                <h4>Random Restart</h4>
+                <ul>
+                    <li>CPU temperature check à¤•à¤°à¥‡à¤‚à¥¤</li>
+                    <li>SMPS stability check à¤•à¤°à¥‡à¤‚à¥¤</li>
+                    <li>RAM test à¤•à¤°à¥‡à¤‚à¥¤</li>
+                    <li>Loose connectors à¤”à¤° short circuit inspect à¤•à¤°à¥‡à¤‚à¥¤</li>
+                </ul>
+                <h4>USB/Audio Not Working</h4>
+                <ul>
+                    <li>Header connection check à¤•à¤°à¥‡à¤‚à¥¤</li>
+                    <li>BIOS setting verify à¤•à¤°à¥‡à¤‚à¥¤</li>
+                    <li>Drivers check à¤•à¤°à¥‡à¤‚à¥¤</li>
+                    <li>Physical port damage inspect à¤•à¤°à¥‡à¤‚à¥¤</li>
+                </ul>
+            </section>
+            <section id="minimal-boot">
+                <h2>Minimal Boot Testing</h2>
+                <p>Minimal boot testing à¤®à¥‡à¤‚ system à¤•à¥‹ à¤•à¥‡à¤µà¤² essential components à¤•à¥‡ à¤¸à¤¾à¤¥ start à¤•à¤¿à¤¯à¤¾ à¤œà¤¾à¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤‡à¤¸à¤¸à¥‡ faulty
+                    component isolate à¤•à¤°à¤¨à¤¾ à¤†à¤¸à¤¾à¤¨ à¤¹à¥‹à¤¤à¤¾ à¤¹à¥ˆà¥¤</p>
+                <div class="image-icon"><img src="../images/minimal boot setup.webp" alt="Minimal Boot Setup">
+                   
+                </div>
+                <h4>Required Components</h4>
+                <ul>
+                    <li>Motherboard</li>
+                    <li>CPU and cooler</li>
+                    <li>One RAM module</li>
+                    <li>SMPS</li>
+                    <li>Display output</li>
+                </ul>
+                <h4>Procedure</h4>
+                <ol>
+                    <li>Non-essential drives à¤”à¤° cards disconnect à¤•à¤°à¥‡à¤‚à¥¤</li>
+                    <li>One RAM stick use à¤•à¤°à¥‡à¤‚à¥¤</li>
+                    <li>Different RAM slots test à¤•à¤°à¥‡à¤‚à¥¤</li>
+                    <li>Integrated graphics à¤¹à¥‹ à¤¤à¥‹ dedicated GPU remove à¤•à¤°à¤•à¥‡ test à¤•à¤°à¥‡à¤‚à¥¤</li>
+                    <li>POST LEDs/beeps observe à¤•à¤°à¥‡à¤‚à¥¤</li>
+                </ol>
+                <div class="remember-box"><b>Remember:</b><br>Minimal boot test motherboard, CPU, RAM à¤”à¤° power-related
+                    faults isolate à¤•à¤°à¤¨à¥‡ à¤•à¤¾ effective à¤¤à¤°à¥€à¤•à¤¾ à¤¹à¥ˆà¥¤</div>
+            </section>
+            <section id="cmos-reset">
+                <h2>CMOS Reset</h2>
+                <p>CMOS reset BIOS/UEFI settings à¤•à¥‹ default values à¤ªà¤° restore à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤ Incorrect overclocking, wrong
+                    boot setting à¤¯à¤¾ no-display issue à¤®à¥‡à¤‚ useful à¤¹à¥‹ à¤¸à¤•à¤¤à¤¾ à¤¹à¥ˆà¥¤</p>
+                <h4>Methods</h4>
+                <ul>
+                    <li>BIOS menu à¤¸à¥‡ Load Defaultsà¥¤</li>
+                    <li>Clear CMOS jumper use à¤•à¤°à¤¨à¤¾à¥¤</li>
+                    <li>CMOS battery temporarily remove à¤•à¤°à¤¨à¤¾à¥¤</li>
+                </ul>
+                <h4>Safe Procedure</h4>
+                <ol>
+                    <li>Computer shutdown à¤•à¤°à¥‡à¤‚à¥¤</li>
+                    <li>Power cable disconnect à¤•à¤°à¥‡à¤‚à¥¤</li>
+                    <li>Power button à¤•à¥à¤› seconds press à¤•à¤°à¤•à¥‡ residual power discharge à¤•à¤°à¥‡à¤‚à¥¤</li>
+                    <li>Manual à¤•à¥‡ à¤…à¤¨à¥à¤¸à¤¾à¤° jumper/battery method use à¤•à¤°à¥‡à¤‚à¥¤</li>
+                    <li>Power connect à¤•à¤°à¤•à¥‡ BIOS date/time set à¤•à¤°à¥‡à¤‚à¥¤</li>
+                </ol>
+                <div class="note-box"><b>Warning:</b><br>Clear CMOS procedure motherboard model à¤•à¥‡ à¤…à¤¨à¥à¤¸à¤¾à¤° à¤…à¤²à¤— à¤¹à¥‹ à¤¸à¤•à¤¤à¥€
+                    à¤¹à¥ˆ; manual follow à¤•à¤°à¥‡à¤‚à¥¤</div>
+            </section>
+            <section id="common-faults">
+                <h2>Common Motherboard Faults</h2>
+                <table>
+                    <tr>
+                        <th>Fault</th>
+                        <th>Symptoms</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr>
+                        <td>Dead CMOS Battery</td>
+                        <td>Date/time reset</td>
+                        <td>Battery replace à¤•à¤°à¥‡à¤‚à¥¤</td>
+                    </tr>
+                    <tr>
+                        <td>Bad RAM Slot</td>
+                        <td>No POST/intermittent boot</td>
+                        <td>Other slot test à¤•à¤°à¥‡à¤‚à¥¤</td>
+                    </tr>
+                    <tr>
+                        <td>Damaged Capacitor</td>
+                        <td>Instability/no power</td>
+                        <td>Professional repair/replace boardà¥¤</td>
+                    </tr>
+                    <tr>
+                        <td>Corrupt BIOS</td>
+                        <td>No boot/firmware recovery</td>
+                        <td>BIOS recovery/update carefullyà¥¤</td>
+                    </tr>
+                    <tr>
+                        <td>Burnt VRM</td>
+                        <td>CPU power failure</td>
+                        <td>Board repair/replaceà¥¤</td>
+                    </tr>
+                    <tr>
+                        <td>Bent CPU Socket Pins</td>
+                        <td>RAM channel/no boot issues</td>
+                        <td>Expert inspection requiredà¥¤</td>
+                    </tr>
+                    <tr>
+                        <td>Short Circuit</td>
+                        <td>Instant shutdown/no power</td>
+                        <td>Standoffs, screws, cables inspect à¤•à¤°à¥‡à¤‚à¥¤</td>
+                    </tr>
+                </table>
+            </section>
+            <section id="maintenance">
+                <h2>Motherboard Maintenance and Safety</h2>
+                <h4>Maintenance</h4>
+                <ul>
+                    <li>Dust regularly clean à¤•à¤°à¥‡à¤‚à¥¤</li>
+                    <li>Fans à¤”à¤° heat sinks inspect à¤•à¤°à¥‡à¤‚à¥¤</li>
+                    <li>Loose cables check à¤•à¤°à¥‡à¤‚à¥¤</li>
+                    <li>BIOS update à¤•à¥‡à¤µà¤² à¤œà¤°à¥‚à¤°à¤¤ à¤¹à¥‹à¤¨à¥‡ à¤ªà¤° à¤•à¤°à¥‡à¤‚à¥¤</li>
+                    <li>Surge protector à¤¯à¤¾ UPS use à¤•à¤°à¥‡à¤‚à¥¤</li>
+                </ul>
+                <h4>ESD Safety</h4>
+                <p>Static electricity motherboard components damage à¤•à¤° à¤¸à¤•à¤¤à¥€ à¤¹à¥ˆà¥¤ Anti-static wrist strap use à¤•à¤°à¥‡à¤‚ à¤¯à¤¾
+                    grounded metal surface touch à¤•à¤°à¤•à¥‡ static discharge à¤•à¤°à¥‡à¤‚à¥¤</p>
+                <h4>Handling Rules</h4>
+                <ul>
+                    <li>Board à¤•à¥‹ edges à¤¸à¥‡ à¤ªà¤•à¤¡à¤¼à¥‡à¤‚à¥¤</li>
+                    <li>Contacts à¤”à¤° pins touch à¤¨ à¤•à¤°à¥‡à¤‚à¥¤</li>
+                    <li>Power connected à¤¹à¥‹à¤¨à¥‡ à¤ªà¤° components install/remove à¤¨ à¤•à¤°à¥‡à¤‚à¥¤</li>
+                    <li>Correct screwdriver à¤”à¤° standoffs use à¤•à¤°à¥‡à¤‚à¥¤</li>
+                </ul>
+                <div class="remember-box"><b>Remember:</b><br>Motherboard troubleshooting à¤®à¥‡à¤‚ safety, documentation à¤”à¤°
+                    step-by-step testing à¤¸à¤¬à¤¸à¥‡ important à¤¹à¥ˆà¤‚à¥¤</div>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>
