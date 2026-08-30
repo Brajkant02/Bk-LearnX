@@ -13,7 +13,32 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Login Form</title>
+    <!-- BK LearnX SEO -->
+    <meta name="description" content="Login to your BK LearnX student account and continue your computer and technology learning journey.">
+    <meta name="keywords" content="BK LearnX login, student login, computer learning, technology education, PGDCA, DSML, Cyber Security, Web Designing, IoT, Drone Technology, PGDA, online learning">
+    <meta name="author" content="BK LearnX">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://bk-learn-x.vercel.app/pages/auth/login/index.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="BK LearnX">
+    <meta property="og:title" content="Student Login | BK LearnX">
+    <meta property="og:description" content="Login to BK LearnX and continue your computer and technology learning journey.">
+    <meta property="og:url" content="https://bk-learn-x.vercel.app/pages/auth/login/index.html">
+    <meta property="og:image" content="https://bk-learn-x.vercel.app/assets/images/logo.jpeg">
+    <meta property="og:image:alt" content="BK LearnX Logo">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Student Login | BK LearnX">
+    <meta name="twitter:description" content="Login to BK LearnX and continue your learning journey.">
+    <meta name="twitter:image" content="https://bk-learn-x.vercel.app/assets/images/logo.jpeg">
+
+    <meta name="application-name" content="BK LearnX">
+    <meta name="theme-color" content="#2563eb">
+
+    <title>Student Login | BK LearnX</title>
     <link rel="icon" type="image/jpeg" href="../../../assets/images/logo.jpeg">
 
     <style>
@@ -187,13 +212,400 @@
                 font-size: 0.75rem;
             }
         }
+    
+    /* BK LearnX premium login enhancement */
+    body{
+      background:
+        radial-gradient(circle at 8% 5%,rgba(37,99,235,.18),transparent 24rem),
+        radial-gradient(circle at 92% 12%,rgba(124,58,237,.14),transparent 22rem),
+        linear-gradient(180deg,#f8fbff 0%,#eef4ff 100%);
+    }
+
+    .container{
+      position:relative;
+      width:min(920px,100%) !important;
+      max-width:920px !important;
+      display:grid;
+      grid-template-columns:0.86fr 1.14fr;
+      grid-template-rows:auto auto auto auto auto auto auto;
+      padding:0 !important;
+      overflow:hidden;
+      border-radius:30px !important;
+      background:rgba(255,255,255,.92) !important;
+      border:1px solid rgba(255,255,255,.9);
+      box-shadow:0 30px 80px rgba(37,99,235,.15) !important;
+      backdrop-filter:blur(18px);
+    }
+
+    .login-showcase{
+      grid-column:1;
+      grid-row:1 / 8;
+      position:relative;
+      min-height:100%;
+      padding:34px;
+      color:#fff;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 85% 8%,rgba(96,165,250,.38),transparent 12rem),
+        radial-gradient(circle at 5% 92%,rgba(167,139,250,.20),transparent 12rem),
+        linear-gradient(150deg,#0b2346 0%,#173b7a 50%,#4f46e5 100%);
+    }
+
+    .login-showcase::before,
+    .login-showcase::after{
+      content:"";
+      position:absolute;
+      border:1px solid rgba(255,255,255,.13);
+      border-radius:50%;
+      pointer-events:none;
+    }
+    .login-showcase::before{width:260px;height:260px;right:-110px;top:-85px}
+    .login-showcase::after{width:430px;height:430px;left:-220px;bottom:-240px}
+
+    .showcase-logo{
+      width:58px;height:58px;border-radius:17px;overflow:hidden;
+      background:#fff;box-shadow:0 12px 25px rgba(0,0,0,.18);
+      position:relative;z-index:2;
+    }
+    .showcase-logo img{width:100%;height:100%;object-fit:cover}
+
+    .showcase-kicker{
+      display:inline-flex;align-items:center;gap:7px;
+      margin-top:25px;
+      color:#bfdbfe;
+      font-size:.66rem;
+      font-weight:800;
+      letter-spacing:.14em;
+    }
+    .showcase-kicker::before{content:"";width:20px;height:2px;background:#93c5fd;border-radius:4px}
+
+    .showcase-title{
+      margin-top:12px;
+      font-size:clamp(2rem,3.5vw,3rem);
+      line-height:1;
+      letter-spacing:-.055em;
+      max-width:360px;
+    }
+    .showcase-title span{color:#93c5fd}
+
+    .showcase-desc{
+      margin-top:14px;
+      max-width:350px;
+      color:#dbeafe;
+      font-size:.82rem;
+      line-height:1.7;
+    }
+
+    .program-mini-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:9px;
+      margin-top:24px;
+      position:relative;
+      z-index:2;
+    }
+    .program-mini{
+      padding:10px 11px;
+      border:1px solid rgba(255,255,255,.11);
+      border-radius:14px;
+      background:rgba(255,255,255,.075);
+      backdrop-filter:blur(10px);
+      transition:.2s;
+    }
+    .program-mini:hover{
+      background:rgba(255,255,255,.12);
+      transform:translateY(-2px);
+    }
+    .program-mini span{font-size:1rem}
+    .program-mini b{display:block;margin-top:5px;font-size:.72rem}
+    .program-mini small{display:block;margin-top:1px;color:#bfdbfe;font-size:.58rem}
+
+    .showcase-stats{
+      display:flex;
+      gap:9px;
+      margin-top:20px;
+      position:relative;
+      z-index:2;
+    }
+    .showcase-stat{
+      flex:1;
+      padding:11px 12px;
+      border-radius:14px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
+    }
+    .showcase-stat strong{display:block;font-size:1rem}
+    .showcase-stat span{display:block;margin-top:2px;color:#bfdbfe;font-size:.59rem}
+
+    .showcase-bottom{
+      position:absolute;
+      left:34px;
+      right:34px;
+      bottom:28px;
+      padding:12px 14px;
+      border-radius:15px;
+      background:rgba(3,12,28,.20);
+      border:1px solid rgba(255,255,255,.10);
+      color:#dbeafe;
+      font-size:.65rem;
+      line-height:1.5;
+      z-index:2;
+    }
+    .showcase-bottom strong{color:#fff}
+
+    .container h2{
+      grid-column:2;
+      grid-row:1;
+      text-align:left !important;
+      color:#12223a !important;
+      margin:30px 34px 4px !important;
+      padding:0 !important;
+      font-size:1.7rem !important;
+      align-self:end;
+    }
+
+    .container h2::after{
+      content:"Continue your learning journey";
+      display:block;
+      color:#64748b;
+      font-size:.78rem;
+      font-weight:500;
+      margin-top:7px;
+    }
+
+    .container form{
+      grid-column:2;
+      grid-row:2;
+      padding:0 34px 4px;
+      width:100%;
+    }
+
+    .container label{
+      margin-top:12px;
+      color:#334155;
+    }
+
+    .container input{
+      height:48px;
+      padding:0 14px !important;
+      border-radius:13px !important;
+      border:1px solid #dbe3ef !important;
+      background:#fff;
+      transition:.2s ease;
+    }
+
+    .container input:focus{
+      border-color:#2563eb !important;
+      box-shadow:0 0 0 4px rgba(37,99,235,.10) !important;
+    }
+
+    .container .btn{
+      height:50px;
+      border-radius:14px !important;
+      background:linear-gradient(135deg,#2563eb,#4f46e5) !important;
+      box-shadow:0 13px 28px rgba(37,99,235,.22);
+      transition:.2s ease;
+    }
+
+    .container .btn:hover{
+      transform:translateY(-2px);
+    }
+
+    .separator{
+      grid-column:2;
+      grid-row:3;
+      width:auto;
+      margin:12px 34px 4px !important;
+      color:#94a3b8 !important;
+    }
+
+    .container .google-btn{
+      grid-column:2;
+      width:calc(100% - 68px) !important;
+      height:46px;
+      margin:6px 34px 0 !important;
+      border-radius:13px !important;
+      background:#fff !important;
+      color:#334155 !important;
+      transition:.2s ease;
+    }
+
+    .container .google-btn:first-of-type{
+      grid-row:4;
+    }
+
+    .container .google-btn:nth-of-type(2){
+      grid-row:5;
+    }
+
+    #loginMessage{
+      grid-column:2;
+      grid-row:6;
+      margin:10px 34px 0 !important;
+      min-height:22px;
+      font-weight:700;
+    }
+
+    .register-text{
+      grid-column:2;
+      grid-row:7;
+      margin:12px 34px 28px !important;
+      line-height:1.8;
+    }
+
+    .register-text a{
+      color:#2563eb !important;
+    }
+
+    @media(max-width:760px){
+      .container{
+        display:grid;
+        grid-template-columns:1fr;
+        grid-template-rows:auto auto auto auto auto auto auto auto;
+        max-width:520px !important;
+      }
+
+      .program-mini-grid{
+        gap:8px;
+      }
+
+      .showcase-bottom{
+        left:24px;
+        right:24px;
+        bottom:22px;
+      }
+
+      .login-showcase{
+        grid-column:1;
+        grid-row:1;
+        min-height:390px;
+        padding:26px 24px 90px;
+      }
+
+      .container h2{
+        grid-column:1;
+        grid-row:2;
+        margin:24px 24px 4px !important;
+      }
+
+      .container form{
+        grid-column:1;
+        grid-row:3;
+        padding:0 24px 4px;
+      }
+
+      .separator{
+        grid-column:1;
+        grid-row:4;
+        margin-left:24px !important;
+        margin-right:24px !important;
+      }
+
+      .container .google-btn{
+        grid-column:1;
+        width:calc(100% - 48px) !important;
+        margin-left:24px !important;
+        margin-right:24px !important;
+      }
+
+      .container .google-btn:first-of-type{
+        grid-row:5;
+      }
+
+      .container .google-btn:nth-of-type(2){
+        grid-row:6;
+      }
+
+      #loginMessage{
+        grid-column:1;
+        grid-row:7;
+        margin-left:24px !important;
+        margin-right:24px !important;
+      }
+
+      .register-text{
+        grid-column:1;
+        grid-row:8;
+        margin-left:24px !important;
+        margin-right:24px !important;
+      }
+    }
+
+    @media(max-width:520px){
+      body{
+        padding:.75rem;
+      }
+
+      .container{
+        border-radius:24px !important;
+      }
+
+      .container h2{
+        font-size:1.45rem !important;
+      }
+    }
     </style>
     <link rel="stylesheet" href="../../../assets/shared/theme.css">
+
+    <script type="application/ld+json">
+    {
+      "@context":"https://schema.org",
+      "@type":"WebPage",
+      "name":"Student Login | BK LearnX",
+      "url":"https://bk-learn-x.vercel.app/pages/auth/login/index.html",
+      "description":"Login to your BK LearnX student account and continue your computer and technology learning journey.",
+      "isPartOf":{
+        "@type":"WebSite",
+        "name":"BK LearnX",
+        "url":"https://bk-learn-x.vercel.app/"
+      }
+    }
+    </script>
+
 </head>
 
 <body>
 
     <div class="container">
+      <aside class="login-showcase" aria-label="BK LearnX highlights">
+        <div class="showcase-logo">
+          <img src="../../../assets/images/logo.jpeg" alt="BK LearnX logo">
+        </div>
+
+        <div class="showcase-kicker">SMART DIGITAL LEARNING</div>
+
+        <h1 class="showcase-title">
+          Welcome back to
+          <span>BK LearnX.</span>
+        </h1>
+
+        <p class="showcase-desc">
+          Learn, practice and stay on track with computer and technology-focused
+          learning resources designed for students.
+        </p>
+
+        <div class="program-mini-grid">
+          <div class="program-mini"><span>🎓</span><b>PGDCA</b><small>Computer Applications</small></div>
+          <div class="program-mini"><span>🤖</span><b>DSML</b><small>Data & ML</small></div>
+          <div class="program-mini"><span>🔐</span><b>Cyber Security</b><small>Digital Protection</small></div>
+          <div class="program-mini"><span>🌐</span><b>Web Designing</b><small>Web Development</small></div>
+          <div class="program-mini"><span>📡</span><b>IoT</b><small>Connected Systems</small></div>
+          <div class="program-mini"><span>🚁</span><b>Drone Technology</b><small>Smart Technology</small></div>
+          <div class="program-mini"><span>💻</span><b>CHN</b><small>Technology Learning</small></div>
+          <div class="program-mini"><span>📊</span><b>PGDA</b><small>Professional Learning</small></div>
+        </div>
+
+        <div class="showcase-stats">
+          <div class="showcase-stat"><strong>8</strong><span>Programs</span></div>
+          <div class="showcase-stat"><strong>2+</strong><span>Languages</span></div>
+          <div class="showcase-stat"><strong>24/7</strong><span>Access</span></div>
+        </div>
+
+        <div class="showcase-bottom">
+          <strong>Learn • Practice • Achieve</strong><br>
+          Your learning journey, all in one place.
+        </div>
+      </aside>
 
         <h2>Student Login Form</h2>
 
