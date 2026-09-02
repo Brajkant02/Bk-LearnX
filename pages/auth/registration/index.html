@@ -12,7 +12,7 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#2563eb">
+  <meta name="theme-color" content="#1f4741">
 
   <meta name="description" content="Create your BK LearnX student account and start learning with personalized computer and technology resources.">
   <meta name="robots" content="index, follow">
@@ -33,6 +33,9 @@
   <title>Student Registration | BK LearnX</title>
 
   <link rel="icon" type="image/jpeg" href="../../../assets/images/logo.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../../assets/shared/theme.css">
 
   <style>
@@ -43,29 +46,37 @@
     }
 
     :root{
-      --blue:#2563eb;
-      --violet:#4f46e5;
-      --ink:#12223a;
-      --muted:#64748b;
-      --line:rgba(15,23,42,.10);
-      --card:rgba(255,255,255,.86);
-      --success:#15803d;
+      --forest:#1f4741;
+      --forest-deep:#14312c;
+      --accent:#ff5b39;
+      --accent-deep:#e6491f;
+      --accent-soft:#fdeee9;
+      --gold:#f2b705;
+      --ink:#17241f;
+      --muted:#5b6b63;
+      --line:rgba(23,36,31,.12);
+      --card:rgba(255,255,255,.92);
+      --success:#1f7a4d;
       --danger:#dc2626;
     }
 
     body{
       min-height:100vh;
-      font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+      font-family:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
       color:var(--ink);
       background:
-        radial-gradient(circle at 8% 5%,rgba(37,99,235,.18),transparent 24rem),
-        radial-gradient(circle at 92% 12%,rgba(124,58,237,.14),transparent 22rem),
-        linear-gradient(180deg,#f8fbff 0%,#eef4ff 100%);
+        radial-gradient(circle at 8% 5%,rgba(255,91,57,.10),transparent 24rem),
+        radial-gradient(circle at 92% 12%,rgba(31,71,65,.14),transparent 22rem),
+        #eef0e7;
       display:flex;
       align-items:center;
       justify-content:center;
       padding:22px;
       overflow-x:hidden;
+    }
+
+    h1, h2{
+      font-family:"Sora","Inter",sans-serif;
     }
 
     body::before{
@@ -74,8 +85,8 @@
       inset:0;
       pointer-events:none;
       background-image:
-        linear-gradient(rgba(37,99,235,.025) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(37,99,235,.025) 1px,transparent 1px);
+        linear-gradient(rgba(23,36,31,.03) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(23,36,31,.03) 1px,transparent 1px);
       background-size:28px 28px;
       mask-image:linear-gradient(to bottom,black,transparent);
     }
@@ -100,15 +111,16 @@
       gap:11px;
       color:var(--ink);
       text-decoration:none;
+      font-family:"Sora",sans-serif;
     }
 
     .brand-logo{
       width:48px;
       height:48px;
-      border-radius:15px;
+      border-radius:13px;
       background:#fff;
       overflow:hidden;
-      box-shadow:0 10px 24px rgba(15,23,42,.10);
+      box-shadow:0 10px 24px rgba(23,36,31,.10);
     }
 
     .brand-logo img{
@@ -127,13 +139,14 @@
       color:var(--muted);
       font-size:.69rem;
       margin-top:2px;
+      font-family:"Inter",sans-serif;
     }
 
     .secure{
       display:inline-flex;
       align-items:center;
       gap:7px;
-      color:#475569;
+      color:var(--muted);
       font-size:.74rem;
       background:rgba(255,255,255,.68);
       border:1px solid rgba(255,255,255,.8);
@@ -147,13 +160,13 @@
       margin:auto;
       display:grid;
       grid-template-columns:.85fr 1.15fr;
-      border-radius:32px;
+      border-radius:28px;
       overflow:hidden;
       background:var(--card);
       border:1px solid rgba(255,255,255,.9);
       box-shadow:
-        0 30px 80px rgba(37,99,235,.14),
-        0 10px 30px rgba(15,23,42,.06);
+        0 30px 80px rgba(20,49,44,.16),
+        0 10px 30px rgba(23,36,31,.06);
       backdrop-filter:blur(18px);
     }
 
@@ -162,8 +175,8 @@
       padding:38px 34px;
       color:#fff;
       background:
-        radial-gradient(circle at 80% 10%,rgba(96,165,250,.36),transparent 13rem),
-        linear-gradient(150deg,#102a56 0%,#1e3a8a 48%,#4f46e5 100%);
+        radial-gradient(circle at 80% 10%,rgba(255,178,122,.22),transparent 13rem),
+        linear-gradient(150deg,#0d211d 0%,#14312c 48%,#1f4741 100%);
       overflow:hidden;
     }
 
@@ -182,25 +195,26 @@
     }
 
     .side .eyebrow{
-      color:#bfdbfe;
+      color:var(--gold);
       letter-spacing:.13em;
       font-size:.68rem;
       font-weight:800;
     }
 
     .side h1{
+      font-weight:700;
       font-size:clamp(2rem,4vw,3.2rem);
-      line-height:1.03;
-      letter-spacing:-.045em;
+      line-height:1.05;
+      letter-spacing:-.03em;
       margin:15px 0 15px;
     }
 
     .side h1 span{
-      color:#93c5fd;
+      color:#ff8a68;
     }
 
     .side > p{
-      color:#dbeafe;
+      color:#c9d6d0;
       line-height:1.75;
       font-size:.92rem;
       max-width:360px;
@@ -217,8 +231,8 @@
       gap:12px;
       align-items:center;
       padding:12px;
-      border-radius:16px;
-      background:rgba(255,255,255,.08);
+      border-radius:15px;
+      background:rgba(255,255,255,.07);
       border:1px solid rgba(255,255,255,.10);
     }
 
@@ -227,10 +241,10 @@
       height:44px;
       min-width:44px;
       flex:0 0 44px;
-      border-radius:12px;
+      border-radius:11px;
       display:grid;
       place-items:center;
-      background:rgba(255,255,255,.12);
+      background:rgba(255,255,255,.11);
       border:1px solid rgba(255,255,255,.10);
       overflow:hidden;
     }
@@ -245,11 +259,12 @@
     .benefit b{
       display:block;
       font-size:.82rem;
+      font-family:"Sora",sans-serif;
     }
 
     .benefit span{
       display:block;
-      color:#bfdbfe;
+      color:#c9d6d0;
       font-size:.71rem;
       line-height:1.45;
       margin-top:2px;
@@ -257,7 +272,7 @@
 
     .form-area{
       padding:34px 34px 30px;
-      background:rgba(255,255,255,.80);
+      background:rgba(255,255,255,.86);
     }
 
     .form-head{
@@ -270,7 +285,8 @@
 
     .form-head h2{
       font-size:1.65rem;
-      letter-spacing:-.03em;
+      font-weight:700;
+      letter-spacing:-.02em;
     }
 
     .form-head p{
@@ -281,7 +297,7 @@
 
     .required-note{
       font-size:.68rem;
-      color:#94a3b8;
+      color:var(--muted);
       text-align:right;
     }
 
@@ -303,8 +319,8 @@
 
     label{
       font-size:.78rem;
-      font-weight:750;
-      color:#334155;
+      font-weight:700;
+      color:var(--ink);
     }
 
     .label-mark{
@@ -320,8 +336,8 @@
       width:100%;
       height:48px;
       padding:0 14px;
-      border-radius:13px;
-      border:1px solid #dbe3ef;
+      border-radius:12px;
+      border:1px solid var(--line);
       background:#fff;
       color:var(--ink);
       font:inherit;
@@ -334,13 +350,13 @@
     }
 
     input::placeholder{
-      color:#a1acbb;
+      color:#98a49d;
     }
 
     input:focus,
     select:focus{
-      border-color:var(--blue);
-      box-shadow:0 0 0 4px rgba(37,99,235,.10);
+      border-color:var(--accent);
+      box-shadow:0 0 0 4px var(--accent-soft);
       transform:translateY(-1px);
     }
 
@@ -362,41 +378,43 @@
       border:0;
       background:transparent;
       cursor:pointer;
-      color:#64748b;
+      color:var(--muted);
       border-radius:8px;
     }
 
     .toggle:hover{
-      background:#f1f5f9;
-      color:#334155;
+      background:var(--accent-soft);
+      color:var(--ink);
     }
 
     .strength{
       font-size:.68rem;
-      color:#94a3b8;
+      color:var(--muted);
       margin-top:1px;
     }
 
     .strength strong{
-      color:#475569;
+      color:var(--ink);
     }
 
     .submit{
       height:50px;
       border:0;
-      border-radius:14px;
+      border-radius:13px;
       color:#fff;
       font-weight:800;
+      font-family:"Sora",sans-serif;
       font-size:.9rem;
-      background:linear-gradient(135deg,var(--blue),var(--violet));
-      box-shadow:0 13px 28px rgba(37,99,235,.22);
+      background:var(--accent);
+      box-shadow:0 13px 28px rgba(255,91,57,.22);
       cursor:pointer;
       transition:.22s;
     }
 
     .submit:hover{
+      background:var(--accent-deep);
       transform:translateY(-2px);
-      box-shadow:0 17px 33px rgba(37,99,235,.27);
+      box-shadow:0 17px 33px rgba(255,91,57,.27);
     }
 
     .submit:active{
@@ -426,7 +444,7 @@
     }
 
     .login-text a{
-      color:var(--blue);
+      color:var(--accent);
       font-weight:800;
     }
 
@@ -435,7 +453,7 @@
     }
 
     .legal{
-      color:#94a3b8;
+      color:#94a397;
       font-size:.64rem;
       line-height:1.5;
       text-align:center;
@@ -451,13 +469,13 @@
 
     .progress-top span{
       font-size:.68rem;
-      color:#94a3b8;
+      color:var(--muted);
       font-weight:700;
     }
 
     .progress-track{
       height:5px;
-      background:#e7eef8;
+      background:#e3e7dc;
       border-radius:999px;
       overflow:hidden;
       margin-bottom:18px;
@@ -466,7 +484,7 @@
     .progress-fill{
       height:100%;
       width:0;
-      background:linear-gradient(90deg,var(--blue),#8b5cf6);
+      background:linear-gradient(90deg,var(--forest),var(--accent));
       border-radius:inherit;
       transition:width .25s;
     }
@@ -503,7 +521,7 @@
       }
 
       .shell{
-        border-radius:24px;
+        border-radius:22px;
       }
 
       .side,
@@ -576,7 +594,7 @@
               <svg viewBox="0 0 24 24" fill="none">
                 <path
                   d="M5 4.5A2.5 2.5 0 0 1 7.5 2H20v16H7.5A2.5 2.5 0 0 0 5 20.5V4.5Z"
-                  stroke="#bfdbfe"
+                  stroke="#c9d6d0"
                   stroke-width="1.7"/>
                 <path
                   d="M5 19.5A2.5 2.5 0 0 1 7.5 17H20M8 6h8M8 9h8M8 12h5"
@@ -598,7 +616,7 @@
               <svg viewBox="0 0 24 24" fill="none">
                 <path
                   d="M4 18.5V20h16v-1.5"
-                  stroke="#bfdbfe"
+                  stroke="#c9d6d0"
                   stroke-width="1.7"
                   stroke-linecap="round"/>
                 <path
@@ -608,7 +626,7 @@
                   stroke-linecap="round"/>
                 <path
                   d="m14.5 7.5 2.5-2.5 2 2"
-                  stroke="#93c5fd"
+                  stroke="#f2b705"
                   stroke-width="1.6"
                   stroke-linecap="round"
                   stroke-linejoin="round"/>
@@ -629,7 +647,7 @@
                   cx="12"
                   cy="12"
                   r="8.8"
-                  stroke="#bfdbfe"
+                  stroke="#c9d6d0"
                   stroke-width="1.6"/>
                 <path
                   d="M3.5 12h17M12 3.2c2.2 2.4 3.4 5.3 3.4 8.8S14.2 18.4 12 20.8c-2.2-2.4-3.4-5.3-3.4-8.8S9.8 5.6 12 3.2Z"
@@ -637,7 +655,7 @@
                   stroke-width="1.5"/>
                 <path
                   d="M6.2 7.5h11.6"
-                  stroke="#93c5fd"
+                  stroke="#f2b705"
                   stroke-width="1.4"
                   stroke-linecap="round"/>
               </svg>
@@ -659,7 +677,7 @@
                   width="16"
                   height="16"
                   rx="4"
-                  stroke="#bfdbfe"
+                  stroke="#c9d6d0"
                   stroke-width="1.6"/>
                 <path
                   d="M8 9h8M8 13h5M8 17h3"
@@ -670,7 +688,7 @@
                   cx="17"
                   cy="17"
                   r="2.2"
-                  fill="#93c5fd"/>
+                  fill="#f2b705"/>
               </svg>
             </span>
 
