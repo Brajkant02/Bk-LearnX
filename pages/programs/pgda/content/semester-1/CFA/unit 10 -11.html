@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="BK LearnX PGDCA Notes - Internet, Server Types, Connectivity, TCP/IP, Shell, E-mail, Browsing, WWW, Hyperlinks, HTTP and FTP">
+<title>Internet, WWW, HTTP & FTP | BK LearnX</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;line-height:1.7;background:#f4f7fb;color:#202938}
+header{background:linear-gradient(135deg,#0f172a,#2563eb);color:#fff;text-align:center;padding:38px 18px}
+header h1{font-size:clamp(25px,5vw,44px);margin-bottom:8px}
+header p{opacity:.92}
+.layout{max-width:1250px;margin:auto;display:flex;gap:22px;padding:22px}
+aside{width:285px;flex:none;background:#fff;padding:18px;border-radius:15px;box-shadow:0 5px 22px rgba(0,0,0,.08);position:sticky;top:15px;height:max-content}
+aside h3{color:#1d4ed8;margin-bottom:10px}
+aside a{display:block;text-decoration:none;color:#374151;padding:8px 10px;border-radius:8px}
+aside a:hover{background:#eff6ff;color:#1d4ed8}
+main{flex:1;min-width:0}
+section{background:#fff;padding:27px;margin-bottom:20px;border-radius:15px;box-shadow:0 5px 22px rgba(0,0,0,.06)}
+h2{color:#1d4ed8;border-left:5px solid #2563eb;padding-left:12px;margin-bottom:16px}
+h3{color:#111827;margin:18px 0 8px}
+p{margin:9px 0}
+ul,ol{padding-left:25px;margin:10px 0}
+li{margin:6px 0}
+.note,.example,.formula,.warning{padding:15px 17px;border-radius:10px;margin:15px 0}
+.note{background:#eff6ff;border-left:4px solid #2563eb}
+.example{background:#f0fdf4;border-left:4px solid #16a34a}
+.formula{background:#f5f3ff;border-left:4px solid #7c3aed;font-weight:600}
+.warning{background:#fff7ed;border-left:4px solid #f97316}
+table{width:100%;border-collapse:collapse;margin:16px 0}
+th,td{border:1px solid #dbe2ea;padding:11px;text-align:left;vertical-align:top}
+th{background:#eef2ff;color:#1e3a8a}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:15px 0}
+.card{padding:17px;border:1px solid #dbe4f0;border-radius:12px;background:#f8fafc}
+.card h3{margin-top:0;color:#1d4ed8}
+.flow{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;margin:20px 0}
+.box{background:#eff6ff;border:2px solid #60a5fa;border-radius:10px;padding:13px 18px;text-align:center;font-weight:600;min-width:130px}
+.arrow{font-size:24px;color:#2563eb}
+code{background:#111827;color:#fff;padding:2px 6px;border-radius:5px}
+footer{background:#111827;color:#fff;text-align:center;padding:25px}
+@media(max-width:850px){
+.layout{display:block;padding:12px}
+aside{position:relative;width:100%;top:0;margin-bottom:15px}
+aside a{display:inline-block}
+section{padding:19px}
+.grid{grid-template-columns:1fr}
+table{display:block;overflow-x:auto}
+.flow{flex-direction:column}
+.arrow{transform:rotate(90deg)}
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Internet, Server Types, Connectivity, WWW, HTTP & FTP</h1>
+<p>PGDCA Exam-Oriented Notes | BK LearnX</p>
+</header>
+
+<div class="layout">
+<aside>
+<h3>📚 Contents</h3>
+<a href="#internet">10. About the Internet</a>
+<a href="#servers">Server Types</a>
+<a href="#connectivity">Internet Connectivity</a>
+<a href="#tcpip">TCP/IP</a>
+<a href="#shell">Shell</a>
+<a href="#applications">Applications of Internet</a>
+<a href="#email">E-mail</a>
+<a href="#browsing">Web Browsing</a>
+<a href="#browsers">11. Web Browsers</a>
+<a href="#www">WWW</a>
+<a href="#hyperlinks">Hyperlinks</a>
+<a href="#http">HTTP</a>
+<a href="#ftp">FTP</a>
+<a href="#comparison">HTTP vs FTP</a>
+<a href="#flow">Complete Internet Flow</a>
+<a href="#revision">Quick Revision</a>
+</aside>
+
+<main>
+
+<section id="internet">
+<h2>10. About the Internet</h2>
+<p><strong>Internet</strong> एक global network of interconnected computer networks है, जिसके माध्यम से computers, servers, mobile devices और अन्य networked systems आपस में communicate और information exchange करते हैं।</p>
+
+<div class="note"><strong>Exam Definition:</strong> Internet is a worldwide interconnected network of networks that enables communication and sharing of information and services using standard communication protocols.</div>
+
+<h3>Internet की प्रमुख विशेषताएँ</h3>
+<ul>
+<li>Worldwide connectivity प्रदान करता है।</li>
+<li>Information sharing को आसान बनाता है।</li>
+<li>Different networks और devices को connect करता है।</li>
+<li>Communication services जैसे E-mail उपलब्ध कराता है।</li>
+<li>Web browsing और online information access की सुविधा देता है।</li>
+<li>File transfer और अनेक online services support करता है।</li>
+</ul>
+</section>
+
+<section id="servers">
+<h2>Server Types</h2>
+<p><strong>Server</strong> ऐसा computer/system या software service है जो network पर दूसरे computers या clients को data, resources या services प्रदान करता है।</p>
+
+<table>
+<tr><th>Server Type</th><th>मुख्य कार्य</th><th>Example / Use</th></tr>
+<tr><td><strong>Web Server</strong></td><td>Web pages और web resources serve करता है।</td><td>Website access</td></tr>
+<tr><td><strong>File Server</strong></td><td>Files को centrally store और share करता है।</td><td>Office file sharing</td></tr>
+<tr><td><strong>Mail Server</strong></td><td>E-mail messages को send, receive और manage करने में सहायता करता है।</td><td>E-mail service</td></tr>
+<tr><td><strong>Database Server</strong></td><td>Database और database-related requests manage करता है।</td><td>Business applications</td></tr>
+<tr><td><strong>Application Server</strong></td><td>Application logic/services provide करता है।</td><td>Enterprise applications</td></tr>
+<tr><td><strong>DNS Server</strong></td><td>Domain names को IP addresses से resolve करने में सहायता करता है।</td><td>Website name resolution</td></tr>
+<tr><td><strong>Proxy Server</strong></td><td>Client और external network के बीच intermediary की तरह काम कर सकता है।</td><td>Filtering/caching</td></tr>
+<tr><td><strong>FTP Server</strong></td><td>FTP-based file transfer services provide करता है।</td><td>File upload/download</td></tr>
+</table>
+
+<div class="example"><strong>Example:</strong> जब user browser में किसी website का address enter करता है, browser network के माध्यम से संबंधित web server से web resources request कर सकता है।</div>
+</section>
+
+<section id="connectivity">
+<h2>Internet Connectivity</h2>
+<p><strong>Internet Connectivity</strong> का अर्थ है किसी device या local network को Internet से connect करना ताकि वह Internet-based services access कर सके।</p>
+
+<h3>Common Connectivity Methods</h3>
+<div class="grid">
+<div class="card"><h3>Dial-up</h3><p>Traditional telephone line आधारित Internet connection technology, जो historical context में महत्वपूर्ण रही है।</p></div>
+<div class="card"><h3>DSL</h3><p>Telephone infrastructure का उपयोग करके broadband Internet access प्रदान करने वाली technology.</p></div>
+<div class="card"><h3>Cable Broadband</h3><p>Cable network infrastructure के माध्यम से broadband Internet access.</p></div>
+<div class="card"><h3>Fiber</h3><p>Optical fiber के माध्यम से high-speed Internet connectivity.</p></div>
+<div class="card"><h3>Wi-Fi</h3><p>Wireless local network technology जिसके माध्यम से devices network/Internet connection access कर सकते हैं।</p></div>
+<div class="card"><h3>Mobile Data</h3><p>Cellular network के माध्यम से smartphone या other devices को Internet access मिलता है।</p></div>
+</div>
+
+<h3>Basic Connectivity Flow</h3>
+<div class="flow">
+<div class="box">User Device</div><div class="arrow">→</div>
+<div class="box">Router / Access Point</div><div class="arrow">→</div>
+<div class="box">ISP Network</div><div class="arrow">→</div>
+<div class="box">Internet</div><div class="arrow">→</div>
+<div class="box">Destination Server</div>
+</div>
+</section>
+
+<section id="tcpip">
+<h2>TCP/IP</h2>
+<p><strong>TCP/IP (Transmission Control Protocol / Internet Protocol)</strong> Internet communication में उपयोग होने वाले protocols का प्रमुख protocol suite है।</p>
+
+<h3>IP का कार्य</h3>
+<p><strong>IP</strong> addressing और packet delivery/routing से संबंधित functions provide करता है। Devices को network communication के लिए IP addresses का उपयोग करना पड़ता है।</p>
+
+<h3>TCP का कार्य</h3>
+<p><strong>TCP</strong> connection-oriented transport protocol है जो reliable, ordered और error-checked delivery provide करने के लिए mechanisms देता है।</p>
+
+<table>
+<tr><th>Protocol</th><th>Full Form</th><th>Main Role</th></tr>
+<tr><td>IP</td><td>Internet Protocol</td><td>Addressing और packet routing/delivery.</td></tr>
+<tr><td>TCP</td><td>Transmission Control Protocol</td><td>Reliable और ordered transport of data.</td></tr>
+</table>
+
+<div class="formula">TCP/IP = Internet communication के लिए protocols का suite</div>
+</section>
+
+<section id="shell">
+<h2>Shell</h2>
+<p><strong>Shell</strong> एक command interpreter या user interface component है जो user के commands को operating system तक पहुँचाने और उनके execution में सहायता करता है।</p>
+
+<h3>Shell के मुख्य कार्य</h3>
+<ul>
+<li>User commands accept करना।</li>
+<li>Commands को interpret करना।</li>
+<li>Operating system services/programs को invoke करना।</li>
+<li>Files और directories जैसे resources के साथ command-based interaction देना।</li>
+</ul>
+
+<div class="note"><strong>Important:</strong> Shell और Internet एक ही चीज नहीं हैं। Shell operating system के साथ interaction का माध्यम है, जबकि Internet interconnected networks का global system है।</div>
+</section>
+
+<section id="applications">
+<h2>Applications of Internet</h2>
+<p>Internet का उपयोग communication, information, education, business, entertainment और अनेक online services के लिए किया जाता है।</p>
+
+<div class="grid">
+<div class="card"><h3>E-mail</h3><p>Electronic messages भेजने और प्राप्त करने के लिए।</p></div>
+<div class="card"><h3>Web Browsing</h3><p>Websites और online information access करने के लिए।</p></div>
+<div class="card"><h3>Online Education</h3><p>Courses, tutorials, digital libraries और learning resources access करने के लिए।</p></div>
+<div class="card"><h3>E-Commerce</h3><p>Online products/services की खरीद-बिक्री के लिए।</p></div>
+<div class="card"><h3>Online Banking</h3><p>Banking information और permitted digital banking services access करने के लिए।</p></div>
+<div class="card"><h3>Communication</h3><p>Messaging, voice/video communication और collaboration के लिए।</p></div>
+</div>
+</section>
+
+<section id="email">
+<h2>E-mail</h2>
+<p><strong>E-mail (Electronic Mail)</strong> Internet के माध्यम से electronic messages भेजने और प्राप्त करने की service है।</p>
+
+<h3>E-mail के Basic Components</h3>
+<ul>
+<li><strong>Sender:</strong> Message भेजने वाला व्यक्ति/system.</li>
+<li><strong>Recipient:</strong> Message प्राप्त करने वाला व्यक्ति/system.</li>
+<li><strong>To:</strong> Main recipient address.</li>
+<li><strong>Subject:</strong> Message का short topic/title.</li>
+<li><strong>Body:</strong> Main message content.</li>
+<li><strong>Attachment:</strong> Message के साथ files भेजने का option.</li>
+</ul>
+
+<h3>Basic E-mail Process</h3>
+<div class="flow">
+<div class="box">Compose</div><div class="arrow">→</div>
+<div class="box">Send</div><div class="arrow">→</div>
+<div class="box">Mail Server</div><div class="arrow">→</div>
+<div class="box">Recipient Mailbox</div><div class="arrow">→</div>
+<div class="box">Read</div>
+</div>
+</section>
+
+<section id="browsing">
+<h2>Web Browsing</h2>
+<p><strong>Web Browsing</strong> का अर्थ web browser का उपयोग करके websites और web pages को access तथा navigate करना है।</p>
+
+<h3>Basic Browsing Steps</h3>
+<ol>
+<li>Device को Internet से connect करें।</li>
+<li>Web browser open करें।</li>
+<li>Address bar में website address/URL enter करें या search query लिखें।</li>
+<li>Browser request को network के माध्यम से destination तक भेजता है।</li>
+<li>Server response प्राप्त होने पर browser web content display करता है।</li>
+<li>Hyperlinks के माध्यम से दूसरे resources/pages पर navigate किया जा सकता है।</li>
+</ol>
+</section>
+
+<section id="browsers">
+<h2>11. Various Web Browsers</h2>
+<p><strong>Web Browser</strong> एक software application है जो users को World Wide Web पर web resources access, retrieve और display करने की सुविधा देता है।</p>
+
+<h3>Examples of Web Browsers</h3>
+<table>
+<tr><th>Browser</th><th>General Description</th></tr>
+<tr><td>Google Chrome</td><td>Popular modern web browser.</td></tr>
+<tr><td>Mozilla Firefox</td><td>Open-source based browser project with strong privacy/customization focus.</td></tr>
+<tr><td>Microsoft Edge</td><td>Microsoft का modern web browser.</td></tr>
+<tr><td>Apple Safari</td><td>Apple devices/ecosystem में widely used browser.</td></tr>
+<tr><td>Opera</td><td>Web browser with various built-in browsing features.</td></tr>
+</table>
+
+<div class="note"><strong>Browser का काम:</strong> User की web request को process करना, server से resources प्राप्त करना और उन्हें readable/interactive form में display करना।</div>
+</section>
+
+<section id="www">
+<h2>WWW — World Wide Web</h2>
+<p><strong>WWW (World Wide Web)</strong> Internet पर उपलब्ध interlinked web pages और web resources का system है, जिन्हें web browsers के माध्यम से access किया जाता है।</p>
+
+<h3>WWW के मुख्य Components</h3>
+<ul>
+<li><strong>Web Pages:</strong> Information-containing documents/resources.</li>
+<li><strong>Websites:</strong> Related web pages/resources का collection.</li>
+<li><strong>Web Browser:</strong> Web content access और display करने वाला software.</li>
+<li><strong>Web Server:</strong> Web resources serve करने वाला server.</li>
+<li><strong>URL:</strong> Web resource का address.</li>
+<li><strong>HTTP/HTTPS:</strong> Web communication में commonly used protocols.</li>
+<li><strong>Hyperlinks:</strong> एक resource से दूसरे resource तक navigation links.</li>
+</ul>
+
+<div class="formula">Internet = Global network infrastructure<br>WWW = Internet पर चलने वाली interconnected web resources की service/system</div>
+</section>
+
+<section id="hyperlinks">
+<h2>Hyperlinks</h2>
+<p><strong>Hyperlink</strong> किसी web page या digital document में ऐसा clickable reference है जो user को दूसरे page, section, file या web resource तक ले जा सकता है।</p>
+
+<h3>Types of Hyperlinks</h3>
+<ul>
+<li><strong>Text Hyperlink:</strong> Text पर clickable link.</li>
+<li><strong>Image Hyperlink:</strong> Image पर click करके destination open करना।</li>
+<li><strong>Internal Link:</strong> Same website/document के दूसरे section/page पर जाना।</li>
+<li><strong>External Link:</strong> दूसरे website/domain के resource पर जाना।</li>
+<li><strong>Email Link:</strong> E-mail application/service खोलने के लिए link.</li>
+</ul>
+
+<div class="example"><strong>HTML Example:</strong> <code>&lt;a href="https://example.com"&gt;Visit Website&lt;/a&gt;</code></div>
+</section>
+
+<section id="http">
+<h2>HTTP — Hyper Text Transfer Protocol</h2>
+<p><strong>HTTP</strong> web applications में client और server के बीच request-response communication के लिए उपयोग होने वाला application-layer protocol है।</p>
+
+<h3>HTTP Working</h3>
+<div class="flow">
+<div class="box">Browser / Client</div><div class="arrow">→</div>
+<div class="box">HTTP Request</div><div class="arrow">→</div>
+<div class="box">Web Server</div><div class="arrow">→</div>
+<div class="box">HTTP Response</div><div class="arrow">→</div>
+<div class="box">Browser</div>
+</div>
+
+<h3>Common HTTP Methods</h3>
+<table>
+<tr><th>Method</th><th>General Purpose</th></tr>
+<tr><td>GET</td><td>Resource/data प्राप्त करने के लिए request.</td></tr>
+<tr><td>POST</td><td>Server को data submit करने के लिए commonly used request method.</td></tr>
+<tr><td>PUT</td><td>Resource को create/replace/update करने के लिए commonly used method.</td></tr>
+<tr><td>DELETE</td><td>Resource deletion request के लिए commonly used method.</td></tr>
+</table>
+
+<div class="note"><strong>HTTPS:</strong> HTTPS, HTTP communication को TLS के माध्यम से secure/encrypted channel पर चलाने का तरीका है।</div>
+</section>
+
+<section id="ftp">
+<h2>FTP — File Transfer Protocol</h2>
+<p><strong>FTP (File Transfer Protocol)</strong> network पर files को transfer करने के लिए designed application-layer protocol है। इसका उपयोग file upload और download जैसे operations में किया जा सकता है।</p>
+
+<h3>FTP के Common Uses</h3>
+<ul>
+<li>Files upload करना।</li>
+<li>Files download करना।</li>
+<li>Remote files/directories के साथ permitted operations करना।</li>
+<li>Server और client के बीच file transfer करना।</li>
+</ul>
+
+<h3>FTP Basic Flow</h3>
+<div class="flow">
+<div class="box">FTP Client</div><div class="arrow">→</div>
+<div class="box">Connection</div><div class="arrow">→</div>
+<div class="box">FTP Server</div><div class="arrow">↔</div>
+<div class="box">Upload / Download</div>
+</div>
+
+<div class="warning"><strong>Security Note:</strong> Traditional FTP को sensitive information के लिए बिना additional security measures के use नहीं करना चाहिए। Secure alternatives जैसे FTPS या SFTP अलग technologies/protocol approaches हैं।</div>
+</section>
+
+<section id="comparison">
+<h2>HTTP और FTP में अंतर</h2>
+<table>
+<tr><th>Basis</th><th>HTTP</th><th>FTP</th></tr>
+<tr><td>Full Form</td><td>Hyper Text Transfer Protocol</td><td>File Transfer Protocol</td></tr>
+<tr><td>Main Purpose</td><td>Web resources के client-server transfer.</td><td>Files transfer करना।</td></tr>
+<tr><td>Common Use</td><td>Web browsing और web applications.</td><td>File upload/download.</td></tr>
+<tr><td>Typical Client</td><td>Web browser.</td><td>FTP client/software.</td></tr>
+<tr><td>Communication Model</td><td>Request-response based web communication.</td><td>File transfer operations के लिए designed protocol.</td></tr>
+</table>
+</section>
+
+<section id="flow">
+<h2>Complete Internet Communication Flow</h2>
+<div class="flow">
+<div class="box">User</div>
+<div class="arrow">→</div>
+<div class="box">Browser</div>
+<div class="arrow">→</div>
+<div class="box">TCP/IP Network</div>
+<div class="arrow">→</div>
+<div class="box">Internet / ISP</div>
+<div class="arrow">→</div>
+<div class="box">Server</div>
+<div class="arrow">→</div>
+<div class="box">Response</div>
+<div class="arrow">→</div>
+<div class="box">Browser Display</div>
+</div>
+<p>इस flow में browser web resource के लिए request generate करता है, networking protocols उस communication को destination server तक पहुँचाने में सहायता करते हैं और server response वापस भेजता है।</p>
+</section>
+
+<section id="revision">
+<h2>Quick Revision</h2>
+<table>
+<tr><th>Term</th><th>Key Point</th></tr>
+<tr><td>Internet</td><td>Worldwide interconnected network of networks.</td></tr>
+<tr><td>Server</td><td>Network पर clients को services/resources प्रदान करने वाला system/service.</td></tr>
+<tr><td>TCP/IP</td><td>Internet communication का प्रमुख protocol suite.</td></tr>
+<tr><td>TCP</td><td>Reliable और ordered transport के लिए protocol.</td></tr>
+<tr><td>IP</td><td>Addressing और packet routing/delivery से संबंधित protocol.</td></tr>
+<tr><td>Shell</td><td>User commands और operating system के बीच command interface/interpreter.</td></tr>
+<tr><td>E-mail</td><td>Electronic messages भेजने और प्राप्त करने की Internet service.</td></tr>
+<tr><td>Browser</td><td>Web resources access/display करने वाला software.</td></tr>
+<tr><td>WWW</td><td>Internet पर interconnected web pages/resources का system.</td></tr>
+<tr><td>Hyperlink</td><td>Clickable reference जो दूसरे resource/page पर navigation कराता है।</td></tr>
+<tr><td>HTTP</td><td>Web client-server communication protocol.</td></tr>
+<tr><td>FTP</td><td>File transfer के लिए application-layer protocol.</td></tr>
+</table>
+
+<div class="formula">Internet → Network of Networks<br>WWW → Web Resources<br>HTTP → Web Communication<br>FTP → File Transfer</div>
+</section>
+
+</main>
+</div>
+
+<footer>
+<p>© BK LearnX | PGDCA Study Notes</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BK LearnX | Audit Sampling & Audit of Transactions</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--text:#182033;--muted:#657184;--primary:#3157d5;--primary2:#6d4aff;--border:#e3e8f1;--note:#eef3ff;--good:#eaf8f0;--warn:#fff5df}
+*{box-sizing:border-box;scroll-behavior:smooth}
+body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px 22px}
+.brand{font-size:21px;font-weight:800;color:var(--primary)}.sub{color:var(--muted);font-size:13px}
+.layout{display:grid;grid-template-columns:285px 1fr;max-width:1500px;margin:auto}
+aside{position:sticky;top:68px;height:calc(100vh - 68px);overflow:auto;background:#fff;border-right:1px solid var(--border);padding:22px 15px}
+aside h3{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin:8px 10px}
+nav a{display:block;text-decoration:none;color:#364154;padding:9px 11px;border-radius:9px;margin:3px 0;font-size:14px}
+nav a:hover{background:var(--note);color:var(--primary)}
+main{padding:34px;max-width:1150px}
+.hero{background:linear-gradient(135deg,#182d75,#5b3bd1);color:#fff;border-radius:22px;padding:38px;margin-bottom:30px;box-shadow:0 15px 40px rgba(49,87,213,.18)}
+.hero h1{font-size:35px;line-height:1.2;margin:8px 0}.hero p{opacity:.9;margin:0}
+.chapter{display:inline-block;background:rgba(255,255,255,.16);padding:5px 10px;border-radius:20px;font-size:12px;font-weight:700}
+section{scroll-margin-top:90px;margin-bottom:34px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:17px;padding:25px;margin:14px 0;box-shadow:0 5px 18px rgba(20,30,60,.04)}
+h2{font-size:25px;margin:0 0 14px}h3{font-size:19px;margin:19px 0 8px}
+table{width:100%;border-collapse:collapse;margin:17px 0;font-size:14px;background:#fff}
+th,td{border:1px solid var(--border);padding:11px;vertical-align:top;text-align:left}th{background:#f0f3fa}
+.note,.example,.warning{padding:15px 17px;border-radius:12px;margin:15px 0}.note{background:var(--note);border-left:4px solid var(--primary)}.example{background:var(--good);border-left:4px solid #2d9b61}.warning{background:var(--warn);border-left:4px solid #d99b20}
+.formula{font-family:ui-monospace,SFMono-Regular,monospace;background:#101828;color:#fff;border-radius:10px;padding:14px;white-space:pre-wrap}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:15px 0}.flow span{padding:8px 12px;background:#eef2ff;border:1px solid #dbe2ff;border-radius:9px;font-size:13px}
+.badge{display:inline-block;background:#e9edff;color:var(--primary);padding:4px 9px;border-radius:20px;font-size:12px;font-weight:700}
+footer{text-align:center;padding:28px;color:var(--muted);border-top:1px solid var(--border)}
+.menu{display:none}
+@media(max-width:850px){
+ .layout{display:block} aside{position:fixed;left:-300px;top:0;width:285px;height:100vh;z-index:50;transition:.25s;box-shadow:8px 0 25px rgba(0,0,0,.12)}aside.open{left:0}
+ main{padding:20px 14px}header{padding:12px 14px}.menu{display:inline-block;margin-right:10px;border:0;background:#eef2ff;border-radius:8px;padding:7px 10px}
+ .hero{padding:27px 21px}.hero h1{font-size:29px}table{font-size:13px;display:block;overflow-x:auto;white-space:normal}
+}
+</style>
+</head>
+<body>
+<header>
+<button class="menu" onclick="document.querySelector('aside').classList.toggle('open')">☰</button>
+<span class="brand">BK LearnX</span><span class="sub"> · PGDCA Accounting & Auditing Notes</span>
+</header>
+
+<div class="layout">
+<aside>
+<h3>Chapters</h3>
+<nav>
+<a href="#ch8">Chapter 8 — Audit Sampling</a>
+<a href="#sampling">1. Audit Sampling</a>
+<a href="#types">2. Types of Sampling</a>
+<a href="#testcheck">3. Test Checking</a>
+<a href="#techniques">4. Techniques of Test Checks</a>
+<a href="#analytical">5. Analytical Review Procedures</a>
+<a href="#ch9">Chapter 9 — Audit of Transactions</a>
+<a href="#payments">6. Audit of Payments</a>
+<a href="#receipts">7. Audit of Receipts</a>
+<a href="#purchase">8. Audit of Purchases</a>
+<a href="#sales">9. Audit of Sales</a>
+<a href="#assets">10. Audit of Assets</a>
+<a href="#liabilities">11. Audit of Liabilities</a>
+<a href="#summary">12. Quick Revision</a>
+</nav>
+</aside>
+
+<main>
+<div class="hero">
+<span class="chapter">CHAPTER 8 & 9</span>
+<h1>Audit Sampling, Analytical Review & Audit of Transactions</h1>
+<p>Sampling, test checking, analytical review तथा Payments, Receipts, Purchases, Sales, Assets और Liabilities की audit procedures.</p>
+</div>
+
+<section id="ch8">
+<h2>Chapter 8 — Audit Sampling and Analytical Review Procedures</h2>
+<div class="card">
+<p>Audit में हर transaction और balance को 100% examine करना हमेशा practical या economical नहीं होता। इसलिए auditor representative items का selection करके audit evidence प्राप्त कर सकता है। इसी approach को <strong>Audit Sampling</strong> कहा जाता है।</p>
+</div>
+</section>
+
+<section id="sampling">
+<h2>1. Audit Sampling</h2>
+<div class="card">
+<p><strong>Audit Sampling</strong> का अर्थ population के सभी items की बजाय population में से कुछ items को select करके उन्हें test करना है, ताकि selected results के आधार पर पूरी population के बारे में reasonable conclusion बनाया जा सके।</p>
+<h3>मुख्य Terms</h3>
+<table>
+<tr><th>Term</th><th>Meaning</th></tr>
+<tr><td>Population</td><td>वह पूरा set of data/items जिससे sample लिया जाता है।</td></tr>
+<tr><td>Sample</td><td>Population में से selected items का group.</td></tr>
+<tr><td>Sampling Risk</td><td>Sample के conclusion और पूरी population के conclusion में difference होने का risk.</td></tr>
+<tr><td>Sampling Unit</td><td>Population का individual item, जैसे invoice, transaction या account balance.</td></tr>
+<tr><td>Sample Size</td><td>Audit test में select किए गए items की संख्या।</td></tr>
+</table>
+<div class="note"><strong>मुख्य उद्देश्य:</strong> कम समय और resources में sufficient audit evidence प्राप्त करना तथा material error/deviation को identify करने में मदद करना।</div>
+</div>
+</section>
+
+<section id="types">
+<h2>2. Types of Sampling</h2>
+<div class="card">
+<h3>A. Statistical Sampling</h3>
+<p>इसमें sample selection और evaluation में probability theory/statistical methods का systematic use किया जाता है। Auditor sampling risk को अधिक formally evaluate कर सकता है।</p>
+
+<h3>B. Non-Statistical Sampling</h3>
+<p>इसमें auditor professional judgment के आधार पर sample select और evaluate करता है। इसमें statistical probability techniques का formal use आवश्यक नहीं होता।</p>
+
+<h3>Common Selection Approaches</h3>
+<table>
+<tr><th>Method</th><th>Explanation</th></tr>
+<tr><td>Random Selection</td><td>हर sampling unit को selection का known chance देने की कोशिश की जाती है।</td></tr>
+<tr><td>Systematic Selection</td><td>एक random starting point के बाद fixed interval पर items select किए जाते हैं।</td></tr>
+<tr><td>Haphazard Selection</td><td>बिना formal random technique के auditor selection करता है, लेकिन conscious bias से बचना आवश्यक है।</td></tr>
+<tr><td>Block Selection</td><td>Population के contiguous items का एक block select किया जाता है; representativeness पर सावधानी आवश्यक है।</td></tr>
+<tr><td>Stratified Selection</td><td>Population को groups/strata में बाँटकर प्रत्येक group से sample select किया जाता है।</td></tr>
+</table>
+</div>
+</section>
+
+<section id="testcheck">
+<h2>3. Test Checking</h2>
+<div class="card">
+<p><strong>Test Checking</strong> का अर्थ सभी transactions को examine करने के बजाय selected transactions की detailed checking करना है। इसका उद्देश्य errors, fraud, irregularities और weaknesses को identify करना है।</p>
+
+<h3>Test Checking का Basic Process</h3>
+<div class="flow"><span>Population Identify</span>→<span>Risk Assess</span>→<span>Sample Select</span>→<span>Test Perform</span>→<span>Evaluate</span>→<span>Conclusion</span></div>
+
+<h3>Test Checking में ध्यान देने योग्य बातें</h3>
+<ul>
+<li>Population और audit objective को clearly define करना।</li>
+<li>High-risk और unusual items पर उचित attention देना।</li>
+<li>Sample को पर्याप्त और appropriate बनाना।</li>
+<li>Selected items को relevant supporting evidence से verify करना।</li>
+<li>Errors मिलने पर उनकी nature और possible impact evaluate करना।</li>
+<li>Need होने पर sample size बढ़ाना या additional procedures करना।</li>
+</ul>
+<div class="warning"><strong>Important:</strong> Test checking का अर्थ यह नहीं है कि बाकी सभी transactions automatically correct मान लिए जाएँ। Auditor को assessed risk और circumstances के अनुसार further procedures करने पड़ सकते हैं।</div>
+</div>
+</section>
+
+<section id="techniques">
+<h2>4. Techniques of Test Checks</h2>
+<div class="card">
+<table>
+<tr><th>Technique</th><th>How it works</th><th>Example</th></tr>
+<tr><td>Random Selection</td><td>Items को random तरीके से select करना।</td><td>Random invoice numbers select करना।</td></tr>
+<tr><td>Systematic Selection</td><td>Fixed interval पर items select करना।</td><td>हर 20th transaction check करना।</td></tr>
+<tr><td>Stratification</td><td>Population को categories में divide करना।</td><td>Large-value और small-value invoices अलग करना।</td></tr>
+<tr><td>Value-based Selection</td><td>High-value या individually significant items पर focus करना।</td><td>Major debtor balances की checking।</td></tr>
+<tr><td>Haphazard Selection</td><td>Auditor judgment से items चुनता है, systematic bias से बचते हुए।</td><td>Different dates से invoices चुनना।</td></tr>
+</table>
+</div>
+</section>
+
+<section id="analytical">
+<h2>5. Analytical Review Procedures</h2>
+<div class="card">
+<p><strong>Analytical Review Procedures</strong> में financial और non-financial information के बीच relationships, trends, ratios तथा unexpected fluctuations का analysis किया जाता है। इसका उद्देश्य unusual matters को identify करना और उनके कारणों की investigation करना है।</p>
+
+<h3>मुख्य Techniques</h3>
+<ul>
+<li><strong>Trend Analysis:</strong> अलग-अलग periods के figures की direction देखना।</li>
+<li><strong>Ratio Analysis:</strong> Profitability, liquidity, turnover आदि ratios compare करना।</li>
+<li><strong>Comparative Analysis:</strong> Current year को previous year, budget या industry data से compare करना।</li>
+<li><strong>Reasonableness Test:</strong> Expected relationship के आधार पर recorded amount की plausibility check करना।</li>
+<li><strong>Relationship Analysis:</strong> Financial और non-financial data के बीच relationship examine करना।</li>
+</ul>
+
+<div class="example"><strong>Example:</strong> यदि sales केवल 5% बढ़ी लेकिन electricity expense 45% बढ़ गया, तो auditor इस unusual movement का कारण investigate कर सकता है।</div>
+
+<div class="formula">Gross Profit Ratio = (Gross Profit ÷ Net Sales) × 100
+Current Ratio = Current Assets ÷ Current Liabilities</div>
+
+<h3>Analytical Review में Unusual Results</h3>
+<p>Unexpected variation मिलने पर auditor management inquiry, supporting documents, additional testing या अन्य audit procedures के माध्यम से explanation और corroborating evidence प्राप्त कर सकता है।</p>
+</div>
+</section>
+
+<section id="ch9">
+<h2>Chapter 9 — Audit of Payment and Receipts, Purchase, Sales, Assets and Liabilities</h2>
+<div class="card">
+<p>इस chapter में auditor यह verify करता है कि important business transactions properly authorised, correctly recorded, supported by documents और appropriate accounting treatment के अनुसार हैं।</p>
+</div>
+</section>
+
+<section id="payments">
+<h2>6. Audit of Payments</h2>
+<div class="card">
+<p>Payments की audit में auditor cash/bank payments की authenticity, authorization, supporting documents और correct accounting को check करता है।</p>
+<h3>Audit Procedures</h3>
+<ol>
+<li>Cash Book और Bank Book की entries examine करना।</li>
+<li>Payment vouchers और supporting invoices check करना।</li>
+<li>Proper authorization/approval verify करना।</li>
+<li>Payee और payment purpose की जांच करना।</li>
+<li>Bank statement से important payments reconcile करना।</li>
+<li>Capital और revenue nature का उचित classification check करना।</li>
+<li>Duplicate, unusual या round-figure payments पर attention देना।</li>
+<li>Cut-off और correct accounting period verify करना।</li>
+</ol>
+<div class="example"><strong>Example:</strong> Supplier को ₹80,000 payment दिखाई गई है। Auditor voucher, supplier invoice, approval और bank statement entry को cross-check कर सकता है।</div>
+</div>
+</section>
+
+<section id="receipts">
+<h2>7. Audit of Receipts</h2>
+<div class="card">
+<p>Receipts की audit का उद्देश्य यह verify करना है कि entity को प्राप्त cash/bank amounts complete, genuine और correctly recorded हैं।</p>
+<h3>Audit Procedures</h3>
+<ul>
+<li>Cash receipts को receipt records और cash book से compare करना।</li>
+<li>Bank deposits और bank statements से reconciliation करना।</li>
+<li>Customer receipts को debtor ledger से match करना।</li>
+<li>Receipts की date और amount verify करना।</li>
+<li>Unusual delays या missing deposits investigate करना।</li>
+<li>Cut-off के आसपास receipts की checking करना।</li>
+<li>Large/unusual receipts का supporting evidence देखना।</li>
+</ul>
+<div class="note"><strong>मुख्य audit objective:</strong> Receipts की <strong>completeness, occurrence, accuracy और proper recording</strong> पर reasonable assurance प्राप्त करना।</div>
+</div>
+</section>
+
+<section id="purchase">
+<h2>8. Audit of Purchases</h2>
+<div class="card">
+<p>Purchases की audit में purchase transactions की genuineness, authorization, quantity, price, accounting treatment और period को verify किया जाता है।</p>
+<h3>Documents Generally Examined</h3>
+<ul>
+<li>Purchase Requisition</li><li>Purchase Order</li><li>Goods Received Note (GRN)</li><li>Supplier Invoice</li><li>Purchase Register</li><li>Payment Voucher</li><li>Supplier Ledger</li>
+</ul>
+<h3>Audit Procedures</h3>
+<ol>
+<li>Purchase Order को invoice और GRN से match करना।</li>
+<li>Quantity और rates verify करना।</li>
+<li>Supplier की authenticity और transaction की business purpose check करना।</li>
+<li>Purchase returns और credit notes examine करना।</li>
+<li>Cut-off testing करना ताकि सही accounting period में purchase record हो।</li>
+<li>Capital purchases को revenue purchases से properly distinguish करना।</li>
+<li>Outstanding supplier balances को records से reconcile/confirm करना जहाँ appropriate हो।</li>
+</ol>
+</div>
+</section>
+
+<section id="sales">
+<h2>9. Audit of Sales</h2>
+<div class="card">
+<p>Sales audit में sales की genuineness, completeness, correct pricing, dispatch/delivery evidence, accounting और cut-off verify किया जाता है।</p>
+<h3>Important Documents</h3>
+<ul>
+<li>Customer Order</li><li>Sales Order</li><li>Delivery Challan/Dispatch Record</li><li>Sales Invoice</li><li>Sales Register</li><li>Debtor Ledger</li><li>Credit Notes</li>
+</ul>
+<h3>Audit Procedures</h3>
+<ol>
+<li>Sales invoices को customer orders और dispatch documents से match करना।</li>
+<li>Invoice quantity, rate और calculations verify करना।</li>
+<li>Sales returns और credit notes check करना।</li>
+<li>Year-end के आसपास sales cut-off test करना।</li>
+<li>Debtor balances और subsequent receipts से selected sales support करना।</li>
+<li>Unusual sales transactions और related-party transactions पर appropriate attention देना।</li>
+</ol>
+<div class="warning"><strong>Special attention:</strong> Sales में fictitious sales और गलत period में recorded sales financial statements को materially affect कर सकती हैं, इसलिए risk-based testing important है।</div>
+</div>
+</section>
+
+<section id="assets">
+<h2>10. Audit of Assets</h2>
+<div class="card">
+<p>Assets की audit में auditor assets की <strong>existence, rights/ownership, completeness, valuation और presentation</strong> जैसे relevant assertions को address करता है।</p>
+
+<h3>A. Fixed Assets</h3>
+<ul>
+<li>Purchase invoices और supporting documents examine करना।</li>
+<li>Physical verification/inspection जहाँ appropriate हो।</li>
+<li>Ownership documents check करना।</li>
+<li>Additions और disposals verify करना।</li>
+<li>Depreciation calculation और accounting policy check करना।</li>
+<li>Capitalisation और repair expense के classification को examine करना।</li>
+</ul>
+
+<h3>B. Inventory</h3>
+<ul>
+<li>Physical stock count/observation में participation या observation जहाँ appropriate हो।</li>
+<li>Stock records से physical quantities compare करना।</li>
+<li>Damaged/obsolete stock identify करना।</li>
+<li>Valuation basis और costing records check करना।</li>
+<li>Purchase/sales cut-off के साथ inventory movements examine करना।</li>
+</ul>
+
+<h3>C. Receivables</h3>
+<ul>
+<li>Debtor ledger examine करना।</li>
+<li>External confirmation जहाँ appropriate हो।</li>
+<li>Subsequent receipts check करना।</li>
+<li>Old/outstanding balances और doubtful debts पर review करना।</li>
+</ul>
+</div>
+</section>
+
+<section id="liabilities">
+<h2>11. Audit of Liabilities</h2>
+<div class="card">
+<p>Liabilities की audit का मुख्य focus यह verify करना है कि liabilities properly recorded हैं और कोई material liability books से omitted या misstated नहीं है।</p>
+
+<h3>Audit Procedures</h3>
+<ul>
+<li>Loan agreements और bank confirmations examine करना।</li>
+<li>Trade creditors के balances को ledger और supporting documents से verify करना।</li>
+<li>Supplier statements से reconciliation जहाँ appropriate हो।</li>
+<li>Outstanding expenses और accruals की completeness test करना।</li>
+<li>Subsequent payments से unrecorded liabilities identify करना।</li>
+<li>Legal claims और contingencies के संबंध में relevant evidence obtain करना।</li>
+<li>Current और non-current classification check करना।</li>
+<li>Interest और other finance charges की calculation verify करना।</li>
+</ul>
+
+<div class="example"><strong>Example:</strong> Year-end के बाद company ने ₹3,00,000 का supplier invoice pay किया, लेकिन year-end books में liability record नहीं थी। Auditor subsequent payment और invoice देखकर possible unrecorded liability investigate कर सकता है।</div>
+
+<div class="note"><strong>Key Point:</strong> Liabilities में <strong>completeness</strong> विशेष रूप से important है, क्योंकि omitted liabilities profit और financial position को materially distort कर सकती हैं।</div>
+</div>
+</section>
+
+<section id="summary">
+<h2>12. Quick Revision</h2>
+<div class="card">
+<table>
+<tr><th>Topic</th><th>One-line Revision</th></tr>
+<tr><td>Audit Sampling</td><td>Population के selected items को test करके conclusion बनाना।</td></tr>
+<tr><td>Statistical Sampling</td><td>Probability/statistical methods पर आधारित sampling.</td></tr>
+<tr><td>Non-Statistical Sampling</td><td>Auditor के professional judgment पर आधारित sampling.</td></tr>
+<tr><td>Test Checking</td><td>सभी transactions की जगह selected transactions की detailed checking.</td></tr>
+<tr><td>Analytical Review</td><td>Trends, ratios और relationships के द्वारा unusual matters identify करना।</td></tr>
+<tr><td>Audit of Payments</td><td>Payment की authenticity, authorization, support और accounting verify करना।</td></tr>
+<tr><td>Audit of Receipts</td><td>Receipts की completeness, genuineness और recording verify करना।</td></tr>
+<tr><td>Audit of Purchases</td><td>Order, GRN, invoice, quantity, price, authorization और cut-off check करना।</td></tr>
+<tr><td>Audit of Sales</td><td>Order, dispatch, invoice, customer balance और sales cut-off verify करना।</td></tr>
+<tr><td>Audit of Assets</td><td>Existence, rights, completeness, valuation और presentation जैसे assertions address करना।</td></tr>
+<tr><td>Audit of Liabilities</td><td>Liabilities की completeness, accuracy, classification और disclosure verify करना।</td></tr>
+</table>
+<div class="note"><strong>Exam Focus:</strong> किसी भी audit procedure answer में “documents + authorization + accounting records + physical/independent evidence + cut-off + unusual items” जैसे relevant points को context के अनुसार explain करें।</div>
+</div>
+</section>
+
+<footer><strong>BK LearnX</strong> · Chapter 8 & 9 · Auditing Notes · PGDCA</footer>
+</main>
+</div>
+</body>
+</html>

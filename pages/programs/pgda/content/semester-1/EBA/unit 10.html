@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BK LearnX | Company Audit</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--text:#182033;--muted:#637084;--primary:#3157d5;--border:#e3e8f1;--note:#eef3ff;--good:#eaf8f0;--warn:#fff5df}
+*{box-sizing:border-box;scroll-behavior:smooth}
+body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.72}
+header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px 22px}
+.brand{font-size:21px;font-weight:800;color:var(--primary)}.sub{font-size:13px;color:var(--muted)}
+.layout{display:grid;grid-template-columns:285px 1fr;max-width:1500px;margin:auto}
+aside{position:sticky;top:68px;height:calc(100vh - 68px);overflow:auto;background:#fff;border-right:1px solid var(--border);padding:22px 15px}
+aside h3{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin:8px 10px}
+nav a{display:block;text-decoration:none;color:#364154;padding:9px 11px;border-radius:9px;margin:3px 0;font-size:14px}nav a:hover{background:var(--note);color:var(--primary)}
+main{padding:34px;max-width:1150px}
+.hero{background:linear-gradient(135deg,#182d75,#5b3bd1);color:#fff;border-radius:22px;padding:38px;margin-bottom:30px;box-shadow:0 15px 40px rgba(49,87,213,.18)}
+.hero h1{font-size:36px;line-height:1.2;margin:9px 0}.hero p{opacity:.9;margin:0}
+.badge{display:inline-block;background:rgba(255,255,255,.16);padding:5px 10px;border-radius:20px;font-size:12px;font-weight:700}
+section{scroll-margin-top:90px;margin-bottom:34px}.card{background:var(--card);border:1px solid var(--border);border-radius:17px;padding:25px;margin:14px 0;box-shadow:0 5px 18px rgba(20,30,60,.04)}
+h2{font-size:25px;margin:0 0 14px}h3{font-size:19px;margin:19px 0 8px}
+table{width:100%;border-collapse:collapse;margin:17px 0;font-size:14px;background:#fff}th,td{border:1px solid var(--border);padding:11px;vertical-align:top;text-align:left}th{background:#f0f3fa}
+.note,.example,.warning{padding:15px 17px;border-radius:12px;margin:15px 0}.note{background:var(--note);border-left:4px solid var(--primary)}.example{background:var(--good);border-left:4px solid #2d9b61}.warning{background:var(--warn);border-left:4px solid #d99b20}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:15px 0}.flow span{padding:8px 12px;background:#eef2ff;border:1px solid #dbe2ff;border-radius:9px;font-size:13px}
+footer{text-align:center;padding:28px;color:var(--muted);border-top:1px solid var(--border)}
+.menu{display:none}
+@media(max-width:850px){
+ .layout{display:block}aside{position:fixed;left:-300px;top:0;width:285px;height:100vh;z-index:50;transition:.25s;box-shadow:8px 0 25px rgba(0,0,0,.12)}aside.open{left:0}
+ main{padding:20px 14px}header{padding:12px 14px}.menu{display:inline-block;margin-right:10px;border:0;background:#eef2ff;border-radius:8px;padding:7px 10px}
+ .hero{padding:27px 21px}.hero h1{font-size:29px}table{font-size:13px;display:block;overflow-x:auto}
+}
+</style>
+</head>
+<body>
+<header>
+<button class="menu" onclick="document.querySelector('aside').classList.toggle('open')">☰</button>
+<span class="brand">BK LearnX</span><span class="sub"> · PGDCA Accounting & Auditing Notes</span>
+</header>
+
+<div class="layout">
+<aside>
+<h3>Chapter 10</h3>
+<nav>
+<a href="#intro">1. Company Audit</a>
+<a href="#shares">2. Audit of Shares</a>
+<a href="#qualification">3. Qualification & Disqualification</a>
+<a href="#appointment">4. Appointment of Auditors</a>
+<a href="#removal">5. Removal of Auditors</a>
+<a href="#legal">6. Legal Position</a>
+<a href="#powers">7. Powers of Auditors</a>
+<a href="#duties">8. Duties of Auditors</a>
+<a href="#branch">9. Branch Audit</a>
+<a href="#joint">10. Joint Audit</a>
+<a href="#special">11. Special Audit</a>
+<a href="#reporting">12. Reporting Requirements</a>
+<a href="#central">13. Central Government & Special Audit</a>
+<a href="#summary">14. Quick Revision</a>
+</nav>
+</aside>
+
+<main>
+<div class="hero">
+<span class="badge">CHAPTER 10</span>
+<h1>Company Audit</h1>
+<p>Company audit में auditor की qualification, appointment, removal, powers, duties, branch/joint/special audit तथा reporting requirements का exam-oriented अध्ययन।</p>
+</div>
+
+<section id="intro">
+<h2>1. Company Audit</h2>
+<div class="card">
+<p><strong>Company Audit</strong> का अर्थ company के books of accounts, financial statements और relevant records की independent examination है, ताकि auditor उचित audit evidence के आधार पर अपनी report/opinion दे सके।</p>
+<p>Company audit में auditor financial statements को applicable legal requirements और relevant auditing principles के अनुसार examine करता है।</p>
+<div class="note"><strong>Syllabus Note:</strong> आपके syllabus में <strong>Companies Act, 1956</strong> का reference दिया गया है। यह chapter उसी historical syllabus framing को ध्यान में रखकर तैयार किया गया है। Current company law में Companies Act, 2013 लागू है; इसलिए practical/current compliance के लिए latest law और rules देखे जाने चाहिए।</div>
+</div>
+</section>
+
+<section id="shares">
+<h2>2. Audit of Shares</h2>
+<div class="card">
+<p>Shares की audit में auditor यह verify करता है कि issue, allotment, calls, transfer, forfeiture और related accounting entries properly authorised और correctly recorded हैं।</p>
+
+<h3>मुख्य Audit Objectives</h3>
+<ul>
+<li>Share capital वास्तव में authorised और issued terms के अनुसार है या नहीं।</li>
+<li>Shares का issue proper authority और applicable legal requirements के अनुसार हुआ है या नहीं।</li>
+<li>Application money, allotment money और calls का proper accounting हुआ है या नहीं।</li>
+<li>Calls in arrears और calls in advance का सही treatment हुआ है या नहीं।</li>
+<li>Share forfeiture और reissue की entries सही हैं या नहीं।</li>
+<li>Share transfers properly authorised और recorded हैं या नहीं।</li>
+<li>Share register और ledger balances में agreement है या नहीं।</li>
+</ul>
+
+<h3>Important Documents</h3>
+<table>
+<tr><th>Document/Record</th><th>Audit Purpose</th></tr>
+<tr><td>Memorandum & Articles</td><td>Share capital और issue-related authority/conditions समझना।</td></tr>
+<tr><td>Board/Shareholder resolutions</td><td>Issue/allotment की approval verify करना।</td></tr>
+<tr><td>Application & Allotment records</td><td>Applications और allotments check करना।</td></tr>
+<tr><td>Share Register</td><td>Members/shareholding records verify करना।</td></tr>
+<tr><td>Bank records</td><td>Share money received verify करना।</td></tr>
+<tr><td>Share certificates</td><td>Issue और ownership records से agreement check करना।</td></tr>
+</table>
+</div>
+</section>
+
+<section id="qualification">
+<h2>3. Qualification and Disqualification of Auditors</h2>
+<div class="card">
+<h3>Qualification</h3>
+<p>Company auditor के लिए applicable company law में prescribed professional qualification और eligibility requirements होती हैं। Historical Companies Act, 1956 framework में auditor के qualification provisions का विशेष महत्व था।</p>
+
+<h3>Disqualification</h3>
+<p>Disqualification का उद्देश्य auditor की <strong>independence</strong> बनाए रखना है। ऐसे व्यक्ति को auditor नहीं बनाया जाना चाहिए जिसकी company के साथ prohibited financial, employment या other relationship हो।</p>
+
+<table>
+<tr><th>Disqualification का सामान्य प्रकार</th><th>Reason</th></tr>
+<tr><td>Company का officer/employee होना</td><td>Independence पर प्रभाव पड़ सकता है।</td></tr>
+<tr><td>Financial interest/interest in company</td><td>Personal interest audit objectivity को प्रभावित कर सकता है।</td></tr>
+<tr><td>Prohibited indebtedness/guarantee relationships</td><td>Economic dependence का risk.</td></tr>
+<tr><td>Specified business relationship</td><td>Conflict of interest पैदा हो सकता है।</td></tr>
+<tr><td>Statutory restrictions के अंतर्गत आने वाला व्यक्ति</td><td>Law auditor appointment को prohibit कर सकता है।</td></tr>
+</table>
+
+<div class="warning"><strong>Exam Point:</strong> Exact disqualification clauses जिस Act/version से प्रश्न पूछा गया है, उसी statutory provision के अनुसार लिखें। Companies Act, 1956 और Companies Act, 2013 के provisions को आपस में mix न करें।</div>
+</div>
+</section>
+
+<section id="appointment">
+<h2>4. Appointment of Auditors</h2>
+<div class="card">
+<p>Company auditor की appointment company law में prescribed procedure के अनुसार होती है। Auditor appointment में eligibility, consent, independence और statutory requirements महत्वपूर्ण होते हैं।</p>
+
+<h3>General Appointment Process</h3>
+<div class="flow"><span>Eligible Auditor</span>→<span>Consent/Eligibility</span>→<span>Competent Authority</span>→<span>Appointment</span>→<span>Notice/Records</span>→<span>Audit</span></div>
+
+<h3>Appointment के Important Points</h3>
+<ul>
+<li>Auditor legally eligible होना चाहिए।</li>
+<li>Required consent/eligibility confirmation obtain की जाती है।</li>
+<li>Appointment competent corporate authority द्वारा prescribed manner में की जाती है।</li>
+<li>Auditor को appointment के बाद relevant audit responsibilities perform करनी होती हैं।</li>
+<li>Appointment और related statutory filings/records applicable law के अनुसार maintain किए जाते हैं।</li>
+</ul>
+</div>
+</section>
+
+<section id="removal">
+<h2>5. Removal of Auditors</h2>
+<div class="card">
+<p>Auditor को केवल casual administrative decision से remove नहीं किया जाना चाहिए। Auditor की independence protect करने के लिए removal के लिए prescribed legal procedure follow करना आवश्यक होता है।</p>
+
+<h3>Removal के सामान्य Principles</h3>
+<ul>
+<li>Competent authority द्वारा prescribed procedure follow किया जाता है।</li>
+<li>जहाँ law आवश्यक करे, auditor को hearing/representation का opportunity दिया जाता है।</li>
+<li>Regulatory/statutory approval जहाँ required हो, obtain किया जाता है।</li>
+<li>Removal और resignation को एक जैसा नहीं समझना चाहिए।</li>
+</ul>
+
+<table>
+<tr><th>Removal</th><th>Resignation</th></tr>
+<tr><td>Company/competent authority द्वारा prescribed legal process से auditor को पद से हटाना।</td><td>Auditor स्वयं office छोड़ता है, subject to applicable legal procedure.</td></tr>
+</table>
+
+<div class="note"><strong>Historical syllabus context:</strong> Companies Act, 1956 के under auditor removal से संबंधित statutory procedure exam में उसी Act के provisions के अनुसार explain किया जाता था।</div>
+</div>
+</section>
+
+<section id="legal">
+<h2>6. Legal Position of Auditors</h2>
+<div class="card">
+<p>Company auditor की legal position केवल company के employee जैसी नहीं होती। Auditor एक <strong>independent professional</strong> के रूप में shareholders और applicable law के प्रति statutory responsibility निभाता है।</p>
+
+<h3>Auditor की प्रमुख Legal Relationships</h3>
+<table>
+<tr><th>Relationship</th><th>Meaning</th></tr>
+<tr><td>Company</td><td>Company auditor को appoint करती है और audit engagement/statutory relationship बनता है।</td></tr>
+<tr><td>Shareholders/Members</td><td>Auditor financial statements पर independent report देता है जिससे members को information मिलती है।</td></tr>
+<tr><td>Management</td><td>Management records और information provide करता है; auditor management का substitute नहीं होता।</td></tr>
+<tr><td>Law/Regulator</td><td>Auditor को statutory requirements और professional responsibilities comply करनी होती हैं।</td></tr>
+</table>
+
+<div class="note"><strong>Key idea:</strong> Auditor का primary role management द्वारा बनाए गए financial statements पर independent assurance/opinion provide करना है; accounts बनाना management की responsibility है।</div>
+</div>
+</section>
+
+<section id="powers">
+<h2>7. Powers of Auditors</h2>
+<div class="card">
+<p>Effective audit के लिए auditor को law द्वारा दिए गए आवश्यक rights/powers का उपयोग करने की आवश्यकता होती है।</p>
+
+<h3>मुख्य Powers/Rights</h3>
+<ul>
+<li>Company की books of accounts और relevant records को inspect करना।</li>
+<li>Audit के लिए आवश्यक information और explanations मांगना।</li>
+<li>Relevant supporting documents examine करना।</li>
+<li>Meetings में prescribed manner में attend/participate करना जहाँ applicable हो।</li>
+<li>Branch records के संबंध में necessary information प्राप्त करना।</li>
+<li>Audit report में required matters को appropriately report करना।</li>
+</ul>
+
+<div class="example"><strong>Example:</strong> यदि auditor को कोई large unusual payment मिलता है, तो वह invoice, approval, agreement, bank record और management explanation मांग सकता है ताकि transaction को verify किया जा सके।</div>
+</div>
+</section>
+
+<section id="duties">
+<h2>8. Duties of Auditors</h2>
+<div class="card">
+<h3>मुख्य Duties</h3>
+<ol>
+<li>Books और relevant records का proper examination करना।</li>
+<li>Financial statements पर independent audit opinion/report देना।</li>
+<li>Relevant audit evidence obtain करना।</li>
+<li>Errors, irregularities और material misstatements के indications पर appropriate procedures करना।</li>
+<li>Management से आवश्यक information और explanations obtain करना।</li>
+<li>Applicable statutory reporting requirements comply करना।</li>
+<li>Audit work को properly document करना।</li>
+<li>Professional independence, objectivity और due care maintain करना।</li>
+<li>जहाँ law/reporting framework आवश्यक करे, specified matters को report करना।</li>
+</ol>
+
+<div class="warning"><strong>Important:</strong> Auditor का काम हर प्रकार के fraud को guarantee के साथ detect करना नहीं है। Audit reasonable assurance provide करता है और auditor risk-based procedures तथा professional judgment का उपयोग करता है।</div>
+</div>
+</section>
+
+<section id="branch">
+<h2>9. Branch Audit</h2>
+<div class="card">
+<p><strong>Branch Audit</strong> का अर्थ company की branch के books, transactions और financial information की audit करना है। Branch audit centrally appointed auditor या applicable legal arrangement के अनुसार branch auditor द्वारा किया जा सकता है।</p>
+
+<h3>Branch Auditor के Audit Areas</h3>
+<ul>
+<li>Branch cash और bank transactions</li>
+<li>Sales और purchases</li>
+<li>Branch expenses</li>
+<li>Inventory/stock</li>
+<li>Receivables और collections</li>
+<li>Fixed assets</li>
+<li>Inter-branch transactions</li>
+<li>Head office adjustments</li>
+</ul>
+
+<h3>Branch Audit का Purpose</h3>
+<p>Branch transactions की accuracy, completeness, existence और proper accounting verify करना तथा head office financial reporting के लिए reliable information provide करना।</p>
+</div>
+</section>
+
+<section id="joint">
+<h2>10. Joint Audit</h2>
+<div class="card">
+<p><strong>Joint Audit</strong> में एक ही company के audit को दो या अधिक auditors द्वारा jointly perform किया जाता है। Auditors audit work को divide कर सकते हैं और final reporting में applicable responsibilities share करते हैं।</p>
+
+<h3>Joint Audit में Work Division</h3>
+<div class="flow"><span>Audit Planning</span>→<span>Work Allocation</span>→<span>Independent Testing</span>→<span>Cross Review</span>→<span>Common Conclusions</span>→<span>Report</span></div>
+
+<h3>Important Points</h3>
+<ul>
+<li>Work allocation clearly documented होना चाहिए।</li>
+<li>Material/common matters पर joint discussion आवश्यक हो सकती है।</li>
+<li>Each auditor को allocated area के audit evidence और conclusions पर proper responsibility निभानी होती है।</li>
+<li>Final report में applicable law और professional standards के अनुसार responsibility तय होती है।</li>
+</ul>
+</div>
+</section>
+
+<section id="special">
+<h2>11. Special Audit</h2>
+<div class="card">
+<p><strong>Special Audit</strong> एक specific purpose या special circumstances के लिए कराया जाने वाला audit है। इसका scope ordinary/general audit से अधिक focused हो सकता है।</p>
+
+<h3>Special Audit की आवश्यकता कब हो सकती है?</h3>
+<ul>
+<li>Financial irregularities की suspicion</li>
+<li>Management या financial affairs की specific investigation</li>
+<li>Special statutory/regulatory direction</li>
+<li>Public interest या exceptional circumstances</li>
+<li>Company के financial affairs के किसी specific aspect की detailed examination</li>
+</ul>
+
+<div class="note"><strong>Scope:</strong> Special audit में auditor को जिस matter/purpose के लिए appoint किया गया है, उसके अनुसार specific records, transactions और circumstances examine किए जाते हैं।</div>
+</div>
+</section>
+
+<section id="reporting">
+<h2>12. Reporting Requirements under the Companies Act, 1956</h2>
+<div class="card">
+<p>Companies Act, 1956 के historical framework में auditor की report company audit का महत्वपूर्ण statutory output थी। Auditor को applicable statutory requirements के अनुसार financial statements पर report/opinion देना होता था और specified matters को report करना पड़ता था।</p>
+
+<h3>Audit Report में सामान्यतः Address किए जाने वाले Areas</h3>
+<ul>
+<li>Books और accounts की examination</li>
+<li>Required information और explanations प्राप्त हुए या नहीं</li>
+<li>Proper books maintained हैं या नहीं</li>
+<li>Financial statements books/records से agree करते हैं या नहीं</li>
+<li>Relevant accounting presentation statutory requirements के अनुरूप है या नहीं</li>
+<li>Specified qualifications, adverse matters या observations जहाँ applicable हों</li>
+<li>Auditor की opinion/conclusion</li>
+</ul>
+
+<div class="warning"><strong>Historical-law caution:</strong> Companies Act, 1956 की reporting provisions को current Companies Act, 2013 provisions के साथ merge करके न लिखें। Exam में यदि specifically “Companies Act, 1956” पूछा गया है तो prescribed historical syllabus framework follow करें।</div>
+</div>
+</section>
+
+<section id="central">
+<h2>13. Power of Central Government to Direct Special Audit</h2>
+<div class="card">
+<p>Companies Act, 1956 के historical syllabus context में Central Government को specified circumstances में company के affairs की special audit कराने की statutory power से संबंधित provision दिया गया था।</p>
+
+<h3>Concept</h3>
+<p>जब company के financial affairs या management के संबंध में ऐसी परिस्थितियाँ हों जिनमें detailed examination आवश्यक हो, तो statutory framework के अनुसार Central Government special audit/directive का mechanism use कर सकती थी।</p>
+
+<h3>Special Audit में Focus</h3>
+<ul>
+<li>Company के books और financial records</li>
+<li>Specific transactions</li>
+<li>Management of company के financial affairs</li>
+<li>Irregularities या suspected misuse</li>
+<li>Public interest से जुड़े relevant matters</li>
+</ul>
+
+<h3>Special Auditor की Role</h3>
+<ol>
+<li>Specified scope के अनुसार records examine करना।</li>
+<li>Relevant information और explanations obtain करना।</li>
+<li>Transactions और financial affairs का detailed analysis करना।</li>
+<li>Findings को properly document करना।</li>
+<li>Prescribed authority को report submit करना।</li>
+</ol>
+
+<div class="note"><strong>Exam wording:</strong> “Central Government द्वारा special audit का उद्देश्य company के financial affairs की विशेष परिस्थितियों में detailed और independent examination कराना है।”</div>
+</div>
+</section>
+
+<section id="summary">
+<h2>14. Quick Revision</h2>
+<div class="card">
+<table>
+<tr><th>Topic</th><th>One-line Revision</th></tr>
+<tr><td>Company Audit</td><td>Company के financial statements, books और records की independent examination.</td></tr>
+<tr><td>Audit of Shares</td><td>Issue, allotment, calls, transfer, forfeiture और share capital records की verification.</td></tr>
+<tr><td>Qualification</td><td>Auditor को prescribed professional/legal eligibility satisfy करनी होती है।</td></tr>
+<tr><td>Disqualification</td><td>Independence/conflict of interest को protect करने के लिए specified persons को auditor बनने से रोका जाता है।</td></tr>
+<tr><td>Appointment</td><td>Auditor की appointment prescribed company-law procedure के अनुसार होती है।</td></tr>
+<tr><td>Removal</td><td>Auditor removal के लिए prescribed statutory procedure follow करना होता है।</td></tr>
+<tr><td>Legal Position</td><td>Auditor independent professional/statutory role निभाता है।</td></tr>
+<tr><td>Powers</td><td>Books, records और information/explanations access करने के statutory rights.</td></tr>
+<tr><td>Duties</td><td>Evidence obtain करना, examination करना और required audit report देना।</td></tr>
+<tr><td>Branch Audit</td><td>Branch के transactions और records की audit.</td></tr>
+<tr><td>Joint Audit</td><td>एक company का audit दो या अधिक auditors jointly perform करते हैं।</td></tr>
+<tr><td>Special Audit</td><td>Specific circumstances/purpose के लिए focused audit.</td></tr>
+<tr><td>Reporting</td><td>Auditor को applicable statutory reporting requirements के अनुसार report देना होता है।</td></tr>
+<tr><td>Central Government Special Audit</td><td>Historical Companies Act, 1956 framework में specified circumstances में special audit direct करने की power का concept.</td></tr>
+</table>
+
+<div class="note"><strong>Exam Focus:</strong> Long answer में Company Audit की definition के बाद auditor की <strong>qualification → appointment → removal → legal position → powers → duties → branch/joint/special audit → reporting → Central Government special audit</strong> क्रम में answer लिखना आसान रहेगा।</div>
+</div>
+</section>
+
+<footer><strong>BK LearnX</strong> · Chapter 10 · Company Audit · PGDCA Notes</footer>
+</main>
+</div>
+</body>
+</html>

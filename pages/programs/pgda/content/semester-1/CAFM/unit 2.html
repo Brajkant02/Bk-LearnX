@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BK LearnX | Material and Material Control</title>
+<style>
+:root{
+ --bg:#f6f8fc;--card:#fff;--text:#172033;--muted:#64748b;
+ --primary:#2563eb;--primary2:#7c3aed;--border:#e2e8f0;
+ --soft:#eff6ff;--green:#ecfdf5;--yellow:#fffbeb;--red:#fef2f2;
+}
+*{box-sizing:border-box;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,"Noto Sans Devanagari",sans-serif;line-height:1.75}
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.nav{max-width:1200px;margin:auto;padding:14px 20px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:22px;font-weight:800;color:var(--primary)}
+.badge{padding:5px 11px;border-radius:20px;background:#eef2ff;color:#4338ca;font-size:12px;font-weight:700}
+.layout{max-width:1200px;margin:auto;display:grid;grid-template-columns:275px 1fr;gap:24px;padding:24px 20px}
+aside{position:sticky;top:78px;height:calc(100vh - 100px);overflow:auto;background:var(--card);border:1px solid var(--border);border-radius:18px;padding:18px}
+aside h3{margin-top:0}
+aside a{display:block;text-decoration:none;color:#475569;padding:8px 10px;border-radius:9px;font-size:14px}
+aside a:hover{background:var(--soft);color:var(--primary)}
+main{min-width:0}
+.hero{background:linear-gradient(135deg,#172554,#4c1d95);color:#fff;border-radius:24px;padding:34px;margin-bottom:22px}
+.hero h1{font-size:clamp(28px,5vw,46px);line-height:1.15;margin:0 0 12px}
+.hero p{margin:0;color:#e0e7ff}
+section{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:26px;margin-bottom:20px}
+h2{margin-top:0;font-size:27px}
+h3{font-size:20px}
+.cardgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+.info{padding:16px;border-radius:13px;background:var(--soft);border-left:4px solid var(--primary);margin:15px 0}
+.green{background:var(--green);border-left-color:#10b981}
+.yellow{background:var(--yellow);border-left-color:#f59e0b}
+.red{background:var(--red);border-left-color:#ef4444}
+table{width:100%;border-collapse:collapse;margin:16px 0;background:#fff}
+th,td{border:1px solid var(--border);padding:11px;text-align:left;vertical-align:top}
+th{background:#f1f5f9}
+.formula{background:#111827;color:#fff;padding:18px;border-radius:14px;font-size:17px;overflow:auto;margin:15px 0}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:18px 0}
+.flow span{padding:9px 13px;background:#eef2ff;color:#3730a3;border-radius:10px;font-weight:700}
+.arrow{color:var(--primary);font-weight:bold}
+.entry{background:#f8fafc;border:1px solid var(--border);border-radius:13px;padding:15px;margin:15px 0;font-family:Georgia,serif}
+.note{font-size:13px;color:var(--muted)}
+footer{text-align:center;padding:25px;color:var(--muted)}
+@media(max-width:850px){
+ .layout{grid-template-columns:1fr}
+ aside{position:relative;top:0;height:auto}
+ .cardgrid{grid-template-columns:1fr}
+ section{padding:20px}
+ table{display:block;overflow-x:auto;white-space:nowrap;font-size:13px}
+}
+</style>
+</head>
+<body>
+<header><div class="nav"><div class="logo">BK LearnX</div><div class="badge">Cost Accounting • Materials</div></div></header>
+
+<div class="layout">
+<aside>
+<h3>📚 Contents</h3>
+<a href="#intro">Introduction</a>
+<a href="#procurement">1. Procurement Procedure</a>
+<a href="#stores">2. Store Procedure</a>
+<a href="#documents">3. Store Documentation</a>
+<a href="#receipt">4. Receipt of Stock</a>
+<a href="#issue">5. Issue of Stock</a>
+<a href="#verification">6. Stock Verification</a>
+<a href="#control">7. Inventory Control</a>
+<a href="#forms">8. Forms & Functions of Inventory</a>
+<a href="#levels">9. Inventory Levels</a>
+<a href="#eoq">10. EOQ</a>
+<a href="#abc">11. ABC Classification</a>
+<a href="#stocktaking">12. Stocktaking</a>
+<a href="#perpetual">13. Perpetual Inventory</a>
+<a href="#consumption">14. Material Consumption</a>
+<a href="#identification">15. Product & Cost Centre Identification</a>
+<a href="#entries">16. Financial Account Entries</a>
+<a href="#monitoring">17. Consumption Monitoring</a>
+<a href="#accounting">18. Inventory Accounting Process</a>
+<a href="#numericals">Solved Numericals</a>
+<a href="#revision">Quick Revision</a>
+</aside>
+
+<main>
+<div class="hero">
+<h1>Material and Material Control</h1>
+<p>PGDCA / Cost Accounting Notes — Procurement, Stores, Inventory Control, Material Consumption & Inventory Accounting</p>
+</div>
+
+<section id="intro">
+<h2>📌 Introduction</h2>
+<p><strong>Material Cost</strong> किसी product या service के लिए उपयोग होने वाली materials की cost है। Cost Accounting में material की purchase से लेकर receipt, storage, issue, consumption और accounting तक प्रत्येक stage का proper control आवश्यक है।</p>
+<div class="info"><strong>Complete Flow:</strong> Purchase → Receipt → Inspection → Storage → Issue → Consumption → Valuation/Recording → Control → Reconciliation</div>
+<p><strong>Inventory Control</strong> का उद्देश्य materials को सही quantity, सही समय और उचित cost पर उपलब्ध रखना तथा unnecessary investment, shortage, wastage और losses को control करना है।</p>
+</section>
+
+<section id="procurement">
+<h2>1. Procurement Procedure</h2>
+<p><strong>Procurement Procedure</strong> वह systematic process है जिसके द्वारा organisation अपनी required materials को suitable supplier से purchase करती है।</p>
+<div class="flow">
+<span>Material Requirement</span><i class="arrow">→</i><span>Purchase Requisition</span><i class="arrow">→</i><span>Supplier Enquiry</span><i class="arrow">→</i><span>Quotation</span><i class="arrow">→</i><span>Supplier Selection</span><i class="arrow">→</i><span>Purchase Order</span>
+</div>
+<ol>
+<li>Department द्वारा material requirement identify की जाती है।</li>
+<li>Purchase Requisition तैयार की जाती है।</li>
+<li>Suitable suppliers से quotations/enquiries ली जाती हैं।</li>
+<li>Price, quality, delivery और other terms की तुलना की जाती है।</li>
+<li>Suitable supplier select किया जाता है।</li>
+<li>Purchase Order issue किया जाता है।</li>
+<li>Material की delivery receive करके documents verify किए जाते हैं।</li>
+</ol>
+</section>
+
+<section id="stores">
+<h2>2. Store Procedure</h2>
+<p><strong>Store Procedure</strong> में purchased materials की receipt, inspection, storage, preservation, issue और record maintenance की activities शामिल होती हैं।</p>
+<table>
+<tr><th>Stage</th><th>मुख्य कार्य</th></tr>
+<tr><td>Receipt</td><td>Material receive करना और quantity/document verify करना।</td></tr>
+<tr><td>Inspection</td><td>Quantity और quality की checking।</td></tr>
+<tr><td>Storage</td><td>Material को proper location पर सुरक्षित रखना।</td></tr>
+<tr><td>Issue</td><td>Authorised requisition के आधार पर material issue करना।</td></tr>
+<tr><td>Record</td><td>Stock records को update करना।</td></tr>
+</table>
+</section>
+
+<section id="documents">
+<h2>3. Store Documentation</h2>
+<p>Material movement को properly control करने के लिए प्रत्येक important transaction का documentary record रखा जाता है।</p>
+<table>
+<tr><th>Document</th><th>Purpose</th></tr>
+<tr><td>Purchase Requisition</td><td>Material purchase की internal requirement बताता है।</td></tr>
+<tr><td>Purchase Order</td><td>Supplier को purchase का authorised order देता है।</td></tr>
+<tr><td>Goods Received Note (GRN)</td><td>Received material की quantity/details record करता है।</td></tr>
+<tr><td>Inspection Report</td><td>Received material की quality/quantity inspection record करता है।</td></tr>
+<tr><td>Material Requisition Note</td><td>Department द्वारा material की authorised demand।</td></tr>
+<tr><td>Material Issue Note</td><td>Stores से material issue होने का record।</td></tr>
+<tr><td>Bin Card</td><td>Store में रखे individual material का quantity movement record।</td></tr>
+<tr><td>Stores Ledger</td><td>Material की quantity और value का detailed record।</td></tr>
+<tr><td>Material Return Note</td><td>Unused/extra material को stores में वापस करने का record।</td></tr>
+</table>
+</section>
+
+<section id="receipt">
+<h2>4. Receipt of Stock</h2>
+<p>जब material supplier से organisation के stores में आता है, तो उसे <strong>receipt of stock</strong> कहा जाता है। Receipt के समय quantity, description, purchase order और condition की verification की जाती है।</p>
+<div class="flow">
+<span>Delivery</span><i class="arrow">→</i><span>Document Check</span><i class="arrow">→</i><span>Quantity Check</span><i class="arrow">→</i><span>Inspection</span><i class="arrow">→</i><span>GRN</span><i class="arrow">→</i><span>Storage</span>
+</div>
+</section>
+
+<section id="issue">
+<h2>5. Issue of Stock</h2>
+<p>Stores से production या अन्य authorised department को material देना <strong>issue of stock</strong> कहलाता है। Material issue generally authorised requisition के आधार पर किया जाता है।</p>
+<ol>
+<li>Department material requirement भेजता है।</li>
+<li>Authorised Material Requisition verify की जाती है।</li>
+<li>Storekeeper material की availability check करता है।</li>
+<li>Material issue किया जाता है।</li>
+<li>Bin Card और Stores Ledger में record update किया जाता है।</li>
+</ol>
+</section>
+
+<section id="verification">
+<h2>6. Stock Verification</h2>
+<p><strong>Stock Verification</strong> का अर्थ physical stock को records में दिखाए गए stock से compare करना है। इसका उद्देश्य shortage, excess, damage, pilferage और recording errors identify करना है।</p>
+<table>
+<tr><th>Method</th><th>Meaning</th></tr>
+<tr><td>Periodic Verification</td><td>एक निश्चित period के बाद physical stock check किया जाता है।</td></tr>
+<tr><td>Continuous Verification</td><td>Stock को year के दौरान अलग-अलग intervals पर continuously verify किया जाता है।</td></tr>
+</table>
+<div class="info yellow"><strong>Basic Check:</strong> Physical Quantity ↔ Book/Record Quantity → Difference identify → Reason investigate → Necessary adjustment.</div>
+</section>
+
+<section id="control">
+<h2>7. Inventory Control</h2>
+<p><strong>Inventory Control</strong> वह system है जिसके द्वारा inventory की quantity, movement, storage और investment को controlled रखा जाता है ताकि production smoothly चलता रहे और unnecessary stock avoid हो।</p>
+<h3>Objectives</h3>
+<div class="cardgrid">
+<div class="info">Production को required material समय पर उपलब्ध कराना।</div>
+<div class="info">Over-stocking और under-stocking को control करना।</div>
+<div class="info">Inventory investment को reasonable level पर रखना।</div>
+<div class="info">Wastage, deterioration और losses कम करना।</div>
+<div class="info">Material movement और records पर control रखना।</div>
+<div class="info">Shortage के कारण production interruption को रोकना।</div>
+</div>
+</section>
+
+<section id="forms">
+<h2>8. Forms & Functions of Inventory</h2>
+<h3>Forms / Types of Inventory</h3>
+<table>
+<tr><th>Form</th><th>Meaning</th></tr>
+<tr><td>Raw Materials</td><td>Production में input के रूप में इस्तेमाल होने वाली materials।</td></tr>
+<tr><td>Work-in-Progress</td><td>Production process में partially completed goods।</td></tr>
+<tr><td>Finished Goods</td><td>Production complete हो चुके goods।</td></tr>
+<tr><td>Stores & Consumables</td><td>Production/support activities में उपयोग होने वाली stores items और consumables।</td></tr>
+</table>
+<h3>Functions of Inventory</h3>
+<ul>
+<li>Production continuity बनाए रखना।</li>
+<li>Material supply में uncertainty का सामना करना।</li>
+<li>Purchase और production scheduling में सहायता करना।</li>
+<li>Demand और supply के बीच balance बनाना।</li>
+<li>Suitable stock availability maintain करना।</li>
+</ul>
+</section>
+
+<section id="levels">
+<h2>9. Inventory Levels</h2>
+<p>Inventory levels stock को controlled range में रखने में सहायता करते हैं। Important levels हैं <strong>Minimum Level, Maximum Level और Re-order Level</strong>.</p>
+
+<h3>Minimum Level</h3>
+<p>यह वह lowest practical stock level है जिसके नीचे stock जाने पर shortage का risk बढ़ जाता है।</p>
+<div class="formula">Minimum Level = Re-order Level − (Normal Consumption × Normal Re-order Period)</div>
+
+<h3>Maximum Level</h3>
+<p>यह वह maximum quantity है जिसे सामान्य परिस्थितियों में stock में रखना उचित माना जाता है।</p>
+<div class="formula">Maximum Level = Re-order Level + Re-order Quantity − (Minimum Consumption × Minimum Re-order Period)</div>
+
+<h3>Re-order Level</h3>
+<p>यह वह stock level है जिस पर fresh order place किया जाना चाहिए ताकि new supply आने तक material shortage न हो।</p>
+<div class="formula">Re-order Level = Maximum Consumption × Maximum Re-order Period</div>
+
+<div class="info green"><strong>Important:</strong> अलग textbooks में inventory-level formulas की notation या assumptions थोड़ी अलग मिल सकती हैं। Numerical में दिए गए data और prescribed formula को follow करें।</div>
+</section>
+
+<section id="eoq">
+<h2>10. Economic Order Quantity (EOQ)</h2>
+<p><strong>EOQ</strong> वह order quantity है जो relevant ordering cost और carrying cost के बीच economical balance बनाने में सहायता करती है।</p>
+<div class="formula">EOQ = √(2 × Annual Demand × Ordering Cost per Order / Annual Carrying Cost per Unit)</div>
+<h3>जहाँ</h3>
+<ul>
+<li><strong>Annual Demand</strong> = एक year की total material requirement</li>
+<li><strong>Ordering Cost</strong> = एक order place/process करने की cost</li>
+<li><strong>Carrying Cost</strong> = एक unit को year भर hold करने की annual cost</li>
+</ul>
+</section>
+
+<section id="abc">
+<h2>11. ABC Classification</h2>
+<p><strong>ABC Analysis</strong> inventory items को उनके annual consumption value के आधार पर categories में classify करने की technique है।</p>
+<table>
+<tr><th>Category</th><th>General Nature</th><th>Control</th></tr>
+<tr><td>A</td><td>High-value items; items की संख्या comparatively कम होती है।</td><td>Very strict control और frequent review।</td></tr>
+<tr><td>B</td><td>Medium-value items।</td><td>Moderate control।</td></tr>
+<tr><td>C</td><td>Low-value items; items की संख्या comparatively अधिक हो सकती है।</td><td>Simple/economical control।</td></tr>
+</table>
+<div class="formula">Annual Consumption Value = Annual Quantity Consumed × Price per Unit</div>
+</section>
+
+<section id="stocktaking">
+<h2>12. Stocktaking</h2>
+<p><strong>Stocktaking</strong> का अर्थ physical inventory की actual counting, measurement या verification करना है। इसका उद्देश्य actual stock position determine करना और records से comparison करना है।</p>
+<ul>
+<li>Stock items identify किए जाते हैं।</li>
+<li>Physical quantity count/measure की जाती है।</li>
+<li>Results को records से compare किया जाता है।</li>
+<li>Shortage/excess/difference identify किया जाता है।</li>
+<li>Differences के कारण investigate किए जाते हैं।</li>
+</ul>
+</section>
+
+<section id="perpetual">
+<h2>13. Perpetual Inventory</h2>
+<p><strong>Perpetual Inventory System</strong> में receipts, issues और balances को continuously record किया जाता है, जिससे किसी भी समय book stock की जानकारी प्राप्त की जा सके।</p>
+<div class="formula">Opening Stock + Receipts − Issues = Book Closing Stock</div>
+<p>Perpetual system में periodic physical verification भी useful रहती है ताकि records और actual stock का comparison किया जा सके।</p>
+</section>
+
+<section id="consumption">
+<h2>14. Material Consumption</h2>
+<p><strong>Material Consumption</strong> से आशय production या अन्य activities में वास्तव में उपयोग की गई material से है। Cost Accounting में consumed material को appropriate product, job या cost centre से identify करना important है।</p>
+<div class="flow">
+<span>Material Issue</span><i class="arrow">→</i><span>Job/Product Identification</span><i class="arrow">→</i><span>Cost Centre</span><i class="arrow">→</i><span>Cost Recording</span><i class="arrow">→</i><span>Monitoring</span>
+</div>
+</section>
+
+<section id="identification">
+<h2>15. Product & Cost Centre Identification</h2>
+<h3>Identification with Products</h3>
+<p>यदि material किसी specific product/job में directly used है और उसे conveniently trace किया जा सकता है, तो उसकी cost उस product/job से identify की जाती है।</p>
+<h3>Identification with Cost Centres</h3>
+<p>जब material किसी department या cost centre में use होता है और उसे specific product से directly trace करना practical नहीं है, तो cost को relevant cost centre से associate किया जाता है।</p>
+<table>
+<tr><th>Situation</th><th>Cost Identification</th></tr>
+<tr><td>Specific product/job में direct material</td><td>Product/Job cost</td></tr>
+<tr><td>Department में common/indirect material</td><td>Relevant cost centre / overhead</td></tr>
+</table>
+</section>
+
+<section id="entries">
+<h2>16. Entries in Financial Accounts</h2>
+<p>Material transactions की accounting entries organisation के accounting system और classification पर depend कर सकती हैं। Basic financial-accounting treatment को conceptually इस प्रकार समझा जा सकता है:</p>
+
+<div class="entry">
+<strong>Material Purchase:</strong><br>
+Purchases / Inventory Account Dr.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;To Cash / Bank / Supplier Account
+</div>
+
+<div class="entry">
+<strong>Material issued for production:</strong><br>
+Production / Work-in-Progress Account Dr.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;To Stores / Inventory Account
+</div>
+
+<div class="entry">
+<strong>Indirect material issued:</strong><br>
+Factory Overheads / Relevant Cost Account Dr.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;To Stores / Inventory Account
+</div>
+</section>
+
+<section id="monitoring">
+<h2>17. Consumption Monitoring</h2>
+<p><strong>Consumption Monitoring</strong> का उद्देश्य यह देखना है कि material planned quantity और expected usage के अनुसार consume हो रहा है या नहीं।</p>
+<div class="cardgrid">
+<div class="info">Actual consumption record करना।</div>
+<div class="info">Standard/budgeted consumption से compare करना।</div>
+<div class="info">Excess consumption identify करना।</div>
+<div class="info">Wastage, scrap और abnormal loss की जांच करना।</div>
+<div class="info">Department/product-wise consumption reports बनाना।</div>
+<div class="info">Corrective action लेना।</div>
+</div>
+</section>
+
+<section id="accounting">
+<h2>18. Inventory Accounting Process</h2>
+<p><strong>Inventory Accounting</strong> में inventory के purchase, receipt, storage, issue, consumption और closing stock से related quantities और values को systematically record, classify और reconcile किया जाता है।</p>
+<div class="flow">
+<span>Purchase</span><i class="arrow">→</i>
+<span>Receipt</span><i class="arrow">→</i>
+<span>Inspection</span><i class="arrow">→</i>
+<span>Storage</span><i class="arrow">→</i>
+<span>Issue</span><i class="arrow">→</i>
+<span>Consumption</span><i class="arrow">→</i>
+<span>Closing Stock</span><i class="arrow">→</i>
+<span>Reconciliation</span>
+</div>
+<h3>Process</h3>
+<ol>
+<li>Material purchase transaction record करें।</li>
+<li>Received quantity verify और record करें।</li>
+<li>Stores records update करें।</li>
+<li>Authorised issues record करें।</li>
+<li>Material consumption को relevant product/job/cost centre से identify करें।</li>
+<li>Closing inventory की quantity/value determine करें according to the applicable accounting system/policy.</li>
+<li>Physical stock और book records reconcile करें।</li>
+<li>Differences को investigate और appropriate adjustment करें।</li>
+</ol>
+</section>
+
+<section id="numericals">
+<h2>🧮 Solved Numericals</h2>
+
+<h3>Numerical 1 — EOQ</h3>
+<p><strong>Question:</strong> Annual demand = 10,000 units, ordering cost = ₹50 per order और annual carrying cost = ₹2 per unit है। EOQ निकालिए।</p>
+<div class="formula">
+EOQ = √(2 × 10,000 × 50 / 2)<br>
+= √500,000<br>
+≈ <strong>707 units</strong>
+</div>
+
+<h3>Numerical 2 — Re-order Level</h3>
+<p><strong>Question:</strong> Maximum consumption = 120 units per week और maximum re-order period = 5 weeks है। Re-order level निकालिए।</p>
+<div class="formula">
+Re-order Level = 120 × 5<br>
+= <strong>600 units</strong>
+</div>
+
+<h3>Numerical 3 — Annual Consumption Value</h3>
+<p><strong>Question:</strong> किसी material की annual consumption 2,000 units है और price ₹40 per unit है। Annual consumption value निकालिए।</p>
+<div class="formula">
+Annual Consumption Value = 2,000 × ₹40<br>
+= <strong>₹80,000</strong>
+</div>
+
+<h3>Numerical 4 — Perpetual Inventory Balance</h3>
+<p><strong>Question:</strong> Opening stock = 500 units, receipts = 800 units और issues = 900 units हैं। Book closing stock निकालिए।</p>
+<div class="formula">
+Closing Stock = 500 + 800 − 900<br>
+= <strong>400 units</strong>
+</div>
+</section>
+
+<section id="revision">
+<h2>⚡ Quick Revision</h2>
+<table>
+<tr><th>Topic</th><th>One-line Revision</th></tr>
+<tr><td>Procurement</td><td>Required material को suitable supplier से systematically purchase करने की process।</td></tr>
+<tr><td>Store Procedure</td><td>Receipt, inspection, storage, issue और record maintenance की process।</td></tr>
+<tr><td>Stock Verification</td><td>Physical stock को records से compare करना।</td></tr>
+<tr><td>Inventory Control</td><td>Stock quantity, movement और investment को controlled रखना।</td></tr>
+<tr><td>Minimum Level</td><td>Lowest practical stock level।</td></tr>
+<tr><td>Maximum Level</td><td>Normal conditions में रखा जाने वाला upper stock level।</td></tr>
+<tr><td>Re-order Level</td><td>Fresh order place करने का stock point।</td></tr>
+<tr><td>EOQ</td><td>Economical order quantity जो ordering और carrying costs के balance में मदद करती है।</td></tr>
+<tr><td>ABC</td><td>Annual consumption value के आधार पर A, B और C classification।</td></tr>
+<tr><td>Stocktaking</td><td>Physical inventory की actual counting/measurement।</td></tr>
+<tr><td>Perpetual Inventory</td><td>Receipts, issues और balances का continuous record।</td></tr>
+<tr><td>Material Consumption</td><td>Production/activities में actually used material।</td></tr>
+<tr><td>Cost Centre</td><td>ऐसा organisational location/unit जहाँ costs collect और control की जाती हैं।</td></tr>
+<tr><td>Inventory Accounting</td><td>Inventory transactions और balances को systematically record और reconcile करना।</td></tr>
+</table>
+<div class="info green"><strong>Chapter Complete:</strong> दिए गए syllabus के Material and Material Control, Material Consumption और Inventory Accounting topics को एक ही जगह रखा गया है। Repeated explanations हटाकर प्रत्येक मुख्य topic को केवल एक appropriate section में रखा गया है।</div>
+</section>
+
+<footer><strong>BK LearnX</strong> • Cost Accounting • Material and Material Control</footer>
+</main>
+</div>
+</body>
+</html>

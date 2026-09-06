@@ -1,7 +1,41 @@
 require('dotenv').config();
 const express = require('express'), cors = require('cors'), bcrypt = require('bcryptjs'), fs = require('fs').promises, path = require('path'), crypto = require('crypto'), nodemailer = require('nodemailer');
-const app = express(), PORT = process.env.PORT || 3000, DATA = path.join(__dirname, 'data'); app.use(cors()); app.use(express.json({ limit: '3mb' }));
+const app = express(), PORT = process.env.PORT || 3000, DATA = path.join(__dirname, 'data'); const allowedOrigins = (process.env.ALLOWED_ORIGINS || '').split(',').map(s => s.trim()).filter(Boolean);
+app.use(cors(allowedOrigins.length ? { origin: allowedOrigins } : {}));
+app.use(express.json({ limit: '3mb' }));
 const files = { users: 'users.json', activity: 'activity.json', progress: 'progress.json' }; const sessions = new Map(), adminSessions = new Map(), oauthStates = new Map();
+
+// Wrap async route handlers so a rejected promise reaches Express's error
+// handler instead of becoming an unhandled rejection that crashes the process.
+const ah = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next);
+
+// Small in-memory rate limiter for sensitive endpoints (no extra dependency).
+// Not distributed-safe (per-process only) but enough to slow down brute force
+// on a single instance. Swap for a proper store (Redis) if you scale out.
+function rateLimit({ windowMs, max, keyPrefix }) {
+  const hits = new Map();
+  setInterval(() => { const now = Date.now(); for (const [k, v] of hits) if (now - v.start > windowMs) hits.delete(k) }, windowMs).unref();
+  return (req, res, next) => {
+    const key = `${keyPrefix}:${req.ip || req.connection?.remoteAddress || 'unknown'}`;
+    const now = Date.now();
+    const entry = hits.get(key) || { count: 0, start: now };
+    if (now - entry.start > windowMs) { entry.count = 0; entry.start = now }
+    entry.count += 1; hits.set(key, entry);
+    if (entry.count > max) {
+      res.set('Retry-After', String(Math.ceil((entry.start + windowMs - now) / 1000)));
+      return res.status(429).json({ message: 'Too many attempts. Please wait and try again.' });
+    }
+    next();
+  };
+}
+const loginLimiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 15, keyPrefix: 'login' });
+const registerLimiter = rateLimit({ windowMs: 60 * 60 * 1000, max: 15, keyPrefix: 'register' });
+const forgotPasswordLimiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 5, keyPrefix: 'forgot' });
+const adminLoginLimiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 10, keyPrefix: 'admin-login' });
+
+// Drop abandoned OAuth state entries (user started Google/Facebook login but
+// never completed it) so this map doesn't grow forever between server restarts.
+setInterval(() => { const now = Date.now(); for (const [k, v] of oauthStates) if (now - v.createdAt > 10 * 60 * 1000) oauthStates.delete(k) }, 5 * 60 * 1000).unref();
 const LEARNING_CONFIG = Object.freeze({
   inactivityTimeoutSeconds: Number(process.env.LEARNING_INACTIVITY_TIMEOUT || 45),
   heartbeatIntervalSeconds: Number(process.env.LEARNING_HEARTBEAT_INTERVAL || 30),
@@ -139,8 +173,8 @@ app.get('/api/auth/facebook/callback', async (req, res) => {
     user.lastLoginAt = new Date().toISOString(); await write('users', users); const sessionToken = token(); sessions.set(sessionToken, { userId: user.id, loginAt: Date.now(), lastSeen: Date.now(), currentPage: '' }); target.searchParams.set('oauth_auth', '1'); target.searchParams.set('token', sessionToken); target.searchParams.set('user', encodeURIComponent(JSON.stringify(safe(user)))); res.redirect(target.toString());
   } catch (error) { target.searchParams.set('oauth_error', error.message || 'Unable to sign in with Facebook.'); res.redirect(target.toString()); }
 });
-app.post('/api/register', async (req, res) => { const { name, email, branch, semester, password, confirmPassword } = req.body; if (!name || !email || !branch || !semester || !password) return res.status(400).json({ message: 'All fields required.' }); if (password !== confirmPassword) return res.status(400).json({ message: 'Passwords do not match.' }); const users = await read('users'); if (users.some(x => (x.email || '').toLowerCase() === email.toLowerCase())) return res.status(409).json({ message: 'Email already registered.' }); const u = { id: crypto.randomUUID(), name: name.trim(), email: email.trim().toLowerCase(), branch, semester, passwordHash: await bcrypt.hash(password, 10), registeredAt: new Date().toISOString(), lastLoginAt: null, lastLogoutAt: null, phone: '', college: '', photo: '', provider: 'password' }; users.push(u); await write('users', users); res.status(201).json({ message: 'Registration successful.' }) });
-app.post('/api/login', async (req, res) => {
+app.post('/api/register', registerLimiter, ah(async (req, res) => { const { name, email, branch, semester, password, confirmPassword } = req.body; if (!name || !email || !branch || !semester || !password) return res.status(400).json({ message: 'All fields required.' }); if (password !== confirmPassword) return res.status(400).json({ message: 'Passwords do not match.' }); if (password.length < 8) return res.status(400).json({ message: 'Password kam se kam 8 characters ka hona chahiye.' }); const users = await read('users'); if (users.some(x => (x.email || '').toLowerCase() === email.toLowerCase())) return res.status(409).json({ message: 'Email already registered.' }); const u = { id: crypto.randomUUID(), name: name.trim(), email: email.trim().toLowerCase(), branch, semester, passwordHash: await bcrypt.hash(password, 10), registeredAt: new Date().toISOString(), lastLoginAt: null, lastLogoutAt: null, phone: '', college: '', photo: '', provider: 'password' }; users.push(u); await write('users', users); res.status(201).json({ message: 'Registration successful.' }) }));
+app.post('/api/login', loginLimiter, ah(async (req, res) => {
   const users = await read('users');
   const u = users.find(x => (x.email || '').toLowerCase() === (req.body.email || '').trim().toLowerCase());
   const password = String(req.body.password || '');
@@ -153,7 +187,7 @@ app.post('/api/login', async (req, res) => {
   await write('users', users);
   const t = token(); sessions.set(t, { userId: u.id, loginAt: Date.now(), lastSeen: Date.now(), currentPage: '' });
   res.json({ token: t, user: safe(u) });
-});
+}));
 const otpHash = value => crypto.createHash('sha256').update(String(value)).digest('hex');
 function mailTransport() {
   if (process.env.SMTP_HOST) {
@@ -170,7 +204,7 @@ function mailTransport() {
   });
 }
 
-app.post('/api/forgot-password', async (req, res) => {
+app.post('/api/forgot-password', forgotPasswordLimiter, ah(async (req, res) => {
   const email = (req.body.email || '').trim().toLowerCase();
   if (!email) return res.status(400).json({ message: 'Email is required.' });
   if (!process.env.EMAIL_USER || !process.env.EMAIL_APP_PASSWORD) {
@@ -206,9 +240,9 @@ app.post('/api/forgot-password', async (req, res) => {
     console.error('Password reset email error:', error.message);
     res.status(500).json({ message: 'Verification code email par nahi bheja ja saka. Email configuration check karein.' });
   }
-});
+}));
 
-app.post('/api/verify-reset-code', async (req, res) => {
+app.post('/api/verify-reset-code', forgotPasswordLimiter, ah(async (req, res) => {
   const email = (req.body.email || '').trim().toLowerCase();
   const code = String(req.body.code || '').trim();
   if (!email || !/^\d{6}$/.test(code)) return res.status(400).json({ message: 'Valid email aur 6-digit code enter karein.' });
@@ -240,9 +274,9 @@ app.post('/api/verify-reset-code', async (req, res) => {
   delete u.passwordResetOtpAttempts;
   await write('users', users);
   res.json({ message: 'Email verified. Ab naya password set karein.', resetToken: u.resetToken });
-});
+}));
 
-app.post('/api/reset-password', async (req, res) => {
+app.post('/api/reset-password', ah(async (req, res) => {
   const { token: resetToken, password } = req.body;
   if (!resetToken || !password) return res.status(400).json({ message: 'Verification required.' });
   if (password.length < 8) return res.status(400).json({ message: 'Password kam se kam 8 characters ka hona chahiye.' });
@@ -256,15 +290,15 @@ app.post('/api/reset-password', async (req, res) => {
   await write('users', users);
   for (const [sessionToken, session] of sessions) if (session.userId === u.id) sessions.delete(sessionToken);
   res.json({ message: 'Password successfully update ho gaya.' });
-});
+}));
 
-app.post('/api/logout', auth, async (req, res) => { const users = await read('users'), u = users.find(x => x.id === req.userId); if (u) { u.lastLogoutAt = new Date().toISOString(); await write('users', users) } sessions.delete(req.sessionToken); res.json({ message: 'Logged out' }) });
+app.post('/api/logout', auth, ah(async (req, res) => { const users = await read('users'), u = users.find(x => x.id === req.userId); if (u) { u.lastLogoutAt = new Date().toISOString(); await write('users', users) } sessions.delete(req.sessionToken); res.json({ message: 'Logged out' }) }));
 const safe = u => { const { passwordHash, ...x } = u; return x };
-app.get('/api/me', auth, async (req, res) => { const u = (await read('users')).find(x => x.id === req.userId); if (!u) return res.status(404).json({ message: 'Student profile not found.' }); res.json({ user: safe(u) }) });
-app.put('/api/me', auth, async (req, res) => { const users = await read('users'), u = users.find(x => x.id === req.userId); if (!u) return res.status(404).json({ message: 'Student profile not found.' });['name', 'branch', 'semester', 'phone', 'college', 'photo'].forEach(k => { if (req.body[k] !== undefined) u[k] = String(req.body[k]).trim() }); await write('users', users); res.json({ user: safe(u) }) });
-app.post('/api/activity', auth, async (req, res) => { const all = await read('activity'); const s = sessions.get(req.sessionToken); s.lastSeen = Date.now(); s.currentPage = req.body.page || s.currentPage; all.push({ id: crypto.randomUUID(), userId: req.userId, at: new Date().toISOString(), ...req.body }); if (all.length > 10000) all.splice(0, all.length - 10000); await write('activity', all); res.json({ ok: true }) });
-app.get('/api/progress', auth, async (req, res) => res.json({ progress: (await read('progress')).filter(x => x.userId === req.userId) }));
-app.post('/api/progress', auth, async (req, res) => { const all = await read('progress'); let x = all.find(p => p.userId === req.userId && p.page === req.body.page); if (!x) { x = { id: crypto.randomUUID(), userId: req.userId, page: req.body.page, title: req.body.title || '', subject: req.body.subject || infer(req.body.page), completed: false }; all.push(x) } x.completed = !!req.body.completed; x.updatedAt = new Date().toISOString(); await write('progress', all); res.json({ progress: x }) });
+app.get('/api/me', auth, ah(async (req, res) => { const u = (await read('users')).find(x => x.id === req.userId); if (!u) return res.status(404).json({ message: 'Student profile not found.' }); res.json({ user: safe(u) }) }));
+app.put('/api/me', auth, ah(async (req, res) => { const users = await read('users'), u = users.find(x => x.id === req.userId); if (!u) return res.status(404).json({ message: 'Student profile not found.' });['name', 'branch', 'semester', 'phone', 'college', 'photo'].forEach(k => { if (req.body[k] !== undefined) u[k] = String(req.body[k]).trim() }); await write('users', users); res.json({ user: safe(u) }) }));
+app.post('/api/activity', auth, ah(async (req, res) => { const all = await read('activity'); const s = sessions.get(req.sessionToken); s.lastSeen = Date.now(); s.currentPage = req.body.page || s.currentPage; all.push({ id: crypto.randomUUID(), userId: req.userId, at: new Date().toISOString(), ...req.body }); if (all.length > 10000) all.splice(0, all.length - 10000); await write('activity', all); res.json({ ok: true }) }));
+app.get('/api/progress', auth, ah(async (req, res) => res.json({ progress: (await read('progress')).filter(x => x.userId === req.userId) })));
+app.post('/api/progress', auth, ah(async (req, res) => { const all = await read('progress'); let x = all.find(p => p.userId === req.userId && p.page === req.body.page); if (!x) { x = { id: crypto.randomUUID(), userId: req.userId, page: req.body.page, title: req.body.title || '', subject: req.body.subject || infer(req.body.page), completed: false }; all.push(x) } x.completed = !!req.body.completed; x.updatedAt = new Date().toISOString(); await write('progress', all); res.json({ progress: x }) }));
 function learningStatus(record) {
   if (record.status === 'COMPLETED' || record.manualConfirmed) return 'COMPLETED';
   return record.startedAt ? 'IN_PROGRESS' : 'NOT_STARTED';
@@ -308,8 +342,8 @@ function normalizeLearning(body, previous = {}) {
   return record;
 }
 app.get('/api/learning/config', auth, (req, res) => res.json({ config: LEARNING_CONFIG }));
-app.get('/api/learning/progress', auth, async (req, res) => { const all = await read('progress'); res.json({ progress: all.filter(x => x.userId === req.userId && x.type === 'learning'), config: LEARNING_CONFIG }); });
-app.post('/api/learning/progress', auth, async (req, res) => {
+app.get('/api/learning/progress', auth, ah(async (req, res) => { const all = await read('progress'); res.json({ progress: all.filter(x => x.userId === req.userId && x.type === 'learning'), config: LEARNING_CONFIG }); }));
+app.post('/api/learning/progress', auth, ah(async (req, res) => {
   if (!req.body.page) return res.status(400).json({ message: 'Chapter page is required.' });
   const all = await read('progress');
   const index = all.findIndex(x => x.userId === req.userId && x.type === 'learning' && x.page === req.body.page);
@@ -319,14 +353,36 @@ app.post('/api/learning/progress', auth, async (req, res) => {
   const session = sessions.get(req.sessionToken); session.lastSeen = Date.now(); session.currentPage = record.page; session.learning = record;
   await write('progress', all);
   res.json({ progress: { ...record, status: learningStatus(record) }, config: LEARNING_CONFIG });
-});
-app.post('/api/learning/heartbeat', auth, async (req, res) => {
+}));
+app.post('/api/learning/heartbeat', auth, ah(async (req, res) => {
   const session = sessions.get(req.sessionToken); session.lastSeen = Date.now(); session.currentPage = String(req.body.page || session.currentPage || '');
   res.json({ ok: true, lastActiveAt: new Date(session.lastSeen).toISOString() });
-});
+}));
 function infer(p = '') { const m = p.match(/content\/[^/]+\/([^/]+)/); return m ? m[1].replace(/-hindi$/, '').toUpperCase() : 'Course' }
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'brajkant02@gmail.com', ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'Divya@0708';
-app.post('/api/admin/login', async (req, res) => { if ((req.body.email || '').toLowerCase() !== ADMIN_EMAIL.toLowerCase() || req.body.password !== ADMIN_PASSWORD) return res.status(401).json({ message: 'Invalid admin credentials.' }); const t = token(); adminSessions.set(t, { at: Date.now() }); res.json({ token: t }) });
+// No hardcoded fallback: set ADMIN_EMAIL and ADMIN_PASSWORD in your .env / host
+// environment variables. If they are missing, admin login is disabled rather
+// than silently falling back to a credential that used to live in this file.
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL, ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
+app.post('/api/admin/login', adminLoginLimiter, ah(async (req, res) => {
+  if (!ADMIN_EMAIL || !ADMIN_PASSWORD) return res.status(503).json({ message: 'Admin login is not configured on this server yet.' });
+  if ((req.body.email || '').toLowerCase() !== ADMIN_EMAIL.toLowerCase() || req.body.password !== ADMIN_PASSWORD) return res.status(401).json({ message: 'Invalid admin credentials.' });
+  const t = token(); adminSessions.set(t, { at: Date.now() }); res.json({ token: t });
+}));
 app.post('/api/admin/logout', admin, (req, res) => { adminSessions.delete(req.header('x-admin-token')); res.json({ message: 'Admin logged out.' }) });
-app.get('/api/admin/dashboard', admin, async (req, res) => { const [users, activity, progress] = await Promise.all([read('users'), read('activity'), read('progress')]); const now = Date.now(), day = new Date().toISOString().slice(0, 10); const rows = users.map(u => { const sess = [...sessions.values()].find(s => s.userId === u.id); const ps = progress.filter(p => p.userId === u.id && p.type === 'learning'); const latest = ps.sort((a, b) => new Date(b.updatedAt || 0) - new Date(a.updatedAt || 0))[0]; const age = sess ? Math.floor((now - sess.lastSeen) / 1000) : Infinity; return { ...safe(u), online: age < 120, presence: age < 60 ? 'ONLINE' : age < 120 ? 'AWAY' : 'OFFLINE', currentPage: latest?.page || sess?.currentPage || '', currentSubject: latest?.subjectId || '', currentUnit: latest?.unitId || '', currentChapter: latest?.chapterId || '', currentSection: latest?.currentSectionId || '', readingProgress: latest?.maxScrollPercent || 0, activeTimeSeconds: latest?.activeTimeSeconds || 0, lastActivity: sess ? new Date(sess.lastSeen).toISOString() : latest?.lastActiveAt || u.lastLogoutAt || u.lastLoginAt, completion: ps.length ? Math.round(ps.reduce((sum, x) => sum + (x.maxScrollPercent || 0), 0) / ps.length) : 0 } }); res.json({ stats: { totalStudents: users.length, onlineStudents: rows.filter(x => x.presence === 'ONLINE').length, loginsToday: users.filter(x => (x.lastLoginAt || '').startsWith(day)).length, averageCompletion: rows.length ? Math.round(rows.reduce((a, b) => a + b.completion, 0) / rows.length) : 0 }, students: rows, recentActivity: activity.slice(-30).reverse().map(a => ({ ...a, studentName: users.find(u => u.id === a.userId)?.name })) }); });
+app.get('/api/admin/dashboard', admin, ah(async (req, res) => { const [users, activity, progress] = await Promise.all([read('users'), read('activity'), read('progress')]); const now = Date.now(), day = new Date().toISOString().slice(0, 10); const rows = users.map(u => { const sess = [...sessions.values()].find(s => s.userId === u.id); const ps = progress.filter(p => p.userId === u.id && p.type === 'learning'); const latest = ps.sort((a, b) => new Date(b.updatedAt || 0) - new Date(a.updatedAt || 0))[0]; const age = sess ? Math.floor((now - sess.lastSeen) / 1000) : Infinity; return { ...safe(u), online: age < 120, presence: age < 60 ? 'ONLINE' : age < 120 ? 'AWAY' : 'OFFLINE', currentPage: latest?.page || sess?.currentPage || '', currentSubject: latest?.subjectId || '', currentUnit: latest?.unitId || '', currentChapter: latest?.chapterId || '', currentSection: latest?.currentSectionId || '', readingProgress: latest?.maxScrollPercent || 0, activeTimeSeconds: latest?.activeTimeSeconds || 0, lastActivity: sess ? new Date(sess.lastSeen).toISOString() : latest?.lastActiveAt || u.lastLogoutAt || u.lastLoginAt, completion: ps.length ? Math.round(ps.reduce((sum, x) => sum + (x.maxScrollPercent || 0), 0) / ps.length) : 0 } }); res.json({ stats: { totalStudents: users.length, onlineStudents: rows.filter(x => x.presence === 'ONLINE').length, loginsToday: users.filter(x => (x.lastLoginAt || '').startsWith(day)).length, averageCompletion: rows.length ? Math.round(rows.reduce((a, b) => a + b.completion, 0) / rows.length) : 0 }, students: rows, recentActivity: activity.slice(-30).reverse().map(a => ({ ...a, studentName: users.find(u => u.id === a.userId)?.name })) }); }));
+// Catch-all error handler: anything forwarded via ah()/next(err) lands here
+// instead of crashing the whole server for every logged-in student.
+app.use((err, req, res, next) => {
+  console.error('Unhandled route error:', err);
+  if (res.headersSent) return next(err);
+  const status = err.status || err.statusCode || 500;
+  const message = status >= 500 ? 'Something went wrong on our side. Please try again.' : (err.message || 'Request failed.');
+  res.status(status).json({ message });
+});
+
+// Last-resort safety net: log instead of letting one bad async call take the
+// whole process down. This does not replace fixing the root cause.
+process.on('unhandledRejection', (reason) => console.error('Unhandled rejection:', reason));
+process.on('uncaughtException', (err) => console.error('Uncaught exception:', err));
+
 app.listen(PORT, () => console.log(`BK LearnX backend: http://localhost:${PORT}`));

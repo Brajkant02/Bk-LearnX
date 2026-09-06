@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="BK LearnX PGDCA Notes - Computer Organization, Block Diagram, CPU, Memory, Input and Output Devices.">
+<title>Computer Organization, CPU, Memory & I/O Devices | BK LearnX</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;line-height:1.7;background:#f5f7fb;color:#1f2937}
+header{background:linear-gradient(135deg,#111827,#2563eb);color:white;text-align:center;padding:34px 18px}
+header h1{font-size:clamp(27px,5vw,44px);margin-bottom:8px}
+header p{opacity:.92}
+.layout{max-width:1250px;margin:auto;display:flex;gap:22px;padding:22px}
+aside{width:270px;flex:none;background:#fff;padding:18px;border-radius:14px;box-shadow:0 5px 20px rgba(0,0,0,.08);position:sticky;top:15px;height:max-content}
+aside h3{color:#1d4ed8;margin-bottom:10px}
+aside a{display:block;text-decoration:none;color:#374151;padding:8px 10px;border-radius:8px}
+aside a:hover{background:#eff6ff;color:#1d4ed8}
+main{flex:1;min-width:0}
+section{background:#fff;padding:26px;margin-bottom:20px;border-radius:14px;box-shadow:0 5px 20px rgba(0,0,0,.06)}
+h2{color:#1d4ed8;border-left:5px solid #2563eb;padding-left:12px;margin-bottom:16px}
+h3{color:#111827;margin:18px 0 8px}
+p{margin:9px 0}
+ul,ol{padding-left:25px;margin:10px 0}
+li{margin:6px 0}
+.note,.example,.formula{padding:15px 17px;border-radius:10px;margin:15px 0}
+.note{background:#eff6ff;border-left:4px solid #2563eb}
+.example{background:#f0fdf4;border-left:4px solid #16a34a}
+.formula{background:#fff7ed;border-left:4px solid #f97316;font-weight:600}
+table{width:100%;border-collapse:collapse;margin:16px 0}
+th,td{border:1px solid #dbe2ea;padding:11px;text-align:left;vertical-align:top}
+th{background:#eef2ff;color:#1e3a8a}
+.badge{display:inline-block;background:#dbeafe;color:#1e40af;padding:4px 9px;border-radius:20px;font-size:13px;margin:3px}
+.diagram{display:flex;flex-direction:column;align-items:center;gap:10px;margin:20px 0}
+.diagram .row{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;align-items:center}
+.box{background:#eff6ff;border:2px solid #60a5fa;border-radius:10px;padding:13px 18px;text-align:center;font-weight:600;min-width:130px}
+.cpu{background:#fef3c7;border-color:#f59e0b}
+.memory{background:#ecfdf5;border-color:#10b981}
+.io{background:#fce7f3;border-color:#ec4899}
+.arrow{font-size:24px;color:#2563eb}
+footer{background:#111827;color:#fff;text-align:center;padding:25px}
+@media(max-width:850px){
+ .layout{display:block;padding:12px}
+ aside{position:relative;width:100%;top:0;margin-bottom:15px}
+ aside a{display:inline-block}
+ section{padding:19px}
+ table{display:block;overflow-x:auto}
+ .diagram .row{flex-direction:column}
+ .arrow{transform:rotate(90deg)}
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Computer Organization, CPU, Memory & I/O Devices</h1>
+<p>PGDCA Exam-Oriented Notes | BK LearnX</p>
+</header>
+
+<div class="layout">
+<aside>
+<h3>📚 Contents</h3>
+<a href="#organization">3. Computer Organization</a>
+<a href="#block">Block Diagram</a>
+<a href="#cpu">CPU</a>
+<a href="#memory">Memory</a>
+<a href="#input">4. Input Devices</a>
+<a href="#keyboard">Keyboard</a>
+<a href="#mouse">Mouse</a>
+<a href="#otherinput">Other Input Devices</a>
+<a href="#output">Output Devices</a>
+<a href="#vdu">VDU</a>
+<a href="#printer">Printer</a>
+<a href="#scanner">Scanner</a>
+<a href="#plotter">Plotter</a>
+<a href="#revision">Quick Revision</a>
+</aside>
+
+<main>
+
+<section id="organization">
+<h2>3. Computer Organization</h2>
+<p><strong>Computer Organization</strong> से तात्पर्य computer के विभिन्न functional units की internal arrangement तथा उनके बीच होने वाले कार्य और communication से है। यह बताता है कि computer के hardware components किस प्रकार मिलकर data को process करते हैं।</p>
+
+<h3>मुख्य Functional Units</h3>
+<ul>
+<li><strong>Input Unit:</strong> User से data और instructions प्राप्त करता है।</li>
+<li><strong>Memory Unit:</strong> Data, instructions और results को store करती है।</li>
+<li><strong>Central Processing Unit (CPU):</strong> Instructions को execute करके processing करता है।</li>
+<li><strong>Output Unit:</strong> Processed information को user तक पहुँचाता है।</li>
+<li><strong>Secondary Storage:</strong> Data को long-term basis पर store करता है।</li>
+</ul>
+
+<div class="note"><strong>Exam Definition:</strong> Computer organization is the arrangement and interaction of various functional units of a computer system for input, processing, storage and output.</div>
+</section>
+
+<section id="block">
+<h2>Block Diagram of Computer</h2>
+<p>Computer का basic block diagram यह दर्शाता है कि input data किस प्रकार processing होकर output information में बदलता है।</p>
+
+<div class="diagram">
+<div class="row">
+<div class="box io">INPUT UNIT<br>Keyboard, Mouse etc.</div>
+<div class="arrow">→</div>
+<div class="box cpu">CPU<br>Processing</div>
+<div class="arrow">→</div>
+<div class="box io">OUTPUT UNIT<br>Monitor, Printer etc.</div>
+</div>
+<div class="arrow">↕</div>
+<div class="row">
+<div class="box memory">MEMORY UNIT<br>Primary & Secondary Storage</div>
+</div>
+</div>
+
+<h3>Block Diagram के Units का कार्य</h3>
+<table>
+<tr><th>Unit</th><th>Function</th><th>Examples</th></tr>
+<tr><td>Input Unit</td><td>Data और instructions को computer-readable form में enter करता है।</td><td>Keyboard, Mouse, Scanner</td></tr>
+<tr><td>CPU</td><td>Data processing और instruction execution करता है।</td><td>Processor</td></tr>
+<tr><td>Memory Unit</td><td>Data, instructions और results को store करती है।</td><td>RAM, ROM, Cache</td></tr>
+<tr><td>Output Unit</td><td>Processed result को human-readable form में देता है।</td><td>Monitor, Printer</td></tr>
+</table>
+
+<div class="formula">Input → Processing → Output</div>
+</section>
+
+<section id="cpu">
+<h2>Central Processing Unit (CPU)</h2>
+<p><strong>CPU (Central Processing Unit)</strong> computer का मुख्य processing component है। इसे अक्सर computer का <strong>“brain”</strong> कहा जाता है क्योंकि यह instructions को execute और processing operations को control करता है।</p>
+
+<h3>CPU के मुख्य Components</h3>
+<table>
+<tr><th>Component</th><th>Function</th></tr>
+<tr><td><strong>ALU (Arithmetic Logic Unit)</strong></td><td>Arithmetic operations जैसे addition, subtraction, multiplication और logical/comparison operations करता है।</td></tr>
+<tr><td><strong>Control Unit (CU)</strong></td><td>Computer की विभिन्न units के operations को control और coordinate करती है।</td></tr>
+<tr><td><strong>Registers</strong></td><td>CPU के अंदर बहुत तेज temporary storage locations, जिनका उपयोग processing के दौरान data/instructions रखने के लिए होता है।</td></tr>
+</table>
+
+<div class="diagram">
+<div class="box cpu"><strong>CPU</strong></div>
+<div class="row">
+<div class="box">ALU</div>
+<div class="box">Control Unit</div>
+<div class="box">Registers</div>
+</div>
+</div>
+
+<h3>CPU का Basic Working</h3>
+<ol>
+<li>Memory से instruction प्राप्त होती है।</li>
+<li>Control Unit instruction को interpret/decode करती है।</li>
+<li>ALU या अन्य CPU resources required operation perform करते हैं।</li>
+<li>Result register या memory में store किया जाता है।</li>
+</ol>
+</section>
+
+<section id="memory">
+<h2>Memory</h2>
+<p><strong>Memory</strong> computer system का वह भाग है जहाँ data, instructions और processing results store किए जाते हैं।</p>
+
+<h3>Memory के मुख्य प्रकार</h3>
+<table>
+<tr><th>Type</th><th>Meaning</th><th>Examples</th></tr>
+<tr><td>Primary Memory</td><td>CPU द्वारा directly/closely accessed main memory.</td><td>RAM, ROM, Cache</td></tr>
+<tr><td>Secondary Memory</td><td>Large मात्रा में data को long-term storage के लिए उपयोग किया जाता है।</td><td>HDD, SSD, Pen Drive</td></tr>
+</table>
+
+<h3>RAM (Random Access Memory)</h3>
+<p>RAM एक <strong>volatile</strong> memory है। Computer बंद होने पर RAM में रखा सामान्य data खो जाता है। इसका उपयोग currently running programs और data के लिए होता है।</p>
+
+<h3>ROM (Read Only Memory)</h3>
+<p>ROM non-volatile memory है, अर्थात power off होने पर भी इसका stored content सामान्यतः बना रहता है। इसका उपयोग system startup और firmware-related instructions के लिए किया जाता है।</p>
+
+<h3>Cache Memory</h3>
+<p>Cache बहुत तेज memory है जो CPU और main memory के बीच frequently required data/instructions तक तेज access में सहायता करती है।</p>
+
+<table>
+<tr><th>RAM</th><th>ROM</th></tr>
+<tr><td>Volatile</td><td>Non-volatile</td></tr>
+<tr><td>Temporary working data/programs</td><td>Persistent instructions/firmware-related content</td></tr>
+<tr><td>Read and write operations</td><td>Primarily read-oriented; exact capabilities depend on ROM type</td></tr>
+</table>
+</section>
+
+<section id="input">
+<h2>4. Input Devices</h2>
+<p><strong>Input Devices</strong> वे hardware devices हैं जिनकी सहायता से user data, instructions या commands को computer में enter करता है।</p>
+
+<div class="note"><strong>Input का उद्देश्य:</strong> Human-readable information को computer के लिए processable input में उपलब्ध कराना।</div>
+</section>
+
+<section id="keyboard">
+<h2>Keyboard</h2>
+<p><strong>Keyboard</strong> एक common input device है जिसका उपयोग text, numbers, symbols और commands enter करने के लिए किया जाता है।</p>
+
+<h3>Keyboard की प्रमुख keys</h3>
+<ul>
+<li><strong>Alphanumeric Keys:</strong> A–Z और 0–9.</li>
+<li><strong>Function Keys:</strong> F1–F12.</li>
+<li><strong>Control Keys:</strong> Ctrl, Alt, Shift, Esc आदि.</li>
+<li><strong>Navigation Keys:</strong> Arrow, Home, End, Page Up, Page Down.</li>
+<li><strong>Numeric Keypad:</strong> Numerical data entry के लिए।</li>
+</ul>
+</section>
+
+<section id="mouse">
+<h2>Mouse</h2>
+<p><strong>Mouse</strong> एक pointing input device है। इसका उपयोग pointer को move करने, items select करने और commands execute करने के लिए किया जाता है।</p>
+
+<h3>Common Mouse Operations</h3>
+<ul>
+<li><strong>Click:</strong> Item select करना।</li>
+<li><strong>Double Click:</strong> Item/application open करना।</li>
+<li><strong>Right Click:</strong> Context menu खोलना।</li>
+<li><strong>Drag and Drop:</strong> Object को एक स्थान से दूसरे स्थान तक move करना।</li>
+<li><strong>Scroll:</strong> Page को ऊपर-नीचे करना।</li>
+</ul>
+</section>
+
+<section id="otherinput">
+<h2>Other Input Devices</h2>
+<table>
+<tr><th>Device</th><th>Use</th></tr>
+<tr><td>Scanner</td><td>Paper documents/photos को digital form में convert करता है।</td></tr>
+<tr><td>Microphone</td><td>Voice/sound को input के रूप में देता है।</td></tr>
+<tr><td>Webcam</td><td>Images और video को input करता है।</td></tr>
+<tr><td>Touch Screen</td><td>Touch के माध्यम से input देता है।</td></tr>
+<tr><td>Joystick</td><td>Games और control applications में directional input के लिए।</td></tr>
+<tr><td>Barcode Reader</td><td>Barcode को scan करके encoded information पढ़ता है।</td></tr>
+</table>
+</section>
+
+<section id="output">
+<h2>Output Devices</h2>
+<p><strong>Output Devices</strong> वे hardware devices हैं जो computer द्वारा processed information को user के लिए understandable form में प्रस्तुत करते हैं।</p>
+
+<p>Output मुख्यतः <strong>Soft Copy</strong> और <strong>Hard Copy</strong> के रूप में हो सकता है।</p>
+<ul>
+<li><strong>Soft Copy:</strong> Screen पर दिखाई देने वाला output.</li>
+<li><strong>Hard Copy:</strong> Paper या अन्य physical medium पर printed output.</li>
+</ul>
+</section>
+
+<section id="vdu">
+<h2>VDU (Visual Display Unit)</h2>
+<p><strong>VDU</strong> वह display/output system है जो computer-generated information को visual form में screen पर दिखाता है। Modern computers में VDU के रूप में LCD, LED आदि displays उपयोग किए जाते हैं।</p>
+
+<h3>VDU के उपयोग</h3>
+<ul>
+<li>Text और graphics display करना।</li>
+<li>Applications और web pages दिखाना।</li>
+<li>Video और multimedia content display करना।</li>
+<li>User को immediate visual feedback देना।</li>
+</ul>
+
+<div class="note"><strong>Note:</strong> VDU को display monitor के concept के रूप में समझा जा सकता है। Traditional syllabus में CRT तथा modern displays जैसे LCD/LED का उल्लेख मिल सकता है।</div>
+</section>
+
+<section id="printer">
+<h2>Printer</h2>
+<p><strong>Printer</strong> एक output device है जो digital information को paper या अन्य printable medium पर physical output के रूप में produce करता है।</p>
+
+<h3>Printer के प्रमुख प्रकार</h3>
+<table>
+<tr><th>Type</th><th>Examples / Features</th></tr>
+<tr><td>Impact Printer</td><td>Printing mechanism paper/ribbon पर physical impact करता है। उदाहरण: Dot Matrix, Line Printer.</td></tr>
+<tr><td>Non-Impact Printer</td><td>Physical striking के बिना print करता है। उदाहरण: Inkjet, Laser.</td></tr>
+</table>
+
+<h3>Common Printers</h3>
+<ul>
+<li><strong>Dot Matrix Printer:</strong> Pins और dots की सहायता से printing.</li>
+<li><strong>Inkjet Printer:</strong> Ink droplets के माध्यम से printing.</li>
+<li><strong>Laser Printer:</strong> Laser और toner आधारित high-speed printing.</li>
+</ul>
+</section>
+
+<section id="scanner">
+<h2>Scanner</h2>
+<p><strong>Scanner</strong> एक input device है जो printed text, photographs या documents को digital image/data में convert करता है ताकि उसे computer में store, edit या process किया जा सके।</p>
+
+<h3>Scanner का Working</h3>
+<ol>
+<li>Document को scanner surface पर रखा जाता है।</li>
+<li>Scanner document को scan करता है।</li>
+<li>Image/data digital form में convert होती है।</li>
+<li>Digital copy computer में save/process की जा सकती है।</li>
+</ol>
+
+<div class="example"><strong>Example:</strong> किसी certificate की paper copy को scan करके PDF/image बनाना scanner के practical use का उदाहरण है।</div>
+</section>
+
+<section id="plotter">
+<h2>Plotter</h2>
+<p><strong>Plotter</strong> एक specialized output device है जिसका उपयोग large-size और high-precision drawings/graphics को produce करने के लिए किया जाता है। इसका उपयोग engineering, architecture, CAD और technical drawing में किया जाता रहा है।</p>
+
+<h3>Plotter के उपयोग</h3>
+<ul>
+<li>Engineering drawings</li>
+<li>Architectural plans</li>
+<li>Maps</li>
+<li>CAD drawings</li>
+<li>Large technical graphics</li>
+</ul>
+
+<table>
+<tr><th>Printer</th><th>Plotter</th></tr>
+<tr><td>General documents और images की printing के लिए widely used.</td><td>Large-size और precision-oriented drawings/graphics के लिए specialized.</td></tr>
+<tr><td>Common office/home output device.</td><td>Engineering, architecture और CAD जैसे applications में useful.</td></tr>
+</table>
+</section>
+
+<section id="revision">
+<h2>Quick Revision</h2>
+<table>
+<tr><th>Term</th><th>Key Point</th></tr>
+<tr><td>Computer Organization</td><td>Computer की functional units की arrangement और interaction.</td></tr>
+<tr><td>CPU</td><td>मुख्य processing unit.</td></tr>
+<tr><td>ALU</td><td>Arithmetic और logical operations.</td></tr>
+<tr><td>Control Unit</td><td>Operations को control और coordinate करती है।</td></tr>
+<tr><td>RAM</td><td>Volatile primary memory.</td></tr>
+<tr><td>ROM</td><td>Non-volatile memory.</td></tr>
+<tr><td>Keyboard</td><td>Text/numeric input.</td></tr>
+<tr><td>Mouse</td><td>Pointing input device.</td></tr>
+<tr><td>VDU</td><td>Visual screen-based output.</td></tr>
+<tr><td>Printer</td><td>Hard-copy output.</td></tr>
+<tr><td>Scanner</td><td>Paper/image को digital input में बदलता है।</td></tr>
+<tr><td>Plotter</td><td>Large/high-precision technical graphics के लिए output device.</td></tr>
+</table>
+
+<div class="note">
+<strong>एक लाइन में पूरा chapter:</strong><br>
+Input Devices data देते हैं → CPU processing करता है → Memory data/instructions/results रखती है → Output Devices processed information user को देते हैं।
+</div>
+</section>
+
+</main>
+</div>
+
+<footer>
+<p>© BK LearnX | PGDCA Study Notes</p>
+</footer>
+</body>
+</html>

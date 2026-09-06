@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="BK LearnX PGDCA Notes - Secondary Storage, Magnetic Disk, Optical Disk, Primary and Secondary Memory, Capacity, Device Controllers, Serial Port, Parallel Port and System Bus.">
+<title>Secondary Storage, Memory & System Bus | BK LearnX</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;line-height:1.7;background:#f5f7fb;color:#1f2937}
+header{background:linear-gradient(135deg,#111827,#2563eb);color:#fff;text-align:center;padding:34px 18px}
+header h1{font-size:clamp(26px,5vw,43px);margin-bottom:8px}
+header p{opacity:.93}
+.layout{max-width:1250px;margin:auto;display:flex;gap:22px;padding:22px}
+aside{width:275px;flex:none;background:#fff;padding:18px;border-radius:14px;box-shadow:0 5px 20px rgba(0,0,0,.08);position:sticky;top:15px;height:max-content}
+aside h3{color:#1d4ed8;margin-bottom:10px}
+aside a{display:block;text-decoration:none;color:#374151;padding:8px 10px;border-radius:8px}
+aside a:hover{background:#eff6ff;color:#1d4ed8}
+main{flex:1;min-width:0}
+section{background:#fff;padding:26px;margin-bottom:20px;border-radius:14px;box-shadow:0 5px 20px rgba(0,0,0,.06)}
+h2{color:#1d4ed8;border-left:5px solid #2563eb;padding-left:12px;margin-bottom:16px}
+h3{color:#111827;margin:18px 0 8px}
+p{margin:9px 0}
+ul,ol{padding-left:25px;margin:10px 0}
+li{margin:6px 0}
+.note,.example,.formula{padding:15px 17px;border-radius:10px;margin:15px 0}
+.note{background:#eff6ff;border-left:4px solid #2563eb}
+.example{background:#f0fdf4;border-left:4px solid #16a34a}
+.formula{background:#fff7ed;border-left:4px solid #f97316;font-weight:600}
+table{width:100%;border-collapse:collapse;margin:16px 0}
+th,td{border:1px solid #dbe2ea;padding:11px;text-align:left;vertical-align:top}
+th{background:#eef2ff;color:#1e3a8a}
+.diagram{display:flex;flex-direction:column;align-items:center;gap:10px;margin:20px 0}
+.row{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:12px}
+.box{background:#eff6ff;border:2px solid #60a5fa;border-radius:10px;padding:13px 18px;text-align:center;font-weight:600;min-width:125px}
+.storage{background:#ecfdf5;border-color:#10b981}
+.port{background:#fef3c7;border-color:#f59e0b}
+.bus{background:#fce7f3;border-color:#ec4899}
+.arrow{font-size:24px;color:#2563eb}
+.badge{display:inline-block;background:#dbeafe;color:#1e40af;padding:4px 9px;border-radius:20px;font-size:13px;margin:3px}
+footer{background:#111827;color:#fff;text-align:center;padding:25px}
+@media(max-width:850px){
+ .layout{display:block;padding:12px}
+ aside{position:relative;width:100%;top:0;margin-bottom:15px}
+ aside a{display:inline-block}
+ section{padding:19px}
+ table{display:block;overflow-x:auto}
+ .diagram .row{flex-direction:column}
+ .arrow{transform:rotate(90deg)}
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Secondary Storage, Memory & System Communication</h1>
+<p>PGDCA Exam-Oriented Notes | BK LearnX</p>
+</header>
+
+<div class="layout">
+<aside>
+<h3>📚 Contents</h3>
+<a href="#secondary">5. Secondary Storage</a>
+<a href="#magnetic">Magnetic Disk</a>
+<a href="#tracks">Tracks & Sectors</a>
+<a href="#optical">Optical Disk</a>
+<a href="#primary">Primary Memory</a>
+<a href="#ram">RAM</a>
+<a href="#rom">ROM</a>
+<a href="#prom">PROM & Other ROM Types</a>
+<a href="#comparison">Primary vs Secondary</a>
+<a href="#capacity">Storage Capacity</a>
+<a href="#controller">Device Controllers</a>
+<a href="#ports">Serial & Parallel Port</a>
+<a href="#bus">System Bus</a>
+<a href="#revision">Quick Revision</a>
+</aside>
+
+<main>
+
+<section id="secondary">
+<h2>5. Secondary Storage</h2>
+<p><strong>Secondary Storage</strong> वह storage है जिसका उपयोग data, programs और files को long-term basis पर store करने के लिए किया जाता है। यह primary memory की तुलना में सामान्यतः अधिक capacity प्रदान करती है और data को power off होने के बाद भी बनाए रखती है।</p>
+
+<h3>मुख्य विशेषताएँ</h3>
+<ul>
+<li>Large amount of data store किया जा सकता है।</li>
+<li>Data generally non-volatile होता है।</li>
+<li>Long-term storage के लिए उपयोगी है।</li>
+<li>Primary memory की तुलना में प्रति unit capacity अधिक economical हो सकती है।</li>
+<li>Examples: Hard Disk, SSD, CD, DVD, Pen Drive, Memory Card.</li>
+</ul>
+
+<div class="note"><strong>Exam Definition:</strong> Secondary storage is non-primary storage used for permanent or long-term retention of programs and data.</div>
+</section>
+
+<section id="magnetic">
+<h2>Magnetic Disk</h2>
+<p><strong>Magnetic Disk</strong> एक storage medium है जिसमें data को magnetic surface पर store किया जाता है। Traditional hard disks magnetic disk technology का प्रमुख उदाहरण हैं।</p>
+
+<h3>Magnetic Disk की मुख्य विशेषताएँ</h3>
+<ul>
+<li>Data magnetic surface पर stored होता है।</li>
+<li>Data को tracks और sectors में organize किया जाता है।</li>
+<li>Large quantities of data store की जा सकती हैं।</li>
+<li>Read/write mechanism द्वारा data access किया जाता है।</li>
+</ul>
+
+<div class="example"><strong>Example:</strong> Traditional HDD में circular platters की magnetic surface पर files और operating system data store किया जाता है।</div>
+</section>
+
+<section id="tracks">
+<h2>Tracks and Sectors</h2>
+<h3>Track</h3>
+<p><strong>Track</strong> magnetic disk की surface पर एक circular path होता है जिस पर data store किया जाता है। एक platter पर कई concentric tracks हो सकते हैं।</p>
+
+<h3>Sector</h3>
+<p><strong>Sector</strong> track का एक subdivision होता है। Disk storage को छोटे blocks में organize करने में sectors महत्वपूर्ण भूमिका निभाते हैं।</p>
+
+<div class="diagram">
+<div class="box storage">Magnetic Disk Surface</div>
+<div class="arrow">↓</div>
+<div class="row">
+<div class="box">Track 1</div>
+<div class="box">Track 2</div>
+<div class="box">Track 3</div>
+</div>
+<div class="arrow">↓</div>
+<div class="row">
+<div class="box">Sector</div>
+<div class="box">Sector</div>
+<div class="box">Sector</div>
+</div>
+</div>
+
+<table>
+<tr><th>Term</th><th>Meaning</th></tr>
+<tr><td>Track</td><td>Disk surface पर circular data path.</td></tr>
+<tr><td>Sector</td><td>Track का subdivided storage area.</td></tr>
+</table>
+
+<div class="note"><strong>याद रखें:</strong> Track बड़ा circular path है, जबकि Sector उस track का छोटा division है।</div>
+</section>
+
+<section id="optical">
+<h2>Optical Disk</h2>
+<p><strong>Optical Disk</strong> ऐसा storage medium है जिसमें data को laser technology की सहायता से read/write किया जाता है। CD और DVD इसके common examples हैं।</p>
+
+<h3>CD – Compact Disc</h3>
+<p><strong>CD</strong> एक optical storage medium है जिसका उपयोग music, software, documents और अन्य digital data store करने के लिए किया जाता था/किया जाता है। Standard CD capacity commonly लगभग <strong>700 MB</strong> तक होती है, हालांकि exact capacity format पर depend कर सकती है।</p>
+
+<h3>DVD – Digital Versatile Disc</h3>
+<p><strong>DVD</strong> optical storage medium है जिसकी capacity सामान्य CD की तुलना में अधिक होती है। A common single-layer, single-sided DVD लगभग <strong>4.7 GB</strong> data store कर सकती है।</p>
+
+<table>
+<tr><th>Feature</th><th>CD</th><th>DVD</th></tr>
+<tr><td>Technology</td><td>Optical / Laser</td><td>Optical / Laser</td></tr>
+<tr><td>Typical capacity</td><td>लगभग 700 MB</td><td>लगभग 4.7 GB (single-layer, single-sided)</td></tr>
+<tr><td>Use</td><td>Music, software, documents आदि</td><td>Video, software, backup आदि</td></tr>
+</table>
+</section>
+
+<section id="primary">
+<h2>Primary Memory</h2>
+<p><strong>Primary Memory</strong> computer की main memory है जिसे processor working operations के दौरान directly/closely access करता है। इसमें currently required programs और data रखे जा सकते हैं।</p>
+
+<h3>Primary Memory के प्रमुख प्रकार</h3>
+<div class="row">
+<span class="badge">RAM</span>
+<span class="badge">ROM</span>
+<span class="badge">Cache</span>
+</div>
+
+<div class="note"><strong>Important:</strong> Primary memory generally faster होती है, लेकिन इसकी capacity secondary storage की तुलना में कम होती है।</div>
+</section>
+
+<section id="ram">
+<h2>RAM – Random Access Memory</h2>
+<p><strong>RAM</strong> computer की working memory है। इसमें currently running programs और data temporarily रखा जाता है। सामान्य RAM <strong>volatile</strong> होती है, इसलिए power off होने पर stored working data खो जाता है।</p>
+
+<h3>RAM के प्रकार</h3>
+<ul>
+<li><strong>SRAM (Static RAM):</strong> Fast memory technology, commonly used in cache-related applications.</li>
+<li><strong>DRAM (Dynamic RAM):</strong> Main system memory में widely used RAM technology.</li>
+</ul>
+</section>
+
+<section id="rom">
+<h2>ROM – Read Only Memory</h2>
+<p><strong>ROM</strong> non-volatile memory है। इसमें stored information power off होने के बाद भी बनी रहती है। इसका उपयोग firmware या startup-related instructions के लिए किया जा सकता है।</p>
+
+<h3>ROM की प्रमुख विशेषताएँ</h3>
+<ul>
+<li>Non-volatile nature.</li>
+<li>Power off होने के बाद data retain कर सकती है।</li>
+<li>Traditional ROM में contents सामान्य user operations से आसानी से modify नहीं किए जाते।</li>
+<li>Firmware storage के लिए उपयोगी।</li>
+</ul>
+</section>
+
+<section id="prom">
+<h2>PROM and Other ROM Types</h2>
+<h3>PROM – Programmable Read Only Memory</h3>
+<p><strong>PROM</strong> ऐसी non-volatile memory है जिसे manufacturer/user द्वारा एक बार program किया जा सकता है। Programming के बाद traditional PROM को सामान्य तरीके से erase करके फिर से program नहीं किया जा सकता।</p>
+
+<h3>EPROM – Erasable Programmable ROM</h3>
+<p><strong>EPROM</strong> को ultraviolet (UV) light की सहायता से erase करके पुनः program किया जा सकता है।</p>
+
+<h3>EEPROM – Electrically Erasable Programmable ROM</h3>
+<p><strong>EEPROM</strong> को electrical signals की सहायता से erase और reprogram किया जा सकता है।</p>
+
+<table>
+<tr><th>Memory</th><th>Basic Characteristic</th></tr>
+<tr><td>ROM</td><td>Non-volatile, fixed/firmware-oriented storage.</td></tr>
+<tr><td>PROM</td><td>एक बार programmable.</td></tr>
+<tr><td>EPROM</td><td>UV light से erase और reprogram.</td></tr>
+<tr><td>EEPROM</td><td>Electrical method से erase और reprogram.</td></tr>
+</table>
+</section>
+
+<section id="comparison">
+<h2>Primary Memory vs Secondary Memory</h2>
+<table>
+<tr><th>Basis</th><th>Primary Memory</th><th>Secondary Memory</th></tr>
+<tr><td>Purpose</td><td>Current processing के लिए working storage.</td><td>Long-term data storage.</td></tr>
+<tr><td>Speed</td><td>Generally faster.</td><td>Generally slower than primary memory.</td></tr>
+<tr><td>Capacity</td><td>Generally lower.</td><td>Generally much higher.</td></tr>
+<tr><td>Volatility</td><td>RAM volatile; ROM non-volatile.</td><td>Generally non-volatile.</td></tr>
+<tr><td>Examples</td><td>RAM, ROM, Cache.</td><td>HDD, SSD, CD, DVD, Pen Drive.</td></tr>
+<tr><td>CPU Access</td><td>Working memory is directly/closely accessible.</td><td>Usually accessed through I/O/storage controllers.</td></tr>
+</table>
+</section>
+
+<section id="capacity">
+<h2>Storage Capacity</h2>
+<p><strong>Storage Capacity</strong> यह बताती है कि कोई memory या storage device कितना data store कर सकती है।</p>
+
+<table>
+<tr><th>Unit</th><th>Meaning</th></tr>
+<tr><td>Bit</td><td>Binary digit: 0 या 1.</td></tr>
+<tr><td>Byte</td><td>8 bits.</td></tr>
+<tr><td>KB</td><td>Computer contexts में commonly 1024 bytes के रूप में पढ़ाया जाता है।</td></tr>
+<tr><td>MB</td><td>Common binary convention में 1024 KB.</td></tr>
+<tr><td>GB</td><td>Common binary convention में 1024 MB.</td></tr>
+<tr><td>TB</td><td>Common binary convention में 1024 GB.</td></tr>
+</table>
+
+<div class="note"><strong>Note:</strong> Modern storage manufacturers अक्सर decimal units use करते हैं, जैसे 1 GB = 1,000,000,000 bytes. इसलिए advertised capacity और operating system द्वारा दिखाई गई capacity अलग हो सकती है।</div>
+</section>
+
+<section id="controller">
+<h2>Device Controllers</h2>
+<p><strong>Device Controller</strong> hardware component/interface है जो CPU/system और किसी input/output device के बीच communication तथा control में सहायता करता है।</p>
+
+<h3>मुख्य कार्य</h3>
+<ul>
+<li>Device से data transfer manage करना।</li>
+<li>CPU/system से commands receive करना।</li>
+<li>Device status और control information maintain करना।</li>
+<li>Hardware और operating system के बीच suitable interface उपलब्ध कराना।</li>
+</ul>
+
+<div class="diagram">
+<div class="row">
+<div class="box">CPU / System</div>
+<div class="arrow">↔</div>
+<div class="box port">Device Controller</div>
+<div class="arrow">↔</div>
+<div class="box storage">I/O Device</div>
+</div>
+</div>
+
+<div class="example"><strong>Example:</strong> Storage controller system और storage device के बीच data transfer को coordinate करने में सहायता करता है।</div>
+</section>
+
+<section id="ports">
+<h2>Serial Port</h2>
+<p><strong>Serial Port</strong> communication interface है जिसमें data bits को सामान्यतः एक के बाद एक serial sequence में transmit किया जाता है। Traditional computers में RS-232 serial ports common थे।</p>
+
+<h3>Features</h3>
+<ul>
+<li>Data serial form में transmit होता है।</li>
+<li>Traditional serial interfaces में relatively fewer conductors की आवश्यकता होती है।</li>
+<li>Legacy peripherals और industrial devices में इसका उपयोग मिलता है।</li>
+</ul>
+
+<h2>Parallel Port</h2>
+<p><strong>Parallel Port</strong> interface है जिसमें multiple data bits को parallel lines के माध्यम से एक साथ transfer किया जा सकता है। Traditional PCs में printer connection के लिए parallel port का उपयोग किया जाता था।</p>
+
+<h3>Serial vs Parallel Port</h3>
+<table>
+<tr><th>Basis</th><th>Serial Port</th><th>Parallel Port</th></tr>
+<tr><td>Data Transfer</td><td>Bits sequentially transmit होते हैं।</td><td>Multiple bits parallel lines पर transmit हो सकते हैं।</td></tr>
+<tr><td>Traditional Use</td><td>Serial/communication devices.</td><td>Printers और legacy peripherals.</td></tr>
+<tr><td>Common Legacy Example</td><td>RS-232</td><td>Centronics-style printer interface</td></tr>
+</table>
+</section>
+
+<section id="bus">
+<h2>System Bus</h2>
+<p><strong>System Bus</strong> computer के major components के बीच data, addresses और control signals transfer करने वाली communication pathways का समूह है।</p>
+
+<h3>System Bus के प्रमुख भाग</h3>
+<table>
+<tr><th>Bus</th><th>Function</th></tr>
+<tr><td><strong>Data Bus</strong></td><td>Data को components के बीच transfer करता है।</td></tr>
+<tr><td><strong>Address Bus</strong></td><td>Memory/I/O location का address carry करता है।</td></tr>
+<tr><td><strong>Control Bus</strong></td><td>Read, write, interrupt और अन्य control signals carry करता है।</td></tr>
+</table>
+
+<div class="diagram">
+<div class="box cpu">CPU</div>
+<div class="arrow">↕</div>
+<div class="box bus">SYSTEM BUS</div>
+<div class="arrow">↕</div>
+<div class="row">
+<div class="box memory">Memory</div>
+<div class="box io">I/O Devices</div>
+</div>
+</div>
+
+<div class="note"><strong>याद रखने का तरीका:</strong> Data Bus = “क्या data?”, Address Bus = “कहाँ?”, Control Bus = “कैसे/कब control करना है?”</div>
+</section>
+
+<section id="revision">
+<h2>Quick Revision</h2>
+<table>
+<tr><th>Term</th><th>Key Point</th></tr>
+<tr><td>Secondary Storage</td><td>Long-term, generally non-volatile data storage.</td></tr>
+<tr><td>Magnetic Disk</td><td>Magnetic surface पर data store करती है।</td></tr>
+<tr><td>Track</td><td>Disk surface का circular path.</td></tr>
+<tr><td>Sector</td><td>Track का subdivision.</td></tr>
+<tr><td>CD</td><td>Optical disk; common capacity लगभग 700 MB.</td></tr>
+<tr><td>DVD</td><td>Optical disk; common single-layer single-sided capacity लगभग 4.7 GB.</td></tr>
+<tr><td>RAM</td><td>Volatile working memory.</td></tr>
+<tr><td>ROM</td><td>Non-volatile memory.</td></tr>
+<tr><td>PROM</td><td>Programmable ROM, traditionally one-time programmable.</td></tr>
+<tr><td>EPROM</td><td>UV light से erase और reprogram.</td></tr>
+<tr><td>EEPROM</td><td>Electrically erase/reprogram.</td></tr>
+<tr><td>Device Controller</td><td>System और I/O device के communication/control में सहायता.</td></tr>
+<tr><td>Serial Port</td><td>Sequential/serial data transfer.</td></tr>
+<tr><td>Parallel Port</td><td>Multiple data lines पर parallel transfer.</td></tr>
+<tr><td>System Bus</td><td>Data, address और control signals की communication pathways.</td></tr>
+</table>
+
+<div class="formula">Computer Storage Hierarchy (basic idea): Cache → Primary Memory → Secondary Storage</div>
+</section>
+
+</main>
+</div>
+
+<footer>
+<p>© BK LearnX | PGDCA Study Notes</p>
+</footer>
+</body>
+</html>

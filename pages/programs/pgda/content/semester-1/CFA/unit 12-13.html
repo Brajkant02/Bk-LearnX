@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="BK LearnX PGDCA Notes - E-Commerce Overview, Security Issues, Mail and Message System, E-mail, Document and Picture Transmission, Voice Mail, Teleconferencing and E-mail Troubleshooting.">
+<meta name="keywords" content="E-Commerce, Security Issues in E-Commerce, Email, Voice Mail, Teleconferencing, Email Troubleshooting, PGDCA Notes, BK LearnX">
+<meta name="author" content="BK LearnX">
+<title>BK LearnX | E-Commerce & Mail and Message System</title>
+<style>
+:root{
+  --bg:#f5f7fb;--card:#fff;--text:#18202a;--muted:#657080;
+  --primary:#2563eb;--primary2:#1d4ed8;--border:#dfe5ee;
+  --soft:#eff6ff;--shadow:0 8px 25px rgba(20,35,60,.08);
+}
+*{box-sizing:border-box;scroll-behavior:smooth}
+body{margin:0;font-family:Arial,"Noto Sans Devanagari",sans-serif;background:var(--bg);color:var(--text);line-height:1.75}
+header{position:sticky;top:0;z-index:1000;background:#fff;border-bottom:1px solid var(--border);padding:14px 22px;box-shadow:0 2px 12px rgba(0,0,0,.05)}
+.header-inner{max-width:1250px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:15px}
+.logo{font-size:23px;font-weight:800;color:var(--primary)}.logo span{color:#111827}
+.menu-btn{display:none;border:1px solid var(--border);background:#fff;padding:8px 11px;border-radius:8px;font-size:20px}
+.layout{max-width:1250px;margin:25px auto;display:grid;grid-template-columns:280px 1fr;gap:25px;padding:0 18px}
+.sidebar{position:sticky;top:82px;height:calc(100vh - 105px);overflow:auto;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;box-shadow:var(--shadow)}
+.sidebar h3{margin-top:0;color:var(--primary)}
+.sidebar a{display:block;text-decoration:none;color:var(--text);padding:9px 10px;border-radius:8px;margin:3px 0}
+.sidebar a:hover{background:var(--soft);color:var(--primary)}
+.content{min-width:0}
+.hero{background:linear-gradient(135deg,#eff6ff,#ffffff);border:1px solid #dbeafe;border-radius:18px;padding:30px;box-shadow:var(--shadow);margin-bottom:22px}
+.hero h1{margin:0 0 8px;font-size:34px;color:#123b86}.hero p{margin:5px 0;color:var(--muted)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:15px;padding:25px;margin-bottom:20px;box-shadow:var(--shadow)}
+h2{font-size:27px;color:#123b86;border-bottom:2px solid #dbeafe;padding-bottom:8px}
+h3{color:#1e40af;margin-top:22px}
+h4{color:#334155}
+.note,.example,.warning{padding:15px 18px;border-radius:10px;margin:15px 0;border-left:5px solid var(--primary);background:var(--soft)}
+.warning{border-left-color:#f59e0b;background:#fffbeb}
+.example{border-left-color:#10b981;background:#ecfdf5}
+ul,ol{padding-left:25px}
+table{width:100%;border-collapse:collapse;margin:15px 0;background:#fff}
+th,td{border:1px solid var(--border);padding:11px;text-align:left;vertical-align:top}
+th{background:#eff6ff;color:#123b86}
+.flow{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;margin:18px 0}
+.flow span{padding:10px 14px;background:#eff6ff;border:1px solid #bfdbfe;border-radius:9px;font-weight:600}
+.arrow{font-size:22px;color:var(--primary)}
+footer{text-align:center;padding:25px;color:var(--muted)}
+.badge{display:inline-block;padding:4px 10px;background:#dbeafe;color:#1d4ed8;border-radius:20px;font-size:13px;font-weight:700}
+@media(max-width:900px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{position:fixed;left:-310px;top:0;width:290px;height:100vh;z-index:2000;border-radius:0;transition:.3s;padding-top:70px}
+  .sidebar.open{left:0}.menu-btn{display:block}.hero h1{font-size:27px}
+}
+@media(max-width:600px){
+  header{padding:12px 15px}.layout{padding:0 10px;margin-top:15px}
+  .card,.hero{padding:18px}.hero h1{font-size:24px}h2{font-size:22px}
+  table{font-size:14px;display:block;overflow-x:auto;white-space:nowrap}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">BK <span>LearnX</span></div>
+    <button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu">☰</button>
+  </div>
+</header>
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <h3>📚 Contents</h3>
+  <a href="#ecommerce">12. E-Commerce</a>
+  <a href="#overview">E-Commerce Overview</a>
+  <a href="#characteristics">Characteristics</a>
+  <a href="#process">E-Commerce Process</a>
+  <a href="#models">Business Models</a>
+  <a href="#applications">Applications</a>
+  <a href="#security">Security Issues</a>
+  <a href="#precautions">Security Precautions</a>
+  <a href="#mail">13. Mail & Message System</a>
+  <a href="#email">E-mail</a>
+  <a href="#working">Working of E-mail</a>
+  <a href="#document">Document Transmission</a>
+  <a href="#picture">Picture Transmission</a>
+  <a href="#voicemail">Voice Mail</a>
+  <a href="#teleconference">Teleconferencing</a>
+  <a href="#troubleshoot">E-mail Troubleshooting</a>
+  <a href="#revision">Quick Revision</a>
+</aside>
+
+<main class="content">
+<section class="hero">
+  <span class="badge">PGDCA • BK LearnX Notes</span>
+  <h1>E-Commerce & Mail and Message System</h1>
+  <p><strong>Chapter 12–13</strong> • Exam-oriented Hindi + English Notes</p>
+  <p>Simple explanation, processes, tables and practical examples.</p>
+</section>
+
+<section class="card" id="ecommerce">
+<h2>12. E-Commerce</h2>
+
+<h3 id="overview">12.1 Overview of E-Commerce</h3>
+<p><strong>E-Commerce (Electronic Commerce)</strong> का अर्थ Internet और अन्य electronic networks के माध्यम से goods, services और information का buying तथा selling करना है। इसमें customer और business के बीच होने वाले commercial transactions electronic form में किए जाते हैं।</p>
+
+<div class="note"><strong>सरल शब्दों में:</strong> जब कोई व्यक्ति Internet की सहायता से product/service को search करता है, order करता है, payment करता है और delivery प्राप्त करता है, तो यह पूरी activity E-Commerce का हिस्सा है।</div>
+
+<h3 id="characteristics">12.2 Characteristics of E-Commerce</h3>
+<ul>
+<li><strong>Online transaction:</strong> खरीद-बिक्री electronic माध्यम से होती है।</li>
+<li><strong>24×7 Availability:</strong> Online stores सामान्यतः किसी भी समय access किए जा सकते हैं।</li>
+<li><strong>Global Reach:</strong> Business अपने products/services को दूर-दराज के customers तक पहुँचा सकता है।</li>
+<li><strong>Electronic Payment:</strong> Card, Net Banking, UPI और अन्य digital payment methods का उपयोग किया जा सकता है।</li>
+<li><strong>Fast Communication:</strong> Customer और seller के बीच communication तेजी से होता है।</li>
+<li><strong>Digital Records:</strong> Orders, invoices और transaction details electronic रूप में store किए जा सकते हैं।</li>
+</ul>
+
+<h3 id="process">12.3 Basic E-Commerce Process</h3>
+<div class="flow">
+<span>Customer</span><b class="arrow">→</b>
+<span>Website / App</span><b class="arrow">→</b>
+<span>Product Selection</span><b class="arrow">→</b>
+<span>Order</span><b class="arrow">→</b>
+<span>Payment</span><b class="arrow">→</b>
+<span>Delivery</span>
+</div>
+
+<ol>
+<li>Customer website/app पर जाता है।</li>
+<li>Product या service को search करता है।</li>
+<li>Product select करके order करता है।</li>
+<li>Payment method select करके payment करता है।</li>
+<li>Seller order process करता है।</li>
+<li>Product/service customer तक पहुँचती है।</li>
+</ol>
+
+<h3 id="models">12.4 Major E-Commerce Business Models</h3>
+<table>
+<tr><th>Model</th><th>Meaning</th><th>Example</th></tr>
+<tr><td><strong>B2B</strong></td><td>Business to Business — एक business दूसरे business को goods/services देता है।</td><td>Wholesale supply</td></tr>
+<tr><td><strong>B2C</strong></td><td>Business to Consumer — business सीधे final customer को product/service देता है।</td><td>Online shopping</td></tr>
+<tr><td><strong>C2C</strong></td><td>Consumer to Consumer — consumers आपस में goods/services का transaction करते हैं।</td><td>Used-product marketplace</td></tr>
+<tr><td><strong>C2B</strong></td><td>Consumer to Business — individual अपनी service/product business को offer करता है।</td><td>Freelancing</td></tr>
+</table>
+
+<h3 id="applications">12.5 Applications of E-Commerce</h3>
+<ul>
+<li>Online shopping और retail</li>
+<li>Online banking और digital payment</li>
+<li>Online ticket booking</li>
+<li>Online education और courses</li>
+<li>Food और grocery ordering</li>
+<li>Digital marketing</li>
+<li>Online insurance services</li>
+<li>Government और public services के online portals</li>
+</ul>
+
+<h3 id="security">12.6 Security Issues in E-Commerce</h3>
+<p>E-Commerce में customer की personal information, login credentials और payment information electronic systems में process होती है। इसलिए security बहुत महत्वपूर्ण है।</p>
+
+<table>
+<tr><th>Security Issue</th><th>Explanation</th></tr>
+<tr><td><strong>Data Theft</strong></td><td>Unauthorized person customer या business का sensitive data चुरा सकता है।</td></tr>
+<tr><td><strong>Phishing</strong></td><td>Fake email, message या website के द्वारा user से confidential information प्राप्त करने की कोशिश।</td></tr>
+<tr><td><strong>Payment Fraud</strong></td><td>Fraudulent transaction या fake payment activity के कारण financial loss हो सकता है।</td></tr>
+<tr><td><strong>Malware</strong></td><td>Malicious software system या data को नुकसान पहुँचा सकता है।</td></tr>
+<tr><td><strong>Identity Theft</strong></td><td>किसी व्यक्ति की personal identity information का unauthorized use।</td></tr>
+<tr><td><strong>Weak Passwords</strong></td><td>Easy passwords account को unauthorized access के लिए vulnerable बना सकते हैं।</td></tr>
+<tr><td><strong>Privacy Issues</strong></td><td>Customer की personal information का unauthorized collection या misuse।</td></tr>
+<tr><td><strong>Fake Websites</strong></td><td>Original website जैसी दिखने वाली fraudulent website user को धोखा दे सकती है।</td></tr>
+<tr><td><strong>Data Breach</strong></td><td>Unauthorized access के कारण stored customer/business data expose हो सकता है।</td></tr>
+<tr><td><strong>Account Hijacking</strong></td><td>Attacker किसी user account पर unauthorized control प्राप्त कर सकता है।</td></tr>
+</table>
+
+<h3>12.7 Basic Security Measures</h3>
+<ul>
+<li>Strong और unique passwords का उपयोग करें।</li>
+<li>जहाँ उपलब्ध हो वहाँ <strong>Multi-Factor Authentication (MFA)</strong> enable करें।</li>
+<li>Trusted और secure websites पर ही sensitive information enter करें।</li>
+<li>Suspicious links और attachments से बचें।</li>
+<li>Payment details किसी unknown person के साथ share न करें।</li>
+<li>Software, browser और security tools को updated रखें।</li>
+<li>Public/unknown networks पर sensitive transactions करते समय सावधानी रखें।</li>
+<li>Transaction alerts और account activity को regularly check करें।</li>
+</ul>
+
+<div class="warning"><strong>Important:</strong> E-Commerce security का मुख्य उद्देश्य data और transactions की <strong>Confidentiality, Integrity, Authentication और Availability</strong> को सुरक्षित रखना है।</div>
+</section>
+
+<section class="card" id="mail">
+<h2>13. Mail and Message System</h2>
+
+<h3 id="email">13.1 E-mail</h3>
+<p><strong>E-mail (Electronic Mail)</strong> एक electronic communication system है जिसके द्वारा Internet के माध्यम से text messages और files जैसे documents, images आदि भेजे और प्राप्त किए जाते हैं।</p>
+
+<h3>13.2 Main Components of an E-mail</h3>
+<ul>
+<li><strong>Sender:</strong> Message भेजने वाला व्यक्ति।</li>
+<li><strong>Recipient:</strong> Message प्राप्त करने वाला व्यक्ति।</li>
+<li><strong>To:</strong> मुख्य recipient का email address।</li>
+<li><strong>CC:</strong> अन्य recipients को copy भेजने के लिए।</li>
+<li><strong>BCC:</strong> अन्य recipients के addresses को छिपाकर copy भेजने के लिए।</li>
+<li><strong>Subject:</strong> Email का विषय।</li>
+<li><strong>Body:</strong> मुख्य message।</li>
+<li><strong>Attachment:</strong> Email के साथ भेजी गई file।</li>
+</ul>
+
+<h3 id="working">13.3 Working of E-mail</h3>
+<div class="flow">
+<span>Sender</span><b class="arrow">→</b>
+<span>Mail Server</span><b class="arrow">→</b>
+<span>Internet</span><b class="arrow">→</b>
+<span>Receiver Mail Server</span><b class="arrow">→</b>
+<span>Receiver</span>
+</div>
+
+<p>जब sender email भेजता है, तो message mail server के माध्यम से destination mail server तक पहुँचाया जाता है। Receiver अपने email client या webmail के माध्यम से message access करता है।</p>
+
+<h3>13.4 E-mail के सामान्य उपयोग</h3>
+<ul>
+<li>Personal और professional communication</li>
+<li>Official notices और instructions भेजना</li>
+<li>Documents और images share करना</li>
+<li>Online services के notifications प्राप्त करना</li>
+<li>Business communication</li>
+</ul>
+
+<h3 id="document">13.5 Document Transmission</h3>
+<p><strong>Document transmission</strong> का अर्थ electronic communication system के माध्यम से documents को एक user/system से दूसरे user/system तक भेजना है। E-mail में document को attachment के रूप में भेजा जा सकता है।</p>
+
+<ol>
+<li>New email compose करें।</li>
+<li>Recipient का सही address enter करें।</li>
+<li>Subject और message लिखें।</li>
+<li><strong>Attach File</strong> option select करें।</li>
+<li>Document file select करें।</li>
+<li>Attachment upload होने के बाद email भेजें।</li>
+</ol>
+
+<div class="example"><strong>Example:</strong> Student assignment को PDF या DOCX file के रूप में teacher के email address पर attachment करके भेज सकता है।</div>
+
+<h3 id="picture">13.6 Picture Transmission</h3>
+<p>Pictures/images को भी email के द्वारा attachment के रूप में transmit किया जा सकता है। User image select करके email में attach करता है और recipient उसे download या view कर सकता है।</p>
+
+<h3>Picture Transmission की basic process</h3>
+<ol>
+<li>Email compose करें।</li>
+<li>Recipient address enter करें।</li>
+<li>Attach option पर click करें।</li>
+<li>Required picture select करें।</li>
+<li>Upload complete होने दें।</li>
+<li>Email send करें।</li>
+</ol>
+
+<div class="note"><strong>ध्यान दें:</strong> Large files/images के लिए email service की attachment-size limit लागू हो सकती है। ऐसी स्थिति में cloud storage link या अन्य supported file-sharing method का उपयोग किया जा सकता है।</div>
+
+<h3 id="voicemail">13.7 Voice Mail</h3>
+<p><strong>Voice Mail</strong> एक communication service है जिसमें व्यक्ति किसी recipient के लिए voice message record करके छोड़ सकता है। Receiver बाद में उस recorded message को सुन सकता है।</p>
+
+<h4>Voice Mail की विशेषताएँ</h4>
+<ul>
+<li>Voice message record किया जा सकता है।</li>
+<li>Receiver बाद में message सुन सकता है।</li>
+<li>यह real-time conversation का alternative हो सकता है।</li>
+<li>Busy या unavailable recipient के लिए उपयोगी है।</li>
+</ul>
+
+<h3 id="teleconference">13.8 Teleconferencing</h3>
+<p><strong>Teleconferencing</strong> एक communication method है जिसमें geographically अलग-अलग locations पर मौजूद दो या दो से अधिक लोग electronic communication network के माध्यम से conference या meeting करते हैं।</p>
+
+<h4>Types</h4>
+<table>
+<tr><th>Type</th><th>Description</th></tr>
+<tr><td><strong>Audio Conferencing</strong></td><td>Participants voice/audio के माध्यम से communicate करते हैं।</td></tr>
+<tr><td><strong>Video Conferencing</strong></td><td>Audio के साथ video communication भी होता है।</td></tr>
+<tr><td><strong>Web Conferencing</strong></td><td>Internet के माध्यम से meeting, presentation और screen sharing जैसी सुविधाएँ मिल सकती हैं।</td></tr>
+</table>
+
+<h4>Teleconferencing के उपयोग</h4>
+<ul>
+<li>Online meetings</li>
+<li>Distance education</li>
+<li>Business discussions</li>
+<li>Remote collaboration</li>
+<li>Training और presentations</li>
+</ul>
+
+<h3 id="troubleshoot">13.9 Troubleshooting in E-mail</h3>
+<p>E-mail troubleshooting का अर्थ email service में आने वाली problems को identify करके उन्हें solve करना है।</p>
+
+<table>
+<tr><th>Problem</th><th>Possible Cause</th><th>Basic Solution</th></tr>
+<tr><td>Login नहीं हो रहा</td><td>Wrong password/username</td><td>Credentials check करें और जरूरत हो तो password recovery करें।</td></tr>
+<tr><td>Email send नहीं हो रहा</td><td>Internet/server issue या wrong address</td><td>Connection और recipient address check करें।</td></tr>
+<tr><td>Email receive नहीं हो रहा</td><td>Network, sync या storage problem</td><td>Connection, refresh/sync और mailbox storage check करें।</td></tr>
+<tr><td>Attachment नहीं जा रहा</td><td>File बहुत बड़ी या unsupported</td><td>File size/type check करें या supported sharing method use करें।</td></tr>
+<tr><td>Email Spam में जा रहा</td><td>Spam filtering</td><td>Spam/Junk folder check करें और trusted sender को mark करें।</td></tr>
+<tr><td>Mailbox full</td><td>Storage limit reached</td><td>Unnecessary emails/attachments delete करें।</td></tr>
+<tr><td>Image/file open नहीं हो रही</td><td>Corrupt या unsupported file</td><td>File दोबारा प्राप्त करें या suitable application से open करें।</td></tr>
+<tr><td>Mobile पर email update नहीं</td><td>Sync disabled/app issue</td><td>Internet, sync settings और app update check करें।</td></tr>
+<tr><td>Security warning</td><td>Suspicious login/link/message</td><td>Link avoid करें, password बदलें और account security settings check करें।</td></tr>
+</table>
+
+<h3>General E-mail Troubleshooting Steps</h3>
+<ol>
+<li>Internet connection check करें।</li>
+<li>Email address और password carefully verify करें।</li>
+<li>Mailbox को refresh/sync करें।</li>
+<li>Spam/Junk folder check करें।</li>
+<li>Mailbox storage available है या नहीं देखें।</li>
+<li>Attachment size और file format check करें।</li>
+<li>Browser/app को update करें।</li>
+<li>जरूरत पड़ने पर account को sign out करके फिर sign in करें।</li>
+<li>Security-related problem में suspicious links पर click न करें।</li>
+</ol>
+</section>
+
+<section class="card" id="revision">
+<h2>Quick Revision</h2>
+<table>
+<tr><th>Topic</th><th>One-Line Definition</th></tr>
+<tr><td>E-Commerce</td><td>Electronic networks/Internet के माध्यम से goods और services की buying-selling।</td></tr>
+<tr><td>B2B</td><td>Business to Business transaction.</td></tr>
+<tr><td>B2C</td><td>Business to Consumer transaction.</td></tr>
+<tr><td>Phishing</td><td>Fake communication/website द्वारा sensitive information प्राप्त करने का प्रयास।</td></tr>
+<tr><td>E-mail</td><td>Internet के माध्यम से electronic messages भेजने और प्राप्त करने की service।</td></tr>
+<tr><td>Voice Mail</td><td>Recorded voice message छोड़ने और बाद में सुनने की सुविधा।</td></tr>
+<tr><td>Teleconferencing</td><td>दूर स्थित participants के बीच electronic network द्वारा conference।</td></tr>
+<tr><td>Troubleshooting</td><td>System/email problems को identify और resolve करने की प्रक्रिया।</td></tr>
+</table>
+
+<div class="note">
+<strong>BK LearnX:</strong> इन notes को PGDCA written examination के लिए समझकर पढ़ें और definitions तथा process को अपने शब्दों में लिखने का अभ्यास करें।
+</div>
+</section>
+
+<footer>© 2026 BK LearnX • PGDCA Study Notes</footer>
+</main>
+</div>
+
+<script>
+function toggleMenu(){
+  document.getElementById('sidebar').classList.toggle('open');
+}
+document.querySelectorAll('.sidebar a').forEach(a=>{
+  a.addEventListener('click',()=>{
+    if(window.innerWidth<=900) document.getElementById('sidebar').classList.remove('open');
+  });
+});
+</script>
+</body>
+</html>

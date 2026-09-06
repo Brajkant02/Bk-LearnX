@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BK LearnX | Auditing Evidence</title>
+<style>
+:root{
+  --bg:#f5f7fb;--card:#fff;--text:#182033;--muted:#5f6b7a;
+  --primary:#3157d5;--primary2:#6d4aff;--border:#e5e9f2;
+  --note:#eef3ff;--success:#eaf8f0;--warn:#fff6df;
+}
+*{box-sizing:border-box;scroll-behavior:smooth}
+body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:15px 24px}
+.brand{font-size:21px;font-weight:800;color:var(--primary)}
+.sub{font-size:13px;color:var(--muted)}
+.layout{display:grid;grid-template-columns:280px 1fr;max-width:1450px;margin:auto}
+aside{position:sticky;top:74px;height:calc(100vh - 74px);overflow:auto;background:#fff;border-right:1px solid var(--border);padding:22px 16px}
+aside h3{font-size:14px;margin:0 0 12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+nav a{display:block;text-decoration:none;color:#354052;padding:10px 12px;border-radius:10px;margin:3px 0;font-size:14px}
+nav a:hover{background:var(--note);color:var(--primary)}
+main{padding:34px;max-width:1100px}
+.hero{background:linear-gradient(135deg,#182d75,#5b3bd1);color:#fff;border-radius:22px;padding:38px;margin-bottom:28px;box-shadow:0 14px 40px rgba(49,87,213,.18)}
+.hero h1{margin:0 0 8px;font-size:36px}
+.hero p{margin:0;opacity:.9}
+section{scroll-margin-top:95px;margin-bottom:34px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:17px;padding:25px;margin:15px 0;box-shadow:0 5px 20px rgba(20,30,60,.04)}
+h2{font-size:25px;margin:0 0 15px}
+h3{font-size:19px;margin:20px 0 9px}
+h4{margin:15px 0 7px}
+ul,ol{padding-left:24px}
+.note,.example,.warning{padding:16px 18px;border-radius:13px;margin:15px 0}
+.note{background:var(--note);border-left:4px solid var(--primary)}
+.example{background:var(--success);border-left:4px solid #2d9b61}
+.warning{background:var(--warn);border-left:4px solid #d99b20}
+table{width:100%;border-collapse:collapse;margin:17px 0;font-size:14px;background:#fff}
+th,td{border:1px solid var(--border);padding:12px;text-align:left;vertical-align:top}
+th{background:#f0f3fa}
+.badge{display:inline-block;padding:4px 9px;border-radius:20px;background:#e9edff;color:var(--primary);font-size:12px;font-weight:700}
+.formula{font-family:ui-monospace,SFMono-Regular,monospace;background:#101828;color:#fff;padding:15px;border-radius:10px;overflow:auto}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:15px 0}
+.flow span{background:#eef2ff;border:1px solid #dbe2ff;padding:8px 12px;border-radius:9px;font-size:13px}
+footer{text-align:center;color:var(--muted);padding:25px;border-top:1px solid var(--border)}
+@media(max-width:850px){
+  .layout{display:block}
+  aside{position:fixed;left:-290px;top:0;width:280px;height:100vh;z-index:50;transition:.25s;box-shadow:8px 0 25px rgba(0,0,0,.12)}
+  aside.open{left:0}
+  main{padding:20px 15px}
+  header{padding:12px 15px}
+  .menu{display:inline-block;margin-right:12px;border:0;background:#eef2ff;padding:8px 10px;border-radius:8px}
+  .hero{padding:26px 21px}.hero h1{font-size:29px}
+}
+@media(min-width:851px){.menu{display:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <button class="menu" onclick="document.querySelector('aside').classList.toggle('open')">☰</button>
+  <span class="brand">BK LearnX</span>
+  <span class="sub"> · PGDCA Accounting & Auditing Notes</span>
+</header>
+
+<div class="layout">
+<aside>
+  <h3>Chapter 7</h3>
+  <nav>
+    <a href="#intro">1. Audit Evidence</a>
+    <a href="#procedures">2. Audit Procedures</a>
+    <a href="#sources">3. Sources of Evidence</a>
+    <a href="#reliability">4. Reliability</a>
+    <a href="#methods">5. Methods of Obtaining Evidence</a>
+    <a href="#physical">6. Physical Verification</a>
+    <a href="#documentation">7. Documentation</a>
+    <a href="#confirmation">8. Direct Confirmation</a>
+    <a href="#recomputation">9. Re-Computation</a>
+    <a href="#analytical">10. Analytical Review</a>
+    <a href="#representation">11. Management Representation</a>
+    <a href="#summary">12. Quick Revision</a>
+  </nav>
+</aside>
+
+<main>
+<div class="hero">
+  <span class="badge">CHAPTER 7</span>
+  <h1>Auditing Evidence</h1>
+  <p>Audit evidence प्राप्त करने की procedures, sources, reliability और प्रमुख audit techniques का exam-oriented अध्ययन।</p>
+</div>
+
+<section id="intro">
+<h2>1. Audit Evidence</h2>
+<div class="card">
+<p><strong>Audit Evidence</strong> वह information और supporting material है जिसे auditor audit conclusion और audit opinion के लिए आधार के रूप में उपयोग करता है।</p>
+<p>Auditor को पर्याप्त और उपयुक्त evidence प्राप्त करना होता है ताकि वह यह निष्कर्ष निकाल सके कि financial statements में material misstatement की संभावना कितनी है और उसकी audit opinion उचित आधार पर है।</p>
+
+<div class="note"><strong>याद रखें:</strong> Audit Evidence की दो मुख्य qualities हैं — <strong>Sufficiency</strong> (मात्रा) और <strong>Appropriateness</strong> (गुणवत्ता/relevance + reliability).</div>
+
+<h3>Sufficiency और Appropriateness</h3>
+<table>
+<tr><th>Basis</th><th>Meaning</th></tr>
+<tr><td>Sufficiency</td><td>Evidence की quantity यानी auditor को कितना evidence चाहिए।</td></tr>
+<tr><td>Appropriateness</td><td>Evidence की quality यानी evidence relevant और reliable है या नहीं।</td></tr>
+</table>
+</div>
+</section>
+
+<section id="procedures">
+<h2>2. Audit Procedures for Obtaining Evidence</h2>
+<div class="card">
+<p>Auditor विभिन्न procedures के द्वारा evidence collect करता है। प्रत्येक procedure का उद्देश्य अलग हो सकता है।</p>
+
+<table>
+<tr><th>Procedure</th><th>क्या किया जाता है?</th><th>उदाहरण</th></tr>
+<tr><td>Inspection</td><td>Records, documents या physical assets को examine करना</td><td>Invoice, agreement, stock register देखना</td></tr>
+<tr><td>Observation</td><td>दूसरों द्वारा की जा रही process को देखना</td><td>Stock counting process observe करना</td></tr>
+<tr><td>External Confirmation</td><td>Third party से सीधे information लेना</td><td>Bank balance confirmation</td></tr>
+<tr><td>Recalculation</td><td>Calculations की mathematical accuracy check करना</td><td>Depreciation या interest पुनः calculate करना</td></tr>
+<tr><td>Reperformance</td><td>Entity द्वारा किए गए control/procedure को auditor द्वारा independently perform करना</td><td>Control approval process को test करना</td></tr>
+<tr><td>Analytical Procedures</td><td>Relationships, trends और ratios का analysis</td><td>Gross profit ratio compare करना</td></tr>
+<tr><td>Inquiry</td><td>Management/employees से information पूछना</td><td>Unusual expense के बारे में पूछना</td></tr>
+</table>
+</div>
+</section>
+
+<section id="sources">
+<h2>3. Sources of Audit Evidence</h2>
+<div class="card">
+<p>Audit evidence internal और external दोनों sources से प्राप्त हो सकता है।</p>
+
+<h3>A. Internal Sources</h3>
+<ul>
+<li>Books of accounts और ledgers</li>
+<li>Sales और purchase invoices</li>
+<li>Cash book और bank book</li>
+<li>Stock records</li>
+<li>Internal reports</li>
+<li>Minutes और internal approvals</li>
+<li>Management द्वारा तैयार schedules</li>
+<li>Accounting system से generated records</li>
+</ul>
+
+<h3>B. External Sources</h3>
+<ul>
+<li>Bank confirmations</li>
+<li>Debtors/creditors confirmations</li>
+<li>Lawyers से legal confirmation</li>
+<li>Customers और suppliers से independent information</li>
+<li>Government/official records</li>
+<li>External contracts और agreements</li>
+</ul>
+
+<div class="example"><strong>Example:</strong> यदि company बताती है कि उसके bank account में ₹5,00,000 balance है, तो auditor केवल cash book देखने के बजाय bank से direct confirmation भी ले सकता है।</div>
+</div>
+</section>
+
+<section id="reliability">
+<h2>4. Reliability of Audit Evidence</h2>
+<div class="card">
+<p>सभी evidence समान रूप से reliable नहीं होते। Auditor को source और method देखकर evidence की reliability assess करनी चाहिए।</p>
+
+<table>
+<tr><th>Evidence</th><th>सामान्य reliability</th><th>Reason</th></tr>
+<tr><td>External independent confirmation</td><td>Generally high</td><td>Independent source से प्राप्त</td></tr>
+<tr><td>Auditor द्वारा स्वयं प्राप्त/observe किया evidence</td><td>Generally high</td><td>Direct auditor involvement</td></tr>
+<tr><td>Original documents</td><td>Generally stronger</td><td>Primary supporting record</td></tr>
+<tr><td>Internal documents</td><td>Moderate</td><td>Entity के internal controls पर निर्भर</td></tr>
+<tr><td>Management explanation मात्र</td><td>Lower as sole evidence</td><td>Independent corroboration की आवश्यकता हो सकती है</td></tr>
+<tr><td>Oral statement बिना support</td><td>Limited</td><td>Supporting evidence कम हो सकता है</td></tr>
+</table>
+
+<div class="warning"><strong>Important:</strong> कोई fixed rule नहीं है कि हर external evidence हमेशा reliable और हर internal evidence unreliable होगा। Reliability circumstances, source, controls और evidence की nature पर depend करती है।</div>
+</div>
+</section>
+
+<section id="methods">
+<h2>5. Methods of Obtaining Audit Evidence</h2>
+<div class="card">
+<div class="flow">
+<span>Inspection</span> → <span>Observation</span> → <span>Inquiry</span> → <span>Confirmation</span> → <span>Recalculation</span> → <span>Reperformance</span> → <span>Analytical Review</span>
+</div>
+
+<h3>1. Inspection</h3>
+<p>Documents, records और tangible assets को examine करना inspection कहलाता है।</p>
+
+<h3>2. Observation</h3>
+<p>किसी procedure को perform होते हुए auditor द्वारा देखना observation है। जैसे physical stock count को observe करना।</p>
+
+<h3>3. Inquiry</h3>
+<p>Management या staff से relevant questions पूछकर information प्राप्त करना inquiry है। Inquiry को आवश्यक होने पर अन्य evidence से corroborate किया जाता है।</p>
+
+<h3>4. Confirmation</h3>
+<p>Third party से directly information प्राप्त करना external confirmation कहलाता है।</p>
+
+<h3>5. Recalculation</h3>
+<p>Records में की गई mathematical calculations को auditor द्वारा independently check करना recalculation है।</p>
+
+<h3>6. Reperformance</h3>
+<p>Entity द्वारा किए गए control या procedure को auditor द्वारा independently दोबारा perform करना reperformance है।</p>
+
+<h3>7. Analytical Procedures</h3>
+<p>Financial और non-financial data के बीच relationships, trends, ratios और unexpected variations का analysis करना analytical procedure है।</p>
+</div>
+</section>
+
+<section id="physical">
+<h2>6. Physical Verification</h2>
+<div class="card">
+<p><strong>Physical Verification</strong> का अर्थ physical assets की वास्तविक existence और condition को प्रत्यक्ष रूप से verify करना है। यह विशेष रूप से inventory, cash, fixed assets आदि के audit में उपयोगी हो सकता है।</p>
+
+<h3>मुख्य Steps</h3>
+<ol>
+<li>Asset/stock की location और nature identify करना।</li>
+<li>Physical counting या inspection करना।</li>
+<li>Records और physical quantity का comparison करना।</li>
+<li>Damaged, obsolete या slow-moving items को identify करना।</li>
+<li>Differences को investigate और document करना।</li>
+</ol>
+
+<div class="note"><strong>Example:</strong> Books में 1,000 units inventory दिखाई गई है। Auditor physical stock count के दौरान quantity और condition check करता है तथा records से difference होने पर उसका कारण investigate करता है।</div>
+
+<p><strong>Limitation:</strong> Physical verification existence का strong evidence दे सकता है, लेकिन केवल physical inspection से ownership, valuation या सभी accounting assertions पूरी तरह establish नहीं हो जाते।</p>
+</div>
+</section>
+
+<section id="documentation">
+<h2>7. Audit Documentation</h2>
+<div class="card">
+<p><strong>Audit Documentation</strong> auditor द्वारा तैयार या प्राप्त किए गए working papers और records हैं जिनमें audit work performed, evidence obtained और conclusions reached का record होता है।</p>
+
+<h3>Documentation में क्या शामिल हो सकता है?</h3>
+<ul>
+<li>Audit plan और audit programme</li>
+<li>Working papers</li>
+<li>Test results</li>
+<li>Supporting documents</li>
+<li>Confirmation replies</li>
+<li>Analytical review working</li>
+<li>Important discussions और judgments का record</li>
+<li>Final audit conclusions</li>
+</ul>
+
+<h3>Importance</h3>
+<table>
+<tr><th>Point</th><th>Explanation</th></tr>
+<tr><td>Evidence of work</td><td>यह दिखाता है कि audit procedures perform किए गए।</td></tr>
+<tr><td>Basis of conclusion</td><td>Auditor के conclusions और opinion का supporting record मिलता है।</td></tr>
+<tr><td>Review</td><td>Senior auditor/engagement team audit work को review कर सकती है।</td></tr>
+<tr><td>Future reference</td><td>Future audits में useful background information मिल सकती है।</td></tr>
+</table>
+</div>
+</section>
+
+<section id="confirmation">
+<h2>8. Direct Confirmation</h2>
+<div class="card">
+<p><strong>Direct Confirmation</strong> में auditor किसी external party से सीधे written/electronic response प्राप्त करके information verify करता है। इसे external confirmation भी कहा जाता है।</p>
+
+<h3>Common Examples</h3>
+<ul>
+<li>Bank balance confirmation</li>
+<li>Trade receivables balance confirmation</li>
+<li>Trade payables balance confirmation</li>
+<li>Loan balance confirmation</li>
+<li>Terms of agreements की confirmation</li>
+</ul>
+
+<h3>Basic Process</h3>
+<ol>
+<li>Auditor confirmation की आवश्यकता identify करता है।</li>
+<li>Relevant external party और information तय की जाती है।</li>
+<li>Confirmation request auditor के control में भेजी जाती है।</li>
+<li>Response सीधे auditor तक प्राप्त किया जाता है।</li>
+<li>Response को accounting records से compare किया जाता है।</li>
+<li>Difference होने पर further investigation की जाती है।</li>
+</ol>
+
+<div class="example"><strong>Example:</strong> Debtor ledger में ABC Ltd. से ₹2,00,000 receivable है। Auditor ABC Ltd. को confirmation भेजकर balance verify कर सकता है।</div>
+</div>
+</section>
+
+<section id="recomputation">
+<h2>9. Re-Computation</h2>
+<div class="card">
+<p><strong>Re-Computation</strong> का अर्थ accounting records में किए गए calculations की mathematical accuracy को auditor द्वारा independently check करना है।</p>
+
+<h3>Examples</h3>
+<ul>
+<li>Depreciation calculation</li>
+<li>Interest calculation</li>
+<li>Payroll totals</li>
+<li>Invoice extensions</li>
+<li>Discount calculation</li>
+<li>Tax/GST calculation की arithmetic accuracy</li>
+<li>Ledger और trial balance totals</li>
+</ul>
+
+<div class="formula">Re-computation = Existing calculation को independently दोबारा calculate करके accuracy verify करना</div>
+
+<div class="note"><strong>ध्यान दें:</strong> Re-computation मुख्यतः mathematical accuracy को test करता है। Calculation का underlying accounting treatment सही है या नहीं, इसके लिए अन्य audit procedures की भी आवश्यकता हो सकती है।</div>
+</div>
+</section>
+
+<section id="analytical">
+<h2>10. Analytical Review Techniques</h2>
+<div class="card">
+<p><strong>Analytical Review</strong> में financial और non-financial information के बीच relationships तथा trends का अध्ययन किया जाता है ताकि unusual movements या possible misstatements को identify किया जा सके।</p>
+
+<h3>Major Techniques</h3>
+<table>
+<tr><th>Technique</th><th>Meaning</th><th>Example</th></tr>
+<tr><td>Trend Analysis</td><td>कई periods के data में trend देखना</td><td>पिछले 3 वर्षों की sales growth</td></tr>
+<tr><td>Ratio Analysis</td><td>Relevant ratios की comparison</td><td>Gross profit ratio, current ratio</td></tr>
+<tr><td>Comparative Analysis</td><td>Current data को prior period/budget से compare करना</td><td>Actual vs budget expenses</td></tr>
+<tr><td>Reasonableness Test</td><td>Expected amount के साथ recorded amount की plausibility check करना</td><td>Salary expense vs employee count</td></tr>
+<tr><td>Relationship Analysis</td><td>Related financial/non-financial variables का संबंध देखना</td><td>Production volume vs electricity cost</td></tr>
+</table>
+
+<h3>Simple Ratio Example</h3>
+<p>यदि Sales = ₹10,00,000 और Gross Profit = ₹2,00,000:</p>
+<div class="formula">Gross Profit Ratio = (Gross Profit ÷ Sales) × 100
+= (2,00,000 ÷ 10,00,000) × 100
+= 20%</div>
+
+<p>यदि पिछले वर्ष ratio 32% था और इस वर्ष 20% हो गया, तो auditor को significant change का कारण investigate करना पड़ सकता है।</p>
+</div>
+</section>
+
+<section id="representation">
+<h2>11. Representation by Management</h2>
+<div class="card">
+<p><strong>Management Representation</strong> वह written statement है जिसमें management auditor को certain matters के संबंध में अपनी representations देता है, जैसे financial statements की preparation, information की completeness और specific matters की confirmation।</p>
+
+<h3>Management Representation के Examples</h3>
+<ul>
+<li>Management की responsibility for financial statements की acknowledgement.</li>
+<li>Auditor को दी गई relevant information की completeness के संबंध में representation.</li>
+<li>Unrecorded liabilities या undisclosed matters के संबंध में representation, जहाँ applicable हो।</li>
+<li>Related party information के संबंध में representation.</li>
+<li>Fraud या suspected fraud से संबंधित management responses.</li>
+</ul>
+
+<h3>क्या Management Representation अकेला पर्याप्त evidence है?</h3>
+<div class="warning"><strong>नहीं।</strong> Management representation useful audit evidence हो सकती है, लेकिन important matters पर auditor को circumstances के अनुसार अन्य supporting evidence भी प्राप्त करना पड़ सकता है।</div>
+
+<h3>Representation Letter</h3>
+<p>Audit के अंत में management से एक formal written representation letter प्राप्त किया जा सकता है। इसमें management द्वारा दिए गए relevant assertions/representations documented होते हैं।</p>
+</div>
+</section>
+
+<section id="summary">
+<h2>12. Quick Revision</h2>
+<div class="card">
+<table>
+<tr><th>Topic</th><th>One-line Revision</th></tr>
+<tr><td>Audit Evidence</td><td>Audit opinion/conclusion के लिए auditor द्वारा उपयोग की जाने वाली information और supporting material.</td></tr>
+<tr><td>Inspection</td><td>Documents, records या assets को examine करना.</td></tr>
+<tr><td>Observation</td><td>किसी process को perform होते हुए देखना.</td></tr>
+<tr><td>Confirmation</td><td>External party से direct response लेना.</td></tr>
+<tr><td>Recalculation</td><td>Mathematical calculations independently check करना.</td></tr>
+<tr><td>Reperformance</td><td>Procedure/control को auditor द्वारा independently दोबारा perform करना.</td></tr>
+<tr><td>Physical Verification</td><td>Physical asset/stock की existence और condition को verify करना.</td></tr>
+<tr><td>Documentation</td><td>Audit work, evidence और conclusions का recorded trail.</td></tr>
+<tr><td>Analytical Review</td><td>Trends, ratios और relationships से unusual items identify करना.</td></tr>
+<tr><td>Management Representation</td><td>Management की written representations concerning relevant audit matters.</td></tr>
+</table>
+
+<div class="note">
+<strong>Exam Definition:</strong> “Audit evidence is the information used by the auditor in arriving at the conclusions on which the audit opinion is based.”<br>
+इसे अपने शब्दों में लिखते समय evidence की <strong>relevance, reliability, sufficiency और appropriateness</strong> का उल्लेख करना उपयोगी है।
+</div>
+</div>
+</section>
+
+<footer>
+  <strong>BK LearnX</strong> · Auditing Evidence · PGDCA Notes
+</footer>
+</main>
+</div>
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BK LearnX | Transactions under GST</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--text:#172033;--muted:#667085;--primary:#2457d6;--soft:#edf3ff;--border:#dfe5ee;--green:#16855b;--orange:#b7791f}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,"Noto Sans Devanagari",Segoe UI,Arial,sans-serif;line-height:1.75}
+header{background:linear-gradient(135deg,#101828,#2457d6);color:white;text-align:center;padding:40px 18px}
+header h1{margin:0;font-size:clamp(28px,5vw,46px)}header p{margin:8px 0;color:#dce7ff}
+.layout{display:flex;max-width:1280px;margin:auto;align-items:flex-start}
+aside{width:275px;flex:none;height:100vh;overflow:auto;position:sticky;top:0;background:#fff;border-right:1px solid var(--border);padding:22px}
+aside h3{margin-top:0;color:var(--primary)}
+aside a{display:block;color:var(--text);text-decoration:none;padding:8px 11px;border-radius:8px;margin:3px 0}aside a:hover{background:var(--soft);color:var(--primary)}
+main{flex:1;min-width:0;padding:28px}.section{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:27px;margin-bottom:24px;box-shadow:0 5px 20px rgba(16,24,40,.04)}
+h2{color:var(--primary);margin-top:0;border-bottom:2px solid var(--soft);padding-bottom:9px}h3{color:#26364d}
+.note,.example,.warn{padding:15px 17px;border-radius:9px;margin:16px 0}.note{background:var(--soft);border-left:4px solid var(--primary)}.example{background:#f2fbf7;border-left:4px solid var(--green)}.warn{background:#fff8e8;border-left:4px solid var(--orange)}
+table{width:100%;border-collapse:collapse;margin:16px 0}th,td{border:1px solid var(--border);padding:11px;vertical-align:top;text-align:left}th{background:#edf2ff;color:#173b9b}
+.cardgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));gap:14px}.card{border:1px solid var(--border);border-radius:12px;padding:17px;background:#fff}.card strong{color:var(--primary)}
+.steps{counter-reset:step;list-style:none;padding:0}.steps li{counter-increment:step;position:relative;padding:11px 12px 11px 48px;margin:7px 0;background:#fafbff;border:1px solid var(--border);border-radius:9px}.steps li:before{content:counter(step);position:absolute;left:12px;top:10px;width:25px;height:25px;border-radius:50%;background:var(--primary);color:#fff;text-align:center;line-height:25px;font-weight:bold}
+.formula{font-family:Consolas,monospace;background:#f3f5f8;border-left:4px solid #667085;padding:14px 17px;border-radius:8px;margin:14px 0}
+.badge{display:inline-block;background:#e8efff;color:#2146ae;padding:3px 9px;border-radius:999px;font-size:.82rem;margin:2px}
+footer{text-align:center;color:var(--muted);padding:28px}
+@media(max-width:800px){.layout{display:block}aside{position:relative;width:100%;height:auto;border-right:0;border-bottom:1px solid var(--border)}main{padding:15px}.section{padding:19px}table{display:block;overflow-x:auto}}
+</style>
+</head>
+<body>
+
+<header>
+<h1>4) Transactions under GST</h1>
+<p>PGDCA • GST Accounting Notes • Hindi + English • Exam-Oriented</p>
+</header>
+
+<div class="layout">
+<aside>
+<h3>Contents</h3>
+<a href="#intra">A. Intra-State Supply</a>
+<a href="#inter">B. Inter-State Supply</a>
+<a href="#composition">C. Purchase from Composition Dealer</a>
+<a href="#unregistered">D. Purchase from Unregistered Dealer</a>
+<a href="#sez">E. SEZ</a>
+<a href="#export">F. Export</a>
+<a href="#import">G. Import</a>
+<a href="#exempt">H. Exempt Goods</a>
+<a href="#nil">I. Nil Rated Goods</a>
+<a href="#mrp">J. MRP</a>
+<a href="#mixed">K. Mixed Supply</a>
+<a href="#services">L. Services</a>
+<a href="#summary">Quick Revision</a>
+</aside>
+
+<main>
+
+<section class="section" id="intra">
+<h2>A. Intra-State Supply</h2>
+<p><strong>Intra-State Supply</strong> वह supply है जिसमें supplier और place of supply सामान्यतः एक ही State में होते हैं, subject to the applicable place-of-supply rules.</p>
+
+<div class="cardgrid">
+<div class="card"><strong>CGST</strong><br>Central GST का component.</div>
+<div class="card"><strong>SGST</strong><br>State GST का component.</div>
+<div class="card"><strong>Total GST</strong><br>Intra-State taxable supply में सामान्यतः CGST + SGST.</div>
+</div>
+
+<h3>Example</h3>
+<div class="example">
+Supplier: Uttar Pradesh<br>
+Customer/Place of Supply: Uttar Pradesh<br>
+Taxable Value: ₹10,000<br>
+Illustrative GST Rate: 18%<br><br>
+CGST @ 9% = ₹900<br>
+SGST @ 9% = ₹900<br>
+<strong>Total GST = ₹1,800</strong><br>
+Invoice Value = ₹11,800
+</div>
+
+<div class="note"><strong>याद रखें:</strong> Intra-State transaction को पहचानने में supplier location और place of supply दोनों महत्वपूर्ण होते हैं।</div>
+</section>
+
+<section class="section" id="inter">
+<h2>B. Inter-State Supply</h2>
+<p><strong>Inter-State Supply</strong> में supplier और place of supply अलग-अलग States/appropriate territories में हो सकते हैं, applicable place-of-supply provisions के अनुसार। ऐसी taxable supply पर सामान्यतः <strong>IGST</strong> लागू होता है।</p>
+
+<h3>Example</h3>
+<div class="example">
+Supplier: Uttar Pradesh<br>
+Place of Supply: Delhi<br>
+Taxable Value: ₹10,000<br>
+Illustrative GST Rate: 18%<br><br>
+IGST @ 18% = ₹1,800<br>
+<strong>Invoice Value = ₹11,800</strong>
+</div>
+
+<table>
+<tr><th>Point</th><th>Intra-State</th><th>Inter-State</th></tr>
+<tr><td>Tax components</td><td>Generally CGST + SGST/UTGST</td><td>Generally IGST</td></tr>
+<tr><td>Illustration</td><td>UP → UP</td><td>UP → Delhi</td></tr>
+</table>
+</section>
+
+<section class="section" id="composition">
+<h2>C. Purchase from Composition Dealer</h2>
+<p><strong>Composition Scheme</strong> eligible small taxpayers के लिए simplified tax scheme है, जिसमें tax payment और compliance सामान्य GST scheme से अलग तरीके से किया जाता है।</p>
+
+<h3>Buyer के लिए मुख्य बात</h3>
+<ul>
+<li>Composition dealer सामान्यतः customer से अलग से GST collect नहीं करता।</li>
+<li>Composition dealer द्वारा issued document सामान्य tax invoice की जगह prescribed <strong>Bill of Supply</strong> हो सकता है।</li>
+<li>ऐसे purchase पर buyer को सामान्य taxable purchase की तरह CGST/SGST input credit assume नहीं करना चाहिए।</li>
+<li>Composition dealer के GST status को transaction से पहले verify करना चाहिए।</li>
+</ul>
+
+<div class="example"><strong>Example:</strong> एक registered buyer ने composition dealer से goods खरीदे। Supplier ने GST को अलग line item के रूप में collect नहीं किया। Buyer purchase value को appropriate accounting treatment के साथ record करेगा; normal tax-credit treatment composition purchase पर लागू नहीं माना जाता।</div>
+</section>
+
+<section class="section" id="unregistered">
+<h2>D. Purchase from Unregistered Dealer</h2>
+<p><strong>Unregistered Dealer</strong> वह supplier है जो GST registration के अंतर्गत registered नहीं है। Unregistered supplier से purchase की GST treatment transaction और उस समय लागू provisions/notifications पर depend करती है।</p>
+
+<h3>Important Points</h3>
+<ul>
+<li>Unregistered supplier सामान्यतः GST tax invoice जारी करके GST collect नहीं करता।</li>
+<li>हर unregistered purchase पर automatically reverse charge (RCM) मान लेना सही नहीं है।</li>
+<li>यदि किसी specified supply पर RCM लागू है, तो recipient को applicable rules के अनुसार tax treatment करना पड़ सकता है।</li>
+<li>Accounting entry बनाते समय applicable notification और transaction nature verify करना चाहिए।</li>
+</ul>
+
+<div class="warn"><strong>Exam Note:</strong> “Purchase from unregistered dealer = हमेशा GST payable under RCM” एक universal rule नहीं है। RCM केवल specified supplies/cases में लागू होता है।</div>
+</section>
+
+<section class="section" id="sez">
+<h2>E. SEZ (Special Economic Zone)</h2>
+<p><strong>SEZ</strong> का full form <strong>Special Economic Zone</strong> है। GST law में SEZ को लेकर supplies के लिए special treatment दिया गया है।</p>
+
+<h3>SEZ को Supply</h3>
+<p>SEZ unit/developer को <strong>authorised operations</strong> के लिए की गई qualifying supply को GST में generally <strong>zero-rated supply</strong> का treatment मिलता है, subject to applicable conditions.</p>
+
+<div class="cardgrid">
+<div class="card"><strong>Supply to SEZ</strong><br>Qualifying authorised-operation supply को zero-rated treatment मिल सकता है।</div>
+<div class="card"><strong>Supply by SEZ</strong><br>SEZ से होने वाली supply के लिए applicable GST provisions और place-of-supply rules देखे जाते हैं।</div>
+</div>
+
+<div class="note"><strong>Important:</strong> “Zero-rated” का अर्थ “Nil-rated” नहीं होता। Zero-rated supplies के लिए input tax credit/refund framework अलग होता है, subject to law and conditions.</div>
+</section>
+
+<section class="section" id="export">
+<h2>F. Export</h2>
+<p><strong>Export of Goods</strong> का सामान्य अर्थ goods को India के बाहर किसी place तक ले जाना है। GST में qualifying exports को <strong>zero-rated supply</strong> का treatment मिलता है।</p>
+
+<h3>Export के मुख्य points</h3>
+<ul>
+<li>Export transaction में place of supply और export conditions महत्वपूर्ण होते हैं।</li>
+<li>Qualifying export of goods/services को zero-rated framework में treat किया जाता है।</li>
+<li>Export documentation और shipping/customs requirements transaction के nature के अनुसार follow की जाती हैं।</li>
+<li>Eligible cases में refund/input tax credit provisions available हो सकते हैं, subject to prescribed conditions.</li>
+</ul>
+
+<div class="example"><strong>Example:</strong> भारत का एक exporter qualifying goods को USA के customer को export करता है। यह domestic intra-State sale की तरह CGST + SGST transaction नहीं है; export का zero-rated framework लागू होता है, subject to applicable conditions.</div>
+</section>
+
+<section class="section" id="import">
+<h2>G. Import</h2>
+<p><strong>Import of Goods</strong> का अर्थ goods को India में बाहर से लाना है। Imports पर GST treatment domestic purchase से अलग होता है और customs framework के साथ जुड़ा रहता है।</p>
+
+<h3>Import of Goods</h3>
+<ul>
+<li>Imported goods पर applicable <strong>IGST</strong> customs process के माध्यम से levy/collect हो सकता है।</li>
+<li>Basic Customs Duty (BCD) और IGST अलग components हैं।</li>
+<li>Eligible registered person prescribed conditions के अधीन import IGST का input tax credit ले सकता है।</li>
+</ul>
+
+<h3>Import of Services</h3>
+<p>Import of services के लिए place-of-supply और recipient/supplier conditions महत्वपूर्ण हैं। Specified cases में <strong>Reverse Charge Mechanism (RCM)</strong> लागू हो सकता है।</p>
+
+<div class="example"><strong>Example:</strong> Indian business ने foreign supplier से qualifying service ली। यदि applicable GST provisions के अनुसार यह import of service है और RCM लागू है, तो recipient को prescribed manner में GST account/pay करना पड़ सकता है।</div>
+</section>
+
+<section class="section" id="exempt">
+<h2>H. Exempt Goods</h2>
+<p><strong>Exempt Supply</strong> broadly ऐसी supply है जो GST law के तहत tax से exempt की गई हो, या जिसका tax treatment applicable exemption provisions के कारण अलग हो।</p>
+
+<h3>मुख्य विशेषताएँ</h3>
+<ul>
+<li>Exempt goods पर output GST charge नहीं किया जाता।</li>
+<li>Exemption notification/entry की conditions को देखना जरूरी है।</li>
+<li>Exempt supplies से संबंधित input tax credit का treatment taxable supplies से अलग हो सकता है।</li>
+</ul>
+
+<div class="warn"><strong>Important:</strong> Exempt goods की सूची fixed मानकर याद न करें; GST notifications/rates समय के साथ बदल सकते हैं।</div>
+</section>
+
+<section class="section" id="nil">
+<h2>I. Nil Rated Goods</h2>
+<p><strong>Nil Rated Goods</strong> वे goods हैं जिनके लिए applicable GST rate <strong>0%</strong> निर्धारित है।</p>
+
+<table>
+<tr><th>Exempt</th><th>Nil Rated</th></tr>
+<tr><td>Law/notification के कारण tax exemption.</td><td>Applicable tax rate 0%.</td></tr>
+<tr><td>Tax charge नहीं किया जाता।</td><td>GST rate 0% होने के कारण tax amount zero.</td></tr>
+<tr><td>Input tax credit treatment अलग rules के अधीन।</td><td>ITC treatment applicable GST provisions पर depend करता है।</td></tr>
+</table>
+
+<div class="note"><strong>Exam Line:</strong> Nil-rated supply में tax rate zero होता है, जबकि exempt supply exemption provisions के कारण tax से बाहर/मुक्त होती है।</div>
+</section>
+
+<section class="section" id="mrp">
+<h2>J. MRP (Maximum Retail Price)</h2>
+<p><strong>MRP</strong> का full form <strong>Maximum Retail Price</strong> है। यह packaged commodity पर consumer के लिए घोषित अधिकतम retail price से संबंधित concept है।</p>
+
+<h3>GST और MRP</h3>
+<ul>
+<li>MRP और taxable value एक ही concept नहीं हैं।</li>
+<li>Tax calculation के लिए applicable GST valuation rules देखे जाते हैं।</li>
+<li>जब price GST-inclusive basis पर quoted/displayed हो, तो GST component को mathematical method से अलग किया जा सकता है।</li>
+</ul>
+
+<div class="formula">
+यदि GST-inclusive price = ₹11,800 और GST rate = 18%<br>
+Taxable Value = ₹11,800 × 100 / 118 = ₹10,000<br>
+GST = ₹11,800 − ₹10,000 = ₹1,800
+</div>
+
+<div class="note"><strong>Note:</strong> यह inclusive-price calculation केवल समझाने का example है। MRP पर specific legal treatment product, valuation rules और applicable law पर depend कर सकता है।</div>
+</section>
+
+<section class="section" id="mixed">
+<h2>K. Mixed Supply</h2>
+<p><strong>Mixed Supply</strong> में दो या अधिक individual supplies को एक single price पर एक साथ supply किया जाता है, और वे naturally bundled composite supply की conditions को satisfy नहीं करते।</p>
+
+<h3>Tax Treatment</h3>
+<p>Mixed supply के लिए सामान्य rule यह है कि package में शामिल supplies में से <strong>highest rate of tax</strong> वाला rate पूरी mixed supply पर लागू किया जाता है, subject to applicable GST provisions.</p>
+
+<div class="example">
+<strong>Example:</strong><br>
+एक package में तीन अलग goods हैं जिनकी individual GST rates 5%, 12% और 18% हैं और package एक single price पर mixed supply के रूप में बेचा गया है।<br><br>
+Highest rate = <strong>18%</strong><br>
+इसलिए mixed supply पर illustrative GST rate = <strong>18%</strong>.
+</div>
+
+<h3>Mixed Supply vs Composite Supply</h3>
+<table>
+<tr><th>Basis</th><th>Mixed Supply</th><th>Composite Supply</th></tr>
+<tr><td>Nature</td><td>Independent supplies एक single price में combined हो सकती हैं।</td><td>Supplies naturally bundled होती हैं।</td></tr>
+<tr><td>Tax rate</td><td>Generally highest applicable rate.</td><td>Principal supply का tax rate.</td></tr>
+<tr><td>Example idea</td><td>Unrelated goods का package.</td><td>Principal supply के साथ naturally associated supplies.</td></tr>
+</table>
+</section>
+
+<section class="section" id="services">
+<h2>L. Services</h2>
+<p><strong>Service</strong> का अर्थ broadly goods के अलावा ऐसी supply से है जिसमें activity, facility, right, benefit या अन्य non-goods supply शामिल हो सकती है। GST में services भी taxable supply हो सकती हैं, subject to exemption/other provisions.</p>
+
+<h3>Services पर GST समझने के लिए मुख्य points</h3>
+<div class="cardgrid">
+<div class="card"><strong>Supplier</strong><br>Service provider कौन है?</div>
+<div class="card"><strong>Recipient</strong><br>Service किसे दी जा रही है?</div>
+<div class="card"><strong>Place of Supply</strong><br>GST jurisdiction determine करने के लिए महत्वपूर्ण।</div>
+<div class="card"><strong>Tax Rate</strong><br>Applicable service के SAC/classification के अनुसार rate।</div>
+<div class="card"><strong>Invoice</strong><br>Applicable GST invoice particulars के साथ issue किया जाता है।</div>
+<div class="card"><strong>RCM</strong><br>Specified services/cases में recipient tax pay कर सकता है।</div>
+</div>
+
+<h3>Intra-State Service Example</h3>
+<div class="example">
+Taxable service value = ₹20,000<br>
+Illustrative GST rate = 18%<br>
+CGST @ 9% = ₹1,800<br>
+SGST @ 9% = ₹1,800<br>
+Total GST = ₹3,600<br>
+Invoice value = ₹23,600
+</div>
+
+<h3>Inter-State Service Example</h3>
+<div class="example">
+Taxable service value = ₹20,000<br>
+Illustrative GST rate = 18%<br>
+IGST @ 18% = ₹3,600<br>
+Invoice value = ₹23,600
+</div>
+
+<div class="note"><strong>Important:</strong> Services में place-of-supply rules transaction type के अनुसार अलग हो सकते हैं; इसलिए केवल customer का State देखकर हर case में tax type decide नहीं करना चाहिए।</div>
+</section>
+
+<section class="section" id="summary">
+<h2>Quick Revision</h2>
+<table>
+<tr><th>Topic</th><th>Key Point</th></tr>
+<tr><td>Intra-State Supply</td><td>Generally CGST + SGST/UTGST.</td></tr>
+<tr><td>Inter-State Supply</td><td>Generally IGST.</td></tr>
+<tr><td>Composition Dealer</td><td>Generally GST separately collect नहीं करता; Bill of Supply framework.</td></tr>
+<tr><td>Unregistered Dealer</td><td>RCM हर purchase पर automatically लागू नहीं होता; specified cases check करें।</td></tr>
+<tr><td>SEZ</td><td>Qualifying authorised-operation supplies को zero-rated treatment मिल सकता है।</td></tr>
+<tr><td>Export</td><td>Qualifying exports are zero-rated supplies.</td></tr>
+<tr><td>Import</td><td>Goods imports पर applicable IGST customs के माध्यम से; services में conditions/RCM relevant हो सकते हैं।</td></tr>
+<tr><td>Exempt Goods</td><td>Exemption provisions के कारण GST charge नहीं किया जाता।</td></tr>
+<tr><td>Nil Rated Goods</td><td>GST rate 0%.</td></tr>
+<tr><td>MRP</td><td>Maximum Retail Price; taxable value से अलग concept.</td></tr>
+<tr><td>Mixed Supply</td><td>Generally highest applicable tax rate.</td></tr>
+<tr><td>Services</td><td>Classification, place of supply, rate और applicable RCM महत्वपूर्ण।</td></tr>
+</table>
+
+<div class="note"><strong>Exam Summary:</strong> GST transaction की सही treatment तय करने के लिए supply का nature, supplier/recipient location, place of supply, registration status, HSN/SAC, applicable rate और relevant exemption/zero-rating/RCM provisions को देखना आवश्यक है।</div>
+</section>
+
+</main>
+</div>
+
+<footer>BK LearnX • Transactions under GST • Study Notes</footer>
+</body>
+</html>

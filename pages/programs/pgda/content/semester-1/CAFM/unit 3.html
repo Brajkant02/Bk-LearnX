@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BK LearnX | Labour and Labour Control</title>
+<style>
+:root{
+ --bg:#f6f8fc;--card:#fff;--text:#172033;--muted:#64748b;
+ --primary:#2563eb;--primary2:#7c3aed;--border:#e2e8f0;
+ --soft:#eff6ff;--green:#ecfdf5;--yellow:#fffbeb;--red:#fef2f2;
+}
+*{box-sizing:border-box;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,"Noto Sans Devanagari",sans-serif;line-height:1.75}
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.nav{max-width:1200px;margin:auto;padding:14px 20px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:22px;font-weight:800;color:var(--primary)}
+.badge{padding:5px 11px;border-radius:20px;background:#eef2ff;color:#4338ca;font-size:12px;font-weight:700}
+.layout{max-width:1200px;margin:auto;display:grid;grid-template-columns:270px 1fr;gap:24px;padding:24px 20px}
+aside{position:sticky;top:78px;height:calc(100vh - 100px);overflow:auto;background:var(--card);border:1px solid var(--border);border-radius:18px;padding:18px}
+aside h3{margin-top:0}
+aside a{display:block;text-decoration:none;color:#475569;padding:8px 10px;border-radius:9px;font-size:14px}
+aside a:hover{background:var(--soft);color:var(--primary)}
+main{min-width:0}
+.hero{background:linear-gradient(135deg,#172554,#4c1d95);color:#fff;border-radius:24px;padding:34px;margin-bottom:22px}
+.hero h1{font-size:clamp(28px,5vw,46px);line-height:1.15;margin:0 0 12px}
+.hero p{margin:0;color:#e0e7ff}
+section{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:26px;margin-bottom:20px}
+h2{margin-top:0;font-size:27px}
+h3{font-size:20px}
+.cardgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+.info{padding:16px;border-radius:13px;background:var(--soft);border-left:4px solid var(--primary);margin:15px 0}
+.green{background:var(--green);border-left-color:#10b981}
+.yellow{background:var(--yellow);border-left-color:#f59e0b}
+.red{background:var(--red);border-left-color:#ef4444}
+table{width:100%;border-collapse:collapse;margin:16px 0;background:#fff}
+th,td{border:1px solid var(--border);padding:11px;text-align:left;vertical-align:top}
+th{background:#f1f5f9}
+.formula{background:#111827;color:#fff;padding:18px;border-radius:14px;font-size:17px;overflow:auto;margin:15px 0}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:18px 0}
+.flow span{padding:9px 13px;background:#eef2ff;color:#3730a3;border-radius:10px;font-weight:700}
+.arrow{color:var(--primary);font-weight:bold}
+.entry{background:#f8fafc;border:1px solid var(--border);border-radius:13px;padding:15px;margin:15px 0;font-family:Georgia,serif}
+.note{font-size:13px;color:var(--muted)}
+footer{text-align:center;padding:25px;color:var(--muted)}
+@media(max-width:850px){
+ .layout{grid-template-columns:1fr}
+ aside{position:relative;top:0;height:auto}
+ .cardgrid{grid-template-columns:1fr}
+ section{padding:20px}
+ table{display:block;overflow-x:auto;white-space:nowrap;font-size:13px}
+}
+</style>
+</head>
+<body>
+<header><div class="nav"><div class="logo">BK LearnX</div><div class="badge">Cost Accounting • Labour</div></div></header>
+
+<div class="layout">
+<aside>
+<h3>📚 Contents</h3>
+<a href="#intro">Introduction</a>
+<a href="#attendance">1. Attendance & Payroll</a>
+<a href="#statutory">2. Statutory Requirements</a>
+<a href="#overtime">3. Overtime</a>
+<a href="#idle">4. Idle Time</a>
+<a href="#incentives">5. Incentives</a>
+<a href="#turnover">6. Labour Turnover</a>
+<a href="#utilisation">7. Labour Utilisation</a>
+<a href="#directindirect">8. Direct & Indirect Labour</a>
+<a href="#labourhour">9. Labour Hour Identification</a>
+<a href="#efficiency">10. Efficiency Rating</a>
+<a href="#remuneration">11. Remuneration Systems</a>
+<a href="#schemes">12. Incentive Schemes</a>
+<a href="#productivity">13. Labour Productivity</a>
+<a href="#timerecording">14. Time Recording</a>
+<a href="#numericals">15. Solved Numericals</a>
+<a href="#revision">Quick Revision</a>
+</aside>
+
+<main>
+<div class="hero">
+<h1>Labour and Labour Control</h1>
+<p>PGDCA / Cost Accounting Notes — Attendance, Payroll, Overtime, Idle Time, Incentives, Labour Turnover, Efficiency, Remuneration, Productivity & Time Recording</p>
+</div>
+
+<section id="intro">
+<h2>📌 Introduction</h2>
+<p><strong>Labour Cost</strong> वह cost है जो employees/workers को उनकी services के बदले wages, salaries, bonus, incentives और अन्य employee-related remuneration के रूप में incur होती है। Cost Accounting में labour cost को सही product, job या cost centre से identify करना और control करना बहुत important है।</p>
+<div class="info"><strong>Core flow:</strong> Attendance → Time Recording → Payroll → Labour Classification → Cost Allocation → Efficiency Measurement → Incentive → Productivity → Labour Control</div>
+<p><strong>Labour Control</strong> का उद्देश्य labour time और labour cost का efficient utilisation सुनिश्चित करना, idle time तथा unnecessary overtime को control करना और productivity improve करना है।</p>
+</section>
+
+<section id="attendance">
+<h2>1. Attendance and Payroll Procedures</h2>
+
+<h3>Attendance Procedure</h3>
+<p><strong>Attendance recording</strong> से यह पता चलता है कि employee कब आया, कब गया और कितने समय तक काम पर रहा। यह payroll और labour cost calculation का basic input है।</p>
+
+<table>
+<tr><th>Method</th><th>Meaning</th><th>Use</th></tr>
+<tr><td>Attendance Register</td><td>Employee की daily presence manually record की जाती है।</td><td>Small organisations</td></tr>
+<tr><td>Time Card</td><td>Clock-in और clock-out time record किया जाता है।</td><td>Factory/workshop labour</td></tr>
+<tr><td>Biometric System</td><td>Fingerprint/face आदि से attendance capture होती है।</td><td>Automated attendance</td></tr>
+<tr><td>Electronic Time System</td><td>Digital system से attendance और working hours record होते हैं।</td><td>Modern organisations</td></tr>
+</table>
+
+<h3>Payroll Procedure</h3>
+<div class="flow">
+<span>Attendance Data</span><i class="arrow">→</i><span>Time Verification</span><i class="arrow">→</i><span>Wage Calculation</span><i class="arrow">→</i><span>Overtime / Incentive</span><i class="arrow">→</i><span>Deductions</span><i class="arrow">→</i><span>Net Pay</span>
+</div>
+
+<ol>
+<li>Employee master data verify करना।</li>
+<li>Attendance और time records collect करना।</li>
+<li>Normal working hours calculate करना।</li>
+<li>Overtime और authorised leave आदि consider करना।</li>
+<li>Gross wages/salary calculate करना।</li>
+<li>Applicable deductions calculate करना।</li>
+<li>Net pay determine करना।</li>
+<li>Payroll register/payslip तैयार करना।</li>
+<li>Payment और accounting records update करना।</li>
+</ol>
+</section>
+
+<section id="statutory">
+<h2>2. Overview of Statutory Requirements</h2>
+<p>Payroll करते समय organisation को applicable labour, wage, social-security, tax और employment laws/rules का पालन करना होता है। Exact requirements employee category, establishment, state और applicable legislation पर depend कर सकती हैं।</p>
+
+<div class="cardgrid">
+<div class="info"><strong>Wage Compliance</strong><br>Applicable minimum wage और wage-payment requirements का ध्यान रखना।</div>
+<div class="info"><strong>Working Hours</strong><br>Applicable working-hour, rest interval और overtime rules follow करना।</div>
+<div class="info"><strong>Social Security</strong><br>Applicable statutory contributions/deductions को correctly handle करना।</div>
+<div class="info"><strong>Tax Deduction</strong><br>Applicable payroll tax/TDS requirements को follow करना।</div>
+<div class="info"><strong>Records</strong><br>Attendance, wages और prescribed records maintain करना।</div>
+<div class="info"><strong>Leave / Benefits</strong><br>Applicable leave, bonus या other statutory benefits का compliance।</div>
+</div>
+
+<div class="info yellow"><strong>Exam note:</strong> Statutory requirements समय और employee category के अनुसार बदल सकती हैं। इसलिए practical payroll में current Central/State rules और organisation की applicable compliance policy check की जाती है।</div>
+</section>
+
+<section id="overtime">
+<h2>3. Overtime</h2>
+<p><strong>Overtime</strong> का अर्थ है निर्धारित normal working hours के beyond किया गया authorised work। Overtime के लिए applicable rules के अनुसार अतिरिक्त remuneration दिया जा सकता है।</p>
+
+<h3>Causes of Overtime</h3>
+<ul>
+<li>Urgent customer orders.</li>
+<li>Production deadline.</li>
+<li>Machine breakdown के बाद backlog.</li>
+<li>Temporary shortage of labour.</li>
+<li>Seasonal increase in demand.</li>
+</ul>
+
+<h3>Overtime Control</h3>
+<ul>
+<li>Overtime केवल authorised requirement पर हो।</li>
+<li>Overtime hours अलग से record किए जाएँ।</li>
+<li>Cause of overtime identify किया जाए।</li>
+<li>Repeated overtime के कारण की investigation हो।</li>
+<li>Overtime cost को appropriate product/job/cost centre से charge किया जाए जहाँ applicable हो।</li>
+</ul>
+
+<div class="formula">Overtime Earnings = Overtime Hours × Applicable Overtime Rate</div>
+</section>
+
+<section id="idle">
+<h2>4. Idle Time</h2>
+<p><strong>Idle Time</strong> वह समय है जिसमें employee organisation के लिए available तो है, लेकिन किसी कारण से productive work नहीं कर पा रहा है।</p>
+
+<table>
+<tr><th>Type</th><th>Meaning</th><th>Examples</th></tr>
+<tr><td>Normal Idle Time</td><td>काम की nature से unavoidable/normal time loss।</td><td>Personal needs, normal rest, unavoidable small delays</td></tr>
+<tr><td>Abnormal Idle Time</td><td>Unusual या avoidable circumstances से होने वाला idle time।</td><td>Major breakdown, prolonged power failure, unusual stoppage</td></tr>
+</table>
+
+<h3>Idle Time Control</h3>
+<ul>
+<li>Machine breakdown analysis.</li>
+<li>Material availability planning.</li>
+<li>Proper production scheduling.</li>
+<li>Preventive maintenance.</li>
+<li>Supervisor monitoring.</li>
+<li>Idle time reason codes और reports.</li>
+</ul>
+
+<div class="info red"><strong>Cost treatment:</strong> Normal idle time को सामान्यतः labour/production cost में absorb किया जा सकता है, जबकि abnormal idle time को costing policy के अनुसार separately identify किया जाता है और generally abnormal loss treatment दिया जाता है।</div>
+</section>
+
+<section id="incentives">
+<h2>5. Incentives</h2>
+<p><strong>Incentive</strong> वह additional reward है जो employee को better performance, higher output, time saving या specified performance target achieve करने पर दिया जाता है।</p>
+
+<h3>Objectives of Incentive</h3>
+<ul>
+<li>Productivity बढ़ाना।</li>
+<li>Employees को motivate करना।</li>
+<li>Time saving encourage करना।</li>
+<li>Labour cost per unit reduce करना।</li>
+<li>Employee और organisation के interests को align करना।</li>
+</ul>
+</section>
+
+<section id="turnover">
+<h2>6. Labour Turnover</h2>
+<p><strong>Labour Turnover</strong> का अर्थ है किसी organisation में employees के leaving और replacing की rate। High labour turnover से recruitment, selection, training और productivity-related costs बढ़ सकते हैं।</p>
+
+<h3>Causes</h3>
+<div class="cardgrid">
+<div class="info">Low wages / poor remuneration</div>
+<div class="info">Poor working conditions</div>
+<div class="info">Lack of promotion opportunities</div>
+<div class="info">Better outside opportunities</div>
+<div class="info">Personal reasons</div>
+<div class="info">Job dissatisfaction</div>
+</div>
+
+<h3>Common Labour Turnover Methods</h3>
+<div class="formula">Separation Method = (Number of Separations / Average Number of Workers) × 100</div>
+<div class="formula">Replacement Method = (Number of Replacements / Average Number of Workers) × 100</div>
+<div class="formula">Flux Method = ((Separations + Replacements) / Average Number of Workers) × 100</div>
+
+<p><strong>Average Number of Workers</strong> = (Opening Workers + Closing Workers) / 2</p>
+</section>
+
+<section id="utilisation">
+<h2>7. Utilisation of Labour</h2>
+<p><strong>Labour Utilisation</strong> का अर्थ available labour hours को productive work में efficiently use करना है।</p>
+
+<div class="info green"><strong>Good labour utilisation:</strong> Available worker hours का maximum practical productive use + minimum idle time + appropriate skill matching.</div>
+
+<h3>Labour Utilisation को प्रभावित करने वाले Factors</h3>
+<ul>
+<li>Worker skill and training.</li>
+<li>Machine availability.</li>
+<li>Material availability.</li>
+<li>Production planning.</li>
+<li>Work methods.</li>
+<li>Supervision.</li>
+<li>Working conditions.</li>
+</ul>
+</section>
+
+<section id="directindirect">
+<h2>8. Direct and Indirect Labour — Charging of Labour Cost</h2>
+
+<h3>Direct Labour</h3>
+<p>ऐसा labour cost जिसे किसी specific product, job या production unit से economically और conveniently trace किया जा सकता है, <strong>Direct Labour</strong> कहलाता है।</p>
+
+<p><strong>Examples:</strong> Machine operator producing a specific job, tailor stitching a particular garment, carpenter making a specific product.</p>
+
+<h3>Indirect Labour</h3>
+<p>ऐसा labour cost जिसे किसी specific product/job से conveniently trace करना difficult हो, <strong>Indirect Labour</strong> कहलाता है।</p>
+
+<p><strong>Examples:</strong> Factory supervisor, maintenance staff, storekeeper, security staff.</p>
+
+<table>
+<tr><th>Basis</th><th>Direct Labour</th><th>Indirect Labour</th></tr>
+<tr><td>Traceability</td><td>Specific product/job से directly traceable</td><td>Specific product से direct trace करना कठिन</td></tr>
+<tr><td>Cost Treatment</td><td>Direct cost</td><td>Usually overhead cost</td></tr>
+<tr><td>Example</td><td>Product बनाने वाला worker</td><td>Factory supervisor</td></tr>
+</table>
+
+<h3>Charging of Labour Cost</h3>
+<p>Direct labour hours को relevant product/job/work order पर charge किया जाता है। Indirect labour cost को relevant cost centre/overhead pool में collect करके suitable basis से absorb किया जा सकता है।</p>
+
+<div class="entry">
+<strong>Direct Labour:</strong><br>
+Work-in-Progress / Job Cost Dr.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;To Labour / Wages Control Account
+</div>
+
+<div class="entry">
+<strong>Indirect Labour:</strong><br>
+Factory Overheads / Relevant Cost Centre Dr.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;To Labour / Wages Control Account
+</div>
+</section>
+
+<section id="labourhour">
+<h2>9. Identifying Labour Hour</h2>
+<p><strong>Labour Hour</strong> का अर्थ किसी worker द्वारा काम पर spend किया गया measurable time है। Labour hours को accurately identify करने के लिए time records और job records maintain किए जाते हैं।</p>
+
+<h3>Basic Classification</h3>
+<table>
+<tr><th>Time</th><th>Meaning</th></tr>
+<tr><td>Attendance Time</td><td>Employee द्वारा workplace पर spend किया गया total recorded time।</td></tr>
+<tr><td>Job Time</td><td>Specific job/product पर directly spent time।</td></tr>
+<tr><td>Idle Time</td><td>Available लेकिन unproductive time।</td></tr>
+<tr><td>Overtime</td><td>Normal working hours के beyond authorised time।</td></tr>
+</table>
+
+<div class="formula">Attendance Time = Productive/Job Time + Idle Time + Other Recorded Time</div>
+
+<div class="info">Labour hours को job card, time sheet, time booking system या digital production system के माध्यम से identify किया जा सकता है।</div>
+</section>
+
+<section id="efficiency">
+<h2>10. Efficiency Rating Procedures</h2>
+<p><strong>Efficiency Rating</strong> worker या group के actual performance को standard performance के against measure करने की process है।</p>
+
+<div class="formula">Efficiency % = (Standard Time Allowed / Actual Time Taken) × 100</div>
+
+<h3>Procedure</h3>
+<ol>
+<li>Standard method और standard time determine करें।</li>
+<li>Actual time taken record करें।</li>
+<li>Standard और actual time compare करें।</li>
+<li>Efficiency percentage calculate करें।</li>
+<li>Difference के reasons analyse करें।</li>
+<li>Performance improvement या incentive decision में result use करें, जहाँ applicable हो।</li>
+</ol>
+
+<div class="info yellow"><strong>Example:</strong> Standard time = 8 hours और actual time = 10 hours होने पर efficiency = (8/10)×100 = 80%.</div>
+</section>
+
+<section id="remuneration">
+<h2>11. Remuneration Systems</h2>
+<p><strong>Remuneration System</strong> वह method है जिसके आधार पर employee को work/time/output के बदले wages या salary दी जाती है।</p>
+
+<h3>A. Time Rate System</h3>
+<p>Employee को time worked के आधार पर payment मिलता है।</p>
+<div class="formula">Wages = Hours Worked × Rate per Hour</div>
+
+<p><strong>Example:</strong> 8 hours × ₹100/hour = ₹800.</p>
+
+<h3>B. Piece Rate System</h3>
+<p>Payment output/units produced के आधार पर होता है।</p>
+<div class="formula">Wages = Units Produced × Rate per Unit</div>
+
+<p><strong>Example:</strong> 80 units × ₹12/unit = ₹960.</p>
+
+<table>
+<tr><th>System</th><th>Basis</th><th>Suitable When</th></tr>
+<tr><td>Time Rate</td><td>Time worked</td><td>Quality important हो या output measure करना कठिन हो</td></tr>
+<tr><td>Piece Rate</td><td>Output</td><td>Output reliably measurable हो</td></tr>
+</table>
+</section>
+
+<section id="schemes">
+<h2>12. Incentive Schemes</h2>
+
+<h3>1. Halsey Plan</h3>
+<p>Worker को time saved का एक predetermined share incentive के रूप में दिया जाता है, साथ में time wages भी मिलती हैं। Common textbook form में worker share 50% लिया जाता है।</p>
+<div class="formula">Earnings = Time Taken × Rate + Share of Time Saved × Rate</div>
+
+<h3>2. Rowan Plan</h3>
+<p>Bonus time saved और standard time के proportion से calculate होता है।</p>
+<div class="formula">Bonus = (Time Saved / Standard Time) × Time Taken × Rate</div>
+<div class="formula">Total Earnings = Time Taken × Rate + Bonus</div>
+
+<h3>3. Taylor Differential Piece Rate</h3>
+<p>Different performance levels के लिए अलग piece rates रखे जाते हैं। Standard output achieve/ exceed करने पर higher rate apply हो सकता है।</p>
+
+<table>
+<tr><th>Scheme</th><th>Main Idea</th></tr>
+<tr><td>Halsey</td><td>Time wages + share of time saved</td></tr>
+<tr><td>Rowan</td><td>Time wages + proportionate bonus based on time saved</td></tr>
+<tr><td>Taylor</td><td>Performance/output के अनुसार differential piece rates</td></tr>
+</table>
+</section>
+
+<section id="productivity">
+<h2>13. Labour Productivity</h2>
+<p><strong>Labour Productivity</strong> labour input के मुकाबले प्राप्त output का measure है। यह labour utilisation और efficiency को समझने में help करता है।</p>
+
+<div class="formula">Labour Productivity = Output / Labour Input</div>
+
+<p>यदि output units में और labour input labour hours में दिया हो:</p>
+<div class="formula">Labour Productivity = Units Produced / Labour Hours</div>
+
+<h3>Productivity Improve करने के तरीके</h3>
+<ul>
+<li>Training and skill development.</li>
+<li>Better work methods.</li>
+<li>Proper tools and machines.</li>
+<li>Efficient production planning.</li>
+<li>Appropriate incentive schemes.</li>
+<li>Good working conditions.</li>
+<li>Reduction of avoidable idle time.</li>
+</ul>
+</section>
+
+<section id="timerecording">
+<h2>14. Time Recording</h2>
+<p><strong>Time Recording</strong> employee द्वारा workplace पर spend किए गए time और different jobs पर spent किए गए time को systematically record करने की process है।</p>
+
+<h3>Time Recording के Objectives</h3>
+<ul>
+<li>Attendance determine करना।</li>
+<li>Payroll के लिए hours provide करना।</li>
+<li>Direct labour hours identify करना।</li>
+<li>Idle time record करना।</li>
+<li>Overtime identify करना।</li>
+<li>Job costing और cost allocation में सहायता करना।</li>
+<li>Labour productivity और efficiency analyse करना।</li>
+</ul>
+
+<h3>Important Documents</h3>
+<table>
+<tr><th>Document</th><th>Purpose</th></tr>
+<tr><td>Time Card</td><td>Employee का attendance/in-out time record।</td></tr>
+<tr><td>Job Card</td><td>Particular job पर spent labour time record।</td></tr>
+<tr><td>Time Sheet</td><td>Worker के daily/periodic time का detailed allocation।</td></tr>
+<tr><td>Overtime Sheet</td><td>Authorised overtime hours का record।</td></tr>
+</table>
+
+<div class="info green"><strong>Time Keeping vs Time Booking:</strong> Time Keeping attendance/total time को record करता है, जबकि Time Booking उस time को particular jobs/products/cost centres में allocate करता है।</div>
+</section>
+
+<section id="numericals">
+<h2>15. Solved Numericals</h2>
+
+<h3>Numerical 1 — Time Rate</h3>
+<p><strong>Question:</strong> Worker ने 8 hours काम किया और wage rate ₹120 per hour है। Wages calculate करें।</p>
+<div class="formula">
+Wages = 8 × ₹120<br>
+= <strong>₹960</strong>
+</div>
+
+<h3>Numerical 2 — Piece Rate</h3>
+<p><strong>Question:</strong> Worker ने 75 units produce किए और piece rate ₹15 per unit है। Earnings निकालिए।</p>
+<div class="formula">
+Earnings = 75 × ₹15<br>
+= <strong>₹1,125</strong>
+</div>
+
+<h3>Numerical 3 — Labour Efficiency</h3>
+<p><strong>Question:</strong> Standard time 10 hours है और worker ने job 8 hours में complete किया। Efficiency percentage निकालिए।</p>
+<div class="formula">
+Efficiency = (10 / 8) × 100<br>
+= <strong>125%</strong>
+</div>
+
+<h3>Numerical 4 — Labour Turnover</h3>
+<p><strong>Question:</strong> Opening workers = 400, closing workers = 500 और during the period separations = 45. Separation method से labour turnover निकालिए।</p>
+<div class="formula">
+Average Workers = (400 + 500) / 2 = 450<br><br>
+Labour Turnover = (45 / 450) × 100<br>
+= <strong>10%</strong>
+</div>
+
+<h3>Numerical 5 — Halsey Plan</h3>
+<p><strong>Question:</strong> Standard time = 10 hours, actual time = 8 hours, rate = ₹100/hour और worker share of time saved = 50%. Halsey earnings निकालिए।</p>
+<div class="formula">
+Time Wages = 8 × ₹100 = ₹800<br>
+Time Saved = 10 − 8 = 2 hours<br>
+Bonus = 50% × 2 × ₹100 = ₹100<br>
+Total Earnings = ₹800 + ₹100<br>
+= <strong>₹900</strong>
+</div>
+
+<h3>Numerical 6 — Rowan Plan</h3>
+<p><strong>Question:</strong> Standard time = 10 hours, actual time = 8 hours, rate = ₹100/hour. Rowan plan में earnings निकालिए।</p>
+<div class="formula">
+Time Wages = 8 × ₹100 = ₹800<br>
+Time Saved = 2 hours<br>
+Bonus = (2 / 10) × 8 × ₹100 = ₹160<br>
+Total Earnings = ₹800 + ₹160<br>
+= <strong>₹960</strong>
+</div>
+
+<h3>Numerical 7 — Labour Productivity</h3>
+<p><strong>Question:</strong> 600 units produce करने में 75 labour hours लगे। Labour productivity निकालिए।</p>
+<div class="formula">
+Productivity = Output / Labour Hours<br>
+= 600 / 75<br>
+= <strong>8 units per labour hour</strong>
+</div>
+</section>
+
+<section id="revision">
+<h2>⚡ Quick Revision</h2>
+<table>
+<tr><th>Topic</th><th>One-line Revision</th></tr>
+<tr><td>Attendance</td><td>Employee presence और working time record करने की process।</td></tr>
+<tr><td>Payroll</td><td>Wages/salary, overtime, incentives और deductions calculate करके net pay determine करना।</td></tr>
+<tr><td>Overtime</td><td>Normal working hours के beyond authorised work।</td></tr>
+<tr><td>Idle Time</td><td>Available लेकिन productive work में नहीं लगा time।</td></tr>
+<tr><td>Labour Turnover</td><td>Employees के separation/replacement की rate।</td></tr>
+<tr><td>Direct Labour</td><td>Specific product/job से directly traceable labour cost।</td></tr>
+<tr><td>Indirect Labour</td><td>Specific product से conveniently trace न होने वाला labour cost।</td></tr>
+<tr><td>Efficiency</td><td>Standard time और actual time के relationship से performance measure।</td></tr>
+<tr><td>Time Rate</td><td>Time worked के आधार पर wages।</td></tr>
+<tr><td>Piece Rate</td><td>Output produced के आधार पर wages।</td></tr>
+<tr><td>Halsey</td><td>Time wages + share of time saved।</td></tr>
+<tr><td>Rowan</td><td>Time wages + proportionate time-saving bonus।</td></tr>
+<tr><td>Labour Productivity</td><td>Output per unit of labour input।</td></tr>
+<tr><td>Time Keeping</td><td>Attendance/total time record करना।</td></tr>
+<tr><td>Time Booking</td><td>Time को jobs/products/cost centres में allocate करना।</td></tr>
+</table>
+
+<div class="info green"><strong>Chapter Complete:</strong> Labour and Labour Control के सभी दिए गए syllabus topics — attendance & payroll, statutory overview, overtime, idle time, incentives, labour turnover, labour utilisation, direct/indirect labour, labour hours, efficiency rating, remuneration systems, incentive schemes, productivity और time recording — cover किए गए हैं।</div>
+</section>
+
+<footer><strong>BK LearnX</strong> • Cost Accounting • Labour and Labour Control</footer>
+</main>
+</div>
+</body>
+</html>

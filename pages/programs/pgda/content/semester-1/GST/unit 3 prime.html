@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="BK LearnX PGDCA Notes - GST with TallyPrime: Statutory Features, Stock Items, Ledgers, Single and Multiple GST Rates, Tax Analysis and Voucher Printing">
+<title>BK LearnX | GST with TallyPrime</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:#f5f7fb;color:#1f2937;font-family:Arial,"Noto Sans Devanagari",sans-serif;line-height:1.75}
+header{background:linear-gradient(135deg,#111827,#243b53);color:#fff;text-align:center;padding:30px 18px}
+header h1{margin:0;font-size:31px}header p{margin:7px 0 0;color:#dbeafe}
+.layout{display:flex;max-width:1450px;margin:auto}
+aside{width:285px;background:#fff;border-right:1px solid #e5e7eb;position:sticky;top:0;height:100vh;overflow:auto;padding:20px}
+aside h3{margin-top:0}aside a{display:block;text-decoration:none;color:#374151;padding:8px 10px;border-radius:8px;margin:3px 0;font-size:14px}aside a:hover{background:#eef2ff;color:#3730a3}
+main{flex:1;min-width:0;padding:30px}.card{background:#fff;border:1px solid #e5e7eb;border-radius:15px;padding:26px;margin-bottom:24px;box-shadow:0 4px 16px rgba(0,0,0,.04)}
+h2{margin-top:0;color:#111827;border-bottom:2px solid #e5e7eb;padding-bottom:9px}h3{color:#1e3a8a}
+.badge{display:inline-block;background:#e0e7ff;color:#3730a3;border-radius:20px;padding:4px 11px;font-size:12px;font-weight:700}
+.note,.example,.warning,.formula{padding:15px 18px;margin:18px 0;border-left:5px solid;border-radius:8px}.note{background:#eff6ff;border-color:#2563eb}.example{background:#f0fdf4;border-color:#16a34a}.warning{background:#fff7ed;border-color:#f97316}.formula{background:#f5f3ff;border-color:#7c3aed;font-family:Consolas,monospace}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14px}th,td{border:1px solid #d1d5db;padding:10px;vertical-align:top}th{background:#eef2ff;color:#1e1b4b}
+.scroll{overflow-x:auto}.flow{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px;margin:20px 0}.flow span{padding:10px 14px;border:1px solid #c7d2fe;background:#eef2ff;border-radius:9px;font-weight:700}
+kbd{background:#111827;color:#fff;padding:3px 7px;border-radius:5px;font-family:monospace}
+footer{text-align:center;background:#111827;color:#d1d5db;padding:25px}
+@media(max-width:850px){.layout{display:block}aside{position:relative;width:100%;height:auto;border-right:0;border-bottom:1px solid #e5e7eb}main{padding:16px}.card{padding:18px}header h1{font-size:24px}}
+</style>
+</head>
+<body>
+<header>
+<h1>GST with TallyPrime</h1>
+<p>PGDCA Accounting Practical Notes • GST Setup • Stock Item • Ledger • Tax Rates • Tax Analysis • Voucher Printing</p>
+</header>
+
+<div class="layout">
+<aside>
+<h3>Contents</h3>
+<a href="#intro">1. Introduction</a>
+<a href="#statutory">2. Enable Statutory Features</a>
+<a href="#stock">3. Stock Item under GST</a>
+<a href="#ledger">4. Ledger under GST</a>
+<a href="#single">5. Single GST Rate</a>
+<a href="#multiple">6. Multiple GST Rates</a>
+<a href="#taxanalysis">7. Tax Analysis</a>
+<a href="#voucher">8. GST Voucher & Printing</a>
+<a href="#workflow">9. Complete Practical Flow</a>
+<a href="#example">10. Practical Example</a>
+<a href="#revision">11. Quick Revision</a>
+</aside>
+
+<main>
+
+<section class="card" id="intro">
+<span class="badge">1. INTRODUCTION</span>
+<h2>GST with TallyPrime</h2>
+<p><b>GST (Goods and Services Tax)</b> एक indirect tax system है। TallyPrime में GST-compliant transactions record करने के लिए पहले Company में GST enable करके registration details और फिर आवश्यक masters जैसे <b>Sales/Purchase Ledgers, Stock Items, Service Ledgers और Tax Ledgers</b> configure किए जाते हैं।</p>
+<p>TallyPrime में GST Rate और HSN/SAC details को Company, Ledger, Group, Stock Item, Stock Group या GST Classification जैसे अलग-अलग levels पर maintain किया जा सकता है। citeturn0search4turn0search7</p>
+<div class="flow"><span>Company GST Setup</span>→<span>Stock Item / Ledger</span>→<span>GST Rate</span>→<span>Voucher</span>→<span>Tax Analysis</span>→<span>GST Invoice</span></div>
+<div class="note"><b>Practical Note:</b> नीचे दिए गए steps TallyPrime के current help documentation के अनुसार हैं। आपके installed release में screen labels या shortcut थोड़ा अलग दिखाई दे सकता है।</div>
+</section>
+
+<section class="card" id="statutory">
+<span class="badge">2. STATUTORY FEATURES</span>
+<h2>Enable Statutory Features for GST</h2>
+<p>GST transaction record करने से पहले Company में GST feature enable करना आवश्यक है। TallyHelp के अनुसार Company खोलकर <kbd>F11</kbd> (Company Features) में <b>Enable Goods and Services Tax (GST)</b> को Yes किया जाता है। citeturn0search5</p>
+<h3>Step-by-Step</h3>
+<ol>
+<li>TallyPrime open करें और अपनी Company select/open करें।</li>
+<li><kbd>F11</kbd> दबाकर <b>Company Features</b> खोलें।</li>
+<li><b>Enable Goods and Services Tax (GST)</b> को <b>Yes</b> करें।</li>
+<li>Company GST details में applicable registration information enter करें।</li>
+<li>GST registration type, GSTIN और अन्य आवश्यक details business के actual registration documents के अनुसार भरें।</li>
+<li><kbd>Ctrl+A</kbd> से save करें।</li>
+</ol>
+<div class="warning"><b>ध्यान दें:</b> GSTIN और registration details अनुमान से नहीं भरनी चाहिए। Practical work में हमेशा actual business/company data use करें।</div>
+</section>
+
+<section class="card" id="stock">
+<span class="badge">3. STOCK ITEM</span>
+<h2>Creation of Stock Item under GST</h2>
+<p>Stock Item वह item/master है जिसे business purchase या sale करता है। GST calculation के लिए stock item में <b>GST applicability, HSN/SAC और GST Rate</b> details configure की जा सकती हैं। Current TallyPrime guidance में Stock Item Creation/Alteration screen पर GST applicability को Applicable करके HSN और GST Rate details set की जाती हैं। citeturn0search0</p>
+
+<h3>Stock Item Create करने के Steps</h3>
+<ol>
+<li><b>Gateway of Tally → Create → Stock Item</b> जाएँ।</li>
+<li><b>Name</b> में item का नाम लिखें, जैसे <b>Notebook</b>.</li>
+<li><b>Under</b> में appropriate Stock Group select करें।</li>
+<li><b>Units</b> में suitable unit जैसे Nos. select करें।</li>
+<li><b>GST Applicable</b> को <b>Applicable</b> करें।</li>
+<li>GST details में applicable <b>HSN/SAC</b> और GST Rate configure करें।</li>
+<li>आवश्यक details verify करके <kbd>Ctrl+A</kbd> से save करें।</li>
+</ol>
+
+<div class="example"><b>Example:</b><br>
+Stock Item: Notebook<br>
+Unit: Nos.<br>
+GST Applicable: Applicable<br>
+HSN/SAC: business के actual applicable code के अनुसार<br>
+GST Rate: applicable rate के अनुसार
+</div>
+
+<div class="note"><b>Important:</b> TallyPrime में GST Rate/HSN details अलग-अलग hierarchy levels पर maintain हो सकती हैं। इसलिए practical setup में यह समझना जरूरी है कि transaction के समय TallyPrime details किस source से pick कर रहा है। citeturn0search2turn0search7</div>
+</section>
+
+<section class="card" id="ledger">
+<span class="badge">4. LEDGER</span>
+<h2>Creation of Ledger under GST</h2>
+<p>GST transaction में Sales/Purchase Ledgers तथा GST tax ledgers जैसे CGST, SGST/UTGST और IGST का उचित configuration महत्वपूर्ण है। TallyPrime की current GST sales guidance में GST tax ledgers create/configure करने की आवश्यकता बताई गई है। citeturn0search8</p>
+
+<h3>Sales Ledger का Basic GST Setup</h3>
+<ol>
+<li><b>Gateway of Tally → Create → Ledger</b> जाएँ।</li>
+<li>Ledger Name दें, जैसे <b>Sales @ GST</b>.</li>
+<li>Appropriate group, जैसे <b>Sales Accounts</b>, select करें।</li>
+<li>GST applicability को <b>Applicable</b> करें।</li>
+<li>यदि GST rate/HSN को ledger से pick कराना है, तो आवश्यक HSN/SAC और GST Rate details configure करें।</li>
+<li><kbd>Ctrl+A</kbd> से save करें।</li>
+</ol>
+<p>Current TallyPrime guidance के अनुसार Sales/Purchase Ledger में GST applicability को Applicable किया जा सकता है और HSN/SAC तथा GST Rate details ledger level पर maintain की जा सकती हैं। citeturn0search3</p>
+
+<h3>GST Tax Ledgers</h3>
+<table>
+<tr><th>Ledger</th><th>Purpose</th></tr>
+<tr><td>CGST</td><td>Intra-state taxable supply में Central GST component record करने के लिए।</td></tr>
+<tr><td>SGST / UTGST</td><td>Intra-state supply में State/UT GST component के लिए।</td></tr>
+<tr><td>IGST</td><td>Inter-state taxable supply में Integrated GST component के लिए।</td></tr>
+<tr><td>Cess</td><td>जहाँ applicable हो, additional GST cess component के लिए।</td></tr>
+</table>
+</section>
+
+<section class="card" id="single">
+<span class="badge">5. SINGLE RATE</span>
+<h2>Enable / Set Single GST Rate</h2>
+<p><b>Single GST Rate</b> का अर्थ है कि किसी particular master/item या applicable configuration के लिए एक specified GST rate maintain की जाए। उदाहरण के लिए किसी taxable item के लिए 18% GST configured किया जा सकता है। TallyPrime में GST Rate Details में <b>Specify Details Here</b> चुनकर Taxability Type और rate enter की जा सकती है। citeturn0search2</p>
+
+<h3>Example: 18% GST</h3>
+<ol>
+<li>Relevant Stock Item या Ledger खोलें।</li>
+<li>GST details में <b>GST Rate Details → Specify Details Here</b> चुनें।</li>
+<li><b>Taxability Type = Taxable</b> select करें।</li>
+<li>GST Rate = <b>18%</b> enter करें।</li>
+<li>यदि rate breakup देखने की configuration चाहिए तो F12 में relevant breakup option configure किया जा सकता है।</li>
+<li>Save करें।</li>
+</ol>
+<div class="formula">18% GST = 9% CGST + 9% SGST (intra-state example)</div>
+<div class="note">ऊपर का 18% केवल समझाने का example है। Actual transaction में applicable GST rate वर्तमान GST rules/rate notification के अनुसार ही configure करें।</div>
+</section>
+
+<section class="card" id="multiple">
+<span class="badge">6. MULTIPLE RATES</span>
+<h2>Enable / Configure Multiple GST Rates</h2>
+<p>यदि business में अलग-अलग stock items पर अलग GST rates लागू हैं, तो प्रत्येक relevant item/master में उसके applicable GST details maintain किए जा सकते हैं। TallyPrime GST hierarchy के माध्यम से rates को Ledger, Group, Stock Item, Stock Group या Company level पर maintain करने की flexibility देता है। citeturn0search2turn0search7</p>
+
+<h3>Example</h3>
+<table>
+<tr><th>Stock Item</th><th>Example GST Rate</th><th>Purpose</th></tr>
+<tr><td>Item A</td><td>5%</td><td>Applicable classification के अनुसार</td></tr>
+<tr><td>Item B</td><td>12%</td><td>Applicable classification के अनुसार</td></tr>
+<tr><td>Item C</td><td>18%</td><td>Applicable classification के अनुसार</td></tr>
+</table>
+
+<h3>Practical Method</h3>
+<ol>
+<li>हर Stock Item का GST applicability check करें।</li>
+<li>HSN/SAC सही configure करें।</li>
+<li>Item के applicable GST Rate details enter करें।</li>
+<li>एक ही rate वाले items के लिए appropriate Stock Group level configuration consider किया जा सकता है।</li>
+<li>Transaction में GST calculation को Tax Analysis से verify करें।</li>
+</ol>
+
+<div class="note"><b>GST Hierarchy:</b> TallyPrime में GST Rate और HSN/SAC details के source/hierarchy को configure किया जा सकता है। Current documentation में Ledger-first और Stock Item-first जैसी source orders का उल्लेख है। citeturn0search2</div>
+</section>
+
+<section class="card" id="taxanalysis">
+<span class="badge">7. TAX ANALYSIS</span>
+<h2>Tax Analysis in TallyPrime</h2>
+<p><b>GST – Tax Analysis</b> का उपयोग voucher में GST calculation और उसके breakup को verify करने के लिए किया जाता है। Current TallyPrime sales documentation के अनुसार transaction में <kbd>Alt+A</kbd> से Tax Analysis देखा जा सकता है और detailed tax breakup के लिए <kbd>Alt+F5</kbd> उपयोग किया जा सकता है। citeturn0search8</p>
+
+<h3>Tax Analysis देखने के Steps</h3>
+<ol>
+<li>GST-enabled Sales/Purchase voucher open करें।</li>
+<li>Items और applicable GST ledgers/details enter करें।</li>
+<li><kbd>Alt+A</kbd> दबाएँ।</li>
+<li><b>GST – Tax Analysis</b> report देखें।</li>
+<li>Detailed breakup के लिए <kbd>Alt+F5</kbd> दबाएँ।</li>
+<li>CGST, SGST/UTGST, IGST और अन्य applicable components verify करें।</li>
+</ol>
+
+<h3>Tax Analysis में क्या Verify करें?</h3>
+<ul>
+<li>Taxable value</li>
+<li>Applicable GST rate</li>
+<li>CGST amount</li>
+<li>SGST/UTGST amount</li>
+<li>IGST amount, जहाँ applicable हो</li>
+<li>HSN/SAC details</li>
+<li>GST rate का source/hierarchy, जहाँ report में available हो</li>
+</ul>
+
+<div class="example"><b>Example:</b> यदि taxable value ₹10,000 और applicable GST 18% है, तो tax ₹1,800 होगा। Intra-state example में यह ₹900 CGST + ₹900 SGST हो सकता है; actual treatment supply type और applicable rules पर निर्भर करेगा।</div>
+</section>
+
+<section class="card" id="voucher">
+<span class="badge">8. VOUCHER</span>
+<h2>GST Voucher Entry and Voucher Printing</h2>
+<p>TallyPrime में GST Sales voucher create करने के लिए <kbd>Alt+G</kbd> → <b>Create Voucher</b> → <kbd>F8</kbd> (Sales) का उपयोग किया जा सकता है। Item Invoice mode के लिए <kbd>Ctrl+H</kbd> से mode select किया जा सकता है। citeturn0search8</p>
+
+<h3>GST Sales Voucher के Steps</h3>
+<ol>
+<li><kbd>Alt+G</kbd> दबाएँ।</li>
+<li><b>Create Voucher</b> select करें।</li>
+<li><kbd>F8</kbd> से Sales voucher खोलें।</li>
+<li>आवश्यक होने पर <kbd>Ctrl+H</kbd> से <b>Item Invoice</b> mode चुनें।</li>
+<li>Party ledger select करें।</li>
+<li>Stock Item select करें।</li>
+<li>Quantity और Rate enter करें।</li>
+<li>Applicable GST ledgers select करें।</li>
+<li>Local/intra-state supply में applicable CGST + SGST/UTGST और interstate supply में applicable IGST का selection transaction facts के अनुसार करें।</li>
+<li><kbd>Alt+A</kbd> से Tax Analysis verify करें।</li>
+<li>Voucher save करने के लिए <kbd>Ctrl+A</kbd> दबाएँ।</li>
+</ol>
+
+<h3>Voucher Printing</h3>
+<p>Voucher save होने के बाद invoice को print किया जा सकता है। Printing से पहले voucher/invoice configuration में required company, party, item, tax और other invoice details verify करें। GST invoice में printed information business configuration और applicable GST requirements के अनुसार होनी चाहिए।</p>
+
+<div class="note"><b>Practical Check:</b> Print करने से पहले Tax Analysis में tax amount और breakup verify करना सबसे अच्छा practice है। इससे गलत rate या गलत GST ledger selection जल्दी पकड़ा जा सकता है।</div>
+</section>
+
+<section class="card" id="workflow">
+<span class="badge">9. COMPLETE PRACTICAL FLOW</span>
+<h2>GST with TallyPrime — Complete Workflow</h2>
+<div class="flow"><span>1. Create Company</span>→<span>2. Enable GST</span>→<span>3. Enter GST Details</span>→<span>4. Create Stock Item</span>→<span>5. Create Sales/Purchase Ledger</span>→<span>6. Set GST Rate</span>→<span>7. Create Voucher</span>→<span>8. Tax Analysis</span>→<span>9. Save</span>→<span>10. Print</span></div>
+
+<table>
+<tr><th>Stage</th><th>What to Check</th></tr>
+<tr><td>Company</td><td>GST enabled, registration details correct</td></tr>
+<tr><td>Stock Item</td><td>GST Applicable, HSN/SAC, GST Rate</td></tr>
+<tr><td>Ledger</td><td>Sales/Purchase applicability and tax configuration</td></tr>
+<tr><td>Rate</td><td>Correct applicable GST rate and source</td></tr>
+<tr><td>Voucher</td><td>Party, item, quantity, rate, GST ledgers</td></tr>
+<tr><td>Tax Analysis</td><td>Taxable value and GST breakup</td></tr>
+<tr><td>Printing</td><td>Invoice details and tax presentation</td></tr>
+</table>
+</section>
+
+<section class="card" id="example">
+<span class="badge">10. PRACTICAL EXAMPLE</span>
+<h2>Complete GST Sales Example</h2>
+<p><b>Question:</b> A business sells a taxable stock item for ₹10,000. Assume, for learning purposes, the applicable GST rate is 18% and the supply is intra-state.</p>
+
+<table>
+<tr><th>Particular</th><th>Amount</th></tr>
+<tr><td>Taxable Value</td><td>₹10,000</td></tr>
+<tr><td>GST Rate</td><td>18%</td></tr>
+<tr><td>Total GST</td><td>₹1,800</td></tr>
+<tr><td>CGST (9%)</td><td>₹900</td></tr>
+<tr><td>SGST (9%)</td><td>₹900</td></tr>
+<tr><td><b>Invoice Total</b></td><td><b>₹11,800</b></td></tr>
+</table>
+
+<div class="formula">GST = ₹10,000 × 18/100 = ₹1,800<br>CGST = ₹10,000 × 9/100 = ₹900<br>SGST = ₹10,000 × 9/100 = ₹900<br>Total = ₹10,000 + ₹1,800 = ₹11,800</div>
+
+<h3>Voucher में Practical Sequence</h3>
+<ol>
+<li>Sales voucher open करें।</li>
+<li>Party select करें।</li>
+<li>Stock Item select करें।</li>
+<li>Quantity/Rate enter करें।</li>
+<li>GST ledgers select करें।</li>
+<li>Tax Analysis खोलकर ₹1,800 total GST verify करें।</li>
+<li>Voucher save करें।</li>
+<li>Invoice preview/print करके printed tax details verify करें।</li>
+</ol>
+</section>
+
+<section class="card" id="revision">
+<span class="badge">11. QUICK REVISION</span>
+<h2>Exam + Practical Revision</h2>
+<table>
+<tr><th>Topic</th><th>Key Point</th></tr>
+<tr><td>Statutory Features</td><td>F11 में GST enable करके Company GST details configure करना।</td></tr>
+<tr><td>Stock Item</td><td>GST Applicable, HSN/SAC और GST Rate configure करना।</td></tr>
+<tr><td>Ledger</td><td>Sales/Purchase और GST tax ledgers को business requirement के अनुसार configure करना।</td></tr>
+<tr><td>Single Rate</td><td>एक relevant master/item के लिए specified GST rate maintain करना।</td></tr>
+<tr><td>Multiple Rates</td><td>Different items/masters के लिए अलग applicable rates maintain करना।</td></tr>
+<tr><td>Tax Analysis</td><td>GST calculation और tax breakup verify करना; current TallyPrime में Alt+A और detailed view के लिए Alt+F5।</td></tr>
+<tr><td>GST Voucher</td><td>Sales/Purchase transaction में party, item, tax details और GST ledgers enter करना।</td></tr>
+<tr><td>Voucher Printing</td><td>Saved GST voucher/invoice को required configuration के साथ print करना।</td></tr>
+</table>
+
+<div class="note"><b>One-line definition:</b> TallyPrime में GST accounting का उद्देश्य Company, Stock Item, Ledger और Voucher स्तर पर सही GST details configure करके transaction का tax accurately calculate, analyse और invoice में present करना है।</div>
+</section>
+
+</main>
+</div>
+<footer>BK LearnX • PGDCA Accounting Practical Notes • GST with TallyPrime</footer>
+</body>
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="BK LearnX PGDCA Notes - Windows Services: File Management, Memory Management, Device Management and I/O Management.">
+<title>Windows Services: File, Memory, Device & I/O Management | BK LearnX</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;line-height:1.7;background:#f5f7fb;color:#1f2937}
+header{background:linear-gradient(135deg,#111827,#2563eb);color:#fff;text-align:center;padding:35px 18px}
+header h1{font-size:clamp(25px,5vw,43px);margin-bottom:8px}
+header p{opacity:.93}
+.layout{max-width:1250px;margin:auto;display:flex;gap:22px;padding:22px}
+aside{width:275px;flex:none;background:#fff;padding:18px;border-radius:14px;box-shadow:0 5px 20px rgba(0,0,0,.08);position:sticky;top:15px;height:max-content}
+aside h3{color:#1d4ed8;margin-bottom:10px}
+aside a{display:block;text-decoration:none;color:#374151;padding:8px 10px;border-radius:8px}
+aside a:hover{background:#eff6ff;color:#1d4ed8}
+main{flex:1;min-width:0}
+section{background:#fff;padding:26px;margin-bottom:20px;border-radius:14px;box-shadow:0 5px 20px rgba(0,0,0,.06)}
+h2{color:#1d4ed8;border-left:5px solid #2563eb;padding-left:12px;margin-bottom:16px}
+h3{color:#111827;margin:18px 0 8px}
+p{margin:9px 0}
+ul,ol{padding-left:25px;margin:10px 0}
+li{margin:6px 0}
+.note,.example,.formula{padding:15px 17px;border-radius:10px;margin:15px 0}
+.note{background:#eff6ff;border-left:4px solid #2563eb}
+.example{background:#f0fdf4;border-left:4px solid #16a34a}
+.formula{background:#fff7ed;border-left:4px solid #f97316;font-weight:600}
+table{width:100%;border-collapse:collapse;margin:16px 0}
+th,td{border:1px solid #dbe2ea;padding:11px;text-align:left;vertical-align:top}
+th{background:#eef2ff;color:#1e3a8a}
+.flow{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;margin:20px 0}
+.box{background:#eff6ff;border:2px solid #60a5fa;border-radius:10px;padding:13px 18px;text-align:center;font-weight:600;min-width:125px}
+.arrow{font-size:24px;color:#2563eb}
+.badge{display:inline-block;background:#dbeafe;color:#1e40af;padding:4px 9px;border-radius:20px;font-size:13px;margin:3px}
+footer{background:#111827;color:#fff;text-align:center;padding:25px}
+@media(max-width:850px){
+ .layout{display:block;padding:12px}
+ aside{position:relative;width:100%;top:0;margin-bottom:15px}
+ aside a{display:inline-block}
+ section{padding:19px}
+ table{display:block;overflow-x:auto}
+ .flow{flex-direction:column}
+ .arrow{transform:rotate(90deg)}
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Windows Services: File, Memory, Device & I/O Management</h1>
+<p>PGDCA Exam-Oriented Notes | BK LearnX</p>
+</header>
+
+<div class="layout">
+<aside>
+<h3>📚 Contents</h3>
+<a href="#intro">6. Windows Services</a>
+<a href="#file">File Management</a>
+<a href="#openclose">File Opening & Closing</a>
+<a href="#memory">Memory Management</a>
+<a href="#device">Device Management</a>
+<a href="#io">I/O Management</a>
+<a href="#workflow">Windows Working Flow</a>
+<a href="#comparison">Management Comparison</a>
+<a href="#revision">Quick Revision</a>
+</aside>
+
+<main>
+
+<section id="intro">
+<h2>6. Windows Services</h2>
+<p>Windows Operating System user और computer hardware के बीच interface का काम करता है तथा कई important system services provide करता है। इनमें <strong>File Management, Memory Management, Device Management और Input-Output (I/O) Management</strong> प्रमुख हैं।</p>
+
+<div class="flow">
+<div class="box">User / Application</div>
+<div class="arrow">↕</div>
+<div class="box">Windows Operating System</div>
+<div class="arrow">↕</div>
+<div class="box">Hardware Devices</div>
+</div>
+
+<div class="note"><strong>Exam Point:</strong> Operating System resources को manage करता है ताकि applications और users computer system का efficient और controlled तरीके से उपयोग कर सकें।</div>
+</section>
+
+<section id="file">
+<h2>File Management</h2>
+<p><strong>File Management</strong> का अर्थ computer में files और directories/folders को organize, store, access और manage करना है। Windows में file system और related OS services files के साथ operations को handle करने में सहायता करते हैं।</p>
+
+<h3>File Management के मुख्य कार्य</h3>
+<ul>
+<li>File और folder create करना।</li>
+<li>Files को open और close करना।</li>
+<li>File को read और write करना।</li>
+<li>File का name बदलना (Rename).</li>
+<li>File को copy और move करना।</li>
+<li>Files और folders delete करना।</li>
+<li>Directories/folders को organize करना।</li>
+<li>File permissions और access को manage करना।</li>
+</ul>
+
+<h3>Windows में File का Basic Structure</h3>
+<div class="flow">
+<div class="box">Drive</div><div class="arrow">→</div>
+<div class="box">Folder</div><div class="arrow">→</div>
+<div class="box">Subfolder</div><div class="arrow">→</div>
+<div class="box">File</div>
+</div>
+
+<div class="example"><strong>Example:</strong> <code>D:\PGDCA\Notes\Computer.html</code> में Drive = D:, Folder = PGDCA, Subfolder = Notes और File = Computer.html है।</div>
+</section>
+
+<section id="openclose">
+<h2>File Opening and Closing</h2>
+<h3>File Opening</h3>
+<p>जब कोई application किसी file को access करना चाहती है, तो operating system file को locate करने और required access establish करने में सहायता करता है। Application को file का path/name और access mode जैसी information देनी पड़ सकती है।</p>
+
+<h3>File Opening का सामान्य Process</h3>
+<ol>
+<li>Application file का नाम/path identify करती है।</li>
+<li>Windows file system में file locate करता है।</li>
+<li>Access permissions check की जाती हैं।</li>
+<li>File access के लिए required system resources/handle उपलब्ध कराया जाता है।</li>
+<li>Application file से data read या write कर सकती है।</li>
+</ol>
+
+<h3>File Closing</h3>
+<p><strong>File Closing</strong> का अर्थ file के साथ current access session को समाप्त करना है। Closing के दौरान pending data को appropriate तरीके से commit/flush किया जा सकता है और system resources release किए जाते हैं।</p>
+
+<div class="note"><strong>Open → Read/Write → Close</strong> एक सामान्य file operation sequence है।</div>
+</section>
+
+<section id="memory">
+<h2>Memory Management</h2>
+<p><strong>Memory Management</strong> operating system की वह service है जो main memory/RAM के उपयोग को manage करती है। Windows running programs को memory उपलब्ध कराने, memory usage track करने और resources को efficiently manage करने में सहायता करता है।</p>
+
+<h3>Memory Management के मुख्य कार्य</h3>
+<ul>
+<li>Processes/programs के लिए memory allocation में सहायता।</li>
+<li>Memory usage को track करना।</li>
+<li>Available और occupied memory को manage करना।</li>
+<li>Processes के बीच appropriate memory protection/support provide करना।</li>
+<li>Virtual memory mechanisms के माध्यम से memory resources को extend/manage करना।</li>
+<li>Program समाप्त होने पर resources reclaim करना।</li>
+</ul>
+
+<h3>Virtual Memory</h3>
+<p><strong>Virtual Memory</strong> ऐसी memory-management technique है जिसमें system physical RAM के साथ storage space का उपयोग करके processes को larger logical memory space उपलब्ध कराने में सहायता करता है। Windows में paging/virtual memory mechanisms का उपयोग हो सकता है।</p>
+
+<div class="example"><strong>Example:</strong> यदि कई applications एक साथ चल रही हैं, Windows उनके memory requirements और available resources को manage करता है ताकि system लगातार काम कर सके।</div>
+</section>
+
+<section id="device">
+<h2>Device Management</h2>
+<p><strong>Device Management</strong> का अर्थ computer से जुड़े hardware devices को control और coordinate करना है। Windows devices के साथ communication के लिए <strong>device drivers</strong> और related system components का उपयोग करता है।</p>
+
+<h3>Device Management के मुख्य कार्य</h3>
+<ul>
+<li>Connected devices को identify/enumerate करना।</li>
+<li>Suitable device drivers का उपयोग करना।</li>
+<li>Applications और hardware के बीच communication facilitate करना।</li>
+<li>Device resources को coordinate करना।</li>
+<li>Device status और errors को handle करना।</li>
+<li>Plug and Play के माध्यम से supported hardware configuration को simplify करना।</li>
+</ul>
+
+<h3>Device Driver</h3>
+<p><strong>Device Driver</strong> एक system software component है जो operating system और particular hardware device के बीच communication में सहायता करता है।</p>
+
+<div class="flow">
+<div class="box">Application</div><div class="arrow">→</div>
+<div class="box">Windows OS</div><div class="arrow">→</div>
+<div class="box">Device Driver</div><div class="arrow">→</div>
+<div class="box">Hardware Device</div>
+</div>
+
+<div class="example"><strong>Example:</strong> Printer के लिए appropriate printer driver Windows को printer के commands और data को device-specific तरीके से communicate करने में सहायता करता है।</div>
+</section>
+
+<section id="io">
+<h2>Input-Output (I/O) Management</h2>
+<p><strong>I/O Management</strong> operating system की वह service है जो input और output devices के साथ data transfer तथा communication को coordinate करती है।</p>
+
+<h3>Input Operations</h3>
+<p>Keyboard, mouse, scanner, microphone आदि से आने वाले data को applications तक पहुँचाने में OS सहायता करता है।</p>
+
+<h3>Output Operations</h3>
+<p>Monitor, printer, speakers आदि पर application द्वारा generated output पहुँचाने में OS सहायता करता है।</p>
+
+<h3>I/O Management के मुख्य कार्य</h3>
+<ul>
+<li>I/O requests को receive और coordinate करना।</li>
+<li>Devices और applications के बीच data transfer manage करना।</li>
+<li>Device drivers के साथ interaction करना।</li>
+<li>Buffering और caching जैसी techniques का उपयोग करना, जहाँ appropriate हो।</li>
+<li>Spooling जैसे mechanisms द्वारा suitable I/O workloads manage करना।</li>
+<li>I/O errors और device status को handle करना।</li>
+</ul>
+
+<h3>Buffering</h3>
+<p><strong>Buffering</strong> में temporary memory area का उपयोग data को temporarily hold करने के लिए किया जाता है, ताकि producer और consumer की speed differences को handle किया जा सके।</p>
+
+<h3>Spooling</h3>
+<p><strong>Spooling (Simultaneous Peripheral Operations On-Line)</strong> में data/jobs को temporary storage/queue में रखा जाता है ताकि slower peripheral device उन्हें बाद में process कर सके। Printer spooling इसका common example है।</p>
+
+<div class="example"><strong>Example:</strong> जब आप कई documents print करते हैं, Windows print jobs को queue में रख सकता है और printer उन्हें क्रम से process करता है।</div>
+</section>
+
+<section id="workflow">
+<h2>Windows Resource Management – Overall Flow</h2>
+<div class="flow">
+<div class="box">Application</div>
+<div class="arrow">→</div>
+<div class="box">Windows OS Services</div>
+</div>
+<div class="flow">
+<div class="box">File Management</div>
+<div class="box">Memory Management</div>
+<div class="box">Device Management</div>
+<div class="box">I/O Management</div>
+</div>
+<div class="flow">
+<div class="arrow">↓</div>
+</div>
+<div class="flow">
+<div class="box">CPU</div>
+<div class="box">RAM</div>
+<div class="box">Storage</div>
+<div class="box">I/O Devices</div>
+</div>
+
+<div class="note"><strong>Concept:</strong> Windows applications को directly हर hardware detail handle करने के बजाय operating system services के माध्यम से system resources access करने देता है। इससे resource management और hardware interaction अधिक organized होता है।</div>
+</section>
+
+<section id="comparison">
+<h2>File, Memory, Device और I/O Management</h2>
+<table>
+<tr><th>Management</th><th>मुख्य उद्देश्य</th><th>Examples</th></tr>
+<tr><td>File Management</td><td>Files और folders को organize और access करना।</td><td>Create, Open, Read, Write, Copy, Delete</td></tr>
+<tr><td>Memory Management</td><td>RAM/virtual memory resources को manage करना।</td><td>Allocation, tracking, paging</td></tr>
+<tr><td>Device Management</td><td>Hardware devices को control और coordinate करना।</td><td>Drivers, device configuration</td></tr>
+<tr><td>I/O Management</td><td>Input/output data transfer को coordinate करना।</td><td>Buffering, spooling, I/O requests</td></tr>
+</table>
+</section>
+
+<section id="revision">
+<h2>Quick Revision</h2>
+<table>
+<tr><th>Term</th><th>One-line Meaning</th></tr>
+<tr><td>File Management</td><td>Files और folders को create, access, organize और manage करना।</td></tr>
+<tr><td>File Opening</td><td>Application के लिए file access establish करने की प्रक्रिया।</td></tr>
+<tr><td>File Closing</td><td>File access समाप्त करके related resources release करना।</td></tr>
+<tr><td>Memory Management</td><td>RAM और virtual memory resources का management.</td></tr>
+<tr><td>Device Management</td><td>Hardware devices और उनके resources का management.</td></tr>
+<tr><td>Device Driver</td><td>OS और hardware device के बीच communication में सहायता करने वाला system software.</td></tr>
+<tr><td>I/O Management</td><td>Input/output operations और data transfer का coordination.</td></tr>
+<tr><td>Buffering</td><td>Data को temporary buffer में hold करना।</td></tr>
+<tr><td>Spooling</td><td>I/O jobs को queue में रखकर slower device के साथ manage करना।</td></tr>
+</table>
+
+<div class="formula">Windows OS → Resource Management → Better Coordination of Files + Memory + Devices + I/O</div>
+</section>
+
+</main>
+</div>
+
+<footer>
+<p>© BK LearnX | PGDCA Study Notes</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BK LearnX | GST Reports</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--text:#172033;--muted:#667085;--primary:#2457d6;--soft:#edf3ff;--border:#dfe5ee;--green:#16855b;--orange:#b7791f}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,"Noto Sans Devanagari",Segoe UI,Arial,sans-serif;line-height:1.75}
+header{background:linear-gradient(135deg,#101828,#2457d6);color:#fff;text-align:center;padding:40px 18px}
+header h1{margin:0;font-size:clamp(28px,5vw,46px)}header p{margin:8px 0;color:#dce7ff}
+.layout{display:flex;max-width:1280px;margin:auto;align-items:flex-start}
+aside{width:275px;flex:none;height:100vh;overflow:auto;position:sticky;top:0;background:#fff;border-right:1px solid var(--border);padding:22px}
+aside h3{margin-top:0;color:var(--primary)}
+aside a{display:block;color:var(--text);text-decoration:none;padding:8px 11px;border-radius:8px;margin:3px 0}aside a:hover{background:var(--soft);color:var(--primary)}
+main{flex:1;min-width:0;padding:28px}.section{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:27px;margin-bottom:24px;box-shadow:0 5px 20px rgba(16,24,40,.04)}
+h2{color:var(--primary);margin-top:0;border-bottom:2px solid var(--soft);padding-bottom:9px}h3{color:#26364d}
+.note,.example,.warn{padding:15px 17px;border-radius:9px;margin:16px 0}.note{background:var(--soft);border-left:4px solid var(--primary)}.example{background:#f2fbf7;border-left:4px solid var(--green)}.warn{background:#fff8e8;border-left:4px solid var(--orange)}
+table{width:100%;border-collapse:collapse;margin:16px 0}th,td{border:1px solid var(--border);padding:11px;vertical-align:top;text-align:left}th{background:#edf2ff;color:#173b9b}
+.cardgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));gap:14px}.card{border:1px solid var(--border);border-radius:12px;padding:17px;background:#fff}.card strong{color:var(--primary)}
+.steps{counter-reset:step;list-style:none;padding:0}.steps li{counter-increment:step;position:relative;padding:11px 12px 11px 48px;margin:7px 0;background:#fafbff;border:1px solid var(--border);border-radius:9px}.steps li:before{content:counter(step);position:absolute;left:12px;top:10px;width:25px;height:25px;border-radius:50%;background:var(--primary);color:#fff;text-align:center;line-height:25px;font-weight:bold}
+.formula{font-family:Consolas,monospace;background:#f3f5f8;border-left:4px solid #667085;padding:14px 17px;border-radius:8px;margin:14px 0}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.flow span{background:#edf3ff;border:1px solid #d6e2ff;padding:8px 12px;border-radius:8px;font-weight:600}
+footer{text-align:center;color:var(--muted);padding:28px}
+@media(max-width:800px){.layout{display:block}aside{position:relative;width:100%;height:auto;border-right:0;border-bottom:1px solid var(--border)}main{padding:15px}.section{padding:19px}table{display:block;overflow-x:auto}}
+</style>
+</head>
+<body>
+
+<header>
+<h1>5) GST Reports</h1>
+<p>PGDCA • GST Returns & Reports • Hindi + English • Exam-Oriented Notes</p>
+</header>
+
+<div class="layout">
+<aside>
+<h3>Contents</h3>
+<a href="#intro">Introduction</a>
+<a href="#gstr">1. GSTR – GST Returns</a>
+<a href="#payment">2. GST Payment</a>
+<a href="#itc">3. Input Tax Credit</a>
+<a href="#rcm">4. Reverse Charge Mechanism</a>
+<a href="#types">5. Types of GST Returns</a>
+<a href="#dates">6. Return Filing Dates</a>
+<a href="#workflow">GST Reporting Workflow</a>
+<a href="#revision">Quick Revision</a>
+</aside>
+
+<main>
+
+<section class="section" id="intro">
+<h2>Introduction</h2>
+<p><strong>GST Reports</strong> का उद्देश्य taxpayer की outward supplies, tax liability, input tax credit, tax payment और annual compliance से संबंधित information को report करना है। GST Portal पर अलग-अलग forms taxpayer के type और applicable filing requirement के अनुसार उपलब्ध होते हैं।</p>
+<div class="note"><strong>Current-date note:</strong> GST return forms और due dates notifications, taxpayer category, filing frequency और Government extensions के अनुसार बदल सकते हैं। इसलिए actual filing के समय GST Portal पर displayed due date को final माना जाना चाहिए।</div>
+</section>
+
+<section class="section" id="gstr">
+<h2>1. GSTR – GST Returns</h2>
+<p><strong>GSTR</strong> का अर्थ <strong>Goods and Services Tax Return</strong> है। यह GST system में taxpayer द्वारा furnish की जाने वाली prescribed return/statement forms की series है।</p>
+
+<h3>GSTR में सामान्यतः report होने वाली information</h3>
+<div class="cardgrid">
+<div class="card"><strong>Outward Supplies</strong><br>Sales/supplies और applicable invoice details.</div>
+<div class="card"><strong>Tax Liability</strong><br>Tax period की payable GST liability.</div>
+<div class="card"><strong>ITC</strong><br>Eligible input tax credit का relevant reporting.</div>
+<div class="card"><strong>Tax Paid</strong><br>Cash/credit ledger के माध्यम से discharged tax liability.</div>
+</div>
+
+<div class="example"><strong>Simple Meaning:</strong> GSTR forms को GST compliance की reporting documents की तरह समझ सकते हैं, जिनमें business की applicable GST transactions और tax information prescribed format में report होती है।</div>
+</section>
+
+<section class="section" id="payment">
+<h2>2. GST Payment</h2>
+<p><strong>GST Payment</strong> का अर्थ applicable GST liability को Government को prescribed manner में discharge करना है। Normal taxpayers के लिए GSTR-3B में tax liability declare और discharge की जाती है।</p>
+
+<h3>Electronic Ledgers</h3>
+<table>
+<tr><th>Ledger</th><th>Meaning</th></tr>
+<tr><td>Electronic Liability Register</td><td>Taxpayer की tax/interest/penalty आदि liabilities का record.</td></tr>
+<tr><td>Electronic Cash Ledger</td><td>Cash/challan के माध्यम से जमा amount का record.</td></tr>
+<tr><td>Electronic Credit Ledger</td><td>Eligible ITC का credit और उसके utilisation का record.</td></tr>
+</table>
+
+<h3>Payment का Basic Flow</h3>
+<div class="flow">
+<span>Calculate Liability</span><span>→</span>
+<span>Check ITC</span><span>→</span>
+<span>Use Eligible Credit</span><span>→</span>
+<span>Pay Balance in Cash</span><span>→</span>
+<span>File Return</span>
+</div>
+
+<div class="example">
+Tax Liability = ₹50,000<br>
+Eligible ITC = ₹35,000<br>
+Balance payable in cash = ₹15,000
+</div>
+
+<div class="note">GSTR-3B एक simplified summary return है जिसमें taxpayers अपनी GST liabilities declare करते हैं और those liabilities discharge करते हैं। Monthly filers के लिए सामान्य due date succeeding month की 20th है; quarterly filers के लिए notified State/UT के अनुसार सामान्यतः 22nd या 24th होती है। citeturn0search1</div>
+</section>
+
+<section class="section" id="itc">
+<h2>3. Input Tax Credit (ITC)</h2>
+<p><strong>Input Tax Credit</strong> का अर्थ eligible purchases/input supplies पर paid GST का credit लेना है, जिसे applicable conditions के अधीन output tax liability के against utilise किया जा सकता है।</p>
+
+<h3>Basic Example</h3>
+<div class="formula">
+Output GST Liability = ₹30,000<br>
+Eligible ITC = ₹18,000<br>
+Balance GST payable = ₹30,000 − ₹18,000 = ₹12,000
+</div>
+
+<h3>ITC के लिए महत्वपूर्ण बातें</h3>
+<ul>
+<li>Eligible ITC के लिए prescribed documents और statutory conditions का पालन आवश्यक है।</li>
+<li>Tax invoice/debit note/bill of entry जैसे prescribed documents relevant हो सकते हैं।</li>
+<li>हर purchase पर automatically full ITC available नहीं माना जा सकता।</li>
+<li>Blocked/ineligible credit और exempt/non-business use से संबंधित restrictions लागू हो सकती हैं।</li>
+<li>Input tax credit के लिए GST law की applicable conditions verify करनी चाहिए।</li>
+</ul>
+
+<div class="note">CBIC के ITC rules में prescribed documents, conditions और certain circumstances में ITC reversal/attribution के rules दिए गए हैं। citeturn0search2</div>
+</section>
+
+<section class="section" id="rcm">
+<h2>4. Reverse Charge Mechanism (RCM)</h2>
+<p><strong>Reverse Charge Mechanism</strong> में notified supplies के मामले में GST pay करने की liability supplier के बजाय <strong>recipient</strong> पर आती है।</p>
+
+<div class="cardgrid">
+<div class="card"><strong>Normal Charge</strong><br>Generally supplier tax charge करके Government को pay करता है।</div>
+<div class="card"><strong>Reverse Charge</strong><br>Specified/notified cases में recipient tax liability discharge करता है।</div>
+</div>
+
+<h3>RCM की Basic Process</h3>
+<ol class="steps">
+<li>Check करें कि supply notified RCM category में आती है या नहीं।</li>
+<li>Applicable taxable value और GST rate determine करें।</li>
+<li>Recipient prescribed manner में RCM liability account/pay करे।</li>
+<li>Return में applicable liability report करें।</li>
+<li>Eligible होने पर prescribed conditions के अनुसार RCM tax का ITC claim किया जा सकता है।</li>
+</ol>
+
+<div class="example"><strong>Example:</strong> यदि किसी notified service पर RCM लागू है और taxable value ₹10,000 तथा illustrative GST rate 18% है, तो recipient की RCM tax liability ₹1,800 होगी। Eligible होने पर prescribed conditions के अनुसार paid tax का ITC लिया जा सकता है।</div>
+
+<div class="note">CBIC के अनुसार reverse charge goods और services दोनों की notified categories पर लागू हो सकता है। RCM में tax liability recipient पर आती है। citeturn0search7</div>
+</section>
+
+<section class="section" id="types">
+<h2>5. Types of GST Return Files / Forms</h2>
+<table>
+<tr><th>Form</th><th>Purpose</th><th>Typical Taxpayer/Use</th></tr>
+<tr><td><strong>GSTR-1</strong></td><td>Outward supplies की details report करना।</td><td>Applicable regular taxpayers.</td></tr>
+<tr><td><strong>GSTR-3B</strong></td><td>Summary GST liability, ITC और tax payment/discharge.</td><td>Normal/casual taxpayers as applicable.</td></tr>
+<tr><td><strong>GSTR-4</strong></td><td>Composition taxpayers के लिए applicable annual return/form framework.</td><td>Composition taxpayers, as applicable.</td></tr>
+<tr><td><strong>GSTR-5</strong></td><td>Non-resident taxable persons की return.</td><td>NRTP, as applicable.</td></tr>
+<tr><td><strong>GSTR-6</strong></td><td>Input Service Distributor (ISD) द्वारा ITC distribution reporting.</td><td>ISD, as applicable.</td></tr>
+<tr><td><strong>GSTR-7</strong></td><td>TDS deductor द्वारा GST TDS details.</td><td>Applicable TDS deductors.</td></tr>
+<tr><td><strong>GSTR-8</strong></td><td>E-commerce operator द्वारा TCS-related details.</td><td>Applicable e-commerce operators.</td></tr>
+<tr><td><strong>GSTR-9</strong></td><td>Annual return for applicable normal taxpayers.</td><td>Applicable taxpayers.</td></tr>
+<tr><td><strong>GSTR-9C</strong></td><td>Reconciliation statement/certification, where applicable.</td><td>Taxpayers for whom it is applicable.</td></tr>
+<tr><td><strong>CMP-08</strong></td><td>Composition taxpayers के periodic self-assessed tax payment statement.</td><td>Composition scheme, as applicable.</td></tr>
+</table>
+
+<div class="warn"><strong>Important:</strong> पुराने study material में GSTR-2/GSTR-3 जैसे forms को active regular filing forms के रूप में दिखाया जा सकता है। Current practical filing के लिए GST Portal पर applicable forms और current notifications देखें।</div>
+</section>
+
+<section class="section" id="dates">
+<h2>6. GST Return Filing Dates</h2>
+<p>GST returns की due dates taxpayer की filing frequency और category के अनुसार अलग हो सकती हैं। नीचे commonly studied dates दी गई हैं; Government notification से date extend/change हो सकती है।</p>
+
+<table>
+<tr><th>Return</th><th>Common Due Date / Timing</th><th>Note</th></tr>
+<tr><td>GSTR-1 Monthly</td><td><strong>11th of succeeding month</strong></td><td>Monthly filers के लिए सामान्य due date.</td></tr>
+<tr><td>GSTR-1 Quarterly</td><td><strong>13th of month following quarter</strong></td><td>QRMP taxpayers के लिए सामान्य quarterly filing date.</td></tr>
+<tr><td>GSTR-3B Monthly</td><td><strong>20th of succeeding month</strong></td><td>Monthly filers के लिए सामान्य due date.</td></tr>
+<tr><td>GSTR-3B Quarterly</td><td><strong>22nd / 24th</strong></td><td>State/UT category के अनुसार notified due date.</td></tr>
+<tr><td>GSTR-9</td><td><strong>31 December</strong> of following financial year, generally</td><td>Applicable annual return; notification/exemption check करें.</td></tr>
+</table>
+
+<div class="note"><strong>Official GST Portal:</strong> GSTR-1 की monthly due date सामान्यतः succeeding month की 11th और quarterly filing में quarter के बाद वाले month की last date होती है; however QRMP guidance में quarterly GSTR-1 की general due date 13th बताई गई है. Actual applicability portal/notification से verify करें। citeturn0search0turn0search24</div>
+
+<div class="note"><strong>GSTR-3B:</strong> GST Portal के अनुसार monthly filers के लिए 20th और quarterly filers के लिए notified State/UT के अनुसार 22nd या 24th सामान्य due dates हैं। citeturn0search1</div>
+
+<div class="note"><strong>GSTR-9:</strong> GST Portal में Annual Return section से GSTR-9 file किया जाता है; filing applicability और displayed due date taxpayer dashboard पर check की जानी चाहिए। citeturn0search6</div>
+</section>
+
+<section class="section" id="workflow">
+<h2>GST Reporting Workflow</h2>
+<div class="flow">
+<span>Sales / Purchase Data</span><span>→</span>
+<span>GSTR-1</span><span>→</span>
+<span>ITC Check</span><span>→</span>
+<span>GSTR-3B</span><span>→</span>
+<span>ITC + Cash Payment</span><span>→</span>
+<span>Return Filing</span><span>→</span>
+<span>Annual Reconciliation</span>
+</div>
+
+<h3>Practical Understanding</h3>
+<ol class="steps">
+<li>Books में sales और purchase transactions record करें।</li>
+<li>Outward supply details को applicable GSTR-1 reporting से reconcile करें।</li>
+<li>Eligible ITC verify करें।</li>
+<li>Output liability और ITC के आधार पर net liability calculate करें।</li>
+<li>GSTR-3B में summary details report करें।</li>
+<li>Available ITC utilise करके balance tax cash ledger से pay करें, as applicable.</li>
+<li>Return file करके acknowledgement/ARN और records maintain करें।</li>
+</ol>
+</section>
+
+<section class="section" id="revision">
+<h2>Quick Revision</h2>
+<table>
+<tr><th>Topic</th><th>One-Line Revision</th></tr>
+<tr><td>GSTR</td><td>GST returns/statements की prescribed series.</td></tr>
+<tr><td>GST Payment</td><td>Tax liability को prescribed manner में discharge करना.</td></tr>
+<tr><td>ITC</td><td>Eligible input tax का credit लेकर output liability में utilise करना.</td></tr>
+<tr><td>RCM</td><td>Notified cases में tax liability supplier की जगह recipient पर.</td></tr>
+<tr><td>GSTR-1</td><td>Outward supplies reporting.</td></tr>
+<tr><td>GSTR-3B</td><td>Summary liability, ITC और tax payment/discharge.</td></tr>
+<tr><td>GSTR-9</td><td>Applicable annual return.</td></tr>
+<tr><td>Due Dates</td><td>Filing frequency/category के अनुसार अलग; portal/notification verify करें.</td></tr>
+</table>
+
+<div class="note"><strong>Exam Definition:</strong> “GST Reports are prescribed statements and returns used by taxpayers to report supplies, tax liability, input tax credit, tax payment and other GST-related information to the tax authorities.”</div>
+</section>
+
+</main>
+</div>
+
+<footer>BK LearnX • GST Reports • Updated study notes with official GST references</footer>
+</body>
+</html>

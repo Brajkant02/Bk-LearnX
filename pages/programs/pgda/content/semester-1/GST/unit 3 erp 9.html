@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BK LearnX | GST with Tally ERP 9</title>
+<style>
+:root{--bg:#f6f8fc;--card:#fff;--text:#182230;--muted:#667085;--primary:#2457d6;--soft:#edf3ff;--border:#dfe5ef;--green:#16855b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,"Noto Sans Devanagari",Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.75}
+header{background:linear-gradient(135deg,#101828,#2457d6);color:#fff;padding:38px 20px;text-align:center}
+header h1{margin:0;font-size:clamp(28px,5vw,46px)}header p{margin:8px 0;color:#dce7ff}
+.layout{display:flex;max-width:1280px;margin:auto;align-items:flex-start}
+.sidebar{width:275px;flex:none;background:#fff;border-right:1px solid var(--border);padding:22px;position:sticky;top:0;height:100vh;overflow:auto}
+.sidebar h3{margin-top:0;color:var(--primary)}
+.sidebar a{display:block;text-decoration:none;color:var(--text);padding:9px 11px;border-radius:8px;margin:3px 0}.sidebar a:hover{background:var(--soft);color:var(--primary)}
+main{flex:1;padding:28px;min-width:0}.section{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:27px;margin-bottom:24px;box-shadow:0 5px 20px rgba(16,24,40,.04)}
+h2{margin-top:0;color:var(--primary);border-bottom:2px solid var(--soft);padding-bottom:9px}h3{color:#26364d}
+.note,.example,.warn{padding:15px 17px;border-radius:8px;margin:16px 0}.note{background:var(--soft);border-left:4px solid var(--primary)}.example{background:#f2fbf7;border-left:4px solid var(--green)}.warn{background:#fff8e8;border-left:4px solid #b7791f}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.96rem}th,td{border:1px solid var(--border);padding:11px;text-align:left;vertical-align:top}th{background:#edf2ff;color:#173b9b}
+.cardgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}.card{border:1px solid var(--border);border-radius:12px;padding:17px;background:#fff}.card strong{color:var(--primary)}
+.steps{counter-reset:step;list-style:none;padding:0}.steps li{counter-increment:step;position:relative;padding:11px 12px 11px 48px;margin:7px 0;background:#fafbff;border:1px solid var(--border);border-radius:9px}.steps li:before{content:counter(step);position:absolute;left:12px;top:10px;width:25px;height:25px;border-radius:50%;background:var(--primary);color:#fff;text-align:center;line-height:25px;font-weight:bold}
+.badge{display:inline-block;background:#e8efff;color:#2146ae;padding:3px 9px;border-radius:999px;font-size:.82rem;margin:2px}
+footer{text-align:center;color:var(--muted);padding:28px}
+@media(max-width:800px){.layout{display:block}.sidebar{position:relative;width:100%;height:auto;border-right:0;border-bottom:1px solid var(--border)}main{padding:15px}.section{padding:19px}table{display:block;overflow-x:auto}}
+</style>
+</head>
+<body>
+
+<header>
+<h1>GST with Tally ERP 9</h1>
+<p>PGDCA / Accounting Practical Notes • Hindi + English • Step-by-Step</p>
+</header>
+
+<div class="layout">
+<aside class="sidebar">
+<h3>Contents</h3>
+<a href="#intro">Introduction</a>
+<a href="#statutory">1. Enable Statutory Features</a>
+<a href="#stock">2. Creation of Stock Item under GST</a>
+<a href="#ledger">3. Creation of Ledger under GST</a>
+<a href="#single">4. Enable Single Rate</a>
+<a href="#multiple">5. Enable Multiple Rate</a>
+<a href="#analysis">6. Tax Analysis</a>
+<a href="#printing">7. Voucher Printing with GST</a>
+<a href="#workflow">Complete Practical Workflow</a>
+<a href="#revision">Quick Revision</a>
+</aside>
+
+<main>
+
+<section class="section" id="intro">
+<h2>Introduction</h2>
+<p><strong>Tally ERP 9</strong> में GST features का उपयोग business transactions को GST details के साथ record करने, tax calculation देखने, tax analysis करने और GST-enabled invoices/vouchers print करने के लिए किया जाता है।</p>
+<div class="note"><strong>Practical Note:</strong> नीचे दिए गए menu paths Tally ERP 9 के commonly used GST workflow को ध्यान में रखकर लिखे गए हैं। आपके installed release, company configuration और statutory settings के अनुसार screen/options के नाम या position थोड़े अलग दिखाई दे सकते हैं।</div>
+</section>
+
+<section class="section" id="statutory">
+<h2>1. Enable Statutory Features</h2>
+<p>GST transactions enter करने से पहले company में GST/statutory features enable करना आवश्यक होता है। इससे Tally में GST-related configuration और tax details उपलब्ध हो जाती हैं।</p>
+
+<h3>Basic Steps</h3>
+<ol class="steps">
+<li><strong>Company Open करें:</strong> Tally ERP 9 start करके required company select/open करें।</li>
+<li><strong>Company Features खोलें:</strong> Gateway of Tally से <strong>F11: Features</strong> पर जाएँ।</li>
+<li><strong>Statutory & Taxation:</strong> Statutory & Taxation section में जाएँ।</li>
+<li><strong>Enable GST:</strong> <strong>Enable Goods and Services Tax (GST)</strong> को <strong>Yes</strong> करें।</li>
+<li><strong>GST Details:</strong> State, Registration Type, GSTIN/UIN आदि applicable company details enter करें।</li>
+<li><strong>Save:</strong> Configuration को accept/save करें।</li>
+</ol>
+
+<table>
+<tr><th>Setting</th><th>Purpose</th></tr>
+<tr><td>Enable GST</td><td>Company में GST functionality activate करना।</td></tr>
+<tr><td>State</td><td>Company के registration/state details के लिए।</td></tr>
+<tr><td>Registration Type</td><td>Regular/Composition आदि applicable registration type configure करना।</td></tr>
+<tr><td>GSTIN/UIN</td><td>Applicable identification number record करना।</td></tr>
+</table>
+
+<div class="warn"><strong>Important:</strong> GSTIN, registration type और State जैसी details वास्तविक business documents के अनुसार ही भरनी चाहिए।</div>
+</section>
+
+<section class="section" id="stock">
+<h2>2. Creation of Stock Item under GST</h2>
+<p>GST-enabled inventory system में प्रत्येक taxable stock item के लिए appropriate GST/HSN classification और tax details configure की जाती हैं। इससे voucher entry के समय सही tax calculation में सहायता मिलती है।</p>
+
+<h3>Stock Item Creation – Basic Procedure</h3>
+<ol class="steps">
+<li><strong>Gateway of Tally → Inventory Info → Stock Items</strong> में जाएँ।</li>
+<li><strong>Create</strong> select करें।</li>
+<li><strong>Name of Item</strong> enter करें, जैसे <em>Notebook</em>।</li>
+<li>Required <strong>Under</strong> group select करें।</li>
+<li>Applicable <strong>Units</strong> select/create करें, जैसे Nos.</li>
+<li>GST details में applicable <strong>HSN/SAC</strong> और tax classification/rate details configure करें।</li>
+<li>Configuration accept करके stock item save करें।</li>
+</ol>
+
+<table>
+<tr><th>Field</th><th>Example</th><th>Purpose</th></tr>
+<tr><td>Stock Item</td><td>Notebook</td><td>Inventory item identification।</td></tr>
+<tr><td>Unit</td><td>Nos.</td><td>Quantity measurement।</td></tr>
+<tr><td>HSN</td><td>Applicable HSN</td><td>Goods classification।</td></tr>
+<tr><td>GST Rate</td><td>Applicable rate</td><td>Tax calculation के लिए।</td></tr>
+</table>
+
+<div class="example"><strong>Example:</strong> “Notebook” नाम का stock item बनाया गया है। यदि उसके लिए applicable HSN और GST rate configured है, तो sales voucher में item select करते समय Tally configured GST details के आधार पर tax calculation में सहायता कर सकता है।</div>
+</section>
+
+<section class="section" id="ledger">
+<h2>3. Creation of Ledger under GST</h2>
+<p>GST accounting में party, sales, purchase और tax ledgers की सही configuration महत्वपूर्ण है। Ledger के nature के अनुसार GST applicability और relevant tax details set की जाती हैं।</p>
+
+<h3>Party Ledger Creation</h3>
+<ol class="steps">
+<li><strong>Gateway of Tally → Accounts Info → Ledgers → Create</strong> खोलें।</li>
+<li>Party का <strong>Name</strong> enter करें।</li>
+<li>Relevant <strong>Under</strong> group select करें, जैसे Sundry Debtors या Sundry Creditors।</li>
+<li>Applicable GST details में registration type और GSTIN आदि enter करें।</li>
+<li>Party का State सही select करें ताकि intra-State/inter-State treatment determine करने में सहायता मिले।</li>
+<li>Ledger save करें।</li>
+</ol>
+
+<h3>GST Tax Ledgers</h3>
+<div class="cardgrid">
+<div class="card"><strong>CGST Ledger</strong><br>Intra-State transactions में Central GST component record करने के लिए।</div>
+<div class="card"><strong>SGST Ledger</strong><br>Intra-State transactions में State GST component record करने के लिए।</div>
+<div class="card"><strong>IGST Ledger</strong><br>Inter-State transactions में Integrated GST component record करने के लिए।</div>
+</div>
+
+<div class="note"><strong>Practical Rule:</strong> Intra-State transaction में सामान्यतः CGST + SGST और Inter-State transaction में IGST treatment होता है, subject to applicable GST rules.</div>
+</section>
+
+<section class="section" id="single">
+<h2>4. Enable Single Rate</h2>
+<p><strong>Single Rate</strong> का अर्थ है कि किसी stock item/category के लिए एक applicable GST rate configured किया गया है। यह तब convenient होता है जब एक item की taxable supplies एक ही GST rate के अंतर्गत आती हों।</p>
+
+<h3>Procedure</h3>
+<ol class="steps">
+<li>GST-enabled Stock Item खोलें या नया Stock Item create करें।</li>
+<li>GST details/taxability configuration में जाएँ।</li>
+<li>Applicable HSN/SAC classification select/enter करें।</li>
+<li>एक applicable GST rate configure करें।</li>
+<li>Configuration save करें।</li>
+</ol>
+
+<div class="example"><strong>Illustration:</strong> यदि किसी particular stock item पर applicable GST rate 18% है, तो उस item के लिए single-rate configuration में 18% rate रखा जा सकता है। Actual rate हमेशा current applicable notification/classification से verify करें।</div>
+</section>
+
+<section class="section" id="multiple">
+<h2>5. Enable Multiple Rate</h2>
+<p><strong>Multiple Rate</strong> configuration तब उपयोगी हो सकती है जब अलग-अलग items या classifications पर अलग GST rates लागू हों। Tally में GST classification/rate configuration item और transaction requirements के अनुसार किया जाता है।</p>
+
+<h3>Basic Procedure</h3>
+<ol class="steps">
+<li>Required Stock Items identify करें।</li>
+<li>हर item के लिए applicable GST classification/HSN configure करें।</li>
+<li>जिस item पर अलग rate लागू है, उसके लिए संबंधित rate configure करें।</li>
+<li>Sales/Purchase voucher में सही item select करें।</li>
+<li>Voucher में tax calculation verify करें।</li>
+</ol>
+
+<table>
+<tr><th>Item</th><th>Illustrative Rate</th><th>Configuration Idea</th></tr>
+<tr><td>Item A</td><td>5%</td><td>Item-specific GST rate</td></tr>
+<tr><td>Item B</td><td>12%</td><td>Item-specific GST rate</td></tr>
+<tr><td>Item C</td><td>18%</td><td>Item-specific GST rate</td></tr>
+</table>
+
+<div class="warn"><strong>Note:</strong> Table में दिए rates केवल configuration समझाने के illustrative examples हैं; actual GST rate HSN/SAC और current notification के अनुसार determine करें।</div>
+</section>
+
+<section class="section" id="analysis">
+<h2>6. Tax Analysis</h2>
+<p><strong>Tax Analysis</strong> का उद्देश्य voucher/transaction में GST tax calculation को समझना और verify करना है। इससे taxable value, CGST, SGST/IGST और total tax जैसी information की checking की जा सकती है।</p>
+
+<h3>Tax Analysis में सामान्यतः क्या देखा जाता है?</h3>
+<table>
+<tr><th>Component</th><th>Meaning</th></tr>
+<tr><td>Taxable Value</td><td>जिस value पर applicable GST calculate किया जा रहा है।</td></tr>
+<tr><td>CGST</td><td>Applicable intra-State Central GST component।</td></tr>
+<tr><td>SGST/UTGST</td><td>Applicable State/UT component।</td></tr>
+<tr><td>IGST</td><td>Applicable inter-State integrated tax component।</td></tr>
+<tr><td>Total Tax</td><td>Transaction पर calculated GST components का total।</td></tr>
+</table>
+
+<h3>Illustrative Calculation</h3>
+<div class="formula" style="font-family:Consolas,monospace;background:#f3f5f8;border-left:4px solid #667085;padding:13px 16px;border-radius:8px">
+Taxable Value = ₹10,000<br>
+Illustrative GST Rate = 18%<br>
+CGST = ₹10,000 × 9% = ₹900<br>
+SGST = ₹10,000 × 9% = ₹900<br>
+Total GST = ₹1,800<br>
+Invoice Total = ₹11,800
+</div>
+<p>यह केवल calculation समझाने का example है। Actual rate और taxable value transaction के facts तथा applicable GST provisions पर depend करते हैं।</p>
+</section>
+
+<section class="section" id="printing">
+<h2>7. Voucher Printing with GST</h2>
+<p>GST-enabled voucher/invoice को print करते समय invoice में required GST particulars display करने के लिए appropriate voucher printing configuration की आवश्यकता होती है।</p>
+
+<h3>Basic Procedure</h3>
+<ol class="steps">
+<li>Sales/Purchase voucher खोलें।</li>
+<li>Required transaction enter और save करें।</li>
+<li>Voucher display/print option से <strong>Print</strong> select करें।</li>
+<li>Printing configuration में GST/invoice-related options verify करें।</li>
+<li>Party details, GSTIN, HSN/SAC, taxable value, tax amount और total amount जैसी required particulars check करें।</li>
+<li>Preview देखकर voucher/invoice print करें।</li>
+</ol>
+
+<h3>GST Voucher में Important Details</h3>
+<div class="cardgrid">
+<div class="card"><strong>Supplier Details</strong><br>Name, address और applicable GSTIN आदि।</div>
+<div class="card"><strong>Buyer Details</strong><br>Party name, address, GSTIN और State आदि जहाँ applicable हो।</div>
+<div class="card"><strong>Item Details</strong><br>Description, quantity, rate, taxable value और HSN आदि।</div>
+<div class="card"><strong>Tax Details</strong><br>CGST/SGST/IGST amount और applicable rate।</div>
+<div class="card"><strong>Invoice Total</strong><br>Taxable value + applicable taxes सहित total amount।</div>
+</div>
+
+<div class="note"><strong>Practical Check:</strong> Print करने से पहले GSTIN, HSN/SAC, State, tax rate, CGST/SGST/IGST और invoice total को verify करना चाहिए।</div>
+</section>
+
+<section class="section" id="workflow">
+<h2>Complete Practical Workflow</h2>
+<p>GST को Tally ERP 9 में configure करने का simple workflow:</p>
+<div class="flow" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+<span>Company Create/Open</span><span>→</span>
+<span>Enable GST</span><span>→</span>
+<span>Company GST Details</span><span>→</span>
+<span>Stock Item</span><span>→</span>
+<span>Ledger</span><span>→</span>
+<span>GST Rate</span><span>→</span>
+<span>Voucher</span><span>→</span>
+<span>Tax Analysis</span><span>→</span>
+<span>Print</span>
+</div>
+
+<h3>Practical Example: GST Sales Entry</h3>
+<ol class="steps">
+<li>GST-enabled company open करें।</li>
+<li>Customer/party ledger में GST details configure करें।</li>
+<li>Stock item में HSN और applicable GST rate configure करें।</li>
+<li>Sales voucher खोलें।</li>
+<li>Party और stock item select करें।</li>
+<li>Quantity और rate enter करें।</li>
+<li>Applicable CGST + SGST या IGST tax calculation verify करें।</li>
+<li>Voucher save करें।</li>
+<li>Tax Analysis से tax breakup check करें।</li>
+<li>GST-enabled voucher/invoice print करें।</li>
+</ol>
+</section>
+
+<section class="section" id="revision">
+<h2>Quick Revision</h2>
+<table>
+<tr><th>Topic</th><th>Key Point</th></tr>
+<tr><td>Enable Statutory Features</td><td>F11 Features में GST/statutory settings configure करना।</td></tr>
+<tr><td>Stock Item</td><td>Item के लिए HSN और applicable GST details configure करना।</td></tr>
+<tr><td>Ledger</td><td>Party तथा CGST/SGST/IGST जैसे relevant ledgers configure करना।</td></tr>
+<tr><td>Single Rate</td><td>एक applicable GST rate वाली item configuration।</td></tr>
+<tr><td>Multiple Rate</td><td>अलग items/classifications के लिए अलग applicable rates configure करना।</td></tr>
+<tr><td>Tax Analysis</td><td>Taxable value और GST components की checking।</td></tr>
+<tr><td>Voucher Printing</td><td>GST particulars सहित voucher/invoice print करना।</td></tr>
+</table>
+
+<div class="note"><strong>Exam Definition:</strong> “GST with Tally ERP 9 refers to configuring GST statutory features, masters and tax rates in Tally so that GST-related purchase/sales transactions can be recorded, analysed and printed with appropriate tax details.”</div>
+</section>
+
+</main>
+</div>
+
+<footer>BK LearnX • GST with Tally ERP 9 • Practical Study Notes</footer>
+</body>
+</html>

@@ -1,74 +1,89 @@
 ﻿const subjectSelect = document.getElementById('subject');
-        const unitSelect = document.getElementById('unit');
-        const chapterHeading = document.getElementById('chapterName');
-        const currentChapter = document.getElementById('currentChapter');
-        const unitCards = Array.from(document.querySelectorAll('unit-card'));
+const unitSelect = document.getElementById('unit');
+const chapterHeading = document.getElementById('chapterName');
+const currentChapter = document.getElementById('currentChapter');
+const unitCards = Array.from(document.querySelectorAll('.unit-card'));
 
-        const subjectUnits = {
-            bcit: [
-                'Unit-1: Fundamentals of Computer',
-                'Unit-2: Data Representation',
-                'Unit-3: DOS & Windows Operating Systems  ',
-                'Unit-4: Linux Operating System ',
-                'Unit-5: Fundamentals of Internet '
-            ],
+function formatUnitLabel(unitValue) {
+    if (!unitValue) {
+        return 'Unit';
+    }
 
-            python: [
-                'Unit-1: Introduction',
-                'Unit-2: Basic Python Syntax ',
-                'Unit-3: Language Components ',
-                'Unit-4: Collections',
-                'Unit-5: Functions',
-                'Unit-6: Modules ',
-                'Unit-7: Exceptions ',
-                'Unit-8: Input and Output',
-                'Unit-9: Classes in Python ',
-                'Unit-10: Regular Expressions'
-            ],
+    const match = unitValue.match(/unit-?\d+/i);
+    if (match) {
+        return match[0].replace(/-/, ' ').toUpperCase();
+    }
 
-            dccn: [
-                'Unit-1: Introduction to Data Communication',
-                'Unit-2: Communication Methodologies',
-                'Unit-3: Networks Basics',
-                'Unit-4: Networking Models',
-                'unit-5-tcp/ip-addressing',
-                'Unit-6: Network Architecture',
-                'Unit-7: Network Connectivity',
-                'Unit-8: Network Administration',
-                'Unit-9: Introduction to Wireless Networks'
-            ],
+    return unitValue.replace(/-/g, ' ');
+}
 
-            wdt: [
-                'Unit-1: Web Development Introduction',
-                'Unit-2: Hyper Text Markup Langauge(HTML)',
-                'Unit-3: Cascading Style Sheets (CSS)',
-                'Unit-4: Java Scripts',
-                'Unit-5: JQUERY',
-                'Unit-6: Bootstrap',
-                'Unit-7: XML & JSON'
-            ],
+function updateUnitOptions() {
+    const subject = subjectSelect.value;
 
-            oat: [
-                'Unit-1 Word Processing',
-                'Unit-2 Spread Sheet',
-                'Unit-3 Presentation ',
-                'Unit-4 Database ',
-                'Unit-5 Google Office Tools '
-            ]
-        };
+    unitSelect.innerHTML = '<option value="">Select Unit</option>';
 
-        function updateUnit() {
-            const subject = subjectSelect.value;
+    if (!subject) {
+        hideAllCards();
+        chapterHeading.textContent = 'Select a subject and semester';
+        currentChapter.textContent = 'Select subject and semester';
+        return;
+    }
 
-            unitSelect.innerHTML = '<option value="">Select Unit</option>'if-subjectunits-subject-subjectunits-subject-foreach-unit-const-option-document.createelement('option'option-value-unit-option-textcontent-unit-unitselect.appendchild(option);
-                });
-            }
+    const matchingCards = unitCards.filter((card) => card.dataset.subject === subject);
 
-            updatechapter();
-        }
+    matchingCards.forEach((card) => {
+        const option = document.createElement('option');
+        option.value = card.dataset.unit;
+        option.textContent = formatUnitLabel(card.dataset.unit);
+        unitSelect.appendChild(option);
+    });
 
-        function getunitkey(unitvalue) {
-            if (!unitvalue) {
-                return ''const-match-unitvalue-tolowercase.match(/unit/d/return-match? match[0] : ''function-hideallcards-unitcards-foreach-card-card-classlist.remove('active'function-updatechapter-const-subject-subjectselect-value-const-unit-unitselect-value-const-selectedunitkey-getunitkey-unit-hideallcards-if-subject-chapterheading.textcontent = 'Select a subject'currentchapter.textcontent = 'Select subject and unit'return-if-unit-chapterheading-textcontent-subject-touppercase-study-material-currentchapter.textcontent = 'Select a unit'return-let-contentfound-false-unitcards-foreach-card-const-cardsubject-card.getattribute('data-subject'const-cardunit-card.getattribute('data-unit'if-cardsubject-subject-cardunit-selectedunitkey-card-classlist.add('active'contentfound-true-chapterheading-textcontent-subject-touppercase-unit-currentchapter-textcontent-subject-touppercase-unit-if-contentfound-chapterheading-textcontent-subject-touppercase-unit-currentchapter.textcontent = 'Content not added yet'subjectselect.addeventlistener('change'updateunit-unitselect.addeventlistener('change'updatechapter-document.addeventlistener('DOMContentLoaded', () => {
-            updateUnit();
-        });
+    if (unitSelect.options.length > 1) {
+        unitSelect.value = matchingCards[0].dataset.unit;
+    }
+
+    updateChapter();
+}
+
+function hideAllCards() {
+    unitCards.forEach((card) => card.classList.remove('active'));
+}
+
+function updateChapter() {
+    const subject = subjectSelect.value;
+    const unit = unitSelect.value;
+
+    hideAllCards();
+
+    if (!subject) {
+        chapterHeading.textContent = 'Select a subject and semester';
+        currentChapter.textContent = 'Select subject and semester';
+        return;
+    }
+
+    if (!unit) {
+        chapterHeading.textContent = `${subject.toUpperCase()} Study Material`;
+        currentChapter.textContent = 'Select a unit';
+        return;
+    }
+
+    const selectedCard = unitCards.find(
+        (card) => card.dataset.subject === subject && card.dataset.unit === unit
+    );
+
+    if (selectedCard) {
+        selectedCard.classList.add('active');
+        chapterHeading.textContent = `${subject.toUpperCase()} - ${formatUnitLabel(unit)}`;
+        currentChapter.textContent = `${subject.toUpperCase()} - ${formatUnitLabel(unit)}`;
+    } else {
+        chapterHeading.textContent = 'Content not added yet';
+        currentChapter.textContent = 'Content not added yet';
+    }
+}
+
+subjectSelect.addEventListener('change', updateUnitOptions);
+unitSelect.addEventListener('change', updateChapter);
+
+document.addEventListener('DOMContentLoaded', () => {
+    updateUnitOptions();
+});
