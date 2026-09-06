@@ -1,826 +1,766 @@
-
 <!DOCTYPE html>
 <html lang="hi">
 
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FB7SX0P0D3"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-FB7SX0P0D3');
-    </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Network Devices</title>
+  <meta name="description"
+    content="Network Devices: Hub, Switch, Router, Bridge, Gateway, Ethernet Card, CAT-6 and OFC Network Cables, Cabling Tools and Troubleshooting - detailed PGDCA exam notes by BK LearnX.">
+  <meta name="keywords"
+    content="Network Devices, Hub, Switch, Router, Bridge, Gateway, Ethernet Card, CAT-6, OFC, Network Cables, Cabling Tools, Network Troubleshooting, PGDCA">
+  <meta name="author" content="BK LearnX">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow">
+  <meta name="language" content="Hindi-English">
+  <meta name="theme-color" content="#111827">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Network Devices – Complete Written Exam Notes | BK LearnX">
+  <meta property="og:description"
+    content="Detailed PGDCA notes on Hub, Switch, Router, Bridge, Gateway, Ethernet Card, CAT-6, OFC, cabling tools and troubleshooting.">
+  <meta property="og:site_name" content="BK LearnX">
+  <meta property="og:locale" content="en_IN">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Network Devices – Complete Written Exam Notes | BK LearnX">
+  <meta name="twitter:description"
+    content="Exam-oriented Hindi-English notes on network devices, cables, cabling tools and troubleshooting.">
+  <script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"Network Devices – Complete Written Exam Notes",
+  "description":"Detailed PGDCA notes on Hub, Switch, Router, Bridge, Gateway, Ethernet Card, CAT-6, OFC, cabling tools and troubleshooting.",
+  "author":{"@type":"Organization","name":"BK LearnX"},
+  "publisher":{"@type":"Organization","name":"BK LearnX"},
+  "inLanguage":"hi",
+  "keywords":"Network Devices, Hub, Switch, Router, Bridge, Gateway, Ethernet Card, CAT-6, OFC, Cabling Tools, Troubleshooting"
+}
+</script>
   <link rel="stylesheet" href="../../../semester-1/style.css">
-  <link rel="icon" href="../../../.././../../../assets/images/logo.jpeg">
-    <link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
-    <script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
+  <title>Network Devices | BK LearnX</title>
+ 
 </head>
 
 <body>
   <div class="page">
     <aside class="sidebar">
-      <h2>Topics</h2>
-      <a href="#intro">Introduction to Network Devices</a>
-      <a href="#hub">Hub</a>
-      <a href="#switch">Switch</a>
-      <a href="#router">Router</a>
-      <a href="#bridge">Bridge</a>
-      <a href="#gateway">Gateway</a>
-      <a href="#comparison">Hub vs Switch vs Router vs Bridge vs Gateway</a>
-      <a href="#ethernet-card">Ethernet Card / NIC</a>
-      <a href="#cat6">CAT-6 Cable</a>
-      <a href="#ofc">OFC - Optical Fiber Cable</a>
-      <a href="#cable-comparison">CAT-6 vs Optical Fiber</a>
-      <a href="#tools">Cabling Tools</a>
-      <a href="#troubleshooting">Network Troubleshooting</a>
-      <a href="#commands">Useful Troubleshooting Commands</a>
-      <a href="#device-faults">Device-wise Troubleshooting</a>
-      <a href="#maintenance">Network Maintenance and Best Practices</a>
+      <h2>Topic</h2>
+      <nav>
+        <a href="#intro">Introduction</a>
+        <a href="#hub">Hub</a>
+        <a href="#switch">Switch</a>
+        <a href="#router">Router</a>
+        <a href="#bridge">Bridge</a>
+        <a href="#gateway">Gateway</a>
+        <a href="#nic">Ethernet Card</a>
+        <a href="#cables">Network Cables</a>
+        <a href="#cat6">CAT-6</a>
+        <a href="#ofc">OFC</a>
+        <a href="#tools">Cabling Tools</a>
+        <a href="#compare">Comparison</a>
+        <a href="#trouble">Troubleshooting</a>
+        <a href="#maintenance">Maintenance</a>
+        <a href="#questions">Exam Questions</a>
+      </nav>
     </aside>
+
     <main class="content">
-      <div class="hero">
-        <h1>Network Devices</h1>        
-      </div>
+      <section class="hero">
+        <h1>Network Devices</h1>
+       
+      </section>
+
       <section id="intro">
-        <h2>Introduction to Network Devices</h2>
-        <p><strong>Network devices</strong> à¤µà¥‡ hardware components à¤¹à¥‹à¤¤à¥‡ à¤¹à¥ˆà¤‚ à¤œà¥‹ computers, servers, printers, mobile
-          devices à¤”à¤° other systems à¤•à¥‹ network à¤®à¥‡à¤‚ connect à¤•à¤°à¤¤à¥‡ à¤¹à¥ˆà¤‚à¥¤ à¤¯à¥‡ devices data à¤•à¥‹ receive, forward, filter, route
-          à¤”à¤° convert à¤•à¤°à¤¤à¥‡ à¤¹à¥ˆà¤‚à¥¤</p>
+        <h2>1. Introduction to Network Devices</h2>
+        <p><strong>Network Devices</strong> वे hardware devices हैं जो computers, servers, printers और अन्य
+          network-enabled devices को आपस में connect करने, data transmit करने, traffic control करने और अलग-अलग networks
+          के बीच communication कराने में सहायता करते हैं।</p>
+        <p>एक computer network में केवल computers और cables पर्याप्त नहीं होते। Data को सही destination तक पहुँचाने,
+          network segments को connect करने और communication को manage करने के लिए अलग-अलग network devices की आवश्यकता
+          होती है।</p>
 
-        <p>Different network devices à¤…à¤²à¤—-à¤…à¤²à¤— OSI layers à¤ªà¤° work à¤•à¤°à¤¤à¥‡ à¤¹à¥ˆà¤‚à¥¤ Hub physical layer à¤ªà¤°, switch data link layer
-          à¤ªà¤° à¤”à¤° router network layer à¤ªà¤° à¤•à¤¾à¤® à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤ Gateway multiple layers à¤ªà¤° protocol conversion à¤•à¤° à¤¸à¤•à¤¤à¤¾ à¤¹à¥ˆà¥¤</p>
+        <div class="exam-box">
+          <strong>Exam Definition:</strong> Network device is a hardware component used to connect network nodes and to
+          transmit, receive, forward, filter or route data within or between networks.
+        </div>
 
-      
-        <h4>Need of Network Devices</h4>
-        <ul>
-          <li>Multiple devices à¤•à¥‹ connect à¤•à¤°à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤à¥¤</li>
-          <li>Data à¤•à¥‹ à¤¸à¤¹à¥€ destination à¤¤à¤• à¤­à¥‡à¤œà¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤à¥¤</li>
-          <li>Network traffic control à¤•à¤°à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤à¥¤</li>
-          <li>Different networks à¤•à¥‹ connect à¤•à¤°à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤à¥¤</li>
-          <li>Internet access provide à¤•à¤°à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤à¥¤</li>
-          <li>Security à¤”à¤° network segmentation improve à¤•à¤°à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤à¥¤</li>
-        </ul>
-
-        <div class="remember-box"><b>Remember:</b><br>à¤¹à¤° network device à¤•à¤¾ role à¤…à¤²à¤— à¤¹à¥ˆ; à¤¸à¤­à¥€ à¤•à¥‡à¤µà¤² connection à¤¦à¥‡à¤¨à¥‡ à¤•à¤¾ à¤•à¤¾à¤®
-          à¤¨à¤¹à¥€à¤‚ à¤•à¤°à¤¤à¥‡à¥¤</div>
+        <h3>मुख्य Network Devices</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Device</th>
+              <th>Main Function</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Hub</td>
+              <td>Incoming data को connected ports पर broadly repeat/broadcast करता है।</td>
+            </tr>
+            <tr>
+              <td>Switch</td>
+              <td>LAN में frames को destination के अनुसार forward करता है।</td>
+            </tr>
+            <tr>
+              <td>Router</td>
+              <td>Different networks के बीच packets को route करता है।</td>
+            </tr>
+            <tr>
+              <td>Bridge</td>
+              <td>Network segments को connect और traffic filter करता है।</td>
+            </tr>
+            <tr>
+              <td>Gateway</td>
+              <td>Different networks/protocol environments के बीच communication interface प्रदान कर सकता है।</td>
+            </tr>
+            <tr>
+              <td>Ethernet Card</td>
+              <td>Computer को Ethernet network से connect करने का network interface।</td>
+            </tr>
+          </tbody>
+        </table>
       </section>
+
       <section id="hub">
-        <h2>Hub</h2>
-        <p><strong>Hub</strong> à¤à¤• basic networking device à¤¹à¥ˆ à¤œà¥‹ multiple computers à¤•à¥‹ LAN à¤®à¥‡à¤‚ connect à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤ Hub
-          received data à¤•à¥‹ identify à¤¨à¤¹à¥€à¤‚ à¤•à¤°à¤¤à¤¾ à¤•à¤¿ destination à¤•à¥Œà¤¨ à¤¹à¥ˆà¥¤ à¤¯à¤¹ incoming data à¤¸à¤­à¥€ connected ports à¤ªà¤° broadcast
-          à¤•à¤° à¤¦à¥‡à¤¤à¤¾ à¤¹à¥ˆà¥¤</p>
+        <h2>2. Hub</h2>
+        <p><strong>Hub</strong> एक basic network connecting device है जो एक port पर received data को अन्य connected
+          ports पर भेज देता है। Traditional Ethernet hubs OSI model के <strong>Physical Layer (Layer 1)</strong> पर
+          operate करते हैं।</p>
 
-        <div class="image-icon">
-          <img src="../images/hub.webp" alt="Hub Working">
-         
-        </div>
-
-        <h4>Working</h4>
+        <h3>Hub की Working</h3>
         <ol>
-          <li>à¤à¤• computer data hub à¤•à¥‹ à¤­à¥‡à¤œà¤¤à¤¾ à¤¹à¥ˆà¥¤</li>
-          <li>Hub data receive à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</li>
-          <li>Hub same data à¤¸à¤­à¥€ ports à¤ªà¤° forward à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</li>
-          <li>Destination device data accept à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</li>
-          <li>Other devices data ignore à¤•à¤°à¤¤à¥‡ à¤¹à¥ˆà¤‚à¥¤</li>
+          <li>एक computer hub को data भेजता है।</li>
+          <li>Hub incoming electrical signal को receive करता है।</li>
+          <li>Hub signal को अन्य ports पर repeat करता है।</li>
+          <li>Connected devices signal receive करते हैं और intended device relevant frame को process करता है।</li>
         </ol>
 
-        <h4>Types of Hub</h4>
-        <table>
-          <tr>
-            <th>Type</th>
-            <th>Feature</th>
-          </tr>
-          <tr>
-            <td>Passive Hub</td>
-            <td>Signal à¤•à¥‡à¤µà¤² forward à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</td>
-          </tr>
-          <tr>
-            <td>Active Hub</td>
-            <td>Signal regenerate/amplify à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</td>
-          </tr>
-          <tr>
-            <td>Intelligent Hub</td>
-            <td>Basic monitoring à¤”à¤° management support à¤•à¤° à¤¸à¤•à¤¤à¤¾ à¤¹à¥ˆà¥¤</td>
-          </tr>
-        </table>
+        <div class="flow">Computer A → Hub → Port 1, Port 2, Port 3, Port 4 → Connected Devices</div>
 
-        <h4>Advantages</h4>
+        <h3>Hub की विशेषताएँ</h3>
         <ul>
-          <li>Simple à¤”à¤° low costà¥¤</li>
-          <li>Small basic network à¤®à¥‡à¤‚ easy installationà¥¤</li>
+          <li>Simple और easy to configure।</li>
+          <li>Traditional hub में intelligent destination-based forwarding नहीं होता।</li>
+          <li>All connected ports पर traffic भेजने के कारण unnecessary traffic बढ़ सकता है।</li>
+          <li>Shared bandwidth environment में collisions हो सकती हैं।</li>
         </ul>
 
-        <h4>Limitations</h4>
+        <h3>Advantages</h3>
         <ul>
-          <li>Data à¤¸à¤­à¥€ ports à¤ªà¤° broadcast à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</li>
-          <li>Network traffic à¤œà¥à¤¯à¤¾à¤¦à¤¾ à¤¹à¥‹à¤¤à¤¾ à¤¹à¥ˆà¥¤</li>
-          <li>Security à¤•à¤® à¤¹à¥‹à¤¤à¥€ à¤¹à¥ˆà¥¤</li>
-          <li>Collisions à¤•à¥€ possibility à¤œà¥à¤¯à¤¾à¤¦à¤¾à¥¤</li>
-          <li>Modern networks à¤®à¥‡à¤‚ mostly switch à¤¨à¥‡ replace à¤•à¤° à¤¦à¤¿à¤¯à¤¾ à¤¹à¥ˆà¥¤</li>
+          <li>Simple design।</li>
+          <li>Low complexity।</li>
+          <li>Basic network setup के लिए historically useful।</li>
         </ul>
 
-        <div class="note-box"><b>Real Life Example:</b><br>Hub à¤•à¥‹ à¤à¤¸à¥‡ à¤¸à¤®à¤à¥‡à¤‚ à¤œà¥ˆà¤¸à¥‡ à¤à¤• à¤µà¥à¤¯à¤•à¥à¤¤à¤¿ room à¤®à¥‡à¤‚ loudly message à¤¬à¥‹à¤²à¥‡
-          à¤”à¤° à¤¸à¤­à¥€ à¤²à¥‹à¤— à¤‰à¤¸à¥‡ à¤¸à¥à¤¨à¥‡à¤‚à¥¤</div>
+        <h3>Limitations</h3>
+        <ul>
+          <li>Traffic सभी ports तक भेजता है।</li>
+          <li>Collisions की संभावना अधिक होती है।</li>
+          <li>Modern LANs में switch से कम efficient है।</li>
+        </ul>
       </section>
+
       <section id="switch">
-        <h2>Switch</h2>
-        <p><strong>Switch</strong> LAN à¤®à¥‡à¤‚ multiple devices à¤•à¥‹ connect à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆ à¤”à¤° MAC address à¤•à¥‡ à¤†à¤§à¤¾à¤° à¤ªà¤° data à¤¸à¤¹à¥€
-          destination port à¤¤à¤• à¤­à¥‡à¤œà¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤¯à¤¹ hub à¤¸à¥‡ à¤…à¤§à¤¿à¤• intelligent à¤”à¤° efficient à¤¹à¥‹à¤¤à¤¾ à¤¹à¥ˆà¥¤</p>
+        <h2>3. Switch</h2>
+        <p><strong>Network Switch</strong> एक networking device है जो LAN के devices को connect करता है और received
+          Ethernet frames को destination के आधार पर appropriate port की ओर forward करता है। सामान्य Ethernet switches
+          मुख्यतः <strong>Data Link Layer (Layer 2)</strong> पर operate करते हैं; कुछ advanced switches Layer 3 routing
+          capabilities भी provide कर सकते हैं।</p>
 
-        <div class="image-icon">
-          <img src="../images/switch.webp" alt="Switch Working">
-         
-        </div>
-
-        <h4>Working</h4>
+        <h3>Switch कैसे काम करता है?</h3>
         <ol>
-          <li>Switch frame receive à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</li>
-          <li>Source MAC address learn à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</li>
-          <li>MAC address table update à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</li>
-          <li>Destination MAC address check à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</li>
-          <li>Frame à¤•à¥‡à¤µà¤² correct port à¤ªà¤° forward à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</li>
+          <li>Switch Ethernet frame receive करता है।</li>
+          <li>Frame के source MAC address को देखकर switch अपनी MAC address table को learn/update करता है।</li>
+          <li>Destination MAC address को table में lookup किया जाता है।</li>
+          <li>यदि destination ज्ञात है, frame संबंधित port पर forward होता है।</li>
+          <li>यदि destination unknown है, frame को आवश्यकता के अनुसार अन्य relevant ports पर flood किया जा सकता है।</li>
         </ol>
 
-        <h4>Types of Switch</h4>
-        <table>
-          <tr>
-            <th>Type</th>
-            <th>Use</th>
-          </tr>
-          <tr>
-            <td>Unmanaged Switch</td>
-            <td>Plug-and-play basic LAN</td>
-          </tr>
-          <tr>
-            <td>Managed Switch</td>
-            <td>VLAN, monitoring à¤”à¤° configuration</td>
-          </tr>
-          <tr>
-            <td>Layer-2 Switch</td>
-            <td>MAC address based forwarding</td>
-          </tr>
-          <tr>
-            <td>Layer-3 Switch</td>
-            <td>Switching à¤•à¥‡ à¤¸à¤¾à¤¥ routing functions</td>
-          </tr>
-          <tr>
-            <td>PoE Switch</td>
-            <td>Data à¤•à¥‡ à¤¸à¤¾à¤¥ power provide à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</td>
-          </tr>
-        </table>
+        <div class="flow">Device → Switch → MAC Address Table → Correct Port → Destination Device</div>
 
-        <h4>Advantages</h4>
+        <h3>Switch के Advantages</h3>
         <ul>
-          <li>Traffic reduce à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</li>
-          <li>Collision domains separate à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</li>
-          <li>Better performance à¤”à¤° securityà¥¤</li>
-          <li>Managed switches VLAN support à¤•à¤° à¤¸à¤•à¤¤à¥‡ à¤¹à¥ˆà¤‚à¥¤</li>
+          <li>Hub की तुलना में traffic forwarding अधिक efficient।</li>
+          <li>प्रत्येक port को अलग collision domain की तरह operate कराया जा सकता है।</li>
+          <li>Full-duplex Ethernet support वाले networks में collisions का issue बहुत कम/व्यावहारिक रूप से समाप्त होता
+            है।</li>
+          <li>Modern LANs में widely used।</li>
         </ul>
 
-        <div class="remember-box"><b>Remember:</b><br>Switch MAC address à¤•à¥‡ à¤†à¤§à¤¾à¤° à¤ªà¤° frame à¤•à¥‹ correct port à¤¤à¤• à¤­à¥‡à¤œà¤¤à¤¾ à¤¹à¥ˆà¥¤
-        </div>
+        <h3>Managed और Unmanaged Switch</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Unmanaged Switch</td>
+              <td>Basic plug-and-play switching; configuration options limited।</td>
+            </tr>
+            <tr>
+              <td>Managed Switch</td>
+              <td>VLAN, monitoring, security और अन्य management features उपलब्ध हो सकते हैं।</td>
+            </tr>
+          </tbody>
+        </table>
       </section>
+
       <section id="router">
-        <h2>Router</h2>
-        <p><strong>Router</strong> different networks à¤•à¥‹ connect à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆ à¤”à¤° IP address à¤•à¥‡ à¤†à¤§à¤¾à¤° à¤ªà¤° data packets à¤•à¥‹ route
-          à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤ Home router local network à¤•à¥‹ internet à¤¸à¥‡ connect à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</p>
+        <h2>4. Router</h2>
+        <p><strong>Router</strong> एक network-layer device है जो अलग-अलग IP networks के बीच data packets को forward करता
+          है। Router destination IP address और routing information के आधार पर packet के लिए suitable path/next hop
+          select करता है।</p>
 
-        <div class="image-icon">
-          <img src="../images/router.webp" alt="Router Working">
-          <p>Image Placeholder: Router Connecting LAN and Internet</p>
-        </div>
-
-        <h4>Main Functions</h4>
+        <h3>Router के Main Functions</h3>
         <ul>
-          <li>Different networks connect à¤•à¤°à¤¨à¤¾à¥¤</li>
-          <li>Best path select à¤•à¤°à¤¨à¤¾à¥¤</li>
-          <li>IP packets forward à¤•à¤°à¤¨à¤¾à¥¤</li>
-          <li>NAT perform à¤•à¤°à¤¨à¤¾à¥¤</li>
-          <li>DHCP service provide à¤•à¤°à¤¨à¤¾à¥¤</li>
-          <li>Firewall à¤”à¤° basic security à¤¦à¥‡à¤¨à¤¾à¥¤</li>
-          <li>Wi-Fi access provide à¤•à¤°à¤¨à¤¾à¥¤</li>
+          <li>Different networks को connect करना।</li>
+          <li>IP packets को route/forward करना।</li>
+          <li>Routing table maintain करना।</li>
+          <li>Network traffic को appropriate interface की ओर भेजना।</li>
+          <li>कई consumer routers में DHCP, NAT, firewall और wireless access जैसी additional services भी हो सकती हैं,
+            model के अनुसार।</li>
         </ul>
 
-        <h4>Routing Process</h4>
-        <pre>Source Device
-      â†“
-Default Gateway
-      â†“
-Router checks destination IP
-      â†“
-Routing table selects path
-      â†“
-Packet forwarded to next network</pre>
-
-        <h4>Types</h4>
-        <table>
-          <tr>
-            <th>Type</th>
-            <th>Use</th>
-          </tr>
-          <tr>
-            <td>Wired Router</td>
-            <td>Ethernet-based network</td>
-          </tr>
-          <tr>
-            <td>Wireless Router</td>
-            <td>Wi-Fi à¤”à¤° LAN à¤¦à¥‹à¤¨à¥‹à¤‚</td>
-          </tr>
-          <tr>
-            <td>Core Router</td>
-            <td>Large backbone network</td>
-          </tr>
-          <tr>
-            <td>Edge Router</td>
-            <td>Internal network à¤•à¥‹ external network à¤¸à¥‡ connect à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</td>
-          </tr>
-        </table>
-
-        <div class="note-box"><b>Real Life Example:</b><br>Router traffic police à¤•à¥€ à¤¤à¤°à¤¹ packet à¤•à¥‹ à¤¸à¤¹à¥€ network path à¤ªà¤°
-          à¤­à¥‡à¤œà¤¤à¤¾ à¤¹à¥ˆà¥¤</div>
-      </section>
-      <section id="bridge">
-        <h2>Bridge</h2>
-        <p><strong>Bridge</strong> two LAN segments à¤•à¥‹ connect à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆ à¤”à¤° MAC address à¤•à¥‡ à¤†à¤§à¤¾à¤° à¤ªà¤° frames filter/forward
-          à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤¯à¤¹ network traffic reduce à¤•à¤°à¤¨à¥‡ à¤®à¥‡à¤‚ help à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</p>
-
-        <div class="image-icon">
-          <img src="../images/bridge.webp" alt="Network Bridge">
-        
-        </div>
-
-        <h4>Working</h4>
-        <ul>
-          <li>Frames receive à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</li>
-          <li>Source MAC learn à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</li>
-          <li>Destination same segment à¤ªà¤° à¤¹à¥‹ à¤¤à¥‹ frame forward à¤¨à¤¹à¥€à¤‚ à¤•à¤°à¤¤à¤¾à¥¤</li>
-          <li>Other segment à¤ªà¤° à¤¹à¥‹ à¤¤à¥‹ bridge frame forward à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</li>
-        </ul>
-
-        <h4>Types</h4>
-        <table>
-          <tr>
-            <th>Type</th>
-            <th>Meaning</th>
-          </tr>
-          <tr>
-            <td>Transparent Bridge</td>
-            <td>Ethernet LAN à¤®à¥‡à¤‚ automatically learning à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</td>
-          </tr>
-          <tr>
-            <td>Source Route Bridge</td>
-            <td>Path source device determine à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</td>
-          </tr>
-          <tr>
-            <td>Translational Bridge</td>
-            <td>Different LAN technologies connect à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</td>
-          </tr>
-        </table>
-
-        <div class="remember-box"><b>Remember:</b><br>Bridge LAN à¤•à¥‹ segments à¤®à¥‡à¤‚ divide à¤•à¤°à¤•à¥‡ unnecessary traffic à¤•à¤® à¤•à¤°à¤¤à¤¾
-          à¤¹à¥ˆà¥¤</div>
-      </section>
-      <section id="gateway">
-        <h2>Gateway</h2>
-        <p><strong>Gateway</strong> different networks à¤¯à¤¾ systems à¤•à¥‡ à¤¬à¥€à¤š entry/exit point à¤¹à¥‹à¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤¯à¤¹ protocol
-          conversion, data format conversion à¤”à¤° communication translation à¤•à¤° à¤¸à¤•à¤¤à¤¾ à¤¹à¥ˆà¥¤</p>
-
-        <div class="image-icon">
-          <img src="../images/gateway.webp" alt="Network Gateway">
-         
-        </div>
-
-        <h4>Functions</h4>
-        <ul>
-          <li>Different protocols à¤•à¥‡ à¤¬à¥€à¤š conversionà¥¤</li>
-          <li>Different network architectures connect à¤•à¤°à¤¨à¤¾à¥¤</li>
-          <li>Security à¤”à¤° filteringà¥¤</li>
-          <li>Application-level translationà¥¤</li>
-          <li>Network entry and exit pointà¥¤</li>
-        </ul>
-
-        <h4>Default Gateway</h4>
-        <p>Default gateway à¤µà¤¹ router address à¤¹à¥‹à¤¤à¤¾ à¤¹à¥ˆ à¤œà¤¹à¤¾à¤ device local network à¤•à¥‡ à¤¬à¤¾à¤¹à¤° à¤œà¤¾à¤¨à¥‡ à¤µà¤¾à¤²à¥‡ packets à¤­à¥‡à¤œà¤¤à¤¾ à¤¹à¥ˆà¥¤</p>
-
-        <h4>Examples</h4>
-        <ul>
-          <li>Email gateway</li>
-          <li>VoIP gateway</li>
-          <li>IoT gateway</li>
-          <li>Cloud gateway</li>
-          <li>Protocol gateway</li>
-        </ul>
-
-        <div class="note-box"><b>Real Life Example:</b><br>Language translator à¤•à¥€ à¤¤à¤°à¤¹ gateway different protocols à¤¬à¥‹à¤²à¤¨à¥‡
-          à¤µà¤¾à¤²à¥‡ systems à¤•à¥‡ à¤¬à¥€à¤š translation à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</div>
-      </section>
-      <section id="comparison">
-        <h2>Hub vs Switch vs Router vs Bridge vs Gateway</h2>
-        <table>
-          <tr>
-            <th>Device</th>
-            <th>Main Basis</th>
-            <th>Primary Role</th>
-            <th>OSI Layer</th>
-          </tr>
-          <tr>
-            <td>Hub</td>
-            <td>No address intelligence</td>
-            <td>Broadcast data</td>
-            <td>Physical Layer</td>
-          </tr>
-          <tr>
-            <td>Switch</td>
-            <td>MAC Address</td>
-            <td>LAN frame forwarding</td>
-            <td>Data Link Layer</td>
-          </tr>
-          <tr>
-            <td>Router</td>
-            <td>IP Address</td>
-            <td>Connect different networks</td>
-            <td>Network Layer</td>
-          </tr>
-          <tr>
-            <td>Bridge</td>
-            <td>MAC Address</td>
-            <td>Connect LAN segments</td>
-            <td>Data Link Layer</td>
-          </tr>
-          <tr>
-            <td>Gateway</td>
-            <td>Protocol/format conversion</td>
-            <td>Connect dissimilar systems</td>
-            <td>Multiple Layers</td>
-          </tr>
-        </table>
-      </section>
-      <section id="ethernet-card">
-        <h2>Ethernet Card / NIC</h2>
-        <p><strong>Ethernet Card</strong> à¤¯à¤¾ <strong>NIC</strong> à¤•à¤¾ full form Network Interface Card à¤¹à¥ˆà¥¤ à¤¯à¤¹ computer à¤•à¥‹
-          wired Ethernet network à¤¸à¥‡ connect à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤¹à¤° NIC à¤•à¤¾ unique MAC address à¤¹à¥‹à¤¤à¤¾ à¤¹à¥ˆà¥¤</p>
-
-        <div class="image-icon">
-          <img src="../images/NIC CARD.webp" alt="Ethernet Network Interface Card">
-      
-        </div>
-
-        <h4>Main Components</h4>
-        <ul>
-          <li>RJ-45 port</li>
-          <li>MAC controller</li>
-          <li>PHY transceiver</li>
-          <li>Status LEDs</li>
-          <li>PCIe or onboard interface</li>
-        </ul>
-
-        <h4>Functions</h4>
-        <ul>
-          <li>Computer data à¤•à¥‹ Ethernet frames à¤®à¥‡à¤‚ convert à¤•à¤°à¤¨à¤¾à¥¤</li>
-          <li>Frames receive à¤”à¤° process à¤•à¤°à¤¨à¤¾à¥¤</li>
-          <li>MAC address provide à¤•à¤°à¤¨à¤¾à¥¤</li>
-          <li>Speed à¤”à¤° duplex negotiation à¤•à¤°à¤¨à¤¾à¥¤</li>
-        </ul>
-
-        <h4>Common Speeds</h4>
-        <table>
-          <tr>
-            <th>Standard</th>
-            <th>Speed</th>
-          </tr>
-          <tr>
-            <td>Fast Ethernet</td>
-            <td>100 Mbps</td>
-          </tr>
-          <tr>
-            <td>Gigabit Ethernet</td>
-            <td>1 Gbps</td>
-          </tr>
-          <tr>
-            <td>2.5 Gigabit Ethernet</td>
-            <td>2.5 Gbps</td>
-          </tr>
-          <tr>
-            <td>10 Gigabit Ethernet</td>
-            <td>10 Gbps</td>
-          </tr>
-        </table>
-
-        <div class="remember-box"><b>Remember:</b><br>Ethernet card computer à¤”à¤° wired network à¤•à¥‡ à¤¬à¥€à¤š hardware interface
-          à¤¹à¥ˆà¥¤</div>
-      </section>
-      <section id="cat6">
-        <h2>CAT-6 Cable</h2>
-        <p><strong>CAT-6</strong> twisted-pair copper Ethernet cable à¤¹à¥ˆà¥¤ à¤‡à¤¸à¤•à¤¾ use LAN connections à¤®à¥‡à¤‚ à¤•à¤¿à¤¯à¤¾ à¤œà¤¾à¤¤à¤¾ à¤¹à¥ˆà¥¤
-          à¤‡à¤¸à¤®à¥‡à¤‚ four twisted pairs à¤¹à¥‹à¤¤à¥‡ à¤¹à¥ˆà¤‚ à¤”à¤° RJ-45 connectors commonly use à¤•à¤¿à¤ à¤œà¤¾à¤¤à¥‡ à¤¹à¥ˆà¤‚à¥¤</p>
-
-        <div class="image-icon">
-          <img src="../images/cat 6 cable.webp" alt="CAT-6 Cable">
-         
-        </div>
-
-        <h4>Features</h4>
-        <ul>
-          <li>Higher bandwidth than older categoriesà¥¤</li>
-          <li>Gigabit Ethernet supportà¥¤</li>
-          <li>Shorter distances à¤ªà¤° higher speeds possibleà¥¤</li>
-          <li>Crosstalk reduction à¤•à¥‡ à¤²à¤¿à¤ tighter twistsà¥¤</li>
-          <li>UTP à¤”à¤° shielded variants availableà¥¤</li>
-        </ul>
-
-        <h4>Internal Pairs</h4>
-        <table>
-          <tr>
-            <th>Pair</th>
-            <th>Typical Colors</th>
-          </tr>
-          <tr>
-            <td>Pair 1</td>
-            <td>White-Orange / Orange</td>
-          </tr>
-          <tr>
-            <td>Pair 2</td>
-            <td>White-Green / Green</td>
-          </tr>
-          <tr>
-            <td>Pair 3</td>
-            <td>White-Blue / Blue</td>
-          </tr>
-          <tr>
-            <td>Pair 4</td>
-            <td>White-Brown / Brown</td>
-          </tr>
-        </table>
-
-        <h4>T568A and T568B Standards</h4>
-        <p>RJ-45 termination à¤®à¥‡à¤‚ color sequence T568A à¤¯à¤¾ T568B standard à¤•à¥‡ à¤…à¤¨à¥à¤¸à¤¾à¤° à¤°à¤–à¤¾ à¤œà¤¾à¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤¦à¥‹à¤¨à¥‹à¤‚ ends à¤ªà¤° same
-          standard à¤¹à¥‹ à¤¤à¥‹ straight-through cable à¤¬à¤¨à¤¤à¥€ à¤¹à¥ˆà¥¤</p>
-
-        <div class="remember-box"><b>Remember:</b><br>CAT-6 cable copper-based twisted-pair Ethernet cable à¤¹à¥ˆà¥¤</div>
-      </section>
-      <section id="ofc">
-        <h2>OFC - Optical Fiber Cable</h2>
-        <p><strong>OFC</strong> à¤•à¤¾ full form Optical Fiber Cable à¤¹à¥ˆà¥¤ à¤¯à¤¹ data à¤•à¥‹ electrical signal à¤•à¥€ à¤œà¤—à¤¹ light pulses à¤•à¥‡
-          à¤°à¥‚à¤ª à¤®à¥‡à¤‚ transmit à¤•à¤°à¤¤à¥€ à¤¹à¥ˆà¥¤ Fiber cable high speed, long distance à¤”à¤° low interference communication à¤•à¥‡ à¤²à¤¿à¤
-          useful à¤¹à¥ˆà¥¤</p>
-
-        <div class="image-icon">
-          <img src="../images/fibre optics.webp" alt="Optical Fiber Cable">
-          
-        </div>
-
-        <h4>Structure</h4>
-        <table>
-          <tr>
-            <th>Part</th>
-            <th>Function</th>
-          </tr>
-          <tr>
-            <td>Core</td>
-            <td>Light signal carry à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</td>
-          </tr>
-          <tr>
-            <td>Cladding</td>
-            <td>Light à¤•à¥‹ core à¤•à¥‡ à¤…à¤‚à¤¦à¤° reflect à¤°à¤–à¤¤à¥€ à¤¹à¥ˆà¥¤</td>
-          </tr>
-          <tr>
-            <td>Buffer Coating</td>
-            <td>Fiber à¤•à¥‹ protection à¤¦à¥‡à¤¤à¥€ à¤¹à¥ˆà¥¤</td>
-          </tr>
-          <tr>
-            <td>Outer Jacket</td>
-            <td>Mechanical protectionà¥¤</td>
-          </tr>
-        </table>
-
-        <h4>Types</h4>
-        <table>
-          <tr>
-            <th>Type</th>
-            <th>Use</th>
-          </tr>
-          <tr>
-            <td>Single-mode Fiber</td>
-            <td>Long distance à¤”à¤° high bandwidth</td>
-          </tr>
-          <tr>
-            <td>Multi-mode Fiber</td>
-            <td>Shorter distance LAN/data center</td>
-          </tr>
-        </table>
-
-        <h4>Advantages</h4>
-        <ul>
-          <li>Very high bandwidthà¥¤</li>
-          <li>Long distance transmissionà¥¤</li>
-          <li>Electromagnetic interference à¤¸à¥‡ unaffectedà¥¤</li>
-          <li>More secure communicationà¥¤</li>
-          <li>Low signal lossà¥¤</li>
-        </ul>
-
-        <h4>Limitations</h4>
-        <ul>
-          <li>Installation cost higherà¥¤</li>
-          <li>Special tools à¤”à¤° skills requiredà¥¤</li>
-          <li>Fiber fragile à¤¹à¥‹ à¤¸à¤•à¤¤à¥€ à¤¹à¥ˆà¥¤</li>
-        </ul>
-      </section>
-      <section id="cable-comparison">
-        <h2>CAT-6 vs Optical Fiber</h2>
-        <table>
-          <tr>
-            <th>Basis</th>
-            <th>CAT-6</th>
-            <th>Optical Fiber</th>
-          </tr>
-          <tr>
-            <td>Medium</td>
-            <td>Copper</td>
-            <td>Glass/Plastic fiber</td>
-          </tr>
-          <tr>
-            <td>Signal</td>
-            <td>Electrical</td>
-            <td>Light</td>
-          </tr>
-          <tr>
-            <td>Distance</td>
-            <td>Short/medium</td>
-            <td>Long</td>
-          </tr>
-          <tr>
-            <td>Speed</td>
-            <td>High</td>
-            <td>Very high</td>
-          </tr>
-          <tr>
-            <td>Interference</td>
-            <td>Possible</td>
-            <td>Very low</td>
-          </tr>
-          <tr>
-            <td>Cost</td>
-            <td>Lower</td>
-            <td>Higher</td>
-          </tr>
-          <tr>
-            <td>Installation</td>
-            <td>Easy</td>
-            <td>Specialized</td>
-          </tr>
-        </table>
-      </section>
-      <section id="tools">
-        <h2>Cabling Tools</h2>
-        <p>Network cabling à¤•à¥‡ à¤²à¤¿à¤ correct tools use à¤•à¤°à¤¨à¤¾ à¤œà¤°à¥‚à¤°à¥€ à¤¹à¥ˆà¥¤ Wrong termination à¤¯à¤¾ damaged cable network faults
-          create à¤•à¤° à¤¸à¤•à¤¤à¥€ à¤¹à¥ˆà¥¤</p>
-
-        <div class="image-icon">
-          <img src="../images/cabling tools.webp" alt="Network Cabling Tools">
-          
-        </div>
-
-        <table>
-          <tr>
-            <th>Tool</th>
-            <th>Use</th>
-          </tr>
-          <tr>
-            <td>Crimping Tool</td>
-            <td>RJ-45 connector cable à¤ªà¤° fix à¤•à¤°à¤¨à¤¾à¥¤</td>
-          </tr>
-          <tr>
-            <td>Wire Stripper</td>
-            <td>Cable outer jacket remove à¤•à¤°à¤¨à¤¾à¥¤</td>
-          </tr>
-          <tr>
-            <td>Cable Cutter</td>
-            <td>Cable cleanly cut à¤•à¤°à¤¨à¤¾à¥¤</td>
-          </tr>
-          <tr>
-            <td>LAN Cable Tester</td>
-            <td>Continuity à¤”à¤° wire sequence test à¤•à¤°à¤¨à¤¾à¥¤</td>
-          </tr>
-          <tr>
-            <td>Punch Down Tool</td>
-            <td>Patch panel à¤”à¤° keystone jack terminationà¥¤</td>
-          </tr>
-          <tr>
-            <td>Tone Generator and Probe</td>
-            <td>Cable trace à¤•à¤°à¤¨à¤¾à¥¤</td>
-          </tr>
-          <tr>
-            <td>Fiber Stripper</td>
-            <td>Fiber coating remove à¤•à¤°à¤¨à¤¾à¥¤</td>
-          </tr>
-          <tr>
-            <td>Fiber Cleaver</td>
-            <td>Fiber end precise cut à¤•à¤°à¤¨à¤¾à¥¤</td>
-          </tr>
-          <tr>
-            <td>Optical Power Meter</td>
-            <td>Fiber signal power measure à¤•à¤°à¤¨à¤¾à¥¤</td>
-          </tr>
-          <tr>
-            <td>Visual Fault Locator</td>
-            <td>Fiber break/bend locate à¤•à¤°à¤¨à¤¾à¥¤</td>
-          </tr>
-        </table>
-
-        <h4>RJ-45 Crimping Steps</h4>
+        <h3>Router Working</h3>
         <ol>
-          <li>Cable required length à¤®à¥‡à¤‚ cut à¤•à¤°à¥‡à¤‚à¥¤</li>
-          <li>Outer jacket strip à¤•à¤°à¥‡à¤‚à¥¤</li>
-          <li>Twisted pairs untwist à¤•à¤°à¥‡à¤‚à¥¤</li>
-          <li>T568A à¤¯à¤¾ T568B sequence arrange à¤•à¤°à¥‡à¤‚à¥¤</li>
-          <li>Wires equal length à¤®à¥‡à¤‚ trim à¤•à¤°à¥‡à¤‚à¥¤</li>
-          <li>RJ-45 connector à¤®à¥‡à¤‚ insert à¤•à¤°à¥‡à¤‚à¥¤</li>
-          <li>Crimping tool à¤¸à¥‡ crimp à¤•à¤°à¥‡à¤‚à¥¤</li>
-          <li>LAN tester à¤¸à¥‡ cable test à¤•à¤°à¥‡à¤‚à¥¤</li>
+          <li>Router packet receive करता है।</li>
+          <li>Destination IP address inspect करता है।</li>
+          <li>Routing table में best matching route खोजता है।</li>
+          <li>Next-hop/interface select करता है।</li>
+          <li>Packet को selected interface से forward करता है।</li>
         </ol>
 
-        <div class="remember-box"><b>Remember:</b><br>Crimping à¤•à¥‡ à¤¬à¤¾à¤¦ cable tester à¤¸à¥‡ wire sequence verify à¤•à¤°à¤¨à¤¾ à¤œà¤°à¥‚à¤°à¥€
-          à¤¹à¥ˆà¥¤</div>
-      </section>
-      <section id="troubleshooting">
-        <h2>Network Troubleshooting</h2>
-        <p>Network troubleshooting systematic process à¤¹à¥ˆà¥¤ à¤ªà¤¹à¤²à¥‡ physical layer check à¤•à¤°à¥‡à¤‚, à¤«à¤¿à¤° configuration à¤”à¤°
-          higher-layer services inspect à¤•à¤°à¥‡à¤‚à¥¤</p>
+        <div class="image-icon">Source Network → Router → Routing Decision → Next Network → Destination</div>
 
-        <div class="image-icon">
-          <img src="../images/Network Troubleshooting Flowchart.webp" alt="Network Troubleshooting Flowchart">
-        
+        <h3>Router के Advantages</h3>
+        <ul>
+          <li>Different IP networks को connect करता है।</li>
+          <li>Network traffic के लिए routing decisions लेता है।</li>
+          <li>Large networks को logical segments में organize करने में मदद करता है।</li>
+        </ul>
+      </section>
+
+      <section id="bridge">
+        <h2>5. Bridge</h2>
+        <p><strong>Bridge</strong> एक networking device है जो दो या अधिक LAN segments को connect करके उनके बीच Ethernet
+          frames को filter और forward करता है। Traditional bridges <strong>Data Link Layer (Layer 2)</strong> पर operate
+          करते हैं।</p>
+
+        <h3>Bridge Working</h3>
+        <ol>
+          <li>Bridge incoming frame receive करता है।</li>
+          <li>Source MAC address से network information learn कर सकता है।</li>
+          <li>Destination MAC address के आधार पर decide करता है कि frame को दूसरे segment में forward करना है या नहीं।
+          </li>
+          <li>यदि destination उसी segment में है, unnecessary forwarding को रोका जा सकता है।</li>
+          <li>यदि destination दूसरे segment में है, frame forward किया जाता है।</li>
+        </ol>
+
+        <h3>Bridge के Uses</h3>
+        <ul>
+          <li>LAN segments को connect करना।</li>
+          <li>Unnecessary traffic को filter करना।</li>
+          <li>Network segmentation में सहायता करना।</li>
+        </ul>
+
+        <div class="exam-box">
+          <strong>Exam Point:</strong> Modern Ethernet switches को multi-port bridging के रूप में समझा जा सकता है;
+          traditional bridge और modern switch की exact capabilities अलग हो सकती हैं।
         </div>
-
-        <h4>Basic Troubleshooting Flow</h4>
-        <pre>No Network
-   â†“
-Check Power and Link LEDs
-   â†“
-Check Cable and Port
-   â†“
-Check NIC Status
-   â†“
-Check IP Configuration
-   â†“
-Ping Loopback
-   â†“
-Ping Local IP
-   â†“
-Ping Gateway
-   â†“
-Ping Internet IP
-   â†“
-Check DNS</pre>
-
-        <h4>No Link Light</h4>
-        <ul>
-          <li>Cable loose/damaged à¤¹à¥‹ à¤¸à¤•à¤¤à¥€ à¤¹à¥ˆà¥¤</li>
-          <li>Switch port disabled/faulty à¤¹à¥‹ à¤¸à¤•à¤¤à¤¾ à¤¹à¥ˆà¥¤</li>
-          <li>NIC disabled à¤¯à¤¾ damaged à¤¹à¥‹ à¤¸à¤•à¤¤à¥€ à¤¹à¥ˆà¥¤</li>
-          <li>Wrong fiber module/connector issue à¤¹à¥‹ à¤¸à¤•à¤¤à¤¾ à¤¹à¥ˆà¥¤</li>
-        </ul>
-
-        <h4>Connected but No Internet</h4>
-        <ul>
-          <li>IP address check à¤•à¤°à¥‡à¤‚à¥¤</li>
-          <li>Default gateway verify à¤•à¤°à¥‡à¤‚à¥¤</li>
-          <li>DNS settings check à¤•à¤°à¥‡à¤‚à¥¤</li>
-          <li>Router internet status check à¤•à¤°à¥‡à¤‚à¥¤</li>
-          <li>DHCP lease renew à¤•à¤°à¥‡à¤‚à¥¤</li>
-        </ul>
-
-        <h4>Slow Network</h4>
-        <ul>
-          <li>Duplex mismatch check à¤•à¤°à¥‡à¤‚à¥¤</li>
-          <li>Damaged cable or high error rate inspect à¤•à¤°à¥‡à¤‚à¥¤</li>
-          <li>Switch port utilization check à¤•à¤°à¥‡à¤‚à¥¤</li>
-          <li>Malware/background downloads check à¤•à¤°à¥‡à¤‚à¥¤</li>
-          <li>Wi-Fi interference check à¤•à¤°à¥‡à¤‚à¥¤</li>
-        </ul>
       </section>
-      <section id="commands">
-        <h2>Useful Troubleshooting Commands</h2>
-        <table>
-          <tr>
-            <th>Command</th>
-            <th>Use</th>
-          </tr>
-          <tr>
-            <td><code>ipconfig</code></td>
-            <td>Windows IP configuration à¤¦à¥‡à¤–à¤¨à¤¾à¥¤</td>
-          </tr>
-          <tr>
-            <td><code>ifconfig</code> / <code>ip addr</code></td>
-            <td>Linux network configurationà¥¤</td>
-          </tr>
-          <tr>
-            <td><code>ping</code></td>
-            <td>Connectivity testà¥¤</td>
-          </tr>
-          <tr>
-            <td><code>tracert</code> / <code>traceroute</code></td>
-            <td>Packet path checkà¥¤</td>
-          </tr>
-          <tr>
-            <td><code>nslookup</code></td>
-            <td>DNS resolution testà¥¤</td>
-          </tr>
-          <tr>
-            <td><code>netstat</code></td>
-            <td>Connections à¤”à¤° ports checkà¥¤</td>
-          </tr>
-          <tr>
-            <td><code>arp -a</code></td>
-            <td>ARP table à¤¦à¥‡à¤–à¤¨à¤¾à¥¤</td>
-          </tr>
-        </table>
 
-        <h4>Ping Test Order</h4>
-        <pre>ping 127.0.0.1
-ping own_IP
-ping default_gateway
-ping 8.8.8.8
-ping example.com</pre>
+      <section id="gateway">
+        <h2>6. Gateway</h2>
+        <p><strong>Gateway</strong> एक network interface/device या software function हो सकता है जो different networks,
+          architectures या protocol environments के बीच communication के लिए entry/exit point या translation mechanism
+          प्रदान करता है। “Default gateway” शब्द सामान्य IP networks में उस router/interface को refer करता है जिसके
+          माध्यम से host अपने local network से बाहर traffic भेजता है।</p>
 
-        <p>à¤‡à¤¸ order à¤¸à¥‡ TCP/IP stack, NIC, local network, internet à¤”à¤° DNS problems à¤…à¤²à¤—-à¤…à¤²à¤— identify à¤•à¥€ à¤œà¤¾ à¤¸à¤•à¤¤à¥€ à¤¹à¥ˆà¤‚à¥¤</p>
+        <h3>Gateway के Main Functions</h3>
+        <ul>
+          <li>Network से बाहर जाने वाले traffic के लिए entry/exit point provide करना।</li>
+          <li>Different environments के बीच protocol/data translation, जहाँ required हो।</li>
+          <li>Complex networks में communication integration में सहायता करना।</li>
+        </ul>
+
+        <h3>Default Gateway Example</h3>
+        <p>यदि किसी PC का IP address <strong>192.168.1.20</strong> है और उसे किसी दूसरे network के server से communicate
+          करना है, तो PC सामान्यतः अपने configured default gateway की ओर packet भेजता है। Router आगे packet को
+          destination network की ओर route करता है।</p>
       </section>
-      <section id="device-faults">
-        <h2>Device-wise Troubleshooting</h2>
+
+      <section id="nic">
+        <h2>7. Ethernet Card / Network Interface Card (NIC)</h2>
+        <p><strong>Ethernet Card</strong>, जिसे <strong>NIC (Network Interface Card)</strong> भी कहा जाता है, वह
+          hardware interface है जो computer को Ethernet-based wired network से connect करता है। यह motherboard में
+          integrated हो सकता है या अलग expansion adapter के रूप में लगाया जा सकता है।</p>
+
+        <h3>Ethernet Card के Main Functions</h3>
+        <ul>
+          <li>Computer और Ethernet network के बीच data transmission/reception।</li>
+          <li>Ethernet frames को send और receive करना।</li>
+          <li>Network interface को physical cable से connect करना।</li>
+          <li>MAC address के माध्यम से network interface की identification में सहायता करना।</li>
+        </ul>
+
+        <h3>Common Ethernet Connection</h3>
+        <p>Wired Ethernet में आमतौर पर twisted-pair cable और <strong>RJ-45 style 8P8C modular connector</strong> का
+          उपयोग किया जाता है। Network speed और capabilities NIC, switch, cable और configuration पर depend करती हैं।</p>
+      </section>
+
+      <section id="cables">
+        <h2>8. Network Cables</h2>
+        <p><strong>Network cable</strong> वह physical medium है जिसके द्वारा wired network में devices के बीच
+          signals/data transmit किए जाते हैं। Network cables broadly copper-based और fiber-optic categories में मिलते
+          हैं।</p>
+
         <table>
-          <tr>
-            <th>Device</th>
-            <th>Problem</th>
-            <th>Check</th>
-          </tr>
-          <tr>
-            <td>Hub</td>
-            <td>All devices slow</td>
-            <td>Collision and broadcast traffic</td>
-          </tr>
-          <tr>
-            <td>Switch</td>
-            <td>One port not working</td>
-            <td>Port status, VLAN, cable</td>
-          </tr>
-          <tr>
-            <td>Router</td>
-            <td>No internet</td>
-            <td>WAN status, IP, DNS, ISP</td>
-          </tr>
-          <tr>
-            <td>Bridge</td>
-            <td>Segments not communicating</td>
-            <td>Bridge table and link status</td>
-          </tr>
-          <tr>
-            <td>Gateway</td>
-            <td>Protocol communication failure</td>
-            <td>Translation/configuration</td>
-          </tr>
-          <tr>
-            <td>NIC</td>
-            <td>No link or low speed</td>
-            <td>Driver, duplex, cable, hardware</td>
-          </tr>
-          <tr>
-            <td>CAT-6</td>
-            <td>Intermittent connection</td>
-            <td>Crimping, bends, cable tester</td>
-          </tr>
-          <tr>
-            <td>Fiber</td>
-            <td>No optical signal</td>
-            <td>Connector cleanliness, bend, power level</td>
-          </tr>
+          <thead>
+            <tr>
+              <th>Medium</th>
+              <th>Example</th>
+              <th>Signal Medium</th>
+              <th>Typical Strength</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Copper Twisted Pair</td>
+              <td>CAT-6</td>
+              <td>Electrical signals</td>
+              <td>LAN cabling, cost-effective installation</td>
+            </tr>
+            <tr>
+              <td>Optical Fiber</td>
+              <td>OFC</td>
+              <td>Light pulses</td>
+              <td>High bandwidth, long-distance links, EMI immunity</td>
+            </tr>
+          </tbody>
         </table>
       </section>
+
+      <section id="cat6">
+        <h2>9. CAT-6 Cable</h2>
+        <p><strong>CAT-6 (Category 6)</strong> एक twisted-pair copper Ethernet cable category है। इसमें multiple
+          insulated copper pairs होते हैं। Pairs के twisting से electromagnetic interference और crosstalk को reduce करने
+          में सहायता मिलती है।</p>
+
+        <h3>CAT-6 Cable Structure</h3>
+        <ul>
+          <li>चार twisted copper pairs (कुल 8 conductors) सामान्य CAT-6 construction में होते हैं।</li>
+          <li>Individual conductors insulated होते हैं।</li>
+          <li>Outer jacket पूरे cable को protect करती है।</li>
+          <li>कुछ designs में internal separator/cross filler crosstalk control में सहायता करता है।</li>
+        </ul>
+
+        <h3>CAT-6 के Uses</h3>
+        <ul>
+          <li>Computer-to-switch Ethernet connections।</li>
+          <li>Office LANs।</li>
+          <li>Home networking।</li>
+          <li>Network patching और structured cabling installations।</li>
+        </ul>
+
+        <h3>CAT-6 की विशेषताएँ</h3>
+        <ul>
+          <li>Twisted-pair copper technology।</li>
+          <li>Modern Gigabit Ethernet deployments में commonly used।</li>
+          <li>Proper installation के साथ higher-frequency signalling के लिए designed।</li>
+          <li>Actual supported speed और maximum distance cable specification, installation quality और network equipment
+            पर depend करते हैं।</li>
+        </ul>
+      </section>
+
+      <section id="ofc">
+        <h2>10. OFC – Optical Fiber Cable</h2>
+        <p><strong>OFC (Optical Fiber Cable)</strong> ऐसा communication cable है जिसमें information को electrical
+          current के बजाय <strong>light pulses</strong> के रूप में optical fiber के माध्यम से transmit किया जाता है।
+          Optical fiber में मुख्यतः core और cladding होती है तथा protective layers fiber को mechanical damage से बचाती
+          हैं।</p>
+
+        <h3>OFC के Main Parts</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Part</th>
+              <th>Function</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Core</td>
+              <td>Light signal को guide करता है।</td>
+            </tr>
+            <tr>
+              <td>Cladding</td>
+              <td>Core के चारों ओर lower refractive index layer, जो light guidance में सहायता करती है।</td>
+            </tr>
+            <tr>
+              <td>Coating</td>
+              <td>Fiber को physical/environmental protection देती है।</td>
+            </tr>
+            <tr>
+              <td>Strength Member</td>
+              <td>Mechanical pulling/tensile protection में सहायता करता है।</td>
+            </tr>
+            <tr>
+              <td>Outer Jacket</td>
+              <td>Complete cable assembly को external protection देता है।</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>OFC Working Principle</h3>
+        <ol>
+          <li>Transmitter electrical data को optical signal में convert करता है।</li>
+          <li>Light pulses fiber core में travel करती हैं।</li>
+          <li>Fiber light को guided path में आगे carry करती है।</li>
+          <li>Receiver optical signal को वापस electrical/data signal में convert करता है।</li>
+        </ol>
+
+        <div class="flow">Electrical Data → Optical Transmitter → Light Pulses → Fiber → Optical Receiver →
+          Electrical/Data Output</div>
+
+        <h3>OFC Advantages</h3>
+        <ul>
+          <li>High bandwidth क्षमता।</li>
+          <li>Long-distance communication के लिए suitable।</li>
+          <li>Electromagnetic interference से बहुत कम प्रभावित।</li>
+          <li>High-speed backbone और communication links में useful।</li>
+        </ul>
+
+        <h3>OFC Limitations</h3>
+        <ul>
+          <li>Installation और termination के लिए specialized tools/skills की आवश्यकता हो सकती है।</li>
+          <li>Fiber को excessive bending और physical damage से बचाना चाहिए।</li>
+          <li>Testing और repair के लिए specialized equipment की आवश्यकता हो सकती है।</li>
+        </ul>
+      </section>
+
+      <section id="tools">
+        <h2>11. Cabling Tools</h2>
+        <p>Network cabling में cable को cut, strip, terminate, test और organize करने के लिए विभिन्न <strong>cabling
+            tools</strong> का उपयोग किया जाता है।</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Tool</th>
+              <th>Use</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>RJ-45 Crimping Tool</td>
+              <td>Twisted-pair cable को modular connector में terminate/crimp करने के लिए।</td>
+            </tr>
+            <tr>
+              <td>Wire Stripper</td>
+              <td>Cable की outer insulation हटाने के लिए।</td>
+            </tr>
+            <tr>
+              <td>Cable Cutter</td>
+              <td>Cable को clean तरीके से cut करने के लिए।</td>
+            </tr>
+            <tr>
+              <td>LAN Cable Tester</td>
+              <td>Continuity, wire mapping और common wiring faults check करने के लिए।</td>
+            </tr>
+            <tr>
+              <td>Punch Down Tool</td>
+              <td>Compatible keystone jack/patch panel में conductors terminate करने के लिए।</td>
+            </tr>
+            <tr>
+              <td>Fish Tape / Pulling Tool</td>
+              <td>Conduit या difficult pathway में cable pull करने में सहायता।</td>
+            </tr>
+            <tr>
+              <td>Fiber Stripper</td>
+              <td>Optical fiber की protective layers remove करने के लिए।</td>
+            </tr>
+            <tr>
+              <td>Fiber Cleaver</td>
+              <td>Fiber end को precise cleave करने के लिए।</td>
+            </tr>
+            <tr>
+              <td>Optical Power Meter</td>
+              <td>Fiber link की optical power measure करने के लिए।</td>
+            </tr>
+            <tr>
+              <td>Visual Fault Locator</td>
+              <td>Fiber में visible-light आधारित fault location में सहायता।</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>RJ-45 Termination का Basic Process</h3>
+        <ol>
+          <li>Required length का cable cut करें।</li>
+          <li>Outer jacket को carefully strip करें।</li>
+          <li>Twisted pairs को untwist करके required wiring order में arrange करें।</li>
+          <li>Conductors को समान length में trim करें।</li>
+          <li>Conductors को connector में correct position तक insert करें।</li>
+          <li>Crimping tool से connector terminate करें।</li>
+          <li>LAN cable tester से wire mapping/continuity test करें।</li>
+        </ol>
+
+        <div class="exam-box">
+          <strong>Important:</strong> Ethernet cable termination में केवल connector crimp करना पर्याप्त नहीं है; correct
+          pin order, conductor seating और testing भी reliable network connection के लिए जरूरी हैं।
+        </div>
+      </section>
+
+      <section id="compare">
+        <h2>12. Network Devices – Comparison</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Device</th>
+              <th>Primary Layer/Role</th>
+              <th>Main Function</th>
+              <th>Typical Use</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Hub</td>
+              <td>Layer 1</td>
+              <td>Signals repeat/broadcast</td>
+              <td>Legacy/simple networks</td>
+            </tr>
+            <tr>
+              <td>Switch</td>
+              <td>Layer 2</td>
+              <td>MAC-based frame forwarding</td>
+              <td>LAN connectivity</td>
+            </tr>
+            <tr>
+              <td>Router</td>
+              <td>Layer 3</td>
+              <td>IP packet routing</td>
+              <td>Inter-network communication</td>
+            </tr>
+            <tr>
+              <td>Bridge</td>
+              <td>Layer 2</td>
+              <td>Connect/filter LAN segments</td>
+              <td>Network segmentation</td>
+            </tr>
+            <tr>
+              <td>Gateway</td>
+              <td>Role-dependent</td>
+              <td>Network exit/entry or translation</td>
+              <td>Inter-network/protocol integration</td>
+            </tr>
+            <tr>
+              <td>Ethernet Card</td>
+              <td>Network interface</td>
+              <td>Host Ethernet connectivity</td>
+              <td>PC/server wired networking</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Hub और Switch में अंतर</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Point</th>
+              <th>Hub</th>
+              <th>Switch</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Forwarding</td>
+              <td>Incoming signal को broadly repeat करता है।</td>
+              <td>Destination MAC के आधार पर frame forward करता है।</td>
+            </tr>
+            <tr>
+              <td>Efficiency</td>
+              <td>कम efficient</td>
+              <td>अधिक efficient</td>
+            </tr>
+            <tr>
+              <td>Collision Handling</td>
+              <td>Shared collision domain</td>
+              <td>Each port can be a separate collision domain</td>
+            </tr>
+            <tr>
+              <td>Common Modern Use</td>
+              <td>बहुत कम</td>
+              <td>बहुत common</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Switch और Router में अंतर</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Point</th>
+              <th>Switch</th>
+              <th>Router</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Primary Role</td>
+              <td>LAN devices/segments connect करना</td>
+              <td>Different IP networks connect करना</td>
+            </tr>
+            <tr>
+              <td>Address</td>
+              <td>MAC address</td>
+              <td>IP address</td>
+            </tr>
+            <tr>
+              <td>Typical Layer</td>
+              <td>Layer 2</td>
+              <td>Layer 3</td>
+            </tr>
+            <tr>
+              <td>Decision</td>
+              <td>Frame forwarding</td>
+              <td>Packet routing</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="trouble">
+        <h2>13. Network Troubleshooting</h2>
+        <p><strong>Network troubleshooting</strong> का अर्थ network में communication failure, slow connection, packet
+          loss या connectivity problem के कारण को systematically identify करके उसे resolve करना है। Troubleshooting
+          हमेशा simple physical checks से शुरू करके configuration और advanced diagnosis तक करनी चाहिए।</p>
+
+        <h3>Common Problems और Solutions</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Problem</th>
+              <th>Possible Cause</th>
+              <th>Troubleshooting</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>No Network Connection</td>
+              <td>Loose cable, disabled NIC, switch/router issue</td>
+              <td>Cable, link LEDs, NIC status और network device power check करें।</td>
+            </tr>
+            <tr>
+              <td>Limited/No Internet</td>
+              <td>Gateway/DNS/WAN/ISP configuration issue</td>
+              <td>IP configuration, default gateway, DNS और upstream connectivity check करें।</td>
+            </tr>
+            <tr>
+              <td>Network Cable Not Working</td>
+              <td>Broken conductor, wrong termination, bad connector</td>
+              <td>LAN cable tester से wire mapping/continuity test करें।</td>
+            </tr>
+            <tr>
+              <td>Slow Network</td>
+              <td>Congestion, poor cable, duplex/speed mismatch, overloaded device</td>
+              <td>Link speed, traffic, cables, switch ports और device load inspect करें।</td>
+            </tr>
+            <tr>
+              <td>Intermittent Connection</td>
+              <td>Loose connector, damaged cable, interference, unstable device</td>
+              <td>Cable/connector replace करके port और logs/status check करें।</td>
+            </tr>
+            <tr>
+              <td>Cannot Access Local Device</td>
+              <td>Wrong IP/subnet, VLAN or firewall issue</td>
+              <td>IP settings, subnet, VLAN configuration और firewall rules verify करें।</td>
+            </tr>
+            <tr>
+              <td>Wi-Fi works but wired does not</td>
+              <td>Ethernet cable/NIC/switch port issue</td>
+              <td>Different cable/port test करें और Ethernet adapter status check करें।</td>
+            </tr>
+            <tr>
+              <td>Only One PC has Problem</td>
+              <td>Local NIC, driver, IP configuration</td>
+              <td>Adapter status, driver और TCP/IP configuration check करें।</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Basic Troubleshooting Commands</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Command</th>
+              <th>Purpose</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>ipconfig</code> / <code>ipconfig /all</code></td>
+              <td>Windows में IP address, gateway, DNS और adapter information देखना।</td>
+            </tr>
+            <tr>
+              <td><code>ping</code></td>
+              <td>Basic IP reachability और response test करना।</td>
+            </tr>
+            <tr>
+              <td><code>tracert</code></td>
+              <td>Windows में destination तक route/hops देखने में सहायता।</td>
+            </tr>
+            <tr>
+              <td><code>nslookup</code></td>
+              <td>DNS name resolution test करना।</td>
+            </tr>
+            <tr>
+              <td><code>arp</code></td>
+              <td>ARP-related address information देखने में सहायता।</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Systematic Troubleshooting Steps</h3>
+        <ol>
+          <li><strong>Physical Layer:</strong> Power, cable, connector, link LED और port check करें।</li>
+          <li><strong>NIC:</strong> Ethernet adapter enabled है या नहीं check करें।</li>
+          <li><strong>IP Configuration:</strong> IP address, subnet mask/prefix, gateway और DNS verify करें।</li>
+          <li><strong>Local Test:</strong> localhost/own interface और local network connectivity test करें।</li>
+          <li><strong>Gateway Test:</strong> Default gateway तक reachability check करें।</li>
+          <li><strong>DNS Test:</strong> Name resolution working है या नहीं check करें।</li>
+          <li><strong>Remote Test:</strong> Required remote host/service तक connectivity verify करें।</li>
+          <li><strong>Device Configuration:</strong> Switch port, VLAN, router interface और firewall rules inspect करें।
+          </li>
+          <li><strong>Replace/Test:</strong> Suspected cable, port या adapter को known-good component से test करें।</li>
+        </ol>
+
+        <div class="image-icon">Physical Check → NIC → IP Configuration → Gateway → DNS → Remote Host → Switch/Router
+          Configuration</div>
+      </section>
+
       <section id="maintenance">
-        <h2>Network Maintenance and Best Practices</h2>
+        <h2>14. Network Cabling Maintenance & Safety</h2>
         <ul>
-          <li>Cables label à¤•à¤°à¥‡à¤‚à¥¤</li>
-          <li>Patch panel à¤”à¤° rack organized à¤°à¤–à¥‡à¤‚à¥¤</li>
-          <li>Sharp bends avoid à¤•à¤°à¥‡à¤‚à¥¤</li>
-          <li>Power cables à¤”à¤° network cables à¤…à¤²à¤— route à¤•à¤°à¥‡à¤‚à¥¤</li>
-          <li>Fiber connectors clean à¤°à¤–à¥‡à¤‚à¥¤</li>
-          <li>Switch/router configuration backup à¤²à¥‡à¤‚à¥¤</li>
-          <li>Firmware updates carefully apply à¤•à¤°à¥‡à¤‚à¥¤</li>
-          <li>Unused switch ports disable à¤•à¤°à¥‡à¤‚à¥¤</li>
-          <li>UPS à¤”à¤° surge protection use à¤•à¤°à¥‡à¤‚à¥¤</li>
-          <li>Network diagram à¤”à¤° IP records maintain à¤•à¤°à¥‡à¤‚à¥¤</li>
+          <li>Network cables को sharp bends और excessive pulling से बचाएँ।</li>
+          <li>Copper cable को strong electrical interference sources से उचित दूरी पर रखें जहाँ practical हो।</li>
+          <li>Connectors को properly seated रखें।</li>
+          <li>Patch panels और switches में cables को label करें।</li>
+          <li>Cable tester से installation verify करें।</li>
+          <li>Fiber cable को manufacturer की recommended bend radius से अधिक न मोड़ें।</li>
+          <li>Fiber connectors को clean और capped रखें जब वे उपयोग में न हों।</li>
+          <li>Fiber end को आँखों के सामने न रखें; optical light दिखाई न देने पर भी safe handling practices follow करें।
+          </li>
+          <li>Network equipment की ventilation और power connections को unobstructed रखें।</li>
         </ul>
+      </section> 
 
-        <div class="note-box"><b>Professional Tip:</b><br>Physical layer check à¤•à¤¿à¤ à¤¬à¤¿à¤¨à¤¾ software configuration à¤¬à¤¦à¤²à¤¨à¤¾
-          troubleshooting à¤•à¥‹ à¤”à¤° complex à¤¬à¤¨à¤¾ à¤¸à¤•à¤¤à¤¾ à¤¹à¥ˆà¥¤</div>
+       
 
-        <div class="remember-box"><b>Remember:</b><br>Network troubleshooting à¤¹à¤®à¥‡à¤¶à¤¾ simplest physical checks à¤¸à¥‡ start
-          à¤•à¤°à¤¨à¥€ à¤šà¤¾à¤¹à¤¿à¤à¥¤</div>
-      </section>
+       
+     
+     
     </main>
   </div>
 </body>

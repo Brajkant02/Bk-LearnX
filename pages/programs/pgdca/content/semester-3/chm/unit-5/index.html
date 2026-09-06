@@ -1,168 +1,745 @@
-<!DOCTYPE html>
-<html>
+html
+<html lang="hi">
 
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FB7SX0P0D3"></script>
+    <!-- Google tag (gtag.js)  -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-FB7SX0P0D3"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-      gtag('config', 'G-FB7SX0P0D3');
+        gtag('config', 'G-FB7SX0P0D3');
     </script>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width,initial-scale=1'>
-    <title>HDD</title>
-    <link rel="stylesheet" href="../../../semester-1/style.css">
-    <link rel="icon" href="../../../.././../../../assets/images/logo.jpeg">
-    <link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
-    <script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Motherboard</title>
+    <link href="../../../semester-1/style.css" rel="stylesheet" />
+    <link href="../../../.././../../../assets/images/logo.jpeg" rel="icon" />
+    <link href="../../../../../../../assets/shared/unit-enhancements.css" rel="stylesheet" />
+    <script defer="" src="../../../../../../../assets/shared/unit-enhancements.js"></script>
+    <meta
+        content="Motherboard ke detailed Hindi-English notes: motherboard components, chipset, computer BUS, types, CMOS battery, BIOS/UEFI, POST, troubleshooting, connections, power, cooling and maintenance."
+        name="description" />
+    <meta
+        content="Motherboard, Motherboard Components, Computer BUS, Chipset, Northbridge, Southbridge, CMOS Battery, BIOS, UEFI, POST, Motherboard Troubleshooting, Computer Hardware, PGDCA, BK LearnX"
+        name="keywords" />
+    <meta content="BK LearnX" name="author" />
+    <meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name="robots" />
+    <meta content="index, follow" name="googlebot" />
+    <meta content="Hindi-English" name="language" />
+    <meta content="#0f172a" name="theme-color" />
+    <meta content="article" property="og:type" />
+    <meta content="Motherboard | BK LearnX" property="og:title" />
+    <meta
+        content="Motherboard ke detailed Hindi-English notes: motherboard components, chipset, computer BUS, types, CMOS battery, BIOS/UEFI, POST, troubleshooting, connections, power, cooling and maintenance."
+        property="og:description" />
+    <meta content="BK LearnX" property="og:site_name" />
+    <meta content="en_IN" property="og:locale" />
+    <meta content="summary_large_image" name="twitter:card" />
+    <meta content="Motherboard | BK LearnX" name="twitter:title" />
+    <meta
+        content="Motherboard ke detailed Hindi-English notes: motherboard components, chipset, computer BUS, types, CMOS battery, BIOS/UEFI, POST, troubleshooting, connections, power, cooling and maintenance."
+        name="twitter:description" />
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Motherboard",
+  "description": "Motherboard ke detailed Hindi-English notes: motherboard components, chipset, computer BUS, types, CMOS battery, BIOS/UEFI, POST, troubleshooting, connections, power, cooling and maintenance.",
+  "author": {
+    "@type": "Organization",
+    "name": "BK LearnX"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "BK LearnX"
+  },
+  "inLanguage": "hi",
+  "keywords": "Motherboard, Motherboard Components, Computer BUS, Chipset, Northbridge, Southbridge, CMOS Battery, BIOS, UEFI, POST, Motherboard Troubleshooting, Computer Hardware, PGDCA, BK LearnX"
+}</script>
 </head>
 
 <body>
-    <div class='page'>
-        <aside class='sidebar'>
+    <div class="page">
+        <aside class="sidebar">
             <h2>Topics</h2>
-            <a href='#intro'>Introduction</a>
-            <a href='#mag'>Magnetic Recording</a>
-            <a href='#enc'>Data Encoding Method</a>
-            <a href='#features'>HDD Features</a>
-            <a href='#parking'>Head Parking</a>
-            <a href='#trouble'>HDD Troubleshooting</a>
+            <a href="#intro">Introduction to Motherboard</a>
+            <a href="#components">Motherboard Components</a>
+            <a href="#bus">Computer BUS</a>
+            <a href="#chipset">Chipset: Northbridge and Southbridge</a>
+            <a href="#types">Types of Motherboard</a>
+            <a href="#battery">CMOS Battery</a>
+            <a href="#modern-features">Modern Motherboard Features</a>
+            <a href="#connections">Connections on the Motherboard</a>
+            <a href="#power-connections">Motherboard Power Connections</a>
+            <a href="#cpu-cooling">Keeping CPU Cool</a>
+            <a href="#bios-uefi">BIOS and UEFI</a>
+            <a href="#post">POST and Beep Codes</a>
+            <a href="#troubleshooting">Motherboard Troubleshooting</a>
+            <a href="#minimal-boot">Minimal Boot Testing</a>
+            <a href="#cmos-reset">CMOS Reset</a>
+            <a href="#common-faults">Common Motherboard Faults</a>
+            <a href="#maintenance">Motherboard Maintenance and Safety</a>
         </aside>
-        <main class='content'>
-            <div class='hero'>
-                <h1>Hard Disk Drive (HDD)</h1>
+        <main class="content">
+            <div class="hero">
+                <h1>Motherboard</h1>
             </div>
-
-            <section id='intro'>
-                <h2>Introduction</h2>
-                <p><strong>Hard Disk Drive (HDD)</strong> à¤à¤• secondary storage device à¤¹à¥ˆ à¤œà¥‹ magnetic technology à¤•à¥€
-                    à¤¸à¤¹à¤¾à¤¯à¤¤à¤¾ à¤¸à¥‡ operating system, software, documents, videos à¤”à¤° à¤…à¤¨à¥à¤¯ data à¤•à¥‹ permanently store à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤
-                    HDD à¤®à¥‡à¤‚ à¤à¤• à¤¯à¤¾ à¤…à¤§à¤¿à¤• circular magnetic platters high speed à¤ªà¤° rotate à¤•à¤°à¤¤à¥‡ à¤¹à¥ˆà¤‚ à¤¤à¤¥à¤¾ read/write heads
-                    data à¤•à¥‹ read à¤”à¤° write à¤•à¤°à¤¤à¥‡ à¤¹à¥ˆà¤‚à¥¤</p>
-                <div class='image-icon'><img src='../images/hdd.webp' alt='HDD'>
-                   
+            <section id="intro">
+                <h2>Introduction to Motherboard</h2>
+                <p><strong>Motherboard</strong> computer की main printed circuit board होती है। इसे system board, main
+                    board या logic board भी कहा जाता है। CPU, RAM, storage devices, expansion cards, BIOS/UEFI chip,
+                    power connectors और input-output ports motherboard से जुड़े होते हैं। इसी कारण motherboard को
+                    computer system का backbone कहा जाता है।</p>
+                <p>Motherboard सभी components के बीच electrical connection और data communication path provide करती है।
+                    यह तय करती है कि कौन-सा processor, कितनी RAM, किस type का storage और कौन-सी expansion cards system
+                    में use की जा सकती हैं।</p>
+                <div class="image-icon"><img alt="Motherboard Overview" src="../images/motherboard.webp" />
                 </div>
+                <h4>Main Functions</h4>
+                <ul>
+                    <li>CPU, RAM और storage devices को connect करना।</li>
+                    <li>Components के बीच data transfer कराना।</li>
+                    <li>Power distribution करना।</li>
+                    <li>Expansion cards और peripherals support करना।</li>
+                    <li>BIOS/UEFI के through startup और hardware initialization करना।</li>
+                </ul>
+                <div class="remember-box"><b>Remember:</b><br />Motherboard computer के सभी major components को
+                    physically
+                    और logically connect करती है।</div>
             </section>
-
-            <section id='mag'>
-                <h2>Magnetic Recording</h2>
-                <p>HDD à¤•à¥€ surface magnetic material à¤¸à¥‡ coated à¤¹à¥‹à¤¤à¥€ à¤¹à¥ˆà¥¤ Data à¤›à¥‹à¤Ÿà¥‡-à¤›à¥‹à¤Ÿà¥‡ magnetic domains à¤•à¥‡ à¤°à¥‚à¤ª à¤®à¥‡à¤‚ store
-                    à¤¹à¥‹à¤¤à¤¾ à¤¹à¥ˆà¥¤ Read/Write head platter à¤•à¥‹ touch à¤•à¤¿à¤ à¤¬à¤¿à¤¨à¤¾ à¤‰à¤¸à¤•à¥‡ à¤Šà¤ªà¤° à¤¬à¤¹à¥à¤¤ à¤•à¤® à¤¦à¥‚à¤°à¥€ à¤ªà¤° move à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤ Write
-                    operation à¤•à¥‡ à¤¸à¤®à¤¯ magnetic polarity change à¤¹à¥‹à¤¤à¥€ à¤¹à¥ˆ à¤œà¤¬à¤•à¤¿ read operation à¤®à¥‡à¤‚ magnetic changes à¤•à¥‹
-                    electrical signals à¤®à¥‡à¤‚ convert à¤•à¤¿à¤¯à¤¾ à¤œà¤¾à¤¤à¤¾ à¤¹à¥ˆà¥¤</p>
-                <div class='image-icon'><img src='../images/magnet recoding process.webp' alt='Magnetic Recording'>
-                   
+            <section id="components">
+                <h2>Motherboard Components</h2>
+                <p>Motherboard पर बहुत से components और connectors होते हैं। हर component की अपनी specific
+                    responsibility होती है।</p>
+                <h4>CPU Socket</h4>
+                <p>CPU socket processor को motherboard पर hold और electrically connect करता है। Different processors
+                    different socket types use करते हैं।</p>
+                <h4>Chipset</h4>
+                <p>Chipset CPU, RAM, storage, USB और expansion devices के बीच communication manage करता है। Modern
+                    systems में कई functions CPU के अंदर integrated हो चुके हैं।</p>
+                <h4>RAM Slots</h4>
+                <p>DIMM slots में RAM modules install होते हैं। Dual-channel support के लिए correct slot pairing
+                    important हो सकती है।</p>
+                <h4>BIOS/UEFI Chip</h4>
+                <p>Startup firmware store करती है और hardware initialization तथा boot process control करती है।</p>
+                <h4>PCIe Slots</h4>
+                <p>Graphics card, network card, sound card और other expansion cards install करने के लिए।</p>
+                <h4>SATA Connectors</h4>
+                <p>HDD, SATA SSD और optical drives connect करने के लिए।</p>
+                <h4>M.2 Slot</h4>
+                <p>Compact SSD और कुछ wireless modules connect करने के लिए। NVMe SSD high-speed PCIe lanes use कर सकती
+                    है।</p>
+                <h4>Power Connectors</h4>
+                <p>24-pin ATX connector motherboard को और 4/8-pin CPU connector processor को power देता है।</p>
+                <h4>Headers</h4>
+                <ul>
+                    <li>Front panel header</li>
+                    <li>USB headers</li>
+                    <li>Audio header</li>
+                    <li>Fan headers</li>
+                    <li>RGB/ARGB headers</li>
+                </ul>
+            </section>
+            <section id="bus">
+                <h2>Computer BUS</h2>
+                <p><strong>BUS</strong> electrical pathways का group होता है जिसके through computer के components data,
+                    addresses और control signals exchange करते हैं। BUS को road system की तरह समझा जा सकता है, जहाँ
+                    अलग-अलग प्रकार की information अलग lanes से travel करती है।</p>
+                <div class="image-icon"><img alt="System Bus Diagram" src="../images/system bus diagram.webp" />
+                    <p>Image Placeholder: Data Bus, Address Bus and Control Bus</p>
                 </div>
-                <h3>Recording Process</h3>
-                <ol>
-                    <li>CPU data à¤­à¥‡à¤œà¤¤à¤¾ à¤¹à¥ˆà¥¤</li>
-                    <li>Controller binary data à¤¤à¥ˆà¤¯à¤¾à¤° à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</li>
-                    <li>Head magnetic polarity à¤¬à¤¦à¤²à¤•à¤° data write à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</li>
-                    <li>Read à¤•à¤°à¤¤à¥‡ à¤¸à¤®à¤¯ polarity detect à¤•à¤°à¤•à¥‡ binary data à¤µà¤¾à¤ªà¤¸ à¤¬à¤¨à¤¤à¤¾ à¤¹à¥ˆà¥¤</li>
-                </ol>
-            </section>
-
-            <section id='enc'>
-                <h2>Data Encoding Method</h2>
-                <p>Data encoding method binary data à¤•à¥‹ magnetic patterns à¤®à¥‡à¤‚ à¤¬à¤¦à¤²à¤¨à¥‡ à¤•à¥€ technique à¤¹à¥ˆà¥¤ à¤¸à¤®à¤¯ à¤•à¥‡ à¤¸à¤¾à¤¥ à¤…à¤²à¤—-à¤…à¤²à¤—
-                    encoding methods à¤µà¤¿à¤•à¤¸à¤¿à¤¤ à¤¹à¥à¤ˆà¤‚à¥¤</p>
+                <h4>Data Bus</h4>
+                <p>Data Bus computer के विभिन्न components जैसे CPU, Memory और Input/Output devices के बीच data को
+                    transfer करने
+                    का काम करता है।</p>
+                <ul>
+                    <li>यह सामान्यतः Bidirectional होता है।</li>
+                    <li>CPU इससे data को memory से read या memory में write करता है।</li>
+                    <li>इसकी width 8-bit, 16-bit, 32-bit, 64-bit आदि हो सकती है।</li>
+                    <li>Data Bus की width जितनी अधिक होगी, एक समय में उतना अधिक data transfer किया जा सकता है।</li>
+                </ul>
+                <p><strong>Example:</strong><br />32-bit Data Bus एक समय में 32 bits data transfer कर सकता है।</p>
+                <h4>Address Bus</h4>
+                <p>Address bus यह बताती है कि data किस memory location या device तक जाना है। Address bus usually
+                    unidirectional होती है और CPU से बाहर की ओर signal भेजती है।</p>
+                <ul>
+                    <li>Address Bus की width determine करती है कि system कितनी memory address कर सकता है।</li>
+                    <li>CPU address भेजता है और Memory उस address पर मौजूद data को access करती है।</li>
+                    <li>इसकी width computer की addressable memory capacity को determine करती है।</li>
+                </ul>
+                <p><strong>Example:</strong><br />20-bit Address Bus 2^20 = 1,048,576 (1 MB) unique memory locations
+                    address कर
+                    सकता है।</p>
+                <h4>Control Bus</h4>
+                <p>Control Bus CPU और अन्य components के बीच control signals और commands को transfer करता है। यह
+                    computer के
+                    विभिन्न operations को control और coordinate करता है।</p>
+                <ul>
+                    <p>इसके द्वारा कई signals भेजे जाते हैं, जैसे:</p>
+                    <li><strong>Read Signal - </strong>Data read करने के लिए।</li>
+                    <li><strong>Write Signal - </strong>Data write करने के लिए।</li>
+                    <li><strong>Clock Signal - </strong>Operations को synchronize करने के लिए।</li>
+                    <li><strong>Reset Signal - </strong>System को reset करने के लिए।</li>
+                </ul>
+                <p><strong>Example:</strong><br />जब CPU को Memory से data पढ़ना होता है, तो Control Bus के माध्यम से
+                    Read
+                    signal
+                    भेजा जाता है।</p>
                 <table>
                     <tr>
-                        <th>Method</th>
-                        <th>Description</th>
+                        <th>Bus Type</th>
+                        <th>Purpose</th>
+                        <th>Direction</th>
                     </tr>
                     <tr>
-                        <td>FM (Frequency Modulation)</td>
-                        <td>Old method, low storage density.</td>
+                        <td>Data Bus</td>
+                        <td>Actual data transfer</td>
+                        <td>Bidirectional</td>
                     </tr>
                     <tr>
-                        <td>MFM (Modified FM)</td>
-                        <td>FM à¤¸à¥‡ à¤…à¤§à¤¿à¤• efficient.</td>
+                        <td>Address Bus</td>
+                        <td>Memory/device address</td>
+                        <td>Mostly unidirectional</td>
                     </tr>
                     <tr>
-                        <td>RLL (Run Length Limited)</td>
-                        <td>Higher data density à¤”à¤° better storage capacity.</td>
-                    </tr>
-                    <tr>
-                        <td>PRML/EPRML</td>
-                        <td>Modern signal processing techniques for accurate reading.</td>
+                        <td>Control Bus</td>
+                        <td>Control and timing signals</td>
+                        <td>Both directions possible</td>
                     </tr>
                 </table>
-                <div class='note'><b>Remember:</b> à¤¬à¥‡à¤¹à¤¤à¤° encoding method à¤¸à¥‡ HDD à¤•à¥€ storage density à¤”à¤° performance à¤¬à¤¢à¤¼à¤¤à¥€
-                    à¤¹à¥ˆà¥¤</div>
-               
+                <div class="note-box"><b>Real Life Example:</b><br />Data bus truck की तरह data ले जाती है, address bus
+                    destination बताती है और control bus traffic signals की तरह movement control करती है।</div>
             </section>
-
-            <section id='features'>
-                <h2>HDD Features</h2>
+            <section id="chipset">
+                <h2>Chipset: Northbridge and Southbridge</h2>
+                <p>Older motherboard architecture में chipset दो main parts में divided था: Northbridge और Southbridge।
+                    Modern systems में Northbridge के कई functions CPU में integrate हो गए हैं और remaining functions
+                    Platform Controller Hub (PCH) handle करता है।</p>
+                <div class="image-icon"><img alt="Northbridge Southbridge Architecture"
+                        src="../images/n-s bridge architecture.webp" />
+                </div>
+                <table>
+                    <tr>
+                        <th>Part</th>
+                        <th>Main Role</th>
+                    </tr>
+                    <tr>
+                        <td>Northbridge</td>
+                        <td>CPU, RAM और graphics communication</td>
+                    </tr>
+                    <tr>
+                        <td>Southbridge</td>
+                        <td>USB, SATA, audio, LAN और slower I/O</td>
+                    </tr>
+                    <tr>
+                        <td>Modern PCH</td>
+                        <td>Most I/O functions handle करता है।</td>
+                    </tr>
+                </table>
+                <h4>Why Architecture Changed</h4>
+                <p>Memory controller और high-speed PCIe functions CPU में integrate करने से latency कम हुई और
+                    performance improve हुई।</p>
+            </section>
+            <section id="types">
+                <h2>Types of Motherboard</h2>
+                <p>Motherboards को form factor के basis पर classify किया जाता है। Form factor board size, mounting
+                    holes, power connectors और expansion capacity define करता है।</p>
+                <div class="image-icon"><img alt="Motherboard Form Factors" src="../images/types of motherboard.webp" />
+                </div>
+                <table>
+                    <tr>
+                        <th>Type</th>
+                        <th>Features</th>
+                        <th>Common Use</th>
+                    </tr>
+                    <tr>
+                        <td>AT</td>
+                        <td>Old large design</td>
+                        <td>Early computers</td>
+                    </tr>
+                    <tr>
+                        <td>ATX</td>
+                        <td>Standard size, multiple slots</td>
+                        <td>Desktop computers</td>
+                    </tr>
+                    <tr>
+                        <td>Micro-ATX</td>
+                        <td>Smaller than ATX</td>
+                        <td>Budget/compact desktops</td>
+                    </tr>
+                    <tr>
+                        <td>Mini-ITX</td>
+                        <td>Very compact</td>
+                        <td>Small form factor PCs</td>
+                    </tr>
+                    <tr>
+                        <td>E-ATX</td>
+                        <td>Larger, more expansion and RAM slots</td>
+                        <td>Workstations/high-end PCs</td>
+                    </tr>
+                    <tr>
+                        <td>BTX</td>
+                        <td>Airflow-oriented design</td>
+                        <td>Limited adoption</td>
+                    </tr>
+                </table>
+                <h4>ATX</h4>
+                <p>ATX widely used standard form factor है। इसमें good expansion support, multiple RAM slots और standard
+                    power connectors होते हैं।</p>
+                <div class="image-icon"><img alt="ATX Motherboard " src="../images/ATX motherboard.webp" />
+                </div>
+                <h4>Micro-ATX</h4>
+                <p>Micro-ATX compact और cost-effective होता है, लेकिन expansion slots कम हो सकते हैं।</p>
+                <div class="image-icon"><img alt=" micro-ATX Motherboard" src="../images/micro-ATX motherboard.webp" />
+                </div>
+                <h4>Mini-ITX</h4>
+                <p>Mini-ITX छोटे computers के लिए useful है, पर ports और expansion limited हो सकते हैं।</p>
+                <div class="image-icon"><img alt="mini-ITX Motherboard" src="../images/mini-ITX motherboard.webp" />
+                    <div class="remember-box"><b>Remember:</b><br />Motherboard form factor cabinet compatibility और
+                        expansion
+                        capacity decide करता है।</div>
+                </div>
+            </section>
+            <section id="battery">
+                <h2>CMOS Battery</h2>
+                <p><strong>CMOS battery</strong> motherboard पर लगी coin-cell battery होती है। यह real-time clock और
+                    BIOS/UEFI settings को power supply करती है जब computer switched off होता है। Commonly CR2032 battery
+                    use होती है।</p>
+                <div class="image-icon"><img alt="CMOS Battery" src="../images/cmos battery.webp" />
+                </div>
+                <h4>Functions</h4>
                 <ul>
-                    <li>Large storage capacity (GB/TB).</li>
-                    <li>Permanent non-volatile storage.</li>
-                    <li>Cost per GB à¤•à¤®.</li>
-                    <li>SATA à¤”à¤° SAS interfaces.</li>
-                    <li>5400 RPM, 7200 RPM à¤¯à¤¾ à¤‰à¤¸à¤¸à¥‡ à¤…à¤§à¤¿à¤• rotational speed.</li>
-                    <li>Cache memory for faster access.</li>
-                    <li>Suitable for backup and bulk storage.</li>
+                    <li>Date and time maintain करना।</li>
+                    <li>BIOS/UEFI settings retain करना।</li>
+                    <li>Boot order और hardware configuration save रखना।</li>
                 </ul>
+                <h4>Failure Symptoms</h4>
+                <ul>
+                    <li>Date/time बार-बार reset होना।</li>
+                    <li>BIOS settings save न होना।</li>
+                    <li>CMOS checksum error।</li>
+                    <li>Boot configuration बार-बार change होना।</li>
+                </ul>
+                <h4>Replacement Steps</h4>
+                <ol>
+                    <li>Computer shutdown और power disconnect करें।</li>
+                    <li>Cabinet open करें।</li>
+                    <li>Battery orientation note करें।</li>
+                    <li>Old battery remove करें।</li>
+                    <li>Same type की new battery install करें।</li>
+                    <li>BIOS date/time reset करें।</li>
+                </ol>
+                <div class="note-box"><b>Safety:</b><br />Battery replace करते समय static electricity से बचें और
+                    motherboard को unnecessary touch न करें।</div>
+            </section>
+            <section id="modern-features">
+                <h2>Modern Motherboard Features</h2>
+                <p>Modern motherboards performance, connectivity और customization के लिए advanced features provide करती
+                    हैं।</p>
                 <table>
                     <tr>
                         <th>Feature</th>
-                        <th>Importance</th>
+                        <th>Purpose</th>
                     </tr>
                     <tr>
-                        <td>Capacity</td>
-                        <td>More files store à¤•à¤° à¤¸à¤•à¤¤à¤¾ à¤¹à¥ˆà¥¤</td>
+                        <td>UEFI Firmware</td>
+                        <td>Modern graphical firmware interface</td>
                     </tr>
                     <tr>
-                        <td>RPM</td>
-                        <td>Higher RPM = Faster access.</td>
+                        <td>NVMe M.2 Support</td>
+                        <td>High-speed storage</td>
                     </tr>
                     <tr>
-                        <td>Cache</td>
-                        <td>Frequently used data à¤¤à¥‡à¤œà¥€ à¤¸à¥‡ à¤‰à¤ªà¤²à¤¬à¥à¤§à¥¤</td>
+                        <td>PCIe 4.0/5.0</td>
+                        <td>Higher bandwidth expansion</td>
+                    </tr>
+                    <tr>
+                        <td>DDR4/DDR5 Support</td>
+                        <td>Modern memory standards</td>
+                    </tr>
+                    <tr>
+                        <td>Wi-Fi/Bluetooth</td>
+                        <td>Built-in wireless connectivity</td>
+                    </tr>
+                    <tr>
+                        <td>RGB/ARGB Headers</td>
+                        <td>Lighting control</td>
+                    </tr>
+                    <tr>
+                        <td>Debug LEDs</td>
+                        <td>Hardware fault indication</td>
+                    </tr>
+                    <tr>
+                        <td>Multiple Fan Headers</td>
+                        <td>Cooling management</td>
+                    </tr>
+                </table>
+                <div class="remember-box"><b>Remember:</b><br />Modern motherboard खरीदते समय CPU socket, chipset, RAM
+                    type, storage support और cabinet form factor match करना जरूरी है।</div>
+            </section>
+            <section id="connections">
+                <h2>Connections on the Motherboard</h2>
+                <p>Motherboard पर internal और external दोनों प्रकार के connections होते हैं। सही connection system
+                    stability और hardware safety के लिए बहुत important है।</p>
+                <div class="image-icon"><img alt="Motherboard Connections"
+                        src="../images/motherboard connections.webp" />
+                </div>
+                <h4>CPU Connection</h4>
+                <p>Processor CPU socket में correct orientation के साथ install होता है। Locking mechanism और socket
+                    marks follow करना जरूरी है।</p>
+                <h4>RAM Installation</h4>
+                <p>RAM module notch alignment के साथ DIMM slot में press किया जाता है। Dual-channel configuration के लिए
+                    manual के अनुसार slots select करें।</p>
+                <h4>Storage Connections</h4>
+                <ul>
+                    <li>SATA data cable motherboard और drive के बीच।</li>
+                    <li>SATA power cable SMPS से drive तक।</li>
+                    <li>M.2 SSD direct M.2 slot में।</li>
+                </ul>
+                <h4>GPU Connection</h4>
+                <p>Graphics card PCIe x16 slot में install होती है और powerful cards को additional PCIe power cable भी
+                    चाहिए।</p>
+                <h4>Front Panel Connections</h4>
+                <table>
+                    <tr>
+                        <th>Connector</th>
+                        <th>Purpose</th>
+                    </tr>
+                    <tr>
+                        <td>Power SW</td>
+                        <td>Power button</td>
+                    </tr>
+                    <tr>
+                        <td>Reset SW</td>
+                        <td>Reset button</td>
+                    </tr>
+                    <tr>
+                        <td>Power LED</td>
+                        <td>Power indicator</td>
+                    </tr>
+                    <tr>
+                        <td>HDD LED</td>
+                        <td>Storage activity indicator</td>
+                    </tr>
+                </table>
+                <h4>Other Headers</h4>
+                <ul>
+                    <li>USB 2.0/3.x headers</li>
+                    <li>Front audio header</li>
+                    <li>CPU_FAN and SYS_FAN headers</li>
+                    <li>RGB/ARGB headers</li>
+                </ul>
+                <div class="remember-box"><b>Remember:</b><br />Front panel connectors की polarity और pin position
+                    motherboard manual से verify करें।</div>
+            </section>
+            <section id="power-connections">
+                <h2>Motherboard Power Connections</h2>
+                <p>SMPS motherboard और CPU को अलग power connectors के through power देता है। Incorrect या loose power
+                    connection से system start नहीं होगा।</p>
+                <table>
+                    <tr>
+                        <th>Connector</th>
+                        <th>Purpose</th>
+                    </tr>
+                    <tr>
+                        <td>24-pin ATX</td>
+                        <td>Main motherboard power</td>
+                    </tr>
+                    <tr>
+                        <td>4/8-pin EPS</td>
+                        <td>CPU power</td>
+                    </tr>
+                    <tr>
+                        <td>PCIe Power</td>
+                        <td>Dedicated graphics card power</td>
+                    </tr>
+                    <tr>
+                        <td>SATA Power</td>
+                        <td>Storage drives power</td>
+                    </tr>
+                </table>
+                <h4>Common Mistake</h4>
+                <p>24-pin connector लगाने के बाद CPU 4/8-pin power connector भूल जाना no display या no boot problem का
+                    common reason है।</p>
+            </section>
+            <section id="cpu-cooling">
+                <h2>Keeping CPU Cool</h2>
+                <p>CPU instructions execute करते समय heat generate करता है। Excess heat performance reduce कर सकती है,
+                    system shutdown करा सकती है और hardware life कम कर सकती है। इसलिए proper cooling essential है।</p>
+                <h4>Heat Sink</h4>
+                <p>Metal fins CPU heat absorb करके air में transfer करती हैं।</p>
+                <div class="image-icon"><img alt="CPU Cooling System" src="../images/heat sink.webp" />
+                </div>
+                <h4>Cooling Fan</h4>
+                <p>Fan heat sink से गर्म air हटाकर cooling improve करता है।</p>
+                <div class="image-icon"><img alt="CPU Cooling System" src="../images/cooling fan.webp" />
+                </div>
+                <h4>Thermal Paste</h4>
+                <p>CPU और heat sink के बीच microscopic gaps fill करके heat transfer improve करती है।</p>
+                <div class="image-icon"><img alt="CPU Cooling System" src="../images/thermal paste.webp" />
+                </div>
+                <h4>Air Cooling</h4>
+                <p>Heat sink और fan based cooling most common और cost-effective है।</p>
+                <div class="image-icon"><img alt="CPU Cooling System" src="../images/air cooling.webp" />
+                </div>
+                <h4>Liquid Cooling</h4>
+                <p>Coolant, pump, water block और radiator use करके heat remove करती है। High-performance systems में
+                    useful है।</p>
+                <div class="image-icon"><img alt="CPU Cooling System" src="../images/liquid cooling.webp" />
+                </div>
+                <h4>Cabinet Airflow</h4>
+                <ul>
+                    <li>Front/bottom से cool air intake।</li>
+                    <li>Rear/top से hot air exhaust।</li>
+                    <li>Cables organize करके airflow clear रखें।</li>
+                    <li>Dust filters clean करें।</li>
+                </ul>
+                <div class="note-box"><b>Practical Tip:</b><br />CPU overheating हो तो fan rotation, thermal paste, dust
+                    और heat sink fitting check करें।</div>
+            </section>
+            <section id="bios-uefi">
+                <h2>BIOS and UEFI</h2>
+                <p><strong>BIOS</strong> और <strong>UEFI</strong> firmware interfaces हैं जो hardware initialize करते
+                    हैं और operating system boot process start करते हैं।</p>
+                <div class="image-icon"><img alt="BIOS UEFI" src="../images/bios vs uefi.webp" />
+                </div>
+                <table>
+                    <tr>
+                        <th>Basis</th>
+                        <th>BIOS</th>
+                        <th>UEFI</th>
                     </tr>
                     <tr>
                         <td>Interface</td>
-                        <td>Data transfer speed à¤ªà¥à¤°à¤­à¤¾à¤µà¤¿à¤¤ à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</td>
+                        <td>Text-based</td>
+                        <td>Graphical possible</td>
+                    </tr>
+                    <tr>
+                        <td>Boot Support</td>
+                        <td>Legacy</td>
+                        <td>Modern secure boot</td>
+                    </tr>
+                    <tr>
+                        <td>Large Drives</td>
+                        <td>Limited</td>
+                        <td>Better GPT support</td>
+                    </tr>
+                    <tr>
+                        <td>Speed</td>
+                        <td>Slower boot</td>
+                        <td>Faster boot possible</td>
+                    </tr>
+                    <tr>
+                        <td>Security</td>
+                        <td>Basic</td>
+                        <td>Secure Boot support</td>
                     </tr>
                 </table>
-               
+                <h4>Common Settings</h4>
+                <ul>
+                    <li>Boot order</li>
+                    <li>Date and time</li>
+                    <li>CPU/RAM information</li>
+                    <li>Fan control</li>
+                    <li>Virtualization</li>
+                    <li>Secure Boot</li>
+                    <li>Storage mode</li>
+                </ul>
             </section>
-
-            <section id='parking'>
-                <h2>Head Parking</h2>
-                <p><strong>Head Parking</strong> à¤µà¤¹ process à¤¹à¥ˆ à¤œà¤¿à¤¸à¤®à¥‡à¤‚ HDD à¤•à¤¾ read/write head platter à¤•à¥‡ data area à¤¸à¥‡
-                    à¤¹à¤Ÿà¤¾à¤•à¤° safe parking zone à¤®à¥‡à¤‚ à¤²à¥‡ à¤œà¤¾à¤¯à¤¾ à¤œà¤¾à¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤‡à¤¸à¤¸à¥‡ power off à¤¹à¥‹à¤¨à¥‡ à¤¯à¤¾ shock à¤²à¤—à¤¨à¥‡ à¤ªà¤° platter à¤•à¥€ surface
-                    damage à¤¹à¥‹à¤¨à¥‡ à¤•à¤¾ à¤–à¤¤à¤°à¤¾ à¤•à¤® à¤¹à¥‹ à¤œà¤¾à¤¤à¤¾ à¤¹à¥ˆà¥¤</p>
-                <div class='image-icon'><img src='../images/head parking.webp' alt='Head Parking'>
-                 
+            <section id="post">
+                <h2>POST and Beep Codes</h2>
+                <p><strong>POST</strong> का full form Power-On Self-Test है। Computer start होने पर motherboard basic
+                    hardware test करती है। अगर problem मिले तो beep codes, debug LEDs या on-screen error show हो सकता
+                    है।</p>
+                <div class="image-icon"><img alt="POST Beep Codes" src="../images/post beep codes.webp" />
                 </div>
-                <h3>Benefits</h3>
+                <h4>POST Checks</h4>
                 <ul>
-                    <li>Data protection</li>
-                    <li>Scratch prevention</li>
-                    <li>Head crash à¤•à¤¾ risk à¤•à¤®</li>
-                    <li>Drive life à¤¬à¤¢à¤¼à¤¤à¥€ à¤¹à¥ˆà¥¤</li>
+                    <li>CPU detection</li>
+                    <li>RAM detection</li>
+                    <li>Graphics initialization</li>
+                    <li>Keyboard/basic I/O</li>
+                    <li>Storage boot device detection</li>
+                </ul>
+                <h4>Beep Codes</h4>
+                <p>Beep code meaning BIOS manufacturer के अनुसार change हो सकता है। Exact meaning motherboard manual या
+                    manufacturer documentation से verify करना चाहिए।</p>
+                <table>
+                    <tr>
+                        <th>Symptom</th>
+                        <th>Possible Area</th>
+                    </tr>
+                    <tr>
+                        <td>No beep, no power</td>
+                        <td>Power supply, board short, power switch</td>
+                    </tr>
+                    <tr>
+                        <td>Repeated memory beep</td>
+                        <td>RAM seating/failure</td>
+                    </tr>
+                    <tr>
+                        <td>Display-related beep</td>
+                        <td>GPU/display initialization</td>
+                    </tr>
+                    <tr>
+                        <td>CPU debug LED</td>
+                        <td>CPU power/socket/firmware issue</td>
+                    </tr>
+                </table>
+            </section>
+            <section id="troubleshooting">
+                <h2>Motherboard Troubleshooting</h2>
+                <p>Motherboard troubleshooting systematic तरीके से करनी चाहिए। Randomly components बदलने के बजाय power,
+                    connections, POST indicators और minimal hardware configuration check करें।</p>
+                <div class="image-icon"><img alt="Motherboard Troubleshooting Flowchart"
+                        src="../images/motherboard troubleshooting flowchart.webp" />
+                </div>
+                <h4>Computer Not Powering On</h4>
+                <ul>
+                    <li>Power cable और wall socket check करें।</li>
+                    <li>SMPS switch ON है या नहीं देखें।</li>
+                    <li>24-pin और CPU power connector check करें।</li>
+                    <li>Front panel Power SW connection verify करें।</li>
+                    <li>Motherboard short circuit check करें।</li>
+                </ul>
+                <h4>No Display</h4>
+                <ul>
+                    <li>Monitor cable और input source check करें।</li>
+                    <li>RAM reseat करें।</li>
+                    <li>GPU और GPU power connector check करें।</li>
+                    <li>Integrated graphics availability verify करें।</li>
+                    <li>CMOS reset करें।</li>
+                </ul>
+                <h4>Random Restart</h4>
+                <ul>
+                    <li>CPU temperature check करें।</li>
+                    <li>SMPS stability check करें।</li>
+                    <li>RAM test करें।</li>
+                    <li>Loose connectors और short circuit inspect करें।</li>
+                </ul>
+                <h4>USB/Audio Not Working</h4>
+                <ul>
+                    <li>Header connection check करें।</li>
+                    <li>BIOS setting verify करें।</li>
+                    <li>Drivers check करें।</li>
+                    <li>Physical port damage inspect करें।</li>
                 </ul>
             </section>
-
-            <section id='trouble'>
-                <h2>HDD Troubleshooting</h2>
-               
+            <section id="minimal-boot">
+                <h2>Minimal Boot Testing</h2>
+                <p>Minimal boot testing में system को केवल essential components के साथ start किया जाता है। इससे faulty
+                    component isolate करना आसान होता है।</p>
+                <div class="image-icon"><img alt="Minimal Boot Setup" src="../images/minimal boot setup.webp" />
+                </div>
+                <h4>Required Components</h4>
                 <ul>
-                    <li>Drive detect à¤¨à¤¹à¥€à¤‚ à¤¹à¥‹ à¤°à¤¹à¥€ â†’ SATA data/power cable check à¤•à¤°à¥‡à¤‚à¥¤</li>
-                    <li>Slow performance â†’ Disk cleanup, defragmentation (HDD only), SMART status check à¤•à¤°à¥‡à¤‚à¥¤</li>
-                    <li>Clicking noise â†’ Mechanical failure à¤•à¥€ à¤¸à¤‚à¤­à¤¾à¤µà¤¨à¤¾, à¤¤à¥à¤°à¤‚à¤¤ backup à¤²à¥‡à¤‚à¥¤</li>
-                    <li>Bad sectors â†’ CHKDSK à¤¯à¤¾ diagnostic tools use à¤•à¤°à¥‡à¤‚à¥¤</li>
-                    <li>Boot failure â†’ Boot order à¤”à¤° OS files verify à¤•à¤°à¥‡à¤‚à¥¤</li>
-                    <li>Overheating â†’ Cabinet airflow à¤”à¤° cooling check à¤•à¤°à¥‡à¤‚à¥¤</li>
+                    <li>Motherboard</li>
+                    <li>CPU and cooler</li>
+                    <li>One RAM module</li>
+                    <li>SMPS</li>
+                    <li>Display output</li>
                 </ul>
-               
+                <h4>Procedure</h4>
+                <ol>
+                    <li>Non-essential drives और cards disconnect करें।</li>
+                    <li>One RAM stick use करें।</li>
+                    <li>Different RAM slots test करें।</li>
+                    <li>Integrated graphics हो तो dedicated GPU remove करके test करें।</li>
+                    <li>POST LEDs/beeps observe करें।</li>
+                </ol>
+                <div class="remember-box"><b>Remember:</b><br />Minimal boot test motherboard, CPU, RAM और power-related
+                    faults isolate करने का effective तरीका है।</div>
             </section>
-
+            <section id="cmos-reset">
+                <h2>CMOS Reset</h2>
+                <p>CMOS reset BIOS/UEFI settings को default values पर restore करता है। Incorrect overclocking, wrong
+                    boot setting या no-display issue में useful हो सकता है।</p>
+                <h4>Methods</h4>
+                <ul>
+                    <li>BIOS menu से Load Defaults।</li>
+                    <li>Clear CMOS jumper use करना।</li>
+                    <li>CMOS battery temporarily remove करना।</li>
+                </ul>
+                <h4>Safe Procedure</h4>
+                <ol>
+                    <li>Computer shutdown करें।</li>
+                    <li>Power cable disconnect करें।</li>
+                    <li>Power button कुछ seconds press करके residual power discharge करें।</li>
+                    <li>Manual के अनुसार jumper/battery method use करें।</li>
+                    <li>Power connect करके BIOS date/time set करें।</li>
+                </ol>
+                <div class="note-box"><b>Warning:</b><br />Clear CMOS procedure motherboard model के अनुसार अलग हो सकती
+                    है; manual follow करें।</div>
+            </section>
+            <section id="common-faults">
+                <h2>Common Motherboard Faults</h2>
+                <table>
+                    <tr>
+                        <th>Fault</th>
+                        <th>Symptoms</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr>
+                        <td>Dead CMOS Battery</td>
+                        <td>Date/time reset</td>
+                        <td>Battery replace करें।</td>
+                    </tr>
+                    <tr>
+                        <td>Bad RAM Slot</td>
+                        <td>No POST/intermittent boot</td>
+                        <td>Other slot test करें।</td>
+                    </tr>
+                    <tr>
+                        <td>Damaged Capacitor</td>
+                        <td>Instability/no power</td>
+                        <td>Professional repair/replace board।</td>
+                    </tr>
+                    <tr>
+                        <td>Corrupt BIOS</td>
+                        <td>No boot/firmware recovery</td>
+                        <td>BIOS recovery/update carefully।</td>
+                    </tr>
+                    <tr>
+                        <td>Burnt VRM</td>
+                        <td>CPU power failure</td>
+                        <td>Board repair/replace।</td>
+                    </tr>
+                    <tr>
+                        <td>Bent CPU Socket Pins</td>
+                        <td>RAM channel/no boot issues</td>
+                        <td>Expert inspection required।</td>
+                    </tr>
+                    <tr>
+                        <td>Short Circuit</td>
+                        <td>Instant shutdown/no power</td>
+                        <td>Standoffs, screws, cables inspect करें।</td>
+                    </tr>
+                </table>
+            </section>
+            <section id="maintenance">
+                <h2>Motherboard Maintenance and Safety</h2>
+                <h4>Maintenance</h4>
+                <ul>
+                    <li>Dust regularly clean करें।</li>
+                    <li>Fans और heat sinks inspect करें।</li>
+                    <li>Loose cables check करें।</li>
+                    <li>BIOS update केवल जरूरत होने पर करें।</li>
+                    <li>Surge protector या UPS use करें।</li>
+                </ul>
+                <h4>ESD Safety</h4>
+                <p>Static electricity motherboard components damage कर सकती है। Anti-static wrist strap use करें या
+                    grounded metal surface touch करके static discharge करें।</p>
+                <h4>Handling Rules</h4>
+                <ul>
+                    <li>Board को edges से पकड़ें।</li>
+                    <li>Contacts और pins touch न करें।</li>
+                    <li>Power connected होने पर components install/remove न करें।</li>
+                    <li>Correct screwdriver और standoffs use करें।</li>
+                </ul>
+                <div class="remember-box"><b>Remember:</b><br />Motherboard troubleshooting में safety, documentation और
+                    step-by-step testing सबसे important हैं।</div>
+            </section>
         </main>
     </div>
 </body>

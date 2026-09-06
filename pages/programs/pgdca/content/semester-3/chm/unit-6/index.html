@@ -1,23 +1,63 @@
-<!DOCTYPE html>
+html
 <html lang="hi">
 
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FB7SX0P0D3"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+  <!-- Google tag (gtag.js) -->
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-FB7SX0P0D3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-      gtag('config', 'G-FB7SX0P0D3');
-    </script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SSD</title>
-  <link rel="stylesheet" href="../../../semester-1/style.css">
-  <link rel="icon" href="../../../.././../../../assets/images/logo.jpeg">
-    <link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
-    <script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
+    gtag('config', 'G-FB7SX0P0D3');
+  </script>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Solid State Drive (SSD) – Detailed Computer Notes | BK LearnX</title>
+
+  <link href="../../../.././../../../assets/images/logo.jpeg" rel="icon" />
+
+
+  <link href="../../../semester-1/style.css" rel="stylesheet" />
+  <meta
+    content="Solid State Drive (SSD) complete PGDCA notes in Hindi-English: SSD concept, structure, NAND flash types, working, controller technologies, form factors, features, advantages, limitations, applications, SSD vs HDD and maintenance."
+    name="description" />
+  <meta
+    content="SSD, Solid State Drive, NAND flash, SLC, MLC, TLC, QLC, SSD controller, wear leveling, garbage collection, TRIM, ECC, NVMe, SATA, M.2, SSD vs HDD, PGDCA notes, BK LearnX"
+    name="keywords" />
+  <meta content="BK LearnX" name="author" />
+  <meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name="robots" />
+  <meta content="index, follow" name="googlebot" />
+  <meta content="Hindi-English" name="language" />
+  <meta content="#0d6efd" name="theme-color" />
+  <meta content="article" property="og:type" />
+  <meta content="Solid State Drive (SSD) – Detailed Computer Notes | BK LearnX" property="og:title" />
+  <meta
+    content="Solid State Drive (SSD) complete PGDCA notes in Hindi-English: SSD concept, structure, NAND flash types, working, controller technologies, form factors, features, advantages, limitations, applications, SSD vs HDD and maintenance."
+    property="og:description" />
+  <meta content="BK LearnX" property="og:site_name" />
+  <meta content="en_IN" property="og:locale" />
+  <meta content="summary_large_image" name="twitter:card" />
+  <meta content="Solid State Drive (SSD) – Detailed Computer Notes | BK LearnX" name="twitter:title" />
+  <meta
+    content="Solid State Drive (SSD) complete PGDCA notes in Hindi-English: SSD concept, structure, NAND flash types, working, controller technologies, form factors, features, advantages, limitations, applications, SSD vs HDD and maintenance."
+    name="twitter:description" />
+  <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Solid State Drive (SSD) – Detailed Computer Notes | BK LearnX",
+  "description": "Solid State Drive (SSD) complete PGDCA notes in Hindi-English: SSD concept, structure, NAND flash types, working, controller technologies, form factors, features, advantages, limitations, applications, SSD vs HDD and maintenance.",
+  "author": {
+    "@type": "Organization",
+    "name": "BK LearnX"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "BK LearnX"
+  },
+  "inLanguage": "hi",
+  "keywords": "SSD, Solid State Drive, NAND flash, SLC, MLC, TLC, QLC, SSD controller, wear leveling, garbage collection, TRIM, ECC, NVMe, SATA, M.2, SSD vs HDD, PGDCA notes, BK LearnX"
+}</script>
 </head>
 
 <body>
@@ -40,77 +80,75 @@
     <main class="content">
       <div class="hero">
         <h1>Solid State Drive(SSD)</h1>
-       
       </div>
       <section id="concept">
         <h2>SSD Concept</h2>
-        <p><strong>SSD</strong> à¤•à¤¾ full form Solid State Drive à¤¹à¥ˆà¥¤ à¤¯à¤¹ à¤à¤• non-volatile storage device à¤¹à¥ˆ à¤œà¥‹ data store
-          à¤•à¤°à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤ NAND flash memory use à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤ Non-volatile à¤•à¤¾ à¤®à¤¤à¤²à¤¬ à¤¹à¥ˆ à¤•à¤¿ power off à¤¹à¥‹à¤¨à¥‡ à¤•à¥‡ à¤¬à¤¾à¤¦ à¤­à¥€ data à¤¸à¥à¤°à¤•à¥à¤·à¤¿à¤¤
-          à¤°à¤¹à¤¤à¤¾ à¤¹à¥ˆà¥¤ HDD à¤•à¥€ à¤¤à¤°à¤¹ SSD à¤®à¥‡à¤‚ rotating platters, moving read/write head à¤¯à¤¾ motor à¤¨à¤¹à¥€à¤‚ à¤¹à¥‹à¤¤à¥‡à¥¤ à¤‡à¤¸à¥€ à¤•à¤¾à¤°à¤£ SSD faster,
-          quieter à¤”à¤° shock-resistant à¤¹à¥‹à¤¤à¤¾ à¤¹à¥ˆà¥¤</p>
-
-        <p>SSD à¤•à¤¾ main purpose operating system, applications, documents, videos à¤”à¤° other digital data à¤•à¥‹ permanently
-          store à¤•à¤°à¤¨à¤¾ à¤¹à¥ˆà¥¤ SSD computer à¤•à¥€ boot speed, application loading speed à¤”à¤° file transfer performance à¤•à¥‹ improve
-          à¤•à¤° à¤¸à¤•à¤¤à¤¾ à¤¹à¥ˆà¥¤</p>
-
-       
-
+        <p><strong>SSD</strong> का full form Solid State Drive है। यह एक non-volatile storage device है जो data store
+          करने के लिए NAND flash memory use करता है। Non-volatile का मतलब है कि power off होने के बाद भी data सुरक्षित
+          रहता है। HDD की तरह SSD में rotating platters, moving read/write head या motor नहीं होते। इसी कारण SSD faster,
+          quieter और shock-resistant होता है।</p>
+        <p>SSD का main purpose operating system, applications, documents, videos और other digital data को permanently
+          store करना है। SSD computer की boot speed, application loading speed और file transfer performance को improve
+          कर सकता है।</p>
         <h4>Basic Working</h4>
         <pre>Computer sends data
-        â†“
+        ↓
 SSD Controller processes request
-        â†“
+        ↓
 NAND Flash Memory stores data
-        â†“
+        ↓
 Mapping table records data location
-        â†“
+        ↓
 Data is read when requested</pre>
-
         <h4>Why SSD is Called Solid State</h4>
-        <p>SSD à¤®à¥‡à¤‚ à¤•à¥‹à¤ˆ moving mechanical part à¤¨à¤¹à¥€à¤‚ à¤¹à¥‹à¤¤à¤¾à¥¤ Data semiconductor chips à¤®à¥‡à¤‚ store à¤¹à¥‹à¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤‡à¤¸à¤²à¤¿à¤ à¤‡à¤¸à¥‡
-          solid-state storage à¤•à¤¹à¤¾ à¤œà¤¾à¤¤à¤¾ à¤¹à¥ˆà¥¤</p>
-
-        <div class="note-box"><b>Real Life Example:</b><br>SSD à¤²à¤—à¥‡ laptop à¤®à¥‡à¤‚ Windows à¤œà¤²à¥à¤¦à¥€ start à¤¹à¥‹à¤¤à¤¾ à¤¹à¥ˆ à¤”à¤° software
-          HDD à¤•à¥€ comparison à¤®à¥‡à¤‚ faster open à¤¹à¥‹à¤¤à¥‡ à¤¹à¥ˆà¤‚à¥¤</div>
-
-        <div class="remember-box"><b>Remember:</b><br>SSD flash memory-based storage à¤¹à¥ˆ à¤”à¤° à¤‡à¤¸à¤®à¥‡à¤‚ moving parts à¤¨à¤¹à¥€à¤‚ à¤¹à¥‹à¤¤à¥‡à¥¤
+        <p>SSD में कोई moving mechanical part नहीं होता। Data semiconductor chips में store होता है। इसलिए इसे
+          solid-state storage कहा जाता है।</p>
+        <div class="note-box"><b>Real Life Example:</b><br />SSD लगे laptop में Windows जल्दी start होता है और software
+          HDD की comparison में faster open होते हैं।</div>
+        <div class="remember-box"><b>Remember:</b><br />SSD flash memory-based storage है और इसमें moving parts नहीं
+          होते।
         </div>
+
+        <h3>SSD की Definition और Importance</h3>
+        <p><strong>Solid State Drive (SSD)</strong> एक non-volatile secondary storage device है जो NAND flash memory का
+          उपयोग करके digital data store करती है। इसमें HDD की तरह rotating platter, spindle motor या moving read/write
+          head नहीं होता। Semiconductor-based storage के कारण SSD में low access latency और fast data access मिलता है।
+        </p>
+        <h3>SSD के Main Characteristics</h3>
+        <ul>
+          <li>Non-volatile storage: power off होने पर data retained रहता है।</li>
+          <li>No moving mechanical parts: mechanical movement से होने वाली समस्याएँ कम होती हैं।</li>
+          <li>Fast access: operating system और applications जल्दी load हो सकते हैं।</li>
+          <li>Low latency: small/random data operations के लिए useful है।</li>
+          <li>Compact designs: M.2 जैसे छोटे form factors available हैं।</li>
+        </ul>
       </section>
       <section id="structure">
         <h2>Structure of SSD</h2>
-        <p>SSD à¤•à¤ˆ important internal components à¤¸à¥‡ à¤®à¤¿à¤²à¤•à¤° à¤¬à¤¨à¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤‡à¤¨à¤®à¥‡à¤‚ NAND flash memory, controller, cache memory,
-          firmware, PCB à¤”à¤° interface connector à¤¶à¤¾à¤®à¤¿à¤² à¤¹à¥‹à¤¤à¥‡ à¤¹à¥ˆà¤‚à¥¤</p>
-
+        <p>SSD कई important internal components से मिलकर बनता है। इनमें NAND flash memory, controller, cache memory,
+          firmware, PCB और interface connector शामिल होते हैं।</p>
         <div class="image-icon">
-          <img src="../images/structure of ssd.webp" alt="SSD Internal Structure">
-         
+          <img alt="SSD Internal Structure" src="../images/structure of ssd.webp" />
         </div>
-
         <h4>NAND Flash Memory</h4>
-        <p>NAND flash chips actual data store à¤•à¤°à¤¤à¥‡ à¤¹à¥ˆà¤‚à¥¤ Data memory cells à¤®à¥‡à¤‚ electrical charge à¤•à¥‡ à¤°à¥‚à¤ª à¤®à¥‡à¤‚ store à¤¹à¥‹à¤¤à¤¾
-          à¤¹à¥ˆà¥¤ à¤…à¤²à¤—-à¤…à¤²à¤— SSDs SLC, MLC, TLC à¤¯à¤¾ QLC NAND use à¤•à¤° à¤¸à¤•à¤¤à¥‡ à¤¹à¥ˆà¤‚à¥¤</p>
-
+        <p>NAND flash chips actual data store करते हैं। Data memory cells में electrical charge के रूप में store होता
+          है। अलग-अलग SSDs SLC, MLC, TLC या QLC NAND use कर सकते हैं।</p>
         <h4>SSD Controller</h4>
-        <p>Controller SSD à¤•à¤¾ brain à¤¹à¥‹à¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤¯à¤¹ computer à¤”à¤° NAND flash memory à¤•à¥‡ à¤¬à¥€à¤š communication manage à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤
-          Controller wear leveling, garbage collection, error correction à¤”à¤° logical-to-physical address mapping à¤œà¥ˆà¤¸à¥€
-          activities perform à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</p>
-
+        <p>Controller SSD का brain होता है। यह computer और NAND flash memory के बीच communication manage करता है।
+          Controller wear leveling, garbage collection, error correction और logical-to-physical address mapping जैसी
+          activities perform करता है।</p>
         <h4>Cache Memory</h4>
-        <p>à¤•à¥à¤› SSDs DRAM à¤¯à¤¾ SRAM cache use à¤•à¤°à¤¤à¥‡ à¤¹à¥ˆà¤‚à¥¤ Cache frequently used mapping information à¤”à¤° temporary data hold
-          à¤•à¤°à¤•à¥‡ performance improve à¤•à¤° à¤¸à¤•à¤¤à¥€ à¤¹à¥ˆà¥¤ DRAM-less SSDs à¤­à¥€ available à¤¹à¥‹à¤¤à¥‡ à¤¹à¥ˆà¤‚à¥¤</p>
-
+        <p>कुछ SSDs DRAM या SRAM cache use करते हैं। Cache frequently used mapping information और temporary data hold
+          करके performance improve कर सकती है। DRAM-less SSDs भी available होते हैं।</p>
         <h4>Firmware</h4>
-        <p>Firmware controller à¤•à¥‡ operations manage à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤¯à¤¹ NAND management, error handling, TRIM support à¤”à¤°
-          performance optimization control à¤•à¤° à¤¸à¤•à¤¤à¤¾ à¤¹à¥ˆà¥¤</p>
-
+        <p>Firmware controller के operations manage करता है। यह NAND management, error handling, TRIM support और
+          performance optimization control कर सकता है।</p>
         <h4>PCB</h4>
-        <p>PCB à¤¯à¤¾à¤¨à¥€ Printed Circuit Board à¤ªà¤° controller, NAND chips, cache à¤”à¤° other electronic components mounted à¤¹à¥‹à¤¤à¥‡
-          à¤¹à¥ˆà¤‚à¥¤</p>
-
+        <p>PCB यानी Printed Circuit Board पर controller, NAND chips, cache और other electronic components mounted होते
+          हैं।</p>
         <h4>Interface Connector</h4>
-        <p>SSD computer à¤¸à¥‡ SATA, PCIe à¤¯à¤¾ other interface à¤•à¥‡ through connect à¤¹à¥‹à¤¤à¤¾ à¤¹à¥ˆà¥¤ M.2 SSD motherboard slot à¤®à¥‡à¤‚
-          directly install à¤¹à¥‹ à¤¸à¤•à¤¤à¥€ à¤¹à¥ˆà¥¤</p>
-
+        <p>SSD computer से SATA, PCIe या other interface के through connect होता है। M.2 SSD motherboard slot में
+          directly install हो सकती है।</p>
         <table>
           <tr>
             <th>Component</th>
@@ -118,43 +156,76 @@ Data is read when requested</pre>
           </tr>
           <tr>
             <td>NAND Flash</td>
-            <td>Data store à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</td>
+            <td>Data store करता है।</td>
           </tr>
           <tr>
             <td>Controller</td>
-            <td>Data management à¤”à¤° communication handle à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</td>
+            <td>Data management और communication handle करता है।</td>
           </tr>
           <tr>
             <td>Cache</td>
-            <td>Temporary fast storage provide à¤•à¤°à¤¤à¥€ à¤¹à¥ˆà¥¤</td>
+            <td>Temporary fast storage provide करती है।</td>
           </tr>
           <tr>
             <td>Firmware</td>
-            <td>Internal operations control à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</td>
+            <td>Internal operations control करता है।</td>
           </tr>
           <tr>
             <td>PCB</td>
-            <td>Components à¤•à¥‹ electrically connect à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</td>
+            <td>Components को electrically connect करता है।</td>
           </tr>
           <tr>
             <td>Interface</td>
-            <td>Computer à¤¸à¥‡ connection provide à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</td>
+            <td>Computer से connection provide करता है।</td>
           </tr>
         </table>
+        <div class="remember-box"><b>Remember:</b><br />SSD structure में NAND memory data store करती है और controller
+          उसे
+          manage करता है।</div>
 
-        <div class="remember-box"><b>Remember:</b><br>SSD structure à¤®à¥‡à¤‚ NAND memory data store à¤•à¤°à¤¤à¥€ à¤¹à¥ˆ à¤”à¤° controller à¤‰à¤¸à¥‡
-          manage à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</div>
+        <h3>SSD Components का Detailed Role</h3>
+        <table>
+          <tr>
+            <th>Component</th>
+            <th>Detailed Function</th>
+          </tr>
+          <tr>
+            <td>NAND Flash Chips</td>
+            <td>Actual user data को memory cells में store करते हैं।</td>
+          </tr>
+          <tr>
+            <td>Controller</td>
+            <td>Host commands process करता है और NAND operations manage करता है।</td>
+          </tr>
+          <tr>
+            <td>Cache</td>
+            <td>Temporary data/mapping information को fast access के लिए hold कर सकती है।</td>
+          </tr>
+          <tr>
+            <td>Firmware</td>
+            <td>Controller के internal operations और storage management logic को control करता है।</td>
+          </tr>
+          <tr>
+            <td>PCB</td>
+            <td>Electronic components को mount और electrically connect करता है।</td>
+          </tr>
+          <tr>
+            <td>Interface</td>
+            <td>SSD को computer system के साथ data communication की सुविधा देता है।</td>
+          </tr>
+        </table>
+        <h3>SSD और HDD Structure में मुख्य अंतर</h3>
+        <p>HDD mechanical storage device है जिसमें platter और moving head होते हैं, जबकि SSD electronic flash-based
+          device है जिसमें NAND cells और controller प्रमुख components हैं। इसी structural difference के कारण SSD का
+          access mechanism अलग और generally faster होता है।</p>
       </section>
       <section id="nand-types">
         <h2>Types of NAND Flash</h2>
-        <p>NAND flash cells à¤®à¥‡à¤‚ à¤•à¤¿à¤¤à¤¨à¥‡ bits store à¤¹à¥‹à¤¤à¥‡ à¤¹à¥ˆà¤‚, à¤‰à¤¸à¤•à¥‡ à¤†à¤§à¤¾à¤° à¤ªà¤° SSD memory à¤•à¥‹ à¤…à¤²à¤—-à¤…à¤²à¤— types à¤®à¥‡à¤‚ classify à¤•à¤¿à¤¯à¤¾
-          à¤œà¤¾à¤¤à¤¾ à¤¹à¥ˆà¥¤</p>
-
+        <p>NAND flash cells में कितने bits store होते हैं, उसके आधार पर SSD memory को अलग-अलग types में classify किया
+          जाता है।</p>
         <div class="image-icon">
-          <img src="../images/nand flash cell types.webp" alt="SLC MLC TLC QLC NAND">
-          
+          <img alt="SLC MLC TLC QLC NAND" src="../images/nand flash cell types.webp" />
         </div>
-
         <table>
           <tr>
             <th>Type</th>
@@ -164,96 +235,151 @@ Data is read when requested</pre>
           <tr>
             <td>SLC</td>
             <td>1 bit</td>
-            <td>Fast, durable à¤”à¤° expensive</td>
+            <td>Fast, durable और expensive</td>
           </tr>
           <tr>
             <td>MLC</td>
             <td>2 bits</td>
-            <td>Performance à¤”à¤° cost à¤•à¤¾ balance</td>
+            <td>Performance और cost का balance</td>
           </tr>
           <tr>
             <td>TLC</td>
             <td>3 bits</td>
-            <td>Consumer SSDs à¤®à¥‡à¤‚ common</td>
+            <td>Consumer SSDs में common</td>
           </tr>
           <tr>
             <td>QLC</td>
             <td>4 bits</td>
-            <td>Higher capacity à¤”à¤° lower cost</td>
+            <td>Higher capacity और lower cost</td>
           </tr>
         </table>
-
         <h4>SLC</h4>
-        <p>SLC à¤à¤• cell à¤®à¥‡à¤‚ one bit store à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤¯à¤¹ high endurance à¤”à¤° fast performance à¤¦à¥‡à¤¤à¤¾ à¤¹à¥ˆ, à¤‡à¤¸à¤²à¤¿à¤ enterprise à¤”à¤°
-          industrial applications à¤®à¥‡à¤‚ useful à¤¹à¥‹ à¤¸à¤•à¤¤à¤¾ à¤¹à¥ˆà¥¤</p>
-
+        <p>SLC एक cell में one bit store करता है। यह high endurance और fast performance देता है, इसलिए enterprise और
+          industrial applications में useful हो सकता है।</p>
         <h4>MLC</h4>
-        <p>MLC one cell à¤®à¥‡à¤‚ two bits store à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤¯à¤¹ SLC à¤¸à¥‡ cheaper à¤”à¤° TLC à¤¸à¥‡ more durable à¤¹à¥‹ à¤¸à¤•à¤¤à¤¾ à¤¹à¥ˆà¥¤</p>
-
+        <p>MLC one cell में two bits store करता है। यह SLC से cheaper और TLC से more durable हो सकता है।</p>
         <h4>TLC</h4>
-        <p>TLC three bits per cell store à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤ Consumer laptops à¤”à¤° desktops à¤®à¥‡à¤‚ widely used à¤¹à¥ˆà¥¤</p>
-
+        <p>TLC three bits per cell store करता है। Consumer laptops और desktops में widely used है।</p>
         <h4>QLC</h4>
-        <p>QLC four bits per cell store à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤¯à¤¹ high capacity à¤”à¤° lower cost provide à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆ, à¤²à¥‡à¤•à¤¿à¤¨ write endurance
-          generally lower à¤¹à¥‹ à¤¸à¤•à¤¤à¥€ à¤¹à¥ˆà¥¤</p>
+        <p>QLC four bits per cell store करता है। यह high capacity और lower cost provide करता है, लेकिन write endurance
+          generally lower हो सकती है।</p>
+        <div class="remember-box"><b>Remember:</b><br />More bits per cell से capacity बढ़ती है, लेकिन performance और
+          endurance पर trade-off हो सकता है।</div>
 
-        <div class="remember-box"><b>Remember:</b><br>More bits per cell à¤¸à¥‡ capacity à¤¬à¤¢à¤¼à¤¤à¥€ à¤¹à¥ˆ, à¤²à¥‡à¤•à¤¿à¤¨ performance à¤”à¤°
-          endurance à¤ªà¤° trade-off à¤¹à¥‹ à¤¸à¤•à¤¤à¤¾ à¤¹à¥ˆà¥¤</div>
+        <h3>NAND Flash का Classification</h3>
+        <p>NAND flash में एक memory cell कितने bits store करती है, इसके आधार पर SLC, MLC, TLC और QLC जैसे types बताए
+          जाते हैं। अधिक bits per cell से storage density बढ़ सकती है, लेकिन speed, endurance और cost के बीच trade-off
+          हो सकता है।</p>
+        <table>
+          <tr>
+            <th>Type</th>
+            <th>Bits/Cell</th>
+            <th>General Characteristics</th>
+          </tr>
+          <tr>
+            <td>SLC</td>
+            <td>1</td>
+            <td>High endurance और fast; comparatively expensive.</td>
+          </tr>
+          <tr>
+            <td>MLC</td>
+            <td>2</td>
+            <td>Capacity और endurance का balance.</td>
+          </tr>
+          <tr>
+            <td>TLC</td>
+            <td>3</td>
+            <td>Consumer SSDs में widely used; good capacity/cost balance.</td>
+          </tr>
+          <tr>
+            <td>QLC</td>
+            <td>4</td>
+            <td>High density और lower cost; write endurance/performance trade-offs हो सकते हैं.</td>
+          </tr>
+        </table>
+        <h3>Exam Point</h3>
+        <p><strong>SLC → MLC → TLC → QLC</strong> में bits per cell बढ़ते हैं। इसे capacity, cost और endurance के
+          trade-off को समझाने के लिए याद रखा जा सकता है।</p>
       </section>
       <section id="working">
         <h2>How SSD Stores and Reads Data</h2>
-        <p>SSD data à¤•à¥‹ NAND flash cells à¤®à¥‡à¤‚ electrical charge à¤•à¥‡ à¤°à¥‚à¤ª à¤®à¥‡à¤‚ store à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤ Computer logical block address
-          à¤­à¥‡à¤œà¤¤à¤¾ à¤¹à¥ˆ à¤”à¤° SSD controller à¤‰à¤¸ address à¤•à¥‹ actual NAND location à¤¸à¥‡ map à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</p>
-
-      
-
+        <p>SSD data को NAND flash cells में electrical charge के रूप में store करता है। Computer logical block address
+          भेजता है और SSD controller उस address को actual NAND location से map करता है।</p>
         <h4>Write Operation</h4>
         <ol>
-          <li>Computer write command à¤­à¥‡à¤œà¤¤à¤¾ à¤¹à¥ˆà¥¤</li>
-          <li>Controller data receive à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</li>
-          <li>Controller suitable NAND page/block select à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</li>
-          <li>Data flash cells à¤®à¥‡à¤‚ program à¤¹à¥‹à¤¤à¤¾ à¤¹à¥ˆà¥¤</li>
-          <li>Mapping table update à¤¹à¥‹à¤¤à¥€ à¤¹à¥ˆà¥¤</li>
+          <li>Computer write command भेजता है।</li>
+          <li>Controller data receive करता है।</li>
+          <li>Controller suitable NAND page/block select करता है।</li>
+          <li>Data flash cells में program होता है।</li>
+          <li>Mapping table update होती है।</li>
         </ol>
-
         <h4>Read Operation</h4>
         <ol>
-          <li>Computer data request à¤­à¥‡à¤œà¤¤à¤¾ à¤¹à¥ˆà¥¤</li>
-          <li>Controller mapping table check à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</li>
-          <li>NAND location identify à¤¹à¥‹à¤¤à¥€ à¤¹à¥ˆà¥¤</li>
-          <li>Data read à¤¹à¥‹à¤•à¤° computer à¤¤à¤• à¤­à¥‡à¤œà¤¾ à¤œà¤¾à¤¤à¤¾ à¤¹à¥ˆà¥¤</li>
+          <li>Computer data request भेजता है।</li>
+          <li>Controller mapping table check करता है।</li>
+          <li>NAND location identify होती है।</li>
+          <li>Data read होकर computer तक भेजा जाता है।</li>
         </ol>
-
         <h4>Erase Operation</h4>
-        <p>NAND flash à¤®à¥‡à¤‚ data pages à¤®à¥‡à¤‚ write/read à¤¹à¥‹à¤¤à¤¾ à¤¹à¥ˆ, à¤²à¥‡à¤•à¤¿à¤¨ erase generally larger blocks à¤®à¥‡à¤‚ à¤•à¤¿à¤¯à¤¾ à¤œà¤¾à¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤‡à¤¸à¤²à¤¿à¤
-          controller garbage collection à¤”à¤° wear leveling use à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</p>
+        <p>NAND flash में data pages में write/read होता है, लेकिन erase generally larger blocks में किया जाता है। इसलिए
+          controller garbage collection और wear leveling use करता है।</p>
+        <div class="info-box"><b>Important:</b><br />SSD data management simple direct overwrite जैसा नहीं होता;
+          controller internal mapping और block management करता है।</div>
 
-        <div class="info-box"><b>Important:</b><br>SSD data management simple direct overwrite à¤œà¥ˆà¤¸à¤¾ à¤¨à¤¹à¥€à¤‚ à¤¹à¥‹à¤¤à¤¾;
-          controller internal mapping à¤”à¤° block management à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</div>
+        <h3>SSD Working Principle</h3>
+        <p>SSD में operating system या application logical address के आधार पर data request भेजता है। SSD controller उस
+          request को internal mapping information के आधार पर NAND flash की physical location से associate करता है।
+          Controller error correction, wear management और block management जैसी activities भी handle करता है।</p>
+        <h3>Write, Read और Erase का संबंध</h3>
+        <table>
+          <tr>
+            <th>Operation</th>
+            <th>Explanation</th>
+          </tr>
+          <tr>
+            <td>Write/Program</td>
+            <td>Data को NAND cells में program किया जाता है और mapping information update होती है।</td>
+          </tr>
+          <tr>
+            <td>Read</td>
+            <td>Controller required NAND location identify करके data host system को देता है।</td>
+          </tr>
+          <tr>
+            <td>Erase</td>
+            <td>NAND में erase operation सामान्यतः block level पर होता है; controller free blocks और invalid pages
+              manage करता है।</td>
+          </tr>
+        </table>
+        <h3>Simple Flow</h3>
+        <pre>Host Computer
+      ↓
+SSD Interface
+      ↓
+SSD Controller
+      ↓
+Mapping / Error Management
+      ↓
+NAND Flash
+      ↓
+Data Storage / Retrieval</pre>
       </section>
       <section id="controller-tech">
         <h2>Controller Technologies</h2>
         <h4>Wear Leveling</h4>
-        <p>Wear leveling writes à¤•à¥‹ different NAND blocks à¤®à¥‡à¤‚ distribute à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆ à¤¤à¤¾à¤•à¤¿ à¤•à¥à¤› cells à¤œà¤²à¥à¤¦à¥€ wear out à¤¨ à¤¹à¥‹à¤‚à¥¤</p>
-
+        <p>Wear leveling writes को different NAND blocks में distribute करता है ताकि कुछ cells जल्दी wear out न हों।</p>
         <h4>Garbage Collection</h4>
-        <p>Garbage collection invalid pages à¤•à¥‹ clean à¤•à¤°à¤•à¥‡ free blocks prepare à¤•à¤°à¤¤à¥€ à¤¹à¥ˆà¥¤ à¤‡à¤¸à¤¸à¥‡ future writes efficient à¤¹à¥‹à¤¤à¥€
-          à¤¹à¥ˆà¤‚à¥¤</p>
-
+        <p>Garbage collection invalid pages को clean करके free blocks prepare करती है। इससे future writes efficient होती
+          हैं।</p>
         <h4>TRIM</h4>
-        <p>TRIM operating system à¤•à¥‹ SSD à¤•à¥‹ à¤¯à¤¹ à¤¬à¤¤à¤¾à¤¨à¥‡ à¤®à¥‡à¤‚ help à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆ à¤•à¤¿ à¤•à¥Œà¤¨-à¤¸à¥‡ data blocks à¤…à¤¬ required à¤¨à¤¹à¥€à¤‚ à¤¹à¥ˆà¤‚à¥¤ à¤‡à¤¸à¤¸à¥‡
-          SSD unused blocks à¤•à¥‹ better manage à¤•à¤° à¤¸à¤•à¤¤à¥€ à¤¹à¥ˆà¥¤</p>
-
+        <p>TRIM operating system को SSD को यह बताने में help करता है कि कौन-से data blocks अब required नहीं हैं। इससे
+          SSD unused blocks को better manage कर सकती है।</p>
         <h4>Error Correction Code</h4>
-        <p>ECC stored data à¤®à¥‡à¤‚ errors detect à¤”à¤° correct à¤•à¤°à¤¨à¥‡ à¤®à¥‡à¤‚ help à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</p>
-
+        <p>ECC stored data में errors detect और correct करने में help करता है।</p>
         <h4>Bad Block Management</h4>
-        <p>Controller damaged à¤¯à¤¾ unreliable NAND blocks à¤•à¥‹ identify à¤•à¤°à¤•à¥‡ use à¤¸à¥‡ à¤¬à¤¾à¤¹à¤° à¤•à¤° à¤¸à¤•à¤¤à¤¾ à¤¹à¥ˆà¥¤</p>
-
+        <p>Controller damaged या unreliable NAND blocks को identify करके use से बाहर कर सकता है।</p>
         <h4>Over-Provisioning</h4>
-        <p>à¤•à¥à¤› NAND capacity user à¤•à¥‹ visible à¤¨à¤¹à¥€à¤‚ à¤¹à¥‹à¤¤à¥€ à¤”à¤° controller à¤‡à¤¸à¥‡ maintenance, wear leveling à¤”à¤° performance à¤•à¥‡
-          à¤²à¤¿à¤ reserve à¤°à¤–à¤¤à¤¾ à¤¹à¥ˆà¥¤</p>
-
+        <p>कुछ NAND capacity user को visible नहीं होती और controller इसे maintenance, wear leveling और performance के
+          लिए reserve रखता है।</p>
         <table>
           <tr>
             <th>Technology</th>
@@ -261,52 +387,81 @@ Data is read when requested</pre>
           </tr>
           <tr>
             <td>Wear Leveling</td>
-            <td>NAND wear evenly distribute à¤•à¤°à¤¨à¤¾à¥¤</td>
+            <td>NAND wear evenly distribute करना।</td>
           </tr>
           <tr>
             <td>Garbage Collection</td>
-            <td>Free blocks prepare à¤•à¤°à¤¨à¤¾à¥¤</td>
+            <td>Free blocks prepare करना।</td>
           </tr>
           <tr>
             <td>TRIM</td>
-            <td>Deleted data blocks identify à¤•à¤°à¤¨à¤¾à¥¤</td>
+            <td>Deleted data blocks identify करना।</td>
           </tr>
           <tr>
             <td>ECC</td>
-            <td>Data errors correct à¤•à¤°à¤¨à¤¾à¥¤</td>
+            <td>Data errors correct करना।</td>
           </tr>
           <tr>
             <td>Over-Provisioning</td>
-            <td>Performance à¤”à¤° endurance support à¤•à¤°à¤¨à¤¾à¥¤</td>
+            <td>Performance और endurance support करना।</td>
           </tr>
         </table>
+        <div class="remember-box"><b>Remember:</b><br />SSD controller performance के साथ-साथ NAND life और data
+          reliability भी manage करता है।</div>
 
-        <div class="remember-box"><b>Remember:</b><br>SSD controller performance à¤•à¥‡ à¤¸à¤¾à¤¥-à¤¸à¤¾à¤¥ NAND life à¤”à¤° data
-          reliability à¤­à¥€ manage à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</div>
+        <h3>Controller Technologies का महत्व</h3>
+        <p>SSD controller केवल data transfer नहीं करता, बल्कि NAND flash की limited write endurance और block-based
+          operation को manage करके drive की reliability तथा performance बनाए रखने में महत्वपूर्ण भूमिका निभाता है।</p>
+        <table>
+          <tr>
+            <th>Technology</th>
+            <th>Detailed Purpose</th>
+          </tr>
+          <tr>
+            <td>Wear Leveling</td>
+            <td>Write operations को NAND blocks में distribute करता है ताकि कुछ cells बहुत जल्दी wear न हों।</td>
+          </tr>
+          <tr>
+            <td>Garbage Collection</td>
+            <td>Invalid pages को identify करके blocks को future writes के लिए prepare करता है।</td>
+          </tr>
+          <tr>
+            <td>TRIM</td>
+            <td>Operating system से यह information प्राप्त करने में मदद करता है कि कौन-से logical blocks अब आवश्यक नहीं
+              हैं।</td>
+          </tr>
+          <tr>
+            <td>ECC</td>
+            <td>Storage/read process में होने वाली errors को detect और, supported capability के अनुसार, correct करने में
+              मदद करता है।</td>
+          </tr>
+          <tr>
+            <td>Bad Block Management</td>
+            <td>Unreliable blocks को identify/manage करके उनका normal use कम या बंद कर सकता है।</td>
+          </tr>
+          <tr>
+            <td>Over-Provisioning</td>
+            <td>कुछ flash capacity को internal management और performance/endurance support के लिए reserve रखा जा सकता
+              है।</td>
+          </tr>
+        </table>
       </section>
       <section id="form-factors">
         <h2>SSD Form Factors and Interfaces</h2>
-        <p>SSD different physical sizes à¤”à¤° interfaces à¤®à¥‡à¤‚ available à¤¹à¥‹à¤¤à¥€ à¤¹à¥ˆà¥¤ Form factor physical shape define à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆ,
-          à¤œà¤¬à¤•à¤¿ interface data communication method define à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤</p>
-
+        <p>SSD different physical sizes और interfaces में available होती है। Form factor physical shape define करता है,
+          जबकि interface data communication method define करता है।</p>
         <div class="image-icon">
-          <img src="../images/ssd form factors.webp" alt="SSD Form Factors">
-          
+          <img alt="SSD Form Factors" src="../images/ssd form factors.webp" />
         </div>
-
         <h4>2.5-inch SATA SSD</h4>
-        <p>à¤¯à¤¹ laptop HDD à¤œà¥ˆà¤¸à¤¾ à¤†à¤•à¤¾à¤° à¤°à¤–à¤¤à¥€ à¤¹à¥ˆ à¤”à¤° SATA cable à¤¸à¥‡ connect à¤¹à¥‹à¤¤à¥€ à¤¹à¥ˆà¥¤ HDD upgrade à¤•à¥‡ à¤²à¤¿à¤ common option à¤¹à¥ˆà¥¤</p>
-
+        <p>यह laptop HDD जैसा आकार रखती है और SATA cable से connect होती है। HDD upgrade के लिए common option है।</p>
         <h4>M.2 SSD</h4>
-        <p>M.2 compact board form factor à¤¹à¥ˆ à¤œà¥‹ motherboard à¤ªà¤° direct install à¤¹à¥‹à¤¤à¥€ à¤¹à¥ˆà¥¤ M.2 SSD SATA à¤¯à¤¾ NVMe interface use
-          à¤•à¤° à¤¸à¤•à¤¤à¥€ à¤¹à¥ˆà¥¤</p>
-
+        <p>M.2 compact board form factor है जो motherboard पर direct install होती है। M.2 SSD SATA या NVMe interface use
+          कर सकती है।</p>
         <h4>PCIe Add-in Card SSD</h4>
-        <p>à¤¯à¤¹ PCIe expansion slot à¤®à¥‡à¤‚ install à¤¹à¥‹à¤¤à¥€ à¤¹à¥ˆ à¤”à¤° high-performance systems à¤®à¥‡à¤‚ use à¤¹à¥‹ à¤¸à¤•à¤¤à¥€ à¤¹à¥ˆà¥¤</p>
-
+        <p>यह PCIe expansion slot में install होती है और high-performance systems में use हो सकती है।</p>
         <h4>mSATA SSD</h4>
-        <p>Older compact devices à¤”à¤° laptops à¤®à¥‡à¤‚ use à¤¹à¥‹à¤¤à¥€ à¤¥à¥€à¥¤</p>
-
+        <p>Older compact devices और laptops में use होती थी।</p>
         <table>
           <tr>
             <th>Type</th>
@@ -334,26 +489,54 @@ Data is read when requested</pre>
             <td>Workstation/enterprise</td>
           </tr>
         </table>
+        <div class="remember-box"><b>Remember:</b><br />M.2 shape है; हर M.2 SSD NVMe नहीं होती।</div>
 
-        <div class="remember-box"><b>Remember:</b><br>M.2 shape à¤¹à¥ˆ; à¤¹à¤° M.2 SSD NVMe à¤¨à¤¹à¥€à¤‚ à¤¹à¥‹à¤¤à¥€à¥¤</div>
+        <h3>Form Factor और Interface में अंतर</h3>
+        <p><strong>Form factor</strong> SSD का physical size/shape बताता है, जबकि <strong>interface/protocol</strong>
+          बताता है कि SSD system के साथ किस communication path से data transfer करती है। उदाहरण के लिए M.2 एक form
+          factor है; M.2 SSD SATA या PCIe/NVMe technology use कर सकती है।</p>
+        <table>
+          <tr>
+            <th>Form Factor / Type</th>
+            <th>Typical Interface</th>
+            <th>Use</th>
+          </tr>
+          <tr>
+            <td>2.5-inch SSD</td>
+            <td>SATA</td>
+            <td>Desktop/laptop upgrade</td>
+          </tr>
+          <tr>
+            <td>M.2 SATA</td>
+            <td>SATA</td>
+            <td>Compact systems</td>
+          </tr>
+          <tr>
+            <td>M.2 NVMe</td>
+            <td>PCIe/NVMe</td>
+            <td>High-speed modern systems</td>
+          </tr>
+          <tr>
+            <td>PCIe Add-in Card</td>
+            <td>PCIe</td>
+            <td>Workstation/enterprise systems</td>
+          </tr>
+        </table>
       </section>
       <section id="features">
         <h2>Features of SSD</h2>
         <ul>
-          <li>Moving parts à¤¨à¤¹à¥€à¤‚ à¤¹à¥‹à¤¤à¥‡à¥¤</li>
-          <li>Fast boot à¤”à¤° application loadingà¥¤</li>
-          <li>Low access time à¤”à¤° low latencyà¥¤</li>
-          <li>Silent operationà¥¤</li>
-          <li>Lower power consumptionà¥¤</li>
-          <li>Shock à¤”à¤° vibration resistanceà¥¤</li>
-          <li>Compact form factorsà¥¤</li>
-          <li>SATA à¤”à¤° NVMe optionsà¥¤</li>
-          <li>TRIM, SMART à¤”à¤° ECC supportà¥¤</li>
-          <li>Different endurance ratingsà¥¤</li>
+          <li>Moving parts नहीं होते।</li>
+          <li>Fast boot और application loading।</li>
+          <li>Low access time और low latency।</li>
+          <li>Silent operation।</li>
+          <li>Lower power consumption।</li>
+          <li>Shock और vibration resistance।</li>
+          <li>Compact form factors।</li>
+          <li>SATA और NVMe options।</li>
+          <li>TRIM, SMART और ECC support।</li>
+          <li>Different endurance ratings।</li>
         </ul>
-
-      
-
         <h4>Important Specifications</h4>
         <table>
           <tr>
@@ -362,73 +545,122 @@ Data is read when requested</pre>
           </tr>
           <tr>
             <td>Capacity</td>
-            <td>à¤•à¤¿à¤¤à¤¨à¤¾ data store à¤¹à¥‹ à¤¸à¤•à¤¤à¤¾ à¤¹à¥ˆà¥¤</td>
+            <td>कितना data store हो सकता है।</td>
           </tr>
           <tr>
             <td>Read Speed</td>
-            <td>Data à¤•à¤¿à¤¤à¤¨à¥€ à¤¤à¥‡à¤œà¥€ à¤¸à¥‡ read à¤¹à¥‹à¤¤à¤¾ à¤¹à¥ˆà¥¤</td>
+            <td>Data कितनी तेजी से read होता है।</td>
           </tr>
           <tr>
             <td>Write Speed</td>
-            <td>Data à¤•à¤¿à¤¤à¤¨à¥€ à¤¤à¥‡à¤œà¥€ à¤¸à¥‡ write à¤¹à¥‹à¤¤à¤¾ à¤¹à¥ˆà¥¤</td>
+            <td>Data कितनी तेजी से write होता है।</td>
           </tr>
           <tr>
             <td>IOPS</td>
-            <td>Input/Output operations per secondà¥¤</td>
+            <td>Input/Output operations per second।</td>
           </tr>
           <tr>
             <td>TBW</td>
-            <td>Total bytes written endurance indicationà¥¤</td>
+            <td>Total bytes written endurance indication।</td>
           </tr>
           <tr>
             <td>DWPD</td>
-            <td>Drive writes per day, enterprise ratingà¥¤</td>
+            <td>Drive writes per day, enterprise rating।</td>
           </tr>
           <tr>
             <td>Interface</td>
-            <td>SATA, PCIe/NVMe à¤†à¤¦à¤¿à¥¤</td>
+            <td>SATA, PCIe/NVMe आदि।</td>
+          </tr>
+        </table>
+
+        <h3>Important SSD Specifications</h3>
+        <p>SSD खरीदते या compare करते समय capacity के साथ interface, sequential read/write speed, random performance,
+          IOPS और endurance rating जैसे specifications देखे जाते हैं। केवल advertised maximum speed देखकर पूरा
+          performance judge नहीं करना चाहिए।</p>
+        <table>
+          <tr>
+            <th>Specification</th>
+            <th>Meaning</th>
+          </tr>
+          <tr>
+            <td>Capacity</td>
+            <td>Drive में कितना data store किया जा सकता है।</td>
+          </tr>
+          <tr>
+            <td>Read Speed</td>
+            <td>Data पढ़ने की transfer performance।</td>
+          </tr>
+          <tr>
+            <td>Write Speed</td>
+            <td>Data लिखने की transfer performance।</td>
+          </tr>
+          <tr>
+            <td>IOPS</td>
+            <td>Input/Output operations per second; random workloads के लिए useful metric।</td>
+          </tr>
+          <tr>
+            <td>TBW</td>
+            <td>Total Bytes Written; endurance के लिए commonly used rating।</td>
+          </tr>
+          <tr>
+            <td>DWPD</td>
+            <td>Drive Writes Per Day; enterprise workloads में endurance indication।</td>
           </tr>
         </table>
       </section>
       <section id="advantages">
         <h2>Advantages of SSD</h2>
         <h4>High Speed</h4>
-        <p>SSD operating system boot, application loading à¤”à¤° file access à¤•à¥‹ faster à¤¬à¤¨à¤¾à¤¤à¥€ à¤¹à¥ˆà¥¤</p>
-
+        <p>SSD operating system boot, application loading और file access को faster बनाती है।</p>
         <h4>No Mechanical Parts</h4>
-        <p>Moving parts à¤¨ à¤¹à¥‹à¤¨à¥‡ à¤•à¥‡ à¤•à¤¾à¤°à¤£ noise à¤”à¤° mechanical failure risk à¤•à¤® à¤¹à¥‹à¤¤à¤¾ à¤¹à¥ˆà¥¤</p>
-
+        <p>Moving parts न होने के कारण noise और mechanical failure risk कम होता है।</p>
         <h4>Low Power Consumption</h4>
-        <p>Laptops à¤®à¥‡à¤‚ battery life improve à¤¹à¥‹ à¤¸à¤•à¤¤à¥€ à¤¹à¥ˆà¥¤</p>
-
+        <p>Laptops में battery life improve हो सकती है।</p>
         <h4>Shock Resistance</h4>
-        <p>Physical movement à¤”à¤° vibration à¤¸à¥‡ HDD à¤•à¥€ à¤¤à¥à¤²à¤¨à¤¾ à¤®à¥‡à¤‚ à¤•à¤® à¤ªà¥à¤°à¤­à¤¾à¤µà¤¿à¤¤ à¤¹à¥‹à¤¤à¥€ à¤¹à¥ˆà¥¤</p>
-
+        <p>Physical movement और vibration से HDD की तुलना में कम प्रभावित होती है।</p>
         <h4>Low Heat and Noise</h4>
-        <p>SSD silent operate à¤•à¤°à¤¤à¥€ à¤¹à¥ˆ à¤”à¤° mechanical motor heat generate à¤¨à¤¹à¥€à¤‚ à¤•à¤°à¤¤à¥€à¥¤</p>
-
+        <p>SSD silent operate करती है और mechanical motor heat generate नहीं करती।</p>
         <h4>Compact Size</h4>
-        <p>M.2 SSD slim laptops à¤”à¤° compact systems à¤®à¥‡à¤‚ easily fit à¤¹à¥‹ à¤¸à¤•à¤¤à¥€ à¤¹à¥ˆà¥¤</p>
-
+        <p>M.2 SSD slim laptops और compact systems में easily fit हो सकती है।</p>
         <h4>Faster Multitasking</h4>
-        <p>Multiple files à¤”à¤° applications access à¤•à¤°à¤¨à¥‡ à¤®à¥‡à¤‚ low latency useful à¤¹à¥‹à¤¤à¥€ à¤¹à¥ˆà¥¤</p>
+        <p>Multiple files और applications access करने में low latency useful होती है।</p>
+        <div class="note-box"><b>Real Life Example:</b><br />Old laptop में HDD की जगह SATA SSD लगाने से boot time और
+          software responsiveness noticeably improve हो सकती है।</div>
 
-        <div class="note-box"><b>Real Life Example:</b><br>Old laptop à¤®à¥‡à¤‚ HDD à¤•à¥€ à¤œà¤—à¤¹ SATA SSD à¤²à¤—à¤¾à¤¨à¥‡ à¤¸à¥‡ boot time à¤”à¤°
-          software responsiveness noticeably improve à¤¹à¥‹ à¤¸à¤•à¤¤à¥€ à¤¹à¥ˆà¥¤</div>
+        <h3>Advantages को Exam में कैसे लिखें</h3>
+        <ol>
+          <li><strong>High Speed:</strong> SSD का low latency access boot और application loading को तेज कर सकता है।</li>
+          <li><strong>No Moving Parts:</strong> Mechanical head और motor न होने से mechanical movement-related failure
+            risk कम होता है।</li>
+          <li><strong>Low Noise:</strong> Mechanical platter rotation नहीं होने से silent operation मिलता है।</li>
+          <li><strong>Low Power:</strong> कई use cases में HDD की तुलना में lower power consumption हो सकती है।</li>
+          <li><strong>Shock Resistance:</strong> Moving mechanical parts न होने से physical movement के प्रति generally
+            अधिक resistant होता है।</li>
+          <li><strong>Compact Size:</strong> M.2 जैसे form factors छोटे devices में useful हैं।</li>
+        </ol>
       </section>
       <section id="limitations">
         <h2>Limitations of SSD</h2>
         <ul>
-          <li>Cost per GB HDD à¤¸à¥‡ à¤…à¤§à¤¿à¤• à¤¹à¥‹ à¤¸à¤•à¤¤à¥€ à¤¹à¥ˆà¥¤</li>
-          <li>NAND cells à¤•à¥€ write endurance limited à¤¹à¥‹à¤¤à¥€ à¤¹à¥ˆà¥¤</li>
-          <li>Sudden failure à¤®à¥‡à¤‚ data recovery difficult à¤¹à¥‹ à¤¸à¤•à¤¤à¥€ à¤¹à¥ˆà¥¤</li>
-          <li>High-capacity SSD à¤®à¤¹à¤‚à¤—à¥€ à¤¹à¥‹ à¤¸à¤•à¤¤à¥€ à¤¹à¥ˆà¥¤</li>
-          <li>Performance drive à¤­à¤°à¤¨à¥‡ à¤ªà¤° reduce à¤¹à¥‹ à¤¸à¤•à¤¤à¥€ à¤¹à¥ˆà¥¤</li>
-          <li>Cheap SSDs à¤®à¥‡à¤‚ controller/cache quality lower à¤¹à¥‹ à¤¸à¤•à¤¤à¥€ à¤¹à¥ˆà¥¤</li>
+          <li>Cost per GB HDD से अधिक हो सकती है।</li>
+          <li>NAND cells की write endurance limited होती है।</li>
+          <li>Sudden failure में data recovery difficult हो सकती है।</li>
+          <li>High-capacity SSD महंगी हो सकती है।</li>
+          <li>Performance drive भरने पर reduce हो सकती है।</li>
+          <li>Cheap SSDs में controller/cache quality lower हो सकती है।</li>
         </ul>
-
-        <div class="remember-box"><b>Remember:</b><br>SSD fast à¤”à¤° reliable à¤¹à¥ˆ, à¤²à¥‡à¤•à¤¿à¤¨ backup à¤•à¥€ à¤œà¤°à¥‚à¤°à¤¤ à¤«à¤¿à¤° à¤­à¥€ à¤°à¤¹à¤¤à¥€ à¤¹à¥ˆà¥¤
+        <div class="remember-box"><b>Remember:</b><br />SSD fast और reliable है, लेकिन backup की जरूरत फिर भी रहती है।
         </div>
+
+        <h3>Limitations की Detailed Explanation</h3>
+        <ul>
+          <li>SSD का cost per GB कई cases में HDD से अधिक हो सकता है।</li>
+          <li>NAND flash cells की write endurance finite होती है।</li>
+          <li>Drive के अचानक fail होने पर data recovery difficult और uncertain हो सकती है।</li>
+          <li>Drive बहुत अधिक भरने पर कुछ workloads में performance प्रभावित हो सकती है।</li>
+          <li>Different SSD models में controller, NAND और cache design अलग हो सकते हैं, इसलिए specifications compare
+            करना जरूरी है।</li>
+        </ul>
       </section>
       <section id="applications">
         <h2>Applications of SSD</h2>
@@ -439,15 +671,15 @@ Data is read when requested</pre>
           </tr>
           <tr>
             <td>Desktop Computer</td>
-            <td>Fast boot à¤”à¤° application loading</td>
+            <td>Fast boot और application loading</td>
           </tr>
           <tr>
             <td>Laptop</td>
-            <td>Low power à¤”à¤° shock resistance</td>
+            <td>Low power और shock resistance</td>
           </tr>
           <tr>
             <td>Gaming</td>
-            <td>Fast game loading à¤”à¤° texture access</td>
+            <td>Fast game loading और texture access</td>
           </tr>
           <tr>
             <td>Video Editing</td>
@@ -455,7 +687,7 @@ Data is read when requested</pre>
           </tr>
           <tr>
             <td>Server</td>
-            <td>High IOPS à¤”à¤° low latency</td>
+            <td>High IOPS और low latency</td>
           </tr>
           <tr>
             <td>Database</td>
@@ -463,7 +695,7 @@ Data is read when requested</pre>
           </tr>
           <tr>
             <td>Industrial Systems</td>
-            <td>Vibration resistance à¤”à¤° reliability</td>
+            <td>Vibration resistance और reliability</td>
           </tr>
           <tr>
             <td>Embedded Devices</td>
@@ -471,11 +703,21 @@ Data is read when requested</pre>
           </tr>
           <tr>
             <td>Data Center</td>
-            <td>Enterprise workloads à¤”à¤° high performance</td>
+            <td>Enterprise workloads और high performance</td>
           </tr>
         </table>
 
-       
+        <h3>SSD के प्रमुख Applications</h3>
+        <ul>
+          <li><strong>Personal Computers:</strong> OS और software को faster responsive बनाने के लिए।</li>
+          <li><strong>Laptops:</strong> compact size, low latency और mobility-oriented use के लिए।</li>
+          <li><strong>Gaming:</strong> games और large assets की loading को तेज करने के लिए।</li>
+          <li><strong>Video Editing:</strong> high-speed media file access के लिए।</li>
+          <li><strong>Servers/Databases:</strong> low latency और high IOPS workloads के लिए।</li>
+          <li><strong>Data Centers:</strong> high-performance storage workloads में।</li>
+          <li><strong>Embedded/Industrial Systems:</strong> compact और vibration-resistant storage की आवश्यकता वाले
+            systems में।</li>
+        </ul>
       </section>
       <section id="ssd-vs-hdd">
         <h2>SSD vs HDD</h2>
@@ -526,34 +768,115 @@ Data is read when requested</pre>
             <td>Bulk storage and backup</td>
           </tr>
         </table>
+        <div class="note-box"><b>Practical Combination:</b><br />Many desktop systems SSD को operating system/software
+          के
+          लिए और HDD को large data storage के लिए use करते हैं।</div>
 
-        <div class="note-box"><b>Practical Combination:</b><br>Many desktop systems SSD à¤•à¥‹ operating system/software à¤•à¥‡
-          à¤²à¤¿à¤ à¤”à¤° HDD à¤•à¥‹ large data storage à¤•à¥‡ à¤²à¤¿à¤ use à¤•à¤°à¤¤à¥‡ à¤¹à¥ˆà¤‚à¥¤</div>
+        <h3>SSD vs HDD – Exam Comparison</h3>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>SSD</th>
+            <th>HDD</th>
+          </tr>
+          <tr>
+            <td>Technology</td>
+            <td>NAND flash</td>
+            <td>Magnetic platters</td>
+          </tr>
+          <tr>
+            <td>Moving Parts</td>
+            <td>No</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td>Access</td>
+            <td>Low latency, generally faster</td>
+            <td>Mechanical seek required</td>
+          </tr>
+          <tr>
+            <td>Noise</td>
+            <td>Silent</td>
+            <td>Mechanical noise possible</td>
+          </tr>
+          <tr>
+            <td>Shock Resistance</td>
+            <td>Generally better</td>
+            <td>Generally lower</td>
+          </tr>
+          <tr>
+            <td>Cost/GB</td>
+            <td>Generally higher</td>
+            <td>Generally lower</td>
+          </tr>
+          <tr>
+            <td>Best Use</td>
+            <td>OS, applications, high-speed workloads</td>
+            <td>Bulk storage, archives, backup</td>
+          </tr>
+        </table>
+        <p><strong>Conclusion:</strong> SSD speed और responsiveness के लिए बेहतर choice है, जबकि HDD large-capacity bulk
+          storage के लिए cost-effective हो सकता है। कई systems में दोनों का combination भी practical होता है।</p>
       </section>
       <section id="maintenance">
         <h2>SSD Maintenance and Best Practices</h2>
         <ul>
-          <li>Operating system à¤®à¥‡à¤‚ TRIM enabled à¤°à¤–à¥‡à¤‚à¥¤</li>
-          <li>SSD à¤•à¥‹ completely full à¤¨ à¤°à¤–à¥‡à¤‚à¥¤</li>
-          <li>Important data à¤•à¤¾ regular backup à¤²à¥‡à¤‚à¥¤</li>
-          <li>Firmware update à¤•à¥‡à¤µà¤² manufacturer guidance à¤•à¥‡ à¤…à¤¨à¥à¤¸à¤¾à¤° à¤•à¤°à¥‡à¤‚à¥¤</li>
-          <li>Unnecessary manual defragmentation avoid à¤•à¤°à¥‡à¤‚à¥¤</li>
-          <li>SMART health à¤”à¤° temperature monitor à¤•à¤°à¥‡à¤‚à¥¤</li>
-          <li>Sudden power loss à¤¸à¥‡ à¤¬à¤šà¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤ UPS use à¤•à¤°à¥‡à¤‚à¥¤</li>
-          <li>Correct interface à¤”à¤° motherboard compatibility verify à¤•à¤°à¥‡à¤‚à¥¤</li>
+          <li>Operating system में TRIM enabled रखें।</li>
+          <li>SSD को completely full न रखें।</li>
+          <li>Important data का regular backup लें।</li>
+          <li>Firmware update केवल manufacturer guidance के अनुसार करें।</li>
+          <li>Unnecessary manual defragmentation avoid करें।</li>
+          <li>SMART health और temperature monitor करें।</li>
+          <li>Sudden power loss से बचने के लिए UPS use करें।</li>
+          <li>Correct interface और motherboard compatibility verify करें।</li>
         </ul>
-
         <h4>Why Defragmentation is Not Required</h4>
-        <p>SSD à¤®à¥‡à¤‚ mechanical head movement à¤¨à¤¹à¥€à¤‚ à¤¹à¥‹à¤¤à¤¾à¥¤ à¤‡à¤¸à¤²à¤¿à¤ file fragments access à¤•à¤°à¤¨à¥‡ à¤®à¥‡à¤‚ HDD à¤œà¥ˆà¤¸à¤¾ seek delay à¤¨à¤¹à¥€à¤‚
-          à¤¹à¥‹à¤¤à¤¾à¥¤ Repeated defragmentation unnecessary writes à¤¬à¤¢à¤¼à¤¾ à¤¸à¤•à¤¤à¥€ à¤¹à¥ˆà¥¤</p>
+        <p>SSD में mechanical head movement नहीं होता। इसलिए file fragments access करने में HDD जैसा seek delay नहीं
+          होता। Repeated defragmentation unnecessary writes बढ़ा सकती है।</p>
+        <div class="remember-box"><b>Remember:</b><br />SSD को defragment नहीं, बल्कि TRIM और proper free space
+          management
+          की जरूरत होती है।</div>
 
-        <div class="remember-box"><b>Remember:</b><br>SSD à¤•à¥‹ defragment à¤¨à¤¹à¥€à¤‚, à¤¬à¤²à¥à¤•à¤¿ TRIM à¤”à¤° proper free space management
-          à¤•à¥€ à¤œà¤°à¥‚à¤°à¤¤ à¤¹à¥‹à¤¤à¥€ à¤¹à¥ˆà¥¤</div>
+        <h3>SSD Maintenance – Detailed Best Practices</h3>
+        <ol>
+          <li><strong>Regular Backup:</strong> Important files का backup अलग storage/device पर रखें।</li>
+          <li><strong>TRIM:</strong> Supported operating system में TRIM properly enabled रहने दें।</li>
+          <li><strong>Free Space:</strong> Drive को permanently 100% full रखने से बचें।</li>
+          <li><strong>Firmware:</strong> Manufacturer की guidance के अनुसार firmware update करें।</li>
+          <li><strong>Health Monitoring:</strong> SMART/health indicators और temperature पर ध्यान दें।</li>
+          <li><strong>Avoid Unnecessary Defragmentation:</strong> SSD को traditional HDD की तरह manually defragment करना
+            सामान्यतः आवश्यक नहीं है।</li>
+          <li><strong>Power Protection:</strong> Desktop systems में important work के लिए stable power/UPS helpful हो
+            सकता है।</li>
+        </ol>
+        <h3>Written Exam Question Bank</h3>
+        <div class="note-box">
+          <b>Short Questions:</b>
+          <ul>
+            <li>SSD का full form क्या है?</li>
+            <li>SSD को Solid State क्यों कहा जाता है?</li>
+            <li>NAND Flash क्या है?</li>
+            <li>SLC, MLC, TLC और QLC क्या हैं?</li>
+            <li>TRIM का क्या कार्य है?</li>
+            <li>Wear Leveling क्या है?</li>
+            <li>M.2 और NVMe में क्या अंतर है?</li>
+          </ul>
+          <b>Long Questions:</b>
+          <ul>
+            <li>SSD की structure और working principle को diagram/flow के साथ समझाइए।</li>
+            <li>NAND flash के SLC, MLC, TLC और QLC types की तुलना कीजिए।</li>
+            <li>SSD controller की technologies—Wear Leveling, Garbage Collection, TRIM और ECC—समझाइए।</li>
+            <li>SSD के advantages और limitations विस्तार से लिखिए।</li>
+            <li>SSD और HDD में अंतर table के माध्यम से समझाइए।</li>
+            <li>SSD के form factors और interfaces समझाइए।</li>
+            <li>SSD maintenance और best practices लिखिए।</li>
+          </ul>
+        </div>
+       
       </section>
       <section id="image">
-         <div class="image-icon">
-          <img src="../images/ssd.webp" alt="informative image">
-         
+        <div class="image-icon">
+          <img alt="informative image" src="../images/ssd.webp" />
         </div>
       </section>
     </main>
