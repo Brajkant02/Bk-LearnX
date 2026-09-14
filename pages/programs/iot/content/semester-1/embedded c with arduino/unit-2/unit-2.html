@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+
+<html lang="hi">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BK LearnX | IoT Unit 2 - IoT Protocols | Complete Notes</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--text:#172033;--muted:#5f6b7a;--primary:#315efb;--purple:#6d42e8;--border:#e2e8f0;--soft:#eef3ff;--code:#111827}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,"Noto Sans Devanagari",sans-serif;line-height:1.75}
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.top{max-width:1250px;margin:auto;padding:13px 20px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:23px;font-weight:800;color:var(--primary)}.logo span{color:var(--purple)}
+.menu{display:none;border:0;background:var(--soft);padding:8px 12px;border-radius:9px;font-size:20px}
+.layout{max-width:1250px;margin:auto;padding:25px 20px;display:grid;grid-template-columns:280px 1fr;gap:25px}
+aside{position:sticky;top:75px;height:calc(100vh - 95px);overflow:auto;background:var(--card);border:1px solid var(--border);border-radius:18px;padding:17px}
+aside h3{margin-top:0;color:var(--primary)}aside a{display:block;padding:7px 9px;margin:2px 0;text-decoration:none;color:var(--muted);border-radius:8px}aside a:hover{background:var(--soft);color:var(--primary)}
+.hero{background:linear-gradient(135deg,#172554,#4338ca);color:white;padding:36px;border-radius:22px;margin-bottom:22px}.hero h1{margin:0;font-size:35px}.hero p{margin:7px 0;color:#e8eaff}.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}.badge{padding:5px 11px;border-radius:999px;background:rgba(255,255,255,.14);font-size:13px}
+section{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:27px;margin-bottom:20px;box-shadow:0 5px 20px rgba(20,30,60,.04)}
+h2{margin-top:0;color:#203b9b;border-bottom:2px solid var(--soft);padding-bottom:8px}h3{color:#263550}
+table{width:100%;border-collapse:collapse;margin:15px 0;font-size:15px}th,td{border:1px solid var(--border);padding:10px;vertical-align:top;text-align:left}th{background:var(--soft)}
+.note{background:#f0fdf4;border-left:4px solid #16a34a;padding:13px 15px;border-radius:8px;margin:15px 0}.warn{background:#fff7ed;border-left:4px solid #ea580c;padding:13px 15px;border-radius:8px;margin:15px 0}.info{background:#eff6ff;border-left:4px solid #2563eb;padding:13px 15px;border-radius:8px;margin:15px 0}
+.diagram{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;margin:20px 0}.box{padding:13px 16px;border:2px solid #94a3b8;background:#f8fafc;border-radius:11px;font-weight:700}.arrow{font-size:24px;color:var(--primary)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}.mini{border:1px solid var(--border);border-radius:14px;padding:17px;background:#fbfcff}.mini h3{margin-top:0}
+footer{text-align:center;padding:30px;color:var(--muted)}
+@media(max-width:850px){.layout{grid-template-columns:1fr}.menu{display:block}aside{display:none;position:fixed;left:15px;right:15px;top:68px;height:auto;max-height:75vh;z-index:30}aside.open{display:block}.hero h1{font-size:28px}section{padding:20px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="top"><div class="logo">BK <span>LearnX</span></div><button class="menu" onclick="document.querySelector('aside').classList.toggle('open')">☰</button></div></header>
+<div class="layout">
+<aside><h3>Unit 2 • Complete</h3><a href="#intro">Introduction to IoT Protocols</a><a href="#iotprotocol">IoT Protocols Concept</a><a href="#need">Need &amp; Characteristics</a><a href="#communication">IoT Communication Flow</a><a href="#mqtt">MQTT</a><a href="#mqttmodel">MQTT Publisher-Subscriber</a><a href="#mqttfeatures">MQTT Features</a><a href="#coap">CoAP</a><a href="#coapfeatures">CoAP Features</a><a href="#amqp">AMQP</a><a href="#comparison">Protocol Comparison</a><a href="#efforts">Standardization Efforts</a><a href="#m2m">M2M</a><a href="#wsn">WSN Protocols</a><a href="#scada">SCADA</a><a href="#rfid">RFID Protocols</a><a href="#issues">Standardization Issues</a><a href="#unified">Unified Data Standards</a><a href="#ieee">IEEE 802.15.4</a><a href="#network">IoT Network Technologies</a><a href="#revision">Quick Revision</a></aside>
+<main>
+<div class="hero">
+<h1>Unit 2: IoT Protocols</h1>
+<p>Complete Notes — MQTT • CoAP • AMQP • Standardization • M2M • WSN • SCADA • RFID • Network Technologies</p>
+<div class="badges"><span class="badge">PGDCA Notes</span><span class="badge">IoT</span><span class="badge">Protocols</span><span class="badge">Exam Oriented</span><span class="badge">Complete Unit</span></div>
+</div>
+<section id="intro">
+<h2>1. Introduction to IoT Protocols</h2>
+<p><b>IoT Protocol</b> ऐसे communication rules और conventions का set है जिनके माध्यम से IoT devices, gateways, servers और applications data exchange करते हैं। IoT में devices अक्सर limited power, memory, processing और bandwidth के साथ काम करते हैं, इसलिए suitable protocols का selection important होता है।</p>
+<div class="diagram"><div class="box">IoT Device</div><div class="arrow">↔</div><div class="box">Communication Protocol</div><div class="arrow">↔</div><div class="box">Gateway / Server</div></div>
+<p>IoT protocols application requirements के अनुसार अलग-अलग काम करते हैं। कुछ protocols messaging के लिए, कुछ web-style resource communication के लिए और कुछ enterprise message queuing/transactional messaging के लिए उपयोग होते हैं।</p>
+</section>
+<section id="iotprotocol">
+<h2>2. IoT Protocols का Concept</h2>
+<p>दिए गए syllabus के अनुसार IoT protocols low-power IoT gadgets को associate/connect करने में उपयोग किए जाते हैं। ये client/device side communication को support करते हैं और data connectivity wired या cellular/network infrastructure के माध्यम से उपलब्ध हो सकती है।</p>
+<p>Practical IoT architecture में protocol केवल Internet connection का नाम नहीं है। Device local network, gateway या direct network link के माध्यम से communicate कर सकता है और application के लिए appropriate protocol इस्तेमाल कर सकता है।</p>
+</section>
+<section id="need">
+<h2>3. IoT Devices के लिए Protocols की आवश्यकता</h2>
+<div class="grid">
+<div class="mini"><h3>Low Power</h3><p>Battery-operated devices में communication overhead कम रखना useful होता है।</p></div>
+<div class="mini"><h3>Limited Resources</h3><p>IoT devices में CPU, memory और bandwidth सीमित हो सकती है।</p></div>
+<div class="mini"><h3>Data Exchange</h3><p>Sensor readings, commands और status information को reliably exchange करना होता है।</p></div>
+<div class="mini"><h3>Scalability</h3><p>IoT systems में devices की संख्या बहुत अधिक हो सकती है, इसलिए suitable communication architecture जरूरी है।</p></div>
+</div>
+</section>
+<section id="communication">
+<h2>4. IoT Communication का Basic Flow</h2>
+<div class="diagram"><div class="box">Sensor / IoT Device</div><div class="arrow">→</div><div class="box">Network</div><div class="arrow">→</div><div class="box">Protocol</div><div class="arrow">→</div><div class="box">Platform / Application</div></div>
+<p>उदाहरण के लिए sensor device temperature reading collect कर सकता है और MQTT जैसे messaging protocol के माध्यम से उसे किसी subscribed application या server तक भेज सकता है। दूसरी ओर, constrained device/resource-oriented communication के लिए CoAP जैसे protocol का उपयोग किया जा सकता है। Enterprise messaging scenarios में AMQP उपयोगी हो सकता है।</p>
+</section>
+<section id="mqtt">
+<h2>5. MQTT — Message Queuing Telemetry Transport</h2>
+<p><b>MQTT</b> एक lightweight messaging protocol है जो IoT और machine-to-machine communication में widely used है। इसकी प्रमुख पहचान इसका <b>publish-subscribe messaging model</b> है।</p>
+<div class="diagram"><div class="box">Publisher</div><div class="arrow">→</div><div class="box">MQTT Broker</div><div class="arrow">→</div><div class="box">Subscriber</div></div>
+<p>MQTT architecture में publisher सीधे हर receiver को message नहीं भेजता। Publisher message को किसी <b>topic</b> पर publish करता है। MQTT broker उस message को उस topic को subscribe करने वाले clients तक deliver करता है।</p>
+<h3>MQTT के Main Components</h3>
+<table><tr><th>Component</th><th>Role</th></tr>
+<tr><td>Publisher</td><td>Topic पर message/data publish करता है।</td></tr>
+<tr><td>Subscriber</td><td>Required topic को subscribe करके relevant messages receive करता है।</td></tr>
+<tr><td>Broker</td><td>MQTT clients के बीच messages receive, filter और route करता है।</td></tr>
+<tr><td>Topic</td><td>Message को logically organize/address करने वाला topic name.</td></tr>
+<tr><td>Message</td><td>Actual payload/data जो publish किया जाता है।</td></tr></table>
+</section>
+<section id="mqttmodel">
+<h2>6. MQTT Publisher-Subscriber Messaging Model</h2>
+<p>MQTT का publish-subscribe model sender और receiver को decouple करता है। Publisher को subscriber की direct identity जानना जरूरी नहीं होता; वह topic पर data publish करता है। Subscriber उस topic को subscribe करता है।</p>
+<div class="diagram"><div class="box">Temperature Sensor<br/>Publisher</div><div class="arrow">→</div><div class="box">Broker<br/>Topic: room/temp</div><div class="arrow">→</div><div class="box">Dashboard<br/>Subscriber</div></div>
+<p>एक ही topic के multiple subscribers हो सकते हैं। उदाहरण के लिए <code>home/room1/temperature</code> topic पर publish हुआ data dashboard, mobile application और monitoring service जैसे multiple subscribers तक पहुँच सकता है, यदि वे उस topic को subscribe करते हों।</p>
+<h3>Message Flow</h3>
+<ol>
+<li>IoT device broker से connection establish करता है।</li>
+<li>Publisher किसी topic पर message publish करता है।</li>
+<li>Broker message receive करता है।</li>
+<li>Broker matching topic के subscribers identify करता है।</li>
+<li>Broker message subscribers को forward करता है।</li>
+</ol>
+</section>
+<section id="mqttfeatures">
+<h2>7. MQTT की प्रमुख विशेषताएँ</h2>
+<table><tr><th>Feature</th><th>Explanation</th></tr>
+<tr><td>Lightweight</td><td>Protocol को constrained environments और low-overhead messaging के लिए design किया गया है।</td></tr>
+<tr><td>Publish/Subscribe</td><td>Publisher और subscriber broker के माध्यम से communicate करते हैं।</td></tr>
+<tr><td>Topic Based</td><td>Messages topics के आधार पर organize और route होते हैं।</td></tr>
+<tr><td>Many-to-Many Communication</td><td>एक publisher और कई subscribers या कई publishers/subscribers का model बनाया जा सकता है।</td></tr>
+<tr><td>Quality of Service</td><td>MQTT अलग QoS levels provide करता है ताकि delivery requirements के अनुसार behavior choose किया जा सके।</td></tr>
+<tr><td>Persistent Sessions / Retained Features</td><td>MQTT में session और retained-message जैसी capabilities available हैं, configuration/version/use case के अनुसार।</td></tr>
+</table>
+<div class="info"><b>Exam Point:</b> MQTT का सबसे important keyword याद रखें — <b>Publisher → Broker → Subscriber</b>.</div>
+</section>
+<section id="coap">
+<h2>8. CoAP — Constrained Application Protocol</h2>
+<p><b>CoAP</b> का full form <b>Constrained Application Protocol</b> है। यह एक <b>application-layer protocol</b> है जिसे constrained devices और constrained networks के लिए design किया गया है।</p>
+<p>CoAP web-style interaction को constrained IoT environments में support करता है। इसका design HTTP के resource-oriented/request-response concepts से related है, लेकिन constrained environments की requirements को ध्यान में रखता है।</p>
+<div class="diagram"><div class="box">CoAP Client</div><div class="arrow">Request →</div><div class="box">CoAP Server / Resource</div><div class="arrow">← Response</div><div class="box">IoT Application</div></div>
+<h3>CoAP का Basic Model</h3>
+<p>Client किसी resource के लिए request भेज सकता है और server response देता है। Resource को URI-like path से identify किया जा सकता है। GET, POST, PUT और DELETE जैसे request methods resource interaction के लिए used होते हैं।</p>
+</section>
+<section id="coapfeatures">
+<h2>9. CoAP की प्रमुख विशेषताएँ</h2>
+<table><tr><th>Feature</th><th>Explanation</th></tr>
+<tr><td>Constrained Devices</td><td>Limited memory, processing और network resources वाले devices के लिए suitable design.</td></tr>
+<tr><td>Application Layer</td><td>CoAP application layer पर operate करता है।</td></tr>
+<tr><td>Request/Response</td><td>Client request और server response के आधार पर communication.</td></tr>
+<tr><td>Resource Oriented</td><td>IoT resources को identify और manipulate करने का web-style model.</td></tr>
+<tr><td>HTTP-like Methods</td><td>GET, POST, PUT और DELETE जैसे methods resource operations को represent करते हैं।</td></tr>
+<tr><td>Low Overhead</td><td>Constrained networks में communication overhead कम रखने के उद्देश्य से design.</td></tr>
+</table>
+<div class="note"><b>Remember:</b> MQTT को primarily <b>messaging / publish-subscribe</b> model से और CoAP को <b>constrained web/resource communication</b> से associate करें।</div>
+</section>
+<section id="amqp">
+<h2>10. AMQP — Advanced Message Queuing Protocol</h2>
+<p><b>AMQP</b> का full form <b>Advanced Message Queuing Protocol</b> है। यह एक open standard application-layer messaging protocol है, जिसका उपयोग message-oriented communication और transactional/enterprise messaging scenarios में किया जाता है।</p>
+<p>AMQP systems में messages को queues और routing mechanisms के माध्यम से producers से consumers तक deliver किया जा सकता है। इसका focus reliable and structured messaging workflows पर हो सकता है।</p>
+<div class="diagram"><div class="box">Producer</div><div class="arrow">→</div><div class="box">AMQP Broker</div><div class="arrow">→</div><div class="box">Queue</div><div class="arrow">→</div><div class="box">Consumer</div></div>
+<h3>AMQP के Basic Elements</h3>
+<table><tr><th>Element</th><th>Role</th></tr>
+<tr><td>Producer</td><td>Message generate/send करता है।</td></tr>
+<tr><td>Broker</td><td>Messages को receive और route करता है।</td></tr>
+<tr><td>Exchange / Routing</td><td>Messages को appropriate destination/queue की ओर route करने में सहायता करता है।</td></tr>
+<tr><td>Queue</td><td>Messages को consumer द्वारा process किए जाने तक hold कर सकती है।</td></tr>
+<tr><td>Consumer</td><td>Queue से message receive/process करता है।</td></tr>
+</table>
+</section>
+<section id="comparison">
+<h2>11. MQTT vs CoAP vs AMQP</h2>
+<table><tr><th>Point</th><th>MQTT</th><th>CoAP</th><th>AMQP</th></tr>
+<tr><td>Full Form</td><td>Message Queuing Telemetry Transport</td><td>Constrained Application Protocol</td><td>Advanced Message Queuing Protocol</td></tr>
+<tr><td>Core Model</td><td>Publish/Subscribe</td><td>Request/Response, resource-oriented</td><td>Message queuing/routing</td></tr>
+<tr><td>Main Focus</td><td>Lightweight messaging</td><td>Constrained web-style IoT communication</td><td>Structured/enterprise messaging</td></tr>
+<tr><td>Important Element</td><td>Broker + Topic</td><td>Resource + Client/Server</td><td>Broker + Exchange/Queue</td></tr>
+<tr><td>Typical Association</td><td>IoT telemetry and event messaging</td><td>Constrained devices/resources</td><td>Enterprise and transactional messaging</td></tr>
+</table>
+</section>
+
+<section id="standardization">
+<h2>12. Protocol Standardization for IoT</h2>
+<p><b>Protocol Standardization</b> का अर्थ communication के लिए common rules, formats, interfaces और technical specifications तय करना है ताकि अलग-अलग manufacturers और systems के devices एक-दूसरे के साथ communicate कर सकें।</p>
+<p>IoT ecosystem में अनेक devices, networks और platforms होते हैं। यदि सभी अलग-अलग proprietary methods use करें, तो interoperability difficult हो सकती है। Standards इस problem को कम करने में सहायता करते हैं।</p>
+<div class="diagram"><div class="box">Device A</div><div class="arrow">↔</div><div class="box">Common Standard</div><div class="arrow">↔</div><div class="box">Device B</div></div>
+</section><section id="efforts">
+<h2>13. Standardization Efforts in IoT</h2>
+<p>IoT standardization एक single protocol से पूरा नहीं होता। अलग-अलग application areas और technology layers के लिए अलग standards और protocol families विकसित हुए हैं। Syllabus में M2M, WSN, SCADA और RFID को important standardization efforts/areas के रूप में शामिल किया गया है।</p>
+<table><tr><th>Area</th><th>Basic Focus</th><th>IoT Relevance</th></tr>
+<tr><td>M2M</td><td>Machine-to-Machine communication</td><td>Machines/devices के बीच automated data exchange</td></tr>
+<tr><td>WSN</td><td>Wireless Sensor Networks</td><td>Multiple sensor nodes का wireless networking</td></tr>
+<tr><td>SCADA</td><td>Supervisory Control and Data Acquisition</td><td>Industrial monitoring और control</td></tr>
+<tr><td>RFID</td><td>Radio Frequency Identification</td><td>Objects/tags की identification और tracking</td></tr></table>
+</section><section id="m2m">
+<h2>14. M2M — Machine-to-Machine Communication</h2>
+<p><b>M2M</b> का full form <b>Machine-to-Machine</b> है। इसमें machines या devices human intervention के बिना data exchange और automated communication कर सकते हैं।</p>
+<div class="diagram"><div class="box">Machine / Sensor</div><div class="arrow">→</div><div class="box">Communication Network</div><div class="arrow">→</div><div class="box">Machine / System</div></div>
+<h3>Example</h3><p>एक industrial machine अपनी operating status दूसरी monitoring system को automatically भेज सकती है। इसी तरह meter reading automatically central system तक भेजी जा सकती है।</p>
+<h3>M2M के मुख्य points</h3>
+<ul><li>Machine-to-machine data exchange.</li><li>Human intervention को कम करने का उद्देश्य।</li><li>Monitoring, automation और remote management में उपयोग।</li><li>IoT के development में important conceptual foundation.</li></ul>
+</section><section id="wsn">
+<h2>15. WSN — Wireless Sensor Network Protocols</h2>
+<p><b>WSN (Wireless Sensor Network)</b> कई sensor nodes का network है जो wireless communication के माध्यम से sensed data collect और forward करता है। Sensor nodes generally sensing, processing और communication capabilities रखते हैं।</p>
+<div class="diagram"><div class="box">Sensor Node</div><div class="arrow">)))</div><div class="box">Sensor Node</div><div class="arrow">)))</div><div class="box">Gateway / Sink</div><div class="arrow">→</div><div class="box">Application</div></div>
+<h3>WSN में Protocol की भूमिका</h3>
+<ul><li>Sensor nodes के बीच communication.</li><li>Data collection और forwarding.</li><li>Energy-efficient communication support.</li><li>Network organization और routing.</li></ul>
+<p>WSN technologies में low-power wireless standards महत्वपूर्ण हैं। IEEE 802.15.4 ऐसे low-rate wireless personal area networking technologies के लिए important foundation है और कई IoT/WSN stacks इसका उपयोग करते हैं।</p>
+</section><section id="scada">
+<h2>16. SCADA</h2>
+<p><b>SCADA</b> का full form <b>Supervisory Control and Data Acquisition</b> है। यह industrial systems में processes को monitor और supervise करने तथा field devices से data acquire करने के लिए उपयोग होने वाला architecture/system category है।</p>
+<div class="diagram"><div class="box">Sensors / Field Devices</div><div class="arrow">→</div><div class="box">RTU / PLC</div><div class="arrow">→</div><div class="box">SCADA System</div><div class="arrow">→</div><div class="box">Operator</div></div>
+<h3>SCADA के Major Elements</h3>
+<table><tr><th>Element</th><th>Role</th></tr><tr><td>Field Sensors</td><td>Physical process से measurements collect करना।</td></tr>
+<tr><td>Actuators</td><td>Control commands को physical action में बदलना।</td></tr>
+<tr><td>PLC / RTU</td><td>Field data collect/control और communication support करना।</td></tr>
+<tr><td>Communication Network</td><td>Field equipment और supervisory system के बीच data transfer.</td></tr>
+<tr><td>SCADA Server / Software</td><td>Monitoring, data handling, alarms और supervisory functions.</td></tr>
+<tr><td>HMI</td><td>Operator को process status और controls का interface देना।</td></tr></table>
+<div class="info"><b>IoT Connection:</b> SCADA primarily industrial control/monitoring domain से जुड़ा है, जबकि modern IIoT systems additional Internet/cloud connectivity और analytics capabilities जोड़ सकते हैं।</div>
+</section><section id="rfid">
+<h2>17. RFID Protocols</h2>
+<p><b>RFID (Radio Frequency Identification)</b> radio waves का उपयोग करके tags/objects की identification और tracking के लिए technology है। एक RFID system में reader/interrogator और RFID tag जैसे components होते हैं।</p>
+<div class="diagram"><div class="box">RFID Reader</div><div class="arrow">)))</div><div class="box">RFID Tag</div><div class="arrow">→</div><div class="box">Identification Data</div></div>
+<table><tr><th>Component</th><th>Function</th></tr><tr><td>RFID Tag</td><td>Object से associated identification/data carry करता है।</td></tr>
+<tr><td>RFID Reader</td><td>Radio interface के माध्यम से tag को interrogate/read करता है।</td></tr>
+<tr><td>Backend/Application</td><td>Read information को store/process करके tracking/application functions provide कर सकता है।</td></tr></table>
+<h3>Applications</h3><ul><li>Inventory tracking</li><li>Asset identification</li><li>Access/control systems</li><li>Supply chain tracking</li></ul>
+</section><section id="issues">
+<h2>18. Issues with Internet of Things Standardization</h2>
+<p>IoT में standardization challenging है क्योंकि ecosystem में devices, vendors, communication technologies और application requirements बहुत diverse होते हैं।</p>
+<table><tr><th>Issue</th><th>Explanation</th></tr>
+<tr><td>Fragmentation</td><td>Different vendors और domains में अलग technologies/protocols होने से ecosystem fragmented हो सकता है।</td></tr>
+<tr><td>Interoperability</td><td>Different systems को seamlessly communicate कराने में difficulty हो सकती है।</td></tr>
+<tr><td>Legacy Systems</td><td>पुराने industrial/devices को नए IoT standards से integrate करना कठिन हो सकता है।</td></tr>
+<tr><td>Security</td><td>Standardized interfaces में security requirements और secure lifecycle management जरूरी हैं।</td></tr>
+<tr><td>Privacy</td><td>Different systems में data collection, sharing और ownership के rules अलग हो सकते हैं।</td></tr>
+<tr><td>Scalability</td><td>Standards को small deployments से massive device ecosystems तक scale करना पड़ता है।</td></tr>
+<tr><td>Rapid Technology Change</td><td>Technology तेजी से बदलने से standards को update/evolve करना पड़ता है।</td></tr>
+<tr><td>Vendor Interests</td><td>Proprietary technologies और competing ecosystems common standards adoption को प्रभावित कर सकते हैं।</td></tr>
+</table>
+<div class="note"><b>Exam Point:</b> IoT standardization का central goal <b>interoperability</b> है, लेकिन fragmentation, security, legacy integration और rapidly changing technology इसकी major challenges हैं।</div>
+</section><section id="unified">
+<h2>19. Unified Data Standards</h2>
+<p><b>Unified Data Standards</b> का उद्देश्य data representation, formats, meanings और exchange mechanisms को consistent बनाना है ताकि अलग-अलग IoT systems data को समझ और process कर सकें।</p>
+<div class="diagram"><div class="box">Device Data</div><div class="arrow">→</div><div class="box">Common Data Format / Standard</div><div class="arrow">→</div><div class="box">Different Applications</div></div>
+<h3>Why Unified Data Standards?</h3>
+<ul><li>Interoperability improve करने के लिए।</li><li>Data integration आसान बनाने के लिए।</li><li>Different vendors के systems को connect करने के लिए।</li><li>Analytics और application development को simplify करने के लिए।</li><li>Duplicate data conversion और custom integration effort को कम करने के लिए।</li></ul>
+</section><section id="ieee">
+<h2>20. IEEE 802.15.4</h2>
+<p><b>IEEE 802.15.4</b> low-rate wireless personal area networks (LR-WPANs) के लिए standard है। यह low-power, low-data-rate wireless communication के लिए important foundation provide करता है।</p>
+<h3>Key Characteristics</h3>
+<table><tr><th>Point</th><th>Description</th></tr>
+<tr><td>Standard</td><td>IEEE 802.15.4</td></tr><tr><td>Network Area</td><td>Low-rate Wireless Personal Area Network (LR-WPAN)</td></tr>
+<tr><td>Focus</td><td>Low-power और low-data-rate wireless communication</td></tr>
+<tr><td>IoT Relevance</td><td>कई low-power IoT/WSN technologies के communication foundation के रूप में उपयोग।</td></tr>
+<tr><td>Related Technologies</td><td>Zigbee और अन्य protocol stacks 802.15.4 PHY/MAC पर आधारित हो सकते हैं, लेकिन वे IEEE 802.15.4 के समान चीज नहीं हैं।</td></tr></table>
+<div class="warn"><b>Important:</b> IEEE 802.15.4 एक standard है; Zigbee एक higher-level protocol/technology stack है जो 802.15.4 की lower-layer capabilities का उपयोग कर सकता है। दोनों को identical नहीं मानना चाहिए।</div>
+</section><section id="network">
+<h2>21. Network Protocols / Technologies in IoT</h2>
+<p>IoT में connectivity requirements के अनुसार अलग-अलग wired और wireless network technologies उपयोग होती हैं। नीचे syllabus में दिए protocols/technologies का overview है।</p>
+<h3>LoRaWAN</h3>
+<p><b>LoRaWAN</b> एक Low Power Wide Area Network (LPWAN) protocol है जिसे long-range, low-power IoT communication के लिए design किया गया है। यह battery-operated devices के लिए suitable use cases में useful हो सकता है।</p>
+<h3>Z-Wave</h3>
+<p><b>Z-Wave</b> low-power wireless technology/protocol है जो विशेष रूप से smart-home और building automation applications में commonly associated है।</p>
+<h3>Modbus</h3>
+<p><b>Modbus</b> industrial communication protocol है जिसका उपयोग controllers, sensors और industrial equipment के बीच data exchange के लिए किया जाता है। इसके serial और TCP-based implementations commonly encountered हैं।</p>
+<h3>Wi-Fi</h3>
+<p><b>Wi-Fi</b> wireless LAN technology है जो comparatively high data-rate network connectivity provide कर सकती है। Smart appliances, cameras और Internet-connected devices में इसका common use है।</p>
+<h3>Bluetooth</h3>
+<p><b>Bluetooth</b> short-range wireless communication technology है। यह nearby devices के बीच communication के लिए उपयोग होती है। Bluetooth Low Energy (BLE) battery-powered IoT devices के लिए particularly useful variant है।</p>
+<h3>KNX</h3>
+<p><b>KNX</b> building automation के लिए widely used standardized communication technology/family है। इसका उपयोग lighting, HVAC, blinds और building control systems जैसे applications में किया जाता है।</p>
+<h3>Zigbee</h3>
+<p><b>Zigbee</b> low-power wireless mesh-oriented technology/protocol stack है जो smart home, automation और sensor networks जैसे applications में commonly used है। यह IEEE 802.15.4 की PHY/MAC capabilities का उपयोग करने वाले ecosystems में से एक है।</p>
+</section><section id="comparison2">
+<h2>22. IoT Network Technologies — Comparison</h2>
+<table><tr><th>Technology</th><th>Main Characteristic</th><th>Typical IoT Use</th></tr>
+<tr><td>LoRaWAN</td><td>Long-range, low-power LPWAN</td><td>Remote sensors, smart metering, agriculture</td></tr>
+<tr><td>Z-Wave</td><td>Low-power wireless, smart-home oriented</td><td>Home/building automation</td></tr>
+<tr><td>Modbus</td><td>Industrial device communication</td><td>Industrial automation and monitoring</td></tr>
+<tr><td>Wi-Fi</td><td>Wireless LAN, relatively high throughput</td><td>Smart appliances, gateways, cameras</td></tr>
+<tr><td>Bluetooth / BLE</td><td>Short-range wireless; BLE optimized for low energy</td><td>Wearables, peripherals, nearby sensors</td></tr>
+<tr><td>KNX</td><td>Building automation standard/technology</td><td>Lighting, HVAC, building control</td></tr>
+<tr><td>Zigbee</td><td>Low-power wireless, mesh-oriented ecosystem</td><td>Smart home, sensors, automation</td></tr>
+</table>
+</section><section id="revision"><h2>23. Quick Revision — Complete Unit 2</h2><div class="grid"><div class="card"><strong>IoT Protocol</strong><p>IoT devices, gateways, servers और applications के बीच communication के rules/conventions.</p></div><div class="card"><strong>MQTT</strong><p>Lightweight publish-subscribe messaging protocol; Broker, Topic, Publisher और Subscriber इसके प्रमुख concepts हैं.</p></div><div class="card"><strong>CoAP</strong><p>Constrained devices/networks के लिए lightweight, resource-oriented web-style protocol.</p></div><div class="card"><strong>AMQP</strong><p>Enterprise-oriented message queuing protocol जिसमें producer, broker, exchange/routing, queue और consumer जैसे elements होते हैं.</p></div><div class="card"><strong>Protocol Standardization</strong><p>IoT में common rules, interoperability, compatibility, scalability और reliable communication के लिए standards महत्वपूर्ण हैं.</p></div><div class="card"><strong>M2M</strong><p>Machine-to-Machine communication जिसमें machines/devices आपस में data exchange कर सकते हैं.</p></div><div class="card"><strong>WSN</strong><p>Wireless Sensor Network में sensor nodes wireless तरीके से sensing data collect और forward करते हैं.</p></div><div class="card"><strong>SCADA</strong><p>Industrial monitoring/control system जिसमें field devices, communication और supervisory software का उपयोग होता है.</p></div><div class="card"><strong>RFID</strong><p>Radio Frequency Identification technology जो radio waves के माध्यम से tagged objects की पहचान/डेटा capture में मदद करती है.</p></div><div class="card"><strong>Unified Data Standards</strong><p>Different devices/platforms के data को consistent format/meaning में exchange करने के लिए common data standards.</p></div><div class="card"><strong>IEEE 802.15.4</strong><p>Low-rate wireless personal-area networking के लिए lower-layer standard/foundation; Zigbee जैसे stacks इससे संबंधित हो सकते हैं.</p></div><div class="card"><strong>LoRaWAN</strong><p>Long-range, low-power IoT networking technology/protocol family, especially battery-powered wide-area deployments के लिए.</p></div><div class="card"><strong>Z-Wave</strong><p>Low-power wireless technology, commonly associated with smart-home/device communication.</p></div><div class="card"><strong>Modbus</strong><p>Industrial communication protocol, widely used for communication between controllers, sensors and other industrial devices.</p></div><div class="card"><strong>Wi-Fi</strong><p>High-throughput wireless networking technology used where comparatively higher power and bandwidth are acceptable.</p></div><div class="card"><strong>Bluetooth / BLE</strong><p>Short-range wireless communication; BLE low-power IoT and sensor applications के लिए विशेष रूप से useful है.</p></div><div class="card"><strong>KNX</strong><p>Building/home automation में devices के communication और control के लिए standardized technology/protocol ecosystem.</p></div><div class="card"><strong>Zigbee</strong><p>Low-power wireless IoT/home-automation technology/stack commonly built around IEEE 802.15.4 capabilities.</p></div></div><div class="note">Important distinction: <b>IEEE 802.15.4</b> एक lower-layer wireless standard है, जबकि <b>Zigbee</b> एक higher-level technology/protocol stack है जो relevant deployments में 802.15.4 capabilities का उपयोग करता है।</div></section></main>
+</div>
+<footer><p>BK LearnX • PGDCA • IoT Unit 2 • Complete Protocols Notes</p></footer>
+</body>
+</html>
