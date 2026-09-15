@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BK LearnX | IoT Unit 4 - Web of Things</title>
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,"Noto Sans Devanagari",sans-serif;line-height:1.75;background:#f4f7fb;color:#172033}
+.layout{display:flex;max-width:1450px;margin:auto}
+aside{width:285px;position:sticky;top:0;height:100vh;overflow-y:auto;background:#101827;color:#fff;padding:24px}
+aside h3{margin-top:0;font-size:20px}
+aside a{display:block;color:#dce7ff;text-decoration:none;padding:8px 10px;margin:3px 0;border-radius:8px;font-size:14px}
+aside a:hover{background:#26354f}
+main{flex:1;min-width:0;padding:30px;max-width:1080px}
+.hero{background:#fff;padding:38px;border-radius:22px;margin-bottom:24px;box-shadow:0 8px 28px #0000000d}
+.hero h1{margin:0 0 8px;font-size:38px;color:#123b68}
+.hero p{margin:7px 0}
+.badges span{display:inline-block;background:#edf4ff;border:1px solid #d7e5fa;padding:5px 10px;border-radius:999px;margin:5px 5px 0 0;font-size:12px}
+section{background:#fff;padding:28px;margin:20px 0;border-radius:18px;box-shadow:0 7px 25px #0000000b}
+h2{color:#163f6b;margin-top:0;font-size:27px}
+h3{color:#234f78}
+.note{background:#eef7ff;border-left:5px solid #3b78bb;padding:15px 18px;border-radius:8px;margin:18px 0}
+.warning{background:#fff7e8;border-left:5px solid #d89b25;padding:15px 18px;border-radius:8px;margin:18px 0}
+.flow{background:#f7f9fc;border:1px dashed #aab8ca;padding:17px;text-align:center;border-radius:12px;font-weight:bold;margin:18px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
+.card{background:#f8fafc;padding:18px;border-radius:13px;border:1px solid #e5eaf1}
+.card b{color:#204e7b}
+table{width:100%;border-collapse:collapse;margin:18px 0;display:table}
+th,td{border:1px solid #dbe2ec;padding:11px;vertical-align:top}
+th{background:#edf2f7}
+ul{padding-left:24px}
+footer{text-align:center;color:#667085;padding:25px}
+@media(max-width:850px){
+ .layout{display:block}
+ aside{position:relative;width:100%;height:auto;max-height:none}
+ aside a{display:inline-block}
+ main{padding:15px}
+ .hero{padding:25px}
+ .hero h1{font-size:30px}
+ section{padding:20px}
+ table{font-size:14px;display:block;overflow-x:auto;white-space:normal}
+}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside>
+<h3>Unit 4 • Web of Things</h3>
+<a href="#intro">Introduction</a><a href="#wot-vs-iot">WoT vs IoT</a><a href="#pillars">Two Pillars of Web</a><a href="#architecture">Web Architecture in WoT</a><a href="#standardization">WoT Standardization</a><a href="#platform">Platform Middleware</a><a href="#working">Middleware Working</a><a href="#comparison">Relationship</a><a href="#revision">Quick Revision</a>
+</aside>
+<main>
+<div class="hero">
+<h1>Unit 4: Web of Things</h1>
+<p><b>BK LearnX • PGDCA • Detailed Exam-Oriented Notes</b></p>
+<p>Web of Things vs Internet of Things • Two Pillars of Web Architecture • Standardization • Platform Middleware</p>
+<div class="badges">
+<span>PGDCA</span><span>IoT</span><span>WoT</span><span>Exam Oriented</span><span>Hindi + English</span>
+</div>
+</div>
+<section id="intro"><h2>1. Web of Things (WoT) — Introduction</h2>
+<p><b>Web of Things (WoT)</b> का मुख्य उद्देश्य Internet-connected devices और physical things को Web technologies के साथ accessible और interoperable बनाना है। WoT, existing Web concepts जैसे <b>HTTP, URIs, REST और Web APIs</b> का उपयोग करके connected things के साथ interaction को आसान बनाने की दिशा में काम करता है।</p>
+<div class="note"><b>Exam Definition:</b> Web of Things एक approach है जिसमें physical/IoT things को Web technologies और Web architecture के माध्यम से discover, access और interact किया जा सकता है।</div>
+<p>सरल शब्दों में: <b>IoT चीजों को connect करता है, जबकि WoT उन connected चीजों के interaction को Web के माध्यम से आसान बनाने पर focus करता है।</b></p>
+</section><section id="wot-vs-iot"><h2>2. Web of Things versus Internet of Things</h2>
+<table>
+<tr><th>Basis</th><th>Internet of Things (IoT)</th><th>Web of Things (WoT)</th></tr>
+<tr><td>Basic idea</td><td>Physical devices/things को network और Internet से connect करना.</td><td>Connected things को Web technologies और Web architecture से accessible/interoperable बनाना.</td></tr>
+<tr><td>Focus</td><td>Connectivity, sensing, communication और device ecosystem.</td><td>Web-based interaction, discovery और application integration.</td></tr>
+<tr><td>Technologies</td><td>MQTT, CoAP, BLE, Zigbee, LoRaWAN आदि सहित अनेक IoT technologies.</td><td>Web technologies जैसे HTTP, URI, REST और Web APIs का उपयोग किया जा सकता है.</td></tr>
+<tr><td>Abstraction</td><td>Device/network details comparatively अधिक दिखाई दे सकते हैं.</td><td>Web-oriented abstraction devices को applications के लिए easier बनाती है.</td></tr>
+<tr><td>Goal</td><td>Things को connect और communicate करना.</td><td>Connected things को Web ecosystem में integrate और interact करना.</td></tr>
+</table>
+<div class="flow">IoT: Thing → Network → Internet/Services<br><br>WoT: Thing → Web Interface/Description → Web Application</div>
+<div class="note"><b>Remember:</b> WoT को IoT का replacement नहीं समझना चाहिए। WoT, IoT ecosystem के ऊपर Web-based interaction और interoperability की layer/approach के रूप में समझा जा सकता है।</div>
+</section><section id="pillars"><h2>3. Two Pillars of the Web Architecture</h2>
+<p>Web Architecture को समझने के लिए syllabus में दिए गए <b>Two Pillars</b> को Web की मूल architectural ideas के रूप में समझना उपयोगी है। WoT इन्हीं Web principles का उपयोग connected things तक पहुंच बनाने के लिए करता है।</p>
+<div class="grid">
+<div class="card"><h3>1. Identification / URI</h3><p>Web पर resources की पहचान के लिए <b>URI (Uniform Resource Identifier)</b> का उपयोग होता है। WoT में किसी Thing या उसके resources/actions को identifiable Web resources के रूप में represent किया जा सकता है।</p></div>
+<div class="card"><h3>2. Interaction / Web Protocols</h3><p>Web protocols और standard interaction mechanisms, जैसे <b>HTTP</b>, client और resource के बीच communication को define करते हैं। WoT इन्हें Things के interaction के लिए leverage कर सकता है।</p></div>
+</div>
+<div class="note"><b>Core idea:</b> एक Web-based Thing को identify करने के लिए URI जैसी पहचान और उससे interact करने के लिए standard Web mechanisms दोनों महत्वपूर्ण हैं।</div>
+</section><section id="architecture"><h2>4. WoT में Web Architecture का उपयोग</h2>
+<p>Web Architecture की ताकत यह है कि applications को हर device के proprietary low-level communication mechanism को अलग-अलग समझने की आवश्यकता कम हो सकती है। WoT Web-based interface और descriptions के माध्यम से Things को application layer से connect करने में मदद करता है।</p>
+<div class="flow">Thing/Sensor → WoT Interface & Description → Web/HTTP → Application</div>
+<ul>
+<li><b>Identification:</b> Thing/resources को unique Web-oriented identifiers से represent करना.</li>
+<li><b>Representation:</b> Thing की capabilities और interaction information को describe करना.</li>
+<li><b>Interaction:</b> Standard Web mechanisms से read/write/invoke जैसे operations support करना.</li>
+<li><b>Integration:</b> Web applications और services के साथ Things को जोड़ना.</li>
+</ul>
+</section><section id="standardization"><h2>5. Standardization for Web of Things</h2>
+<p><b>Standardization</b> का उद्देश्य अलग-अलग vendors, platforms और devices के बीच common rules और interoperable mechanisms उपलब्ध कराना है। WoT में standardization important है क्योंकि IoT ecosystem में devices और protocols बहुत diverse हो सकते हैं।</p>
+<div class="grid">
+<div class="card"><b>Interoperability</b><p>Different devices और platforms के बीच common interaction संभव बनाना.</p></div>
+<div class="card"><b>Reusability</b><p>Existing Web technologies और development patterns का reuse.</p></div>
+<div class="card"><b>Discoverability</b><p>Things और उनकी capabilities को describe/discover करने में सहायता.</p></div>
+<div class="card"><b>Scalability</b><p>बड़े और heterogeneous device ecosystem को manage करने में मदद.</p></div>
+<div class="card"><b>Portability</b><p>Applications को particular vendor/device implementation से कम dependent बनाना.</p></div>
+<div class="card"><b>Security</b><p>Communication, access और data protection के लिए standardized security considerations.</p></div>
+</div>
+</section><section id="platform"><h2>6. Platform Middleware for Web of Things</h2>
+<p><b>Platform Middleware</b> वह intermediate software layer है जो underlying IoT devices/protocols और ऊपर की Web applications/services के बीच bridge का काम करती है।</p>
+<p>इसका उद्देश्य hardware और network complexity को abstract करके application developers को common interfaces/services उपलब्ध कराना हो सकता है।</p>
+<div class="flow">IoT Devices & Protocols → WoT Platform Middleware → Web APIs / Applications</div>
+<h3>Middleware के प्रमुख कार्य</h3>
+<ul>
+<li><b>Device Abstraction:</b> Different devices की low-level details को hide करके common representation देना.</li>
+<li><b>Protocol Adaptation:</b> अलग communication technologies/protocols को application-friendly interfaces से connect करना.</li>
+<li><b>Service Management:</b> Device capabilities को services/resources के रूप में expose करना.</li>
+<li><b>Data Handling:</b> Device data को collect, transform और आगे applications तक पहुंचाने में मदद.</li>
+<li><b>Discovery:</b> Available Things/services को identify और discover करने में support.</li>
+<li><b>Security Support:</b> Authentication, authorization और secure communication जैसे mechanisms को support करना.</li>
+</ul>
+</section><section id="working"><h2>7. Platform Middleware का Working</h2>
+<p>WoT platform middleware को एक <b>bridge</b> की तरह समझा जा सकता है। नीचे basic working flow है:</p>
+<div class="flow">Physical Thing<br>↓<br>Sensor / Actuator<br>↓<br>IoT Protocol / Local Network<br>↓<br>Platform Middleware<br>↓<br>Web Interface / API<br>↓<br>Web Application / User</div>
+<p><b>Step 1:</b> Sensor data generate करता है या actuator command receive करता है।</p>
+<p><b>Step 2:</b> Underlying IoT protocol/network device communication संभालता है।</p>
+<p><b>Step 3:</b> Middleware device-specific communication को abstract/adapt करता है।</p>
+<p><b>Step 4:</b> Thing की capabilities को Web-oriented interface/service के रूप में expose किया जा सकता है।</p>
+<p><b>Step 5:</b> Web application standard Web mechanisms के माध्यम से Thing से interact करती है।</p>
+</section><section id="comparison"><h2>8. IoT, WoT और Middleware का Relationship</h2>
+<table>
+<tr><th>Component</th><th>मुख्य भूमिका</th></tr>
+<tr><td><b>IoT</b></td><td>Physical Things को sensing, actuation, communication और networking के माध्यम से connected ecosystem में लाना.</td></tr>
+<tr><td><b>WoT</b></td><td>Connected Things को Web technologies और Web-oriented interaction के माध्यम से applications के लिए accessible बनाना.</td></tr>
+<tr><td><b>Platform Middleware</b></td><td>Underlying devices/protocols और Web applications के बीच abstraction, adaptation और service integration provide करना.</td></tr>
+</table>
+<div class="note"><b>Easy Memory Trick:</b> <b>IoT = Connect Things</b> → <b>Middleware = Bridge/Abstract</b> → <b>WoT = Use Things through the Web</b>.</div>
+</section><section id="revision"><h2>9. Quick Revision</h2>
+<div class="grid">
+<div class="card"><b>WoT</b><p>Web technologies के माध्यम से connected Things के interaction और integration की approach.</p></div>
+<div class="card"><b>IoT vs WoT</b><p>IoT connectivity-focused ecosystem है; WoT Web-based interaction और interoperability पर focus करता है.</p></div>
+<div class="card"><b>Web Pillar 1</b><p>Identification through URI/Web resource identification.</p></div>
+<div class="card"><b>Web Pillar 2</b><p>Interaction through standard Web protocols/mechanisms such as HTTP.</p></div>
+<div class="card"><b>Standardization</b><p>Interoperability, reusability, discoverability, scalability और security में सहायता.</p></div>
+<div class="card"><b>Middleware</b><p>IoT devices/protocols और Web applications के बीच bridge और abstraction layer.</p></div>
+</div>
+<div class="note"><b>One-line flow:</b> <b>Things → IoT Connectivity → Middleware → Web Interface → Web Application.</b></div>
+</section>
+<footer>BK LearnX • PGDCA • IoT Unit 4 • Web of Things</footer>
+</main>
+</div>
+</body>
+</html>
