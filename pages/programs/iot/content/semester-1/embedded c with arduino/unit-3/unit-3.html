@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BK LearnX | IoT Unit 2 - IoT Protocols | Complete Notes</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--text:#172033;--muted:#5f6b7a;--primary:#315efb;--purple:#6d42e8;--border:#e2e8f0;--soft:#eef3ff;--code:#111827}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,"Noto Sans Devanagari",sans-serif;line-height:1.75}
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.top{max-width:1250px;margin:auto;padding:13px 20px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:23px;font-weight:800;color:var(--primary)}.logo span{color:var(--purple)}
+.menu{display:none;border:0;background:var(--soft);padding:8px 12px;border-radius:9px;font-size:20px}
+.layout{max-width:1250px;margin:auto;padding:25px 20px;display:grid;grid-template-columns:280px 1fr;gap:25px}
+aside{position:sticky;top:75px;height:calc(100vh - 95px);overflow:auto;background:var(--card);border:1px solid var(--border);border-radius:18px;padding:17px}
+aside h3{margin-top:0;color:var(--primary)}aside a{display:block;padding:7px 9px;margin:2px 0;text-decoration:none;color:var(--muted);border-radius:8px}aside a:hover{background:var(--soft);color:var(--primary)}
+.hero{background:linear-gradient(135deg,#172554,#4338ca);color:white;padding:36px;border-radius:22px;margin-bottom:22px}.hero h1{margin:0;font-size:35px}.hero p{margin:7px 0;color:#e8eaff}.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}.badge{padding:5px 11px;border-radius:999px;background:rgba(255,255,255,.14);font-size:13px}
+section{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:27px;margin-bottom:20px;box-shadow:0 5px 20px rgba(20,30,60,.04)}
+h2{margin-top:0;color:#203b9b;border-bottom:2px solid var(--soft);padding-bottom:8px}h3{color:#263550}
+table{width:100%;border-collapse:collapse;margin:15px 0;font-size:15px}th,td{border:1px solid var(--border);padding:10px;vertical-align:top;text-align:left}th{background:var(--soft)}
+.note{background:#f0fdf4;border-left:4px solid #16a34a;padding:13px 15px;border-radius:8px;margin:15px 0}.warn{background:#fff7ed;border-left:4px solid #ea580c;padding:13px 15px;border-radius:8px;margin:15px 0}.info{background:#eff6ff;border-left:4px solid #2563eb;padding:13px 15px;border-radius:8px;margin:15px 0}
+.diagram{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;margin:20px 0}.box{padding:13px 16px;border:2px solid #94a3b8;background:#f8fafc;border-radius:11px;font-weight:700}.arrow{font-size:24px;color:var(--primary)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}.mini{border:1px solid var(--border);border-radius:14px;padding:17px;background:#fbfcff}.mini h3{margin-top:0}
+footer{text-align:center;padding:30px;color:var(--muted)}
+@media(max-width:850px){.layout{grid-template-columns:1fr}.menu{display:block}aside{display:none;position:fixed;left:15px;right:15px;top:68px;height:auto;max-height:75vh;z-index:30}aside.open{display:block}.hero h1{font-size:28px}section{padding:20px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<aside class="sidebar"><h3>Unit 3 • IoT Architecture</h3><a href="#intro">Introduction</a><a href="#elements">Architecture Elements</a><a href="#resource">Resource Model &amp; Abstraction</a><a href="#3layer">3-Layer Architecture</a><a href="#4layer">4-Layer Architecture</a><a href="#5layer">5-Layer Architecture</a><a href="#types">Types of IoT Layers</a><a href="#perception">Perception Layer</a><a href="#connectivity">Connectivity Layer</a><a href="#edge">Edge Layer</a><a href="#processing">Processing Layer</a><a href="#application">Application Layer</a><a href="#business">Business Layer</a><a href="#security">Security Layer</a><a href="#design">Design Principles</a><a href="#devices">IoT Devices</a><a href="#deployment">Deployment Models</a><a href="#iotivity">IoTivity</a><a href="#workflow">Complete Working</a><a href="#comparison">Architecture Comparison</a><a href="#revision">Quick Revision</a></aside>
+<main>
+<div class="hero">
+<h1>Unit 3: IoT Architecture</h1>
+<p><b>BK LearnX • PGDCA • Detailed Exam-Oriented Notes</b></p>
+<p>IoT Architecture • Resource Model • 3/4/5-Layer Architecture • IoT Layers • Security • Design Principles • Devices • Deployment Models • IoTivity</p>
+</div>
+<section id="intro"><h2>1. IoT Architecture का परिचय</h2>
+<p><b>IoT Architecture</b> वह structured design है जो IoT system के अलग-अलग elements—जैसे <b>sensors, actuators, protocols, cloud services और layers</b>—को एक networking system में व्यवस्थित करता है।</p>
+<p>IoT architecture की structure उसकी <b>functionality</b> और अलग-अलग sectors में उसके <b>implementation</b> पर depend करती है। इसलिए हर IoT deployment में architecture बिल्कुल एक जैसी होना आवश्यक नहीं है।</p>
+<div class="note"><b>Exam Definition:</b> IoT Architecture is a system of numerous elements such as sensors, actuators, protocols, cloud services and layers that together make up an IoT networking system.</div>
+</section><section id="elements"><h2>2. IoT Architecture के प्रमुख Elements</h2>
+<div class="grid">
+<div class="card"><b>Sensors</b><p>Environment या physical condition से data collect करते हैं।</p></div>
+<div class="card"><b>Actuators</b><p>Received instructions के आधार पर physical action perform करते हैं।</p></div>
+<div class="card"><b>Protocols</b><p>Devices और systems के बीच communication के rules provide करते हैं।</p></div>
+<div class="card"><b>Cloud Services</b><p>Data processing, storage और application-level services provide कर सकती हैं।</p></div>
+<div class="card"><b>Layers</b><p>पूरे IoT system को functional responsibilities के अनुसार organize करती हैं।</p></div>
+</div>
+</section><section id="resource"><h2>3. Resource Model and Abstraction</h2>
+<p><b>Resource model</b> IoT system में available resources और उनके representation को समझने का तरीका है। IoT devices के resources में sensing, actuation, communication, processing, memory और energy जैसी capabilities शामिल हो सकती हैं।</p>
+<p><b>Abstraction</b> का उद्देश्य lower-level device details को एक understandable representation के रूप में expose करना है, ताकि applications को hardware की internal complexity सीधे handle न करनी पड़े।</p>
+<div class="flow">Physical Device → Resource Representation → Communication Interface → Application</div>
+<div class="note"><b>Concept:</b> Resource abstraction IoT devices की capabilities को higher-level software/application के लिए manageable बनाती है।</div>
+</section><section id="3layer"><h2>4. 3-Layer IoT Architecture</h2>
+<p>3-layer architecture IoT architecture का एक basic model है। इसमें system को तीन major layers में divide किया जाता है:</p>
+<table><tr><th>Layer</th><th>Main Work</th></tr>
+<tr><td><b>Perception Layer</b></td><td>Physical world से sensing और data collection.</td></tr>
+<tr><td><b>Network Layer</b></td><td>Collected data को communication/network के माध्यम से आगे transfer करना.</td></tr>
+<tr><td><b>Application Layer</b></td><td>User/application-specific services provide करना.</td></tr></table>
+<div class="flow">Perception → Network → Application</div>
+<p><b>Working:</b> Sensor physical environment से data collect करता है → Network layer data transfer करती है → Application layer उस data को required service/use-case में apply करती है।</p>
+</section><section id="4layer"><h2>5. 4-Layer IoT Architecture</h2>
+<p>4-layer model IoT system की processing और support responsibilities को अधिक clearly separate करता है। एक commonly used representation में:</p>
+<table><tr><th>Layer</th><th>Role</th></tr>
+<tr><td>Perception Layer</td><td>Sensors/actuators और physical data interaction.</td></tr>
+<tr><td>Transport / Network Layer</td><td>Data को devices, gateways और processing systems के बीच transfer करना.</td></tr>
+<tr><td>Processing / Middleware Layer</td><td>Data processing, storage, service management और middleware functions.</td></tr>
+<tr><td>Application Layer</td><td>End-user/application-specific IoT services.</td></tr></table>
+<div class="flow">Perception → Transport/Network → Processing/Middleware → Application</div>
+<div class="note">4-layer architecture में layer naming/reference अलग-अलग textbooks या implementations में थोड़ी बदल सकती है; syllabus के context में layers की functional responsibility को समझना मुख्य है।</div>
+</section><section id="5layer"><h2>6. 5-Layer IoT Architecture</h2>
+<p>5-layer architecture IoT system को अधिक detailed functional structure में divide करती है। A commonly used model में ये layers होती हैं:</p>
+<div class="grid">
+<div class="card"><b>Perception Layer</b><p>Physical objects/environment से data sensing.</p></div>
+<div class="card"><b>Transport Layer</b><p>Data को perception से processing system तक transport करना.</p></div>
+<div class="card"><b>Processing Layer</b><p>Data processing, storage और analysis.</p></div>
+<div class="card"><b>Application Layer</b><p>Specific IoT services और applications.</p></div>
+<div class="card"><b>Business Layer</b><p>Overall business logic, management और decision-level view.</p></div>
+</div>
+<div class="flow">Perception → Transport → Processing → Application → Business</div>
+</section><section id="types"><h2>7. Types of IoT Layers — Overview</h2>
+<p>दिए गए syllabus के अनुसार IoT system में निम्न functional layers महत्वपूर्ण हैं:</p>
+<div class="grid">
+<div class="card"><b>Perception Layer</b><p>Sensing और physical-world interaction.</p></div>
+<div class="card"><b>Connectivity Layer</b><p>Devices और networks के बीच connectivity/communication.</p></div>
+<div class="card"><b>Edge Layer</b><p>Data source के पास local processing और quick response.</p></div>
+<div class="card"><b>Processing Layer</b><p>Data processing, storage और analytics.</p></div>
+<div class="card"><b>Application Layer</b><p>User-facing IoT services.</p></div>
+<div class="card"><b>Business Layer</b><p>Business-level management, policies और decisions.</p></div>
+<div class="card"><b>Security Layer</b><p>System, communication और data की protection.</p></div>
+</div>
+</section><section id="perception"><h2>8. Perception Layer</h2>
+<p><b>Perception Layer</b> IoT architecture की physical-world interaction layer है। यह sensors और related devices के माध्यम से environment से information collect करती है।</p>
+<ul><li>Temperature, humidity, light, motion आदि जैसी conditions को sense करना.</li><li>Sensor-generated signals/data को आगे system में भेजने के लिए तैयार करना.</li><li>Actuators के माध्यम से physical action से interaction भी architecture का हिस्सा हो सकता है.</li></ul>
+<div class="note"><b>Example:</b> Smart agriculture में soil moisture sensor soil की moisture condition detect करता है।</div>
+</section><section id="connectivity"><h2>9. Connectivity Layer</h2>
+<p><b>Connectivity Layer</b> IoT devices, gateways और अन्य system components के बीच communication/connectivity provide करती है।</p>
+<ul><li>Data transmission के लिए communication links का उपयोग.</li><li>Devices को network से connect करना.</li><li>Collected data को आगे edge/cloud/processing systems तक पहुंचाना.</li></ul>
+<div class="flow">Device → Connectivity → Gateway/Network → Processing</div>
+</section><section id="edge"><h2>10. Edge Layer</h2>
+<p><b>Edge Layer</b> data source के comparatively पास processing capabilities provide करती है। इसका उद्देश्य हर piece of data को दूर स्थित central/cloud system तक भेजने की आवश्यकता को कम करना हो सकता है।</p>
+<ul><li>Local/near-device processing</li><li>Quick response के लिए useful</li><li>Selected data को आगे processing/cloud services तक भेजना</li><li>IoT devices और higher-level systems के बीच intermediate role</li></ul>
+</section><section id="processing"><h2>11. Processing Layer</h2>
+<p><b>Processing Layer</b> collected IoT data को process, store और analyze करने के लिए responsible functional layer है। इसमें centralized processing, storage और analytics services शामिल हो सकती हैं।</p>
+<ul><li>Data processing</li><li>Data storage</li><li>Data analysis</li><li>Services के लिए processed information तैयार करना</li></ul>
+</section><section id="application"><h2>12. Application Layer</h2>
+<p><b>Application Layer</b> IoT data और system capabilities को specific user/application services में बदलती है।</p>
+<div class="grid">
+<div class="card"><b>Smart Home</b><p>Home monitoring और automation.</p></div>
+<div class="card"><b>Healthcare</b><p>Connected monitoring services.</p></div>
+<div class="card"><b>Industry</b><p>Equipment monitoring और automation.</p></div>
+<div class="card"><b>Agriculture</b><p>Environment/crop-related monitoring.</p></div>
+</div>
+</section><section id="business"><h2>13. Business Layer</h2>
+<p><b>Business Layer</b> IoT system के overall business view, management, policies और decision-making को represent करती है।</p>
+<ul><li>Business requirements के अनुसार IoT system का evaluation.</li><li>Policies और management decisions.</li><li>IoT services के performance/overall operation का higher-level view.</li></ul>
+</section><section id="security"><h2>14. Security Layer</h2>
+<p><b>Security Layer</b> IoT architecture की एक मुख्य आवश्यकता है क्योंकि IoT systems large numbers of connected devices, networks और data के साथ operate कर सकते हैं।</p>
+<p>Syllabus के अनुसार प्रमुख challenges में <b>data breach, tracking malicious software और hacking</b> शामिल हैं।</p>
+<table><tr><th>Challenge</th><th>Meaning</th></tr>
+<tr><td>Data Breach</td><td>Unauthorized access के कारण data का exposure या theft.</td></tr>
+<tr><td>Malicious Software</td><td>Harmful software का IoT environment में प्रवेश/प्रभाव.</td></tr>
+<tr><td>Hacking</td><td>Unauthorized access या system control प्राप्त करने का प्रयास.</td></tr></table>
+<div class="note"><b>Security focus:</b> IoT architecture में devices, communication, data और services की protection को architecture के साथ integrate करना आवश्यक है।</div>
+</section><section id="design"><h2>15. IoT Design Principles</h2>
+<p>IoT system design करते समय architecture को functional requirements और deployment environment के अनुसार organize करना चाहिए। प्रमुख design principles:</p>
+<div class="grid">
+<div class="card"><b>Interoperability</b><p>Different devices/systems के बीच effective communication.</p></div>
+<div class="card"><b>Scalability</b><p>Devices और data volume बढ़ने पर system का support.</p></div>
+<div class="card"><b>Security</b><p>Devices, communication और data की protection.</p></div>
+<div class="card"><b>Reliability</b><p>Consistent और dependable operation.</p></div>
+<div class="card"><b>Modularity</b><p>Architecture को manageable functional components में divide करना.</p></div>
+<div class="card"><b>Efficiency</b><p>Limited device resources और network resources का appropriate use.</p></div>
+</div>
+</section><section id="devices"><h2>16. IoT Devices</h2>
+<p><b>IoT Devices</b> वे connected physical devices हैं जो sensing, actuation, communication या processing जैसी capabilities provide कर सकते हैं।</p>
+<ul><li>Sensors — physical/environmental data collect करते हैं.</li><li>Actuators — commands के अनुसार physical action perform करते हैं.</li><li>Gateways — devices और wider networks/services के बीच bridge की तरह काम कर सकते हैं.</li><li>Edge devices — source के पास processing support दे सकते हैं.</li></ul>
+<div class="note"><b>Device design considerations:</b> power/resource limitations, connectivity, security, processing capability और deployment environment को ध्यान में रखना चाहिए।</div>
+</section><section id="deployment"><h2>17. IoT Deployment Models</h2>
+<p>IoT deployment model यह बताता है कि devices, processing और services को system में कहाँ और किस arrangement में deploy किया जाता है।</p>
+<table><tr><th>Model / Arrangement</th><th>Basic Idea</th></tr>
+<tr><td><b>Device-centric</b></td><td>Processing और functionality का बड़ा भाग device side पर.</td></tr>
+<tr><td><b>Edge-oriented</b></td><td>Data source के पास edge nodes/gateways पर processing.</td></tr>
+<tr><td><b>Cloud-oriented</b></td><td>Central/cloud services में storage, processing और analytics.</td></tr>
+<tr><td><b>Hybrid</b></td><td>Device + Edge + Cloud capabilities का combination.</td></tr></table>
+<div class="flow">Devices → Edge/Gateway → Cloud/Processing → Applications</div>
+</section><section id="iotivity"><h2>18. IoTivity — Open Source IoT Stack</h2>
+<p><b>IoTivity</b> एक <b>open-source IoT stack</b> है। इसका उद्देश्य connected IoT devices और applications के बीच interoperability और communication को support करने वाले software components provide करना है।</p>
+<p>IoTivity को समझते समय मुख्य idea यह है कि IoT ecosystem में अलग-अलग devices और applications को common communication/interoperability framework के माध्यम से काम करने में मदद मिले।</p>
+<div class="note"><b>Exam Point:</b> IoTivity = Open Source IoT Stack.</div>
+</section><section id="workflow"><h2>19. Complete IoT Architecture Working</h2>
+<div class="flow">Physical World → Perception → Connectivity → Edge → Processing/Cloud → Application → Business<br>↕<br>Security Across the Architecture</div>
+<p><b>Step 1:</b> Sensors physical environment से data collect करते हैं।</p>
+<p><b>Step 2:</b> Connectivity layer communication के माध्यम से data को आगे transfer करती है।</p>
+<p><b>Step 3:</b> Edge layer जरूरत के अनुसार data को source के पास process कर सकती है।</p>
+<p><b>Step 4:</b> Processing layer data को process, store और analyze करती है।</p>
+<p><b>Step 5:</b> Application layer processed information को user/service के रूप में प्रस्तुत करती है।</p>
+<p><b>Step 6:</b> Business layer overall management और decision-level view provide करती है।</p>
+<p><b>Step 7:</b> Security पूरे architecture में devices, data, communication और services को protect करने की आवश्यकता रखती है।</p>
+</section><section id="comparison"><h2>20. 3-Layer vs 4-Layer vs 5-Layer Architecture</h2>
+<table><tr><th>Architecture</th><th>Layers</th><th>Main Focus</th></tr>
+<tr><td><b>3-Layer</b></td><td>Perception, Network, Application</td><td>Basic sensing → communication → application flow.</td></tr>
+<tr><td><b>4-Layer</b></td><td>Perception, Transport/Network, Processing/Middleware, Application</td><td>Processing/middleware को अलग functional layer के रूप में दिखाना.</td></tr>
+<tr><td><b>5-Layer</b></td><td>Perception, Transport, Processing, Application, Business</td><td>More detailed architecture और business-level management.</td></tr>
+</table>
+<div class="note"><b>Remember:</b> अलग books/implementations में layer names और boundaries vary कर सकती हैं। Exam में अपने prescribed syllabus/textbook की terminology को priority दें।</div>
+</section><section id="revision"><h2>21. Quick Revision</h2>
+<div class="grid">
+<div class="card"><b>IoT Architecture</b><p>Sensors, actuators, protocols, cloud services और layers का organized networking system.</p></div>
+<div class="card"><b>3-Layer</b><p>Perception → Network → Application.</p></div>
+<div class="card"><b>4-Layer</b><p>Perception → Transport/Network → Processing/Middleware → Application.</p></div>
+<div class="card"><b>5-Layer</b><p>Perception → Transport → Processing → Application → Business.</p></div>
+<div class="card"><b>Security</b><p>Data breach, malicious software और hacking प्रमुख challenges हैं.</p></div>
+<div class="card"><b>IoTivity</b><p>Open-source IoT stack.</p></div>
+</div>
+<div class="note"><b>One-line flow:</b> Sense → Connect → Process near edge/central systems → Apply → Manage, with Security across the architecture.</div>
+</section>
+<footer style="text-align:center;padding:25px;color:#667085">BK LearnX • PGDCA • IoT Unit 3</footer>
+</main>
+</div>
+</body>
+</html>
