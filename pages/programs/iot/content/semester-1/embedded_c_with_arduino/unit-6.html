@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BK LearnX | Unit 6 - Arduino Sensors</title>
+<style>
+:root{
+  --bg:#f5f7fb;--card:#fff;--text:#172033;--muted:#5f6b7a;--primary:#315efb;
+  --primary2:#6d42e8;--border:#e3e8f0;--soft:#eef3ff;--code:#111827;--accent:#0f766e;
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,"Noto Sans Devanagari",sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.top{max-width:1250px;margin:auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:23px;font-weight:800;color:var(--primary)} .logo span{color:var(--primary2)}
+.menu-btn{display:none;border:0;background:var(--soft);padding:9px 12px;border-radius:10px;font-size:20px}
+.layout{max-width:1250px;margin:auto;display:grid;grid-template-columns:275px 1fr;gap:25px;padding:25px 20px}
+aside{position:sticky;top:78px;height:calc(100vh - 100px);overflow:auto;background:var(--card);border:1px solid var(--border);border-radius:18px;padding:18px}
+aside h3{margin:0 0 12px;color:var(--primary)} aside a{display:block;text-decoration:none;color:var(--muted);padding:8px 10px;border-radius:9px;margin:3px 0}
+aside a:hover{background:var(--soft);color:var(--primary)}
+main{min-width:0}.hero{background:linear-gradient(135deg,#172554,#4338ca);color:#fff;border-radius:22px;padding:35px;margin-bottom:22px}
+.hero h1{margin:0 0 8px;font-size:36px}.hero p{margin:7px 0;color:#e7eaff}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.badge{background:rgba(255,255,255,.14);padding:6px 11px;border-radius:999px;font-size:13px}
+section{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:26px;margin-bottom:20px;box-shadow:0 5px 20px rgba(20,30,60,.04)}
+h2{margin-top:0;color:#203b9b;border-bottom:2px solid var(--soft);padding-bottom:9px} h3{color:#25324a}
+table{width:100%;border-collapse:collapse;margin:15px 0;font-size:15px}th,td{border:1px solid var(--border);padding:10px;text-align:left;vertical-align:top}th{background:var(--soft)}
+.note{background:#f0fdf4;border-left:4px solid #16a34a;padding:13px 15px;border-radius:8px;margin:15px 0}
+.warn{background:#fff7ed;border-left:4px solid #ea580c;padding:13px 15px;border-radius:8px;margin:15px 0}
+.info{background:#eff6ff;border-left:4px solid #2563eb;padding:13px 15px;border-radius:8px;margin:15px 0}
+.code{background:var(--code);color:#e5e7eb;border-radius:12px;padding:17px;overflow:auto;font-family:Consolas,monospace;font-size:14px;white-space:pre}
+.diagram{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;margin:18px 0}
+.box{padding:13px 16px;border:2px solid #94a3b8;border-radius:12px;background:#f8fafc;font-weight:700}.arrow{font-size:24px;color:var(--primary)}
+ul,ol{padding-left:24px}.formula{font-family:Consolas,monospace;background:#f8fafc;border:1px dashed #aab4c4;padding:12px;border-radius:10px}
+footer{text-align:center;color:var(--muted);padding:30px}
+@media(max-width:850px){
+ .layout{grid-template-columns:1fr}.menu-btn{display:block} aside{display:none;position:fixed;left:15px;right:15px;top:70px;height:auto;max-height:75vh;z-index:30}aside.open{display:block}
+ .hero h1{font-size:28px}.top{padding:12px 15px}section{padding:20px}
+}
+</style>
+</head>
+<body>
+<header><div class="top"><div class="logo">BK <span>LearnX</span></div><button class="menu-btn" onclick="document.querySelector('aside').classList.toggle('open')">☰</button></div></header>
+
+<div class="layout">
+<aside>
+<h3>Unit 6 Navigation</h3>
+<a href="#intro">Introduction</a><a href="#humidity">1. Humidity Sensor</a><a href="#temperature">2. Temperature Sensor</a>
+<a href="#water">3. Water Detector</a><a href="#pir">4. PIR Sensor</a><a href="#ultrasonic">5. Ultrasonic Sensor</a>
+<a href="#relay">6. Magnetic Relay Switch</a><a href="#compare">Sensor Comparison</a><a href="#integration">Integrated Example</a><a href="#revision">Quick Revision</a>
+</aside>
+
+<main>
+<div class="hero">
+<h1>Unit 6: Arduino Sensors</h1>
+<p>Humidity • Temperature • Water Detector • PIR • Ultrasonic • Magnetic Relay Switches</p>
+<div class="badges"><span class="badge">PGDCA Notes</span><span class="badge">Arduino</span><span class="badge">Sensor Interfacing</span><span class="badge">Exam Oriented</span></div>
+</div>
+
+<section id="intro">
+<h2>Introduction to Arduino Sensors</h2>
+<p><b>Sensor</b> एक electronic device है जो किसी physical quantity या environmental condition को detect करके उसे Arduino के लिए usable electrical signal में बदलता है। Arduino उस signal को read करके decision ले सकता है और फिर LED, buzzer, motor, relay आदि को control कर सकता है।</p>
+<div class="diagram"><div class="box">Physical Condition</div><div class="arrow">→</div><div class="box">Sensor</div><div class="arrow">→</div><div class="box">Arduino</div><div class="arrow">→</div><div class="box">Output / Action</div></div>
+<table><tr><th>Sensor</th><th>क्या detect करता है?</th><th>Common use</th></tr>
+<tr><td>Humidity Sensor</td><td>वायु में moisture/humidity</td><td>Weather, greenhouse, room monitoring</td></tr>
+<tr><td>Temperature Sensor</td><td>Temperature</td><td>Thermometer, cooling/heating control</td></tr>
+<tr><td>Water Sensor</td><td>Water/moisture presence</td><td>Leakage, rain/water detection</td></tr>
+<tr><td>PIR Sensor</td><td>Motion based on infrared radiation</td><td>Security, automatic lights</td></tr>
+<tr><td>Ultrasonic Sensor</td><td>Distance using ultrasonic waves</td><td>Obstacle and distance measurement</td></tr>
+<tr><td>Magnetic Relay Switch</td><td>Magnetic field / switch state</td><td>Door/window status, isolation-based switching</td></tr>
+</table>
+<div class="info"><b>Important:</b> Sensor module के exact pins, voltage और output type model के अनुसार बदल सकते हैं। Practical circuit में हमेशा अपने module की datasheet/specification check करें।</div>
+</section>
+
+<section id="humidity">
+<h2>1. Arduino – Humidity Sensor</h2>
+<p><b>Humidity</b> हवा में मौजूद water vapour की मात्रा को बताती है। Humidity sensor इस environmental condition को measure करता है। Arduino projects में DHT11/DHT22 जैसे sensor modules commonly used होते हैं।</p>
+<h3>Basic Working</h3>
+<p>Sensor humidity को sense करता है और module/digital interface के माध्यम से Arduino को reading देता है। Arduino उस reading को Serial Monitor पर दिखा सकता है या किसी output device को control कर सकता है।</p>
+<div class="diagram"><div class="box">Humidity</div><div class="arrow">→</div><div class="box">Humidity Sensor</div><div class="arrow">→</div><div class="box">Arduino</div><div class="arrow">→</div><div class="box">Display / Control</div></div>
+<h3>Example: DHT Sensor Reading</h3>
+<div class="code">#include &lt;DHT.h&gt;
+
+#define DHTPIN 2
+#define DHTTYPE DHT11
+
+DHT dht(DHTPIN, DHTTYPE);
+
+void setup() {
+  Serial.begin(9600);
+  dht.begin();
+}
+
+void loop() {
+  float humidity = dht.readHumidity();
+
+  Serial.print("Humidity: ");
+  Serial.print(humidity);
+  Serial.println(" %");
+
+  delay(2000);
+}</div>
+<div class="note"><b>Exam Point:</b> Humidity sensor का main purpose environmental moisture/humidity को sense करना है। DHT-family modules temperature + humidity दोनों readings भी provide कर सकते हैं।</div>
+</section>
+
+<section id="temperature">
+<h2>2. Arduino – Temperature Sensor</h2>
+<p><b>Temperature Sensor</b> temperature को measure करने के लिए प्रयोग किया जाता है। Arduino के साथ LM35, TMP36 या digital temperature sensors जैसे अलग-अलग sensors use किए जा सकते हैं।</p>
+<h3>LM35 के साथ Basic Concept</h3>
+<p>LM35 एक analog temperature sensor है। यह temperature के अनुसार analog voltage देता है। Arduino का <code>analogRead()</code> उस voltage को ADC value में बदलकर पढ़ता है।</p>
+<div class="formula">Arduino ADC reading → Sensor voltage → Temperature calculation</div>
+<h3>Example: LM35 with Arduino</h3>
+<div class="code">const int sensorPin = A0;
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  int reading = analogRead(sensorPin);
+
+  float voltage = reading * (5.0 / 1023.0);
+  float temperatureC = voltage * 100.0;
+
+  Serial.print("Temperature: ");
+  Serial.print(temperatureC);
+  Serial.println(" C");
+
+  delay(1000);
+}</div>
+<div class="warn"><b>Note:</b> ऊपर का calculation typical 5V Arduino ADC reference और LM35 के approximately 10 mV/°C characteristic को assume करता है। Board/reference configuration बदलने पर calculation भी बदल सकती है।</div>
+</section>
+
+<section id="water">
+<h2>3. Arduino – Water Detector / Sensor</h2>
+<p><b>Water Detector Sensor</b> पानी या moisture की presence को detect करने के लिए प्रयोग किया जाता है। सामान्य water sensor module में conductive traces होते हैं। पानी traces के बीच conductivity बढ़ा सकता है, जिससे sensor output में बदलाव आता है।</p>
+<h3>Working Principle</h3>
+<div class="diagram"><div class="box">Water touches sensor</div><div class="arrow">→</div><div class="box">Conductivity changes</div><div class="arrow">→</div><div class="box">Sensor output changes</div><div class="arrow">→</div><div class="box">Arduino detects</div></div>
+<h3>Example: Water Sensor + LED</h3>
+<div class="code">const int waterPin = A0;
+const int ledPin = 13;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int value = analogRead(waterPin);
+
+  Serial.print("Water Level/Value: ");
+  Serial.println(value);
+
+  if (value > 300) {
+    digitalWrite(ledPin, HIGH);
+  } else {
+    digitalWrite(ledPin, LOW);
+  }
+
+  delay(500);
+}</div>
+<div class="info"><b>Threshold:</b> 300 केवल example threshold है। Actual sensor, water condition और circuit के अनुसार threshold experimentally/calibration से तय करना चाहिए।</div>
+</section>
+
+<section id="pir">
+<h2>4. Arduino – PIR Sensor</h2>
+<p><b>PIR (Passive Infrared) Sensor</b> आसपास moving human/animal body से मिलने वाली infrared radiation में बदलाव को detect करता है। इसे motion detection के लिए widely used किया जाता है।</p>
+<h3>Working</h3>
+<p>PIR sensor स्वयं infrared signal transmit नहीं करता; इसलिए इसे <b>Passive</b> कहा जाता है। जब sensor के field of view में कोई warm object move करता है, तो infrared pattern में बदलाव होता है और sensor output बदल सकता है।</p>
+<div class="diagram"><div class="box">Human / Warm Object</div><div class="arrow">→</div><div class="box">PIR Sensor</div><div class="arrow">→</div><div class="box">HIGH/LOW Signal</div><div class="arrow">→</div><div class="box">Arduino</div></div>
+<h3>Example: Motion Activated LED</h3>
+<div class="code">const int pirPin = 2;
+const int ledPin = 13;
+
+void setup() {
+  pinMode(pirPin, INPUT);
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int motion = digitalRead(pirPin);
+
+  if (motion == HIGH) {
+    digitalWrite(ledPin, HIGH);
+    Serial.println("Motion detected");
+  } else {
+    digitalWrite(ledPin, LOW);
+    Serial.println("No motion");
+  }
+
+  delay(200);
+}</div>
+<h3>Applications</h3>
+<ul><li>Security alarm systems</li><li>Automatic lighting</li><li>Room occupancy detection</li><li>Energy-saving automation</li></ul>
+</section>
+
+<section id="ultrasonic">
+<h2>5. Arduino – Ultrasonic Sensor</h2>
+<p><b>Ultrasonic Sensor</b> high-frequency sound waves का उपयोग करके distance measure करता है। HC-SR04 इसका एक common educational module है।</p>
+<h3>Basic Pins</h3>
+<table><tr><th>Pin</th><th>Function</th></tr>
+<tr><td>VCC</td><td>Power supply</td></tr><tr><td>GND</td><td>Ground</td></tr>
+<tr><td>TRIG</td><td>Ultrasonic pulse initiate करने के लिए</td></tr><tr><td>ECHO</td><td>Returned pulse का time बताता है</td></tr></table>
+<h3>Working Principle</h3>
+<div class="diagram"><div class="box">TRIG pulse</div><div class="arrow">→</div><div class="box">Ultrasonic wave</div><div class="arrow">→</div><div class="box">Object</div><div class="arrow">→</div><div class="box">Echo return</div></div>
+<p>Arduino TRIG pin से pulse भेजता है। Sensor ultrasonic burst transmit करता है और reflected wave आने के बाद ECHO signal देता है। Arduino pulse duration से distance calculate कर सकता है।</p>
+<div class="formula">Distance = (Time × Speed of Sound) / 2</div>
+<p><b>/2 क्यों?</b> क्योंकि sound wave object तक जाती है और फिर वापस sensor तक आती है; measured time round-trip time होता है।</p>
+<h3>Example: HC-SR04 Distance Measurement</h3>
+<div class="code">const int trigPin = 9;
+const int echoPin = 10;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+}
+
+void loop() {
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+
+  long duration = pulseIn(echoPin, HIGH);
+
+  float distanceCm = duration * 0.0343 / 2;
+
+  Serial.print("Distance: ");
+  Serial.print(distanceCm);
+  Serial.println(" cm");
+
+  delay(500);
+}</div>
+<div class="note"><b>Exam Point:</b> Ultrasonic sensor contact किए बिना object की दूरी measure कर सकता है, इसलिए इसे non-contact distance measurement में use किया जाता है।</div>
+</section>
+
+<section id="relay">
+<h2>6. Arduino – Connecting Switch (Magnetic Relay Switches)</h2>
+<p><b>Magnetic switch</b> magnetic field की presence के आधार पर switching करता है। एक common example <b>Reed Switch</b> है। Reed switch में contacts magnetic field के कारण open/close हो सकते हैं।</p>
+<h3>Reed Switch Working</h3>
+<div class="diagram"><div class="box">Magnet nearby</div><div class="arrow">→</div><div class="box">Reed Switch changes state</div><div class="arrow">→</div><div class="box">Arduino reads input</div><div class="arrow">→</div><div class="box">Action</div></div>
+<h3>Simple Connection Concept</h3>
+<p>Reed switch को Arduino digital input के साथ connect किया जा सकता है। Input को stable रखने के लिए internal pull-up resistor का उपयोग किया जा सकता है।</p>
+<h3>Example: Door Open/Close Detection</h3>
+<div class="code">const int switchPin = 2;
+const int ledPin = 13;
+
+void setup() {
+  pinMode(switchPin, INPUT_PULLUP);
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int state = digitalRead(switchPin);
+
+  if (state == LOW) {
+    Serial.println("Magnet detected / Switch closed");
+    digitalWrite(ledPin, HIGH);
+  } else {
+    Serial.println("Switch open");
+    digitalWrite(ledPin, LOW);
+  }
+
+  delay(200);
+}</div>
+<div class="warn"><b>Terminology:</b> “Magnetic switch” और “relay” एक ही component नहीं हैं। Reed switch magnetic field से contacts operate करता है; relay electrically controlled switch है जिसमें coil electromagnetic force से contacts operate करती है। यदि syllabus में “magnetic relay switches” लिखा है, तो practical component की exact type को identify करना जरूरी है।</div>
+<h3>Applications</h3>
+<ul><li>Door/window open-close detection</li><li>Security systems</li><li>Position sensing</li><li>Magnetic presence detection</li></ul>
+</section>
+
+<section id="compare">
+<h2>Sensor Comparison</h2>
+<table>
+<tr><th>Sensor</th><th>Input/Phenomenon</th><th>Typical Arduino reading</th><th>Example Application</th></tr>
+<tr><td>Humidity</td><td>Moisture in air</td><td>Digital/library-based reading (model dependent)</td><td>Environment monitoring</td></tr>
+<tr><td>Temperature</td><td>Heat/temperature</td><td>Analog or digital</td><td>Temperature monitoring</td></tr>
+<tr><td>Water</td><td>Water/moisture</td><td>Often analog</td><td>Leak/rain detection</td></tr>
+<tr><td>PIR</td><td>Infrared motion change</td><td>Digital HIGH/LOW</td><td>Motion detection</td></tr>
+<tr><td>Ultrasonic</td><td>Echo time</td><td>Pulse duration</td><td>Distance measurement</td></tr>
+<tr><td>Reed/Magnetic Switch</td><td>Magnetic field</td><td>Digital HIGH/LOW</td><td>Door/window detection</td></tr>
+</table>
+</section>
+
+<section id="integration">
+<h2>Integrated Sensor Example</h2>
+<p>एक practical Arduino project में multiple sensors को एक साथ use किया जा सकता है। उदाहरण के लिए एक smart room में PIR motion sensor light control कर सकता है, temperature sensor temperature monitor कर सकता है और magnetic switch door status detect कर सकता है।</p>
+<div class="diagram"><div class="box">PIR</div><div class="box">Temperature</div><div class="box">Magnetic Switch</div><div class="arrow">↓</div><div class="box">Arduino</div><div class="arrow">↓</div><div class="box">LED / Buzzer / Display</div></div>
+<h3>General Sensor Interfacing Steps</h3>
+<ol>
+<li>Sensor का purpose और output type समझें।</li>
+<li>VCC और GND सही connect करें।</li>
+<li>Signal pin को सही Arduino pin से connect करें।</li>
+<li>Code में <code>pinMode()</code> या संबंधित sensor library setup करें।</li>
+<li>Sensor data को <code>digitalRead()</code>, <code>analogRead()</code>, <code>pulseIn()</code> या library function से read करें।</li>
+<li>Reading के आधार पर required action perform करें।</li>
+<li>Threshold/calibration को actual hardware के अनुसार test करें।</li>
+</ol>
+</section>
+
+<section id="revision">
+<h2>Quick Revision</h2>
+<table><tr><th>Question</th><th>Short Answer</th></tr>
+<tr><td>Humidity sensor क्या करता है?</td><td>हवा की humidity/moisture को detect/measure करता है।</td></tr>
+<tr><td>Temperature sensor का उपयोग?</td><td>Temperature measurement और monitoring के लिए।</td></tr>
+<tr><td>Water sensor कैसे detect करता है?</td><td>Water की conductivity/moisture के कारण sensor output में change detect करता है।</td></tr>
+<tr><td>PIR का full form?</td><td>Passive Infrared.</td></tr>
+<tr><td>PIR किसके लिए?</td><td>Motion detection.</td></tr>
+<tr><td>Ultrasonic sensor किस principle पर?</td><td>Ultrasonic wave के round-trip echo time से distance measurement।</td></tr>
+<tr><td>HC-SR04 के मुख्य signal pins?</td><td>TRIG और ECHO.</td></tr>
+<tr><td>Magnetic/Reed switch क्या detect करता है?</td><td>Magnetic field के आधार पर switch state बदलता है।</td></tr>
+</table>
+<div class="note"><b>Unit 6 Core Flow:</b> Sensor physical condition को detect करता है → Arduino signal read करता है → program decision लेता है → output device/action control होती है।</div>
+</section>
+</main>
+</div>
+<footer>© BK LearnX • Unit 6: Arduino Sensors • PGDCA Study Notes</footer>
+</body>
+</html>

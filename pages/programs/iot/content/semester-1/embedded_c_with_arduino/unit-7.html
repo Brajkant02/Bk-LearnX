@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BK LearnX | Unit 7 - Arduino Secondary Integrations</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--text:#172033;--muted:#5f6b7a;--primary:#315efb;--purple:#6d42e8;--border:#e2e8f0;--soft:#eef3ff;--code:#111827;--green:#0f766e}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,"Noto Sans Devanagari",sans-serif;line-height:1.7}
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.top{max-width:1250px;margin:auto;padding:13px 20px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:23px;font-weight:800;color:var(--primary)}.logo span{color:var(--purple)}
+.menu{display:none;border:0;background:var(--soft);padding:8px 12px;border-radius:9px;font-size:20px}
+.layout{max-width:1250px;margin:auto;padding:25px 20px;display:grid;grid-template-columns:275px 1fr;gap:25px}
+aside{position:sticky;top:75px;height:calc(100vh - 95px);overflow:auto;background:var(--card);border:1px solid var(--border);border-radius:18px;padding:17px}
+aside h3{margin-top:0;color:var(--primary)}aside a{display:block;padding:7px 9px;margin:2px 0;text-decoration:none;color:var(--muted);border-radius:8px}aside a:hover{background:var(--soft);color:var(--primary)}
+.hero{background:linear-gradient(135deg,#172554,#4338ca);color:white;padding:35px;border-radius:22px;margin-bottom:22px}.hero h1{margin:0;font-size:35px}.hero p{margin:7px 0;color:#e8eaff}.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}.badge{padding:5px 11px;border-radius:999px;background:rgba(255,255,255,.14);font-size:13px}
+section{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:26px;margin-bottom:20px;box-shadow:0 5px 20px rgba(20,30,60,.04)}
+h2{margin-top:0;color:#203b9b;border-bottom:2px solid var(--soft);padding-bottom:8px}h3{color:#263550}
+table{width:100%;border-collapse:collapse;margin:15px 0;font-size:15px}th,td{border:1px solid var(--border);padding:10px;vertical-align:top;text-align:left}th{background:var(--soft)}
+.code{background:var(--code);color:#e5e7eb;border-radius:12px;padding:17px;overflow:auto;font:14px/1.6 Consolas,monospace;white-space:pre}
+.note{background:#f0fdf4;border-left:4px solid #16a34a;padding:13px 15px;border-radius:8px;margin:15px 0}.warn{background:#fff7ed;border-left:4px solid #ea580c;padding:13px 15px;border-radius:8px;margin:15px 0}.info{background:#eff6ff;border-left:4px solid #2563eb;padding:13px 15px;border-radius:8px;margin:15px 0}
+.diagram{display:flex;justify-content:center;align-items:center;gap:9px;flex-wrap:wrap;margin:18px 0}.box{padding:12px 15px;border:2px solid #94a3b8;background:#f8fafc;border-radius:11px;font-weight:700}.arrow{font-size:23px;color:var(--primary)}
+.formula{font-family:Consolas,monospace;background:#f8fafc;border:1px dashed #aab4c4;padding:12px;border-radius:10px}
+footer{text-align:center;padding:28px;color:var(--muted)}
+@media(max-width:850px){.layout{grid-template-columns:1fr}.menu{display:block}aside{display:none;position:fixed;left:15px;right:15px;top:68px;height:auto;max-height:75vh;z-index:30}aside.open{display:block}.hero h1{font-size:28px}section{padding:20px}}
+</style>
+</head>
+<body>
+<header><div class="top"><div class="logo">BK <span>LearnX</span></div><button class="menu" onclick="document.querySelector('aside').classList.toggle('open')">☰</button></div></header>
+
+<div class="layout">
+<aside>
+<h3>Unit 7 Navigation</h3>
+<a href="#intro">Introduction</a><a href="#relays">1. Types of Relays</a><a href="#appliances">2. Electrical Appliances</a>
+<a href="#matrix">3. Matrix Keypad</a><a href="#keypadlib">4. Keypad Library</a><a href="#servo">5. Servo Motor</a>
+<a href="#rf">6. RF Module</a><a href="#integration">Integration Flow</a><a href="#revision">Quick Revision</a>
+</aside>
+
+<main>
+<div class="hero">
+<h1>Unit 7: Arduino Secondary Integrations</h1>
+<p>Relays • Electrical Appliance Control • Matrix Keypad • Servo Motor • RF Module</p>
+<div class="badges"><span class="badge">PGDCA Notes</span><span class="badge">Arduino</span><span class="badge">Interfacing</span><span class="badge">Exam Oriented</span></div>
+</div>
+
+<section id="intro">
+<h2>Introduction</h2>
+<p><b>Secondary Integration</b> का अर्थ Arduino को ऐसे external components/modules के साथ connect करना है जिनसे Arduino की functionality बढ़ती है। इस unit में switching, user input, motor control और wireless communication से जुड़े important interfaces पढ़े जाते हैं।</p>
+<div class="diagram"><div class="box">Input / Command</div><div class="arrow">→</div><div class="box">Arduino</div><div class="arrow">→</div><div class="box">Relay / Servo / RF</div><div class="arrow">→</div><div class="box">Action</div></div>
+</section>
+
+<section id="relays">
+<h2>1. Types of Relays</h2>
+<p><b>Relay</b> एक electrically operated switching device है। यह एक circuit के signal से दूसरे circuit को switch करने में सहायता करता है। Arduino जैसे low-power controller से higher-voltage/higher-current load को directly drive करने के बजाय suitable relay module/interface का उपयोग किया जा सकता है।</p>
+<h3>Common Types</h3>
+<table>
+<tr><th>Relay Type</th><th>Basic Description</th><th>Typical Feature</th></tr>
+<tr><td>Electromagnetic / Mechanical Relay</td><td>Coil के magnetic effect से mechanical contacts operate होते हैं।</td><td>Physical contacts, audible click possible</td></tr>
+<tr><td>Solid State Relay (SSR)</td><td>Semiconductor switching का उपयोग करता है।</td><td>No mechanical moving contact</td></tr>
+<tr><td>SPST</td><td>Single Pole Single Throw</td><td>Simple ON/OFF switching</td></tr>
+<tr><td>SPDT</td><td>Single Pole Double Throw</td><td>एक common terminal दो paths में से एक से connect हो सकता है</td></tr>
+<tr><td>DPDT</td><td>Double Pole Double Throw</td><td>दो switching paths को simultaneously control कर सकता है</td></tr>
+</table>
+<h3>Electromagnetic Relay Structure</h3>
+<div class="diagram"><div class="box">Coil</div><div class="arrow">→</div><div class="box">Magnetic Field</div><div class="arrow">→</div><div class="box">Armature</div><div class="arrow">→</div><div class="box">Contacts Switch</div></div>
+<div class="note"><b>Exam Point:</b> Electromagnetic relay में coil energize होने पर magnetic field बनता है, जो mechanical contact mechanism को move करके circuit की switching करता है।</div>
+</section>
+
+<section id="appliances">
+<h2>2. Controlling Electrical Appliances with Electromagnetic Relays</h2>
+<p>Arduino relay के control input को operate करके appliance circuit को ON/OFF कर सकता है। Arduino केवल relay module को control करता है; appliance की actual power अलग supply से आती है।</p>
+<div class="diagram"><div class="box">Arduino GPIO</div><div class="arrow">→</div><div class="box">Relay Driver/Module</div><div class="arrow">→</div><div class="box">Relay Contacts</div><div class="arrow">→</div><div class="box">Load</div></div>
+<h3>Basic Arduino Control Code</h3>
+<div class="code">const int relayPin = 7;
+
+void setup() {
+  pinMode(relayPin, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(relayPin, HIGH);  // Relay ON (module dependent)
+  delay(2000);
+
+  digitalWrite(relayPin, LOW);   // Relay OFF (module dependent)
+  delay(2000);
+}</div>
+<div class="warn"><b>Safety:</b> Mains AC appliances के साथ working dangerous हो सकती है। Arduino pins को mains voltage से कभी directly connect न करें। Properly rated relay/module, insulation, enclosure और qualified electrical handling आवश्यक है। ऊपर का code केवल control concept के लिए है।</div>
+<h3>Applications</h3>
+<ul><li>Automatic light control</li><li>Fan/pump switching</li><li>Home automation</li><li>Industrial control systems</li><li>Timer-based switching</li></ul>
+</section>
+
+<section id="matrix">
+<h2>3. Working of a Matrix Keypad</h2>
+<p><b>Matrix Keypad</b> कई push buttons को rows और columns के arrangement में connect करके कम Arduino pins में multiple keys read करने की technique है। 4×4 keypad में सामान्यतः 4 rows और 4 columns होते हैं, यानी 16 keys।</p>
+<h3>4×4 Matrix Concept</h3>
+<table>
+<tr><th></th><th>C1</th><th>C2</th><th>C3</th><th>C4</th></tr>
+<tr><th>R1</th><td>1</td><td>2</td><td>3</td><td>A</td></tr>
+<tr><th>R2</th><td>4</td><td>5</td><td>6</td><td>B</td></tr>
+<tr><th>R3</th><td>7</td><td>8</td><td>9</td><td>C</td></tr>
+<tr><th>R4</th><td>*</td><td>0</td><td>#</td><td>D</td></tr>
+</table>
+<h3>Working</h3>
+<ol>
+<li>Arduino rows और columns को scan करता है।</li>
+<li>एक row/column combination को active करके key state check की जाती है।</li>
+<li>Key press होने पर particular row और column का connection detect होता है।</li>
+<li>Arduino उस row-column combination को corresponding key value में convert करता है।</li>
+</ol>
+<div class="diagram"><div class="box">Rows</div><div class="arrow">↔</div><div class="box">Keys</div><div class="arrow">↔</div><div class="box">Columns</div><div class="arrow">→</div><div class="box">Arduino</div></div>
+<p><b>Advantage:</b> Matrix arrangement से individual button के लिए अलग-अलग pin की आवश्यकता कम हो जाती है।</p>
+</section>
+
+<section id="keypadlib">
+<h2>4. Using the Keypad Library to Interface with Arduino</h2>
+<p>Arduino में <b>Keypad library</b> matrix keypad के scanning और key detection को आसान बनाती है। इससे हमें rows और columns को define करके pressed key को read करना आसान हो जाता है।</p>
+<h3>Example: 4×4 Keypad</h3>
+<div class="code">#include &lt;Keypad.h&gt;
+
+const byte ROWS = 4;
+const byte COLS = 4;
+
+char keys[ROWS][COLS] = {
+  {'1','2','3','A'},
+  {'4','5','6','B'},
+  {'7','8','9','C'},
+  {'*','0','#','D'}
+};
+
+byte rowPins[ROWS] = {9, 8, 7, 6};
+byte colPins[COLS] = {5, 4, 3, 2};
+
+Keypad keypad = Keypad(
+  makeKeymap(keys),
+  rowPins,
+  colPins,
+  ROWS,
+  COLS
+);
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  char key = keypad.getKey();
+
+  if (key) {
+    Serial.print("Key Pressed: ");
+    Serial.println(key);
+  }
+}</div>
+<h3>Important Functions / Concepts</h3>
+<table><tr><th>Item</th><th>Purpose</th></tr>
+<tr><td><code>Keypad.h</code></td><td>Keypad library include करना</td></tr>
+<tr><td><code>makeKeymap()</code></td><td>Key arrangement को keypad object के लिए map करना</td></tr>
+<tr><td><code>getKey()</code></td><td>Pressed key को read करना</td></tr>
+<tr><td>rowPins / colPins</td><td>Arduino के साथ rows और columns के pin connections define करना</td></tr></table>
+<div class="info"><b>Note:</b> Library availability Arduino IDE installation में अलग से manage करनी पड़ सकती है। Exact library version के अनुसार API/details verify करना अच्छा practice है।</div>
+</section>
+
+<section id="servo">
+<h2>5. Interfacing Servo Motors to Arduino</h2>
+<p><b>Servo Motor</b> एक motor mechanism है जिसमें shaft की position को controlled angle पर set किया जा सकता है। Arduino projects में servo motors robotic arms, doors, camera mounts और pointer mechanisms जैसे applications में useful हैं।</p>
+<h3>Typical Servo Wires</h3>
+<table><tr><th>Wire/Connection</th><th>Typical Purpose</th></tr>
+<tr><td>VCC</td><td>Power</td></tr><tr><td>GND</td><td>Ground</td></tr><tr><td>Signal</td><td>Control signal from Arduino</td></tr></table>
+<h3>Servo Library Example</h3>
+<div class="code">#include &lt;Servo.h&gt;
+
+Servo myServo;
+
+void setup() {
+  myServo.attach(9);
+}
+
+void loop() {
+  myServo.write(0);
+  delay(1000);
+
+  myServo.write(90);
+  delay(1000);
+
+  myServo.write(180);
+  delay(1000);
+}</div>
+<h3>Basic Working</h3>
+<div class="diagram"><div class="box">Arduino Signal</div><div class="arrow">→</div><div class="box">Servo Control Circuit</div><div class="arrow">→</div><div class="box">Motor + Gear</div><div class="arrow">→</div><div class="box">Desired Position</div></div>
+<p><code>Servo.h</code> library servo motor को control करने के लिए commonly used interface देती है। <code>attach()</code> signal pin assign करता है और <code>write()</code> desired angle command कर सकता है, supported servo range/model के अनुसार।</p>
+<div class="warn"><b>Power Note:</b> Servo को power देने के लिए board की available current capability और servo की requirements check करें। बड़े/high-current servos के लिए external regulated supply की आवश्यकता हो सकती है और grounds को उचित तरीके से reference करना पड़ सकता है।</div>
+</section>
+
+<section id="rf">
+<h2>6. Interfacing an RF Module</h2>
+<p><b>RF (Radio Frequency) Module</b> wireless communication के लिए radio-frequency signals का उपयोग करता है। Arduino के साथ RF modules का उपयोग data को wire के बिना transmit/receive करने के लिए किया जा सकता है।</p>
+<h3>Basic RF Communication</h3>
+<div class="diagram"><div class="box">Arduino + Transmitter</div><div class="arrow">)))</div><div class="box">RF Signal</div><div class="arrow">(( (</div><div class="box">Receiver + Arduino</div></div>
+<p>एक RF communication setup में सामान्यतः <b>transmitter</b> data भेजता है और <b>receiver</b> उस data को receive करता है। कुछ RF modules केवल simple one-way communication देते हैं, जबकि दूसरे transceiver modules दो-way communication support कर सकते हैं।</p>
+<h3>Common Educational RF Pair</h3>
+<p>433 MHz ASK/OOK transmitter-receiver modules Arduino learning projects में commonly seen हैं। इनके exact pins और communication method module-specific हो सकते हैं।</p>
+<table><tr><th>Part</th><th>Role</th></tr>
+<tr><td>Transmitter</td><td>Arduino से data लेकर RF signal transmit करता है।</td></tr>
+<tr><td>Receiver</td><td>RF signal receive करके data interface के माध्यम से Arduino को देता है।</td></tr>
+<tr><td>Antenna</td><td>Radio signal transmission/reception improve करने में सहायता करती है।</td></tr></table>
+<h3>Conceptual Transmitter Example</h3>
+<div class="code">/*
+  RF transmitter example concept.
+  Exact library and wiring depend on the RF module.
+*/
+
+#include &lt;RH_ASK.h&gt;
+#include &lt;SPI.h&gt;
+
+RH_ASK driver;
+
+void setup() {
+  driver.init();
+}
+
+void loop() {
+  const char *msg = "Hello BK LearnX";
+  driver.send((uint8_t *)msg, strlen(msg));
+  driver.waitPacketSent();
+
+  delay(1000);
+}</div>
+<h3>Conceptual Receiver Example</h3>
+<div class="code">#include &lt;RH_ASK.h&gt;
+#include &lt;SPI.h&gt;
+
+RH_ASK driver;
+
+void setup() {
+  Serial.begin(9600);
+  driver.init();
+}
+
+void loop() {
+  uint8_t buf[32];
+  uint8_t buflen = sizeof(buf);
+
+  if (driver.recv(buf, &buflen)) {
+    Serial.print("Received: ");
+    Serial.write(buf, buflen);
+    Serial.println();
+  }
+}</div>
+<div class="info"><b>Important:</b> RF module की frequency, modulation, pinout, library और operating voltage model-specific हो सकते हैं। इसलिए ऊपर का example particular compatible setup के लिए conceptual/reference code है; अपने module की documentation के अनुसार pins और library configuration verify करें।</div>
+<h3>Applications</h3>
+<ul><li>Wireless sensor data</li><li>Remote control projects</li><li>Home automation</li><li>Robot communication</li><li>Short-range telemetry</li></ul>
+</section>
+
+<section id="integration">
+<h2>Integrated Integration Flow</h2>
+<p>इन components को combine करके Arduino आधारित smart-control system बनाया जा सकता है। उदाहरण के लिए keypad से user command लिया जा सकता है, Arduino relay से load control कर सकता है, servo से mechanical movement कर सकता है और RF module से remote data exchange कर सकता है।</p>
+<div class="diagram"><div class="box">Keypad</div><div class="arrow">→</div><div class="box">Arduino</div><div class="arrow">→</div><div class="box">Relay</div><div class="arrow">→</div><div class="box">Appliance</div></div>
+<div class="diagram"><div class="box">RF Receiver</div><div class="arrow">→</div><div class="box">Arduino</div><div class="arrow">→</div><div class="box">Servo</div></div>
+<h3>General Interfacing Steps</h3>
+<ol><li>Component/module की voltage और pin requirements check करें।</li><li>Power और GND सही connect करें।</li><li>Signal/control pins को Arduino pins से map करें।</li><li>Required library install/include करें।</li><li>Component को independently test करें।</li><li>फिर multiple modules integrate करें।</li></ol>
+</section>
+
+<section id="revision">
+<h2>Quick Revision</h2>
+<table>
+<tr><th>Question</th><th>Short Answer</th></tr>
+<tr><td>Relay क्या है?</td><td>Electrically operated switching device.</td></tr>
+<tr><td>Electromagnetic relay कैसे काम करता है?</td><td>Coil के magnetic field से mechanical contacts operate होते हैं।</td></tr>
+<tr><td>Matrix keypad क्यों use करते हैं?</td><td>कम Arduino pins में multiple keys interface करने के लिए।</td></tr>
+<tr><td>Keypad library का प्रमुख function?</td><td><code>getKey()</code> से pressed key read करना।</td></tr>
+<tr><td>Servo motor का उपयोग?</td><td>Controlled angular position/movement के लिए।</td></tr>
+<tr><td>Servo library?</td><td><code>Servo.h</code></td></tr>
+<tr><td>RF का full form?</td><td>Radio Frequency.</td></tr>
+<tr><td>RF module का purpose?</td><td>Wireless data transmission/reception.</td></tr>
+<tr><td>SPDT का full form?</td><td>Single Pole Double Throw.</td></tr>
+</table>
+<div class="note"><b>Unit 7 Core Flow:</b> Keypad/User Input → Arduino Processing → Relay/Servo Action → RF द्वारा Wireless Communication.</div>
+</section>
+</main>
+</div>
+<footer>© BK LearnX • Unit 7: Arduino Secondary Integrations • PGDCA Study Notes</footer>
+</body>
+</html>

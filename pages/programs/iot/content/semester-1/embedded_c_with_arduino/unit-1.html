@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BK LearnX | Unit 1 - Introduction to Arduino</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--text:#172033;--muted:#5e6b82;--a:#1565c0;--a2:#0d47a1;--line:#dfe5ef;--note:#e8f1ff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,"Noto Sans Devanagari",sans-serif;background:var(--bg);color:var(--text);line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:34px 20px;text-align:center}header h1{margin:0 0 8px;font-size:clamp(28px,5vw,44px)}header p{margin:5px}
+.layout{display:flex;max-width:1450px;margin:auto}.side{width:285px;background:#fff;border-right:1px solid var(--line);position:sticky;top:0;height:100vh;overflow:auto;padding:20px 15px}.side h3{color:var(--a2)}.side a{display:block;text-decoration:none;color:#34415a;padding:8px 10px;border-radius:8px}.side a:hover{background:var(--note);color:var(--a)}
+main{flex:1;padding:30px;min-width:0}.card{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:25px;margin-bottom:23px;box-shadow:0 5px 18px rgba(20,35,60,.05)}h2{color:var(--a2);border-bottom:2px solid #e6edf7;padding-bottom:8px}h3{color:#29466f}.badge{display:inline-block;background:#e9f2ff;color:#0d47a1;border-radius:20px;padding:3px 10px;font-size:13px;font-weight:bold}.note,.example,.warning{padding:14px 17px;border-left:5px solid var(--a);background:var(--note);border-radius:8px;margin:15px 0}.example{border-color:#388e3c;background:#edf8ef}.warning{border-color:#f57c00;background:#fff5e8}
+table{width:100%;border-collapse:collapse;margin:15px 0}th,td{border:1px solid var(--line);padding:10px;text-align:left;vertical-align:top}th{background:#edf3fb;color:#163d73}pre{background:#111827;color:#e5e7eb;padding:17px;border-radius:10px;overflow:auto}.diagram{background:#f8fafc;border:1px dashed #9aa9bd;border-radius:10px;padding:18px;text-align:center;font-family:Consolas,monospace;white-space:pre-wrap}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.mini{border:1px solid var(--line);border-radius:12px;padding:15px;background:#fafcff}.mini strong{color:var(--a2)}footer{text-align:center;padding:25px;color:var(--muted)}.top{position:fixed;right:18px;bottom:18px;background:var(--a);color:white;padding:8px 13px;border-radius:50%;text-decoration:none}
+@media(max-width:850px){.side{display:none}main{padding:16px}.card{padding:18px}table{display:block;overflow-x:auto;font-size:14px}header{padding:26px 14px}}
+</style>
+</head>
+<body id="top">
+<header>
+<h1>Unit 1: Introduction to Arduino</h1>
+<p>Overview • Board Description • Installation • Pin Configuration & Architecture</p>
+<p>Digital & Analog Ports • Interfacing Board • Embedded C • Arduino Platform</p>
+<p><strong>BK LearnX | Exam-Oriented Notes</strong></p>
+</header>
+<div class="layout">
+<aside class="side">
+<h3>📚 Unit Navigation</h3>
+<a href="#overview">1. Arduino Overview</a><a href="#board">2. Board Description</a>
+<a href="#installation">3. Installation</a><a href="#pins">4. Pin Configuration</a>
+<a href="#architecture">5. Architecture</a><a href="#features">6. Device & Platform Features</a>
+<a href="#ports">7. Digital & Analog Ports</a><a href="#interface">8. Interfacing Board</a>
+<a href="#embeddedc">9. Embedded C</a><a href="#platform">10. Arduino Platform</a>
+<a href="#workflow">11. Working Flow</a><a href="#revision">12. Quick Revision</a>
+</aside>
+<main>
+
+<section class="card" id="overview">
+<span class="badge">1.1</span><h2>Arduino का Overview</h2>
+<p><strong>Arduino</strong> एक open-source electronics platform है, जिसका उपयोग sensors, LEDs, motors, displays और अन्य electronic components के साथ interactive तथा embedded projects बनाने के लिए किया जाता है। Arduino ecosystem में development boards, microcontrollers, programming environment और libraries शामिल होते हैं।</p>
+<p>Programmer Arduino IDE में code लिखता है, उसे compile करता है और USB connection के माध्यम से board पर upload करता है। Board का microcontroller uploaded program के अनुसार input पढ़ता है, processing करता है और output devices को control करता है।</p>
+<div class="note"><strong>Exam Definition:</strong> Arduino एक open-source electronics prototyping platform है, जिसमें programmable microcontroller-based boards और programming environment की सहायता से electronic तथा embedded applications विकसित की जाती हैं।</div>
+<div class="grid"><div class="mini"><strong>Sensor Projects</strong><br>Temperature, light, motion आदि sensors से data लेना।</div><div class="mini"><strong>Automation</strong><br>Lights, fans, pumps आदि control करना।</div><div class="mini"><strong>Robotics</strong><br>Sensors, motors और actuators के साथ projects।</div><div class="mini"><strong>IoT Prototypes</strong><br>Connected-device projects के prototypes बनाना।</div></div>
+</section>
+
+<section class="card" id="board">
+<span class="badge">1.2</span><h2>Arduino Board Description</h2>
+<p>Arduino board एक compact development board होता है। उदाहरण के लिए <strong>Arduino Uno</strong> beginners में बहुत popular है। Board पर microcontroller के साथ USB, power, digital I/O और analog input connections होते हैं।</p>
+<div class="diagram">+----------------------------------------------+
+| USB Port       Microcontroller               |
+|                                              |
+| Digital I/O Pins 0 ... 13                    |
+|                                              |
+| Analog Inputs A0 ... A5                      |
+|                                              |
+| Power: 5V | 3.3V | GND | Vin                 |
+|                                              |
+| Reset Button          Status / Power LEDs    |
++----------------------------------------------+</div>
+<table><tr><th>भाग</th><th>कार्य</th></tr>
+<tr><td>Microcontroller</td><td>Program execute करता है और inputs/outputs control करता है।</td></tr>
+<tr><td>USB Port</td><td>Computer connection, program upload और serial communication के लिए।</td></tr>
+<tr><td>Digital Pins</td><td>Digital input/output operations के लिए।</td></tr>
+<tr><td>Analog Pins</td><td>Analog voltage को पढ़ने के लिए।</td></tr>
+<tr><td>Power Pins</td><td>5V, 3.3V, GND आदि connections।</td></tr>
+<tr><td>Reset Button</td><td>Microcontroller को reset/restart करता है।</td></tr>
+<tr><td>Clock/Oscillator</td><td>Microcontroller के timing में सहायता करता है।</td></tr>
+<tr><td>Voltage Regulation</td><td>उपयुक्त input supply को board के लिए regulated supply में बदलने में सहायता करता है।</td></tr></table>
+</section>
+
+<section class="card" id="installation">
+<span class="badge">1.3</span><h2>Arduino Installation</h2>
+<p>Arduino programming शुरू करने के लिए computer में <strong>Arduino IDE</strong> install किया जाता है। IDE code लिखने, compile करने और board पर upload करने का मुख्य environment है।</p>
+<ol><li>Arduino IDE install करें।</li><li>Board को data-capable USB cable से computer से connect करें।</li><li>IDE में सही <strong>Board</strong> select करें।</li><li>सही <strong>Port</strong> select करें।</li><li>Sketch लिखें या example खोलें।</li><li><strong>Verify/Compile</strong> करें।</li><li><strong>Upload</strong> करें।</li><li>Upload के बाद microcontroller program execute करेगा।</li></ol>
+<div class="example"><strong>First Project:</strong> Arduino IDE के Blink example से LED blinking, board selection, compilation और upload की basic process समझी जा सकती है।</div>
+<div class="warning"><strong>ध्यान दें:</strong> USB cable data transfer support करती हो। गलत board/port selection या improper wiring से upload या hardware operation में समस्या आ सकती है।</div>
+</section>
+
+<section class="card" id="pins">
+<span class="badge">1.4</span><h2>Pin Configuration – Arduino Uno</h2>
+<table><tr><th>Pin Group</th><th>मुख्य उपयोग</th></tr>
+<tr><td>Digital 0–13</td><td>Digital input/output; pins 0 और 1 hardware serial communication में भी उपयोग होते हैं।</td></tr>
+<tr><td>Analog A0–A5</td><td>Analog input पढ़ने के लिए; ADC analog voltage को digital value में represent करता है।</td></tr>
+<tr><td>5V</td><td>5V supply/reference use के लिए।</td></tr>
+<tr><td>3.3V</td><td>Suitable 3.3V peripherals के लिए।</td></tr>
+<tr><td>GND</td><td>Ground/reference connection।</td></tr>
+<tr><td>Vin</td><td>External input supply के लिए, board की limits के अनुसार।</td></tr>
+<tr><td>RESET</td><td>Microcontroller reset करने के लिए।</td></tr></table>
+<h3>Special Pin Functions</h3>
+<ul><li><strong>PWM:</strong> कुछ digital pins PWM support करती हैं; Arduino में <code>analogWrite()</code> के माध्यम से duty cycle control की जा सकती है।</li>
+<li><strong>Serial:</strong> D0 = RX और D1 = TX hardware serial interface से जुड़े हैं।</li>
+<li><strong>Interrupt:</strong> कुछ pins external interrupt functionality support करती हैं।</li></ul>
+<div class="warning">Exact pin functions और electrical limits board model/revision के अनुसार बदल सकते हैं। Practical work में संबंधित board की pinout documentation देखें।</div>
+</section>
+
+<section class="card" id="architecture">
+<span class="badge">1.5</span><h2>Arduino Architecture</h2>
+<div class="diagram">INPUTS
+Sensors / Switches
+       ↓
+Digital / Analog Pins
+       ↓
+Microcontroller
+(CPU + Memory + Peripherals)
+       ↓
+Program Processing
+       ↓
+Digital / PWM / Communication Outputs
+       ↓
+LED / Display / Motor Driver / Actuator</div>
+<p>Arduino architecture को hardware और software दोनों स्तरों पर समझा जा सकता है। Arduino Uno जैसे board में microcontroller मुख्य processing unit होता है। यह program instructions execute करता है और I/O peripherals के माध्यम से external devices से interaction करता है।</p>
+<table><tr><th>Block</th><th>Explanation</th></tr>
+<tr><td>CPU</td><td>Instructions execute करता है।</td></tr>
+<tr><td>Program Memory</td><td>Uploaded program को store करने के लिए।</td></tr>
+<tr><td>RAM/Data Memory</td><td>Running program के variables और temporary data के लिए।</td></tr>
+<tr><td>Non-volatile Memory</td><td>Persistent data/configuration storage के लिए उपलब्ध हो सकती है।</td></tr>
+<tr><td>I/O Peripherals</td><td>GPIO, timers और serial interfaces आदि के माध्यम से external hardware से communication।</td></tr>
+<tr><td>ADC</td><td>Analog signal को digital representation में convert करने में सहायता करता है।</td></tr>
+<tr><td>Clock</td><td>Instruction और peripheral timing को synchronize करता है।</td></tr></table>
+<p>Popular classic Arduino Uno revision में <strong>ATmega328P</strong> microcontroller का उपयोग होता है। इसके साथ digital I/O, analog inputs, timers, serial communication और ADC जैसे features मिलते हैं।</p>
+</section>
+
+<section class="card" id="features">
+<span class="badge">1.6</span><h2>Device और Platform Features</h2>
+<h3>Device Features</h3><ul><li>Programmable microcontroller-based operation</li><li>Digital input/output pins</li><li>Analog input channels</li><li>PWM-capable outputs on supported pins</li><li>USB connectivity</li><li>Power input options</li><li>Serial communication</li><li>Sensors और actuators के साथ easy interfacing</li></ul>
+<h3>Platform Features</h3><ul><li><strong>Open-source ecosystem:</strong> Hardware/software ecosystem widely available है।</li><li><strong>Arduino IDE:</strong> Code, compile/build और upload के लिए environment।</li><li><strong>Libraries:</strong> Sensors, displays और communication modules के लिए reusable code।</li><li><strong>Examples:</strong> Learning और prototyping के लिए ready examples।</li><li><strong>Community:</strong> Tutorials और project resources का बड़ा ecosystem।</li></ul>
+</section>
+
+<section class="card" id="ports">
+<span class="badge">1.7</span><h2>Digital और Analog Ports / Pins का Concept</h2>
+<h3>Digital Pin</h3><p>Digital signal discrete logic states represent करता है। Arduino में digital pin को सामान्यतः <strong>HIGH</strong> या <strong>LOW</strong> के रूप में read/write किया जाता है।</p>
+<pre>pinMode(13, OUTPUT);
+digitalWrite(13, HIGH);
+delay(1000);
+digitalWrite(13, LOW);</pre>
+<h3>Analog Input</h3><p>Real-world signals जैसे temperature या light sensor का voltage continuous हो सकता है। Arduino का ADC analog voltage को digital numeric representation में बदलता है।</p>
+<pre>int sensorValue = analogRead(A0);</pre>
+<p>Arduino Uno के 10-bit ADC में सामान्य reading range <strong>0 से 1023</strong> होती है, जो selected/reference voltage range को represent करती है।</p>
+<h3>PWM और Analog Output</h3>
+<div class="note"><strong>महत्वपूर्ण:</strong> Uno का PWM वास्तविक continuous analog voltage output नहीं है। <code>analogWrite()</code> PWM waveform की duty cycle control करता है। True analog voltage के लिए suitable DAC/circuit की आवश्यकता हो सकती है।</div>
+<table><tr><th>Digital</th><th>Analog Input</th><th>PWM</th></tr><tr><td>HIGH/LOW logic</td><td>ADC के द्वारा analog voltage reading</td><td>ON/OFF pulses की duty cycle control</td></tr><tr><td>Switch/LED control</td><td>Sensor measurement</td><td>LED brightness जैसे applications</td></tr></table>
+</section>
+
+<section class="card" id="interface">
+<span class="badge">1.8</span><h2>Arduino Interfacing Board से परिचित होना</h2>
+<p><strong>Interfacing</strong> का अर्थ Arduino को external electronic components के साथ connect करके data लेना या output control करना है। Sensors physical world से input देते हैं और actuators/output devices Arduino के control के अनुसार action लेते हैं।</p>
+<div class="grid"><div class="mini"><strong>Input</strong><br>Push button, potentiometer, LDR, temperature sensor आदि।</div><div class="mini"><strong>Output</strong><br>LED, buzzer, display, relay module आदि।</div><div class="mini"><strong>Actuator</strong><br>Motor, servo, pump आदि; suitable driver की जरूरत हो सकती है।</div><div class="mini"><strong>Communication</strong><br>Serial, I²C, SPI जैसे interfaces से modules connect किए जा सकते हैं।</div></div>
+<h3>Basic LED Interfacing</h3><div class="diagram">Arduino Digital Pin ── Resistor ── LED ── GND</div>
+<p>LED circuit में suitable current-limiting resistor लगाया जाता है। Motor जैसे higher-current load को Arduino GPIO से सीधे drive करने के बजाय suitable transistor/MOSFET/driver module का प्रयोग किया जाता है।</p>
+<h3>Sensor Interfacing Flow</h3><ol><li>Sensor physical quantity को electrical signal में बदलता है।</li><li>Arduino input pin signal receive करता है।</li><li>Analog signal होने पर ADC उसे digital value में represent करता है।</li><li>Program value process करता है।</li><li>Arduino output या communication interface के माध्यम से action लेता है।</li></ol>
+</section>
+
+<section class="card" id="embeddedc">
+<span class="badge">1.9</span><h2>Introduction to Embedded C</h2>
+<p><strong>Embedded C</strong> C programming concepts का उपयोग embedded systems के लिए software बनाने में किया जाता है। इसमें hardware resources, memory, timing और peripherals को ध्यान में रखकर program विकसित किया जाता है।</p>
+<ul><li>Hardware के close control की सुविधा</li><li>Variables, conditions, loops और functions</li><li>Microcontroller registers/peripherals के साथ काम</li><li>Limited memory और processing resources का ध्यान</li><li>Embedded और real-time applications में उपयोग</li></ul>
+<h3>Arduino और C/C++</h3>
+<p>Arduino sketches सामान्यतः C/C++ आधारित Arduino programming environment में लिखे जाते हैं। Arduino framework कई hardware operations को आसान functions के रूप में उपलब्ध कराता है, जैसे <code>pinMode()</code>, <code>digitalWrite()</code>, <code>digitalRead()</code>, <code>analogRead()</code> और <code>delay()</code>।</p>
+<pre>void setup() {
+  pinMode(13, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(13, HIGH);
+  delay(1000);
+  digitalWrite(13, LOW);
+  delay(1000);
+}</pre>
+<table><tr><th>Function</th><th>Purpose</th></tr><tr><td><code>setup()</code></td><td>Board start/reset होने के बाद सामान्यतः एक बार चलता है; initialization के लिए।</td></tr><tr><td><code>loop()</code></td><td>Main application logic को repeatedly execute करता है।</td></tr></table>
+</section>
+
+<section class="card" id="platform">
+<span class="badge">1.10</span><h2>Arduino Platform</h2>
+<p>Arduino Platform केवल एक board नहीं है। इसमें development boards, programming environment, libraries, examples और supporting ecosystem शामिल होते हैं।</p>
+<h3>Development Cycle</h3><ol><li>Project idea और requirement तय करें।</li><li>Board, sensors और output devices चुनें।</li><li>Circuit सही pins और power के साथ connect करें।</li><li>Arduino IDE में sketch लिखें।</li><li>Verify/compile करें।</li><li>Program upload करें।</li><li>Board program execute करता है।</li><li>Testing और debugging करें।</li></ol>
+<div class="diagram">Programmer → Arduino IDE → Compile/Build → Upload → Board → Microcontroller → Read Inputs → Process → Control Outputs</div>
+</section>
+
+<section class="card" id="workflow">
+<span class="badge">1.11</span><h2>Complete Working Example: LDR + LED</h2>
+<p>एक LDR से light level पढ़कर LED control करना digital और analog concepts का अच्छा example है।</p>
+<ol><li>LDR circuit को A0 जैसे analog input से connect करें।</li><li>LED को suitable resistor के साथ digital output pin से connect करें।</li><li><code>analogRead(A0)</code> से sensor value पढ़ें।</li><li>Value को threshold से compare करें।</li><li>Condition के अनुसार LED ON/OFF करें।</li></ol>
+<pre>const int sensorPin = A0;
+const int ledPin = 13;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  int value = analogRead(sensorPin);
+
+  if (value &lt; 500) {
+    digitalWrite(ledPin, HIGH);
+  } else {
+    digitalWrite(ledPin, LOW);
+  }
+}</pre>
+<div class="example">यहाँ <strong>A0 = analog input</strong>, program में comparison = processing, और <strong>pin 13 = digital output</strong> है। वास्तविक LDR circuit में threshold और reading direction circuit arrangement पर depend कर सकती है।</div>
+</section>
+
+<section class="card" id="revision">
+<span class="badge">1.12</span><h2>Quick Revision – परीक्षा के लिए</h2>
+<ul><li>Arduino एक open-source electronics prototyping platform है।</li><li>Arduino board में programmable microcontroller, I/O pins और power connections होते हैं।</li><li>Arduino IDE sketch लिखने, compile करने और upload करने के लिए उपयोग होता है।</li><li>Digital pins HIGH/LOW logic states के साथ काम करती हैं।</li><li>Analog input में ADC voltage को digital value में represent करता है।</li><li>PWM को continuous analog voltage नहीं समझना चाहिए।</li><li>Classic Arduino Uno में ATmega328P microcontroller मिलता है।</li><li><code>setup()</code> initialization के लिए सामान्यतः एक बार चलता है।</li><li><code>loop()</code> repeatedly चलता है।</li><li>Embedded C hardware-oriented embedded programming के लिए उपयोगी है।</li><li>Interfacing sensors से input और LEDs/motors/displays से output/control को जोड़ता है।</li></ul>
+<div class="note"><strong>One-Line Revision:</strong> Arduino = Microcontroller-based Board + Programming Environment + I/O Interfacing + Libraries/Ecosystem.</div>
+</section>
+
+</main></div>
+<footer>© BK LearnX • Unit 1: Introduction to Arduino • Exam-Oriented Study Notes</footer>
+<a class="top" href="#top">↑</a>
+</body></html>

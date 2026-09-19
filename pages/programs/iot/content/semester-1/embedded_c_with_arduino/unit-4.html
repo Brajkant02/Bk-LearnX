@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BK LearnX | Unit 4 - Arduino Time</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--text:#172033;--muted:#5e6b82;--a:#1565c0;--a2:#0d47a1;--line:#dfe5ef;--note:#e8f1ff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,"Noto Sans Devanagari",sans-serif;background:var(--bg);color:var(--text);line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:34px 20px;text-align:center}
+header h1{margin:0 0 8px;font-size:clamp(28px,5vw,44px)}header p{margin:5px}
+.layout{display:flex;max-width:1450px;margin:auto}.side{width:285px;background:#fff;border-right:1px solid var(--line);position:sticky;top:0;height:100vh;overflow:auto;padding:20px 15px}
+.side h3{color:var(--a2)}.side a{display:block;text-decoration:none;color:#34415a;padding:8px 10px;border-radius:8px}.side a:hover{background:var(--note);color:var(--a)}
+main{flex:1;padding:30px;min-width:0}.card{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:25px;margin-bottom:23px;box-shadow:0 5px 18px rgba(20,35,60,.05)}
+h2{color:var(--a2);border-bottom:2px solid #e6edf7;padding-bottom:8px}h3{color:#29466f}
+.badge{display:inline-block;background:#e9f2ff;color:#0d47a1;border-radius:20px;padding:3px 10px;font-size:13px;font-weight:bold}
+.note,.example,.warning{padding:14px 17px;border-left:5px solid var(--a);background:var(--note);border-radius:8px;margin:15px 0}.example{border-color:#388e3c;background:#edf8ef}.warning{border-color:#f57c00;background:#fff5e8}
+table{width:100%;border-collapse:collapse;margin:15px 0}th,td{border:1px solid var(--line);padding:10px;text-align:left;vertical-align:top}th{background:#edf3fb;color:#163d73}
+pre{background:#111827;color:#e5e7eb;padding:17px;border-radius:10px;overflow:auto}.diagram{background:#f8fafc;border:1px dashed #9aa9bd;border-radius:10px;padding:18px;text-align:center;font-family:Consolas,monospace;white-space:pre-wrap}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.mini{border:1px solid var(--line);border-radius:12px;padding:15px;background:#fafcff}.mini strong{color:var(--a2)}
+footer{text-align:center;padding:25px;color:var(--muted)}.top{position:fixed;right:18px;bottom:18px;background:var(--a);color:#fff;padding:8px 13px;border-radius:50%;text-decoration:none}
+@media(max-width:850px){.side{display:none}main{padding:16px}.card{padding:18px}table{display:block;overflow-x:auto;font-size:14px}header{padding:26px 14px}}
+</style>
+</head>
+<body id="top">
+<header>
+<h1>Unit 4: Arduino Time</h1>
+<p>Incorporating Arduino Time • delay() • delayMicroseconds() • millis() • micros()</p>
+<p><strong>BK LearnX | Exam-Oriented Notes</strong></p>
+</header>
+
+<div class="layout">
+<aside class="side">
+<h3>📚 Unit Navigation</h3>
+<a href="#intro">1. Arduino Time</a>
+<a href="#delay">2. delay()</a>
+<a href="#delaymicro">3. delayMicroseconds()</a>
+<a href="#millis">4. millis()</a>
+<a href="#micros">5. micros()</a>
+<a href="#compare">6. Comparison</a>
+<a href="#nonblocking">7. Non-Blocking Timing</a>
+<a href="#examples">8. Practical Examples</a>
+<a href="#revision">9. Quick Revision</a>
+</aside>
+
+<main>
+
+<section class="card" id="intro">
+<span class="badge">4.1</span>
+<h2>Incorporating Arduino Time</h2>
+<p>Arduino projects में <strong>time</strong> का उपयोग बहुत महत्वपूर्ण है। किसी LED को निश्चित interval पर blink करना, sensor को periodic interval पर read करना, motor को कुछ समय तक चलाना, button event का timing measure करना या किसी task को बिना लगातार delay के schedule करना—इन सभी में timing functions उपयोगी होते हैं।</p>
+<p>Arduino programming environment में basic timing के लिए मुख्य functions हैं: <code>delay()</code>, <code>delayMicroseconds()</code>, <code>millis()</code> और <code>micros()</code>।</p>
+<div class="diagram">Arduino Program
+      ↓
+Timing Requirement
+      ↓
++-----------------------------+
+| delay()                     |
+| delayMicroseconds()         |
+| millis()                    |
+| micros()                    |
++-----------------------------+
+      ↓
+Timed Action / Measurement</div>
+<h3>Time Units</h3>
+<table>
+<tr><th>Unit</th><th>Meaning</th><th>Relationship</th></tr>
+<tr><td>Second (s)</td><td>Basic time unit</td><td>1 s = 1000 ms</td></tr>
+<tr><td>Millisecond (ms)</td><td>Second का 1/1000</td><td>1000 ms = 1 s</td></tr>
+<tr><td>Microsecond (µs)</td><td>Second का 1/1,000,000</td><td>1,000,000 µs = 1 s</td></tr>
+</table>
+<div class="note"><strong>Exam Definition:</strong> Arduino timing functions का उपयोग program execution को delay करने, elapsed time measure करने तथा time-based events को control करने के लिए किया जाता है।</div>
+</section>
+
+<section class="card" id="delay">
+<span class="badge">4.2</span>
+<h2>delay() Function</h2>
+<p><code>delay()</code> function program execution को दिए गए number of <strong>milliseconds</strong> तक रोकता है। यह beginners के लिए सबसे simple timing function है।</p>
+<h3>Syntax</h3>
+<pre>delay(milliseconds);</pre>
+<h3>Example</h3>
+<pre>digitalWrite(13, HIGH);
+delay(1000);
+
+digitalWrite(13, LOW);
+delay(1000);</pre>
+<p>यहाँ LED को HIGH करने के बाद program लगभग 1000 milliseconds (1 second) wait करता है, फिर LOW करता है और दोबारा 1 second wait करता है।</p>
+<h3>LED Blink Example</h3>
+<pre>const int ledPin = 13;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(ledPin, HIGH);
+  delay(500);
+
+  digitalWrite(ledPin, LOW);
+  delay(500);
+}</pre>
+<h3>delay() की विशेषता</h3>
+<ul>
+<li>Use करना बहुत आसान है।</li>
+<li>Milliseconds में argument लिया जाता है।</li>
+<li>Simple sequential timing के लिए उपयोगी है।</li>
+<li>लेकिन delay के दौरान normal program flow effectively wait करता है, इसलिए दूसरे tasks की responsiveness प्रभावित हो सकती है।</li>
+</ul>
+<div class="warning"><strong>Important:</strong> <code>delay()</code> को हर timing problem का solution नहीं मानना चाहिए। जब Arduino को simultaneously button, sensor, communication या अन्य tasks handle करने हों, तब <code>millis()</code> आधारित approach अधिक useful हो सकती है।</div>
+</section>
+
+<section class="card" id="delaymicro">
+<span class="badge">4.3</span>
+<h2>delayMicroseconds() Function</h2>
+<p><code>delayMicroseconds()</code> program को दिए गए number of <strong>microseconds</strong> के लिए short delay देता है। यह बहुत छोटे timing intervals वाले applications में उपयोगी है।</p>
+<h3>Syntax</h3>
+<pre>delayMicroseconds(microseconds);</pre>
+<h3>Example</h3>
+<pre>digitalWrite(8, HIGH);
+delayMicroseconds(100);
+digitalWrite(8, LOW);
+delayMicroseconds(100);</pre>
+<p>ऊपर प्रत्येक state के बीच लगभग 100 microseconds का delay रखा गया है। Actual timing instruction execution और hardware characteristics से प्रभावित हो सकती है।</p>
+<h3>delay() और delayMicroseconds() में अंतर</h3>
+<table>
+<tr><th>Point</th><th>delay()</th><th>delayMicroseconds()</th></tr>
+<tr><td>Time unit</td><td>Milliseconds</td><td>Microseconds</td></tr>
+<tr><td>Typical use</td><td>LED blink, seconds/milliseconds level waits</td><td>Very short timing intervals</td></tr>
+<tr><td>Syntax</td><td><code>delay(1000)</code></td><td><code>delayMicroseconds(100)</code></td></tr>
+<tr><td>Granularity</td><td>ms-level API</td><td>µs-level API</td></tr>
+</table>
+<div class="warning"><strong>ध्यान दें:</strong> बहुत छोटे delays में actual achievable precision processor clock, compiler-generated instructions और board architecture पर depend करती है।</div>
+</section>
+
+<section class="card" id="millis">
+<span class="badge">4.4</span>
+<h2>millis() Function</h2>
+<p><code>millis()</code> function board के running time का elapsed count <strong>milliseconds</strong> में देता है। इसका उपयोग यह पता लगाने के लिए किया जाता है कि program ने कितना time चलाया है।</p>
+<h3>Syntax</h3>
+<pre>unsigned long currentTime = millis();</pre>
+<p>Arduino timing code में सामान्यतः <code>unsigned long</code> type उपयोग किया जाता है क्योंकि returned count समय के साथ बढ़ता रहता है।</p>
+<h3>Basic Example</h3>
+<pre>unsigned long startTime;
+
+void setup() {
+  startTime = millis();
+}
+
+void loop() {
+  unsigned long currentTime = millis();
+
+  if (currentTime - startTime >= 5000) {
+    // लगभग 5 seconds elapsed
+  }
+}</pre>
+<h3>millis() से LED Blink — बिना blocking delay के</h3>
+<pre>const int ledPin = 13;
+unsigned long previousMillis = 0;
+const unsigned long interval = 1000;
+bool ledState = LOW;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  unsigned long currentMillis = millis();
+
+  if (currentMillis - previousMillis >= interval) {
+    previousMillis = currentMillis;
+
+    ledState = !ledState;
+    digitalWrite(ledPin, ledState);
+  }
+}</pre>
+<p>इस technique में Arduino हर loop iteration में time check कर सकता है। इसलिए loop के बीच लंबा blocking wait नहीं लगाया जाता।</p>
+<h3>millis() Rollover</h3>
+<p><code>millis()</code> का returned counter finite-size integer type में store होता है, इसलिए बहुत लंबे समय बाद यह rollover होकर फिर छोटे values से continue कर सकता है। सही elapsed-time comparison के लिए सामान्य pattern <code>current - previous &gt;= interval</code> उपयोग करना rollover-safe design के लिए बेहतर है।</p>
+</section>
+
+<section class="card" id="micros">
+<span class="badge">4.5</span>
+<h2>micros() Function</h2>
+<p><code>micros()</code> program के start के बाद elapsed time का count <strong>microseconds</strong> में देता है। यह short-duration timing और performance measurement के लिए उपयोगी है।</p>
+<h3>Syntax</h3>
+<pre>unsigned long currentTime = micros();</pre>
+<h3>Execution Time Measure करना</h3>
+<pre>unsigned long startTime = micros();
+
+// Code to measure
+int result = 10 * 20;
+
+unsigned long elapsed = micros() - startTime;</pre>
+<p>यहाँ <code>elapsed</code> variable में measured section के execution time का approximate microsecond count प्राप्त किया जा सकता है। बहुत छोटे code sections के लिए measurement overhead और timer resolution को ध्यान में रखना चाहिए।</p>
+<h3>micros() आधारित Interval Example</h3>
+<pre>unsigned long previousMicros = 0;
+const unsigned long interval = 1000;
+
+void loop() {
+  unsigned long currentMicros = micros();
+
+  if (currentMicros - previousMicros >= interval) {
+    previousMicros = currentMicros;
+
+    // timed task
+  }
+}</pre>
+<div class="warning"><strong>Important:</strong> <code>micros()</code> की resolution, rollover period और exact behavior board architecture पर depend कर सकते हैं। इसलिए high-precision timing requirement में specific board documentation और hardware timers को ध्यान में रखें।</div>
+</section>
+
+<section class="card" id="compare">
+<span class="badge">4.6</span>
+<h2>delay(), delayMicroseconds(), millis() और micros() – Comparison</h2>
+<table>
+<tr><th>Function</th><th>Unit</th><th>मुख्य उद्देश्य</th><th>Typical approach</th></tr>
+<tr><td><code>delay()</code></td><td>Milliseconds</td><td>Program को specified time के लिए wait कराना।</td><td>Blocking delay</td></tr>
+<tr><td><code>delayMicroseconds()</code></td><td>Microseconds</td><td>बहुत short delay देना।</td><td>Blocking short delay</td></tr>
+<tr><td><code>millis()</code></td><td>Milliseconds</td><td>Elapsed time measure/schedule करना।</td><td>Non-blocking timing pattern possible</td></tr>
+<tr><td><code>micros()</code></td><td>Microseconds</td><td>Short elapsed time measure/schedule करना।</td><td>Fine-grained timing pattern possible</td></tr>
+</table>
+<h3>Simple Selection Rule</h3>
+<div class="grid">
+<div class="mini"><strong>Simple wait?</strong><br><code>delay()</code></div>
+<div class="mini"><strong>Very short wait?</strong><br><code>delayMicroseconds()</code></div>
+<div class="mini"><strong>Milliseconds timing + other tasks?</strong><br><code>millis()</code></div>
+<div class="mini"><strong>Short-duration measurement?</strong><br><code>micros()</code></div>
+</div>
+</section>
+
+<section class="card" id="nonblocking">
+<span class="badge">4.7</span>
+<h2>Blocking और Non-Blocking Timing</h2>
+<h3>Blocking Timing</h3>
+<p>Blocking timing में program किसी operation पर wait करता है और उस समय normal loop processing आगे नहीं बढ़ती। <code>delay()</code> इसका common example है।</p>
+<pre>digitalWrite(13, HIGH);
+delay(5000);
+digitalWrite(13, LOW);</pre>
+<p>यहाँ 5 seconds की waiting के दौरान उसी sequential flow में अगला statement तुरंत execute नहीं होता।</p>
+
+<h3>Non-Blocking Timing</h3>
+<p>Non-blocking approach में current time को repeatedly check करके यह तय किया जाता है कि interval पूरा हुआ या नहीं। <code>millis()</code> और <code>micros()</code> इस pattern के लिए उपयोगी हैं।</p>
+<pre>unsigned long previous = 0;
+const unsigned long interval = 1000;
+
+void loop() {
+  unsigned long now = millis();
+
+  if (now - previous >= interval) {
+    previous = now;
+    // Task
+  }
+
+  // Other tasks can continue here
+}</pre>
+<div class="note"><strong>Exam Point:</strong> जब एक Arduino project में multiple tasks को responsive रखना हो, तब elapsed-time based scheduling अक्सर simple delay-based code से बेहतर architecture देता है।</div>
+</section>
+
+<section class="card" id="examples">
+<span class="badge">4.8</span>
+<h2>Practical Examples</h2>
+
+<h3>Example 1: millis() से दो अलग Tasks</h3>
+<pre>const int led1 = 13;
+const int led2 = 12;
+
+unsigned long t1 = 0;
+unsigned long t2 = 0;
+
+void setup() {
+  pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
+}
+
+void loop() {
+  unsigned long now = millis();
+
+  if (now - t1 >= 500) {
+    t1 = now;
+    digitalWrite(led1, !digitalRead(led1));
+  }
+
+  if (now - t2 >= 1000) {
+    t2 = now;
+    digitalWrite(led2, !digitalRead(led2));
+  }
+}</pre>
+<p>यहाँ दोनों LEDs अलग-अलग intervals पर operate कर सकती हैं और कोई long blocking delay नहीं लगाया गया है।</p>
+
+<h3>Example 2: millis() से Sensor Sampling</h3>
+<pre>const unsigned long sampleInterval = 2000;
+unsigned long previous = 0;
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  unsigned long now = millis();
+
+  if (now - previous >= sampleInterval) {
+    previous = now;
+
+    int value = analogRead(A0);
+    Serial.println(value);
+  }
+}</pre>
+<p>इस example में sensor को लगभग हर 2 seconds पर read किया जाता है, जबकि loop के बीच program अन्य tasks भी कर सकता है।</p>
+
+<h3>Example 3: millis() से Elapsed Time</h3>
+<pre>unsigned long start;
+
+void setup() {
+  Serial.begin(9600);
+  start = millis();
+}
+
+void loop() {
+  unsigned long elapsed = millis() - start;
+
+  Serial.println(elapsed);
+  delay(1000);
+}</pre>
+</section>
+
+<section class="card" id="revision">
+<span class="badge">4.9</span>
+<h2>Quick Revision – परीक्षा के लिए</h2>
+<ul>
+<li><strong>Arduino Time:</strong> Timed events, delays और elapsed-time measurement के लिए उपयोगी concept।</li>
+<li><strong>delay():</strong> Milliseconds में blocking delay देता है।</li>
+<li><strong>delayMicroseconds():</strong> Microseconds में short blocking delay देता है।</li>
+<li><strong>millis():</strong> Program start के बाद elapsed time को milliseconds count के रूप में देता है।</li>
+<li><strong>micros():</strong> Program start के बाद elapsed time को microseconds count के रूप में देता है।</li>
+<li><strong>Non-blocking timing:</strong> Current time और previous time के difference से interval check करना।</li>
+<li><strong>Common pattern:</strong> <code>if (current - previous >= interval)</code></li>
+<li><strong>millis() और micros():</strong> Returned counters finite-size होते हैं, इसलिए long-running programs में rollover को ध्यान में रखना चाहिए।</li>
+<li><strong>Time units:</strong> 1 second = 1000 milliseconds = 1,000,000 microseconds.</li>
+</ul>
+<div class="note"><strong>One-Line Revision:</strong> Arduino Timing = <code>delay()</code> for simple waits + <code>delayMicroseconds()</code> for short waits + <code>millis()</code>/<code>micros()</code> for elapsed-time based control and measurement.</div>
+</section>
+
+</main>
+</div>
+<footer>© BK LearnX • Unit 4: Arduino Time • Exam-Oriented Study Notes</footer>
+<a class="top" href="#top">↑</a>
+</body>
+</html>

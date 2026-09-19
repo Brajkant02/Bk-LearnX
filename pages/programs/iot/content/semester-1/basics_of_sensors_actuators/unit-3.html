@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BK LearnX | Unit-3 Actuator</title>
+<style>
+:root{--bg:#f6f8fc;--card:#fff;--text:#172033;--muted:#5d687c;--accent:#2563eb;--accent2:#0f766e;--border:#dfe5ef;--code:#111827;--note:#eef5ff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,"Noto Sans Devanagari",sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+header{background:linear-gradient(135deg,#111827,#1d4ed8);color:#fff;padding:34px 20px}header .wrap{max-width:1200px;margin:auto}header h1{margin:0 0 8px;font-size:clamp(28px,4vw,44px)}header p{margin:0;color:#dbeafe}
+.layout{max-width:1200px;margin:auto;display:grid;grid-template-columns:260px 1fr;gap:24px;padding:24px 16px}
+aside{position:sticky;top:16px;height:calc(100vh - 32px);overflow:auto;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px}
+aside h3{margin-top:0}aside a{display:block;text-decoration:none;color:var(--muted);padding:7px 9px;border-radius:8px;font-size:14px}aside a:hover{background:var(--note);color:var(--accent)}
+main{min-width:0}.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:26px;margin-bottom:20px;box-shadow:0 5px 18px rgba(15,23,42,.04)}
+h2{font-size:27px;margin-top:0;color:#173b7a}h3{color:#244b86;margin-bottom:8px}.tag{display:inline-block;padding:4px 9px;border-radius:999px;background:#e8f0ff;color:#1d4ed8;font-size:12px;font-weight:700;margin-bottom:8px}
+.note{background:var(--note);border-left:4px solid var(--accent);padding:14px 16px;border-radius:8px;margin:14px 0}.warn{background:#fff7ed;border-left-color:#ea580c}.success{background:#ecfdf5;border-left-color:#059669}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}th,td{border:1px solid var(--border);padding:10px;vertical-align:top;text-align:left}th{background:#f0f4fa}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.mini{border:1px solid var(--border);border-radius:12px;padding:15px;background:#fbfcff}.mini h3{margin-top:0}
+.flow{background:var(--code);color:#e5e7eb;padding:15px;border-radius:10px;overflow:auto;font-family:Consolas,monospace;font-size:13px}
+.formula{font-family:Consolas,monospace;background:#f1f5f9;border:1px solid var(--border);padding:12px;border-radius:9px}
+footer{text-align:center;color:var(--muted);padding:25px}
+@media(max-width:850px){.layout{grid-template-columns:1fr}aside{position:relative;top:0;height:auto}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<h1>Unit–3: Actuator</h1>
+<p>PGDCA / IoT / Sensor Technology — Exam-Oriented Hindi + English Notes</p>
+</div></header>
+
+<div class="layout">
+<aside>
+<h3>⚙️ Unit Navigation</h3>
+<a href="#intro">1. Introduction</a>
+<a href="#characteristics">2. Characteristics</a>
+<a href="#classification">3. Classification</a>
+<a href="#electrical">4. Electrical Actuators</a>
+<a href="#electromechanical">5. Electromechanical</a>
+<a href="#electromagnetic">6. Electromagnetic</a>
+<a href="#hydraulic">7. Hydraulic</a>
+<a href="#pneumatic">8. Pneumatic</a>
+<a href="#smart">9. Smart Material</a>
+<a href="#micro">10. Micro Actuators</a>
+<a href="#working">11. Working Principles</a>
+<a href="#dcmotor">12. DC Motor Example</a>
+<a href="#sensorvs">13. Sensor vs Actuator</a>
+<a href="#iot">14. Actuators in IoT</a>
+<a href="#applications">15. Applications</a>
+<a href="#revision">16. Quick Revision</a>
+</aside>
+
+<main>
+<section class="card" id="intro">
+<span class="tag">UNIT OVERVIEW</span>
+<h2>1. Introduction to Actuators</h2>
+<p><b>Actuator</b> एक ऐसा device है जो किसी control signal या input को <b>physical action</b> में convert करता है। दूसरे शब्दों में, actuator system में movement, force, pressure, flow या किसी अन्य physical effect को produce करके किसी mechanism को operate करता है।</p>
+<div class="flow">Controller / Control Signal → Actuator → Physical Action → Controlled System</div>
+<p>उदाहरण के लिए, IoT system में temperature sensor temperature detect करता है और controller decision लेने के बाद actuator को command देता है। Actuator fan, motor, valve या relay को operate कर सकता है।</p>
+<div class="note"><b>Exam Definition:</b> An actuator is a device that converts an input control signal into physical action such as motion, force, or control of a mechanical system.</div>
+</section>
+
+<section class="card" id="characteristics">
+<h2>2. Actuator Characteristics</h2>
+<p>किसी actuator की performance को उसकी अलग-अलग characteristics से evaluate किया जाता है। Application के अनुसार सही actuator चुनने के लिए इन properties को समझना आवश्यक है।</p>
+<table>
+<tr><th>Characteristic</th><th>Meaning</th></tr>
+<tr><td>Force / Torque</td><td>Actuator कितना linear force या rotational torque produce कर सकता है।</td></tr>
+<tr><td>Stroke / Displacement</td><td>Linear actuator कितनी दूरी तक move कर सकता है।</td></tr>
+<tr><td>Speed</td><td>Actuator कितनी तेजी से required movement कर सकता है।</td></tr>
+<tr><td>Accuracy</td><td>Desired position या output को कितनी precisely achieve करता है।</td></tr>
+<tr><td>Response Time</td><td>Command मिलने के बाद physical response शुरू/पूरा होने में लगने वाला समय।</td></tr>
+<tr><td>Power Requirement</td><td>Actuator को operate करने के लिए आवश्यक electrical, hydraulic या pneumatic power।</td></tr>
+<tr><td>Efficiency</td><td>Input energy का कितना भाग useful output में convert होता है।</td></tr>
+<tr><td>Reliability</td><td>Long-term operation में consistent performance देने की क्षमता।</td></tr>
+<tr><td>Operating Environment</td><td>Temperature, humidity, dust, vibration और chemicals जैसी conditions में operation।</td></tr>
+<tr><td>Size & Weight</td><td>Available space और system weight limitations के अनुसार physical dimensions।</td></tr>
+<tr><td>Control Method</td><td>On/Off, proportional, position, speed या feedback-based control आदि।</td></tr>
+<tr><td>Life / Durability</td><td>Repeated operation में wear और failure के प्रति resistance।</td></tr>
+</table>
+</section>
+
+<section class="card" id="classification">
+<h2>3. Classification of Actuators</h2>
+<p>Actuators को उनके energy source और working principle के आधार पर कई categories में classify किया जा सकता है।</p>
+<div class="flow">Actuators
+├── Electrical
+├── Electromechanical
+├── Electromagnetic
+├── Hydraulic
+├── Pneumatic
+├── Smart Material
+└── Micro Actuators</div>
+<table>
+<tr><th>Type</th><th>Main Energy / Principle</th><th>Example</th></tr>
+<tr><td>Electrical</td><td>Electrical energy से controlled output/action</td><td>Relay, solenoid, electric motor</td></tr>
+<tr><td>Electromechanical</td><td>Electrical input से mechanical motion</td><td>DC motor, servo motor, stepper motor</td></tr>
+<tr><td>Electromagnetic</td><td>Magnetic field / electromagnetic force</td><td>Solenoid, electromagnetic relay</td></tr>
+<tr><td>Hydraulic</td><td>Pressurized fluid</td><td>Hydraulic cylinder</td></tr>
+<tr><td>Pneumatic</td><td>Compressed air/gas</td><td>Pneumatic cylinder</td></tr>
+<tr><td>Smart Material</td><td>Material property change के आधार पर actuation</td><td>Shape Memory Alloy, piezoelectric actuator</td></tr>
+<tr><td>Micro</td><td>Micro-scale structures और microfabrication</td><td>MEMS micro-actuator</td></tr>
+</table>
+</section>
+
+<section class="card" id="electrical">
+<h2>4. Electrical Actuators</h2>
+<p>Electrical actuators electrical energy को control action या mechanical output में use करते हैं। ये IoT और automation systems में बहुत common हैं।</p>
+<h3>Examples</h3>
+<ul>
+<li><b>Electric Motor:</b> Electrical energy को rotational mechanical motion में बदलता है।</li>
+<li><b>Relay:</b> Electrical control signal की मदद से दूसरे circuit को switch करता है।</li>
+<li><b>Solenoid:</b> Electrical current से linear mechanical movement produce कर सकता है।</li>
+</ul>
+<p><b>Applications:</b> Fans, pumps, robotic systems, automatic doors, home automation.</p>
+</section>
+
+<section class="card" id="electromechanical">
+<h2>5. Electromechanical Actuators</h2>
+<p>Electromechanical actuator electrical input को mechanical motion में convert करता है। इसमें electrical और mechanical systems का combined operation होता है।</p>
+<table>
+<tr><th>Actuator</th><th>Motion</th><th>Common Application</th></tr>
+<tr><td>DC Motor</td><td>Continuous rotational motion</td><td>Wheels, fans, pumps</td></tr>
+<tr><td>Servo Motor</td><td>Controlled angular position</td><td>Robotics, control systems</td></tr>
+<tr><td>Stepper Motor</td><td>Discrete step-by-step rotation</td><td>Printers, CNC, positioning</td></tr>
+<tr><td>Linear Electric Actuator</td><td>Linear motion</td><td>Adjustable mechanisms</td></tr>
+</table>
+<div class="note"><b>Key Point:</b> Electromechanical actuators में position, speed या torque को electronic control system के द्वारा precisely control किया जा सकता है।</div>
+</section>
+
+<section class="card" id="electromagnetic">
+<h2>6. Electromagnetic Actuators</h2>
+<p>Electromagnetic actuators magnetic field द्वारा उत्पन्न force का उपयोग करके mechanical movement करते हैं। Electrical current के कारण magnetic field बनता है और यह force movable component को operate करती है।</p>
+<h3>Examples</h3>
+<ul>
+<li><b>Solenoid:</b> Coil में current flow होने पर plunger move करता है।</li>
+<li><b>Electromagnetic Relay:</b> Electromagnet contacts को open/close करता है।</li>
+<li><b>Voice Coil:</b> Magnetic field interaction से controlled linear motion produce कर सकता है।</li>
+</ul>
+</section>
+
+<section class="card" id="hydraulic">
+<h2>7. Hydraulic Actuators</h2>
+<p>Hydraulic actuator pressurized liquid, सामान्यतः hydraulic fluid, का उपयोग करके force और motion produce करता है।</p>
+<div class="flow">Pump → Pressurized Fluid → Control Valve → Hydraulic Cylinder/Motor → Mechanical Motion</div>
+<p>Hydraulic cylinders generally linear motion देते हैं जबकि hydraulic motors rotational motion दे सकते हैं।</p>
+<p><b>Applications:</b> Heavy machinery, construction equipment, industrial presses, lifting systems.</p>
+<div class="note"><b>Important:</b> Hydraulic systems high force और high power applications के लिए suitable होते हैं, लेकिन इनके लिए fluid system, pump और maintenance की आवश्यकता होती है।</div>
+</section>
+
+<section class="card" id="pneumatic">
+<h2>8. Pneumatic Actuators</h2>
+<p>Pneumatic actuator compressed air या gas की energy को mechanical movement में convert करता है।</p>
+<div class="flow">Compressor → Compressed Air → Control Valve → Pneumatic Actuator → Motion</div>
+<h3>Common Types</h3>
+<ul>
+<li><b>Pneumatic Cylinder:</b> Linear motion के लिए।</li>
+<li><b>Pneumatic Rotary Actuator:</b> Limited angular/rotary movement के लिए।</li>
+</ul>
+<p><b>Applications:</b> Industrial automation, pick-and-place machines, packaging, clamping systems.</p>
+</section>
+
+<section class="card" id="smart">
+<h2>9. Smart Material Actuators</h2>
+<p>Smart material actuators ऐसे materials पर आधारित होते हैं जिनकी shape, strain या अन्य physical property external stimulus के response में बदलती है। यह change useful mechanical movement produce कर सकता है।</p>
+<table>
+<tr><th>Material / Type</th><th>Stimulus / Principle</th><th>Example Application</th></tr>
+<tr><td>Shape Memory Alloy (SMA)</td><td>Temperature change से shape परिवर्तन</td><td>Micro mechanisms, robotics</td></tr>
+<tr><td>Piezoelectric</td><td>Voltage लगाने पर mechanical deformation</td><td>Precision positioning, vibration control</td></tr>
+<tr><td>Electroactive materials</td><td>Electrical stimulus से deformation</td><td>Specialized actuators</td></tr>
+</table>
+<div class="note">Smart material actuators का प्रमुख लाभ compact size और कुछ applications में precise motion है।</div>
+</section>
+
+<section class="card" id="micro">
+<h2>10. Micro Actuators</h2>
+<p>Micro actuators बहुत छोटे, micro-scale actuation devices होते हैं। इनका निर्माण अक्सर <b>MEMS (Micro-Electro-Mechanical Systems)</b> जैसी microfabrication technologies से किया जाता है।</p>
+<p>इनका उपयोग वहाँ किया जाता है जहाँ बहुत कम size, low power और precise movement की आवश्यकता होती है।</p>
+<p><b>Applications:</b> Optical systems, microfluidics, medical devices, miniature robotics, MEMS systems.</p>
+</section>
+
+<section class="card" id="working">
+<h2>11. Working Principles of Actuators</h2>
+<p>Actuator का basic working principle यह है कि input energy/control signal को desired physical output में convert किया जाए। अलग-अलग actuator अलग energy conversion principle पर काम करते हैं।</p>
+<table>
+<tr><th>Actuator</th><th>Input</th><th>Conversion Principle</th><th>Output</th></tr>
+<tr><td>DC Motor</td><td>Electrical energy</td><td>Magnetic force on current-carrying conductors</td><td>Rotational motion</td></tr>
+<tr><td>Solenoid</td><td>Electrical current</td><td>Electromagnetic force</td><td>Linear motion</td></tr>
+<tr><td>Hydraulic Cylinder</td><td>Pressurized fluid</td><td>Fluid pressure acting on piston</td><td>Linear force/motion</td></tr>
+<tr><td>Pneumatic Cylinder</td><td>Compressed air</td><td>Air pressure acting on piston</td><td>Linear motion</td></tr>
+<tr><td>Piezoelectric</td><td>Voltage</td><td>Piezoelectric deformation</td><td>Small precise displacement</td></tr>
+<tr><td>SMA</td><td>Heat/electrical heating</td><td>Shape-memory transformation</td><td>Mechanical movement</td></tr>
+</table>
+</section>
+
+<section class="card" id="dcmotor">
+<h2>12. Moving / Controlling a System: DC Motor Example</h2>
+<p><b>DC motor</b> एक common electromechanical actuator है जो electrical energy को rotational mechanical motion में convert करता है। IoT में controller motor driver के माध्यम से DC motor को control कर सकता है।</p>
+<h3>Basic Working</h3>
+<ol>
+<li>DC supply motor को electrical power देती है।</li>
+<li>Motor के magnetic field और current-carrying conductors के interaction से force/torque produce होता है।</li>
+<li>यह torque rotor/armature को rotate करता है।</li>
+<li>Motor shaft connected mechanical system को move करती है।</li>
+<li>Speed/direction को suitable driver/control circuit द्वारा control किया जा सकता है।</li>
+</ol>
+<div class="flow">IoT Sensor → Microcontroller → Motor Driver → DC Motor → Mechanical System</div>
+<h3>Direction Control</h3>
+<p>DC motor की direction को suitable H-bridge motor driver द्वारा reverse की जा सकती है। Speed control के लिए PWM जैसी techniques उपयोग की जा सकती हैं।</p>
+<div class="note"><b>Example:</b> Smart ventilation system में temperature sensor high temperature detect करता है → controller decision लेता है → motor driver को signal देता है → DC fan motor की speed बढ़ती है → airflow बढ़ता है।</div>
+</section>
+
+<section class="card" id="sensorvs">
+<h2>13. Difference Between Sensors and Actuators in IoT Device</h2>
+<table>
+<tr><th>Basis</th><th>Sensor</th><th>Actuator</th></tr>
+<tr><td>Basic Role</td><td>Environment/physical quantity को sense करता है।</td><td>Control command के अनुसार physical action करता है।</td></tr>
+<tr><td>Conversion</td><td>Physical quantity → signal</td><td>Control signal/energy → physical action</td></tr>
+<tr><td>Direction in system</td><td>Usually input side</td><td>Usually output/action side</td></tr>
+<tr><td>Examples</td><td>Temperature, pressure, light, humidity sensor</td><td>Motor, valve, relay, solenoid</td></tr>
+<tr><td>Purpose</td><td>Measurement / detection</td><td>Movement / control / operation</td></tr>
+<tr><td>IoT Role</td><td>Real-world data collect करता है।</td><td>Real-world system पर action लागू करता है।</td></tr>
+</table>
+<div class="flow">Physical World → SENSOR → Controller/IoT Platform → ACTUATOR → Physical World</div>
+<div class="note success"><b>Easy Memory:</b> <b>Sensor = Sense</b> करता है, जबकि <b>Actuator = Act</strong> करता है।</div>
+</section>
+
+<section class="card" id="iot">
+<h2>14. Actuators in IoT Device</h2>
+<p>IoT architecture में sensors environment से data collect करते हैं। Controller उस data को process करता है और आवश्यकता होने पर actuator को command देता है। इस प्रकार actuator IoT system को केवल monitoring system न रखकर <b>action-taking system</b> बना सकता है।</p>
+<div class="flow">Sense → Communicate → Process/Decide → Act</div>
+<h3>Example: Smart Irrigation</h3>
+<p>Soil moisture sensor soil की moisture detect करता है। यदि moisture required level से कम है, controller water pump actuator को ON करता है। Moisture पर्याप्त होने पर pump OFF किया जा सकता है।</p>
+</section>
+
+<section class="card" id="applications">
+<h2>15. Applications of Actuators</h2>
+<div class="grid">
+<div class="mini"><h3>🏠 Home Automation</h3><p>Smart locks, curtains, fans, doors और appliances control करना।</p></div>
+<div class="mini"><h3>🏭 Industrial Automation</h3><p>Valves, robotic arms, conveyors, clamps और machines control करना।</p></div>
+<div class="mini"><h3>🚗 Automotive</h3><p>Power windows, throttle systems, braking/control mechanisms और seat adjustment आदि।</p></div>
+<div class="mini"><h3>🤖 Robotics</h3><p>Robot joints, wheels, grippers और arms को move करना।</p></div>
+<div class="mini"><h3>🌾 Agriculture</h3><p>Water pumps, irrigation valves और automated agricultural mechanisms।</p></div>
+<div class="mini"><h3>🏥 Medical</h3><p>Medical equipment में controlled movement और precision mechanisms।</p></div>
+<div class="mini"><h3>✈️ Aerospace</h3><p>Control surfaces और specialized mechanical systems में actuation।</p></div>
+<div class="mini"><h3>📡 IoT Systems</h3><p>Remote monitoring के आधार पर motors, relays, valves और other devices operate करना।</p></div>
+</div>
+</section>
+
+<section class="card" id="revision">
+<h2>16. Quick Revision</h2>
+<table>
+<tr><th>Topic</th><th>One-Line Revision</th></tr>
+<tr><td>Actuator</td><td>Control signal/energy को physical action में convert करता है।</td></tr>
+<tr><td>Electrical Actuator</td><td>Electrical energy/control से action produce करता है।</td></tr>
+<tr><td>Electromechanical</td><td>Electrical input को mechanical motion में convert करता है।</td></tr>
+<tr><td>Electromagnetic</td><td>Electromagnetic force से movement/switching करता है।</td></tr>
+<tr><td>Hydraulic</td><td>Pressurized fluid से high-force actuation।</td></tr>
+<tr><td>Pneumatic</td><td>Compressed air/gas से actuation।</td></tr>
+<tr><td>Smart Material</td><td>External stimulus से material property/shape change करके action।</td></tr>
+<tr><td>Micro Actuator</td><td>Micro-scale actuation device, अक्सर MEMS technology में।</td></tr>
+<tr><td>DC Motor</td><td>Electrical energy → rotational mechanical motion।</td></tr>
+<tr><td>Sensor vs Actuator</td><td>Sensor sense करता है; actuator action करता है।</td></tr>
+</table>
+<div class="note"><b>Written Exam Focus:</b> Actuator की definition, characteristics, classification, प्रत्येक actuator type का working principle और example, DC motor का working, Sensor vs Actuator difference तथा IoT applications को headings और tables के साथ लिखें।</div>
+</section>
+</main>
+</div>
+<footer>BK LearnX • Unit-3 Actuator • PGDCA / IoT Notes</footer>
+</body>
+</html>

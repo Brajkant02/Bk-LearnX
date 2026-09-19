@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BK LearnX | Unit 8 - Giving Input to the Controller</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--text:#172033;--muted:#5f6b7a;--primary:#315efb;--purple:#6d42e8;--border:#e2e8f0;--soft:#eef3ff;--code:#111827}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,"Noto Sans Devanagari",sans-serif;line-height:1.7}
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.top{max-width:1250px;margin:auto;padding:13px 20px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:23px;font-weight:800;color:var(--primary)}.logo span{color:var(--purple)}
+.menu{display:none;border:0;background:var(--soft);padding:8px 12px;border-radius:9px;font-size:20px}
+.layout{max-width:1250px;margin:auto;padding:25px 20px;display:grid;grid-template-columns:275px 1fr;gap:25px}
+aside{position:sticky;top:75px;height:calc(100vh - 95px);overflow:auto;background:var(--card);border:1px solid var(--border);border-radius:18px;padding:17px}
+aside h3{margin-top:0;color:var(--primary)}aside a{display:block;padding:7px 9px;margin:2px 0;text-decoration:none;color:var(--muted);border-radius:8px}aside a:hover{background:var(--soft);color:var(--primary)}
+.hero{background:linear-gradient(135deg,#172554,#4338ca);color:white;padding:35px;border-radius:22px;margin-bottom:22px}.hero h1{margin:0;font-size:35px}.hero p{margin:7px 0;color:#e8eaff}.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}.badge{padding:5px 11px;border-radius:999px;background:rgba(255,255,255,.14);font-size:13px}
+section{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:26px;margin-bottom:20px;box-shadow:0 5px 20px rgba(20,30,60,.04)}
+h2{margin-top:0;color:#203b9b;border-bottom:2px solid var(--soft);padding-bottom:8px}h3{color:#263550}
+table{width:100%;border-collapse:collapse;margin:15px 0;font-size:15px}th,td{border:1px solid var(--border);padding:10px;vertical-align:top;text-align:left}th{background:var(--soft)}
+.code{background:var(--code);color:#e5e7eb;border-radius:12px;padding:17px;overflow:auto;font:14px/1.6 Consolas,monospace;white-space:pre}
+.note{background:#f0fdf4;border-left:4px solid #16a34a;padding:13px 15px;border-radius:8px;margin:15px 0}.warn{background:#fff7ed;border-left:4px solid #ea580c;padding:13px 15px;border-radius:8px;margin:15px 0}.info{background:#eff6ff;border-left:4px solid #2563eb;padding:13px 15px;border-radius:8px;margin:15px 0}
+.diagram{display:flex;justify-content:center;align-items:center;gap:9px;flex-wrap:wrap;margin:18px 0}.box{padding:12px 15px;border:2px solid #94a3b8;background:#f8fafc;border-radius:11px;font-weight:700}.arrow{font-size:23px;color:var(--primary)}
+.formula{font-family:Consolas,monospace;background:#f8fafc;border:1px dashed #aab4c4;padding:12px;border-radius:10px}
+footer{text-align:center;padding:28px;color:var(--muted)}
+@media(max-width:850px){.layout{grid-template-columns:1fr}.menu{display:block}aside{display:none;position:fixed;left:15px;right:15px;top:68px;height:auto;max-height:75vh;z-index:30}aside.open{display:block}.hero h1{font-size:28px}section{padding:20px}}
+</style>
+</head>
+<body>
+<header><div class="top"><div class="logo">BK <span>LearnX</span></div><button class="menu" onclick="document.querySelector('aside').classList.toggle('open')">☰</button></div></header>
+
+<div class="layout">
+<aside>
+<h3>Unit 8 Navigation</h3>
+<a href="#intro">Introduction</a><a href="#serial">1. Serial Input</a><a href="#ledkeys">2. Controlling LEDs with Keys</a>
+<a href="#toggle">3. Keys as Toggle Switch</a><a href="#piezo">4. Piezo Buzzer</a><a href="#alarm">5. Buzzer as Alarm</a>
+<a href="#integration">Integrated Example</a><a href="#revision">Quick Revision</a>
+</aside>
+
+<main>
+<div class="hero">
+<h1>Unit 8: Giving Input to the Controller</h1>
+<p>Serial Input • LED Control • Toggle Switch • Piezo Buzzer • Alarm Unit</p>
+<div class="badges"><span class="badge">PGDCA Notes</span><span class="badge">Arduino</span><span class="badge">Input & Output</span><span class="badge">Exam Oriented</span></div>
+</div>
+
+<section id="intro">
+<h2>Introduction</h2>
+<p>Arduino में <b>Input</b> का अर्थ controller को किसी source से information या command देना है। Input serial communication, push buttons/keys और अन्य sensors से आ सकता है। Arduino input को process करके LED, buzzer, motor आदि output devices को control कर सकता है।</p>
+<div class="diagram"><div class="box">Input</div><div class="arrow">→</div><div class="box">Arduino Controller</div><div class="arrow">→</div><div class="box">Decision / Program</div><div class="arrow">→</div><div class="box">Output</div></div>
+<p>इस unit में serial input तथा keys को input के रूप में लेकर LED और buzzer जैसे output devices को control करना समझाया गया है।</p>
+</section>
+
+<section id="serial">
+<h2>1. Using Serial Input</h2>
+<p><b>Serial Input</b> में computer/serial device से Arduino को characters या data भेजा जाता है। Arduino का <code>Serial</code> interface इस data को receive करके program में use कर सकता है। Arduino IDE का Serial Monitor testing के लिए commonly उपयोग किया जाता है।</p>
+<h3>Important Serial Functions</h3>
+<table><tr><th>Function</th><th>Purpose</th></tr>
+<tr><td><code>Serial.begin(9600)</code></td><td>Serial communication की baud rate initialize करना</td></tr>
+<tr><td><code>Serial.available()</code></td><td>Receive buffer में available data की जानकारी देना</td></tr>
+<tr><td><code>Serial.read()</code></td><td>एक received byte/character read करना</td></tr>
+<tr><td><code>Serial.print()</code></td><td>Serial output भेजना</td></tr>
+<tr><td><code>Serial.println()</code></td><td>Serial output भेजकर new line देना</td></tr>
+</table>
+<h3>Example: Serial Character Read</h3>
+<div class="code">void setup() {
+  Serial.begin(9600);
+  Serial.println("Send a key:");
+}
+
+void loop() {
+  if (Serial.available() > 0) {
+    char key = Serial.read();
+
+    Serial.print("Received: ");
+    Serial.println(key);
+  }
+}</div>
+<div class="note"><b>Concept:</b> <code>Serial.available()</code> check करता है कि data receive हुआ है या नहीं, और फिर <code>Serial.read()</code> से received character पढ़ा जा सकता है।</div>
+</section>
+
+<section id="ledkeys">
+<h2>2. Controlling LEDs with Keys</h2>
+<p>Keyboard/serial input में किसी specific key को command बनाकर Arduino LED को ON या OFF किया जा सकता है। उदाहरण के लिए <b>1</b> दबाने पर LED ON और <b>0</b> दबाने पर LED OFF।</p>
+<div class="diagram"><div class="box">Key '1' / '0'</div><div class="arrow">→</div><div class="box">Serial Input</div><div class="arrow">→</div><div class="box">Arduino</div><div class="arrow">→</div><div class="box">LED</div></div>
+<h3>Example</h3>
+<div class="code">const int ledPin = 13;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+  Serial.println("Press 1 = ON, 0 = OFF");
+}
+
+void loop() {
+  if (Serial.available() > 0) {
+    char key = Serial.read();
+
+    if (key == '1') {
+      digitalWrite(ledPin, HIGH);
+      Serial.println("LED ON");
+    }
+
+    if (key == '0') {
+      digitalWrite(ledPin, LOW);
+      Serial.println("LED OFF");
+    }
+  }
+}</div>
+<div class="info"><b>Important:</b> <code>'1'</code> और <code>1</code> अलग हैं। Serial Monitor से character read करने पर <code>'1'</code> जैसे character के साथ comparison किया जाता है।</div>
+</section>
+
+<section id="toggle">
+<h2>3. Keys as Toggle Switch</h2>
+<p><b>Toggle</b> का मतलब है एक ही key को बार-बार press करने पर output state बदलना। उदाहरण: पहली बार key दबाने पर LED ON, दूसरी बार उसी key को दबाने पर LED OFF, फिर ON और फिर OFF।</p>
+<h3>Toggle Logic</h3>
+<div class="diagram"><div class="box">Key Press</div><div class="arrow">→</div><div class="box">Current State</div><div class="arrow">→</div><div class="box">Invert State</div><div class="arrow">→</div><div class="box">LED</div></div>
+<h3>Example: Serial Key as Toggle</h3>
+<div class="code">const int ledPin = 13;
+bool ledState = false;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+  Serial.println("Press T to toggle LED");
+}
+
+void loop() {
+  if (Serial.available() > 0) {
+    char key = Serial.read();
+
+    if (key == 'T' || key == 't') {
+      ledState = !ledState;
+      digitalWrite(ledPin, ledState);
+
+      if (ledState) {
+        Serial.println("LED ON");
+      } else {
+        Serial.println("LED OFF");
+      }
+    }
+  }
+}</div>
+<div class="formula">New State = NOT (Previous State)</div>
+<p>यहाँ Boolean variable <code>ledState</code> output की current state store करता है। <code>!</code> operator state को invert करता है।</p>
+</section>
+
+<section id="piezo">
+<h2>4. Interfacing a Piezo Buzzer</h2>
+<p><b>Piezo Buzzer</b> एक electronic sound-producing device है जो electrical signal मिलने पर sound उत्पन्न कर सकता है। Arduino के साथ इसे indication, alert और alarm applications में use किया जा सकता है।</p>
+<h3>Basic Connection Concept</h3>
+<div class="diagram"><div class="box">Arduino Digital Pin</div><div class="arrow">→</div><div class="box">Piezo Buzzer</div><div class="arrow">→</div><div class="box">Sound</div></div>
+<p>एक simple buzzer को suitable Arduino output pin से control किया जा सकता है। Exact module type के अनुसार active/passive buzzer की operation अलग हो सकती है।</p>
+<h3>Simple ON/OFF Example</h3>
+<div class="code">const int buzzerPin = 8;
+
+void setup() {
+  pinMode(buzzerPin, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(buzzerPin, HIGH);
+  delay(500);
+
+  digitalWrite(buzzerPin, LOW);
+  delay(500);
+}</div>
+<h3>tone() Function</h3>
+<p>Passive piezo buzzer के साथ Arduino का <code>tone()</code> function specified frequency पर square-wave tone generate करने के लिए commonly used होता है।</p>
+<div class="code">const int buzzerPin = 8;
+
+void setup() {
+}
+
+void loop() {
+  tone(buzzerPin, 1000);  // 1000 Hz
+  delay(500);
+
+  noTone(buzzerPin);
+  delay(500);
+}</div>
+<table><tr><th>Function</th><th>Purpose</th></tr>
+<tr><td><code>tone(pin, frequency)</code></td><td>Specified pin पर tone generate करना</td></tr>
+<tr><td><code>noTone(pin)</code></td><td>उस pin पर generated tone stop करना</td></tr></table>
+</section>
+
+<section id="alarm">
+<h2>5. Using a Buzzer as an Alarm Unit</h2>
+<p>जब कोई predefined condition occur होती है, Arduino buzzer को activate करके <b>alarm</b> generate कर सकता है। Condition किसी key, sensor, switch या serial command से आ सकती है।</p>
+<h3>Alarm Working</h3>
+<div class="diagram"><div class="box">Input / Condition</div><div class="arrow">→</div><div class="box">Arduino checks condition</div><div class="arrow">→</div><div class="box">Alarm ON</div><div class="arrow">→</div><div class="box">Buzzer Sound</div></div>
+<h3>Example: Key Controlled Alarm</h3>
+<div class="code">const int buzzerPin = 8;
+
+void setup() {
+  pinMode(buzzerPin, OUTPUT);
+  Serial.begin(9600);
+  Serial.println("Press A for alarm");
+}
+
+void loop() {
+  if (Serial.available() > 0) {
+    char key = Serial.read();
+
+    if (key == 'A' || key == 'a') {
+      tone(buzzerPin, 1500);
+      delay(3000);
+      noTone(buzzerPin);
+
+      Serial.println("Alarm completed");
+    }
+  }
+}</div>
+<h3>Alarm with Repeated Beeps</h3>
+<div class="code">const int buzzerPin = 8;
+
+void alarm() {
+  for (int i = 0; i < 5; i++) {
+    tone(buzzerPin, 1500);
+    delay(250);
+
+    noTone(buzzerPin);
+    delay(250);
+  }
+}
+
+void setup() {
+  pinMode(buzzerPin, OUTPUT);
+}
+
+void loop() {
+  alarm();
+  delay(3000);
+}</div>
+<div class="warn"><b>Practical Note:</b> High-power sirens/buzzers को Arduino GPIO pin से directly drive नहीं करना चाहिए। Required current के अनुसार transistor/MOSFET/driver और suitable external supply का उपयोग किया जा सकता है।</div>
+</section>
+
+<section id="integration">
+<h2>Integrated Example: Key → LED + Buzzer</h2>
+<p>Serial input को एक simple control panel की तरह use किया जा सकता है। <b>L</b> से LED toggle और <b>A</b> से alarm activate किया जा सकता है।</p>
+<div class="code">const int ledPin = 13;
+const int buzzerPin = 8;
+
+bool ledState = false;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  pinMode(buzzerPin, OUTPUT);
+
+  Serial.begin(9600);
+  Serial.println("L = Toggle LED");
+  Serial.println("A = Alarm");
+}
+
+void loop() {
+  if (Serial.available() > 0) {
+    char key = Serial.read();
+
+    if (key == 'L' || key == 'l') {
+      ledState = !ledState;
+      digitalWrite(ledPin, ledState);
+    }
+
+    if (key == 'A' || key == 'a') {
+      tone(buzzerPin, 1500);
+      delay(1000);
+      noTone(buzzerPin);
+    }
+  }
+}</div>
+</section>
+
+<section id="revision">
+<h2>Quick Revision</h2>
+<table>
+<tr><th>Question</th><th>Short Answer</th></tr>
+<tr><td>Serial Input क्या है?</td><td>Serial communication के माध्यम से Arduino को data/command देना।</td></tr>
+<tr><td><code>Serial.begin()</code> का purpose?</td><td>Serial communication initialize करना और baud rate set करना।</td></tr>
+<tr><td><code>Serial.available()</code>?</td><td>Receive buffer में available data check करना।</td></tr>
+<tr><td><code>Serial.read()</code>?</td><td>Received byte/character read करना।</td></tr>
+<tr><td>LED को key से कैसे control कर सकते हैं?</td><td>Received key को check करके <code>digitalWrite()</code> से LED ON/OFF कर सकते हैं।</td></tr>
+<tr><td>Toggle switch क्या है?</td><td>हर valid key press पर output state को ON ↔ OFF बदलना।</td></tr>
+<tr><td>Piezo buzzer क्या करता है?</td><td>Electrical signal से sound/alert generate करता है।</td></tr>
+<tr><td><code>tone()</code> का उपयोग?</td><td>Specified frequency का tone generate करने के लिए।</td></tr>
+<tr><td><code>noTone()</code>?</td><td>Generated tone को stop करने के लिए।</td></tr>
+<tr><td>Buzzer alarm unit कैसे काम करता है?</td><td>Condition detect होने पर Arduino buzzer को activate करता है।</td></tr>
+</table>
+<div class="note"><b>Unit 8 Core Flow:</b> Serial/Key Input → Arduino Program → Condition Check → LED/Buzzer Output.</div>
+</section>
+</main>
+</div>
+<footer>© BK LearnX • Unit 8: Giving Input to the Controller • PGDCA Study Notes</footer>
+</body>
+</html>

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BK LearnX | Unit 1 - Sensors</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;line-height:1.7;background:#f5f7fb;color:#202635}
+header{position:sticky;top:0;z-index:20;background:#111827;color:#fff;padding:18px 24px;box-shadow:0 3px 15px #0002}
+header h1{margin:0;font-size:24px}header p{margin:4px 0 0;color:#cbd5e1}
+.layout{display:flex;max-width:1400px;margin:auto}
+aside{width:290px;position:sticky;top:78px;height:calc(100vh - 78px);overflow:auto;background:#fff;border-right:1px solid #e5e7eb;padding:22px}
+aside h3{margin-top:0}aside a{display:block;text-decoration:none;color:#374151;padding:9px 10px;border-radius:8px;margin:3px 0}
+aside a:hover{background:#eef2ff}
+main{flex:1;padding:35px;min-width:0}
+section{background:#fff;margin-bottom:26px;padding:28px;border-radius:16px;box-shadow:0 5px 20px #1111}
+h2{margin-top:0;color:#312e81;border-bottom:2px solid #e0e7ff;padding-bottom:8px}h3{color:#4338ca}
+table{width:100%;border-collapse:collapse;margin:18px 0}th,td{border:1px solid #dbe1ea;padding:11px;text-align:left;vertical-align:top}
+th{background:#eef2ff}code{background:#f1f5f9;padding:2px 6px;border-radius:5px;color:#be123c}
+pre{background:#111827;color:#e5e7eb;padding:18px;border-radius:10px;overflow:auto}
+.note,.exam,.example,.warning{padding:15px 18px;border-left:5px solid #4f46e5;background:#eef2ff;border-radius:8px;margin:18px 0}
+.exam{border-color:#059669;background:#ecfdf5}.example{border-color:#f59e0b;background:#fffbeb}.warning{border-color:#dc2626;background:#fef2f2}
+.badge{display:inline-block;padding:5px 10px;background:#e0e7ff;color:#3730a3;border-radius:20px;font-size:13px;margin:3px}
+ul{padding-left:24px}footer{text-align:center;padding:25px;color:#64748b}
+@media(max-width:850px){aside{display:none}main{padding:18px}section{padding:20px}header{padding:15px 18px}header h1{font-size:20px}table{font-size:14px}}
+</style>
+</head>
+<body>
+<header>
+<h1>BK LearnX — Unit 1: Sensors</h1>
+<p>Exam-Oriented Notes | Introduction • Characteristics • Classification • Measurement • Signal Transmission • Applications</p>
+</header>
+
+<div class="layout">
+<aside>
+<h3>Unit 1 Navigation</h3>
+<a href="#intro">1. Introduction to Sensors</a>
+<a href="#characteristics">2. Sensor Characteristics</a>
+<a href="#classification">3. Classification of Sensors</a>
+<a href="#difference">4. Sensor vs Transmitter vs Transducer</a>
+<a href="#primary">5. Primary Measuring Elements</a>
+<a href="#selection">6. Selection & Characteristics</a>
+<a href="#range">7. Range</a>
+<a href="#resolution">8. Resolution</a>
+<a href="#sensitivity">9. Sensitivity</a>
+<a href="#error">10. Error</a>
+<a href="#repeatability">11. Repeatability</a>
+<a href="#linearity">12. Linearity</a>
+<a href="#accuracy">13. Accuracy</a>
+<a href="#impedance">14. Impedance</a>
+<a href="#backlash">15. Backlash</a>
+<a href="#response">16. Response Time</a>
+<a href="#deadband">17. Dead Band</a>
+<a href="#signal">18. Signal Transmission</a>
+<a href="#types">19. Types of Signal</a>
+<a href="#applications">20. Applications of Sensors</a>
+<a href="#revision">21. Quick Revision</a>
+</aside>
+
+<main>
+<section id="intro">
+<h2>1. Introduction to Sensors</h2>
+<p><strong>Sensor</strong> एक device या element है जो किसी physical quantity या environmental condition को detect/measure करके उससे संबंधित signal उत्पन्न करता है। Physical quantity जैसे temperature, pressure, light, humidity, force, displacement, motion आदि हो सकती है।</p>
+<div class="note"><strong>Simple Definition:</strong> Sensor वह device है जो physical quantity को detect करके उसे measurable signal में बदलने में सहायता करता है।</div>
+<h3>Basic Working</h3>
+<pre>Physical Quantity
+       ↓
+     Sensor
+       ↓
+  Electrical / Other Signal
+       ↓
+ Signal Processing
+       ↓
+ Controller / Display / Actuator</pre>
+<h3>Examples</h3>
+<table>
+<tr><th>Quantity</th><th>Example Sensor</th></tr>
+<tr><td>Temperature</td><td>Thermistor, RTD, Thermocouple</td></tr>
+<tr><td>Light</td><td>LDR, Photodiode</td></tr>
+<tr><td>Pressure</td><td>Pressure sensor</td></tr>
+<tr><td>Distance</td><td>Ultrasonic sensor</td></tr>
+<tr><td>Motion</td><td>PIR sensor</td></tr>
+<tr><td>Humidity</td><td>Humidity sensor</td></tr>
+</table>
+</section>
+
+<section id="characteristics">
+<h2>2. Sensor Characteristics</h2>
+<p>Sensor की performance को समझने के लिए उसकी कुछ important characteristics देखी जाती हैं। ये characteristics बताती हैं कि sensor input को कितनी अच्छी तरह detect और represent करता है।</p>
+<table>
+<tr><th>Characteristic</th><th>Basic Meaning</th></tr>
+<tr><td>Range</td><td>जिस minimum से maximum input तक sensor operate/measure कर सकता है।</td></tr>
+<tr><td>Resolution</td><td>Input में सबसे छोटा detectable change.</td></tr>
+<tr><td>Sensitivity</td><td>Input change के प्रति output change की responsiveness.</td></tr>
+<tr><td>Accuracy</td><td>Measured value का true/accepted value के कितना close होना।</td></tr>
+<tr><td>Repeatability</td><td>Same conditions में repeated measurements की consistency.</td></tr>
+<tr><td>Linearity</td><td>Input-output relationship का ideal straight-line relationship से deviation.</td></tr>
+<tr><td>Response Time</td><td>Input change के बाद sensor output के required response तक पहुँचने में लगा समय।</td></tr>
+<tr><td>Dead Band</td><td>Input का वह region जिसमें change के बावजूद output में appreciable change नहीं होता।</td></tr>
+</table>
+</section>
+
+<section id="classification">
+<h2>3. Classification of Sensors</h2>
+<p>Sensors को उनके operating principle, output और power requirement आदि के आधार पर अलग-अलग categories में classify किया जा सकता है।</p>
+
+<h3>1. Active and Passive Sensors</h3>
+<table>
+<tr><th>Type</th><th>Description</th><th>Example</th></tr>
+<tr><td>Active Sensor</td><td>Measurement के कारण स्वयं electrical output generate कर सकता है और external excitation की आवश्यकता नहीं हो सकती।</td><td>Thermocouple, piezoelectric sensor</td></tr>
+<tr><td>Passive Sensor</td><td>External excitation के साथ अपनी resistance/capacitance/other electrical property में change करके measurement में सहायता करता है।</td><td>RTD, thermistor, LDR</td></tr>
+</table>
+
+<h3>2. Analog and Digital Sensors</h3>
+<table>
+<tr><th>Type</th><th>Description</th></tr>
+<tr><td>Analog Sensor</td><td>Continuous या continuously varying output देता है।</td></tr>
+<tr><td>Digital Sensor</td><td>Discrete/digital form में output या data प्रदान करता है।</td></tr>
+</table>
+
+<h3>3. Contact and Non-contact Sensors</h3>
+<ul>
+<li><strong>Contact:</strong> Measurement के लिए object के साथ physical contact कर सकता है।</li>
+<li><strong>Non-contact:</strong> बिना direct physical contact के quantity detect कर सकता है।</li>
+</ul>
+
+<h3>4. Based on Measured Quantity</h3>
+<p>Temperature, pressure, force, displacement, speed, acceleration, humidity, light, gas आदि को measure करने वाले sensors अलग categories में रखे जा सकते हैं।</p>
+</section>
+
+<section id="difference">
+<h2>4. Difference between Sensor, Transmitter and Transducer</h2>
+<table>
+<tr><th>Term</th><th>Meaning</th><th>Example / Role</th></tr>
+<tr><td><strong>Sensor</strong></td><td>Physical quantity को detect/measure करता है और corresponding response/signal देता है।</td><td>Temperature sensor</td></tr>
+<tr><td><strong>Transducer</strong></td><td>एक form of energy/physical quantity को दूसरी form में convert करने वाला device/element.</td><td>Thermocouple electrical output produce करता है।</td></tr>
+<tr><td><strong>Transmitter</strong></td><td>Measured variable के signal को suitable standardized/conditioned signal में convert करके दूर स्थित receiving/control system तक भेजने के लिए उपयोग होता है।</td><td>Industrial pressure transmitter</td></tr>
+</table>
+<div class="example"><strong>Conceptual Flow:</strong><br>
+Physical Quantity → Sensing/Transduction → Signal Conditioning/Transmitter → Transmission → Controller/Display</div>
+<div class="warning"><strong>Note:</strong> Practical instrumentation systems में sensor, transducer और transmitter की terminology application और manufacturer architecture के अनुसार overlap भी कर सकती है।</div>
+</section>
+
+<section id="primary">
+<h2>5. Primary Measuring Elements</h2>
+<p><strong>Primary measuring element</strong> measurement system का वह initial sensing element है जो measurand के साथ directly interact करके उसके change को detect करता है। इसके response को आगे processing/transduction stages के लिए use किया जा सकता है।</p>
+<h3>Examples</h3>
+<ul>
+<li>Temperature measurement में sensing element.</li>
+<li>Pressure measurement में diaphragm जैसे mechanical sensing elements.</li>
+<li>Displacement measurement में mechanical sensing element.</li>
+</ul>
+<div class="note"><strong>Basic Measurement Chain:</strong> Measurand → Primary Sensing Element → Variable Conversion → Signal Conditioning → Transmission/Display</div>
+</section>
+
+<section id="selection">
+<h2>6. Sensor Selection & Characteristics</h2>
+<p>किसी application के लिए sensor चुनते समय केवल measured quantity देखना पर्याप्त नहीं होता। Operating conditions और required measurement performance भी देखनी होती है।</p>
+<h3>Selection में Important Factors</h3>
+<ul>
+<li>Required <strong>range</strong></li>
+<li>Required <strong>resolution</strong></li>
+<li>Required <strong>sensitivity</strong></li>
+<li>Required <strong>accuracy</strong></li>
+<li>Repeatability</li>
+<li>Response time</li>
+<li>Environmental conditions</li>
+<li>Electrical/mechanical compatibility</li>
+<li>Output signal और transmission requirements</li>
+<li>Cost, reliability और maintenance requirements</li>
+</ul>
+</section>
+
+<section id="range">
+<h2>7. Range</h2>
+<p><strong>Range</strong> sensor द्वारा reliably measure किए जा सकने वाले input values की lower और upper limits को दर्शाता है।</p>
+<div class="example"><strong>Example:</strong> यदि temperature sensor की measurement range <strong>−20°C से 100°C</strong> है, तो −20°C lower limit और 100°C upper limit हैं।</div>
+<p>Range को सामान्यतः <strong>Lower Range Value (LRV)</strong> और <strong>Upper Range Value (URV)</strong> से describe किया जा सकता है।</p>
+</section>
+
+<section id="resolution">
+<h2>8. Resolution</h2>
+<p><strong>Resolution</strong> input quantity में वह smallest change है जिसे sensor/system reliably distinguish या detect कर सकता है।</p>
+<div class="example"><strong>Example:</strong> यदि एक temperature instrument 0.1°C के change को distinguish कर सकता है, तो उसकी resolution लगभग 0.1°C हो सकती है।</div>
+<div class="note"><strong>Remember:</strong> छोटी resolution value का अर्थ अधिक छोटे changes को distinguish करने की capability हो सकती है, लेकिन resolution को accuracy के साथ confuse नहीं करना चाहिए।</div>
+</section>
+
+<section id="sensitivity">
+<h2>9. Sensitivity</h2>
+<p><strong>Sensitivity</strong> sensor के output में change और input में corresponding change के ratio को दर्शाती है।</p>
+<div class="note"><strong>Formula:</strong><br>
+Sensitivity = Change in Output / Change in Input<br>
+<strong>S = ΔOutput / ΔInput</strong></div>
+<div class="example"><strong>Example:</strong> यदि input 10 units बदलने पर output 2 V बदलता है, तो sensitivity = 2/10 = <strong>0.2 V/unit</strong>.</div>
+</section>
+
+<section id="error">
+<h2>10. Error</h2>
+<p><strong>Error</strong> measured value और true/accepted reference value के बीच difference है।</p>
+<div class="note"><strong>Basic Formula:</strong><br>
+Error = Measured Value − True/Reference Value<br>
+Absolute Error = |Measured Value − True Value|</div>
+<h3>Common Error Forms</h3>
+<ul>
+<li><strong>Absolute Error:</strong> Actual difference in measurement units.</li>
+<li><strong>Relative Error:</strong> Error को reference/true value के relation में express किया जाता है।</li>
+<li><strong>Percentage Error:</strong> Relative error को percentage में express किया जाता है।</li>
+</ul>
+<pre>Percentage Error
+= (Absolute Error / True Value) × 100</pre>
+</section>
+
+<section id="repeatability">
+<h2>11. Repeatability</h2>
+<p><strong>Repeatability</strong> बताती है कि same measurement conditions में same input को repeatedly measure करने पर sensor के readings कितनी consistent रहती हैं।</p>
+<div class="example"><strong>Example:</strong> यदि एक fixed temperature को बार-बार measure करने पर readings बहुत close आती हैं, तो sensor की repeatability अच्छी मानी जाती है।</div>
+<div class="note"><strong>Difference:</strong> Repeatability consistency से संबंधित है, जबकि accuracy true/accepted value के closeness से संबंधित है।</div>
+</section>
+
+<section id="linearity">
+<h2>12. Linearity</h2>
+<p><strong>Linearity</strong> sensor के actual input-output relationship और ideal straight-line relationship के बीच closeness/deviation को describe करती है।</p>
+<p>Ideal linear sensor में input बढ़ने पर output predictable straight-line relationship के अनुसार change होता है।</p>
+<pre>Ideal:
+Output = m × Input + c</pre>
+<div class="example"><strong>Example:</strong> यदि 0, 10, 20, 30 units input पर output लगभग 0, 1, 2, 3 V मिलता है, तो relationship approximately linear है।</div>
+</section>
+
+<section id="accuracy">
+<h2>13. Accuracy</h2>
+<p><strong>Accuracy</strong> measured value के true या accepted reference value के close होने की degree को दर्शाती है।</p>
+<div class="example"><strong>Example:</strong> यदि true temperature 50°C है और sensor 49.9°C दिखाता है, तो reading true value के काफी close है और accuracy अच्छी हो सकती है।</div>
+<table>
+<tr><th>Accuracy</th><th>Repeatability</th></tr>
+<tr><td>True/accepted value के closeness से संबंधित।</td><td>Repeated readings की consistency से संबंधित।</td></tr>
+</table>
+</section>
+
+<section id="impedance">
+<h2>14. Impedance</h2>
+<p><strong>Impedance</strong> किसी electrical component/system द्वारा alternating electrical signal के flow के विरुद्ध प्रस्तुत कुल opposition को दर्शाती है। इसे सामान्यतः <strong>Z</strong> से represent किया जाता है और इसकी unit <strong>Ohm (Ω)</strong> है।</p>
+<p>Sensor को signal-conditioning या measurement circuit से connect करते समय sensor की electrical impedance important हो सकती है, क्योंकि loading effect measurement को प्रभावित कर सकता है।</p>
+<div class="note"><strong>Measurement Point:</strong> Sensor और measuring circuit की impedance compatibility signal accuracy और signal transfer के लिए important है।</div>
+</section>
+
+<section id="backlash">
+<h2>15. Backlash</h2>
+<p><strong>Backlash</strong> mechanical systems में direction बदलने पर lost motion या play के कारण input और output के बीच होने वाली discrepancy को दर्शाता है। यह gears, linkages और mechanical measuring mechanisms में विशेष रूप से देखा जा सकता है।</p>
+<div class="example"><strong>Example:</strong> किसी mechanical position mechanism को एक direction में move करने के बाद reverse direction में थोड़ा movement करने पर output तुरंत respond न करे, तो यह backlash के कारण हो सकता है।</div>
+</section>
+
+<section id="response">
+<h2>16. Response Time</h2>
+<p><strong>Response Time</strong> input में change होने के बाद sensor output को required final/steady response के specified level तक पहुँचने में लगने वाला समय है।</p>
+<div class="example"><strong>Example:</strong> यदि temperature अचानक बदलने पर sensor को stable reading देने में 2 seconds लगते हैं, तो application में response time लगभग 2 seconds के order का हो सकता है।</div>
+<p>Fast-changing applications में fast response time वाला sensor अधिक suitable हो सकता है।</p>
+</section>
+
+<section id="deadband">
+<h2>17. Dead Band</h2>
+<p><strong>Dead Band</strong> input का वह range/region है जिसमें input change होने के बावजूद output में measurable या appreciable change नहीं होता।</p>
+<div class="example"><strong>Example:</strong> यदि किसी device में input में बहुत छोटा change output को प्रभावित नहीं करता और एक threshold पार करने के बाद response शुरू होता है, तो threshold के आसपास का insensitive region dead band हो सकता है।</div>
+<div class="warning"><strong>Note:</strong> Dead band को resolution से confuse न करें। Resolution smallest distinguishable change से संबंधित है, जबकि dead band input region में response के absent/insignificant होने से संबंधित है।</div>
+</section>
+
+<section id="signal">
+<h2>18. Signal Transmission</h2>
+<p>Sensor से प्राप्त signal को processing, monitoring या control system तक पहुँचाना <strong>Signal Transmission</strong> का हिस्सा है। Industrial systems में signal को suitable form में condition और transmit किया जाता है ताकि distance पर भी reliable communication हो सके।</p>
+<h3>Basic Flow</h3>
+<pre>Sensor
+  ↓
+Signal Conditioning
+  ↓
+Transmitter / Communication Interface
+  ↓
+Transmission Medium
+  ↓
+Controller / PLC / Computer / Display</pre>
+<h3>Transmission Medium</h3>
+<ul>
+<li>Wired cable</li>
+<li>Twisted pair</li>
+<li>Coaxial cable</li>
+<li>Optical fiber</li>
+<li>Wireless/RF communication</li>
+</ul>
+</section>
+
+<section id="types">
+<h2>19. Types of Signal</h2>
+<h3>1. Analog Signal</h3>
+<p>Analog signal continuous form में vary करता है और measured quantity के साथ continuously change हो सकता है।</p>
+<pre>Temperature → Sensor → 0–10 V Analog Signal</pre>
+
+<h3>2. Digital Signal</h3>
+<p>Digital signal discrete values/bits के रूप में information represent करता है।</p>
+<pre>Sensor → Digital Interface → Controller</pre>
+
+<h3>3. Electrical Signal</h3>
+<p>Voltage या current के रूप में electrical signal transmission में उपयोग किया जा सकता है।</p>
+
+<h3>4. Pneumatic Signal</h3>
+<p>कुछ industrial instrumentation systems में pressure-based pneumatic signals का उपयोग किया जाता है।</p>
+
+<h3>5. Wireless Signal</h3>
+<p>Wireless sensors radio/wireless communication के माध्यम से data भेज सकते हैं।</p>
+
+<table>
+<tr><th>Signal Type</th><th>General Example</th><th>Use</th></tr>
+<tr><td>Analog Voltage</td><td>0–10 V</td><td>Continuous measurement</td></tr>
+<tr><td>Analog Current</td><td>4–20 mA</td><td>Industrial instrumentation</td></tr>
+<tr><td>Digital</td><td>Digital data/bits</td><td>Controllers and digital systems</td></tr>
+<tr><td>Pneumatic</td><td>Pressure signal</td><td>Industrial control environments</td></tr>
+<tr><td>Wireless</td><td>RF-based data</td><td>Remote sensing/IoT</td></tr>
+</table>
+</section>
+
+<section id="applications">
+<h2>20. Application of Sensors</h2>
+<p>Sensors modern automation, electronics, IoT और control systems का महत्वपूर्ण हिस्सा हैं।</p>
+<table>
+<tr><th>Field</th><th>Sensor Applications</th></tr>
+<tr><td>Industrial Automation</td><td>Temperature, pressure, level, proximity और position monitoring.</td></tr>
+<tr><td>IoT</td><td>Environmental data collection और remote monitoring.</td></tr>
+<tr><td>Healthcare</td><td>Body-related parameters और medical equipment monitoring.</td></tr>
+<tr><td>Automobile</td><td>Speed, temperature, pressure, position और safety-related sensing.</td></tr>
+<tr><td>Smart Home</td><td>Motion, light, temperature और security monitoring.</td></tr>
+<tr><td>Agriculture</td><td>Soil moisture, temperature और environmental monitoring.</td></tr>
+<tr><td>Robotics</td><td>Distance, position, force और obstacle detection.</td></tr>
+<tr><td>Consumer Electronics</td><td>Touch, motion, light और environmental sensing.</td></tr>
+<tr><td>Smart City</td><td>Traffic, environment, parking और infrastructure monitoring.</td></tr>
+</table>
+</section>
+
+<section id="revision">
+<h2>21. Quick Revision</h2>
+<ul>
+<li>Sensor physical quantity/environmental condition को detect या measure करता है।</li>
+<li>Transducer energy/physical quantity के एक form को दूसरे form में convert करने का कार्य करता है।</li>
+<li>Transmitter measured signal को suitable form में condition करके transmission/control system तक भेजने में उपयोग होता है।</li>
+<li>Primary measuring element measurand के साथ initial/direct sensing interaction करता है।</li>
+<li>Range minimum से maximum measurable input limits को दर्शाता है।</li>
+<li>Resolution smallest detectable/distinguishable input change है।</li>
+<li>Sensitivity = Change in Output / Change in Input.</li>
+<li>Error measured value और true/reference value के बीच difference है।</li>
+<li>Repeatability repeated measurements की consistency है।</li>
+<li>Linearity actual response और ideal linear relationship के deviation से संबंधित है।</li>
+<li>Accuracy true/reference value के closeness को दर्शाती है।</li>
+<li>Impedance electrical signal के flow के विरुद्ध opposition से संबंधित है।</li>
+<li>Backlash mechanical direction reversal में lost motion/play से संबंधित है।</li>
+<li>Response time required sensor response तक पहुँचने में लगने वाला time है।</li>
+<li>Dead band वह input region है जिसमें output में appreciable change नहीं होता।</li>
+<li>Signals analog, digital, electrical, pneumatic या wireless forms में transmit हो सकते हैं।</li>
+<li>Sensors industrial automation, IoT, healthcare, automobile, agriculture, robotics और smart systems में widely used हैं।</li>
+</ul>
+
+<div class="exam">
+<strong>Written Exam Focus:</strong><br>
+1. Sensor क्या है? इसका basic working समझाइए।<br>
+2. Sensor की प्रमुख characteristics समझाइए।<br>
+3. Sensors का classification समझाइए।<br>
+4. Sensor, Transducer और Transmitter में अंतर लिखिए।<br>
+5. Primary Measuring Element क्या है?<br>
+6. Sensor selection में किन characteristics को ध्यान में रखा जाता है?<br>
+7. Range, Resolution और Sensitivity समझाइए।<br>
+8. Error, Repeatability, Linearity और Accuracy समझाइए।<br>
+9. Impedance, Backlash, Response Time और Dead Band समझाइए।<br>
+10. Signal Transmission क्या है? इसके types समझाइए।<br>
+11. Sensors के विभिन्न applications समझाइए।
+</div>
+</section>
+
+<footer>© BK LearnX | Sensors | Unit 1</footer>
+</main>
+</div>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BK LearnX | Unit 9 - Arduino Communications</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--text:#172033;--muted:#5f6b7a;--primary:#315efb;--purple:#6d42e8;--border:#e2e8f0;--soft:#eef3ff;--code:#111827}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,"Noto Sans Devanagari",sans-serif;line-height:1.7}
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.top{max-width:1250px;margin:auto;padding:13px 20px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:23px;font-weight:800;color:var(--primary)}.logo span{color:var(--purple)}
+.menu{display:none;border:0;background:var(--soft);padding:8px 12px;border-radius:9px;font-size:20px}
+.layout{max-width:1250px;margin:auto;padding:25px 20px;display:grid;grid-template-columns:275px 1fr;gap:25px}
+aside{position:sticky;top:75px;height:calc(100vh - 95px);overflow:auto;background:var(--card);border:1px solid var(--border);border-radius:18px;padding:17px}
+aside h3{margin-top:0;color:var(--primary)}aside a{display:block;padding:7px 9px;margin:2px 0;text-decoration:none;color:var(--muted);border-radius:8px}aside a:hover{background:var(--soft);color:var(--primary)}
+.hero{background:linear-gradient(135deg,#172554,#4338ca);color:white;padding:35px;border-radius:22px;margin-bottom:22px}.hero h1{margin:0;font-size:35px}.hero p{margin:7px 0;color:#e8eaff}.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}.badge{padding:5px 11px;border-radius:999px;background:rgba(255,255,255,.14);font-size:13px}
+section{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:26px;margin-bottom:20px;box-shadow:0 5px 20px rgba(20,30,60,.04)}
+h2{margin-top:0;color:#203b9b;border-bottom:2px solid var(--soft);padding-bottom:8px}h3{color:#263550}
+table{width:100%;border-collapse:collapse;margin:15px 0;font-size:15px}th,td{border:1px solid var(--border);padding:10px;vertical-align:top;text-align:left}th{background:var(--soft)}
+.code{background:var(--code);color:#e5e7eb;border-radius:12px;padding:17px;overflow:auto;font:14px/1.6 Consolas,monospace;white-space:pre}
+.note{background:#f0fdf4;border-left:4px solid #16a34a;padding:13px 15px;border-radius:8px;margin:15px 0}.warn{background:#fff7ed;border-left:4px solid #ea580c;padding:13px 15px;border-radius:8px;margin:15px 0}.info{background:#eff6ff;border-left:4px solid #2563eb;padding:13px 15px;border-radius:8px;margin:15px 0}
+.diagram{display:flex;justify-content:center;align-items:center;gap:9px;flex-wrap:wrap;margin:18px 0}.box{padding:12px 15px;border:2px solid #94a3b8;background:#f8fafc;border-radius:11px;font-weight:700}.arrow{font-size:23px;color:var(--primary)}
+.formula{font-family:Consolas,monospace;background:#f8fafc;border:1px dashed #aab4c4;padding:12px;border-radius:10px}
+footer{text-align:center;padding:28px;color:var(--muted)}
+@media(max-width:850px){.layout{grid-template-columns:1fr}.menu{display:block}aside{display:none;position:fixed;left:15px;right:15px;top:68px;height:auto;max-height:75vh;z-index:30}aside.open{display:block}.hero h1{font-size:28px}section{padding:20px}}
+</style>
+</head>
+<body>
+<header><div class="top"><div class="logo">BK <span>LearnX</span></div><button class="menu" onclick="document.querySelector('aside').classList.toggle('open')">☰</button></div></header>
+
+<div class="layout">
+<aside>
+<h3>Unit 9 Navigation</h3>
+<a href="#intro">Introduction</a><a href="#parallel">1. Parallel Communication</a><a href="#serialmodules">2. Serial Communication Modules</a>
+<a href="#types">3. Types of Serial Communication</a><a href="#uart">4. Arduino UART</a><a href="#gsm">5. GSM/GPRS Interfacing</a>
+<a href="#integration">Communication Flow</a><a href="#revision">Quick Revision</a>
+</aside>
+
+<main>
+<div class="hero">
+<h1>Unit 9: Arduino Communications</h1>
+<p>Parallel Communication • Serial Modules • Serial Communication Types • UART • GSM/GPRS</p>
+<div class="badges"><span class="badge">PGDCA Notes</span><span class="badge">Arduino</span><span class="badge">Communication</span><span class="badge">Exam Oriented</span></div>
+</div>
+
+<section id="intro">
+<h2>Introduction to Arduino Communications</h2>
+<p><b>Communication</b> का अर्थ Arduino और किसी दूसरे device/module/controller के बीच data का exchange करना है। Arduino sensors, computers, displays, wireless modules और cellular modules से communicate कर सकता है।</p>
+<div class="diagram"><div class="box">Arduino</div><div class="arrow">↔</div><div class="box">Communication Interface</div><div class="arrow">↔</div><div class="box">External Device</div></div>
+<p>Communication को broadly <b>Parallel</b> और <b>Serial</b> methods में समझा जा सकता है। Serial communication में data bits क्रम से transmit होते हैं, जबकि parallel communication में कई bits एक साथ अलग-अलग lines पर भेजे जा सकते हैं।</p>
+</section>
+
+<section id="parallel">
+<h2>1. Parallel Communication</h2>
+<p><b>Parallel Communication</b> में data के multiple bits को एक ही समय में multiple data lines के माध्यम से transmit किया जाता है। यदि 8-bit data bus है, तो theoretically 8 data lines पर 8 bits simultaneously भेजे जा सकते हैं।</p>
+<div class="diagram"><div class="box">Bit 7</div><div class="box">Bit 6</div><div class="box">Bit 5</div><div class="box">...</div><div class="box">Bit 0</div><div class="arrow">→</div><div class="box">Receiver</div></div>
+<h3>Features</h3>
+<ul><li>Multiple data lines का उपयोग होता है।</li><li>एक transfer में कई bits simultaneously भेजे जा सकते हैं।</li><li>Long-distance communication के लिए many parallel lines practical नहीं हो सकतीं।</li><li>Wiring और synchronization requirements बढ़ सकती हैं।</li></ul>
+<h3>Parallel vs Serial</h3>
+<table><tr><th>Feature</th><th>Parallel</th><th>Serial</th></tr>
+<tr><td>Data transfer</td><td>Multiple bits simultaneously</td><td>Bits sequentially</td></tr>
+<tr><td>Lines</td><td>More data lines</td><td>Usually fewer lines</td></tr>
+<tr><td>Wiring</td><td>More complex as width increases</td><td>Generally simpler</td></tr>
+<tr><td>Common use</td><td>Parallel buses, some displays/memory interfaces</td><td>UART, SPI, I²C, USB and many modules</td></tr></table>
+<div class="info"><b>Exam Point:</b> Parallel communication में multiple bits simultaneously transfer होते हैं, जबकि serial communication में bits sequentially transfer होते हैं।</div>
+</section>
+
+<section id="serialmodules">
+<h2>2. Serial Communication Modules</h2>
+<p>Arduino के साथ अलग-अलग serial communication modules connect किए जा सकते हैं। ये modules wired या wireless communication की आवश्यकता पूरी कर सकते हैं।</p>
+<table><tr><th>Module / Interface</th><th>Purpose</th><th>Typical Example</th></tr>
+<tr><td>UART/TTL Serial</td><td>Point-to-point serial data</td><td>GPS, serial displays, USB-to-TTL</td></tr>
+<tr><td>Bluetooth Module</td><td>Short-range wireless serial communication</td><td>Bluetooth-based control</td></tr>
+<tr><td>RF Module</td><td>Radio-frequency communication</td><td>Remote data transfer</td></tr>
+<tr><td>GSM/GPRS Module</td><td>Cellular communication/data</td><td>SMS, calls/data depending on module/network</td></tr>
+<tr><td>RS-232/RS-485 Interface</td><td>Electrical interface standards for serial communication</td><td>Industrial/device communication</td></tr>
+</table>
+<div class="warn"><b>Important:</b> Communication module का voltage level, logic level, baud rate, pinout और power requirement model-specific हो सकता है। Arduino और module को connect करने से पहले specifications check करें।</div>
+</section>
+
+<section id="types">
+<h2>3. Types of Serial Communications</h2>
+<p>Serial communication को direction और synchronization के आधार पर अलग-अलग ways में classify किया जा सकता है।</p>
+<h3>A. Direction के आधार पर</h3>
+<table><tr><th>Type</th><th>Meaning</th><th>Example</th></tr>
+<tr><td>Simplex</td><td>Data केवल एक direction में जाता है।</td><td>One-way broadcast style communication</td></tr>
+<tr><td>Half-Duplex</td><td>दोनों directions possible हैं, लेकिन एक समय में एक direction active होती है।</td><td>कुछ radio communication systems</td></tr>
+<tr><td>Full-Duplex</td><td>दोनों directions में simultaneously communication possible है।</td><td>UART-based links in appropriate hardware configuration</td></tr>
+</table>
+<h3>B. Synchronization के आधार पर</h3>
+<table><tr><th>Type</th><th>Meaning</th><th>Key Idea</th></tr>
+<tr><td>Asynchronous Serial</td><td>Common clock line की आवश्यकता नहीं होती; sender और receiver agreed timing/baud rate use करते हैं।</td><td>UART</td></tr>
+<tr><td>Synchronous Serial</td><td>Clock signal data transfer को synchronize करता है।</td><td>SPI, I²C जैसे interfaces</td></tr></table>
+<div class="note"><b>Note:</b> SPI और I²C को broadly synchronous serial interfaces माना जाता है; इनके protocols और wiring UART से अलग होते हैं।</div>
+</section>
+
+<section id="uart">
+<h2>4. Arduino UART</h2>
+<p><b>UART (Universal Asynchronous Receiver/Transmitter)</b> एक hardware communication interface है जो parallel data को serial form में transmit और received serial data को parallel form में convert करने में मदद करता है। UART asynchronous serial communication का common implementation है।</p>
+<h3>Basic UART Lines</h3>
+<div class="diagram"><div class="box">Arduino TX</div><div class="arrow">→</div><div class="box">Device RX</div><div class="arrow">|</div><div class="box">Device TX</div><div class="arrow">→</div><div class="box">Arduino RX</div></div>
+<p>सामान्य UART connection में <b>TX</b> (Transmit) और <b>RX</b> (Receive) lines होती हैं। Communication के लिए sender का TX receiver के RX से और receiver का TX sender के RX से connect किया जाता है, साथ में compatible ground reference आवश्यक होता है।</p>
+<h3>Arduino Serial API</h3>
+<table><tr><th>Function</th><th>Purpose</th></tr>
+<tr><td><code>Serial.begin(9600)</code></td><td>Serial interface initialize करना</td></tr>
+<tr><td><code>Serial.available()</code></td><td>Received data available है या नहीं check करना</td></tr>
+<tr><td><code>Serial.read()</code></td><td>Received byte read करना</td></tr>
+<tr><td><code>Serial.write()</code></td><td>Raw byte/data transmit करना</td></tr>
+<tr><td><code>Serial.print()</code></td><td>Formatted text transmit करना</td></tr>
+<tr><td><code>Serial.println()</code></td><td>Text transmit करके new line देना</td></tr></table>
+<h3>UART Example</h3>
+<div class="code">void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  Serial.println("Hello from Arduino");
+  delay(1000);
+}</div>
+<h3>Receiving UART Data</h3>
+<div class="code">void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  if (Serial.available() > 0) {
+    char data = Serial.read();
+
+    Serial.print("Received: ");
+    Serial.println(data);
+  }
+}</div>
+<div class="info"><b>Baud Rate:</b> Baud rate serial communication की signaling rate को indicate करता है। Sender और receiver के configuration को compatible रखना जरूरी है।</div>
+</section>
+
+<section id="gsm">
+<h2>5. GSM/GPRS Arduino Interfacing</h2>
+<p><b>GSM (Global System for Mobile Communications)</b> cellular communication technology से संबंधित है, जबकि <b>GPRS (General Packet Radio Service)</b> packet-based mobile data service है। Arduino को suitable GSM/GPRS module से connect करके cellular network आधारित applications बनाई जा सकती हैं।</p>
+<h3>Basic Communication Flow</h3>
+<div class="diagram"><div class="box">Arduino</div><div class="arrow">↔</div><div class="box">GSM/GPRS Module</div><div class="arrow">↔</div><div class="box">Mobile Network</div><div class="arrow">↔</div><div class="box">Remote Device/Server</div></div>
+<h3>Typical Module Interfaces</h3>
+<table><tr><th>Connection</th><th>Purpose</th></tr>
+<tr><td>VCC / Power</td><td>Module को required supply देना</td></tr>
+<tr><td>GND</td><td>Common reference</td></tr>
+<tr><td>TX</td><td>Module से serial data output</td></tr>
+<tr><td>RX</td><td>Module को serial data input</td></tr>
+<tr><td>SIM interface</td><td>Cellular network identity/access के लिए, module dependent</td></tr>
+<tr><td>Antenna</td><td>Cellular RF communication के लिए, module dependent</td></tr></table>
+<h3>AT Commands</h3>
+<p>बहुत से GSM/GPRS modules को serial interface के माध्यम से <b>AT commands</b> से control किया जाता है। AT command भेजकर module की status, network registration, SMS और अन्य supported functions को manage किया जा सकता है। Exact commands module/firmware पर depend करते हैं।</p>
+<h3>Conceptual Arduino + GSM Serial Example</h3>
+<div class="code">void setup() {
+  Serial.begin(9600);
+  delay(1000);
+
+  Serial.println("AT");
+}
+
+void loop() {
+  if (Serial.available()) {
+    char c = Serial.read();
+    // Received data can be processed here.
+  }
+}</div>
+<div class="warn"><b>Hardware Warning:</b> GSM/GPRS modules transmission के दौरान relatively high current peaks ले सकते हैं। Arduino board के regulator/USB supply से module को blindly power न दें। Module की required voltage/current और logic-level compatibility के अनुसार suitable power supply और interface का उपयोग करें।</div>
+<h3>Applications</h3>
+<ul><li>SMS-based alerts</li><li>Remote monitoring</li><li>IoT/cellular telemetry</li><li>Location/vehicle monitoring systems (additional modules/services may be required)</li><li>Machine status reporting</li></ul>
+</section>
+
+<section id="integration">
+<h2>Communication System Flow</h2>
+<p>एक Arduino communication project में local data को serial interface से external module तक भेजा जा सकता है। GSM/GPRS module के case में वह data cellular network के माध्यम से remote destination तक जा सकता है।</p>
+<div class="diagram"><div class="box">Sensor / Input</div><div class="arrow">→</div><div class="box">Arduino</div><div class="arrow">→</div><div class="box">UART</div><div class="arrow">→</div><div class="box">GSM/GPRS</div><div class="arrow">→</div><div class="box">Network</div></div>
+<h3>General Interfacing Steps</h3>
+<ol><li>Communication protocol और module type identify करें।</li><li>Voltage, power और logic-level requirements check करें।</li><li>TX/RX या required interface lines correctly connect करें।</li><li>Common ground/reference सुनिश्चित करें जहाँ आवश्यक हो।</li><li>Matching baud rate/protocol configuration set करें।</li><li>पहले basic communication test करें, फिर application commands implement करें।</li></ol>
+</section>
+
+<section id="revision">
+<h2>Quick Revision</h2>
+<table>
+<tr><th>Question</th><th>Short Answer</th></tr>
+<tr><td>Parallel Communication क्या है?</td><td>Multiple bits को multiple lines पर simultaneously transfer करना।</td></tr>
+<tr><td>Serial Communication क्या है?</td><td>Data bits को serial/sequential manner में transfer करना।</td></tr>
+<tr><td>UART का full form?</td><td>Universal Asynchronous Receiver/Transmitter.</td></tr>
+<tr><td>UART में TX और RX?</td><td>TX = Transmit, RX = Receive.</td></tr>
+<tr><td>UART synchronous या asynchronous?</td><td>UART सामान्यतः asynchronous serial communication है।</td></tr>
+<tr><td>Simplex?</td><td>One-way communication.</td></tr>
+<tr><td>Half-Duplex?</td><td>दो-way communication, लेकिन एक समय में एक direction.</td></tr>
+<tr><td>Full-Duplex?</td><td>दोनों directions में simultaneously communication possible.</td></tr>
+<tr><td>GSM का full form?</td><td>Global System for Mobile Communications.</td></tr>
+<tr><td>GPRS का full form?</td><td>General Packet Radio Service.</td></tr>
+<tr><td>GSM/GPRS module का उपयोग?</td><td>Cellular communication और supported data/SMS functions के लिए।</td></tr>
+<tr><td>AT Commands?</td><td>Compatible communication modules को serial commands से control/configure करने का command set/interface।</td></tr>
+</table>
+<div class="note"><b>Unit 9 Core Flow:</b> Data → Communication Protocol → Arduino Interface → Serial/Cellular Module → Destination.</div>
+</section>
+</main>
+</div>
+<footer>© BK LearnX • Unit 9: Arduino Communications • PGDCA Study Notes</footer>
+</body>
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BK LearnX | Unit-2 Types of Sensors</title>
+<style>
+:root{--bg:#f6f8fc;--card:#fff;--text:#172033;--muted:#5d687c;--accent:#2563eb;--accent2:#0f766e;--border:#dfe5ef;--code:#111827;--note:#eef5ff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,"Noto Sans Devanagari",sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+header{background:linear-gradient(135deg,#111827,#1d4ed8);color:#fff;padding:34px 20px}header .wrap{max-width:1200px;margin:auto}header h1{margin:0 0 8px;font-size:clamp(28px,4vw,44px)}header p{margin:0;color:#dbeafe}
+.layout{max-width:1200px;margin:auto;display:grid;grid-template-columns:260px 1fr;gap:24px;padding:24px 16px}
+aside{position:sticky;top:16px;height:calc(100vh - 32px);overflow:auto;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px}
+aside h3{margin-top:0}aside a{display:block;text-decoration:none;color:var(--muted);padding:7px 9px;border-radius:8px;font-size:14px}aside a:hover{background:var(--note);color:var(--accent)}
+main{min-width:0}.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:26px;margin-bottom:20px;box-shadow:0 5px 18px rgba(15,23,42,.04)}
+h2{font-size:27px;margin-top:0;color:#173b7a}h3{color:#244b86;margin-bottom:8px}.tag{display:inline-block;padding:4px 9px;border-radius:999px;background:#e8f0ff;color:#1d4ed8;font-size:12px;font-weight:700;margin-bottom:8px}
+.note{background:var(--note);border-left:4px solid var(--accent);padding:14px 16px;border-radius:8px;margin:14px 0}.warn{background:#fff7ed;border-left-color:#ea580c}.success{background:#ecfdf5;border-left-color:#059669}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}th,td{border:1px solid var(--border);padding:10px;vertical-align:top;text-align:left}th{background:#f0f4fa}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.mini{border:1px solid var(--border);border-radius:12px;padding:15px;background:#fbfcff}.mini h3{margin-top:0}
+.flow{background:var(--code);color:#e5e7eb;padding:15px;border-radius:10px;overflow:auto;font-family:Consolas,monospace;font-size:13px}
+footer{text-align:center;color:var(--muted);padding:25px}
+@media(max-width:850px){.layout{grid-template-columns:1fr}aside{position:relative;top:0;height:auto}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<h1>Unit–2: Types of Sensors</h1>
+<p>PGDCA / IoT / Sensor Technology — Exam-Oriented Hindi + English Notes</p>
+</div></header>
+
+<div class="layout">
+<aside>
+<h3>📚 Unit Navigation</h3>
+<a href="#intro">1. Introduction</a>
+<a href="#position">2. Position Sensors</a>
+<a href="#motion">3. Motion Sensors</a>
+<a href="#velocity">4. Velocity Sensors</a>
+<a href="#acceleration">5. Acceleration Sensors</a>
+<a href="#force">6. Force Sensors</a>
+<a href="#pressure">7. Pressure Sensors</a>
+<a href="#flow">8. Flow Sensors</a>
+<a href="#humidity">9. Humidity Sensors</a>
+<a href="#light">10. Light Sensors</a>
+<a href="#radiation">11. Radiation Sensors</a>
+<a href="#temperature">12. Temperature Sensors</a>
+<a href="#image">13. Image Sensors</a>
+<a href="#gas">14. Gas Sensors</a>
+<a href="#ultrasonic">15. Ultrasonic Sensors</a>
+<a href="#infrared">16. Infrared Sensors</a>
+<a href="#bio">17. Biosensors</a>
+<a href="#micro">18. Micro Sensors</a>
+<a href="#nano">19. Nano Sensors</a>
+<a href="#criteria">20. Sensor Selection Criteria</a>
+<a href="#revision">21. Quick Revision</a>
+</aside>
+
+<main>
+<section class="card" id="intro">
+<span class="tag">UNIT OVERVIEW</span>
+<h2>1. Types of Sensors — Introduction</h2>
+<p><b>Sensor</b> एक ऐसा device है जो किसी physical, chemical या biological quantity को detect/measure करके उसे usable signal में बदलता है। Unit-1 में sensor characteristics पढ़ने के बाद इस unit में अलग-अलग quantities के लिए उपयोग होने वाले sensors को समझेंगे।</p>
+<div class="flow">Physical Quantity → Sensor → Electrical/Usable Signal → Signal Processing → Controller/Display/Actuator</div>
+<div class="note"><b>Exam Point:</b> Sensor का basic काम किसी measurable quantity में होने वाले change को detect करके उसका corresponding output देना है।</div>
+</section>
+
+<section class="card" id="position">
+<h2>2. Position Sensors</h2>
+<p>Position sensor किसी object की <b>location या displacement</b> को measure करता है। यह linear या angular position दोनों को measure कर सकता है।</p>
+<table><tr><th>Type</th><th>Working / Use</th><th>Example</th></tr>
+<tr><td>Potentiometer</td><td>Resistance में change के आधार पर position पता करता है।</td><td>Joystick, robotic arm</td></tr>
+<tr><td>LVDT</td><td>Linear displacement को electrical signal में convert करता है।</td><td>Industrial measurement</td></tr>
+<tr><td>Encoder</td><td>Rotary/linear movement को pulses या digital code में represent करता है।</td><td>Motor position control</td></tr>
+</table>
+</section>
+
+<section class="card" id="motion">
+<h2>3. Motion Sensors</h2>
+<p>Motion sensor किसी object या व्यक्ति की <b>movement</b> को detect करता है। इसका output movement की presence/absence या movement-related information दे सकता है।</p>
+<div class="grid">
+<div class="mini"><h3>PIR Sensor</h3><p>Human/animal body से आने वाली infrared radiation में change detect करके motion sensing करता है।</p></div>
+<div class="mini"><h3>Accelerometer-based Motion</h3><p>Acceleration में changes से device movement, tilt या vibration जैसी स्थितियाँ detect की जा सकती हैं।</p></div>
+</div>
+<p><b>Applications:</b> Security lights, alarms, smartphones, automation systems.</p>
+</section>
+
+<section class="card" id="velocity">
+<h2>4. Velocity Sensors</h2>
+<p>Velocity sensor object की speed तथा direction से related motion को measure करता है।</p>
+<ul>
+<li><b>Tachometer:</b> Rotating shaft की rotational speed measure करता है।</li>
+<li><b>Magnetic pickup:</b> Rotating target के magnetic/inductive changes से speed estimate कर सकता है।</li>
+<li><b>Optical encoder:</b> Pulses count करके rotational speed और direction निर्धारित कर सकता है।</li>
+</ul>
+<p><b>Applications:</b> Motors, vehicles, robotics, industrial machines.</p>
+</section>
+
+<section class="card" id="acceleration">
+<h2>5. Acceleration Sensors</h2>
+<p>Accelerometer किसी object के <b>acceleration</b> को measure करता है। Modern MEMS accelerometers बहुत छोटे और low-power होते हैं।</p>
+<div class="note"><b>Common Uses:</b> Smartphone screen rotation, vehicle safety systems, vibration monitoring, drones, gaming controllers.</div>
+</section>
+
+<section class="card" id="force">
+<h2>6. Force Sensors</h2>
+<p>Force sensor applied <b>बल</b> को detect/measure करता है। Force को electrical signal में convert करने के लिए strain-based और piezoelectric techniques उपयोग की जा सकती हैं।</p>
+<table><tr><th>Sensor</th><th>Principle</th><th>Application</th></tr>
+<tr><td>Load Cell</td><td>Strain के कारण resistance change को measure करता है।</td><td>Weighing machines</td></tr>
+<tr><td>Piezoelectric Sensor</td><td>Mechanical force/pressure से electrical charge generate होता है।</td><td>Vibration, dynamic force</td></tr>
+<tr><td>FSR</td><td>Applied force के साथ resistance बदलता है।</td><td>Touch/pressure interfaces</td></tr>
+</table>
+</section>
+
+<section class="card" id="pressure">
+<h2>7. Pressure Sensors</h2>
+<p>Pressure sensor किसी gas या liquid द्वारा surface पर लगाए गए pressure को measure करता है।</p>
+<p><b>Common types:</b> Piezoresistive, capacitive, piezoelectric, MEMS pressure sensors.</p>
+<p><b>Applications:</b> Tyre-pressure monitoring, hydraulic systems, weather stations, medical equipment, industrial process control.</p>
+</section>
+
+<section class="card" id="flow">
+<h2>8. Flow Sensors</h2>
+<p>Flow sensor pipe या channel में fluid/gas के flow rate को measure करता है।</p>
+<table><tr><th>Type</th><th>Basic Principle</th></tr>
+<tr><td>Mechanical/Turbine</td><td>Flow turbine को rotate करता है; rotation से flow estimate किया जाता है।</td></tr>
+<tr><td>Ultrasonic</td><td>Ultrasonic waves के travel-time/Doppler effects का उपयोग किया जा सकता है।</td></tr>
+<tr><td>Electromagnetic</td><td>Conductive liquid के flow से induced voltage के आधार पर measurement।</td></tr>
+</table>
+<p><b>Applications:</b> Water meters, fuel systems, chemical plants, irrigation.</p>
+</section>
+
+<section class="card" id="humidity">
+<h2>9. Humidity Sensors</h2>
+<p>Humidity sensor air में मौजूद moisture/water vapour की मात्रा को measure करता है।</p>
+<ul>
+<li><b>Capacitive:</b> Humidity बदलने पर dielectric properties और capacitance बदलती है।</li>
+<li><b>Resistive:</b> Moisture के कारण sensing material का resistance बदलता है।</li>
+</ul>
+<p><b>Applications:</b> Weather monitoring, HVAC, agriculture, storage rooms, IoT devices.</p>
+</section>
+
+<section class="card" id="light">
+<h2>10. Light Sensors</h2>
+<p>Light sensor visible या अन्य optical radiation की intensity detect करता है।</p>
+<div class="grid">
+<div class="mini"><h3>LDR</h3><p>Light intensity बढ़ने पर resistance सामान्यतः घटता है।</p></div>
+<div class="mini"><h3>Photodiode</h3><p>Incident light को electrical current में convert करता है।</p></div>
+<div class="mini"><h3>Phototransistor</h3><p>Light-sensitive transistor; photodiode की तुलना में higher current gain दे सकता है।</p></div>
+<div class="mini"><h3>Applications</h3><p>Automatic lights, camera exposure, optical communication, displays.</p></div>
+</div>
+</section>
+
+<section class="card" id="radiation">
+<h2>11. Radiation Sensors</h2>
+<p>Radiation sensors ionizing या non-ionizing radiation को detect/measure करने के लिए बनाए जाते हैं।</p>
+<p><b>Examples:</b> Geiger-Müller tube, scintillation detector, semiconductor radiation detector.</p>
+<p><b>Applications:</b> Nuclear monitoring, medical imaging/radiation safety, scientific instruments and industrial inspection.</p>
+<div class="note warn"><b>Note:</b> Radiation sensing में sensor selection करते समय radiation type, energy range, sensitivity और safety requirements बहुत important होते हैं।</div>
+</section>
+
+<section class="card" id="temperature">
+<h2>12. Temperature Sensors</h2>
+<p>Temperature sensor temperature में होने वाले change को detect करके measurable output देता है।</p>
+<table><tr><th>Sensor</th><th>Working Idea</th><th>Typical Use</th></tr>
+<tr><td>Thermistor</td><td>Temperature के साथ resistance बदलता है।</td><td>Consumer electronics, temperature monitoring</td></tr>
+<tr><td>RTD</td><td>Metal resistance temperature के साथ predictable तरीके से बदलता है।</td><td>Industrial measurement</td></tr>
+<tr><td>Thermocouple</td><td>Different metals के junction पर temperature difference से thermoelectric voltage उत्पन्न होता है।</td><td>High-temperature processes</td></tr>
+<tr><td>IC/semiconductor sensor</td><td>Semiconductor circuit temperature-dependent electrical output देता है।</td><td>Digital systems</td></tr>
+</table>
+</section>
+
+<section class="card" id="image">
+<h2>13. Image Sensors</h2>
+<p>Image sensor optical image को electrical/digital data में convert करता है। Cameras में image sensor मुख्य sensing element होता है।</p>
+<h3>Major Types</h3>
+<ul>
+<li><b>CCD (Charge-Coupled Device)</b></li>
+<li><b>CMOS (Complementary Metal-Oxide-Semiconductor)</b></li>
+</ul>
+<p><b>Applications:</b> Smartphones, digital cameras, CCTV, machine vision, barcode/QR scanning, medical imaging.</p>
+</section>
+
+<section class="card" id="gas">
+<h2>14. Gas Sensors</h2>
+<p>Gas sensor किसी specific gas की presence या concentration detect करने के लिए उपयोग होता है।</p>
+<table><tr><th>Technology</th><th>Use / Principle</th></tr>
+<tr><td>Metal Oxide Semiconductor (MOS)</td><td>Gas exposure से sensing material की electrical resistance बदल सकती है।</td></tr>
+<tr><td>Electrochemical</td><td>Gas की chemical reaction से electrical signal उत्पन्न होता है।</td></tr>
+<tr><td>Infrared</td><td>कुछ gases द्वारा specific infrared wavelengths absorb होने के आधार पर detection।</td></tr>
+</table>
+<p><b>Applications:</b> Gas leakage alarms, pollution monitoring, industrial safety, breath analysis.</p>
+</section>
+
+<section class="card" id="ultrasonic">
+<h2>15. Ultrasonic Sensors</h2>
+<p>Ultrasonic sensor human hearing range से ऊपर की frequency वाली sound waves का उपयोग करके distance, presence या level measure करता है।</p>
+<div class="flow">Transmitter → Ultrasonic Wave → Object → Reflected Echo → Receiver → Time/Distance Calculation</div>
+<p><b>Applications:</b> Obstacle detection, parking systems, tank level measurement, robotics, automation.</p>
+</section>
+
+<section class="card" id="infrared">
+<h2>16. Infrared (IR) Sensors</h2>
+<p>Infrared sensors infrared radiation का उपयोग object detection, proximity, temperature या communication जैसे applications में कर सकते हैं।</p>
+<div class="grid">
+<div class="mini"><h3>Active IR</h3><p>IR transmitter और receiver दोनों का उपयोग करके reflected/blocked radiation से detection करता है।</p></div>
+<div class="mini"><h3>Passive IR (PIR)</h3><p>Objects, विशेषकर humans, से आने वाली IR radiation में बदलाव detect करता है।</p></div>
+</div>
+<p><b>Applications:</b> Remote controls, automatic doors, security systems, proximity sensing, motion detection.</p>
+</section>
+
+<section class="card" id="bio">
+<h2>17. Biosensors</h2>
+<p>Biosensor ऐसा sensor है जो biological element और transducer को combine करके किसी biological/chemical substance को detect करता है।</p>
+<div class="flow">Biological Recognition Element → Interaction with Analyte → Transducer → Signal Processing → Result</div>
+<p><b>Recognition elements:</b> Enzymes, antibodies, nucleic acids या अन्य biological materials.</p>
+<p><b>Applications:</b> Glucose monitoring, medical diagnostics, food quality testing, environmental monitoring.</p>
+</section>
+
+<section class="card" id="micro">
+<h2>18. Micro Sensors</h2>
+<p>Micro sensors बहुत छोटे sensing devices होते हैं जिनमें microfabrication techniques का उपयोग किया जाता है। MEMS (Micro-Electro-Mechanical Systems) technology इनके development में महत्वपूर्ण है।</p>
+<p><b>Advantages:</b> Small size, low power consumption, fast response और mass production की संभावना।</p>
+<p><b>Applications:</b> Smartphones, automobiles, medical devices, industrial systems.</p>
+</section>
+
+<section class="card" id="nano">
+<h2>19. Nano Sensors</h2>
+<p>Nano sensors nanoscale materials/structures की properties का उपयोग करके बहुत छोटे concentration या changes को detect करने के लिए बनाए जाते हैं।</p>
+<p><b>Important materials:</b> Nanowires, nanoparticles, graphene और अन्य nanostructured materials.</p>
+<p><b>Applications:</b> Chemical detection, environmental monitoring, healthcare research, advanced electronics.</p>
+<div class="note"><b>Micro vs Nano:</b> Micro sensors सामान्यतः micrometer-scale structures पर आधारित होते हैं, जबकि nano sensors nanoscale structures/material properties का उपयोग कर सकते हैं।</div>
+</section>
+
+<section class="card" id="criteria">
+<h2>20. Criteria to Choose a Sensor</h2>
+<p>किसी application के लिए सही sensor चुनते समय केवल measurement range देखना पर्याप्त नहीं है। Sensor की performance, environment, output और total cost को साथ में evaluate करना चाहिए।</p>
+<table>
+<tr><th>Criterion</th><th>क्या देखना चाहिए?</th></tr>
+<tr><td>1. Measurand</td><td>कौन-सी quantity measure करनी है—temperature, pressure, position, flow आदि।</td></tr>
+<tr><td>2. Range</td><td>Minimum और maximum measurable value application के अनुसार पर्याप्त होनी चाहिए।</td></tr>
+<tr><td>3. Accuracy</td><td>Required measurement accuracy पूरी होनी चाहिए।</td></tr>
+<tr><td>4. Resolution</td><td>छोटे change को detect करने की capability आवश्यकतानुसार होनी चाहिए।</td></tr>
+<tr><td>5. Sensitivity</td><td>Input change के प्रति output कितना बदलता है।</td></tr>
+<tr><td>6. Response Time</td><td>Fast-changing application में sensor sufficiently fast होना चाहिए।</td></tr>
+<tr><td>7. Repeatability</td><td>Same condition में repeated measurements consistent होने चाहिए।</td></tr>
+<tr><td>8. Environmental Conditions</td><td>Temperature, humidity, dust, vibration, chemicals आदि का प्रभाव देखें।</td></tr>
+<tr><td>9. Output Signal</td><td>Analog, digital, voltage, current, frequency या communication interface application से compatible हो।</td></tr>
+<tr><td>10. Power Requirement</td><td>Available supply और power budget के अनुसार sensor चुनें।</td></tr>
+<tr><td>11. Size & Mounting</td><td>Available physical space और mounting method के अनुसार आकार देखें।</td></tr>
+<tr><td>12. Reliability & Life</td><td>Long-term stability, expected life और failure risk को evaluate करें।</td></tr>
+<tr><td>13. Cost</td><td>Sensor + installation + signal conditioning + maintenance की total cost देखें।</td></tr>
+<tr><td>14. Calibration</td><td>Calibration की आवश्यकता, ease और frequency को consider करें।</td></tr>
+<tr><td>15. Compatibility</td><td>Controller, ADC, PLC, microcontroller या IoT system के साथ compatibility हो।</td></tr>
+</table>
+<h3>Sensor Selection Flow</h3>
+<div class="flow">Requirement → Measurand → Range → Accuracy/Resolution → Environment → Response Time → Output/Interface → Power/Size → Cost/Reliability → Final Sensor</div>
+<div class="note success"><b>Best Selection Rule:</b> ऐसा sensor चुनें जो required measurement और environmental conditions में आवश्यक accuracy, resolution और response दे, साथ ही system के output/interface, power, size, reliability और budget से compatible हो।</div>
+</section>
+
+<section class="card" id="revision">
+<h2>21. Quick Revision</h2>
+<table>
+<tr><th>Sensor Type</th><th>Main Quantity / Purpose</th></tr>
+<tr><td>Position</td><td>Location / displacement</td></tr>
+<tr><td>Motion</td><td>Movement detection</td></tr>
+<tr><td>Velocity</td><td>Speed / direction-related motion</td></tr>
+<tr><td>Acceleration</td><td>Acceleration / vibration</td></tr>
+<tr><td>Force</td><td>Force / load</td></tr>
+<tr><td>Pressure</td><td>Fluid/gas pressure</td></tr>
+<tr><td>Flow</td><td>Fluid/gas flow rate</td></tr>
+<tr><td>Humidity</td><td>Moisture / relative humidity</td></tr>
+<tr><td>Light</td><td>Light intensity</td></tr>
+<tr><td>Radiation</td><td>Radiation detection/measurement</td></tr>
+<tr><td>Temperature</td><td>Temperature</td></tr>
+<tr><td>Image</td><td>Optical image → digital/electrical data</td></tr>
+<tr><td>Gas</td><td>Gas presence/concentration</td></tr>
+<tr><td>Ultrasonic</td><td>Distance, object/level detection</td></tr>
+<tr><td>Infrared</td><td>IR-based detection/proximity/motion</td></tr>
+<tr><td>Biosensor</td><td>Biological/chemical analytes</td></tr>
+<tr><td>Micro/Nano</td><td>Miniaturized / nanoscale sensing</td></tr>
+</table>
+<div class="note"><b>Written Exam Focus:</b> “Types of sensors” प्रश्न में definition + working principle + 2–3 examples + applications लिखने से answer structured और complete बनता है। “Criteria to choose a sensor” में measurand, range, accuracy, resolution, sensitivity, response time, environment, output, power, size, reliability और cost जरूर explain करें।</div>
+</section>
+</main>
+</div>
+<footer>BK LearnX • Unit-2 Types of Sensors • PGDCA Notes</footer>
+</body>
+</html>

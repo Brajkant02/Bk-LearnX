@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BK LearnX | Unit 3 - Arduino Functions</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--text:#172033;--muted:#5e6b82;--a:#1565c0;--a2:#0d47a1;--line:#dfe5ef;--note:#e8f1ff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,"Noto Sans Devanagari",sans-serif;background:var(--bg);color:var(--text);line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:34px 20px;text-align:center}
+header h1{margin:0 0 8px;font-size:clamp(28px,5vw,44px)}header p{margin:5px}
+.layout{display:flex;max-width:1450px;margin:auto}.side{width:285px;background:#fff;border-right:1px solid var(--line);position:sticky;top:0;height:100vh;overflow:auto;padding:20px 15px}
+.side h3{color:var(--a2)}.side a{display:block;text-decoration:none;color:#34415a;padding:8px 10px;border-radius:8px}.side a:hover{background:var(--note);color:var(--a)}
+main{flex:1;padding:30px;min-width:0}.card{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:25px;margin-bottom:23px;box-shadow:0 5px 18px rgba(20,35,60,.05)}
+h2{color:var(--a2);border-bottom:2px solid #e6edf7;padding-bottom:8px}h3{color:#29466f}
+.badge{display:inline-block;background:#e9f2ff;color:#0d47a1;border-radius:20px;padding:3px 10px;font-size:13px;font-weight:bold}
+.note,.example,.warning{padding:14px 17px;border-left:5px solid var(--a);background:var(--note);border-radius:8px;margin:15px 0}.example{border-color:#388e3c;background:#edf8ef}.warning{border-color:#f57c00;background:#fff5e8}
+table{width:100%;border-collapse:collapse;margin:15px 0}th,td{border:1px solid var(--line);padding:10px;text-align:left;vertical-align:top}th{background:#edf3fb;color:#163d73}
+pre{background:#111827;color:#e5e7eb;padding:17px;border-radius:10px;overflow:auto}.diagram{background:#f8fafc;border:1px dashed #9aa9bd;border-radius:10px;padding:18px;text-align:center;font-family:Consolas,monospace;white-space:pre-wrap}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.mini{border:1px solid var(--line);border-radius:12px;padding:15px;background:#fafcff}.mini strong{color:var(--a2)}
+footer{text-align:center;padding:25px;color:var(--muted)}.top{position:fixed;right:18px;bottom:18px;background:var(--a);color:#fff;padding:8px 13px;border-radius:50%;text-decoration:none}
+@media(max-width:850px){.side{display:none}main{padding:16px}.card{padding:18px}table{display:block;overflow-x:auto;font-size:14px}header{padding:26px 14px}}
+</style>
+</head>
+<body id="top">
+<header>
+<h1>Unit 3: Arduino Functions</h1>
+<p>INPUT • Pull-up Resistors • OUTPUT • pinMode() • digitalWrite() • analogRead() • Interrupts</p>
+<p><strong>BK LearnX | Exam-Oriented Notes</strong></p>
+</header>
+
+<div class="layout">
+<aside class="side">
+<h3>📚 Unit Navigation</h3>
+<a href="#input">1. Pins as INPUT</a>
+<a href="#pullup">2. Pull-up Resistors</a>
+<a href="#output">3. Pins as OUTPUT</a>
+<a href="#pinmode">4. pinMode()</a>
+<a href="#digitalwrite">5. digitalWrite()</a>
+<a href="#analogread">6. analogRead()</a>
+<a href="#interrupts">7. Arduino Interrupts</a>
+<a href="#examples">8. Practical Examples</a>
+<a href="#comparison">9. Quick Comparison</a>
+<a href="#revision">10. Quick Revision</a>
+</aside>
+
+<main>
+
+<section class="card" id="input">
+<span class="badge">3.1</span>
+<h2>Pins Configured as INPUT</h2>
+<p>Arduino का digital pin external device से signal प्राप्त करने के लिए <strong>INPUT</strong> mode में configure किया जा सकता है। उदाहरण के लिए push button, switch या digital sensor का signal input pin पर पढ़ा जा सकता है।</p>
+<p>Input mode में microcontroller pin की logic state को read करता है। सामान्य digital input में signal को HIGH या LOW के रूप में interpret किया जाता है।</p>
+<h3>Syntax</h3>
+<pre>pinMode(pin, INPUT);</pre>
+<h3>Example</h3>
+<pre>const int buttonPin = 2;
+
+void setup() {
+  pinMode(buttonPin, INPUT);
+}
+
+void loop() {
+  int state = digitalRead(buttonPin);
+}</pre>
+<p>यहाँ pin 2 को input बनाया गया है और <code>digitalRead()</code> से उसकी current digital state पढ़ी जा सकती है।</p>
+<div class="note"><strong>महत्वपूर्ण:</strong> Floating input pin की state unpredictable हो सकती है। इसलिए button/switch circuits में suitable pull-up या pull-down arrangement उपयोग किया जाता है।</div>
+</section>
+
+<section class="card" id="pullup">
+<span class="badge">3.2</span>
+<h2>Pull-up Resistors</h2>
+<p><strong>Pull-up resistor</strong> input pin को default HIGH logic level पर रखने के लिए उपयोग किया जाता है, जब external switch/signal उसे LOW की ओर नहीं खींच रहा हो। यह floating input की समस्या को कम करता है।</p>
+<h3>Internal Pull-up</h3>
+<p>Arduino में कई boards पर internal pull-up resistor को <code>INPUT_PULLUP</code> mode के माध्यम से enable किया जा सकता है। इससे external resistor की आवश्यकता कई simple button circuits में नहीं रहती।</p>
+<pre>const int buttonPin = 2;
+
+void setup() {
+  pinMode(buttonPin, INPUT_PULLUP);
+}
+
+void loop() {
+  int state = digitalRead(buttonPin);
+
+  if (state == LOW) {
+    // Button pressed
+  }
+}</pre>
+<div class="diagram">Arduino Pin 2 ───── Button ───── GND
+       |
+       └── Internal Pull-up → HIGH when button is open
+
+Button OPEN   → HIGH
+Button PRESSED → LOW</div>
+<div class="warning"><strong>ध्यान दें:</strong> INPUT_PULLUP में logic अक्सर inverted होता है—button release पर HIGH और press पर LOW।</div>
+<h3>Pull-up क्यों आवश्यक है?</h3>
+<ul><li>Input को defined default state देने के लिए।</li><li>Floating input से आने वाले random readings को कम करने के लिए।</li><li>Simple switches/buttons को reliable digital input बनाने के लिए।</li></ul>
+</section>
+
+<section class="card" id="output">
+<span class="badge">3.3</span>
+<h2>Pins Configured as OUTPUT</h2>
+<p>जब Arduino pin से external component को digital control signal देना हो, तब pin को <strong>OUTPUT</strong> mode में configure किया जाता है। LED, suitable logic input या driver circuit जैसे applications में इसका उपयोग किया जाता है।</p>
+<h3>Syntax</h3>
+<pre>pinMode(pin, OUTPUT);</pre>
+<h3>Example</h3>
+<pre>const int ledPin = 13;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(ledPin, HIGH);
+  delay(1000);
+
+  digitalWrite(ledPin, LOW);
+  delay(1000);
+}</pre>
+<p>यह example output pin को HIGH और LOW करके LED को ON/OFF control करने की basic technique दिखाता है।</p>
+<div class="warning"><strong>Electrical Safety:</strong> Arduino GPIO pin से केवल उसके specified current/voltage limits के भीतर load connect करें। Motor, relay coil या high-current device को direct GPIO से drive करने के बजाय suitable driver/transistor/MOSFET/module का उपयोग करें।</div>
+</section>
+
+<section class="card" id="pinmode">
+<span class="badge">3.4</span>
+<h2>pinMode() Function</h2>
+<p><code>pinMode()</code> Arduino का fundamental function है। इसका उपयोग किसी digital pin को <strong>INPUT</strong>, <strong>OUTPUT</strong> या supported boards पर अन्य supported mode में configure करने के लिए किया जाता है।</p>
+<h3>Syntax</h3>
+<pre>pinMode(pin, mode);</pre>
+<table>
+<tr><th>Argument</th><th>Meaning</th><th>Example</th></tr>
+<tr><td><code>pin</code></td><td>जिस pin को configure करना है।</td><td><code>13</code></td></tr>
+<tr><td><code>mode</code></td><td>Pin का operating mode।</td><td><code>INPUT</code>, <code>OUTPUT</code>, <code>INPUT_PULLUP</code></td></tr>
+</table>
+<h3>Common Modes</h3>
+<table><tr><th>Mode</th><th>Use</th></tr>
+<tr><td><code>INPUT</code></td><td>External digital signal पढ़ने के लिए।</td></tr>
+<tr><td><code>OUTPUT</code></td><td>Digital output signal देने के लिए।</td></tr>
+<tr><td><code>INPUT_PULLUP</code></td><td>Internal pull-up enabled input के लिए, जहाँ board support करता है।</td></tr></table>
+<div class="example"><strong>Remember:</strong> सामान्य digital pin को input/output के रूप में उपयोग करने से पहले उचित mode configure करना अच्छी practice है।</div>
+</section>
+
+<section class="card" id="digitalwrite">
+<span class="badge">3.5</span>
+<h2>digitalWrite() Function</h2>
+<p><code>digitalWrite()</code> digital output pin पर HIGH या LOW logic level set करने के लिए उपयोग होता है। यह तभी meaningful है जब pin को appropriate output mode में configure किया गया हो।</p>
+<h3>Syntax</h3>
+<pre>digitalWrite(pin, value);</pre>
+<table><tr><th>Value</th><th>Meaning</th></tr><tr><td><code>HIGH</code></td><td>Digital HIGH state set करना।</td></tr><tr><td><code>LOW</code></td><td>Digital LOW state set करना।</td></tr></table>
+<h3>LED Example</h3>
+<pre>const int led = 13;
+
+void setup() {
+  pinMode(led, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(led, HIGH);
+  delay(500);
+  digitalWrite(led, LOW);
+  delay(500);
+}</pre>
+<h3>Button से LED Control</h3>
+<pre>const int button = 2;
+const int led = 13;
+
+void setup() {
+  pinMode(button, INPUT_PULLUP);
+  pinMode(led, OUTPUT);
+}
+
+void loop() {
+  if (digitalRead(button) == LOW) {
+    digitalWrite(led, HIGH);
+  } else {
+    digitalWrite(led, LOW);
+  }
+}</pre>
+</section>
+
+<section class="card" id="analogread">
+<span class="badge">3.6</span>
+<h2>analogRead() Function</h2>
+<p><code>analogRead()</code> का उपयोग analog input pin से voltage level को ADC के माध्यम से digital numeric value के रूप में पढ़ने के लिए किया जाता है। यह sensors जैसे potentiometer, LDR और कुछ analog-output sensors के साथ बहुत उपयोगी है।</p>
+<h3>Syntax</h3>
+<pre>int value = analogRead(pin);</pre>
+<p>Arduino Uno जैसे 10-bit ADC वाले board पर सामान्य reading range <strong>0 से 1023</strong> होती है। Reading का voltage interpretation reference voltage और board configuration पर depend करता है।</p>
+<h3>Example</h3>
+<pre>const int sensorPin = A0;
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  int value = analogRead(sensorPin);
+
+  Serial.println(value);
+  delay(500);
+}</pre>
+<h3>Working Flow</h3>
+<div class="diagram">Analog Sensor
+     ↓
+Analog Input Pin (A0)
+     ↓
+ADC
+     ↓
+Digital Numeric Value
+     ↓
+Program Processing
+     ↓
+Output / Decision</div>
+<div class="note"><strong>Important:</strong> <code>analogRead()</code> analog input reading के लिए है। यह digital HIGH/LOW reading के लिए नहीं है; digital state के लिए <code>digitalRead()</code> उपयोग किया जाता है।</div>
+</section>
+
+<section class="card" id="interrupts">
+<span class="badge">3.7</span>
+<h2>Arduino Interrupts</h2>
+<p><strong>Interrupt</strong> ऐसी mechanism है जिससे microcontroller किसी important external/internal event को detect करके वर्तमान normal execution flow को temporarily interrupt कर सकता है और एक special function, जिसे <strong>ISR (Interrupt Service Routine)</strong> कहा जाता है, execute कर सकता है। Event handling के बाद program सामान्य execution पर लौट सकता है।</p>
+<h3>Interrupt की आवश्यकता</h3>
+<p>यदि program लगातार किसी event को check करता रहे तो उसे <strong>polling</strong> कहते हैं। Interrupt approach में supported hardware event होने पर processor को event की सूचना मिलती है, जिससे fast event response संभव हो सकता है।</p>
+<div class="diagram">Normal Program
+      ↓
+  Interrupt Event
+      ↓
+   ISR executes
+      ↓
+Return to normal program</div>
+<h3>attachInterrupt()</h3>
+<p>Arduino framework में external interrupt को configure करने के लिए commonly <code>attachInterrupt()</code> function उपयोग किया जाता है।</p>
+<pre>attachInterrupt(digitalPinToInterrupt(pin), ISR, mode);</pre>
+<table><tr><th>Part</th><th>Meaning</th></tr>
+<tr><td><code>digitalPinToInterrupt(pin)</code></td><td>Pin को corresponding interrupt number में map करने का convenient तरीका।</td></tr>
+<tr><td><code>ISR</code></td><td>Interrupt आने पर execute होने वाला function।</td></tr>
+<tr><td><code>mode</code></td><td>किस signal condition पर interrupt trigger हो: <code>RISING</code>, <code>FALLING</code>, <code>CHANGE</code>, या supported board पर <code>LOW</code> आदि।</td></tr></table>
+<h3>Interrupt Example</h3>
+<pre>const int ledPin = 13;
+const int buttonPin = 2;
+
+volatile bool eventDetected = false;
+
+void handleInterrupt() {
+  eventDetected = true;
+}
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  pinMode(buttonPin, INPUT_PULLUP);
+
+  attachInterrupt(
+    digitalPinToInterrupt(buttonPin),
+    handleInterrupt,
+    FALLING
+  );
+}
+
+void loop() {
+  if (eventDetected) {
+    eventDetected = false;
+    digitalWrite(ledPin, !digitalRead(ledPin));
+  }
+}</pre>
+<p>इस example में button event interrupt trigger करता है। ISR केवल एक छोटा flag set करता है और main <code>loop()</code> actual processing करता है।</p>
+<h3>ISR में सावधानियाँ</h3>
+<ul><li>ISR को छोटा और fast रखना चाहिए।</li><li>ISR के अंदर लंबे <code>delay()</code> या unnecessary processing से बचें।</li><li>Interrupt और main code के बीच shared variables के लिए <code>volatile</code> उपयोग किया जा सकता है।</li><li>Complex work को ISR के बजाय main loop में करने की बेहतर practice हो सकती है।</li></ul>
+</section>
+
+<section class="card" id="examples">
+<span class="badge">3.8</span>
+<h2>Practical Examples</h2>
+
+<h3>Example 1: Push Button + LED</h3>
+<pre>const int buttonPin = 2;
+const int ledPin = 13;
+
+void setup() {
+  pinMode(buttonPin, INPUT_PULLUP);
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  int buttonState = digitalRead(buttonPin);
+
+  if (buttonState == LOW) {
+    digitalWrite(ledPin, HIGH);
+  } else {
+    digitalWrite(ledPin, LOW);
+  }
+}</pre>
+<p><strong>Concept:</strong> Button = INPUT, internal pull-up = default HIGH, <code>digitalRead()</code> = input reading, <code>digitalWrite()</code> = LED control.</p>
+
+<h3>Example 2: Analog Sensor Threshold</h3>
+<pre>const int sensorPin = A0;
+const int ledPin = 13;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  int sensorValue = analogRead(sensorPin);
+
+  if (sensorValue > 600) {
+    digitalWrite(ledPin, HIGH);
+  } else {
+    digitalWrite(ledPin, LOW);
+  }
+}</pre>
+<p>यह example analog sensor reading को threshold के साथ compare करके digital output control करता है।</p>
+
+<h3>Example 3: Pin Mode Summary</h3>
+<pre>pinMode(2, INPUT);
+pinMode(3, INPUT_PULLUP);
+pinMode(13, OUTPUT);</pre>
+</section>
+
+<section class="card" id="comparison">
+<span class="badge">3.9</span>
+<h2>Functions – Quick Comparison</h2>
+<table>
+<tr><th>Function</th><th>मुख्य कार्य</th><th>Example</th></tr>
+<tr><td><code>pinMode()</code></td><td>Pin का mode configure करना।</td><td><code>pinMode(13, OUTPUT);</code></td></tr>
+<tr><td><code>digitalRead()</code></td><td>Digital input state पढ़ना।</td><td><code>digitalRead(2);</code></td></tr>
+<tr><td><code>digitalWrite()</code></td><td>Digital output HIGH/LOW करना।</td><td><code>digitalWrite(13,HIGH);</code></td></tr>
+<tr><td><code>analogRead()</code></td><td>Analog input को ADC value के रूप में पढ़ना।</td><td><code>analogRead(A0);</code></td></tr>
+<tr><td><code>attachInterrupt()</code></td><td>Interrupt event के लिए ISR attach/configure करना।</td><td><code>attachInterrupt(...);</code></td></tr>
+</table>
+</section>
+
+<section class="card" id="revision">
+<span class="badge">3.10</span>
+<h2>Quick Revision – परीक्षा के लिए</h2>
+<ul>
+<li><strong>INPUT:</strong> External signal पढ़ने के लिए pin mode।</li>
+<li><strong>OUTPUT:</strong> Digital control signal देने के लिए pin mode।</li>
+<li><strong>INPUT_PULLUP:</strong> Internal pull-up enable करके input को default HIGH रखने का convenient तरीका।</li>
+<li><strong>Pull-up resistor:</strong> Input को defined HIGH state की ओर रखता है।</li>
+<li><strong>pinMode():</strong> Pin का operating mode configure करता है।</li>
+<li><strong>digitalWrite():</strong> Digital output को HIGH/LOW set करता है।</li>
+<li><strong>analogRead():</strong> Analog input को ADC द्वारा numeric value में पढ़ता है।</li>
+<li><strong>Interrupt:</strong> Important event पर normal execution को temporarily divert करके ISR execute करने की mechanism।</li>
+<li><strong>ISR:</strong> Interrupt event पर execute होने वाला छोटा handler function।</li>
+<li><strong>Polling:</strong> Program द्वारा repeatedly event/state check करना।</li>
+<li><strong>volatile:</strong> Interrupt/main code द्वारा shared variable के लिए compiler को value को हमेशा memory से observe करने की आवश्यकता बताने वाला qualifier।</li>
+</ul>
+<div class="note"><strong>One-Line Revision:</strong> Arduino I/O Programming = pinMode() से configuration + digitalRead()/analogRead() से input + digitalWrite() से digital output + Interrupts से event-driven response.</div>
+</section>
+
+</main>
+</div>
+<footer>© BK LearnX • Unit 3: Arduino Functions • Exam-Oriented Study Notes</footer>
+<a class="top" href="#top">↑</a>
+</body>
+</html>

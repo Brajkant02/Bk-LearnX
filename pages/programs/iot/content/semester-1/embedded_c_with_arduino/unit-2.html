@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BK LearnX | Unit 2 - Arduino Programming Basics</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--text:#172033;--muted:#5e6b82;--a:#1565c0;--a2:#0d47a1;--line:#dfe5ef;--note:#e8f1ff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,"Noto Sans Devanagari",sans-serif;background:var(--bg);color:var(--text);line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:34px 20px;text-align:center}
+header h1{margin:0 0 8px;font-size:clamp(28px,5vw,44px)}header p{margin:5px}
+.layout{display:flex;max-width:1450px;margin:auto}
+.side{width:285px;background:#fff;border-right:1px solid var(--line);position:sticky;top:0;height:100vh;overflow:auto;padding:20px 15px}
+.side h3{color:var(--a2)}.side a{display:block;text-decoration:none;color:#34415a;padding:8px 10px;border-radius:8px}
+.side a:hover{background:var(--note);color:var(--a)}
+main{flex:1;padding:30px;min-width:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:25px;margin-bottom:23px;box-shadow:0 5px 18px rgba(20,35,60,.05)}
+h2{color:var(--a2);border-bottom:2px solid #e6edf7;padding-bottom:8px}h3{color:#29466f}
+.badge{display:inline-block;background:#e9f2ff;color:#0d47a1;border-radius:20px;padding:3px 10px;font-size:13px;font-weight:bold}
+.note,.example,.warning{padding:14px 17px;border-left:5px solid var(--a);background:var(--note);border-radius:8px;margin:15px 0}
+.example{border-color:#388e3c;background:#edf8ef}.warning{border-color:#f57c00;background:#fff5e8}
+table{width:100%;border-collapse:collapse;margin:15px 0}th,td{border:1px solid var(--line);padding:10px;text-align:left;vertical-align:top}th{background:#edf3fb;color:#163d73}
+pre{background:#111827;color:#e5e7eb;padding:17px;border-radius:10px;overflow:auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.mini{border:1px solid var(--line);border-radius:12px;padding:15px;background:#fafcff}.mini strong{color:var(--a2)}
+.diagram{background:#f8fafc;border:1px dashed #9aa9bd;border-radius:10px;padding:18px;text-align:center;font-family:Consolas,monospace;white-space:pre-wrap}
+footer{text-align:center;padding:25px;color:var(--muted)}.top{position:fixed;right:18px;bottom:18px;background:var(--a);color:white;padding:8px 13px;border-radius:50%;text-decoration:none}
+@media(max-width:850px){.side{display:none}main{padding:16px}.card{padding:18px}table{display:block;overflow-x:auto;font-size:14px}header{padding:26px 14px}}
+</style>
+</head>
+<body id="top">
+<header>
+<h1>Unit 2: Programming Basics</h1>
+<p>Arduino Data Types • Variables & Constants • Operators • Control Statements • Loops</p>
+<p>Arrays • Pointers • Strings • Functions</p>
+<p><strong>BK LearnX | Exam-Oriented Notes</strong></p>
+</header>
+
+<div class="layout">
+<aside class="side">
+<h3>📚 Unit Navigation</h3>
+<a href="#datatypes">1. Data Types</a>
+<a href="#variables">2. Variables & Constants</a>
+<a href="#operators">3. Operators</a>
+<a href="#control">4. Control Statements</a>
+<a href="#loops">5. Loops</a>
+<a href="#arrays">6. Arrays</a>
+<a href="#pointers">7. Pointers</a>
+<a href="#strings">8. Strings</a>
+<a href="#functions">9. Functions</a>
+<a href="#integrated">10. Integrated Example</a>
+<a href="#revision">11. Quick Revision</a>
+</aside>
+
+<main>
+
+<section class="card" id="datatypes">
+<span class="badge">2.1</span>
+<h2>Arduino Data Types</h2>
+<p><strong>Data Type</strong> यह बताता है कि variable में किस प्रकार का data store किया जाएगा और उसे memory में किस प्रकार represent किया जाएगा। Arduino programming C/C++ आधारित होने के कारण विभिन्न standard data types उपलब्ध होते हैं।</p>
+
+<table>
+<tr><th>Data Type</th><th>उपयोग</th><th>Example</th></tr>
+<tr><td><code>boolean</code></td><td>True/False या logical state store करने के लिए। Arduino environment में इसका उपयोग commonly किया जाता है।</td><td><code>boolean ledOn = true;</code></td></tr>
+<tr><td><code>char</code></td><td>एक character store करने के लिए।</td><td><code>char grade = 'A';</code></td></tr>
+<tr><td><code>byte</code></td><td>0 से 255 तक unsigned integer value के लिए।</td><td><code>byte level = 200;</code></td></tr>
+<tr><td><code>int</code></td><td>Integer values के लिए।</td><td><code>int count = 25;</code></td></tr>
+<tr><td><code>unsigned int</code></td><td>Non-negative integer values के लिए।</td><td><code>unsigned int count = 500;</code></td></tr>
+<tr><td><code>long</code></td><td>बड़ी integer values के लिए।</td><td><code>long distance = 100000;</code></td></tr>
+<tr><td><code>unsigned long</code></td><td>बड़ी non-negative integer values के लिए; timing values में भी उपयोगी।</td><td><code>unsigned long t = millis();</code></td></tr>
+<tr><td><code>float</code></td><td>Decimal/floating-point values के लिए।</td><td><code>float temp = 27.5;</code></td></tr>
+<tr><td><code>double</code></td><td>Floating-point values के लिए; exact size/precision board architecture पर depend कर सकती है।</td><td><code>double value = 12.75;</code></td></tr>
+<tr><td><code>String</code></td><td>Text को convenient object form में store/process करने के लिए Arduino environment में उपलब्ध class।</td><td><code>String name = "Arduino";</code></td></tr>
+</table>
+<div class="note"><strong>Exam Point:</strong> Embedded programming में data type का चुनाव memory usage और required range को ध्यान में रखकर करना चाहिए।</div>
+
+<h3>Type Conversion</h3>
+<pre>int a = 10;
+float b = 3.0;
+float result = a / b;</pre>
+<p>जब अलग-अलग numeric types expression में आते हैं, C/C++ conversion rules के अनुसार values convert हो सकती हैं। सही result के लिए type और integer division का ध्यान रखना जरूरी है।</p>
+</section>
+
+<section class="card" id="variables">
+<span class="badge">2.2</span>
+<h2>Variables और Constants</h2>
+<h3>Variable क्या है?</h3>
+<p><strong>Variable</strong> memory का एक named location है जिसमें program के दौरान बदलने वाली value store की जाती है।</p>
+<pre>int temperature = 25;
+temperature = 30;</pre>
+<p>ऊपर <code>temperature</code> variable की value बाद में बदली गई है।</p>
+
+<h3>Variable Declaration और Initialization</h3>
+<pre>int count;          // Declaration
+count = 10;         // Assignment
+
+int speed = 50;     // Declaration + Initialization</pre>
+
+<h3>Constant</h3>
+<p><strong>Constant</strong> ऐसी value है जिसे program के intended use में बदलना नहीं चाहिए। C/C++ में <code>const</code> keyword से read-only variable declare किया जा सकता है।</p>
+<pre>const int ledPin = 13;
+const float PI = 3.14159;</pre>
+
+<table>
+<tr><th>Variable</th><th>Constant</th></tr>
+<tr><td>Value बदल सकती है।</td><td>Declared value को program में बदलने से रोका जाता है।</td></tr>
+<tr><td>Dynamic data के लिए उपयोगी।</td><td>Fixed configuration values के लिए उपयोगी।</td></tr>
+<tr><td>Example: sensor reading</td><td>Example: pin number या fixed threshold</td></tr>
+</table>
+
+<h3>Scope का Concept</h3>
+<p><strong>Scope</strong> बताता है कि variable को program के किस हिस्से में access किया जा सकता है। Local variable function/block के अंदर सीमित होता है, जबकि global variable सामान्यतः कई functions से accessible हो सकता है।</p>
+<pre>int ledPin = 13;  // Global
+
+void setup() {
+  int x = 10;     // Local to setup()
+}</pre>
+</section>
+
+<section class="card" id="operators">
+<span class="badge">2.3</span>
+<h2>Operators</h2>
+<p><strong>Operator</strong> एक symbol/keyword है जो values या variables पर कोई operation perform करता है।</p>
+
+<h3>1. Arithmetic Operators</h3>
+<table><tr><th>Operator</th><th>कार्य</th><th>Example</th></tr>
+<tr><td><code>+</code></td><td>Addition</td><td><code>a+b</code></td></tr>
+<tr><td><code>-</code></td><td>Subtraction</td><td><code>a-b</code></td></tr>
+<tr><td><code>*</code></td><td>Multiplication</td><td><code>a*b</code></td></tr>
+<tr><td><code>/</code></td><td>Division</td><td><code>a/b</code></td></tr>
+<tr><td><code>%</code></td><td>Remainder/Modulus</td><td><code>a%b</code></td></tr></table>
+
+<h3>2. Relational Operators</h3>
+<p><code>==</code>, <code>!=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code> comparisons के लिए उपयोग होते हैं और condition का result देते हैं।</p>
+
+<h3>3. Logical Operators</h3>
+<table><tr><th>Operator</th><th>Meaning</th></tr>
+<tr><td><code>&amp;&amp;</code></td><td>Logical AND</td></tr><tr><td><code>||</code></td><td>Logical OR</td></tr><tr><td><code>!</code></td><td>Logical NOT</td></tr></table>
+
+<h3>4. Assignment Operators</h3>
+<p><code>=</code>, <code>+=</code>, <code>-=</code>, <code>*=</code>, <code>/=</code>, <code>%=</code></p>
+<pre>int x = 10;
+x += 5;   // x becomes 15
+x *= 2;   // x becomes 30</pre>
+
+<h3>5. Increment और Decrement</h3>
+<p><code>++</code> value को 1 से बढ़ाता है और <code>--</code> value को 1 से घटाता है।</p>
+<pre>int count = 0;
+count++;
+count--;
+</pre>
+
+<h3>6. Bitwise Operators</h3>
+<p>Embedded systems में bits के साथ direct operations के लिए <code>&amp;</code>, <code>|</code>, <code>^</code>, <code>~</code>, <code>&lt;&lt;</code>, <code>&gt;&gt;</code> उपयोग किए जा सकते हैं।</p>
+<div class="example"><strong>Example:</strong> Bitwise operations registers और hardware-level flags को manipulate करने में उपयोगी हो सकते हैं।</div>
+</section>
+
+<section class="card" id="control">
+<span class="badge">2.4</span>
+<h2>Control Statements</h2>
+<p>Control statements program के execution flow को control करते हैं। इनके द्वारा program conditions के आधार पर अलग-अलग statements execute कर सकता है।</p>
+
+<h3>if Statement</h3>
+<pre>if (temperature > 30) {
+  digitalWrite(13, HIGH);
+}</pre>
+
+<h3>if-else Statement</h3>
+<pre>if (value > 500) {
+  digitalWrite(13, HIGH);
+} else {
+  digitalWrite(13, LOW);
+}</pre>
+
+<h3>else-if Ladder</h3>
+<pre>if (value < 300) {
+  level = 1;
+} else if (value < 700) {
+  level = 2;
+} else {
+  level = 3;
+}</pre>
+
+<h3>Nested if</h3>
+<pre>if (sensorOK) {
+  if (value > 500) {
+    digitalWrite(13, HIGH);
+  }
+}</pre>
+
+<h3>switch-case</h3>
+<p>जब किसी expression की value के आधार पर कई fixed cases में से एक चुनना हो, तब <code>switch</code> उपयोगी है।</p>
+<pre>int mode = 2;
+
+switch (mode) {
+  case 1:
+    Serial.println("Manual");
+    break;
+  case 2:
+    Serial.println("Auto");
+    break;
+  default:
+    Serial.println("Invalid");
+}</pre>
+
+<h3>break और continue</h3>
+<ul><li><code>break</code> loop या switch से बाहर निकलने के लिए।</li><li><code>continue</code> current loop iteration के remaining statements को skip करके next iteration पर जाने के लिए।</li></ul>
+</section>
+
+<section class="card" id="loops">
+<span class="badge">2.5</span>
+<h2>Loops</h2>
+<p><strong>Loop</strong> का उपयोग किसी statement/block को बार-बार execute करने के लिए किया जाता है। Arduino projects में loops बहुत महत्वपूर्ण हैं क्योंकि embedded program को repeated operations करने होते हैं।</p>
+
+<h3>1. for Loop</h3>
+<pre>for (int i = 0; i < 5; i++) {
+  Serial.println(i);
+}</pre>
+<p><strong>for</strong> loop तब उपयोगी है जब iterations की संख्या पहले से ज्ञात या controlled हो।</p>
+
+<h3>2. while Loop</h3>
+<pre>int i = 0;
+
+while (i < 5) {
+  Serial.println(i);
+  i++;
+}</pre>
+<p>Condition true रहने तक statements execute होते हैं।</p>
+
+<h3>3. do-while Loop</h3>
+<pre>int i = 0;
+
+do {
+  Serial.println(i);
+  i++;
+} while (i < 5);</pre>
+<p><code>do-while</code> में body कम-से-कम एक बार execute होती है क्योंकि condition बाद में check होती है।</p>
+
+<table><tr><th>Loop</th><th>Condition Check</th><th>मुख्य उपयोग</th></tr>
+<tr><td>for</td><td>Iteration शुरू होने से पहले</td><td>Known/repeat count</td></tr>
+<tr><td>while</td><td>Iteration शुरू होने से पहले</td><td>Condition-based repetition</td></tr>
+<tr><td>do-while</td><td>Body के बाद</td><td>At least one execution आवश्यक हो</td></tr></table>
+
+<div class="warning"><strong>Embedded Warning:</strong> Arduino में uncontrolled infinite loops या blocking delays project responsiveness को प्रभावित कर सकते हैं। Program flow carefully design करें।</div>
+</section>
+
+<section class="card" id="arrays">
+<span class="badge">2.6</span>
+<h2>Arrays</h2>
+<p><strong>Array</strong> एक ही data type की multiple values को एक नाम के अंतर्गत store करने की सुविधा देता है। C/C++ में array indexing सामान्यतः <strong>0</strong> से शुरू होती है।</p>
+
+<pre>int marks[5] = {70, 80, 65, 90, 75};
+
+Serial.println(marks[0]);  // 70
+Serial.println(marks[3]);  // 90</pre>
+
+<h3>Array Declaration</h3>
+<pre>int values[5];
+int numbers[] = {10, 20, 30, 40};</pre>
+
+<h3>Array Traversal</h3>
+<pre>int values[5] = {10,20,30,40,50};
+
+for (int i = 0; i < 5; i++) {
+  Serial.println(values[i]);
+}</pre>
+
+<h3>Two-Dimensional Array</h3>
+<pre>int matrix[2][3] = {
+  {1, 2, 3},
+  {4, 5, 6}
+};</pre>
+
+<table><tr><th>Concept</th><th>Example</th></tr>
+<tr><td>First element</td><td><code>arr[0]</code></td></tr>
+<tr><td>Third element</td><td><code>arr[2]</code></td></tr>
+<tr><td>Array size 5</td><td><code>int arr[5]</code></td></tr>
+<tr><td>Last index of size 5</td><td><code>4</code></td></tr></table>
+
+<div class="warning"><strong>Important:</strong> Array के valid index से बाहर access करने पर undefined/incorrect behavior हो सकता है।</div>
+</section>
+
+<section class="card" id="pointers">
+<span class="badge">2.7</span>
+<h2>Pointers</h2>
+<p><strong>Pointer</strong> ऐसा variable है जो किसी अन्य object/variable के memory address को store करता है। Embedded C/C++ में pointers hardware-oriented programming और efficient data handling के लिए महत्वपूर्ण हैं।</p>
+
+<pre>int value = 25;
+int *ptr = &value;
+
+Serial.println(value);
+Serial.println(*ptr);</pre>
+
+<p>यहाँ <code>&amp;value</code> से value का address प्राप्त होता है और <code>*ptr</code> से pointer के माध्यम से stored value access की जाती है।</p>
+
+<h3>Pointer के मुख्य Operators</h3>
+<table><tr><th>Operator</th><th>Meaning</th></tr>
+<tr><td><code>&amp;</code></td><td>Address-of operator — variable का address देता है।</td></tr>
+<tr><td><code>*</code></td><td>Dereference operator — pointer द्वारा referenced value access करता है।</td></tr></table>
+
+<h3>Pointer Example with Function</h3>
+<pre>void changeValue(int *p) {
+  *p = 100;
+}
+
+void setup() {
+  int x = 20;
+  changeValue(&x);
+}</pre>
+
+<p>इस example में function को variable का address दिया गया, इसलिए function pointer के माध्यम से original variable की value बदल सकता है।</p>
+<div class="warning"><strong>Safety:</strong> Invalid/uninitialized pointer को dereference करना dangerous है और unexpected behavior कर सकता है।</div>
+</section>
+
+<section class="card" id="strings">
+<span class="badge">2.8</span>
+<h2>Strings</h2>
+<p>String text/characters की sequence होती है। Arduino programming में strings को मुख्यतः C-style character arrays या Arduino <code>String</code> class के रूप में handle किया जा सकता है।</p>
+
+<h3>1. C-style String</h3>
+<pre>char name[] = "Arduino";</pre>
+<p>C-style string एक character array होता है जिसके अंत में null character <code>'\0'</code> होता है।</p>
+
+<h3>2. Arduino String Object</h3>
+<pre>String name = "Arduino";
+String message = "Hello " + name;
+
+Serial.println(message);</pre>
+
+<h3>Useful String Operations</h3>
+<pre>String text = "Arduino";
+
+text.length();
+text.charAt(0);
+text.substring(0, 4);
+text.indexOf("du");
+text.toUpperCase();
+text.toLowerCase();</pre>
+
+<table><tr><th>Method/Concept</th><th>कार्य</th></tr>
+<tr><td><code>length()</code></td><td>String की length प्राप्त करना।</td></tr>
+<tr><td><code>charAt()</code></td><td>किसी position का character प्राप्त करना।</td></tr>
+<tr><td><code>substring()</code></td><td>String का एक भाग निकालना।</td></tr>
+<tr><td><code>indexOf()</code></td><td>Character/text की position खोजना।</td></tr></table>
+
+<div class="note"><strong>Embedded Point:</strong> छोटे memory वाले microcontrollers पर बहुत अधिक dynamic <code>String</code> operations memory fragmentation का कारण बन सकते हैं। Resource-constrained projects में fixed-size character buffers भी उपयोग किए जाते हैं।</div>
+</section>
+
+<section class="card" id="functions">
+<span class="badge">2.9</span>
+<h2>Functions</h2>
+<p><strong>Function</strong> program का reusable block है जो किसी specific task को perform करता है। Functions program को modular, readable और maintainable बनाते हैं।</p>
+
+<h3>Function के मुख्य भाग</h3>
+<div class="diagram">Return Type → Function Name → Parameters
+       ↓
+    Function Body
+       ↓
+      return</div>
+
+<h3>Function without Parameter</h3>
+<pre>void blinkLED() {
+  digitalWrite(13, HIGH);
+  delay(500);
+  digitalWrite(13, LOW);
+  delay(500);
+}</pre>
+
+<h3>Function with Parameters</h3>
+<pre>void setLED(int pin, int state) {
+  digitalWrite(pin, state);
+}</pre>
+
+<h3>Function with Return Value</h3>
+<pre>int addNumbers(int a, int b) {
+  return a + b;
+}
+
+void setup() {
+  int result = addNumbers(10, 20);
+}</pre>
+
+<h3>Function Prototype</h3>
+<p>Function को call करने से पहले उसका prototype declare किया जा सकता है।</p>
+<pre>int addNumbers(int a, int b);
+
+void setup() {
+  int x = addNumbers(5, 7);
+}
+
+int addNumbers(int a, int b) {
+  return a + b;
+}</pre>
+
+<table><tr><th>Function Type</th><th>Example</th></tr>
+<tr><td>No parameter, no return</td><td><code>void blinkLED()</code></td></tr>
+<tr><td>Parameter, no return</td><td><code>void setLED(int pin, int state)</code></td></tr>
+<tr><td>Parameter + return</td><td><code>int add(int a,int b)</code></td></tr>
+<tr><td>No parameter + return</td><td><code>int readValue()</code></td></tr></table>
+
+<div class="example"><strong>Arduino special functions:</strong> <code>setup()</code> और <code>loop()</code> Arduino programming framework द्वारा defined structure का हिस्सा हैं। User-defined functions के अलावा इनका उपयोग लगभग हर basic Arduino sketch में होता है।</div>
+</section>
+
+<section class="card" id="integrated">
+<span class="badge">2.10</span>
+<h2>Integrated Example – Variables + Operators + Control + Loop + Array + Function</h2>
+<p>नीचे एक छोटा example कई programming basics को एक साथ demonstrate करता है।</p>
+<pre>int values[5] = {100, 200, 300, 400, 500};
+const int ledPin = 13;
+
+int calculateAverage() {
+  long total = 0;
+
+  for (int i = 0; i < 5; i++) {
+    total += values[i];
+  }
+
+  return total / 5;
+}
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+
+  int average = calculateAverage();
+
+  if (average > 250) {
+    digitalWrite(ledPin, HIGH);
+  } else {
+    digitalWrite(ledPin, LOW);
+  }
+}
+
+void loop() {
+}</pre>
+
+<table><tr><th>Topic</th><th>Example में कहाँ?</th></tr>
+<tr><td>Variable</td><td><code>average</code>, <code>total</code></td></tr>
+<tr><td>Constant</td><td><code>const int ledPin</code></td></tr>
+<tr><td>Array</td><td><code>values[5]</code></td></tr>
+<tr><td>Loop</td><td><code>for</code></td></tr>
+<tr><td>Operator</td><td><code>+=</code>, <code>/</code>, <code>&gt;</code></td></tr>
+<tr><td>Control Statement</td><td><code>if-else</code></td></tr>
+<tr><td>Function</td><td><code>calculateAverage()</code></td></tr>
+</table>
+</section>
+
+<section class="card" id="revision">
+<span class="badge">2.11</span>
+<h2>Quick Revision – परीक्षा के लिए</h2>
+<ul>
+<li><strong>Data Type:</strong> Data की type और representation define करता है।</li>
+<li><strong>Variable:</strong> ऐसी named storage location जिसकी value बदल सकती है।</li>
+<li><strong>Constant:</strong> Fixed/read-only value को represent करता है।</li>
+<li><strong>Operator:</strong> Data पर operation perform करता है।</li>
+<li><strong>if/else:</strong> Conditions के आधार पर execution control करता है।</li>
+<li><strong>switch:</strong> Multiple fixed cases में selection के लिए।</li>
+<li><strong>for:</strong> Controlled/repeated iterations के लिए।</li>
+<li><strong>while:</strong> Condition true रहने तक repetition।</li>
+<li><strong>do-while:</strong> Body कम-से-कम एक बार execute होती है।</li>
+<li><strong>Array:</strong> Same type की multiple values को एक नाम के अंतर्गत store करता है।</li>
+<li><strong>Pointer:</strong> Memory address store करता है।</li>
+<li><strong>String:</strong> Characters/text की sequence है।</li>
+<li><strong>Function:</strong> Reusable program block है।</li>
+<li><strong>setup():</strong> Arduino sketch initialization के लिए सामान्यतः एक बार execute होता है।</li>
+<li><strong>loop():</strong> Main program logic को repeatedly execute करता है।</li>
+</ul>
+<div class="note"><strong>One-Line Revision:</strong> Programming Basics = Data Types + Variables/Constants + Operators + Control Flow + Loops + Arrays + Pointers + Strings + Functions.</div>
+</section>
+
+</main>
+</div>
+<footer>© BK LearnX • Unit 2: Programming Basics • Exam-Oriented Study Notes</footer>
+<a class="top" href="#top">↑</a>
+</body>
+</html>

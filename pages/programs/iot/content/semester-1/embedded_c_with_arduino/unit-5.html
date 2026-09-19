@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>BK LearnX | Unit 5 - Arduino Displays</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--text:#172033;--muted:#5e6b82;--a:#1565c0;--a2:#0d47a1;--line:#dfe5ef;--note:#e8f1ff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,"Noto Sans Devanagari",sans-serif;background:var(--bg);color:var(--text);line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:34px 20px;text-align:center}header h1{margin:0 0 8px;font-size:clamp(28px,5vw,44px)}header p{margin:5px}
+.layout{display:flex;max-width:1450px;margin:auto}.side{width:285px;background:#fff;border-right:1px solid var(--line);position:sticky;top:0;height:100vh;overflow:auto;padding:20px 15px}.side h3{color:var(--a2)}.side a{display:block;text-decoration:none;color:#34415a;padding:8px 10px;border-radius:8px}.side a:hover{background:var(--note);color:var(--a)}
+main{flex:1;padding:30px;min-width:0}.card{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:25px;margin-bottom:23px;box-shadow:0 5px 18px rgba(20,35,60,.05)}h2{color:var(--a2);border-bottom:2px solid #e6edf7;padding-bottom:8px}h3{color:#29466f}.badge{display:inline-block;background:#e9f2ff;color:#0d47a1;border-radius:20px;padding:3px 10px;font-size:13px;font-weight:bold}
+.note,.example,.warning{padding:14px 17px;border-left:5px solid var(--a);background:var(--note);border-radius:8px;margin:15px 0}.example{border-color:#388e3c;background:#edf8ef}.warning{border-color:#f57c00;background:#fff5e8}
+table{width:100%;border-collapse:collapse;margin:15px 0}th,td{border:1px solid var(--line);padding:10px;text-align:left;vertical-align:top}th{background:#edf3fb;color:#163d73}pre{background:#111827;color:#e5e7eb;padding:17px;border-radius:10px;overflow:auto}.diagram{background:#f8fafc;border:1px dashed #9aa9bd;border-radius:10px;padding:18px;text-align:center;font-family:Consolas,monospace;white-space:pre-wrap}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.mini{border:1px solid var(--line);border-radius:12px;padding:15px;background:#fafcff}.mini strong{color:var(--a2)}
+footer{text-align:center;padding:25px;color:var(--muted)}.top{position:fixed;right:18px;bottom:18px;background:var(--a);color:#fff;padding:8px 13px;border-radius:50%;text-decoration:none}
+@media(max-width:850px){.side{display:none}main{padding:16px}.card{padding:18px}table{display:block;overflow-x:auto;font-size:14px}header{padding:26px 14px}}
+</style>
+</head>
+<body id="top">
+<header>
+<h1>Unit 5: Arduino Displays</h1>
+<p>Serial Monitor • Line Graph • 8-bit LCD • Static Message • Running Message • LCD Library</p>
+<p><strong>BK LearnX | Exam-Oriented Notes</strong></p>
+</header>
+
+<div class="layout">
+<aside class="side">
+<h3>📚 Unit Navigation</h3>
+<a href="#serial">1. Serial Monitor</a>
+<a href="#linegraph">2. Line Graph via Serial Monitor</a>
+<a href="#lcdintro">3. 8-bit LCD Interfacing</a>
+<a href="#lcdpins">4. LCD Pin Configuration</a>
+<a href="#static">5. Static Message</a>
+<a href="#running">6. Running Message</a>
+<a href="#library">7. LCD Library</a>
+<a href="#examples">8. Practical Examples</a>
+<a href="#comparison">9. Comparison</a>
+<a href="#revision">10. Quick Revision</a>
+</aside>
+
+<main>
+
+<section class="card" id="serial">
+<span class="badge">5.1</span>
+<h2>Working with Serial Monitor</h2>
+<p><strong>Serial Monitor</strong> Arduino IDE का एक tool है जिसका उपयोग Arduino board और computer के बीच serial communication के माध्यम से data भेजने और receive करने के लिए किया जाता है। यह debugging, sensor values देखने और user input test करने में बहुत उपयोगी है।</p>
+<h3>Serial Communication शुरू करना</h3>
+<pre>void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  Serial.println("Hello Arduino");
+  delay(1000);
+}</pre>
+<p><code>Serial.begin(9600)</code> serial communication की baud rate set करता है। Serial Monitor में वही baud rate select करनी चाहिए जो program में configured है।</p>
+<h3>Common Serial Functions</h3>
+<table>
+<tr><th>Function</th><th>कार्य</th><th>Example</th></tr>
+<tr><td><code>Serial.begin()</code></td><td>Serial communication initialize करता है।</td><td><code>Serial.begin(9600);</code></td></tr>
+<tr><td><code>Serial.print()</code></td><td>Data print करता है, सामान्यतः नई line के बिना।</td><td><code>Serial.print(value);</code></td></tr>
+<tr><td><code>Serial.println()</code></td><td>Data print करके next line पर जाता है।</td><td><code>Serial.println(value);</code></td></tr>
+<tr><td><code>Serial.write()</code></td><td>Serial stream पर bytes/data भेजने के लिए।</td><td><code>Serial.write(65);</code></td></tr>
+<tr><td><code>Serial.available()</code></td><td>Receive buffer में available data check करने के लिए।</td><td><code>Serial.available();</code></td></tr>
+<tr><td><code>Serial.read()</code></td><td>Available incoming byte को read करने के लिए।</td><td><code>Serial.read();</code></td></tr>
+</table>
+<h3>Sensor Value Display</h3>
+<pre>void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  int value = analogRead(A0);
+  Serial.print("Sensor: ");
+  Serial.println(value);
+  delay(500);
+}</pre>
+<div class="note"><strong>Use:</strong> Serial Monitor physical LCD की तरह standalone display नहीं है; यह computer पर serial data देखने का development/debugging interface है।</div>
+</section>
+
+<section class="card" id="linegraph">
+<span class="badge">5.2</span>
+<h2>Line Graph via Serial Monitor</h2>
+<p>Serial data को समय के साथ plot करके sensor values का <strong>line graph</strong> देखा जा सकता है। Arduino IDE के versions/features के अनुसार serial plotting interface का नाम या location अलग हो सकता है। कुछ environments में Serial Plotter feature उपलब्ध होता है।</p>
+<h3>Basic Sensor Plot Data</h3>
+<pre>void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  int sensorValue = analogRead(A0);
+  Serial.println(sensorValue);
+  delay(100);
+}</pre>
+<p>हर line पर एक numeric value भेजने से plotting tool इन values को time sequence के रूप में visualize कर सकता है।</p>
+<h3>Multiple Values</h3>
+<pre>void loop() {
+  int sensor1 = analogRead(A0);
+  int sensor2 = analogRead(A1);
+
+  Serial.print(sensor1);
+  Serial.print(" ");
+  Serial.println(sensor2);
+
+  delay(100);
+}</pre>
+<p>Multiple series plot करने के लिए plotting tool द्वारा supported separator/format का उपयोग करना चाहिए। Arduino IDE के संबंधित version में supported Serial Plotter format verify करना useful है।</p>
+<div class="diagram">Sensor Value
+   │       /\
+   │  /\  /  \       /\
+   │ /  \/    \_____ /  \
+   └────────────────────────→ Time</div>
+<div class="example"><strong>Application:</strong> Temperature, light intensity, potentiometer या अन्य changing sensor readings को समय के साथ observe करने के लिए line graph useful है।</div>
+</section>
+
+<section class="card" id="lcdintro">
+<span class="badge">5.3</span>
+<h2>Interfacing an 8-bit LCD to Arduino</h2>
+<p>Character LCD एक electronic display है जो characters और simple text दिखा सकता है। Common 16×2 LCD में 2 rows और प्रत्येक row में 16 character positions होती हैं। <strong>8-bit mode</strong> में LCD का data transfer आठ data lines के माध्यम से होता है।</p>
+<h3>8-bit Mode का Concept</h3>
+<p>LCD के data pins <strong>D0–D7</strong> को Arduino के आठ digital pins से connect किया जाता है। इसके अलावा control pins <strong>RS</strong> और <strong>E</strong> उपयोग होते हैं। R/W pin को application के अनुसार control किया जा सकता है; write-only basic setup में इसे GND से connect करना common arrangement है।</p>
+<div class="diagram">Arduino                         16×2 LCD
+--------                         --------
+Digital pins  →  D0 D1 D2 D3 D4 D5 D6 D7
+Digital pin   →  RS
+Digital pin   →  E
+GND / control →  R/W (write-only setup)
+Power         →  VSS / VDD
+Contrast      →  V0
+Backlight     →  LED pins (module-specific)</div>
+<h3>मुख्य LCD Pins</h3>
+<table>
+<tr><th>Pin/Signal</th><th>कार्य</th></tr>
+<tr><td>VSS</td><td>Ground connection।</td></tr>
+<tr><td>VDD</td><td>LCD supply voltage, module specification के अनुसार।</td></tr>
+<tr><td>V0 / VEE</td><td>Contrast adjustment के लिए।</td></tr>
+<tr><td>RS</td><td>Register Select; command और data selection में उपयोग।</td></tr>
+<tr><td>R/W</td><td>Read/Write control।</td></tr>
+<tr><td>E</td><td>Enable signal; data/command transfer को latch करने में सहायता।</td></tr>
+<tr><td>D0–D7</td><td>8-bit data bus।</td></tr>
+<tr><td>Backlight pins</td><td>Display illumination के लिए; exact arrangement module पर depend करता है।</td></tr>
+</table>
+<div class="warning"><strong>Hardware Note:</strong> LCD module की exact voltage/backlight requirements model के अनुसार check करें। Arduino और LCD के grounds common रखना आवश्यक होता है।</div>
+</section>
+
+<section class="card" id="lcdpins">
+<span class="badge">5.4</span>
+<h2>8-bit LCD Connection और Architecture</h2>
+<p>8-bit interfacing में eight data lines के कारण अधिक Arduino GPIO pins की आवश्यकता होती है। इसका advantage simple full-byte data transfer है, जबकि disadvantage यह है कि 4-bit mode की तुलना में अधिक pins consume होती हैं।</p>
+<h3>Typical Example Connection</h3>
+<table>
+<tr><th>LCD</th><th>Arduino Example Pin</th><th>Purpose</th></tr>
+<tr><td>RS</td><td>D12</td><td>Register selection</td></tr>
+<tr><td>E</td><td>D11</td><td>Enable</td></tr>
+<tr><td>D0–D7</td><td>D10–D3</td><td>8-bit data bus</td></tr>
+<tr><td>R/W</td><td>GND</td><td>Write-only configuration</td></tr>
+</table>
+<p>ऊपर केवल एक <strong>example mapping</strong> दिया गया है; Arduino के available pins और project circuit के अनुसार mapping बदली जा सकती है। Code में वही mapping consistently define करनी होती है।</p>
+</section>
+
+<section class="card" id="static">
+<span class="badge">5.5</span>
+<h2>Fixed One-Line Static Message Display</h2>
+<p><strong>Static message</strong> वह text है जो LCD पर fixed position पर display रहता है और continuously move नहीं करता। Arduino की <code>LiquidCrystal</code> library से character LCD को control करना आसान हो जाता है।</p>
+<h3>8-bit LiquidCrystal Example</h3>
+<pre>#include &lt;LiquidCrystal.h&gt;
+
+const int rs = 12;
+const int en = 11;
+const int d0 = 10;
+const int d1 = 9;
+const int d2 = 8;
+const int d3 = 7;
+const int d4 = 6;
+const int d5 = 5;
+const int d6 = 4;
+const int d7 = 3;
+
+LiquidCrystal lcd(rs, en, d0, d1, d2, d3, d4, d5, d6, d7);
+
+void setup() {
+  lcd.begin(16, 2);
+  lcd.setCursor(0, 0);
+  lcd.print("BK LearnX");
+}
+
+void loop() {
+}</pre>
+<p>यहाँ <code>lcd.begin(16,2)</code> 16 columns और 2 rows वाले LCD को initialize करता है। <code>setCursor()</code> cursor position set करता है और <code>print()</code> message display करता है।</p>
+<div class="example"><strong>Expected display:</strong><br><br><strong>BK LearnX</strong><br>दूसरी line खाली रह सकती है।</div>
+</section>
+
+<section class="card" id="running">
+<span class="badge">5.6</span>
+<h2>Running Message Display</h2>
+<p><strong>Running message</strong> में text display की position समय के साथ बदलती रहती है, जिससे message scrolling/moving दिखाई देता है। Arduino <code>LiquidCrystal</code> library में <code>scrollDisplayLeft()</code> और <code>scrollDisplayRight()</code> जैसे functions available हैं।</p>
+<h3>Simple Running Message</h3>
+<pre>#include &lt;LiquidCrystal.h&gt;
+
+LiquidCrystal lcd(12, 11, 10, 9, 8, 7, 6, 5, 4, 3);
+
+void setup() {
+  lcd.begin(16, 2);
+  lcd.print("Welcome to BK LearnX");
+}
+
+void loop() {
+  lcd.scrollDisplayLeft();
+  delay(300);
+}</pre>
+<p>हर iteration में display को left scroll किया जाता है। Delay scrolling की visible speed control करता है।</p>
+<h3>Alternative: Cursor Based Moving Text</h3>
+<pre>#include &lt;LiquidCrystal.h&gt;
+
+LiquidCrystal lcd(12,11,10,9,8,7,6,5,4,3);
+
+void setup() {
+  lcd.begin(16, 2);
+}
+
+void loop() {
+  for (int pos = 15; pos >= 0; pos--) {
+    lcd.clear();
+    lcd.setCursor(pos, 0);
+    lcd.print("HELLO");
+    delay(200);
+  }
+}</pre>
+<div class="warning"><strong>Note:</strong> <code>lcd.clear()</code> को बहुत तेजी से repeatedly call करने पर display flicker हो सकता है। Better scrolling design में unnecessary clearing से बचना useful है।</div>
+</section>
+
+<section class="card" id="library">
+<span class="badge">5.7</span>
+<h2>Using the LCD Library of Arduino</h2>
+<p><strong>LiquidCrystal</strong> library character LCD modules के साथ common interface operations को आसान बनाती है। इससे programmer को LCD के low-level command timing को manually manage करने की आवश्यकता कम होती है।</p>
+<h3>Library Include</h3>
+<pre>#include &lt;LiquidCrystal.h&gt;</pre>
+<h3>Object Creation – 8-bit Mode</h3>
+<pre>LiquidCrystal lcd(rs, en, d0, d1, d2, d3, d4, d5, d6, d7);</pre>
+<h3>Important Functions</h3>
+<table>
+<tr><th>Function</th><th>कार्य</th><th>Example</th></tr>
+<tr><td><code>lcd.begin(cols, rows)</code></td><td>LCD dimensions/configuration initialize करना।</td><td><code>lcd.begin(16,2);</code></td></tr>
+<tr><td><code>lcd.print()</code></td><td>Text/values display करना।</td><td><code>lcd.print("Hello");</code></td></tr>
+<tr><td><code>lcd.setCursor(col,row)</code></td><td>Cursor की position set करना।</td><td><code>lcd.setCursor(0,1);</code></td></tr>
+<tr><td><code>lcd.clear()</code></td><td>Display content clear करना।</td><td><code>lcd.clear();</code></td></tr>
+<tr><td><code>lcd.home()</code></td><td>Cursor को home position पर ले जाना।</td><td><code>lcd.home();</code></td></tr>
+<tr><td><code>lcd.noDisplay()</code></td><td>Display visibility off करना।</td><td><code>lcd.noDisplay();</code></td></tr>
+<tr><td><code>lcd.display()</code></td><td>Display visibility on करना।</td><td><code>lcd.display();</code></td></tr>
+<tr><td><code>lcd.cursor()</code></td><td>Cursor display करना।</td><td><code>lcd.cursor();</code></td></tr>
+<tr><td><code>lcd.noCursor()</code></td><td>Cursor hide करना।</td><td><code>lcd.noCursor();</code></td></tr>
+<tr><td><code>lcd.blink()</code></td><td>Cursor blink enable करना।</td><td><code>lcd.blink();</code></td></tr>
+<tr><td><code>lcd.noBlink()</code></td><td>Cursor blinking disable करना।</td><td><code>lcd.noBlink();</code></td></tr>
+<tr><td><code>lcd.scrollDisplayLeft()</code></td><td>Display content को left scroll करना।</td><td><code>lcd.scrollDisplayLeft();</code></td></tr>
+<tr><td><code>lcd.scrollDisplayRight()</code></td><td>Display content को right scroll करना।</td><td><code>lcd.scrollDisplayRight();</code></td></tr>
+</table>
+<h3>LCD Library Working Concept</h3>
+<div class="diagram">Arduino Sketch
+      ↓
+LiquidCrystal Library
+      ↓
+Control Signals + Data
+      ↓
+LCD Controller
+      ↓
+Character Display</div>
+</section>
+
+<section class="card" id="examples">
+<span class="badge">5.8</span>
+<h2>Practical Examples</h2>
+
+<h3>Example 1: Static Two-Line Message</h3>
+<pre>#include &lt;LiquidCrystal.h&gt;
+
+LiquidCrystal lcd(12,11,10,9,8,7,6,5,4,3);
+
+void setup() {
+  lcd.begin(16, 2);
+
+  lcd.setCursor(0, 0);
+  lcd.print("BK LearnX");
+
+  lcd.setCursor(0, 1);
+  lcd.print("Arduino Unit 5");
+}
+
+void loop() {
+}</pre>
+
+<h3>Example 2: Analog Value on LCD</h3>
+<pre>#include &lt;LiquidCrystal.h&gt;
+
+LiquidCrystal lcd(12,11,10,9,8,7,6,5,4,3);
+
+void setup() {
+  lcd.begin(16, 2);
+}
+
+void loop() {
+  int value = analogRead(A0);
+
+  lcd.setCursor(0, 0);
+  lcd.print("Sensor:       ");
+  lcd.setCursor(8, 0);
+  lcd.print(value);
+
+  delay(300);
+}</pre>
+<p>यह example analog sensor value को LCD पर display करता है। पुराने characters हटाने के लिए पर्याप्त spaces या controlled update technique उपयोग की जा सकती है।</p>
+
+<h3>Example 3: Serial + LCD Together</h3>
+<pre>#include &lt;LiquidCrystal.h&gt;
+
+LiquidCrystal lcd(12,11,10,9,8,7,6,5,4,3);
+
+void setup() {
+  Serial.begin(9600);
+  lcd.begin(16, 2);
+}
+
+void loop() {
+  int value = analogRead(A0);
+
+  Serial.println(value);
+
+  lcd.setCursor(0, 0);
+  lcd.print("Value: ");
+  lcd.print(value);
+  lcd.print("   ");
+
+  delay(500);
+}</pre>
+<p>एक ही sensor data को computer के Serial Monitor और physical LCD दोनों पर observe किया जा सकता है।</p>
+</section>
+
+<section class="card" id="comparison">
+<span class="badge">5.9</span>
+<h2>Serial Monitor vs LCD Display</h2>
+<table>
+<tr><th>Point</th><th>Serial Monitor</th><th>Character LCD</th></tr>
+<tr><td>Location</td><td>Computer पर</td><td>Physical hardware display पर</td></tr>
+<tr><td>Main use</td><td>Debugging, logs, testing और data observation</td><td>Standalone device/user information display</td></tr>
+<tr><td>Connection</td><td>Serial/USB communication</td><td>GPIO/control/data interface</td></tr>
+<tr><td>Portability</td><td>Computer की आवश्यकता</td><td>Suitable power के साथ embedded device में लगाया जा सकता है</td></tr>
+<tr><td>Example</td><td>Sensor values और debug messages</td><td>Status, menu, readings, messages</td></tr>
+</table>
+
+<h3>4-bit vs 8-bit LCD Mode</h3>
+<table>
+<tr><th>Feature</th><th>8-bit Mode</th><th>4-bit Mode</th></tr>
+<tr><td>Data lines</td><td>D0–D7</td><td>Typically D4–D7</td></tr>
+<tr><td>GPIO requirement</td><td>अधिक</td><td>कम</td></tr>
+<tr><td>Data transfer</td><td>Full byte bus</td><td>Data को nibbles में transfer किया जाता है</td></tr>
+<tr><td>Use</td><td>जब अधिक GPIO उपलब्ध हों</td><td>जब pins बचाना महत्वपूर्ण हो</td></tr>
+</table>
+</section>
+
+<section class="card" id="revision">
+<span class="badge">5.10</span>
+<h2>Quick Revision – परीक्षा के लिए</h2>
+<ul>
+<li><strong>Serial Monitor:</strong> Arduino और computer के बीच serial data को देखने/भेजने का development tool।</li>
+<li><strong>Serial.begin():</strong> Serial communication initialize करता है।</li>
+<li><strong>Serial.print()/println():</strong> Data output करने के लिए।</li>
+<li><strong>Line Graph:</strong> Sensor values को time sequence में plot करके changing signal visualize किया जा सकता है।</li>
+<li><strong>8-bit LCD:</strong> D0–D7 आठ data lines का उपयोग करता है।</li>
+<li><strong>RS:</strong> Command/data selection से संबंधित control signal।</li>
+<li><strong>R/W:</strong> LCD read/write control।</li>
+<li><strong>E:</strong> Enable control signal।</li>
+<li><strong>Static Message:</strong> Fixed position पर text display।</li>
+<li><strong>Running Message:</strong> Text को scrolling/moving form में display करना।</li>
+<li><strong>LiquidCrystal:</strong> Character LCD control को आसान बनाने वाली Arduino library।</li>
+<li><strong>lcd.begin():</strong> LCD initialize/configure करता है।</li>
+<li><strong>lcd.setCursor():</strong> Cursor position set करता है।</li>
+<li><strong>lcd.print():</strong> Text/data display करता है।</li>
+<li><strong>lcd.clear():</strong> Display content clear करता है।</li>
+</ul>
+<div class="note"><strong>One-Line Revision:</strong> Arduino Displays = Serial Monitor for computer-side output + Serial Plotting for trends + LCD interfacing for physical text display + LiquidCrystal library for easy LCD control.</div>
+</section>
+
+</main>
+</div>
+<footer>© BK LearnX • Unit 5: Arduino Displays • Exam-Oriented Study Notes</footer>
+<a class="top" href="#top">↑</a>
+</body>
+</html>
