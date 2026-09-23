@@ -14,7 +14,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search and Sort Algorithms</title>
-   <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../../../../pgdca/content/semester-1/style.css">
     <link rel="stylesheet" href="../../../../../../../assets/shared/unit-enhancements.css">
     <script src="../../../../../../../assets/shared/portal.js" defer></script>
     <script src="../../../../../../../assets/shared/unit-enhancements.js" defer></script>
@@ -38,8 +38,7 @@
             <a href="#jump-search">Jump Search</a>
             <a href="#interpolation-search">Interpolation Search</a>
             <a href="#recursive-linear-search">Recursive Linear Search Program</a>
-            <a href="#comparison">Comparison & Complexity</a>
-            <a href="#revision-summary">Complete Revision Summary</a>
+
         </aside>
 
         <main class="content">
@@ -49,8 +48,8 @@
             </div>
 
             <section id="search-sort-intro">
-                <h2>1. Search and Sort Algorithms</h2>
-              
+                <h2>Search and Sort Algorithms</h2>
+
                 <p><strong>Searching</strong> और <strong>Sorting</strong> Computer Science के fundamental algorithms
                     हैं। Searching का उद्देश्य किसी collection या array में required element को find करना है, जबकि
                     Sorting का उद्देश्य elements को किसी specified order, जैसे ascending या descending order, में
@@ -83,7 +82,7 @@
 
             <section id="sorting">
                 <h2>2. Sorting</h2>
-                <div class="image-icon"><img src="../images/sorting-algorithms.webp" alt="Sorting Algorithms"></div>
+                <div class="image-icon"><img src="../../images/sorting.webp" alt="Sorting Algorithms"></div>
                 <h3>Definition</h3>
                 <p><strong>Sorting</strong> एक process है जिसमें data elements को predefined order में arrange किया जाता
                     है। सबसे common orders <strong>Ascending</strong> और <strong>Descending</strong> हैं।</p>
@@ -126,7 +125,7 @@
 
             <section id="selection-sort">
                 <h2>3. Selection Sort</h2>
-                <div class="image-icon"><img src="../images/selection-sort.webp" alt="Selection Sort"></div>
+                <div class="image-icon"><img src="../../images/selection sort.webp" alt="Selection Sort"></div>
 
                 <h3>Definition</h3>
                 <p><strong>Selection Sort</strong> एक simple comparison-based sorting algorithm है जिसमें प्रत्येक pass
@@ -196,7 +195,7 @@
 
             <section id="bubble-sort">
                 <h2>4. Bubble Sort</h2>
-                <div class="image-icon"><img src="../images/bubble-sort.webp" alt="Bubble Sort"></div>
+                <div class="image-icon"><img src="../../images/buble sort.webp" alt="Bubble Sort"></div>
 
                 <h3>Definition</h3>
                 <p><strong>Bubble Sort</strong> एक comparison-based sorting algorithm है जिसमें adjacent elements को
@@ -268,7 +267,7 @@
 
             <section id="insertion-sort">
                 <h2>5. Insertion Sort</h2>
-                <div class="image-icon"><img src="../images/insertion-sort.webp" alt="Insertion Sort"></div>
+                <div class="image-icon"><img src="../../images/insertion sort.webp" alt="Insertion Sort"></div>
 
                 <h3>Definition</h3>
                 <p><strong>Insertion Sort</strong> एक sorting algorithm है जिसमें array के एक हिस्से को sorted माना जाता
@@ -284,33 +283,35 @@
                 </ol>
 
                 <h3>Python Program</h3>
-                <div class="code-section">
-                    <div class="code-title">Python Code</div>
-                    <div class="code">def insertion_sort(arr):
-                        for i in range(1, len(arr)):
-                        key = arr[i]
-                        j = i - 1
-
-                        while j &gt;= 0 and arr[j] &gt; key:
-                        arr[j + 1] = arr[j]
-                        j -= 1
-
-                        arr[j + 1] = key
-
-                        return arr
 
 
-                        arr = [12, 11, 13, 5, 6]
+            <pre>
+def insertion_sort(arr):
+    for i in range(1, len(arr)):
+        key = arr[i]
+        j = i - 1
 
-                        print("Original Array:", arr)
-                        print("Sorted Array:", insertion_sort(arr))</div>
-                </div>
+        while j >= 0 and arr[j] > key:
+            arr[j + 1] = arr[j]
+            j -= 1
+
+        arr[j + 1] = key
+
+    return arr
+
+
+arr = [12, 11, 13, 5, 6]
+
+print("Original Array:", arr)
+print("Sorted Array:", insertion_sort(arr))
+            </pre>
+
+
 
                 <h3>Output</h3>
                 <div class="output-section">
-                    <div class="output-title">Program Output</div>
-                    <div class="output">Original Array: [12, 11, 13, 5, 6]
-                        Sorted Array: [5, 6, 11, 12, 13]</div>
+                   Original Array:  [12, 11, 13, 5, 6]<br>
+                   Sorted Array:  [5, 6, 11, 12, 13]
                 </div>
 
                 <h3>Time Complexity</h3>
@@ -336,7 +337,7 @@
 
             <section id="merge-sort">
                 <h2>6. Merge Sort</h2>
-                <div class="image-icon"><img src="../images/merge-sort.webp" alt="Merge Sort"></div>
+                <div class="image-icon"><img src="../../images/merge sort.webp" alt="Merge Sort"></div>
 
                 <h3>Definition</h3>
                 <p><strong>Merge Sort</strong> एक <strong>Divide and Conquer</strong> sorting algorithm है। इसमें array
@@ -353,52 +354,53 @@
                 </ol>
 
                 <h3>Python Program</h3>
-                <div class="code-section">
-                    <div class="code-title">Python Code</div>
-                    <div class="code">def merge_sort(arr):
-                        if len(arr) &gt; 1:
-                        mid = len(arr) // 2
-                        left = arr[:mid]
-                        right = arr[mid:]
+            <pre>
+def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
 
-                        merge_sort(left)
-                        merge_sort(right)
+    mid = len(arr) // 2
+    left = arr[:mid]
+    right = arr[mid:]
 
-                        i = j = k = 0
+    merge_sort(left)
+    merge_sort(right)
 
-                        while i &lt; len(left) and j &lt; len(right):
-                        if left[i] &lt;= right[j]:
-                        arr[k] = left[i]
-                        i += 1
-                        else:
-                        arr[k] = right[j]
-                        j += 1
-                        k += 1
+    i = j = k = 0
 
-                        while i &lt; len(left):
-                        arr[k] = left[i]
-                        i += 1
-                        k += 1
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            arr[k] = left[i]
+            i += 1
+        else:
+            arr[k] = right[j]
+            j += 1
 
-                        while j &lt; len(right):
-                        arr[k] = right[j]
-                        j += 1
-                        k += 1
+        k += 1
 
-                        return arr
+    while i < len(left):
+        arr[k] = left[i]
+        i += 1
+        k += 1
+
+    while j < len(right):
+        arr[k] = right[j]
+        j += 1
+        k += 1
+
+    return arr
 
 
-                        arr = [38, 27, 43, 3, 9, 82, 10]
+arr = [38, 27, 43, 3, 9, 82, 10]
 
-                        print("Original Array:", arr)
-                        print("Sorted Array:", merge_sort(arr))</div>
-                </div>
+print("Original Array:", arr)
+print("Sorted Array:", merge_sort(arr))
+            </pre>
 
                 <h3>Output</h3>
                 <div class="output-section">
-                    <div class="output-title">Program Output</div>
-                    <div class="output">Original Array: [38, 27, 43, 3, 9, 82, 10]
-                        Sorted Array: [3, 9, 10, 27, 38, 43, 82]</div>
+                   Original Array: [38, 27, 43, 3, 9, 82, 10]<br>
+                        Sorted Array: [3, 9, 10, 27, 38, 43, 82]
                 </div>
 
                 <h3>Time Complexity</h3>
@@ -407,12 +409,13 @@
 
             <section id="quick-sort">
                 <h2>7. Quick Sort</h2>
-                <div class="image-icon"><img src="../images/quick-sort.webp" alt="Quick Sort"></div>
+                <div class="image-icon"><img src="../../images/quick sort.webp" alt="Quick Sort"></div>
 
                 <h3>Definition</h3>
                 <p><strong>Quick Sort</strong> एक Divide and Conquer sorting algorithm है जिसमें एक element को
                     <strong>pivot</strong> चुना जाता है और array को partition किया जाता है। Pivot से छोटे elements एक
-                    तरफ तथा बड़े elements दूसरी तरफ रखे जाते हैं, फिर दोनों parts को recursively sort किया जाता है।</p>
+                    तरफ तथा बड़े elements दूसरी तरफ रखे जाते हैं, फिर दोनों parts को recursively sort किया जाता है।
+                </p>
 
                 <h3>Algorithm</h3>
                 <ol>
@@ -426,29 +429,30 @@
 
                 <h3>Python Program</h3>
                 <div class="code-section">
-                    <div class="code-title">Python Code</div>
-                    <div class="code">def quick_sort(arr):
-                        if len(arr) &lt;= 1:
-                        return arr
+                   <pre>
+def quick_sort(arr):
+    if len(arr) <= 1:
+        return arr
 
-                        pivot = arr[-1]
-                        left = [x for x in arr[:-1] if x &lt;= pivot]
-                        right = [x for x in arr[:-1] if x &gt; pivot]
+    pivot = arr[-1]
 
-                        return quick_sort(left) + [pivot] + quick_sort(right)
+    left = [x for x in arr[:-1] if x <= pivot]
+    right = [x for x in arr[:-1] if x > pivot]
+
+    return quick_sort(left) + [pivot] + quick_sort(right)
 
 
-                        arr = [10, 7, 8, 9, 1, 5]
+arr = [10, 7, 8, 9, 1, 5]
 
-                        print("Original Array:", arr)
-                        print("Sorted Array:", quick_sort(arr))</div>
+print("Original Array:", arr)
+print("Sorted Array:", quick_sort(arr))
+                   </pre>
                 </div>
 
                 <h3>Output</h3>
                 <div class="output-section">
-                    <div class="output-title">Program Output</div>
-                    <div class="output">Original Array: [10, 7, 8, 9, 1, 5]
-                        Sorted Array: [1, 5, 7, 8, 9, 10]</div>
+                   Original Array: [10, 7, 8, 9, 1, 5]<br>
+                   Sorted Array: [1, 5, 7, 8, 9, 10]
                 </div>
 
                 <h3>Time Complexity</h3>
@@ -474,7 +478,7 @@
 
             <section id="searching">
                 <h2>8. Searching</h2>
-                <div class="image-icon"><img src="../images/searching-algorithms.webp" alt="Searching Algorithms"></div>
+                <div class="image-icon"><img src="../../images/searching.webp" alt="Searching Algorithms"></div>
                 <h3>Definition</h3>
                 <p><strong>Searching</strong> का अर्थ किसी data structure, list या array में दिए गए target element की
                     presence और location find करना है।</p>
@@ -519,7 +523,7 @@
 
             <section id="linear-search">
                 <h2>9. Linear Search</h2>
-                <div class="image-icon"><img src="../images/linear-search.webp" alt="Linear Search"></div>
+                <div class="image-icon"><img src="../../images/linear search.webp" alt="Linear Search"></div>
 
                 <h3>Definition</h3>
                 <p><strong>Linear Search</strong> एक simple searching algorithm है जिसमें array के elements को beginning
@@ -537,35 +541,36 @@
 
                 <h3>Python Program</h3>
                 <div class="code-section">
-                    <div class="code-title">Python Code</div>
-                    <div class="code">def linear_search(arr, key):
-                        for i in range(len(arr)):
-                        if arr[i] == key:
-                        return i
+                   <pre>
+def linear_search(arr, key):
+    for i in range(len(arr)):
+        if arr[i] == key:
+            return i
 
-                        return -1
+    return -1
 
 
-                        arr = [10, 20, 30, 40, 50]
-                        key = 40
+arr = [10, 20, 30, 40, 50]
+key = 40
 
-                        result = linear_search(arr, key)
+result = linear_search(arr, key)
 
-                        print("Array:", arr)
-                        print("Search Element:", key)
+print("Array:", arr)
+print("Search Element:", key)
 
-                        if result != -1:
-                        print("Element found at index:", result)
-                        else:
-                        print("Element not found")</div>
+if result != -1:
+    print("Element found at index:", result)
+else:
+    print("Element not found")
+                   </pre>
                 </div>
 
                 <h3>Output</h3>
                 <div class="output-section">
-                    <div class="output-title">Program Output</div>
-                    <div class="output">Array: [10, 20, 30, 40, 50]
-                        Search Element: 40
-                        Element found at index: 3</div>
+                  
+                    Array: [10, 20, 30, 40, 50]<br>
+                    Search Element: 40<br>
+                    Element found at index: 3
                 </div>
 
                 <h3>Time Complexity</h3>
@@ -591,7 +596,7 @@
 
             <section id="binary-search">
                 <h2>10. Binary Search</h2>
-                <div class="image-icon"><img src="../images/binary-search.webp" alt="Binary Search"></div>
+                <div class="image-icon"><img src="../../images/binary search.webp" alt="Binary Search"></div>
 
                 <h3>Definition</h3>
                 <p><strong>Binary Search</strong> एक efficient searching algorithm है जो <strong>sorted array</strong>
@@ -610,44 +615,46 @@
 
                 <h3>Python Program</h3>
                 <div class="code-section">
-                    <div class="code-title">Python Code</div>
-                    <div class="code">def binary_search(arr, key):
-                        low = 0
-                        high = len(arr) - 1
+                    <pre>
+def binary_search(arr, key):
+    low = 0
+    high = len(arr) - 1
 
-                        while low &lt;= high:
-                        mid = (low + high) // 2
+    while low <= high:
+        mid = (low + high) // 2
 
-                        if arr[mid] == key:
-                        return mid
-                        elif arr[mid] &lt; key:
-                        low = mid + 1
-                        else:
-                        high = mid - 1
+        if arr[mid] == key:
+            return mid
+        elif arr[mid] < key:
+            low = mid + 1
+        else:
+            high = mid - 1
 
-                        return -1
+    return -1
 
 
-                        arr = [10, 20, 30, 40, 50, 60, 70]
-                        key = 50
+arr = [10, 20, 30, 40, 50, 60, 70]
+key = 50
 
-                        result = binary_search(arr, key)
+result = binary_search(arr, key)
 
-                        print("Sorted Array:", arr)
-                        print("Search Element:", key)
+print("Sorted Array:", arr)
+print("Search Element:", key)
 
-                        if result != -1:
-                        print("Element found at index:", result)
-                        else:
-                        print("Element not found")</div>
+if result != -1:
+    print("Element found at index:", result)
+else:
+    print("Element not found")
+                    </pre>
+    
+                    
                 </div>
 
                 <h3>Output</h3>
                 <div class="output-section">
-                    <div class="output-title">Program Output</div>
-                    <div class="output">Sorted Array: [10, 20, 30, 40, 50, 60, 70]
-                        Search Element: 50
-                        Element found at index: 4</div>
+                    Sorted Array: [10, 20, 30, 40, 50, 60, 70]<br>
+                    Search Element: 50<br>
+                    Element found at index: 4
                 </div>
 
                 <h3>Time Complexity</h3>
@@ -657,7 +664,7 @@
 
             <section id="jump-search">
                 <h2>11. Jump Search</h2>
-                <div class="image-icon"><img src="../images/jump-search.webp" alt="Jump Search"></div>
+                <div class="image-icon"><img src="../../images/jump search.webp" alt="Jump Search"></div>
 
                 <h3>Definition</h3>
                 <p><strong>Jump Search</strong> एक searching algorithm है जो sorted array में elements को fixed-size
@@ -675,53 +682,53 @@
 
                 <h3>Python Program</h3>
                 <div class="code-section">
-                    <div class="code-title">Python Code</div>
-                    <div class="code">import math
+                   <pre>
+import math
 
-                        def jump_search(arr, key):
-                        n = len(arr)
-                        step = int(math.sqrt(n))
-                        prev = 0
+def jump_search(arr, key):
+    n = len(arr)
+    step = int(math.sqrt(n))
+    prev = 0
 
-                        while prev &lt; n and arr[min(step, n) - 1] &lt; key:
-                        prev = step
-                        step += int(math.sqrt(n))
+    while prev < n and arr[min(step, n) - 1] < key:
+        prev = step
+        step += int(math.sqrt(n))
 
-                        if prev &gt;= n:
-                        return -1
+    if prev >= n:
+        return -1
 
-                        while prev &lt; min(step, n):
-                        if arr[prev] == key:
-                        return prev
+    while prev < min(step, n):
+        if arr[prev] == key:
+            return prev
 
-                        if arr[prev] &gt; key:
-                        return -1
+        if arr[prev] > key:
+            return -1
 
-                        prev += 1
+        prev += 1
 
-                        return -1
+    return -1
 
 
-                        arr = [10, 20, 30, 40, 50, 60, 70, 80, 90]
-                        key = 70
+arr = [10, 20, 30, 40, 50, 60, 70, 80, 90]
+key = 70
 
-                        result = jump_search(arr, key)
+result = jump_search(arr, key)
 
-                        print("Sorted Array:", arr)
-                        print("Search Element:", key)
+print("Sorted Array:", arr)
+print("Search Element:", key)
 
-                        if result != -1:
-                        print("Element found at index:", result)
-                        else:
-                        print("Element not found")</div>
+if result != -1:
+    print("Element found at index:", result)
+else:
+    print("Element not found")
+                   </pre>
                 </div>
 
                 <h3>Output</h3>
                 <div class="output-section">
-                    <div class="output-title">Program Output</div>
-                    <div class="output">Sorted Array: [10, 20, 30, 40, 50, 60, 70, 80, 90]
-                        Search Element: 70
-                        Element found at index: 6</div>
+                    Sorted Array: [10, 20, 30, 40, 50, 60, 70, 80, 90]<br>
+                    Search Element: 70<br>
+                    Element found at index: 6
                 </div>
 
                 <h3>Time Complexity</h3>
@@ -731,7 +738,8 @@
 
             <section id="interpolation-search">
                 <h2>12. Interpolation Search</h2>
-                <div class="image-icon"><img src="../images/interpolation-search.webp" alt="Interpolation Search"></div>
+                <div class="image-icon"><img src="../../images/interpolation search.webp" alt="Interpolation Search">
+                </div>
 
                 <h3>Definition</h3>
                 <p><strong>Interpolation Search</strong> एक searching algorithm है जो sorted और approximately uniformly
@@ -750,52 +758,53 @@
 
                 <h3>Python Program</h3>
                 <div class="code-section">
-                    <div class="code-title">Python Code</div>
-                    <div class="code">def interpolation_search(arr, key):
-                        low = 0
-                        high = len(arr) - 1
+                  <pre>
+def interpolation_search(arr, key):
+    low = 0
+    high = len(arr) - 1
 
-                        while (low &lt;= high and
-                        key &gt;= arr[low] and
-                        key &lt;= arr[high]):
+    while (low <= high and
+           key >= arr[low] and
+           key <= arr[high]):
 
-                        if arr[high] == arr[low]:
-                        if arr[low] == key:
-                        return low
-                        return -1
+        if arr[high] == arr[low]:
+            if arr[low] == key:
+                return low
+            return -1
 
-                        pos = low + ((key - arr[low]) * (high - low)) // (arr[high] - arr[low])
+        pos = low + ((key - arr[low]) * (high - low)) // (arr[high] - arr[low])
 
-                        if arr[pos] == key:
-                        return pos
-                        elif arr[pos] &lt; key:
-                        low = pos + 1
-                        else:
-                        high = pos - 1
+        if arr[pos] == key:
+            return pos
+        elif arr[pos] < key:
+            low = pos + 1
+        else:
+            high = pos - 1
 
-                        return -1
+    return -1
 
 
-                        arr = [10, 20, 30, 40, 50, 60, 70, 80, 90]
-                        key = 80
+arr = [10, 20, 30, 40, 50, 60, 70, 80, 90]
+key = 80
 
-                        result = interpolation_search(arr, key)
+result = interpolation_search(arr, key)
 
-                        print("Sorted Array:", arr)
-                        print("Search Element:", key)
+print("Sorted Array:", arr)
+print("Search Element:", key)
 
-                        if result != -1:
-                        print("Element found at index:", result)
-                        else:
-                        print("Element not found")</div>
+if result != -1:
+    print("Element found at index:", result)
+else:
+    print("Element not found")
+                  </pre>
                 </div>
 
                 <h3>Output</h3>
                 <div class="output-section">
-                    <div class="output-title">Program Output</div>
-                    <div class="output">Sorted Array: [10, 20, 30, 40, 50, 60, 70, 80, 90]
-                        Search Element: 80
-                        Element found at index: 7</div>
+                   
+                    Sorted Array: [10, 20, 30, 40, 50, 60, 70, 80, 90]<br>
+                    Search Element: 80<br>
+                    Element found at index: 7
                 </div>
 
                 <h3>Time Complexity</h3>
@@ -821,7 +830,8 @@
 
             <section id="recursive-linear-search">
                 <h2>13. Recursive Program to Linearly Search an Element in a Given Array</h2>
-                <div class="image-icon"><img src="../images/recursive-linear-search.webp" alt="Recursive Linear Search">
+                <div class="image-icon"><img src="../../images/recursive linear search.webp"
+                        alt="Recursive Linear Search">
                 </div>
 
                 <h3>Definition</h3>
@@ -840,40 +850,40 @@
 
                 <h3>Python Program</h3>
                 <div class="code-section">
-                    <div class="code-title">Python Code</div>
-                    <div class="code">def recursive_linear_search(arr, key, index=0):
-                        # Base case
-                        if index == len(arr):
-                        return -1
+                    <pre>
+def recursive_linear_search(arr, key, index=0):
+    # Base case
+    if index == len(arr):
+        return -1
 
-                        # Element found
-                        if arr[index] == key:
-                        return index
+    # Element found
+    if arr[index] == key:
+        return index
 
-                        # Recursive call
-                        return recursive_linear_search(arr, key, index + 1)
+    # Recursive call
+    return recursive_linear_search(arr, key, index + 1)
 
 
-                        arr = [10, 25, 30, 45, 60, 75]
-                        key = 45
+arr = [10, 25, 30, 45, 60, 75]
+key = 45
 
-                        result = recursive_linear_search(arr, key)
+result = recursive_linear_search(arr, key)
 
-                        print("Array:", arr)
-                        print("Search Element:", key)
+print("Array:", arr)
+print("Search Element:", key)
 
-                        if result != -1:
-                        print("Element found at index:", result)
-                        else:
-                        print("Element not found")</div>
+if result != -1:
+    print("Element found at index:", result)
+else:
+    print("Element not found")
+                    </pre>
                 </div>
 
                 <h3>Output</h3>
                 <div class="output-section">
-                    <div class="output-title">Program Output</div>
-                    <div class="output">Array: [10, 25, 30, 45, 60, 75]
-                        Search Element: 45
-                        Element found at index: 3</div>
+                    Array: [10, 25, 30, 45, 60, 75]<br>
+                    Search Element: 45<br>
+                    Element found at index: 3
                 </div>
 
                 <h3>Time Complexity</h3>
@@ -882,308 +892,8 @@
                     ताकि recursion terminate हो सके।</div>
             </section>
 
-
-            <section id="programs">
-                <h2>14. Programs with Output</h2>
-                <div class="image-icon"><img src="../images/algorithm-programs.webp" alt="Search and Sort Programs">
-                </div>
-
-                <h3>1. Selection Sort — Python Program</h3>
-                <div class="code">def selection_sort(arr):
-                    n = len(arr)
-
-                    for i in range(n - 1):
-                    min_index = i
-
-                    for j in range(i + 1, n):
-                    if arr[j] &lt; arr[min_index]:
-                    min_index = j
-
-                    arr[i], arr[min_index] = arr[min_index], arr[i]
-
-                    return arr
-
-
-                    arr = [64, 25, 12, 22, 11]
-
-                    print("Original Array:", arr)
-                    print("Sorted Array:", selection_sort(arr))</div>
-
-                <div class="code">Output:
-                    Original Array: [64, 25, 12, 22, 11]
-                    Sorted Array: [11, 12, 22, 25, 64]</div>
-
-                <h3>2. Bubble Sort — Python Program</h3>
-                <div class="code">def bubble_sort(arr):
-                    n = len(arr)
-
-                    for i in range(n - 1):
-                    swapped = False
-
-                    for j in range(n - 1 - i):
-                    if arr[j] &gt; arr[j + 1]:
-                    arr[j], arr[j + 1] = arr[j + 1], arr[j]
-                    swapped = True
-
-                    if not swapped:
-                    break
-
-                    return arr
-
-
-                    arr = [5, 1, 4, 2, 8]
-
-                    print("Original Array:", arr)
-                    print("Sorted Array:", bubble_sort(arr))</div>
-
-                <div class="code">Output:
-                    Original Array: [5, 1, 4, 2, 8]
-                    Sorted Array: [1, 2, 4, 5, 8]</div>
-
-                <h3>3. Insertion Sort — Python Program</h3>
-                <div class="code">def insertion_sort(arr):
-                    for i in range(1, len(arr)):
-                    key = arr[i]
-                    j = i - 1
-
-                    while j &gt;= 0 and arr[j] &gt; key:
-                    arr[j + 1] = arr[j]
-                    j -= 1
-
-                    arr[j + 1] = key
-
-                    return arr
-
-
-                    arr = [12, 11, 13, 5, 6]
-
-                    print("Original Array:", arr)
-                    print("Sorted Array:", insertion_sort(arr))</div>
-
-                <div class="code">Output:
-                    Original Array: [12, 11, 13, 5, 6]
-                    Sorted Array: [5, 6, 11, 12, 13]</div>
-
-                <h3>4. Merge Sort — Python Program</h3>
-                <div class="code">def merge_sort(arr):
-                    if len(arr) &lt;= 1:
-                    return arr
-
-                    mid = len(arr) // 2
-                    left = merge_sort(arr[:mid])
-                    right = merge_sort(arr[mid:])
-
-                    result = []
-                    i = j = 0
-
-                    while i &lt; len(left) and j &lt; len(right):
-                    if left[i] &lt;= right[j]:
-                    result.append(left[i])
-                    i += 1
-                    else:
-                    result.append(right[j])
-                    j += 1
-
-                    result.extend(left[i:])
-                    result.extend(right[j:])
-
-                    return result
-
-
-                    arr = [38, 27, 43, 3, 9, 82, 10]
-
-                    print("Original Array:", arr)
-                    print("Sorted Array:", merge_sort(arr))</div>
-
-                <div class="code">Output:
-                    Original Array: [38, 27, 43, 3, 9, 82, 10]
-                    Sorted Array: [3, 9, 10, 27, 38, 43, 82]</div>
-
-                <h3>5. Quick Sort — Python Program</h3>
-                <div class="code">def quick_sort(arr):
-                    if len(arr) &lt;= 1:
-                    return arr
-
-                    pivot = arr[-1]
-
-                    left = [x for x in arr[:-1] if x &lt;= pivot]
-                    right = [x for x in arr[:-1] if x &gt; pivot]
-
-                    return quick_sort(left) + [pivot] + quick_sort(right)
-
-
-                    arr = [10, 7, 8, 9, 1, 5]
-
-                    print("Original Array:", arr)
-                    print("Sorted Array:", quick_sort(arr))</div>
-
-                <div class="code">Output:
-                    Original Array: [10, 7, 8, 9, 1, 5]
-                    Sorted Array: [1, 5, 7, 8, 9, 10]</div>
-
-                <h3>6. Linear Search — Python Program</h3>
-                <div class="code">def linear_search(arr, key):
-                    for i in range(len(arr)):
-                    if arr[i] == key:
-                    return i
-
-                    return -1
-
-
-                    arr = [10, 20, 30, 40, 50]
-                    key = 40
-
-                    result = linear_search(arr, key)
-
-                    if result != -1:
-                    print("Element found at index:", result)
-                    else:
-                    print("Element not found")</div>
-
-                <div class="code">Output:
-                    Element found at index: 3</div>
-
-                <h3>7. Binary Search — Python Program</h3>
-                <div class="code">def binary_search(arr, key):
-                    low = 0
-                    high = len(arr) - 1
-
-                    while low &lt;= high:
-                    mid = (low + high) // 2
-
-                    if arr[mid] == key:
-                    return mid
-                    elif arr[mid] &lt; key:
-                    low = mid + 1
-                    else:
-                    high = mid - 1
-
-                    return -1
-
-
-                    arr = [10, 20, 30, 40, 50, 60]
-                    key = 50
-
-                    result = binary_search(arr, key)
-
-                    if result != -1:
-                    print("Element found at index:", result)
-                    else:
-                    print("Element not found")</div>
-
-                <div class="code">Output:
-                    Element found at index: 4</div>
-
-                <h3>8. Jump Search — Python Program</h3>
-                <div class="code">import math
-
-                    def jump_search(arr, key):
-                    n = len(arr)
-                    step = int(math.sqrt(n))
-                    prev = 0
-
-                    while prev &lt; n and arr[min(step, n) - 1] &lt; key:
-                    prev = step
-                    step += int(math.sqrt(n))
-
-                    if prev &gt;= n:
-                    return -1
-
-                    while prev &lt; min(step, n):
-                    if arr[prev] == key:
-                    return prev
-                    prev += 1
-
-                    return -1
-
-
-                    arr = [10, 20, 30, 40, 50, 60, 70, 80]
-                    key = 60
-
-                    result = jump_search(arr, key)
-
-                    if result != -1:
-                    print("Element found at index:", result)
-                    else:
-                    print("Element not found")</div>
-
-                <div class="code">Output:
-                    Element found at index: 5</div>
-
-                <h3>9. Interpolation Search — Python Program</h3>
-                <div class="code">def interpolation_search(arr, key):
-                    low = 0
-                    high = len(arr) - 1
-
-                    while low &lt;= high and arr[low] &lt;= key &lt;= arr[high]:
-
-                    if arr[low] == arr[high]:
-                    if arr[low] == key:
-                    return low
-                    return -1
-
-                    pos = low + ((key - arr[low]) * (high - low)) // \
-                    (arr[high] - arr[low])
-
-                    if arr[pos] == key:
-                    return pos
-                    elif arr[pos] &lt; key:
-                    low = pos + 1
-                    else:
-                    high = pos - 1
-
-                    return -1
-
-
-                    arr = [10, 20, 30, 40, 50, 60, 70]
-                    key = 50
-
-                    result = interpolation_search(arr, key)
-
-                    if result != -1:
-                    print("Element found at index:", result)
-                    else:
-                    print("Element not found")</div>
-
-                <div class="code">Output:
-                    Element found at index: 4</div>
-
-                <h3>10. Recursive Linear Search — Python Program</h3>
-                <div class="code">def recursive_linear_search(arr, key, index=0):
-                    if index == len(arr):
-                    return -1
-
-                    if arr[index] == key:
-                    return index
-
-                    return recursive_linear_search(arr, key, index + 1)
-
-
-                    arr = [10, 25, 30, 45, 60, 75]
-                    key = 45
-
-                    result = recursive_linear_search(arr, key)
-
-                    if result != -1:
-                    print("Element found at index:", result)
-                    else:
-                    print("Element not found")</div>
-
-                <div class="code">Output:
-                    Element found at index: 3</div>
-
-                <div class="note-box">
-                    <b>Exam Point:</b><br>
-                    Exam में program लिखते समय <strong>Input → Algorithm/Function → Processing → Output</strong> का flow
-                    clear रखें। Searching programs में found होने पर index/location और not found होने पर
-                    <strong>-1</strong> return करना common approach है।
-                </div>
-            </section>
-
             <section id="comparison">
                 <h2>14. Comparison & Time Complexity</h2>
-                <div class="image-icon"><img src="../images/search-sort-comparison.webp"
-                        alt="Search and Sort Comparison"></div>
 
                 <table>
                     <tr>
@@ -1259,75 +969,9 @@
                 </table>
             </section>
 
-            <section id="revision-summary">
-                <h2>16. Complete Revision Summary</h2>
-                <div class="image-icon"><img src="../images/search-sort-revision-summary.webp"
-                        alt="Search and Sort Revision Summary"></div>
-
-                <table>
-                    <tr>
-                        <th>Topic</th>
-                        <th>Quick Revision</th>
-                    </tr>
-                    <tr>
-                        <td>Sorting</td>
-                        <td>Data elements को specified order में arrange करना।</td>
-                    </tr>
-                    <tr>
-                        <td>Selection Sort</td>
-                        <td>Minimum/maximum select करके correct position पर swap करता है।</td>
-                    </tr>
-                    <tr>
-                        <td>Bubble Sort</td>
-                        <td>Adjacent elements compare और swap करता है।</td>
-                    </tr>
-                    <tr>
-                        <td>Insertion Sort</td>
-                        <td>Element को sorted portion में correct position पर insert करता है।</td>
-                    </tr>
-                    <tr>
-                        <td>Merge Sort</td>
-                        <td>Divide, recursively sort और merge करता है।</td>
-                    </tr>
-                    <tr>
-                        <td>Quick Sort</td>
-                        <td>Pivot और partitioning के आधार पर recursively sort करता है।</td>
-                    </tr>
-                    <tr>
-                        <td>Searching</td>
-                        <td>Required element की location find करना।</td>
-                    </tr>
-                    <tr>
-                        <td>Linear Search</td>
-                        <td>Sequential search; O(n) worst case.</td>
-                    </tr>
-                    <tr>
-                        <td>Binary Search</td>
-                        <td>Sorted array को halves में divide करता है; O(log n).</td>
-                    </tr>
-                    <tr>
-                        <td>Jump Search</td>
-                        <td>Sorted array में blocks jump करता है; typical O(√n).</td>
-                    </tr>
-                    <tr>
-                        <td>Interpolation Search</td>
-                        <td>Value distribution से likely position estimate करता है।</td>
-                    </tr>
-                    <tr>
-                        <td>Recursive Linear Search</td>
-                        <td>Recursion के माध्यम से sequential search implement करता है।</td>
-                    </tr>
-                </table>
-
-                <div class="note-box">
-                    <b>Final Exam Revision Flow:</b><br><br>
-                    <strong>Sorting</strong> → Selection → Bubble → Insertion → Merge → Quick<br><br>
-                    <strong>Searching</strong> → Linear → Binary → Jump → Interpolation → Recursive Linear
-                    Search<br><br>
-                    <strong>Programming Focus</strong> → Definition → Algorithm → Python Program → Output → Time
-                    Complexity
-                </div>
-            </section>
+           
+               
+           
 
         </main>
     </div>
