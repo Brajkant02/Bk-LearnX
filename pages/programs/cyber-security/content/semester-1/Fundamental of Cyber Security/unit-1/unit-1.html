@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to Network Security | BK LearnX</title>
+    <link rel="stylesheet" href="../../../../../pgdca/content/semester-1/style.css">
+</head>
+
+<body>
+
+    <div class="page">
+
+        <aside class="sidebar">
+            <h2>Topics</h2>
+            <a href="#topic1">Types of Networks</a>
+            <a href="#topic2">IP Address</a>
+            <a href="#topic3">NAT</a>
+            <a href="#topic4">IP Subnets</a>
+            <a href="#topic5">DHCP Server</a>
+            <a href="#topic6">Ports</a>
+            <a href="#topic7">DNS</a>
+            <a href="#topic8">Proxy Servers</a>
+            <a href="#topic9">Virtual Private Networks</a>
+            <a href="#topic10">DNS Server</a>
+            <a href="#topic11">OSI and TCP/IP Model</a>
+            <a href="#topic12">TCP vs. UDP</a>
+            <a href="#topic13">Routers</a>
+            <a href="#topic14">Switches</a>
+            <a href="#topic15">Endpoint Solutions</a>
+            <a href="#topic16">Access Directory</a>
+            <a href="#topic17">TOR Network</a>
+            <a href="#topic18">Networking Devices (Layer 1, 2, 3)</a>
+            <a href="#topic19">Network Layer Attacks</a>
+            <a href="#topic20">Firewall</a>
+            <a href="#topic21">ACL</a>
+            <a href="#topic22">Packet Filtering</a>
+            <a href="#topic23">2DMZ</a>
+            <a href="#topic24">Alerts and Audit Trails</a>
+            <a href="#topic25">IDS, IPS and Its Types &amp; Setup</a>
+        </aside>
+
+        <main class="content">
+
+            <div class="hero">
+                <h1>Introduction to Network Security</h1>
+            </div>
+            <section id="topic1">
+                <h2>Types of Networks</h2>
+                <h3>Introduction</h3>
+                <p>
+                    Network interconnected Computers, Devices और Communication Systems का collection होता है,
+                    जो आपस में Data का exchange और Resources को share करते हैं। Networks को सामान्यतः
+                    geographical coverage, purpose और architecture के आधार पर अलग-अलग प्रकारों में बाँटा जाता है।
+                </p>
+                <h3>Major Types</h3>
+                <ul>
+                    <li><strong>PAN (Personal Area Network):</strong> A small network used around an individual,
+                        such as communication between a smartphone, smartwatch, keyboard or wireless earphones.</li>
+                    <li><strong>LAN (Local Area Network):</strong> LAN एक Computer Network होता है, जो एक छोटे
+                        Geographical Area जैसे Home, Office, School, College या किसी Building में मौजूद Computers,
+                        Printers और अन्य Network Devices को आपस में Connect करता है। यह Network Connected Devices के बीच
+                        Data और Information को तेजी से Transfer तथा Resources जैसे Printer, Files और Internet Connection
+                        को Share करने की सुविधा प्रदान करता है। LAN में Devices को सामान्यतः Ethernet Cable, Switch,
+                        Router या Wi-Fi के माध्यम से Connect किया जाता है।</li>
+                    <div class="image-icon">
+                        <img src="../../../../../pgdca/content/semester-1/dccn-hindi/images/lan.webp" alt="lan">
+                    </div>
+                    <li><strong>MAN (Metropolitan Area Network):</strong> MAN एक Computer Network होता है, जो एक बड़े
+                        Geographical Area जैसे City, Town या Metropolitan Area में मौजूद Computers और अन्य Network
+                        Devices को आपस में Connect करता है। यह Network Connected Devices और विभिन्न LAN Networks के बीच
+                        Data और Information को तेजी से Transfer तथा Resources Share करने की सुविधा प्रदान करता है। MAN
+                        का उपयोग सामान्यतः Schools, Colleges, Government Offices और विभिन्न Organizations के Networks को
+                        एक बड़े क्षेत्र में Connect करने के लिए किया जाता है।</li>
+                    <div class="image-icon">
+                        <img src="../../../../../pgdca/content/semester-1/dccn-hindi/images/man.webp" alt="man">
+                    </div>
+                    <li><strong>WAN (Wide Area Network):</strong> WAN एक Computer Network होता है, जो एक बड़े
+                        Geographical Area जैसे अलग-अलग Cities, States, Countries या Continents में मौजूद Computers और
+                        अन्य Network Devices को आपस में Connect करता है। यह Network अलग-अलग LAN और MAN Networks के बीच
+                        Data और Information को तेजी से Transfer तथा Resources Share करने की सुविधा प्रदान करता है। WAN
+                        का उपयोग सामान्यतः Banks, Government Organizations, Educational Institutions और Multinational
+                        Companies के विभिन्न Locations को आपस में Connect करने के लिए किया जाता है।</li>
+                    <div class="image-icon">
+                        <img src="../../../../../pgdca/content/semester-1/dccn-hindi/images/wan.webp" alt="wan">
+                    </div>
+                </ul>
+                <table>
+                    <tr>
+                        <th>Network</th>
+                        <th>Coverage</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td>PAN</td>
+                        <td>Very small personal area</td>
+                        <td>Bluetooth devices</td>
+                    </tr>
+                    <tr>
+                        <td>LAN</td>
+                        <td>Room, building or small campus</td>
+                        <td>Office network</td>
+                    </tr>
+                    <tr>
+                        <td>MAN</td>
+                        <td>City or metropolitan area</td>
+                        <td>City-wide network</td>
+                    </tr>
+                    <tr>
+                        <td>WAN</td>
+                        <td>Large geographical area</td>
+                        <td>Internet</td>
+                    </tr>
+                </table>
+            </section>
+
+            <section id="topic2">
+                <h2>IP Address</h2>
+                <p>
+                    IP Address (Internet Protocol Address) एक Unique Numerical Address होता है, जो Network या Internet
+                    से जुड़े किसी Computer, Smartphone, Server या अन्य Network Device की पहचान करने के लिए उपयोग किया
+                    जाता है। यह प्रत्येक Device को Network में एक विशिष्ट Address प्रदान करता है, जिससे Devices के बीच
+                    Data और Information को सही Device तक भेजने और प्राप्त करने में सहायता होती है।
+                </p>
+                <div class="image-icon">
+                    <img src="network_security_images/ip_address.svg" alt="IPv4 address structure diagram">
+                </div>
+                <h3>Type of IP Address</h3>
+                <p>Address मुख्यतः दो प्रकार के होते हैं—<b>IPv4</b> और <b>IPv6</b></p>
+                <p>
+                    <strong>IPv4 Address</strong><br>
+                    <b>IPv4 (Internet Protocol Version 4)</b> एक Network Addressing System होता है, जिसका उपयोग Network
+                    या Internet से जुड़े Computers, Smartphones, Servers और अन्य Devices की पहचान करने तथा उनके बीच Data
+                    Communication के लिए किया जाता है। IPv4 Address कुल <b>32 Bits</b> का होता है, जिसे <b>8-8 Bits</b>
+                    के <b>4 Octets</b> में विभाजित किया जाता है। प्रत्येक Octet का मान <b>0</b> से <b>255</b> के बीच
+                    होता है और इन <b>Octets</b> को <b>Dot (.)</b> द्वारा अलग किया जाता है। <b>IPv4 Address</b> का एक
+                    उदाहरण <code>192.168.1.10</code> है। IPv4 Address में Network Portion और Host Portion शामिल होते
+                    हैं, जिनकी सहायता से Network और उसमें मौजूद अलग-अलग Devices की पहचान की जाती है।
+                </p>
+                <p>
+                    <b>Example:</b> <code>192.168.1.10</code>
+                <ul>
+                    <li><code>192.168.1</code> → Network Portion</li>
+                    <li><code>10</code> → Host Portion</li>
+                </ul>
+                </p>
+                <div class="image-icon">
+                    <img src="../../../images/ipv4 address structure.webp" alt="ipv4 address">
+                </div>
+                <p>
+                    <strong>IPv6 Address</strong><br>
+                    IPv6 (Internet Protocol Version 6) एक Advanced Network Addressing System होता है, जिसका उपयोग
+                    Network या Internet से जुड़े Computers, Smartphones, Servers और अन्य Devices की पहचान तथा उनके बीच
+                    Data Communication के लिए किया जाता है। IPv6 Address कुल <b>128 Bits</b> का होता है, जिसे <b>
+                        Groups</b> में विभाजित किया जाता है और प्रत्येक Group को <b>4 Hexadecimal Digits</b> द्वारा
+                    Represent किया जाता है। इन Groups को Colon (:) द्वारा अलग किया जाता है।<br> IPv6 Address का एक
+                    उदाहरण <code>2001:0db8:85a3:0000:0000:8a2e:0370:7334</code> है। IPv6 को मुख्य रूप से IPv4 Addresses
+                    की सीमित संख्या को दूर करने और अधिक संख्या में Devices को Unique IP Address प्रदान करने के लिए
+                    विकसित किया गया है।
+                </p>
+                <p>
+                    <b>Example:</b> <code>2001:db8::1</code><br>
+                    यहाँ IPv6 Address में Hexadecimal Digits (0–9 और A–F) और Colon (:) का उपयोग किया जाता है।
+                </p>
+                <div class="image-icon">
+                    <img src="../../../images/ipv6 address structure.webp" alt="">
+                </div>
+                <p>
+                    <strong>IPv6 की ज़रूरत क्यों है?</strong><br>
+                    IPv6 की आवश्यकता मुख्य रूप से IPv4 Addresses की सीमित संख्या को दूर करने के लिए हुई। Internet पर
+                    Computers, Smartphones, IoT Devices, Servers और अन्य Network Devices की संख्या लगातार बढ़ रही है,
+                    जिसके कारण IPv4 के उपलब्ध Addresses कम पड़ने लगे हैं। IPv6 में 128-Bit Address होता है, जिससे बहुत
+                    बड़ी संख्या में Unique IP Addresses उपलब्ध होते हैं। इसके अलावा IPv6 बेहतर Network Configuration,
+                    Security और Efficient Data Communication की सुविधा प्रदान करता है।
+                </p>
+                <ol>
+                    <li>IPv4 Addresses की कमी को दूर करना</li>
+                    <li>अधिक Devices को Unique IP Address प्रदान करना</li>
+                    <li>Automatic Network Configuration को Support करना</li>
+                    <li>बेहतर Network Efficiency प्रदान करना</li>
+                    <li>Internet और IoT के बढ़ते Devices को Support करना</li>
+                </ol>
+                <table>
+                    <tr>
+                        <th></th>
+                        <th>IPv4</th>
+                        <th>IPv6</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>IPv4 एक 32-Bit Network Addressing System है।</td>
+                        <td>IPv6 एक 128-Bit Network Addressing System है।</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>इसमें Address को Decimal Format में लिखा जाता है।</td>
+                        <td>इसमें Address को Hexadecimal Format में लिखा जाता है।</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>समें 4 Octets होते हैं।</td>
+                        <td>इसमें 8 Groups होते हैं।</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Octets को Dot (.) से अलग किया जाता है।</td>
+                        <td>Groups को Colon (:) से अलग किया जाता है।</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>इसमें लगभग 4.3 Billion Addresses उपलब्ध होते हैं।</td>
+                        <td>इसमें बहुत बड़ी संख्या में Unique Addresses उपलब्ध होते हैं।</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>IPv4 में Broadcast का उपयोग किया जाता है।</td>
+                        <td>IPv6 में Broadcast की जगह Multicast और Anycast का उपयोग किया जाता है।</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>IPv4 में NAT का उपयोग सामान्यतः किया जाता है।</td>
+                        <td>IPv6 में NAT की आवश्यकता कम होती है।</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>IPv4 को पुराने Internet Addressing के लिए विकसित किया गया था।</td>
+                        <td>IPv6 को IPv4 Addresses की कमी को दूर करने के लिए विकसित किया गया है।</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td><b>Example:</b> <code>192.168.1.10</code></td>
+                        <td><b>Example:</b> <code>2001:db8::1</code></td>
+                    </tr>
+
+                </table>
+                <h3>1.Public IP Address</h3>
+                <p>Public IP Address एक Unique IP Address होता है, जो किसी Device, Router या Network को Internet पर
+                    Identify करने के लिए Internet Service Provider (ISP) द्वारा Assign किया जाता है। इसके द्वारा किसी
+                    Network को Internet पर अन्य Networks और Servers के साथ Data Communication करने में सहायता होती है।
+                    Public IP Address Internet पर Globally Reachable होता है और सामान्यतः Internet पर मौजूद अन्य Devices
+                    द्वारा इसे Identify किया जा सकता है।</p>
+                <p><b>Example: </b><code>49.36.120.25</code></p>
+                <h3>2.Private IP Address</h3>
+                <p>Private IP Address एक Local IP Address होता है, जिसका उपयोग किसी Local Network (LAN) के अंदर मौजूद
+                    Computers, Smartphones, Printers और अन्य Devices की पहचान करने के लिए किया जाता है। यह IP Address
+                    Internet पर Directly Accessible नहीं होता और इसका उपयोग मुख्य रूप से एक ही Local Network में Devices
+                    के बीच Data Communication के लिए किया जाता है। Private IP Addresses को सामान्यतः Router या Network
+                    Administrator द्वारा Assign किया जाता है।</p>
+                <p><b>Example: </b><code>192.168.1.10</code></p>
+
+                <h3>3.Static IP Address</h3>
+                <p>
+                    Static IP Address एक Fixed IP Address होता है, जो किसी Computer, Server, Router या अन्य Network
+                    Device को Permanently या लंबे समय तक Assign किया जाता है। यह Address सामान्यतः अपने आप Change नहीं
+                    होता, जिससे किसी Device को Network या Internet पर लगातार एक ही IP Address के माध्यम से Identify और
+                    Access किया जा सकता है। Static IP Address का उपयोग मुख्य रूप से Web Servers, Mail Servers, CCTV
+                    Systems और अन्य ऐसे Devices में किया जाता है, जिन्हें एक Consistent IP Address की आवश्यकता होती
+                    है।<br>
+                    <strong>Example:</strong> <code>192.168.1.100</code>
+                </p>
+                <h3>4.Dynamic IP Address</h3>
+                <p>
+                    Dynamic IP Address एक ऐसा IP Address होता है, जो किसी Computer, Smartphone, Router या अन्य Network
+                    Device को Network से Connect होने पर Automatically Assign किया जाता है। यह Address समय-समय पर Change
+                    हो सकता है और सामान्यतः DHCP (Dynamic Host Configuration Protocol) द्वारा Assign किया जाता है।
+                    Dynamic IP Address का उपयोग मुख्य रूप से Home Networks, Offices और सामान्य Internet Connections में
+                    Devices को Automatically IP Address प्रदान करने के लिए किया जाता है।<br>
+                    <strong>Example:</strong> <code>192.168.1.101.</code>
+                </p>
+            </section>
+
+            <section id="topic3">
+                <h2>NAT</h2>
+                <p>
+                    NAT (Network Address Translation) एक Network Technology होती है, जिसका उपयोग Private IP Address को
+                    Public IP Address में और Public IP Address को Private IP Address में Translate करने के लिए किया जाता
+                    है। इसके द्वारा एक Local Network में मौजूद कई Devices एक ही Public IP Address का उपयोग करके Internet
+                    से Connect हो सकते हैं। NAT का उपयोग IP Address को बचाने, Network Security बढ़ाने और Private Network
+                    के Devices को Internet Access प्रदान करने के लिए किया जाता है। यह कार्य सामान्यतः Router द्वारा किया
+                    जाता है। Example: <code>192.168.1.10</code> (Private IP) को Router के माध्यम से एक Public IP के
+                    द्वारा Internet पर Communication कराया जाता है।
+                </p>
+                <h3>Working of NAT</h3>
+                <p>
+                    NAT (Network Address Translation) में Router, Local Network के Private IP Address को Public IP
+                    Address में Translate करके Internet पर Data भेजता है। जब कोई Device Internet पर Request भेजता है, तो
+                    Router उस Device के Private IP और Port Number को अपने Public IP और एक अलग Port Number से Map करता
+                    है। जब Internet से Response वापस आता है, तो Router अपनी NAT Table की सहायता से उस Response को सही
+                    Private Device तक पहुँचाता है।
+                </p>
+                <div class="image-icon"><img src="../../../images/NAT working diagram.webp" alt="NAT working diagram">
+                </div>
+                <h3>Types of NAT</h3>
+                <p>NAT के मुख्य 3 Types होते हैं:</p>
+                <ul>
+                    <li><strong>Static NAT:</strong> इसमें एक Private IP Address को एक निश्चित Public IP Address से
+                        permanently map किया जाता है। इसका उपयोग सामान्यतः Servers के लिए किया जाता है।</li>
+                    <li><strong>Dynamic NAT:</strong> इसमें Private IP Address को उपलब्ध Public IP Address के Pool में
+                        से कोई एक Public IP Address automatically assign किया जाता है। यह Mapping स्थायी नहीं होती।</li>
+                    <li><strong>PAT (Port Address Translation):</strong> इसमें कई Private IP Addresses को एक ही Public
+                        IP Address के साथ अलग-अलग Port Numbers का उपयोग करके Internet से Connect किया जाता है। इसे NAT
+                        Overload भी कहा जाता है।</li>
+                </ul>
+                <div class="info-box"><strong>Security relevance:</strong> NAT Internal Addressing को Direct External
+                    Visibility से छिपाने में सहायता करता है, लेकिन NAT को अपने आप में एक Complete Network Security
+                    Mechanism नहीं माना जाना चाहिए।</div>
+            </section>
+
+            <section id="topic4">
+                <h2>IP Subnets</h2>
+                <p>
+                    IP Subnet (Subnetting) एक Network को छोटे-छोटे Logical Networks में विभाजित करने की प्रक्रिया होती
+                    है। इसके द्वारा एक बड़े IP Network को कई छोटे Subnets में Divide किया जाता है, जिससे IP Addresses का
+                    बेहतर उपयोग, Network Management और Network Performance को improve करने में सहायता मिलती है। प्रत्येक
+                    Subnet का अपना Network Address और Host Address Range होता है। Subnetting में Subnet Mask या CIDR
+                    Notation का उपयोग किया जाता है।<br>
+                    <b>Example:</b><br>
+                    <code>192.168.1.0/24</code> को छोटे Subnets में Divide करके अलग-अलग Networks बनाए जा सकते हैं।
+                </p>
+                <div class="image-icon"><img src="../../../images/IP subnet diagram.webp" alt="IP Subnets diagram">
+                </div>
+                <h3>Purpose of Subnetting</h3>
+                <ul>
+                    <li><b>Network Divisionb:</b> बड़े IP Network को छोटे-छोटे Subnets में Divide करना।</li>
+                    <li><b>Efficient IP Usage:</b> Available IP Addresses का बेहतर उपयोग करना।</li>
+                    <li><b>Network Performance:</b> Network Traffic को अलग-अलग Segments में बाँटकर Performance Improve
+                        करना।</li>
+                    <li><b>Network Management:</b> Network को Manage और Maintain करना आसान बनाना।</li>
+                    <li><b>Security:</b> अलग-अलग Network Segments बनाकर Security को Improve करना।
+                    <li><b>Troubleshooting:</b> Network Problems को Identify और Troubleshoot करना आसान बनाना।</li>
+
+                </ul>
+                <h3>Subnet Mask and CIDR</h3>
+                <p>
+                    <strong>Subnet Mask</strong><br>
+                    Subnet Mask एक 32-Bit Address होता है, जिसका उपयोग IPv4 Network में Network Portion और Host Portion
+                    को Identify करने के लिए किया जाता है। यह निर्धारित करता है कि IP Address का कौन-सा भाग Network को और
+                    कौन-सा भाग Host Devices को Represent करता है।<br>
+                    <b>Example: </b><code>255.255.255.0</code><br>
+                    <strong>CIDR (Classless Inter-Domain Routing):</strong><br>
+                    CIDR एक IP Addressing Method है, जिसमें IP Address के साथ Prefix Length का उपयोग करके Network
+                    Portion को Represent किया जाता है। CIDR में / के बाद दी गई संख्या Network Bits को दर्शाती है।<br>
+                    <b>Example: </b><code>192.168.1.0/24</code> - यहाँ /24 का अर्थ है कि पहले 24 Bits Network Portion के
+                    लिए हैं।
+                </p>
+            </section>
+
+            <section id="topic5">
+                <h2>DHCP Server</h2>
+                <p>
+                    DHCP (Dynamic Host Configuration Protocol) एक Network Protocol होता है, जिसका उपयोग Network से जुड़े
+                    Computers, Smartphones और अन्य Devices को Automatically IP Address तथा अन्य Network Configuration
+                    प्रदान करने के लिए किया जाता है। DHCP की सहायता से IP Address, Subnet Mask, Default Gateway और DNS
+                    Server जैसी जानकारी Automatically Assign की जाती है। इससे प्रत्येक Device में Network Settings को
+                    Manually Configure करने की आवश्यकता कम हो जाती है।
+                </p>
+
+                <h3>DHCP Process</h3>
+                <p>
+                    <strong>Step-1: DHCP Discover</strong><br>
+                    Client Network से Connect होने पर DHCP Server को खोजने के लिए DHCP Discover Message Broadcast करता
+                    है।
+                </p>
+                <p>
+                    <strong>Step-2: DHCP Offer</strong><br>
+                    DHCP Server Client को एक Available IP Address और अन्य Network Configuration जैसे Subnet Mask,
+                    Default Gateway और DNS Server Offer करता है।
+                </p>
+                <p>
+                    <strong>Step-3: DHCP Request</strong><br>
+                    Client प्राप्त Offers में से एक IP Address को Select करके DHCP Request Message भेजता है और उस IP
+                    Address को Request करता है।
+                </p>
+                <p>
+                    <strong>Step-4: DHCP Acknowledge (ACK)</strong><br>
+                    DHCP Server Client की Request को Confirm करके DHCP ACK Message भेजता है। इसके बाद Client को IP
+                    Address और Network Configuration प्राप्त हो जाती है और वह Network Communication कर सकता है।
+                </p>
+                <div class="image-icon"><img src="../../../images/DHCP proces.webp"
+                        alt="DHCP DORA process diagram diagram"></div>
+                <h3>Advantages of DHCP</h3>
+                <ul>
+                    <li><b>Automatic IP Address Assignment:</b><br> DHCP Network से जुड़े Computers, Smartphones और अन्य
+                        Devices को Automatically IP Address Assign करता है, जिससे Manual Configuration की आवश्यकता कम हो
+                        जाती है।</li>
+                    <li><b>Reduces Manual Configuration:</b><br> प्रत्येक Device में IP Address, Subnet Mask, Default
+                        Gateway और DNS Server जैसी Network Settings को Manually Enter करने की आवश्यकता नहीं होती।</li>
+                    <li><b>Efficient IP Address Management:</b><br> DHCP Available IP Address Pool को Efficiently Manage
+                        करता है और आवश्यकता के अनुसार Devices को IP Addresses Assign करता है।</li>
+                    <li><b>Prevents IP Address Conflicts:</b><br> DHCP प्रत्येक Device को उचित IP Address प्रदान करता
+                        है, जिससे एक ही IP Address कई Devices को मिलने से होने वाले IP Conflict की संभावना कम होती है।
+                    </li>
+                    <li><b>Easy Network Management:</b><br> Network Administrator के लिए बड़ी संख्या में Devices की
+                        Network Configuration को Centralized तरीके से Manage करना आसान हो जाता है।</li>
+                    <li><b>Automatic Network Configuration:</b><br> DHCP केवल IP Address ही नहीं, बल्कि Subnet Mask,
+                        Default Gateway और DNS Server जैसी आवश्यक Network Information भी Automatically Provide कर सकता
+                        है।</li>
+                </ul>
+                <div class="warning-box"><strong>Security Point:</strong> Unauthorized या Rogue DHCP Services गलत
+                    Network Configuration प्रदान कर सकती हैं और Clients को अनचाहे Gateway या DNS Servers की ओर Redirect
+                    कर सकती हैं।</div>
+            </section>
+
+            <section id="topic6">
+                <h2>Ports</h2>
+                <p>
+                    Port एक Logical Communication Endpoint होता है, जिसका उपयोग Network में किसी Device पर चल रही
+                    अलग-अलग Applications या Services की पहचान करने और उनके बीच Data Communication को Manage करने के लिए
+                    किया जाता है। प्रत्येक Network Service सामान्यतः एक Specific Port Number का उपयोग करती है, जिससे
+                    Data को सही Application या Service तक पहुँचाया जा सके। Port Numbers 0 से 65535 तक होते हैं।
+                </p>
+                <div class="image-icon"><img src="../../../images/ports.webp" alt="Network ports and services diagram">
+                </div>
+                <h3>Port Categories</h3>
+                <ul>
+                    <li><strong>Well-known ports(0-1023):</strong> <br>इन Ports को सामान्यतः Standard और Common Network
+                        Services तथा Protocols के लिए Reserve किया जाता है।</li>
+                    <strong>Example: </strong> HTTP – 80, HTTPS – 443, FTP – 21, SSH – 22
+                    <li><strong>Registered ports(1024-49151):</strong> <br>इन Ports का उपयोग विभिन्न Applications और
+                        Services द्वारा किया जाता है। इन्हें Software Developers या Organizations द्वारा Register किया
+                        जा सकता है।</li>
+                    <strong>Example: </strong> MySQL – 3306, PostgreSQL – 5432
+                    <li><strong>Dynamic/private ports(49152-65535):</strong> <br>इन Ports का उपयोग सामान्यतः Temporary
+                        या Client-side Connections के लिए किया जाता है। इन्हें Applications आवश्यकता के अनुसार
+                        Dynamically Use कर सकती हैं।</li>
+                </ul>
+                <table>
+                    <tr>
+                        <th>Service</th>
+                        <th>Common Port</th>
+                        <th>Typical Protocol</th>
+                    </tr>
+                    <tr>
+                        <td>HTTP</td>
+                        <td>80</td>
+                        <td>TCP</td>
+                    </tr>
+                    <tr>
+                        <td>HTTPS</td>
+                        <td>443</td>
+                        <td>TCP</td>
+                    </tr>
+                    <tr>
+                        <td>DNS</td>
+                        <td>53</td>
+                        <td>UDP/TCP</td>
+                    </tr>
+                    <tr>
+                        <td>SSH</td>
+                        <td>22</td>
+                        <td>TCP</td>
+                    </tr>
+                    <tr>
+                        <td>DHCP</td>
+                        <td>67/68</td>
+                        <td>UDP</td>
+                    </tr>
+                </table>
+            </section>
+
+            <section id="topic7">
+                <h2>DNS</h2>
+                <p>
+                    DNS (Domain Name System) एक Network System होता है, जिसका उपयोग Domain Name को उसके संबंधित IP
+                    Address में Translate करने के लिए किया जाता है। इसके द्वारा Users को कठिन IP Addresses याद रखने के
+                    बजाय आसान Domain Names जैसे google.com या youtube.com का उपयोग करके Websites और Internet Services तक
+                    पहुँचने में सहायता मिलती है। DNS सामान्यतः Domain Name और IP Address के बीच Mapping को Maintain करता
+                    है और सही Server का IP Address Find करने में सहायता करता है।<br>
+                    <strong>Example: </strong> <code>google.com</code> → <code>142.250.x.x </code>→
+                    <code>Google Server</code>
+                </p>
+                <div class="image-icon"><img src="../../../images/dns name resolution.webp"
+                        alt="DNS name resolution diagram">
+                </div>
+                <h3>Why DNS is Required</h3>
+                <p>
+                    DNS की आवश्यकता मुख्य रूप से निम्न कारणों से होती है:
+                </p>
+                <ul>
+                    <li><b>Easy Website Access:</b><br> DNS के द्वारा Users आसानी से Domain Name जैसे google.com का
+                        उपयोग करके Website Access कर सकते हैं।</li>
+                    <li><b>IP Address को याद रखने की आवश्यकता कम:</b><br> Users को अलग-अलग Websites के Numerical IP
+                        Addresses याद रखने की जरूरत नहीं होती।</li>
+                    <li><b>Domain Name Resolution:</b><br> DNS Domain Name को संबंधित IP Address में Resolve करता है,
+                        जिससे सही Server तक Request पहुँचती है।</li>
+                    <li><b>Faster Access:</b><br> DNS में Caching की सहायता से पहले से Resolve किए गए Domain Names का IP
+                        Address जल्दी प्राप्त किया जा सकता है।</li>
+                    <li><b>Scalability:</b><br> DNS बड़े Internet पर करोड़ों Domains और Servers को Manage करने में
+                        सहायता करता है।</li>
+                    <li><b>Load Distribution:</b><br> DNS का उपयोग एक Domain की Requests को अलग-अलग Servers या IP
+                        Addresses की ओर Direct करने के लिए भी किया जा सकता है।</li>
+                </ul>
+                <h3>Common DNS Records</h3>
+                <table>
+                    <tr>
+                        <th>DNS Records</th>
+                        <th>Purpose</th>
+                    </tr>
+                    <tr>
+                        <td>A Record</td>
+                        <td>Domain Name को IPv4 Address से Map करता है।</td>
+                    </tr>
+                    <tr>
+                        <td>AAAA Record</td>
+                        <td>Domain Name को IPv6 Address से Map करता है।</td>
+                    </tr>
+                    <tr>
+                        <td>CNAME Record</td>
+                        <td>एक Domain Name को दूसरे Domain Name (Canonical Name) का Alias बनाता है।</td>
+                    </tr>
+                    <tr>
+                        <td>MX Record</td>
+                        <td>Domain के लिए Mail Server को Specify करता है।</td>
+                    </tr>
+                    <tr>
+                        <td>NS Record</td>
+                        <td>Domain के लिए Authoritative Name Server को Specify करता है।</td>
+                    </tr>
+                    <tr>
+                        <td>TXT Record</td>
+                        <td>Domain से संबंधित Text Information और Verification/Security Data को Store करता है।</td>
+                    </tr>
+                    <tr>
+                        <td>PTR Record</td>
+                        <td>IP Address को Domain Name में Resolve करता है। इसे Reverse DNS Lookup में उपयोग किया जाता
+                            है।</td>
+                    </tr>
+                    <tr>
+                        <td>SOA Record</td>
+                        <td>Domain की Authoritative Information जैसे Primary Name Server और Zone-related details को
+                            Define करता है।</td>
+                    </tr>
+                </table>
+            </section>
+
+            <section id="topic8">
+                <h2>Proxy Servers</h2>
+                <p>
+                    Proxy Server एक Intermediate Server होता है, जो Client और Internet या Destination Server के बीच
+                    Gateway की तरह कार्य करता है। जब कोई Client Internet पर Request भेजता है, तो यह Request पहले Proxy
+                    Server के पास जाती है और Proxy Server उस Request को Destination Server तक Forward करता है। इसी
+                    प्रकार Server से प्राप्त Response को Proxy Server वापस Client तक भेजता है।<br>
+                    Proxy Server का उपयोग Security, Privacy, Access Control, Content Filtering और Web Caching जैसे
+                    कार्यों के लिए किया जाता है।
+                </p>
+                <p><b>Example: </b><br>
+                    Client → Proxy Server → Internet Server<br>
+                    Internet Server → Proxy Server → Client</p>
+                <div class="image-icon"><img src="../../../images/proxy_server.webp" alt="Proxy Server diagram"></div>
+                <h3>Uses of Proxy Servers</h3>
+                <ul>
+                    <li><b>Security:</b> Proxy Server Client और Internet के बीच एक Intermediate Layer प्रदान करके
+                        Network Security को Improve करने में सहायता करता है।</li>
+                    <li><b>Privacy:</b> Proxy Server के माध्यम से Destination Server को Client का Direct IP Address
+                        दिखाई नहीं देता, जिससे कुछ हद तक Privacy बढ़ सकती है।</li>
+                    <li><b>Access Control:</b> Organizations में Proxy Server का उपयोग Users के Internet Access को
+                        Control और Manage करने के लिए किया जाता है।</li>
+                    <li><b>Content Filtering:</b> Proxy Server के द्वारा कुछ Websites, Content या Web Traffic को Block
+                        या Filter किया जा सकता है।</li>
+                    <li><b>Web Caching:</b> Frequently Access की जाने वाली Web Content को Cache में Store करके बाद की
+                        Requests को तेजी से Serve किया जा सकता है।</li>
+                    <li><b>Monitoring:</b> Organizations Proxy Server की सहायता से Internet Traffic और User Requests को
+                        Monitor और Log कर सकती हैं।</li>
+                    <li><b>Bandwidth Management:</b> Proxy Server के द्वारा Bandwidth Usage को Control और Optimize करने
+                        में सहायता मिल सकती है।</li>
+                    <li><b>Accessing Restricted Resources:</b> कुछ Network Environments में Proxy Server का उपयोग
+                        Restricted या Controlled Resources तक Access प्रदान करने के लिए किया जाता है।</li>
+                </ul>
+                <div class="note-box"><strong>Note:</strong> Proxy Policy Enforcement और Network Traffic की Visibility
+                    प्रदान कर सकता है, लेकिन इसकी Effectiveness सही Configuration और Handle किए जा रहे Traffic के Type
+                    पर निर्भर करती है।</div>
+            </section>
+
+            <section id="topic9">
+                <h2>Virtual Private Networks(VPN)</h2>
+                <p>
+                    VPN (Virtual Private Network) एक Network Technology है, जो Internet जैसे Public Network के माध्यम से
+                    दो या अधिक Devices या Networks के बीच एक Secure और Encrypted Connection स्थापित करती है। VPN के
+                    द्वारा User का Data Traffic Encrypt किया जाता है और एक VPN Tunnel के माध्यम से भेजा जाता है, जिससे
+                    Data को Unauthorized Access से Protect करने में सहायता मिलती है। <br>
+                    VPN का उपयोग मुख्य रूप से Secure Remote Access, Privacy, Data Protection और Remote Networks को
+                    Connect करने के लिए किया जाता है।
+                </p>
+                <div class="image-icon"><img src="../../../images/vpn.webp" alt="Virtual Private Network diagram"></div>
+
+                <h3>Uses of VPN</h3>
+                <ul>
+                    <li><b>Secure Remote Access:</b> VPN के द्वारा Users किसी Organization के Private Network को
+                        Internet के माध्यम से Securely Access कर सकते हैं।</li>
+                    <li><b>Data Encryption:</b> VPN Data Traffic को Encrypt करता है, जिससे Data को Unauthorized Users
+                        द्वारा पढ़ना कठिन हो जाता है।</li>
+                    <li><b>Privacy:</b> VPN User और Internet के बीच एक Intermediate Connection प्रदान करता है, जिससे
+                        User का Original IP Address Destination Services से Hide हो सकता है।</li>
+                    <li><b>Secure Public Wi-Fi:</b> Public Wi-Fi जैसे Cafes, Airports और Hotels में VPN Data
+                        Communication को अधिक Secure बनाने में सहायता कर सकता है।</li>
+                    <li><b>Remote Office Connectivity:</b> VPN की सहायता से अलग-अलग Offices और Networks को Secure तरीके
+                        से Connect किया जा सकता है।</li>
+                    <li><b>Protetion of Sensitive Data:</b> VPN का उपयोग Login Credentials, Business Data और अन्य
+                        Sensitive Information को सुरक्षित तरीके से Transfer करने के लिए किया जा सकता है।</li>
+                    <li><b>Bypass Network Restrictions:</b> कुछ Organizations में VPN का उपयोग Authorized Users को
+                        Restricted Internal Resources तक Secure Access देने के लिए किया जाता है।</li>
+                </ul>
+                <h3>VPN Flow</h3>
+                <div class="flow">Client / Network → VPN Tunnel → VPN Gateway → Protected Network / Internet</div>
+                <div class="image-icon"><img src="../../../images/vpn tunnel.webp" alt="VPN protected tunnel diagram">
+            </section>
+
+            <section id="topic10">
+                <h2>DNS Server</h2>
+                <p>
+                    DNS Server (Domain Name System Server) एक ऐसा Server होता है, जो Domain Names को उनके संबंधित IP
+                    Addresses में Resolve करने का कार्य करता है। जब कोई User Browser में किसी Website का Domain Name
+                    जैसे google.com Enter करता है, तो DNS Server उस Domain Name का संबंधित IP Address Find करता है और
+                    Browser को प्रदान करता है। इसके बाद Browser उस IP Address की सहायता से संबंधित Web Server से
+                    Connection स्थापित करता है।</p><br>
+                <p>DNS Server का मुख्य उद्देश्य Domain Name Resolution करना और Users को आसान Domain Names के माध्यम से
+                    Internet Services Access करने में सहायता करना है।</p>
+                <div class="image-icon"><img src="../../../images/dns server aechitecture.webp"
+                        alt="DNS Server architecture diagram"></div>
+                <h3>Basic Resolution Process</h3>
+                <div class="flow">
+                    User
+                    ↓
+                    Domain Name (google.com)
+                    ↓
+                    DNS Resolver
+                    ↓
+                    DNS Server
+                    ↓
+                    IP Address
+                    ↓
+                    Web Server
+                    ↓
+                    Website
+                </div>
+                <p><b>1.User Request:</b><br>
+                    User Browser में Domain Name जैसे google.com Enter करता है।</p>
+                <p><b>2.DNS Query:</b><br>
+                    Device का DNS Resolver उस Domain Name के IP Address को Find करने के लिए DNS Query भेजता है।</p>
+                <p><b>3.DNS Server Search:</b><br>
+                    DNS Resolver आवश्यक DNS Servers से Information प्राप्त करता है और Domain का IP Address Find करता है।
+                </p>
+                <p><b>4.IP Address Response:</b><br>
+                    DNS Server Domain Name के संबंधित IP Address को Resolver को Return करता है।</p>
+                <p><b>5.Connection to Server:</b><br>
+                    Browser प्राप्त IP Address का उपयोग करके संबंधित Web Server से Connection Establish करता है।</p>
+                <h3>Security Considerations</h3>
+                <ul>
+                    <li><b>DNS Spoofing:</b><br> Attacker गलत DNS Response देकर User को Fake या Malicious Website पर
+                        Redirect कर सकता है।</li>
+                    <li><b>DNS Cache Poisoning:</b><br> DNS Cache में गलत IP Address Store करके Users को Unauthorized
+                        Websites की ओर Redirect किया जा सकता है।</li>
+                    <li><b>DNSSEC:</b><br> DNS Security Extensions (DNSSEC) DNS Responses की Authenticity और Integrity
+                        Verify करने में सहायता करता है।</li>
+                    <li><b>Secure DNS Communication:</b><br> DNS Queries को Protect करने के लिए DoH (DNS over HTTPS) और
+                        DoT (DNS over TLS) जैसी Technologies का उपयोग किया जा सकता है।</li>
+                    <li><b>DNS Server Protection:</b><br> DNS Servers को Unauthorized Access से Protect करने के लिए
+                        Access Control, Firewall और Regular Updates का उपयोग किया जाना चाहिए।</li>
+                    <li><b>Monitoring and Logging:</b><br> DNS Queries और Responses की Monitoring और Logging करके
+                        Suspicious या Malicious Activities को Identify करने में सहायता मिलती है।</li>
+                </ul>
+            </section>
+
+            <section id="topic11">
+
+                <h2>OSI and TCP/IP Model</h2>
+                <h3>OSI Model</h3>
+                <p>
+                    OSI (Open Systems Interconnection) Model एक Conceptual Networking Model है, जिसे ISO (International
+                    Organization for Standardization) द्वारा विकसित किया गया है। इसका उपयोग Network Communication की
+                    प्रक्रिया को 7 अलग-अलग Layers में Divide करके समझने के लिए किया जाता है। प्रत्येक Layer Network
+                    Communication में एक Specific Function perform करती है और अपने नीचे तथा ऊपर वाली Layer के साथ मिलकर
+                    काम करती है।
+                </p>
+                 <div class="image-icon"><img src="../../../images/OSI model.webp" alt="OSI Model diagram"></div>
+                <h3><u>7 Layer of OSI Model</u></h3>
+                <p><b>1. Application Layer</b><br>Application Layer OSI Model की 7th और सबसे ऊपर वाली Layer होती है। यह सीधे End User और Network Services के बीच Interface के रूप में कार्य करती है। इसका मुख्य उद्देश्य User Applications को Network Services प्रदान करना है, ताकि User Network के माध्यम से विभिन्न Services जैसे Web Browsing, Email, File Transfer और Remote Access का उपयोग कर सके।</p>
+                <p><b>Common Protocals:</b> <br>
+                <ul>
+                    <li>HTTP / HTTPS – Web Browsing</li>
+                    <li>FTP – File Transfer</li>
+                    <li>SMTP – Email Sending</li>
+                    <li>DNS – Domain Name Resolution</li>
+                    <li>SSH – Secure Remote Access</li>
+                </ul>
+                </p>
+                <p><b>2. Presentation Layer</b><br>Presentation Layer OSI Model की 6th Layer होती है, जिसका मुख्य कार्य Data को एक ऐसे Format में Convert करना है जिसे Receiving Device आसानी से Understand और Process कर सके। यह Layer Data Translation, Encryption/Decryption और Compression/Decompression जैसे कार्य करती है।</p>
+                <p><b>3. Session Layer</b><br> Session Layer OSI Model की 5th Layer होती है, जिसका मुख्य कार्य दो Devices या Applications के बीच Communication Session को Establish, Manage और Terminate करना होता है। यह Layer Communication के दौरान Session को Maintain और Synchronize करने में सहायता करती है, ताकि Data Exchange व्यवस्थित तरीके से हो सके।</p>
+                <p><b>4. Transport Layer</b><br> Transport Layer OSI Model की 4th Layer होती है, जिसका मुख्य कार्य दो Devices के बीच End-to-End Data Delivery सुनिश्चित करना होता है। यह बड़े Data को छोटे Segments में Divide करती है और Receiving Device पर उन्हें सही क्रम में Reassemble करने में सहायता करती है। यह Layer Error Control, Flow Control और Reliable Data Transmission जैसी Services प्रदान करती है।</p>
+                <p><b>5. Network Layer</b><br> Network Layer OSI Model की 3rd Layer होती है, जिसका मुख्य कार्य Data Packets को एक Network से दूसरे Network तक Source से Destination पहुँचाना होता है। यह Layer Logical Addressing (IP Address) और Routing का उपयोग करके Data के लिए उचित Path निर्धारित करती है।</p>
+                <p><b>6. Data Link Layer</b><br> Data Link Layer OSI Model की 2nd Layer होती है, जिसका मुख्य कार्य एक ही Network में Connected Devices के बीच Reliable Data Transfer प्रदान करना होता है। यह Network Layer से प्राप्त Packets को Frames में Convert करती है और MAC Address की सहायता से Data को सही Device तक पहुँचाने में सहायता करती है।</p>
+                <p><b>7. Physical Layer</b><br> Physical Layer OSI Model की 1st और सबसे नीचे वाली Layer होती है। इसका मुख्य कार्य Data को Bits (0 और 1) के रूप में Physical Medium के माध्यम से एक Device से दूसरे Device तक Transmit और Receive करना होता है। यह Layer Electrical, Optical या Radio Signals का उपयोग करके Data Communication करती है।</p>
+                <h3>TCP/IP Model</h3>
+                <p>
+                   TCP/IP (Transmission Control Protocol/Internet Protocol) Model एक Networking Model है, जिसका उपयोग Network और Internet पर Data Communication को समझने और Implement करने के लिए किया जाता है। इसमें Network Communication की पूरी प्रक्रिया को 4 Layers में Divide किया गया है। प्रत्येक Layer Network Communication में अलग-अलग Functions perform करती है और Protocols का उपयोग करके Data को Source से Destination तक पहुँचाने में सहायता करती है।
+                </p>
+                 <div class="image-icon"><img src="../../../images/IP model.webp" alt="TCP/IP model diagram"></div>
+                <p><b>4 Layers of TCP/IP Model</b></p>
+                <table>
+                    <tr>
+                        <th>Layer</th>
+                        <th>Function</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td>4. Application</td>
+                        <td>User Applications को Network Services प्रदान करना।</td>
+                        <td>HTTP, HTTPS, DNS, FTP, SMTP</td>
+                    </tr>
+                    <tr>
+                        <td>3. Transport</td>
+                        <td>End-to-End Communication, Reliability, Flow Control और Error Control।</td>
+                        <td>TCP, UDP</td>
+                    </tr>
+                    <tr>
+                        <td>2. Internet</td>
+                        <td>IP Addressing और Routing के द्वारा Packets को Destination तक पहुँचाना।</td>
+                        <td>IPv4, IPv6, ICMP</td>
+                    </tr>
+                    <tr>
+                        <td>1. Network Access</td>
+                        <td>Data को Physical Network Medium पर Frames/Signals के रूप में Transfer करना।</td>
+                        <td>Ethernet, Wi-Fi, ARP</td>
+                    </tr>
+                </table>
+                <h3>OSI vs TCP/IP</h3>
+                <table>
+                    <tr>
+                        <th>OSI</th>
+                        <th>TCP/IP</th>
+                    </tr>
+                    <tr>
+                        <td>OSI का Full Form Open Systems Interconnection है।</td>
+                        <td>TCP/IP का Full Form Transmission Control Protocol/Internet Protocol है।</td>
+                    </tr>
+                    <tr>
+                        <td>इसे ISO द्वारा Develop किया गया है।</td>
+                        <td>इसे ARPA/DARPA के Internet Architecture के रूप में Develop किया गया।</td>
+                    </tr>
+                    <tr>
+                        <td>इसमें 7 Layers होती हैं।</td>
+                        <td>इसमें सामान्यतः 4 Layers होती हैं।</td>
+                    </tr>
+                    <tr>
+                        <td>OSI एक Reference/Conceptual Model है।</td>
+                        <td>TCP/IP एक Protocol Suite और Practical Networking Model है।</td>
+                    </tr>
+                    <tr>
+                        <td>इसमें Session और Presentation की अलग-अलग Layers होती हैं।</td>
+                        <td>TCP/IP में Session और Presentation Functions को Application Layer में शामिल किया जाता है।</td>
+                    </tr>
+                    <tr>
+                        <td>इसमें Data Link और Physical की अलग-अलग Layers होती हैं।</td>
+                        <td>TCP/IP में दोनों को सामान्यतः Network Access Layer में Combine किया जाता है।</td>
+                    </tr>
+                    <tr>
+                        <td>OSI Model मुख्य रूप से Networking Concepts को समझाने और Standardization के लिए उपयोगी है।</td>
+                        <td>TCP/IP Model का उपयोग Internet और Real-World Networks में व्यापक रूप से किया जाता है।</td>
+                    </tr>
+                    <tr>
+                        <td>OSI Model में Protocols को Model से अलग समझा जाता है।</td>
+                        <td>TCP/IP Model अपने नाम के अनुसार TCP, IP और अन्य Protocols के साथ closely associated है।</td>
+                    </tr>
+                </table>
+            </section>
+
+            <section id="topic12">
+                <div class="image-icon"><img src="images/tcp-vs-udp.webp" alt="TCP versus UDP diagram"></div>
+                <h2>12. TCP vs. UDP</h2>
+                <p>
+                    TCP और UDP दोनों Transport Layer Protocols हैं, लेकिन दोनों की Communication
+                    Characteristics अलग-अलग होती हैं।
+                </p>
+                <table>
+                    <tr>
+                        <th>Feature</th>
+                        <th>TCP</th>
+                        <th>UDP</th>
+                    </tr>
+                    <tr>
+                        <td>Connection</td>
+                        <td>Connection-oriented</td>
+                        <td>Connectionless</td>
+                    </tr>
+                    <tr>
+                        <td>Reliability</td>
+                        <td>Provides reliable delivery mechanisms</td>
+                        <td>No built-in guarantee of delivery</td>
+                    </tr>
+                    <tr>
+                        <td>Ordering</td>
+                        <td>Maintains ordered byte-stream delivery</td>
+                        <td>No delivery-order guarantee</td>
+                    </tr>
+                    <tr>
+                        <td>Overhead</td>
+                        <td>Higher</td>
+                        <td>Lower</td>
+                    </tr>
+                    <tr>
+                        <td>Typical use</td>
+                        <td>Web, file transfer, reliable application communication</td>
+                        <td>DNS queries, streaming and latency-sensitive applications depending on design</td>
+                    </tr>
+                </table>
+                <div class="remember-box"><strong>Exam Point:</strong> TCP emphasizes reliable, ordered communication;
+                    UDP emphasizes a simpler datagram service with lower protocol overhead.</div>
+            </section>
+
+            <section id="topic13">
+                <div class="image-icon"><img src="images/router.webp" alt="Router diagram"></div>
+                <h2>13. Routers</h2>
+                <h3>Definition</h3>
+                <p>
+                    Router एक Layer 3 Networking Device होता है, जो अलग-अलग IP Networks के बीच Packets को
+                    forward करता है। यह Routing Information का उपयोग करके appropriate next hop या interface
+                    select करता है।
+                </p>
+                <div class="image-icon"><img src="network_security_images/router_switch.svg"
+                        alt="Router and switch diagram"></div>
+                <h3>Functions</h3>
+                <ul>
+                    <li>Connects different networks.</li>
+                    <li>Forwards IP packets.</li>
+                    <li>Maintains or uses routing information.</li>
+                    <li>Can provide services such as NAT, depending on the device.</li>
+                    <li>Can participate in network segmentation and security policy enforcement when supported.</li>
+                </ul>
+            </section>
+
+            <section id="topic14">
+                <div class="image-icon"><img src="images/switch.webp" alt="Network Switch diagram"></div>
+                <h2>14. Switches</h2>
+                <h3>Definition</h3>
+                <p>
+                    Network Switch सामान्यतः एक Layer 2 Device होता है, जो MAC Address Information का
+                    उपयोग करके Ethernet Frames को forward करता है। Managed Switch में VLAN Configuration
+                    और Monitoring जैसी additional facilities भी हो सकती हैं।
+                </p>
+                <h3>Functions</h3>
+                <ul>
+                    <li>Connects devices within a local network.</li>
+                    <li>Learns MAC addresses and builds a forwarding table.</li>
+                    <li>Forwards frames to appropriate ports.</li>
+                    <li>Supports segmentation features such as VLANs on managed models.</li>
+                </ul>
+            </section>
+
+            <section id="topic15">
+                <div class="image-icon"><img src="images/endpoint-solutions.webp"
+                        alt="Endpoint Security Solutions diagram">
+                </div>
+                <h2>15. Endpoint Solutions</h2>
+                <h3>Definition</h3>
+                <p>
+                    Endpoint वह Device होता है जो Network में participate करता है, जैसे Desktop Computer,
+                    Laptop या Server। Endpoint Security Solutions इन Devices को Malware, Unauthorized Activity
+                    और अन्य Security Threats से protect करने के लिए उपयोग किए जाते हैं।
+                </p>
+                <h3>Common Endpoint Security Controls</h3>
+                <ul>
+                    <li>Anti-malware and endpoint protection.</li>
+                    <li>Host-based firewall.</li>
+                    <li>Application control.</li>
+                    <li>Patch and update management.</li>
+                    <li>Device and access control.</li>
+                    <li>Security monitoring and logging.</li>
+                </ul>
+                <div class="note-box"><strong>Security Principle:</strong> Network security is stronger when both
+                    network-level controls and endpoint-level controls are used together.</div>
+            </section>
+
+            <section id="topic16">
+                <div class="image-icon"><img src="images/access-directory.webp" alt="Directory based access diagram">
+                </div>
+                <h2>16. Access Directory</h2>
+                <p>
+                    Directory Services Users, Computers, Groups और अन्य Network Resources की information को
+                    centrally store और manage करने का तरीका provide करती हैं। Enterprise Environment में
+                    Directory-based Access Management का उपयोग Users को authenticate करने और authorization
+                    policies apply करने के लिए किया जा सकता है।
+                </p>
+                <h3>Access Management</h3>
+                <ul>
+                    <li><strong>Authentication:</strong> Verifies who a user or device is.</li>
+                    <li><strong>Authorization:</strong> Determines what an authenticated identity is allowed to do.</li>
+                    <li><strong>Account management:</strong> Maintains user and group information.</li>
+                    <li><strong>Policy enforcement:</strong> Applies organizational security rules.</li>
+                </ul>
+            </section>
+
+            <section id="topic17">
+                <div class="image-icon"><img src="images/tor-network.webp" alt="TOR Network diagram"></div>
+                <h2>17. TOR Network</h2>
+                <h3>Definition</h3>
+                <p>
+                    Tor (The Onion Router) एक Network है जिसे multiple relays के through Traffic route करके
+                    privacy improve करने के लिए design किया गया है। इसका design किसी single point के लिए
+                    User Activity को final destination से directly link करना अधिक difficult बनाता है।
+                </p>
+                <h3>Basic Concept</h3>
+                <div class="flow">User → Tor Entry Relay → Intermediate Relay(s) → Exit Relay → Destination</div>
+                <h3>Security and Privacy Considerations</h3>
+                <p>
+                    Tor can be used for legitimate privacy and research purposes, but the anonymity properties
+                    can also be abused. Organizations may therefore monitor and manage Tor-related traffic
+                    according to their security policies.
+                </p>
+            </section>
+
+            <section id="topic18">
+                <div class="image-icon"><img src="images/layer1-layer2-layer3-devices.webp"
+                        alt="Layer 1, Layer 2 and Layer 3 Networking Devices diagram"></div>
+                <h2>18. Networking Devices (Layer 1, 2, 3)</h2>
+                <table>
+                    <tr>
+                        <th>Layer</th>
+                        <th>Common Device</th>
+                        <th>Primary Role</th>
+                    </tr>
+                    <tr>
+                        <td>Layer 1 – Physical</td>
+                        <td>Hub, repeater, cables/media</td>
+                        <td>Transmission of physical signals/bits</td>
+                    </tr>
+                    <tr>
+                        <td>Layer 2 – Data Link</td>
+                        <td>Switch, bridge</td>
+                        <td>Frame forwarding using link-layer information</td>
+                    </tr>
+                    <tr>
+                        <td>Layer 3 – Network</td>
+                        <td>Router</td>
+                        <td>Packet forwarding between IP networks</td>
+                    </tr>
+                </table>
+                <h3>Importance in Security</h3>
+                <p>
+                    Understanding the layer at which a device primarily operates helps in selecting appropriate
+                    security controls. For example, MAC-based controls are associated with Layer 2 while
+                    IP routing and many network-layer policies operate at Layer 3.
+                </p>
+            </section>
+
+            <section id="topic19">
+                <div class="image-icon"><img src="images/network-attacks.webp" alt="Network Layer Attacks diagram">
+                </div>
+                <h2>19. Different Types of Network Layer Attacks</h2>
+                <h3>Introduction</h3>
+                <p>
+                    Network Attacks Communication, Addressing, Routing, Services या Network Devices की
+                    weaknesses का misuse करने का प्रयास करते हैं। ऐसे attacks Confidentiality, Integrity या
+                    Availability को target कर सकते हैं।
+                </p>
+                <div class="image-icon"><img src="network_security_images/network_attacks.svg"
+                        alt="Common network attacks diagram"></div>
+                <h3>Common Attack Categories</h3>
+                <ul>
+                    <li><strong>DoS/DDoS:</strong> Attempts to make a service or network resource unavailable by
+                        overwhelming it or exhausting resources.</li>
+                    <li><strong>IP spoofing:</strong> Uses a forged source IP address in network traffic.</li>
+                    <li><strong>ARP spoofing/poisoning:</strong> Manipulates ARP information in local IPv4 networks to
+                        associate an attacker's MAC address with another IP address.</li>
+                    <li><strong>DNS attacks:</strong> Can include manipulation, abuse or disruption of name resolution.
+                    </li>
+                    <li><strong>Scanning:</strong> Attempts to identify reachable hosts, services or ports.</li>
+                    <li><strong>Man-in-the-middle attacks:</strong> An attacker attempts to position themselves between
+                        communicating parties to observe or manipulate traffic.</li>
+                    <li><strong>Routing attacks:</strong> Attempt to manipulate or disrupt routing information or
+                        forwarding behavior.</li>
+                </ul>
+                <div class="warning-box"><strong>Protection:</strong> Segmentation, access controls, secure protocols,
+                    monitoring,
+                    firewalls and IDS/IPS can help reduce the risk or impact of network attacks.</div>
+            </section>
+
+            <section id="topic20">
+                <div class="image-icon"><img src="images/firewall.webp" alt="Firewall architecture diagram"></div>
+                <h2>20. Firewall</h2>
+                <h3>Definition</h3>
+                <p>
+                    Firewall एक security control होता है, जो defined Rules या Policies के अनुसार Network
+                    Traffic को monitor और control करता है। इसे Hardware, Software या दोनों के combination
+                    के रूप में implement किया जा सकता है।
+                </p>
+                <div class="image-icon"><img src="network_security_images/firewall_dmz.svg"
+                        alt="Firewall and DMZ architecture diagram"></div>
+                <h3>Basic Working</h3>
+                <div class="flow">Incoming / Outgoing Traffic → Firewall Policy Check → Allow / Deny / Log → Destination
+                </div>
+                <h3>Functions</h3>
+                <ul>
+                    <li>Controls inbound and outbound traffic.</li>
+                    <li>Enforces access-control rules.</li>
+                    <li>Restricts unwanted services or connections.</li>
+                    <li>Can provide logging and alerts.</li>
+                    <li>Can separate trusted and untrusted network zones.</li>
+                </ul>
+            </section>
+
+            <section id="topic21">
+                <div class="image-icon"><img src="images/acl.webp" alt="Access Control List diagram"></div>
+                <h2>21. ACL</h2>
+                <h3>Definition</h3>
+                <p>
+                    ACL (Access Control List) Rules का एक collection होता है, जो यह specify करता है कि कौन-सा
+                    Traffic या Access permit किया जाएगा और कौन-सा deny किया जाएगा। ACL का उपयोग Routers,
+                    Switches, Firewalls और अन्य Network Security Systems पर किया जा सकता है।
+                </p>
+                <h3>Common Matching Criteria</h3>
+                <ul>
+                    <li>Source IP address.</li>
+                    <li>Destination IP address.</li>
+                    <li>Protocol.</li>
+                    <li>Source or destination port.</li>
+                    <li>Direction or interface, depending on the device.</li>
+                </ul>
+                <div class="remember-box"><strong>Exam Point:</strong> ACLs implement policy through ordered rules.
+                    A correct rule order and a clear default behavior are important for predictable results.</div>
+            </section>
+
+            <section id="topic22">
+                <div class="image-icon"><img src="images/packet-filtering.webp" alt="Packet Filtering diagram"></div>
+                <h2>22. Packet Filtering</h2>
+                <p>
+                    Packet Filtering एक Firewall या Security Mechanism होता है जिसमें Packets को defined
+                    criteria के आधार पर examine किया जाता है और फिर उन्हें permit या deny किया जाता है।
+                    इसके लिए Source Address, Destination Address, Protocol और Ports जैसे criteria उपयोग किए जाते हैं।
+                </p>
+                <h3>Advantages</h3>
+                <ul>
+                    <li>Simple and comparatively fast.</li>
+                    <li>Useful for controlling known network services.</li>
+                    <li>Can reduce unwanted traffic before it reaches protected systems.</li>
+                </ul>
+                <h3>Limitations</h3>
+                <ul>
+                    <li>Basic filtering has limited awareness of application context.</li>
+                    <li>Complex rule sets can become difficult to manage.</li>
+                    <li>It should be combined with other security controls where appropriate.</li>
+                </ul>
+            </section>
+
+            <section id="topic23">
+                <div class="image-icon"><img src="images/dmz.webp" alt="DMZ architecture diagram"></div>
+                <h2>23. DMZ</h2>
+                <h3>Definition</h3>
+                <p>
+                    DMZ (Demilitarized Zone) एक Network Segment होता है, जिसे Publicly Reachable Services को
+                    Organization के Internal Network से isolate करने के लिए बनाया जाता है। Web Servers जैसी
+                    Public-facing Systems को DMZ में रखा जा सकता है, जिससे Internal Network का direct exposure
+                    कम करने में सहायता मिलती है।
+                </p>
+                <h3>Basic Architecture</h3>
+                <div class="flow">Internet → Firewall → DMZ (Public Services) → Internal Firewall/Policy → Internal
+                    Network</div>
+                <h3>Benefits</h3>
+                <ul>
+                    <li>Provides network segmentation.</li>
+                    <li>Limits direct exposure of internal systems.</li>
+                    <li>Allows security policies to differ between public services and internal resources.</li>
+                </ul>
+            </section>
+
+            <section id="topic24">
+                <div class="image-icon"><img src="images/alerts-audit-trails.webp"
+                        alt="Alerts and Audit Trails diagram">
+                </div>
+                <h2>24. Alerts and Audit Trails</h2>
+                <h3>Alerts</h3>
+                <p>
+                    Alert एक notification होता है, जो तब generate होता है जब Security Device या Monitoring
+                    System किसी ऐसे event को detect करता है जो configured condition या threat indicator से
+                    match करता है। Alerts के द्वारा Administrator को important security events की जानकारी
+                    प्राप्त होती है।
+                </p>
+                <h3>Audit Trails</h3>
+                <p>
+                    Audit Trail Security-related Activities का record होता है, जैसे Authentication Attempts,
+                    Configuration Changes, Access Events और Network Events। Logs को Troubleshooting, Monitoring
+                    और Incident Investigation के समय review किया जा सकता है।
+                </p>
+                <h3>Importance</h3>
+                <ul>
+                    <li>Helps identify suspicious activity.</li>
+                    <li>Supports incident investigation.</li>
+                    <li>Assists troubleshooting.</li>
+                    <li>Provides accountability and historical records.</li>
+                    <li>Supports security monitoring and compliance requirements where applicable.</li>
+                </ul>
+            </section>
+
+            <section id="topic25">
+                <div class="image-icon"><img src="images/ids-ips.webp" alt="IDS and IPS diagram"></div>
+                <h2>25. IDS, IPS and Its Types &amp; Setup</h2>
+                <div class="image-icon"><img src="network_security_images/ids_ips.svg" alt="IDS and IPS diagram"></div>
+                <h3>IDS – Intrusion Detection System</h3>
+                <p>
+                    IDS (Intrusion Detection System) Network या System Activity को monitor करता है और जब
+                    known malicious patterns, abnormal behavior या configured policies से match करने वाली
+                    activity detect होती है, तब Alert generate करता है। IDS मुख्य रूप से Detection और
+                    Alerting का काम करता है।
+                </p>
+                <h3>IPS – Intrusion Prevention System</h3>
+                <p>
+                    IPS (Intrusion Prevention System) Detection के साथ preventive action भी perform करता है।
+                    Configuration और Security Policy के अनुसार यह suspicious Traffic को block या drop कर सकता है।
+                </p>
+
+                <table>
+                    <tr>
+                        <th>Feature</th>
+                        <th>IDS</th>
+                        <th>IPS</th>
+                    </tr>
+                    <tr>
+                        <td>Primary purpose</td>
+                        <td>Detect and alert</td>
+                        <td>Detect and prevent</td>
+                    </tr>
+                    <tr>
+                        <td>Typical action</td>
+                        <td>Generate alerts/logs</td>
+                        <td>Block, drop or otherwise prevent according to policy</td>
+                    </tr>
+                    <tr>
+                        <td>Deployment consideration</td>
+                        <td>Can monitor traffic without being inline</td>
+                        <td>Often deployed inline for prevention</td>
+                    </tr>
+                </table>
+
+                <h3>Types of IDS/IPS Detection</h3>
+
+                <h4>1. Signature-Based</h4>
+                <p>
+                    Signature-based detection compares observed activity with known patterns or signatures
+                    of previously identified threats. It can be effective for known threats but may not detect
+                    new attacks for which no suitable signature exists.
+                </p>
+
+                <h4>2. Anomaly-Based</h4>
+                <p>
+                    Anomaly-based detection identifies activity that deviates from an established or expected
+                    baseline. It can help identify previously unknown behavior, but unusual legitimate
+                    activity may also generate false positives.
+                </p>
+
+                <h4>3. Policy-Based</h4>
+                <p>
+                    Policy-based detection checks activity against explicitly defined organizational security
+                    policies. It can identify violations of configured rules and acceptable-use requirements.
+                </p>
+
+                <h4>4. Honeypot-Based</h4>
+                <p>
+                    A honeypot is a deliberately controlled system or resource designed to attract or observe
+                    unauthorized activity. Honeypot-based security monitoring can provide information about
+                    attack techniques and suspicious behavior without exposing ordinary production resources.
+                </p>
+
+                <h3>Basic IDS/IPS Setup</h3>
+                <div class="flow">Network Traffic
+                    ↓
+                    Traffic Capture / Monitoring Point
+                    ↓
+                    IDS/IPS Detection Engine
+                    ↓
+                    Signature / Anomaly / Policy Analysis
+                    ↓
+                    Alert + Log
+                    ↓
+                    IPS Policy Action (when enabled)
+                    ↓
+                    Security Administrator / Monitoring System</div>
+
+                <h3>General Setup Steps</h3>
+                <ol>
+                    <li>Identify the network segment and assets that need monitoring.</li>
+                    <li>Choose an appropriate IDS/IPS deployment point.</li>
+                    <li>Configure network interfaces and management access securely.</li>
+                    <li>Define detection signatures, policies and relevant thresholds.</li>
+                    <li>Configure alerting and logging.</li>
+                    <li>Test detection using authorized and controlled test traffic.</li>
+                    <li>Review alerts and tune rules to reduce unnecessary false positives.</li>
+                    <li>Maintain signatures, software and security policies.</li>
+                </ol>
+
+                <div class="warning-box">
+                    <strong>Important:</strong> IDS/IPS configuration should be tested carefully. Incorrect rules may
+                    generate excessive alerts or, in the case of prevention controls, block legitimate traffic.
+                </div>
+            </section>
+
+            <section>
+                <h2>Unit I – Quick Revision</h2>
+                <div class="grid">
+                    <div class="mini"><strong>Network Basics</strong><br>Networks, IP Address, NAT, Subnets, DHCP, Ports
+                        and DNS.</div>
+                    <div class="mini"><strong>Network Infrastructure</strong><br>Routers, Switches and Layer 1/2/3
+                        devices.</div>
+                    <div class="mini"><strong>Security Controls</strong><br>Endpoint solutions, ACL, Firewall, Packet
+                        Filtering and DMZ.</div>
+                    <div class="mini"><strong>Detection &amp; Prevention</strong><br>Alerts, Audit Trails, IDS, IPS and
+                        detection methods.</div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Important Written-Exam Questions</h2>
+                <h3>Very Short Questions</h3>
+                <ol>
+                    <li>What is a computer network?</li>
+                    <li>What is an IP Address?</li>
+                    <li>Define NAT.</li>
+                    <li>What is subnetting?</li>
+                    <li>What is DHCP?</li>
+                    <li>What is a port number?</li>
+                    <li>Define DNS.</li>
+                    <li>What is a proxy server?</li>
+                    <li>What is a VPN?</li>
+                    <li>What is a firewall?</li>
+                    <li>What is an ACL?</li>
+                    <li>What is a DMZ?</li>
+                    <li>What is IDS?</li>
+                    <li>What is IPS?</li>
+                </ol>
+
+                <h3>Short-Answer Questions</h3>
+                <ol>
+                    <li>Explain different types of computer networks.</li>
+                    <li>Differentiate public and private IP addresses.</li>
+                    <li>Explain the working of NAT and its types.</li>
+                    <li>Explain subnetting and its advantages.</li>
+                    <li>Describe the DHCP process.</li>
+                    <li>Explain DNS and common DNS records.</li>
+                    <li>Explain the purpose of proxy servers and VPNs.</li>
+                    <li>Explain the OSI model.</li>
+                    <li>Compare OSI and TCP/IP models.</li>
+                    <li>Differentiate TCP and UDP.</li>
+                    <li>Explain the functions of routers and switches.</li>
+                    <li>Explain Layer 1, Layer 2 and Layer 3 networking devices.</li>
+                </ol>
+
+                <h3>Long-Answer Questions</h3>
+                <ol>
+                    <li>Explain the major concepts of network security and discuss different types of networks.</li>
+                    <li>Explain IP addressing, NAT, subnetting and DHCP in detail.</li>
+                    <li>Explain the OSI and TCP/IP models with their layers and functions.</li>
+                    <li>Compare TCP and UDP in detail with suitable examples.</li>
+                    <li>Explain routers, switches and Layer 1, Layer 2 and Layer 3 networking devices.</li>
+                    <li>Explain different types of network attacks and their security implications.</li>
+                    <li>What is a firewall? Explain ACL, packet filtering, DMZ, alerts and audit trails.</li>
+                    <li>Explain IDS and IPS. Discuss signature-based, anomaly-based, policy-based and honeypot-based
+                        detection.</li>
+                    <li>Explain the general setup and working of an IDS/IPS system.</li>
+                </ol>
+
+                <div class="info-box">
+                    <strong>8–10 Marks Answer Tip:</strong> Start with a clear definition, explain the concept in
+                    proper paragraphs, add types or working where applicable, use a comparison table or
+                    flow where useful, and finish with advantages, limitations, applications or a conclusion.
+                </div>
+            </section>
+
+            <section>
+                <h2>Conclusion</h2>
+                <p>
+                    Network security depends on both strong networking fundamentals and appropriate security
+                    controls. Understanding IP addressing, subnetting, DNS, ports, routers and switches helps
+                    a student understand how network communication takes place. Firewalls, ACLs, DMZs,
+                    endpoint controls, logging, IDS and IPS then provide mechanisms for controlling,
+                    monitoring, detecting and responding to suspicious network activity.
+                </p>
+            </section>
+
+        </main>
+    </div>
+
+</body>
+
+</html>
