@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FB7SX0P0D3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-FB7SX0P0D3');
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inheritance in Java</title>
+    <link rel="stylesheet" href="../../../semester-1/style.css">
+    <link rel="icon" href="../../../../../../../assets/images/logo.jpeg">
+</head>
+
+<body>
+    <div class="page">
+        <aside class="sidebar">
+            <h2>Topics</h2>
+            <a href="#definition">Definition of Inheritance</a>
+            <a href="#protected-data">Protected Data</a>
+            <a href="#private-data">Private Data</a>
+            <a href="#public-data">Public Data</a>
+            <a href="#constructor-chaining">Constructor Chaining</a>
+            <a href="#order-invocation">Order of Invocation</a>
+            <a href="#types">Types of Inheritance</a>
+            <a href="#single">Single Inheritance</a>
+            <a href="#multilevel">Multilevel Inheritance</a>
+            <a href="#hierarchical">Hierarchical Inheritance</a>
+            <a href="#hybrid">Hybrid Inheritance</a>
+            <a href="#access-control">Access Control: Private Vs Public Vs Protected Vs Default</a>
+        </aside>
+        <main class="content">
+            <div class="hero">
+                <h1>Inheritance</h1>
+            </div>
+            <section id="definition">
+                <h2>Definition of Inheritance</h2>
+
+                <p><strong>Inheritance</strong> object-oriented programming का एक important concept है जिसमें एक class
+                    दूसरी class की properties और methods को acquire कर सकती है। जिस class से features inherit किए जाते
+                    हैं उसे parent class, base class या superclass कहा जाता है। जो class features receive करती है उसे
+                    child class, derived class या subclass कहा जाता है।</p>
+                <p>Java में inheritance का use code reusability, method overriding और class relationship represent करने
+                    के लिए किया जाता है। अगर कई classes में कुछ common data और methods हैं, तो उन्हें parent class में
+                    define करके child classes में reuse किया जा सकता है। इससे duplicate code कम होता है और program
+                    maintain करना आसान होता है।</p>
+                <div class="image-icon"><img src="" alt="Inheritance Basic Diagram">
+                    <p>Image Placeholder: Basic Inheritance Diagram</p>
+                </div>
+                <h4>Basic Syntax</h4>
+                <pre>class Parent {
+    // parent class members
+}
+
+class Child extends Parent {
+    // child class members
+}</pre>
+                <h4>Simple Example</h4>
+                <pre>class Animal {
+    void eat() {
+        System.out.println("Animal eats food");
+    }
+}
+
+class Dog extends Animal {
+    void bark() {
+        System.out.println("Dog barks");
+    }
+
+    public static void main(String[] args) {
+        Dog d = new Dog();
+
+        d.eat();
+        d.bark();
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Animal eats food<br>Dog barks</div>
+                <h4>Important Terms</h4>
+                <table>
+                    <tr>
+                        <th>Term</th>
+                        <th>Meaning</th>
+                    </tr>
+                    <tr>
+                        <td>Superclass</td>
+                        <td>जिस class से members inherit होते हैं।</td>
+                    </tr>
+                    <tr>
+                        <td>Subclass</td>
+                        <td>जो class members inherit करती है।</td>
+                    </tr>
+                    <tr>
+                        <td><code>extends</code></td>
+                        <td>Java keyword जो inheritance define करता है।</td>
+                    </tr>
+                    <tr>
+                        <td>Reusability</td>
+                        <td>Existing code को new class में use करना।</td>
+                    </tr>
+                </table>
+                <h4>Need of Inheritance</h4>
+                <ul>
+                    <li>Common code को बार-बार लिखने से बचने के लिए।</li>
+                    <li>Class relationship represent करने के लिए।</li>
+                    <li>Program को organized और maintainable बनाने के लिए।</li>
+                    <li>Method overriding के through runtime polymorphism achieve करने के लिए।</li>
+                    <li>Large projects में code reuse बढ़ाने के लिए।</li>
+                </ul>
+                <div class="note-box"><b>Real Life Example:</b><br>Person class में name और age common properties हो
+                    सकती हैं। Student और Teacher classes Person class से इन्हें inherit कर सकती हैं।</div>
+                <div class="remember-box"><b>Remember:</b><br>Java में inheritance implement करने के लिए
+                    <code>extends</code> keyword use किया जाता है।
+                </div>
+
+            </section>
+            <section id="protected-data">
+                <h2>Protected Data</h2>
+
+                <p><strong>protected</strong> access modifier Java में data और methods को same class, same package और
+                    subclasses में accessible बनाता है। Protected data inheritance में useful होता है क्योंकि child
+                    class parent class के protected members को directly access कर सकती है, even अगर child class
+                    different package में हो, लेकिन access inheritance relation के through होना चाहिए।</p>
+                <p>Protected data private से ज्यादा accessible और public से कम accessible होता है। इसे तब use किया जाता
+                    है जब parent class अपने members child classes को access देना चाहती है, लेकिन पूरी दुनिया को direct
+                    access नहीं देना चाहती।</p>
+                <div class="image-icon"><img src="" alt="Protected Access Diagram">
+                    <p>Image Placeholder: Protected Access in Inheritance</p>
+                </div>
+                <h4>Example</h4>
+                <pre>class Animal {
+    protected String name = "Dog";
+}
+
+class Dog extends Animal {
+    void display() {
+        System.out.println("Name: " + name);
+    }
+
+    public static void main(String[] args) {
+        Dog d = new Dog();
+        d.display();
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Name: Dog</div>
+                <h4>Why Protected is Useful</h4>
+                <ul>
+                    <li>Child class को parent data access करने की permission देता है।</li>
+                    <li>Data को completely public नहीं बनाना पड़ता।</li>
+                    <li>Inheritance-based design में controlled access देता है।</li>
+                    <li>Same package classes भी protected members access कर सकती हैं।</li>
+                </ul>
+                <h4>Protected Access Scope</h4>
+                <table>
+                    <tr>
+                        <th>Location</th>
+                        <th>Access Allowed?</th>
+                    </tr>
+                    <tr>
+                        <td>Same class</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Same package</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Subclass in same package</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Subclass in different package</td>
+                        <td>Yes, through inheritance</td>
+                    </tr>
+                    <tr>
+                        <td>Non-subclass in different package</td>
+                        <td>No</td>
+                    </tr>
+                </table>
+                <div class="remember-box"><b>Remember:</b><br>Protected members inheritance में child class को
+                    controlled access देने के लिए useful होते हैं।</div>
+
+            </section>
+            <section id="private-data">
+                <h2>Private Data</h2>
+
+                <p><strong>private</strong> access modifier Java में सबसे restrictive access देता है। Private data केवल
+                    उसी class के अंदर accessible होता है जिसमें वह declared है। Private members child class में inherit
+                    तो technically class structure का part नहीं बनते जिस तरह directly access हो सकें; child class उन्हें
+                    direct access नहीं कर सकती।</p>
+                <p>Private data encapsulation और data hiding के लिए use होता है। अगर किसी variable को direct
+                    modification से protect करना हो, तो उसे private बनाया जाता है और public getter तथा setter methods के
+                    through controlled access दिया जाता है।</p>
+                <div class="image-icon"><img src="" alt="Private Data Encapsulation Diagram">
+                    <p>Image Placeholder: Private Data and Encapsulation</p>
+                </div>
+                <h4>Private Data Example</h4>
+                <pre>class Student {
+    private int marks = 85;
+
+    void displayMarks() {
+        System.out.println("Marks: " + marks);
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Student s = new Student();
+
+        // System.out.println(s.marks); // Error
+        s.displayMarks();
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Marks: 85</div>
+                <h4>Accessing Private Data using Getter and Setter</h4>
+                <pre>class Student {
+    private int marks;
+
+    public void setMarks(int m) {
+        marks = m;
+    }
+
+    public int getMarks() {
+        return marks;
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Student s = new Student();
+
+        s.setMarks(90);
+        System.out.println(s.getMarks());
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>90</div>
+                <h4>Benefits of Private Data</h4>
+                <ul>
+                    <li>Data hiding provide करता है।</li>
+                    <li>Direct unauthorized access रोकता है।</li>
+                    <li>Encapsulation implement करने में help करता है।</li>
+                    <li>Getter/setter से validation apply की जा सकती है।</li>
+                    <li>Class internal implementation को safe रखता है।</li>
+                </ul>
+                <div class="note-box"><b>Real Life Example:</b><br>Bank account balance को private रखना चाहिए। User
+                    direct balance change न करे, बल्कि deposit और withdraw methods से controlled change हो।</div>
+                <div class="remember-box"><b>Remember:</b><br>Private members same class के बाहर direct access नहीं
+                    होते, child class में भी नहीं।</div>
+
+            </section>
+            <section id="public-data">
+                <h2>Public Data</h2>
+
+                <p><strong>public</strong> access modifier Java में सबसे open access देता है। Public data, methods या
+                    classes को same class, same package, different package और subclasses सभी जगह से access किया जा सकता
+                    है। Public members inheritance में child class के अंदर भी directly accessible होते हैं।</p>
+                <p>Public access easy होता है, लेकिन data variables को public बनाना हमेशा good practice नहीं माना जाता,
+                    क्योंकि कोई भी class उन्हें direct modify कर सकती है। Normally methods को public रखा जाता है और data
+                    को private/protected रखा जाता है।</p>
+                <div class="image-icon"><img src="" alt="Public Access Diagram">
+                    <p>Image Placeholder: Public Access Modifier Diagram</p>
+                </div>
+                <h4>Public Method Example</h4>
+                <pre>class Student {
+    public void display() {
+        System.out.println("Public method can be accessed");
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Student s = new Student();
+        s.display();
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Public method can be accessed</div>
+                <h4>Public Data Example</h4>
+                <pre>class Student {
+    public String name = "Brajkant";
+}
+
+class Main {
+    public static void main(String[] args) {
+        Student s = new Student();
+        System.out.println(s.name);
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Brajkant</div>
+                <h4>When to Use Public</h4>
+                <ul>
+                    <li>जब method को other classes से access कराना जरूरी हो।</li>
+                    <li>API methods या service methods expose करने के लिए।</li>
+                    <li>Main class को outside package से accessible बनाना हो।</li>
+                    <li>Constants को public static final के रूप में expose करना हो।</li>
+                </ul>
+                <h4>Careful Use</h4>
+                <p>Public variables को avoid करना चाहिए क्योंकि वे direct modification allow करते हैं। Better practice
+                    यह है कि variables private रखें और public getter/setter methods दें।</p>
+                <div class="remember-box"><b>Remember:</b><br>Public members हर जगह accessible होते हैं, इसलिए public
+                    data का use carefully करना चाहिए।</div>
+
+            </section>
+            <section id="constructor-chaining">
+                <h2>Constructor Chaining</h2>
+
+                <p><strong>Constructor chaining</strong> का मतलब है एक constructor से दूसरे constructor को call करना।
+                    Java में constructor chaining same class के अंदर <code>this()</code> से और parent class के
+                    constructor को call करने के लिए <code>super()</code> से की जाती है। Inheritance में constructor
+                    chaining बहुत important है क्योंकि child class का constructor parent class के constructor को call
+                    करता है।</p>
+                <p>जब child class object create होता है, तो सबसे पहले parent class constructor execute होता है, फिर
+                    child class constructor execute होता है। इससे parent part पहले initialize होता है और फिर child part
+                    initialize होता है।</p>
+                <div class="image-icon"><img src="" alt="Constructor Chaining Diagram">
+                    <p>Image Placeholder: Constructor Chaining with super()</p>
+                </div>
+                <h4>Constructor Chaining in Same Class using this()</h4>
+                <pre>class Student {
+    String name;
+    int roll;
+
+    Student() {
+        this("Unknown", 0);
+    }
+
+    Student(String name, int roll) {
+        this.name = name;
+        this.roll = roll;
+    }
+
+    void display() {
+        System.out.println(name + " " + roll);
+    }
+
+    public static void main(String[] args) {
+        Student s = new Student();
+        s.display();
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Unknown 0</div>
+                <h4>Constructor Chaining in Inheritance using super()</h4>
+                <pre>class Animal {
+    Animal() {
+        System.out.println("Animal constructor");
+    }
+}
+
+class Dog extends Animal {
+    Dog() {
+        super();
+        System.out.println("Dog constructor");
+    }
+
+    public static void main(String[] args) {
+        Dog d = new Dog();
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Animal constructor<br>Dog constructor</div>
+                <h4>Important Rules</h4>
+                <ul>
+                    <li><code>this()</code> same class के constructor को call करता है।</li>
+                    <li><code>super()</code> parent class के constructor को call करता है।</li>
+                    <li><code>this()</code> या <code>super()</code> constructor की first statement होनी चाहिए।</li>
+                    <li>एक constructor में <code>this()</code> और <code>super()</code> दोनों एक साथ first statement नहीं
+                        हो सकते।</li>
+                    <li>अगर <code>super()</code> नहीं लिखा, तो compiler automatically no-argument <code>super()</code>
+                        insert कर सकता है।</li>
+                </ul>
+                <h4>Parameterized Parent Constructor</h4>
+                <pre>class Person {
+    String name;
+
+    Person(String name) {
+        this.name = name;
+    }
+}
+
+class Student extends Person {
+    int roll;
+
+    Student(String name, int roll) {
+        super(name);
+        this.roll = roll;
+    }
+
+    void display() {
+        System.out.println(name + " " + roll);
+    }
+
+    public static void main(String[] args) {
+        Student s = new Student("Brajkant", 101);
+        s.display();
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Brajkant 101</div>
+                <div class="remember-box"><b>Remember:</b><br>Inheritance में parent constructor पहले execute होता है,
+                    child constructor बाद में।</div>
+
+            </section>
+            <section id="order-invocation">
+                <h2>Order of Invocation</h2>
+
+                <p>Inheritance में जब child class का object create होता है, तो constructors का execution एक specific
+                    order में होता है। Java पहले topmost parent class constructor को call करता है, फिर next child और अंत
+                    में actual child class constructor execute करता है। इसे order of invocation कहा जाता है।</p>
+                <p>Constructor invocation order इसलिए important है क्योंकि child object में parent class का part भी होता
+                    है। Parent part initialize हुए बिना child part properly initialize नहीं माना जाता।</p>
+                <div class="image-icon"><img src="" alt="Order of Constructor Invocation Diagram">
+                    <p>Image Placeholder: Order of Invocation in Inheritance</p>
+                </div>
+                <h4>Example</h4>
+                <pre>class A {
+    A() {
+        System.out.println("Constructor of A");
+    }
+}
+
+class B extends A {
+    B() {
+        System.out.println("Constructor of B");
+    }
+}
+
+class C extends B {
+    C() {
+        System.out.println("Constructor of C");
+    }
+
+    public static void main(String[] args) {
+        C obj = new C();
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Constructor of A<br>Constructor of B<br>Constructor of C</div>
+                <h4>Execution Flow</h4>
+                <pre>new C()
+  ↓
+C constructor calls B constructor
+  ↓
+B constructor calls A constructor
+  ↓
+A constructor executes first
+  ↓
+B constructor executes
+  ↓
+C constructor executes</pre>
+                <h4>Why Parent Constructor Executes First</h4>
+                <ul>
+                    <li>Child object में parent class का inherited part भी होता है।</li>
+                    <li>Parent data members को पहले initialize करना जरूरी होता है।</li>
+                    <li>Child class parent members पर depend कर सकती है।</li>
+                    <li>Object construction top-to-bottom hierarchy में complete होता है।</li>
+                </ul>
+                <h4>Initialization Order in Java</h4>
+                <table>
+                    <tr>
+                        <th>Order</th>
+                        <th>Process</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Parent class static members load होते हैं।</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Child class static members load होते हैं।</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Parent instance variables और constructor execute होते हैं।</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Child instance variables और constructor execute होते हैं।</td>
+                    </tr>
+                </table>
+                <div class="note-box"><b>Real Life Example:</b><br>Building में पहले foundation बनती है, फिर floors बनते
+                    हैं। इसी तरह object creation में parent class पहले initialize होती है, फिर child class।</div>
+                <div class="remember-box"><b>Remember:</b><br>Constructor invocation order parent से child की direction
+                    में होता है।</div>
+
+            </section>
+            <section id="types">
+                <h2>Types of Inheritance</h2>
+
+                <p>Inheritance के different types class relationships को represent करते हैं। Java में class-based
+                    inheritance के through single, multilevel और hierarchical inheritance directly supported हैं।
+                    Multiple और hybrid inheritance classes के through directly supported नहीं हैं, लेकिन interfaces के
+                    through similar behavior achieve किया जा सकता है।</p>
+                <div class="image-icon"><img src="" alt="Types of Inheritance Diagram">
+                    <p>Image Placeholder: Types of Inheritance Diagram</p>
+                </div>
+                <h4>Types Overview</h4>
+                <table>
+                    <tr>
+                        <th>Type</th>
+                        <th>Meaning</th>
+                        <th>Java Class Support</th>
+                    </tr>
+                    <tr>
+                        <td>Single Inheritance</td>
+                        <td>One child class one parent class से inherit करती है।</td>
+                        <td>Supported</td>
+                    </tr>
+                    <tr>
+                        <td>Multilevel Inheritance</td>
+                        <td>Inheritance chain बनती है।</td>
+                        <td>Supported</td>
+                    </tr>
+                    <tr>
+                        <td>Hierarchical Inheritance</td>
+                        <td>Multiple child classes same parent से inherit करती हैं।</td>
+                        <td>Supported</td>
+                    </tr>
+                    <tr>
+                        <td>Multiple Inheritance</td>
+                        <td>One child multiple parents से inherit करती है।</td>
+                        <td>Classes के through not supported</td>
+                    </tr>
+                    <tr>
+                        <td>Hybrid Inheritance</td>
+                        <td>Multiple inheritance types का combination।</td>
+                        <td>Classes के through directly not supported</td>
+                    </tr>
+                </table>
+                <h4>Why Java Does Not Support Multiple Inheritance with Classes</h4>
+                <p>Java classes के through multiple inheritance support नहीं करती क्योंकि इससे ambiguity problem हो सकती
+                    है। अगर two parent classes में same method हो और child class दोनों को inherit करे, तो compiler
+                    confuse हो सकता है कि कौन-सा method call हो। इसे diamond problem भी कहा जाता है।</p>
+                <div class="remember-box"><b>Remember:</b><br>Java classes से single, multilevel और hierarchical
+                    inheritance support करती है। Multiple inheritance interfaces से achieve किया जाता है।</div>
+
+            </section>
+            <section id="single">
+                <h2>Single Inheritance</h2>
+
+                <p><strong>Single inheritance</strong> में एक child class एक parent class से inherit करती है। यह
+                    inheritance का simplest form है। इसमें child class parent class के accessible members को reuse कर
+                    सकती है और अपने additional members भी add कर सकती है।</p>
+                <div class="image-icon"><img src="" alt="Single Inheritance Diagram">
+                    <p>Image Placeholder: Single Inheritance Diagram</p>
+                </div>
+                <h4>Syntax</h4>
+                <pre>class Parent {
+    // parent members
+}
+
+class Child extends Parent {
+    // child members
+}</pre>
+                <h4>Example</h4>
+                <pre>class Vehicle {
+    void start() {
+        System.out.println("Vehicle starts");
+    }
+}
+
+class Bike extends Vehicle {
+    void ride() {
+        System.out.println("Bike is riding");
+    }
+
+    public static void main(String[] args) {
+        Bike b = new Bike();
+
+        b.start();
+        b.ride();
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Vehicle starts<br>Bike is riding</div>
+                <h4>Explanation</h4>
+                <p>इस example में <code>Bike</code> class <code>Vehicle</code> class से inherit कर रही है। इसलिए Bike
+                    object <code>start()</code> method भी call कर सकता है और अपना <code>ride()</code> method भी call कर
+                    सकता है।</p>
+                <h4>Uses</h4>
+                <ul>
+                    <li>Simple parent-child relationship represent करने के लिए।</li>
+                    <li>Common methods को parent class में रखने के लिए।</li>
+                    <li>Code reuse करने के लिए।</li>
+                    <li>Basic OOP structure समझने के लिए।</li>
+                </ul>
+                <div class="note-box"><b>Real Life Example:</b><br>Vehicle parent class हो सकती है और Bike child class
+                    हो सकती है। Bike vehicle की basic properties inherit कर सकती है।</div>
+
+            </section>
+            <section id="multilevel">
+                <h2>Multilevel Inheritance</h2>
+
+                <p><strong>Multilevel inheritance</strong> में inheritance chain बनती है। एक class दूसरी class से
+                    inherit करती है और फिर कोई third class उस second class से inherit करती है। इस तरह grandparent →
+                    parent → child relationship बनता है।</p>
+                <div class="image-icon"><img src="" alt="Multilevel Inheritance Diagram">
+                    <p>Image Placeholder: Multilevel Inheritance Diagram</p>
+                </div>
+                <h4>Example</h4>
+                <pre>class Animal {
+    void eat() {
+        System.out.println("Animal eats");
+    }
+}
+
+class Dog extends Animal {
+    void bark() {
+        System.out.println("Dog barks");
+    }
+}
+
+class Puppy extends Dog {
+    void weep() {
+        System.out.println("Puppy weeps");
+    }
+
+    public static void main(String[] args) {
+        Puppy p = new Puppy();
+
+        p.eat();
+        p.bark();
+        p.weep();
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Animal eats<br>Dog barks<br>Puppy weeps</div>
+                <h4>Explanation</h4>
+                <p>यहाँ <code>Dog</code> class <code>Animal</code> से inherit कर रही है और <code>Puppy</code> class
+                    <code>Dog</code> से inherit कर रही है। इसलिए Puppy object Animal और Dog दोनों के accessible methods
+                    use कर सकता है।
+                </p>
+                <h4>Constructor Invocation in Multilevel Inheritance</h4>
+                <pre>class A {
+    A() {
+        System.out.println("A constructor");
+    }
+}
+
+class B extends A {
+    B() {
+        System.out.println("B constructor");
+    }
+}
+
+class C extends B {
+    C() {
+        System.out.println("C constructor");
+    }
+
+    public static void main(String[] args) {
+        C obj = new C();
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>A constructor<br>B constructor<br>C constructor</div>
+                <div class="remember-box"><b>Remember:</b><br>Multilevel inheritance में child class अपने parent और
+                    grandparent दोनों के accessible members use कर सकती है।</div>
+
+            </section>
+            <section id="hierarchical">
+                <h2>Hierarchical Inheritance</h2>
+
+                <p><strong>Hierarchical inheritance</strong> में multiple child classes same parent class से inherit
+                    करती हैं। इसका use तब होता है जब एक common parent class से अलग-अलग specialized classes बनानी हों।
+                </p>
+                <div class="image-icon"><img src="" alt="Hierarchical Inheritance Diagram">
+                    <p>Image Placeholder: Hierarchical Inheritance Diagram</p>
+                </div>
+                <h4>Example</h4>
+                <pre>class Animal {
+    void eat() {
+        System.out.println("Animal eats");
+    }
+}
+
+class Dog extends Animal {
+    void bark() {
+        System.out.println("Dog barks");
+    }
+}
+
+class Cat extends Animal {
+    void meow() {
+        System.out.println("Cat meows");
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Dog d = new Dog();
+        Cat c = new Cat();
+
+        d.eat();
+        d.bark();
+
+        c.eat();
+        c.meow();
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Animal eats<br>Dog barks<br>Animal eats<br>Cat meows</div>
+                <h4>Explanation</h4>
+                <p>यहाँ <code>Dog</code> और <code>Cat</code> दोनों <code>Animal</code> class से inherit कर रहे हैं।
+                    दोनों child classes parent class का <code>eat()</code> method use कर सकती हैं, लेकिन उनके अपने अलग
+                    methods भी हैं।</p>
+                <h4>Uses</h4>
+                <ul>
+                    <li>Common parent से कई related child classes बनाने के लिए।</li>
+                    <li>Code duplication reduce करने के लिए।</li>
+                    <li>Common behavior parent में और specific behavior child में रखने के लिए।</li>
+                    <li>Real-world categories represent करने के लिए।</li>
+                </ul>
+                <div class="note-box"><b>Real Life Example:</b><br>Person parent class हो सकती है और Student, Teacher,
+                    Staff child classes हो सकती हैं। Name और age common data parent में रखा जा सकता है।</div>
+
+            </section>
+            <section id="hybrid">
+                <h2>Hybrid Inheritance</h2>
+
+                <p><strong>Hybrid inheritance</strong> दो या अधिक inheritance types का combination होता है। For example,
+                    single + hierarchical या multilevel + hierarchical मिलकर hybrid structure बना सकते हैं। Java में
+                    classes के through hybrid inheritance directly support नहीं होती अगर उसमें multiple inheritance
+                    शामिल हो। लेकिन interfaces की help से hybrid-like structure achieve किया जा सकता है।</p>
+                <div class="image-icon"><img src="" alt="Hybrid Inheritance Diagram">
+                    <p>Image Placeholder: Hybrid Inheritance Diagram</p>
+                </div>
+                <h4>Hybrid Structure Concept</h4>
+                <pre>        A
+       / \
+      B   C
+       \ /
+        D</pre>
+                <p>ऊपर diagram में D class B और C दोनों से inherit करना चाहेगी। Classes के through Java में यह direct
+                    possible नहीं है क्योंकि Java multiple inheritance with classes support नहीं करती।</p>
+                <h4>Hybrid Using Interfaces</h4>
+                <pre>interface Printable {
+    void print();
+}
+
+interface Showable {
+    void show();
+}
+
+class Document implements Printable, Showable {
+    public void print() {
+        System.out.println("Printing document");
+    }
+
+    public void show() {
+        System.out.println("Showing document");
+    }
+
+    public static void main(String[] args) {
+        Document d = new Document();
+
+        d.print();
+        d.show();
+    }
+}</pre>
+                <div class="info-box"><b>Output:</b><br>Printing document<br>Showing document</div>
+                <h4>Why Interfaces Help</h4>
+                <ul>
+                    <li>Java class multiple interfaces implement कर सकती है।</li>
+                    <li>Interface ambiguity problem को reduce करता है।</li>
+                    <li>Hybrid-like behavior achieve किया जा सकता है।</li>
+                    <li>Flexible design possible होता है।</li>
+                </ul>
+                <h4>Important Point</h4>
+                <p>Java में class केवल एक class को extend कर सकती है, लेकिन multiple interfaces implement कर सकती है।
+                    इसलिए hybrid inheritance का practical design interfaces के through किया जाता है।</p>
+                <div class="remember-box"><b>Remember:</b><br>Java classes से hybrid inheritance directly support नहीं
+                    करती, लेकिन interfaces से hybrid-like design बनाया जा सकता है।</div>
+
+            </section>
+            <section id="access-control">
+                <h2>Access Control: Private Vs Public Vs Protected Vs Default</h2>
+
+                <p>Access control Java में classes, variables, methods और constructors की visibility decide करता है।
+                    Java में four main access levels होते हैं: <code>private</code>, <code>default</code>,
+                    <code>protected</code> और <code>public</code>. Access modifiers encapsulation और security के लिए
+                    important होते हैं।
+                </p>
+                <div class="image-icon"><img src="" alt="Java Access Modifiers Diagram">
+                    <p>Image Placeholder: Access Modifiers Scope Diagram</p>
+                </div>
+                <h4>Access Modifiers Overview</h4>
+                <table>
+                    <tr>
+                        <th>Modifier</th>
+                        <th>Same Class</th>
+                        <th>Same Package</th>
+                        <th>Subclass Different Package</th>
+                        <th>Other Package</th>
+                    </tr>
+                    <tr>
+                        <td><code>private</code></td>
+                        <td>Yes</td>
+                        <td>No</td>
+                        <td>No</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>Default</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                        <td>No</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td><code>protected</code></td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td><code>public</code></td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                    </tr>
+                </table>
+                <h4>Private Access</h4>
+                <pre>class Student {
+    private int marks = 90;
+
+    void show() {
+        System.out.println(marks);
+    }
+}</pre>
+                <p>Private member only same class के अंदर accessible होता है।</p>
+                <h4>Default Access</h4>
+                <pre>class Student {
+    int roll = 101;
+}</pre>
+                <p>अगर कोई modifier नहीं लिखा, तो default access होता है। Default members same package में accessible
+                    होते हैं।</p>
+                <h4>Protected Access</h4>
+                <pre>class Person {
+    protected String name = "Brajkant";
+}
+
+class Student extends Person {
+    void display() {
+        System.out.println(name);
+    }
+}</pre>
+                <p>Protected members same package और subclasses में accessible होते हैं।</p>
+                <h4>Public Access</h4>
+                <pre>public class Student {
+    public void display() {
+        System.out.println("Public method");
+    }
+}</pre>
+                <p>Public members हर जगह accessible होते हैं।</p>
+                <h4>Private vs Public vs Protected vs Default</h4>
+                <table>
+                    <tr>
+                        <th>Basis</th>
+                        <th>Private</th>
+                        <th>Default</th>
+                        <th>Protected</th>
+                        <th>Public</th>
+                    </tr>
+                    <tr>
+                        <td>Keyword</td>
+                        <td><code>private</code></td>
+                        <td>No keyword</td>
+                        <td><code>protected</code></td>
+                        <td><code>public</code></td>
+                    </tr>
+                    <tr>
+                        <td>Accessibility</td>
+                        <td>Only same class</td>
+                        <td>Same package</td>
+                        <td>Same package + subclass</td>
+                        <td>Everywhere</td>
+                    </tr>
+                    <tr>
+                        <td>Security</td>
+                        <td>Highest</td>
+                        <td>Package-level</td>
+                        <td>Controlled inheritance access</td>
+                        <td>Lowest control</td>
+                    </tr>
+                    <tr>
+                        <td>Common Use</td>
+                        <td>Data hiding</td>
+                        <td>Package internal code</td>
+                        <td>Inheritance-based access</td>
+                        <td>Public methods/classes</td>
+                    </tr>
+                </table>
+                <h4>Best Practice</h4>
+                <ul>
+                    <li>Variables को usually private रखें।</li>
+                    <li>Getter और setter methods से controlled access दें।</li>
+                    <li>Methods को requirement के according public/protected रखें।</li>
+                    <li>Inheritance में child class access के लिए protected use किया जा सकता है।</li>
+                    <li>हर चीज public बनाना good practice नहीं है।</li>
+                </ul>
+                <div class="note-box"><b>Real Life Example:</b><br>Bank account balance private होना चाहिए, account
+                    holder name protected या private हो सकता है और account statement print करने का method public हो सकता
+                    है।</div>
+                <div class="remember-box"><b>Remember:</b><br>Private सबसे restricted है और public सबसे open access देता
+                    है।</div>
+
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>
