@@ -50,8 +50,7 @@
                     के लिए किया जाता है। अगर कई classes में कुछ common data और methods हैं, तो उन्हें parent class में
                     define करके child classes में reuse किया जा सकता है। इससे duplicate code कम होता है और program
                     maintain करना आसान होता है।</p>
-                <div class="image-icon"><img src="" alt="Inheritance Basic Diagram">
-                    <p>Image Placeholder: Basic Inheritance Diagram</p>
+                <div class="image-icon"><img src="../images/Basic Inheritance.webp" alt="Inheritance Basic Diagram">
                 </div>
                 <h4>Basic Syntax</h4>
                 <pre>class Parent {
@@ -129,9 +128,7 @@ class Dog extends Animal {
                 <p>Protected data private से ज्यादा accessible और public से कम accessible होता है। इसे तब use किया जाता
                     है जब parent class अपने members child classes को access देना चाहती है, लेकिन पूरी दुनिया को direct
                     access नहीं देना चाहती।</p>
-                <div class="image-icon"><img src="" alt="Protected Access Diagram">
-                    <p>Image Placeholder: Protected Access in Inheritance</p>
-                </div>
+               
                 <h4>Example</h4>
                 <pre>class Animal {
     protected String name = "Dog";
@@ -196,9 +193,7 @@ class Dog extends Animal {
                 <p>Private data encapsulation और data hiding के लिए use होता है। अगर किसी variable को direct
                     modification से protect करना हो, तो उसे private बनाया जाता है और public getter तथा setter methods के
                     through controlled access दिया जाता है।</p>
-                <div class="image-icon"><img src="" alt="Private Data Encapsulation Diagram">
-                    <p>Image Placeholder: Private Data and Encapsulation</p>
-                </div>
+               
                 <h4>Private Data Example</h4>
                 <pre>class Student {
     private int marks = 85;
@@ -262,9 +257,7 @@ class Main {
                 <p>Public access easy होता है, लेकिन data variables को public बनाना हमेशा good practice नहीं माना जाता,
                     क्योंकि कोई भी class उन्हें direct modify कर सकती है। Normally methods को public रखा जाता है और data
                     को private/protected रखा जाता है।</p>
-                <div class="image-icon"><img src="" alt="Public Access Diagram">
-                    <p>Image Placeholder: Public Access Modifier Diagram</p>
-                </div>
+             
                 <h4>Public Method Example</h4>
                 <pre>class Student {
     public void display() {
@@ -316,8 +309,8 @@ class Main {
                 <p>जब child class object create होता है, तो सबसे पहले parent class constructor execute होता है, फिर
                     child class constructor execute होता है। इससे parent part पहले initialize होता है और फिर child part
                     initialize होता है।</p>
-                <div class="image-icon"><img src="" alt="Constructor Chaining Diagram">
-                    <p>Image Placeholder: Constructor Chaining with super()</p>
+                <div class="image-icon"><img src="../images/Constructor Chaining.webp" alt="Constructor Chaining Diagram">
+                   
                 </div>
                 <h4>Constructor Chaining in Same Class using this()</h4>
                 <pre>class Student {
@@ -410,9 +403,7 @@ class Student extends Person {
                     में actual child class constructor execute करता है। इसे order of invocation कहा जाता है।</p>
                 <p>Constructor invocation order इसलिए important है क्योंकि child object में parent class का part भी होता
                     है। Parent part initialize हुए बिना child part properly initialize नहीं माना जाता।</p>
-                <div class="image-icon"><img src="" alt="Order of Constructor Invocation Diagram">
-                    <p>Image Placeholder: Order of Invocation in Inheritance</p>
-                </div>
+               
                 <h4>Example</h4>
                 <pre>class A {
     A() {
@@ -491,8 +482,8 @@ C constructor executes</pre>
                     inheritance के through single, multilevel और hierarchical inheritance directly supported हैं।
                     Multiple और hybrid inheritance classes के through directly supported नहीं हैं, लेकिन interfaces के
                     through similar behavior achieve किया जा सकता है।</p>
-                <div class="image-icon"><img src="" alt="Types of Inheritance Diagram">
-                    <p>Image Placeholder: Types of Inheritance Diagram</p>
+                <div class="image-icon"><img src="../images/Types of Inheritance.webp" alt="Types of Inheritance Diagram">
+                   
                 </div>
                 <h4>Types Overview</h4>
                 <table>
@@ -541,9 +532,7 @@ C constructor executes</pre>
                 <p><strong>Single inheritance</strong> में एक child class एक parent class से inherit करती है। यह
                     inheritance का simplest form है। इसमें child class parent class के accessible members को reuse कर
                     सकती है और अपने additional members भी add कर सकती है।</p>
-                <div class="image-icon"><img src="" alt="Single Inheritance Diagram">
-                    <p>Image Placeholder: Single Inheritance Diagram</p>
-                </div>
+              
                 <h4>Syntax</h4>
                 <pre>class Parent {
     // parent members
@@ -593,8 +582,8 @@ class Bike extends Vehicle {
                 <p><strong>Multilevel inheritance</strong> में inheritance chain बनती है। एक class दूसरी class से
                     inherit करती है और फिर कोई third class उस second class से inherit करती है। इस तरह grandparent →
                     parent → child relationship बनता है।</p>
-                <div class="image-icon"><img src="" alt="Multilevel Inheritance Diagram">
-                    <p>Image Placeholder: Multilevel Inheritance Diagram</p>
+                <div class="image-icon"><img src="../images/Multiple Inheritance through Interface.webp" alt="Multilevel Inheritance Diagram">
+                   
                 </div>
                 <h4>Example</h4>
                 <pre>class Animal {
@@ -661,9 +650,7 @@ class C extends B {
                 <p><strong>Hierarchical inheritance</strong> में multiple child classes same parent class से inherit
                     करती हैं। इसका use तब होता है जब एक common parent class से अलग-अलग specialized classes बनानी हों।
                 </p>
-                <div class="image-icon"><img src="" alt="Hierarchical Inheritance Diagram">
-                    <p>Image Placeholder: Hierarchical Inheritance Diagram</p>
-                </div>
+              
                 <h4>Example</h4>
                 <pre>class Animal {
     void eat() {
@@ -718,9 +705,7 @@ class Main {
                     single + hierarchical या multilevel + hierarchical मिलकर hybrid structure बना सकते हैं। Java में
                     classes के through hybrid inheritance directly support नहीं होती अगर उसमें multiple inheritance
                     शामिल हो। लेकिन interfaces की help से hybrid-like structure achieve किया जा सकता है।</p>
-                <div class="image-icon"><img src="" alt="Hybrid Inheritance Diagram">
-                    <p>Image Placeholder: Hybrid Inheritance Diagram</p>
-                </div>
+               
                 <h4>Hybrid Structure Concept</h4>
                 <pre>        A
        / \
@@ -777,9 +762,7 @@ class Document implements Printable, Showable {
                     <code>protected</code> और <code>public</code>. Access modifiers encapsulation और security के लिए
                     important होते हैं।
                 </p>
-                <div class="image-icon"><img src="" alt="Java Access Modifiers Diagram">
-                    <p>Image Placeholder: Access Modifiers Scope Diagram</p>
-                </div>
+                
                 <h4>Access Modifiers Overview</h4>
                 <table>
                     <tr>
