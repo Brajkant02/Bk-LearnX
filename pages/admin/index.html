@@ -47,6 +47,7 @@
                                 <th>Status</th>
                                 <th>Last activity</th>
                                 <th>Progress</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody id="students"></tbody>
@@ -56,6 +57,10 @@
             <div class="portal-card">
                 <h2>Live/Page Activity</h2>
                 <div id="activity" class="empty-state">Loading...</div>
+            </div>
+            <div class="portal-card">
+                <h2>Most Visited Pages</h2>
+                <div id="topPages" class="empty-state">Loading...</div>
             </div>
         </section>
     </main>
@@ -67,9 +72,13 @@
 
         async function load() {
             try {
-                const r = await fetch(API + '/api/admin/dashboard', { headers: { 'x-admin-token': token } });
+                const [r, pagesResponse] = await Promise.all([
+                    fetch(API + '/api/admin/dashboard', { headers: { 'x-admin-token': token } }),
+                    fetch(API + '/api/admin/top-pages', { headers: { 'x-admin-token': token } })
+                ]);
                 if (!r.ok) throw new Error('Unauthorized');
                 const d = await r.json();
+                const pagesData = pagesResponse.ok ? await pagesResponse.json() : { pages: [] };
                 const stats = d.stats || {};
                 const studentsList = Array.isArray(d.students) ? d.students : [];
                 const activityList = Array.isArray(d.recentActivity) ? d.recentActivity : [];
@@ -78,15 +87,19 @@
                 today.textContent = stats.loginsToday ?? 0;
                 completion.textContent = `${stats.averageCompletion ?? 0}%`;
                 renderStudents(studentsList);
-                activity.innerHTML = activityList.length ? activityList.map(a => `<div style="padding:9px 0;border-bottom:1px solid #e5e7eb"><strong>${a.studentName || 'Student'}</strong> — ${a.type || 'activity'}<br><span class="muted">${a.title || a.page || ''} · ${a.durationSeconds || 0}s</span></div>`).join('') : '<p class="empty-state">No activity yet.</p>';
+                activity.innerHTML = activityList.length ? activityList.map(a => `<div style="padding:9px 0;border-bottom:1px solid #e5e7eb"><strong>${escapeHTML(a.studentName || 'Student')}</strong> — ${escapeHTML(a.action || 'activity')}<br><span class="muted">${escapeHTML(a.title || a.page || '')} · ${Number(a.durationSeconds || 0)}s</span></div>`).join('') : '<p class="empty-state">No activity yet.</p>';
+                const pages = Array.isArray(pagesData.pages) ? pagesData.pages.slice(0, 20) : [];
+                topPages.innerHTML = pages.length ? pages.map((page, index) => `<div style="padding:9px 0;border-bottom:1px solid #e5e7eb"><strong>${index + 1}. ${escapeHTML(page.page)}</strong><br><span class="muted">${Number(page.visits) || 0} visits</span></div>`).join('') : '<p class="empty-state">No page visits yet.</p>';
             } catch (error) {
                 console.error(error);
                 activity.innerHTML = '<p class="empty-state">Backend server connect nahi hua ya admin access invalid hai.</p>';
             }
         }
 
-        function renderStudents(list) { const query = (studentSearch.value || '').toLowerCase(); const filtered = list.filter(s => `${s.name || ''} ${s.email || ''} ${s.branch || ''}`.toLowerCase().includes(query)); students.innerHTML = filtered.length ? filtered.map(s => { const state = s.presence || (s.online ? 'ONLINE' : 'OFFLINE'); const label = state === 'ONLINE' ? 'Online' : state === 'AWAY' ? 'Away' : 'Offline'; const minutes = Math.floor((s.activeTimeSeconds || 0) / 60); return `<tr><td><strong>${s.name || 'Student'}</strong><br><span class="muted">${s.email || ''}</span></td><td>${s.branch || '—'}<br>${s.semester || '—'}</td><td><span class="badge ${state === 'ONLINE' ? 'online' : 'offline'}">${label}</span></td><td>${s.currentChapter || s.currentPage || '—'}<br><span class="muted">${s.currentSection ? `Section: ${s.currentSection} · ` : ''}${s.readingProgress || 0}% · ${minutes} min active</span><br><span class="muted">${s.lastActivity ? new Date(s.lastActivity).toLocaleString() : '—'}</span></td><td>${s.completion ?? 0}%</td></tr>`; }).join('') : '<tr><td colspan="5" class="empty-state">No matching students.</td></tr>'; }
+        function escapeHTML(value) { return String(value ?? '').replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]); }
+        function renderStudents(list) { const query = (studentSearch.value || '').toLowerCase(); const filtered = list.filter(s => `${s.name || ''} ${s.email || ''} ${s.branch || ''}`.toLowerCase().includes(query)); students.innerHTML = filtered.length ? filtered.map(s => { const state = s.presence || (s.online ? 'ONLINE' : 'OFFLINE'); const label = state === 'ONLINE' ? 'Online' : state === 'AWAY' ? 'Away' : 'Offline'; const minutes = Math.floor((s.activeTimeSeconds || 0) / 60); const action = s.status === 'blocked' ? 'unblock' : 'block'; return `<tr><td><strong>${escapeHTML(s.name || 'Student')}</strong><br><span class="muted">${escapeHTML(s.email || '')}</span><br><span class="muted">${escapeHTML(s.phone || 'No phone')} · ${escapeHTML(s.college || 'No college')}</span></td><td>${escapeHTML(s.branch || '—')}<br>${escapeHTML(s.semester || '—')}<br><span class="muted">Registered: ${s.registeredAt ? escapeHTML(new Date(s.registeredAt).toLocaleDateString()) : '—'}</span></td><td><span class="badge ${state === 'ONLINE' ? 'online' : 'offline'}">${label}</span><br>${escapeHTML(s.status || 'active')}</td><td>${escapeHTML(s.currentChapter || s.currentPage || '—')}<br><span class="muted">${s.currentSection ? `Section: ${escapeHTML(s.currentSection)} · ` : ''}${Number(s.readingProgress) || 0}% · ${minutes} min active</span><br><span class="muted">Last login: ${s.lastLoginAt ? escapeHTML(new Date(s.lastLoginAt).toLocaleString()) : '—'}</span></td><td>${Number(s.completion) || 0}%</td><td><button class="portal-btn secondary" data-action="${action}" data-id="${Number(s.id)}">${action === 'block' ? 'Block' : 'Unblock'}</button> <button class="portal-btn danger" data-action="delete" data-id="${Number(s.id)}">Delete</button></td></tr>`; }).join('') : '<tr><td colspan="6" class="empty-state">No matching students.</td></tr>'; }
         studentSearch.addEventListener('input', () => load());
+        students.addEventListener('click', async event => { const button = event.target.closest('button[data-action][data-id]'); if (!button) return; const action = button.dataset.action; const id = Number(button.dataset.id); if (action === 'delete' && !confirm('Delete this student and their learning data?')) return; button.disabled = true; try { const method = action === 'delete' ? 'DELETE' : 'PUT'; const path = action === 'delete' ? `/api/admin/students/${id}` : `/api/admin/students/${id}/${action}`; const response = await fetch(API + path, { method, headers: { 'x-admin-token': token } }); const result = await response.json(); if (!response.ok) throw new Error(result.message || 'Student update failed.'); await load(); } catch (error) { alert(error.message); button.disabled = false; } });
         logout.onclick = async () => { try { await fetch(API + '/api/admin/logout', { method: 'POST', headers: { 'x-admin-token': token } }); } finally { localStorage.removeItem('bk_admin_token'); location.href = 'login.html'; } };
         load();
         setInterval(load, 15000);

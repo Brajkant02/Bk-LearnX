@@ -1,0 +1,1760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>BK LearnX - Student Dashboard</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family:
+                Inter,
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background: #f5f7fb;
+            color: #172033;
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* =========================
+           TOP NAVBAR
+        ========================= */
+
+        .navbar {
+            height: 70px;
+
+            background: #ffffff;
+
+            border-bottom:
+                1px solid #e5e7eb;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding:
+                0 30px;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+        }
+
+        .brand {
+            font-size: 23px;
+
+            font-weight: 800;
+
+            color: #2563eb;
+        }
+
+        .brand span {
+            color: #111827;
+        }
+
+        .nav-right {
+            display: flex;
+
+            align-items: center;
+
+            gap: 18px;
+        }
+
+        .profile-button {
+            border: none;
+
+            background: #f1f5f9;
+
+            padding:
+                8px 14px;
+
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            font-weight: 600;
+
+            color: #334155;
+        }
+
+        .logout-button {
+            border: none;
+
+            background: #ef4444;
+
+            color: white;
+
+            padding:
+                9px 15px;
+
+            border-radius: 9px;
+
+            cursor: pointer;
+
+            font-weight: 600;
+        }
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .container {
+            width: min(1200px, 94%);
+
+            margin:
+                30px auto 60px;
+        }
+
+        /* =========================
+           WELCOME
+        ========================= */
+
+        .welcome-card {
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #4f46e5
+                );
+
+            color: white;
+
+            border-radius: 18px;
+
+            padding: 30px;
+
+            margin-bottom: 25px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(37, 99, 235, 0.15);
+        }
+
+        .welcome-card h1 {
+            font-size: 30px;
+
+            margin-bottom: 8px;
+        }
+
+        .welcome-card p {
+            opacity: 0.9;
+
+            font-size: 15px;
+        }
+
+        .student-info {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            margin-top: 22px;
+        }
+
+        .info-badge {
+            background:
+                rgba(255,255,255,0.16);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.25);
+
+            padding:
+                8px 13px;
+
+            border-radius: 20px;
+
+            font-size: 13px;
+        }
+
+        /* =========================
+           STATS
+        ========================= */
+
+        .stats {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+
+            border:
+                1px solid #e5e7eb;
+
+            border-radius: 15px;
+
+            padding: 22px;
+
+            box-shadow:
+                0 4px 16px
+                rgba(15,23,42,0.04);
+        }
+
+        .stat-label {
+            color: #64748b;
+
+            font-size: 13px;
+
+            margin-bottom: 7px;
+        }
+
+        .stat-value {
+            font-size: 27px;
+
+            font-weight: 800;
+
+            color: #172033;
+        }
+
+        /* =========================
+           SECTION HEADER
+        ========================= */
+
+        .section-header {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 15px;
+        }
+
+        .section-header h2 {
+            font-size: 22px;
+        }
+
+        .section-header span {
+            color: #64748b;
+
+            font-size: 13px;
+        }
+
+        /* =========================
+           CONTINUE READING
+        ========================= */
+
+        .continue-card {
+            background: white;
+
+            border:
+                1px solid #e5e7eb;
+
+            border-radius: 16px;
+
+            padding: 22px;
+
+            margin-bottom: 30px;
+
+            display: none;
+        }
+
+        .continue-title {
+            font-size: 18px;
+
+            font-weight: 700;
+
+            margin-bottom: 7px;
+        }
+
+        .continue-meta {
+            color: #64748b;
+
+            font-size: 13px;
+
+            margin-bottom: 15px;
+        }
+
+        .progress-wrapper {
+            margin-bottom: 15px;
+        }
+
+        .progress-line {
+            width: 100%;
+
+            height: 9px;
+
+            background: #e5e7eb;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+
+            width: 0%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #2563eb,
+                    #7c3aed
+                );
+
+            transition:
+                width 0.3s ease;
+        }
+
+        .progress-text {
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-top: 7px;
+
+            font-size: 12px;
+
+            color: #64748b;
+        }
+
+        .continue-button {
+            border: none;
+
+            background: #2563eb;
+
+            color: white;
+
+            padding:
+                10px 18px;
+
+            border-radius: 9px;
+
+            cursor: pointer;
+
+            font-weight: 600;
+        }
+
+        /* =========================
+           SUBJECTS
+        ========================= */
+
+        .subjects-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+        }
+
+        .subject-card {
+            background: white;
+
+            border:
+                1px solid #e5e7eb;
+
+            border-radius: 16px;
+
+            padding: 21px;
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .subject-card:hover {
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 10px 25px
+                rgba(15,23,42,0.08);
+        }
+
+        .subject-icon {
+            width: 45px;
+
+            height: 45px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #eff6ff;
+
+            color: #2563eb;
+
+            border-radius: 12px;
+
+            font-size: 20px;
+
+            margin-bottom: 15px;
+        }
+
+        .subject-card h3 {
+            font-size: 17px;
+
+            margin-bottom: 7px;
+        }
+
+        .subject-card p {
+            font-size: 13px;
+
+            color: #64748b;
+
+            min-height: 38px;
+
+            line-height: 1.5;
+        }
+
+        .subject-footer {
+            margin-top: 17px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 10px;
+        }
+
+        .subject-status {
+            font-size: 12px;
+
+            color: #64748b;
+        }
+
+        .start-button {
+            border: none;
+
+            background: #2563eb;
+
+            color: white;
+
+            padding:
+                9px 13px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            font-size: 12px;
+
+            font-weight: 600;
+        }
+
+        /* =========================
+           EMPTY / LOADING
+        ========================= */
+
+        .message {
+            background: white;
+
+            border:
+                1px solid #e5e7eb;
+
+            border-radius: 15px;
+
+            padding: 30px;
+
+            text-align: center;
+
+            color: #64748b;
+        }
+
+        .error {
+            color: #dc2626;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 850px) {
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .subjects-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                padding: 0 15px;
+            }
+
+            .brand {
+                font-size: 19px;
+            }
+
+            .profile-button {
+                display: none;
+            }
+
+            .container {
+                width: 92%;
+            }
+
+            .welcome-card {
+                padding: 22px;
+            }
+
+            .welcome-card h1 {
+                font-size: 24px;
+            }
+
+            .subjects-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <nav class="navbar">
+
+        <a
+            href="index.html"
+            class="brand"
+        >
+            BK <span>LearnX</span>
+        </a>
+
+        <div class="nav-right">
+
+            <button
+                class="profile-button"
+                id="profileButton"
+            >
+                Profile
+            </button>
+
+            <button
+                class="logout-button"
+                id="logoutButton"
+            >
+                Logout
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================
+         MAIN CONTAINER
+    ========================= -->
+
+    <main class="container">
+
+        <!-- WELCOME -->
+
+        <section class="welcome-card">
+
+            <h1>
+                Welcome,
+                <span id="studentName">
+                    Student
+                </span>
+                👋
+            </h1>
+
+            <p>
+                Continue your learning journey with BK LearnX.
+            </p>
+
+            <div class="student-info">
+
+                <div class="info-badge">
+                    Branch:
+                    <strong id="studentBranch">
+                        —
+                    </strong>
+                </div>
+
+                <div class="info-badge">
+                    Semester:
+                    <strong id="studentSemester">
+                        —
+                    </strong>
+                </div>
+
+                <div class="info-badge">
+                    Email:
+                    <strong id="studentEmail">
+                        —
+                    </strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             STATS
+        ========================= -->
+
+        <section class="stats">
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    My Subjects
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="subjectCount"
+                >
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    Learning Progress
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="overallProgress"
+                >
+                    0%
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    Completed Subjects
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="completedCount"
+                >
+                    0
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CONTINUE READING
+        ========================= -->
+
+        <section
+            class="continue-card"
+            id="continueCard"
+        >
+
+            <div class="section-header">
+
+                <h2>
+                    Continue Reading
+                </h2>
+
+                <span>
+                    Last activity
+                </span>
+
+            </div>
+
+            <div
+                class="continue-title"
+                id="continueTitle"
+            >
+                —
+            </div>
+
+            <div
+                class="continue-meta"
+                id="continueMeta"
+            >
+                —
+            </div>
+
+            <div class="progress-wrapper">
+
+                <div class="progress-line">
+
+                    <div
+                        class="progress-fill"
+                        id="continueProgress"
+                    ></div>
+
+                </div>
+
+                <div class="progress-text">
+
+                    <span>
+                        Progress
+                    </span>
+
+                    <span id="continuePercent">
+                        0%
+                    </span>
+
+                </div>
+
+            </div>
+
+            <button
+                class="continue-button"
+                id="continueButton"
+            >
+                Continue Reading
+            </button>
+
+        </section>
+
+
+        <!-- =========================
+             SUBJECTS
+        ========================= -->
+
+        <section>
+
+            <div class="section-header">
+
+                <h2>
+                    Official Subjects
+                </h2>
+
+                <span id="subjectInfo">
+                    Loading...
+                </span>
+
+            </div>
+
+
+            <div
+                id="subjectsContainer"
+                class="subjects-grid"
+            >
+
+                <div class="message">
+                    Loading your subjects...
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section>
+
+            <div class="section-header">
+
+                <h2>
+                    My Added Subjects
+                </h2>
+
+            </div>
+
+            <div
+                id="customSubjectsContainer"
+                class="subjects-grid"
+            >
+                <div class="message">Loading your added subjects...</div>
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="../../../assets/shared/config.js"></script>
+    <script>
+
+        /* =====================================================
+           CONFIG
+        ===================================================== */
+
+        const API_BASE_URL =
+            window.BK_CONFIG?.API_BASE_URL ||
+            "http://localhost:3000";
+
+
+        /* =====================================================
+           ELEMENTS
+        ===================================================== */
+
+        const studentName =
+            document.getElementById(
+                "studentName"
+            );
+
+        const studentEmail =
+            document.getElementById(
+                "studentEmail"
+            );
+
+        const studentBranch =
+            document.getElementById(
+                "studentBranch"
+            );
+
+        const studentSemester =
+            document.getElementById(
+                "studentSemester"
+            );
+
+        const subjectCount =
+            document.getElementById(
+                "subjectCount"
+            );
+
+        const overallProgress =
+            document.getElementById(
+                "overallProgress"
+            );
+
+        const completedCount =
+            document.getElementById(
+                "completedCount"
+            );
+
+        const subjectsContainer =
+            document.getElementById(
+                "subjectsContainer"
+            );
+
+        const subjectInfo =
+            document.getElementById(
+                "subjectInfo"
+            );
+
+        const customSubjectsContainer =
+            document.getElementById(
+                "customSubjectsContainer"
+            );
+
+        const continueCard =
+            document.getElementById(
+                "continueCard"
+            );
+
+        const continueTitle =
+            document.getElementById(
+                "continueTitle"
+            );
+
+        const continueMeta =
+            document.getElementById(
+                "continueMeta"
+            );
+
+        const continueProgress =
+            document.getElementById(
+                "continueProgress"
+            );
+
+        const continuePercent =
+            document.getElementById(
+                "continuePercent"
+            );
+
+        const continueButton =
+            document.getElementById(
+                "continueButton"
+            );
+
+        const profileButton =
+            document.getElementById(
+                "profileButton"
+            );
+
+        const logoutButton =
+            document.getElementById(
+                "logoutButton"
+            );
+
+
+        /* =====================================================
+           AUTH TOKEN
+        ===================================================== */
+
+        function getToken() {
+
+            return (
+                localStorage.getItem(
+                    "bk_token"
+                ) ||
+                localStorage.getItem(
+                    "bkLearnXToken"
+                ) ||
+                localStorage.getItem(
+                    "token"
+                ) ||
+                sessionStorage.getItem(
+                    "bkLearnXToken"
+                ) ||
+                sessionStorage.getItem(
+                    "token"
+                )
+            );
+
+        }
+
+
+        /* =====================================================
+           AUTH CHECK
+        ===================================================== */
+
+        const token =
+            getToken();
+
+
+        if (!token) {
+
+            window.location.href =
+                "../../auth/login/index.html";
+
+        }
+
+
+        /* =====================================================
+           API REQUEST
+        ===================================================== */
+
+        async function api(
+            endpoint,
+            options = {}
+        ) {
+
+            const response =
+                await fetch(
+                    API_BASE_URL +
+                    endpoint,
+                    {
+                        ...options,
+
+                        headers: {
+
+                            "Content-Type":
+                                "application/json",
+
+                            "Authorization":
+                                `Bearer ${token}`,
+
+                            ...(options.headers || {})
+
+                        }
+
+                    }
+                );
+
+            let data = null;
+
+            try {
+
+                data =
+                    await response.json();
+
+            } catch {
+
+                data = {};
+
+            }
+
+            if (
+                response.status === 401
+            ) {
+
+                localStorage.removeItem(
+                    "bk_token"
+                );
+
+                localStorage.removeItem(
+                    "bkLearnXToken"
+                );
+
+                localStorage.removeItem(
+                    "token"
+                );
+
+                sessionStorage.removeItem(
+                    "bkLearnXToken"
+                );
+
+                sessionStorage.removeItem(
+                    "token"
+                );
+
+                window.location.href =
+                    "../../auth/login/index.html";
+
+                return null;
+
+            }
+
+            if (!response.ok) {
+
+                throw new Error(
+                    data.message ||
+                    "Request failed."
+                );
+
+            }
+
+            return data;
+
+        }
+
+
+        /* =====================================================
+           NORMALIZE VALUES
+        ===================================================== */
+
+        function normalize(
+            value
+        ) {
+
+            return String(
+                value || ""
+            )
+            .trim()
+            .toLowerCase();
+
+        }
+
+
+        /* =====================================================
+           LOAD STUDENT
+        ===================================================== */
+
+        async function loadStudent() {
+
+            const data =
+                await api(
+                    "/api/me"
+                );
+
+            if (!data) {
+                return null;
+            }
+
+            return data.user;
+
+        }
+
+
+        /* =====================================================
+           LOAD PROGRESS
+        ===================================================== */
+
+        async function loadProgress() {
+
+            const data =
+                await api(
+                    "/api/learning/progress"
+                );
+
+            if (!data) {
+                return [];
+            }
+
+            return data.progress || [];
+
+        }
+
+
+        /* =====================================================
+           SUBJECT PROGRESS
+        ===================================================== */
+
+        function getSubjectProgress(
+            subject,
+            progress
+        ) {
+
+            const subjectCode =
+                normalize(
+                    subject.subjectCode ||
+                    subject.subjectName
+                );
+
+            const matches =
+                progress.filter(
+                    item => {
+                        const progressSubject = normalize(
+                            item.subject_id || item.subjectId || ""
+                        );
+
+                        return progressSubject === subjectCode ||
+                            progressSubject === normalize(subject.subjectName);
+                    }
+                );
+
+            if (
+                matches.length === 0
+            ) {
+
+                return {
+
+                    percent: 0,
+
+                    completed: false,
+
+                    hasProgress: false,
+
+                    url: ""
+
+                };
+
+            }
+
+            const percent =
+                Math.max(
+                    ...matches.map(
+                        item =>
+                            Number(
+                                item.max_scroll_percent ||
+                                item.maxScrollPercent ||
+                                0
+                            )
+                    )
+                );
+
+            const completed =
+                matches.some(
+                    item =>
+                        item.status ===
+                        "COMPLETED"
+                );
+
+            const latest =
+                [...matches].sort(
+                    (a, b) =>
+                        new Date(b.updated_at || 0) -
+                        new Date(a.updated_at || 0)
+                )[0];
+
+            return {
+
+                percent:
+                    Math.min(
+                        100,
+                        Math.round(percent)
+                    ),
+
+                completed,
+
+                hasProgress: true,
+
+                url: latest?.page || ""
+
+            };
+
+        }
+
+
+        /* =====================================================
+           RENDER SUBJECTS
+        ===================================================== */
+
+        function renderSubjects(
+            subjects,
+            progress
+        ) {
+
+            subjectsContainer.innerHTML =
+                "";
+
+            if (
+                subjects.length === 0
+            ) {
+
+                subjectsContainer.innerHTML = `
+                    <div class="message">
+                        <strong>No subjects found.</strong>
+                        <br><br>
+                        Your branch and semester are saved,
+                        but subject mapping is not configured yet.
+                    </div>
+                `;
+
+                return;
+
+            }
+
+
+            let completed = 0;
+
+            let totalProgress = 0;
+
+
+            subjects.forEach(
+                subject => {
+
+                    const data =
+                        getSubjectProgress(
+                            subject,
+                            progress
+                        );
+
+                    if (
+                        data.completed
+                    ) {
+                        completed++;
+                    }
+
+                    totalProgress +=
+                        data.percent;
+
+
+                    const card =
+                        document.createElement(
+                            "article"
+                        );
+
+                    card.className =
+                        "subject-card";
+
+
+                    card.innerHTML = `
+
+                        <div class="subject-icon">
+                            ${subject.icon || "📚"}
+                        </div>
+
+                        <h3>
+                            ${escapeHtml(
+                                subject.subjectName || subject.title
+                            )}
+                        </h3>
+
+                        <p>
+                            ${escapeHtml(
+                                subject.description || ""
+                            )}
+                        </p>
+
+                        <div class="progress-wrapper">
+
+                            <div class="progress-line">
+
+                                <div
+                                    class="progress-fill"
+                                    style="
+                                        width:
+                                        ${data.percent}%;
+                                    "
+                                ></div>
+
+                            </div>
+
+                            <div class="progress-text">
+
+                                <span>
+                                    ${data.completed
+                                        ? "Completed"
+                                        : "Progress"}
+                                </span>
+
+                                <span>
+                                    ${data.percent}%
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        <div class="subject-footer">
+
+                            <span class="subject-status">
+                                ${
+                                    data.completed
+                                        ? "Completed"
+                                        : data.percent > 0
+                                            ? "In Progress"
+                                            : "Not Started"
+                                }
+                            </span>
+
+                            <button
+                                class="start-button"
+                                data-url="${escapeAttribute(
+                                    data.url || subject.contentUrl || subject.url || ""
+                                )}"
+                                ${subject.contentUrl || subject.url ? "" : "disabled"}
+                            >
+                                ${
+                                    data.hasProgress
+                                        ? "Continue"
+                                        : (subject.contentUrl || subject.url)
+                                            ? "Start Reading"
+                                            : "Content unavailable"
+                                }
+                            </button>
+
+                        </div>
+
+                    `;
+
+
+                    const button =
+                        card.querySelector(
+                            ".start-button"
+                        );
+
+
+                    button.addEventListener(
+                        "click",
+                        () => {
+
+                            const url = button.dataset.url;
+
+                            if (
+                                url &&
+                                url !== "#"
+                            ) {
+
+                                window.location.href =
+                                    url;
+
+                            }
+
+                        }
+                    );
+
+
+                    subjectsContainer.appendChild(
+                        card
+                    );
+
+                }
+            );
+
+
+            subjectCount.textContent =
+                subjects.length;
+
+            completedCount.textContent =
+                completed;
+
+            overallProgress.textContent =
+                subjects.length
+                    ? Math.round(
+                        totalProgress /
+                        subjects.length
+                    ) + "%"
+                    : "0%";
+
+            subjectInfo.textContent =
+                `${subjects.length} subject${
+                    subjects.length === 1
+                        ? ""
+                        : "s"
+                } available`;
+
+        }
+
+
+        function renderCustomSubjects(
+            subjects
+        ) {
+
+            if (!subjects.length) {
+                customSubjectsContainer.innerHTML = `
+                    <div class="message">You have not added any subjects yet.</div>
+                `;
+                return;
+            }
+
+            customSubjectsContainer.innerHTML = subjects.map(subject => `
+                <article class="subject-card">
+                    <div class="subject-icon">📚</div>
+                    <h3>${escapeHtml(subject.subjectName)}</h3>
+                    <p>Added by you</p>
+                    <div class="subject-footer">
+                        <span class="subject-status">Custom subject</span>
+                        <button class="start-button" type="button" disabled title="No reading content is linked to this custom subject yet">
+                            Content unavailable
+                        </button>
+                    </div>
+                </article>
+            `).join("");
+
+        }
+
+
+        /* =====================================================
+           CONTINUE READING
+        ===================================================== */
+
+        function renderContinue(
+            progress
+        ) {
+
+            if (
+                !progress ||
+                progress.length === 0
+            ) {
+
+                continueCard.style.display =
+                    "none";
+
+                return;
+
+            }
+
+
+            const active =
+                [...progress]
+                    .sort(
+                        (
+                            a,
+                            b
+                        ) =>
+                            new Date(
+                                b.updated_at ||
+                                0
+                            ) -
+                            new Date(
+                                a.updated_at ||
+                                0
+                            )
+                    )
+                    .find(
+                        item =>
+                            item.status !==
+                            "COMPLETED"
+                    ) ||
+                    progress[0];
+
+
+            if (!active) {
+
+                continueCard.style.display =
+                    "none";
+
+                return;
+
+            }
+
+
+            const percent =
+                Math.round(
+                    Number(
+                        active.max_scroll_percent ||
+                        0
+                    )
+                );
+
+
+            continueCard.style.display =
+                "block";
+
+
+            continueTitle.textContent =
+                active.title ||
+                active.chapter_id ||
+                active.page ||
+                "Continue Learning";
+
+
+            continueMeta.textContent =
+                [
+                    active.subject_id,
+                    active.unit_id,
+                    active.chapter_id
+                ]
+                .filter(Boolean)
+                .join(" • ");
+
+
+            continueProgress.style.width =
+                `${percent}%`;
+
+
+            continuePercent.textContent =
+                `${percent}%`;
+
+
+            continueButton.onclick =
+                () => {
+
+                    if (
+                        active.page
+                    ) {
+
+                        window.location.href =
+                            active.page;
+
+                    }
+
+                };
+
+        }
+
+
+        /* =====================================================
+           HTML SAFETY
+        ===================================================== */
+
+        function escapeHtml(
+            value
+        ) {
+
+            return String(
+                value ?? ""
+            )
+            .replace(
+                /&/g,
+                "&amp;"
+            )
+            .replace(
+                /</g,
+                "&lt;"
+            )
+            .replace(
+                />/g,
+                "&gt;"
+            )
+            .replace(
+                /"/g,
+                "&quot;"
+            )
+            .replace(
+                /'/g,
+                "&#039;"
+            );
+
+        }
+
+
+        function escapeAttribute(
+            value
+        ) {
+
+            return escapeHtml(
+                value
+            );
+
+        }
+
+
+        /* =====================================================
+           LOGOUT
+        ===================================================== */
+
+        logoutButton.addEventListener(
+            "click",
+            async () => {
+
+                try {
+
+                    await api(
+                        "/api/logout",
+                        {
+                            method:
+                                "POST"
+                        }
+                    );
+
+                } catch (error) {
+
+                    console.error(
+                        error
+                    );
+
+                }
+
+                localStorage.removeItem(
+                    "bk_token"
+                );
+
+                localStorage.removeItem(
+                    "bkLearnXToken"
+                );
+
+                localStorage.removeItem(
+                    "token"
+                );
+
+                sessionStorage.removeItem(
+                    "bkLearnXToken"
+                );
+
+                sessionStorage.removeItem(
+                    "token"
+                );
+
+                window.location.href =
+                    "../../auth/login/index.html";
+
+            }
+        );
+
+
+        /* =====================================================
+           PROFILE
+        ===================================================== */
+
+        profileButton.addEventListener(
+            "click",
+            () => {
+
+                window.location.href =
+                    "../profile/index.html";
+
+            }
+        );
+
+
+        /* =====================================================
+           START DASHBOARD
+        ===================================================== */
+
+        async function init() {
+
+            try {
+
+                const student =
+                    await loadStudent();
+
+
+                if (!student) {
+                    return;
+                }
+
+
+                studentName.textContent =
+                    student.name ||
+                    "Student";
+
+
+                studentEmail.textContent =
+                    student.email ||
+                    "—";
+
+
+                studentBranch.textContent =
+                    student.branch ||
+                    "—";
+
+
+                studentSemester.textContent =
+                    student.semester ||
+                    "—";
+
+
+                const subjectData =
+                    await api(
+                        "/api/student/subjects"
+                    );
+
+                const subjects =
+                    subjectData.officialSubjects || [];
+
+                const customSubjects =
+                    subjectData.customSubjects || [];
+
+
+                const progress =
+                    await loadProgress();
+
+
+                renderSubjects(
+                    subjects,
+                    progress
+                );
+
+                renderCustomSubjects(
+                    customSubjects
+                );
+
+
+                renderContinue(
+                    progress
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Dashboard error:",
+                    error
+                );
+
+
+                subjectsContainer.innerHTML = `
+
+                    <div class="message error">
+
+                        Unable to load dashboard.
+
+                        <br><br>
+
+                        ${escapeHtml(
+                            error.message
+                        )}
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+
+
+        init();
+
+    </script>
+
+</body>
+</html>

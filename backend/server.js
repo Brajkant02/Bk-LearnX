@@ -1,388 +1,2663 @@
-require('dotenv').config();
-const express = require('express'), cors = require('cors'), bcrypt = require('bcryptjs'), fs = require('fs').promises, path = require('path'), crypto = require('crypto'), nodemailer = require('nodemailer');
-const app = express(), PORT = process.env.PORT || 3000, DATA = path.join(__dirname, 'data'); const allowedOrigins = (process.env.ALLOWED_ORIGINS || '').split(',').map(s => s.trim()).filter(Boolean);
-app.use(cors(allowedOrigins.length ? { origin: allowedOrigins } : {}));
-app.use(express.json({ limit: '3mb' }));
-const files = { users: 'users.json', activity: 'activity.json', progress: 'progress.json' }; const sessions = new Map(), adminSessions = new Map(), oauthStates = new Map();
+require("dotenv").config();
 
-// Wrap async route handlers so a rejected promise reaches Express's error
-// handler instead of becoming an unhandled rejection that crashes the process.
-const ah = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next);
+const express = require("express");
+const cors = require("cors");
+const bcrypt = require("bcryptjs");
+const mysql = require("mysql2/promise");
+const crypto = require("crypto");
+const nodemailer = require("nodemailer");
 
-// Small in-memory rate limiter for sensitive endpoints (no extra dependency).
-// Not distributed-safe (per-process only) but enough to slow down brute force
-// on a single instance. Swap for a proper store (Redis) if you scale out.
-function rateLimit({ windowMs, max, keyPrefix }) {
-  const hits = new Map();
-  setInterval(() => { const now = Date.now(); for (const [k, v] of hits) if (now - v.start > windowMs) hits.delete(k) }, windowMs).unref();
-  return (req, res, next) => {
-    const key = `${keyPrefix}:${req.ip || req.connection?.remoteAddress || 'unknown'}`;
-    const now = Date.now();
-    const entry = hits.get(key) || { count: 0, start: now };
-    if (now - entry.start > windowMs) { entry.count = 0; entry.start = now }
-    entry.count += 1; hits.set(key, entry);
-    if (entry.count > max) {
-      res.set('Retry-After', String(Math.ceil((entry.start + windowMs - now) / 1000)));
-      return res.status(429).json({ message: 'Too many attempts. Please wait and try again.' });
-    }
-    next();
-  };
-}
-const loginLimiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 15, keyPrefix: 'login' });
-const registerLimiter = rateLimit({ windowMs: 60 * 60 * 1000, max: 15, keyPrefix: 'register' });
-const forgotPasswordLimiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 5, keyPrefix: 'forgot' });
-const adminLoginLimiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 10, keyPrefix: 'admin-login' });
+const app = express();
 
-// Drop abandoned OAuth state entries (user started Google/Facebook login but
-// never completed it) so this map doesn't grow forever between server restarts.
-setInterval(() => { const now = Date.now(); for (const [k, v] of oauthStates) if (now - v.createdAt > 10 * 60 * 1000) oauthStates.delete(k) }, 5 * 60 * 1000).unref();
-const LEARNING_CONFIG = Object.freeze({
-  inactivityTimeoutSeconds: Number(process.env.LEARNING_INACTIVITY_TIMEOUT || 45),
-  heartbeatIntervalSeconds: Number(process.env.LEARNING_HEARTBEAT_INTERVAL || 30),
-  minimumActiveTimeSeconds: Number(process.env.LEARNING_MIN_ACTIVE_SECONDS || 300),
-  minimumReadProgress: Number(process.env.LEARNING_MIN_READ_PROGRESS || 90),
-  minimumSectionsViewed: Number(process.env.LEARNING_MIN_SECTIONS_VIEWED || 90),
-  requireQuizIfAvailable: String(process.env.LEARNING_REQUIRE_QUIZ || 'true') !== 'false'
+const PORT = process.env.PORT || 3000;
+
+app.use(cors());
+app.use(express.json({ limit: "3mb" }));
+
+/* =========================================================
+   MYSQL CONNECTION
+========================================================= */
+
+const db = mysql.createPool({
+  host: process.env.DB_HOST || "localhost",
+  user: process.env.DB_USER || "root",
+  password: process.env.DB_PASSWORD || "",
+  database: process.env.DB_NAME || "bklearnx",
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
 });
-async function read(k) { try { return JSON.parse(await fs.readFile(path.join(DATA, files[k]), 'utf8')) } catch { return [] } } async function write(k, v) { await fs.mkdir(DATA, { recursive: true }); await fs.writeFile(path.join(DATA, files[k]), JSON.stringify(v, null, 2)) } const token = () => crypto.randomBytes(24).toString('hex');
-const SESSION_TTL = 30 * 24 * 60 * 60 * 1000;
-function createOAuthState(provider, redirectUrl) { const state = crypto.randomBytes(16).toString('hex'); oauthStates.set(state, { provider, redirectUrl, createdAt: Date.now() }); return state; }
-function consumeOAuthState(state) { const entry = oauthStates.get(state); if (entry) oauthStates.delete(state); return entry; }
-async function auth(req, res, next) { const t = (req.headers.authorization || '').replace('Bearer ', ''); const s = sessions.get(t); if (!s || Date.now() - s.loginAt > SESSION_TTL) { sessions.delete(t); return res.status(401).json({ message: 'Please login again.' }); } s.lastSeen = Date.now(); req.userId = s.userId; req.sessionToken = t; next() }
-function admin(req, res, next) { const t = req.header('x-admin-token'); if (!adminSessions.has(t)) return res.status(401).json({ message: 'Unauthorized' }); next() }
-app.get('/api/health', (q, r) => r.json({ status: 'ok' }));
-app.get('/api/auth/google', (req, res) => {
-  const fallbackRedirect = process.env.FRONTEND_URL || 'http://localhost:3000/pages/auth/login/index.html';
-  const requestedRedirect = typeof req.query.redirect === 'string' && req.query.redirect.trim() ? req.query.redirect : fallbackRedirect;
-  const redirectTarget = new URL(requestedRedirect, `${req.protocol}://${req.get('host')}`); const clientId = process.env.GOOGLE_CLIENT_ID;
-  const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
-  if (!clientId || !clientSecret) {
-    redirectTarget.searchParams.set('google_error', 'Google login is not configured on this server yet.');
-    return res.redirect(redirectTarget.toString());
-  }
-  const state = createOAuthState('google', redirectTarget.toString());
-  const redirectUri = process.env.GOOGLE_REDIRECT_URI || `${req.protocol}://${req.get('host')}/api/auth/google/callback`;
-  const params = new URLSearchParams({
-    client_id: clientId,
-    redirect_uri: redirectUri,
-    response_type: 'code',
-    scope: 'openid email profile',
-    access_type: 'offline',
-    prompt: 'consent',
-    state
-  });
-  res.redirect(`https://accounts.google.com/o/oauth2/v2/auth?${params.toString()}`);
-});
-app.get('/api/auth/google/callback', async (req, res) => {
-  const { code, state, error } = req.query;
-  const fallbackRedirect = process.env.FRONTEND_URL || 'http://localhost:3000/pages/auth/login/index.html';
-  const errorTarget = new URL(fallbackRedirect, `${req.protocol}://${req.get('host')}`);
-  if (error) {
-    errorTarget.searchParams.set('google_error', 'Google sign-in was cancelled or failed.');
-    return res.redirect(errorTarget.toString());
-  }
-  if (!code || !state) {
-    errorTarget.searchParams.set('google_error', 'Google sign-in response was incomplete.');
-    return res.redirect(errorTarget.toString());
-  }
-  const savedState = consumeOAuthState(String(state));
-  if (!savedState) {
-    errorTarget.searchParams.set('google_error', 'Google sign-in state expired. Please try again.');
-    return res.redirect(errorTarget.toString());
-  }
-  const redirectTarget = new URL(savedState.redirectUrl, `${req.protocol}://${req.get('host')}`);
+
+/* =========================================================
+   DATABASE SETUP
+========================================================= */
+
+async function setupDatabase() {
+
+  const connection = await db.getConnection();
+
   try {
-    const tokenResponse = await fetch('https://oauth2.googleapis.com/token', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams({
-        code: String(code),
-        client_id: process.env.GOOGLE_CLIENT_ID || '',
-        client_secret: process.env.GOOGLE_CLIENT_SECRET || '',
-        redirect_uri: process.env.GOOGLE_REDIRECT_URI || `${req.protocol}://${req.get('host')}/api/auth/google/callback`,
-        grant_type: 'authorization_code'
+
+    await connection.query(`
+            CREATE TABLE IF NOT EXISTS activity (
+                id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                user_id INT NOT NULL,
+                page VARCHAR(1000),
+                action VARCHAR(100),
+                subject VARCHAR(200),
+                unit VARCHAR(200),
+                chapter VARCHAR(300),
+                created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+                INDEX(user_id),
+                INDEX(created_at)
+            )
+        `);
+
+    await connection.query(`
+            CREATE TABLE IF NOT EXISTS progress (
+                id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                user_id INT NOT NULL,
+                type VARCHAR(50) DEFAULT 'learning',
+                page VARCHAR(1000),
+                title VARCHAR(300),
+                subject_id VARCHAR(120),
+                unit_id VARCHAR(200),
+                chapter_id VARCHAR(300),
+                max_scroll_percent DECIMAL(5,2) DEFAULT 0,
+                sections_viewed INT DEFAULT 0,
+                total_sections INT DEFAULT 0,
+                current_section_id VARCHAR(200),
+                last_position DECIMAL(12,4) DEFAULT 0,
+                quiz_available BOOLEAN DEFAULT FALSE,
+                quiz_started BOOLEAN DEFAULT FALSE,
+                quiz_completed BOOLEAN DEFAULT FALSE,
+                quiz_score DECIMAL(5,2) DEFAULT NULL,
+                attempts INT DEFAULT 0,
+                manual_confirmed BOOLEAN DEFAULT FALSE,
+                active_time_seconds INT DEFAULT 0,
+                last_active_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+                started_at DATETIME DEFAULT NULL,
+                status VARCHAR(30) DEFAULT 'IN_PROGRESS',
+                completed_at DATETIME DEFAULT NULL,
+                updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                UNIQUE KEY unique_user_page (user_id, page(255)),
+                INDEX(user_id),
+                INDEX(subject_id)
+            )
+        `);
+
+    await connection.query(`
+            CREATE TABLE IF NOT EXISTS subjects (
+                id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                branch VARCHAR(100) NOT NULL,
+                semester VARCHAR(50) NOT NULL,
+                subject_code VARCHAR(50) NOT NULL,
+                subject_name VARCHAR(200) NOT NULL,
+                description TEXT,
+                content_url VARCHAR(1000),
+                is_active BOOLEAN NOT NULL DEFAULT TRUE,
+                created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                UNIQUE KEY unique_branch_semester_subject
+                    (branch, semester, subject_code),
+                INDEX idx_subject_branch_semester
+                    (branch, semester, is_active)
+            )
+        `);
+
+    await connection.query(`
+            CREATE TABLE IF NOT EXISTS student_custom_subjects (
+                id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                student_id INT NOT NULL,
+                subject_name VARCHAR(100)
+                    CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+                created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                UNIQUE KEY unique_student_custom_subject
+                    (student_id, subject_name),
+                INDEX idx_custom_subject_student (student_id)
+            )
+        `);
+
+    const [profileImageColumns] = await connection.query(
+      `SELECT DATA_TYPE, IS_NULLABLE
+       FROM INFORMATION_SCHEMA.COLUMNS
+       WHERE TABLE_SCHEMA = DATABASE()
+       AND TABLE_NAME = 'users'
+       AND COLUMN_NAME = 'profile_image'`
+    );
+
+    if (
+      profileImageColumns.length &&
+      !["text", "mediumtext", "longtext"].includes(
+        String(profileImageColumns[0].DATA_TYPE).toLowerCase()
+      )
+    ) {
+      const nullable =
+        profileImageColumns[0].IS_NULLABLE === "YES"
+          ? "NULL"
+          : "NOT NULL";
+
+      await connection.query(
+        `ALTER TABLE users MODIFY COLUMN profile_image MEDIUMTEXT ${nullable}`
+      );
+    }
+
+    console.log("Database tables checked successfully.");
+
+    const officialSubjects = [
+      [
+        "PGDCA",
+        "1st Semester",
+        "BCIT",
+        "BCIT",
+        "Basic Computer and Information Technology",
+        "/pages/programs/pgdca/content/semester-1/bcit-hindi/unit-1/index.html"
+      ],
+      [
+        "PGDCA",
+        "1st Semester",
+        "PYTHON",
+        "Python",
+        "Python programming fundamentals and topics",
+        "/pages/programs/pgdca/content/semester-1/python-hindi/unit-1/index.html"
+      ],
+      [
+        "PGDCA",
+        "1st Semester",
+        "DCC",
+        "DCC",
+        "Data Communication and Computer Networks",
+        "/pages/programs/pgdca/content/semester-1/dccn-hindi/unit-1/index.html"
+      ],
+      [
+        "PGDCA",
+        "1st Semester",
+        "IWT",
+        "I&WT",
+        "Internet and Web Technology",
+        "/pages/programs/pgdca/content/semester-1/i-wt-hindi/unit-1/index.html"
+      ],
+      [
+        "PGDCA",
+        "1st Semester",
+        "OAT",
+        "OAT",
+        "Office Automation Tools",
+        "/pages/programs/pgdca/content/semester-1/oat/unit-1/index.html"
+      ],
+      [
+        "PGDCA",
+        "2nd Semester",
+        "DBMS",
+        "DBMS",
+        null,
+        "/pages/programs/pgdca/content/semester-2/DBMS/unit-1/index.html"
+      ],
+      [
+        "PGDCA",
+        "2nd Semester",
+        "WDT",
+        "WDT",
+        null,
+        "/pages/programs/pgdca/content/semester-2/WDT/Unit-1/index.html"
+      ],
+      [
+        "DSML",
+        "1st Semester",
+        "FDSML",
+        "Fundamentals of Data Science and Machine Learning",
+        null,
+        "/pages/programs/dsml/content/semester-1/fdsml/unit-1/index.html"
+      ],
+      [
+        "DSML",
+        "1st Semester",
+        "PYTHON",
+        "Python",
+        null,
+        "/pages/programs/pgdca/content/semester-1/python-hindi/unit-1/index.html"
+      ],
+      [
+        "DSML",
+        "1st Semester",
+        "EMDSML",
+        "Essential Mathematics for Data Science and Machine Learning",
+        null,
+        "/pages/programs/dsml/content/semester-1/EMDSL/unit-1/index.html"
+      ],
+      [
+        "DSML",
+        "1st Semester",
+        "DSTT",
+        "Data Science - Tools & Techniques",
+        null,
+        "/pages/programs/dsml/content/semester-1/DSTT/Basic_Collaboration_Tools.html"
+      ],
+      [
+        "Cyber Security",
+        "1st Semester",
+        "FCS",
+        "Fundamentals of Cyber Security",
+        null,
+        "/pages/programs/cyber-security/content/semester-1/Fundamental of Cyber Security/unit-1/unit-1.html"
+      ],
+      [
+        "Cyber Security",
+        "1st Semester",
+        "NCS",
+        "Networking Concepts & Security",
+        null,
+        null
+      ],
+      [
+        "Cyber Security",
+        "1st Semester",
+        "OSSF",
+        "Operating System Security & Forensics",
+        null,
+        null
+      ],
+      [
+        "Cyber Security",
+        "1st Semester",
+        "FWAS",
+        "Fundamentals of Web Application Security",
+        null,
+        null
+      ]
+    ];
+
+    await connection.query(
+      `INSERT IGNORE INTO subjects
+        (branch, semester, subject_code, subject_name, description, content_url)
+       VALUES ?`,
+      [officialSubjects]
+    );
+
+  } finally {
+    connection.release();
+  }
+}
+
+/* =========================================================
+   SESSIONS
+========================================================= */
+
+const sessions = new Map();
+const adminSessions = new Map();
+const oauthStates = new Map();
+
+const SESSION_TTL = 30 * 24 * 60 * 60 * 1000;
+
+function token() {
+  return crypto.randomBytes(32).toString("hex");
+}
+
+/* =========================================================
+   RATE LIMITER
+========================================================= */
+
+function rateLimit({ windowMs, max, keyPrefix }) {
+
+  const hits = new Map();
+
+  setInterval(() => {
+
+    const now = Date.now();
+
+    for (const [key, value] of hits) {
+
+      if (now - value.start > windowMs) {
+        hits.delete(key);
+      }
+
+    }
+
+  }, windowMs).unref();
+
+  return (req, res, next) => {
+
+    const key =
+      `${keyPrefix}:${req.ip || req.connection?.remoteAddress || "unknown"}`;
+
+    const now = Date.now();
+
+    const entry =
+      hits.get(key) || {
+        count: 0,
+        start: now
+      };
+
+    if (now - entry.start > windowMs) {
+
+      entry.count = 0;
+      entry.start = now;
+
+    }
+
+    entry.count++;
+
+    hits.set(key, entry);
+
+    if (entry.count > max) {
+
+      return res.status(429).json({
+        message: "Too many attempts. Please wait and try again."
+      });
+
+    }
+
+    next();
+
+  };
+
+}
+
+const loginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 15,
+  keyPrefix: "login"
+});
+
+const registerLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000,
+  max: 15,
+  keyPrefix: "register"
+});
+
+const forgotPasswordLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 5,
+  keyPrefix: "forgot"
+});
+
+const adminLoginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 10,
+  keyPrefix: "admin-login"
+});
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+const ah = fn =>
+  (req, res, next) =>
+    Promise.resolve(fn(req, res, next)).catch(next);
+
+function safe(user) {
+
+  if (!user) return null;
+
+  const {
+    password,
+    passwordHash,
+    passwordResetOtpHash,
+    passwordResetOtpExpiresAt,
+    passwordResetOtpAttempts,
+    resetToken,
+    resetExpiresAt,
+    ...safeUser
+  } = user;
+
+  return safeUser;
+}
+
+function otpHash(value) {
+
+  return crypto
+    .createHash("sha256")
+    .update(String(value))
+    .digest("hex");
+
+}
+
+function infer(page = "") {
+
+  const pathname = String(page).split(/[?#]/, 1)[0];
+  const segments = pathname
+    .split("/")
+    .filter(Boolean)
+    .map(segment => {
+      try {
+        return decodeURIComponent(segment);
+      } catch {
+        return segment;
+      }
+    });
+
+  const contentIndex = segments.findIndex(
+    segment => segment.toLowerCase() === "content"
+  );
+
+  if (contentIndex >= 0) {
+    const semesterIndex = segments.findIndex(
+      (segment, index) =>
+        index > contentIndex && /^semester[-_ ]?\d+$/i.test(segment)
+    );
+    const subjectFolder =
+      semesterIndex >= 0
+        ? segments[semesterIndex + 1]
+        : "";
+
+    if (subjectFolder) {
+      const subjectKey = subjectFolder
+        .replace(/-hindi$/i, "")
+        .toLowerCase()
+        .replace(/[^a-z0-9]/g, "");
+      const aliases = {
+        dccn: "DCC",
+        dcc: "DCC",
+        iwt: "IWT",
+        wit: "IWT",
+        fundamentalofcybersecurity: "FCS",
+        networkingconceptssecurity: "NCS",
+        operatingsystemsecurityforensics: "OSSF",
+        fundamentalsofwebapplicationsecurity: "FWAS"
+      };
+
+      return aliases[subjectKey] || subjectKey.toUpperCase();
+    }
+  }
+
+  return "Course";
+
+}
+
+/* =========================================================
+   AUTH MIDDLEWARE
+========================================================= */
+
+async function auth(req, res, next) {
+
+  const header = req.headers.authorization || "";
+
+  const sessionToken =
+    header.startsWith("Bearer ")
+      ? header.substring(7)
+      : "";
+
+  const session = sessions.get(sessionToken);
+
+  if (!session) {
+
+    return res.status(401).json({
+      message: "Please login again."
+    });
+
+  }
+
+  if (Date.now() - session.loginAt > SESSION_TTL) {
+
+    sessions.delete(sessionToken);
+
+    return res.status(401).json({
+      message: "Session expired. Please login again."
+    });
+
+  }
+
+  session.lastSeen = Date.now();
+
+  req.userId = session.userId;
+  req.sessionToken = sessionToken;
+
+  next();
+
+}
+
+function admin(req, res, next) {
+
+  const adminToken = req.header("x-admin-token");
+
+  if (!adminToken || !adminSessions.has(adminToken)) {
+
+    return res.status(401).json({
+      message: "Unauthorized"
+    });
+
+  }
+
+  next();
+
+}
+
+/* =========================================================
+   HEALTH
+========================================================= */
+
+app.get("/api/health", async (req, res) => {
+
+  try {
+
+    await db.query("SELECT 1");
+
+    res.json({
+      status: "ok",
+      database: "connected"
+    });
+
+  } catch (error) {
+
+    res.status(500).json({
+      status: "error",
+      database: "disconnected"
+    });
+
+  }
+
+});
+
+/* =========================================================
+   REGISTER
+========================================================= */
+
+app.post(
+  "/api/register",
+  registerLimiter,
+  ah(async (req, res) => {
+
+    const {
+      name,
+      email,
+      branch,
+      semester,
+      password,
+      confirmPassword,
+      phone,
+      college
+    } = req.body;
+
+    const cleanName = String(name || "").trim();
+    const cleanEmail = String(email || "").trim().toLowerCase();
+    const cleanBranch = String(branch || "").trim();
+    const cleanSemester = String(semester || "").trim();
+    const cleanPhone = String(phone || "").trim();
+    const cleanCollege = String(college || "").trim();
+
+    if (
+      !cleanName ||
+      !cleanEmail ||
+      !cleanBranch ||
+      !cleanSemester ||
+      typeof password !== "string" ||
+      !password
+    ) {
+
+      return res.status(400).json({
+        message: "All fields required."
+      });
+
+    }
+
+    if (password !== confirmPassword) {
+
+      return res.status(400).json({
+        message: "Passwords do not match."
+      });
+
+    }
+
+    if (
+      cleanName.length > 100 ||
+      cleanEmail.length > 150 ||
+      cleanPhone.length > 30 ||
+      cleanCollege.length > 150
+    ) {
+
+      return res.status(400).json({
+        message: "One or more fields exceed the allowed length."
+      });
+
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleanEmail)) {
+
+      return res.status(400).json({
+        message: "Please enter a valid email address."
+      });
+
+    }
+
+    const branches = [
+      "PGDCA",
+      "DSML",
+      "Cyber Security",
+      "Web Designing",
+      "PGDA"
+    ];
+    const selectedSemester = semesterNumber(cleanSemester);
+    const maxSemester = cleanBranch === "PGDCA" ? 4 : 2;
+
+    if (
+      !branches.includes(cleanBranch) ||
+      selectedSemester < 1 ||
+      selectedSemester > maxSemester
+    ) {
+
+      return res.status(400).json({
+        message: "Please select a valid branch and semester."
+      });
+
+    }
+
+    if (password.length < 8) {
+
+      return res.status(400).json({
+        message: "Password kam se kam 8 characters ka hona chahiye."
+      });
+
+    }
+
+    const [existing] =
+      await db.query(
+        "SELECT id FROM users WHERE email = ? LIMIT 1",
+        [cleanEmail]
+      );
+
+    if (existing.length > 0) {
+
+      return res.status(409).json({
+        message: "Email already registered."
+      });
+
+    }
+
+    const hashedPassword =
+      await bcrypt.hash(password, 10);
+
+    await db.query(
+      `
+            INSERT INTO users
+            (
+                name,
+                email,
+                password,
+                phone,
+                college,
+                branch,
+                semester,
+                role,
+                status,
+                provider
+            )
+              VALUES (?, ?, ?, ?, ?, ?, ?, 'student', 'active', 'password')
+            `,
+      [
+        cleanName,
+        cleanEmail,
+        hashedPassword,
+        cleanPhone || null,
+        cleanCollege || null,
+        cleanBranch,
+        cleanSemester
+      ]
+    );
+
+    res.status(201).json({
+      message: "Registration successful."
+    });
+
+  })
+);
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+app.post(
+  "/api/login",
+  loginLimiter,
+  ah(async (req, res) => {
+
+    const email =
+      String(req.body.email || "")
+        .trim()
+        .toLowerCase();
+
+    const password =
+      String(req.body.password || "");
+
+    if (!email || !password) {
+
+      return res.status(400).json({
+        message: "Email and password are required."
+      });
+
+    }
+
+    const [rows] =
+      await db.query(
+        "SELECT * FROM users WHERE email = ? LIMIT 1",
+        [email]
+      );
+
+    if (rows.length === 0) {
+
+      return res.status(401).json({
+        message: "Invalid email or password."
+      });
+
+    }
+
+    const user = rows[0];
+
+    if (String(user.status || "").toLowerCase() === "blocked") {
+
+      return res.status(403).json({
+        message: "Your account has been blocked by admin."
+      });
+
+    }
+
+    const validPassword =
+      await bcrypt.compare(
+        password,
+        user.password
+      );
+
+    if (!validPassword) {
+
+      return res.status(401).json({
+        message: "Invalid email or password."
+      });
+
+    }
+
+    await db.query(
+      `
+            UPDATE users
+            SET lastLoginAt = NOW()
+            WHERE id = ?
+            `,
+      [user.id]
+    );
+
+    const sessionToken = token();
+
+    sessions.set(sessionToken, {
+      userId: user.id,
+      loginAt: Date.now(),
+      lastSeen: Date.now(),
+      currentPage: ""
+    });
+
+    res.json({
+      token: sessionToken,
+      user: safe({
+        ...user,
+        lastLoginAt: new Date()
       })
     });
-    const tokenData = await tokenResponse.json();
-    if (!tokenData.access_token) {
-      throw new Error(tokenData.error_description || tokenData.error || 'Failed to exchange Google code.');
-    }
-    const profileResponse = await fetch('https://www.googleapis.com/oauth2/v2/userinfo', {
-      headers: { Authorization: `Bearer ${tokenData.access_token}` }
+
+  })
+);
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+app.post(
+  "/api/logout",
+  auth,
+  ah(async (req, res) => {
+
+    await db.query(
+      `
+            UPDATE users
+            SET lastLogoutAt = NOW()
+            WHERE id = ?
+            `,
+      [req.userId]
+    );
+
+    sessions.delete(req.sessionToken);
+
+    res.json({
+      message: "Logged out"
     });
-    const profile = await profileResponse.json();
-    if (!profile.email) {
-      throw new Error('Google profile did not return an email address.');
+
+  })
+);
+
+/* =========================================================
+   CURRENT USER
+========================================================= */
+
+app.get(
+  "/api/me",
+  auth,
+  ah(async (req, res) => {
+
+    const [rows] =
+      await db.query(
+        "SELECT * FROM users WHERE id = ? LIMIT 1",
+        [req.userId]
+      );
+
+    if (rows.length === 0) {
+
+      return res.status(404).json({
+        message: "Student profile not found."
+      });
+
     }
-    const users = await read('users');
-    const email = String(profile.email).trim().toLowerCase();
-    let user = users.find(x => (x.email || '').toLowerCase() === email);
-    if (!user) {
-      user = {
-        id: crypto.randomUUID(),
-        name: profile.name || profile.given_name || email.split('@')[0],
-        email,
-        branch: '',
-        semester: '',
-        passwordHash: '',
-        registeredAt: new Date().toISOString(),
-        lastLoginAt: null,
-        lastLogoutAt: null,
-        phone: '',
-        college: '',
-        photo: profile.picture || '',
-        provider: 'google'
-      };
-      users.push(user);
+
+    res.json({
+      user: safe(rows[0])
+    });
+
+  })
+);
+
+/* =========================================================
+   UPDATE PROFILE
+========================================================= */
+
+app.put(
+  "/api/me",
+  auth,
+  ah(async (req, res) => {
+
+    const allowedFields = {
+      name: "name",
+      phone: "phone",
+      college: "college",
+      photo: "profile_image"
+    };
+
+    const updates = [];
+    const values = [];
+
+    for (const [field, column] of Object.entries(allowedFields)) {
+
+      if (req.body[field] !== undefined) {
+
+        const value = String(req.body[field] || "").trim();
+
+        if (field === "photo" && value.length > 2_700_000) {
+          return res.status(413).json({
+            message: "Profile image is too large."
+          });
+        }
+
+        updates.push(`${column} = ?`);
+        values.push(value || null);
+
+      }
+
+    }
+
+    if (updates.length === 0) {
+
+      return res.status(400).json({
+        message: "Nothing to update."
+      });
+
+    }
+
+    values.push(req.userId);
+
+    await db.query(
+      `
+            UPDATE users
+            SET ${updates.join(", ")}
+            WHERE id = ?
+            `,
+      values
+    );
+
+    const [rows] =
+      await db.query(
+        "SELECT * FROM users WHERE id = ?",
+        [req.userId]
+      );
+
+    res.json({
+      user: safe(rows[0])
+    });
+
+  })
+);
+
+/* =========================================================
+   STUDENT SUBJECTS
+========================================================= */
+
+function semesterNumber(value) {
+
+  const text = String(value || "").toLowerCase();
+  const match =
+    text.match(/(?:semester\s*[-:]?\s*)([1-6])/) ||
+    text.match(/([1-6])(?:st|nd|rd|th)?\s*semester/);
+
+  return match ? Number(match[1]) : 0;
+
+}
+
+app.get(
+  "/api/student/subjects",
+  auth,
+  ah(async (req, res) => {
+
+    const [users] = await db.query(
+      "SELECT branch, semester FROM users WHERE id = ? LIMIT 1",
+      [req.userId]
+    );
+
+    if (!users.length) {
+      return res.status(404).json({ message: "Student profile not found." });
+    }
+
+    const [branchSubjects] = await db.query(
+      `SELECT id, branch, semester, subject_code AS subjectCode,
+              subject_name AS subjectName, description,
+              content_url AS contentUrl
+       FROM subjects
+       WHERE branch = ? AND is_active = TRUE
+       ORDER BY id`,
+      [users[0].branch]
+    );
+
+    const targetSemester = semesterNumber(users[0].semester);
+    const officialSubjects = branchSubjects.filter(subject =>
+      semesterNumber(subject.semester) === targetSemester
+    );
+
+    const [customSubjects] = await db.query(
+      `SELECT id, subject_name AS subjectName, created_at AS createdAt
+       FROM student_custom_subjects
+       WHERE student_id = ?
+       ORDER BY created_at, id`,
+      [req.userId]
+    );
+
+    res.json({ officialSubjects, customSubjects });
+
+  })
+);
+
+app.post(
+  "/api/student/subjects",
+  auth,
+  ah(async (req, res) => {
+
+    const subjectName = String(
+      req.body.subjectName || req.body.subject_name || ""
+    ).trim();
+
+    if (!subjectName || subjectName.length > 100) {
+      return res.status(400).json({
+        message: "Subject name must be between 1 and 100 characters."
+      });
+    }
+
+    try {
+      const [result] = await db.query(
+        `INSERT INTO student_custom_subjects (student_id, subject_name)
+         VALUES (?, ?)`,
+        [req.userId, subjectName]
+      );
+
+      const [rows] = await db.query(
+        `SELECT id, subject_name AS subjectName, created_at AS createdAt
+         FROM student_custom_subjects
+         WHERE id = ? AND student_id = ?`,
+        [result.insertId, req.userId]
+      );
+
+      return res.status(201).json({ subject: rows[0] });
+    } catch (error) {
+      if (error.code === "ER_DUP_ENTRY") {
+        return res.status(409).json({
+          message: "You have already added this subject."
+        });
+      }
+
+      throw error;
+    }
+
+  })
+);
+
+app.delete(
+  "/api/student/subjects/:id",
+  auth,
+  ah(async (req, res) => {
+
+    const subjectId = Number(req.params.id);
+
+    if (!Number.isSafeInteger(subjectId) || subjectId < 1) {
+      return res.status(400).json({ message: "Invalid subject id." });
+    }
+
+    const [result] = await db.query(
+      `DELETE FROM student_custom_subjects
+       WHERE id = ? AND student_id = ?`,
+      [subjectId, req.userId]
+    );
+
+    if (!result.affectedRows) {
+      return res.status(404).json({
+        message: "Custom subject not found."
+      });
+    }
+
+    res.json({ message: "Custom subject deleted." });
+
+  })
+);
+
+/* =========================================================
+   ACTIVITY
+========================================================= */
+
+app.post(
+  "/api/activity",
+  auth,
+  ah(async (req, res) => {
+
+    const page =
+      String(req.body.page || "");
+
+    const action =
+      String(req.body.action || req.body.type || "visit");
+
+    await db.query(
+      `
+            INSERT INTO activity
+            (
+                user_id,
+                page,
+                action,
+                subject,
+                unit,
+                chapter
+            )
+            VALUES (?, ?, ?, ?, ?, ?)
+            `,
+      [
+        req.userId,
+        page,
+        action,
+        req.body.subject || "",
+        req.body.unit || "",
+        req.body.chapter || ""
+      ]
+    );
+
+    const session =
+      sessions.get(req.sessionToken);
+
+    if (session) {
+
+      session.lastSeen = Date.now();
+      session.currentPage = page;
+
+    }
+
+    res.json({
+      ok: true
+    });
+
+  })
+);
+
+/* =========================================================
+   BASIC PROGRESS
+========================================================= */
+
+app.get(
+  "/api/progress",
+  auth,
+  ah(async (req, res) => {
+
+    const [rows] =
+      await db.query(
+        `
+                SELECT *
+                FROM progress
+                WHERE user_id = ?
+                ORDER BY updated_at DESC
+                `,
+        [req.userId]
+      );
+
+    res.json({
+      progress: rows
+    });
+
+  })
+);
+
+app.post(
+  "/api/progress",
+  auth,
+  ah(async (req, res) => {
+
+    const page =
+      String(req.body.page || "");
+
+    if (!page) {
+
+      return res.status(400).json({
+        message: "Page is required."
+      });
+
+    }
+
+    const [existing] =
+      await db.query(
+        `
+                SELECT id
+                FROM progress
+                WHERE user_id = ?
+                AND page = ?
+                LIMIT 1
+                `,
+        [req.userId, page]
+      );
+
+    if (existing.length === 0) {
+
+      await db.query(
+        `
+                INSERT INTO progress
+                (
+                    user_id,
+                    type,
+                    page,
+                    title,
+                    subject_id,
+                    status
+                )
+                VALUES (?, 'basic', ?, ?, ?, ?)
+                `,
+        [
+          req.userId,
+          page,
+          req.body.title || "",
+          req.body.subject || infer(page),
+          req.body.completed
+            ? "COMPLETED"
+            : "IN_PROGRESS"
+        ]
+      );
+
     } else {
-      user.name = user.name || profile.name || profile.given_name || email.split('@')[0];
-      user.photo = user.photo || profile.picture || '';
-      user.provider = 'google';
+
+      await db.query(
+        `
+                UPDATE progress
+                SET
+                    title = ?,
+                    subject_id = ?,
+                    status = ?,
+                    updated_at = NOW()
+                WHERE id = ?
+                `,
+        [
+          req.body.title || "",
+          req.body.subject || infer(page),
+          req.body.completed
+            ? "COMPLETED"
+            : "IN_PROGRESS",
+          existing[0].id
+        ]
+      );
+
     }
-    user.lastLoginAt = new Date().toISOString();
-    await write('users', users);
-    const sessionToken = token();
-    sessions.set(sessionToken, { userId: user.id, loginAt: Date.now(), lastSeen: Date.now(), currentPage: '' });
-    redirectTarget.searchParams.set('google_auth', '1');
-    redirectTarget.searchParams.set('token', sessionToken);
-    redirectTarget.searchParams.set('user', encodeURIComponent(JSON.stringify(safe(user))));
-    res.redirect(redirectTarget.toString());
-  } catch (error) {
-    console.error('Google OAuth error:', error.message || error);
-    redirectTarget.searchParams.set('google_error', 'Unable to sign in with Google right now.');
-    res.redirect(redirectTarget.toString());
-  }
-});
-app.get('/api/auth/facebook', (req, res) => {
-  const target = new URL(req.query.redirect || process.env.FRONTEND_URL || 'http://localhost:3000/pages/auth/login/index.html', `${req.protocol}://${req.get('host')}`);
-  if (!process.env.FACEBOOK_CLIENT_ID || !process.env.FACEBOOK_CLIENT_SECRET) { target.searchParams.set('oauth_error', 'Facebook login is not configured on this server yet.'); return res.redirect(target.toString()); }
-  const state = createOAuthState('facebook', target.toString()); const redirectUri = process.env.FACEBOOK_REDIRECT_URI || `${req.protocol}://${req.get('host')}/api/auth/facebook/callback`;
-  const params = new URLSearchParams({ client_id: process.env.FACEBOOK_CLIENT_ID, redirect_uri: redirectUri, state, response_type: 'code', scope: 'email,public_profile' });
-  res.redirect(`https://www.facebook.com/v20.0/dialog/oauth?${params.toString()}`);
-});
-app.get('/api/auth/facebook/callback', async (req, res) => {
-  const saved = consumeOAuthState(String(req.query.state || '')); const target = new URL(saved?.redirectUrl || process.env.FRONTEND_URL || 'http://localhost:3000/pages/auth/login/index.html', `${req.protocol}://${req.get('host')}`);
-  try {
-    if (!saved || !req.query.code) throw new Error('Social sign-in response was incomplete.');
-    const redirectUri = process.env.FACEBOOK_REDIRECT_URI || `${req.protocol}://${req.get('host')}/api/auth/facebook/callback`;
-    const exchange = await fetch('https://graph.facebook.com/v20.0/oauth/access_token', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams({ client_id: process.env.FACEBOOK_CLIENT_ID || '', client_secret: process.env.FACEBOOK_CLIENT_SECRET || '', redirect_uri: redirectUri, code: String(req.query.code) }) });
-    const access = await exchange.json(); if (!access.access_token) throw new Error('Facebook token exchange failed.');
-    const profile = await (await fetch(`https://graph.facebook.com/me?fields=id,name,email,picture&access_token=${encodeURIComponent(access.access_token)}`)).json(); if (!profile.email) throw new Error('Facebook email permission is required.');
-    const users = await read('users'); const email = profile.email.trim().toLowerCase(); let user = users.find(x => (x.email || '').toLowerCase() === email);
-    if (!user) { user = { id: crypto.randomUUID(), name: profile.name || email.split('@')[0], email, branch: '', semester: '', passwordHash: '', registeredAt: new Date().toISOString(), lastLoginAt: null, lastLogoutAt: null, phone: '', college: '', photo: profile.picture?.data?.url || '', provider: 'facebook' }; users.push(user); } else { user.provider = 'facebook'; user.photo = user.photo || profile.picture?.data?.url || ''; }
-    user.lastLoginAt = new Date().toISOString(); await write('users', users); const sessionToken = token(); sessions.set(sessionToken, { userId: user.id, loginAt: Date.now(), lastSeen: Date.now(), currentPage: '' }); target.searchParams.set('oauth_auth', '1'); target.searchParams.set('token', sessionToken); target.searchParams.set('user', encodeURIComponent(JSON.stringify(safe(user)))); res.redirect(target.toString());
-  } catch (error) { target.searchParams.set('oauth_error', error.message || 'Unable to sign in with Facebook.'); res.redirect(target.toString()); }
-});
-app.post('/api/register', registerLimiter, ah(async (req, res) => { const { name, email, branch, semester, password, confirmPassword } = req.body; if (!name || !email || !branch || !semester || !password) return res.status(400).json({ message: 'All fields required.' }); if (password !== confirmPassword) return res.status(400).json({ message: 'Passwords do not match.' }); if (password.length < 8) return res.status(400).json({ message: 'Password kam se kam 8 characters ka hona chahiye.' }); const users = await read('users'); if (users.some(x => (x.email || '').toLowerCase() === email.toLowerCase())) return res.status(409).json({ message: 'Email already registered.' }); const u = { id: crypto.randomUUID(), name: name.trim(), email: email.trim().toLowerCase(), branch, semester, passwordHash: await bcrypt.hash(password, 10), registeredAt: new Date().toISOString(), lastLoginAt: null, lastLogoutAt: null, phone: '', college: '', photo: '', provider: 'password' }; users.push(u); await write('users', users); res.status(201).json({ message: 'Registration successful.' }) }));
-app.post('/api/login', loginLimiter, ah(async (req, res) => {
-  const users = await read('users');
-  const u = users.find(x => (x.email || '').toLowerCase() === (req.body.email || '').trim().toLowerCase());
-  const password = String(req.body.password || '');
-  const isBcrypt = typeof u?.passwordHash === 'string' && u.passwordHash.startsWith('$2');
-  const validPassword = isBcrypt ? await bcrypt.compare(password, u.passwordHash) : u?.passwordHash === password;
-  if (!u || !validPassword) return res.status(401).json({ message: 'Invalid email or password.' });
-  if (!isBcrypt) u.passwordHash = await bcrypt.hash(password, 10);
-  u.provider = 'password';
-  u.lastLoginAt = new Date().toISOString();
-  await write('users', users);
-  const t = token(); sessions.set(t, { userId: u.id, loginAt: Date.now(), lastSeen: Date.now(), currentPage: '' });
-  res.json({ token: t, user: safe(u) });
-}));
-const otpHash = value => crypto.createHash('sha256').update(String(value)).digest('hex');
-function mailTransport() {
-  if (process.env.SMTP_HOST) {
-    return nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT || 587),
-      secure: String(process.env.SMTP_SECURE || 'false') === 'true',
-      auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_APP_PASSWORD }
+
+    res.json({
+      ok: true
     });
-  }
-  return nodemailer.createTransport({
-    service: 'gmail',
-    auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_APP_PASSWORD }
-  });
-}
 
-app.post('/api/forgot-password', forgotPasswordLimiter, ah(async (req, res) => {
-  const email = (req.body.email || '').trim().toLowerCase();
-  if (!email) return res.status(400).json({ message: 'Email is required.' });
-  if (!process.env.EMAIL_USER || !process.env.EMAIL_APP_PASSWORD) {
-    return res.status(500).json({ message: 'Email service configure nahi hai. Render environment variables check karein.' });
-  }
+  })
+);
 
-  const users = await read('users');
-  const u = users.find(x => (x.email || '').toLowerCase() === email);
-  if (!u) return res.status(404).json({ message: 'Ye email BK LearnX par registered nahi hai.' });
+/* =========================================================
+   LEARNING CONFIG
+========================================================= */
 
-  const code = String(crypto.randomInt(100000, 1000000));
-  u.passwordResetOtpHash = otpHash(code);
-  u.passwordResetOtpExpiresAt = new Date(Date.now() + 10 * 60 * 1000).toISOString();
-  u.passwordResetOtpAttempts = 0;
-  delete u.resetToken;
-  delete u.resetExpiresAt;
-  await write('users', users);
+const LEARNING_CONFIG = Object.freeze({
 
-  try {
-    await mailTransport().sendMail({
-      from: `BK LearnX <${process.env.EMAIL_USER}>`,
-      to: u.email,
-      subject: 'BK LearnX password reset code',
-      text: `Your BK LearnX password reset code is ${code}. It expires in 10 minutes.`,
-      html: `<div style="font-family:Arial,sans-serif;max-width:520px;margin:auto;padding:24px;border:1px solid #e5e7eb;border-radius:14px"><h2 style="color:#173b7a">BK LearnX</h2><p>Password reset karne ke liye ye verification code use karein:</p><div style="font-size:34px;font-weight:700;letter-spacing:8px;padding:18px;text-align:center;background:#f3f6fb;border-radius:10px">${code}</div><p style="color:#555">Code 10 minutes tak valid hai. Agar aapne request nahi ki, ise ignore karein.</p></div>`
-    });
-    res.json({ message: '6-digit verification code aapke email par bhej diya gaya hai.', email: u.email });
-  } catch (error) {
-    delete u.passwordResetOtpHash;
-    delete u.passwordResetOtpExpiresAt;
-    delete u.passwordResetOtpAttempts;
-    await write('users', users);
-    console.error('Password reset email error:', error.message);
-    res.status(500).json({ message: 'Verification code email par nahi bheja ja saka. Email configuration check karein.' });
-  }
-}));
+  inactivityTimeoutSeconds:
+    Number(process.env.LEARNING_INACTIVITY_TIMEOUT || 45),
 
-app.post('/api/verify-reset-code', forgotPasswordLimiter, ah(async (req, res) => {
-  const email = (req.body.email || '').trim().toLowerCase();
-  const code = String(req.body.code || '').trim();
-  if (!email || !/^\d{6}$/.test(code)) return res.status(400).json({ message: 'Valid email aur 6-digit code enter karein.' });
+  heartbeatIntervalSeconds:
+    Number(process.env.LEARNING_HEARTBEAT_INTERVAL || 30),
 
-  const users = await read('users');
-  const u = users.find(x => (x.email || '').toLowerCase() === email);
-  if (!u || !u.passwordResetOtpHash) return res.status(400).json({ message: 'Pehle naya verification code request karein.' });
-  if (!u.passwordResetOtpExpiresAt || Date.now() > new Date(u.passwordResetOtpExpiresAt).getTime()) {
-    delete u.passwordResetOtpHash; delete u.passwordResetOtpExpiresAt; delete u.passwordResetOtpAttempts;
-    await write('users', users);
-    return res.status(400).json({ message: 'Verification code expire ho gaya. Naya code mangayein.' });
-  }
+  minimumActiveTimeSeconds:
+    Number(process.env.LEARNING_MIN_ACTIVE_SECONDS || 300),
 
-  u.passwordResetOtpAttempts = Number(u.passwordResetOtpAttempts || 0) + 1;
-  if (u.passwordResetOtpAttempts > 5) {
-    delete u.passwordResetOtpHash; delete u.passwordResetOtpExpiresAt; delete u.passwordResetOtpAttempts;
-    await write('users', users);
-    return res.status(429).json({ message: 'Bahut zyada galat attempts. Naya code request karein.' });
-  }
-  if (otpHash(code) !== u.passwordResetOtpHash) {
-    await write('users', users);
-    return res.status(400).json({ message: 'Verification code galat hai.' });
-  }
+  minimumReadProgress:
+    Number(process.env.LEARNING_MIN_READ_PROGRESS || 90),
 
-  u.resetToken = token();
-  u.resetExpiresAt = new Date(Date.now() + 15 * 60 * 1000).toISOString();
-  delete u.passwordResetOtpHash;
-  delete u.passwordResetOtpExpiresAt;
-  delete u.passwordResetOtpAttempts;
-  await write('users', users);
-  res.json({ message: 'Email verified. Ab naya password set karein.', resetToken: u.resetToken });
-}));
+  minimumSectionsViewed:
+    Number(process.env.LEARNING_MIN_SECTIONS_VIEWED || 90),
 
-app.post('/api/reset-password', ah(async (req, res) => {
-  const { token: resetToken, password } = req.body;
-  if (!resetToken || !password) return res.status(400).json({ message: 'Verification required.' });
-  if (password.length < 8) return res.status(400).json({ message: 'Password kam se kam 8 characters ka hona chahiye.' });
-  const users = await read('users');
-  const u = users.find(x => x.resetToken === resetToken);
-  if (!u) return res.status(400).json({ message: 'Invalid reset session. Code dobara verify karein.' });
-  if (!u.resetExpiresAt || Date.now() > new Date(u.resetExpiresAt).getTime()) return res.status(400).json({ message: 'Reset session expire ho gaya. Dobara code mangayein.' });
-  u.passwordHash = await bcrypt.hash(password, 10);
-  delete u.resetToken;
-  delete u.resetExpiresAt;
-  await write('users', users);
-  for (const [sessionToken, session] of sessions) if (session.userId === u.id) sessions.delete(sessionToken);
-  res.json({ message: 'Password successfully update ho gaya.' });
-}));
+  requireQuizIfAvailable:
+    String(
+      process.env.LEARNING_REQUIRE_QUIZ || "true"
+    ) !== "false"
 
-app.post('/api/logout', auth, ah(async (req, res) => { const users = await read('users'), u = users.find(x => x.id === req.userId); if (u) { u.lastLogoutAt = new Date().toISOString(); await write('users', users) } sessions.delete(req.sessionToken); res.json({ message: 'Logged out' }) }));
-const safe = u => { const { passwordHash, ...x } = u; return x };
-app.get('/api/me', auth, ah(async (req, res) => { const u = (await read('users')).find(x => x.id === req.userId); if (!u) return res.status(404).json({ message: 'Student profile not found.' }); res.json({ user: safe(u) }) }));
-app.put('/api/me', auth, ah(async (req, res) => { const users = await read('users'), u = users.find(x => x.id === req.userId); if (!u) return res.status(404).json({ message: 'Student profile not found.' });['name', 'branch', 'semester', 'phone', 'college', 'photo'].forEach(k => { if (req.body[k] !== undefined) u[k] = String(req.body[k]).trim() }); await write('users', users); res.json({ user: safe(u) }) }));
-app.post('/api/activity', auth, ah(async (req, res) => { const all = await read('activity'); const s = sessions.get(req.sessionToken); s.lastSeen = Date.now(); s.currentPage = req.body.page || s.currentPage; all.push({ id: crypto.randomUUID(), userId: req.userId, at: new Date().toISOString(), ...req.body }); if (all.length > 10000) all.splice(0, all.length - 10000); await write('activity', all); res.json({ ok: true }) }));
-app.get('/api/progress', auth, ah(async (req, res) => res.json({ progress: (await read('progress')).filter(x => x.userId === req.userId) })));
-app.post('/api/progress', auth, ah(async (req, res) => { const all = await read('progress'); let x = all.find(p => p.userId === req.userId && p.page === req.body.page); if (!x) { x = { id: crypto.randomUUID(), userId: req.userId, page: req.body.page, title: req.body.title || '', subject: req.body.subject || infer(req.body.page), completed: false }; all.push(x) } x.completed = !!req.body.completed; x.updatedAt = new Date().toISOString(); await write('progress', all); res.json({ progress: x }) }));
-function learningStatus(record) {
-  if (record.status === 'COMPLETED' || record.manualConfirmed) return 'COMPLETED';
-  return record.startedAt ? 'IN_PROGRESS' : 'NOT_STARTED';
-}
+});
+
 function meetsCompletionCriteria(record) {
-  const readOk = Number(record.maxScrollPercent || 0) >= LEARNING_CONFIG.minimumReadProgress;
-  const sectionPercent = record.totalSections ? Number(record.sectionsViewed || 0) / Number(record.totalSections) * 100 : 0;
-  const sectionsOk = sectionPercent >= LEARNING_CONFIG.minimumSectionsViewed;
-  const timeOk = Number(record.activeTimeSeconds || 0) >= LEARNING_CONFIG.minimumActiveTimeSeconds;
-  const quizOk = !record.quizAvailable || !LEARNING_CONFIG.requireQuizIfAvailable || !!record.quizCompleted;
-  return readOk && timeOk && sectionsOk && quizOk;
-}
-function normalizeLearning(body, previous = {}) {
-  const now = new Date().toISOString();
-  const record = {
-    ...previous,
-    type: 'learning',
-    page: String(body.page || previous.page || '').slice(0, 1000),
-    title: String(body.title || previous.title || '').slice(0, 300),
-    subjectId: String(body.subjectId || previous.subjectId || infer(body.page)).slice(0, 120),
-    unitId: String(body.unitId || previous.unitId || '').slice(0, 200),
-    chapterId: String(body.chapterId || previous.chapterId || body.page || '').slice(0, 300),
-    maxScrollPercent: Math.max(Number(previous.maxScrollPercent || 0), Math.min(100, Math.max(0, Number(body.maxScrollPercent || 0)))),
-    sectionsViewed: Math.max(Number(previous.sectionsViewed || 0), Math.max(0, Number(body.sectionsViewed || 0))),
-    totalSections: Math.max(Number(previous.totalSections || 0), Math.max(0, Number(body.totalSections || 0))),
-    currentSectionId: String(body.currentSectionId || previous.currentSectionId || '').slice(0, 200),
-    lastPosition: Math.max(0, Number(body.lastPosition ?? previous.lastPosition ?? 0)),
-    quizAvailable: Boolean(body.quizAvailable ?? previous.quizAvailable),
-    quizStarted: Boolean(body.quizStarted || previous.quizStarted),
-    quizCompleted: Boolean(body.quizCompleted || previous.quizCompleted),
-    quizScore: body.quizScore == null ? (previous.quizScore ?? null) : Math.min(100, Math.max(0, Number(body.quizScore))),
-    attempts: Math.max(Number(previous.attempts || 0), Number(body.attempts || 0)),
-    manualConfirmed: Boolean(body.manualConfirmed || previous.manualConfirmed),
-    activeTimeSeconds: Math.min(31536000, Math.max(0, Number(body.activeTimeSeconds ?? previous.activeTimeSeconds ?? 0))),
-    lastActiveAt: body.lastActiveAt || previous.lastActiveAt || now,
-    updatedAt: now
-  };
-  if (!record.startedAt) record.startedAt = previous.startedAt || now;
-  record.status = meetsCompletionCriteria(record) || record.manualConfirmed ? 'COMPLETED' : 'IN_PROGRESS';
-  record.completedAt = record.status === 'COMPLETED' ? (previous.completedAt || now) : null;
-  return record;
-}
-app.get('/api/learning/config', auth, (req, res) => res.json({ config: LEARNING_CONFIG }));
-app.get('/api/learning/progress', auth, ah(async (req, res) => { const all = await read('progress'); res.json({ progress: all.filter(x => x.userId === req.userId && x.type === 'learning'), config: LEARNING_CONFIG }); }));
-app.post('/api/learning/progress', auth, ah(async (req, res) => {
-  if (!req.body.page) return res.status(400).json({ message: 'Chapter page is required.' });
-  const all = await read('progress');
-  const index = all.findIndex(x => x.userId === req.userId && x.type === 'learning' && x.page === req.body.page);
-  const previous = index >= 0 ? all[index] : { id: crypto.randomUUID(), userId: req.userId };
-  const record = normalizeLearning(req.body, previous);
-  if (index >= 0) all[index] = { ...previous, ...record }; else all.push({ ...previous, ...record });
-  const session = sessions.get(req.sessionToken); session.lastSeen = Date.now(); session.currentPage = record.page; session.learning = record;
-  await write('progress', all);
-  res.json({ progress: { ...record, status: learningStatus(record) }, config: LEARNING_CONFIG });
-}));
-app.post('/api/learning/heartbeat', auth, ah(async (req, res) => {
-  const session = sessions.get(req.sessionToken); session.lastSeen = Date.now(); session.currentPage = String(req.body.page || session.currentPage || '');
-  res.json({ ok: true, lastActiveAt: new Date(session.lastSeen).toISOString() });
-}));
-function infer(p = '') { const m = p.match(/content\/[^/]+\/([^/]+)/); return m ? m[1].replace(/-hindi$/, '').toUpperCase() : 'Course' }
-// No hardcoded fallback: set ADMIN_EMAIL and ADMIN_PASSWORD in your .env / host
-// environment variables. If they are missing, admin login is disabled rather
-// than silently falling back to a credential that used to live in this file.
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL, ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
-app.post('/api/admin/login', adminLoginLimiter, ah(async (req, res) => {
-  if (!ADMIN_EMAIL || !ADMIN_PASSWORD) return res.status(503).json({ message: 'Admin login is not configured on this server yet.' });
-  if ((req.body.email || '').toLowerCase() !== ADMIN_EMAIL.toLowerCase() || req.body.password !== ADMIN_PASSWORD) return res.status(401).json({ message: 'Invalid admin credentials.' });
-  const t = token(); adminSessions.set(t, { at: Date.now() }); res.json({ token: t });
-}));
-app.post('/api/admin/logout', admin, (req, res) => { adminSessions.delete(req.header('x-admin-token')); res.json({ message: 'Admin logged out.' }) });
-app.get('/api/admin/dashboard', admin, ah(async (req, res) => { const [users, activity, progress] = await Promise.all([read('users'), read('activity'), read('progress')]); const now = Date.now(), day = new Date().toISOString().slice(0, 10); const rows = users.map(u => { const sess = [...sessions.values()].find(s => s.userId === u.id); const ps = progress.filter(p => p.userId === u.id && p.type === 'learning'); const latest = ps.sort((a, b) => new Date(b.updatedAt || 0) - new Date(a.updatedAt || 0))[0]; const age = sess ? Math.floor((now - sess.lastSeen) / 1000) : Infinity; return { ...safe(u), online: age < 120, presence: age < 60 ? 'ONLINE' : age < 120 ? 'AWAY' : 'OFFLINE', currentPage: latest?.page || sess?.currentPage || '', currentSubject: latest?.subjectId || '', currentUnit: latest?.unitId || '', currentChapter: latest?.chapterId || '', currentSection: latest?.currentSectionId || '', readingProgress: latest?.maxScrollPercent || 0, activeTimeSeconds: latest?.activeTimeSeconds || 0, lastActivity: sess ? new Date(sess.lastSeen).toISOString() : latest?.lastActiveAt || u.lastLogoutAt || u.lastLoginAt, completion: ps.length ? Math.round(ps.reduce((sum, x) => sum + (x.maxScrollPercent || 0), 0) / ps.length) : 0 } }); res.json({ stats: { totalStudents: users.length, onlineStudents: rows.filter(x => x.presence === 'ONLINE').length, loginsToday: users.filter(x => (x.lastLoginAt || '').startsWith(day)).length, averageCompletion: rows.length ? Math.round(rows.reduce((a, b) => a + b.completion, 0) / rows.length) : 0 }, students: rows, recentActivity: activity.slice(-30).reverse().map(a => ({ ...a, studentName: users.find(u => u.id === a.userId)?.name })) }); }));
-// Catch-all error handler: anything forwarded via ah()/next(err) lands here
-// instead of crashing the whole server for every logged-in student.
-app.use((err, req, res, next) => {
-  console.error('Unhandled route error:', err);
-  if (res.headersSent) return next(err);
-  const status = err.status || err.statusCode || 500;
-  const message = status >= 500 ? 'Something went wrong on our side. Please try again.' : (err.message || 'Request failed.');
-  res.status(status).json({ message });
-});
 
-// Last-resort safety net: log instead of letting one bad async call take the
-// whole process down. This does not replace fixing the root cause.
-process.on('unhandledRejection', (reason) => console.error('Unhandled rejection:', reason));
-process.on('uncaughtException', (err) => console.error('Uncaught exception:', err));
+  const readOk =
+    Number(record.maxScrollPercent || 0) >=
+    LEARNING_CONFIG.minimumReadProgress;
 
-app.listen(PORT, () => console.log(`BK LearnX backend: http://localhost:${PORT}`));
+  const sectionPercent =
+    record.totalSections
+      ? Number(record.sectionsViewed || 0) /
+      Number(record.totalSections) *
+      100
+      : 0;
+
+  const sectionsOk =
+    sectionPercent >=
+    LEARNING_CONFIG.minimumSectionsViewed;
+
+  const timeOk =
+    Number(record.activeTimeSeconds || 0) >=
+    LEARNING_CONFIG.minimumActiveTimeSeconds;
+
+  const quizOk =
+    !record.quizAvailable ||
+    !LEARNING_CONFIG.requireQuizIfAvailable ||
+    !!record.quizCompleted;
+
+  return (
+    readOk &&
+    timeOk &&
+    sectionsOk &&
+    quizOk
+  );
+
+}
+
+function learningStatus(record) {
+
+  if (
+    record.status === "COMPLETED" ||
+    record.manualConfirmed
+  ) {
+    return "COMPLETED";
+  }
+
+  return record.startedAt
+    ? "IN_PROGRESS"
+    : "NOT_STARTED";
+
+}
+
+/* =========================================================
+   LEARNING CONFIG API
+========================================================= */
+
+app.get(
+  "/api/learning/config",
+  auth,
+  (req, res) => {
+
+    res.json({
+      config: LEARNING_CONFIG
+    });
+
+  }
+);
+
+/* =========================================================
+   LEARNING PROGRESS
+========================================================= */
+
+app.get(
+  "/api/learning/progress",
+  auth,
+  ah(async (req, res) => {
+
+    const [rows] =
+      await db.query(
+        `
+                SELECT *
+                FROM progress
+                WHERE user_id = ?
+                AND type = 'learning'
+                ORDER BY updated_at DESC
+                `,
+        [req.userId]
+      );
+
+    res.json({
+      progress: rows,
+      config: LEARNING_CONFIG
+    });
+
+  })
+);
+
+app.post(
+  "/api/learning/progress",
+  auth,
+  ah(async (req, res) => {
+
+    if (!req.body.page) {
+
+      return res.status(400).json({
+        message: "Chapter page is required."
+      });
+
+    }
+
+    const page =
+      String(req.body.page);
+
+    const [existing] =
+      await db.query(
+        `
+                SELECT *
+                FROM progress
+                WHERE user_id = ?
+                AND type = 'learning'
+                AND page = ?
+                LIMIT 1
+                `,
+        [req.userId, page]
+      );
+
+    const previous =
+      existing.length
+        ? existing[0]
+        : {};
+
+    const maxScrollPercent =
+      Math.max(
+        Number(previous.max_scroll_percent || 0),
+        Math.min(
+          100,
+          Math.max(
+            0,
+            Number(req.body.maxScrollPercent || 0)
+          )
+        )
+      );
+
+    const sectionsViewed =
+      Math.max(
+        Number(previous.sections_viewed || 0),
+        Number(req.body.sectionsViewed || 0)
+      );
+
+    const totalSections =
+      Math.max(
+        Number(previous.total_sections || 0),
+        Number(req.body.totalSections || 0)
+      );
+
+    const activeTimeSeconds =
+      Math.min(
+        31536000,
+        Math.max(
+          0,
+          Number(
+            req.body.activeTimeSeconds ??
+            previous.active_time_seconds ??
+            0
+          )
+        )
+      );
+
+    const lastPosition =
+      Math.max(
+        0,
+        Number(
+          req.body.lastPosition ??
+          previous.last_position ??
+          0
+        )
+      );
+
+    const quizAvailable =
+      Boolean(
+        req.body.quizAvailable ??
+        previous.quiz_available
+      );
+
+    const quizCompleted =
+      Boolean(
+        req.body.quizCompleted ||
+        previous.quiz_completed
+      );
+
+    const manualConfirmed =
+      Boolean(
+        req.body.manualConfirmed ||
+        previous.manual_confirmed
+      );
+
+    const recordForCheck = {
+
+      maxScrollPercent,
+      sectionsViewed,
+      totalSections,
+      activeTimeSeconds,
+      quizAvailable,
+      quizCompleted,
+      manualConfirmed,
+      startedAt:
+        previous.started_at ||
+        new Date().toISOString()
+
+    };
+
+    const completed =
+      meetsCompletionCriteria(recordForCheck) ||
+      manualConfirmed;
+
+    const status =
+      completed
+        ? "COMPLETED"
+        : "IN_PROGRESS";
+
+    if (existing.length === 0) {
+
+      await db.query(
+        `
+                INSERT INTO progress
+                (
+                    user_id,
+                    type,
+                    page,
+                    title,
+                    subject_id,
+                    unit_id,
+                    chapter_id,
+                    max_scroll_percent,
+                    sections_viewed,
+                    total_sections,
+                    current_section_id,
+                    last_position,
+                    quiz_available,
+                    quiz_started,
+                    quiz_completed,
+                    quiz_score,
+                    attempts,
+                    manual_confirmed,
+                    active_time_seconds,
+                    last_active_at,
+                    started_at,
+                    status,
+                    completed_at
+                )
+                VALUES
+                (
+                    ?, 'learning', ?, ?, ?, ?, ?,
+                    ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
+                    ?, NOW(), NOW(), ?, ?
+                )
+                `,
+        [
+          req.userId,
+          page,
+          req.body.title || "",
+          req.body.subjectId || infer(page),
+          req.body.unitId || "",
+          req.body.chapterId || page,
+
+          maxScrollPercent,
+          sectionsViewed,
+          totalSections,
+          req.body.currentSectionId || "",
+          lastPosition,
+
+          quizAvailable,
+          Boolean(req.body.quizStarted),
+          quizCompleted,
+          req.body.quizScore ?? null,
+          Number(req.body.attempts || 0),
+
+          manualConfirmed,
+          activeTimeSeconds,
+
+          status,
+          completed ? new Date() : null
+        ]
+      );
+
+    } else {
+
+      await db.query(
+        `
+                UPDATE progress
+                SET
+                    title = ?,
+                    subject_id = ?,
+                    unit_id = ?,
+                    chapter_id = ?,
+                    max_scroll_percent = ?,
+                    sections_viewed = ?,
+                    total_sections = ?,
+                    current_section_id = ?,
+                    last_position = ?,
+                    quiz_available = ?,
+                    quiz_started = ?,
+                    quiz_completed = ?,
+                    quiz_score = ?,
+                    attempts = ?,
+                    manual_confirmed = ?,
+                    active_time_seconds = ?,
+                    last_active_at = NOW(),
+                    status = ?,
+                    completed_at = ?,
+                    updated_at = NOW()
+                WHERE id = ?
+                `,
+        [
+          req.body.title || previous.title || "",
+          req.body.subjectId ||
+          previous.subject_id ||
+          infer(page),
+
+          req.body.unitId ||
+          previous.unit_id ||
+          "",
+
+          req.body.chapterId ||
+          previous.chapter_id ||
+          page,
+
+          maxScrollPercent,
+          sectionsViewed,
+          totalSections,
+
+          req.body.currentSectionId ||
+          previous.current_section_id ||
+          "",
+
+          lastPosition,
+
+          quizAvailable,
+
+          Boolean(
+            req.body.quizStarted ||
+            previous.quiz_started
+          ),
+
+          quizCompleted,
+
+          req.body.quizScore ??
+          previous.quiz_score ??
+          null,
+
+          Math.max(
+            Number(previous.attempts || 0),
+            Number(req.body.attempts || 0)
+          ),
+
+          manualConfirmed,
+          activeTimeSeconds,
+
+          status,
+          completed ? new Date() : null,
+
+          previous.id
+        ]
+      );
+
+    }
+
+    const session =
+      sessions.get(req.sessionToken);
+
+    if (session) {
+
+      session.lastSeen = Date.now();
+      session.currentPage = page;
+
+    }
+
+    const [rows] =
+      await db.query(
+        `
+                SELECT *
+                FROM progress
+                WHERE user_id = ?
+                AND type = 'learning'
+                AND page = ?
+                LIMIT 1
+                `,
+        [req.userId, page]
+      );
+
+    res.json({
+
+      progress: {
+        ...rows[0],
+        status
+      },
+
+      config: LEARNING_CONFIG
+
+    });
+
+  })
+);
+
+/* =========================================================
+   LEARNING HEARTBEAT
+========================================================= */
+
+app.post(
+  "/api/learning/heartbeat",
+  auth,
+  ah(async (req, res) => {
+
+    const session =
+      sessions.get(req.sessionToken);
+
+    if (session) {
+
+      session.lastSeen = Date.now();
+
+      session.currentPage =
+        String(
+          req.body.page ||
+          session.currentPage ||
+          ""
+        );
+
+    }
+
+    res.json({
+      ok: true,
+      lastActiveAt:
+        new Date().toISOString()
+    });
+
+  })
+);
+
+/* =========================================================
+   FORGOT PASSWORD - MAIL
+========================================================= */
+
+function mailTransport() {
+
+  return nodemailer.createTransport({
+
+    service: "gmail",
+
+    auth: {
+
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_APP_PASSWORD
+
+    }
+
+  });
+
+}
+
+/* =========================================================
+   FORGOT PASSWORD
+========================================================= */
+
+app.post(
+  "/api/forgot-password",
+  forgotPasswordLimiter,
+  ah(async (req, res) => {
+
+    const email =
+      String(req.body.email || "")
+        .trim()
+        .toLowerCase();
+
+    if (!email) {
+
+      return res.status(400).json({
+        message: "Email is required."
+      });
+
+    }
+
+    if (
+      !process.env.EMAIL_USER ||
+      !process.env.EMAIL_APP_PASSWORD
+    ) {
+
+      return res.status(500).json({
+        message:
+          "Email service configure nahi hai."
+      });
+
+    }
+
+    const [rows] =
+      await db.query(
+        "SELECT * FROM users WHERE email = ? LIMIT 1",
+        [email]
+      );
+
+    if (rows.length === 0) {
+
+      return res.status(404).json({
+        message:
+          "Ye email BK LearnX par registered nahi hai."
+      });
+
+    }
+
+    const user = rows[0];
+
+    const code =
+      String(
+        crypto.randomInt(100000, 1000000)
+      );
+
+    await db.query(
+      `
+            UPDATE users
+            SET
+                passwordResetOtpHash = ?,
+                passwordResetOtpExpiresAt =
+                    DATE_ADD(NOW(), INTERVAL 10 MINUTE),
+                passwordResetOtpAttempts = 0,
+                resetToken = NULL,
+                resetExpiresAt = NULL
+            WHERE id = ?
+            `,
+      [
+        otpHash(code),
+        user.id
+      ]
+    );
+
+    try {
+
+      await mailTransport().sendMail({
+
+        from:
+          `BK LearnX <${process.env.EMAIL_USER}>`,
+
+        to: user.email,
+
+        subject:
+          "BK LearnX password reset code",
+
+        text:
+          `Your BK LearnX password reset code is ${code}. It expires in 10 minutes.`
+
+      });
+
+      res.json({
+
+        message:
+          "6-digit verification code aapke email par bhej diya gaya hai.",
+
+        email: user.email
+
+      });
+
+    } catch (error) {
+
+      await db.query(
+        `
+                UPDATE users
+                SET
+                    passwordResetOtpHash = NULL,
+                    passwordResetOtpExpiresAt = NULL,
+                    passwordResetOtpAttempts = 0
+                WHERE id = ?
+                `,
+        [user.id]
+      );
+
+      console.error(
+        "Password reset email error:",
+        error.message
+      );
+
+      res.status(500).json({
+
+        message:
+          "Verification code email par nahi bheja ja saka."
+
+      });
+
+    }
+
+  })
+);
+
+/* =========================================================
+   VERIFY OTP
+========================================================= */
+
+app.post(
+  "/api/verify-reset-code",
+  forgotPasswordLimiter,
+  ah(async (req, res) => {
+
+    const email =
+      String(req.body.email || "")
+        .trim()
+        .toLowerCase();
+
+    const code =
+      String(req.body.code || "")
+        .trim();
+
+    if (
+      !email ||
+      !/^\d{6}$/.test(code)
+    ) {
+
+      return res.status(400).json({
+        message:
+          "Valid email aur 6-digit code enter karein."
+      });
+
+    }
+
+    const [rows] =
+      await db.query(
+        "SELECT * FROM users WHERE email = ? LIMIT 1",
+        [email]
+      );
+
+    if (
+      rows.length === 0 ||
+      !rows[0].passwordResetOtpHash
+    ) {
+
+      return res.status(400).json({
+        message:
+          "Pehle naya verification code request karein."
+      });
+
+    }
+
+    const user = rows[0];
+
+    if (
+      !user.passwordResetOtpExpiresAt ||
+      Date.now() >
+      new Date(
+        user.passwordResetOtpExpiresAt
+      ).getTime()
+    ) {
+
+      return res.status(400).json({
+        message:
+          "Verification code expire ho gaya."
+      });
+
+    }
+
+    const attempts =
+      Number(
+        user.passwordResetOtpAttempts || 0
+      ) + 1;
+
+    if (attempts > 5) {
+
+      await db.query(
+        `
+                UPDATE users
+                SET
+                    passwordResetOtpHash = NULL,
+                    passwordResetOtpExpiresAt = NULL,
+                    passwordResetOtpAttempts = 0
+                WHERE id = ?
+                `,
+        [user.id]
+      );
+
+      return res.status(429).json({
+        message:
+          "Bahut zyada galat attempts. Naya code request karein."
+      });
+
+    }
+
+    if (
+      otpHash(code) !==
+      user.passwordResetOtpHash
+    ) {
+
+      await db.query(
+        `
+                UPDATE users
+                SET passwordResetOtpAttempts = ?
+                WHERE id = ?
+                `,
+        [attempts, user.id]
+      );
+
+      return res.status(400).json({
+        message:
+          "Verification code galat hai."
+      });
+
+    }
+
+    const resetToken =
+      token();
+
+    await db.query(
+      `
+            UPDATE users
+            SET
+                resetToken = ?,
+                resetExpiresAt =
+                    DATE_ADD(NOW(), INTERVAL 15 MINUTE),
+                passwordResetOtpHash = NULL,
+                passwordResetOtpExpiresAt = NULL,
+                passwordResetOtpAttempts = 0
+            WHERE id = ?
+            `,
+      [
+        resetToken,
+        user.id
+      ]
+    );
+
+    res.json({
+
+      message:
+        "Email verified. Ab naya password set karein.",
+
+      resetToken
+
+    });
+
+  })
+);
+
+/* =========================================================
+   RESET PASSWORD
+========================================================= */
+
+app.post(
+  "/api/reset-password",
+  ah(async (req, res) => {
+
+    const {
+      token: resetToken,
+      password
+    } = req.body;
+
+    if (!resetToken || !password) {
+
+      return res.status(400).json({
+        message:
+          "Verification required."
+      });
+
+    }
+
+    if (password.length < 8) {
+
+      return res.status(400).json({
+        message:
+          "Password kam se kam 8 characters ka hona chahiye."
+      });
+
+    }
+
+    const [rows] =
+      await db.query(
+        `
+                SELECT *
+                FROM users
+                WHERE resetToken = ?
+                LIMIT 1
+                `,
+        [resetToken]
+      );
+
+    if (rows.length === 0) {
+
+      return res.status(400).json({
+        message:
+          "Invalid reset session."
+      });
+
+    }
+
+    const user = rows[0];
+
+    if (
+      !user.resetExpiresAt ||
+      Date.now() >
+      new Date(
+        user.resetExpiresAt
+      ).getTime()
+    ) {
+
+      return res.status(400).json({
+        message:
+          "Reset session expire ho gaya."
+      });
+
+    }
+
+    const hashedPassword =
+      await bcrypt.hash(password, 10);
+
+    await db.query(
+      `
+            UPDATE users
+            SET
+                password = ?,
+                resetToken = NULL,
+                resetExpiresAt = NULL
+            WHERE id = ?
+            `,
+      [
+        hashedPassword,
+        user.id
+      ]
+    );
+
+    for (
+      const [sessionToken, session]
+      of sessions
+    ) {
+
+      if (
+        session.userId === user.id
+      ) {
+
+        sessions.delete(sessionToken);
+
+      }
+
+    }
+
+    res.json({
+
+      message:
+        "Password successfully update ho gaya."
+
+    });
+
+  })
+);
+
+/* =========================================================
+   ADMIN LOGIN
+========================================================= */
+
+const ADMIN_EMAIL =
+  process.env.ADMIN_EMAIL;
+
+const ADMIN_PASSWORD =
+  process.env.ADMIN_PASSWORD;
+
+app.post(
+  "/api/admin/login",
+  adminLoginLimiter,
+  ah(async (req, res) => {
+
+    if (
+      !ADMIN_EMAIL ||
+      !ADMIN_PASSWORD
+    ) {
+
+      return res.status(503).json({
+        message:
+          "Admin login is not configured."
+      });
+
+    }
+
+    if (
+      String(req.body.email || "")
+        .toLowerCase() !==
+      ADMIN_EMAIL.toLowerCase() ||
+      req.body.password !==
+      ADMIN_PASSWORD
+    ) {
+
+      return res.status(401).json({
+        message:
+          "Invalid admin credentials."
+      });
+
+    }
+
+    const adminToken =
+      token();
+
+    adminSessions.set(
+      adminToken,
+      {
+        at: Date.now()
+      }
+    );
+
+    res.json({
+      token: adminToken
+    });
+
+  })
+);
+
+/* =========================================================
+   ADMIN LOGOUT
+========================================================= */
+
+app.post(
+  "/api/admin/logout",
+  admin,
+  (req, res) => {
+
+    adminSessions.delete(
+      req.header("x-admin-token")
+    );
+
+    res.json({
+      message:
+        "Admin logged out."
+    });
+
+  }
+);
+
+/* =========================================================
+   ADMIN DASHBOARD
+========================================================= */
+
+app.get(
+  "/api/admin/dashboard",
+  admin,
+  ah(async (req, res) => {
+
+    const [users] =
+      await db.query(
+        `
+                SELECT
+                    id,
+                    name,
+                    email,
+                    branch,
+                    semester,
+                    role,
+                    status,
+                    profile_image,
+                    phone,
+                    college,
+                    provider,
+                    registeredAt,
+                    lastLoginAt,
+                    lastLogoutAt
+                FROM users
+                WHERE role = 'student'
+                ORDER BY id DESC
+                `
+      );
+
+    const [activity] =
+      await db.query(
+        `
+                SELECT *
+                FROM activity
+                ORDER BY created_at DESC
+                LIMIT 100
+                `
+      );
+
+    const [progress] =
+      await db.query(
+        `
+                SELECT *
+                FROM progress
+                ORDER BY updated_at DESC
+                `
+      );
+
+    const now =
+      Date.now();
+
+    const today =
+      new Date()
+        .toISOString()
+        .slice(0, 10);
+
+    const students =
+      users.map(user => {
+
+        const session =
+          [...sessions.values()]
+            .find(
+              s =>
+                s.userId ===
+                user.id
+            );
+
+        const userProgress =
+          progress.filter(
+            p =>
+              p.user_id ===
+              user.id &&
+              p.type ===
+              "learning"
+          );
+
+        const latest =
+          userProgress[0];
+
+        const age =
+          session
+            ? Math.floor(
+              (
+                now -
+                session.lastSeen
+              ) / 1000
+            )
+            : Infinity;
+
+        const presence =
+          age < 60
+            ? "ONLINE"
+            : age < 120
+              ? "AWAY"
+              : "OFFLINE";
+
+        return {
+
+          ...user,
+
+          online:
+            presence ===
+            "ONLINE",
+
+          presence,
+
+          currentPage:
+            latest?.page ||
+            session?.currentPage ||
+            "",
+
+          currentSubject:
+            latest?.subject_id ||
+            "",
+
+          currentUnit:
+            latest?.unit_id ||
+            "",
+
+          currentChapter:
+            latest?.chapter_id ||
+            "",
+
+          currentSection:
+            latest?.current_section_id ||
+            "",
+
+          readingProgress:
+            Number(
+              latest?.max_scroll_percent ||
+              0
+            ),
+
+          activeTimeSeconds:
+            Number(
+              latest?.active_time_seconds ||
+              0
+            )
+
+        };
+
+      });
+
+    const totalStudents =
+      users.filter(
+        u =>
+          u.role !== "admin"
+      ).length;
+
+    const onlineStudents =
+      students.filter(
+        s =>
+          s.role !== "admin" &&
+          s.presence === "ONLINE"
+      ).length;
+
+    const loginsToday =
+      users.filter(
+        u =>
+          u.role !== "admin" &&
+          u.lastLoginAt &&
+          String(
+            u.lastLoginAt
+          ).startsWith(today)
+      ).length;
+
+    res.json({
+
+      stats: {
+
+        totalStudents,
+
+        onlineStudents,
+
+        loginsToday
+
+      },
+
+      students,
+
+      recentActivity:
+        activity.map(a => {
+
+          const user =
+            users.find(
+              u =>
+                u.id ===
+                a.user_id
+            );
+
+          return {
+
+            ...a,
+
+            studentName:
+              user?.name ||
+              "Unknown"
+
+          };
+
+        })
+
+    });
+
+  })
+);
+
+/* =========================================================
+   ADMIN BLOCK USER
+========================================================= */
+
+app.put(
+  "/api/admin/students/:id/block",
+  admin,
+  ah(async (req, res) => {
+
+    const id =
+      Number(req.params.id);
+
+    const [students] = await db.query(
+      "SELECT id FROM users WHERE id = ? AND role = 'student' LIMIT 1",
+      [id]
+    );
+
+    if (!students.length) {
+      return res.status(404).json({ message: "Student not found." });
+    }
+
+    await db.query(
+      `
+            UPDATE users
+            SET status = 'blocked'
+            WHERE id = ? AND role = 'student'
+            `,
+      [id]
+    );
+
+    for (
+      const [sessionToken, session]
+      of sessions
+    ) {
+
+      if (
+        session.userId === id
+      ) {
+
+        sessions.delete(
+          sessionToken
+        );
+
+      }
+
+    }
+
+    res.json({
+      message:
+        "Student blocked successfully."
+    });
+
+  })
+);
+
+/* =========================================================
+   ADMIN UNBLOCK USER
+========================================================= */
+
+app.put(
+  "/api/admin/students/:id/unblock",
+  admin,
+  ah(async (req, res) => {
+
+    const id =
+      Number(req.params.id);
+
+    const [students] = await db.query(
+      "SELECT id FROM users WHERE id = ? AND role = 'student' LIMIT 1",
+      [id]
+    );
+
+    if (!students.length) {
+      return res.status(404).json({ message: "Student not found." });
+    }
+
+    await db.query(
+      `
+            UPDATE users
+            SET status = 'active'
+            WHERE id = ? AND role = 'student'
+            `,
+      [id]
+    );
+
+    res.json({
+      message:
+        "Student unblocked successfully."
+    });
+
+  })
+);
+
+/* =========================================================
+   ADMIN DELETE USER
+========================================================= */
+
+app.delete(
+  "/api/admin/students/:id",
+  admin,
+  ah(async (req, res) => {
+
+    const id =
+      Number(req.params.id);
+
+    const [students] = await db.query(
+      "SELECT id FROM users WHERE id = ? AND role = 'student' LIMIT 1",
+      [id]
+    );
+
+    if (!students.length) {
+      return res.status(404).json({ message: "Student not found." });
+    }
+
+    await db.query(
+      "DELETE FROM student_custom_subjects WHERE student_id = ?",
+      [id]
+    );
+
+    await db.query(
+      "DELETE FROM progress WHERE user_id = ?",
+      [id]
+    );
+
+    await db.query(
+      "DELETE FROM activity WHERE user_id = ?",
+      [id]
+    );
+
+    const [result] =
+      await db.query(
+        `
+                DELETE FROM users
+                WHERE id = ? AND role = 'student'
+                `,
+        [id]
+      );
+
+    for (
+      const [sessionToken, session]
+      of sessions
+    ) {
+
+      if (
+        session.userId === id
+      ) {
+
+        sessions.delete(
+          sessionToken
+        );
+
+      }
+
+    }
+
+    if (result.affectedRows === 0) {
+
+      return res.status(404).json({
+        message:
+          "Student not found."
+      });
+
+    }
+
+    res.json({
+      message:
+        "Student deleted successfully."
+    });
+
+  })
+);
+
+/* =========================================================
+   TOP VISITED PAGES
+========================================================= */
+
+app.get(
+  "/api/admin/top-pages",
+  admin,
+  ah(async (req, res) => {
+
+    const [rows] =
+      await db.query(
+        `
+                SELECT
+                    page,
+                    COUNT(*) AS visits
+                FROM activity
+                WHERE page IS NOT NULL
+                AND page <> ''
+                AND action IN ('page_view', 'visit')
+                GROUP BY page
+                ORDER BY visits DESC
+                LIMIT 20
+                `
+      );
+
+    res.json({
+      pages: rows
+    });
+
+  })
+);
+
+/* =========================================================
+   ERROR HANDLER
+========================================================= */
+
+app.use(
+  (err, req, res, next) => {
+
+    console.error(
+      "Unhandled route error:",
+      err
+    );
+
+    if (res.headersSent) {
+      return next(err);
+    }
+
+    res.status(
+      err.status ||
+      err.statusCode ||
+      500
+    ).json({
+
+      message:
+        err.status >= 500 ||
+          err.statusCode >= 500
+          ? "Something went wrong on server."
+          : (
+            err.message ||
+            "Request failed."
+          )
+
+    });
+
+  }
+);
+
+/* =========================================================
+   SERVER START
+========================================================= */
+
+async function startServer() {
+
+  try {
+
+    await db.query("SELECT 1");
+
+    console.log(
+      "MySQL connected successfully."
+    );
+
+    await setupDatabase();
+
+    app.listen(
+      PORT,
+      () => {
+
+        console.log(
+          `BK LearnX backend running at http://localhost:${PORT}`
+        );
+
+      }
+    );
+
+  } catch (error) {
+
+    console.error(
+      "Server startup failed:"
+    );
+
+    console.error(
+      error.message
+    );
+
+    process.exit(1);
+
+  }
+
+}
+
+startServer();

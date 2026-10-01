@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-FB7SX0P0D3"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'G-FB7SX0P0D3');
   </script>
@@ -14,7 +15,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#1f4741">
 
-  <meta name="description" content="Create your BK LearnX student account and start learning with personalized computer and technology resources.">
+  <meta name="description"
+    content="Create your BK LearnX student account and start learning with personalized computer and technology resources.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://bk-learn-x.vercel.app/pages/auth/register/index.html">
 
@@ -35,515 +37,518 @@
   <link rel="icon" type="image/jpeg" href="../../../assets/images/logo.jpeg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="../../../assets/shared/theme.css">
 
   <style>
-    *{
-      box-sizing:border-box;
-      margin:0;
-      padding:0;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    :root{
-      --forest:#1f4741;
-      --forest-deep:#14312c;
-      --accent:#ff5b39;
-      --accent-deep:#e6491f;
-      --accent-soft:#fdeee9;
-      --gold:#f2b705;
-      --ink:#17241f;
-      --muted:#5b6b63;
-      --line:rgba(23,36,31,.12);
-      --card:rgba(255,255,255,.92);
-      --success:#1f7a4d;
-      --danger:#dc2626;
+    :root {
+      --forest: #1f4741;
+      --forest-deep: #14312c;
+      --accent: #ff5b39;
+      --accent-deep: #e6491f;
+      --accent-soft: #fdeee9;
+      --gold: #f2b705;
+      --ink: #17241f;
+      --muted: #5b6b63;
+      --line: rgba(23, 36, 31, .12);
+      --card: rgba(255, 255, 255, .92);
+      --success: #1f7a4d;
+      --danger: #dc2626;
     }
 
-    body{
-      min-height:100vh;
-      font-family:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
-      color:var(--ink);
+    body {
+      min-height: 100vh;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+      color: var(--ink);
       background:
-        radial-gradient(circle at 8% 5%,rgba(255,91,57,.10),transparent 24rem),
-        radial-gradient(circle at 92% 12%,rgba(31,71,65,.14),transparent 22rem),
+        radial-gradient(circle at 8% 5%, rgba(255, 91, 57, .10), transparent 24rem),
+        radial-gradient(circle at 92% 12%, rgba(31, 71, 65, .14), transparent 22rem),
         #eef0e7;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:22px;
-      overflow-x:hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+      overflow-x: hidden;
     }
 
-    h1, h2{
-      font-family:"Sora","Inter",sans-serif;
+    h1,
+    h2 {
+      font-family: "Sora", "Inter", sans-serif;
     }
 
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      pointer-events:none;
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
       background-image:
-        linear-gradient(rgba(23,36,31,.03) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(23,36,31,.03) 1px,transparent 1px);
-      background-size:28px 28px;
-      mask-image:linear-gradient(to bottom,black,transparent);
+        linear-gradient(rgba(23, 36, 31, .03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(23, 36, 31, .03) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: linear-gradient(to bottom, black, transparent);
     }
 
-    .page{
-      width:min(1050px,100%);
-      position:relative;
+    .page {
+      width: min(1050px, 100%);
+      position: relative;
     }
 
-    .brand-bar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      margin:0 auto 15px;
-      width:min(920px,100%);
-      padding:0 4px;
+    .brand-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0 auto 15px;
+      width: min(920px, 100%);
+      padding: 0 4px;
     }
 
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:11px;
-      color:var(--ink);
-      text-decoration:none;
-      font-family:"Sora",sans-serif;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      color: var(--ink);
+      text-decoration: none;
+      font-family: "Sora", sans-serif;
     }
 
-    .brand-logo{
-      width:48px;
-      height:48px;
-      border-radius:13px;
-      background:#fff;
-      overflow:hidden;
-      box-shadow:0 10px 24px rgba(23,36,31,.10);
+    .brand-logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 13px;
+      background: #fff;
+      overflow: hidden;
+      box-shadow: 0 10px 24px rgba(23, 36, 31, .10);
     }
 
-    .brand-logo img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
+    .brand-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
-    .brand strong{
-      display:block;
-      font-size:1rem;
+    .brand strong {
+      display: block;
+      font-size: 1rem;
     }
 
-    .brand small{
-      display:block;
-      color:var(--muted);
-      font-size:.69rem;
-      margin-top:2px;
-      font-family:"Inter",sans-serif;
+    .brand small {
+      display: block;
+      color: var(--muted);
+      font-size: .69rem;
+      margin-top: 2px;
+      font-family: "Inter", sans-serif;
     }
 
-    .secure{
-      display:inline-flex;
-      align-items:center;
-      gap:7px;
-      color:var(--muted);
-      font-size:.74rem;
-      background:rgba(255,255,255,.68);
-      border:1px solid rgba(255,255,255,.8);
-      padding:8px 11px;
-      border-radius:999px;
-      backdrop-filter:blur(12px);
+    .secure {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--muted);
+      font-size: .74rem;
+      background: rgba(255, 255, 255, .68);
+      border: 1px solid rgba(255, 255, 255, .8);
+      padding: 8px 11px;
+      border-radius: 999px;
+      backdrop-filter: blur(12px);
     }
 
-    .shell{
-      width:min(920px,100%);
-      margin:auto;
-      display:grid;
-      grid-template-columns:.85fr 1.15fr;
-      border-radius:28px;
-      overflow:hidden;
-      background:var(--card);
-      border:1px solid rgba(255,255,255,.9);
+    .shell {
+      width: min(920px, 100%);
+      margin: auto;
+      display: grid;
+      grid-template-columns: .85fr 1.15fr;
+      border-radius: 28px;
+      overflow: hidden;
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, .9);
       box-shadow:
-        0 30px 80px rgba(20,49,44,.16),
-        0 10px 30px rgba(23,36,31,.06);
-      backdrop-filter:blur(18px);
+        0 30px 80px rgba(20, 49, 44, .16),
+        0 10px 30px rgba(23, 36, 31, .06);
+      backdrop-filter: blur(18px);
     }
 
-    .side{
-      position:relative;
-      padding:38px 34px;
-      color:#fff;
+    .side {
+      position: relative;
+      padding: 38px 34px;
+      color: #fff;
       background:
-        radial-gradient(circle at 80% 10%,rgba(255,178,122,.22),transparent 13rem),
-        linear-gradient(150deg,#0d211d 0%,#14312c 48%,#1f4741 100%);
-      overflow:hidden;
+        radial-gradient(circle at 80% 10%, rgba(255, 178, 122, .22), transparent 13rem),
+        linear-gradient(150deg, #0d211d 0%, #14312c 48%, #1f4741 100%);
+      overflow: hidden;
     }
 
-    .side::after{
-      content:"";
-      position:absolute;
-      right:-80px;
-      bottom:-100px;
-      width:260px;
-      height:260px;
-      border-radius:50%;
-      border:1px solid rgba(255,255,255,.16);
+    .side::after {
+      content: "";
+      position: absolute;
+      right: -80px;
+      bottom: -100px;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, .16);
       box-shadow:
-        0 0 0 42px rgba(255,255,255,.03),
-        0 0 0 84px rgba(255,255,255,.02);
+        0 0 0 42px rgba(255, 255, 255, .03),
+        0 0 0 84px rgba(255, 255, 255, .02);
     }
 
-    .side .eyebrow{
-      color:var(--gold);
-      letter-spacing:.13em;
-      font-size:.68rem;
-      font-weight:800;
+    .side .eyebrow {
+      color: var(--gold);
+      letter-spacing: .13em;
+      font-size: .68rem;
+      font-weight: 800;
     }
 
-    .side h1{
-      font-weight:700;
-      font-size:clamp(2rem,4vw,3.2rem);
-      line-height:1.05;
-      letter-spacing:-.03em;
-      margin:15px 0 15px;
+    .side h1 {
+      font-weight: 700;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.05;
+      letter-spacing: -.03em;
+      margin: 15px 0 15px;
     }
 
-    .side h1 span{
-      color:#ff8a68;
+    .side h1 span {
+      color: #ff8a68;
     }
 
-    .side > p{
-      color:#c9d6d0;
-      line-height:1.75;
-      font-size:.92rem;
-      max-width:360px;
+    .side>p {
+      color: #c9d6d0;
+      line-height: 1.75;
+      font-size: .92rem;
+      max-width: 360px;
     }
 
-    .benefits{
-      display:grid;
-      gap:11px;
-      margin-top:26px;
+    .benefits {
+      display: grid;
+      gap: 11px;
+      margin-top: 26px;
     }
 
-    .benefit{
-      display:flex;
-      gap:12px;
-      align-items:center;
-      padding:12px;
-      border-radius:15px;
-      background:rgba(255,255,255,.07);
-      border:1px solid rgba(255,255,255,.10);
+    .benefit {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding: 12px;
+      border-radius: 15px;
+      background: rgba(255, 255, 255, .07);
+      border: 1px solid rgba(255, 255, 255, .10);
     }
 
-    .benefit-icon{
-      width:44px;
-      height:44px;
-      min-width:44px;
-      flex:0 0 44px;
-      border-radius:11px;
-      display:grid;
-      place-items:center;
-      background:rgba(255,255,255,.11);
-      border:1px solid rgba(255,255,255,.10);
-      overflow:hidden;
+    .benefit-icon {
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      flex: 0 0 44px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 255, 255, .11);
+      border: 1px solid rgba(255, 255, 255, .10);
+      overflow: hidden;
     }
 
-    .benefit-icon svg{
-      width:25px;
-      height:25px;
-      display:block;
-      overflow:visible;
+    .benefit-icon svg {
+      width: 25px;
+      height: 25px;
+      display: block;
+      overflow: visible;
     }
 
-    .benefit b{
-      display:block;
-      font-size:.82rem;
-      font-family:"Sora",sans-serif;
+    .benefit b {
+      display: block;
+      font-size: .82rem;
+      font-family: "Sora", sans-serif;
     }
 
-    .benefit span{
-      display:block;
-      color:#c9d6d0;
-      font-size:.71rem;
-      line-height:1.45;
-      margin-top:2px;
+    .benefit span {
+      display: block;
+      color: #c9d6d0;
+      font-size: .71rem;
+      line-height: 1.45;
+      margin-top: 2px;
     }
 
-    .form-area{
-      padding:34px 34px 30px;
-      background:rgba(255,255,255,.86);
+    .form-area {
+      padding: 34px 34px 30px;
+      background: rgba(255, 255, 255, .86);
     }
 
-    .form-head{
-      display:flex;
-      align-items:end;
-      justify-content:space-between;
-      gap:15px;
-      margin-bottom:23px;
+    .form-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 23px;
     }
 
-    .form-head h2{
-      font-size:1.65rem;
-      font-weight:700;
-      letter-spacing:-.02em;
+    .form-head h2 {
+      font-size: 1.65rem;
+      font-weight: 700;
+      letter-spacing: -.02em;
     }
 
-    .form-head p{
-      color:var(--muted);
-      font-size:.78rem;
-      margin-top:5px;
+    .form-head p {
+      color: var(--muted);
+      font-size: .78rem;
+      margin-top: 5px;
     }
 
-    .required-note{
-      font-size:.68rem;
-      color:var(--muted);
-      text-align:right;
+    .required-note {
+      font-size: .68rem;
+      color: var(--muted);
+      text-align: right;
     }
 
-    form{
-      display:grid;
-      gap:15px;
+    form {
+      display: grid;
+      gap: 15px;
     }
 
-    .row{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:14px;
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
     }
 
-    .field{
-      display:grid;
-      gap:7px;
+    .field {
+      display: grid;
+      gap: 7px;
     }
 
-    label{
-      font-size:.78rem;
-      font-weight:700;
-      color:var(--ink);
+    label {
+      font-size: .78rem;
+      font-weight: 700;
+      color: var(--ink);
     }
 
-    .label-mark{
-      color:var(--danger);
+    .label-mark {
+      color: var(--danger);
     }
 
-    .input-wrap{
-      position:relative;
+    .input-wrap {
+      position: relative;
     }
 
     input,
-    select{
-      width:100%;
-      height:48px;
-      padding:0 14px;
-      border-radius:12px;
-      border:1px solid var(--line);
-      background:#fff;
-      color:var(--ink);
-      font:inherit;
-      font-size:.88rem;
-      outline:none;
+    select {
+      width: 100%;
+      height: 48px;
+      padding: 0 14px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      font: inherit;
+      font-size: .88rem;
+      outline: none;
       transition:
         border .2s,
         box-shadow .2s,
         transform .2s;
     }
 
-    input::placeholder{
-      color:#98a49d;
+    input::placeholder {
+      color: #98a49d;
     }
 
     input:focus,
-    select:focus{
-      border-color:var(--accent);
-      box-shadow:0 0 0 4px var(--accent-soft);
-      transform:translateY(-1px);
+    select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-soft);
+      transform: translateY(-1px);
     }
 
-    select{
-      cursor:pointer;
+    select {
+      cursor: pointer;
     }
 
-    .password-wrap input{
-      padding-right:46px;
+    .password-wrap input {
+      padding-right: 46px;
     }
 
-    .toggle{
-      position:absolute;
-      right:10px;
-      top:50%;
-      transform:translateY(-50%);
-      width:30px;
-      height:30px;
-      border:0;
-      background:transparent;
-      cursor:pointer;
-      color:var(--muted);
-      border-radius:8px;
+    .toggle {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 30px;
+      height: 30px;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      color: var(--muted);
+      border-radius: 8px;
     }
 
-    .toggle:hover{
-      background:var(--accent-soft);
-      color:var(--ink);
+    .toggle:hover {
+      background: var(--accent-soft);
+      color: var(--ink);
     }
 
-    .strength{
-      font-size:.68rem;
-      color:var(--muted);
-      margin-top:1px;
+    .strength {
+      font-size: .68rem;
+      color: var(--muted);
+      margin-top: 1px;
     }
 
-    .strength strong{
-      color:var(--ink);
+    .strength strong {
+      color: var(--ink);
     }
 
-    .submit{
-      height:50px;
-      border:0;
-      border-radius:13px;
-      color:#fff;
-      font-weight:800;
-      font-family:"Sora",sans-serif;
-      font-size:.9rem;
-      background:var(--accent);
-      box-shadow:0 13px 28px rgba(255,91,57,.22);
-      cursor:pointer;
-      transition:.22s;
+    .submit {
+      height: 50px;
+      border: 0;
+      border-radius: 13px;
+      color: #fff;
+      font-weight: 800;
+      font-family: "Sora", sans-serif;
+      font-size: .9rem;
+      background: var(--accent);
+      box-shadow: 0 13px 28px rgba(255, 91, 57, .22);
+      cursor: pointer;
+      transition: .22s;
     }
 
-    .submit:hover{
-      background:var(--accent-deep);
-      transform:translateY(-2px);
-      box-shadow:0 17px 33px rgba(255,91,57,.27);
+    .submit:hover {
+      background: var(--accent-deep);
+      transform: translateY(-2px);
+      box-shadow: 0 17px 33px rgba(255, 91, 57, .27);
     }
 
-    .submit:active{
-      transform:translateY(0);
+    .submit:active {
+      transform: translateY(0);
     }
 
-    .submit.loading{
-      opacity:.8;
-      cursor:wait;
+    .submit.loading {
+      opacity: .8;
+      cursor: wait;
     }
 
-    #registerMessage{
-      min-height:20px;
-      margin-top:0!important;
-      font-size:.78rem!important;
-      font-weight:700;
-      text-align:center;
-      padding:0 6px;
+    #registerMessage {
+      min-height: 20px;
+      margin-top: 0 !important;
+      font-size: .78rem !important;
+      font-weight: 700;
+      text-align: center;
+      padding: 0 6px;
     }
 
-    .login-text{
-      text-align:center;
-      color:var(--muted);
-      font-size:.76rem;
-      line-height:1.6;
-      margin-top:4px;
+    .login-text {
+      text-align: center;
+      color: var(--muted);
+      font-size: .76rem;
+      line-height: 1.6;
+      margin-top: 4px;
     }
 
-    .login-text a{
-      color:var(--accent);
-      font-weight:800;
+    .login-text a {
+      color: var(--accent);
+      font-weight: 800;
     }
 
-    .login-text a:hover{
-      text-decoration:underline;
+    .login-text a:hover {
+      text-decoration: underline;
     }
 
-    .legal{
-      color:#94a397;
-      font-size:.64rem;
-      line-height:1.5;
-      text-align:center;
-      margin-top:8px;
+    .legal {
+      color: #94a397;
+      font-size: .64rem;
+      line-height: 1.5;
+      text-align: center;
+      margin-top: 8px;
     }
 
-    .progress-top{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      margin-bottom:9px;
+    .progress-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 9px;
     }
 
-    .progress-top span{
-      font-size:.68rem;
-      color:var(--muted);
-      font-weight:700;
+    .progress-top span {
+      font-size: .68rem;
+      color: var(--muted);
+      font-weight: 700;
     }
 
-    .progress-track{
-      height:5px;
-      background:#e3e7dc;
-      border-radius:999px;
-      overflow:hidden;
-      margin-bottom:18px;
+    .progress-track {
+      height: 5px;
+      background: #e3e7dc;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 18px;
     }
 
-    .progress-fill{
-      height:100%;
-      width:0;
-      background:linear-gradient(90deg,var(--forest),var(--accent));
-      border-radius:inherit;
-      transition:width .25s;
+    .progress-fill {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--forest), var(--accent));
+      border-radius: inherit;
+      transition: width .25s;
     }
 
-    @media(max-width:820px){
-      .shell{
-        grid-template-columns:1fr;
+    @media(max-width:820px) {
+      .shell {
+        grid-template-columns: 1fr;
       }
 
-      .side{
-        padding:28px 28px 24px;
+      .side {
+        padding: 28px 28px 24px;
       }
 
-      .side h1{
-        font-size:2.3rem;
+      .side h1 {
+        font-size: 2.3rem;
       }
 
-      .benefits{
-        grid-template-columns:1fr 1fr;
+      .benefits {
+        grid-template-columns: 1fr 1fr;
       }
     }
 
-    @media(max-width:600px){
-      body{
-        padding:12px;
+    @media(max-width:600px) {
+      body {
+        padding: 12px;
       }
 
-      .brand-bar{
-        margin-bottom:10px;
+      .brand-bar {
+        margin-bottom: 10px;
       }
 
-      .secure{
-        display:none;
+      .secure {
+        display: none;
       }
 
-      .shell{
-        border-radius:22px;
+      .shell {
+        border-radius: 22px;
       }
 
       .side,
-      .form-area{
-        padding:24px 20px;
+      .form-area {
+        padding: 24px 20px;
       }
 
       .benefits,
-      .row{
-        grid-template-columns:1fr;
+      .row {
+        grid-template-columns: 1fr;
       }
 
-      .form-head{
-        align-items:flex-start;
+      .form-head {
+        align-items: flex-start;
       }
 
-      .form-head h2{
-        font-size:1.45rem;
+      .form-head h2 {
+        font-size: 1.45rem;
       }
 
-      .benefit{
-        align-items:center;
+      .benefit {
+        align-items: center;
       }
     }
   </style>
@@ -592,15 +597,10 @@
           <div class="benefit">
             <span class="benefit-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M5 4.5A2.5 2.5 0 0 1 7.5 2H20v16H7.5A2.5 2.5 0 0 0 5 20.5V4.5Z"
-                  stroke="#c9d6d0"
-                  stroke-width="1.7"/>
-                <path
-                  d="M5 19.5A2.5 2.5 0 0 1 7.5 17H20M8 6h8M8 9h8M8 12h5"
-                  stroke="#fff"
-                  stroke-width="1.6"
-                  stroke-linecap="round"/>
+                <path d="M5 4.5A2.5 2.5 0 0 1 7.5 2H20v16H7.5A2.5 2.5 0 0 0 5 20.5V4.5Z" stroke="#c9d6d0"
+                  stroke-width="1.7" />
+                <path d="M5 19.5A2.5 2.5 0 0 1 7.5 17H20M8 6h8M8 9h8M8 12h5" stroke="#fff" stroke-width="1.6"
+                  stroke-linecap="round" />
               </svg>
             </span>
 
@@ -614,22 +614,10 @@
           <div class="benefit">
             <span class="benefit-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M4 18.5V20h16v-1.5"
-                  stroke="#c9d6d0"
-                  stroke-width="1.7"
-                  stroke-linecap="round"/>
-                <path
-                  d="M7 16V9M12 16V5M17 16v-4"
-                  stroke="#fff"
-                  stroke-width="2"
-                  stroke-linecap="round"/>
-                <path
-                  d="m14.5 7.5 2.5-2.5 2 2"
-                  stroke="#f2b705"
-                  stroke-width="1.6"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"/>
+                <path d="M4 18.5V20h16v-1.5" stroke="#c9d6d0" stroke-width="1.7" stroke-linecap="round" />
+                <path d="M7 16V9M12 16V5M17 16v-4" stroke="#fff" stroke-width="2" stroke-linecap="round" />
+                <path d="m14.5 7.5 2.5-2.5 2 2" stroke="#f2b705" stroke-width="1.6" stroke-linecap="round"
+                  stroke-linejoin="round" />
               </svg>
             </span>
 
@@ -643,21 +631,11 @@
           <div class="benefit">
             <span class="benefit-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none">
-                <circle
-                  cx="12"
-                  cy="12"
-                  r="8.8"
-                  stroke="#c9d6d0"
-                  stroke-width="1.6"/>
+                <circle cx="12" cy="12" r="8.8" stroke="#c9d6d0" stroke-width="1.6" />
                 <path
                   d="M3.5 12h17M12 3.2c2.2 2.4 3.4 5.3 3.4 8.8S14.2 18.4 12 20.8c-2.2-2.4-3.4-5.3-3.4-8.8S9.8 5.6 12 3.2Z"
-                  stroke="#fff"
-                  stroke-width="1.5"/>
-                <path
-                  d="M6.2 7.5h11.6"
-                  stroke="#f2b705"
-                  stroke-width="1.4"
-                  stroke-linecap="round"/>
+                  stroke="#fff" stroke-width="1.5" />
+                <path d="M6.2 7.5h11.6" stroke="#f2b705" stroke-width="1.4" stroke-linecap="round" />
               </svg>
             </span>
 
@@ -671,24 +649,9 @@
           <div class="benefit">
             <span class="benefit-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none">
-                <rect
-                  x="4"
-                  y="4"
-                  width="16"
-                  height="16"
-                  rx="4"
-                  stroke="#c9d6d0"
-                  stroke-width="1.6"/>
-                <path
-                  d="M8 9h8M8 13h5M8 17h3"
-                  stroke="#fff"
-                  stroke-width="1.7"
-                  stroke-linecap="round"/>
-                <circle
-                  cx="17"
-                  cy="17"
-                  r="2.2"
-                  fill="#f2b705"/>
+                <rect x="4" y="4" width="16" height="16" rx="4" stroke="#c9d6d0" stroke-width="1.6" />
+                <path d="M8 9h8M8 13h5M8 17h3" stroke="#fff" stroke-width="1.7" stroke-linecap="round" />
+                <circle cx="17" cy="17" r="2.2" fill="#f2b705" />
               </svg>
             </span>
 
@@ -731,12 +694,7 @@
                 Full Name <span class="label-mark">*</span>
               </label>
 
-              <input
-                id="registerName"
-                type="text"
-                required
-                autocomplete="name"
-                placeholder="Enter your full name">
+              <input id="registerName" type="text" required autocomplete="name" placeholder="Enter your full name">
             </div>
 
             <div class="field">
@@ -744,12 +702,21 @@
                 Email <span class="label-mark">*</span>
               </label>
 
-              <input
-                id="registerEmail"
-                type="email"
-                required
-                autocomplete="email"
-                placeholder="you@example.com">
+              <input id="registerEmail" type="email" required autocomplete="email" placeholder="you@example.com">
+            </div>
+
+          </div>
+
+          <div class="row">
+
+            <div class="field">
+              <label for="registerPhone">Phone <span class="muted">(optional)</span></label>
+              <input id="registerPhone" type="tel" inputmode="tel" autocomplete="tel" maxlength="30" placeholder="Phone number">
+            </div>
+
+            <div class="field">
+              <label for="registerCollege">College <span class="muted">(optional)</span></label>
+              <input id="registerCollege" type="text" autocomplete="organization" maxlength="150" placeholder="College name">
             </div>
 
           </div>
@@ -793,18 +760,10 @@
 
               <div class="input-wrap password-wrap">
 
-                <input
-                  id="password"
-                  type="password"
-                  required
-                  autocomplete="new-password"
+                <input id="password" type="password" required autocomplete="new-password"
                   placeholder="Create a password">
 
-                <button
-                  class="toggle"
-                  type="button"
-                  data-target="password"
-                  aria-label="Show password">
+                <button class="toggle" type="button" data-target="password" aria-label="Show password">
                   👁
                 </button>
 
@@ -824,18 +783,10 @@
 
               <div class="input-wrap password-wrap">
 
-                <input
-                  id="confirm_password"
-                  type="password"
-                  required
-                  autocomplete="new-password"
+                <input id="confirm_password" type="password" required autocomplete="new-password"
                   placeholder="Re-enter password">
 
-                <button
-                  class="toggle"
-                  type="button"
-                  data-target="confirm_password"
-                  aria-label="Show password">
+                <button class="toggle" type="button" data-target="confirm_password" aria-label="Show password">
                   👁
                 </button>
 
@@ -845,17 +796,11 @@
 
           </div>
 
-          <button
-            type="submit"
-            class="submit"
-            id="submitBtn">
+          <button type="submit" class="submit" id="submitBtn">
             Create Account →
           </button>
 
-          <p
-            id="registerMessage"
-            role="status"
-            aria-live="polite">
+          <p id="registerMessage" role="status" aria-live="polite">
           </p>
 
         </form>
@@ -1068,7 +1013,7 @@
 
     document
       .getElementById('registerForm')
-      .addEventListener('submit', async function(event) {
+      .addEventListener('submit', async function (event) {
 
         event.preventDefault();
 
@@ -1081,29 +1026,39 @@
 
         const name =
           document.getElementById('registerName')
-          .value
-          .trim();
+            .value
+            .trim();
 
         const email =
           document.getElementById('registerEmail')
-          .value
-          .trim();
+            .value
+            .trim();
+
+        const phone =
+          document.getElementById('registerPhone')
+            .value
+            .trim();
+
+        const college =
+          document.getElementById('registerCollege')
+            .value
+            .trim();
 
         const branch =
           document.getElementById('branch')
-          .value;
+            .value;
 
         const semester =
           document.getElementById('semester')
-          .value;
+            .value;
 
         const password =
           document.getElementById('password')
-          .value;
+            .value;
 
         const confirmPassword =
           document.getElementById('confirm_password')
-          .value;
+            .value;
 
 
         messageEl.textContent = '';
@@ -1171,16 +1126,18 @@
               BK_CONFIG.API_BASE_URL +
               '/api/register',
               {
-                method:'POST',
+                method: 'POST',
 
-                headers:{
+                headers: {
                   'Content-Type':
                     'application/json'
                 },
 
-                body:JSON.stringify({
+                body: JSON.stringify({
                   name,
                   email,
+                  phone,
+                  college,
                   branch,
                   semester,
                   password,
@@ -1239,10 +1196,9 @@
   </script>
 
 
-  <script
-    src="../../../assets/shared/theme.js"
-    defer>
+  <script src="../../../assets/shared/theme.js" defer>
   </script>
 
 </body>
+
 </html>

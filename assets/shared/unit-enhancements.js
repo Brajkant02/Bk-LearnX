@@ -20,6 +20,56 @@
 	function scheduleSave() { clearTimeout(saveTimer); saveTimer = setTimeout(() => save(), 800); }
 	function render() { const minutes = Math.floor(state.activeTimeSeconds / 60); let indicator = document.querySelector('.bk-learning-indicator'); if (!indicator) { indicator = document.createElement('aside'); indicator.className = 'bk-learning-indicator'; document.body.appendChild(indicator); } const active = state.activeStartedAt && Date.now() - state.lastActivityAt < CONFIG.inactivityTimeoutSeconds * 1000; const percent = Math.round(state.maxScrollPercent); indicator.innerHTML = `<strong>Your Progress</strong><div class="bk-progress-track"><span style="width:${percent}%"></span></div><b>${percent}%</b><small>${active ? 'Active Learning' : 'Paused'} · ${minutes} min studied</small><em>${state.lastSavedAt ? 'Last saved: Just now' : 'Saving progress...'}</em>`; }
 	function restore() { if (state.lastPosition > 0) setTimeout(() => window.scrollTo({ top: state.lastPosition, behavior: 'smooth' }), 350); }
-	function init() { if (!parentContext?.getUser?.()) return; document.addEventListener('scroll', () => { touch(); measure(); scheduleSave(); }, { passive: true }); ['pointerdown', 'keydown', 'focus'].forEach(type => document.addEventListener(type, touch, { passive: true })); document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') { accrueTime(); save(true); } else { touch(); render(); } }); window.addEventListener('blur', () => { accrueTime(); save(true); render(); }); window.addEventListener('focus', () => { touch(); render(); }); window.addEventListener('pagehide', () => { accrueTime(); cache(); save(true); }); setInterval(() => { if (Date.now() - state.lastActivityAt > CONFIG.inactivityTimeoutSeconds * 1000) { accrueTime(); render(); } else { measure(); save(); } }, CONFIG.saveIntervalSeconds * 1000); setInterval(() => parentContext.api?.('/api/learning/heartbeat', { method: 'POST', body: JSON.stringify({ page }) }).catch(() => {}), CONFIG.heartbeatIntervalSeconds * 1000); const button = document.createElement('button'); button.className = 'bk-complete-btn'; button.textContent = '✓ Mark as Completed'; button.onclick = () => { state.manualConfirmed = true; state.dirty = true; button.textContent = '✓ Completed'; button.disabled = true; save(true); }; document.body.appendChild(button); measure(); render(); save(); restore(); window.BK_LEARNING = { state, save, updateQuiz: (data = {}) => { Object.assign(state, data, { dirty: true }); save(true); } }; }
+	async function restoreFromDatabase() {
+		if (!parentContext?.api || !parentContext.getToken?.()) return;
+		try {
+			const result = await parentContext.api('/api/learning/progress');
+			const saved = (result.progress || []).find(item => item.page === state.page);
+			if (!saved) return;
+			state.subjectId = saved.subject_id || state.subjectId;
+			state.unitId = saved.unit_id || state.unitId;
+			state.chapterId = saved.chapter_id || state.chapterId;
+			state.maxScrollPercent = Math.max(state.maxScrollPercent, Number(saved.max_scroll_percent || 0));
+			state.sectionsViewed = Math.max(state.sectionsViewed, Number(saved.sections_viewed || 0));
+			state.totalSections = Math.max(state.totalSections, Number(saved.total_sections || 0));
+			state.activeTimeSeconds = Math.max(state.activeTimeSeconds, Number(saved.active_time_seconds || 0));
+			state.currentSectionId = saved.current_section_id || state.currentSectionId;
+			state.lastPosition = Math.max(0, Number(saved.last_position || 0));
+			state.quizAvailable = Boolean(saved.quiz_available);
+			state.quizStarted = Boolean(saved.quiz_started);
+			state.quizCompleted = Boolean(saved.quiz_completed);
+			state.quizScore = saved.quiz_score ?? state.quizScore;
+			state.attempts = Number(saved.attempts || state.attempts || 0);
+			state.manualConfirmed = Boolean(saved.manual_confirmed);
+			state.status = saved.status || state.status;
+			state.dirty = false;
+			state.lastSavedAt = Date.now();
+			cache();
+		} catch {
+			state.dirty = true;
+		}
+	}
+	async function init() {
+		if (!parentContext?.getUser?.()) return;
+		document.addEventListener('scroll', () => { touch(); measure(); scheduleSave(); }, { passive: true });
+		['pointerdown', 'keydown', 'focus'].forEach(type => document.addEventListener(type, touch, { passive: true }));
+		document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') { accrueTime(); save(true); } else { touch(); render(); } });
+		window.addEventListener('blur', () => { accrueTime(); save(true); render(); });
+		window.addEventListener('focus', () => { touch(); render(); });
+		window.addEventListener('pagehide', () => { accrueTime(); cache(); save(true); });
+		setInterval(() => { if (Date.now() - state.lastActivityAt > CONFIG.inactivityTimeoutSeconds * 1000) { accrueTime(); render(); } else { measure(); save(); } }, CONFIG.saveIntervalSeconds * 1000);
+		setInterval(() => parentContext.api?.('/api/learning/heartbeat', { method: 'POST', body: JSON.stringify({ page }) }).catch(() => {}), CONFIG.heartbeatIntervalSeconds * 1000);
+		const button = document.createElement('button');
+		button.className = 'bk-complete-btn';
+		button.textContent = '✓ Mark as Completed';
+		button.onclick = () => { state.manualConfirmed = true; state.dirty = true; button.textContent = '✓ Completed'; button.disabled = true; save(true); };
+		document.body.appendChild(button);
+		await restoreFromDatabase();
+		if (state.status === 'COMPLETED') { button.textContent = '✓ Completed'; button.disabled = true; }
+		render();
+		restore();
+		setTimeout(() => { measure(); save(); }, 450);
+		window.BK_LEARNING = { state, save, updateQuiz: (data = {}) => { Object.assign(state, data, { dirty: true }); save(true); } };
+	}
 	document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', init) : init();
 })();

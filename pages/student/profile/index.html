@@ -1,90 +1,1614 @@
 <!doctype html>
-<html>
+<html lang="en">
 
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FB7SX0P0D3"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
 
-    gtag('config', 'G-FB7SX0P0D3');
-  </script>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Student Profile | BK LearnX</title>
-  <link rel="stylesheet" href="../../../assets/shared/portal.css">
-  <link rel="stylesheet" href="../../../assets/shared/theme.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Profile | BK LearnX</title>
+
+    <link rel="icon" type="image/jpeg"
+        href="../../../assets/images/logo.jpeg">
+
+    <link rel="stylesheet"
+        href="../../../assets/shared/theme.css">
+
+    <link rel="stylesheet"
+        href="../../../assets/shared/portal.css">
+
+    <style>
+
+        :root {
+            --forest: #1f4741;
+            --forest-deep: #14312c;
+            --accent: #ff5b39;
+            --accent-deep: #e6491f;
+            --gold: #f2b705;
+            --ink: #17241f;
+            --muted: #5b6b63;
+            --danger: #dc2626;
+            --success: #1f7a4d;
+            --line: rgba(23, 36, 31, .12);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family:
+                Inter,
+                system-ui,
+                -apple-system,
+                "Segoe UI",
+                sans-serif;
+
+            color: var(--ink);
+
+            background:
+                radial-gradient(
+                    circle at 8% 5%,
+                    rgba(255, 91, 57, .10),
+                    transparent 24rem
+                ),
+                radial-gradient(
+                    circle at 92% 12%,
+                    rgba(31, 71, 65, .14),
+                    transparent 22rem
+                ),
+                #eef0e7;
+
+            padding: 25px;
+        }
+
+        .profile-page {
+            width: min(1150px, 100%);
+            margin: auto;
+        }
+
+        /* HEADER */
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--ink);
+            font-weight: 800;
+            font-size: 20px;
+        }
+
+        .brand img {
+            width: 45px;
+            height: 45px;
+            object-fit: cover;
+            border-radius: 12px;
+            background: white;
+        }
+
+        .top-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        button,
+        a {
+            font: inherit;
+        }
+
+        .btn {
+            border: none;
+            cursor: pointer;
+            padding: 10px 15px;
+            border-radius: 9px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+        }
+
+        .btn-primary {
+            background: var(--forest);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--forest);
+            border: 1px solid var(--line);
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        /* HERO */
+
+        .profile-hero {
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--forest),
+                    var(--forest-deep)
+                );
+
+            color: white;
+
+            border-radius: 20px;
+
+            padding: 28px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 25px;
+
+            margin-bottom: 20px;
+
+            box-shadow:
+                0 15px 35px
+                rgba(20, 49, 44, .15);
+        }
+
+        .avatar-wrap {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .avatar {
+            width: 115px;
+            height: 115px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: white;
+            border: 4px solid rgba(255,255,255,.85);
+        }
+
+        .photo-label {
+            position: absolute;
+            bottom: 0;
+            right: -5px;
+
+            width: 36px;
+            height: 36px;
+
+            border-radius: 50%;
+
+            background: var(--accent);
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            cursor: pointer;
+
+            border: 3px solid var(--forest);
+        }
+
+        .photo-label input {
+            display: none;
+        }
+
+        .hero-info h1 {
+            margin: 0 0 7px;
+            font-size: 30px;
+        }
+
+        .hero-info p {
+            margin: 4px 0;
+            opacity: .88;
+        }
+
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 14px;
+        }
+
+        .badge {
+            background: rgba(255,255,255,.12);
+            border: 1px solid rgba(255,255,255,.20);
+            border-radius: 20px;
+            padding: 7px 11px;
+            font-size: 12px;
+        }
+
+        /* GRID */
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .card {
+            background: rgba(255,255,255,.95);
+            border: 1px solid var(--line);
+            border-radius: 17px;
+            padding: 22px;
+            box-shadow:
+                0 7px 25px
+                rgba(23,36,31,.05);
+        }
+
+        .card.full {
+            grid-column: 1 / -1;
+        }
+
+        .card h2 {
+            margin: 0 0 17px;
+            font-size: 20px;
+        }
+
+        .card-subtitle {
+            color: var(--muted);
+            font-size: 13px;
+            margin-top: -9px;
+            margin-bottom: 17px;
+        }
+
+        /* FORM */
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .field label {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--muted);
+        }
+
+        .field input,
+        .field select {
+            width: 100%;
+            border: 1px solid var(--line);
+            background: white;
+            padding: 11px 12px;
+            border-radius: 9px;
+            outline: none;
+            color: var(--ink);
+        }
+
+        .field input:focus,
+        .field select:focus {
+            border-color: var(--accent);
+            box-shadow:
+                0 0 0 3px
+                rgba(255,91,57,.10);
+        }
+
+        .field input:disabled {
+            background: #f1f3f2;
+            color: #68746f;
+        }
+
+        .form-actions {
+            margin-top: 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        #message {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        /* COURSE */
+
+        .course-box {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .course-item {
+            padding: 15px;
+            background: #f5f7f5;
+            border-radius: 12px;
+            border: 1px solid var(--line);
+        }
+
+        .course-item span {
+            display: block;
+            color: var(--muted);
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .course-item strong {
+            font-size: 15px;
+        }
+
+        /* PROGRESS */
+
+        .progress-item {
+            padding: 15px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .progress-item:last-child {
+            border-bottom: none;
+        }
+
+        .progress-head {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .progress-head strong {
+            font-size: 14px;
+        }
+
+        .progress-head span {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .progress-track {
+            width: 100%;
+            height: 8px;
+            background: #e5e9e7;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--accent),
+                    var(--forest)
+                );
+            border-radius: 20px;
+        }
+
+        .progress-extra {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 7px;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        /* SKILLS */
+
+        .skill-add {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .skill-add input {
+            flex: 1;
+            border: 1px solid var(--line);
+            padding: 11px 12px;
+            border-radius: 9px;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+        }
+
+        .skill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            background: #eef4f1;
+            border: 1px solid var(--line);
+
+            padding: 8px 10px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+        }
+
+        .skill button {
+            border: none;
+            background: transparent;
+            color: var(--danger);
+            cursor: pointer;
+            font-weight: 800;
+        }
+
+        .skill-note {
+            color: var(--muted);
+            font-size: 12px;
+            margin-top: 12px;
+        }
+
+        /* ACCOUNT */
+
+        .danger-zone {
+            border:
+                1px solid
+                rgba(220,38,38,.20);
+
+            background:
+                rgba(254,242,242,.75);
+
+            border-radius: 13px;
+
+            padding: 17px;
+        }
+
+        .danger-zone h3 {
+            margin: 0 0 7px;
+            color: var(--danger);
+        }
+
+        .danger-zone p {
+            color: var(--muted);
+            font-size: 13px;
+            margin: 0 0 13px;
+        }
+
+        /* EMPTY */
+
+        .empty {
+            padding: 22px;
+            text-align: center;
+            color: var(--muted);
+            background: #f7f8f7;
+            border-radius: 11px;
+            font-size: 13px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 800px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card.full {
+                grid-column: auto;
+            }
+
+            .profile-hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .badges {
+                justify-content: center;
+            }
+
+        }
+
+        @media (max-width: 550px) {
+
+            .form-grid,
+            .course-box {
+                grid-template-columns: 1fr;
+            }
+
+            .topbar {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .top-actions {
+                width: 100%;
+            }
+
+            .top-actions .btn {
+                flex: 1;
+            }
+
+            .avatar {
+                width: 100px;
+                height: 100px;
+            }
+
+            .hero-info h1 {
+                font-size: 24px;
+            }
+
+        }
+
+    </style>
+
 </head>
 
-<body data-login-url="../../auth/login/index.html" style="background:var(--bk-bg)">
-  <main class="portal-shell">
-    <header class="portal-header">
-      <div>
-        <h1>Student Profile</h1>
-        <p class="muted">Profile, course access aur learning progress</p>
-      </div>
-      <div><a class="portal-btn secondary" href="../../home/index.html">Home</a> <button class="portal-btn danger"
-          data-logout>Logout</button></div>
-    </header>
-    <section class="portal-card profile-grid">
-      <div><img id="avatar" class="avatar" src="../../../assets/images/logo.jpeg" alt="Profile"><input id="photo"
-          type="file" accept="image/*" style="margin-top:12px;max-width:190px">
-        <p class="muted" style="font-size:.8rem">Max recommended: 1 MB</p>
-      </div>
-      <form id="profileForm">
-        <div class="form-grid">
-          <div class="field"><label>Name</label><input id="name" required></div>
-          <div class="field"><label>Email</label><input id="email" disabled></div>
-          <div class="field"><label>Branch/Course</label><select id="branch">
-              <option>PGDCA</option>
-              <option>DSML</option>
-              <option>Cyber Security</option>
-              <option>Web Designing</option>
-              <option>IOT</option>
-              <option>Drone Technology</option>
-              <option>CHM</option>
-              <option>PGDA</option>s
-              <option>CHN</option>
-            </select></div>
-          <div class="field"><label>Semester</label><select id="semester">
-              <option>1st Semester</option>
-              <option>2nd Semester</option>
-              <option>3rd Semester</option>
-              <option>4th Semester</option>
-              <option>5th Semester</option>
-              <option>6th Semester</option>
-            </select></div>
-          <div class="field"><label>Phone</label><input id="phone" inputmode="tel"></div>
-          <div class="field"><label>College</label><input id="college"></div>
-        </div><button class="portal-btn" style="margin-top:16px">Save Profile</button><span id="msg"
-          class="muted"></span>
-      </form>
-    </section>
-    <section class="portal-card" style="margin-top:18px">
-      <h2>Course Progress</h2>
-      <div id="progress">
-        <p class="empty-state">Progress loading...</p>
-      </div>
-    </section>
-  </main>
-  <script src="../../../assets/shared/config.js"></script>
-  <script src="../../../assets/shared/portal.js"></script>
-  <script>
-    (async () => { if (!BK.getToken()) { location.href = '../../auth/login/index.html'; return } const el = id => document.getElementById(id); const semesters = { PGDCA: 4, DSML: 2, 'Cyber Security': 2, 'Web Designing': 2, IOT: 2, 'Drone Technology': 2, CHN: 2, PGDA: 2 }; let profile; try { profile = (await BK.api('/api/me')).user; localStorage.setItem('bk_user', JSON.stringify(profile)) } catch (e) { localStorage.removeItem('bk_user'); localStorage.removeItem('bk_token'); location.href = '../../auth/login/index.html'; return } const setSemesters = () => { const count = semesters[el('branch').value] || 2; el('semester').innerHTML = Array.from({ length: count }, (_, i) => `<option>${i + 1}${i === 0 ? 'st' : i === 1 ? 'nd' : i === 2 ? 'rd' : 'th'} Semester</option>`).join('') }; el('name').value = profile.name || ''; el('email').value = profile.email || ''; el('branch').value = profile.branch || 'PGDCA'; setSemesters(); el('semester').value = profile.semester || '1st Semester'; el('phone').value = profile.phone || ''; el('college').value = profile.college || ''; if (profile.photo) el('avatar').src = profile.photo; el('branch').onchange = () => { setSemesters(); el('msg').textContent = 'Semester list updated. Save profile to keep this course.' }; el('photo').onchange = () => { const f = el('photo').files[0]; if (!f) return; if (f.size > 1.5 * 1024 * 1024) { alert('Image 1.5 MB se chhoti rakhein'); return } const r = new FileReader; r.onload = () => el('avatar').src = r.result; r.readAsDataURL(f) }; el('profileForm').onsubmit = async e => { e.preventDefault(); try { const body = { name: el('name').value, branch: el('branch').value, semester: el('semester').value, phone: el('phone').value, college: el('college').value, photo: el('avatar').src }; const d = await BK.api('/api/me', { method: 'PUT', body: JSON.stringify(body) }); localStorage.setItem('bk_user', JSON.stringify(d.user)); profile = d.user; el('msg').textContent = ' Saved successfully'; } catch (x) { el('msg').textContent = ' ' + x.message } }; try { const d = await BK.api('/api/progress'); const items = d.progress || []; if (!items.length) { el('progress').innerHTML = '<p class="empty-state">Abhi koi unit complete mark nahi ki gayi.</p>' } else { const groups = {}; items.forEach(x => { const key = x.subject || 'Learning Content'; groups[key] = groups[key] || []; groups[key].push(x) }); el('progress').innerHTML = Object.entries(groups).map(([k, v]) => `<div class="progress-row"><div class="progress-meta"><strong>${k}</strong><span>${v.filter(x => x.completed).length}/${v.length} completed</span></div><div class="progress-track"><div class="progress-fill" style="width:${Math.round(v.filter(x => x.completed).length / v.length * 100)}%"></div></div></div>`).join('') } } catch { el('progress').innerHTML = '<p class="empty-state">Backend connect hone par progress yahan dikhegi.</p>' } })();
-  </script>
-  <script>
-    window.addEventListener('load', async () => {
-      if (!BK.getToken()) return;
-      try {
-        const records = (await BK.api('/api/learning/progress')).progress || [];
-        const groups = records.reduce((map, record) => { const key = record.subjectId || record.subject || 'Course'; (map[key] ||= []).push(record); return map; }, {});
-        const values = Object.entries(groups).map(([subject, items]) => { const percent = Math.round(items.reduce((sum, item) => sum + Number(item.maxScrollPercent || 0), 0) / items.length); const completed = items.filter(item => item.status === 'COMPLETED').length; const active = items.reduce((sum, item) => sum + Number(item.activeTimeSeconds || 0), 0); return `<article style="padding:14px 0;border-bottom:1px solid var(--bk-border)"><strong>${subject}</strong><div style="margin:8px 0;height:8px;background:#e7edf3;border-radius:5px;overflow:hidden"><span style="display:block;width:${percent}%;height:100%;background:#16803b"></span></div><span>${percent}% tracked · ${completed}/${items.length} chapters completed · ${Math.round(active / 60)} min studied</span></article>`; });
-        document.getElementById('progress').innerHTML = values.length ? values.join('') : '<p class="empty-state">Learning progress will appear when you study a chapter.</p>';
-      } catch { /* legacy profile remains available if tracking is unavailable */ }
-    });
-  </script>
-</body>
+<body>
 
+<div class="profile-page">
+
+    <!-- HEADER -->
+
+    <header class="topbar">
+
+        <a
+            class="brand"
+            href="../dashboard/index.html"
+        >
+
+            <img
+                src="../../../assets/images/logo.jpeg"
+                alt="BK LearnX"
+            >
+
+            <span>BK LearnX</span>
+
+        </a>
+
+        <div class="top-actions">
+
+            <a
+                class="btn btn-secondary"
+                href="../dashboard/index.html"
+            >
+                Dashboard
+            </a>
+
+            <button
+                class="btn btn-danger"
+                id="logoutBtn"
+            >
+                Logout
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- PROFILE HERO -->
+
+    <section class="profile-hero">
+
+        <div class="avatar-wrap">
+
+            <img
+                id="avatar"
+                class="avatar"
+                src="../../../assets/images/logo.jpeg"
+                alt="Student Profile"
+            >
+
+            <label
+                class="photo-label"
+                title="Change profile photo"
+            >
+
+                📷
+
+                <input
+                    type="file"
+                    id="photo"
+                    accept="image/*"
+                >
+
+            </label>
+
+        </div>
+
+
+        <div class="hero-info">
+
+            <h1 id="heroName">
+                Student
+            </h1>
+
+            <p id="heroEmail">
+                —
+            </p>
+
+            <div class="badges">
+
+                <span class="badge">
+                    Branch:
+                    <strong id="heroBranch">
+                        —
+                    </strong>
+                </span>
+
+                <span class="badge">
+                    Semester:
+                    <strong id="heroSemester">
+                        —
+                    </strong>
+                </span>
+
+                <span class="badge">
+                    Status:
+                    <strong id="heroStatus">
+                        Active
+                    </strong>
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <div class="grid">
+
+
+        <!-- PERSONAL INFORMATION -->
+
+        <section class="card">
+
+            <h2>
+                Personal Information
+            </h2>
+
+            <p class="card-subtitle">
+                Apni profile information update karein.
+            </p>
+
+
+            <form id="profileForm">
+
+                <div class="form-grid">
+
+                    <div class="field">
+
+                        <label>
+                            Full Name
+                        </label>
+
+                        <input
+                            id="name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Email
+                        </label>
+
+                        <input
+                            id="email"
+                            type="email"
+                            disabled
+                        >
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Phone
+                        </label>
+
+                        <input
+                            id="phone"
+                            inputmode="tel"
+                            placeholder="Optional"
+                        >
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            College
+                        </label>
+
+                        <input
+                            id="college"
+                            placeholder="Optional"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        class="btn btn-primary"
+                        type="submit"
+                    >
+                        Save Profile
+                    </button>
+
+                    <span id="message"></span>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <!-- COURSE INFORMATION -->
+
+        <section class="card">
+
+            <h2>
+                Course Information
+            </h2>
+
+            <p class="card-subtitle">
+                Ye information registration ke time database se aati hai.
+            </p>
+
+
+            <div class="course-box">
+
+                <div class="course-item">
+
+                    <span>
+                        Branch / Course
+                    </span>
+
+                    <strong id="courseBranch">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="course-item">
+
+                    <span>
+                        Current Semester
+                    </span>
+
+                    <strong id="courseSemester">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="course-item">
+
+                    <span>
+                        Account Status
+                    </span>
+
+                    <strong id="courseStatus">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="course-item">
+
+                    <span>
+                        Registered
+                    </span>
+
+                    <strong id="createdAt">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- LEARNING PROGRESS -->
+
+        <section class="card full">
+
+            <h2>
+                Learning Progress
+            </h2>
+
+            <p class="card-subtitle">
+                Scroll progress + active reading time + chapter completion.
+            </p>
+
+            <div id="progress">
+
+                <div class="empty">
+                    Progress loading...
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SUBJECTS -->
+
+        <section class="card">
+
+            <h2>
+                Official Subjects
+            </h2>
+
+            <p class="card-subtitle">
+                Your branch and semester subjects.
+            </p>
+
+            <div id="officialSubjectsList" class="skills-list"></div>
+
+
+            <h3 style="margin-top:24px">My Added Subjects</h3>
+
+            <div class="skill-add" style="margin-top:12px">
+
+                <input
+                    id="skillInput"
+                    placeholder="e.g. JavaScript"
+                    maxlength="100"
+                >
+
+                <button
+                    class="btn btn-primary"
+                    id="addSkillBtn"
+                    type="button"
+                >
+                    Add
+                </button>
+
+            </div>
+
+
+            <div
+                id="skillsList"
+                class="skills-list"
+            ></div>
+
+            <p id="subjectsMessage" class="skill-note" role="status" aria-live="polite">
+            </p>
+
+        </section>
+
+
+        <!-- ACCOUNT -->
+
+        <section class="card">
+
+            <h2>
+                Account
+            </h2>
+
+            <div class="danger-zone">
+
+                <h3>
+                    Account Actions
+                </h3>
+
+                <p>
+                    Logout current device ka session close karega.
+                    Account deletion ko backend authorization ke saath next step mein connect kiya jayega.
+                </p>
+
+                <button
+                    class="btn btn-danger"
+                    id="logoutBtn2"
+                    type="button"
+                >
+                    Logout
+                </button>
+
+            </div>
+
+        </section>
+
+
+    </div>
+
+</div>
+
+
+<script src="../../../assets/shared/config.js"></script>
+<script src="../../../assets/shared/portal.js"></script>
+
+
+<script>
+
+(async () => {
+
+    /* ==============================
+       AUTH
+    ============================== */
+
+    if (!BK.getToken()) {
+
+        location.href =
+            "../../auth/login/index.html";
+
+        return;
+
+    }
+
+
+    const $ =
+        id =>
+            document.getElementById(id);
+
+
+    let profile = null;
+
+
+    /* ==============================
+       LOAD PROFILE
+    ============================== */
+
+    try {
+
+        const response =
+            await BK.api(
+                "/api/me"
+            );
+
+        profile =
+            response.user;
+
+        localStorage.setItem(
+            "bk_user",
+            JSON.stringify(profile)
+        );
+
+    } catch (error) {
+
+        localStorage.removeItem(
+            "bk_user"
+        );
+
+        localStorage.removeItem(
+            "bk_token"
+        );
+
+        location.href =
+            "../../auth/login/index.html";
+
+        return;
+
+    }
+
+
+    /* ==============================
+       DISPLAY PROFILE
+    ============================== */
+
+    $("heroName").textContent =
+        profile.name ||
+        "Student";
+
+    $("heroEmail").textContent =
+        profile.email ||
+        "—";
+
+    $("heroBranch").textContent =
+        profile.branch ||
+        "—";
+
+    $("heroSemester").textContent =
+        profile.semester ||
+        "—";
+
+    $("name").value =
+        profile.name ||
+        "";
+
+    $("email").value =
+        profile.email ||
+        "";
+
+    $("phone").value =
+        profile.phone ||
+        "";
+
+    $("college").value =
+        profile.college ||
+        "";
+
+    $("courseBranch").textContent =
+        profile.branch ||
+        "—";
+
+    $("courseSemester").textContent =
+        profile.semester ||
+        "—";
+
+    $("courseStatus").textContent =
+        profile.status ||
+        "Active";
+
+    if (profile.created_at) {
+
+        $("createdAt").textContent =
+            new Date(
+                profile.created_at
+            ).toLocaleDateString();
+
+    } else if (profile.createdAt) {
+
+        $("createdAt").textContent =
+            new Date(
+                profile.createdAt
+            ).toLocaleDateString();
+
+    } else {
+
+        $("createdAt").textContent =
+            "—";
+
+    }
+
+
+    /* ==============================
+       PROFILE PHOTO
+    ============================== */
+
+    if (profile.photo) {
+
+        $("avatar").src =
+            profile.photo;
+
+    } else if (profile.profile_image) {
+
+        $("avatar").src =
+            profile.profile_image;
+
+    }
+
+
+    $("photo").addEventListener(
+        "change",
+        () => {
+
+            const file =
+                $("photo").files[0];
+
+            if (!file) return;
+
+
+            if (
+                file.size >
+                1.5 * 1024 * 1024
+            ) {
+
+                alert(
+                    "Image 1.5 MB se chhoti rakhein."
+                );
+
+                $("photo").value =
+                    "";
+
+                return;
+
+            }
+
+
+            const reader =
+                new FileReader();
+
+
+            reader.onload =
+                () => {
+
+                    $("avatar").src =
+                        reader.result;
+
+                };
+
+
+            reader.readAsDataURL(
+                file
+            );
+
+        }
+    );
+
+
+    /* ==============================
+       SAVE PROFILE
+    ============================== */
+
+    $("profileForm").addEventListener(
+        "submit",
+        async event => {
+
+            event.preventDefault();
+
+
+            $("message").textContent =
+                "Saving...";
+
+
+            try {
+
+                const body = {
+
+                    name:
+                        $("name").value.trim(),
+
+                    phone:
+                        $("phone").value.trim(),
+
+                    college:
+                        $("college").value.trim(),
+
+                    photo:
+                        $("avatar").src
+
+                };
+
+
+                const response =
+                    await BK.api(
+                        "/api/me",
+                        {
+                            method:
+                                "PUT",
+
+                            body:
+                                JSON.stringify(
+                                    body
+                                )
+                        }
+                    );
+
+
+                profile =
+                    response.user;
+
+
+                localStorage.setItem(
+                    "bk_user",
+                    JSON.stringify(profile)
+                );
+
+
+                $("heroName").textContent =
+                    profile.name ||
+                    "Student";
+
+
+                $("message").textContent =
+                    "✓ Profile saved successfully.";
+
+
+            } catch (error) {
+
+                $("message").textContent =
+                    "✕ " +
+                    error.message;
+
+            }
+
+        }
+    );
+
+
+    /* ==============================
+       PROGRESS
+    ============================== */
+
+    async function loadProgress() {
+
+        try {
+
+            const response =
+                await BK.api(
+                    "/api/learning/progress"
+                );
+
+
+            const records =
+                response.progress ||
+                [];
+
+
+            if (!records.length) {
+
+                $("progress").innerHTML = `
+
+                    <div class="empty">
+                        Abhi koi learning progress available nahi hai.
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            const groups = {};
+
+
+            records.forEach(
+                record => {
+
+                    const key =
+                        record.subjectId ||
+                        record.subject_id ||
+                        record.subject ||
+                        "Course";
+
+
+                    if (!groups[key]) {
+
+                        groups[key] = [];
+
+                    }
+
+
+                    groups[key].push(
+                        record
+                    );
+
+                }
+            );
+
+
+            $("progress").innerHTML =
+                Object.entries(
+                    groups
+                )
+                .map(
+                    ([subject, items]) => {
+
+                        const scroll =
+                            items.length
+                                ? Math.round(
+                                    items.reduce(
+                                        (
+                                            sum,
+                                            item
+                                        ) =>
+                                            sum +
+                                            Number(
+                                                item.maxScrollPercent ||
+                                                item.max_scroll_percent ||
+                                                0
+                                            ),
+                                        0
+                                    ) /
+                                    items.length
+                                )
+                                : 0;
+
+
+                        const completed =
+                            items.filter(
+                                item =>
+                                    item.status ===
+                                    "COMPLETED"
+                            ).length;
+
+
+                        const activeSeconds =
+                            items.reduce(
+                                (
+                                    sum,
+                                    item
+                                ) =>
+                                    sum +
+                                    Number(
+                                        item.activeTimeSeconds ||
+                                        item.active_time_seconds ||
+                                        0
+                                    ),
+                                0
+                            );
+
+
+                        const minutes =
+                            Math.round(
+                                activeSeconds /
+                                60
+                            );
+
+
+                        return `
+
+                            <article
+                                class="progress-item"
+                            >
+
+                                <div
+                                    class="progress-head"
+                                >
+
+                                    <strong>
+                                        ${escapeHtml(
+                                            subject
+                                        )}
+                                    </strong>
+
+                                    <span>
+                                        ${scroll}%
+                                    </span>
+
+                                </div>
+
+
+                                <div
+                                    class="progress-track"
+                                >
+
+                                    <div
+                                        class="progress-fill"
+                                        style="
+                                            width:${scroll}%
+                                        "
+                                    ></div>
+
+                                </div>
+
+
+                                <div
+                                    class="progress-extra"
+                                >
+
+                                    <span>
+                                        ${completed}/${items.length}
+                                        chapters completed
+                                    </span>
+
+                                    <span>
+                                        ${minutes} min studied
+                                    </span>
+
+                                </div>
+
+                            </article>
+
+                        `;
+
+                    }
+                )
+                .join("");
+
+
+        } catch (error) {
+
+            $("progress").innerHTML = `
+
+                <div class="empty">
+                    Learning progress backend se load nahi ho paayi.
+                </div>
+
+            `;
+
+        }
+
+    }
+
+
+    await loadProgress();
+
+
+    /* ==============================
+       OFFICIAL AND CUSTOM SUBJECTS
+    ============================== */
+
+    async function loadSubjects() {
+
+        const data = await BK.api("/api/student/subjects");
+        const officialSubjects = data.officialSubjects || [];
+        const customSubjects = data.customSubjects || [];
+
+        $("officialSubjectsList").innerHTML = officialSubjects.length
+            ? officialSubjects.map(subject => `
+                <span class="skill">${escapeHtml(subject.subjectName)}</span>
+            `).join("")
+            : '<span class="skill-note">No official subjects are mapped to this branch and semester yet.</span>';
+
+        $("skillsList").innerHTML = customSubjects.length
+            ? customSubjects.map(subject => `
+                <span class="skill">
+                    ${escapeHtml(subject.subjectName)}
+                    <button type="button" data-id="${Number(subject.id)}" title="Delete custom subject" aria-label="Delete ${escapeHtml(subject.subjectName)}">×</button>
+                </span>
+            `).join("")
+            : '<span class="skill-note">No added subjects yet.</span>';
+
+        $("skillsList").querySelectorAll("button[data-id]").forEach(button => {
+            button.addEventListener("click", async () => {
+                button.disabled = true;
+                $("subjectsMessage").textContent = "Deleting subject...";
+
+                try {
+                    await BK.api(`/api/student/subjects/${button.dataset.id}`, {
+                        method: "DELETE"
+                    });
+                    $("subjectsMessage").textContent = "Subject deleted.";
+                    await loadSubjects();
+                } catch (error) {
+                    $("subjectsMessage").textContent = error.message;
+                    button.disabled = false;
+                }
+            });
+        });
+
+    }
+
+    async function addSubject() {
+
+        const subjectName = $("skillInput").value.trim();
+
+        if (!subjectName) return;
+
+        $("addSkillBtn").disabled = true;
+        $("subjectsMessage").textContent = "Saving subject...";
+
+        try {
+            await BK.api("/api/student/subjects", {
+                method: "POST",
+                body: JSON.stringify({ subjectName })
+            });
+            $("skillInput").value = "";
+            $("subjectsMessage").textContent = "Subject saved.";
+            await loadSubjects();
+        } catch (error) {
+            $("subjectsMessage").textContent = error.message;
+        } finally {
+            $("addSkillBtn").disabled = false;
+        }
+
+    }
+
+    $("addSkillBtn").addEventListener("click", addSubject);
+
+    $("skillInput").addEventListener("keydown", event => {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            addSubject();
+        }
+    });
+
+    try {
+        await loadSubjects();
+    } catch (error) {
+        $("subjectsMessage").textContent = error.message;
+    }
+
+
+    /* ==============================
+       LOGOUT
+    ============================== */
+
+    async function logout() {
+
+        try {
+
+            await BK.api(
+                "/api/logout",
+                {
+                    method:
+                        "POST"
+                }
+            );
+
+        } catch (error) {
+
+            console.error(
+                error
+            );
+
+        }
+
+
+        localStorage.removeItem(
+            "bk_token"
+        );
+
+        localStorage.removeItem(
+            "bk_user"
+        );
+
+        sessionStorage.removeItem(
+            "bk_token"
+        );
+
+        location.href =
+            "../../auth/login/index.html";
+
+    }
+
+
+    $("logoutBtn")
+        .addEventListener(
+            "click",
+            logout
+        );
+
+
+    $("logoutBtn2")
+        .addEventListener(
+            "click",
+            logout
+        );
+
+
+    /* ==============================
+       ESCAPE HTML
+    ============================== */
+
+    function escapeHtml(
+        value
+    ) {
+
+        return String(
+            value ?? ""
+        )
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+    }
+
+})();
+
+</script>
+
+</body>
 </html>
