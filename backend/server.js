@@ -623,10 +623,10 @@ app.post(
       "DSML",
       "Cyber Security",
       "Web Designing",
-      "PGDA",
       "IOT",
       "CHN",
-      "Drone Technology"
+      "Drone Technology",
+      "PGDA"
     ];
     const selectedSemester = semesterNumber(cleanSemester);
     const maxSemester = cleanBranch === "PGDCA" ? 4 : 2;
@@ -2637,15 +2637,14 @@ async function startServer() {
     await setupDatabase();
 
     app.listen(
-      PORT,
-      "0.0.0.0",
-      () => {
+    PORT,
+    "0.0.0.0",
+    () => {
         console.log(
-          `BK LearnX backend running at http://localhost:${PORT}`
+            `BK LearnX backend running at http://localhost:${PORT}`
         );
-
-      }
-    );
+    }
+);
 
   } catch (error) {
 
