@@ -2634,7 +2634,7 @@ async function startServer() {
       "MySQL connected successfully."
     );
 
-    await setupDatabase();
+    await setupDatabase();m
 
     app.listen(
     PORT,

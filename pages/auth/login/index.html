@@ -1,1943 +1,1349 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-
+  <head>
     <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FB7SX0P0D3"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-FB7SX0P0D3"
+    ></script>
 
     <script>
-        window.dataLayer = window.dataLayer || [];
+      window.dataLayer = window.dataLayer || [];
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
+      function gtag() {
+        dataLayer.push(arguments);
+      }
 
-        gtag('js', new Date());
-        gtag('config', 'G-FB7SX0P0D3');
+      gtag("js", new Date());
+      gtag("config", "G-FB7SX0P0D3");
     </script>
 
+    <meta charset="UTF-8" />
 
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <meta
-        name="description"
-        content="Login to your BK LearnX student account and continue your computer and technology learning journey."
-    >
+      name="description"
+      content="Login to your BK LearnX student account and continue your computer and technology learning journey."
+    />
 
     <meta
-        name="keywords"
-        content="BK LearnX login, student login, computer learning, technology education, PGDCA, DSML, Cyber Security, Web Designing, IoT, Drone Technology, PGDA"
-    >
+      name="keywords"
+      content="BK LearnX login, student login, computer learning, technology education, PGDCA, DSML, Cyber Security, Web Designing, IoT, Drone Technology, PGDA"
+    />
 
-    <meta
-        name="author"
-        content="BK LearnX"
-    >
+    <meta name="author" content="BK LearnX" />
 
-    <meta
-        name="robots"
-        content="index, follow"
-    >
-
+    <meta name="robots" content="index, follow" />
 
     <link
-        rel="canonical"
-        href="https://bk-learn-x.vercel.app/pages/auth/login/index.html"
-    >
+      rel="canonical"
+      href="https://bk-learn-x.vercel.app/pages/auth/login/index.html"
+    />
 
+    <meta property="og:type" content="website" />
 
-    <meta
-        property="og:type"
-        content="website"
-    >
+    <meta property="og:site_name" content="BK LearnX" />
 
-    <meta
-        property="og:site_name"
-        content="BK LearnX"
-    >
+    <meta property="og:title" content="Student Login | BK LearnX" />
 
     <meta
-        property="og:title"
-        content="Student Login | BK LearnX"
-    >
+      property="og:description"
+      content="Login to BK LearnX and continue your computer and technology learning journey."
+    />
 
     <meta
-        property="og:description"
-        content="Login to BK LearnX and continue your computer and technology learning journey."
-    >
+      property="og:url"
+      content="https://bk-learn-x.vercel.app/pages/auth/login/index.html"
+    />
 
     <meta
-        property="og:url"
-        content="https://bk-learn-x.vercel.app/pages/auth/login/index.html"
-    >
+      property="og:image"
+      content="https://bk-learn-x.vercel.app/assets/images/logo.jpeg"
+    />
 
-    <meta
-        property="og:image"
-        content="https://bk-learn-x.vercel.app/assets/images/logo.jpeg"
-    >
+    <meta name="theme-color" content="#1f4741" />
 
-
-    <meta
-        name="theme-color"
-        content="#1f4741"
-    >
-
-
-    <title>
-        Student Login | BK LearnX
-    </title>
-
+    <title>Student Login | BK LearnX</title>
 
     <link
-        rel="icon"
-        type="image/jpeg"
-        href="../../../assets/images/logo.jpeg"
-    >
-
+      rel="icon"
+      type="image/jpeg"
+      href="../../../assets/images/logo.jpeg"
+    />
 
     <style>
+      :root {
+        --bg: #eef0e7;
 
-        :root {
+        --bg-dark: #14312c;
 
-            --bg: #eef0e7;
+        --forest: #1f4741;
 
-            --bg-dark: #14312c;
+        --card: #ffffff;
 
-            --forest: #1f4741;
+        --card-border: rgba(23, 36, 31, 0.14);
 
-            --card: #ffffff;
+        --accent: #ff5b39;
 
-            --card-border:
-                rgba(23, 36, 31, 0.14);
+        --accent-deep: #e6491f;
 
-            --accent: #ff5b39;
+        --accent-soft: #fdeee9;
 
-            --accent-deep: #e6491f;
+        --gold: #f2b705;
 
-            --accent-soft: #fdeee9;
+        --text: #17241f;
 
-            --gold: #f2b705;
+        --muted: #5b6b63;
+      }
 
-            --text: #17241f;
+      * {
+        margin: 0;
 
-            --muted: #5b6b63;
+        padding: 0;
 
-        }
+        box-sizing: border-box;
+      }
 
+      body {
+        font-family:
+          "Inter",
+          system-ui,
+          -apple-system,
+          "Segoe UI",
+          sans-serif;
 
-        * {
+        background:
+          radial-gradient(
+            circle at 8% 5%,
+            rgba(255, 91, 57, 0.1),
+            transparent 24rem
+          ),
+          radial-gradient(
+            circle at 92% 12%,
+            rgba(31, 71, 65, 0.14),
+            transparent 22rem
+          ),
+          var(--bg);
 
-            margin: 0;
+        min-height: 100vh;
 
-            padding: 0;
+        display: flex;
 
-            box-sizing: border-box;
+        justify-content: center;
 
-        }
+        align-items: center;
 
+        padding: 1rem;
 
-        body {
+        color: var(--text);
+      }
 
-            font-family:
-                "Inter",
-                system-ui,
-                -apple-system,
-                "Segoe UI",
-                sans-serif;
+      h1,
+      h2,
+      h3 {
+        font-family: "Sora", "Inter", sans-serif;
+      }
 
-            background:
-                radial-gradient(
-                    circle at 8% 5%,
-                    rgba(255, 91, 57, .10),
-                    transparent 24rem
-                ),
-                radial-gradient(
-                    circle at 92% 12%,
-                    rgba(31, 71, 65, .14),
-                    transparent 22rem
-                ),
-                var(--bg);
+      .container {
+        position: relative;
 
-            min-height: 100vh;
+        width: min(920px, 100%);
 
-            display: flex;
+        max-width: 920px;
 
-            justify-content: center;
+        display: grid;
 
-            align-items: center;
+        grid-template-columns: 0.86fr 1.14fr;
 
-            padding: 1rem;
+        grid-template-rows:
+          auto
+          auto
+          auto
+          auto
+          auto
+          auto
+          auto;
 
-            color: var(--text);
+        padding: 0;
 
-        }
+        overflow: hidden;
 
+        border-radius: 26px;
 
-        h1,
-        h2,
-        h3 {
+        background: var(--card);
 
-            font-family:
-                "Sora",
-                "Inter",
-                sans-serif;
+        border: 1px solid var(--card-border);
 
-        }
+        box-shadow: 0 30px 80px rgba(20, 49, 44, 0.16);
+      }
 
-
-        .container {
-
-            position: relative;
-
-            width: min(920px, 100%);
-
-            max-width: 920px;
-
-            display: grid;
-
-            grid-template-columns:
-                0.86fr 1.14fr;
-
-            grid-template-rows:
-                auto
-                auto
-                auto
-                auto
-                auto
-                auto
-                auto;
-
-            padding: 0;
-
-            overflow: hidden;
-
-            border-radius: 26px;
-
-            background: var(--card);
-
-            border:
-                1px solid
-                var(--card-border);
-
-            box-shadow:
-                0 30px 80px
-                rgba(20, 49, 44, .16);
-
-        }
-
-
-        /* =========================
+      /* =========================
            LEFT SHOWCASE
         ========================= */
 
-        .login-showcase {
+      .login-showcase {
+        grid-column: 1;
 
-            grid-column: 1;
+        grid-row: 1 / 8;
 
-            grid-row: 1 / 8;
+        position: relative;
 
-            position: relative;
+        min-height: 100%;
 
-            min-height: 100%;
+        padding: 34px;
 
-            padding: 34px;
+        color: #fff;
 
-            color: #fff;
+        overflow: hidden;
 
-            overflow: hidden;
+        background:
+          radial-gradient(
+            circle at 85% 8%,
+            rgba(255, 178, 122, 0.22),
+            transparent 12rem
+          ),
+          radial-gradient(
+            circle at 5% 92%,
+            rgba(255, 91, 57, 0.16),
+            transparent 12rem
+          ),
+          linear-gradient(150deg, #0d211d 0%, #14312c 55%, #1f4741 100%);
+      }
 
-            background:
-                radial-gradient(
-                    circle at 85% 8%,
-                    rgba(255, 178, 122, .22),
-                    transparent 12rem
-                ),
-                radial-gradient(
-                    circle at 5% 92%,
-                    rgba(255, 91, 57, .16),
-                    transparent 12rem
-                ),
-                linear-gradient(
-                    150deg,
-                    #0d211d 0%,
-                    #14312c 55%,
-                    #1f4741 100%
-                );
+      .login-showcase::before,
+      .login-showcase::after {
+        content: "";
 
-        }
+        position: absolute;
 
+        border: 1px solid rgba(255, 255, 255, 0.13);
 
-        .login-showcase::before,
-        .login-showcase::after {
+        border-radius: 50%;
 
-            content: "";
+        pointer-events: none;
+      }
 
-            position: absolute;
+      .login-showcase::before {
+        width: 260px;
 
-            border:
-                1px solid
-                rgba(255, 255, 255, .13);
+        height: 260px;
 
-            border-radius: 50%;
+        right: -110px;
 
-            pointer-events: none;
+        top: -85px;
+      }
 
-        }
+      .login-showcase::after {
+        width: 430px;
 
+        height: 430px;
 
-        .login-showcase::before {
+        left: -220px;
 
-            width: 260px;
+        bottom: -240px;
+      }
 
-            height: 260px;
+      .showcase-logo {
+        width: 58px;
 
-            right: -110px;
+        height: 58px;
 
-            top: -85px;
+        border-radius: 15px;
 
-        }
+        overflow: hidden;
 
+        background: #fff;
 
-        .login-showcase::after {
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18);
 
-            width: 430px;
+        position: relative;
 
-            height: 430px;
+        z-index: 2;
+      }
 
-            left: -220px;
+      .showcase-logo img {
+        width: 100%;
 
-            bottom: -240px;
+        height: 100%;
 
-        }
+        object-fit: cover;
+      }
 
+      .showcase-kicker {
+        display: inline-flex;
 
-        .showcase-logo {
+        align-items: center;
 
-            width: 58px;
+        gap: 7px;
 
-            height: 58px;
+        margin-top: 25px;
 
-            border-radius: 15px;
+        color: var(--gold);
 
-            overflow: hidden;
+        font-size: 0.66rem;
 
-            background: #fff;
+        font-weight: 800;
 
-            box-shadow:
-                0 12px 25px
-                rgba(0, 0, 0, .18);
+        letter-spacing: 0.14em;
+      }
 
-            position: relative;
+      .showcase-kicker::before {
+        content: "";
 
-            z-index: 2;
+        width: 20px;
 
-        }
+        height: 2px;
 
+        background: var(--gold);
 
-        .showcase-logo img {
+        border-radius: 4px;
+      }
 
-            width: 100%;
+      .showcase-title {
+        margin-top: 12px;
 
-            height: 100%;
+        font-family: "Sora", sans-serif;
 
-            object-fit: cover;
+        font-weight: 700;
 
-        }
+        font-size: clamp(2rem, 3.5vw, 3rem);
 
+        line-height: 1.05;
 
-        .showcase-kicker {
+        letter-spacing: -0.03em;
 
-            display: inline-flex;
+        max-width: 360px;
+      }
 
-            align-items: center;
+      .showcase-title span {
+        color: #ff8a68;
+      }
 
-            gap: 7px;
+      .showcase-desc {
+        margin-top: 14px;
 
-            margin-top: 25px;
+        max-width: 350px;
 
-            color: var(--gold);
+        color: #c9d6d0;
 
-            font-size: .66rem;
+        font-size: 0.82rem;
 
-            font-weight: 800;
+        line-height: 1.7;
+      }
 
-            letter-spacing: .14em;
+      .program-mini-grid {
+        display: grid;
 
-        }
+        grid-template-columns: 1fr 1fr;
 
+        gap: 9px;
 
-        .showcase-kicker::before {
+        margin-top: 24px;
 
-            content: "";
+        position: relative;
 
-            width: 20px;
+        z-index: 2;
+      }
 
-            height: 2px;
+      .program-mini {
+        padding: 10px 11px;
 
-            background: var(--gold);
+        border: 1px solid rgba(255, 255, 255, 0.11);
 
-            border-radius: 4px;
+        border-radius: 12px;
 
-        }
+        background: rgba(255, 255, 255, 0.06);
 
+        backdrop-filter: blur(10px);
 
-        .showcase-title {
+        transition: 0.18s ease;
+      }
 
-            margin-top: 12px;
+      .program-mini:hover {
+        background: rgba(255, 255, 255, 0.11);
 
-            font-family:
-                "Sora",
-                sans-serif;
+        border-color: rgba(255, 91, 57, 0.4);
+      }
 
-            font-weight: 700;
+      .program-mini span {
+        font-size: 1rem;
+      }
 
-            font-size:
-                clamp(2rem, 3.5vw, 3rem);
+      .program-mini b {
+        display: block;
 
-            line-height: 1.05;
+        margin-top: 5px;
 
-            letter-spacing: -.03em;
+        font-size: 0.72rem;
 
-            max-width: 360px;
+        font-family: "Sora", sans-serif;
+      }
 
-        }
+      .program-mini small {
+        display: block;
 
+        margin-top: 1px;
 
-        .showcase-title span {
+        color: #a9beb6;
 
-            color: #ff8a68;
+        font-size: 0.58rem;
+      }
 
-        }
+      .showcase-stats {
+        display: flex;
 
+        gap: 9px;
 
-        .showcase-desc {
+        margin-top: 20px;
 
-            margin-top: 14px;
+        position: relative;
 
-            max-width: 350px;
+        z-index: 2;
+      }
 
-            color: #c9d6d0;
+      .showcase-stat {
+        flex: 1;
 
-            font-size: .82rem;
+        padding: 11px 12px;
 
-            line-height: 1.7;
+        border-radius: 12px;
 
-        }
+        background: rgba(255, 255, 255, 0.07);
 
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
 
-        .program-mini-grid {
+      .showcase-stat strong {
+        display: block;
 
-            display: grid;
+        font-size: 1rem;
 
-            grid-template-columns:
-                1fr 1fr;
+        font-family: "Sora", sans-serif;
+      }
 
-            gap: 9px;
+      .showcase-stat span {
+        display: block;
 
-            margin-top: 24px;
+        margin-top: 2px;
 
-            position: relative;
+        color: #a9beb6;
 
-            z-index: 2;
+        font-size: 0.59rem;
+      }
 
-        }
+      .showcase-bottom {
+        position: absolute;
 
+        left: 34px;
 
-        .program-mini {
+        right: 34px;
 
-            padding: 10px 11px;
+        bottom: 28px;
 
-            border:
-                1px solid
-                rgba(255, 255, 255, .11);
+        padding: 12px 14px;
 
-            border-radius: 12px;
+        border-radius: 13px;
 
-            background:
-                rgba(255, 255, 255, .06);
+        background: rgba(0, 0, 0, 0.22);
 
-            backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
 
-            transition: .18s ease;
+        color: #c9d6d0;
 
-        }
+        font-size: 0.65rem;
 
+        line-height: 1.5;
 
-        .program-mini:hover {
+        z-index: 2;
+      }
 
-            background:
-                rgba(255, 255, 255, .11);
+      .showcase-bottom strong {
+        color: #fff;
+      }
 
-            border-color:
-                rgba(255, 91, 57, .4);
-
-        }
-
-
-        .program-mini span {
-
-            font-size: 1rem;
-
-        }
-
-
-        .program-mini b {
-
-            display: block;
-
-            margin-top: 5px;
-
-            font-size: .72rem;
-
-            font-family:
-                "Sora",
-                sans-serif;
-
-        }
-
-
-        .program-mini small {
-
-            display: block;
-
-            margin-top: 1px;
-
-            color: #a9beb6;
-
-            font-size: .58rem;
-
-        }
-
-
-        .showcase-stats {
-
-            display: flex;
-
-            gap: 9px;
-
-            margin-top: 20px;
-
-            position: relative;
-
-            z-index: 2;
-
-        }
-
-
-        .showcase-stat {
-
-            flex: 1;
-
-            padding: 11px 12px;
-
-            border-radius: 12px;
-
-            background:
-                rgba(255, 255, 255, .07);
-
-            border:
-                1px solid
-                rgba(255, 255, 255, .10);
-
-        }
-
-
-        .showcase-stat strong {
-
-            display: block;
-
-            font-size: 1rem;
-
-            font-family:
-                "Sora",
-                sans-serif;
-
-        }
-
-
-        .showcase-stat span {
-
-            display: block;
-
-            margin-top: 2px;
-
-            color: #a9beb6;
-
-            font-size: .59rem;
-
-        }
-
-
-        .showcase-bottom {
-
-            position: absolute;
-
-            left: 34px;
-
-            right: 34px;
-
-            bottom: 28px;
-
-            padding: 12px 14px;
-
-            border-radius: 13px;
-
-            background:
-                rgba(0, 0, 0, .22);
-
-            border:
-                1px solid
-                rgba(255, 255, 255, .10);
-
-            color: #c9d6d0;
-
-            font-size: .65rem;
-
-            line-height: 1.5;
-
-            z-index: 2;
-
-        }
-
-
-        .showcase-bottom strong {
-
-            color: #fff;
-
-        }
-
-
-        /* =========================
+      /* =========================
            FORM
         ========================= */
 
-        .container h2 {
+      .container h2 {
+        grid-column: 2;
 
-            grid-column: 2;
+        grid-row: 1;
 
-            grid-row: 1;
+        text-align: left;
 
-            text-align: left;
+        color: var(--text);
 
-            color: var(--text);
+        margin: 30px 34px 4px;
 
-            margin:
-                30px 34px 4px;
+        font-size: 1.7rem;
 
-            font-size: 1.7rem;
+        font-weight: 700;
 
-            font-weight: 700;
+        align-self: end;
+      }
 
-            align-self: end;
+      .container h2::after {
+        content: "Continue your learning journey";
 
-        }
+        display: block;
 
+        color: var(--muted);
 
-        .container h2::after {
+        font-size: 0.78rem;
 
-            content:
-                "Continue your learning journey";
+        font-weight: 500;
 
-            display: block;
+        margin-top: 7px;
 
-            color: var(--muted);
+        font-family: "Inter", sans-serif;
+      }
 
-            font-size: .78rem;
+      .container form {
+        grid-column: 2;
 
-            font-weight: 500;
+        grid-row: 2;
 
-            margin-top: 7px;
+        padding: 0 34px 4px;
 
-            font-family:
-                "Inter",
-                sans-serif;
+        width: 100%;
+      }
 
-        }
+      label {
+        font-weight: 600;
 
+        font-size: 0.9rem;
 
-        .container form {
+        display: block;
 
-            grid-column: 2;
+        margin-top: 12px;
 
-            grid-row: 2;
+        margin-bottom: 7px;
 
-            padding:
-                0 34px 4px;
+        color: var(--muted);
+      }
 
-            width: 100%;
+      input {
+        width: 100%;
 
-        }
+        height: 48px;
 
+        padding: 0 14px;
 
-        label {
+        border: 1px solid var(--card-border);
 
-            font-weight: 600;
+        border-radius: 11px;
 
-            font-size: .9rem;
+        font-size: 0.95rem;
 
-            display: block;
+        font-family: inherit;
 
-            margin-top: 12px;
+        color: var(--text);
 
-            margin-bottom: 7px;
+        background: var(--card);
 
-            color: var(--muted);
+        transition: 0.2s ease;
+      }
 
-        }
+      input:focus {
+        outline: none;
 
+        border-color: var(--accent);
 
-        input {
+        box-shadow: 0 0 0 4px var(--accent-soft);
+      }
 
-            width: 100%;
+      .btn {
+        width: 100%;
 
-            height: 48px;
+        height: 50px;
 
-            padding: 0 14px;
+        padding: 0 15px;
 
-            border:
-                1px solid
-                var(--card-border);
+        background: var(--accent);
 
-            border-radius: 11px;
+        color: white;
 
-            font-size: .95rem;
+        border: none;
 
-            font-family: inherit;
+        border-radius: 12px;
 
-            color: var(--text);
+        cursor: pointer;
 
-            background: var(--card);
+        font-size: 0.95rem;
 
-            transition: .2s ease;
+        font-weight: 700;
 
-        }
+        font-family: "Sora", sans-serif;
 
+        margin-top: 1.5rem;
 
-        input:focus {
+        transition:
+          background-color 0.3s ease,
+          transform 0.2s ease;
 
-            outline: none;
+        box-shadow: 0 13px 28px rgba(255, 91, 57, 0.22);
+      }
 
-            border-color:
-                var(--accent);
+      .btn:hover {
+        background: var(--accent-deep);
 
-            box-shadow:
-                0 0 0 4px
-                var(--accent-soft);
+        transform: translateY(-2px);
+      }
 
-        }
+      .btn:disabled {
+        opacity: 0.65;
 
+        cursor: not-allowed;
 
-        .btn {
+        transform: none;
+      }
 
-            width: 100%;
+      .separator {
+        display: flex;
 
-            height: 50px;
+        align-items: center;
 
-            padding: 0 15px;
+        text-align: center;
 
-            background:
-                var(--accent);
+        margin: 12px 0 4px;
 
-            color: white;
+        color: var(--muted);
 
-            border: none;
+        font-size: 0.9rem;
+      }
 
-            border-radius: 12px;
+      .separator::before,
+      .separator::after {
+        content: "";
 
-            cursor: pointer;
+        flex: 1;
 
-            font-size: .95rem;
+        border-bottom: 1px solid var(--card-border);
+      }
 
-            font-weight: 700;
+      .separator span {
+        padding: 0 0.75rem;
+      }
 
-            font-family:
-                "Sora",
-                sans-serif;
+      .google-btn {
+        width: 100%;
 
-            margin-top: 1.5rem;
+        height: 46px;
 
-            transition:
-                background-color .3s ease,
-                transform .2s ease;
+        padding: 0 15px;
 
-            box-shadow:
-                0 13px 28px
-                rgba(255, 91, 57, .22);
+        background: var(--card);
 
-        }
+        color: var(--text);
 
+        border: 1px solid var(--card-border);
 
-        .btn:hover {
+        border-radius: 11px;
 
-            background:
-                var(--accent-deep);
+        cursor: pointer;
 
-            transform:
-                translateY(-2px);
+        font-size: 0.9rem;
 
-        }
+        font-weight: 700;
 
+        font-family: "Inter", sans-serif;
 
-        .btn:disabled {
+        margin-top: 7px;
 
-            opacity: .65;
+        transition: 0.2s ease;
+      }
 
-            cursor: not-allowed;
+      .google-btn:hover {
+        background: var(--bg);
 
-            transform: none;
+        border-color: var(--muted);
+      }
 
-        }
+      #loginMessage {
+        min-height: 22px;
 
+        margin-top: 10px;
 
-        .separator {
+        font-size: 0.88rem;
 
-            display: flex;
+        font-weight: 700;
+      }
 
-            align-items: center;
+      .register-text {
+        grid-column: 2;
 
-            text-align: center;
+        grid-row: 7;
 
-            margin:
-                12px 0 4px;
+        text-align: center;
 
-            color: var(--muted);
+        margin: 12px 34px 28px;
 
-            font-size: .9rem;
+        line-height: 1.8;
 
-        }
+        color: var(--muted);
 
+        font-size: 0.78rem;
+      }
 
-        .separator::before,
-        .separator::after {
+      .register-text a {
+        text-decoration: none;
 
-            content: '';
+        color: var(--accent);
 
-            flex: 1;
+        font-weight: 700;
+      }
 
-            border-bottom:
-                1px solid
-                var(--card-border);
+      .register-text a:hover {
+        color: var(--accent-deep);
 
-        }
+        text-decoration: underline;
+      }
 
-
-        .separator span {
-
-            padding:
-                0 .75rem;
-
-        }
-
-
-        .google-btn {
-
-            width: 100%;
-
-            height: 46px;
-
-            padding: 0 15px;
-
-            background: var(--card);
-
-            color: var(--text);
-
-            border:
-                1px solid
-                var(--card-border);
-
-            border-radius: 11px;
-
-            cursor: pointer;
-
-            font-size: .9rem;
-
-            font-weight: 700;
-
-            font-family:
-                "Inter",
-                sans-serif;
-
-            margin-top: 7px;
-
-            transition: .2s ease;
-
-        }
-
-
-        .google-btn:hover {
-
-            background:
-                var(--bg);
-
-            border-color:
-                var(--muted);
-
-        }
-
-
-        #loginMessage {
-
-            min-height: 22px;
-
-            margin-top: 10px;
-
-            font-size: .88rem;
-
-            font-weight: 700;
-
-        }
-
-
-        .register-text {
-
-            grid-column: 2;
-
-            grid-row: 7;
-
-            text-align: center;
-
-            margin:
-                12px 34px 28px;
-
-            line-height: 1.8;
-
-            color: var(--muted);
-
-            font-size: .78rem;
-
-        }
-
-
-        .register-text a {
-
-            text-decoration: none;
-
-            color: var(--accent);
-
-            font-weight: 700;
-
-        }
-
-
-        .register-text a:hover {
-
-            color:
-                var(--accent-deep);
-
-            text-decoration:
-                underline;
-
-        }
-
-
-        /* =========================
+      /* =========================
            MOBILE
         ========================= */
 
-        @media(max-width:760px) {
+      @media (max-width: 760px) {
+        .container {
+          display: grid;
 
-            .container {
+          grid-template-columns: 1fr;
 
-                display: grid;
+          grid-template-rows:
+            auto
+            auto
+            auto
+            auto
+            auto
+            auto
+            auto
+            auto;
 
-                grid-template-columns: 1fr;
-
-                grid-template-rows:
-                    auto
-                    auto
-                    auto
-                    auto
-                    auto
-                    auto
-                    auto
-                    auto;
-
-                max-width: 520px;
-
-            }
-
-
-            .login-showcase {
-
-                grid-column: 1;
-
-                grid-row: 1;
-
-                min-height: 390px;
-
-                padding:
-                    26px 24px 90px;
-
-            }
-
-
-            .container h2 {
-
-                grid-column: 1;
-
-                grid-row: 2;
-
-                margin:
-                    24px 24px 4px;
-
-            }
-
-
-            .container form {
-
-                grid-column: 1;
-
-                grid-row: 3;
-
-                padding:
-                    0 24px 4px;
-
-            }
-
-
-            .separator {
-
-                grid-column: 1;
-
-                grid-row: 4;
-
-                margin-left: 24px;
-
-                margin-right: 24px;
-
-            }
-
-
-            .container .google-btn {
-
-                grid-column: 1;
-
-                width:
-                    calc(100% - 48px);
-
-                margin-left: 24px;
-
-                margin-right: 24px;
-
-            }
-
-
-            .container .google-btn:first-of-type {
-
-                grid-row: 5;
-
-            }
-
-
-            .container .google-btn:nth-of-type(2) {
-
-                grid-row: 6;
-
-            }
-
-
-            #loginMessage {
-
-                grid-column: 1;
-
-                grid-row: 7;
-
-                margin-left: 24px;
-
-                margin-right: 24px;
-
-            }
-
-
-            .register-text {
-
-                grid-column: 1;
-
-                grid-row: 8;
-
-                margin-left: 24px;
-
-                margin-right: 24px;
-
-            }
-
+          max-width: 520px;
         }
 
+        .login-showcase {
+          grid-column: 1;
 
-        @media(max-width:520px) {
+          grid-row: 1;
 
-            body {
+          min-height: 390px;
 
-                padding: .75rem;
-
-            }
-
-
-            .container {
-
-                border-radius: 20px;
-
-            }
-
-
-            .container h2 {
-
-                font-size: 1.45rem;
-
-            }
-
+          padding: 26px 24px 90px;
         }
 
+        .container h2 {
+          grid-column: 1;
+
+          grid-row: 2;
+
+          margin: 24px 24px 4px;
+        }
+
+        .container form {
+          grid-column: 1;
+
+          grid-row: 3;
+
+          padding: 0 24px 4px;
+        }
+
+        .separator {
+          grid-column: 1;
+
+          grid-row: 4;
+
+          margin-left: 24px;
+
+          margin-right: 24px;
+        }
+
+        .container .google-btn {
+          grid-column: 1;
+
+          width: calc(100% - 48px);
+
+          margin-left: 24px;
+
+          margin-right: 24px;
+        }
+
+        .container .google-btn:first-of-type {
+          grid-row: 5;
+        }
+
+        .container .google-btn:nth-of-type(2) {
+          grid-row: 6;
+        }
+
+        #loginMessage {
+          grid-column: 1;
+
+          grid-row: 7;
+
+          margin-left: 24px;
+
+          margin-right: 24px;
+        }
+
+        .register-text {
+          grid-column: 1;
+
+          grid-row: 8;
+
+          margin-left: 24px;
+
+          margin-right: 24px;
+        }
+      }
+
+      @media (max-width: 520px) {
+        body {
+          padding: 0.75rem;
+        }
+
+        .container {
+          border-radius: 20px;
+        }
+
+        .container h2 {
+          font-size: 1.45rem;
+        }
+      }
+      marquee{
+        background-color: rgb(201, 60, 60);
+        color: white;
+        padding: 10px;
+      }
     </style>
 
+    <link rel="stylesheet" href="../../../assets/shared/theme.css" />
+  </head>
 
-    <link
-        rel="stylesheet"
-        href="../../../assets/shared/theme.css"
-    >
+  <body>
+    <div class="container">
+      <!-- =========================
+        SHOWCASE
+        ========================= -->
 
-</head>
-
-
-<body>
-
-
-<div class="container">
-
-
-    <!-- =========================
-         SHOWCASE
-    ========================= -->
-
-    <aside
-        class="login-showcase"
-        aria-label="BK LearnX highlights"
-    >
-
+      <marquee>Please Don't Login, Some Technical Error.</marquee>
+      <aside class="login-showcase" aria-label="BK LearnX highlights">
         <div class="showcase-logo">
-
-            <img
-                src="../../../assets/images/logo.jpeg"
-                alt="BK LearnX logo"
-            >
-
+          <img src="../../../assets/images/logo.jpeg" alt="BK LearnX logo" />
         </div>
 
-
-        <div class="showcase-kicker">
-            SMART DIGITAL LEARNING
-        </div>
-
+        <div class="showcase-kicker">SMART DIGITAL LEARNING</div>
 
         <h1 class="showcase-title">
+          Welcome back to
 
-            Welcome back to
-
-            <span>
-                BK LearnX.
-            </span>
-
+          <span> BK LearnX. </span>
         </h1>
 
-
         <p class="showcase-desc">
-
-            Learn, practice and stay on track
-            with computer and technology-focused
-            learning resources designed for students.
-
+          Learn, practice and stay on track with computer and technology-focused
+          learning resources designed for students.
         </p>
 
-
         <div class="program-mini-grid">
+          <div class="program-mini">
+            <span>🎓</span>
+            <b>PGDCA</b>
+            <small>Computer Applications</small>
+          </div>
 
-            <div class="program-mini">
-                <span>🎓</span>
-                <b>PGDCA</b>
-                <small>Computer Applications</small>
-            </div>
+          <div class="program-mini">
+            <span>🤖</span>
+            <b>DSML</b>
+            <small>Data & ML</small>
+          </div>
 
-            <div class="program-mini">
-                <span>🤖</span>
-                <b>DSML</b>
-                <small>Data & ML</small>
-            </div>
+          <div class="program-mini">
+            <span>🔐</span>
+            <b>Cyber Security</b>
+            <small>Digital Protection</small>
+          </div>
 
-            <div class="program-mini">
-                <span>🔐</span>
-                <b>Cyber Security</b>
-                <small>Digital Protection</small>
-            </div>
+          <div class="program-mini">
+            <span>🌐</span>
+            <b>Web Designing</b>
+            <small>Web Development</small>
+          </div>
 
-            <div class="program-mini">
-                <span>🌐</span>
-                <b>Web Designing</b>
-                <small>Web Development</small>
-            </div>
+          <div class="program-mini">
+            <span>📡</span>
+            <b>IoT</b>
+            <small>Connected Systems</small>
+          </div>
 
-            <div class="program-mini">
-                <span>📡</span>
-                <b>IoT</b>
-                <small>Connected Systems</small>
-            </div>
+          <div class="program-mini">
+            <span>🚁</span>
+            <b>Drone Technology</b>
+            <small>Smart Technology</small>
+          </div>
 
-            <div class="program-mini">
-                <span>🚁</span>
-                <b>Drone Technology</b>
-                <small>Smart Technology</small>
-            </div>
+          <div class="program-mini">
+            <span>💻</span>
+            <b>CHN</b>
+            <small>Technology Learning</small>
+          </div>
 
-            <div class="program-mini">
-                <span>💻</span>
-                <b>CHN</b>
-                <small>Technology Learning</small>
-            </div>
-
-            <div class="program-mini">
-                <span>📊</span>
-                <b>PGDA</b>
-                <small>Professional Learning</small>
-            </div>
-
+          <div class="program-mini">
+            <span>📊</span>
+            <b>PGDA</b>
+            <small>Professional Learning</small>
+          </div>
         </div>
-
 
         <div class="showcase-stats">
+          <div class="showcase-stat">
+            <strong>8</strong>
+            <span>Programs</span>
+          </div>
 
-            <div class="showcase-stat">
-                <strong>8</strong>
-                <span>Programs</span>
-            </div>
+          <div class="showcase-stat">
+            <strong>2+</strong>
+            <span>Languages</span>
+          </div>
 
-            <div class="showcase-stat">
-                <strong>2+</strong>
-                <span>Languages</span>
-            </div>
-
-            <div class="showcase-stat">
-                <strong>24/7</strong>
-                <span>Access</span>
-            </div>
-
+          <div class="showcase-stat">
+            <strong>24/7</strong>
+            <span>Access</span>
+          </div>
         </div>
-
 
         <div class="showcase-bottom">
+          <strong> Learn • Practice • Achieve </strong>
 
-            <strong>
-                Learn • Practice • Achieve
-            </strong>
+          <br />
 
-            <br>
-
-            Your learning journey,
-            all in one place.
-
+          Your learning journey, all in one place.
         </div>
+      </aside>
 
-    </aside>
-
-
-    <!-- =========================
+      <!-- =========================
          LOGIN
     ========================= -->
 
-    <h2>
-        Student Login Form
-    </h2>
+      <h2>Student Login Form</h2>
 
-
-    <form id="loginForm">
-
-
-        <label for="loginEmail">
-            Email
-        </label>
+      <form id="loginForm">
+        <label for="loginEmail"> Email </label>
 
         <input
-            id="loginEmail"
-            type="email"
-            placeholder="Enter your email"
-            autocomplete="email"
-            required
-        >
+          id="loginEmail"
+          type="email"
+          placeholder="Enter your email"
+          autocomplete="email"
+          required
+        />
 
-
-        <label for="loginPassword">
-            Password
-        </label>
+        <label for="loginPassword"> Password </label>
 
         <input
-            id="loginPassword"
-            type="password"
-            placeholder="Enter your password"
-            autocomplete="current-password"
-            required
-        >
+          id="loginPassword"
+          type="password"
+          placeholder="Enter your password"
+          autocomplete="current-password"
+          required
+        />
 
-
-        <button
-            type="submit"
-            class="btn"
-            id="loginBtn"
-        >
-            Login
-        </button>
-
+        <button type="submit" class="btn" id="loginBtn">Login</button>
 
         <div class="separator">
-            <span>or</span>
+          <span>or</span>
         </div>
 
-
-        <button
-            type="button"
-            class="google-btn"
-            id="googleLoginBtn"
-        >
-            Continue with Google
+        <button type="button" class="google-btn" id="googleLoginBtn">
+          Continue with Google
         </button>
 
-
-        <button
-            type="button"
-            class="google-btn"
-            id="facebookLoginBtn"
-        >
-            Continue with Facebook
+        <button type="button" class="google-btn" id="facebookLoginBtn">
+          Continue with Facebook
         </button>
-
 
         <p id="loginMessage"></p>
+      </form>
 
-
-    </form>
-
-
-    <!-- =========================
+      <!-- =========================
          LINKS
     ========================= -->
 
-    <p class="register-text">
-
+      <p class="register-text">
         Don't have an account?
 
-        <a
-            href="../registration/index.html"
-        >
-            Register Here
-        </a>
+        <a href="../registration/index.html"> Register Here </a>
 
-        <br>
-        <br>
+        <br />
+        <br />
 
-        <a
-            href="../forgot-password/index.html"
-        >
-            Forgot Password?
-        </a>
+        <a href="../forgot-password/index.html"> Forgot Password? </a>
 
-        <br>
-        <br>
+        <br />
+        <br />
 
         Admin Login here!
 
-        <a
-            href="../../admin/login.html"
-        >
-            Admin Login
-        </a>
+        <a href="../../admin/login.html"> Admin Login </a>
+      </p>
+    </div>
 
-    </p>
+    <!-- CONFIG -->
 
+    <script src="../../../assets/shared/config.js"></script>
 
-</div>
+    <script>
+      (() => {
+        "use strict";
 
+        const loginForm = document.getElementById("loginForm");
 
-<!-- CONFIG -->
+        const emailInput = document.getElementById("loginEmail");
 
-<script
-    src="../../../assets/shared/config.js"
-></script>
+        const passwordInput = document.getElementById("loginPassword");
 
+        const loginButton = document.getElementById("loginBtn");
 
-<script>
-(() => {
+        const message = document.getElementById("loginMessage");
 
-    "use strict";
-
-    const loginForm =
-        document.getElementById("loginForm");
-
-    const emailInput =
-        document.getElementById("loginEmail");
-
-    const passwordInput =
-        document.getElementById("loginPassword");
-
-    const loginButton =
-        document.getElementById("loginBtn");
-
-    const message =
-        document.getElementById("loginMessage");
-
-
-    /*
+        /*
     ==========================================
     CHECK REQUIRED ELEMENTS
     ==========================================
     */
 
-    if (
-        !loginForm ||
-        !emailInput ||
-        !passwordInput ||
-        !loginButton ||
-        !message
-    ) {
-        console.error(
-            "BK LearnX Login: Required login elements are missing."
-        );
+        if (
+          !loginForm ||
+          !emailInput ||
+          !passwordInput ||
+          !loginButton ||
+          !message
+        ) {
+          console.error(
+            "BK LearnX Login: Required login elements are missing.",
+          );
 
-        return;
-    }
+          return;
+        }
 
-
-    /*
+        /*
     ==========================================
     MESSAGE
     ==========================================
     */
 
-    function showMessage(text, color = "red") {
+        function showMessage(text, color = "red") {
+          message.textContent = text;
 
-        message.textContent = text;
+          message.style.color = color;
+        }
 
-        message.style.color = color;
-
-    }
-
-
-    /*
+        /*
     ==========================================
     STUDENT DASHBOARD
     ==========================================
     */
 
-    function redirectStudent() {
+        function redirectStudent() {
+          window.location.href = "../../student/dashboard/index.html";
+        }
 
-        window.location.href =
-            "../../student/dashboard/index.html";
-
-    }
-
-
-    /*
+        /*
     ==========================================
     ADMIN DASHBOARD
     ==========================================
     */
 
-    function redirectAdmin() {
+        function redirectAdmin() {
+          window.location.href = "../../admin/index.html";
+        }
 
-        window.location.href =
-            "../../admin/index.html";
-
-    }
-
-
-    /*
+        /*
     ==========================================
     ROLE BASED REDIRECT
     ==========================================
     */
 
-    function redirectUser(user) {
-
-        const role =
-            String(
-                user?.role || "student"
-            )
+        function redirectUser(user) {
+          const role = String(user?.role || "student")
             .trim()
             .toLowerCase();
 
-
-        if (role === "admin") {
-
+          if (role === "admin") {
             redirectAdmin();
 
             return;
+          }
 
-        }
-
-
-        /*
+          /*
         Every normal registered student
         goes directly to student dashboard.
         */
 
-        redirectStudent();
+          redirectStudent();
+        }
 
-    }
-
-
-    /*
+        /*
     ==========================================
     GOOGLE AUTH CALLBACK
     ==========================================
     */
 
-    function applyGoogleAuth() {
+        function applyGoogleAuth() {
+          const params = new URLSearchParams(window.location.search);
 
-        const params =
-            new URLSearchParams(
-                window.location.search
-            );
+          const googleError =
+            params.get("google_error") || params.get("oauth_error");
 
+          const googleAuth =
+            params.get("google_auth") || params.get("oauth_auth");
 
-        const googleError =
-            params.get("google_error") ||
-            params.get("oauth_error");
+          const token = params.get("token");
 
+          const encodedUser = params.get("user");
 
-        const googleAuth =
-            params.get("google_auth") ||
-            params.get("oauth_auth");
-
-
-        const token =
-            params.get("token");
-
-
-        const encodedUser =
-            params.get("user");
-
-
-        /*
+          /*
         Google error
         */
 
-        if (googleError) {
-
-            showMessage(
-                decodeURIComponent(
-                    googleError
-                ),
-                "red"
-            );
+          if (googleError) {
+            showMessage(decodeURIComponent(googleError), "red");
 
             return;
+          }
 
-        }
-
-
-        /*
+          /*
         Google success
         */
 
-        if (
-            googleAuth === "1" &&
-            token &&
-            encodedUser
-        ) {
-
+          if (googleAuth === "1" && token && encodedUser) {
             try {
+              const user = JSON.parse(decodeURIComponent(encodedUser));
 
-                const user =
-                    JSON.parse(
-                        decodeURIComponent(
-                            encodedUser
-                        )
-                    );
+              localStorage.setItem("bk_token", token);
 
+              localStorage.setItem("bk_user", JSON.stringify(user));
 
-                localStorage.setItem(
-                    "bk_token",
-                    token
-                );
+              showMessage(
+                "Login successful. Opening your dashboard...",
+                "green",
+              );
 
-
-                localStorage.setItem(
-                    "bk_user",
-                    JSON.stringify(user)
-                );
-
-
-                showMessage(
-                    "Login successful. Opening your dashboard...",
-                    "green"
-                );
-
-
-                setTimeout(
-                    function () {
-
-                        redirectUser(user);
-
-                    },
-                    500
-                );
-
-
+              setTimeout(function () {
+                redirectUser(user);
+              }, 500);
             } catch (error) {
+              console.error("Google authentication error:", error);
 
-                console.error(
-                    "Google authentication error:",
-                    error
-                );
-
-
-                showMessage(
-                    "Unable to finish Google login.",
-                    "red"
-                );
-
+              showMessage("Unable to finish Google login.", "red");
             }
-
+          }
         }
 
-    }
-
-
-    /*
+        /*
     ==========================================
     NORMAL LOGIN
     ==========================================
     */
 
-    loginForm.addEventListener(
-        "submit",
-        async function (event) {
+        loginForm.addEventListener("submit", async function (event) {
+          event.preventDefault();
 
-            event.preventDefault();
+          const email = emailInput.value.trim();
 
+          const password = passwordInput.value;
 
-            const email =
-                emailInput.value.trim();
-
-
-            const password =
-                passwordInput.value;
-
-
-            /*
+          /*
             Clear old message
             */
 
-            showMessage(
-                "",
-                "red"
-            );
+          showMessage("", "red");
 
-
-            /*
+          /*
             Basic validation
             */
 
-            if (!email) {
+          if (!email) {
+            showMessage("Please enter your email.");
 
-                showMessage(
-                    "Please enter your email."
-                );
+            emailInput.focus();
 
-                emailInput.focus();
+            return;
+          }
 
-                return;
+          if (!password) {
+            showMessage("Please enter your password.");
 
-            }
+            passwordInput.focus();
 
+            return;
+          }
 
-            if (!password) {
-
-                showMessage(
-                    "Please enter your password."
-                );
-
-                passwordInput.focus();
-
-                return;
-
-            }
-
-
-            /*
+          /*
             Disable login button
             */
 
-            loginButton.disabled = true;
+          loginButton.disabled = true;
 
-            loginButton.textContent =
-                "Logging in...";
+          loginButton.textContent = "Logging in...";
 
-
-            try {
-
-                /*
+          try {
+            /*
                 ==================================
                 SEND LOGIN REQUEST TO BACKEND
                 ==================================
                 */
 
-                const response =
-                    await fetch(
-                        BK_CONFIG.API_BASE_URL +
-                        "/api/login",
-                        {
-                            method: "POST",
+            const response = await fetch(
+              BK_CONFIG.API_BASE_URL + "/api/login",
+              {
+                method: "POST",
 
-                            headers: {
-                                "Content-Type":
-                                    "application/json"
-                            },
+                headers: {
+                  "Content-Type": "application/json",
+                },
 
-                            body:
-                                JSON.stringify({
-                                    email: email,
-                                    password: password
-                                })
-                        }
-                    );
+                body: JSON.stringify({
+                  email: email,
+                  password: password,
+                }),
+              },
+            );
 
-
-                /*
+            /*
                 ==================================
                 READ RESPONSE
                 ==================================
                 */
 
-                let result = {};
+            let result = {};
 
-                try {
+            try {
+              result = await response.json();
+            } catch {
+              result = {};
+            }
 
-                    result =
-                        await response.json();
-
-                } catch {
-
-                    result = {};
-
-                }
-
-
-                /*
+            /*
                 ==================================
                 LOGIN FAILED
                 ==================================
                 */
 
-                if (!response.ok) {
+            if (!response.ok) {
+              showMessage(result.message || "Invalid email or password.");
 
-                    showMessage(
-                        result.message ||
-                        "Invalid email or password."
-                    );
+              return;
+            }
 
-                    return;
-
-                }
-
-
-                /*
+            /*
                 ==================================
                 TOKEN CHECK
                 ==================================
                 */
 
-                if (!result.token) {
+            if (!result.token) {
+              showMessage("Login failed: authentication token not received.");
 
-                    showMessage(
-                        "Login failed: authentication token not received."
-                    );
+              return;
+            }
 
-                    return;
-
-                }
-
-
-                /*
+            /*
                 ==================================
                 SAVE TOKEN
                 ==================================
                 */
 
-                localStorage.setItem(
-                    "bk_token",
-                    result.token
-                );
+            localStorage.setItem("bk_token", result.token);
 
-
-                /*
+            /*
                 ==================================
                 SAVE USER
                 ==================================
                 */
 
-                if (result.user) {
+            if (result.user) {
+              localStorage.setItem("bk_user", JSON.stringify(result.user));
+            }
 
-                    localStorage.setItem(
-                        "bk_user",
-                        JSON.stringify(
-                            result.user
-                        )
-                    );
-
-                }
-
-
-                /*
+            /*
                 ==================================
                 LOGIN SUCCESS
                 ==================================
                 */
 
-                showMessage(
-                    "Login successful. Opening your dashboard...",
-                    "green"
-                );
+            showMessage("Login successful. Opening your dashboard...", "green");
 
-
-                /*
+            /*
                 ==================================
                 DIRECT REDIRECT
                 ==================================
                 */
 
-                setTimeout(
-                    function () {
+            setTimeout(function () {
+              redirectUser(result.user);
+            }, 500);
+          } catch (error) {
+            console.error("BK LearnX Login Error:", error);
 
-                        redirectUser(
-                            result.user
-                        );
+            showMessage("Unable to connect to the server.");
+          } finally {
+            loginButton.disabled = false;
 
-                    },
-                    500
-                );
+            loginButton.textContent = "Login";
+          }
+        });
 
-
-            } catch (error) {
-
-                console.error(
-                    "BK LearnX Login Error:",
-                    error
-                );
-
-
-                showMessage(
-                    "Unable to connect to the server."
-                );
-
-
-            } finally {
-
-                loginButton.disabled =
-                    false;
-
-                loginButton.textContent =
-                    "Login";
-
-            }
-
-        }
-    );
-
-
-    /*
+        /*
     ==========================================
     GOOGLE LOGIN
     ==========================================
     */
 
-    const googleLoginButton =
-        document.getElementById(
-            "googleLoginBtn"
-        );
+        const googleLoginButton = document.getElementById("googleLoginBtn");
 
+        if (googleLoginButton) {
+          googleLoginButton.addEventListener("click", function () {
+            const redirectUrl = encodeURIComponent(window.location.href);
 
-    if (googleLoginButton) {
+            window.location.href =
+              BK_CONFIG.API_BASE_URL +
+              "/api/auth/google?redirect=" +
+              redirectUrl;
+          });
+        }
 
-        googleLoginButton.addEventListener(
-            "click",
-            function () {
-
-                const redirectUrl =
-                    encodeURIComponent(
-                        window.location.href
-                    );
-
-
-                window.location.href =
-                    BK_CONFIG.API_BASE_URL +
-                    "/api/auth/google?redirect=" +
-                    redirectUrl;
-
-            }
-        );
-
-    }
-
-
-    /*
+        /*
     ==========================================
     FACEBOOK LOGIN
     ==========================================
     */
 
-    const facebookLoginButton =
-        document.getElementById(
-            "facebookLoginBtn"
-        );
+        const facebookLoginButton = document.getElementById("facebookLoginBtn");
 
+        if (facebookLoginButton) {
+          facebookLoginButton.addEventListener("click", function () {
+            const redirectUrl = encodeURIComponent(window.location.href);
 
-    if (facebookLoginButton) {
+            window.location.href =
+              BK_CONFIG.API_BASE_URL +
+              "/api/auth/facebook?redirect=" +
+              redirectUrl;
+          });
+        }
 
-        facebookLoginButton.addEventListener(
-            "click",
-            function () {
-
-                const redirectUrl =
-                    encodeURIComponent(
-                        window.location.href
-                    );
-
-
-                window.location.href =
-                    BK_CONFIG.API_BASE_URL +
-                    "/api/auth/facebook?redirect=" +
-                    redirectUrl;
-
-            }
-        );
-
-    }
-
-
-    /*
+        /*
     ==========================================
     CHECK GOOGLE CALLBACK
     ==========================================
     */
 
-    applyGoogleAuth();
+        applyGoogleAuth();
+      })();
+    </script>
 
-
-})();
-</script>
-  
-
-
-<script
-    src="../../../assets/shared/theme.js"
-    defer
-></script>
-
-
-</body>
-
+    <script src="../../../assets/shared/theme.js" defer></script>
+  </body>
 </html>
