@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Power Supply | BK LearnX</title>
+    <meta name="description"
+        content="PGDCA exam-oriented Hindi-English notes on Power Supply, including operating characteristics, types of power supply, SMPS, ATX, connectors, working, troubleshooting, maintenance and safety.">
+    <meta name="keywords"
+        content="Power Supply, Operating Characteristics, Types of Power Supply, SMPS, ATX Power Supply, Computer Power Supply, Maintenance, PGDCA Notes, BK LearnX">
+    <meta name="author" content="BK LearnX">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    <meta name="language" content="Hindi-English">
+    <meta name="theme-color" content="#0f172a">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Power Supply – Operating Characteristics, Types & Maintenance">
+    <meta property="og:description"
+        content="Detailed PGDCA written-exam notes on computer Power Supply, its operating characteristics, types, working, troubleshooting and maintenance.">
+    <meta property="og:site_name" content="BK LearnX">
+    <meta property="og:locale" content="en_IN">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Power Supply – Operating Characteristics, Types & Maintenance">
+    <meta name="twitter:description" content="Detailed PGDCA written-exam notes by BK LearnX.">
+
+    <script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"Power Supply – Operating Characteristics, Types & Maintenance",
+  "description":"PGDCA exam-oriented notes on computer power supply, operating characteristics, types, working and maintenance.",
+  "author":{"@type":"Organization","name":"BK LearnX"},
+  "publisher":{"@type":"Organization","name":"BK LearnX"},
+  "inLanguage":"hi",
+  "keywords":"Power Supply, SMPS, ATX, Operating Characteristics, Maintenance"
+}
+</script>
+
+    <link rel="stylesheet" href="../../../semester-1/style.css">
+</head>
+
+<body>
+    <div class="page">
+
+        <main class="content">
+
+            <section class="hero" id="intro">
+                <div>
+                  
+                    <h1>Power Supply</h1>
+                </div>
+            </section>
+
+            <section>
+                <h2>1. Power Supply क्या है?</h2>
+                <p><strong>Power Supply</strong> computer system का एक महत्वपूर्ण hardware component है जो mains से
+                    मिलने वाली electrical power को required voltage और current levels में convert करके motherboard,
+                    processor, storage devices, cooling fans और अन्य components को supply करता है।</p>
+
+                <div class="note">
+                    <strong>Exam Definition:</strong> Power Supply Unit (PSU) एक electronic power-conversion unit है जो
+                    input electrical power को computer components के लिए आवश्यक regulated output voltages में बदलकर
+                    प्रदान करती है।
+                </div>
+
+                <h3>Power Supply की आवश्यकता</h3>
+                <ul>
+                    <li>Computer components को required electrical power उपलब्ध कराना।</li>
+                    <li>Input AC को suitable DC outputs में convert करना।</li>
+                    <li>Different components को अलग-अलग voltage rails provide करना।</li>
+                    <li>Electrical fluctuations से system को protection देना।</li>
+                    <li>Computer को stable और reliable operation में सहायता करना।</li>
+                </ul>
+
+                <h3>PSU के मुख्य कार्य</h3>
+                <table>
+                    <tr>
+                        <th>Function</th>
+                        <th>Explanation</th>
+                    </tr>
+                    <tr>
+                        <td>Conversion</td>
+                        <td>AC input को required DC output में convert करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Regulation</td>
+                        <td>Output voltage को specified range में stable रखना।</td>
+                    </tr>
+                    <tr>
+                        <td>Distribution</td>
+                        <td>Different connectors के द्वारा components तक power पहुँचाना।</td>
+                    </tr>
+                    <tr>
+                        <td>Protection</td>
+                        <td>Over-voltage, over-current, short-circuit जैसी स्थितियों में protection प्रदान करना।</td>
+                    </tr>
+                    <tr>
+                        <td>Cooling</td>
+                        <td>Fan/heatsink आदि की सहायता से internal heat को manage करना।</td>
+                    </tr>
+                </table>
+            </section>
+
+            <section id="characteristics">
+                <h2>2. Operating Characteristics</h2>
+                <p>Power Supply की <strong>operating characteristics</strong> वे properties और performance parameters
+                    हैं जिनसे यह पता चलता है कि PSU input power को कितनी efficiently, safely और consistently output
+                    power में convert करती है।</p>
+
+                <h3>1. Input Voltage</h3>
+                <p>PSU को mains से input electrical voltage मिलता है। अलग-अलग PSU designs अलग input ranges support कर
+                    सकते हैं। Modern computer PSUs में अक्सर wide input range और automatic input-voltage adaptation की
+                    सुविधा होती है।</p>
+
+                <h3>2. Output Voltage</h3>
+                <p>PSU computer components को निर्धारित DC voltage rails provide करती है। PC power supplies में commonly
+                    <strong>+12V, +5V और +3.3V</strong> rails महत्वपूर्ण होती हैं। System design के अनुसार इन rails का
+                    उपयोग अलग-अलग components में होता है।</p>
+
+                <h3>3. Rated Power / Wattage</h3>
+                <p><strong>Wattage</strong> PSU की maximum rated output power को दर्शाता है। उदाहरण के लिए 450 W, 550 W,
+                    650 W आदि ratings उपलब्ध हो सकती हैं। PSU चुनते समय system के total power requirement के साथ
+                    suitable headroom रखना चाहिए।</p>
+
+                <h3>4. Voltage Regulation</h3>
+                <p>Load या input conditions बदलने पर output voltage में बहुत अधिक variation नहीं होना चाहिए। अच्छी
+                    regulation computer components को stable power देने में मदद करती है।</p>
+
+                <h3>5. Efficiency</h3>
+                <p><strong>Efficiency</strong> बताती है कि input power का कितना भाग useful output power में बदलता है।
+                    बाकी energy मुख्यतः heat के रूप में dissipate होती है। Higher efficiency का अर्थ सामान्यतः कम wasted
+                    energy और कम heat है।</p>
+
+                <div class="note">
+                    <strong>Formula:</strong><br>
+                    Efficiency (%) = (Output Power ÷ Input Power) × 100
+                </div>
+
+                <h3>6. Ripple and Noise</h3>
+                <p>DC output पर unwanted small voltage variations को ripple कहा जाता है। Excessive ripple/noise
+                    sensitive electronic components के लिए undesirable हो सकता है। इसलिए quality PSU में output
+                    filtering महत्वपूर्ण होती है।</p>
+
+                <h3>7. Load Regulation</h3>
+                <p>जब connected load बदलता है, तब output voltage में होने वाले बदलाव को load regulation से describe किया
+                    जाता है। Stable PSU changing loads के बावजूद controlled output देने का प्रयास करती है।</p>
+
+                <h3>8. Power Factor</h3>
+                <p>AC input side पर <strong>Power Factor</strong> power usage की effectiveness को दर्शाता है। कुछ PSUs
+                    में <strong>Power Factor Correction (PFC)</strong> technology का उपयोग किया जाता है।</p>
+
+                <h3>9. Protection Features</h3>
+                <ul>
+                    <li><strong>OVP:</strong> Over Voltage Protection</li>
+                    <li><strong>OCP:</strong> Over Current Protection</li>
+                    <li><strong>OPP:</strong> Over Power Protection</li>
+                    <li><strong>SCP:</strong> Short Circuit Protection</li>
+                    <li><strong>OTP:</strong> Over Temperature Protection</li>
+                </ul>
+
+                <h3>10. Temperature and Cooling</h3>
+                <p>PSU operation के दौरान heat generate होती है। Fan, heatsink, airflow और enclosure ventilation PSU को
+                    acceptable operating temperature में रखने में सहायता करते हैं।</p>
+            </section>
+
+            <section id="types">
+                <h2>3. Types of Power Supply</h2>
+
+                <h3>A. Linear Power Supply</h3>
+                <p><strong>Linear Power Supply</strong> में transformer, rectifier, filter और linear regulator जैसे
+                    stages का उपयोग करके stable DC output प्राप्त किया जाता है। यह design simple हो सकता है लेकिन high
+                    power applications में comparatively अधिक heat produce कर सकता है।</p>
+
+                <h4>Basic Stages</h4>
+                <div class="flow">
+                    <div>AC Input</div><span>→</span>
+                    <div>Transformer</div><span>→</span>
+                    <div>Rectifier</div><span>→</span>
+                    <div>Filter</div><span>→</span>
+                    <div>Regulator</div><span>→</span>
+                    <div>DC Output</div>
+                </div>
+
+                <h3>B. SMPS – Switched Mode Power Supply</h3>
+                <p><strong>SMPS</strong> एक switching-based power supply है जो high-frequency switching और electronic
+                    control techniques के द्वारा electrical power को efficiently convert करती है। Modern desktop
+                    computers में SMPS-based PSU commonly used होती है।</p>
+
+                <h3>C. AT Power Supply</h3>
+                <p><strong>AT (Advanced Technology)</strong> पुराने generation के personal computers में उपयोग होने वाली
+                    power supply design थी। इसमें modern ATX systems की तुलना में कम advanced power-management और
+                    connector arrangements होते थे।</p>
+
+                <h3>D. ATX Power Supply</h3>
+                <p><strong>ATX (Advanced Technology Extended)</strong> modern desktop PC power supply standard/form
+                    factor family का widely used design है। इसमें motherboard और peripheral devices के लिए standardized
+                    connectors तथा power-control features मिलते हैं।</p>
+
+                <h3>E. Modular Power Supply</h3>
+                <p><strong>Modular PSU</strong> में आवश्यक cables को detachable रखा जाता है। User केवल required cables
+                    connect कर सकता है, जिससे cable management और airflow बेहतर हो सकते हैं।</p>
+
+                <h3>F. Non-Modular Power Supply</h3>
+                <p><strong>Non-Modular PSU</strong> में cables permanently attached होती हैं। यह design comparatively
+                    simple होता है, लेकिन unused cables को manage करना पड़ सकता है।</p>
+
+                <h3>G. Semi-Modular Power Supply</h3>
+                <p><strong>Semi-Modular PSU</strong> में कुछ essential cables permanently attached होती हैं और बाकी
+                    cables detachable होती हैं। यह modular और non-modular designs के बीच का approach है।</p>
+            </section>
+
+            <section id="smps">
+                <h2>4. SMPS की Working</h2>
+                <p>Computer PSU के context में SMPS का working exam के लिए बहुत important है। इसका basic उद्देश्य AC
+                    input को controlled DC outputs में efficiently convert करना है।</p>
+
+                <ol>
+                    <li><strong>AC Input:</strong> Mains से AC electrical power PSU में आती है।</li>
+                    <li><strong>Filtering/Protection:</strong> Input stage unwanted interference और certain electrical
+                        disturbances को filter/protect करने में सहायता करता है।</li>
+                    <li><strong>Rectification:</strong> AC को rectifier circuit द्वारा DC में convert किया जाता है।</li>
+                    <li><strong>Switching:</strong> Switching circuit DC को high-frequency pulses में process करता है।
+                    </li>
+                    <li><strong>Transformer/Conversion Stage:</strong> High-frequency transformer या switching
+                        conversion stage voltage level और isolation requirements को handle करता है।</li>
+                    <li><strong>Secondary Rectification:</strong> Required output rails के लिए converted waveform को
+                        suitable DC में process किया जाता है।</li>
+                    <li><strong>Filtering:</strong> Capacitors/filters output को smoother DC supply में बदलने में सहायता
+                        करते हैं।</li>
+                    <li><strong>Feedback Control:</strong> Feedback circuit output conditions को monitor करके switching
+                        को adjust करता है।</li>
+                    <li><strong>Output:</strong> Regulated DC power connectors के माध्यम से computer components को
+                        supply होती है।</li>
+                </ol>
+
+                <div class="flow">
+                    <div>AC Input</div><span>→</span>
+                    <div>Rectifier</div><span>→</span>
+                    <div>High-Frequency Switching</div><span>→</span>
+                    <div>Conversion</div><span>→</span>
+                    <div>Filtering</div><span>→</span>
+                    <div>Regulated DC Output</div>
+                </div>
+            </section>
+
+            <section id="connectors">
+                <h2>5. Common PSU Connectors</h2>
+                <table>
+                    <tr>
+                        <th>Connector</th>
+                        <th>Typical Use</th>
+                    </tr>
+                    <tr>
+                        <td>24-pin ATX</td>
+                        <td>Motherboard main power connection</td>
+                    </tr>
+                    <tr>
+                        <td>4/8-pin CPU/EPS</td>
+                        <td>CPU power delivery के लिए motherboard पर</td>
+                    </tr>
+                    <tr>
+                        <td>SATA Power</td>
+                        <td>SATA HDD, SSD और optical drives के लिए</td>
+                    </tr>
+                    <tr>
+                        <td>PCIe Power</td>
+                        <td>Compatible graphics cards/expansion hardware के लिए</td>
+                    </tr>
+                    <tr>
+                        <td>Molex</td>
+                        <td>कुछ older peripherals और accessories में उपयोग</td>
+                    </tr>
+                </table>
+
+                <div class="note">
+                    <strong>Important:</strong> सभी connectors को जबरदस्ती insert नहीं करना चाहिए। Connector shape और
+                    motherboard/device documentation के अनुसार सही cable का उपयोग करना चाहिए।
+                </div>
+            </section>
+
+            <section id="working">
+                <h2>6. Power Supply का General Working</h2>
+                <p>Computer start होने पर PSU mains input को receive करके internal conversion stages के माध्यम से
+                    regulated output rails बनाती है। Motherboard और connected devices अपने required power connections से
+                    energy प्राप्त करते हैं। PSU का control circuitry load और output conditions के अनुसार operation
+                    regulate करता है।</p>
+
+                <h3>Basic Working Flow</h3>
+                <div class="flow">
+                    <div>Mains AC</div><span>→</span>
+                    <div>PSU Input</div><span>→</span>
+                    <div>Conversion</div><span>→</span>
+                    <div>Regulation</div><span>→</span>
+                    <div>Protection</div><span>→</span>
+                    <div>DC Rails</div><span>→</span>
+                    <div>Computer Components</div>
+                </div>
+
+                <h3>Power Good Signal</h3>
+                <p>Modern ATX systems में PSU और motherboard के बीच power-status signaling का उपयोग किया जाता है।
+                    <strong>Power Good</strong> signal का उद्देश्य यह indicate करना है कि PSU के relevant outputs
+                    stable/acceptable state में पहुँच गए हैं, ताकि system startup आगे बढ़ सके।</p>
+            </section>
+
+            <section id="troubleshooting">
+                <h2>7. Power Supply Troubleshooting</h2>
+
+                <table>
+                    <tr>
+                        <th>Problem</th>
+                        <th>Possible Cause</th>
+                        <th>Solution / Check</th>
+                    </tr>
+                    <tr>
+                        <td>Computer बिल्कुल power on नहीं हो रहा</td>
+                        <td>Power cable, wall socket, PSU switch, PSU fault</td>
+                        <td>Socket/cable/switch check करें; connections verify करें।</td>
+                    </tr>
+                    <tr>
+                        <td>Computer अचानक shutdown/restart</td>
+                        <td>Overheating, overload, unstable power या PSU fault</td>
+                        <td>Temperature, PSU capacity और connections check करें।</td>
+                    </tr>
+                    <tr>
+                        <td>Fan काम नहीं कर रहा</td>
+                        <td>Fan control, dust या hardware fault</td>
+                        <td>Model-specific fan behavior समझें; excessive heat/dust की जाँच करें।</td>
+                    </tr>
+                    <tr>
+                        <td>Burning smell / smoke</td>
+                        <td>Serious electrical/component failure</td>
+                        <td>तुरंत power disconnect करें और PSU को खोलकर repair करने का प्रयास न करें।</td>
+                    </tr>
+                    <tr>
+                        <td>Storage/GPU बार-बार disconnect</td>
+                        <td>Loose power connector, cable issue या insufficient/unstable power</td>
+                        <td>Power connections और PSU suitability check करें।</td>
+                    </tr>
+                    <tr>
+                        <td>High temperature</td>
+                        <td>Blocked airflow, dust, high load</td>
+                        <td>Airflow और ventilation improve करें तथा dust clean करें।</td>
+                    </tr>
+                </table>
+
+                <h3>Important Safety Rule</h3>
+                <div class="note">
+                    <strong>PSU को खोलना dangerous हो सकता है.</strong> PSU के अंदर capacitors power disconnected होने
+                    के बाद भी dangerous electrical charge retain कर सकते हैं। इसलिए सामान्य user को PSU enclosure खोलकर
+                    internal repair नहीं करनी चाहिए। Qualified technician की सहायता लेना safer है।
+                </div>
+            </section>
+
+            <section id="maintenance">
+                <h2>8. Power Supply Maintenance</h2>
+
+                <h3>Regular Maintenance</h3>
+                <ul>
+                    <li>PSU और computer cabinet के आसपास dust accumulation कम रखें।</li>
+                    <li>Air vents और fan openings को blocked न होने दें।</li>
+                    <li>Power cables और connectors को loose/damaged होने पर inspect करें।</li>
+                    <li>Computer को stable electrical environment में operate करें।</li>
+                    <li>High-quality surge protection/appropriate UPS का उपयोग आवश्यकता के अनुसार करें।</li>
+                    <li>PSU को उसकी rated capacity से लगातार overload न करें।</li>
+                    <li>Burning smell, abnormal noise, repeated shutdown या visible damage को ignore न करें।</li>
+                    <li>Liquid को computer/PSU के पास न रखें।</li>
+                    <li>Cleaning से पहले system को completely shut down करके mains power disconnect करें।</li>
+                </ul>
+
+                <h3>PSU Cleaning Procedure</h3>
+                <ol>
+                    <li>Computer को shut down करें।</li>
+                    <li>Mains power disconnect करें।</li>
+                    <li>Cabinet को suitable ventilated workspace में रखें।</li>
+                    <li>External vents और dust filters को carefully clean करें।</li>
+                    <li>Fan/vent area से dust को appropriate compressed-air cleaning method से हटाएँ; fan को
+                        uncontrolled high-speed spinning से बचाएँ।</li>
+                    <li>Connectors और cables को visually inspect करें।</li>
+                    <li>Cabinet बंद करके सभी connections properly reconnect करें।</li>
+                </ol>
+
+                <h3>Do's and Don'ts</h3>
+                <table>
+                    <tr>
+                        <th>Do's</th>
+                        <th>Don'ts</th>
+                    </tr>
+                    <tr>
+                        <td>Proper ventilation रखें</td>
+                        <td>PSU vents block न करें</td>
+                    </tr>
+                    <tr>
+                        <td>Correct power cables use करें</td>
+                        <td>Incompatible modular PSU cables mix न करें</td>
+                    </tr>
+                    <tr>
+                        <td>Damaged cables replace करें</td>
+                        <td>Damaged insulation वाले cable को continue न करें</td>
+                    </tr>
+                    <tr>
+                        <td>System load के अनुसार PSU चुनें</td>
+                        <td>Constant overload न करें</td>
+                    </tr>
+                    <tr>
+                        <td>Qualified technician से repair कराएँ</td>
+                        <td>PSU enclosure खुद न खोलें</td>
+                    </tr>
+                </table>
+            </section>
+
+            <section id="comparison">
+                <h2>9. Linear PSU और SMPS में अंतर</h2>
+                <table>
+                    <tr>
+                        <th>Basis</th>
+                        <th>Linear Power Supply</th>
+                        <th>SMPS</th>
+                    </tr>
+                    <tr>
+                        <td>Working Principle</td>
+                        <td>Linear regulation based</td>
+                        <td>High-frequency switching based</td>
+                    </tr>
+                    <tr>
+                        <td>Efficiency</td>
+                        <td>Generally lower at high power</td>
+                        <td>Generally higher</td>
+                    </tr>
+                    <tr>
+                        <td>Heat</td>
+                        <td>Comparatively अधिक heat हो सकती है</td>
+                        <td>Generally less wasted energy/heat for equivalent conversion</td>
+                    </tr>
+                    <tr>
+                        <td>Size/Weight</td>
+                        <td>High-power designs bulky हो सकते हैं</td>
+                        <td>Generally compact and lighter for comparable power</td>
+                    </tr>
+                    <tr>
+                        <td>Computer Use</td>
+                        <td>Modern desktop PSU में uncommon</td>
+                        <td>Modern computers में widely used</td>
+                    </tr>
+                </table>
+
+                <h2>10. Modular, Semi-Modular और Non-Modular PSU</h2>
+                <table>
+                    <tr>
+                        <th>Type</th>
+                        <th>Cable Design</th>
+                        <th>Main Benefit</th>
+                    </tr>
+                    <tr>
+                        <td>Non-Modular</td>
+                        <td>All cables permanently attached</td>
+                        <td>Simple design</td>
+                    </tr>
+                    <tr>
+                        <td>Semi-Modular</td>
+                        <td>Some fixed, some detachable</td>
+                        <td>Balance of simplicity and cable management</td>
+                    </tr>
+                    <tr>
+                        <td>Modular</td>
+                        <td>Most/required cables detachable</td>
+                        <td>Better cable management and flexibility</td>
+                    </tr>
+                </table>
+            </section>
+
+            <section>
+                <h2>11. Power Supply Failure के Common Symptoms</h2>
+                <ul>
+                    <li>System का बिल्कुल start न होना।</li>
+                    <li>Random shutdown या restart।</li>
+                    <li>System load बढ़ने पर instability।</li>
+                    <li>Abnormal fan noise या overheating।</li>
+                    <li>Burning smell या unusual electrical sound।</li>
+                    <li>Connected hardware का intermittent behavior।</li>
+                </ul>
+
+                <div class="note">
+                    <strong>Note:</strong> इन symptoms का कारण केवल PSU ही हो, यह जरूरी नहीं है। Motherboard, RAM,
+                    overheating, cables या अन्य hardware भी similar symptoms दे सकते हैं। इसलिए systematic diagnosis
+                    आवश्यक है।
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>

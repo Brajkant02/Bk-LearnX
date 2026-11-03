@@ -1,0 +1,327 @@
+:root {
+    --bg: #eef0e7;
+    --bg-dark: #14312c;
+    --card: #ffffff;
+    --card-border: rgba(23, 36, 31, 0.14);
+    --accent: #ff5b39;
+    --accent-soft: #fdeee9;
+    --text: #17241f;
+    --muted: #5b6b63;
+    --input-bg: #ffffff;
+    --button-bg: #ff5b39;
+    --button-hover: #e6491f;
+    --shadow: 0 20px 45px rgba(23, 36, 31, 0.08);
+}
+
+html[data-theme='dark'] {
+    --bg: #14312c;
+    --bg-dark: #0d211d;
+    --card: #1c3a34;
+    --card-border: rgba(255, 255, 255, 0.12);
+    --accent: #ff8a68;
+    --accent-soft: rgba(255, 91, 57, 0.14);
+    --text: #eef0e7;
+    --muted: #a9beb6;
+    --input-bg: #14312c;
+    --button-bg: #ff5b39;
+    --button-hover: #ff8a68;
+    --shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+h1, h2, h3 {
+    font-family: "Sora", "Inter", sans-serif;
+    letter-spacing: -0.02em;
+}
+
+a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+.page-shell {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    width: min(1180px, calc(100% - 40px));
+    margin: 0 auto;
+}
+
+/* ---------- Header ---------- */
+
+.site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 0;
+    background: transparent;
+    box-shadow: none;
+    border-bottom: 1px solid var(--card-border);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 700;
+    font-family: "Sora", sans-serif;
+}
+
+.brand img {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.site-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 26px;
+}
+
+.site-nav a {
+    position: relative;
+    text-decoration: none;
+    color: var(--muted);
+    padding: 6px 2px;
+    border-radius: 0;
+    font-weight: 600;
+    font-size: 0.92rem;
+    transition: color 0.18s ease;
+}
+
+.site-nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -3px;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.18s ease;
+}
+
+.site-nav a:hover {
+    color: var(--text);
+    background-color: transparent;
+}
+
+.site-nav a:hover::after {
+    transform: scaleX(1);
+}
+
+/* ---------- Banner ---------- */
+
+.page-banner {
+    margin-top: 32px;
+    padding: 2.2rem 1.8rem;
+    background: var(--bg-dark);
+    color: #eef0e7;
+    border-radius: 20px;
+    border-bottom: 3px solid var(--accent);
+}
+
+.page-banner-eyebrow {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+}
+
+.page-banner h1 {
+    font-size: clamp(1.4rem, 2.6vw, 2rem);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.page-banner p {
+    margin-top: 10px;
+    color: #c9d6d0;
+    font-size: 0.95rem;
+    max-width: 52ch;
+}
+
+/* ---------- Semester cards ---------- */
+
+.main {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    padding: 1.8rem 0;
+}
+
+.card {
+    background: var(--card);
+    border-radius: 14px;
+    border: 1px solid var(--card-border);
+    border-left: 4px solid var(--accent);
+    min-height: 170px;
+    transition: transform 0.18s ease, border-left-color 0.18s ease;
+}
+
+.card:nth-child(2) { border-left-color: var(--bg-dark); }
+.card:nth-child(3) { border-left-color: #4a7c74; }
+.card:nth-child(4) { border-left-color: #d9a600; }
+
+.card:hover {
+    transform: translateX(3px);
+}
+
+.card a {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 6px;
+    height: 100%;
+    padding: 1.4rem 1.5rem;
+    text-decoration: none;
+    color: var(--text);
+}
+
+.card-icon {
+    font-size: 1.6rem;
+}
+
+.card h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-top: 6px;
+}
+
+.card-code {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--muted);
+    letter-spacing: 0.03em;
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(180px, 1fr));
+    gap: 1rem;
+    padding: 1.8rem 0 2.4rem;
+    background: transparent;
+    color: var(--text);
+    border-top: 1px solid var(--card-border);
+    margin-top: auto;
+}
+
+.site-footer div {
+    background: var(--bg-dark);
+    padding: 1.1rem;
+    border-radius: 14px;
+    color: #eef0e7;
+}
+
+.site-footer h3 {
+    margin-bottom: 0.6rem;
+    font-size: 0.95rem;
+    font-family: "Sora", sans-serif;
+}
+
+.site-footer a,
+.site-footer p {
+    display: block;
+    color: #c9d6d0;
+    text-decoration: none;
+    margin-bottom: 0.35rem;
+    font-size: 0.88rem;
+}
+
+.site-footer a:hover {
+    color: var(--accent);
+}
+
+@media (max-width: 768px) {
+    .site-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+    }
+
+    .main {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .site-footer {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-shell {
+        width: 100%;
+        padding: 0 16px;
+    }
+
+    .site-nav {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 16px;
+    }
+
+    .main {
+        grid-template-columns: 1fr;
+    }
+
+    .site-footer {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ---------- Legacy hindi/english toggle (kept, currently unused/commented in HTML) ---------- */
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+    margin: 1rem;
+}
+
+button {
+    border: 1px solid var(--card-border);
+    padding: 1rem 2rem;
+    background-color: var(--card);
+    color: var(--text);
+    font-family: "Inter", sans-serif;
+}
+
+#english, #hindi {
+    display: none;
+}
+
+#hindi-btn {
+    border-radius: 1rem 0 0 1rem;
+}
+
+#english-btn {
+    border-radius: 0 1rem 1rem 0;
+}
+marquee{
+    background-color: yellow;
+    
+}
