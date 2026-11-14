@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FB7SX0P0D3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer = window.dataLayer || []; gtag('js', new Date()); gtag('config', 'G-FB7SX0P0D3'); }
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Unit II study notes on IoT devices, electronic components, sensors, actuators and practical circuits.">
+  <title>Unit II: IoT Devices</title>
+  <link rel="stylesheet" href="../../../semester-1/style.css">
+  <link rel="icon" href="../../../../../../../assets/images/logo.jpeg">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    img, video, svg { display: block; max-width: 100%; height: auto; }
+    .image-icon { margin: 1.2rem auto; text-align: center; max-width: 100%; }
+    .image-icon img { width: min(100%, 860px); margin: 0 auto; border-radius: 12px; border: 1px solid rgba(16, 26, 51, 0.08); background: #fff; }
+    .image-icon p { margin: 0.75rem 0 0; color: #5b6785; font-size: 0.95rem; }
+    @media (max-width: 768px) { .image-icon img { width: 100%; } }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <main class="content">
+      <div class="hero">
+        <h1>Unit II: IoT Devices</h1>
+      </div>
+
+      <section id="iot-devices">
+        <h2>1. Introduction to IoT Devices</h2>
+        <p>An <strong>IoT device</strong> is a physical electronic device that can sense or interact with its
+          environment, process information and exchange data with other devices or services through a communication
+          network. Depending on its purpose, it may also perform actions automatically.</p>
+        <p>A typical IoT device may contain sensors, a microcontroller or processor, a communication module and a power
+          source. Some devices also include actuators to control physical equipment.</p>
+        <div class="flow">Physical Environment → Sensor → Microcontroller → Communication Network → Cloud / Mobile App →
+          Command → Actuator</div>
+        <div class="image-icon"><img src="../units/images/iot device architecture.webp" alt="IoT Device Architecture"
+            loading="lazy">
+          <p>IoT device architecture: sensing, processing, communication and action</p>
+        </div>
+        <div class="remember"><strong>Key Concept:</strong> A sensor collects information, the controller processes it,
+          the communication module exchanges data, and an actuator performs a physical action when required.</div>
+      </section>
+
+      <section id="importance">
+        <h2>2. Importance of Electronic Devices in IoT</h2>
+        <p>Electronic devices form the physical foundation of an IoT system. They allow digital systems to observe
+          real-world conditions and respond to them. Sensors, controllers, communication modules and actuators work
+          together to make monitoring and automation possible.</p>
+        <h3>Main Functions of Electronic Devices</h3>
+        <ul>
+          <li>Detect environmental conditions such as temperature, humidity, light, gas and movement.</li>
+          <li>Convert physical measurements into electrical signals or digital data.</li>
+          <li>Send collected information to a microcontroller, gateway or cloud platform.</li>
+          <li>Receive commands from a controller or application and operate connected equipment.</li>
+          <li>Enable remote monitoring, alerts and automatic control.</li>
+        </ul>
+        <div class="note-box"><strong>Practical Example:</strong> In a smart irrigation system, a soil-moisture sensor
+          measures soil moisture. A controller evaluates the reading and switches a water pump through a suitable relay
+          or motor-driver circuit.</div>
+      </section>
+
+      <section id="breadboard-deep">
+        <h2>3. Breadboard and Its Internal Connections</h2>
+        <p>A <strong>breadboard</strong> is a reusable, solderless prototyping board used to build and test electronic
+          circuits. Components and jumper wires can be inserted into its holes, allowing a circuit to be changed without
+          soldering. It is widely used in IoT practical work with LEDs, resistors, sensors and microcontrollers.</p>
+        <p>The holes are connected internally by metal clips in a fixed pattern. Understanding this pattern is essential
+          because two nearby holes are not necessarily electrically connected.</p>
+        <div class="image-icon"><img src="../units/images/breadboard internal connection.webp"
+            alt="Breadboard Internal Connections" loading="lazy">
+          <p>Breadboard internal connections and terminal groups</p>
+        </div>
+        <h4>Power Rails</h4>
+        <p>The long rows along the sides of many breadboards are called <strong>power rails</strong>. They are commonly
+          marked with red and blue or black lines. The red rail is often used for the positive supply (VCC), while the
+          blue or black rail is often used for ground (GND). Some boards split a rail into separate sections, so check
+          continuity before use.</p>
+        <h4>Terminal Strips</h4>
+        <p>The central area is usually divided into groups of five connected holes. On a standard breadboard, five holes
+          on one side of a row share an electrical connection. The group on the opposite side of the centre gap is
+          separate.</p>
+        <h4>Centre Gap</h4>
+        <p>The centre gap separates the two terminal-strip halves. Integrated circuits are commonly placed across this
+          gap so that pins on opposite sides do not become shorted together.</p>
+        <h4>Important Connection Rules</h4>
+        <ul>
+          <li>Holes within the same connected five-hole group share one electrical node.</li>
+          <li>The centre gap separates the left and right terminal groups.</li>
+          <li>Power rails may be split; verify their connection before supplying power.</li>
+          <li>Never connect positive and ground rails directly, as this creates a short circuit.</li>
+          <li>Place a dual-inline package IC across the centre gap so its pins occupy separate rows.</li>
+        </ul>
+        <h4>Breadboard Parts Table</h4>
+        <table>
+          <tr>
+            <th>Part</th>
+            <th>Purpose</th>
+          </tr>
+          <tr>
+            <td>Power Rail</td>
+            <td>Distributes the positive supply and ground along the board.</td>
+          </tr>
+          <tr>
+            <td>Terminal Area</td>
+            <td>Connects component leads and jumper wires in groups.</td>
+          </tr>
+          <tr>
+            <td>Centre Gap</td>
+            <td>Provides space to place ICs without joining opposite pins.</td>
+          </tr>
+          <tr>
+            <td>Metal Clips</td>
+            <td>Create the hidden electrical connections beneath the holes.</td>
+          </tr>
+        </table>
+        <div class="note-box"><strong>Practical Analogy:</strong> A breadboard is a temporary wiring board used to
+          assemble and test a circuit before making a permanent version.</div>
+        <div class="remember-box"><strong>Remember:</strong> Breadboard holes are connected internally in a specific
+          pattern; always understand the pattern before wiring.</div>
+      </section>
+
+      <section id="resistor-deep">
+        <h2>4. Resistor and Current Limiting</h2>
+        <p>A <strong>resistor</strong> is a passive electronic component that opposes the flow of electric current.
+          Resistance is measured in ohms (Ω). In IoT circuits, resistors are used to limit current, divide voltage, set
+          input states and support sensor interfaces.</p>
+        <div class="image-icon"><img src="../units/images/resistor.webp" alt="Resistor Current Limiting" loading="lazy">
+          <p>A resistor used in an electronic circuit</p>
+        </div>
+        <h4>Why Is a Resistor Important with an LED?</h4>
+        <p>An LED can be damaged if more than its permitted current flows through it. A series resistor limits the
+          current to a safe value. The resistor value should be selected using the supply voltage, LED forward voltage
+          and desired current.</p>
+        <h4>Ohm's Law</h4>
+        <pre>V = I × R
+I = V / R
+R = V / I</pre>
+        <p>Here, V represents voltage in volts, I represents current in amperes and R represents resistance in ohms.</p>
+        <h4>Simple LED Resistor Calculation</h4>
+        <p>Suppose a 5 V supply is used with an LED having a forward voltage of 2 V. If the target current is 20 mA
+          (0.02 A), the resistor is calculated as follows:</p>
+        <pre>R = (Supply voltage − LED forward voltage) / Current
+R = (5 V − 2 V) / 0.02 A
+R = 3 / 0.02
+R = 150 Ω</pre>
+        <p>A standard value such as 220 Ω may be selected to keep the current lower. Always check the LED and controller
+          specifications before selecting a resistor.</p>
+        <h4>Resistor Uses</h4>
+        <table>
+          <tr>
+            <th>Use</th>
+            <th>Explanation</th>
+          </tr>
+          <tr>
+            <td>Current Limiting</td>
+            <td>Protects LEDs and other components from excessive current.</td>
+          </tr>
+          <tr>
+            <td>Voltage Divider</td>
+            <td>Produces a lower voltage from a higher voltage using resistors.</td>
+          </tr>
+          <tr>
+            <td>Pull-up / Pull-down</td>
+            <td>Keeps a digital input at a defined HIGH or LOW state.</td>
+          </tr>
+          <tr>
+            <td>Sensor Circuit</td>
+            <td>Helps create measurement circuits, for example with an LDR.</td>
+          </tr>
+        </table>
+        <h4>Common Resistor Values</h4>
+        <ul>
+          <li>220 Ω and 330 Ω: commonly used for LED current limiting, depending on the circuit.</li>
+          <li>1 kΩ: often used in signal and general-purpose circuits.</li>
+          <li>10 kΩ: commonly used for pull-up, pull-down and sensor-divider circuits.</li>
+        </ul>
+        <div class="remember-box"><strong>Remember:</strong> A current-limiting resistor is normally connected in series
+          with an LED. The correct value depends on the circuit voltage and LED specifications.</div>
+      </section>
+
+      <section id="led-connection">
+        <h2>5. LED and Its Connections</h2>
+        <p><strong>LED</strong> stands for <strong>Light Emitting Diode</strong>. It is a semiconductor device that
+          emits light when current flows through it in the forward direction. LEDs are used in IoT projects as status
+          indicators, warning lights and simple output devices.</p>
+        <div class="image-icon"><img src="../units/images/LED connects.webp" alt="LED Connection on Breadboard"
+            loading="lazy">
+          <p>Basic LED connection on a breadboard</p>
+        </div>
+        <h4>LED Polarity</h4>
+        <table>
+          <tr>
+            <th>LED Part</th>
+            <th>Meaning</th>
+          </tr>
+          <tr>
+            <td>Long Lead</td>
+            <td>Anode, usually connected towards the positive side through a resistor.</td>
+          </tr>
+          <tr>
+            <td>Short Lead</td>
+            <td>Cathode, usually connected towards ground in a basic circuit.</td>
+          </tr>
+          <tr>
+            <td>Flat Side</td>
+            <td>Often indicates the cathode side; verify the component marking when uncertain.</td>
+          </tr>
+        </table>
+        <h4>Basic LED Connection</h4>
+        <pre>Microcontroller output pin → Series resistor → LED anode
+LED cathode → GND</pre>
+        <p>When the output pin is set HIGH in a suitable active-high circuit, current flows through the resistor and LED
+          to ground, causing the LED to glow.</p>
+        <h4>Arduino-Style Code</h4>
+        <pre>const int ledPin = 13;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(ledPin, HIGH);
+  delay(1000);
+
+  digitalWrite(ledPin, LOW);
+  delay(1000);
+}</pre>
+        <h4>Common Mistakes</h4>
+        <ul>
+          <li>Connecting the LED with reversed polarity.</li>
+          <li>Leaving out the series current-limiting resistor.</li>
+          <li>Placing a component in the wrong breadboard row.</li>
+          <li>Forgetting to connect the controller ground to circuit ground.</li>
+          <li>Driving a high-current load directly from a microcontroller pin.</li>
+        </ul>
+        <div class="note-box"><strong>Practical Example:</strong> Indicator LEDs on a router show states such as power,
+          internet connectivity and network activity.</div>
+        <div class="remember-box"><strong>Remember:</strong> An LED is a diode, so its polarity matters. Use a suitable
+          series resistor.</div>
+      </section>
+
+      <section id="rgb-led">
+        <h2>6. Tri-Color LED / RGB LED</h2>
+        <p>A <strong>Tri-color LED</strong> or <strong>RGB LED</strong> contains red, green and blue LED elements in a
+          single package. By controlling the brightness of these three colour channels, the device can produce many
+          different colours. RGB LEDs are useful for displaying system states in IoT projects.</p>
+        <div class="image-icon"><img src="../units/images/tri color LED(RGB).webp" alt="RGB LED Connection" loading="lazy">
+          <p>RGB LED pins and connection</p>
+        </div>
+        <h4>Types of RGB LED</h4>
+        <table>
+          <tr>
+            <th>Type</th>
+            <th>Meaning</th>
+          </tr>
+          <tr>
+            <td>Common Cathode</td>
+            <td>The cathodes of the three LED elements are joined to a common pin, usually connected to GND.</td>
+          </tr>
+          <tr>
+            <td>Common Anode</td>
+            <td>The anodes of the three LED elements are joined to a common pin, usually connected to the positive
+              supply.</td>
+          </tr>
+        </table>
+        <h4>RGB LED Pins</h4>
+        <ul>
+          <li>Red channel pin</li>
+          <li>Common pin</li>
+          <li>Green channel pin</li>
+          <li>Blue channel pin</li>
+        </ul>
+        <p>The physical pin order varies between RGB LED models. Check the component datasheet or identify the pins
+          before wiring the circuit.</p>
+        <h4>Common Cathode Connection</h4>
+        <pre>Common pin → GND
+Red pin → Series resistor → PWM-capable output
+Green pin → Series resistor → PWM-capable output
+Blue pin → Series resistor → PWM-capable output</pre>
+        <p>Use a separate current-limiting resistor for each colour channel. A PWM-capable output can vary the
+          brightness of each channel.</p>
+        <h4>Arduino-Style Code</h4>
+        <pre>const int redPin = 9;
+const int greenPin = 10;
+const int bluePin = 11;
+
+void setup() {
+  pinMode(redPin, OUTPUT);
+  pinMode(greenPin, OUTPUT);
+  pinMode(bluePin, OUTPUT);
+}
+
+void loop() {
+  analogWrite(redPin, 255);   // Red on
+  analogWrite(greenPin, 0);
+  analogWrite(bluePin, 0);
+}</pre>
+        <h4>Uses</h4>
+        <table>
+          <tr>
+            <th>Colour</th>
+            <th>Possible Status Meaning</th>
+          </tr>
+          <tr>
+            <td>Green</td>
+            <td>System operating normally or connected.</td>
+          </tr>
+          <tr>
+            <td>Red</td>
+            <td>Error, warning or critical alert.</td>
+          </tr>
+          <tr>
+            <td>Blue</td>
+            <td>Connecting, pairing or processing.</td>
+          </tr>
+          <tr>
+            <td>Yellow</td>
+            <td>Attention or a non-critical warning.</td>
+          </tr>
+        </table>
+        <div class="remember-box"><strong>Remember:</strong> Use an individual current-limiting resistor for each RGB
+          colour channel. Common-anode and common-cathode LEDs require different control logic.</div>
+      </section>
+
+      <section id="seven-segment">
+        <h2>7. Seven-Segment Display on a Breadboard</h2>
+        <p>A <strong>seven-segment display</strong> is an electronic display used mainly to show decimal digits. It
+          contains seven LED segments labelled a, b, c, d, e, f and g. By turning selected segments on or off, the
+          display can represent digits from 0 to 9.</p>
+        <div class="image-icon"><img src="../units/images/seven sigment display.webp"
+            alt="Seven Segment Display on Breadboard" loading="lazy">
+          <p>Seven-segment display and its segment arrangement</p>
+        </div>
+        <h4>Segments</h4>
+        <pre>   a
+ f   b
+   g
+ e   c
+   d</pre>
+        <h4>Types</h4>
+        <table>
+          <tr>
+            <th>Type</th>
+            <th>Meaning</th>
+          </tr>
+          <tr>
+            <td>Common Anode</td>
+            <td>All segment anodes share a common positive connection. A segment is typically turned on by driving its
+              cathode LOW through the appropriate circuit.</td>
+          </tr>
+          <tr>
+            <td>Common Cathode</td>
+            <td>All segment cathodes share a common ground connection. A segment is typically turned on by driving its
+              anode HIGH through the appropriate circuit.</td>
+          </tr>
+        </table>
+        <h4>Displaying Digit 0</h4>
+        <p>To display 0, turn on segments a, b, c, d, e and f. Keep segment g off.</p>
+        <h4>Displaying Digit 1</h4>
+        <p>To display 1, turn on segments b and c. Keep the remaining segments off.</p>
+        <h4>Connection Rules</h4>
+        <ul>
+          <li>Use a current-limiting resistor for each segment or an appropriate driver circuit.</li>
+          <li>Connect the common pin according to the display type.</li>
+          <li>Connect segment pins to suitable microcontroller outputs or a display driver.</li>
+          <li>Identify whether the display is common-anode or common-cathode before writing control code.</li>
+        </ul>
+        <h4>Segment Table</h4>
+        <table>
+          <tr>
+            <th>Digit</th>
+            <th>Segments ON</th>
+          </tr>
+          <tr>
+            <td>0</td>
+            <td>a, b, c, d, e, f</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>b, c</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>a, b, d, e, g</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>a, b, c, d, g</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>b, c, f, g</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>a, c, d, f, g</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>a, c, d, e, f, g</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>a, b, c</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>a, b, c, d, e, f, g</td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>a, b, c, d, f, g</td>
+          </tr>
+        </table>
+        <div class="note-box"><strong>Practical Example:</strong> Digital clocks, counters, measuring instruments and
+          lift-floor indicators commonly use seven-segment displays.</div>
+        <div class="remember-box"><strong>Remember:</strong> A seven-segment display is made from seven individually
+          controlled LED segments; some modules also include a decimal point.</div>
+
+        <h2>Pull-Up and Pull-Down Resistors</h2>
+        <p>A digital input pin can become <strong>floating</strong> when it is not connected to a definite logic level.
+          A floating input may produce unpredictable HIGH and LOW readings. Pull-up and pull-down resistors provide a
+          default logic state.</p>
+        <h4>Pull-Up Resistor</h4>
+        <p>A pull-up resistor connects an input to the positive logic supply through a resistor. It keeps the input HIGH
+          when the switch is open. Pressing a button wired to ground can then make the input LOW. Many microcontrollers
+          also provide an internal pull-up resistor.</p>
+        <pre>pinMode(buttonPin, INPUT_PULLUP);</pre>
+        <p>With INPUT_PULLUP, button logic is commonly active-low: a pressed button reads LOW.</p>
+        <h4>Pull-Down Resistor</h4>
+        <p>A pull-down resistor connects an input to ground through a resistor. It keeps the input LOW when the switch
+          is open. A switch connected to the positive logic supply can make the input HIGH when pressed.</p>
+        <h4>Difference</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>Pull-Up</th>
+            <th>Pull-Down</th>
+          </tr>
+          <tr>
+            <td>Default State</td>
+            <td>HIGH</td>
+            <td>LOW</td>
+          </tr>
+          <tr>
+            <td>Connection</td>
+            <td>Between input and positive logic supply</td>
+            <td>Between input and GND</td>
+          </tr>
+          <tr>
+            <td>Typical Switch Action</td>
+            <td>Button may pull input LOW</td>
+            <td>Button may drive input HIGH</td>
+          </tr>
+          <tr>
+            <td>Purpose</td>
+            <td>Prevents a floating input</td>
+            <td>Prevents a floating input</td>
+          </tr>
+        </table>
+        <h4>Why Important in IoT?</h4>
+        <p>Buttons, switches, reed sensors and other digital inputs must have stable logic levels. A floating input can
+          generate false triggers and cause an automation system to perform an unintended action.</p>
+        <div class="remember-box"><strong>Remember:</strong> A pull-up resistor establishes a default HIGH state, while
+          a pull-down resistor establishes a default LOW state.</div>
+      </section>
+
+      <section id="end-devices">
+        <h2>8. End Devices</h2>
+        <p><strong>End devices</strong> are devices at the edge of an IoT system that interact with the physical
+          environment or with the user. They may collect data, receive commands, display information or control
+          equipment. Some end devices are sensors, some are actuators, and many combine both functions.</p>
+        <h3>Examples</h3>
+        <ul>
+          <li>Smart Bulb</li>
+          <li>Smart Watch or Fitness Band</li>
+          <li>Temperature Monitoring Unit</li>
+          <li>Smart Electricity or Water Meter</li>
+          <li>Security Camera</li>
+          <li>Smart Door Lock</li>
+          <li>GPS Tracker</li>
+        </ul>
+        <div class="note-box"><strong>Key Point:</strong> An end device is generally the source or destination of IoT
+          data at the edge of the system.</div>
+      </section>
+
+      <section id="sensors-actuators">
+        <h2>9. Sensors and Actuators</h2>
+        <p>A <strong>sensor</strong> detects a physical quantity and converts it into a signal that an electronic system
+          can read. An <strong>actuator</strong> receives a control signal and converts it into a physical action.
+          Sensors provide input to an IoT system, while actuators provide output.</p>
+        <table>
+          <tr>
+            <th>Sensor</th>
+            <th>What It Measures</th>
+            <th>Application</th>
+          </tr>
+          <tr>
+            <td>Temperature Sensor</td>
+            <td>Temperature</td>
+            <td>Weather Station or Smart AC</td>
+          </tr>
+          <tr>
+            <td>Humidity Sensor</td>
+            <td>Moisture in air</td>
+            <td>Smart Greenhouse</td>
+          </tr>
+          <tr>
+            <td>LDR</td>
+            <td>Light intensity</td>
+            <td>Automatic Street Light</td>
+          </tr>
+          <tr>
+            <td>Ultrasonic Sensor</td>
+            <td>Distance</td>
+            <td>Parking System or Smart Dustbin</td>
+          </tr>
+          <tr>
+            <td>PIR Sensor</td>
+            <td>Movement of people or warm objects</td>
+            <td>Security System</td>
+          </tr>
+          <tr>
+            <td>Gas Sensor</td>
+            <td>Presence or concentration of selected gases</td>
+            <td>Gas-Leak Monitoring</td>
+          </tr>
+        </table>
+        <p><strong>Actuator Examples:</strong> DC motor, servo motor, relay, solenoid valve, buzzer and LED.</p>
+      </section>
+
+      <section id="sensor-types">
+        <h2>10. Different Types of Sensors</h2>
+        <p>Sensors are input components that collect information from the physical environment and convert it into
+          electrical signals or digital data. They allow an IoT system to detect changes and make decisions based on
+          real-world conditions.</p>
+        <table>
+          <tr>
+            <th>Sensor Type</th>
+            <th>Purpose</th>
+            <th>Real-Life Application</th>
+          </tr>
+          <tr>
+            <td>Temperature Sensor</td>
+            <td>Measures temperature</td>
+            <td>Air conditioner and weather system</td>
+          </tr>
+          <tr>
+            <td>Humidity Sensor</td>
+            <td>Measures air moisture</td>
+            <td>Smart greenhouse</td>
+          </tr>
+          <tr>
+            <td>Pressure Sensor</td>
+            <td>Measures pressure</td>
+            <td>Industrial automation</td>
+          </tr>
+          <tr>
+            <td>Proximity Sensor</td>
+            <td>Detects nearby objects</td>
+            <td>Automatic door</td>
+          </tr>
+          <tr>
+            <td>Motion Sensor</td>
+            <td>Detects movement</td>
+            <td>Home security</td>
+          </tr>
+          <tr>
+            <td>Gas Sensor</td>
+            <td>Detects selected gases</td>
+            <td>Kitchen safety</td>
+          </tr>
+          <tr>
+            <td>Soil-Moisture Sensor</td>
+            <td>Measures soil moisture</td>
+            <td>Smart irrigation</td>
+          </tr>
+          <tr>
+            <td>Sound Sensor</td>
+            <td>Detects sound level</td>
+            <td>Noise monitoring</td>
+          </tr>
+        </table>
+      </section>
+
+      <section id="comparison">
+        <h2>11. Difference Between Sensor and Actuator</h2>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>Sensor</th>
+            <th>Actuator</th>
+          </tr>
+          <tr>
+            <td>Function</td>
+            <td>Collects physical information.</td>
+            <td>Performs a physical action.</td>
+          </tr>
+          <tr>
+            <td>Input / Output</td>
+            <td>Receives information from the environment.</td>
+            <td>Receives a command from the controller and produces an output.</td>
+          </tr>
+          <tr>
+            <td>Examples</td>
+            <td>LDR, PIR, temperature sensor</td>
+            <td>Motor, relay, buzzer</td>
+          </tr>
+          <tr>
+            <td>IoT Role</td>
+            <td>Sensing and monitoring</td>
+            <td>Action and control</td>
+          </tr>
+        </table>
+        <div class="note"><strong>Exam Point:</strong> A sensor collects information, whereas an actuator performs an
+          action according to a controller's command.</div>
+      </section>
+
+      <section id="sensor-types-classification">
+        <h2>12. Sensor Classification and Common IoT Sensors</h2>
+        <p>A sensor is an input component of an IoT device. It collects information from the physical environment and
+          converts it into an electrical signal or digital data. Sensors can be classified according to their output,
+          operating principle, detection method and measured quantity.</p>
+        <div class="image-icon"><img src="../units/images/sensors.webp" alt="Different Sensor Types" loading="lazy">
+          <p>Different types of sensors used in IoT</p>
+        </div>
+        <h4>Sensor Classification</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>Types</th>
+            <th>Meaning</th>
+          </tr>
+          <tr>
+            <td>Output Signal</td>
+            <td>Analog, Digital</td>
+            <td>Output is continuous or represented by discrete values.</td>
+          </tr>
+          <tr>
+            <td>Operating Principle</td>
+            <td>Active, Passive</td>
+            <td>Some sensors emit a probing signal; others detect naturally available energy.</td>
+          </tr>
+          <tr>
+            <td>Contact</td>
+            <td>Contact, Non-contact</td>
+            <td>Detection occurs by touching an object or without touching it.</td>
+          </tr>
+          <tr>
+            <td>Measurement</td>
+            <td>Temperature, Pressure, Motion, Gas</td>
+            <td>Classification depends on the physical quantity measured.</td>
+          </tr>
+        </table>
+        <h4>Common IoT Sensors</h4>
+        <table>
+          <tr>
+            <th>Sensor</th>
+            <th>Measures</th>
+            <th>Application</th>
+          </tr>
+          <tr>
+            <td>Temperature Sensor</td>
+            <td>Heat / temperature</td>
+            <td>Weather station, smart AC</td>
+          </tr>
+          <tr>
+            <td>Humidity Sensor</td>
+            <td>Air moisture</td>
+            <td>Smart agriculture</td>
+          </tr>
+          <tr>
+            <td>PIR Sensor</td>
+            <td>Human movement</td>
+            <td>Security system</td>
+          </tr>
+          <tr>
+            <td>Ultrasonic Sensor</td>
+            <td>Distance</td>
+            <td>Parking system, smart dustbin</td>
+          </tr>
+          <tr>
+            <td>LDR</td>
+            <td>Light intensity</td>
+            <td>Automatic street light</td>
+          </tr>
+          <tr>
+            <td>Gas Sensor</td>
+            <td>Gas presence or concentration</td>
+            <td>Safety monitoring</td>
+          </tr>
+          <tr>
+            <td>Soil-Moisture Sensor</td>
+            <td>Soil moisture</td>
+            <td>Smart irrigation</td>
+          </tr>
+        </table>
+        <div class="note-box"><strong>Practical Example:</strong> In smart farming, soil-moisture, temperature and
+          humidity sensors can work together to monitor crop conditions.</div>
+        <div class="remember-box"><strong>Remember:</strong> Sensors provide the real-world data on which IoT monitoring
+          and automation depend.</div>
+      </section>
+
+      <section id="analog-digital">
+        <h2>13. Analog and Digital Sensors</h2>
+        <p>Sensor outputs are commonly described as <strong>analog</strong> or <strong>digital</strong>. An analog
+          output varies continuously over a range. A digital output represents information using discrete states or
+          digital data. A controller reads the output through an appropriate input pin or communication interface.</p>
+        <div class="image-icon"><img src="../units/images/analog and digital sensors.webp"
+            alt="Analog and Digital Sensor Output" loading="lazy">
+          <p>Comparison of analog and digital sensor signals</p>
+        </div>
+        <h4>Analog Sensor</h4>
+        <p>An analog sensor produces a continuously varying signal, often a voltage or resistance-related measurement.
+          For example, an analog temperature sensor may produce a different voltage as the measured temperature changes.
+          A microcontroller with an Analog-to-Digital Converter (ADC) can convert the voltage into a numerical reading.
+        </p>
+        <h4>Digital Sensor</h4>
+        <p>A digital sensor provides discrete logic states or digital data. A simple digital motion module may output
+          HIGH when motion is detected and LOW otherwise. More advanced digital sensors can send measured values through
+          interfaces such as I²C, SPI or a one-wire bus.</p>
+        <h4>Difference Table</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>Analog Sensor</th>
+            <th>Digital Sensor</th>
+          </tr>
+          <tr>
+            <td>Output</td>
+            <td>Continuously varying signal</td>
+            <td>Discrete logic state or digital data</td>
+          </tr>
+          <tr>
+            <td>Examples</td>
+            <td>LDR in a voltage divider, analog temperature sensor</td>
+            <td>Digital motion module, digital temperature sensor</td>
+          </tr>
+          <tr>
+            <td>Reading</td>
+            <td>Analog input and ADC, where required</td>
+            <td>Digital input or communication interface</td>
+          </tr>
+          <tr>
+            <td>Resolution</td>
+            <td>Depends on sensor behaviour and ADC resolution</td>
+            <td>Depends on internal conversion and data format</td>
+          </tr>
+        </table>
+        <h4>Arduino-Style Example</h4>
+        <pre>// Read an analog sensor connected to A0
+int sensorValue = analogRead(A0);
+
+// Read a digital sensor connected to pin 2
+int motionState = digitalRead(2);</pre>
+        <div class="info-box"><strong>Meaning:</strong> Analog signals vary continuously; digital outputs represent
+          discrete states or encoded digital measurements.</div>
+        <div class="remember-box"><strong>Remember:</strong> Analog sensors provide continuous output, while digital
+          sensors provide discrete output or digital data.</div>
+      </section>
+
+      <section id="active-passive">
+        <h2>14. Active and Passive Sensors</h2>
+        <p>Sensors can be grouped as <strong>active</strong> or <strong>passive</strong> according to how they interact
+          with energy. In this classification, an active sensor emits energy or a probing signal and measures its
+          response. A passive sensor detects energy or changes that are already present in the environment. Terminology
+          can vary across engineering fields, so the operating principle of the specific sensor should be checked.</p>
+        <div class="image-icon"><img src="../units/images/active and passive sansors.webp" alt="Active and Passive Sensors"
+            loading="lazy">
+          <p>Active and passive sensing examples</p>
+        </div>
+        <h4>Active Sensors</h4>
+        <p>An active sensor sends out energy, such as sound, light or radio waves, and measures the returned or changed
+          signal. An ultrasonic distance sensor is a common example: it emits an ultrasonic pulse and measures the time
+          taken for the echo to return.</p>
+        <h4>Passive Sensors</h4>
+        <p>A passive sensor detects naturally available energy or a property of the environment without transmitting a
+          probing signal. An LDR, for example, changes its resistance according to the light falling on it. A
+          thermocouple generates a voltage related to a temperature difference.</p>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>Active Sensor</th>
+            <th>Passive Sensor</th>
+          </tr>
+          <tr>
+            <td>Operating Principle</td>
+            <td>Emits energy or a probing signal and measures its response.</td>
+            <td>Detects naturally available energy or an environmental property.</td>
+          </tr>
+          <tr>
+            <td>Examples</td>
+            <td>Ultrasonic ranging sensor, radar sensor</td>
+            <td>LDR, thermocouple</td>
+          </tr>
+          <tr>
+            <td>Use</td>
+            <td>Distance or object detection</td>
+            <td>Light or temperature measurement</td>
+          </tr>
+        </table>
+        <div class="note-box"><strong>Practical Example:</strong> A car-parking ultrasonic sensor sends sound pulses and
+          detects their echoes to estimate the distance to an obstacle.</div>
+      </section>
+
+      <section id="actuators">
+        <h2>15. Actuators in IoT</h2>
+        <p>An <strong>actuator</strong> is an output component that converts an electrical control signal into a
+          physical effect. Depending on its design, it can create movement, switch a circuit, control fluid flow,
+          produce sound or provide light. A controller usually decides when the actuator should operate.</p>
+        <div class="image-icon"><img src="../units/images/actuators.webp" alt="Actuators in IoT" loading="lazy">
+          <p>Common actuators used in connected systems</p>
+        </div>
+        <h4>Common Actuators</h4>
+        <table>
+          <tr>
+            <th>Actuator</th>
+            <th>Action</th>
+            <th>Example Use</th>
+          </tr>
+          <tr>
+            <td>Relay</td>
+            <td>Switches an electrical circuit</td>
+            <td>Light, fan or pump control</td>
+          </tr>
+          <tr>
+            <td>DC Motor</td>
+            <td>Produces rotational movement</td>
+            <td>Robot wheels or fans</td>
+          </tr>
+          <tr>
+            <td>Servo Motor</td>
+            <td>Moves to a controlled angular position</td>
+            <td>Smart lock or robotic arm</td>
+          </tr>
+          <tr>
+            <td>Buzzer</td>
+            <td>Produces an audible alert</td>
+            <td>Alarm system</td>
+          </tr>
+          <tr>
+            <td>Solenoid Valve</td>
+            <td>Opens or closes a fluid path</td>
+            <td>Automatic irrigation</td>
+          </tr>
+          <tr>
+            <td>LED</td>
+            <td>Produces light</td>
+            <td>Status indicator</td>
+          </tr>
+        </table>
+        <h4>Sensor-Actuator Working</h4>
+        <pre>1. Sensor measures the environment
+          ↓
+2. Controller reads and processes data
+          ↓
+3. Program checks a condition
+          ↓
+4. Controller sends a control signal
+          ↓
+5. Actuator performs the action</pre>
+        <h4>Example</h4>
+        <p>In a smart irrigation system, a soil-moisture sensor detects that the soil is dry. The controller checks the
+          reading and activates a relay or motor driver to run the water pump. The pump performs the physical action.
+        </p>
+        <div class="remember-box"><strong>Remember:</strong> A sensor collects information and an actuator carries out
+          an action.</div>
+      </section>
+
+      <section id="sensor-actuator-diff">
+        <h2>16. Sensor vs Actuator</h2>
+        <p>Sensors and actuators are complementary parts of an IoT system, but they perform opposite roles. A sensor
+          transfers information from the physical world into the system. An actuator transfers a control decision from
+          the system to the physical world.</p>
+        <div class="image-icon"><img src="../units/images/sensor vs actuators.webp" alt="Sensor vs Actuator" loading="lazy">
+          <p>Sensor input and actuator output flow</p>
+        </div>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>Sensor</th>
+            <th>Actuator</th>
+          </tr>
+          <tr>
+            <td>Role</td>
+            <td>Input device</td>
+            <td>Output or action device</td>
+          </tr>
+          <tr>
+            <td>Work</td>
+            <td>Measures or detects a physical condition</td>
+            <td>Produces a physical action in response to a command</td>
+          </tr>
+          <tr>
+            <td>Signal Direction</td>
+            <td>Physical world → IoT system</td>
+            <td>IoT system → Physical world</td>
+          </tr>
+          <tr>
+            <td>Examples</td>
+            <td>Temperature sensor, PIR, LDR</td>
+            <td>Motor, relay, buzzer, valve</td>
+          </tr>
+          <tr>
+            <td>IoT Use</td>
+            <td>Monitoring and data collection</td>
+            <td>Control and automation</td>
+          </tr>
+        </table>
+        <h4>Combined Example</h4>
+        <p>In an automatic street-light system, an LDR measures ambient light. When the surroundings become dark, the
+          controller switches on the lamp through a relay or suitable driver. The LDR is the sensor and the lamp-control
+          circuit is the actuator output.</p>
+        <div class="note-box"><strong>Easy Analogy:</strong> Eyes gather information like sensors, while hands carry out
+          actions like actuators.</div>
+      </section>
+
+      <section id="signal-conditioning">
+        <h2>17. Signal Conditioning</h2>
+        <p><strong>Signal conditioning</strong> is the process of modifying a sensor signal so that it can be measured
+          or processed reliably by the next stage of a circuit. A raw sensor signal may be weak, noisy, outside the
+          input range of a controller or unsuitable for direct measurement.</p>
+        <div class="image-icon"><img src="../units/images/signal conditioning process.webp" alt="Signal Conditioning"
+            loading="lazy">
+          <p>Typical signal-conditioning stages between a sensor and controller</p>
+        </div>
+        <h4>Why Signal Conditioning Is Needed</h4>
+        <ul>
+          <li>Amplify a weak sensor signal so it can be measured.</li>
+          <li>Reduce unwanted electrical noise and interference.</li>
+          <li>Adjust a signal to a suitable voltage range.</li>
+          <li>Convert an analog signal into digital data when an ADC is used.</li>
+          <li>Improve measurement stability and protect connected equipment.</li>
+        </ul>
+        <h4>Common Signal Conditioning Operations</h4>
+        <table>
+          <tr>
+            <th>Operation</th>
+            <th>Meaning</th>
+          </tr>
+          <tr>
+            <td>Amplification</td>
+            <td>Increases the amplitude of a weak signal.</td>
+          </tr>
+          <tr>
+            <td>Filtering</td>
+            <td>Reduces unwanted noise or selected frequency components.</td>
+          </tr>
+          <tr>
+            <td>Level Shifting</td>
+            <td>Moves a signal into a suitable voltage range.</td>
+          </tr>
+          <tr>
+            <td>ADC</td>
+            <td>Converts an analog voltage into a digital number.</td>
+          </tr>
+          <tr>
+            <td>Isolation</td>
+            <td>Provides electrical separation between circuit sections for safety or noise reduction.</td>
+          </tr>
+        </table>
+        <h4>Example</h4>
+        <p>An analog temperature sensor may produce a voltage that changes with temperature. The controller ADC samples
+          this voltage and converts it into a digital value. The program then applies the sensor conversion formula to
+          calculate temperature.</p>
+        <div class="remember-box"><strong>Remember:</strong> Signal conditioning prepares a sensor signal for accurate
+          and reliable measurement.</div>
+      </section>
+
+      <section id="calibration">
+        <h2>18. Sensor Calibration</h2>
+        <p><strong>Sensor calibration</strong> is the process of comparing a sensor's readings with a known reference
+          and determining whether a correction is required. Sensor readings may differ from the true value because of
+          manufacturing tolerances, ageing, environmental conditions, installation or electronic noise.</p>
+        <h4>Need for Calibration</h4>
+        <ul>
+          <li>Improve measurement accuracy.</li>
+          <li>Identify and reduce measurement errors.</li>
+          <li>Make IoT readings more consistent and reliable.</li>
+          <li>Support dependable monitoring in industrial, environmental and healthcare applications.</li>
+        </ul>
+        <h4>Example</h4>
+        <p>Suppose a temperature sensor reads 32 °C when a trusted reference thermometer indicates 30 °C under the same
+          conditions. A correction may be applied if the error is stable and the calibration method supports that
+          correction. For accuracy across a range, the sensor should be checked at multiple reference points.</p>
+        <h4>Calibration Types</h4>
+        <table>
+          <tr>
+            <th>Type</th>
+            <th>Meaning</th>
+          </tr>
+          <tr>
+            <td>Zero Calibration</td>
+            <td>Adjusts the sensor reading at or near the zero or reference point.</td>
+          </tr>
+          <tr>
+            <td>Span Calibration</td>
+            <td>Adjusts the response across a measurement range, often using a known upper reference point.</td>
+          </tr>
+          <tr>
+            <td>Software Calibration</td>
+            <td>Applies a correction factor, offset or calibration curve in software.</td>
+          </tr>
+          <tr>
+            <td>Hardware Calibration</td>
+            <td>Adjusts circuit components or hardware settings to correct the measurement.</td>
+          </tr>
+        </table>
+        <div class="note-box"><strong>Practical Example:</strong> Setting a digital weighing scale to zero before
+          placing an object on it is a simple example of zero adjustment.</div>
+      </section>
+
+      <section id="end-devices-iot">
+        <h2>19. End Devices in IoT</h2>
+        <p><strong>End devices</strong> are the connected devices that directly perform sensing, data generation, user
+          interaction or physical control in an IoT deployment. They may send data to a gateway or cloud platform and
+          may receive commands from an application or controller.</p>
+        <h4>Examples of End Devices</h4>
+        <table>
+          <tr>
+            <th>End Device</th>
+            <th>Function</th>
+          </tr>
+          <tr>
+            <td>Smart Bulb</td>
+            <td>Remote switching and brightness control.</td>
+          </tr>
+          <tr>
+            <td>Smart Meter</td>
+            <td>Measures and reports electricity, gas or water consumption.</td>
+          </tr>
+          <tr>
+            <td>Wearable Band</td>
+            <td>Tracks measurements such as activity and heart rate.</td>
+          </tr>
+          <tr>
+            <td>Soil-Sensor Node</td>
+            <td>Collects field measurements for agriculture.</td>
+          </tr>
+          <tr>
+            <td>Smart Lock</td>
+            <td>Controls door access using authorised commands.</td>
+          </tr>
+          <tr>
+            <td>GPS Tracker</td>
+            <td>Reports the location of an object or vehicle.</td>
+          </tr>
+        </table>
+        <h4>End Device Features</h4>
+        <ul>
+          <li>May have limited processing power, memory and storage.</li>
+          <li>May operate from a battery to support portability.</li>
+          <li>May use wired or wireless communication.</li>
+          <li>May include sensors, actuators or both.</li>
+          <li>May communicate directly with a network or through a gateway.</li>
+        </ul>
+        <div class="remember-box"><strong>Remember:</strong> End devices are the points where an IoT system interacts
+          with users or the physical environment.</div>
+      </section>
+
+      <section id="iot-device-examples">
+        <h2>20. Practical IoT Device Examples</h2>
+        <p>Practical examples make it easier to understand how sensing, processing, communication and control work
+          together. Each application uses a combination of components selected for its purpose.</p>
+        <h4>Smart Dustbin</h4>
+        <p>A smart dustbin can use an ultrasonic sensor to estimate how full the container is. When the measured level
+          reaches a configured threshold, the controller can send a notification to a collection team or monitoring
+          dashboard.</p>
+        <h4>Smart Irrigation System</h4>
+        <p>A soil-moisture sensor measures the water content of the soil. If the reading falls below a selected
+          threshold, the controller can activate a pump through a suitable relay or motor driver. A timer or additional
+          safety conditions can prevent unnecessary watering.</p>
+        <h4>Home Automation</h4>
+        <p>A home-automation system can connect lights, fans, air conditioners, locks and security sensors. Users may
+          monitor or control these devices through a mobile application, scheduled rules or voice-assistant integration.
+        </p>
+        <h4>Health Monitoring Device</h4>
+        <p>A wearable device may collect measurements such as heart rate, movement and estimated oxygen saturation,
+          depending on its sensors. It can send the recorded information to a mobile application for display and review.
+          Consumer wearable readings are not a substitute for professional medical measurement.</p>
+        <table>
+          <tr>
+            <th>Device</th>
+            <th>Sensors / Input</th>
+            <th>Actuators / Output</th>
+          </tr>
+          <tr>
+            <td>Smart Dustbin</td>
+            <td>Ultrasonic sensor</td>
+            <td>Full-bin alert or notification</td>
+          </tr>
+          <tr>
+            <td>Smart Irrigation</td>
+            <td>Soil-moisture sensor</td>
+            <td>Water pump through a driver or relay</td>
+          </tr>
+          <tr>
+            <td>Smart Home</td>
+            <td>PIR, temperature and light sensors</td>
+            <td>Relay, bulb, fan or notification</td>
+          </tr>
+          <tr>
+            <td>Health Band</td>
+            <td>Heart-rate sensor, accelerometer</td>
+            <td>App notification or display</td>
+          </tr>
+        </table>
+        <div class="note-box"><strong>Real-Life Example:</strong> A connected classroom could use RFID-based attendance,
+          temperature monitoring and automated lighting to support administration and energy management.</div>
+      </section>
+
+      <section id="power-safety">
+        <h2>21. Power Supply and Circuit Safety</h2>
+        <p>A suitable power supply is essential for reliable IoT operation. Incorrect voltage, excessive current,
+          reversed polarity or a short circuit can damage sensors, microcontrollers and other components. Always check
+          the datasheet or board documentation before connecting a power source.</p>
+        <h4>Common Voltage Levels</h4>
+        <table>
+          <tr>
+            <th>Device / Board</th>
+            <th>Typical Logic Level</th>
+          </tr>
+          <tr>
+            <td>Arduino Uno</td>
+            <td>5 V logic</td>
+          </tr>
+          <tr>
+            <td>ESP8266 / many NodeMCU boards</td>
+            <td>3.3 V logic</td>
+          </tr>
+          <tr>
+            <td>ESP32</td>
+            <td>3.3 V logic</td>
+          </tr>
+          <tr>
+            <td>Many Sensors</td>
+            <td>Depends on the model; some support 3.3 V, 5 V or both.</td>
+          </tr>
+          <tr>
+            <td>Relay Module</td>
+            <td>Supply and input requirements vary by module; check its specifications.</td>
+          </tr>
+        </table>
+        <h4>Safety Rules</h4>
+        <ul>
+          <li>Check the operating voltage and current requirements of every component.</li>
+          <li>Connect grounds together when modules require a common signal reference.</li>
+          <li>Use a current-limiting resistor with a bare LED.</li>
+          <li>Do not power motors, pumps or other high-current loads directly from a microcontroller pin.</li>
+          <li>Use a correctly rated driver, relay module or motor-driver circuit for loads.</li>
+          <li>Check polarity before connecting the supply.</li>
+          <li>Inspect the circuit for short circuits before switching it on.</li>
+        </ul>
+        <h4>3.3 V and 5 V Compatibility</h4>
+        <p>Many ESP8266 and ESP32 boards use 3.3 V logic. Applying a 5 V signal directly to a GPIO input that is not 5 V
+          tolerant can damage the board. Use a suitable logic-level shifter or a correctly designed voltage divider when
+          interfacing incompatible signal levels. A board accepting 5 V at its power input does not necessarily mean its
+          GPIO pins are 5 V tolerant.</p>
+        <div class="note-box"><strong>Safety Example:</strong> Before connecting a 5 V sensor output to an ESP32 input,
+          verify the sensor output level and the ESP32 input limits. Use level conversion when required.</div>
+        <div class="remember-box"><strong>Remember:</strong> Before powering an IoT circuit, check voltage, current,
+          polarity, wiring and common-ground requirements.</div>
+      </section>
+
+      <section id="troubleshooting">
+        <h2>22. Common IoT Circuit Troubleshooting</h2>
+        <p>An IoT circuit may fail even when the program appears correct. Common causes include loose jumper wires,
+          incorrect breadboard rows, missing ground connections, reversed component polarity, unsuitable voltage,
+          damaged components or incorrect pin assignments. Troubleshooting should proceed step by step, starting with
+          the simplest checks.</p>
+        <h4>Common Problems and Solutions</h4>
+        <table>
+          <tr>
+            <th>Problem</th>
+            <th>Possible Reason</th>
+            <th>Solution</th>
+          </tr>
+          <tr>
+            <td>LED not glowing</td>
+            <td>Reversed polarity, missing resistor or incorrect pin</td>
+            <td>Check LED orientation, resistor, wiring and output-pin number.</td>
+          </tr>
+          <tr>
+            <td>Sensor gives no reading</td>
+            <td>Incorrect VCC/GND connection or loose wire</td>
+            <td>Verify the supply, ground and signal connections.</td>
+          </tr>
+          <tr>
+            <td>Random button reading</td>
+            <td>Floating digital input</td>
+            <td>Use an appropriate pull-up or pull-down configuration.</td>
+          </tr>
+          <tr>
+            <td>Board keeps restarting</td>
+            <td>Weak or unstable power supply</td>
+            <td>Use a stable supply rated for the board and connected load.</td>
+          </tr>
+          <tr>
+            <td>Wi-Fi not connecting</td>
+            <td>Incorrect network details, weak signal or incompatible settings</td>
+            <td>Verify SSID, password, signal strength and supported network band.</td>
+          </tr>
+          <tr>
+            <td>Sensor value inaccurate</td>
+            <td>Incorrect wiring, unsuitable range or calibration issue</td>
+            <td>Check the datasheet, wiring and calibration.</td>
+          </tr>
+        </table>
+        <h4>Basic Troubleshooting Steps</h4>
+        <ol>
+          <li>Disconnect power before changing circuit wiring.</li>
+          <li>Check the power supply and confirm that its voltage is suitable.</li>
+          <li>Verify that the required grounds are connected.</li>
+          <li>Compare physical pin connections with the program.</li>
+          <li>Check component polarity and breadboard row connections.</li>
+          <li>Use the Serial Monitor to inspect sensor readings and debug messages.</li>
+          <li>Test one module at a time to isolate the faulty section.</li>
+        </ol>
+        <h4>Debug Example</h4>
+        <pre>Serial.begin(9600);
+Serial.println(sensorValue);</pre>
+        <p>Printing a sensor value to the Serial Monitor helps determine whether the controller is receiving data. If
+          the value is missing or unexpected, inspect the sensor power, signal wire, selected pin and reading method.
+        </p>
+        <div class="remember-box"><strong>Remember:</strong> Start troubleshooting with power, ground, wiring, pin
+          numbers and polarity before changing the program.</div>
+      </section>
+
+    </main>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,2703 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async=""
+      src="https://www.googletagmanager.com/gtag/js?id=G-FB7SX0P0D3"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-FB7SX0P0D3");
+    </script>
+    <meta charset="utf-8" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <title>Arduino – English Study Notes</title>
+    <link href="../../../semester-1/style.css" rel="stylesheet" />
+    <link href="../../../../../../../assets/images/logo.jpeg" rel="icon" />
+  </head>
+  <body>
+    <div class="page">
+      <main class="content">
+        <div class="hero">
+          <h1>Arduino</h1>
+        </div>
+        <section id="adi">
+          <h2>Arduino Device Introduction</h2>
+          <p>
+            <strong>Arduino</strong>Arduino is an open-source electronics
+            platform used to build embedded systems, robotics, and Internet of
+            Things (IoT) projects. It combines a programmable microcontroller
+            board with the Arduino IDE. The board reads sensor inputs, processes
+            instructions, and controls outputs such as LEDs, motors, relays, and
+            other actuators. Its simple workflow makes it suitable for beginners
+            and rapid prototyping.
+          </p>
+          <div class="image-icon">
+            <img alt="Arduino Board" src="../units/images/Arduino board.webp" />
+          </div>
+          <div class="note">
+            <b>Real Life Example:</b> Smart Home, Smart Irrigation, Weather
+            Monitoring, Line Follower Robot.
+          </div>
+        </section>
+        <section id="fad">
+          <h2>Features of Arduino Device</h2>
+          <ul>
+            <li>Open Source Hardware and Software</li>
+            <li>Easy Programming using Arduino IDE</li>
+            <li>Low Cost Development Board</li>
+            <li>Large Community Support</li>
+            <li>Cross Platform (Windows, Linux, macOS)</li>
+            <li>Digital &amp; Analog Input/Output Pins</li>
+            <li>PWM, UART, SPI, I²C Support</li>
+            <li>USB Programming</li>
+          </ul>
+        </section>
+        <section id="cab">
+          <h2>Components of Arduino Board</h2>
+          <div class="image-icon">
+            <img
+              alt="Arduino Components"
+              src="../units/images/components Arduino Board.webp"
+            />
+          </div>
+          <table>
+            <tr>
+              <th>Component</th>
+              <th>Purpose</th>
+            </tr>
+            <tr>
+              <td>ATmega328P</td>
+              <td>Main Microcontroller</td>
+            </tr>
+            <tr>
+              <td>USB Port</td>
+              <td>Programming &amp; Power</td>
+            </tr>
+            <tr>
+              <td>Power Jack</td>
+              <td>External Supply</td>
+            </tr>
+            <tr>
+              <td>Digital Pins</td>
+              <td>Digital Input/Output</td>
+            </tr>
+            <tr>
+              <td>Analog Pins</td>
+              <td>Analog Sensor Input</td>
+            </tr>
+            <tr>
+              <td>Reset Button</td>
+              <td>Restart Program</td>
+            </tr>
+            <tr>
+              <td>Crystal Oscillator</td>
+              <td>Clock Signal</td>
+            </tr>
+            <tr>
+              <td>TX/RX LEDs</td>
+              <td>Serial Communication Status</td>
+            </tr>
+          </table>
+        </section>
+        <section id="ide">
+          <h2>Understanding the Arduino IDE</h2>
+          <p>
+            The Arduino IDE is the software environment used to write, verify
+            (compile), and upload sketches to an Arduino board. It also provides
+            tools such as the Serial Monitor and Serial Plotter for testing and
+            debugging.
+          </p>
+          <div class="image-icon">
+            <img
+              alt="Arduino IDE"
+              src="../units/images/Arduino IDE Serial Monitor.webp"
+            />
+          </div>
+          <ul>
+            <li>Menu Bar</li>
+            <li>Toolbar</li>
+            <li>Code Editor</li>
+            <li>Verify Button</li>
+            <li>Upload Button</li>
+            <li>Serial Monitor</li>
+            <li>Board &amp; Port Selection</li>
+          </ul>
+          <pre>
+Steps:
+1. Board Select
+2. COM Port Select
+3. Write Code
+4. Verify
+5. Upload
+6. Open Serial Monitor</pre
+          >
+        </section>
+        <section id="c">
+          <h2>Arduino Programming Language (C Language)</h2>
+          <p>
+            Arduino sketches use a beginner-friendly form of C/C++. Every
+            standard sketch contains two main functions: setup(), which runs
+            once after reset, and loop(), which runs repeatedly while the board
+            is powered.
+          </p>
+          <pre>
+void setup() {
+   // Runs only once
+}
+
+void loop() {
+   // Runs repeatedly
+}
+</pre
+          >
+          <h3>Variables</h3>
+          <pre>
+int led = 13;
+float temp = 28.5;
+char grade = 'A';
+bool status = true;</pre
+          >
+          <h3>Data Types</h3>
+          <table>
+            <tr>
+              <th>Data Type</th>
+              <th>Example</th>
+            </tr>
+            <tr>
+              <td>int</td>
+              <td>100</td>
+            </tr>
+            <tr>
+              <td>float</td>
+              <td>12.75</td>
+            </tr>
+            <tr>
+              <td>char</td>
+              <td>'A'</td>
+            </tr>
+            <tr>
+              <td>bool</td>
+              <td>true / false</td>
+            </tr>
+            <tr>
+              <td>long</td>
+              <td>100000</td>
+            </tr>
+            <tr>
+              <td>byte</td>
+              <td>0-255</td>
+            </tr>
+          </table>
+          <h3>Control Statements</h3>
+          <pre>
+if(sensorValue &gt; 500){
+   digitalWrite(13,HIGH);
+} else {
+   digitalWrite(13,LOW);
+}
+</pre
+          >
+          <h3>Loops</h3>
+          <pre>
+// for loop
+for(int i=0;i&lt;5;i++){}
+
+// while loop
+while(true){break;}
+
+// do while
+do{}while(false);
+</pre
+          >
+          <h3>Functions</h3>
+          <pre>
+void blinkLED(){
+  digitalWrite(13,HIGH);
+  delay(500);
+  digitalWrite(13,LOW);
+}
+</pre
+          >
+          <div class="note">
+            <b>Remember:</b>Arduino Programming Language (C Language) explains
+            the relevant Arduino hardware, programming concepts, operation, and
+            practical applications. The board uses its microcontroller,
+            input/output pins, and built-in interfaces to interact with
+            connected components. Select compatible voltage levels, configure
+            pins correctly, and test each connection before operating the
+            complete circuit.<code>setup()</code>Arduino Programming Language (C
+            Language) explains the relevant Arduino hardware, programming
+            concepts, operation, and practical applications. The board uses its
+            microcontroller, input/output pins, and built-in interfaces to
+            interact with connected components. Select compatible voltage
+            levels, configure pins correctly, and test each connection before
+            operating the complete circuit.<code>loop()</code>Arduino
+            Programming Language (C Language) explains the relevant Arduino
+            hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete circuit.
+          </div>
+        </section>
+        <section id="board-overview">
+          <h2>Arduino Board Overview</h2>
+          <p>
+            <strong>Arduino board</strong>Arduino Board Overview explains the
+            relevant Arduino hardware, programming concepts, operation, and
+            practical applications. The board uses its microcontroller,
+            input/output pins, and built-in interfaces to interact with
+            connected components. Select compatible voltage levels, configure
+            pins correctly, and test each connection before operating the
+            complete circuit.
+          </p>
+          <p>
+            An Arduino board does more than execute a program. It reads inputs
+            from sensors, processes the values according to the programmed
+            logic, and controls output devices such as LEDs, motors, relays,
+            buzzers, and displays.
+          </p>
+          <div class="image-icon">
+            <img
+              alt="Arduino Uno Complete Board Diagram"
+              src="../units/images/Arduino Board Overview.webp"
+            />
+            <p>Arduino Uno Complete Board Diagram</p>
+          </div>
+          <h4>Main Sections of Arduino Uno</h4>
+          <table>
+            <tr>
+              <th>Section</th>
+              <th>Purpose</th>
+            </tr>
+            <tr>
+              <td>Microcontroller Section</td>
+              <td>
+                Executes the program and coordinates the operation of connected
+                devices.
+              </td>
+            </tr>
+            <tr>
+              <td>Input/Output Pins</td>
+              <td>
+                Provides connections for sensors, actuators, and other
+                electronic modules.
+              </td>
+            </tr>
+            <tr>
+              <td>Power Section</td>
+              <td>
+                Supplies power to the board and compatible external modules.
+              </td>
+            </tr>
+            <tr>
+              <td>Communication Section</td>
+              <td>
+                Supports USB and serial communication interfaces such as UART,
+                SPI, and I²C.
+              </td>
+            </tr>
+            <tr>
+              <td>Programming Section</td>
+              <td>Supports sketch uploading and bootloader operation.</td>
+            </tr>
+          </table>
+          <div class="remember-box">
+            <b>Remember:</b><br />The microcontroller acts as the board’s
+            processing unit, while the remaining components provide sensing
+            connections, power management, communication, and control.
+          </div>
+        </section>
+        <section id="digital-pins">
+          <h2>Digital Pins</h2>
+          <p>
+            <strong>Digital pins</strong>Digital Pins explains the relevant
+            Arduino hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete circuit.
+          </p>
+          <div class="image-icon">
+            <img
+              alt="Arduino Digital Pins"
+              src="../units/images/Arduino Digital Pins 0 to 13.webp"
+            />
+            <p>Image Placeholder: Arduino Digital Pins 0 to 13</p>
+          </div>
+          <h4>Digital Pin as Output</h4>
+          <p>
+            Digital Pins explains the relevant Arduino hardware, programming
+            concepts, operation, and practical applications. The board uses its
+            microcontroller, input/output pins, and built-in interfaces to
+            interact with connected components. Select compatible voltage
+            levels, configure pins correctly, and test each connection before
+            operating the complete circuit.
+          </p>
+          <pre>
+int ledPin = 13;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(ledPin, HIGH);
+  delay(1000);
+
+  digitalWrite(ledPin, LOW);
+  delay(1000);
+}</pre
+          >
+          <h4>Digital Pin as Input</h4>
+          <p>
+            Digital Pins explains the relevant Arduino hardware, programming
+            concepts, operation, and practical applications. The board uses its
+            microcontroller, input/output pins, and built-in interfaces to
+            interact with connected components. Select compatible voltage
+            levels, configure pins correctly, and test each connection before
+            operating the complete circuit.
+          </p>
+          <pre>
+int buttonPin = 2;
+int buttonState;
+
+void setup() {
+  pinMode(buttonPin, INPUT);
+}
+
+void loop() {
+  buttonState = digitalRead(buttonPin);
+}</pre
+          >
+          <h4>Special Digital Pins</h4>
+          <table>
+            <tr>
+              <th>Pin</th>
+              <th>Special Function</th>
+            </tr>
+            <tr>
+              <td>0</td>
+              <td>RX - Serial receive</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>TX - Serial transmit</td>
+            </tr>
+            <tr>
+              <td>2, 3</td>
+              <td>External interrupt pins</td>
+            </tr>
+            <tr>
+              <td>3, 5, 6, 9, 10, 11</td>
+              <td>PWM supported pins</td>
+            </tr>
+            <tr>
+              <td>13</td>
+              <td>Built-in LED connected</td>
+            </tr>
+          </table>
+          <h4>Important Points</h4>
+          <ul>
+            <li>
+              Digital pins HIGH LOW states read/write is an important part of
+              digital pins.
+            </li>
+            <li>
+              Pin 0 1 serial communication use is an important part of digital
+              pins.
+            </li>
+            <li>
+              pin high-current device directly operate is an important part of
+              digital pins.
+            </li>
+            <li>
+              Pin mode setup() define best practice is an important part of
+              digital pins.
+            </li>
+          </ul>
+          <div class="note-box">
+            <b>Real Life Example:</b><br />Digital Pins explains the relevant
+            Arduino hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete circuit.
+          </div>
+          <div class="remember-box">
+            <b>Remember:</b><br />Digital Pins explains the relevant Arduino
+            hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete circuit.
+          </div>
+        </section>
+        <section id="analog-pins">
+          <h2>Analog Pins</h2>
+          <p>
+            <strong>Analog pins</strong>Analog Pins explains the relevant
+            Arduino hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete circuit.
+          </p>
+          <div class="image-icon">
+            <img
+              alt="Arduino Analog Pins"
+              src="../units/images/Arduino Analog Pins A0 to A5.webp"
+            />
+            <p>Arduino Analog Pins A0 to A5</p>
+          </div>
+          <h4>Analog Input Range</h4>
+          <p>
+            Analog Pins explains the relevant Arduino hardware, programming
+            concepts, operation, and practical applications. The board uses its
+            microcontroller, input/output pins, and built-in interfaces to
+            interact with connected components. Select compatible voltage
+            levels, configure pins correctly, and test each connection before
+            operating the complete circuit.
+          </p>
+          <pre>int sensorValue = analogRead(A0);</pre>
+          <h4>Example: LDR Reading</h4>
+          <pre>
+int ldrPin = A0;
+int lightValue;
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  lightValue = analogRead(ldrPin);
+
+  Serial.println(lightValue);
+
+  delay(500);
+}</pre
+          >
+          <h4>Analog Pins as Digital Pins</h4>
+          <p>
+            Analog Pins explains the relevant Arduino hardware, programming
+            concepts, operation, and practical applications. The board uses its
+            microcontroller, input/output pins, and built-in interfaces to
+            interact with connected components. Select compatible voltage
+            levels, configure pins correctly, and test each connection before
+            operating the complete circuit.
+          </p>
+          <h4>Analog Pins Uses</h4>
+          <table>
+            <tr>
+              <th>Sensor/Component</th>
+              <th>Use</th>
+            </tr>
+            <tr>
+              <td>LDR</td>
+              <td>Light intensity reading</td>
+            </tr>
+            <tr>
+              <td>Potentiometer</td>
+              <td>Variable voltage input</td>
+            </tr>
+            <tr>
+              <td>Soil Moisture Sensor</td>
+              <td>Moisture level reading</td>
+            </tr>
+            <tr>
+              <td>Analog Temperature Sensor</td>
+              <td>Temperature measurement</td>
+            </tr>
+            <tr>
+              <td>Gas Sensor</td>
+              <td>Gas concentration level</td>
+            </tr>
+          </table>
+          <div class="remember-box">
+            <b>Remember:</b><br />Analog Pins explains the relevant Arduino
+            hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete circuit.
+          </div>
+        </section>
+        <section id="gpio">
+          <h2>GPIO</h2>
+          <p>
+            <strong>GPIO</strong>GPIO explains the relevant Arduino hardware,
+            programming concepts, operation, and practical applications. The
+            board uses its microcontroller, input/output pins, and built-in
+            interfaces to interact with connected components. Select compatible
+            voltage levels, configure pins correctly, and test each connection
+            before operating the complete circuit.
+          </p>
+          <div class="image-icon">
+            <img
+              alt="Arduino GPIO Diagram"
+              src="../units/images/Arduino GPIO Input Output Diagram.webp"
+            />
+            <p>Image Placeholder: Arduino GPIO Input Output Diagram</p>
+          </div>
+          <h4>GPIO as Input</h4>
+          <p>
+            GPIO explains the relevant Arduino hardware, programming concepts,
+            operation, and practical applications. The board uses its
+            microcontroller, input/output pins, and built-in interfaces to
+            interact with connected components. Select compatible voltage
+            levels, configure pins correctly, and test each connection before
+            operating the complete circuit.
+          </p>
+          <pre>
+pinMode(2, INPUT);
+int state = digitalRead(2);</pre
+          >
+          <h4>GPIO as Output</h4>
+          <p>
+            GPIO explains the relevant Arduino hardware, programming concepts,
+            operation, and practical applications. The board uses its
+            microcontroller, input/output pins, and built-in interfaces to
+            interact with connected components. Select compatible voltage
+            levels, configure pins correctly, and test each connection before
+            operating the complete circuit.
+          </p>
+          <pre>
+pinMode(13, OUTPUT);
+digitalWrite(13, HIGH);</pre
+          >
+          <h4>GPIO Modes</h4>
+          <table>
+            <tr>
+              <th>Mode</th>
+              <th>Use</th>
+            </tr>
+            <tr>
+              <td>INPUT</td>
+              <td>External digital signal read</td>
+            </tr>
+            <tr>
+              <td>OUTPUT</td>
+              <td>Digital HIGH/LOW output</td>
+            </tr>
+            <tr>
+              <td>INPUT_PULLUP</td>
+              <td>Internal pull-up resistor activate</td>
+            </tr>
+          </table>
+          <h4>INPUT_PULLUP Example</h4>
+          <pre>
+int buttonPin = 2;
+
+void setup() {
+  pinMode(buttonPin, INPUT_PULLUP);
+}
+
+void loop() {
+  int state = digitalRead(buttonPin);
+}</pre
+          >
+          <div class="note-box">
+            <b>Real Life Example:</b><br />GPIO explains the relevant Arduino
+            hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete circuit.
+          </div>
+        </section>
+        <section id="pwm">
+          <h2>PWM Pins</h2>
+          <p>
+            <strong>PWM</strong>PWM Pins explains the relevant Arduino hardware,
+            programming concepts, operation, and practical applications. The
+            board uses its microcontroller, input/output pins, and built-in
+            interfaces to interact with connected components. Select compatible
+            voltage levels, configure pins correctly, and test each connection
+            before operating the complete circuit.<code>~</code>PWM Pins
+            explains the relevant Arduino hardware, programming concepts,
+            operation, and practical applications. The board uses its
+            microcontroller, input/output pins, and built-in interfaces to
+            interact with connected components. Select compatible voltage
+            levels, configure pins correctly, and test each connection before
+            operating the complete circuit.
+          </p>
+          <div class="image-icon">
+            <img alt="Arduino PWM Pins" src="../units/images/Arduino USB Port.webp" />
+            <p>Arduino PWM Pins</p>
+          </div>
+          <h4>PWM Value Range</h4>
+          <p>
+            <code>analogWrite()</code>PWM Pins explains the relevant Arduino
+            hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete circuit.
+          </p>
+          <table>
+            <tr>
+              <th>Value</th>
+              <th>Meaning</th>
+            </tr>
+            <tr>
+              <td>0</td>
+              <td>0 duty cycle output OFF</td>
+            </tr>
+            <tr>
+              <td>128</td>
+              <td>50 duty cycle</td>
+            </tr>
+            <tr>
+              <td>255</td>
+              <td>100 duty cycle full output</td>
+            </tr>
+          </table>
+          <h4>LED Brightness Example</h4>
+          <pre>
+int ledPin = 9;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  analogWrite(ledPin, 128);
+}</pre
+          >
+          <h4>Fade Effect Example</h4>
+          <pre>
+int ledPin = 9;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  for (int brightness = 0; brightness &lt;= 255; brightness++) {
+    analogWrite(ledPin, brightness);
+    delay(10);
+  }
+}</pre
+          >
+          <h4>PWM Uses</h4>
+          <ul>
+            <li>LED brightness control</li>
+            <li>DC motor speed control</li>
+            <li>Servo signal generation</li>
+            <li>Buzzer tone variation</li>
+            <li>RGB LED color mixing</li>
+          </ul>
+          <div class="remember-box">
+            <b>Remember:</b><br />PWM Pins explains the relevant Arduino
+            hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete circuit.
+          </div>
+        </section>
+        <section id="adc">
+          <h2>ADC - Analog to Digital Converter</h2>
+          <p>
+            <strong>ADC</strong>ADC - Analog to Digital Converter explains the
+            relevant Arduino hardware, programming concepts, operation, and
+            practical applications. The board uses its microcontroller,
+            input/output pins, and built-in interfaces to interact with
+            connected components. Select compatible voltage levels, configure
+            pins correctly, and test each connection before operating the
+            complete circuit.
+          </p>
+          <h4>10-bit ADC</h4>
+          <p>
+            ADC - Analog to Digital Converter explains the relevant Arduino
+            hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete circuit.
+          </p>
+          <pre>
+0V   → 0
+2.5V → approximately 512
+5V   → 1023</pre
+          >
+          <h4>Voltage Calculation</h4>
+          <pre>Voltage = sensorValue × (5.0 / 1023.0)</pre>
+          <h4>Complete Example</h4>
+          <pre>
+int sensorValue;
+float voltage;
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  sensorValue = analogRead(A0);
+
+  voltage = sensorValue * (5.0 / 1023.0);
+
+  Serial.println(voltage);
+
+  delay(500);
+}</pre
+          >
+          <h4>ADC Importance</h4>
+          <ul>
+            <li>
+              Analog sensors microcontroller connect is an important part of adc
+              - analog to digital converter.
+            </li>
+            <li>
+              Continuous voltage readable number is an important part of adc -
+              analog to digital converter.
+            </li>
+            <li>
+              Temperature light pressure gas sensors useful is an important part
+              of adc - analog to digital converter.
+            </li>
+          </ul>
+          <div class="remember-box">
+            <b>Remember:</b><br />ADC - Analog to Digital Converter explains the
+            relevant Arduino hardware, programming concepts, operation, and
+            practical applications. The board uses its microcontroller,
+            input/output pins, and built-in interfaces to interact with
+            connected components. Select compatible voltage levels, configure
+            pins correctly, and test each connection before operating the
+            complete circuit.
+          </div>
+        </section>
+        <section id="power-pins">
+          <h2>Power Pins</h2>
+          <p>
+            Power Pins explains the relevant Arduino hardware, programming
+            concepts, operation, and practical applications. The board uses its
+            microcontroller, input/output pins, and built-in interfaces to
+            interact with connected components. Select compatible voltage
+            levels, configure pins correctly, and test each connection before
+            operating the complete circuit.
+          </p>
+          <div class="image-icon">
+            <img
+              alt="Arduino Power Pins"
+              src="../units/images/Power pins VIN 5V 3.3V GND.webp"
+            />
+            <p>Arduino Power Pins VIN 5V 3.3V GND</p>
+          </div>
+          <h4>Main Power Pins</h4>
+          <table>
+            <tr>
+              <th>Pin</th>
+              <th>Purpose</th>
+            </tr>
+            <tr>
+              <td>VIN</td>
+              <td>External input voltage</td>
+            </tr>
+            <tr>
+              <td>5V</td>
+              <td>Regulated 5V output</td>
+            </tr>
+            <tr>
+              <td>3.3V</td>
+              <td>3.3V sensors/modules output</td>
+            </tr>
+            <tr>
+              <td>GND</td>
+              <td>Common ground connection</td>
+            </tr>
+            <tr>
+              <td>RESET</td>
+              <td>Provides a way to restart the microcontroller.</td>
+            </tr>
+            <tr>
+              <td>IOREF</td>
+              <td>Provides the common electrical reference for the circuit.</td>
+            </tr>
+          </table>
+          <h4>VIN Pin</h4>
+          <p>
+            Power Pins explains the relevant Arduino hardware, programming
+            concepts, operation, and practical applications. The board uses its
+            microcontroller, input/output pins, and built-in interfaces to
+            interact with connected components. Select compatible voltage
+            levels, configure pins correctly, and test each connection before
+            operating the complete circuit.
+          </p>
+          <h4>5V and 3.3V Pins</h4>
+          <p>
+            Power Pins explains the relevant Arduino hardware, programming
+            concepts, operation, and practical applications. The board uses its
+            microcontroller, input/output pins, and built-in interfaces to
+            interact with connected components. Select compatible voltage
+            levels, configure pins correctly, and test each connection before
+            operating the complete circuit.
+          </p>
+          <h4>GND Pin</h4>
+          <p>
+            Power Pins explains the relevant Arduino hardware, programming
+            concepts, operation, and practical applications. The board uses its
+            microcontroller, input/output pins, and built-in interfaces to
+            interact with connected components. Select compatible voltage
+            levels, configure pins correctly, and test each connection before
+            operating the complete circuit.
+          </p>
+          <h4>Safety Rules</h4>
+          <ul>
+            <li>3.3V device 5V direct is an important part of power pins.</li>
+            <li>
+              High current motor/pump Arduino power pin direct is an important
+              part of power pins.
+            </li>
+            <li>Power polarity check is an important part of power pins.</li>
+            <li>Common GND maintain is an important part of power pins.</li>
+          </ul>
+          <div class="note-box">
+            <b>Real Life Example:</b><br />Power Pins explains the relevant
+            Arduino hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete circuit.
+          </div>
+        </section>
+        <section id="reset-pin">
+          <h2>Reset Pin and Reset Button</h2>
+          <p>
+            <strong>Reset button</strong>Reset Pin and Reset Button explains the
+            relevant Arduino hardware, programming concepts, operation, and
+            practical applications. The board uses its microcontroller,
+            input/output pins, and built-in interfaces to interact with
+            connected components. Select compatible voltage levels, configure
+            pins correctly, and test each connection before operating the
+            complete circuit.<code>setup()</code>Reset Pin and Reset Button
+            explains the relevant Arduino hardware, programming concepts,
+            operation, and practical applications. The board uses its
+            microcontroller, input/output pins, and built-in interfaces to
+            interact with connected components. Select compatible voltage
+            levels, configure pins correctly, and test each connection before
+            operating the complete circuit.
+          </p>
+          <div class="image-icon">
+            <img
+              alt="Arduino Reset Button"
+              src="../units/images/Arduino Reset Button and Reset Pin.webp"
+            />
+            <p>Arduino Reset Button and Reset Pin</p>
+          </div>
+          <h4>Uses of Reset</h4>
+          <ul>
+            <li>
+              Program start is an important part of reset pin and reset button.
+            </li>
+            <li>
+              Board hang restart is an important part of reset pin and reset
+              button.
+            </li>
+            <li>
+              Testing initial state restore is an important part of reset pin
+              and reset button.
+            </li>
+            <li>
+              External reset circuit connect is an important part of reset pin
+              and reset button.
+            </li>
+          </ul>
+          <h4>Reset Working</h4>
+          <pre>
+Reset Pressed
+      ↓
+Microcontroller Restarts
+      ↓
+Bootloader Runs
+      ↓
+setup() Executes
+      ↓
+loop() Starts Again</pre
+          >
+          <div class="remember-box">
+            <b>Remember:</b><br />Reset Pin and Reset Button explains the
+            relevant Arduino hardware, programming concepts, operation, and
+            practical applications. The board uses its microcontroller,
+            input/output pins, and built-in interfaces to interact with
+            connected components. Select compatible voltage levels, configure
+            pins correctly, and test each connection before operating the
+            complete circuit.
+          </div>
+        </section>
+        <section id="serial-pins">
+          <h2>TX and RX Pins</h2>
+          <p>
+            <strong>TX</strong>TX and RX Pins explains the relevant Arduino
+            hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete
+            circuit.<strong>RX</strong>TX and RX Pins explains the relevant
+            Arduino hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete circuit.
+          </p>
+          <div class="image-icon">
+            <img
+              alt="Arduino TX RX Pins"
+              src="../units/images/TX RX Serial Connection.webp"
+            />
+            <p>TX RX Serial Connection</p>
+          </div>
+          <h4>Connection Rule</h4>
+          <pre>
+Arduino TX → Device RX
+Arduino RX → Device TX
+GND → GND</pre
+          >
+          <h4>Serial Communication Example</h4>
+          <pre>
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  Serial.println("Hello from Arduino");
+  delay(1000);
+}</pre
+          >
+          <h4>Important Points</h4>
+          <ul>
+            <li>TX data send is an important part of tx and rx pins.</li>
+            <li>RX data receive is an important part of tx and rx pins.</li>
+            <li>
+              Both devices baud rate same is an important part of tx and rx
+              pins.
+            </li>
+            <li>
+              Code upload pins 0 1 external device conflict is an important part
+              of tx and rx pins.
+            </li>
+          </ul>
+          <div class="note-box">
+            <b>Real Life Example:</b><br />TX and RX Pins explains the relevant
+            Arduino hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete circuit.
+          </div>
+        </section>
+        <section id="usb-port">
+          <h2>USB Port</h2>
+          <p>
+            USB Port explains the relevant Arduino hardware, programming
+            concepts, operation, and practical applications. The board uses its
+            microcontroller, input/output pins, and built-in interfaces to
+            interact with connected components. Select compatible voltage
+            levels, configure pins correctly, and test each connection before
+            operating the complete circuit.
+          </p>
+          <div class="image-icon">
+            <img alt="Arduino USB Port" src="../units/images/Arduino USB Port.webp" />
+            <p>Arduino USB Port</p>
+          </div>
+          <h4>Functions of USB Port</h4>
+          <ul>
+            <li>Computer code upload is an important part of usb port.</li>
+            <li>
+              Serial Monitor communication is an important part of usb port.
+            </li>
+            <li>Board 5V power is an important part of usb port.</li>
+            <li>Debugging testing is an important part of usb port.</li>
+          </ul>
+          <h4>Upload Flow</h4>
+          <pre>
+Arduino IDE
+    ↓
+USB Cable
+    ↓
+USB-to-Serial Interface
+    ↓
+Bootloader
+    ↓
+ATmega328P Flash Memory</pre
+          >
+          <div class="remember-box">
+            <b>Remember:</b><br />USB Port explains the relevant Arduino
+            hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete circuit.
+          </div>
+        </section>
+        <section id="dc-jack">
+          <h2>DC Power Jack</h2>
+          <p>
+            <strong>DC power jack</strong>DC Power Jack explains the relevant
+            Arduino hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete circuit.
+          </p>
+          <div class="image-icon">
+            <img
+              alt="Arduino DC Power Jack"
+              src="../units/images/Arduino DC Barrel Jack.webp"
+            />
+            <p>Image Placeholder: Arduino DC Barrel Jack</p>
+          </div>
+          <h4>Uses</h4>
+          <ul>
+            <li>
+              Standalone Arduino project power is an important part of dc power
+              jack.
+            </li>
+            <li>
+              Battery adapter board is an important part of dc power jack.
+            </li>
+            <li>
+              Computer project operate is an important part of dc power jack.
+            </li>
+          </ul>
+          <h4>Safety</h4>
+          <p>
+            DC Power Jack explains the relevant Arduino hardware, programming
+            concepts, operation, and practical applications. The board uses its
+            microcontroller, input/output pins, and built-in interfaces to
+            interact with connected components. Select compatible voltage
+            levels, configure pins correctly, and test each connection before
+            operating the complete circuit.
+          </p>
+          <div class="note-box">
+            <b>Real Life Example:</b><br />DC Power Jack explains the relevant
+            Arduino hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete circuit.
+          </div>
+        </section>
+        <section id="oscillator">
+          <h2>Crystal Oscillator</h2>
+          <p>
+            <strong>Crystal oscillator</strong>Crystal Oscillator explains the
+            relevant Arduino hardware, programming concepts, operation, and
+            practical applications. The board uses its microcontroller,
+            input/output pins, and built-in interfaces to interact with
+            connected components. Select compatible voltage levels, configure
+            pins correctly, and test each connection before operating the
+            complete circuit.
+          </p>
+          <div class="image-icon">
+            <img
+              alt="Arduino Crystal Oscillator"
+              src="../units/images/6mHz Crystal oscillator.webp"
+            />
+            <p>16 MHz Crystal Oscillator</p>
+          </div>
+          <h4>Why Clock is Needed</h4>
+          <ul>
+            <li>
+              Instructions execute timing is an important part of crystal
+              oscillator.
+            </li>
+            <li>
+              Timers delays accurate is an important part of crystal oscillator.
+            </li>
+            <li>
+              Serial communication speed maintain is an important part of
+              crystal oscillator.
+            </li>
+            <li>
+              Microcontroller operations synchronize is an important part of
+              crystal oscillator.
+            </li>
+          </ul>
+          <h4>16 MHz Meaning</h4>
+          <p>
+            Crystal Oscillator explains the relevant Arduino hardware,
+            programming concepts, operation, and practical applications. The
+            board uses its microcontroller, input/output pins, and built-in
+            interfaces to interact with connected components. Select compatible
+            voltage levels, configure pins correctly, and test each connection
+            before operating the complete circuit.
+          </p>
+          <div class="remember-box">
+            <b>Remember:</b><br />Crystal Oscillator explains the relevant
+            Arduino hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete circuit.
+          </div>
+        </section>
+        <section id="icsp">
+          <h2>ICSP Header</h2>
+          <p>
+            <strong>ICSP</strong>ICSP Header explains the relevant Arduino
+            hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete circuit.
+          </p>
+          <div class="image-icon">
+            <img
+              alt="Arduino ICSP Header"
+              src="../units/images/Arduino ICSP Header Pins.webp"
+            />
+            <p>Image Placeholder: Arduino ICSP Header Pins</p>
+          </div>
+          <h4>ICSP Uses</h4>
+          <ul>
+            <li>Bootloader burn is an important part of icsp header.</li>
+            <li>
+              Microcontroller direct program is an important part of icsp
+              header.
+            </li>
+            <li>SPI signals access is an important part of icsp header.</li>
+            <li>Board recovery help is an important part of icsp header.</li>
+          </ul>
+          <h4>Common ICSP Signals</h4>
+          <table>
+            <tr>
+              <th>Signal</th>
+              <th>Purpose</th>
+            </tr>
+            <tr>
+              <td>MISO</td>
+              <td>Master Input Slave Output</td>
+            </tr>
+            <tr>
+              <td>MOSI</td>
+              <td>Master Output Slave Input</td>
+            </tr>
+            <tr>
+              <td>SCK</td>
+              <td>Serial Clock</td>
+            </tr>
+            <tr>
+              <td>RESET</td>
+              <td>Programming reset</td>
+            </tr>
+            <tr>
+              <td>VCC</td>
+              <td>Power</td>
+            </tr>
+            <tr>
+              <td>GND</td>
+              <td>Ground</td>
+            </tr>
+          </table>
+        </section>
+        <section id="led-indicators">
+          <h2>Built-in LED Indicators</h2>
+          <p>
+            Built-in LED Indicators explains the relevant Arduino hardware,
+            programming concepts, operation, and practical applications. The
+            board uses its microcontroller, input/output pins, and built-in
+            interfaces to interact with connected components. Select compatible
+            voltage levels, configure pins correctly, and test each connection
+            before operating the complete circuit.
+          </p>
+          <div class="image-icon">
+            <img
+              alt="Arduino LED Indicators"
+              src="../units/images/ON, TX, RX. and L LEDs.webp"
+            />
+            <p>ON, TX, RX and L LEDs</p>
+          </div>
+          <h4>Indicator LEDs</h4>
+          <table>
+            <tr>
+              <th>LED</th>
+              <th>Meaning</th>
+            </tr>
+            <tr>
+              <td>ON</td>
+              <td>Board power</td>
+            </tr>
+            <tr>
+              <td>TX</td>
+              <td>Board data transmit</td>
+            </tr>
+            <tr>
+              <td>RX</td>
+              <td>Board data receive</td>
+            </tr>
+            <tr>
+              <td>L</td>
+              <td>Built-in LED usually digital pin 13 connected</td>
+            </tr>
+          </table>
+          <h4>Built-in LED Program</h4>
+          <pre>
+void setup() {
+  pinMode(LED_BUILTIN, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(1000);
+
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(1000);
+}</pre
+          >
+          <div class="remember-box">
+            <b>Remember:</b><br />Built-in LED Indicators explains the relevant
+            Arduino hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete circuit.
+          </div>
+        </section>
+        <section id="memory">
+          <h2>Arduino Memory</h2>
+          <p>
+            Arduino Memory explains the relevant Arduino hardware, programming
+            concepts, operation, and practical applications. The board uses its
+            microcontroller, input/output pins, and built-in interfaces to
+            interact with connected components. Select compatible voltage
+            levels, configure pins correctly, and test each connection before
+            operating the complete circuit.
+          </p>
+          <div class="image-icon">
+            <img
+              alt="Arduino Memory Types"
+              src="../units/images/flash, sram, erprom.webp"
+            />
+            <p>Flash SRAM EEPROM Diagram</p>
+          </div>
+          <h4>Memory Types</h4>
+          <table>
+            <tr>
+              <th>Memory</th>
+              <th>Purpose</th>
+              <th>Power Off Effect</th>
+            </tr>
+            <tr>
+              <td>Flash Memory</td>
+              <td>Program/sketch store</td>
+              <td>Data retain</td>
+            </tr>
+            <tr>
+              <td>SRAM</td>
+              <td>Running program variables store</td>
+              <td>Data lost</td>
+            </tr>
+            <tr>
+              <td>EEPROM</td>
+              <td>Permanent small data/settings store</td>
+              <td>Data retain</td>
+            </tr>
+          </table>
+          <h4>Flash Memory</h4>
+          <p>
+            Arduino Memory explains the relevant Arduino hardware, programming
+            concepts, operation, and practical applications. The board uses its
+            microcontroller, input/output pins, and built-in interfaces to
+            interact with connected components. Select compatible voltage
+            levels, configure pins correctly, and test each connection before
+            operating the complete circuit.
+          </p>
+          <h4>SRAM</h4>
+          <p>
+            Arduino Memory explains the relevant Arduino hardware, programming
+            concepts, operation, and practical applications. The board uses its
+            microcontroller, input/output pins, and built-in interfaces to
+            interact with connected components. Select compatible voltage
+            levels, configure pins correctly, and test each connection before
+            operating the complete circuit.
+          </p>
+          <h4>EEPROM</h4>
+          <p>
+            Arduino Memory explains the relevant Arduino hardware, programming
+            concepts, operation, and practical applications. The board uses its
+            microcontroller, input/output pins, and built-in interfaces to
+            interact with connected components. Select compatible voltage
+            levels, configure pins correctly, and test each connection before
+            operating the complete circuit.
+          </p>
+          <h4>EEPROM Example</h4>
+          <pre>
+#include &lt;EEPROM.h&gt;
+
+void setup() {
+  EEPROM.write(0, 100);
+}
+
+void loop() {
+}</pre
+          >
+          <div class="remember-box">
+            <b>Remember:</b><br />Arduino Memory explains the relevant Arduino
+            hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete circuit.
+          </div>
+        </section>
+        <section id="bootloader">
+          <h2>Arduino Bootloader</h2>
+          <p>
+            <strong>Bootloader</strong>Arduino Bootloader explains the relevant
+            Arduino hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete circuit.
+          </p>
+          <div class="image-icon">
+            <img
+              alt="Arduino Bootloader"
+              src="../units/images/bootloader working.webp"
+            />
+            <p>Image Placeholder: Arduino Bootloader Working</p>
+          </div>
+          <h4>Bootloader Working</h4>
+          <pre>
+Arduino Reset
+    ↓
+Bootloader Starts
+    ↓
+Checks for New Upload
+    ↓
+If Upload Found → Stores Program
+If No Upload → Runs Existing Program</pre
+          >
+          <h4>Advantages</h4>
+          <ul>
+            <li>
+              USB easy programming is an important part of arduino bootloader.
+            </li>
+            <li>
+              External programmer is an important part of arduino bootloader.
+            </li>
+            <li>
+              Sketch upload process simple is an important part of arduino
+              bootloader.
+            </li>
+            <li>
+              Board reset user program run is an important part of arduino
+              bootloader.
+            </li>
+          </ul>
+          <div class="remember-box">
+            <b>Remember:</b><br />Arduino Bootloader explains the relevant
+            Arduino hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete circuit.
+          </div>
+        </section>
+        <section id="compile-process">
+          <h2>Compiling Process</h2>
+          <p>
+            <strong>Compiling</strong>Compiling Process explains the relevant
+            Arduino hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete circuit.
+          </p>
+          <div class="image-icon">
+            <img
+              alt="Arduino Compile Process"
+              src="../units/images/code compilation flow.webp"
+            />
+            <p>Arduino Code Compilation Flow</p>
+          </div>
+          <h4>Compile Steps</h4>
+          <ol>
+            <li>
+              Arduino sketch read is an important part of compiling process.
+            </li>
+            <li>Syntax check is an important part of compiling process.</li>
+            <li>
+              Required libraries include is an important part of compiling
+              process.
+            </li>
+            <li>
+              C/C++ code compile is an important part of compiling process.
+            </li>
+            <li>
+              Object files link is an important part of compiling process.
+            </li>
+            <li>
+              Final binary/hex file generate is an important part of compiling
+              process.
+            </li>
+          </ol>
+          <h4>Compilation Flow</h4>
+          <pre>
+Arduino Sketch
+      ↓
+Preprocessing
+      ↓
+Compilation
+      ↓
+Linking
+      ↓
+Machine Code / HEX File</pre
+          >
+          <h4>Common Compile Errors</h4>
+          <table>
+            <tr>
+              <th>Error</th>
+              <th>Reason</th>
+            </tr>
+            <tr>
+              <td>Missing semicolon</td>
+              <td>Statement</td>
+            </tr>
+            <tr>
+              <td>Variable not declared</td>
+              <td>Variable use define</td>
+            </tr>
+            <tr>
+              <td>Function not found</td>
+              <td>Wrong function name missing library</td>
+            </tr>
+            <tr>
+              <td>Bracket mismatch</td>
+              <td>( ) properly close</td>
+            </tr>
+          </table>
+          <div class="remember-box">
+            <b>Remember:</b><br />Compiling Process explains the relevant
+            Arduino hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete circuit.
+          </div>
+        </section>
+        <section id="upload-process">
+          <h2>Uploading Program to Arduino</h2>
+          <p>
+            <strong>Uploading</strong>Uploading Program to Arduino explains the
+            relevant Arduino hardware, programming concepts, operation, and
+            practical applications. The board uses its microcontroller,
+            input/output pins, and built-in interfaces to interact with
+            connected components. Select compatible voltage levels, configure
+            pins correctly, and test each connection before operating the
+            complete circuit.
+          </p>
+          <h4>Upload Steps</h4>
+          <ol>
+            <li>
+              Arduino board USB connect is an important part of uploading
+              program to arduino.
+            </li>
+            <li>
+              Tools Board correct board select is an important part of uploading
+              program to arduino.
+            </li>
+            <li>
+              Tools Port correct COM port select is an important part of
+              uploading program to arduino.
+            </li>
+            <li>
+              Upload button click is an important part of uploading program to
+              arduino.
+            </li>
+            <li>
+              IDE code compile is an important part of uploading program to
+              arduino.
+            </li>
+            <li>
+              Bootloader program board store is an important part of uploading
+              program to arduino.
+            </li>
+            <li>
+              Upload complete program run is an important part of uploading
+              program to arduino.
+            </li>
+          </ol>
+          <h4>Common Upload Errors</h4>
+          <table>
+            <tr>
+              <th>Problem</th>
+              <th>Possible Reason</th>
+            </tr>
+            <tr>
+              <td>Port not available</td>
+              <td>USB cable/driver issue</td>
+            </tr>
+            <tr>
+              <td>Board not responding</td>
+              <td>Wrong board selected</td>
+            </tr>
+            <tr>
+              <td>Upload timeout</td>
+              <td>Wrong COM port serial conflict</td>
+            </tr>
+            <tr>
+              <td>Permission issue</td>
+              <td>Operating system port access problem</td>
+            </tr>
+          </table>
+          <div class="note-box">
+            <b>Practical Tip:</b><br />Uploading Program to Arduino explains the
+            relevant Arduino hardware, programming concepts, operation, and
+            practical applications. The board uses its microcontroller,
+            input/output pins, and built-in interfaces to interact with
+            connected components. Select compatible voltage levels, configure
+            pins correctly, and test each connection before operating the
+            complete circuit.
+          </div>
+        </section>
+        <section id="serial-monitor">
+          <h2>Serial Monitor</h2>
+          <p>
+            <strong>Serial Monitor</strong>Serial Monitor explains the relevant
+            Arduino hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete circuit.
+          </p>
+          <div class="image-icon">
+            <img
+              alt="Arduino Serial Monitor"
+              src="../units/images/Arduino IDE Serial Monitor.webp"
+            />
+            <p>Image Placeholder: Arduino IDE Serial Monitor</p>
+          </div>
+          <h4>Starting Serial Communication</h4>
+          <pre>
+void setup() {
+  Serial.begin(9600);
+}</pre
+          >
+          <h4>Printing Data</h4>
+          <pre>
+Serial.print("Temperature: ");
+Serial.println(28);</pre
+          >
+          <h4>Reading Input</h4>
+          <pre>
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  if (Serial.available() &gt; 0) {
+    char data = Serial.read();
+    Serial.println(data);
+  }
+}</pre
+          >
+          <h4>Serial Monitor Uses</h4>
+          <ul>
+            <li>Sensor values is an important part of serial monitor.</li>
+            <li>Program debugging is an important part of serial monitor.</li>
+            <li>Arduino commands is an important part of serial monitor.</li>
+            <li>Communication test is an important part of serial monitor.</li>
+            <li>Output logs monitor is an important part of serial monitor.</li>
+          </ul>
+          <h4>Baud Rate</h4>
+          <p>
+            Serial Monitor explains the relevant Arduino hardware, programming
+            concepts, operation, and practical applications. The board uses its
+            microcontroller, input/output pins, and built-in interfaces to
+            interact with connected components. Select compatible voltage
+            levels, configure pins correctly, and test each connection before
+            operating the complete circuit.
+          </p>
+          <div class="remember-box">
+            <b>Remember:</b><br />Serial Monitor explains the relevant Arduino
+            hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete circuit.
+          </div>
+        </section>
+        <section id="serial-plotter">
+          <h2>Serial Plotter</h2>
+          <p>
+            <strong>Serial Plotter</strong>Serial Plotter explains the relevant
+            Arduino hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete circuit.
+          </p>
+          <div class="image-icon">
+            <img
+              alt="Arduino Serial Plotter"
+              src="../units/images/Arduino IDE Serial Plotter Graph.webp"
+            />
+            <p>Arduino IDE Serial Plotter Graph</p>
+          </div>
+          <h4>Example</h4>
+          <pre>
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  int value = analogRead(A0);
+
+  Serial.println(value);
+
+  delay(100);
+}</pre
+          >
+          <h4>Serial Plotter Uses</h4>
+          <ul>
+            <li>
+              Temperature variation is an important part of serial plotter.
+            </li>
+            <li>Light sensor graph is an important part of serial plotter.</li>
+            <li>
+              Heart-rate signal observe is an important part of serial plotter.
+            </li>
+            <li>
+              Noise sensor spikes identify is an important part of serial
+              plotter.
+            </li>
+            <li>Calibration help is an important part of serial plotter.</li>
+          </ul>
+          <h4>Serial Monitor vs Serial Plotter</h4>
+          <table>
+            <tr>
+              <th>Basis</th>
+              <th>Serial Monitor</th>
+              <th>Serial Plotter</th>
+            </tr>
+            <tr>
+              <td>Output</td>
+              <td>Text form</td>
+              <td>Graph form</td>
+            </tr>
+            <tr>
+              <td>Best For</td>
+              <td>Debug messages values</td>
+              <td>Changing sensor patterns</td>
+            </tr>
+            <tr>
+              <td>User Input</td>
+              <td>Possible</td>
+              <td>Generally</td>
+            </tr>
+          </table>
+          <div class="remember-box">
+            <b>Remember:</b><br />Serial Plotter explains the relevant Arduino
+            hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete circuit.
+          </div>
+        </section>
+        <section id="core-functions">
+          <h2>Core Arduino Functions</h2>
+          <p>
+            Core Arduino Functions explains the relevant Arduino hardware,
+            programming concepts, operation, and practical applications. The
+            board uses its microcontroller, input/output pins, and built-in
+            interfaces to interact with connected components. Select compatible
+            voltage levels, configure pins correctly, and test each connection
+            before operating the complete circuit.
+          </p>
+          <h4>Main Functions</h4>
+          <table>
+            <tr>
+              <th>Function</th>
+              <th>Use</th>
+            </tr>
+            <tr>
+              <td><code>pinMode()</code></td>
+              <td>Pin INPUT OUTPUT INPUT PULLUP mode set</td>
+            </tr>
+            <tr>
+              <td><code>digitalRead()</code></td>
+              <td>Digital pin HIGH/LOW read</td>
+            </tr>
+            <tr>
+              <td><code>digitalWrite()</code></td>
+              <td>Digital pin HIGH/LOW output</td>
+            </tr>
+            <tr>
+              <td><code>analogRead()</code></td>
+              <td>Analog pin value read</td>
+            </tr>
+            <tr>
+              <td><code>analogWrite()</code></td>
+              <td>PWM output</td>
+            </tr>
+            <tr>
+              <td><code>delay()</code></td>
+              <td>Program given milliseconds</td>
+            </tr>
+            <tr>
+              <td><code>millis()</code></td>
+              <td>Board start elapsed milliseconds</td>
+            </tr>
+            <tr>
+              <td><code>Serial.begin()</code></td>
+              <td>Serial communication start</td>
+            </tr>
+            <tr>
+              <td><code>Serial.print()</code></td>
+              <td>Text/value same line print</td>
+            </tr>
+            <tr>
+              <td><code>Serial.println()</code></td>
+              <td>Text/value print new line</td>
+            </tr>
+          </table>
+          <div class="remember-box">
+            <b>Remember:</b><br />Core Arduino Functions explains the relevant
+            Arduino hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete circuit.
+          </div>
+        </section>
+        <section id="pinmode">
+          <h2>pinMode()</h2>
+          <p>
+            <code>pinMode()</code>pinMode() explains the relevant Arduino
+            hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete
+            circuit.<code>setup()</code>pinMode() explains the relevant Arduino
+            hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete circuit.
+          </p>
+          <h4>Syntax</h4>
+          <pre>pinMode(pinNumber, mode);</pre>
+          <h4>Modes</h4>
+          <table>
+            <tr>
+              <th>Mode</th>
+              <th>Meaning</th>
+            </tr>
+            <tr>
+              <td><code>INPUT</code></td>
+              <td>External signal read</td>
+            </tr>
+            <tr>
+              <td><code>OUTPUT</code></td>
+              <td>LED relay buzzer control</td>
+            </tr>
+            <tr>
+              <td><code>INPUT_PULLUP</code></td>
+              <td>Internal pull-up resistor input read</td>
+            </tr>
+          </table>
+          <h4>Example</h4>
+          <pre>
+void setup() {
+  pinMode(13, OUTPUT);
+  pinMode(2, INPUT);
+}</pre
+          >
+          <div class="note-box">
+            <b>Practical Point:</b><br />pinMode() explains the relevant Arduino
+            hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete circuit.
+          </div>
+        </section>
+        <section id="digital-io">
+          <h2>digitalRead() and digitalWrite()</h2>
+          <p>
+            <code>digitalRead()</code>digitalRead() and digitalWrite() explains
+            the relevant Arduino hardware, programming concepts, operation, and
+            practical applications. The board uses its microcontroller,
+            input/output pins, and built-in interfaces to interact with
+            connected components. Select compatible voltage levels, configure
+            pins correctly, and test each connection before operating the
+            complete circuit.<code>digitalWrite()</code>digitalRead() and
+            digitalWrite() explains the relevant Arduino hardware, programming
+            concepts, operation, and practical applications. The board uses its
+            microcontroller, input/output pins, and built-in interfaces to
+            interact with connected components. Select compatible voltage
+            levels, configure pins correctly, and test each connection before
+            operating the complete circuit.
+          </p>
+          <h4>digitalRead()</h4>
+          <pre>int state = digitalRead(2);</pre>
+          <h4>digitalWrite()</h4>
+          <pre>
+digitalWrite(13, HIGH);
+digitalWrite(13, LOW);</pre
+          >
+          <h4>Button Controls LED</h4>
+          <pre>
+int buttonPin = 2;
+int ledPin = 13;
+
+void setup() {
+  pinMode(buttonPin, INPUT_PULLUP);
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  int state = digitalRead(buttonPin);
+
+  if (state == LOW) {
+    digitalWrite(ledPin, HIGH);
+  } else {
+    digitalWrite(ledPin, LOW);
+  }
+}</pre
+          >
+          <div class="info-box">
+            <b>Working:</b><br />digitalRead() and digitalWrite() explains the
+            relevant Arduino hardware, programming concepts, operation, and
+            practical applications. The board uses its microcontroller,
+            input/output pins, and built-in interfaces to interact with
+            connected components. Select compatible voltage levels, configure
+            pins correctly, and test each connection before operating the
+            complete circuit.
+          </div>
+        </section>
+        <section id="analog-io">
+          <h2>analogRead() and analogWrite()</h2>
+          <p>
+            <code>analogRead()</code>analogRead() and analogWrite() explains the
+            relevant Arduino hardware, programming concepts, operation, and
+            practical applications. The board uses its microcontroller,
+            input/output pins, and built-in interfaces to interact with
+            connected components. Select compatible voltage levels, configure
+            pins correctly, and test each connection before operating the
+            complete circuit.<code>analogWrite()</code>analogRead() and
+            analogWrite() explains the relevant Arduino hardware, programming
+            concepts, operation, and practical applications. The board uses its
+            microcontroller, input/output pins, and built-in interfaces to
+            interact with connected components. Select compatible voltage
+            levels, configure pins correctly, and test each connection before
+            operating the complete circuit.
+          </p>
+          <div class="image-icon">
+            <img
+              alt="Analog Read Write"
+              src="../units/images/analogRead and analogWrite.webp"
+            />
+            <p>analogRead and analogWrite Diagram</p>
+          </div>
+          <h4>analogRead()</h4>
+          <pre>int value = analogRead(A0);</pre>
+          <h4>analogWrite()</h4>
+          <pre>analogWrite(9, 128);</pre>
+          <h4>Potentiometer Controls LED Brightness</h4>
+          <pre>
+int potPin = A0;
+int ledPin = 9;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  int sensorValue = analogRead(potPin);
+
+  int brightness = map(sensorValue, 0, 1023, 0, 255);
+
+  analogWrite(ledPin, brightness);
+}</pre
+          >
+          <div class="remember-box">
+            <b>Remember:</b><br />analogRead() and analogWrite() explains the
+            relevant Arduino hardware, programming concepts, operation, and
+            practical applications. The board uses its microcontroller,
+            input/output pins, and built-in interfaces to interact with
+            connected components. Select compatible voltage levels, configure
+            pins correctly, and test each connection before operating the
+            complete circuit.
+          </div>
+        </section>
+        <section id="delay-millis">
+          <h2>delay() and millis()</h2>
+          <p>
+            <code>delay()</code>delay() and millis() explains the relevant
+            Arduino hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete
+            circuit.<code>millis()</code>delay() and millis() explains the
+            relevant Arduino hardware, programming concepts, operation, and
+            practical applications. The board uses its microcontroller,
+            input/output pins, and built-in interfaces to interact with
+            connected components. Select compatible voltage levels, configure
+            pins correctly, and test each connection before operating the
+            complete circuit.
+          </p>
+          <h4>delay() Example</h4>
+          <pre>
+digitalWrite(13, HIGH);
+delay(1000);
+digitalWrite(13, LOW);
+delay(1000);</pre
+          >
+          <h4>millis() Example</h4>
+          <pre>
+unsigned long previousTime = 0;
+const long interval = 1000;
+bool ledState = false;
+
+void setup() {
+  pinMode(13, OUTPUT);
+}
+
+void loop() {
+  unsigned long currentTime = millis();
+
+  if (currentTime - previousTime &gt;= interval) {
+    previousTime = currentTime;
+
+    ledState = !ledState;
+    digitalWrite(13, ledState);
+  }
+}</pre
+          >
+          <h4>Difference Table</h4>
+          <table>
+            <tr>
+              <th>Basis</th>
+              <th>delay()</th>
+              <th>millis()</th>
+            </tr>
+            <tr>
+              <td>Working</td>
+              <td>Program</td>
+              <td>Elapsed time check</td>
+            </tr>
+            <tr>
+              <td>Other Tasks</td>
+              <td>Purpose and function in delay() and millis()</td>
+              <td>Purpose and function in delay() and millis()</td>
+            </tr>
+            <tr>
+              <td>Use</td>
+              <td>Simple beginner projects</td>
+              <td>Multiple-task projects</td>
+            </tr>
+          </table>
+          <div class="note-box">
+            <b>Real Life Example:</b><br />delay() and millis() explains the
+            relevant Arduino hardware, programming concepts, operation, and
+            practical applications. The board uses its microcontroller,
+            input/output pins, and built-in interfaces to interact with
+            connected components. Select compatible voltage levels, configure
+            pins correctly, and test each connection before operating the
+            complete circuit.
+          </div>
+        </section>
+        <section id="serial-functions">
+          <h2>Serial Communication Functions</h2>
+          <p>
+            Serial Communication Functions explains the relevant Arduino
+            hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete circuit.
+          </p>
+          <h4>Serial.begin()</h4>
+          <pre>Serial.begin(9600);</pre>
+          <h4>Serial.print()</h4>
+          <pre>
+Serial.print("Temperature: ");
+Serial.print(28);</pre
+          >
+          <h4>Serial.println()</h4>
+          <pre>Serial.println("Data received");</pre>
+          <h4>Serial.available() and Serial.read()</h4>
+          <pre>
+if (Serial.available() &gt; 0) {
+  char data = Serial.read();
+  Serial.println(data);
+}</pre
+          >
+          <h4>Serial Functions Table</h4>
+          <table>
+            <tr>
+              <th>Function</th>
+              <th>Use</th>
+            </tr>
+            <tr>
+              <td><code>Serial.begin()</code></td>
+              <td>Communication start</td>
+            </tr>
+            <tr>
+              <td><code>Serial.print()</code></td>
+              <td>Same line data print</td>
+            </tr>
+            <tr>
+              <td><code>Serial.println()</code></td>
+              <td>New line print</td>
+            </tr>
+            <tr>
+              <td><code>Serial.available()</code></td>
+              <td>Check data available</td>
+            </tr>
+            <tr>
+              <td><code>Serial.read()</code></td>
+              <td>Received data read</td>
+            </tr>
+          </table>
+        </section>
+        <section id="led-program">
+          <h2>LED Blinking Program</h2>
+          <p>
+            LED Blinking Program explains the relevant Arduino hardware,
+            programming concepts, operation, and practical applications. The
+            board uses its microcontroller, input/output pins, and built-in
+            interfaces to interact with connected components. Select compatible
+            voltage levels, configure pins correctly, and test each connection
+            before operating the complete circuit.
+          </p>
+          <div class="image-icon">
+            <img
+              alt="LED Blinking Circuit"
+              src="../units/images/LED Blinking Circuit.webp"
+            />
+            <p>Arduino LED Blinking Circuit</p>
+          </div>
+          <h4>Connection</h4>
+          <pre>
+Arduino Pin 13 → Resistor → LED Anode
+LED Cathode → GND</pre
+          >
+          <h4>Program</h4>
+          <pre>
+int ledPin = 13;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(ledPin, HIGH);
+  delay(1000);
+
+  digitalWrite(ledPin, LOW);
+  delay(1000);
+}</pre
+          >
+          <div class="info-box">
+            <b>Output:</b><br />LED Blinking Program explains the relevant
+            Arduino hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete circuit.
+          </div>
+        </section>
+        <section id="button-program">
+          <h2>Push Button Program</h2>
+          <p>
+            Push Button Program explains the relevant Arduino hardware,
+            programming concepts, operation, and practical applications. The
+            board uses its microcontroller, input/output pins, and built-in
+            interfaces to interact with connected components. Select compatible
+            voltage levels, configure pins correctly, and test each connection
+            before operating the complete circuit.
+          </p>
+          <div class="image-icon">
+            <img
+              alt="Push Button Arduino Circuit"
+              src="../units/images/Push Button.webp"
+            />
+            <p>Push Button with Arduino</p>
+          </div>
+          <h4>Program using INPUT_PULLUP</h4>
+          <pre>
+int buttonPin = 2;
+int ledPin = 13;
+
+void setup() {
+  pinMode(buttonPin, INPUT_PULLUP);
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  int buttonState = digitalRead(buttonPin);
+
+  if (buttonState == LOW) {
+    digitalWrite(ledPin, HIGH);
+  } else {
+    digitalWrite(ledPin, LOW);
+  }
+}</pre
+          >
+          <div class="remember-box">
+            <b>Remember:</b><br />Push Button Program explains the relevant
+            Arduino hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete circuit.
+          </div>
+        </section>
+        <section id="ldr-program">
+          <h2>LDR Sensor Program</h2>
+          <p>
+            <strong>LDR</strong>LDR Sensor Program explains the relevant Arduino
+            hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete circuit.
+          </p>
+          <h4>Program</h4>
+          <pre>
+int ldrPin = A0;
+int ledPin = 13;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int lightValue = analogRead(ldrPin);
+
+  Serial.println(lightValue);
+
+  if (lightValue &lt; 400) {
+    digitalWrite(ledPin, HIGH);
+  } else {
+    digitalWrite(ledPin, LOW);
+  }
+
+  delay(500);
+}</pre
+          >
+          <h4>Application</h4>
+          <p>
+            LDR Sensor Program explains the relevant Arduino hardware,
+            programming concepts, operation, and practical applications. The
+            board uses its microcontroller, input/output pins, and built-in
+            interfaces to interact with connected components. Select compatible
+            voltage levels, configure pins correctly, and test each connection
+            before operating the complete circuit.
+          </p>
+        </section>
+        <section id="temperature-program">
+          <h2>Temperature Sensor Program</h2>
+          <p>
+            Temperature Sensor Program explains the relevant Arduino hardware,
+            programming concepts, operation, and practical applications. The
+            board uses its microcontroller, input/output pins, and built-in
+            interfaces to interact with connected components. Select compatible
+            voltage levels, configure pins correctly, and test each connection
+            before operating the complete circuit.
+          </p>
+          <div class="image-icon">
+            <img
+              alt="Temperature Sensor Arduino"
+              src="../units/images/LM35 Temperature Sensor Circuit.webp"
+            />
+            <p>LM35 Temperature Sensor Circuit</p>
+          </div>
+          <h4>LM35 Example</h4>
+          <pre>
+int sensorPin = A0;
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  int sensorValue = analogRead(sensorPin);
+
+  float voltage = sensorValue * (5.0 / 1023.0);
+
+  float temperature = voltage * 100.0;
+
+  Serial.print("Temperature: ");
+  Serial.println(temperature);
+
+  delay(1000);
+}</pre
+          >
+          <div class="note-box">
+            <b>Application:</b><br />Temperature Sensor Program explains the
+            relevant Arduino hardware, programming concepts, operation, and
+            practical applications. The board uses its microcontroller,
+            input/output pins, and built-in interfaces to interact with
+            connected components. Select compatible voltage levels, configure
+            pins correctly, and test each connection before operating the
+            complete circuit.
+          </div>
+        </section>
+        <section id="buzzer-program">
+          <h2>Buzzer Program</h2>
+          <p>
+            Buzzer Program explains the relevant Arduino hardware, programming
+            concepts, operation, and practical applications. The board uses its
+            microcontroller, input/output pins, and built-in interfaces to
+            interact with connected components. Select compatible voltage
+            levels, configure pins correctly, and test each connection before
+            operating the complete circuit.
+          </p>
+          <h4>Basic Program</h4>
+          <pre>
+int buzzerPin = 8;
+
+void setup() {
+  pinMode(buzzerPin, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(buzzerPin, HIGH);
+  delay(500);
+
+  digitalWrite(buzzerPin, LOW);
+  delay(500);
+}</pre
+          >
+          <h4>tone() Example</h4>
+          <pre>
+tone(8, 1000);
+delay(1000);
+noTone(8);</pre
+          >
+          <div class="remember-box">
+            <b>Remember:</b><br />Buzzer Program explains the relevant Arduino
+            hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete circuit.
+          </div>
+        </section>
+        <section id="relay-program">
+          <h2>Relay Module Program</h2>
+          <p>
+            <strong>Relay</strong>Relay Module Program explains the relevant
+            Arduino hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete circuit.
+          </p>
+          <h4>Program</h4>
+          <pre>
+int relayPin = 7;
+
+void setup() {
+  pinMode(relayPin, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(relayPin, HIGH);
+  delay(2000);
+
+  digitalWrite(relayPin, LOW);
+  delay(2000);
+}</pre
+          >
+          <h4>Safety</h4>
+          <ul>
+            <li>
+              High-voltage wiring trained supervision is an important part of
+              relay module program.
+            </li>
+            <li>
+              Relay module current requirement check is an important part of
+              relay module program.
+            </li>
+            <li>
+              Arduino pin appliance direct connect is an important part of relay
+              module program.
+            </li>
+            <li>
+              Isolation proper enclosure use is an important part of relay
+              module program.
+            </li>
+          </ul>
+          <div class="note-box">
+            <b>Real Life Example:</b><br />Relay Module Program explains the
+            relevant Arduino hardware, programming concepts, operation, and
+            practical applications. The board uses its microcontroller,
+            input/output pins, and built-in interfaces to interact with
+            connected components. Select compatible voltage levels, configure
+            pins correctly, and test each connection before operating the
+            complete circuit.
+          </div>
+        </section>
+        <section id="servo-program">
+          <h2>Servo Motor Program</h2>
+          <p>
+            Servo Motor Program explains the relevant Arduino hardware,
+            programming concepts, operation, and practical applications. The
+            board uses its microcontroller, input/output pins, and built-in
+            interfaces to interact with connected components. Select compatible
+            voltage levels, configure pins correctly, and test each connection
+            before operating the complete circuit.
+          </p>
+          <div class="image-icon">
+            <img
+              alt="Servo Motor Arduino Circuit"
+              src="../units/images/Servo Motor with Arduino.webp"
+            />
+            <p>Servo Motor with Arduino</p>
+          </div>
+          <h4>Program</h4>
+          <pre>
+#include &lt;Servo.h&gt;
+
+Servo myServo;
+
+void setup() {
+  myServo.attach(9);
+}
+
+void loop() {
+  myServo.write(0);
+  delay(1000);
+
+  myServo.write(90);
+  delay(1000);
+
+  myServo.write(180);
+  delay(1000);
+}</pre
+          >
+          <h4>Servo Positions</h4>
+          <table>
+            <tr>
+              <th>Angle</th>
+              <th>Meaning</th>
+            </tr>
+            <tr>
+              <td>0°</td>
+              <td>Starting position</td>
+            </tr>
+            <tr>
+              <td>90°</td>
+              <td>Middle position</td>
+            </tr>
+            <tr>
+              <td>180°</td>
+              <td>Maximum position</td>
+            </tr>
+          </table>
+          <div class="remember-box">
+            <b>Remember:</b><br />Servo Motor Program explains the relevant
+            Arduino hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete circuit.
+          </div>
+        </section>
+        <section id="flowchart">
+          <h2>Arduino Programming Flow</h2>
+          <p>
+            Arduino Programming Flow explains the relevant Arduino hardware,
+            programming concepts, operation, and practical applications. The
+            board uses its microcontroller, input/output pins, and built-in
+            interfaces to interact with connected components. Select compatible
+            voltage levels, configure pins correctly, and test each connection
+            before operating the complete circuit.
+          </p>
+          <div class="image-icon">
+            <img
+              alt="Arduino Programming Flowchart"
+              src="../units/images/Arduino program flowchart.webp"
+            />
+            <p>Arduino Program Flowchart</p>
+          </div>
+          <h4>Flow</h4>
+          <pre>
+Power ON / Reset
+       ↓
+Bootloader
+       ↓
+setup() runs once
+       ↓
+loop() starts
+       ↓
+Read Input
+       ↓
+Apply Condition / Logic
+       ↓
+Control Output
+       ↓
+Repeat loop()</pre
+          >
+          <h4>Example Logic</h4>
+          <p>
+            Arduino Programming Flow explains the relevant Arduino hardware,
+            programming concepts, operation, and practical applications. The
+            board uses its microcontroller, input/output pins, and built-in
+            interfaces to interact with connected components. Select compatible
+            voltage levels, configure pins correctly, and test each connection
+            before operating the complete circuit.
+          </p>
+        </section>
+        <section id="common-errors">
+          <h2>Common Arduino Errors</h2>
+          <p>
+            Common Arduino Errors explains the relevant Arduino hardware,
+            programming concepts, operation, and practical applications. The
+            board uses its microcontroller, input/output pins, and built-in
+            interfaces to interact with connected components. Select compatible
+            voltage levels, configure pins correctly, and test each connection
+            before operating the complete circuit.
+          </p>
+          <h4>Programming Errors</h4>
+          <table>
+            <tr>
+              <th>Error</th>
+              <th>Reason</th>
+            </tr>
+            <tr>
+              <td>Missing semicolon</td>
+              <td>
+                Statement<code>;</code>Purpose and function in common arduino
+                errors
+              </td>
+            </tr>
+            <tr>
+              <td>Variable not declared</td>
+              <td>Variable define use</td>
+            </tr>
+            <tr>
+              <td>Bracket mismatch</td>
+              <td>( ) properly close</td>
+            </tr>
+            <tr>
+              <td>Wrong function name</td>
+              <td>Capitalization spelling error</td>
+            </tr>
+          </table>
+          <h4>Upload Errors</h4>
+          <ul>
+            <li>
+              Wrong board selected is an important part of common arduino
+              errors.
+            </li>
+            <li>
+              Wrong COM port selected is an important part of common arduino
+              errors.
+            </li>
+            <li>
+              Faulty USB cable is an important part of common arduino errors.
+            </li>
+            <li>
+              Driver missing is an important part of common arduino errors.
+            </li>
+            <li>
+              Pin 0/1 connected module conflict is an important part of common
+              arduino errors.
+            </li>
+          </ul>
+          <h4>Circuit Errors</h4>
+          <ul>
+            <li>GND common is an important part of common arduino errors.</li>
+            <li>
+              LED polarity wrong is an important part of common arduino errors.
+            </li>
+            <li>
+              Wrong voltage level is an important part of common arduino errors.
+            </li>
+            <li>
+              Loose jumper wire is an important part of common arduino errors.
+            </li>
+            <li>
+              Wrong breadboard row is an important part of common arduino
+              errors.
+            </li>
+          </ul>
+          <div class="remember-box">
+            <b>Remember:</b><br />Common Arduino Errors explains the relevant
+            Arduino hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete circuit.
+          </div>
+        </section>
+        <section id="best-practices">
+          <h2>Arduino Best Practices</h2>
+          <p>
+            Arduino Best Practices explains the relevant Arduino hardware,
+            programming concepts, operation, and practical applications. The
+            board uses its microcontroller, input/output pins, and built-in
+            interfaces to interact with connected components. Select compatible
+            voltage levels, configure pins correctly, and test each connection
+            before operating the complete circuit.
+          </p>
+          <h4>Coding Best Practices</h4>
+          <ul>
+            <li>
+              Meaningful variable names use is an important part of arduino best
+              practices.
+            </li>
+            <li>
+              Repeated code function is an important part of arduino best
+              practices.
+            </li>
+            <li>Comments is an important part of arduino best practices.</li>
+            <li>
+              Pin numbers constants define is an important part of arduino best
+              practices.
+            </li>
+            <li>
+              delay() unnecessary use avoid is an important part of arduino best
+              practices.
+            </li>
+            <li>
+              Serial Monitor debugging is an important part of arduino best
+              practices.
+            </li>
+            <li>
+              Large global variables is an important part of arduino best
+              practices.
+            </li>
+          </ul>
+          <h4>Circuit Best Practices</h4>
+          <ul>
+            <li>
+              Power OFF wiring change is an important part of arduino best
+              practices.
+            </li>
+            <li>
+              LED resistor use is an important part of arduino best practices.
+            </li>
+            <li>
+              Voltage compatibility check is an important part of arduino best
+              practices.
+            </li>
+            <li>
+              High-current load driver/relay use is an important part of arduino
+              best practices.
+            </li>
+            <li>
+              Connections labels color-coded wires organize is an important part
+              of arduino best practices.
+            </li>
+          </ul>
+          <h4>Clean Code Example</h4>
+          <pre>
+const int LED_PIN = 13;
+
+void turnLedOn() {
+  digitalWrite(LED_PIN, HIGH);
+}
+
+void turnLedOff() {
+  digitalWrite(LED_PIN, LOW);
+}</pre
+          >
+          <div class="note-box">
+            <b>Professional Tip:</b><br />Arduino Best Practices explains the
+            relevant Arduino hardware, programming concepts, operation, and
+            practical applications. The board uses its microcontroller,
+            input/output pins, and built-in interfaces to interact with
+            connected components. Select compatible voltage levels, configure
+            pins correctly, and test each connection before operating the
+            complete circuit.
+          </div>
+        </section>
+        <section id="industry-knowledge">
+          <h2>Beyond Syllabus: Industry Knowledge</h2>
+          <p>
+            Beyond Syllabus: Industry Knowledge explains the relevant Arduino
+            hardware, programming concepts, operation, and practical
+            applications. The board uses its microcontroller, input/output pins,
+            and built-in interfaces to interact with connected components.
+            Select compatible voltage levels, configure pins correctly, and test
+            each connection before operating the complete circuit.
+          </p>
+          <div class="image-icon">
+            <img
+              alt="Arduino Industry Knowledge"
+              src="../units/images/iot industry flow.webp"
+            />
+            <p>Arduino to IoT Industry Flow</p>
+          </div>
+          <h4>Useful Next Technologies</h4>
+          <table>
+            <tr>
+              <th>Technology</th>
+              <th>Why Useful</th>
+            </tr>
+            <tr>
+              <td>ESP8266</td>
+              <td>Built-in Wi-Fi IoT projects</td>
+            </tr>
+            <tr>
+              <td>ESP32</td>
+              <td>Wi-Fi Bluetooth more processing power</td>
+            </tr>
+            <tr>
+              <td>MQTT</td>
+              <td>Lightweight IoT messaging</td>
+            </tr>
+            <tr>
+              <td>HTTP APIs</td>
+              <td>Cloud/server communication</td>
+            </tr>
+            <tr>
+              <td>Node-RED</td>
+              <td>Visual IoT workflow creation</td>
+            </tr>
+            <tr>
+              <td>Cloud Dashboard</td>
+              <td>Remote sensor monitoring</td>
+            </tr>
+          </table>
+          <h4>Project Development Path</h4>
+          <pre>
+Arduino Basics
+     ↓
+Sensors and Actuators
+     ↓
+Serial Communication
+     ↓
+ESP32 / Wi-Fi
+     ↓
+MQTT or HTTP
+     ↓
+Cloud Dashboard
+     ↓
+Complete IoT Project</pre
+          >
+          <div class="remember-box">
+            <b>Remember:</b><br />Beyond Syllabus: Industry Knowledge explains
+            the relevant Arduino hardware, programming concepts, operation, and
+            practical applications. The board uses its microcontroller,
+            input/output pins, and built-in interfaces to interact with
+            connected components. Select compatible voltage levels, configure
+            pins correctly, and test each connection before operating the
+            complete circuit.
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
