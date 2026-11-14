@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FB7SX0P0D3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer = window.dataLayer || []; }
+    gtag('js', new Date());
+    gtag('config', 'G-FB7SX0P0D3');
+  </script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Chapter 10 study notes about network devices, CAT-6 and OFC cables, cabling tools, and network troubleshooting." />
+  <meta name="keywords" content="Network Devices, Hub, Switch, Router, Bridge, Gateway, Ethernet Card, CAT-6, OFC, Cabling Tools, Network Troubleshooting, CHM, BK LearnX" />
+  <meta name="author" content="BK LearnX" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="googlebot" content="index, follow" />
+  <meta name="language" content="English" />
+  <meta name="theme-color" content="#0f172a" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Chapter 10 | Network Devices" />
+  <meta property="og:description" content="Student-friendly English notes on network devices, network cables, cabling tools, and troubleshooting." />
+  <meta property="og:site_name" content="BK LearnX" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Chapter 10 | Network Devices" />
+  <meta name="twitter:description" content="Learn about hubs, switches, routers, bridges, gateways, Ethernet cards, CAT-6, OFC, cabling tools, and troubleshooting." />
+  <title>Chapter 10 | Network Devices | BK LearnX</title>
+  <link href="../../../semester-1/style.css" rel="stylesheet" />
+  <link href="../../../.././../../../assets/images/logo.jpeg" rel="icon" />
+  <link href="../../../../../../../assets/shared/unit-enhancements.css" rel="stylesheet" />
+  <script defer src="../../../../../../../assets/shared/unit-enhancements.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Network Devices",
+    "description": "Chapter 10 study notes explaining network devices, CAT-6 and OFC cables, cabling tools, and troubleshooting.",
+    "author": {"@type": "Organization", "name": "BK LearnX"},
+    "publisher": {"@type": "Organization", "name": "BK LearnX"},
+    "inLanguage": "en",
+    "keywords": ["Network Devices", "Hub", "Switch", "Router", "Bridge", "Gateway", "Ethernet Card", "CAT-6", "OFC", "Cabling Tools"]
+  }
+  </script>
+</head>
+
+<body>
+  <div class="page">
+    <main class="content">
+      <div class="hero">
+        <h1>Network Devices</h1>
+      </div>
+
+      <section id="intro">
+        <h2>Introduction</h2>
+        <p>A <strong>computer network</strong> is a group of computers and other devices connected to share information, resources, and services. Network devices are hardware components that help computers communicate and transfer data within a network or between different networks.</p>
+        <p>Different network devices perform different functions. A hub sends incoming data to connected devices, a switch forwards data within a local network, and a router connects different networks. Other devices, such as bridges, gateways, and Ethernet cards, also play important roles in network communication.</p>
+        <div class="image-icon">
+          <img alt="Common network devices including hub, switch, router, and Ethernet network card" src="../images/network-devices.png" />
+          <p>Image Placeholder: Different Network Devices</p>
+        </div>
+        <div class="remember-box"><b>Remember:</b><br />Network devices connect computers, manage data transmission, and allow communication between devices and networks.</div>
+      </section>
+
+      <section id="hub">
+        <h2>Hub</h2>
+        <p>A <strong>Hub</strong> is a basic networking device used to connect multiple computers or network devices in a Local Area Network (LAN). When a hub receives data from one connected device, it sends that data to all other connected ports, except the port from which it was received.</p>
+        <p>A hub does not examine the destination MAC address of the data. It simply repeats the incoming signal to the other ports. Therefore, all connected devices receive the transmitted data, even when the data is intended for only one device.</p>
+        <h4>Features of a Hub</h4>
+        <ul>
+          <li>Connects multiple devices in a LAN.</li>
+          <li>Broadcasts incoming data to all other connected ports.</li>
+          <li>Does not maintain a MAC address table.</li>
+          <li>Works at the Physical Layer (Layer 1) of the OSI model.</li>
+          <li>Can create unnecessary network traffic and collisions in traditional shared Ethernet networks.</li>
+        </ul>
+        <h4>Types of Hub</h4>
+        <ul>
+          <li><strong>Passive Hub:</strong> Connects devices and passes signals without regenerating or amplifying them.</li>
+          <li><strong>Active Hub:</strong> Regenerates or strengthens incoming signals before sending them to connected ports.</li>
+          <li><strong>Intelligent Hub:</strong> Provides basic monitoring or management features in addition to connecting devices.</li>
+        </ul>
+        <div class="image-icon">
+          <img alt="Ethernet network hub with multiple LAN ports" src="../images/network-hub.png" />
+          <p>Image Placeholder: Network Hub</p>
+        </div>
+      </section>
+
+      <section id="switch">
+        <h2>Switch</h2>
+        <p>A <strong>Network Switch</strong> is a device used to connect computers, printers, servers, and other devices within a Local Area Network. It receives data and forwards it to the appropriate destination port by using MAC addresses.</p>
+        <p>A switch learns the MAC addresses of connected devices and stores them in a MAC address table. When a frame arrives, the switch checks its destination MAC address and forwards the frame to the correct port when the destination is known.</p>
+        <h4>Features of a Switch</h4>
+        <ul>
+          <li>Connects multiple devices within a LAN.</li>
+          <li>Uses MAC addresses to forward Ethernet frames.</li>
+          <li>Learns and maintains a MAC address table.</li>
+          <li>Usually provides a separate collision domain for each switch port.</li>
+          <li>Most commonly operates at the Data Link Layer (Layer 2); some advanced switches also perform Layer 3 routing.</li>
+        </ul>
+        <h4>Types of Switch</h4>
+        <ul>
+          <li><strong>Unmanaged Switch:</strong> Works with basic default settings and normally does not require configuration.</li>
+          <li><strong>Managed Switch:</strong> Allows network administrators to configure and monitor features such as VLANs, port settings, and traffic controls.</li>
+          <li><strong>Layer 3 Switch:</strong> Can perform switching and routing functions between supported networks or VLANs.</li>
+        </ul>
+        <div class="image-icon">
+          <img alt="Ethernet network switch with multiple ports and connected cables" src="../images/network-switch.png" />
+          <p>Image Placeholder: Network Switch</p>
+        </div>
+      </section>
+
+      <section id="router">
+        <h2>Router</h2>
+        <p>A <strong>Router</strong> is a networking device that connects two or more different networks and forwards data packets between them. It examines IP addresses and uses routing information to select a suitable path for data.</p>
+        <p>A common example is a home router that connects a Local Area Network (LAN) to the Internet. Many home routers also provide Wi-Fi, a built-in network switch, firewall functions, and Network Address Translation (NAT).</p>
+        <h4>Features of a Router</h4>
+        <ul>
+          <li>Connects different IP networks.</li>
+          <li>Uses IP addresses to forward packets.</li>
+          <li>Maintains routing information to select paths.</li>
+          <li>Can connect a local network to the Internet.</li>
+          <li>May provide additional features such as Wi-Fi, DHCP, NAT, and firewall protection.</li>
+        </ul>
+        <p>A traditional router mainly operates at the Network Layer (Layer 3) of the OSI model.</p>
+        <div class="image-icon">
+          <img alt="Wireless router with Ethernet ports and antennas" src="../images/network-router.png" />
+          <p>Image Placeholder: Network Router</p>
+        </div>
+      </section>
+
+      <section id="bridge">
+        <h2>Bridge</h2>
+        <p>A <strong>Network Bridge</strong> is a device used to connect two or more LAN segments and control the movement of frames between them. It examines MAC addresses to decide whether a frame should be forwarded to another network segment or kept within the same segment.</p>
+        <h4>Features of a Bridge</h4>
+        <ul>
+          <li>Connects separate segments of a LAN.</li>
+          <li>Uses MAC addresses to filter and forward frames.</li>
+          <li>Helps reduce unnecessary traffic between network segments.</li>
+          <li>Works at the Data Link Layer (Layer 2) of the OSI model.</li>
+          <li>Can learn device addresses and maintain a forwarding table.</li>
+        </ul>
+        <p>A network switch can be understood as a multiport bridge because it performs similar Layer 2 forwarding functions across multiple ports.</p>
+        <div class="image-icon">
+          <img alt="Network bridge connecting two local area network segments" src="../images/network-bridge.png" />
+          <p>Image Placeholder: Network Bridge</p>
+        </div>
+      </section>
+
+      <section id="gateway">
+        <h2>Gateway</h2>
+        <p>A <strong>Gateway</strong> is a device or system that connects networks that may use different communication protocols or architectures. It acts as an entry and exit point through which data can move from one network to another.</p>
+        <p>A gateway may perform protocol conversion, data translation, or other communication functions so that different systems can exchange information. In an ordinary IP network, the term <strong>default gateway</strong> usually refers to the router address that a device uses to send traffic to destinations outside its local network.</p>
+        <h4>Features of a Gateway</h4>
+        <ul>
+          <li>Connects different networks or systems.</li>
+          <li>May translate between different protocols or data formats.</li>
+          <li>Can act as an entry and exit point for network traffic.</li>
+          <li>May provide security, filtering, or traffic-management functions.</li>
+          <li>Its operation can involve different OSI layers, depending on its purpose.</li>
+        </ul>
+        <div class="image-icon">
+          <img alt="Gateway connecting two different computer networks" src="../images/network-gateway.png" />
+          <p>Image Placeholder: Network Gateway</p>
+        </div>
+      </section>
+
+      <section id="ethernet-card">
+        <h2>Ethernet Card (Network Interface Card)</h2>
+        <p>An <strong>Ethernet Card</strong>, also known as a Network Interface Card (NIC), is a hardware component that allows a computer to connect to a wired Ethernet network. It provides a physical network interface through which the computer can send and receive data.</p>
+        <p>Many modern computers have Ethernet networking built into the motherboard. A separate Ethernet card can also be installed in a compatible expansion slot, or a USB-to-Ethernet adapter can provide a wired network connection.</p>
+        <h4>Functions of an Ethernet Card</h4>
+        <ul>
+          <li>Connects a computer to a wired Ethernet network.</li>
+          <li>Sends and receives Ethernet frames.</li>
+          <li>Uses a unique MAC address assigned to the network interface.</li>
+          <li>Converts computer data into signals suitable for the network medium and converts received signals back into data.</li>
+          <li>Supports network communication at the speed and standard supported by the adapter and network equipment.</li>
+        </ul>
+        <h4>Common Types</h4>
+        <ul>
+          <li><strong>Integrated NIC:</strong> Built into the computer's motherboard.</li>
+          <li><strong>PCIe Ethernet Card:</strong> Installed in a PCI Express expansion slot in a desktop computer.</li>
+          <li><strong>USB-to-Ethernet Adapter:</strong> Connects to a USB port and provides an Ethernet port.</li>
+        </ul>
+        <div class="image-icon">
+          <img alt="Ethernet network interface card with RJ45 port" src="../images/ethernet-card.png" />
+          <p>Image Placeholder: Ethernet Card (NIC)</p>
+        </div>
+      </section>
+
+      <section id="network-cables">
+        <h2>Network Cables (CAT-6 and OFC)</h2>
+        <p>Network cables are physical transmission media used to carry data between computers and networking devices. Two important types of wired network media are twisted-pair copper cables, such as CAT-6, and optical fibre cables, such as OFC.</p>
+
+        <h4>1. CAT-6 Cable</h4>
+        <p><strong>CAT-6 (Category 6)</strong> is a type of twisted-pair copper Ethernet cable used in wired computer networks. It contains four pairs of insulated copper wires twisted together to reduce electromagnetic interference and crosstalk.</p>
+        <ul>
+          <li>Commonly used to connect computers, switches, routers, and other Ethernet devices.</li>
+          <li>Uses twisted pairs of copper conductors.</li>
+          <li>Normally terminated with an 8P8C modular connector, commonly called an RJ45 connector.</li>
+          <li>Supports Ethernet speeds up to 1 Gbps over 100 metres and can support 10 Gbps over shorter distances, typically up to 55 metres under suitable installation conditions.</li>
+          <li>Has a rated bandwidth of up to 250 MHz.</li>
+        </ul>
+        <div class="image-icon">
+          <img alt="CAT-6 Ethernet cable with four twisted wire pairs and RJ45 connector" src="../images/cat6-cable.png" />
+          <p>Image Placeholder: CAT-6 Network Cable</p>
+        </div>
+
+        <h4>Common CAT-6 Cable Types</h4>
+        <ul>
+          <li><strong>UTP (Unshielded Twisted Pair):</strong> Does not have an additional metallic shield around the cable pairs. It is commonly used in offices and homes.</li>
+          <li><strong>STP/Shielded Cable:</strong> Includes shielding to provide additional protection against electromagnetic interference. Proper grounding and installation are important.</li>
+        </ul>
+
+        <h4>2. OFC (Optical Fibre Cable)</h4>
+        <p><strong>OFC (Optical Fibre Cable)</strong> carries data in the form of light signals through very thin strands of glass or plastic called optical fibres. It is used for high-speed communication over long distances and in locations where electrical interference may affect copper cables.</p>
+        <h4>Main Parts of an Optical Fibre</h4>
+        <ul>
+          <li><strong>Core:</strong> The central part through which light travels.</li>
+          <li><strong>Cladding:</strong> The layer surrounding the core that helps keep light inside the core through total internal reflection.</li>
+          <li><strong>Coating:</strong> A protective layer that helps protect the fibre from damage.</li>
+          <li><strong>Outer Jacket:</strong> The outer covering that protects the cable during installation and use.</li>
+        </ul>
+        <h4>Types of Optical Fibre</h4>
+        <ul>
+          <li><strong>Single-Mode Fibre:</strong> Has a very small core and carries light mainly along a single mode. It is commonly used for long-distance communication.</li>
+          <li><strong>Multi-Mode Fibre:</strong> Has a larger core and carries multiple light modes. It is commonly used for shorter-distance links, such as within buildings and data centres.</li>
+        </ul>
+        <h4>Advantages of OFC</h4>
+        <ul>
+          <li>Supports very high data capacity and bandwidth.</li>
+          <li>Can carry data over long distances with low signal loss.</li>
+          <li>Is not affected by electromagnetic interference in the same way as copper cables.</li>
+          <li>Does not carry electrical current through the fibre itself.</li>
+          <li>Is useful for backbone networks and high-speed communication links.</li>
+        </ul>
+        <div class="image-icon">
+          <img alt="Optical fibre cable showing core, cladding, protective coating, and outer jacket" src="../images/ofc-cable.png" />
+          <p>Image Placeholder: OFC Structure and Cable</p>
+        </div>
+
+        <h4>Difference Between CAT-6 and OFC</h4>
+        <table>
+          <tr>
+            <th>Basis</th>
+            <th>CAT-6</th>
+            <th>OFC</th>
+          </tr>
+          <tr>
+            <td>Transmission Medium</td>
+            <td>Copper wires.</td>
+            <td>Glass or plastic optical fibres.</td>
+          </tr>
+          <tr>
+            <td>Signal Type</td>
+            <td>Electrical signals.</td>
+            <td>Light signals.</td>
+          </tr>
+          <tr>
+            <td>Interference</td>
+            <td>Can be affected by electromagnetic interference.</td>
+            <td>Immune to electromagnetic interference in the fibre transmission path.</td>
+          </tr>
+          <tr>
+            <td>Distance</td>
+            <td>Common Ethernet channel length is up to 100 metres, depending on the standard and installation.</td>
+            <td>Can support much longer links, depending on fibre type and optical equipment.</td>
+          </tr>
+          <tr>
+            <td>Installation</td>
+            <td>Generally easier to terminate with standard Ethernet tools.</td>
+            <td>Requires fibre-specific connectors, tools, and careful handling.</td>
+          </tr>
+          <tr>
+            <td>Common Uses</td>
+            <td>Office LANs, homes, and device connections.</td>
+            <td>Network backbones, data centres, and long-distance links.</td>
+          </tr>
+        </table>
+        <div class="note-box"><b>Note:</b><br />CAT-6 and OFC are different cable technologies. The required cable depends on network speed, distance, installation conditions, and the interfaces supported by the devices.</div>
+      </section>
+
+      <section id="cabling-tools">
+        <h2>Cabling Tools</h2>
+        <p>Cabling tools are used to prepare, install, terminate, and test network cables. Using the correct tools helps create reliable connections and makes network installation and maintenance easier.</p>
+        <h4>Common Network Cabling Tools</h4>
+        <table>
+          <tr>
+            <th>Tool</th>
+            <th>Function</th>
+          </tr>
+          <tr>
+            <td><strong>Crimping Tool</strong></td>
+            <td>Attaches an 8P8C modular plug, commonly called an RJ45 plug, to the end of a twisted-pair Ethernet cable.</td>
+          </tr>
+          <tr>
+            <td><strong>Wire Stripper</strong></td>
+            <td>Removes the outer jacket or insulation from a cable without damaging the internal conductors.</td>
+          </tr>
+          <tr>
+            <td><strong>Cable Cutter</strong></td>
+            <td>Cuts network cables cleanly to the required length.</td>
+          </tr>
+          <tr>
+            <td><strong>LAN Cable Tester</strong></td>
+            <td>Checks cable continuity and helps identify open wires, short circuits, and incorrect wire connections.</td>
+          </tr>
+          <tr>
+            <td><strong>Punch-Down Tool</strong></td>
+            <td>Pushes and trims individual wires into insulation-displacement terminals on patch panels and network wall jacks.</td>
+          </tr>
+          <tr>
+            <td><strong>Network Cable Toner and Probe</strong></td>
+            <td>Helps identify and trace a particular cable among multiple cables.</td>
+          </tr>
+          <tr>
+            <td><strong>Measuring Tape</strong></td>
+            <td>Measures the cable route and required cable length.</td>
+          </tr>
+          <tr>
+            <td><strong>Fibre Optic Tools</strong></td>
+            <td>Specialized tools such as fibre strippers, cleavers, cleaning tools, and fusion splicers are used for optical fibre preparation and joining.</td>
+          </tr>
+        </table>
+        <div class="image-icon">
+          <img alt="Network cabling tools including crimping tool, wire stripper, cable tester, and punch-down tool" src="../images/network-cabling-tools.png" />
+          <p>Image Placeholder: Network Cabling Tools</p>
+        </div>
+
+        <h4>Basic Steps to Prepare a CAT-6 Ethernet Cable</h4>
+        <ol>
+          <li>Measure the required cable length and cut the CAT-6 cable cleanly.</li>
+          <li>Remove a small section of the outer jacket carefully without damaging the twisted pairs.</li>
+          <li>Arrange the eight wires according to the selected wiring standard, such as T568A or T568B.</li>
+          <li>Straighten and trim the wires evenly while keeping the untwisted section as short as practical.</li>
+          <li>Insert the wires fully into the correct positions in the compatible 8P8C plug.</li>
+          <li>Use the crimping tool to secure the plug to the cable.</li>
+          <li>Test the completed cable with a LAN cable tester.</li>
+        </ol>
+        <div class="image-icon">
+          <img alt="Steps for arranging and crimping CAT-6 wires into an Ethernet connector" src="../images/cat6-crimping-steps.png" />
+          <p>Image Placeholder: CAT-6 Cable Crimping Steps</p>
+        </div>
+        <div class="note-box"><b>Important:</b><br />Use the same wiring standard at both ends for a straight-through cable. Follow the equipment requirements and applicable cabling standard when making crossover or other specialized cables.</div>
+      </section>
+
+      <section id="troubleshooting">
+        <h2>Network Troubleshooting</h2>
+        <p>Network troubleshooting is the process of finding and resolving problems that prevent devices from communicating correctly. Problems may be caused by loose cables, damaged connectors, incorrect IP settings, faulty network devices, driver issues, or wireless interference.</p>
+
+        <h4>Common Network Problems and Solutions</h4>
+        <table>
+          <tr>
+            <th>Problem</th>
+            <th>Possible Cause</th>
+            <th>Basic Solution</th>
+          </tr>
+          <tr>
+            <td>No network connection</td>
+            <td>Loose cable, disabled network adapter, faulty switch port, or router problem.</td>
+            <td>Check cable connections, adapter status, link lights, and network device power. Test with a known-good cable or port.</td>
+          </tr>
+          <tr>
+            <td>Limited or no Internet access</td>
+            <td>Router or modem issue, incorrect IP configuration, or service-provider outage.</td>
+            <td>Check the router's status, IP configuration, and Internet connection. Restart network equipment if appropriate.</td>
+          </tr>
+          <tr>
+            <td>Slow network speed</td>
+            <td>Damaged cable, network congestion, weak Wi-Fi signal, or device limitation.</td>
+            <td>Check cable condition and link speed, reduce unnecessary traffic, and test the connection from another device.</td>
+          </tr>
+          <tr>
+            <td>IP address conflict</td>
+            <td>Two devices are using the same IP address.</td>
+            <td>Check IP settings and use the network's DHCP service or assign a valid unique address according to the network plan.</td>
+          </tr>
+          <tr>
+            <td>Network cable tester shows a fault</td>
+            <td>Incorrect wire order, broken conductor, short circuit, or poor termination.</td>
+            <td>Recheck the wiring standard, inspect the connectors, and re-terminate or replace the cable if necessary.</td>
+          </tr>
+          <tr>
+            <td>One computer cannot access the LAN</td>
+            <td>Faulty Ethernet adapter, incorrect network settings, or damaged cable.</td>
+            <td>Check the adapter in the operating system, verify IP settings, and test with a known-good cable and switch port.</td>
+          </tr>
+          <tr>
+            <td>Frequent disconnections</td>
+            <td>Loose connector, damaged cable, unstable power, or network device fault.</td>
+            <td>Secure the connections, inspect the cable, check device power, and test another port or cable.</td>
+          </tr>
+          <tr>
+            <td>Cannot access another device</td>
+            <td>Incorrect IP address, subnet, gateway, firewall rule, or name-resolution issue.</td>
+            <td>Verify network settings, test local connectivity, and check firewall and name-resolution configuration.</td>
+          </tr>
+        </table>
+
+        <h4>Basic Troubleshooting Procedure</h4>
+        <ol>
+          <li><strong>Check Physical Connections:</strong> Make sure network cables are firmly connected and not visibly damaged.</li>
+          <li><strong>Check Device Power:</strong> Confirm that the hub, switch, router, and other network devices are switched on.</li>
+          <li><strong>Check Link Indicators:</strong> Observe the link or activity LEDs on the Ethernet card and switch or router port.</li>
+          <li><strong>Check Network Adapter:</strong> Ensure the Ethernet or wireless adapter is enabled and working properly.</li>
+          <li><strong>Verify IP Configuration:</strong> Check that the device has a valid IP address, subnet mask, and default gateway.</li>
+          <li><strong>Test Connectivity:</strong> Use a suitable network diagnostic command, such as <code>ping</code>, to test communication with another device or gateway.</li>
+          <li><strong>Test Cable and Port:</strong> Use a cable tester or try a known-good cable and network port.</li>
+          <li><strong>Restart if Necessary:</strong> Restart the affected device or network equipment when appropriate.</li>
+          <li><strong>Escalate the Problem:</strong> If the issue remains, check device logs and configuration or contact the network administrator.</li>
+        </ol>
+        <div class="image-icon">
+          <img alt="Technician testing an Ethernet cable and checking a network switch" src="../images/network-troubleshooting.png" />
+          <p>Image Placeholder: Network Troubleshooting</p>
+        </div>
+        <div class="remember-box"><b>Remember:</b><br />Always check physical connections and device power first. Then check the network adapter, IP configuration, cable, and network device settings.</div>
+        <div class="note-box"><b>Safety Note:</b><br />Do not look directly into the end of an optical fibre or optical connector. Invisible laser light may be present. Use proper fibre inspection and cleaning procedures, and handle glass fibre carefully.</div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

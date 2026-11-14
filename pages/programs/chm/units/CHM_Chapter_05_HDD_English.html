@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FB7SX0P0D3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-FB7SX0P0D3');
+  </script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Chapter 5 study notes about HDD magnetic recording, data encoding methods, HDD features, head parking, and troubleshooting." />
+  <meta name="keywords" content="Hard Disk Drive, HDD, Magnetic Recording, Data Encoding, HDD Features, Head Parking, HDD Troubleshooting, CHM, BK LearnX" />
+  <meta name="author" content="BK LearnX" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="googlebot" content="index, follow" />
+  <meta name="language" content="English" />
+  <meta name="theme-color" content="#0f172a" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Chapter 5 | Hard Disk Drive (HDD)" />
+  <meta property="og:description" content="Detailed, student-friendly English notes on HDD magnetic recording, data encoding, features, head parking, and troubleshooting." />
+  <meta property="og:site_name" content="BK LearnX" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Chapter 5 | Hard Disk Drive (HDD)" />
+  <meta name="twitter:description" content="Learn how hard disk drives record data, encode information, and handle common faults." />
+  <title>Chapter 5 | Hard Disk Drive (HDD) | BK LearnX</title>
+  <link href="../../../semester-1/style.css" rel="stylesheet" />
+  <link href="../../../.././../../../assets/images/logo.jpeg" rel="icon" />
+  <link href="../../../../../../../assets/shared/unit-enhancements.css" rel="stylesheet" />
+  <script defer src="../../../../../../../assets/shared/unit-enhancements.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Hard Disk Drive (HDD)",
+    "description": "Chapter 5 study notes explaining magnetic recording, data encoding methods, HDD features, head parking, and troubleshooting.",
+    "author": {"@type": "Organization", "name": "BK LearnX"},
+    "publisher": {"@type": "Organization", "name": "BK LearnX"},
+    "inLanguage": "en",
+    "keywords": ["HDD", "Magnetic Recording", "Data Encoding", "HDD Features", "Head Parking", "HDD Troubleshooting"]
+  }
+  </script>
+</head>
+
+<body>
+  <div class="page">
+    <main class="content">
+      <div class="hero">
+        <h1>Hard Disk Drive (HDD)</h1>
+      </div>
+
+      <section id="intro">
+        <h2>Introduction</h2>
+        <p>A <strong>Hard Disk Drive (HDD)</strong> is a non-volatile secondary storage device used to store operating systems, software, documents, photographs, videos, and other digital information. Non-volatile means that the stored data remains available even when the computer is switched off.</p>
+        <p>An HDD stores information on rotating disks called <strong>platters</strong>. These platters have a magnetic coating that allows data to be recorded and read. A read/write head moves over the platter surface to access information. The drive also contains electronic circuits and a motor that controls the rotation of the platters.</p>
+        <div class="image-icon">
+          <img alt="Internal hard disk drive showing platters, actuator arm, read write heads, and spindle" src="../images/hdd-internal-components.png" />
+          <p>Image Placeholder: Internal Parts of a Hard Disk Drive</p>
+        </div>
+        <div class="remember-box"><b>Remember:</b><br />An HDD is a magnetic storage device that stores data on rotating platters and retains information even when power is switched off.</div>
+      </section>
+
+      <section id="magnetic-recording">
+        <h2>Magnetic Recording</h2>
+        <p><strong>Magnetic recording</strong> is the method used by an HDD to store digital information on the magnetic surface of its platters. The platter surface is covered with a thin magnetic material. The read/write head changes or detects the magnetic state of tiny areas on this surface to represent digital data.</p>
+        <p>When data is written, the write head produces a controlled magnetic field that changes the magnetic orientation of small regions on the platter. When data is read, the read sensor detects changes in the magnetic pattern and converts them into electrical signals. The drive's electronic circuits process these signals so that the computer can understand the stored information.</p>
+        <div class="image-icon">
+          <img alt="Illustration of a hard disk read write head recording magnetic patterns on a rotating platter" src="../images/hdd-magnetic-recording.png" />
+          <p>Image Placeholder: Magnetic Recording on an HDD Platter</p>
+        </div>
+
+        <h4>How Magnetic Recording Works</h4>
+        <ol>
+          <li><strong>Platter Rotation:</strong> A spindle motor rotates the platters at a controlled speed so that different areas of the disk can pass beneath the read/write heads.</li>
+          <li><strong>Data Writing:</strong> The write head creates magnetic patterns on selected areas of the platter. These patterns represent the data being stored.</li>
+          <li><strong>Data Reading:</strong> The read sensor detects the magnetic patterns as the platter rotates beneath the head.</li>
+          <li><strong>Signal Processing:</strong> The drive's electronic controller processes the detected signals and converts them into digital information for the computer.</li>
+        </ol>
+
+        <h4>Basic Terms Used in Magnetic Recording</h4>
+        <ul>
+          <li><strong>Platter:</strong> A circular disk with a magnetic coating on which data is stored.</li>
+          <li><strong>Track:</strong> A circular path on the platter surface where data is recorded.</li>
+          <li><strong>Sector:</strong> A subdivision of a track used to organize data into smaller storage units.</li>
+          <li><strong>Cylinder:</strong> A group of tracks located at the same radial position on different platter surfaces in a multi-surface drive.</li>
+          <li><strong>Read/Write Head:</strong> The component that reads magnetic information from the platter and writes new information to it.</li>
+          <li><strong>Actuator Arm:</strong> The mechanism that moves the read/write heads to the required position over the platter.</li>
+          <li><strong>Spindle Motor:</strong> The motor that rotates the platters at the required speed.</li>
+        </ul>
+        <div class="note-box"><b>Important:</b><br />The read/write head normally operates extremely close to the platter surface without touching it during normal operation. Physical contact can damage the magnetic surface and cause data loss.</div>
+      </section>
+
+      <section id="data-encoding">
+        <h2>Data Encoding Method</h2>
+        <p><strong>Data encoding</strong> is the process of representing digital information in a form that a storage device can record and retrieve. Computers process information as binary digits, called <strong>bits</strong>, which have the values 0 and 1. In an HDD, the recording system represents these bits through magnetic patterns on the platter.</p>
+        <p>The drive's recording electronics convert digital data into suitable write signals. The write head uses these signals to create magnetic transitions on the disk. During reading, the sensor detects the magnetic changes, and the drive's signal-processing circuits decode them back into digital data.</p>
+
+        <h4>Common HDD Recording and Encoding Concepts</h4>
+        <table>
+          <tr>
+            <th>Method or Concept</th>
+            <th>Explanation</th>
+          </tr>
+          <tr>
+            <td><strong>FM (Frequency Modulation)</strong></td>
+            <td>An early magnetic recording method that used clock and data-related magnetic transitions. It required frequent transitions and was less efficient in storage capacity.</td>
+          </tr>
+          <tr>
+            <td><strong>MFM (Modified Frequency Modulation)</strong></td>
+            <td>An improved method that reduced unnecessary clock transitions compared with FM. It was used in early computer hard disks and floppy disk systems.</td>
+          </tr>
+          <tr>
+            <td><strong>RLL (Run-Length Limited)</strong></td>
+            <td>A family of encoding methods that controls the number of consecutive bits between magnetic transitions. It can represent data more efficiently than older FM and MFM methods.</td>
+          </tr>
+          <tr>
+            <td><strong>PRML (Partial Response Maximum Likelihood)</strong></td>
+            <td>A signal-processing technique that interprets readback signals using information about expected signal patterns. It helps read data reliably at higher recording densities.</td>
+          </tr>
+        </table>
+
+        <h4>Basic Steps of Data Encoding in an HDD</h4>
+        <ol>
+          <li>The computer sends digital data to the hard disk drive.</li>
+          <li>The drive controller organizes the data and prepares it for recording.</li>
+          <li>The recording electronics convert the data into suitable signals for the write head.</li>
+          <li>The write head records magnetic patterns on the platter surface.</li>
+          <li>During a read operation, the sensor detects the magnetic patterns and produces electrical signals.</li>
+          <li>The drive processes and decodes the signals, then sends the recovered digital data to the computer.</li>
+        </ol>
+        <div class="image-icon">
+          <img alt="Flow diagram showing digital data converted into magnetic patterns and decoded during reading" src="../images/hdd-data-encoding.png" />
+          <p>Image Placeholder: HDD Data Encoding and Decoding Process</p>
+        </div>
+        <div class="note-box"><b>Note:</b><br />FM, MFM, and RLL are mainly associated with older disk recording systems. Modern HDDs use much more advanced signal-processing and coding techniques to store data at high densities.</div>
+      </section>
+
+      <section id="features">
+        <h2>HDD Features</h2>
+        <p>An HDD has several features that make it useful as a storage device in desktop computers, laptops, servers, and external storage units. Its main purpose is to provide long-term storage for large amounts of data. The actual performance and capacity depend on the drive's model and specifications.</p>
+
+        <h4>Important Features of an HDD</h4>
+        <ul>
+          <li><strong>Non-Volatile Storage:</strong> HDDs retain stored information even when the computer is turned off because the data is recorded magnetically.</li>
+          <li><strong>Large Storage Capacity:</strong> HDDs are available in a wide range of capacities, making them suitable for storing large collections of files, applications, and backups.</li>
+          <li><strong>Magnetic Storage Technology:</strong> Data is stored as magnetic patterns on rotating platters.</li>
+          <li><strong>Random Access:</strong> The drive can access data from different locations on its platters by moving the read/write heads to the required position, although access time is affected by mechanical movement.</li>
+          <li><strong>Moving Mechanical Parts:</strong> An HDD contains rotating platters, a spindle motor, and a moving actuator assembly. These parts make it more sensitive to physical shock than a drive with no moving parts.</li>
+          <li><strong>Cost per Unit of Storage:</strong> HDDs commonly provide a relatively low cost per gigabyte compared with many solid-state drives, especially at higher capacities.</li>
+          <li><strong>Different Form Factors:</strong> Common internal HDD sizes include 3.5-inch drives for many desktop systems and 2.5-inch drives for many laptops and compact systems.</li>
+          <li><strong>Interface Support:</strong> Many modern internal HDDs use the SATA interface, while enterprise and older systems may use other interfaces.</li>
+          <li><strong>Cache Memory:</strong> Many HDDs contain a small amount of internal cache memory that helps manage data transfers and improve certain operations.</li>
+        </ul>
+
+        <h4>Important HDD Specifications</h4>
+        <table>
+          <tr>
+            <th>Specification</th>
+            <th>Meaning</th>
+          </tr>
+          <tr>
+            <td><strong>Storage Capacity</strong></td>
+            <td>The amount of data the drive can store, commonly measured in gigabytes (GB) or terabytes (TB).</td>
+          </tr>
+          <tr>
+            <td><strong>RPM (Revolutions Per Minute)</strong></td>
+            <td>The number of times the platters rotate in one minute. Common examples include 5,400 RPM and 7,200 RPM.</td>
+          </tr>
+          <tr>
+            <td><strong>Cache Size</strong></td>
+            <td>The amount of temporary memory inside the drive used to help manage data operations.</td>
+          </tr>
+          <tr>
+            <td><strong>Interface</strong></td>
+            <td>The connection standard used to communicate with the computer, such as SATA.</td>
+          </tr>
+          <tr>
+            <td><strong>Form Factor</strong></td>
+            <td>The physical size and shape of the drive, such as 2.5-inch or 3.5-inch.</td>
+          </tr>
+        </table>
+        <div class="image-icon">
+          <img alt="Internal hard disk drive and external hard disk drive examples" src="../images/hdd-types.png" />
+          <p>Image Placeholder: Internal and External Hard Disk Drives</p>
+        </div>
+      </section>
+
+      <section id="head-parking">
+        <h2>Head Parking</h2>
+        <p><strong>Head parking</strong> is the process of moving the read/write heads of an HDD to a safe position when the drive is not performing normal read or write operations, especially during shutdown or power loss. In many modern drives, the heads are moved away from the data area of the platters and placed on a dedicated ramp or parking zone.</p>
+        <p>Parking helps reduce the risk of accidental contact between the heads and the magnetic platter surface. This is important because the read/write heads operate extremely close to the platter. Contact caused by shock or incorrect handling can scratch the surface and damage stored data.</p>
+        <div class="image-icon">
+          <img alt="Hard disk drive actuator arm moving read write heads to a parking ramp" src="../images/hdd-head-parking.png" />
+          <p>Image Placeholder: HDD Read/Write Head Parking Position</p>
+        </div>
+
+        <h4>How Head Parking Works</h4>
+        <ol>
+          <li>When the drive receives a shutdown or parking command, its control system prepares the heads to leave the active data area.</li>
+          <li>The actuator mechanism moves the heads toward the designated parking area or ramp.</li>
+          <li>The heads rest in the safe parking position, away from the normal data-recording area.</li>
+          <li>When the drive starts again, the mechanism moves the heads back into position for normal operation.</li>
+        </ol>
+
+        <h4>Importance of Head Parking</h4>
+        <ul>
+          <li>Helps protect the platter surface from accidental head contact when the drive is not operating normally.</li>
+          <li>Reduces the risk of damage caused by movement or shock while the drive is powered down.</li>
+          <li>Helps protect the stored data by keeping the heads away from the active recording area when parked.</li>
+        </ul>
+        <div class="note-box"><b>Important:</b><br />Head parking does not make an HDD safe from every impact. Avoid moving, dropping, or shaking a hard disk drive, especially while it is powered on and its platters are spinning.</div>
+      </section>
+
+      <section id="troubleshooting">
+        <h2>HDD Troubleshooting</h2>
+        <p><strong>HDD troubleshooting</strong> is the process of identifying and resolving problems that prevent a hard disk drive from being detected, accessed, or used correctly. Problems may be caused by loose cables, power supply issues, file system errors, damaged sectors, overheating, or mechanical failure.</p>
+        <p>Some HDD problems can be related to connections or software, while others indicate physical damage. If a drive contains important data and begins making unusual clicking, grinding, or scraping sounds, stop using it and seek professional data recovery advice. Repeated attempts to operate a physically failing drive can make data recovery more difficult.</p>
+
+        <h4>Common HDD Problems and Solutions</h4>
+        <table>
+          <tr>
+            <th>Problem</th>
+            <th>Possible Cause</th>
+            <th>Basic Troubleshooting</th>
+          </tr>
+          <tr>
+            <td>HDD is not detected</td>
+            <td>Loose SATA data cable, disconnected power cable, disabled port, or drive failure.</td>
+            <td>Shut down the computer and disconnect power. Check the SATA data and power connections. Try a known-good cable or compatible port if available. Check BIOS/UEFI detection.</td>
+          </tr>
+          <tr>
+            <td>Computer is slow</td>
+            <td>Heavy disk activity, limited free space, background processes, file system problems, or a failing drive.</td>
+            <td>Check disk usage and available storage. Back up important data and review the drive's health status using a suitable diagnostic tool.</td>
+          </tr>
+          <tr>
+            <td>Clicking or grinding noise</td>
+            <td>Possible mechanical damage or a failing read/write head or motor assembly.</td>
+            <td>Stop using the drive and switch off the computer when safe. Do not open the drive casing. Seek professional data recovery assistance if the data is important.</td>
+          </tr>
+          <tr>
+            <td>Files cannot be opened</td>
+            <td>File system corruption, damaged sectors, or damaged files.</td>
+            <td>Do not save more data to the affected drive. Back up accessible files first and use appropriate diagnostic or recovery tools carefully.</td>
+          </tr>
+          <tr>
+            <td>Operating system does not boot</td>
+            <td>Boot configuration problem, damaged system files, disconnected drive, or drive failure.</td>
+            <td>Check whether the drive is detected in BIOS/UEFI. Check boot order and connections. Use suitable recovery tools only after considering the condition of the drive and the importance of its data.</td>
+          </tr>
+          <tr>
+            <td>HDD becomes unusually hot</td>
+            <td>Poor cabinet airflow, high operating temperature, or a drive problem.</td>
+            <td>Check cabinet ventilation and keep air vents clear. Monitor drive temperature and back up important data if overheating continues.</td>
+          </tr>
+          <tr>
+            <td>Bad sector warning</td>
+            <td>Some areas of the disk surface may no longer store or return data reliably.</td>
+            <td>Back up important data immediately. Check drive health with a suitable diagnostic utility and replace the drive if it is failing.</td>
+          </tr>
+        </table>
+
+        <h4>Basic Steps for HDD Troubleshooting</h4>
+        <ol>
+          <li>Observe the symptoms, such as detection errors, unusual sounds, slow performance, or missing files.</li>
+          <li>For an internal drive, shut down the computer and disconnect power before checking its cables.</li>
+          <li>Check the SATA data cable and power connection, if the drive uses these connections.</li>
+          <li>Check whether the drive is detected in BIOS/UEFI or the operating system's disk management utility.</li>
+          <li>If the drive is accessible, back up important data before performing repair or diagnostic operations.</li>
+          <li>Use a suitable drive-health or manufacturer diagnostic tool to check the drive's condition.</li>
+          <li>If the drive shows signs of physical failure, stop using it and seek professional assistance.</li>
+          <li>Replace a faulty HDD with a compatible storage drive after protecting or recovering important data where possible.</li>
+        </ol>
+        <div class="note-box"><b>Data Safety:</b><br />Back up important files regularly. Do not format, initialize, or run repair operations on a drive containing important data until you understand the risk. Never open the sealed HDD assembly in an ordinary room; internal components require a controlled environment for professional repair.</div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

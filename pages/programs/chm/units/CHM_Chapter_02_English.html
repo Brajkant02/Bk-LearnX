@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FB7SX0P0D3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-FB7SX0P0D3');
+  </script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Chapter 2 study notes on the motherboard, including buses, components and types, battery, motherboard connections, CPU cooling, and troubleshooting." />
+  <meta name="keywords" content="Motherboard, BUS, Motherboard Components, Motherboard Types, CMOS Battery, Motherboard Connections, CPU Cooling, Motherboard Troubleshooting, CHM, BK LearnX" />
+  <meta name="author" content="BK LearnX" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="googlebot" content="index, follow" />
+  <meta name="language" content="English" />
+  <meta name="theme-color" content="#0f172a" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Chapter 2 | Motherboard" />
+  <meta property="og:description" content="Detailed, student-friendly English notes about motherboard buses, components, types, connections, CPU cooling, and troubleshooting." />
+  <meta property="og:site_name" content="BK LearnX" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Chapter 2 | Motherboard" />
+  <meta name="twitter:description" content="Learn about motherboard structure, components, connections, cooling, and common problems." />
+  <title>Chapter 2 | Motherboard | BK LearnX</title>
+  <link href="../../../semester-1/style.css" rel="stylesheet" />
+  <link href="../../../.././../../../assets/images/logo.jpeg" rel="icon" />
+  <link href="../../../../../../../assets/shared/unit-enhancements.css" rel="stylesheet" />
+  <script defer src="../../../../../../../assets/shared/unit-enhancements.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Motherboard",
+    "description": "Chapter 2 study notes explaining motherboard buses, components and types, battery, connections, CPU cooling, and motherboard troubleshooting.",
+    "author": {"@type": "Organization", "name": "BK LearnX"},
+    "publisher": {"@type": "Organization", "name": "BK LearnX"},
+    "inLanguage": "en",
+    "keywords": ["Motherboard", "BUS", "Motherboard Components", "Motherboard Types", "CMOS Battery", "CPU Cooling", "Troubleshooting"]
+  }
+  </script>
+</head>
+
+<body>
+  <div class="page">
+    <main class="content">
+      <div class="hero">
+        <h1>Motherboard</h1>
+      </div>
+
+      <section id="intro">
+        <h2>Introduction</h2>
+        <p>The <strong>motherboard</strong> is the main printed circuit board (PCB) of a computer. It provides a common platform on which important components such as the CPU, RAM, storage devices, and expansion cards are installed or connected. It also contains electrical circuits and connectors that allow these components to communicate with one another.</p>
+        <p>The motherboard distributes power to different parts of the computer and provides communication paths for transferring data and control signals. A computer cannot work properly if its motherboard is damaged or if its major connections are not functioning correctly.</p>
+        <div class="image-icon">
+          <img alt="Motherboard showing CPU socket, RAM slots, expansion slots, chipset, and connectors" src="../images/motherboard-components.png" />
+          <p>Image Placeholder: Main Parts of a Motherboard</p>
+        </div>
+        <div class="remember-box"><b>Remember:</b><br />The motherboard connects the major hardware components of a computer and provides the pathways through which they communicate.</div>
+      </section>
+
+      <section id="bus">
+        <h2>BUS</h2>
+        <p>A <strong>BUS</strong> is a group of electrical pathways or communication lines used to transfer data, addresses, and control signals between different components of a computer. The bus system allows the CPU, memory, and other hardware devices to exchange information. Without buses, these components would not be able to communicate with one another in an organized way.</p>
+        <p>The width and speed of a bus affect how much information can be transferred and how quickly the transfer can take place. A bus may carry data, identify a memory location, or transmit signals that control the operation of computer components.</p>
+
+        <h4>Types of BUS</h4>
+        <p>The system bus is commonly described through three main types according to the information they carry:</p>
+        <table>
+          <tr>
+            <th>Type of BUS</th>
+            <th>Function</th>
+            <th>Example</th>
+          </tr>
+          <tr>
+            <td><strong>Data BUS</strong></td>
+            <td>Transfers actual data and instructions between the CPU, memory, and other components. It is generally bidirectional because data can move in both directions.</td>
+            <td>Moving a value from RAM to the CPU or sending processed data to memory.</td>
+          </tr>
+          <tr>
+            <td><strong>Address BUS</strong></td>
+            <td>Carries the address of the memory location or input/output device that the CPU wants to access. In a basic system, it generally carries addresses from the CPU to other components.</td>
+            <td>Identifying the memory location from which the CPU needs to read data.</td>
+          </tr>
+          <tr>
+            <td><strong>Control BUS</strong></td>
+            <td>Carries control and timing signals that coordinate operations between computer components.</td>
+            <td>Read, write, and interrupt signals used to manage data operations.</td>
+          </tr>
+        </table>
+
+        <h4>Importance of BUS</h4>
+        <ul>
+          <li>It provides communication paths between the CPU, memory, and other hardware components.</li>
+          <li>It helps transfer data and instructions within the computer.</li>
+          <li>It carries addresses so that the required memory location or device can be selected.</li>
+          <li>It carries control signals that coordinate different computer operations.</li>
+        </ul>
+        <div class="note-box"><b>Example:</b><br />When the CPU needs information stored in RAM, the address bus identifies the required location, the control bus manages the read operation, and the data bus carries the information.</div>
+      </section>
+
+      <section id="components">
+        <h2>Motherboard Components</h2>
+        <p>A motherboard contains several important components, sockets, slots, and connectors. Each part performs a particular function and helps the computer operate as a complete system. The exact arrangement and appearance of these components may differ according to the motherboard model and form factor.</p>
+        <div class="image-icon">
+          <img alt="Annotated motherboard with its major components" src="../images/motherboard-labelled-components.png" />
+          <p>Image Placeholder: Labelled Motherboard Components</p>
+        </div>
+
+        <h4>Major Components and Their Functions</h4>
+        <table>
+          <tr>
+            <th>Component</th>
+            <th>Function</th>
+          </tr>
+          <tr>
+            <td><strong>CPU Socket</strong></td>
+            <td>Holds the processor and provides the electrical connection between the CPU and the motherboard. The socket must be compatible with the processor model.</td>
+          </tr>
+          <tr>
+            <td><strong>RAM Slots</strong></td>
+            <td>Hold memory modules that temporarily store data and instructions currently being used by the CPU.</td>
+          </tr>
+          <tr>
+            <td><strong>Chipset</strong></td>
+            <td>Manages communication between the processor and various motherboard devices. Its responsibilities depend on the motherboard design.</td>
+          </tr>
+          <tr>
+            <td><strong>Expansion Slots</strong></td>
+            <td>Allow additional cards, such as graphics, sound, or network cards, to be installed to add or improve computer functions.</td>
+          </tr>
+          <tr>
+            <td><strong>BIOS/UEFI Chip</strong></td>
+            <td>Contains firmware that initializes hardware and helps start the computer before the operating system loads.</td>
+          </tr>
+          <tr>
+            <td><strong>CMOS Battery</strong></td>
+            <td>Supplies a small amount of power to maintain the real-time clock and certain firmware settings when the computer is switched off and disconnected from mains power.</td>
+          </tr>
+          <tr>
+            <td><strong>SATA Connectors</strong></td>
+            <td>Connect compatible storage devices, such as SATA hard disk drives and SATA solid-state drives, to the motherboard.</td>
+          </tr>
+          <tr>
+            <td><strong>Power Connectors</strong></td>
+            <td>Receive electrical power from the power supply and deliver it to the motherboard and processor circuits.</td>
+          </tr>
+          <tr>
+            <td><strong>Fan Headers</strong></td>
+            <td>Provide power and control connections for CPU and cabinet cooling fans.</td>
+          </tr>
+          <tr>
+            <td><strong>Rear I/O Ports</strong></td>
+            <td>Provide external connections for devices such as a keyboard, mouse, monitor, network cable, and audio equipment.</td>
+          </tr>
+        </table>
+      </section>
+
+      <section id="types">
+        <h2>Types of Motherboard</h2>
+        <p>Motherboards are available in different sizes and layouts. These designs are commonly called <strong>form factors</strong>. A form factor defines the physical dimensions, mounting points, and general arrangement of a motherboard. The cabinet and power supply must support the motherboard's form factor.</p>
+
+        <h4>Common Motherboard Form Factors</h4>
+        <table>
+          <tr>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Common Use</th>
+          </tr>
+          <tr>
+            <td><strong>ATX</strong></td>
+            <td>ATX is a widely used motherboard form factor. It generally provides several expansion slots, memory slots, and connectors.</td>
+            <td>Desktop computers that need room for multiple components and expansion cards.</td>
+          </tr>
+          <tr>
+            <td><strong>Micro-ATX</strong></td>
+            <td>Micro-ATX is smaller than standard ATX while retaining support for many common desktop components.</td>
+            <td>Compact desktop computers and general-purpose home or office systems.</td>
+          </tr>
+          <tr>
+            <td><strong>Mini-ITX</strong></td>
+            <td>Mini-ITX is a small motherboard form factor designed for compact computer systems. It usually provides fewer expansion options than larger boards.</td>
+            <td>Small-form-factor desktops and space-saving computer builds.</td>
+          </tr>
+        </table>
+        <div class="image-icon">
+          <img alt="ATX, Micro-ATX, and Mini-ITX motherboard size comparison" src="../images/motherboard-form-factors.png" />
+          <p>Image Placeholder: ATX, Micro-ATX, and Mini-ITX Form Factors</p>
+        </div>
+        <div class="remember-box"><b>Remember:</b><br />Before installing a motherboard, check that its form factor is supported by the computer cabinet and that its processor and memory requirements are compatible with the selected components.</div>
+      </section>
+
+      <section id="battery">
+        <h2>Motherboard Battery</h2>
+        <p>The <strong>motherboard battery</strong>, commonly called the <strong>CMOS battery</strong>, is a small coin-shaped battery fitted on the motherboard. In many desktop computers, it is a CR2032 lithium coin cell. It provides backup power to the real-time clock and helps retain certain firmware settings when the computer is turned off and disconnected from the main power supply.</p>
+        <p>The battery does not power the whole computer. Its purpose is limited to maintaining the clock and supported settings. When the battery becomes weak or empty, the computer may lose the correct date and time or display a message asking the user to configure firmware settings.</p>
+        <div class="image-icon">
+          <img alt="Coin-shaped CMOS battery installed on a motherboard" src="../images/motherboard-cmos-battery.png" />
+          <p>Image Placeholder: CMOS Battery on Motherboard</p>
+        </div>
+
+        <h4>Functions of the CMOS Battery</h4>
+        <ul>
+          <li>Helps maintain the computer's date and time when the system is switched off.</li>
+          <li>Helps retain certain BIOS/UEFI configuration settings, depending on the motherboard design.</li>
+          <li>Provides backup power to the real-time clock circuit.</li>
+        </ul>
+
+        <h4>Common Signs of a Weak CMOS Battery</h4>
+        <ul>
+          <li>The computer repeatedly shows an incorrect date or time.</li>
+          <li>Firmware settings may return to default values after the computer is disconnected from power.</li>
+          <li>A startup message may indicate that the time or CMOS settings need to be configured.</li>
+        </ul>
+
+        <h4>Basic Battery Replacement Procedure</h4>
+        <ol>
+          <li>Shut down the computer and disconnect its power cable from the electrical supply.</li>
+          <li>Open the cabinet carefully and locate the coin-shaped battery on the motherboard.</li>
+          <li>Note the battery's orientation, usually with the positive (+) side facing upward.</li>
+          <li>Release the retaining clip carefully and remove the old battery.</li>
+          <li>Insert a compatible replacement battery in the correct direction.</li>
+          <li>Close the cabinet, reconnect power, start the computer, and set the date, time, and required firmware settings if necessary.</li>
+        </ol>
+        <div class="note-box"><b>Safety Note:</b><br />Always disconnect the computer from its power source before working inside the cabinet. Avoid touching circuit contacts unnecessarily, and never force the battery out of its holder.</div>
+      </section>
+
+      <section id="connections">
+        <h2>Connections on the Motherboard</h2>
+        <p>The motherboard contains internal connectors and external ports that allow different hardware devices to be attached. Internal connections are generally used for components installed inside the cabinet, while external ports are used for devices connected from outside. Correct connections are necessary for power delivery, data transfer, and proper operation.</p>
+        <div class="image-icon">
+          <img alt="Motherboard internal connectors and rear input output ports" src="../images/motherboard-connections.png" />
+          <p>Image Placeholder: Internal and External Motherboard Connections</p>
+        </div>
+
+        <h4>Internal Connections</h4>
+        <table>
+          <tr>
+            <th>Connection</th>
+            <th>Purpose</th>
+          </tr>
+          <tr>
+            <td><strong>24-Pin ATX Power Connector</strong></td>
+            <td>Connects the main power cable from the power supply to the motherboard and supplies power to its main circuits.</td>
+          </tr>
+          <tr>
+            <td><strong>4-Pin or 8-Pin CPU Power Connector</strong></td>
+            <td>Supplies dedicated power to the processor's power regulation circuitry.</td>
+          </tr>
+          <tr>
+            <td><strong>SATA Data Connector</strong></td>
+            <td>Connects a SATA storage drive to the motherboard for data communication.</td>
+          </tr>
+          <tr>
+            <td><strong>M.2 Slot</strong></td>
+            <td>Supports compatible M.2 devices, commonly NVMe or SATA solid-state drives, depending on the motherboard specification.</td>
+          </tr>
+          <tr>
+            <td><strong>RAM Slots</strong></td>
+            <td>Provide slots for compatible memory modules.</td>
+          </tr>
+          <tr>
+            <td><strong>PCI Express Slot</strong></td>
+            <td>Connects expansion cards such as graphics cards and other supported add-on cards.</td>
+          </tr>
+          <tr>
+            <td><strong>CPU_FAN / SYS_FAN Header</strong></td>
+            <td>Connects the processor cooling fan and cabinet fans to the motherboard.</td>
+          </tr>
+          <tr>
+            <td><strong>Front Panel Header</strong></td>
+            <td>Connects cabinet controls and indicators, such as the power switch, reset switch, and power LED.</td>
+          </tr>
+          <tr>
+            <td><strong>Front USB and Audio Headers</strong></td>
+            <td>Connect the USB ports and audio sockets fitted on the front or top panel of the cabinet.</td>
+          </tr>
+        </table>
+
+        <h4>External Connections (Rear I/O Ports)</h4>
+        <table>
+          <tr>
+            <th>Port</th>
+            <th>Purpose</th>
+          </tr>
+          <tr>
+            <td><strong>USB Port</strong></td>
+            <td>Connects devices such as keyboards, mice, printers, pen drives, and other USB-compatible equipment.</td>
+          </tr>
+          <tr>
+            <td><strong>HDMI / DisplayPort / VGA</strong></td>
+            <td>Provides a video connection to a compatible monitor or display. Availability depends on the motherboard and processor graphics support.</td>
+          </tr>
+          <tr>
+            <td><strong>Ethernet (RJ-45) Port</strong></td>
+            <td>Connects the computer to a wired network or router using an Ethernet cable.</td>
+          </tr>
+          <tr>
+            <td><strong>Audio Ports</strong></td>
+            <td>Connect speakers, headphones, microphones, and other audio equipment.</td>
+          </tr>
+          <tr>
+            <td><strong>PS/2 Port</strong></td>
+            <td>Provides a connection for compatible older keyboards or mice on motherboards that include this port.</td>
+          </tr>
+        </table>
+        <div class="remember-box"><b>Remember:</b><br />Always check the motherboard manual before connecting cables or installing components. Connector shape, pin arrangement, and compatibility must match.</div>
+      </section>
+
+      <section id="cpu-cooling">
+        <h2>Keeping CPU Cool</h2>
+        <p>The CPU performs a large number of operations and produces heat while working. If this heat is not removed properly, the processor temperature may rise beyond its safe operating range. Excessive heat can cause the computer to slow down, shut down unexpectedly, become unstable, or reduce the life of hardware components.</p>
+        <p><strong>CPU cooling</strong> is the process of removing heat from the processor and transferring it away from the computer. A cooling system usually uses a heat sink and a fan, while some computers use liquid cooling systems. Proper airflow inside the cabinet is also important.</p>
+        <div class="image-icon">
+          <img alt="CPU cooling fan and heat sink installed over a processor" src="../images/cpu-cooling-system.png" />
+          <p>Image Placeholder: CPU Heat Sink and Cooling Fan</p>
+        </div>
+
+        <h4>Methods of Keeping the CPU Cool</h4>
+        <ul>
+          <li><strong>Use a Heat Sink:</strong> A heat sink is a metal component, commonly made of aluminium or copper, that absorbs heat from the processor and spreads it over a larger surface area so that the heat can be released into the surrounding air.</li>
+          <li><strong>Use a CPU Fan:</strong> A CPU fan moves air across the heat sink and helps carry heat away from the processor. The fan must be connected to the correct motherboard fan header.</li>
+          <li><strong>Apply Thermal Paste:</strong> Thermal paste is applied in a small, suitable amount between the CPU and the heat sink. It fills tiny surface gaps and improves heat transfer from the processor to the heat sink.</li>
+          <li><strong>Maintain Cabinet Airflow:</strong> Intake and exhaust fans help bring cool air into the cabinet and remove warm air. Cables should be arranged so that they do not unnecessarily block airflow.</li>
+          <li><strong>Clean Dust Regularly:</strong> Dust can block fan blades, heat sink fins, and air vents. Cleaning these areas carefully helps maintain proper airflow and cooling performance.</li>
+          <li><strong>Keep Air Vents Clear:</strong> Do not place the computer in a closed or crowded area where hot air cannot escape. Leave enough space around cabinet air vents.</li>
+          <li><strong>Check Fan Operation:</strong> Make sure the CPU fan and cabinet fans rotate properly and do not make unusual noises. Replace a faulty fan with a compatible one.</li>
+        </ul>
+
+        <h4>Common Signs of CPU Overheating</h4>
+        <ul>
+          <li>The computer becomes unusually slow during normal work.</li>
+          <li>The cooling fan runs at high speed or makes unusual noise.</li>
+          <li>The computer restarts or shuts down unexpectedly under load.</li>
+          <li>The system displays a temperature warning or becomes unstable.</li>
+        </ul>
+        <div class="note-box"><b>Important:</b><br />Before removing a heat sink or applying thermal paste, shut down the computer, disconnect its power, and follow the processor and cooler manufacturer's instructions. Do not operate a computer with the CPU cooler improperly installed.</div>
+      </section>
+
+      <section id="troubleshooting">
+        <h2>Motherboard Troubleshooting</h2>
+        <p><strong>Motherboard troubleshooting</strong> is the process of identifying and resolving problems related to the motherboard, its connections, and the components attached to it. A motherboard-related fault may prevent the computer from starting, cause repeated restarts, stop connected devices from working, or produce warning signals during startup.</p>
+        <p>Before deciding that the motherboard is damaged, check simple causes such as loose power cables, incorrectly installed RAM, faulty external devices, dust, or a weak CMOS battery. Troubleshooting should be performed carefully and one step at a time.</p>
+
+        <h4>Common Motherboard Problems and Solutions</h4>
+        <table>
+          <tr>
+            <th>Problem</th>
+            <th>Possible Cause</th>
+            <th>Basic Troubleshooting</th>
+          </tr>
+          <tr>
+            <td>Computer does not start</td>
+            <td>Loose power cable, faulty power supply, incorrectly connected power connector, or motherboard fault.</td>
+            <td>Check the wall supply and power cable. Check the 24-pin motherboard and CPU power connectors. If the problem continues, test the power supply and motherboard with suitable equipment.</td>
+          </tr>
+          <tr>
+            <td>No display on the monitor</td>
+            <td>Loose RAM, graphics card issue, incorrect display connection, or hardware fault.</td>
+            <td>Check the monitor cable and selected input. Power off the computer and reseat the RAM and graphics card if present. Check whether the system provides diagnostic lights or beep codes.</td>
+          </tr>
+          <tr>
+            <td>Repeated beeps or diagnostic light</td>
+            <td>Hardware initialization problem involving memory, graphics, CPU, or another component.</td>
+            <td>Note the beep pattern or diagnostic light and consult the motherboard manual because meanings differ between manufacturers and models.</td>
+          </tr>
+          <tr>
+            <td>Incorrect date and time</td>
+            <td>Weak or empty CMOS battery, or incorrect firmware settings.</td>
+            <td>Set the correct date and time in BIOS/UEFI. If the settings are repeatedly lost after power is disconnected, check and replace the CMOS battery with a compatible type.</td>
+          </tr>
+          <tr>
+            <td>Computer restarts unexpectedly</td>
+            <td>Loose connections, overheating, unstable power, or a hardware problem.</td>
+            <td>Check power connections and cooling fans. Remove unnecessary external devices and observe whether the issue continues. Check system temperatures and power supply condition.</td>
+          </tr>
+          <tr>
+            <td>USB or other ports do not work</td>
+            <td>Damaged port, disabled firmware setting, driver issue, or internal header connection problem.</td>
+            <td>Test another compatible device and another port. Check firmware settings and operating system drivers. Inspect internal header connections only after disconnecting power.</td>
+          </tr>
+          <tr>
+            <td>System becomes unstable</td>
+            <td>Overheating, incompatible hardware, loose components, or damaged motherboard circuits.</td>
+            <td>Check cooling, component compatibility, and connections. Remove recently added hardware to isolate the cause. Seek professional inspection if physical damage is suspected.</td>
+          </tr>
+        </table>
+
+        <h4>Basic Steps for Safe Troubleshooting</h4>
+        <ol>
+          <li>Shut down the computer and disconnect the power cable before opening the cabinet.</li>
+          <li>Check external power connections and make sure the power supply switch is in the correct position.</li>
+          <li>Inspect internal cables and connectors for loose or incorrect connections.</li>
+          <li>Check RAM and expansion cards for proper installation. Remove and reinstall them only when the computer is fully disconnected from power.</li>
+          <li>Check the CPU cooling fan, cabinet fans, and air vents for dust or obstruction.</li>
+          <li>Look for visible signs of damage, such as burnt areas, swollen capacitors, or damaged connectors. Do not touch damaged circuits.</li>
+          <li>Consult the motherboard manual for diagnostic lights, beep codes, supported components, and reset procedures.</li>
+          <li>If the fault cannot be identified safely, contact a qualified technician instead of replacing parts randomly.</li>
+        </ol>
+        <div class="note-box"><b>Safety Precautions:</b><br />Disconnect power before touching internal components. Handle circuit boards by their edges, avoid static electricity, and never open the power supply unit. If you are not trained to test electrical components, get help from a qualified technician.</div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
