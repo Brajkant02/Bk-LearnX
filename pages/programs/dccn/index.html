@@ -126,6 +126,19 @@
         var r = await fetch(src); if (t !== tok) return;
         if (!r.ok) {msg('err', '<b>File not founded.</b><br>please check path : <code></code>'); sheet.querySelector('code').textContent = src; return }
         var doc = new DOMParser().parseFromString(await r.text(), 'text/html'); if (t !== tok) return;
+        var unitUrl = new URL(src, window.location.href);
+        doc.body.querySelectorAll('[src], [poster], [data], [srcset]').forEach(function (el) {
+          ['src', 'poster', 'data'].forEach(function (attr) {
+            var value = el.getAttribute(attr);
+            if (value) el.setAttribute(attr, new URL(value, unitUrl).href);
+          });
+          var srcset = el.getAttribute('srcset');
+          if (srcset) el.setAttribute('srcset', srcset.split(',').map(function (item) {
+            var parts = item.trim().split(/\s+/);
+            parts[0] = new URL(parts[0], unitUrl).href;
+            return parts.join(' ');
+          }).join(', '));
+        });
         sheet.innerHTML = '<p class="crumb">Unit ' + (n + 1) + ' of ' + items.length + '</p><div id="content"></div>';
         var c = document.getElementById('content'); c.innerHTML = doc.body.innerHTML;
         var bar = document.createElement('div'); bar.className = 'top-row';
