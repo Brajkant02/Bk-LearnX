@@ -126,6 +126,11 @@
         });
         sheet.innerHTML = '<p class="crumb">Unit ' + (n + 1) + ' of ' + items.length + '</p><div id="content"></div>';
         var c = document.getElementById('content'); c.innerHTML = doc.body.innerHTML;
+        Array.prototype.slice.call(c.querySelectorAll('table')).forEach(function (table) {
+          if (table.closest('.tbl, .table-scroll')) return;
+          var wrapper = document.createElement('div'); wrapper.className = 'table-scroll';
+          table.parentNode.insertBefore(wrapper, table); wrapper.appendChild(table);
+        });
         var bar = document.createElement('div'); bar.className = 'top-row';
         bar.innerHTML = '<a class="btn" download>' + DL + '<span></span></a>';
         bar.firstChild.href = pdf; bar.querySelector('span').textContent = 'Unit ' + (n + 1) + ' download';
