@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Top 38 Questions - Questions 21 to 30</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .java-program{margin:18px 0 24px;border:1px solid #29344b;border-radius:10px;overflow:hidden;background:#111827;box-shadow:0 4px 14px rgba(0,0,0,.10)}
+        .java-program .code-title{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 15px;color:#dbeafe;background:#202b3e;font-size:.9rem;font-weight:700;letter-spacing:.3px}
+        .java-program pre{margin:0;padding:17px 18px;overflow-x:auto;color:#e5e7eb;background:#111827;font-family:Consolas,"Courier New",monospace;font-size:.92rem;line-height:1.65;tab-size:4;white-space:pre;-webkit-overflow-scrolling:touch}
+        .java-program code{font-family:inherit;color:inherit}
+        .java-program .kw{color:#c4b5fd;font-weight:700}.java-program .type{color:#67e8f9}.java-program .str{color:#86efac}.java-program .comment{color:#9ca3af;font-style:italic}.java-program .num{color:#fca5a5}
+        .java-output{margin:12px 0 22px;border-left:4px solid #16a34a;border-radius:6px;padding:12px 15px;background:#f0fdf4;color:#14532d}
+        .java-output b{display:block;margin-bottom:6px}.java-output pre{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font-family:Consolas,"Courier New",monospace}
+        .note{padding:12px 15px;margin:14px 0;border-left:4px solid #2563eb;background:#eff6ff;border-radius:5px}
+        .diagram{margin:18px auto;padding:16px;border:1px solid #cbd5e1;border-radius:9px;text-align:center;background:#f8fafc;max-width:760px}
+        .diagram .flow{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:9px;margin:12px 0}
+        .diagram .node{padding:10px 14px;border:1px solid #64748b;border-radius:7px;background:#fff;font-weight:600}
+        .diagram .arrow{font-weight:800;color:#2563eb}
+        table{border-collapse:collapse;width:100%;margin:15px 0 22px}
+        th,td{border:1px solid #94a3b8;padding:9px;text-align:left;vertical-align:top}
+        th{background:#e2e8f0}
+        @media(max-width:600px){.java-program pre{font-size:.82rem;padding:13px}th,td{padding:7px;font-size:.9rem}.diagram{padding:10px}}
+    </style>
+</head>
+<body>
+<main class="content">
+    <h1>Object Oriented Programming Using Java</h1>
+    <span>Top 38 Questions | Includes PYQ and Important Syllabus Topics</span>
+    <hr>
+
+    <h1>Question 21: Explain the accessibility of private, protected and public data members in inheritance.</h1>
+    <h2>Access Control in Inheritance</h2>
+    <p>Java access modifiers determine where the variables and methods of a class can be accessed. When one class inherits another class, the accessibility of the superclass members depends on their access modifiers.</p>
+    <h2>1. Private Members</h2>
+    <p><code>private</code> members are directly accessible only within the class in which they are declared. A subclass cannot access them directly. However, private data can be accessed indirectly through the superclass's public or protected methods.</p>
+    <h2>2. Protected Members</h2>
+    <p><code>protected</code> members are accessible to classes in the same package. In addition, a subclass in another package can access protected members through inheritance, subject to Java's protected access rules.</p>
+    <h2>3. Public Members</h2>
+    <p><code>public</code> members can be accessed by classes in any package, provided the declaring class itself is accessible. Therefore, public members remain accessible in subclasses.</p>
+    <h2>4. Default (Package-Private) Members</h2>
+    <p>If no access modifier is specified for a member, it receives default or package-private access. Such members are accessible only to classes in the same package. A subclass in another package cannot access them directly.</p>
+    <h2>Accessibility Table</h2>
+    <table>
+        <tr><th>Access Modifier</th><th>Same Class</th><th>Same Package</th><th>Subclass in Other Package</th><th>Other Package (Non-subclass)</th></tr>
+        <tr><td>private</td><td>Yes</td><td>No (directly)</td><td>No (directly)</td><td>No</td></tr>
+        <tr><td>default</td><td>Yes</td><td>Yes</td><td>No</td><td>No</td></tr>
+        <tr><td>protected</td><td>Yes</td><td>Yes</td><td>Yes, through inheritance rules</td><td>No</td></tr>
+        <tr><td>public</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+    </table>
+    <h2>Java Program Example</h2>
+    <p>In this example, the superclass contains private, protected, and public variables. The subclass directly accesses the protected and public members, while the private member is accessed through a public method of the superclass.</p>
+    <div class="java-program"><div class="code-title"><span>Java Program</span><span>Member Accessibility</span></div>
+<pre><code><span class="kw">class</span> <span class="type">Parent</span> {
+    <span class="kw">private int</span> privateData = <span class="num">10</span>;
+    <span class="kw">protected int</span> protectedData = <span class="num">20</span>;
+    <span class="kw">public int</span> publicData = <span class="num">30</span>;
+
+    <span class="kw">public int</span> getPrivateData() {
+        <span class="kw">return</span> privateData;
+    }
+}
+
+<span class="kw">class</span> <span class="type">Child</span> <span class="kw">extends</span> <span class="type">Parent</span> {
+    <span class="kw">void</span> display() {
+        System.out.println(<span class="str">"Private data: "</span> + getPrivateData());
+        System.out.println(<span class="str">"Protected data: "</span> + protectedData);
+        System.out.println(<span class="str">"Public data: "</span> + publicData);
+    }
+}
+
+<span class="kw">class</span> <span class="type">AccessDemo</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        Child obj = <span class="kw">new</span> Child();
+        obj.display();
+    }
+}</code></pre></div>
+    <div class="java-output"><b>Output</b><pre>Private data: 10
+Protected data: 20
+Public data: 30</pre></div>
+    <h2>Conclusion</h2>
+    <p>In inheritance, public and protected members are accessible to subclasses. Private members cannot be accessed directly in a subclass, but they can be accessed through methods of the superclass. Access modifiers provide data security and controlled access.</p>
+    <hr>
+
+    <h1>Question 22: What is an Interface in Java? Explain how to define and implement an interface with a program.</h1>
+    <h2>Interface in Java</h2>
+    <p>An interface in Java is a reference type that defines a contract for methods. It specifies which methods a class must provide when it implements the interface. An interface is declared using the <code>interface</code> keyword, and a class implements it using the <code>implements</code> keyword.</p>
+    <p>In a basic syllabus-level interface, methods are generally public and abstract. Interface variables are implicitly <code>public static final</code>, which means they are constants. An interface object cannot be created directly.</p>
+    <h2>Defining an Interface</h2>
+    <p>The general syntax for creating an interface is given below:</p>
+    <div class="java-program"><div class="code-title"><span>Syntax</span><span>Interface Declaration</span></div>
+<pre><code><span class="kw">interface</span> <span class="type">InterfaceName</span> {
+    <span class="kw">void</span> methodName();
+}</code></pre></div>
+    <h2>Implementing an Interface</h2>
+    <p>When a class implements an interface, it must provide implementations for all its abstract methods. The implemented methods should be declared <code>public</code>.</p>
+    <div class="diagram">
+        <b>Interface Implementation Flow</b>
+        <div class="flow"><div class="node">Interface</div><div class="arrow">→</div><div class="node">implements</div><div class="arrow">→</div><div class="node">Class</div></div>
+        <p>The interface declares the method, and the implementing class provides its actual code.</p>
+    </div>
+    <h2>Java Program</h2>
+    <div class="java-program"><div class="code-title"><span>Java Program</span><span>Interface Example</span></div>
+<pre><code><span class="kw">interface</span> <span class="type">Printable</span> {
+    <span class="kw">void</span> print();
+}
+
+<span class="kw">class</span> <span class="type">Document</span> <span class="kw">implements</span> <span class="type">Printable</span> {
+    <span class="kw">public void</span> print() {
+        System.out.println(<span class="str">"Printing document..."</span>);
+    }
+}
+
+<span class="kw">class</span> <span class="type">InterfaceDemo</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        Document doc = <span class="kw">new</span> Document();
+        doc.print();
+    }
+}</code></pre></div>
+    <div class="java-output"><b>Output</b><pre>Printing document...</pre></div>
+    <h2>Advantages of Interface</h2>
+    <ol>
+        <li>An interface provides abstraction and separates implementation details.</li>
+        <li>A common contract can be defined for different classes.</li>
+        <li>Java supports multiple inheritance of type by allowing a class to implement multiple interfaces.</li>
+        <li>It helps make code flexible and loosely coupled.</li>
+    </ol>
+    <hr>
+
+    <h1>Question 23: Differentiate between Class and Interface in Java.</h1>
+    <h2>Class</h2>
+    <p>A class is a blueprint or template from which objects are created. It can contain data members, constructors, and methods. An object of a class can be created using the <code>new</code> keyword.</p>
+    <h2>Interface</h2>
+    <p>An interface defines a contract that an implementing class must follow. A basic interface declares abstract methods. An interface object cannot be created directly.</p>
+    <h2>Difference Between Class and Interface</h2>
+    <table>
+        <tr><th>Basis</th><th>Class</th><th>Interface</th></tr>
+        <tr><td>Meaning</td><td>A blueprint for creating objects.</td><td>Defines a contract for classes.</td></tr>
+        <tr><td>Keyword</td><td>Declared using the <code>class</code> keyword.</td><td>Declared using the <code>interface</code> keyword.</td></tr>
+        <tr><td>Object</td><td>An object of a class can be created (if the class is not abstract).</td><td>An interface object cannot be created directly.</td></tr>
+        <tr><td>Variables</td><td>It can contain instance, static, and other types of variables.</td><td>Fields are implicitly public, static, and final.</td></tr>
+        <tr><td>Methods</td><td>It can contain concrete and abstract methods.</td><td>A basic interface contains abstract method declarations; modern Java also supports default and static methods.</td></tr>
+        <tr><td>Constructor</td><td>A constructor can be defined.</td><td>An interface does not have a constructor.</td></tr>
+        <tr><td>Inheritance</td><td>A class can directly extend only one class.</td><td>A class can implement multiple interfaces.</td></tr>
+        <tr><td>Use</td><td>Used to represent objects and their state/behaviour.</td><td>Provides a contract for common behaviour.</td></tr>
+    </table>
+    <h2>Example</h2>
+    <div class="java-program"><div class="code-title"><span>Java Program</span><span>Class and Interface Together</span></div>
+<pre><code><span class="kw">interface</span> <span class="type">Playable</span> {
+    <span class="kw">void</span> play();
+}
+
+<span class="kw">class</span> <span class="type">MusicPlayer</span> <span class="kw">implements</span> <span class="type">Playable</span> {
+    <span class="kw">public void</span> play() {
+        System.out.println(<span class="str">"Music is playing"</span>);
+    }
+}
+
+<span class="kw">class</span> <span class="type">Main</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        MusicPlayer player = <span class="kw">new</span> MusicPlayer();
+        player.play();
+    }
+}</code></pre></div>
+    <div class="java-output"><b>Output</b><pre>Music is playing</pre></div>
+    <div class="note"><b>Remember:</b>  A class creates objects, whereas an interface defines a contract for the methods that an implementing class must provide.</div>
+    <hr>
+
+    <h1>Question 24: What is an Abstract Class in Java? Explain its characteristics with an example.</h1>
+    <h2>Abstract Class</h2>
+    <p>An abstract class is a class declared using the <code>abstract</code> keyword. It is used to define common properties and behaviour. An object of an abstract class cannot be created directly. It is used by extending it in another class.</p>
+    <h2>Characteristics of Abstract Class</h2>
+    <ol>
+        <li>The <code>abstract</code> keyword is used to declare an abstract class.</li>
+        <li>An object of an abstract class cannot be created directly.</li>
+        <li>It can contain both abstract methods and normal (concrete) methods.</li>
+        <li>It can contain instance variables, static variables, and constructors.</li>
+        <li>A subclass extends the abstract class and implements its abstract methods; otherwise, the subclass must also be declared abstract.</li>
+        <li>An abstract class is used to share common code among related classes.</li>
+    </ol>
+    <h2>Abstract Method</h2>
+    <p>An abstract method has only a declaration and no body. Its implementation is provided by overriding it in a subclass.</p>
+    <div class="java-program"><div class="code-title"><span>Syntax</span><span>Abstract Class and Method</span></div>
+<pre><code><span class="kw">abstract class</span> <span class="type">ClassName</span> {
+    <span class="kw">abstract void</span> methodName();
+
+    <span class="kw">void</span> display() {
+        System.out.println(<span class="str">"Concrete method"</span>);
+    }
+}</code></pre></div>
+    <h2>Java Program</h2>
+    <div class="java-program"><div class="code-title"><span>Java Program</span><span>Abstract Class Example</span></div>
+<pre><code><span class="kw">abstract class</span> <span class="type">Shape</span> {
+    <span class="kw">abstract double</span> area();
+
+    <span class="kw">void</span> message() {
+        System.out.println(<span class="str">"Area of shape:"</span>);
+    }
+}
+
+<span class="kw">class</span> <span class="type">Circle</span> <span class="kw">extends</span> <span class="type">Shape</span> {
+    <span class="kw">double</span> radius = <span class="num">5</span>;
+
+    <span class="kw">double</span> area() {
+        <span class="kw">return</span> <span class="num">3.14</span> * radius * radius;
+    }
+}
+
+<span class="kw">class</span> <span class="type">AbstractDemo</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        Circle c = <span class="kw">new</span> Circle();
+        c.message();
+        System.out.println(c.area());
+    }
+}</code></pre></div>
+    <div class="java-output"><b>Output</b><pre>Area of shape:
+78.5</pre></div>
+    <h2>Explanation</h2>
+    <p><code>Shape</code> is an abstract class containing the abstract method <code>area()</code> and the concrete method <code>message()</code>. The <code>Circle</code> class extends Shape and provides the body of the area() method. In the main method, a Circle object is created and both methods are called.</p>
+    <hr>
+
+    <h1>Question 25: Differentiate between Abstract Class and Interface. Explain multiple inheritance through interfaces.</h1>
+    <h2>Abstract Class vs Interface</h2>
+    <table>
+        <tr><th>Basis</th><th>Abstract Class</th><th>Interface</th></tr>
+        <tr><td>Declaration</td><td>Declared using the <code>abstract class</code> keywords.</td><td>Declared using the <code>interface</code> keyword.</td></tr>
+        <tr><td>Object</td><td>An object cannot be created directly.</td><td>An interface object cannot be created directly.</td></tr>
+        <tr><td>Methods</td><td>It can contain both abstract and concrete methods.</td><td>In its basic form, it contains abstract methods; modern Java also supports default and static methods.</td></tr>
+        <tr><td>Variables</td><td>It can contain different types of instance and static variables.</td><td>Fields are implicitly public, static, and final constants.</td></tr>
+        <tr><td>Constructor</td><td>A constructor can be defined.</td><td>An interface does not have a constructor.</td></tr>
+        <tr><td>Inheritance</td><td>A class can extend only one abstract or other class.</td><td>A class can implement multiple interfaces.</td></tr>
+        <tr><td>Purpose</td><td>Provides common state and shared implementation.</td><td>Specifies a common contract/behaviour.</td></tr>
+    </table>
+    <h2>Multiple Inheritance Through Interfaces</h2>
+    <p>Multiple inheritance means that a class obtains features from more than one parent type. In Java, a class cannot extend multiple classes, but it can implement more than one interface. In this way, interfaces are used to achieve multiple inheritance.</p>
+    <div class="diagram">
+        <b>Multiple Inheritance Using Interfaces</b>
+        <div class="flow"><div class="node">Interface A</div><div class="node">Interface B</div></div>
+        <div class="arrow">↘ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↙</div>
+        <div class="node">Class C implements A, B</div>
+    </div>
+    <h2>Java Program</h2>
+    <div class="java-program"><div class="code-title"><span>Java Program</span><span>Multiple Interfaces</span></div>
+<pre><code><span class="kw">interface</span> <span class="type">Camera</span> {
+    <span class="kw">void</span> takePhoto();
+}
+
+<span class="kw">interface</span> <span class="type">Music</span> {
+    <span class="kw">void</span> playMusic();
+}
+
+<span class="kw">class</span> <span class="type">SmartPhone</span> <span class="kw">implements</span> <span class="type">Camera</span>, <span class="type">Music</span> {
+    <span class="kw">public void</span> takePhoto() {
+        System.out.println(<span class="str">"Photo captured"</span>);
+    }
+
+    <span class="kw">public void</span> playMusic() {
+        System.out.println(<span class="str">"Music playing"</span>);
+    }
+}
+
+<span class="kw">class</span> <span class="type">MultipleInterfaceDemo</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        SmartPhone phone = <span class="kw">new</span> SmartPhone();
+        phone.takePhoto();
+        phone.playMusic();
+    }
+}</code></pre></div>
+    <div class="java-output"><b>Output</b><pre>Photo captured
+Music playing</pre></div>
+    <h2>Conclusion</h2>
+    <p>An abstract class is useful for sharing common data and implementation, whereas an interface defines a contract for behaviour. A Java class can implement multiple interfaces, so interfaces provide a form of multiple inheritance.</p>
+    <hr>
+
+    <h1>Question 26: What is Polymorphism in Java? Explain its types with examples.</h1>
+    <h2>Polymorphism</h2>
+    <p>Polymorphism is an important feature of OOP. It means “many forms,” where the same name or reference can show different behaviour in different situations. Polymorphism helps make Java programs flexible and reusable.</p>
+    <h2>Types of Polymorphism</h2>
+    <h3>1. Compile-Time Polymorphism (Static Binding)</h3>
+    <p>Compile-time polymorphism is achieved through method overloading. In this technique, multiple methods in the same class have the same name but different parameter lists. The compiler decides which method to call based on the arguments.</p>
+    <h3>2. Run-Time Polymorphism (Dynamic Binding)</h3>
+    <p>Run-time polymorphism is achieved through method overriding. In this technique, a subclass redefines a superclass method with its own implementation. The overridden method that executes is decided at runtime based on the actual object.</p>
+    <div class="diagram">
+        <b>Types of Polymorphism</b>
+        <div class="flow"><div class="node">Polymorphism</div></div>
+        <div class="flow"><div class="arrow">↙</div><div class="node">Compile-Time<br>Overloading</div><div class="node">Run-Time<br>Overriding</div><div class="arrow">↘</div></div>
+    </div>
+    <h2>Example of Compile-Time Polymorphism</h2>
+    <div class="java-program"><div class="code-title"><span>Java Program</span><span>Method Overloading</span></div>
+<pre><code><span class="kw">class</span> <span class="type">Calculator</span> {
+    <span class="kw">int</span> add(<span class="kw">int</span> a, <span class="kw">int</span> b) {
+        <span class="kw">return</span> a + b;
+    }
+
+    <span class="kw">int</span> add(<span class="kw">int</span> a, <span class="kw">int</span> b, <span class="kw">int</span> c) {
+        <span class="kw">return</span> a + b + c;
+    }
+}
+
+<span class="kw">class</span> <span class="type">OverloadDemo</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        Calculator obj = <span class="kw">new</span> Calculator();
+        System.out.println(obj.add(<span class="num">10</span>, <span class="num">20</span>));
+        System.out.println(obj.add(<span class="num">10</span>, <span class="num">20</span>, <span class="num">30</span>));
+    }
+}</code></pre></div>
+    <div class="java-output"><b>Output</b><pre>30
+60</pre></div>
+    <h2>Example of Run-Time Polymorphism</h2>
+    <div class="java-program"><div class="code-title"><span>Java Program</span><span>Method Overriding</span></div>
+<pre><code><span class="kw">class</span> <span class="type">Animal</span> {
+    <span class="kw">void</span> sound() {
+        System.out.println(<span class="str">"Animal makes a sound"</span>);
+    }
+}
+
+<span class="kw">class</span> <span class="type">Dog</span> <span class="kw">extends</span> <span class="type">Animal</span> {
+    <span class="kw">void</span> sound() {
+        System.out.println(<span class="str">"Dog barks"</span>);
+    }
+}
+
+<span class="kw">class</span> <span class="type">RuntimeDemo</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        Animal obj = <span class="kw">new</span> Dog();
+        obj.sound();
+    }
+}</code></pre></div>
+    <div class="java-output"><b>Output</b><pre>Dog barks</pre></div>
+    <h2>Advantages of Polymorphism</h2>
+    <ol>
+        <li>Code reusability increases.</li>
+        <li>The program becomes flexible and extensible.</li>
+        <li>Different objects can be handled through a common interface/reference.</li>
+        <li>Method overloading allows different input forms of the same operation to be handled.</li>
+    </ol>
+    <hr>
+
+    <h1>Question 27: Differentiate between Method Overloading and Method Overriding with examples.</h1>
+    <h2>Method Overloading</h2>
+    <p>When two or more methods with the same name are defined in a class but have different numbers, types, or orders of parameters, it is called method overloading. It is an example of compile-time polymorphism. Changing only the return type does not create method overloading.</p>
+    <h2>Method Overriding</h2>
+    <p>When a subclass redefines a method already present in its superclass using the same signature and its own implementation, it is called method overriding. It is an example of run-time polymorphism. The return type must be compatible, and the access level cannot be made less restrictive.</p>
+    <h2>Difference Between Overloading and Overriding</h2>
+    <table>
+        <tr><th>Basis</th><th>Method Overloading</th><th>Method Overriding</th></tr>
+        <tr><td>Definition</td><td>Methods with the same name but different parameter lists.</td><td>A new implementation of an inherited method provided by a subclass.</td></tr>
+        <tr><td>Class</td><td>Can occur in the same class; inheritance is not required.</td><td>A superclass-subclass relationship is required.</td></tr>
+        <tr><td>Parameters</td><td>The number, type, or order of parameters must be different.</td><td>The method signature must be the same.</td></tr>
+        <tr><td>Polymorphism</td><td>Compile-time polymorphism.</td><td>Run-time polymorphism.</td></tr>
+        <tr><td>Binding</td><td>Mainly resolved at compile time.</td><td>Resolved at runtime for instance methods.</td></tr>
+        <tr><td>Return Type</td><td>The return type may differ, but changing only the return type is not sufficient.</td><td>The return type must be the same or covariant.</td></tr>
+    </table>
+    <h2>Program of Method Overloading</h2>
+    <div class="java-program"><div class="code-title"><span>Java Program</span><span>Overloading Example</span></div>
+<pre><code><span class="kw">class</span> <span class="type">Display</span> {
+    <span class="kw">void</span> show(<span class="kw">int</span> n) {
+        System.out.println(<span class="str">"Integer: "</span> + n);
+    }
+
+    <span class="kw">void</span> show(String text) {
+        System.out.println(<span class="str">"String: "</span> + text);
+    }
+
+    <span class="kw">public static void</span> main(String[] args) {
+        Display obj = <span class="kw">new</span> Display();
+        obj.show(<span class="num">100</span>);
+        obj.show(<span class="str">"Java"</span>);
+    }
+}</code></pre></div>
+    <div class="java-output"><b>Output</b><pre>Integer: 100
+String: Java</pre></div>
+    <h2>Program of Method Overriding</h2>
+    <div class="java-program"><div class="code-title"><span>Java Program</span><span>Overriding Example</span></div>
+<pre><code><span class="kw">class</span> <span class="type">Vehicle</span> {
+    <span class="kw">void</span> run() {
+        System.out.println(<span class="str">"Vehicle is running"</span>);
+    }
+}
+
+<span class="kw">class</span> <span class="type">Bike</span> <span class="kw">extends</span> <span class="type">Vehicle</span> {
+    <span class="kw">void</span> run() {
+        System.out.println(<span class="str">"Bike is running"</span>);
+    }
+}
+
+<span class="kw">class</span> <span class="type">OverrideDemo</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        Vehicle v = <span class="kw">new</span> Bike();
+        v.run();
+    }
+}</code></pre></div>
+    <div class="java-output"><b>Output</b><pre>Bike is running</pre></div>
+    <div class="note"><b>Important:</b>  Static methods are hidden rather than overridden. Constructors cannot be overridden either.</div>
+    <hr>
+
+    <h1>Question 28: Explain Constructor Overloading in Java. Differentiate between Constructor Overloading and Method Overloading.</h1>
+    <h2>Constructor Overloading</h2>
+    <p>When more than one constructor is defined in a class and each constructor has a different parameter list, it is called constructor overloading. It allows an object to be created with different sets of initial values.</p>
+    <p>A constructor has the same name as its class and does not have a return type. Constructor overloading is an example of compile-time polymorphism.</p>
+    <h2>Java Program</h2>
+    <div class="java-program"><div class="code-title"><span>Java Program</span><span>Constructor Overloading</span></div>
+<pre><code><span class="kw">class</span> <span class="type">Student</span> {
+    <span class="kw">int</span> rollNo;
+    String name;
+
+    Student() {
+        rollNo = <span class="num">0</span>;
+        name = <span class="str">"Not Assigned"</span>;
+    }
+
+    Student(<span class="kw">int</span> r) {
+        rollNo = r;
+        name = <span class="str">"Unknown"</span>;
+    }
+
+    Student(<span class="kw">int</span> r, String n) {
+        rollNo = r;
+        name = n;
+    }
+
+    <span class="kw">void</span> display() {
+        System.out.println(rollNo + <span class="str">" - "</span> + name);
+    }
+}
+
+<span class="kw">class</span> <span class="type">ConstructorDemo</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        Student s1 = <span class="kw">new</span> Student();
+        Student s2 = <span class="kw">new</span> Student(<span class="num">101</span>);
+        Student s3 = <span class="kw">new</span> Student(<span class="num">102</span>, <span class="str">"Aman"</span>);
+
+        s1.display();
+        s2.display();
+        s3.display();
+    }
+}</code></pre></div>
+    <div class="java-output"><b>Output</b><pre>0 - Not Assigned
+101 - Unknown
+102 - Aman</pre></div>
+    <h2>Difference Between Constructor Overloading and Method Overloading</h2>
+    <table>
+        <tr><th>Basis</th><th>Constructor Overloading</th><th>Method Overloading</th></tr>
+        <tr><td>Purpose</td><td>Initialises an object in different ways.</td><td>Performs the same operation with different parameters.</td></tr>
+        <tr><td>Name</td><td>All constructors have the same name as the class.</td><td>Overloaded methods have the same name.</td></tr>
+        <tr><td>Return Type</td><td>A constructor has no return type.</td><td>A method can have a return type; changing only the return type does not constitute overloading.</td></tr>
+        <tr><td>Invocation</td><td>Called when an object is created.</td><td>Invoked through a method call statement.</td></tr>
+        <tr><td>Inheritance</td><td>Constructors are not inherited.</td><td>Methods can be inherited and overloaded.</td></tr>
+    </table>
+    <h2>Advantages</h2>
+    <ol>
+        <li>Objects can be created with different initial values.</li>
+        <li>Multiple initialization options are available within the same class.</li>
+        <li>Program readability and flexibility improve.</li>
+    </ol>
+    <hr>
+
+    <h1>Question 29: Explain Upcasting and Downcasting in Java with examples. Differentiate between them.</h1>
+    <h2>Type Casting in Inheritance</h2>
+    <p>In inheritance, conversion between superclass and subclass references is called casting. Java mainly uses Upcasting and Downcasting.</p>
+    <h2>1. Upcasting</h2>
+    <p>Converting a reference of subclass type into a reference of superclass type is called upcasting. It can happen automatically because every subclass object is also an object of its superclass. Through a superclass reference, only members declared in the superclass can be accessed, but an overridden instance method executes according to the actual object.</p>
+    <h2>2. Downcasting</h2>
+    <p>Converting a reference of superclass type into a reference of subclass type is called downcasting. It requires an explicit cast. Downcasting is valid only when the reference actually refers to a compatible subclass object. An invalid cast can cause a <code>ClassCastException</code>.</p>
+    <div class="diagram">
+        <b>Upcasting and Downcasting</b>
+        <div class="flow"><div class="node">Subclass Reference</div><div class="arrow">↑ Upcasting</div><div class="node">Superclass Reference</div></div>
+        <div class="flow"><div class="node">Superclass Reference</div><div class="arrow">↓ Downcasting</div><div class="node">Subclass Reference</div></div>
+    </div>
+    <h2>Java Program</h2>
+    <div class="java-program"><div class="code-title"><span>Java Program</span><span>Upcasting and Downcasting</span></div>
+<pre><code><span class="kw">class</span> <span class="type">Animal</span> {
+    <span class="kw">void</span> eat() {
+        System.out.println(<span class="str">"Animal eats food"</span>);
+    }
+}
+
+<span class="kw">class</span> <span class="type">Dog</span> <span class="kw">extends</span> <span class="type">Animal</span> {
+    <span class="kw">void</span> bark() {
+        System.out.println(<span class="str">"Dog barks"</span>);
+    }
+}
+
+<span class="kw">class</span> <span class="type">CastingDemo</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        Dog d = <span class="kw">new</span> Dog();
+
+        <span class="comment">// Upcasting</span>
+        Animal a = d;
+        a.eat();
+
+        <span class="comment">// Safe downcasting</span>
+        <span class="kw">if</span> (a <span class="kw">instanceof</span> Dog) {
+            Dog d2 = (Dog) a;
+            d2.bark();
+        }
+    }
+}</code></pre></div>
+    <div class="java-output"><b>Output</b><pre>Animal eats food
+Dog barks</pre></div>
+    <h2>Difference Between Upcasting and Downcasting</h2>
+    <table>
+        <tr><th>Basis</th><th>Upcasting</th><th>Downcasting</th></tr>
+        <tr><td>Conversion</td><td>Subclass reference to superclass reference.</td><td>Superclass reference to subclass reference.</td></tr>
+        <tr><td>Type</td><td>It can be implicit/automatic.</td><td>An explicit cast is required.</td></tr>
+        <tr><td>Safety</td><td>Generally safe with a valid inheritance relationship.</td><td>An incorrect object type can cause a ClassCastException.</td></tr>
+        <tr><td>Access</td><td>Access is limited to members declared in the superclass.</td><td>Additional subclass members can also be accessed.</td></tr>
+        <tr><td>Use</td><td>Used to handle subclass objects through a common superclass reference.</td><td>Used to access subclass-specific behaviour/members.</td></tr>
+    </table>
+    <div class="note"><b>Exam Tip:</b>  Before downcasting, using the <code>instanceof</code> operator to check the object type is a safer approach.</div>
+    <hr>
+
+    <h1>Question 30: What is Exception Handling in Java? Explain its importance, advantages and working.</h1>
+    <h2>Exception</h2>
+    <p>An exception is an unwanted event or error condition that occurs during program execution and may disturb the normal flow. Examples include dividing by zero, accessing an invalid array index, or opening a file that is not available.</p>
+    <h2>Exception Handling</h2>
+    <p>Exception handling in Java is a mechanism for handling runtime errors so that the normal flow of a program can continue whenever possible. Java uses the <code>try</code>, <code>catch</code>, <code>finally</code>, <code>throw</code>, and <code>throws</code> keywords for exception handling. Their detailed use is explained in the following questions.</p>
+    <h2>Why Exception Handling is Important?</h2>
+    <ol>
+        <li><b>Prevents Abnormal Termination:</b> Handling an exception can prevent a program from terminating unexpectedly.</li>
+        <li><b>Maintains Normal Flow:</b> Alternate handling code can be provided for an error situation.</li>
+        <li><b>Error Separation:</b> The main program logic can be kept separate from error-handling code.</li>
+        <li><b>Meaningful Messages:</b> Understandable error messages can be displayed to the user.</li>
+        <li><b>Easy Debugging:</b> Exception information helps identify the cause of an error.</li>
+    </ol>
+    <h2>Advantages of Exception Handling</h2>
+    <ul>
+        <li>The program becomes more reliable and robust.</li>
+        <li>Runtime errors can be handled in an organized way.</li>
+        <li>Separate catch blocks can be written to handle different exceptions raised in the same try block.</li>
+        <li>Cleanup tasks, such as closing resources, can be performed in a finally block.</li>
+        <li>An exception can also be propagated further through the call stack.</li>
+    </ul>
+    <h2>Working of Exception Handling</h2>
+    <p>When a statement generates an exception, the Java runtime stops normal execution at that point and searches for a matching exception handler. If a matching catch block is found, its code is executed. The applicable finally block then executes, and the program may continue. If no handler is found, the exception is propagated through the call stack; if it remains uncaught, the program may terminate.</p>
+    <div class="diagram">
+        <b>Basic Exception Handling Flow</b>
+        <div class="flow"><div class="node">Start</div><div class="arrow">→</div><div class="node">try Block</div><div class="arrow">→</div><div class="node">Exception?</div></div>
+        <div class="flow"><div class="node">No Exception: Continue</div><div class="node">Exception: Find Matching catch</div></div>
+        <div class="flow"><div class="arrow">↓</div><div class="node">finally Block (if present)</div><div class="arrow">↓</div><div class="node">Continue / End</div></div>
+    </div>
+    <h2>Simple Java Program</h2>
+    <p>In this program, if the denominator is zero during division, an <code>ArithmeticException</code> is generated. The catch block handles that exception.</p>
+    <div class="java-program"><div class="code-title"><span>Java Program</span><span>Exception Handling Overview</span></div>
+<pre><code><span class="kw">class</span> <span class="type">ExceptionDemo</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        <span class="kw">int</span> a = <span class="num">10</span>;
+        <span class="kw">int</span> b = <span class="num">0</span>;
+
+        <span class="kw">try</span> {
+            <span class="kw">int</span> result = a / b;
+            System.out.println(result);
+        } <span class="kw">catch</span> (ArithmeticException e) {
+            System.out.println(<span class="str">"Cannot divide by zero"</span>);
+        }
+
+        System.out.println(<span class="str">"Program continues..."</span>);
+    }
+}</code></pre></div>
+    <div class="java-output"><b>Output</b><pre>Cannot divide by zero
+Program continues...</pre></div>
+    <h2>Types of Exceptions (Overview)</h2>
+    <ol>
+        <li><b>Checked Exceptions:</b> These are checked by the compiler at compile time. Examples: <code>IOException</code>, <code>SQLException</code>.</li>
+        <li><b>Unchecked Exceptions:</b> These occur at runtime and are generally subclasses of <code>RuntimeException</code>. Examples: <code>ArithmeticException</code>, <code>NullPointerException</code>, and <code>ArrayIndexOutOfBoundsException</code>.</li>
+    </ol>
+    <p>Thus, exception handling makes a Java program safer and more organized when dealing with unexpected runtime conditions.</p>
+    <hr>
+</main>
+</body>
+</html>

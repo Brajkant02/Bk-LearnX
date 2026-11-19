@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Top 38 Questions - Questions 21 to 30</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <main class="content">
+        <h1>Object Oriented Programming Using Java</h1>
+        <span>Top 38 Questions | Includes PYQ and Important Syllabus Topics</span>
+        <hr>
+
+        <h1>Question 21: Explain the accessibility of private, protected and public data members in inheritance.</h1>
+        <h2>Access Control in Inheritance</h2>
+        <p>Java में access modifiers यह निर्धारित करते हैं कि किसी class के variables और methods को कहाँ से access किया
+            जा सकता है। जब एक class दूसरी class को inherit करती है, तब superclass के members की accessibility उनके
+            access modifier पर depend करती है।</p>
+        <h2>1. Private Members</h2>
+        <p><code>private</code> members केवल उसी class के अंदर directly accessible होते हैं जिसमें वे declare किए गए
+            हैं। Subclass उन्हें directly access नहीं कर सकती। हालांकि superclass के public या protected methods के
+            माध्यम से private data को indirectly access किया जा सकता है।</p>
+        <h2>2. Protected Members</h2>
+        <p><code>protected</code> members same package की classes में accessible होते हैं। इसके अलावा दूसरे package में
+            मौजूद subclass भी protected members को inheritance के माध्यम से access कर सकती है, Java के protected access
+            rules के अनुसार।</p>
+        <h2>3. Public Members</h2>
+        <p><code>public</code> members को किसी भी package की दूसरी classes से access किया जा सकता है, यदि संबंधित class
+            accessible हो। इसलिए inheritance में public members subclass में भी accessible रहते हैं।</p>
+        <h2>4. Default (Package-Private) Members</h2>
+        <p>यदि किसी member के साथ कोई access modifier नहीं लिखा जाता, तो उसे default या package-private access मिलता है।
+            ऐसे members केवल उसी package की classes में accessible होते हैं। दूसरे package की subclass इन्हें directly
+            access नहीं कर सकती।</p>
+        <h2>Accessibility Table</h2>
+        <table>
+            <tr>
+                <th>Access Modifier</th>
+                <th>Same Class</th>
+                <th>Same Package</th>
+                <th>Subclass in Other Package</th>
+                <th>Other Package (Non-subclass)</th>
+            </tr>
+            <tr>
+                <td>private</td>
+                <td>Yes</td>
+                <td>No (directly)</td>
+                <td>No (directly)</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>default</td>
+                <td>Yes</td>
+                <td>Yes</td>
+                <td>No</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>protected</td>
+                <td>Yes</td>
+                <td>Yes</td>
+                <td>Yes, through inheritance rules</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>public</td>
+                <td>Yes</td>
+                <td>Yes</td>
+                <td>Yes</td>
+                <td>Yes</td>
+            </tr>
+        </table>
+        <h2>Java Program Example</h2>
+        <p>इस example में superclass के private, protected और public variables बनाए गए हैं। Subclass protected और public
+            members को directly access करती है, जबकि private member को superclass के public method से access किया जाता
+            है।</p>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>Member Accessibility</span></div>
+            <pre><code><span class="kw">class</span> <span class="type">Parent</span> {
+    <span class="kw">private int</span> privateData = <span class="num">10</span>;
+    <span class="kw">protected int</span> protectedData = <span class="num">20</span>;
+    <span class="kw">public int</span> publicData = <span class="num">30</span>;
+
+    <span class="kw">public int</span> getPrivateData() {
+        <span class="kw">return</span> privateData;
+    }
+}
+
+<span class="kw">class</span> <span class="type">Child</span> <span class="kw">extends</span> <span class="type">Parent</span> {
+    <span class="kw">void</span> display() {
+        System.out.println(<span class="str">"Private data: "</span> + getPrivateData());
+        System.out.println(<span class="str">"Protected data: "</span> + protectedData);
+        System.out.println(<span class="str">"Public data: "</span> + publicData);
+    }
+}
+
+<span class="kw">class</span> <span class="type">AccessDemo</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        Child obj = <span class="kw">new</span> Child();
+        obj.display();
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>Private data: 10
+Protected data: 20
+Public data: 30</pre>
+        </div>
+        <h2>Conclusion</h2>
+        <p>Inheritance में public और protected members subclass के लिए accessible होते हैं। Private members subclass में
+            directly accessible नहीं होते, लेकिन superclass के methods के माध्यम से access किए जा सकते हैं। Access
+            modifiers data security और controlled access प्रदान करते हैं।</p>
+        <hr>
+
+        <h1>Question 22: What is an Interface in Java? Explain how to define and implement an interface with a program.
+        </h1>
+        <h2>Interface in Java</h2>
+        <p>Interface Java में एक reference type है जो methods का contract define करता है। यह बताता है कि interface को
+            implement करने वाली class को कौन-कौन से methods provide करने होंगे। Interface को <code>interface</code>
+            keyword से declare किया जाता है और class इसे <code>implements</code> keyword से implement करती है।</p>
+        <p>Basic syllabus-level interface में methods सामान्यतः public और abstract होते हैं। Interface के variables
+            implicitly <code>public static final</code> होते हैं, अर्थात वे constants होते हैं। Interface का object
+            directly create नहीं किया जा सकता।</p>
+        <h2>Defining an Interface</h2>
+        <p>Interface बनाने का general syntax नीचे दिया गया है:</p>
+        <div class="java-program">
+            <div class="code-title"><span>Syntax</span><span>Interface Declaration</span></div>
+            <pre><code><span class="kw">interface</span> <span class="type">InterfaceName</span> {
+    <span class="kw">void</span> methodName();
+}</code></pre>
+        </div>
+        <h2>Implementing an Interface</h2>
+        <p>किसी class द्वारा interface implement करने पर class को उसके सभी abstract methods की implementation देनी होती
+            है। Implement किए गए methods को <code>public</code> declare करना चाहिए।</p>
+        <div class="diagram">
+            <b>Interface Implementation Flow</b>
+            <div class="flow">
+                <div class="node">Interface</div>
+                <div class="arrow">→</div>
+                <div class="node">implements</div>
+                <div class="arrow">→</div>
+                <div class="node">Class</div>
+            </div>
+            <p>Interface method declare करता है और implementing class उसका actual code provide करती है।</p>
+        </div>
+        <h2>Java Program</h2>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>Interface Example</span></div>
+            <pre><code><span class="kw">interface</span> <span class="type">Printable</span> {
+    <span class="kw">void</span> print();
+}
+
+<span class="kw">class</span> <span class="type">Document</span> <span class="kw">implements</span> <span class="type">Printable</span> {
+    <span class="kw">public void</span> print() {
+        System.out.println(<span class="str">"Printing document..."</span>);
+    }
+}
+
+<span class="kw">class</span> <span class="type">InterfaceDemo</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        Document doc = <span class="kw">new</span> Document();
+        doc.print();
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>Printing document...</pre>
+        </div>
+        <h2>Advantages of Interface</h2>
+        <ol>
+            <li>Interface abstraction प्रदान करता है और implementation details को अलग रखता है।</li>
+            <li>अलग-अलग classes के लिए common contract define किया जा सकता है।</li>
+            <li>Java में multiple inheritance of type को multiple interfaces implement करके support किया जाता है।</li>
+            <li>Code को flexible और loosely coupled बनाने में मदद करता है।</li>
+        </ol>
+        <hr>
+
+        <h1>Question 23: Differentiate between Class and Interface in Java.</h1>
+        <h2>Class</h2>
+        <p>Class एक blueprint या template है जिसके आधार पर objects create किए जाते हैं। इसमें data members, constructors
+            और methods हो सकते हैं। Class का object <code>new</code> keyword से बनाया जा सकता है।</p>
+        <h2>Interface</h2>
+        <p>Interface एक contract define करता है जिसे implementing class follow करती है। Basic interface में abstract
+            methods declare किए जाते हैं। Interface का object directly create नहीं किया जा सकता।</p>
+        <h2>Difference Between Class and Interface</h2>
+        <table>
+            <tr>
+                <th>Basis</th>
+                <th>Class</th>
+                <th>Interface</th>
+            </tr>
+            <tr>
+                <td>Meaning</td>
+                <td>Object बनाने का blueprint है।</td>
+                <td>Classes के लिए contract define करता है।</td>
+            </tr>
+            <tr>
+                <td>Keyword</td>
+                <td><code>class</code> keyword से declare होती है।</td>
+                <td><code>interface</code> keyword से declare होता है।</td>
+            </tr>
+            <tr>
+                <td>Object</td>
+                <td>Class का object create किया जा सकता है (यदि class abstract न हो)।</td>
+                <td>Interface का object directly create नहीं किया जा सकता।</td>
+            </tr>
+            <tr>
+                <td>Variables</td>
+                <td>Instance, static और अन्य प्रकार के variables हो सकते हैं।</td>
+                <td>Fields implicitly public, static और final होते हैं।</td>
+            </tr>
+            <tr>
+                <td>Methods</td>
+                <td>Concrete और abstract methods हो सकते हैं।</td>
+                <td>Basic interface में abstract method declarations होते हैं; modern Java में default और static methods
+                    भी हो सकते हैं।</td>
+            </tr>
+            <tr>
+                <td>Constructor</td>
+                <td>Constructor हो सकता है।</td>
+                <td>Constructor नहीं होता।</td>
+            </tr>
+            <tr>
+                <td>Inheritance</td>
+                <td>एक class केवल एक class को directly extend कर सकती है।</td>
+                <td>एक class multiple interfaces implement कर सकती है।</td>
+            </tr>
+            <tr>
+                <td>Use</td>
+                <td>Objects और उनकी state/behaviour को represent करने के लिए।</td>
+                <td>Common behaviour का contract देने के लिए।</td>
+            </tr>
+        </table>
+        <h2>Example</h2>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>Class and Interface Together</span></div>
+            <pre><code><span class="kw">interface</span> <span class="type">Playable</span> {
+    <span class="kw">void</span> play();
+}
+
+<span class="kw">class</span> <span class="type">MusicPlayer</span> <span class="kw">implements</span> <span class="type">Playable</span> {
+    <span class="kw">public void</span> play() {
+        System.out.println(<span class="str">"Music is playing"</span>);
+    }
+}
+
+<span class="kw">class</span> <span class="type">Main</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        MusicPlayer player = <span class="kw">new</span> MusicPlayer();
+        player.play();
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>Music is playing</pre>
+        </div>
+        <div class="note"><b>Remember:</b> Class objects create करती है, जबकि interface उन methods का contract बताता है
+            जिन्हें implementing class को provide करना होता है।</div>
+        <hr>
+
+        <h1>Question 24: What is an Abstract Class in Java? Explain its characteristics with an example.</h1>
+        <h2>Abstract Class</h2>
+        <p>Abstract class ऐसी class होती है जिसे <code>abstract</code> keyword से declare किया जाता है। इसका उपयोग
+            common properties और behaviour को define करने के लिए किया जाता है। Abstract class का object directly create
+            नहीं किया जा सकता। इसे दूसरी class extend करके use करती है।</p>
+        <h2>Characteristics of Abstract Class</h2>
+        <ol>
+            <li>Abstract class को declare करने के लिए <code>abstract</code> keyword का उपयोग होता है।</li>
+            <li>इसका object directly create नहीं किया जा सकता।</li>
+            <li>इसमें abstract methods और normal (concrete) methods दोनों हो सकते हैं।</li>
+            <li>इसमें instance variables, static variables और constructors हो सकते हैं।</li>
+            <li>Subclass abstract class को extend करती है और उसके abstract methods implement करती है, अन्यथा subclass भी
+                abstract declare करनी होगी।</li>
+            <li>Abstract class का उपयोग related classes के बीच common code share करने के लिए किया जाता है।</li>
+        </ol>
+        <h2>Abstract Method</h2>
+        <p>Abstract method वह method है जिसकी केवल declaration होती है, body नहीं होती। इसे subclass में override करके
+            implementation दी जाती है।</p>
+        <div class="java-program">
+            <div class="code-title"><span>Syntax</span><span>Abstract Class and Method</span></div>
+            <pre><code><span class="kw">abstract class</span> <span class="type">ClassName</span> {
+    <span class="kw">abstract void</span> methodName();
+
+    <span class="kw">void</span> display() {
+        System.out.println(<span class="str">"Concrete method"</span>);
+    }
+}</code></pre>
+        </div>
+        <h2>Java Program</h2>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>Abstract Class Example</span></div>
+            <pre><code><span class="kw">abstract class</span> <span class="type">Shape</span> {
+    <span class="kw">abstract double</span> area();
+
+    <span class="kw">void</span> message() {
+        System.out.println(<span class="str">"Area of shape:"</span>);
+    }
+}
+
+<span class="kw">class</span> <span class="type">Circle</span> <span class="kw">extends</span> <span class="type">Shape</span> {
+    <span class="kw">double</span> radius = <span class="num">5</span>;
+
+    <span class="kw">double</span> area() {
+        <span class="kw">return</span> <span class="num">3.14</span> * radius * radius;
+    }
+}
+
+<span class="kw">class</span> <span class="type">AbstractDemo</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        Circle c = <span class="kw">new</span> Circle();
+        c.message();
+        System.out.println(c.area());
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>Area of shape:
+78.5</pre>
+        </div>
+        <h2>Explanation</h2>
+        <p><code>Shape</code> एक abstract class है जिसमें <code>area()</code> abstract method और <code>message()</code>
+            concrete method है। <code>Circle</code> class Shape को extend करके area() method की body provide करती है।
+            Main method में Circle का object बनाकर दोनों methods call किए गए हैं।</p>
+        <hr>
+
+        <h1>Question 25: Differentiate between Abstract Class and Interface. Explain multiple inheritance through
+            interfaces.</h1>
+        <h2>Abstract Class vs Interface</h2>
+        <table>
+            <tr>
+                <th>Basis</th>
+                <th>Abstract Class</th>
+                <th>Interface</th>
+            </tr>
+            <tr>
+                <td>Declaration</td>
+                <td><code>abstract class</code> keyword से।</td>
+                <td><code>interface</code> keyword से।</td>
+            </tr>
+            <tr>
+                <td>Object</td>
+                <td>Direct object create नहीं कर सकते।</td>
+                <td>Direct object create नहीं कर सकते।</td>
+            </tr>
+            <tr>
+                <td>Methods</td>
+                <td>Abstract और concrete दोनों methods हो सकते हैं।</td>
+                <td>Basic form में abstract methods; modern Java में default/static methods भी possible हैं।</td>
+            </tr>
+            <tr>
+                <td>Variables</td>
+                <td>Different types के instance और static variables हो सकते हैं।</td>
+                <td>Fields implicitly public static final constants होते हैं।</td>
+            </tr>
+            <tr>
+                <td>Constructor</td>
+                <td>Constructor हो सकता है।</td>
+                <td>Constructor नहीं होता।</td>
+            </tr>
+            <tr>
+                <td>Inheritance</td>
+                <td>एक class केवल एक abstract या other class को extend कर सकती है।</td>
+                <td>एक class multiple interfaces implement कर सकती है।</td>
+            </tr>
+            <tr>
+                <td>Purpose</td>
+                <td>Common state और shared implementation provide करना।</td>
+                <td>Common contract/behaviour specify करना।</td>
+            </tr>
+        </table>
+        <h2>Multiple Inheritance Through Interfaces</h2>
+        <p>Multiple inheritance का अर्थ है एक class द्वारा एक से अधिक parent types के features प्राप्त करना। Java में एक
+            class multiple classes को extend नहीं कर सकती, लेकिन वह एक से अधिक interfaces implement कर सकती है। इस
+            प्रकार interfaces के माध्यम से multiple inheritance achieve किया जाता है।</p>
+        <div class="diagram">
+            <b>Multiple Inheritance Using Interfaces</b>
+            <div class="flow">
+                <div class="node">Interface A</div>
+                <div class="node">Interface B</div>
+            </div>
+            <div class="arrow">↘ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↙</div>
+            <div class="node">Class C implements A, B</div>
+        </div>
+        <h2>Java Program</h2>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>Multiple Interfaces</span></div>
+            <pre><code><span class="kw">interface</span> <span class="type">Camera</span> {
+    <span class="kw">void</span> takePhoto();
+}
+
+<span class="kw">interface</span> <span class="type">Music</span> {
+    <span class="kw">void</span> playMusic();
+}
+
+<span class="kw">class</span> <span class="type">SmartPhone</span> <span class="kw">implements</span> <span class="type">Camera</span>, <span class="type">Music</span> {
+    <span class="kw">public void</span> takePhoto() {
+        System.out.println(<span class="str">"Photo captured"</span>);
+    }
+
+    <span class="kw">public void</span> playMusic() {
+        System.out.println(<span class="str">"Music playing"</span>);
+    }
+}
+
+<span class="kw">class</span> <span class="type">MultipleInterfaceDemo</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        SmartPhone phone = <span class="kw">new</span> SmartPhone();
+        phone.takePhoto();
+        phone.playMusic();
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>Photo captured
+Music playing</pre>
+        </div>
+        <h2>Conclusion</h2>
+        <p>Abstract class common data और implementation share करने के लिए उपयोगी है, जबकि interface behaviour का
+            contract define करता है। एक Java class multiple interfaces implement कर सकती है, इसलिए interfaces multiple
+            inheritance जैसी सुविधा प्रदान करते हैं।</p>
+        <hr>
+
+        <h1>Question 26: What is Polymorphism in Java? Explain its types with examples.</h1>
+        <h2>Polymorphism</h2>
+        <p>Polymorphism OOP का एक महत्वपूर्ण feature है। इसका अर्थ है “many forms” अर्थात एक ही name या reference का
+            अलग-अलग situations में अलग behaviour होना। Java में polymorphism की मदद से program को flexible और reusable
+            बनाया जा सकता है।</p>
+        <h2>Types of Polymorphism</h2>
+        <h3>1. Compile-Time Polymorphism (Static Binding)</h3>
+        <p>Compile-time polymorphism method overloading के द्वारा achieve किया जाता है। इसमें same class में same name
+            के multiple methods होते हैं, लेकिन उनके parameter lists अलग होते हैं। Compiler arguments के आधार पर decide
+            करता है कि कौन-सा method call होगा।</p>
+        <h3>2. Run-Time Polymorphism (Dynamic Binding)</h3>
+        <p>Run-time polymorphism method overriding के द्वारा achieve किया जाता है। इसमें subclass superclass के method
+            को अपनी implementation के साथ redefine करती है। कौन-सा overridden method execute होगा, यह runtime पर actual
+            object के आधार पर decide होता है।</p>
+        <div class="diagram">
+            <b>Types of Polymorphism</b>
+            <div class="flow">
+                <div class="node">Polymorphism</div>
+            </div>
+            <div class="flow">
+                <div class="arrow">↙</div>
+                <div class="node">Compile-Time<br>Overloading</div>
+                <div class="node">Run-Time<br>Overriding</div>
+                <div class="arrow">↘</div>
+            </div>
+        </div>
+        <h2>Example of Compile-Time Polymorphism</h2>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>Method Overloading</span></div>
+            <pre><code><span class="kw">class</span> <span class="type">Calculator</span> {
+    <span class="kw">int</span> add(<span class="kw">int</span> a, <span class="kw">int</span> b) {
+        <span class="kw">return</span> a + b;
+    }
+
+    <span class="kw">int</span> add(<span class="kw">int</span> a, <span class="kw">int</span> b, <span class="kw">int</span> c) {
+        <span class="kw">return</span> a + b + c;
+    }
+}
+
+<span class="kw">class</span> <span class="type">OverloadDemo</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        Calculator obj = <span class="kw">new</span> Calculator();
+        System.out.println(obj.add(<span class="num">10</span>, <span class="num">20</span>));
+        System.out.println(obj.add(<span class="num">10</span>, <span class="num">20</span>, <span class="num">30</span>));
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>30
+60</pre>
+        </div>
+        <h2>Example of Run-Time Polymorphism</h2>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>Method Overriding</span></div>
+            <pre><code><span class="kw">class</span> <span class="type">Animal</span> {
+    <span class="kw">void</span> sound() {
+        System.out.println(<span class="str">"Animal makes a sound"</span>);
+    }
+}
+
+<span class="kw">class</span> <span class="type">Dog</span> <span class="kw">extends</span> <span class="type">Animal</span> {
+    <span class="kw">void</span> sound() {
+        System.out.println(<span class="str">"Dog barks"</span>);
+    }
+}
+
+<span class="kw">class</span> <span class="type">RuntimeDemo</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        Animal obj = <span class="kw">new</span> Dog();
+        obj.sound();
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>Dog barks</pre>
+        </div>
+        <h2>Advantages of Polymorphism</h2>
+        <ol>
+            <li>Code reusability बढ़ती है।</li>
+            <li>Program flexible और extensible बनता है।</li>
+            <li>एक common interface/reference से अलग-अलग objects को handle किया जा सकता है।</li>
+            <li>Method overloading से same operation के अलग input forms संभाले जा सकते हैं।</li>
+        </ol>
+        <hr>
+
+        <h1>Question 27: Differentiate between Method Overloading and Method Overriding with examples.</h1>
+        <h2>Method Overloading</h2>
+        <p>जब एक ही class में same name के दो या अधिक methods define किए जाते हैं, लेकिन उनके parameters की संख्या, type
+            या order अलग होता है, तो इसे method overloading कहते हैं। यह compile-time polymorphism का example है। केवल
+            return type बदलने से method overloading नहीं होती।</p>
+        <h2>Method Overriding</h2>
+        <p>जब subclass अपने superclass में पहले से मौजूद method को same signature के साथ अपनी implementation देकर
+            redefine करती है, तो इसे method overriding कहते हैं। यह run-time polymorphism का example है। Overriding में
+            return type compatible होना चाहिए और access level को कम restrictive नहीं किया जा सकता।</p>
+        <h2>Difference Between Overloading and Overriding</h2>
+        <table>
+            <tr>
+                <th>Basis</th>
+                <th>Method Overloading</th>
+                <th>Method Overriding</th>
+            </tr>
+            <tr>
+                <td>Definition</td>
+                <td>Same name, different parameter list वाले methods।</td>
+                <td>Subclass द्वारा inherited method की नई implementation।</td>
+            </tr>
+            <tr>
+                <td>Class</td>
+                <td>एक ही class में हो सकती है; inheritance आवश्यक नहीं।</td>
+                <td>Superclass और subclass का relation आवश्यक है।</td>
+            </tr>
+            <tr>
+                <td>Parameters</td>
+                <td>Parameters की संख्या, type या order अलग होना चाहिए।</td>
+                <td>Method signature समान होना चाहिए।</td>
+            </tr>
+            <tr>
+                <td>Polymorphism</td>
+                <td>Compile-time polymorphism।</td>
+                <td>Run-time polymorphism।</td>
+            </tr>
+            <tr>
+                <td>Binding</td>
+                <td>मुख्यतः compile time पर resolve होती है।</td>
+                <td>Instance methods के लिए runtime पर resolve होती है।</td>
+            </tr>
+            <tr>
+                <td>Return Type</td>
+                <td>Return type अलग हो सकता है, लेकिन केवल return type बदलना पर्याप्त नहीं।</td>
+                <td>Same या covariant return type होना चाहिए।</td>
+            </tr>
+        </table>
+        <h2>Program of Method Overloading</h2>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>Overloading Example</span></div>
+            <pre><code><span class="kw">class</span> <span class="type">Display</span> {
+    <span class="kw">void</span> show(<span class="kw">int</span> n) {
+        System.out.println(<span class="str">"Integer: "</span> + n);
+    }
+
+    <span class="kw">void</span> show(String text) {
+        System.out.println(<span class="str">"String: "</span> + text);
+    }
+
+    <span class="kw">public static void</span> main(String[] args) {
+        Display obj = <span class="kw">new</span> Display();
+        obj.show(<span class="num">100</span>);
+        obj.show(<span class="str">"Java"</span>);
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>Integer: 100
+String: Java</pre>
+        </div>
+        <h2>Program of Method Overriding</h2>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>Overriding Example</span></div>
+            <pre><code><span class="kw">class</span> <span class="type">Vehicle</span> {
+    <span class="kw">void</span> run() {
+        System.out.println(<span class="str">"Vehicle is running"</span>);
+    }
+}
+
+<span class="kw">class</span> <span class="type">Bike</span> <span class="kw">extends</span> <span class="type">Vehicle</span> {
+    <span class="kw">void</span> run() {
+        System.out.println(<span class="str">"Bike is running"</span>);
+    }
+}
+
+<span class="kw">class</span> <span class="type">OverrideDemo</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        Vehicle v = <span class="kw">new</span> Bike();
+        v.run();
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>Bike is running</pre>
+        </div>
+        <div class="note"><b>Important:</b> Static methods are hidden rather than overridden. Constructors भी override
+            नहीं होते।</div>
+        <hr>
+
+        <h1>Question 28: Explain Constructor Overloading in Java. Differentiate between Constructor Overloading and
+            Method Overloading.</h1>
+        <h2>Constructor Overloading</h2>
+        <p>जब किसी class में एक से अधिक constructors define किए जाते हैं और प्रत्येक constructor की parameter list अलग
+            होती है, तो इसे constructor overloading कहते हैं। इससे object को अलग-अलग प्रकार के initial values के साथ
+            create किया जा सकता है।</p>
+        <p>Constructor का नाम class के नाम के समान होता है और इसका कोई return type नहीं होता। Constructor overloading
+            compile-time polymorphism का एक example है।</p>
+        <h2>Java Program</h2>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>Constructor Overloading</span></div>
+            <pre><code><span class="kw">class</span> <span class="type">Student</span> {
+    <span class="kw">int</span> rollNo;
+    String name;
+
+    Student() {
+        rollNo = <span class="num">0</span>;
+        name = <span class="str">"Not Assigned"</span>;
+    }
+
+    Student(<span class="kw">int</span> r) {
+        rollNo = r;
+        name = <span class="str">"Unknown"</span>;
+    }
+
+    Student(<span class="kw">int</span> r, String n) {
+        rollNo = r;
+        name = n;
+    }
+
+    <span class="kw">void</span> display() {
+        System.out.println(rollNo + <span class="str">" - "</span> + name);
+    }
+}
+
+<span class="kw">class</span> <span class="type">ConstructorDemo</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        Student s1 = <span class="kw">new</span> Student();
+        Student s2 = <span class="kw">new</span> Student(<span class="num">101</span>);
+        Student s3 = <span class="kw">new</span> Student(<span class="num">102</span>, <span class="str">"Aman"</span>);
+
+        s1.display();
+        s2.display();
+        s3.display();
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>0 - Not Assigned
+101 - Unknown
+102 - Aman</pre>
+        </div>
+        <h2>Difference Between Constructor Overloading and Method Overloading</h2>
+        <table>
+            <tr>
+                <th>Basis</th>
+                <th>Constructor Overloading</th>
+                <th>Method Overloading</th>
+            </tr>
+            <tr>
+                <td>Purpose</td>
+                <td>Object को अलग-अलग तरीके से initialize करना।</td>
+                <td>Same operation को different parameters के साथ perform करना।</td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td>सभी constructors का नाम class के नाम जैसा होता है।</td>
+                <td>Overloaded methods का नाम same होता है।</td>
+            </tr>
+            <tr>
+                <td>Return Type</td>
+                <td>कोई return type नहीं होता।</td>
+                <td>Return type हो सकता है; केवल return type बदलना overloading नहीं है।</td>
+            </tr>
+            <tr>
+                <td>Invocation</td>
+                <td>Object create करते समय call होता है।</td>
+                <td>Method call statement से invoke होता है।</td>
+            </tr>
+            <tr>
+                <td>Inheritance</td>
+                <td>Constructors inherit नहीं होते।</td>
+                <td>Methods inherit हो सकते हैं और overload किए जा सकते हैं।</td>
+            </tr>
+        </table>
+        <h2>Advantages</h2>
+        <ol>
+            <li>Objects को अलग-अलग initial values के साथ बनाया जा सकता है।</li>
+            <li>एक ही class में multiple initialization options मिलते हैं।</li>
+            <li>Program readability और flexibility बेहतर होती है।</li>
+        </ol>
+        <hr>
+
+        <h1>Question 29: Explain Upcasting and Downcasting in Java with examples. Differentiate between them.</h1>
+        <h2>Type Casting in Inheritance</h2>
+        <p>Inheritance में superclass और subclass के objects/references के बीच reference conversion को casting कहा जाता
+            है। Java में मुख्य रूप से Upcasting और Downcasting का उपयोग किया जाता है।</p>
+        <h2>1. Upcasting</h2>
+        <p>जब subclass type के reference को superclass type के reference में convert किया जाता है, तो इसे upcasting कहते
+            हैं। यह automatically हो सकती है क्योंकि हर subclass object superclass का भी object होता है। Upcasting में
+            superclass reference से केवल वही members access किए जा सकते हैं जो superclass में declared हों, लेकिन
+            overridden instance method का execution actual object के आधार पर होता है।</p>
+        <h2>2. Downcasting</h2>
+        <p>जब superclass type के reference को subclass type में convert किया जाता है, तो इसे downcasting कहते हैं। इसे
+            explicitly cast करना पड़ता है। Downcasting तभी valid है जब reference वास्तव में उस subclass के compatible
+            object को refer कर रहा हो। गलत cast करने पर <code>ClassCastException</code> आ सकता है।</p>
+        <div class="diagram">
+            <b>Upcasting and Downcasting</b>
+            <div class="flow">
+                <div class="node">Subclass Reference</div>
+                <div class="arrow">↑ Upcasting</div>
+                <div class="node">Superclass Reference</div>
+            </div>
+            <div class="flow">
+                <div class="node">Superclass Reference</div>
+                <div class="arrow">↓ Downcasting</div>
+                <div class="node">Subclass Reference</div>
+            </div>
+        </div>
+        <h2>Java Program</h2>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>Upcasting and Downcasting</span></div>
+            <pre><code><span class="kw">class</span> <span class="type">Animal</span> {
+    <span class="kw">void</span> eat() {
+        System.out.println(<span class="str">"Animal eats food"</span>);
+    }
+}
+
+<span class="kw">class</span> <span class="type">Dog</span> <span class="kw">extends</span> <span class="type">Animal</span> {
+    <span class="kw">void</span> bark() {
+        System.out.println(<span class="str">"Dog barks"</span>);
+    }
+}
+
+<span class="kw">class</span> <span class="type">CastingDemo</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        Dog d = <span class="kw">new</span> Dog();
+
+        <span class="comment">// Upcasting</span>
+        Animal a = d;
+        a.eat();
+
+        <span class="comment">// Safe downcasting</span>
+        <span class="kw">if</span> (a <span class="kw">instanceof</span> Dog) {
+            Dog d2 = (Dog) a;
+            d2.bark();
+        }
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>Animal eats food
+Dog barks</pre>
+        </div>
+        <h2>Difference Between Upcasting and Downcasting</h2>
+        <table>
+            <tr>
+                <th>Basis</th>
+                <th>Upcasting</th>
+                <th>Downcasting</th>
+            </tr>
+            <tr>
+                <td>Conversion</td>
+                <td>Subclass reference to superclass reference।</td>
+                <td>Superclass reference to subclass reference।</td>
+            </tr>
+            <tr>
+                <td>Type</td>
+                <td>Implicit/automatic हो सकती है।</td>
+                <td>Explicit cast की आवश्यकता होती है।</td>
+            </tr>
+            <tr>
+                <td>Safety</td>
+                <td>Valid inheritance relation में सामान्यतः safe है।</td>
+                <td>गलत object type पर ClassCastException हो सकता है।</td>
+            </tr>
+            <tr>
+                <td>Access</td>
+                <td>Superclass में declared members तक access।</td>
+                <td>Subclass के additional members भी access कर सकते हैं।</td>
+            </tr>
+            <tr>
+                <td>Use</td>
+                <td>Subclass objects को common superclass reference से handle करना।</td>
+                <td>Subclass-specific behaviour/member access करना।</td>
+            </tr>
+        </table>
+        <div class="note"><b>Exam Tip:</b> Downcasting से पहले <code>instanceof</code> operator का उपयोग करके object
+            type check करना सुरक्षित तरीका है।</div>
+        <hr>
+
+        <h1>Question 30: What is Exception Handling in Java? Explain its importance, advantages and working.</h1>
+        <h2>Exception</h2>
+        <p>Exception एक unwanted event या error condition है जो program के execution के दौरान उत्पन्न होती है और normal
+            flow को disturb कर सकती है। उदाहरण के लिए zero से divide करना, invalid array index access करना या ऐसी file
+            open करना जो उपलब्ध न हो।</p>
+        <h2>Exception Handling</h2>
+        <p>Java में exception handling एक mechanism है जिसकी मदद से runtime errors को handle किया जाता है ताकि program
+            का normal flow जहाँ तक संभव हो जारी रह सके। Java में exception handling के लिए <code>try</code>,
+            <code>catch</code>, <code>finally</code>, <code>throw</code> और <code>throws</code> keywords उपयोग किए जाते
+            हैं। इन keywords का detailed use अगले questions में दिया गया है।</p>
+        <h2>Why Exception Handling is Important?</h2>
+        <ol>
+            <li><b>Prevents Abnormal Termination:</b> Exception को handle करके program को अचानक terminate होने से बचाया
+                जा सकता है।</li>
+            <li><b>Maintains Normal Flow:</b> Error situation के लिए alternate handling code provide किया जा सकता है।
+            </li>
+            <li><b>Error Separation:</b> Main program logic और error-handling code को अलग रखा जा सकता है।</li>
+            <li><b>Meaningful Messages:</b> User को understandable error message दिखाया जा सकता है।</li>
+            <li><b>Easy Debugging:</b> Exception information से error का कारण identify करने में मदद मिलती है।</li>
+        </ol>
+        <h2>Advantages of Exception Handling</h2>
+        <ul>
+            <li>Program अधिक reliable और robust बनता है।</li>
+            <li>Runtime error को व्यवस्थित तरीके से handle किया जा सकता है।</li>
+            <li>एक ही try block से आने वाली अलग-अलग exceptions के लिए अलग catch blocks लिखे जा सकते हैं।</li>
+            <li>Finally block में cleanup tasks जैसे resources close करना किया जा सकता है।</li>
+            <li>Exception को call stack में आगे propagate भी किया जा सकता है।</li>
+        </ul>
+        <h2>Working of Exception Handling</h2>
+        <p>जब कोई statement exception generate करती है, Java runtime उस point पर normal execution रोककर matching
+            exception handler खोजता है। यदि matching catch block मिल जाता है, तो उसका code execute होता है। इसके बाद
+            applicable finally block execute होता है और program आगे बढ़ सकता है। यदि handler नहीं मिलता, तो exception
+            call stack में propagate होती है; अंत में uncaught रहने पर program terminate हो सकता है।</p>
+        <div class="diagram">
+            <b>Basic Exception Handling Flow</b>
+            <div class="flow">
+                <div class="node">Start</div>
+                <div class="arrow">→</div>
+                <div class="node">try Block</div>
+                <div class="arrow">→</div>
+                <div class="node">Exception?</div>
+            </div>
+            <div class="flow">
+                <div class="node">No Exception: Continue</div>
+                <div class="node">Exception: Find Matching catch</div>
+            </div>
+            <div class="flow">
+                <div class="arrow">↓</div>
+                <div class="node">finally Block (if present)</div>
+                <div class="arrow">↓</div>
+                <div class="node">Continue / End</div>
+            </div>
+        </div>
+        <h2>Simple Java Program</h2>
+        <p>इस program में division के दौरान यदि denominator zero हो, तो <code>ArithmeticException</code> generate होती
+            है। Catch block उस exception को handle करता है।</p>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>Exception Handling Overview</span></div>
+            <pre><code><span class="kw">class</span> <span class="type">ExceptionDemo</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        <span class="kw">int</span> a = <span class="num">10</span>;
+        <span class="kw">int</span> b = <span class="num">0</span>;
+
+        <span class="kw">try</span> {
+            <span class="kw">int</span> result = a / b;
+            System.out.println(result);
+        } <span class="kw">catch</span> (ArithmeticException e) {
+            System.out.println(<span class="str">"Cannot divide by zero"</span>);
+        }
+
+        System.out.println(<span class="str">"Program continues..."</span>);
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>Cannot divide by zero
+Program continues...</pre>
+        </div>
+        <h2>Types of Exceptions (Overview)</h2>
+        <ol>
+            <li><b>Checked Exceptions:</b> Compiler द्वारा compile time पर check की जाती हैं। उदाहरण:
+                <code>IOException</code>, <code>SQLException</code>।</li>
+            <li><b>Unchecked Exceptions:</b> Runtime पर occur होती हैं और सामान्यतः <code>RuntimeException</code> की
+                subclasses होती हैं। उदाहरण: <code>ArithmeticException</code>, <code>NullPointerException</code>,
+                <code>ArrayIndexOutOfBoundsException</code>।</li>
+        </ol>
+        <p>इस प्रकार exception handling Java program को unexpected runtime conditions के प्रति अधिक सुरक्षित और
+            व्यवस्थित बनाती है।</p>
+        <hr>
+    </main>
+</body>
+
+</html>

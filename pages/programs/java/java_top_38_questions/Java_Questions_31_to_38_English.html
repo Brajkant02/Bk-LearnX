@@ -1,0 +1,943 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Object Oriented Programming Using Java - Questions 31 to 38</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <main class="content">
+      <h1>Object Oriented Programming Using Java</h1>
+      <span>Top 38 Questions | Includes PYQ and Important Syllabus Topics</span>
+      <hr />
+
+      <h1>
+        Question 31: Explain try, catch and finally blocks in Java with an
+        example.
+      </h1>
+      <h2>Exception Handling Blocks</h2>
+      <p>
+        Java uses the <code>try</code>, <code>catch</code>, and
+        <code>finally</code> blocks for exception handling. These blocks help
+        handle runtime exceptions and maintain the normal execution of a program
+        whenever possible.
+      </p>
+      <h2>1. try Block</h2>
+      <p>
+        The <code>try</code> block contains statements that may generate an
+        exception. If an exception occurs in the try block, Java attempts to
+        execute a matching catch block.
+      </p>
+      <h2>2. catch Block</h2>
+      <p>
+        The <code>catch</code> block handles an exception. It specifies the
+        exception type and a reference variable. Multiple catch blocks can be
+        used with one try block to handle different types of exceptions. A catch
+        block for a specific exception must be placed before a catch block for a
+        general exception.
+      </p>
+      <h2>3. finally Block</h2>
+      <p>
+        The <code>finally</code> block contains code that should generally
+        execute after try/catch processing, such as closing a file or another
+        resource. Under normal execution, the finally block executes whether or
+        not an exception occurs. Its execution is not guaranteed in situations
+        such as an abrupt JVM termination.
+      </p>
+      <h2>Syntax</h2>
+      <div class="java-program">
+        <div class="code-title">
+          <span>Syntax</span><span>try-catch-finally</span>
+        </div>
+        <pre><code><span class="kw">try</span> {
+    <span class="comment">// Statements that may cause an exception</span>
+} <span class="kw">catch</span> (ExceptionType e) {
+    <span class="comment">// Exception handling code</span>
+} <span class="kw">finally</span> {
+    <span class="comment">// Cleanup code</span>
+}</code></pre>
+      </div>
+      <h2>Java Program</h2>
+      <div class="java-program">
+        <div class="code-title">
+          <span>Java Program</span><span>try, catch and finally</span>
+        </div>
+        <pre><code><span class="kw">class</span> <span class="type">TryCatchFinallyDemo</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        <span class="kw">int</span> a = <span class="num">20</span>;
+        <span class="kw">int</span> b = <span class="num">0</span>;
+
+        <span class="kw">try</span> {
+            <span class="kw">int</span> result = a / b;
+            System.out.println(<span class="str">"Result: "</span> + result);
+        } <span class="kw">catch</span> (ArithmeticException e) {
+            System.out.println(<span class="str">"Cannot divide by zero"</span>);
+        } <span class="kw">finally</span> {
+            System.out.println(<span class="str">"Finally block executed"</span>);
+        }
+
+        System.out.println(<span class="str">"Program ended"</span>);
+    }
+}</code></pre>
+      </div>
+      <div class="java-output">
+        <b>Output</b>
+        <pre>
+Cannot divide by zero
+Finally block executed
+Program ended</pre
+        >
+      </div>
+      <h2>Multiple catch Blocks</h2>
+      <p>
+        Multiple catch blocks can be written for different exceptions in one try
+        block. For example, <code>ArithmeticException</code> and
+        <code>ArrayIndexOutOfBoundsException</code> can be handled separately.
+      </p>
+      <div class="java-program">
+        <div class="code-title">
+          <span>Java Program</span><span>Multiple catch Blocks</span>
+        </div>
+        <pre><code><span class="kw">class</span> <span class="type">MultipleCatchDemo</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        <span class="kw">try</span> {
+            <span class="kw">int</span>[] numbers = {<span class="num">10</span>, <span class="num">20</span>};
+            System.out.println(numbers[<span class="num">5</span>]);
+        } <span class="kw">catch</span> (ArithmeticException e) {
+            System.out.println(<span class="str">"Arithmetic error"</span>);
+        } <span class="kw">catch</span> (ArrayIndexOutOfBoundsException e) {
+            System.out.println(<span class="str">"Invalid array index"</span>);
+        } <span class="kw">catch</span> (Exception e) {
+            System.out.println(<span class="str">"Some other exception"</span>);
+        }
+    }
+}</code></pre>
+      </div>
+      <div class="java-output">
+        <b>Output</b>
+        <pre>Invalid array index</pre>
+      </div>
+      <h2>Advantages</h2>
+      <ul>
+        <li>Runtime exceptions can be handled.</li>
+        <li>It helps prevent a program from terminating unexpectedly.</li>
+        <li>
+          Multiple catch blocks allow different errors to be handled in
+          different ways.
+        </li>
+        <li>Cleanup operations can be performed in the finally block.</li>
+      </ul>
+      <hr />
+
+      <h1>
+        Question 32: Differentiate between throw and throws keywords in Java
+        with examples.
+      </h1>
+      <h2>throw Keyword</h2>
+      <p>
+        The <code>throw</code> keyword is used inside a method or block to
+        explicitly throw an exception object. The normal flow of the program
+        stops at that point, and Java searches for a matching exception handler.
+      </p>
+      <h2>throws Keyword</h2>
+      <p>
+        The <code>throws</code> keyword is used in a method declaration. It
+        specifies which checked exceptions may be propagated out of the method.
+        The code that calls the method can handle the exception or declare it
+        further.
+      </p>
+      <h2>Difference Between throw and throws</h2>
+      <table>
+        <tr>
+          <th>Basis</th>
+          <th>throw</th>
+          <th>throws</th>
+        </tr>
+        <tr>
+          <td>Purpose</td>
+          <td>Explicitly throws an exception.</td>
+          <td>Declares an exception that may be propagated by a method.</td>
+        </tr>
+        <tr>
+          <td>Position</td>
+          <td>Used inside a method or block as a statement.</td>
+          <td>Used in a method declaration.</td>
+        </tr>
+        <tr>
+          <td>Followed By</td>
+          <td>
+            An exception object, such as <code>new ArithmeticException()</code>.
+          </td>
+          <td>Exception class names, such as <code>IOException</code>.</td>
+        </tr>
+        <tr>
+          <td>Number</td>
+          <td>One exception object is thrown in a single throw statement.</td>
+          <td>Can declare one or more exception types.</td>
+        </tr>
+        <tr>
+          <td>Responsibility</td>
+          <td>Actually throws an exception.</td>
+          <td>
+            Declares/propagates exception-handling responsibility to the caller.
+          </td>
+        </tr>
+      </table>
+      <h2>Example of throw</h2>
+      <div class="java-program">
+        <div class="code-title">
+          <span>Java Program</span><span>throw Keyword</span>
+        </div>
+        <pre><code><span class="kw">class</span> <span class="type">ThrowDemo</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        <span class="kw">int</span> age = <span class="num">15</span>;
+
+        <span class="kw">try</span> {
+            <span class="kw">if</span> (age &lt; <span class="num">18</span>) {
+                <span class="kw">throw new</span> IllegalArgumentException(
+                    <span class="str">"Age must be 18 or above"</span>);
+            }
+            System.out.println(<span class="str">"Eligible"</span>);
+        } <span class="kw">catch</span> (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}</code></pre>
+      </div>
+      <div class="java-output">
+        <b>Output</b>
+        <pre>Age must be 18 or above</pre>
+      </div>
+      <h2>Example of throws</h2>
+      <div class="java-program">
+        <div class="code-title">
+          <span>Java Program</span><span>throws Keyword</span>
+        </div>
+        <pre><code><span class="kw">import</span> java.io.IOException;
+
+<span class="kw">class</span> <span class="type">ThrowsDemo</span> {
+    <span class="kw">static void</span> checkFile() <span class="kw">throws</span> IOException {
+        <span class="kw">throw new</span> IOException(<span class="str">"File not found"</span>);
+    }
+
+    <span class="kw">public static void</span> main(String[] args) {
+        <span class="kw">try</span> {
+            checkFile();
+        } <span class="kw">catch</span> (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}</code></pre>
+      </div>
+      <div class="java-output">
+        <b>Output</b>
+        <pre>File not found</pre>
+      </div>
+      <div class="note">
+        <b>Remember:</b> <code>throw</code> throws an exception, whereas
+        <code>throws</code> declares possible exceptions in a method
+        declaration.
+      </div>
+      <hr />
+
+      <h1>
+        Question 33: Explain built-in and user-defined exceptions in Java. How
+        can we create our own exception class?
+      </h1>
+      <h2>Built-in Exceptions</h2>
+      <p>
+        Java provides many exception classes in advance. These are called
+        built-in exceptions. They represent common programming errors and
+        exceptional conditions.
+      </p>
+      <h3>Common Built-in Exceptions</h3>
+      <table>
+        <tr>
+          <th>Exception</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>ArithmeticException</td>
+          <td>An arithmetic error, such as dividing an integer by zero.</td>
+        </tr>
+        <tr>
+          <td>NullPointerException</td>
+          <td>
+            Occurs when an instance member is accessed through a null reference.
+          </td>
+        </tr>
+        <tr>
+          <td>ArrayIndexOutOfBoundsException</td>
+          <td>
+            Occurs when an array is accessed outside its valid index range.
+          </td>
+        </tr>
+        <tr>
+          <td>NumberFormatException</td>
+          <td>
+            Occurs when an invalid string is converted into a numeric value.
+          </td>
+        </tr>
+        <tr>
+          <td>IOException</td>
+          <td>
+            Occurs when an error happens during an input/output operation.
+          </td>
+        </tr>
+        <tr>
+          <td>ClassNotFoundException</td>
+          <td>
+            Occurs when a requested class cannot be found, for example, during
+            certain class-loading operations.
+          </td>
+        </tr>
+      </table>
+      <h2>User-Defined Exceptions</h2>
+      <p>
+        When a programmer creates a new exception class according to an
+        application's requirements, it is called a user-defined or custom
+        exception. To create a custom checked exception, the class can extend
+        <code>Exception</code>. To create an unchecked custom exception, it can
+        extend <code>RuntimeException</code>.
+      </p>
+      <h2>Steps to Create User-Defined Exception</h2>
+      <ol>
+        <li>Declare a new class.</li>
+        <li>Make it inherit from the <code>Exception</code> class.</li>
+        <li>
+          Pass the message to the superclass constructor from the constructor.
+        </li>
+        <li>
+          Check the condition and throw the custom exception using the
+          <code>throw</code> keyword.
+        </li>
+        <li>Handle it in a try-catch block.</li>
+      </ol>
+      <h2>Java Program</h2>
+      <div class="java-program">
+        <div class="code-title">
+          <span>Java Program</span><span>Custom Exception</span>
+        </div>
+        <pre><code><span class="kw">class</span> <span class="type">InvalidAgeException</span> <span class="kw">extends</span> Exception {
+    InvalidAgeException(String message) {
+        <span class="kw">super</span>(message);
+    }
+}
+
+<span class="kw">class</span> <span class="type">CustomExceptionDemo</span> {
+    <span class="kw">static void</span> checkAge(<span class="kw">int</span> age)
+            <span class="kw">throws</span> InvalidAgeException {
+        <span class="kw">if</span> (age &lt; <span class="num">18</span>) {
+            <span class="kw">throw new</span> InvalidAgeException(
+                <span class="str">"Age is below 18"</span>);
+        }
+        System.out.println(<span class="str">"You are eligible"</span>);
+    }
+
+    <span class="kw">public static void</span> main(String[] args) {
+        <span class="kw">try</span> {
+            checkAge(<span class="num">16</span>);
+        } <span class="kw">catch</span> (InvalidAgeException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}</code></pre>
+      </div>
+      <div class="java-output">
+        <b>Output</b>
+        <pre>Age is below 18</pre>
+      </div>
+      <h2>Difference Between Built-in and User-Defined Exceptions</h2>
+      <table>
+        <tr>
+          <th>Basis</th>
+          <th>Built-in Exception</th>
+          <th>User-Defined Exception</th>
+        </tr>
+        <tr>
+          <td>Meaning</td>
+          <td>Already defined in the Java API.</td>
+          <td>Created by the programmer.</td>
+        </tr>
+        <tr>
+          <td>Creation</td>
+          <td>There is no need to create it manually.</td>
+          <td>A custom exception class must be defined.</td>
+        </tr>
+        <tr>
+          <td>Purpose</td>
+          <td>Represents common runtime or application errors.</td>
+          <td>Represents application-specific error conditions.</td>
+        </tr>
+        <tr>
+          <td>Example</td>
+          <td>ArithmeticException, IOException</td>
+          <td>InvalidAgeException, InsufficientBalanceException</td>
+        </tr>
+      </table>
+      <hr />
+
+      <h1>
+        Question 34: What is Multithreading? Explain its advantages and
+        differentiate between Multitasking and Multithreading.
+      </h1>
+      <h2>Thread</h2>
+      <p>
+        A thread is the smallest unit of execution within a program, also known
+        as a lightweight subprocess. Multiple threads within a Java program can
+        execute independently and concurrently.
+      </p>
+      <h2>Multithreading</h2>
+      <p>
+        Multithreading is the technique of executing multiple threads
+        concurrently within the same program or process. Each thread has its own
+        execution path, while threads in the same process can share memory and
+        resources.
+      </p>
+      <h2>Advantages of Multithreading</h2>
+      <ol>
+        <li>
+          Even when one thread is busy with a task, another thread can perform a
+          different task.
+        </li>
+        <li>
+          Threads within the same process can share common memory and resources.
+        </li>
+        <li>
+          Keeping multiple tasks in concurrent execution can help make better
+          use of the CPU.
+        </li>
+        <li>
+          Threads are generally lightweight compared with creating separate
+          processes.
+        </li>
+        <li>
+          Background and foreground tasks can run concurrently within an
+          application.
+        </li>
+      </ol>
+      <h2>Multitasking</h2>
+      <p>
+        Multitasking is the ability of a system to manage and execute multiple
+        tasks or programs during the same period. Different processes or
+        programs may run at the same time.
+      </p>
+      <h2>Difference Between Multitasking and Multithreading</h2>
+      <table>
+        <tr>
+          <th>Basis</th>
+          <th>Multitasking</th>
+          <th>Multithreading</th>
+        </tr>
+        <tr>
+          <td>Meaning</td>
+          <td>Execution or management of multiple tasks/processes.</td>
+          <td>Execution of multiple threads within one process.</td>
+        </tr>
+        <tr>
+          <td>Unit</td>
+          <td>A process or task.</td>
+          <td>A thread.</td>
+        </tr>
+        <tr>
+          <td>Memory</td>
+          <td>Processes generally have separate memory spaces.</td>
+          <td>Threads within one process share memory.</td>
+        </tr>
+        <tr>
+          <td>Communication</td>
+          <td>Communication between processes may require IPC mechanisms.</td>
+          <td>Shared memory can make communication between threads easier.</td>
+        </tr>
+        <tr>
+          <td>Overhead</td>
+          <td>Process management generally has higher overhead.</td>
+          <td>
+            Threads are lightweight, so their overhead is generally lower.
+          </td>
+        </tr>
+        <tr>
+          <td>Example</td>
+          <td>Running a browser and a music player at the same time.</td>
+          <td>
+            Managing different browser tabs or background tasks using threads
+            (depending on the implementation).
+          </td>
+        </tr>
+      </table>
+      <div class="diagram">
+        <b>Multithreading Concept</b>
+        <div class="flow"><div class="node">One Process</div></div>
+        <div class="arrow">↓</div>
+        <div class="flow">
+          <div class="node">Thread 1</div>
+          <div class="node">Thread 2</div>
+          <div class="node">Thread 3</div>
+        </div>
+        <p>
+          Multiple threads within one process can perform tasks concurrently.
+        </p>
+      </div>
+      <hr />
+
+      <h1>
+        Question 35: Explain the life cycle of a thread in Java with a diagram.
+      </h1>
+      <h2>Thread Life Cycle</h2>
+      <p>
+        A thread passes through different states from its creation until its
+        completion. The official Java thread states are NEW, RUNNABLE, BLOCKED,
+        WAITING, TIMED_WAITING, and TERMINATED. In the RUNNABLE state, a thread
+        may be ready to run or may be executing on the CPU.
+      </p>
+      <h2>Different States of Thread</h2>
+      <ol>
+        <li>
+          A Thread object has been created, but its <code>start()</code> method
+          has not yet been called.
+        </li>
+        <li>
+          After <code>start()</code> is called, the thread enters the runnable
+          state. The scheduler may select it for CPU execution.
+        </li>
+        <li>The thread is waiting to acquire a synchronized lock.</li>
+        <li>
+          The thread is waiting for another thread to perform an action, such as
+          with <code>wait()</code> or <code>join()</code> without a timeout.
+        </li>
+        <li>
+          The thread waits for a specified period, such as when using
+          <code>sleep()</code> or a timed <code>join()</code>.
+        </li>
+        <li>
+          The thread's run method has completed, or the thread has ended because
+          of an uncaught exception.
+        </li>
+      </ol>
+      <h2>Thread Life Cycle Diagram</h2>
+      <div class="diagram">
+        <b>Java Thread Life Cycle (Simplified)</b>
+        <div class="flow">
+          <div class="node">NEW</div>
+          <div class="arrow">start()</div>
+          <div class="node">RUNNABLE</div>
+          <div class="arrow">run ends</div>
+          <div class="node">TERMINATED</div>
+        </div>
+        <div class="flow">
+          <div class="node">RUNNABLE</div>
+          <div class="arrow">lock unavailable</div>
+          <div class="node">BLOCKED</div>
+        </div>
+        <div class="flow">
+          <div class="node">RUNNABLE</div>
+          <div class="arrow">wait()/join()</div>
+          <div class="node">WAITING</div>
+        </div>
+        <div class="flow">
+          <div class="node">RUNNABLE</div>
+          <div class="arrow">sleep()/timed wait</div>
+          <div class="node">TIMED_WAITING</div>
+        </div>
+        <p>
+          After the lock becomes available or the waiting condition/time is
+          complete, the thread can return to the RUNNABLE state.
+        </p>
+      </div>
+      <h2>Simple Java Program</h2>
+      <div class="java-program">
+        <div class="code-title">
+          <span>Java Program</span><span>Thread State Example</span>
+        </div>
+        <pre><code><span class="kw">class</span> <span class="type">MyThread</span> <span class="kw">extends</span> Thread {
+    <span class="kw">public void</span> run() {
+        System.out.println(<span class="str">"Thread is running"</span>);
+    }
+}
+
+<span class="kw">class</span> <span class="type">ThreadStateDemo</span> {
+    <span class="kw">public static void</span> main(String[] args)
+            <span class="kw">throws</span> InterruptedException {
+        MyThread t = <span class="kw">new</span> MyThread();
+
+        System.out.println(t.getState());
+        t.start();
+        t.join();
+        System.out.println(t.getState());
+    }
+}</code></pre>
+      </div>
+      <div class="java-output">
+        <b>Possible Output</b>
+        <pre>
+NEW
+Thread is running
+TERMINATED</pre
+        >
+      </div>
+      <div class="note">
+        <b>Note:</b> Thread scheduling depends on timing, so an intermediate
+        state may not appear in exactly the same way every time. In the output
+        shown above, the NEW and TERMINATED states can be observed reliably
+        around the call to <code>join()</code>.
+      </div>
+      <hr />
+
+      <h1>
+        Question 36: Explain how to create a thread in Java by extending Thread
+        class and implementing Runnable interface.
+      </h1>
+      <h2>Creating Threads in Java</h2>
+      <p>There are two commonly taught ways to create a thread in Java:</p>
+      <ol>
+        <li>By extending the Thread class.</li>
+        <li>By implementing the Runnable interface.</li>
+      </ol>
+      <h2>1. By Extending Thread Class</h2>
+      <p>
+        In this method, a new class extends the <code>Thread</code> class. The
+        class then overrides the <code>run()</code> method and writes the code
+        that should execute in a separate thread. The object's
+        <code>start()</code> method is called to start the thread. The
+        <code>start()</code> method begins a new execution thread, and the JVM
+        executes the <code>run()</code> method in that thread.
+      </p>
+      <div class="java-program">
+        <div class="code-title">
+          <span>Java Program</span><span>Extending Thread Class</span>
+        </div>
+        <pre><code><span class="kw">class</span> <span class="type">MyThread</span> <span class="kw">extends</span> Thread {
+    <span class="kw">public void</span> run() {
+        System.out.println(<span class="str">"Thread is running"</span>);
+    }
+}
+
+<span class="kw">class</span> <span class="type">ThreadClassDemo</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        MyThread t = <span class="kw">new</span> MyThread();
+        t.start();
+    }
+}</code></pre>
+      </div>
+      <div class="java-output">
+        <b>Output</b>
+        <pre>Thread is running</pre>
+      </div>
+      <h2>2. By Implementing Runnable Interface</h2>
+      <p>
+        In this method, a class implements the <code>Runnable</code> interface
+        and defines the <code>run()</code> method. A Thread object is then
+        created by passing the Runnable object to the Thread constructor.
+        Finally, <code>start()</code> is called.
+      </p>
+      <div class="java-program">
+        <div class="code-title">
+          <span>Java Program</span><span>Implementing Runnable</span>
+        </div>
+        <pre><code><span class="kw">class</span> <span class="type">MyTask</span> <span class="kw">implements</span> Runnable {
+    <span class="kw">public void</span> run() {
+        System.out.println(<span class="str">"Runnable thread is running"</span>);
+    }
+}
+
+<span class="kw">class</span> <span class="type">RunnableDemo</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        MyTask task = <span class="kw">new</span> MyTask();
+        Thread t = <span class="kw">new</span> Thread(task);
+        t.start();
+    }
+}</code></pre>
+      </div>
+      <div class="java-output">
+        <b>Output</b>
+        <pre>Runnable thread is running</pre>
+      </div>
+      <h2>Difference Between Thread Class and Runnable Interface</h2>
+      <table>
+        <tr>
+          <th>Basis</th>
+          <th>Extending Thread</th>
+          <th>Implementing Runnable</th>
+        </tr>
+        <tr>
+          <td>Method</td>
+          <td>The Thread class must be extended.</td>
+          <td>The Runnable interface must be implemented.</td>
+        </tr>
+        <tr>
+          <td>Inheritance</td>
+          <td>
+            The class cannot extend another class because Java supports single
+            class inheritance.
+          </td>
+          <td>The class can also extend another class.</td>
+        </tr>
+        <tr>
+          <td>Object</td>
+          <td>The subclass object itself is a Thread.</td>
+          <td>The Runnable task is passed to a Thread object.</td>
+        </tr>
+        <tr>
+          <td>Reusability</td>
+          <td>Combines the task and the thread in one class.</td>
+          <td>Keeps the task separate from the Thread and is more flexible.</td>
+        </tr>
+        <tr>
+          <td>Preferred Use</td>
+          <td>
+            Useful when the behaviour of the Thread class needs to be
+            customised.
+          </td>
+          <td>
+            Generally preferred for keeping the task separate from the thread.
+          </td>
+        </tr>
+      </table>
+      <div class="note">
+        <b>Important:</b> Call <code>start()</code> to start a thread. Calling
+        <code>run()</code> directly executes it like a normal method in the
+        current thread; it does not start a new thread.
+      </div>
+      <hr />
+
+      <h1>
+        Question 37: Explain thread priorities in Java. How can we set and get
+        the priority of a thread?
+      </h1>
+      <h2>Thread Priority</h2>
+      <p>
+        Every Java thread has a priority that gives the thread scheduler a hint
+        about which thread may receive greater preference for execution.
+        Priority is only a scheduling hint; it does not guarantee that a
+        high-priority thread will always execute first.
+      </p>
+      <h2>Priority Range</h2>
+      <p>
+        Java thread priorities range from 1 to 10. The Thread class provides
+        three predefined constants for this purpose:
+      </p>
+      <table>
+        <tr>
+          <th>Constant</th>
+          <th>Value</th>
+          <th>Meaning</th>
+        </tr>
+        <tr>
+          <td>MIN_PRIORITY</td>
+          <td>1</td>
+          <td>Minimum priority</td>
+        </tr>
+        <tr>
+          <td>NORM_PRIORITY</td>
+          <td>5</td>
+          <td>Normal/default priority</td>
+        </tr>
+        <tr>
+          <td>MAX_PRIORITY</td>
+          <td>10</td>
+          <td>Maximum priority</td>
+        </tr>
+      </table>
+      <h2>Methods to Set and Get Priority</h2>
+      <ul>
+        <li>
+          <code>setPriority(int priority)</code>: Sets the priority of a thread.
+        </li>
+        <li>
+          <code>getPriority()</code>: Returns the current priority of a thread.
+        </li>
+      </ul>
+      <h2>Java Program</h2>
+      <div class="java-program">
+        <div class="code-title">
+          <span>Java Program</span><span>Set and Get Thread Priority</span>
+        </div>
+        <pre><code><span class="kw">class</span> <span class="type">PriorityDemo</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        Thread t1 = <span class="kw">new</span> Thread(() ->
+            System.out.println(<span class="str">"Thread 1 running"</span>));
+
+        Thread t2 = <span class="kw">new</span> Thread(() ->
+            System.out.println(<span class="str">"Thread 2 running"</span>));
+
+        t1.setPriority(Thread.MIN_PRIORITY);
+        t2.setPriority(Thread.MAX_PRIORITY);
+
+        System.out.println(<span class="str">"Priority of t1: "</span>
+                           + t1.getPriority());
+        System.out.println(<span class="str">"Priority of t2: "</span>
+                           + t2.getPriority());
+
+        t1.start();
+        t2.start();
+    }
+}</code></pre>
+      </div>
+      <div class="java-output">
+        <b>Output (Thread execution order may vary)</b>
+        <pre>
+Priority of t1: 1
+Priority of t2: 10
+Thread 1 running
+Thread 2 running</pre
+        >
+      </div>
+      <h2>Important Points</h2>
+      <ol>
+        <li>
+          The default thread priority is generally 5, which is
+          <code>NORM_PRIORITY</code>.
+        </li>
+        <li>
+          A new thread generally inherits the priority of its parent thread.
+        </li>
+        <li>
+          Setting a priority below 1 or above 10 causes an
+          <code>IllegalArgumentException</code>.
+        </li>
+        <li>
+          A high priority does not guarantee first execution; scheduling depends
+          on the JVM and operating system.
+        </li>
+      </ol>
+      <hr />
+
+      <h1>
+        Question 38: What is Thread Synchronization in Java? Explain its need
+        and working with an example.
+      </h1>
+      <h2>Thread Synchronization</h2>
+      <p>
+        When multiple threads access and modify the same shared resource or
+        data, data inconsistency or a race condition may occur. Synchronization
+        is used to avoid such situations. In Java, synchronization ensures that
+        only one thread at a time can hold the lock for a particular
+        synchronized section or method.
+      </p>
+      <h2>Need of Synchronization</h2>
+      <ol>
+        <li>
+          <b>Prevents Race Conditions:</b> Helps prevent simultaneous
+          conflicting updates to shared data.
+        </li>
+        <li>
+          <b>Data Consistency:</b> Helps keep the value of a shared resource
+          consistent.
+        </li>
+        <li>
+          <b>Thread Safety:</b> Controls access to a shared object by multiple
+          threads.
+        </li>
+        <li>
+          <b>Controlled Access:</b> Allows one thread at a time to enter a
+          critical section protected by the same lock.
+        </li>
+      </ol>
+      <h2>synchronized Keyword</h2>
+      <p>
+        The <code>synchronized</code> keyword is used to synchronize a method or
+        block in Java. A synchronized instance method acquires the monitor lock
+        of the current object. A synchronized static method acquires the lock of
+        the associated Class object. A synchronized block acquires the lock of
+        the specified object.
+      </p>
+      <h2>Java Program</h2>
+      <p>
+        In the following program, two threads call the synchronized method of
+        the same object. While one thread holds the lock during method
+        execution, the other thread waits until it can acquire the same lock.
+      </p>
+      <div class="java-program">
+        <div class="code-title">
+          <span>Java Program</span><span>Thread Synchronization</span>
+        </div>
+        <pre><code><span class="kw">class</span> <span class="type">Table</span> {
+    <span class="kw">synchronized void</span> printTable(<span class="kw">int</span> n) {
+        <span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">1</span>; i &lt;= <span class="num">5</span>; i++) {
+            System.out.println(n + <span class="str">" x "</span> + i
+                               + <span class="str">" = "</span> + (n * i));
+        }
+    }
+}
+
+<span class="kw">class</span> <span class="type">ThreadOne</span> <span class="kw">extends</span> Thread {
+    Table t;
+
+    ThreadOne(Table t) {
+        <span class="kw">this</span>.t = t;
+    }
+
+    <span class="kw">public void</span> run() {
+        t.printTable(<span class="num">5</span>);
+    }
+}
+
+<span class="kw">class</span> <span class="type">ThreadTwo</span> <span class="kw">extends</span> Thread {
+    Table t;
+
+    ThreadTwo(Table t) {
+        <span class="kw">this</span>.t = t;
+    }
+
+    <span class="kw">public void</span> run() {
+        t.printTable(<span class="num">10</span>);
+    }
+}
+
+<span class="kw">class</span> <span class="type">SyncDemo</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        Table obj = <span class="kw">new</span> Table();
+
+        ThreadOne t1 = <span class="kw">new</span> ThreadOne(obj);
+        ThreadTwo t2 = <span class="kw">new</span> ThreadTwo(obj);
+
+        t1.start();
+        t2.start();
+    }
+}</code></pre>
+      </div>
+      <div class="java-output">
+        <b>Possible Output</b>
+        <pre>
+5 x 1 = 5
+5 x 2 = 10
+5 x 3 = 15
+5 x 4 = 20
+5 x 5 = 25
+10 x 1 = 10
+10 x 2 = 20
+10 x 3 = 30
+10 x 4 = 40
+10 x 5 = 50</pre
+        >
+      </div>
+      <p>
+        It is also possible for the complete table of 10 to be printed first,
+        followed by the table of 5. However, the output from the two threads
+        will not be interleaved while they are executing the synchronized method
+        on the same object.
+      </p>
+      <h2>Advantages of Synchronization</h2>
+      <ul>
+        <li>Protects shared data.</li>
+        <li>Reduces the possibility of race conditions.</li>
+        <li>Provides controlled access to a critical section.</li>
+        <li>Helps in writing thread-safe code.</li>
+      </ul>
+      <h2>Disadvantages</h2>
+      <ul>
+        <li>Unnecessary synchronization can reduce performance.</li>
+        <li>Incorrect lock ordering can lead to a deadlock.</li>
+        <li>Excessive synchronization can force threads to wait.</li>
+      </ul>
+      <div class="note">
+        <b>Conclusion:</b> Synchronization provides safe and controlled access
+        to shared resources. It should be applied only to necessary critical
+        sections to avoid an unnecessary impact on performance.
+      </div>
+      <hr />
+    </main>
+  </body>
+</html>

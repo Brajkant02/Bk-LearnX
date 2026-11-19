@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Top 38 Questions - Questions 11 to 20</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
+   
+</head>
+
+<body>
+    <main class="content">
+        <h1>Object Oriented Programming Using Java</h1>
+        <span>Top 38 Questions | Includes PYQ and Important Syllabus Topics</span>
+        <hr>
+
+        <h1>Question 11: Explain Arrays in Java. Write a Java program to multiply two 3×3 matrices.</h1>
+        <h2>Array in Java</h2>
+        <p>Array Java में एक ऐसा data structure है जिसका उपयोग same data type के multiple values को एक single variable
+            name के अंतर्गत store करने के लिए किया जाता है। Array में प्रत्येक element का एक index होता है। Java में
+            array indexing zero से शुरू होती है, अर्थात पहले element का index 0 होता है।</p>
+        <p>Array का size create करते समय specify किया जाता है और एक बार create होने के बाद उसका length fixed रहता है।
+            Java में arrays objects होते हैं और उन्हें <code>new</code> keyword की मदद से create किया जा सकता है।</p>
+        <h2>Characteristics of Array</h2>
+        <ol>
+            <li><b>Same Data Type:</b> एक array में सामान्यतः एक ही declared type के elements store होते हैं।</li>
+            <li><b>Fixed Length:</b> Array create होने के बाद उसका size change नहीं किया जा सकता।</li>
+            <li><b>Index Based Access:</b> Elements को index number से access किया जाता है।</li>
+            <li><b>Zero Based Indexing:</b> First element का index 0 होता है।</li>
+            <li><b>Memory:</b> Array elements एक ही array object का हिस्सा होते हैं और index से access किए जाते हैं।
+            </li>
+        </ol>
+        <h2>Types of Arrays in Java</h2>
+        <h3>1. One-Dimensional Array</h3>
+        <p>One-dimensional array में elements एक sequence या list के रूप में store होते हैं। इसे एक index की मदद से
+            access किया जाता है।</p>
+        <p><b>Declaration:</b> <code>int[] marks;</code></p>
+        <p><b>Creation:</b> <code>marks = new int[5];</code></p>
+        <h3>2. Two-Dimensional Array</h3>
+        <p>Two-dimensional array rows और columns के रूप में data store करता है। इसे matrix की तरह समझा जा सकता है और
+            elements को दो indexes से access किया जाता है। Java में 2D array वास्तव में arrays का array होता है।</p>
+        <p><b>Declaration:</b> <code>int[][] matrix = new int[3][3];</code></p>
+        <div class="diagram">
+            <b>Example of a 3 × 3 Array</b>
+            <table>
+                <tr>
+                    <td>matrix[0][0]</td>
+                    <td>matrix[0][1]</td>
+                    <td>matrix[0][2]</td>
+                </tr>
+                <tr>
+                    <td>matrix[1][0]</td>
+                    <td>matrix[1][1]</td>
+                    <td>matrix[1][2]</td>
+                </tr>
+                <tr>
+                    <td>matrix[2][0]</td>
+                    <td>matrix[2][1]</td>
+                    <td>matrix[2][2]</td>
+                </tr>
+            </table>
+            <p>पहला index row को और दूसरा index column को represent करता है।</p>
+        </div>
+        <h2>Advantages of Arrays</h2>
+        <ol>
+            <li>एक ही नाम से कई values store की जा सकती हैं।</li>
+            <li>Index की मदद से elements को आसानी से access किया जा सकता है।</li>
+            <li>Loops के साथ array elements को process करना आसान होता है।</li>
+            <li>Matrix और tabular data represent करने में उपयोगी है।</li>
+        </ol>
+        <h2>Java Program to Multiply Two 3×3 Matrices</h2>
+        <p>Matrix multiplication में पहली matrix की row और दूसरी matrix के column के corresponding elements को multiply
+            करके उनका sum निकाला जाता है। नीचे दिए गए program में दो 3×3 matrices multiply की गई हैं।</p>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>3×3 Matrix Multiplication</span></div>
+            <pre><code><span class="kw">class</span> <span class="type">MatrixMultiplication</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        <span class="kw">int</span>[][] a = {
+            {<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>},
+            {<span class="num">4</span>, <span class="num">5</span>, <span class="num">6</span>},
+            {<span class="num">7</span>, <span class="num">8</span>, <span class="num">9</span>}
+        };
+
+        <span class="kw">int</span>[][] b = {
+            {<span class="num">9</span>, <span class="num">8</span>, <span class="num">7</span>},
+            {<span class="num">6</span>, <span class="num">5</span>, <span class="num">4</span>},
+            {<span class="num">3</span>, <span class="num">2</span>, <span class="num">1</span>}
+        };
+
+        <span class="kw">int</span>[][] result = <span class="kw">new int</span>[<span class="num">3</span>][<span class="num">3</span>];
+
+        <span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">0</span>; i < <span class="num">3</span>; i++) {
+            <span class="kw">for</span> (<span class="kw">int</span> j = <span class="num">0</span>; j < <span class="num">3</span>; j++) {
+                <span class="kw">for</span> (<span class="kw">int</span> k = <span class="num">0</span>; k < <span class="num">3</span>; k++) {
+                    result[i][j] += a[i][k] * b[k][j];
+                }
+            }
+        }
+
+        System.out.println(<span class="str">"Multiplication Result:"</span>);
+        <span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">0</span>; i < <span class="num">3</span>; i++) {
+            <span class="kw">for</span> (<span class="kw">int</span> j = <span class="num">0</span>; j < <span class="num">3</span>; j++) {
+                System.out.print(result[i][j] + <span class="str">"\\t"</span>);
+            }
+            System.out.println();
+        }
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>Multiplication Result:
+30    24    18
+84    69    54
+138   114   90</pre>
+        </div>
+        <h2>Explanation of Program</h2>
+        <ol>
+            <li>दो integer 3×3 arrays <code>a</code> और <code>b</code> declare की गई हैं।</li>
+            <li><code>result</code> नाम की एक तीसरी 3×3 array बनाई गई है। इसके elements initially zero होते हैं।</li>
+            <li>तीन nested loops का उपयोग row, column और multiplication के common index को traverse करने के लिए किया गया
+                है।</li>
+            <li><code>result[i][j] += a[i][k] * b[k][j]</code> प्रत्येक result cell का sum calculate करता है।</li>
+            <li>अंत में result matrix print की जाती है।</li>
+        </ol>
+        <hr>
+
+        <h1>Question 12: Explain Scanner class for input/output in Java and describe Methods.</h1>
+        <h2>Scanner Class in Java</h2>
+        <p>Scanner Java की एक predefined class है, जिसका उपयोग keyboard या किसी अन्य input source से data read करने के
+            लिए किया जाता है। यह <code>java.util</code> package में उपलब्ध होती है। Scanner की मदद से int, float,
+            double, String और अन्य types का input लिया जा सकता है।</p>
+        <p>Scanner class का उपयोग करने के लिए सबसे पहले इसे import करना होता है। Keyboard से input लेने के लिए
+            <code>System.in</code> को Scanner object के साथ pass किया जाता है।</p>
+        <h2>Common Methods of Scanner</h2>
+        <table>
+            <tr>
+                <th>Method</th>
+                <th>Use</th>
+            </tr>
+            <tr>
+                <td><code>nextInt()</code></td>
+                <td>Integer value read करता है।</td>
+            </tr>
+            <tr>
+                <td><code>nextFloat()</code></td>
+                <td>Float value read करता है।</td>
+            </tr>
+            <tr>
+                <td><code>nextDouble()</code></td>
+                <td>Double value read करता है।</td>
+            </tr>
+            <tr>
+                <td><code>next()</code></td>
+                <td>Next token यानी एक word read करता है।</td>
+            </tr>
+            <tr>
+                <td><code>nextLine()</code></td>
+                <td>Current line का पूरा text read करता है।</td>
+            </tr>
+            <tr>
+                <td><code>nextBoolean()</code></td>
+                <td>Boolean value read करता है।</td>
+            </tr>
+            <tr>
+                <td><code>nextLong()</code></td>
+                <td>Long integer value read करता है।</td>
+            </tr>
+        </table>
+        <h2>Java Program Using Scanner</h2>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>Scanner Input</span></div>
+            <pre><code><span class="kw">import</span> java.util.Scanner;
+
+<span class="kw">class</span> <span class="type">ScannerExample</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        Scanner sc = <span class="kw">new</span> Scanner(System.in);
+
+        System.out.print(<span class="str">"Enter your name: "</span>);
+        String name = sc.nextLine();
+
+        System.out.print(<span class="str">"Enter your age: "</span>);
+        <span class="kw">int</span> age = sc.nextInt();
+
+        System.out.println(<span class="str">"Name: "</span> + name);
+        System.out.println(<span class="str">"Age: "</span> + age);
+
+        sc.close();
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Sample Input and Output</b>
+            <pre>Enter your name: Amit Kumar
+Enter your age: 20
+Name: Amit Kumar
+Age: 20</pre>
+        </div>
+        <div class="note"><b>Important:</b> यदि <code>nextInt()</code> के बाद <code>nextLine()</code> call करते हैं, तो
+            nextLine कभी-कभी pending newline consume कर सकता है। ऐसी स्थिति में पूरा next line read करने से पहले एक
+            extra <code>nextLine()</code> call करना पड़ सकता है।</div>
+        <h2>Methods in Java</h2>
+        <p>Method statements का एक block होता है जो किसी particular task को perform करता है। Method को call करने पर उसके
+            अंदर लिखे statements execute होते हैं। Methods program को reusable, organized और easy to maintain बनाते हैं।
+        </p>
+        <h2>Syntax of Method</h2>
+        <div class="java-program">
+            <div class="code-title"><span>Java Syntax</span><span>Method Declaration</span></div>
+            <pre><code>returnType methodName(parameterList) {
+    <span class="comment">// statements</span>
+    <span class="kw">return</span> value;
+}</code></pre>
+        </div>
+        <h2>Parts of a Method</h2>
+        <ol>
+            <li><b>Access Modifier:</b> Method की accessibility define करता है, जैसे public, private या protected।</li>
+            <li><b>Return Type:</b> बताता है कि method कौन-सा type return करेगा। यदि कोई value return नहीं होती, तो void
+                लिखा जाता है।</li>
+            <li><b>Method Name:</b> Method का identifier होता है।</li>
+            <li><b>Parameters:</b> Method को input देने के लिए variables declare किए जाते हैं।</li>
+            <li><b>Method Body:</b> Curly braces के अंदर actual statements लिखे जाते हैं।</li>
+        </ol>
+        <h2>Types of Methods</h2>
+        <h3>1. Predefined Methods</h3>
+        <p>ये Java libraries में पहले से defined methods होते हैं। <b>Examples:</b> <code>println()</code>,
+            <code>sqrt()</code>, <code>length()</code>.</p>
+        <h3>2. User-Defined Methods</h3>
+        <p>Programmer अपनी requirement के अनुसार methods create करता है। इन्हें user-defined methods कहते हैं।</p>
+        <h2>Example of User-Defined Method</h2>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>User-Defined Method</span></div>
+            <pre><code><span class="kw">class</span> <span class="type">MethodExample</span> {
+    <span class="kw">static int</span> add(<span class="kw">int</span> a, <span class="kw">int</span> b) {
+        <span class="kw">return</span> a + b;
+    }
+
+    <span class="kw">public static void</span> main(String[] args) {
+        <span class="kw">int</span> result = add(<span class="num">10</span>, <span class="num">20</span>);
+        System.out.println(<span class="str">"Sum = "</span> + result);
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>Sum = 30</pre>
+        </div>
+        <h2>Advantages of Methods</h2>
+        <ol>
+            <li>Code reusability बढ़ती है।</li>
+            <li>Program को छोटे logical parts में divide किया जा सकता है।</li>
+            <li>Debugging और testing आसान होती है।</li>
+            <li>Repeated code लिखने की आवश्यकता कम होती है।</li>
+        </ol>
+        <hr>
+
+        <h1>Question 13: Differentiate between Class and Object. Explain object declaration and object reference in
+            Java.</h1>
+        <h2>Class in Java</h2>
+        <p>Class एक user-defined blueprint है जो objects की properties और behaviour define करती है। Class में variables,
+            methods, constructors और अन्य members declare किए जा सकते हैं। Class define करने से केवल structure तैयार
+            होता है; instance members के लिए object create करना पड़ता है।</p>
+        <h2>Object in Java</h2>
+        <p>Object class का instance होता है। Object के माध्यम से class के instance variables और instance methods को
+            access किया जा सकता है। Java में सामान्यतः object create करने के लिए <code>new</code> keyword का उपयोग किया
+            जाता है।</p>
+        <h2>Object Declaration and Creation</h2>
+        <p>Object बनाने की प्रक्रिया को समझने के लिए नीचे दिया गया syntax देखें:</p>
+        <div class="java-program">
+            <div class="code-title"><span>Java Syntax</span><span>Object Creation</span></div>
+            <pre><code>Student s1;              <span class="comment">// Reference declaration</span>
+s1 = <span class="kw">new</span> Student();     <span class="comment">// Object creation</span>
+
+<span class="comment">// Both steps in one statement</span>
+Student s2 = <span class="kw">new</span> Student();</code></pre>
+        </div>
+        <ol>
+            <li><b>Declaration:</b> <code>Student s1;</code> एक reference variable declare करता है।</li>
+            <li><b>Object Creation:</b> <code>new Student()</code> Student class का नया object create करता है।</li>
+            <li><b>Assignment:</b> Created object का reference variable <code>s1</code> में assign होता है।</li>
+            <li><b>Accessing Members:</b> Dot operator (<code>.</code>) से object के accessible members access किए जाते
+                हैं।</li>
+        </ol>
+        <div class="diagram">
+            <b>Reference Variable and Object</b>
+            <div class="flow">
+                <div class="node">Reference Variable<br>s1</div><span class="arrow">──── refers to ────→</span>
+                <div class="node">Student Object<br>name, rollNo, methods</div>
+            </div>
+            <p>Reference variable object को refer करता है; object के instance data और behaviour class में define होते
+                हैं।</p>
+        </div>
+        <h2>Example Program</h2>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>Class and Object</span></div>
+            <pre><code><span class="kw">class</span> <span class="type">Car</span> {
+    String model = <span class="str">"Swift"</span>;
+    <span class="kw">int</span> year = <span class="num">2024</span>;
+
+    <span class="kw">void</span> display() {
+        System.out.println(model);
+        System.out.println(year);
+    }
+}
+
+<span class="kw">class</span> <span class="type">CarDemo</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        Car c1 = <span class="kw">new</span> Car();
+        c1.display();
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>Swift
+2024</pre>
+        </div>
+        <h2>Difference Between Class and Object</h2>
+        <table>
+            <tr>
+                <th>Basis</th>
+                <th>Class</th>
+                <th>Object</th>
+            </tr>
+            <tr>
+                <td>1. Meaning</td>
+                <td>Class एक blueprint या template है।</td>
+                <td>Object class का instance है।</td>
+            </tr>
+            <tr>
+                <td>2. Nature</td>
+                <td>यह user-defined type define करती है।</td>
+                <td>यह उस type का actual instance होता है।</td>
+            </tr>
+            <tr>
+                <td>3. Memory</td>
+                <td>Class definition अपने आप हर instance के लिए अलग object memory नहीं बनाती।</td>
+                <td>Object creation पर instance data के लिए memory allocate होती है।</td>
+            </tr>
+            <tr>
+                <td>4. Declaration</td>
+                <td><code>class Student { }</code></td>
+                <td><code>Student s1 = new Student();</code></td>
+            </tr>
+            <tr>
+                <td>5. Quantity</td>
+                <td>एक class से कई objects बनाए जा सकते हैं।</td>
+                <td>हर object अलग instance होता है।</td>
+            </tr>
+            <tr>
+                <td>6. Example</td>
+                <td>Car class</td>
+                <td>Swift car और Baleno car के अलग objects।</td>
+            </tr>
+        </table>
+        <hr>
+
+        <h1>Question 14: What is a Constructor in Java? Explain its characteristics, purpose and types.</h1>
+        <h2>Constructor in Java</h2>
+        <p>Constructor एक special member होता है जिसका उपयोग object create होने पर object को initialize करने के लिए किया
+            जाता है। Constructor का नाम class के नाम के समान होता है और इसका कोई return type नहीं होता, void भी नहीं।
+            Constructor को सामान्यतः <code>new</code> keyword के साथ object creation के समय call किया जाता है।</p>
+        <h2>Characteristics of Constructor</h2>
+        <ol>
+            <li>Constructor का नाम class के नाम के समान होता है।</li>
+            <li>Constructor का कोई return type नहीं होता।</li>
+            <li>Object create होने पर constructor invoke होता है।</li>
+            <li>Constructor overloaded हो सकता है।</li>
+            <li>Constructor inherit नहीं होता।</li>
+            <li>यदि programmer कोई constructor declare नहीं करता, तो compiler default no-argument constructor provide
+                करता है।</li>
+        </ol>
+        <h2>Purpose of Constructor</h2>
+        <ul>
+            <li>Object के instance variables को initial values देना।</li>
+            <li>Object create होते समय required initialization perform करना।</li>
+            <li>Object को valid initial state में लाना।</li>
+        </ul>
+        <h2>Types of Constructors</h2>
+        <h3>1. Default Constructor</h3>
+        <p>यदि किसी class में programmer कोई constructor declare नहीं करता, तो Java compiler उस class के लिए default
+            no-argument constructor provide करता है। यह fields को उनकी default values देता है। यदि programmer कोई भी
+            constructor declare कर देता है, तो compiler automatic default constructor नहीं देता।</p>
+        <h3>2. No-Argument Constructor</h3>
+        <p>Programmer द्वारा बनाया गया ऐसा constructor जिसमें कोई parameter नहीं होता, no-argument constructor कहलाता
+            है। इसे default constructor से अलग समझना चाहिए, क्योंकि यह explicitly programmer लिखता है।</p>
+        <h3>3. Parameterized Constructor</h3>
+        <p>जिस constructor में one or more parameters होते हैं, उसे parameterized constructor कहते हैं। इसका उपयोग
+            object को अलग-अलग initial values देने के लिए किया जाता है।</p>
+        <h2>Example Program of Constructors</h2>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>Constructor Types</span></div>
+            <pre><code><span class="kw">class</span> <span class="type">Student</span> {
+    String name;
+    <span class="kw">int</span> rollNo;
+
+    <span class="comment">// No-argument constructor</span>
+    Student() {
+        name = <span class="str">"Not Assigned"</span>;
+        rollNo = <span class="num">0</span>;
+    }
+
+    <span class="comment">// Parameterized constructor</span>
+    Student(String n, <span class="kw">int</span> r) {
+        name = n;
+        rollNo = r;
+    }
+
+    <span class="kw">void</span> display() {
+        System.out.println(name + <span class="str">" - "</span> + rollNo);
+    }
+
+    <span class="kw">public static void</span> main(String[] args) {
+        Student s1 = <span class="kw">new</span> Student();
+        Student s2 = <span class="kw">new</span> Student(<span class="str">"Amit"</span>, <span class="num">101</span>);
+
+        s1.display();
+        s2.display();
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>Not Assigned - 0
+Amit - 101</pre>
+        </div>
+        <h2>Difference Between Constructor and Method</h2>
+        <table>
+            <tr>
+                <th>Basis</th>
+                <th>Constructor</th>
+                <th>Method</th>
+            </tr>
+            <tr>
+                <td>1. Purpose</td>
+                <td>Object initialize करने के लिए।</td>
+                <td>Specific task perform करने के लिए।</td>
+            </tr>
+            <tr>
+                <td>2. Name</td>
+                <td>Class के नाम के समान होता है।</td>
+                <td>कोई valid method name हो सकता है।</td>
+            </tr>
+            <tr>
+                <td>3. Return Type</td>
+                <td>कोई return type नहीं होता।</td>
+                <td>Return type declare करना आवश्यक है; void भी हो सकता है।</td>
+            </tr>
+            <tr>
+                <td>4. Invocation</td>
+                <td>Object creation के समय invoke होता है।</td>
+                <td>Method call के माध्यम से invoke होता है।</td>
+            </tr>
+            <tr>
+                <td>5. Inheritance</td>
+                <td>Inherit नहीं होता।</td>
+                <td>Accessible methods inherit हो सकते हैं और override भी हो सकते हैं।</td>
+            </tr>
+        </table>
+        <hr>
+
+        <h1>Question 15: Explain Local, Instance and Static Variables. Differentiate between Static and Non-Static
+            Methods.</h1>
+        <h2>Variables in Java</h2>
+        <p>Variable एक named memory location या storage reference है जिसका उपयोग program में data represent करने के लिए
+            किया जाता है। Java में variables को उनके declaration और usage के आधार पर local, instance और static variables
+            में समझा जाता है।</p>
+        <h3>1. Local Variable</h3>
+        <p>Local variable किसी method, constructor या block के अंदर declare किया जाता है। इसका scope उसी method या block
+            तक सीमित रहता है। Local variable को उपयोग करने से पहले initialize करना आवश्यक होता है, क्योंकि compiler इसे
+            automatic default value नहीं देता।</p>
+        <h3>2. Instance Variable</h3>
+        <p>Instance variable class के अंदर लेकिन methods और constructors के बाहर declare किया जाता है और इसे static
+            keyword नहीं दिया जाता। प्रत्येक object के पास instance variable की अपनी अलग copy होती है। यदि explicitly
+            initialize न किया जाए, तो इसे default value मिलती है।</p>
+        <h3>3. Static Variable</h3>
+        <p>Static variable class के अंदर <code>static</code> keyword के साथ declare किया जाता है। इसकी एक shared copy
+            class के सभी objects के लिए होती है। इसे class name के माध्यम से access करना बेहतर practice है।</p>
+        <h2>Example Program of Variables</h2>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>Local, Instance and Static</span></div>
+            <pre><code><span class="kw">class</span> <span class="type">VariableExample</span> {
+    <span class="kw">int</span> instanceValue = <span class="num">10</span>;
+    <span class="kw">static int</span> staticValue = <span class="num">20</span>;
+
+    <span class="kw">void</span> show() {
+        <span class="kw">int</span> localValue = <span class="num">30</span>;
+
+        System.out.println(<span class="str">"Instance: "</span> + instanceValue);
+        System.out.println(<span class="str">"Static: "</span> + staticValue);
+        System.out.println(<span class="str">"Local: "</span> + localValue);
+    }
+
+    <span class="kw">public static void</span> main(String[] args) {
+        VariableExample obj = <span class="kw">new</span> VariableExample();
+        obj.show();
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>Instance: 10
+Static: 20
+Local: 30</pre>
+        </div>
+        <h2>Static Method</h2>
+        <p>Static method वह method है जिसे <code>static</code> keyword के साथ declare किया जाता है। यह class से belong
+            करता है और इसे object बनाए बिना class name से call किया जा सकता है। Static method directly केवल static
+            members को access कर सकता है; instance members को access करने के लिए object reference की आवश्यकता होती है।
+        </p>
+        <h2>Non-Static Method</h2>
+        <p>Non-static method वह method है जिसे static keyword के बिना declare किया जाता है। यह object से belong करता है
+            और सामान्यतः इसे call करने के लिए class का object आवश्यक होता है। यह static और instance दोनों members को
+            access कर सकता है।</p>
+        <h2>Example Program of Static and Non-Static Methods</h2>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>Static and Non-Static Methods</span></div>
+            <pre><code><span class="kw">class</span> <span class="type">MethodTypes</span> {
+    <span class="kw">static void</span> showStatic() {
+        System.out.println(<span class="str">"Static method"</span>);
+    }
+
+    <span class="kw">void</span> showNonStatic() {
+        System.out.println(<span class="str">"Non-static method"</span>);
+    }
+
+    <span class="kw">public static void</span> main(String[] args) {
+        MethodTypes.showStatic();
+
+        MethodTypes obj = <span class="kw">new</span> MethodTypes();
+        obj.showNonStatic();
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>Static method
+Non-static method</pre>
+        </div>
+        <h2>Difference Between Static and Non-Static Variables</h2>
+        <table>
+            <tr>
+                <th>Basis</th>
+                <th>Static Variable</th>
+                <th>Instance Variable</th>
+            </tr>
+            <tr>
+                <td>1. Declaration</td>
+                <td>static keyword के साथ declare होता है।</td>
+                <td>static keyword के बिना class body में declare होता है।</td>
+            </tr>
+            <tr>
+                <td>2. Copy</td>
+                <td>Class के लिए shared copy होती है।</td>
+                <td>हर object की अलग copy होती है।</td>
+            </tr>
+            <tr>
+                <td>3. Access</td>
+                <td>Class name से access किया जा सकता है।</td>
+                <td>Object reference से access किया जाता है।</td>
+            </tr>
+            <tr>
+                <td>4. Lifetime</td>
+                <td>Class के उपयोग में रहने तक associated रहता है।</td>
+                <td>Object के साथ associated रहता है।</td>
+            </tr>
+        </table>
+        <h2>Difference Between Static and Non-Static Methods</h2>
+        <table>
+            <tr>
+                <th>Basis</th>
+                <th>Static Method</th>
+                <th>Non-Static Method</th>
+            </tr>
+            <tr>
+                <td>1. Belongs To</td>
+                <td>Class से belong करता है।</td>
+                <td>Object/instance से belong करता है।</td>
+            </tr>
+            <tr>
+                <td>2. Keyword</td>
+                <td>static keyword आवश्यक है।</td>
+                <td>static keyword नहीं होता।</td>
+            </tr>
+            <tr>
+                <td>3. Calling</td>
+                <td>Class name से call किया जा सकता है।</td>
+                <td>Object के माध्यम से call किया जाता है।</td>
+            </tr>
+            <tr>
+                <td>4. Direct Access</td>
+                <td>Directly static members access करता है।</td>
+                <td>Static और instance दोनों members access कर सकता है।</td>
+            </tr>
+            <tr>
+                <td>5. this Keyword</td>
+                <td>this का उपयोग नहीं कर सकता।</td>
+                <td>this का उपयोग कर सकता है।</td>
+            </tr>
+        </table>
+        <hr>
+
+        <h1>Question 16: What is a Package in Java? Explain how to create, access and import packages. Also explain
+            CLASSPATH.</h1>
+        <h2>Package in Java</h2>
+        <p>Package Java में related classes, interfaces और sub-packages को एक group में organize करने का तरीका है।
+            Package का उपयोग name conflicts कम करने, code को व्यवस्थित रखने और access control में मदद करने के लिए किया
+            जाता है। Java में built-in packages और user-defined packages दोनों होते हैं।</p>
+        <h2>Types of Packages</h2>
+        <h3>1. Built-in Packages</h3>
+        <p>ये Java API में पहले से available packages होते हैं। <b>Examples:</b> <code>java.lang</code>,
+            <code>java.util</code>, <code>java.io</code>, <code>java.net</code>. <code>java.lang</code> package
+            automatically import होता है।</p>
+        <h3>2. User-Defined Packages</h3>
+        <p>Programmer अपनी classes को organize करने के लिए स्वयं package create कर सकता है। इसे user-defined package
+            कहते हैं।</p>
+        <h2>Steps to Create a User-Defined Package</h2>
+        <ol>
+            <li>Java source file की शुरुआत में package declaration लिखें।</li>
+            <li>Package के अंदर class या interface declare करें।</li>
+            <li>Source file को suitable folder structure में compile करें।</li>
+            <li>दूसरी class में import statement लिखकर package member use करें या fully qualified name का उपयोग करें।
+            </li>
+        </ol>
+        <h2>Example: Creating a Package</h2>
+        <p>पहली file का नाम <code>Message.java</code> रखें:</p>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program 1</span><span>Message.java</span></div>
+            <pre><code><span class="kw">package</span> mypack;
+
+<span class="kw">public class</span> <span class="type">Message</span> {
+    <span class="kw">public void</span> display() {
+        System.out.println(<span class="str">"Welcome to Java Package"</span>);
+    }
+}</code></pre>
+        </div>
+        <p>दूसरी file को package के बाहर <code>TestPackage.java</code> नाम से रखें:</p>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program 2</span><span>TestPackage.java</span></div>
+            <pre><code><span class="kw">import</span> mypack.Message;
+
+<span class="kw">class</span> <span class="type">TestPackage</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        Message obj = <span class="kw">new</span> Message();
+        obj.display();
+    }
+}</code></pre>
+        </div>
+        <h2>Compilation and Execution</h2>
+        <p>यदि दोनों source files current project folder में हैं, तो command prompt में project folder से commands चला
+            सकते हैं:</p>
+        <div class="java-program">
+            <div class="code-title"><span>Command Prompt</span><span>Compile and Run</span></div>
+            <pre><code>javac -d . Message.java
+javac -cp . TestPackage.java
+java -cp . TestPackage</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>Welcome to Java Package</pre>
+        </div>
+        <h2>CLASSPATH</h2>
+        <p>CLASSPATH एक setting है जो Java compiler और Java Virtual Machine को बताती है कि required user-defined classes
+            और packages कहाँ search करने हैं। इसमें directories, JAR files और ZIP files के locations दिए जा सकते हैं।
+            Command line पर <code>-cp</code> या <code>-classpath</code> option से classpath specify किया जा सकता है।</p>
+        <h2>Methods to Set CLASSPATH</h2>
+        <h3>1. Using Command Prompt</h3>
+        <div class="java-program">
+            <div class="code-title"><span>Windows Command</span><span>Set CLASSPATH</span></div>
+            <pre><code>set CLASSPATH=C:\Java\MyClasses;.</code></pre>
+        </div>
+        <h3>2. Using -cp Option</h3>
+        <div class="java-program">
+            <div class="code-title"><span>Command Prompt</span><span>Classpath Option</span></div>
+            <pre><code>javac -cp .;C:\Java\MyClasses Test.java
+java -cp .;C:\Java\MyClasses Test</code></pre>
+        </div>
+        <h3>3. Using Environment Variables</h3>
+        <p>Windows में Environment Variables settings खोलकर CLASSPATH नाम का variable create या update किया जा सकता है।
+            इसमें required folders और JAR file paths add किए जाते हैं।</p>
+        <h2>Advantages of Packages</h2>
+        <ol>
+            <li>Related classes को एक group में organize करते हैं।</li>
+            <li>Same name वाली classes के conflicts कम करने में मदद करते हैं।</li>
+            <li>Code reuse और maintenance आसान बनाते हैं।</li>
+            <li>Package और access modifiers के माध्यम से access control में मदद करते हैं।</li>
+        </ol>
+        <hr>
+
+        <h1>Question 17: Explain Autoboxing in Java. Differentiate between String and StringBuffer.</h1>
+        <h2>Autoboxing in Java</h2>
+        <p>Autoboxing वह process है जिसमें Java compiler primitive data type की value को automatically उसके
+            corresponding wrapper class object में convert करता है। उदाहरण के लिए int को Integer में convert करना
+            autoboxing कहलाता है।</p>
+        <p>Java में प्रत्येक primitive type की corresponding wrapper class होती है, जैसे int के लिए Integer, char के लिए
+            Character और double के लिए Double।</p>
+        <h2>Primitive Types and Wrapper Classes</h2>
+        <table>
+            <tr>
+                <th>Primitive Type</th>
+                <th>Wrapper Class</th>
+            </tr>
+            <tr>
+                <td>byte</td>
+                <td>Byte</td>
+            </tr>
+            <tr>
+                <td>short</td>
+                <td>Short</td>
+            </tr>
+            <tr>
+                <td>int</td>
+                <td>Integer</td>
+            </tr>
+            <tr>
+                <td>long</td>
+                <td>Long</td>
+            </tr>
+            <tr>
+                <td>float</td>
+                <td>Float</td>
+            </tr>
+            <tr>
+                <td>double</td>
+                <td>Double</td>
+            </tr>
+            <tr>
+                <td>char</td>
+                <td>Character</td>
+            </tr>
+            <tr>
+                <td>boolean</td>
+                <td>Boolean</td>
+            </tr>
+        </table>
+        <h2>Example of Autoboxing</h2>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>Autoboxing and Unboxing</span></div>
+            <pre><code><span class="kw">class</span> <span class="type">AutoboxingExample</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        <span class="kw">int</span> number = <span class="num">100</span>;
+
+        <span class="comment">// Autoboxing: int to Integer</span>
+        Integer obj = number;
+
+        <span class="comment">// Unboxing: Integer to int</span>
+        <span class="kw">int</span> value = obj;
+
+        System.out.println(<span class="str">"Wrapper Object: "</span> + obj);
+        System.out.println(<span class="str">"Primitive Value: "</span> + value);
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>Wrapper Object: 100
+Primitive Value: 100</pre>
+        </div>
+        <h2>Unboxing</h2>
+        <p>Wrapper class object को automatically corresponding primitive type में convert करने की process Unboxing
+            कहलाती है। ऊपर के program में <code>int value = obj;</code> unboxing का example है।</p>
+        <h2>String in Java</h2>
+        <p>String Java की एक class है जिसका उपयोग characters की sequence represent करने के लिए किया जाता है। String
+            objects immutable होते हैं, अर्थात एक बार String object create होने के बाद उसकी content change नहीं की जा
+            सकती। यदि String पर modification operation किया जाता है, तो नया String object बन सकता है।</p>
+        <p><b>Example:</b> <code>String name = "Java";</code></p>
+        <h2>StringBuffer in Java</h2>
+        <p>StringBuffer Java की एक class है जिसका उपयोग mutable character sequence बनाने के लिए किया जाता है। Mutable का
+            अर्थ है कि उसी object की content को append, insert, delete या replace करके modify किया जा सकता है।
+            StringBuffer के methods synchronized होते हैं, इसलिए यह multiple threads के बीच shared use के लिए
+            StringBuilder की तुलना में thread-safe operations provide करता है।</p>
+        <p><b>Example:</b> <code>StringBuffer text = new StringBuffer("Java");</code></p>
+        <h2>Example Program of String and StringBuffer</h2>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>String and StringBuffer</span></div>
+            <pre><code><span class="kw">class</span> <span class="type">StringExample</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        String s = <span class="str">"Hello"</span>;
+        s.concat(<span class="str">" Java"</span>);
+
+        System.out.println(<span class="str">"String: "</span> + s);
+
+        StringBuffer sb = <span class="kw">new</span> StringBuffer(<span class="str">"Hello"</span>);
+        sb.append(<span class="str">" Java"</span>);
+
+        System.out.println(<span class="str">"StringBuffer: "</span> + sb);
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>String: Hello
+StringBuffer: Hello Java</pre>
+        </div>
+        <p>ऊपर के program में String immutable होने के कारण <code>concat()</code> का result assign न करने पर original
+            String change नहीं होती। StringBuffer में <code>append()</code> उसी object की content modify करता है।</p>
+        <h2>Difference Between String and StringBuffer</h2>
+        <table>
+            <tr>
+                <th>Basis</th>
+                <th>String</th>
+                <th>StringBuffer</th>
+            </tr>
+            <tr>
+                <td>1. Nature</td>
+                <td>Immutable होता है।</td>
+                <td>Mutable होता है।</td>
+            </tr>
+            <tr>
+                <td>2. Modification</td>
+                <td>Modification से नया String object बन सकता है।</td>
+                <td>Same object की content modify की जा सकती है।</td>
+            </tr>
+            <tr>
+                <td>3. Performance</td>
+                <td>Repeated modifications में कई objects बन सकते हैं।</td>
+                <td>Repeated modifications के लिए generally अधिक suitable है।</td>
+            </tr>
+            <tr>
+                <td>4. Thread Safety</td>
+                <td>String immutable है; reference sharing अलग विषय है।</td>
+                <td>इसके methods synchronized होते हैं।</td>
+            </tr>
+            <tr>
+                <td>5. Common Methods</td>
+                <td>concat(), substring(), length()</td>
+                <td>append(), insert(), delete(), reverse()</td>
+            </tr>
+            <tr>
+                <td>6. Use</td>
+                <td>Text जिसे change नहीं करना हो।</td>
+                <td>Text जिसे बार-बार modify करना हो।</td>
+            </tr>
+        </table>
+        <hr>
+
+        <h1>Question 18: What is Inheritance in Java? Explain its different types with examples.</h1>
+        <h2>Inheritance in Java</h2>
+        <p>Inheritance OOP का एक important feature है जिसमें एक class दूसरी class के accessible members को inherit कर
+            सकती है। जिस class से members inherit किए जाते हैं उसे Parent Class या Superclass कहते हैं और जो class
+            inherit करती है उसे Child Class या Subclass कहते हैं। Java में class inheritance के लिए <code>extends</code>
+            keyword का उपयोग किया जाता है।</p>
+        <h2>Advantages of Inheritance</h2>
+        <ol>
+            <li>Code reusability बढ़ती है।</li>
+            <li>Common properties और methods parent class में रखे जा सकते हैं।</li>
+            <li>Program को hierarchy के रूप में organize किया जा सकता है।</li>
+            <li>Method overriding के माध्यम से runtime polymorphism support होता है।</li>
+        </ol>
+        <h2>Types of Inheritance</h2>
+        <h3>1. Single Inheritance</h3>
+        <p>जब एक child class केवल एक parent class से inherit करती है, तो इसे Single Inheritance कहते हैं।</p>
+        <div class="diagram"><b>Single Inheritance</b>
+            <div class="flow">
+                <div class="node">Parent</div><span class="arrow">↓</span>
+                <div class="node">Child</div>
+            </div>
+        </div>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>Single Inheritance</span></div>
+            <pre><code><span class="kw">class</span> <span class="type">Animal</span> {
+    <span class="kw">void</span> eat() {
+        System.out.println(<span class="str">"Animal eats"</span>);
+    }
+}
+
+<span class="kw">class</span> <span class="type">Dog</span> <span class="kw">extends</span> Animal {
+    <span class="kw">void</span> bark() {
+        System.out.println(<span class="str">"Dog barks"</span>);
+    }
+}
+
+<span class="kw">class</span> <span class="type">SingleDemo</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        Dog d = <span class="kw">new</span> Dog();
+        d.eat();
+        d.bark();
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>Animal eats
+Dog barks</pre>
+        </div>
+        <h3>2. Multilevel Inheritance</h3>
+        <p>जब एक class दूसरी class से inherit करती है और तीसरी class दूसरी class से inherit करती है, तो inheritance की
+            chain बनती है। इसे Multilevel Inheritance कहते हैं।</p>
+        <div class="diagram"><b>Multilevel Inheritance</b>
+            <div class="flow">
+                <div class="node">Class A</div><span class="arrow">↓</span>
+                <div class="node">Class B</div><span class="arrow">↓</span>
+                <div class="node">Class C</div>
+            </div>
+        </div>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>Multilevel Inheritance</span></div>
+            <pre><code><span class="kw">class</span> <span class="type">A</span> {
+    <span class="kw">void</span> showA() {
+        System.out.println(<span class="str">"Class A"</span>);
+    }
+}
+<span class="kw">class</span> <span class="type">B</span> <span class="kw">extends</span> A {
+    <span class="kw">void</span> showB() {
+        System.out.println(<span class="str">"Class B"</span>);
+    }
+}
+<span class="kw">class</span> <span class="type">C</span> <span class="kw">extends</span> B {
+    <span class="kw">void</span> showC() {
+        System.out.println(<span class="str">"Class C"</span>);
+    }
+}
+<span class="kw">class</span> <span class="type">MultiDemo</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        C obj = <span class="kw">new</span> C();
+        obj.showA();
+        obj.showB();
+        obj.showC();
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>Class A
+Class B
+Class C</pre>
+        </div>
+        <h3>3. Hierarchical Inheritance</h3>
+        <p>जब एक ही parent class से दो या दो से अधिक child classes inherit करती हैं, तो इसे Hierarchical Inheritance
+            कहते हैं।</p>
+        <div class="diagram"><b>Hierarchical Inheritance</b>
+            <div class="flow">
+                <div class="node">Parent</div><span class="arrow">↓</span>
+            </div>
+            <div class="flow">
+                <div class="node">Child A</div>
+                <div class="node">Child B</div>
+                <div class="node">Child C</div>
+            </div>
+        </div>
+        <h3>4. Multiple Inheritance</h3>
+        <p>जब एक child class एक से अधिक parent classes से inherit करती है, तो उसे Multiple Inheritance कहते हैं। Java
+            classes के माध्यम से multiple inheritance support नहीं करती, क्योंकि इससे ambiguity जैसी problems हो सकती
+            हैं। हालांकि Java में interfaces implement करके multiple inheritance of type और multiple interface behaviour
+            achieve किया जा सकता है।</p>
+        <div class="diagram"><b>Multiple Inheritance Concept</b>
+            <div class="flow">
+                <div class="node">Parent A</div>
+                <div class="node">Parent B</div>
+            </div>
+            <div class="flow"><span class="arrow">↘</span><span class="arrow">↙</span></div>
+            <div class="node">Child</div>
+            <p>Java में यह concept multiple interfaces implement करके possible है।</p>
+        </div>
+        <h3>5. Hybrid Inheritance</h3>
+        <p>दो या दो से अधिक inheritance types के combination को Hybrid Inheritance कहते हैं। Java में classes के माध्यम
+            से ऐसा combination जहाँ multiple inheritance of classes चाहिए, directly supported नहीं है। Interfaces की मदद
+            से hybrid inheritance structures implement किए जा सकते हैं।</p>
+        <div class="diagram"><b>Hybrid Inheritance Concept</b>
+            <div class="flow">
+                <div class="node">Interface A</div>
+                <div class="node">Interface B</div>
+            </div>
+            <div class="flow"><span class="arrow">↘</span><span class="arrow">↙</span></div>
+            <div class="node">Class C implements A, B</div>
+        </div>
+        <h2>Important Note About Java Inheritance</h2>
+        <div class="note">Java classes में Single, Multilevel और Hierarchical inheritance support करती है। Multiple और
+            Hybrid inheritance के class-based forms directly supported नहीं हैं; multiple interfaces implement करके
+            similar structures बनाए जा सकते हैं।</div>
+        <h2>Summary of Inheritance Types</h2>
+        <table>
+            <tr>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Java Class Support</th>
+            </tr>
+            <tr>
+                <td>Single</td>
+                <td>One child, one parent</td>
+                <td>Supported</td>
+            </tr>
+            <tr>
+                <td>Multilevel</td>
+                <td>Inheritance in a chain</td>
+                <td>Supported</td>
+            </tr>
+            <tr>
+                <td>Hierarchical</td>
+                <td>Multiple children, one parent</td>
+                <td>Supported</td>
+            </tr>
+            <tr>
+                <td>Multiple</td>
+                <td>One child, multiple parents</td>
+                <td>Not supported through classes; interfaces can be implemented together</td>
+            </tr>
+            <tr>
+                <td>Hybrid</td>
+                <td>Combination of inheritance types</td>
+                <td>Can be designed using interfaces where needed</td>
+            </tr>
+        </table>
+        <hr>
+
+        <h1>Question 19: Explain the different Access Specifiers in Java: private, public, protected and default.</h1>
+        <h2>Access Specifiers in Java</h2>
+        <p>Access Specifiers या Access Modifiers Java में यह define करते हैं कि class के variables, methods और
+            constructors को कहाँ से access किया जा सकता है। इनका उपयोग data hiding, encapsulation और controlled access
+            के लिए किया जाता है। Java में चार access levels हैं: private, default (package-private), protected और
+            public.</p>
+        <h2>Types of Access Specifiers</h2>
+        <h3>1. private</h3>
+        <p><code>private</code> members को केवल उसी class के अंदर access किया जा सकता है जिसमें वे declare किए गए हैं।
+            यह सबसे restrictive access level है और data hiding के लिए उपयोगी है।</p>
+        <h3>2. default (Package-Private)</h3>
+        <p>जब किसी member के साथ कोई access modifier नहीं लिखा जाता, तो उसे default या package-private access मिलता है।
+            ऐसे members को उसी package की classes access कर सकती हैं, लेकिन दूसरे package की unrelated classes नहीं।</p>
+        <h3>3. protected</h3>
+        <p><code>protected</code> members को same package की classes access कर सकती हैं। दूसरे package में ये members
+            subclasses के माध्यम से access किए जा सकते हैं, inheritance rules के अधीन।</p>
+        <h3>4. public</h3>
+        <p><code>public</code> members को accessible classes द्वारा किसी भी package से access किया जा सकता है, बशर्ते
+            enclosing class भी accessible हो। यह सबसे open access level है।</p>
+        <h2>Access Specifiers Comparison Table</h2>
+        <table>
+            <tr>
+                <th>Access Modifier</th>
+                <th>Same Class</th>
+                <th>Same Package</th>
+                <th>Subclass in Other Package</th>
+                <th>Other Package (Non-subclass)</th>
+            </tr>
+            <tr>
+                <td>private</td>
+                <td>Yes</td>
+                <td>No</td>
+                <td>No</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>default</td>
+                <td>Yes</td>
+                <td>Yes</td>
+                <td>No</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>protected</td>
+                <td>Yes</td>
+                <td>Yes</td>
+                <td>Yes, through inheritance access rules</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>public</td>
+                <td>Yes</td>
+                <td>Yes</td>
+                <td>Yes</td>
+                <td>Yes</td>
+            </tr>
+        </table>
+        <h2>Example Program of Access Specifiers</h2>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>Access Modifiers</span></div>
+            <pre><code><span class="kw">class</span> <span class="type">AccessDemo</span> {
+    <span class="kw">private int</span> a = <span class="num">10</span>;
+    <span class="kw">int</span> b = <span class="num">20</span>;              <span class="comment">// default access</span>
+    <span class="kw">protected int</span> c = <span class="num">30</span>;
+    <span class="kw">public int</span> d = <span class="num">40</span>;
+
+    <span class="kw">public void</span> display() {
+        System.out.println(<span class="str">"Private: "</span> + a);
+        System.out.println(<span class="str">"Default: "</span> + b);
+        System.out.println(<span class="str">"Protected: "</span> + c);
+        System.out.println(<span class="str">"Public: "</span> + d);
+    }
+}
+
+<span class="kw">class</span> <span class="type">AccessTest</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        AccessDemo obj = <span class="kw">new</span> AccessDemo();
+        obj.display();
+        System.out.println(obj.d);
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>Private: 10
+Default: 20
+Protected: 30
+Public: 40
+40</pre>
+        </div>
+        <h2>Important Points</h2>
+        <ol>
+            <li>Top-level classes केवल public या package-private हो सकती हैं; top-level class को private या protected
+                declare नहीं किया जा सकता।</li>
+            <li>Private members को सामान्यतः उसी class के methods के माध्यम से access किया जाता है।</li>
+            <li>Protected का दूसरे package में access केवल subclass context में Java के access rules के अनुसार होता है।
+            </li>
+            <li>Access modifiers code security और maintainability में मदद करते हैं, लेकिन अपने आप encryption provide
+                नहीं करते।</li>
+        </ol>
+        <hr>
+
+        <h1>Question 20: What is Constructor Chaining in Java? Explain the order of constructor invocation with an
+            example.</h1>
+        <h2>Constructor Chaining</h2>
+        <p>Constructor Chaining वह process है जिसमें एक constructor से उसी class के दूसरे constructor या parent class के
+            constructor को call किया जाता है। Java में same class के constructor को call करने के लिए <code>this()</code>
+            और parent class के constructor को call करने के लिए <code>super()</code> का उपयोग किया जाता है।</p>
+        <h2>Uses of Constructor Chaining</h2>
+        <ol>
+            <li>Constructor initialization code को reuse करने में मदद करता है।</li>
+            <li>Parent class के data को initialize करने की सुविधा देता है।</li>
+            <li>Different constructors के बीच common initialization repeat करने की आवश्यकता कम करता है।</li>
+        </ol>
+        <h2>1. Constructor Chaining Using this()</h2>
+        <p><code>this()</code> का उपयोग same class के दूसरे constructor को call करने के लिए किया जाता है। इसे
+            constructor की पहली statement होना चाहिए।</p>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>this() Constructor Chaining</span></div>
+            <pre><code><span class="kw">class</span> <span class="type">Student</span> {
+    Student() {
+        <span class="kw">this</span>(<span class="str">"Unknown"</span>);
+        System.out.println(<span class="str">"No-argument constructor"</span>);
+    }
+
+    Student(String name) {
+        System.out.println(<span class="str">"Name: "</span> + name);
+    }
+
+    <span class="kw">public static void</span> main(String[] args) {
+        Student s = <span class="kw">new</span> Student();
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>Name: Unknown
+No-argument constructor</pre>
+        </div>
+        <h2>2. Constructor Chaining Using super()</h2>
+        <p><code>super()</code> का उपयोग child class constructor से parent class constructor call करने के लिए किया जाता
+            है। यदि programmer constructor में explicit <code>this()</code> या <code>super()</code> call नहीं लिखता, तो
+            compiler सामान्यतः accessible no-argument superclass constructor call insert करता है।</p>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>super() Constructor Chaining</span></div>
+            <pre><code><span class="kw">class</span> <span class="type">Parent</span> {
+    Parent() {
+        System.out.println(<span class="str">"Parent Constructor"</span>);
+    }
+}
+
+<span class="kw">class</span> <span class="type">Child</span> <span class="kw">extends</span> Parent {
+    Child() {
+        <span class="kw">super</span>();
+        System.out.println(<span class="str">"Child Constructor"</span>);
+    }
+}
+
+<span class="kw">class</span> <span class="type">ChainDemo</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        Child obj = <span class="kw">new</span> Child();
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>Parent Constructor
+Child Constructor</pre>
+        </div>
+        <h2>Order of Constructor Invocation in Inheritance</h2>
+        <p>Inheritance में child class का object create करते समय constructor execution parent class से शुरू होकर child
+            class तक आती है। यदि multiple levels की inheritance chain हो, तो सबसे ऊपर वाली superclass का constructor
+            पहले execute होता है और उसके बाद नीचे की classes के constructors execute होते हैं।</p>
+        <div class="diagram">
+            <b>Constructor Invocation Order</b>
+            <div class="flow">
+                <div class="node">Object Creation: C</div><span class="arrow">→</span>
+                <div class="node">Constructor A</div>
+            </div>
+            <div class="flow"><span class="arrow">→</span>
+                <div class="node">Constructor B</div><span class="arrow">→</span>
+                <div class="node">Constructor C</div>
+            </div>
+            <p>Class C का object बनाते समय A → B → C constructor order follow होता है।</p>
+        </div>
+        <h2>Example of Multilevel Constructor Invocation</h2>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>Constructor Order</span></div>
+            <pre><code><span class="kw">class</span> <span class="type">A</span> {
+    A() {
+        System.out.println(<span class="str">"Constructor of A"</span>);
+    }
+}
+
+<span class="kw">class</span> <span class="type">B</span> <span class="kw">extends</span> A {
+    B() {
+        System.out.println(<span class="str">"Constructor of B"</span>);
+    }
+}
+
+<span class="kw">class</span> <span class="type">C</span> <span class="kw">extends</span> B {
+    C() {
+        System.out.println(<span class="str">"Constructor of C"</span>);
+    }
+}
+
+<span class="kw">class</span> <span class="type">OrderDemo</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        C obj = <span class="kw">new</span> C();
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>Constructor of A
+Constructor of B
+Constructor of C</pre>
+        </div>
+        <h2>Important Rules of Constructor Chaining</h2>
+        <ol>
+            <li><code>this()</code> और <code>super()</code> constructor में पहली statement होनी चाहिए।</li>
+            <li>एक ही constructor में <code>this()</code> और <code>super()</code> दोनों को directly call नहीं किया जा
+                सकता।</li>
+            <li><code>this()</code> same class के दूसरे constructor को call करता है।</li>
+            <li><code>super()</code> immediate parent class के constructor को call करता है।</li>
+            <li>Constructor chaining की वजह से parent initialization child initialization से पहले होता है।</li>
+        </ol>
+        <h2>Difference Between this() and super()</h2>
+        <table>
+            <tr>
+                <th>Basis</th>
+                <th>this()</th>
+                <th>super()</th>
+            </tr>
+            <tr>
+                <td>1. Purpose</td>
+                <td>Same class के दूसरे constructor को call करता है।</td>
+                <td>Immediate parent class के constructor को call करता है।</td>
+            </tr>
+            <tr>
+                <td>2. Use</td>
+                <td>Current class के constructors के बीच chaining।</td>
+                <td>Parent और child class constructors के बीच chaining।</td>
+            </tr>
+            <tr>
+                <td>3. Position</td>
+                <td>Constructor की first statement होना चाहिए।</td>
+                <td>Constructor की first statement होना चाहिए।</td>
+            </tr>
+            <tr>
+                <td>4. Together</td>
+                <td>एक constructor में super() के साथ directly use नहीं हो सकता।</td>
+                <td>एक constructor में this() के साथ directly use नहीं हो सकता।</td>
+            </tr>
+        </table>
+        <hr>
+    </main>
+</body>
+
+</html>

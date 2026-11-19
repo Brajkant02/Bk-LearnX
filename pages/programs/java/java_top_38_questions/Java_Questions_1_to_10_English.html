@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Object Oriented Programming Using Java - Questions 1 to 10 (English)</title>
+    <link href="style.css" rel="stylesheet" />
+    <link href="../style.css" rel="stylesheet" />
+
+</head>
+
+<body>
+    <main class="content">
+        <h1>Object Oriented Programming Using Java</h1>
+        <span>Top 38 Questions | Includes PYQ and Important Syllabus Topics</span>
+        <hr />
+        <h1>Question 1: Explain the Fundamentals and Features of Object Oriented Programming (OOP).</h1>
+        <h2>Object Oriented Programming (OOP)</h2>
+        <p>Object Oriented Programming (OOP) is a programming approach in which a program is organized around objects
+            and classes rather than functions. Real-world entities such as students, employees, cars, and bank accounts
+            are represented as objects. Each object has its own data and methods that operate on that data.</p>
+        <p>The main objective of OOP is to make programs modular, reusable, secure, and easy to maintain. Java is an
+            object-oriented programming language in which classes and objects play an important role.</p>
+        <h2>Fundamentals of OOP</h2>
+        <p>The main fundamentals of OOP are described below:</p>
+        <h3>1. Class</h3>
+        <p>A class is a blueprint or template used to create objects. It defines data members (variables) and member
+            functions (methods). A class specifies what data its objects will contain and what operations they can
+            perform.</p>
+        <p><b>Example:</b>Student can be a class containing rollNumber and name fields, along with a displayDetails()
+            method.</p>
+        <h3>2. Object</h3>
+        <p>An object is an instance of a class. It represents a real-world entity and has state, behaviour, and
+            identity. Its state is represented by variables, its behaviour by methods, and it is accessed through an
+            object reference.</p>
+        <p><b>Example:</b>If Student is a class, Pankaj and Rahul can be two different objects of that class. Each
+            object can contain different data.</p>
+        <h3>3. Object Reference</h3>
+        <p>An object reference is a variable that refers to an object. In Java, after creating an object, its members
+            are accessed through the reference variable. The reference variable does not store the object’s actual data;
+            it refers to the object.</p>
+        <p><b>Example:</b> <code>Student s1 = new Student();</code>In<code>s1</code>is the reference variable.</p>
+        <h3>4. Abstraction</h3>
+        <p>Abstraction means hiding unnecessary implementation details and showing only the essential features or
+            functionality. The user does not need to know how something works internally; they only need to know how to
+            use the feature.</p>
+        <p><b>Example:</b>For example, when withdrawing money from an ATM, we only enter the amount. The internal
+            transaction process remains hidden from the user. In Java, abstraction can be achieved using abstract
+            classes and interfaces.</p>
+        <h3>5. Encapsulation</h3>
+        <p>Encapsulation means binding data and the methods that operate on it into a single unit, namely a class. To
+            prevent direct access to data, variables are generally declared<code>private</code>and public getter and
+            setter methods are provided to access them.</p>
+        <p><b>Example:</b>For example, the balance in a BankAccount class can be declared private and controlled access
+            can be provided through deposit() and getBalance() methods.</p>
+        <h3>6. Inheritance</h3>
+        <p>Inheritance is a mechanism through which one class can acquire the accessible properties and methods of
+            another class. The class whose features are inherited is called the Parent or Superclass, while the class
+            that inherits them is called the Child or Subclass. This increases code reusability.</p>
+        <p><b>Example:</b>Vehicle can be a parent class and Car can be its child class. Car can inherit the common
+            features of Vehicle.</p>
+        <h3>7. Polymorphism</h3>
+        <p>Polymorphism means “one name, many forms.” The same method name can exhibit different behaviour in different
+            situations. In Java, method overloading is an example of compile-time polymorphism, while method overriding
+            is an example of runtime polymorphism.</p>
+        <p><b>Example:</b> <code>draw()</code>method can draw a circle for Circle and a rectangle for Rectangle if both
+            classes implement it in their own way.</p>
+        <h2>Simple Java Program Based on Class and Object</h2>
+        <p>The following program creates a Student class. An object of this class is created to display the name and
+            roll number.</p>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>Class and Object</span></div>
+            <pre><code><span class="kw">class</span> <span class="type">Student</span> {
+    String name = <span class="str">"Amit"</span>;
+    <span class="kw">int</span> rollNo = <span class="num">101</span>;
+
+    <span class="kw">void</span> display() {
+        System.out.println(<span class="str">"Name: "</span> + name);
+        System.out.println(<span class="str">"Roll No: "</span> + rollNo);
+    }
+
+    <span class="kw">public static void</span> main(String[] args) {
+        Student s1 = <span class="kw">new</span> Student();
+        s1.display();
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>Name: Amit
+Roll No: 101</pre>
+        </div>
+        <h2>Advantages of OOP</h2>
+        <ol>
+            <li><b>Code Reusability:</b>Existing code can be reused with the help of inheritance.</li>
+            <li><b>Data Security:</b>Encapsulation and access modifiers provide controlled access to data.</li>
+            <li><b>Modularity:</b>A program can be divided into separate classes and objects.</li>
+            <li><b>Easy Maintenance:</b>Organizing a program into small modules makes errors easier to find and updates
+                easier to perform.</li>
+            <li><b>Flexibility:</b>Polymorphism allows different implementations of a common interface.</li>
+        </ol>
+        <hr />
+        <h1>Question 2: Explain the drawbacks of Procedural Programming and the need of OOP. Differentiate between POP
+            and OOP.</h1>
+        <h2>Procedural Oriented Programming (POP)</h2>
+        <p>Procedural Oriented Programming (POP) is a programming approach in which a program is divided into small
+            procedures or functions. Its main focus is on the steps that must be executed to complete a task. The C
+            language is a common example.</p>
+        <h2>Drawbacks of Procedural Programming</h2>
+        <ol>
+            <li><b>Less Data Security:</b>In many procedural programs, data is shared among functions, which can limit
+                control over that data.</li>
+            <li><b>Limited Code Reusability:</b>Reusing and extending existing code can be comparatively difficult in
+                large programs.</li>
+            <li><b>Maintenance Difficult:</b>As a program grows, understanding the relationships between functions and
+                shared data can become difficult.</li>
+            <li><b>Difficulty in Real-World Modelling:</b>Representing real-world entities as a single unit containing
+                both data and behaviour is not straightforward.</li>
+            <li><b>Data and Functions Are Separate:</b>In POP, data and functions generally remain separate, so extra
+                care is required when handling data.</li>
+        </ol>
+        <h2>Need of Object Oriented Programming</h2>
+        <p>The OOP approach helps overcome several limitations of procedural programming. OOP combines data and methods
+            into classes. This makes it easier to design programs around real-world objects, reuse code, and provide
+            controlled access to data.</p>
+        <h2>Difference Between POP and OOP</h2>
+        <table>
+            <tr>
+                <th>Basis</th>
+                <th>POP</th>
+                <th>OOP</th>
+            </tr>
+            <tr>
+                <td>1. Full Form</td>
+                <td>Procedural Oriented Programming</td>
+                <td>Object Oriented Programming</td>
+            </tr>
+            <tr>
+                <td>2. Main Focus</td>
+                <td>Focuses on functions and procedures.</td>
+                <td>Focuses on objects and classes.</td>
+            </tr>
+            <tr>
+                <td>3. Approach</td>
+                <td>Generally follows a top-down approach.</td>
+                <td>Generally follows a bottom-up approach.</td>
+            </tr>
+            <tr>
+                <td>4. Data and Functions</td>
+                <td>Data and functions may remain separate.</td>
+                <td>Data and methods are combined within a class.</td>
+            </tr>
+            <tr>
+                <td>5. Data Security</td>
+                <td>Data-hiding facilities are limited.</td>
+                <td>Encapsulation and access modifiers provide controlled access.</td>
+            </tr>
+            <tr>
+                <td>6. Reusability</td>
+                <td>Code reusability is comparatively limited.</td>
+                <td>Reusability can be achieved through inheritance and composition.</td>
+            </tr>
+            <tr>
+                <td>7. Suitable For</td>
+                <td>Suitable for small, procedure-focused programs.</td>
+                <td>Useful for organizing large and complex applications.</td>
+            </tr>
+            <tr>
+                <td>8. Examples</td>
+                <td>C, Pascal</td>
+                <td>Java, C++, C#</td>
+            </tr>
+        </table>
+        <h2>Conclusion</h2>
+        <p>In POP, a program is organized around functions, whereas in OOP it is organized around objects and classes.
+            Features such as encapsulation, inheritance, and polymorphism help OOP organize the development of large
+            software applications.</p>
+        <hr />
+        <h1>Question 3: What is JVM? Explain its working and how Java is platform independent.</h1>
+        <h2>JVM (Java Virtual Machine)</h2>
+        <p>The full form of JVM<b>Java Virtual Machine</b>is Java Virtual Machine. It is an important part of the Java
+            Runtime Environment (JRE). The JVM is a virtual machine that executes Java bytecode. The Java compiler
+            converts Java source code into bytecode, and the JVM executes that bytecode on the relevant system.</p>
+        <p>The JVM also handles responsibilities such as memory management, garbage collection, security, and runtime
+            execution. JVM implementations are available for different operating systems.</p>
+        <h2>Working of JVM</h2>
+        <p>A Java program is generally executed through the following steps:</p>
+        <ol>
+            <li><b>Source Code:</b>The programmer writes Java source code in a<code>.java</code>.java file.</li>
+            <li><b>Compilation:</b> Java compiler (<code>javac</code>) compiles the source code and generates bytecode.
+            </li>
+            <li><b>Bytecode:</b>The compiled bytecode is generally stored in a<code>.class</code>.class file.</li>
+            <li><b>Class Loader:</b>The JVM Class Loader loads the required class files into memory.</li>
+            <li><b>Bytecode Verification:</b>The Bytecode Verifier checks the validity of the bytecode and performs
+                safety-related checks.</li>
+            <li><b>Execution Engine:</b>The Execution Engine executes the bytecode. It may use an interpreter and a
+                Just-In-Time (JIT) compiler.</li>
+            <li><b>Output:</b>The required result is obtained after the program has been executed.</li>
+        </ol>
+        <div class="diagram">
+            <b>Java Program Execution Flow</b>
+            <div class="flow">
+                <div class="node">Java Source Code<br />(.java)</div><span class="arrow">→</span>
+                <div class="node">Java Compiler<br />(javac)</div>
+            </div>
+            <div class="flow">
+                <div class="node">Bytecode<br />(.class)</div><span class="arrow">→</span>
+                <div class="node">JVM</div>
+            </div>
+            <div class="flow">
+                <div class="node">Class Loader</div><span class="arrow">→</span>
+                <div class="node">Bytecode Verifier</div><span class="arrow">→</span>
+                <div class="node">Execution Engine</div>
+            </div>
+            <div class="flow"><span class="arrow">↓</span></div>
+            <div class="node">Program Output</div>
+        </div>
+        <h2>Why is Java Platform Independent?</h2>
+        <p>Java is called platform independent because the Java compiler converts source code into platform-neutral
+            bytecode instead of machine-specific native code. This bytecode can be executed on any operating system
+            through a compatible JVM for that system.</p>
+        <p>This concept is known as “Write Once, Run Anywhere (WORA).” It means that once bytecode has been generated,
+            it can be run on different supported platforms using a compatible JVM.</p>
+        <div class="diagram">
+            <b>Platform Independence</b>
+            <div class="flow">
+                <div class="node">Same Java Bytecode</div>
+            </div>
+            <div class="flow"><span class="arrow">↙</span><span class="arrow">↓</span><span class="arrow">↘</span></div>
+            <div class="flow">
+                <div class="node">Windows JVM</div>
+                <div class="node">Linux JVM</div>
+                <div class="node">macOS JVM</div>
+            </div>
+            <div class="flow"><span class="arrow">↓</span><span class="arrow">↓</span><span class="arrow">↓</span></div>
+            <div class="flow">
+                <div class="node">Execution</div>
+                <div class="node">Execution</div>
+                <div class="node">Execution</div>
+            </div>
+        </div>
+        <h2>Advantages of JVM</h2>
+        <ol>
+            <li>It executes Java bytecode.</li>
+            <li>It helps run Java programs on different platforms.</li>
+            <li>It supports automatic memory management and garbage collection.</li>
+            <li>It performs security checks through bytecode verification.</li>
+            <li>JIT compilation can improve execution performance.</li>
+        </ol>
+        <div class="note"><b>Important:</b>Java source code is not executed directly by the JVM. The compiler first
+            converts it into bytecode, which is then executed by the JVM.</div>
+        <hr />
+        <h1>Question 4: Explain Eclipse IDE, its features and the steps to develop, compile, run and debug a Java
+            program.</h1>
+        <h2>Eclipse IDE</h2>
+        <p>Eclipse IDE stands for Integrated Development Environment. It is a popular software development environment
+            used to develop Java applications. In Eclipse, a programmer can write code, manage projects, run programs,
+            and debug errors. Eclipse provides Java Development Tools (JDT) for Java development.</p>
+        <h2>Features of Eclipse IDE</h2>
+        <ol>
+            <li><b>Code Editor:</b>It allows users to write and edit Java source code.</li>
+            <li><b>Syntax Highlighting:</b>It displays keywords, variables, and strings in different colours.</li>
+            <li><b>Code Completion:</b>It provides suggestions while writing code, which can reduce typing effort and
+                common mistakes.</li>
+            <li><b>Error Detection:</b>It identifies many syntax and compile-time errors in the editor.</li>
+            <li><b>Debugger:</b>It allows a program to be executed step by step using breakpoints and enables variables
+                to be inspected.</li>
+            <li><b>Project Management:</b>Multiple Java projects can be managed in a single workspace.</li>
+            <li><b>Build and Run:</b>It makes compiling/building and running Java programs easier.</li>
+            <li><b>Plugin Support:</b>The IDE’s capabilities can be extended through additional plugins.</li>
+        </ol>
+        <h2>Steps to Create a Java Program in Eclipse</h2>
+        <ol>
+            <li><b>Install and Open Eclipse:</b>Install Eclipse IDE on the system and open it.</li>
+            <li><b>Select Workspace:</b>Select the workspace folder where projects will be stored.</li>
+            <li><b>Create Java Project:</b>Click File → New → Java Project and enter a project name.</li>
+            <li><b>Create Package (Optional):</b>Right-click the src folder and select New → Package.</li>
+            <li><b>Create Class:</b>Right-click the package or src folder, select New → Class, and enter a class name.
+            </li>
+            <li><b>Write Code:</b>Write the Java source code in the editor. Generate the main method if required.</li>
+            <li><b>Compile/Build:</b>Eclipse generally builds the project automatically when files are saved. If errors
+                occur, check the Problems view.</li>
+            <li><b>Run Program:</b>Right-click the class and select Run As → Java Application. The output will appear in
+                the Console view.</li>
+            <li><b>Debug Program:</b>Double-click the left margin beside the required line of code to set a breakpoint.
+                Then select Debug As → Java Application.</li>
+        </ol>
+        <h2>Example Program in Eclipse</h2>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>Hello World</span></div>
+            <pre><code><span class="kw">public class</span> <span class="type">HelloWorld</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        System.out.println(<span class="str">"Hello, Java!"</span>);
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Console Output</b>
+            <pre>Hello, Java!</pre>
+        </div>
+        <h2>Advantages of Eclipse IDE</h2>
+        <ul>
+            <li>Useful tools for Java development are available in a single environment.</li>
+            <li>Code completion and syntax highlighting make coding easier.</li>
+            <li>The debugger makes it easier to trace errors in a program.</li>
+            <li>Plugins allow it to be extended according to different development needs.</li>
+        </ul>
+        <hr />
+        <h1>Question 5: Explain Java tokens and data types. Describe the primitive data types of Java.</h1>
+        <h2>Java Tokens</h2>
+        <p>The smallest meaningful units of a Java program are called tokens. The Java compiler identifies source code
+            as tokens. The main types of Java tokens are keywords, identifiers, literals, operators, and separators (or
+            punctuators).</p>
+        <h3>Types of Java Tokens</h3>
+        <ol>
+            <li><b>Keywords:</b>These are reserved words with predefined meanings in Java. They cannot be used as
+                ordinary identifiers.<b>Examples:</b> <code>class</code>, <code>int</code>, <code>if</code>,
+                <code>public</code>, <code>static</code>.</li>
+            <li><b>Identifiers:</b>Names given to classes, methods, variables, and other program elements are called
+                identifiers.<b>Examples:</b> <code>Student</code>, <code>total</code>, <code>display</code>.</li>
+            <li><b>Literals:</b>Fixed values written directly in a program are called literals.<b>Examples:</b>
+                <code>100</code>, <code>3.14</code>, <code>'A'</code>, <code>"Java"</code>, <code>true</code>.</li>
+            <li><b>Operators:</b>They perform operations on values or variables.<b>Examples:</b> <code>+</code>,
+                <code>-</code>, <code>*</code>, <code>==</code>, <code>&amp;&amp;</code>.</li>
+            <li><b>Separators:</b>They are used to separate different parts of a program.<b>Examples:</b>
+                <code>()</code>, <code>{}</code>, <code>[]</code>, <code>;</code>, <code>,</code>.</li>
+        </ol>
+        <h2>Data Types in Java</h2>
+        <p>A data type defines the kind of data that can be stored in a variable. Java is a statically typed language,
+            so the data type must be specified when a variable is declared. Java data types are broadly divided into two
+            categories:</p>
+        <ol>
+            <li><b>Primitive Data Types:</b>These are the basic built-in data types.</li>
+            <li><b>Non-Primitive / Reference Types:</b>These include classes, arrays, interfaces, and other reference
+                types.</li>
+        </ol>
+        <h2>Eight Primitive Data Types of Java</h2>
+        <table>
+            <tr>
+                <th>Data Type</th>
+                <th>Size</th>
+                <th>Use</th>
+                <th>Example</th>
+            </tr>
+            <tr>
+                <td>byte</td>
+                <td>8-bit</td>
+                <td>Used to store small integer values.</td>
+                <td><code>byte age = 20;</code></td>
+            </tr>
+            <tr>
+                <td>short</td>
+                <td>16-bit</td>
+                <td>Used for short-range integer values.</td>
+                <td><code>short year = 2025;</code></td>
+            </tr>
+            <tr>
+                <td>int</td>
+                <td>32-bit</td>
+                <td>Used for common whole-number values.</td>
+                <td><code>int marks = 85;</code></td>
+            </tr>
+            <tr>
+                <td>long</td>
+                <td>64-bit</td>
+                <td>Used for large-range integer values.</td>
+                <td><code>long population = 9000000L;</code></td>
+            </tr>
+            <tr>
+                <td>float</td>
+                <td>32-bit</td>
+                <td>Used for single-precision decimal values.</td>
+                <td><code>float price = 12.5f;</code></td>
+            </tr>
+            <tr>
+                <td>double</td>
+                <td>64-bit</td>
+                <td>Used for double-precision decimal values.</td>
+                <td><code>double pi = 3.14159;</code></td>
+            </tr>
+            <tr>
+                <td>char</td>
+                <td>16-bit</td>
+                <td>Used to store a single UTF-16 code unit.</td>
+                <td><code>char grade = 'A';</code></td>
+            </tr>
+            <tr>
+                <td>boolean</td>
+                <td>JVM-dependent representation</td>
+                <td>Used to store a true or false value.</td>
+                <td><code>boolean pass = true;</code></td>
+            </tr>
+        </table>
+        <div class="note"><b>Note:</b>The Java Language Specification does not define an exact storage size for boolean.
+            Therefore, it is not correct to state that it always occupies exactly 1 bit or 1 byte.</div>
+        <h2>Example Program Using Primitive Data Types</h2>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>Primitive Data Types</span></div>
+            <pre><code><span class="kw">class</span> <span class="type">DataTypeExample</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        <span class="kw">int</span> age = <span class="num">20</span>;
+        <span class="kw">double</span> percentage = <span class="num">82.5</span>;
+        <span class="kw">char</span> grade = <span class="str">'A'</span>;
+        <span class="kw">boolean</span> result = <span class="kw">true</span>;
+
+        System.out.println(<span class="str">"Age: "</span> + age);
+        System.out.println(<span class="str">"Percentage: "</span> + percentage);
+        System.out.println(<span class="str">"Grade: "</span> + grade);
+        System.out.println(<span class="str">"Pass: "</span> + result);
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>Age: 20
+Percentage: 82.5
+Grade: A
+Pass: true</pre>
+        </div>
+        <hr />
+        <h1>Question 6: Differentiate between Type Conversion and Type Casting in Java.</h1>
+        <h2>Type Conversion</h2>
+        <p>Type conversion is the process of automatically converting a value from one data type to another compatible
+            data type. In Java, converting a smaller compatible numeric type to a larger numeric type is generally
+            called widening conversion. The programmer does not need to write an explicit cast.</p>
+        <p><b>Example:</b>Assigning an int value to a double variable.</p>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>Type Conversion</span></div>
+            <pre><code><span class="kw">class</span> <span class="type">ConversionExample</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        <span class="kw">int</span> number = <span class="num">25</span>;
+        <span class="kw">double</span> value = number;
+
+        System.out.println(<span class="str">"Integer: "</span> + number);
+        System.out.println(<span class="str">"Double: "</span> + value);
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>Integer: 25
+Double: 25.0</pre>
+        </div>
+        <h2>Type Casting</h2>
+        <p>Type casting is the process in which the programmer explicitly converts a value to another compatible data
+            type. In narrowing conversion, a type with a larger range can be converted to a type with a smaller range.
+            This may result in data or precision loss.</p>
+        <p><b>Example:</b>The cast operator is used to convert a double value to int<code>(int)</code>The decimal part
+            is discarded.</p>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>Type Casting</span></div>
+            <pre><code><span class="kw">class</span> <span class="type">CastingExample</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        <span class="kw">double</span> price = <span class="num">99.75</span>;
+        <span class="kw">int</span> amount = (<span class="kw">int</span>) price;
+
+        System.out.println(<span class="str">"Double: "</span> + price);
+        System.out.println(<span class="str">"Integer: "</span> + amount);
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>Double: 99.75
+Integer: 99</pre>
+        </div>
+        <h2>Difference Between Type Conversion and Type Casting</h2>
+        <table>
+            <tr>
+                <th>Basis</th>
+                <th>Type Conversion</th>
+                <th>Type Casting</th>
+            </tr>
+            <tr>
+                <td>1. Meaning</td>
+                <td>Automatic conversion from one compatible type to another.</td>
+                <td>Explicit conversion performed by the programmer.</td>
+            </tr>
+            <tr>
+                <td>2. Control</td>
+                <td>The compiler performs the conversion.</td>
+                <td>The programmer writes a cast operator.</td>
+            </tr>
+            <tr>
+                <td>3. Operator</td>
+                <td>No explicit cast operator is required.</td>
+                <td>A cast operator such as <code>(int)</code>is used.</td>
+            </tr>
+            <tr>
+                <td>4. Direction</td>
+                <td>Often used for widening conversions.</td>
+                <td>Often used for narrowing conversions.</td>
+            </tr>
+            <tr>
+                <td>5. Data Loss</td>
+                <td>Precision is not lost in ordinary numeric widening conversions.</td>
+                <td>Data or precision may be lost.</td>
+            </tr>
+            <tr>
+                <td>6. Example</td>
+                <td><code>double d = 10;</code></td>
+                <td><code>int n = (int) 10.5;</code></td>
+            </tr>
+        </table>
+        <h2>Conclusion</h2>
+        <p>Type conversion is automatic, whereas type casting uses an explicit cast operator written by the programmer.
+            Possible data loss should be considered when performing narrowing conversions.</p>
+        <hr />
+        <h1>Question 7: Explain the different types of Operators in Java with examples.</h1>
+        <h2>Operators in Java</h2>
+        <p>Operators are special symbols that perform specific operations on variables and values. The values or
+            variables on which an operator acts are called operands. Java provides several types of operators.</p>
+        <h2>Types of Operators</h2>
+        <h3>1. Arithmetic Operators</h3>
+        <p>Arithmetic operators are used to perform mathematical calculations.</p>
+        <table>
+            <tr>
+                <th>Operator</th>
+                <th>Meaning</th>
+                <th>Example</th>
+            </tr>
+            <tr>
+                <td>+</td>
+                <td>Addition</td>
+                <td><code>10 + 5 = 15</code></td>
+            </tr>
+            <tr>
+                <td>-</td>
+                <td>Subtraction</td>
+                <td><code>10 - 5 = 5</code></td>
+            </tr>
+            <tr>
+                <td>*</td>
+                <td>Multiplication</td>
+                <td><code>10 * 5 = 50</code></td>
+            </tr>
+            <tr>
+                <td>/</td>
+                <td>Division</td>
+                <td><code>10 / 5 = 2</code></td>
+            </tr>
+            <tr>
+                <td>%</td>
+                <td>Remainder / Modulus</td>
+                <td><code>10 % 3 = 1</code></td>
+            </tr>
+        </table>
+        <h3>2. Relational Operators</h3>
+        <p>Relational operators compare two values and return a boolean result, either true or false.<code>==</code>,
+            <code>!=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>Examples
+            include the following.</p>
+        <h3>3. Logical Operators</h3>
+        <p>Logical operators combine or reverse boolean expressions.<code>&amp;&amp;</code> (Logical AND),
+            <code>||</code> (Logical OR), and <code>!</code> (Logical NOT) The main examples are</p>
+        <h3>4. Assignment Operators</h3>
+        <p>Assignment operators are used to assign values to variables.<code>=</code>, <code>+=</code>, <code>-=</code>,
+            <code>*=</code>, <code>/=</code> and <code>%=</code>Examples include the following.</p>
+        <h3>5. Unary Operators</h3>
+        <p>Unary operators operate on a single operand.<code>++</code> increment, <code>--</code> decrement,
+            <code>+</code> unary plus, <code>-</code>unary minus and<code>!</code>are used for logical complement.</p>
+        <h3>6. Bitwise Operators</h3>
+        <p>Bitwise operators perform operations on the individual bits of integer values.<code>&amp;</code>,
+            <code>|</code>, <code>^</code>, <code>~</code>, <code>&lt;&lt;</code>, <code>&gt;&gt;</code> and
+            <code>&gt;&gt;&gt;</code>Examples include the following.</p>
+        <h3>7. Conditional / Ternary Operator</h3>
+        <p>The ternary operator works with three operands. Its syntax
+            is:<code>condition ? expression1 : expression2</code>. The first expression is evaluated when the condition
+            is true; otherwise, the second expression is evaluated.</p>
+        <h3>8. instanceof Operator</h3>
+        <p><code>instanceof</code>checks whether an object is an instance of a particular class or a compatible type. It
+            returns a boolean result.</p>
+        <h2>Example Program of Operators</h2>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>Operators</span></div>
+            <pre><code><span class="kw">class</span> <span class="type">OperatorExample</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        <span class="kw">int</span> a = <span class="num">10</span>, b = <span class="num">3</span>;
+
+        System.out.println(<span class="str">"Addition: "</span> + (a + b));
+        System.out.println(<span class="str">"Remainder: "</span> + (a % b));
+        System.out.println(<span class="str">"a is greater: "</span> + (a &gt; b));
+        System.out.println(<span class="str">"Both positive: "</span> + (a &gt; 0 &amp;&amp; b &gt; 0));
+
+        a += <span class="num">5</span>;
+        System.out.println(<span class="str">"After += 5: "</span> + a);
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>Addition: 13
+Remainder: 1
+a is greater: true
+Both positive: true
+After += 5: 15</pre>
+        </div>
+        <hr />
+        <h1>Question 8: Explain Conditional Expressions, if-then-else statement and Ternary Operator in Java.</h1>
+        <h2>Conditional Statements</h2>
+        <p>Conditional statements are used for decision-making in a program. They evaluate a condition and execute
+            statements according to the result. Java provides decision-making constructs such as if, if-else, the
+            else-if ladder, nested if, and switch.</p>
+        <h2>1. if Statement</h2>
+        <p><code>if</code>When the condition in an if statement is true, its block is executed. If the condition is
+            false, the block is skipped.</p>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>if Statement</span></div>
+            <pre><code><span class="kw">class</span> <span class="type">IfExample</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        <span class="kw">int</span> age = <span class="num">20</span>;
+
+        <span class="kw">if</span> (age &gt;= <span class="num">18</span>) {
+            System.out.println(<span class="str">"Eligible to vote"</span>);
+        }
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>Eligible to vote</pre>
+        </div>
+        <h2>2. if-else Statement</h2>
+        <p><code>if-else</code>In an if-else statement, the if block executes when the condition is true; otherwise, the
+            else block executes.</p>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>if-else Statement</span></div>
+            <pre><code><span class="kw">class</span> <span class="type">IfElseExample</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        <span class="kw">int</span> number = <span class="num">7</span>;
+
+        <span class="kw">if</span> (number % <span class="num">2</span> == <span class="num">0</span>) {
+            System.out.println(<span class="str">"Even Number"</span>);
+        } <span class="kw">else</span> {
+            System.out.println(<span class="str">"Odd Number"</span>);
+        }
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>Odd Number</pre>
+        </div>
+        <h2>3. else-if Ladder</h2>
+        <p>An else-if ladder is used when multiple conditions must be checked in sequence. The block for the first true
+            condition is executed, and the remaining conditions are skipped.</p>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>else-if Ladder</span></div>
+            <pre><code><span class="kw">class</span> <span class="type">GradeExample</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        <span class="kw">int</span> marks = <span class="num">76</span>;
+
+        <span class="kw">if</span> (marks &gt;= <span class="num">80</span>) {
+            System.out.println(<span class="str">"Grade A"</span>);
+        } <span class="kw">else if</span> (marks &gt;= <span class="num">60</span>) {
+            System.out.println(<span class="str">"Grade B"</span>);
+        } <span class="kw">else if</span> (marks &gt;= <span class="num">40</span>) {
+            System.out.println(<span class="str">"Grade C"</span>);
+        } <span class="kw">else</span> {
+            System.out.println(<span class="str">"Fail"</span>);
+        }
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>Grade B</pre>
+        </div>
+        <h2>4. Nested if Statement</h2>
+        <p>When an if statement is written inside another if statement, it is called a nested if. It can be used to
+            check dependent conditions.</p>
+        <h2>5. Conditional (Ternary) Operator</h2>
+        <p>The conditional operator is also called the ternary operator because it uses three operands. It allows a
+            simple if-else condition to be written as a compact expression.</p>
+        <p><b>Syntax:</b> <code>result = condition ? value1 : value2;</code></p>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>Ternary Operator</span></div>
+            <pre><code><span class="kw">class</span> <span class="type">TernaryExample</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        <span class="kw">int</span> a = <span class="num">15</span>, b = <span class="num">20</span>;
+        <span class="kw">int</span> largest = (a &gt; b) ? a : b;
+
+        System.out.println(<span class="str">"Largest = "</span> + largest);
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>Largest = 20</pre>
+        </div>
+        <h2>Difference Between if-else and Ternary Operator</h2>
+        <table>
+            <tr>
+                <th>Basis</th>
+                <th>if-else</th>
+                <th>Ternary Operator</th>
+            </tr>
+            <tr>
+                <td>1. Form</td>
+                <td>It is a conditional statement.</td>
+                <td>It is a conditional operator.</td>
+            </tr>
+            <tr>
+                <td>2. Syntax</td>
+                <td>if (condition) { } else { }</td>
+                <td>condition ? value1 : value2</td>
+            </tr>
+            <tr>
+                <td>3. Usage</td>
+                <td>Suitable for complex decisions and multiple statements.</td>
+                <td>Suitable for selecting one value based on a simple condition.</td>
+            </tr>
+            <tr>
+                <td>4. Readability</td>
+                <td>Can be more readable for longer logic.</td>
+                <td>More concise for short expressions.</td>
+            </tr>
+        </table>
+        <hr />
+        <h1>Question 9: Explain for, while and do-while loops in Java. Also explain iteration and jump statements.</h1>
+        <h2>Looping Statements</h2>
+        <p>Looping statements are used to execute a statement or block repeatedly. A loop is useful when a task must be
+            performed multiple times. Each repetition is called an iteration. The main looping statements in Java are
+            for, while, and do-while.</p>
+        <h2>1. for Loop</h2>
+        <p><code>for</code>A for loop is useful when the number of iterations is known in advance. Initialization,
+            condition, and update are written in a single statement.</p>
+        <p><b>Syntax:</b> <code>for (initialization; condition; update) { statements; }</code></p>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>for Loop</span></div>
+            <pre><code><span class="kw">class</span> <span class="type">ForLoopExample</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        <span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">1</span>; i &lt;= <span class="num">5</span>; i++) {
+            System.out.println(i);
+        }
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>1
+2
+3
+4
+5</pre>
+        </div>
+        <h2>2. while Loop</h2>
+        <p><code>while</code>A while loop checks the condition first. The loop body executes if the condition is true.
+            Therefore, if the condition is false at the beginning, the while loop will not execute even once.</p>
+        <p><b>Syntax:</b> <code>while (condition) { statements; }</code></p>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>while Loop</span></div>
+            <pre><code><span class="kw">class</span> <span class="type">WhileLoopExample</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        <span class="kw">int</span> i = <span class="num">1</span>;
+
+        <span class="kw">while</span> (i &lt;= <span class="num">5</span>) {
+            System.out.println(i);
+            i++;
+        }
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>1
+2
+3
+4
+5</pre>
+        </div>
+        <h2>3. do-while Loop</h2>
+        <p><code>do-while</code>In a do-while loop, the loop body executes first and the condition is checked
+            afterwards. Therefore, the loop always executes at least once, even if the condition is false.</p>
+        <p><b>Syntax:</b> <code>do { statements; } while (condition);</code></p>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>do-while Loop</span></div>
+            <pre><code><span class="kw">class</span> <span class="type">DoWhileExample</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        <span class="kw">int</span> i = <span class="num">1</span>;
+
+        <span class="kw">do</span> {
+            System.out.println(i);
+            i++;
+        } <span class="kw">while</span> (i &lt;= <span class="num">5</span>);
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>1
+2
+3
+4
+5</pre>
+        </div>
+        <h2>Difference Between for, while and do-while Loop</h2>
+        <table>
+            <tr>
+                <th>Basis</th>
+                <th>for Loop</th>
+                <th>while Loop</th>
+                <th>do-while Loop</th>
+            </tr>
+            <tr>
+                <td>1. Condition Check</td>
+                <td>Before the body.</td>
+                <td>Before the body.</td>
+                <td>After the body.</td>
+            </tr>
+            <tr>
+                <td>2. Minimum Execution</td>
+                <td>May execute zero times.</td>
+                <td>May execute zero times.</td>
+                <td>At least once.</td>
+            </tr>
+            <tr>
+                <td>3. Best Use</td>
+                <td>A known number of iterations.</td>
+                <td>Condition-based repetition.</td>
+                <td>When the body must execute at least once.</td>
+            </tr>
+            <tr>
+                <td>4. Syntax</td>
+                <td>Initialization, condition, and update are in one header.</td>
+                <td>The condition is in the header; the update can be in the body.</td>
+                <td>The while condition follows the do block.</td>
+            </tr>
+        </table>
+        <h2>Jump Statements in Java</h2>
+        <p>Jump statements are used to change the normal flow of a program. The main jump statements in Java are break,
+            continue, and return.</p>
+        <h3>1. break Statement</h3>
+        <p><code>break</code>immediately terminates a loop or switch statement and transfers control to the statement
+            that follows it.</p>
+        <h3>2. continue Statement</h3>
+        <p><code>continue</code>skips the remaining statements in the current iteration and starts the next loop
+            iteration.</p>
+        <h3>3. return Statement</h3>
+        <p><code>return</code>terminates the execution of a method. If a method returns a value, that value is provided
+            with the return statement. In a void method, only<code>return;</code>can also be written.</p>
+        <h2>Example of break and continue</h2>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>Jump Statements</span></div>
+            <pre><code><span class="kw">class</span> <span class="type">JumpExample</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        <span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">1</span>; i &lt;= <span class="num">5</span>; i++) {
+            <span class="kw">if</span> (i == <span class="num">2</span>) {
+                <span class="kw">continue</span>;
+            }
+            <span class="kw">if</span> (i == <span class="num">5</span>) {
+                <span class="kw">break</span>;
+            }
+            System.out.println(i);
+        }
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>1
+3
+4</pre>
+        </div>
+        <hr />
+        <h1>Question 10: Explain switch statement in Java and differentiate it from if-else statement.</h1>
+        <h2>switch Statement</h2>
+        <p>In Java, the<code>switch</code>switch statement is used to select one block from multiple alternatives based
+            on the value of an expression. It is useful when the value of a variable or expression must be compared with
+            several fixed cases.</p>
+        <h2>Syntax of switch Statement</h2>
+        <div class="java-program">
+            <div class="code-title"><span>Java Syntax</span><span>switch</span></div>
+            <pre><code><span class="kw">switch</span> (expression) {
+    <span class="kw">case</span> value1:
+        <span class="comment">// statements</span>
+        <span class="kw">break</span>;
+    <span class="kw">case</span> value2:
+        <span class="comment">// statements</span>
+        <span class="kw">break</span>;
+    <span class="kw">default</span>:
+        <span class="comment">// default statements</span>
+}</code></pre>
+        </div>
+        <h2>Important Parts of switch</h2>
+        <ol>
+            <li><b>switch:</b>It evaluates the value of the expression.</li>
+            <li><b>case:</b>Each case defines a possible matching value.</li>
+            <li><b>break:</b>In a traditional switch statement, break exits the current switch block. If break is
+                omitted, control can fall through to the next case.</li>
+            <li><b>default:</b>The default block executes when no case matches. It is optional.</li>
+        </ol>
+        <h2>Example Program of switch Statement</h2>
+        <div class="java-program">
+            <div class="code-title"><span>Java Program</span><span>Day Selection</span></div>
+            <pre><code><span class="kw">class</span> <span class="type">SwitchExample</span> {
+    <span class="kw">public static void</span> main(String[] args) {
+        <span class="kw">int</span> day = <span class="num">3</span>;
+
+        <span class="kw">switch</span> (day) {
+            <span class="kw">case</span> <span class="num">1</span>:
+                System.out.println(<span class="str">"Monday"</span>);
+                <span class="kw">break</span>;
+            <span class="kw">case</span> <span class="num">2</span>:
+                System.out.println(<span class="str">"Tuesday"</span>);
+                <span class="kw">break</span>;
+            <span class="kw">case</span> <span class="num">3</span>:
+                System.out.println(<span class="str">"Wednesday"</span>);
+                <span class="kw">break</span>;
+            <span class="kw">default</span>:
+                System.out.println(<span class="str">"Invalid day"</span>);
+        }
+    }
+}</code></pre>
+        </div>
+        <div class="java-output"><b>Output</b>
+            <pre>Wednesday</pre>
+        </div>
+        <h2>Working of switch Statement</h2>
+        <ol>
+            <li>First, the switch expression is evaluated.</li>
+            <li>Its value is compared with the available case labels.</li>
+            <li>When a matching case is found, its statements begin to execute.</li>
+            <li>When break is encountered, the switch statement terminates.</li>
+            <li>If no case matches and a default block is present, the default block is executed.</li>
+        </ol>
+        <h2>Difference Between switch and if-else</h2>
+        <table>
+            <tr>
+                <th>Basis</th>
+                <th>switch Statement</th>
+                <th>if-else Statement</th>
+            </tr>
+            <tr>
+                <td>1. Purpose</td>
+                <td>Matches the value of an expression against multiple case labels.</td>
+                <td>Checks one or more boolean conditions.</td>
+            </tr>
+            <tr>
+                <td>2. Conditions</td>
+                <td>Convenient for fixed case values.</td>
+                <td>Suitable for ranges, relational conditions, and complex logical conditions.</td>
+            </tr>
+            <tr>
+                <td>3. Readability</td>
+                <td>Makes code clearer when there are many fixed choices.</td>
+                <td>Can be more flexible and readable for complex conditions.</td>
+            </tr>
+            <tr>
+                <td>4. break</td>
+                <td>In a traditional switch, break is used to prevent fall-through.</td>
+                <td>A break statement is not required in if-else.</td>
+            </tr>
+            <tr>
+                <td>5. Default Case</td>
+                <td>The default block is optional.</td>
+                <td>The else block is optional.</td>
+            </tr>
+            <tr>
+                <td>6. Example</td>
+                <td>Menu selection, day numbers, and fixed options.</td>
+                <td>Age checks, marks ranges, and multiple conditions.</td>
+            </tr>
+        </table>
+        <h2>Advantages of switch Statement</h2>
+        <ol>
+            <li>It makes handling multiple fixed choices easier.</li>
+            <li>The code can be more organized than using many else-if conditions.</li>
+            <li>It is useful in menu-driven programs.</li>
+            <li>The default case can handle values that do not match any case.</li>
+        </ol>
+        <hr />
+    </main>
+</body>
+
+</html>
