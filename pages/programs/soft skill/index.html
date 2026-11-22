@@ -3,14 +3,14 @@
 
 <head>
   <meta charset="utf-8">
-   <script async src="https://www.googletagmanager.com/gtag/js?id=G-FB7SX0P0D3"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FB7SX0P0D3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-      gtag('config', 'G-FB7SX0P0D3');
-    </script>
+    gtag('config', 'G-FB7SX0P0D3');
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>PGDCA - Sem 3</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,9 +55,8 @@
           <!-- Naya unit: ek <li> copy karo, data-src mein apni HTML file ka path likho -->
           <ul class="units" id="units">
             <li class="unit"><a class="unit-link" href="#unit-1" data-src="./units/unit-1/index.html"><span
-                  class="badge">1</span><span class="u-name">Basics of Communication</span></a><a
-                class="icon-btn dl" href="./pdf/ss unit 1 english notes.pdf" download aria-label="Unit 1 download"><svg
-                  viewBox="0 0 24 24">
+                  class="badge">1</span><span class="u-name">Basics of Communication</span></a><a class="icon-btn dl"
+                href="./pdf/ss unit 1 english notes.pdf" download aria-label="Unit 1 download"><svg viewBox="0 0 24 24">
                   <path d="M12 4v12m0 0l-5-5m5 5l5-5M5 20h14" />
                 </svg></a></li>
             <li class="unit"><a class="unit-link" href="#unit-2" data-src="units/unit-2/index.html"><span
@@ -71,13 +70,20 @@
                   <path d="M12 4v12m0 0l-5-5m5 5l5-5M5 20h14" />
                 </svg></a></li>
             <li class="unit"><a class="unit-link" href="#unit-4" data-src="units/unit-4/index.html"><span
-                  class="badge">4</span><span class="u-name">Curriculum Vitae and Resume</span></a><a class="icon-btn dl"
-                href="./pdf/ss unit 4 english notes.pdf" download aria-label="Unit 4 download"><svg viewBox="0 0 24 24">
+                  class="badge">4</span><span class="u-name">Curriculum Vitae and Resume</span></a><a
+                class="icon-btn dl" href="./pdf/ss unit 4 english notes.pdf" download aria-label="Unit 4 download"><svg
+                  viewBox="0 0 24 24">
                   <path d="M12 4v12m0 0l-5-5m5 5l5-5M5 20h14" />
                 </svg></a></li>
             <li class="unit"><a class="unit-link" href="#unit-5" data-src="units/unit-5/index.html"><span
-                  class="badge">5</span><span class="u-name">Interview Techniques & Interview Preparation</span></a><a class="icon-btn dl"
-                href="./pdf/ss unit 5 english notes.pdf" download aria-label="Unit 5 download"><svg viewBox="0 0 24 24">
+                  class="badge">5</span><span class="u-name">Interview Techniques & Interview Preparation</span></a><a
+                class="icon-btn dl" href="./pdf/ss unit 5 english notes.pdf" download aria-label="Unit 5 download"><svg
+                  viewBox="0 0 24 24">
+                  <path d="M12 4v12m0 0l-5-5m5 5l5-5M5 20h14" />
+                </svg></a></li>
+            <li class="unit"><a class="unit-link" href="#unit-6" data-src="./top_30_questions/index.html"><span class="badge">6</span><span
+                  class="u-name">Unit-1 pyq </span></a><a class="icon-btn dl" href="" download
+                  aria-label="Unit 6 download"><svg viewBox="0 0 24 24">
                   <path d="M12 4v12m0 0l-5-5m5 5l5-5M5 20h14" />
                 </svg></a></li>
           </ul>
@@ -93,9 +99,9 @@
   <script>
     var app = document.getElementById('app'), main = document.getElementById('main'), sheet = document.getElementById('sheet'),
       items = Array.prototype.slice.call(document.querySelectorAll('.unit')), tok = 0, DL = '<svg viewBox="0 0 24 24"><path d="M12 4v12m0 0l-5-5m5 5l5-5M5 20h14"/></svg>';
-    function isMobile() {return window.matchMedia('(max-width:820px)').matches}
-    function setDrawer(o) {app.classList.toggle('drawer-open', o); document.getElementById('toggle').setAttribute('aria-expanded', String(o))}
-    function msg(cls, html) {sheet.innerHTML = '<div class="' + cls + '">' + html + '</div>'}
+    function isMobile() { return window.matchMedia('(max-width:820px)').matches }
+    function setDrawer(o) { app.classList.toggle('drawer-open', o); document.getElementById('toggle').setAttribute('aria-expanded', String(o)) }
+    function msg(cls, html) { sheet.innerHTML = '<div class="' + cls + '">' + html + '</div>' }
 
     async function load(n) {
       var t = ++tok, li = items[n], src = li.querySelector('.unit-link').dataset.src,
@@ -104,7 +110,7 @@
       msg('state', 'Unit is loading....');
       try {
         var r = await fetch(src); if (t !== tok) return;
-        if (!r.ok) {msg('err', '<b>File not founded.</b><br>please check path : <code></code>'); sheet.querySelector('code').textContent = src; return }
+        if (!r.ok) { msg('err', '<b>File not founded.</b><br>please check path : <code></code>'); sheet.querySelector('code').textContent = src; return }
         var doc = new DOMParser().parseFromString(await r.text(), 'text/html'); if (t !== tok) return;
         var unitUrl = new URL(src, window.location.href);
         doc.body.querySelectorAll('[src], [poster], [data], [srcset]').forEach(function (el) {
@@ -148,12 +154,12 @@
       load(n);
     }
     document.getElementById('toggle').onclick = function () {
-      if (isMobile()) {setDrawer(!app.classList.contains('drawer-open'))}
-      else {var c = app.classList.toggle('collapsed'); this.setAttribute('aria-expanded', String(!c))}
+      if (isMobile()) { setDrawer(!app.classList.contains('drawer-open')) }
+      else { var c = app.classList.toggle('collapsed'); this.setAttribute('aria-expanded', String(!c)) }
     };
-    document.getElementById('close').onclick = function () {setDrawer(false)};
-    document.getElementById('scrim').onclick = function () {setDrawer(false)};
-    document.addEventListener('keydown', function (e) {if (e.key === 'Escape') setDrawer(false)});
+    document.getElementById('close').onclick = function () { setDrawer(false) };
+    document.getElementById('scrim').onclick = function () { setDrawer(false) };
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setDrawer(false) });
     window.addEventListener('hashchange', route);
     route();
   </script>
